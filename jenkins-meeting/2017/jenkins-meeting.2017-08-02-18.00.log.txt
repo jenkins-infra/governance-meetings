@@ -1,0 +1,191 @@
+18:00:03 <rtyler> #startmeeting
+18:00:03 <robobutler> Let the Jenkins meeting commence!
+18:00:05 <rtyler> \o/
+18:00:09 <rtyler> #topic Last meeting actions
+18:00:28 <rtyler> kohsuke did release 2.60.2 \o/
+18:00:52 <rtyler> around the dockerhub changes we discussed last time
+18:01:01 <rtyler> I have given everybody access that had access before (IIRC)
+18:01:16 <rtyler> but I have not yet finished collaborating with ndeloof on a blog post about the change
+18:01:29 <rtyler> I know he started a draft, but I haven't seen it opened as a pull request against jenkins.io
+18:01:47 <rtyler> that's it for the last meeting actions
+18:01:57 <rtyler> #topic LTS status check
+18:02:19 <rtyler> it seems that ogondza isn't here
+18:02:23 <oleg-nenashev> :(
+18:02:27 <rtyler> are there any other folks that could update on the LTS status?
+18:02:57 <oleg-nenashev> Some fixes have been backported, but I am not sure the backporing is finished
+18:03:09 <rtyler> danielbeck: do you happen to know/
+18:03:16 <oleg-nenashev> I see some lts-candidate tickets without .3 decision
+18:03:41 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/3Vz_Db-rNzk
+18:04:36 <oleg-nenashev> JENKINS-45057 sucks
+18:04:46 * rtyler opens up the ticket
+18:05:02 <rtyler> oh that one
+18:05:03 <oleg-nenashev> So maybe we want to consider landing a fix from jglick or stephenc into .3
+18:05:17 <rtyler> it doesn't look like a fix has even landed in a weekly for that yet
+18:06:19 <oleg-nenashev> rtyler: we have 2 pending PRs
+18:06:23 <oleg-nenashev> I hope to land one
+18:06:34 <rtyler> do you recall from the schedule when .3 is supposed to be?
+18:06:40 <oleg-nenashev> Anyway, we need Oliver to make decisions, so I propose to take it offline
+18:06:50 <oleg-nenashev> .3 should be out in 2 weeks
+18:06:55 <rtyler> ah, so there's time
+18:07:19 <rtyler> oleg-nenashev: but regardless of what oliver thinks, a fix still needs to make its way into a weekly first
+18:07:21 <oleg-nenashev> Yep. Usually ogondza releases RCs on Thursdays after the governance meetings
+18:07:22 <rtyler> right?
+18:07:27 <oleg-nenashev> +/-
+18:07:42 <oleg-nenashev> Once we merge fix to the master, we COULD backport it to RC
+18:07:49 <oleg-nenashev> Not an ideal case, of course
+18:07:59 <rtyler> gotcha
+18:08:19 <oleg-nenashev> So let's take it offline
+18:08:20 <rtyler> I believe .3 before KK gets back from vacation
+18:08:34 <oleg-nenashev> KK is not needed for RC
+18:08:38 <rtyler> fair enough, just don't want it to get lost with everybody taking their summer vacations :)
+18:08:46 <oleg-nenashev> heh
+18:09:04 <rtyler> I'm surprised anybody from europe is here right now, it's august, that's vacation month isn't it? :P
+18:09:05 <oleg-nenashev> #action oleg_nenashev to follow-up on JENKINS-45057 in MLs
+18:09:20 <orrc> Well, oleg-nenashev doesn't know the word vacation
+18:09:25 <rtyler> heh
+18:09:27 <oleg-nenashev> Yeah, it's a dead season in Europe
+18:09:32 <oleg-nenashev> I already had mine :)
+18:09:38 <oleg-nenashev> Next one is after JW
+18:09:53 <rtyler> alright, that's a good enough segue
+18:09:56 <rtyler> alyssat_: you awake? :D
+18:10:02 <rtyler> #topic Jenkins World organization/status update
+18:10:10 <alyssat_> hello
+18:10:22 <rtyler> I know that I have seen some of the Jenkins project's booth stuff, but I figured you could update folks on the activities today alyssat_
+18:10:27 <rtyler> we have a bunch planned :-!
+18:10:37 <alyssat_> A quick update to Jenkins World
+18:10:47 <alyssat_> 1,175 registrations at the moment. Jenkins World consist of 5 tracks: 3 community tracks, and 2 DevOps tracks. 60+ sessions, 16+ trainings workshops, plus onsite Jenkins certification.
+18:11:16 <alyssat_> wrt community activities, includes: Contributor summit  info# https://www.meetup.com/jenkinsmeetup/events/241213280/. Currently 72 rsvps.
+18:11:31 <rtyler> #info https://www.meetup.com/jenkinsmeetup/events/241213280/
+18:11:32 <alyssat_> info# https://www.eventbrite.com/e/2017-jenkins-contributor-appreciation-evening-tickets-32591665549. Jenkins Appreciation evening at Autodesk Gallery If any one here is going to Jenkins World and haven't RSVP'd for the party pls do so.
+18:11:42 <rtyler> oh right
+18:11:51 * rtyler tries to remember if he already RSVPed
+18:11:59 * oleg-nenashev too
+18:12:04 <rtyler> #info Jenkins World 2017 is in San Francisco the week of August 28th
+18:12:07 <alyssat_> pls do if you haven't
+18:12:15 <alyssat_> #info https://www.cloudbees.com/jenkinsworld/awards  The inaugural Jenkins Community Awards. Koshuke will announce and publicly recognize the 3 folks who has done great work for the Jenkins project in the areas of advocacy, security and contributions.  All nominees were excellent contenders, it was not easy for the committee to vote on this.
+18:13:24 <rtyler> alyssat_: what about the project's booth, can you share the plan with that?
+18:13:31 <alyssat_> wrt Jenkins project booth, on the expo floor - we will have
+18:13:31 <alyssat_> Ask the Experts as usual, panel consist of 19 volunteers which includes frequent contributors, JAM organizers and board members.
+18:14:12 <alyssat_> I will write a blog to highlight our experts and their areas of expertise shortly.
+18:14:35 <rtyler> alyssat_: I think a number of folks here are signed up for expert duty
+18:14:44 <rtyler> alyssat_: anything besides our smiling faces and maybe a laptop we should bring?
+18:14:48 <alyssat_> and based on last year's success, at lunch time, there will ten 15-min demos showcasing related topics like Docker, Pipeline, Blue Ocean, Git, etc.  Blog to follow as well
+18:15:39 <alyssat_> I don't think so. we'll have t-shirts for our experts and goodies
+18:16:09 <rtyler> ooooOooooo
+18:16:15 <alyssat_> new at the booth this year is PR corner - this will be a dedicated area within the booth where danielbeck (leading this effort) will help show attendees how to do a PR or complete one. The goal is to get new blood to participate in the Jenkins project.
+18:16:45 <alyssat_> those are the highlights for JW
+18:17:10 <rtyler> any questions for alyssat_ on the topic of Jenkins World?
+18:17:47 <alyssat_> hope to see everyone here at the conf
+18:17:52 * rtyler watches the clock tick
+18:17:57 * schristou is excited!
+18:17:58 <autojack> oh that's a cool idea re: the PR corner
+18:18:01 <autojack> I like that!
+18:18:11 <oleg-nenashev> Any chance we discuss JAMbassador by the contributor summit?
+18:18:23 <oleg-nenashev> Seems this thread is dead
+18:18:35 <alyssat_> we need to revive this for sure
+18:18:43 <rtyler> the latter part of the day of the contributor summit is open-ended
+18:18:51 <oleg-nenashev> yep
+18:19:35 <alyssat_> oleg-nenashev: let's talk off line on this some more
+18:19:38 <rtyler> anything else?
+18:19:52 <alyssat_> nothing from me
+18:20:06 <rtyler> #topic Infra status update
+18:20:12 <rtyler> this should be short and sweet
+18:20:29 <rtyler> olblak and I (mostly him) have continued to move stuff over to Azure and Kubernetes
+18:21:01 <rtyler> we hit a snag with upgrading our Kubernetes cluster, since it's one of those pieces of technology that's best upgraded with a blue/green deployment rather than trying to update different parts of the cluster
+18:21:17 <rtyler> when he's back in the office,  we should be able to wrap that all up by Jenkins World and move a few more services over
+18:21:48 <rtyler> we've also recently opened the flood-gates for all plugins under github.com/jenkinsci on https://ci.jenkins.io which seems to be going very well!
+18:22:14 <rtyler> I've seen a lot of developers taking advantage of it, and the built-in cross-platform testing the `buildPlugin()` method provides
+18:22:29 <rtyler> and the only other thing I wanted to bring up
+18:23:02 <rtyler> #info There is an infra status meeting every monday at 19:30 UTC on jenkins.io/hangout
+18:23:10 <rtyler> any questions before I move on
+18:23:55 * rtyler watches the clock tick
+18:24:37 <oleg-nenashev> Do we know what happened with changelogs on Monday?
+18:24:51 <rtyler> something happened with changelogs on monday/
+18:24:53 <oleg-nenashev> I mean the weekly release changelog publishing glitch. CC danielbeck
+18:24:56 <rtyler> oh, the delay
+18:25:21 <rtyler> yeah, when I made some changes to how jenkins.io gets shipped off to production, I didn't take into consideration the script on the server side which unpackes the generated site
+18:25:25 <rtyler> I fixed that yesterday
+18:25:30 <oleg-nenashev> thanks!
+18:25:42 <orrc> I haven't taken a look in a while; did anyone get a chance to poke at the board election setup?
+18:25:46 <oleg-nenashev> This time the community rating was important due to JENKINS-45895
+18:25:54 <oleg-nenashev> Yeah, election...
+18:26:01 <rtyler> orrc: that's dependent on the kubernetes work that olblak is doing
+18:26:15 <rtyler> he's already taken the original work from ndeloof and prepared it to actually run "in real life"
+18:26:24 <orrc> Nice
+18:26:25 <rtyler> just needs to be deployed properly with storage behind it
+18:26:34 <rtyler> right now account-app is effectively stateless (state is really in LDAP)
+18:26:41 <rtyler> the election stuff needs a reliable local disk
+18:26:58 <rtyler> https://issues.jenkins-ci.org/browse/INFRA-1127 FWIW
+18:27:34 <rtyler> my mental milestone is that once the bloody app is deployed and I can actually /operate/ the election process, then we can do the needful with candidacy/etc
+18:28:06 <rtyler> for better or worse, part of the reason this took a while is that olblak had to do a bit more java than he, or I, had anticipated to get this in shippable shape
+18:28:15 <rtyler> anything else?
+18:28:49 <rtyler> alright, i'm gonna keep moving us along
+18:29:05 <rtyler> #topic Jenkins mark usage request from CloudBees for CloudBees Jenkins Advisor
+18:29:08 <rtyler> #info https://groups.google.com/forum/#!msg/jenkinsci-dev/PoxnVCKa9NM/2F2iLlDuBwAJ
+18:29:32 <rtyler> this was proposed on the dev list already by kohsuke, who is asleep on the other side of the world right now :)
+18:29:38 <autojack> haha
+18:30:04 <rtyler> nobody's responded on the dev list about the topic, are there any questions I can answer?
+18:30:16 * oleg-nenashev abstains
+18:30:19 <autojack> I read the request, and I am +1 to it.
+18:30:49 <autojack> meets our past standards for usage of the mark AFAICT.
+18:30:55 <oleg-nenashev> I was unable to find any overlaps with existing naming in the internet though
+18:31:16 <rtyler> a concern was raised to me privately about advisor being close to "advisory"
+18:31:40 <rtyler> insofar that the individual was concerned confusion with Jenkins security advisories
+18:31:47 <oleg-nenashev> Also Advisor and Ambassador if alyssat_ plans to stick to that name
+18:32:04 <oleg-nenashev> But it's not something really important
+18:32:11 <autojack> hm. neither of those seem like a big deal to me.
+18:32:18 <rtyler> personally, I don't think this is going to be a concern since our previous conditions with CloudBees have been that "subsets" of these marks are not acceptable usages
+18:32:38 <rtyler> i.e. CloudBees messaging should always use the full mark "CloudBees Jenkins Advisor" and never a subset thereof
+18:32:57 <rtyler> alyssat_ and her boss are on the hook for policing and enforcement :)
+18:33:12 <alyssat_> :) that's correct
+18:33:38 <orrc> Seems ok
+18:33:46 <schristou> I’m ok with it. +1.
+18:34:14 <rtyler> any other questions I can answer?
+18:35:12 <rtyler> #agreed "CloudBees Jenkins Advisor" sub-license granted with the previous conditions which have been applied to other sub-licenses
+18:35:41 <rtyler> #action alyssat_ to update the https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage page accordingly
+18:36:26 <rtyler> ogondza: welcome! we already discussed some LTS things.
+18:36:38 <rtyler> if there are specific points you wish to discuss, I can bring the topic back
+18:36:39 <alyssat_> rtyler I don't have access to update the page.
+18:36:50 <alyssat_> Gimme access and i'll be happy to do it :)
+18:36:51 <rtyler> alyssat_: alright, we'll figure that out later
+18:37:45 <rtyler> #topic Deprecate Remoting CLI1/JNLP1/JNLP2/JNLP3 protocol
+18:37:49 <rtyler> oleg-nenashev: you're up buddy
+18:37:54 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/sN2wHHFOJPg
+18:38:14 <oleg-nenashev> So I need approval for a potentially breaking change
+18:38:54 <oleg-nenashev> I am going to use approach similar to Java 8, and the breakage is actually possible only in the case of custom packaging and legacy infra
+18:39:43 <oleg-nenashev> I have got +1s from batmat and stephenc, but I am ready to answer questions if any
+18:40:15 <rtyler> oleg-nenashev: the email subject says JNLP1/2 the meeting topic says 1/2/3
+18:40:17 * oleg-nenashev noticed "age cases" in the proposal text :(
+18:40:19 <rtyler> I'm a little confused
+18:40:38 <oleg-nenashev> rtyler: JNLP3 is already deprecated. We just need to do it explicit in Jenkins UI
+18:40:51 <rtyler> ah
+18:41:21 <rtyler> I think this is an overall positive change so I'm an enthusiastic +1
+18:41:23 <oleg-nenashev> It has been deprecated by https://github.com/jenkinsci/remoting/commit/fe2587b7f9d78334e0ab05ab0b95f39b4b600a25
+18:41:40 <rtyler> oleg-nenashev: is this something that should be communicated like the java 8 change on the blog and users list like batmat did?
+18:41:59 <oleg-nenashev> rtyler: Yes, I am going to write a blog post
+18:42:22 <orrc> Go for it
+18:42:23 <orrc> +1
+18:42:23 <oleg-nenashev> I also have a long-standing Remoting Subproject branch, which will aggregate blogposts and docs
+18:42:41 <oleg-nenashev> Remoting subproject will be released as well this week
+18:42:55 <oleg-nenashev> If I pass the review by rtyler of course :)
+18:43:18 <rtyler> i'm sure what you've written will be perfectly fine
+18:43:51 <rtyler> any other concerns for oleg-nenashev about his proposal?
+18:45:03 <rtyler> quiet group today :P
+18:45:12 <oleg-nenashev> FYI Remoting will be also updated to Java 8 soon
+18:45:15 <rtyler> maybe everybody is busy making their presentations for Jenkins World
+18:45:43 <alyssat_> 😄
+18:46:04 <oleg-nenashev> empty comment?
+18:46:17 <rtyler> heh
+18:46:31 <schristou> (smiley face)
+18:46:37 <rtyler> #agreed Deprecate Remoting CLI1/JNLP1/JNLP2/JNLP3 protocol
+18:46:55 <rtyler> #action oleg-nenashev to write a blog post to communicate changes to users when necessary
+18:46:55 <oleg-nenashev> #action oleg_nenashev to deliver docs and blog posts
+18:46:58 <rtyler> hah
+18:47:00 <rtyler> jinx!
+18:47:22 <oleg-nenashev> will do it anyway
+18:47:36 <rtyler> #info https://github.com/jenkinsci/jenkins/pull/2950 is the pull request for those who may be interested in the changes
+18:47:43 <rtyler> thanks oleg-nenashev
+18:47:46 <rtyler> #topic Next meeting
+18:48:12 <rtyler> looks like August 16th is the next scheduled time
+18:48:33 <rtyler> #info next meeting August 16th, 18:00 UTC
+18:48:40 <rtyler> #endmeeting

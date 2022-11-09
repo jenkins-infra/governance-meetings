@@ -1,0 +1,195 @@
+19:04:03 <abayer> #startmeeting
+19:04:03 <robobutler> Let the Jenkins meeting commence!
+19:04:18 <abayer> Ok, we don't have a real agenda again. Sorry. We suck.
+19:04:38 <mwalling> #info we should really have an agenda :)
+19:04:46 * mwalling runs
+19:04:49 <abayer> The only thing I really have to talk about here is the JIRA discussion on the mailing list.
+19:04:53 <abayer> mwalling: No, you're right.
+19:05:05 <abayer> #topic JIRA - project reorganization and bug triage?
+19:05:42 <abayer> #info So a while back, I pushed the idea of separating plugins from core in JIRA, so that we could actually use fix versions on core at the very least. This never got done, because I, well, never did it.
+19:05:59 <abayer> #info The subject has come up again on the mailing list and seems to have a lot of support.
+19:06:13 <mwalling> i support that idea, contingent on jenkins-admin being able to support it
+19:06:29 <rtyler> abayer: when you say separating, you mean into separate projects right?
+19:06:34 <abayer> Yes.
+19:06:38 <jieryn-w> core / plugins / infra   ?
+19:06:46 <jieryn-w> or 1:1 plugin:jira proj  ?
+19:06:46 <abayer> Something like that, yeah.
+19:06:53 <abayer> Nooooo, that's insane and hard to pull off.
+19:07:17 <rtyler> oh, I thought you mean "jabber plugin project" in JIRA
+19:07:41 <abayer> #info For starters, I think we're only talking about one project for Jenkins core, one project for Jenkins plugins, one project for Jenkins infrastructure. Eventually, a separate project for some individual plugins may make sense, but that's a *lot* of work to get going right off the bat.
+19:07:55 <jieryn-w> i think ideally we would have 1 for 1, but as stated, it'd be sadistic to make volunteers support that kind of infrastructure headache
+19:08:17 <mwalling> can jira programaticly create projects?
+19:08:20 <tom_huybrechts> how hard  is it to create a project in jira ? (just asking, have no idea)
+19:08:39 <abayer> Yeah. We're going to need help getting core/plugins split (given my limited time right now due to actual work) - maintaining versions, etc for 300 projects would be a little hellish.
+19:09:09 <jieryn-w> i think this is a good start, let's do this in phases
+19:09:27 <rtyler> what if there's a concept of promotiong
+19:09:27 <abayer> tom_huybrechts: Not very, but with a lot of projects, you clutter the UI, you have to either give admin access to each plugin developer so that they can create new versions or have the admins do that by hand, etc...
+19:09:49 <rtyler> by default all plugins are components in the "plugins" project, if there's enough activity/demand, they can be promoted out
+19:09:54 <abayer> rtyler: I kind of tend to think we should first split to core/plugin/infra, and then see hwo that works out.
+19:10:05 <rtyler> some plugins receive very little attention, others receive boatloads
+19:10:07 <abayer> And then see if we want to start promoting plugins, etc.
+19:10:09 <redsolo> FYI, there is a CLI for jira that allows to automate the project creation
+19:10:51 <tom_huybrechts> if we could do it just for those plugins developers that ask, and then delegate project admininstration to him...
+19:10:59 <redsolo> but im happy to have one separate for core itself as well, as core is the one that needs a version nr
+19:11:25 <abayer> #idea Split into three projects to start (core, plugins, infra), see how that goes, and then review after a couple months to see if we want to start moving on plugins getting their own projects, etc.
+19:11:39 <rtyler> sounds good to me
+19:11:43 <larrys> And don't forget SECURITY
+19:11:52 <larrys> for sensitive reports.
+19:11:58 <abayer> larrys: Good point. that one won't go away.
+19:12:09 <jieryn-w> the other aspect to jira discussion is the resolved->closed debate
+19:12:13 <abayer> #idea addendum - SECURITY project remains as is.
+19:12:33 <abayer> Does anyone have a problem with the three-way split to start proposal?
+19:12:49 <abayer> Ok then.
+19:13:15 <abayer> #agreed Three-way split of JENKINS into core/plugins/infra, to be coordinated with volunteer help 'cos we have limited time. =)
+19:13:25 <abayer> Now, yes, resolved->closed.
+19:13:58 <abayer> #info We have a verified status in JIRA. This is there basically just because java.net's Issuezilla setup had it, and so when I did the migration, I added verified so that we didn't have to mess with bug status.
+19:14:30 <abayer> #info Verified is not really useful, and is in fact kind of confusing.
+19:14:49 <redsolo> Im for removing it, as verified = Closed in my eye... otherwise its yt another bug status that issues will stay in
+19:14:50 <abayer> #info That just makes the question of how to determine when a bug goes from resolved to closed even hairier.
+19:15:09 <abayer> redsolo: I tend to agree. It's superfluous for our workflow.
+19:15:34 <jieryn-w> agree
+19:15:40 <abayer> #idea Move all bugs in Verified -> Closed (automated process to do this) and nuke the Verified status.
+19:15:51 <mwalling> ,1
+19:15:53 * rtyler digs it
+19:15:54 <abayer> Any opposition?
+19:16:03 <mwalling> ok, that was a +... stupid putty
+19:16:15 <abayer> #agreed Kill Verified.
+19:16:21 <abayer> #action abayer to kill verified.
+19:16:42 <abayer> #action abayer specifically to kill verified by next Monday.
+19:16:50 <abayer> (I need to put in deadlines on actions or I won't get around to them)
+19:17:02 <banoss> night night
+19:17:15 <rtyler> heh
+19:17:15 <jieryn-w> ok, still need to address 'resolved' status
+19:17:21 <abayer> indeed.
+19:17:22 <jieryn-w> verified only has 26 jira in it
+19:17:34 <abayer> #idea There's ambiguity as to how/when a bug goes from resolved->verified.
+19:17:41 <wolfs> What should/is be the actual workflow?
+19:17:41 <abayer> #info I am dumb.
+19:17:47 <abayer> #info resolved->closed, info not idea.
+19:17:56 <abayer> wolfs: That's the question, I think.
+19:18:15 <wolfs> Should there be a review step in Jira?
+19:18:35 <abayer> wolfs: code review or end-user review?
+19:18:46 <wolfs> Code Review I'd say
+19:18:56 <abayer> Code review we want to get in place - that's a big TODO.
+19:19:04 <jieryn-w> if kk ships code to address a jira, but the problem still happens - then it technically is a new problem because there's new code which is triggering it
+19:19:07 <jieryn-w> so i think that warrants a new jira
+19:19:08 <abayer> But that'd just be for core.
+19:19:29 <jieryn-w> or at least, re-open old one ;; but once code is shipped to address it, and dev believes it should be fixed, then go to closed state
+19:19:31 <mwalling> sounds like the has_patch trac flag that django uses
+19:19:41 <larrys> We got into a situation where we worked on changing our internal jira structure, and we quickly evolved into a huge massively complex workflow that became too clerical since it had steps that did not apply to everything… We started using the Labels plugin to mark other things on the issues...
+19:19:42 <redsolo> I think that is done before an issue is resolved
+19:19:43 <abayer> jieryn-w: +1 on re-open rather than new issue.
+19:20:13 * jieryn-w nods
+19:20:24 <abayer> #idea A fairly simple workflow: when the developer fixes the bug (so far as they know), state goes to resolved. When the reporter verifies the bug is fixed, state goes to closed.
+19:20:29 <redsolo> abayer: agree, dont want to spam the JIRA and it easier to see the history in the issue (code commits, etc)
+19:20:54 <jieryn-w> i think that is the ideal way, abayer, but not going to be practical
+19:20:54 <mwalling> and if hte reporter goes AWOL?
+19:20:58 <abayer> #idea If the reporter finds the bug is still there, state->reopen.
+19:21:03 <jieryn-w> we'll end up with boat loads of 'resolved', as we do now
+19:21:15 <wolfs> jieryn-w: +1
+19:21:38 <abayer> So what's your suggestion? I honestly don't know. =)
+19:21:44 <jieryn-w> be optimistic towards the dev that if they think they fixed it, they probably did
+19:21:50 <larrys> Our problem was we over engineered it way too early, and it became worse than the default
+19:21:59 <redsolo> perhaps someone other than issue resolved can close it if it can be verified to be fixed
+19:22:13 <aheritier> abayer : the original jira wkf is designed like you described open->(developer)->resolve->(reporter)->close
+19:22:14 <tom_huybrechts> we use fixed='fix committed' and resolved='fix released', then user can verify which is the closed state
+19:22:20 * aheritier is eating in //, not easy to discuss
+19:22:26 <abayer> Maybe when code gets checked in, ->resolved, when the code ships, ->closed, if reviewer or others sees bug is still there, ->reopen?
+19:22:29 <abayer> aheritier: =)
+19:22:31 <jieryn-w> so the work flow is the dev assigns problem to themself, commits code to fix it, uses a [CLOSES JIRA-####]
+19:22:34 <mwalling> abayer: +1 on that
+19:22:34 <redsolo> larrys: JIRAs biggest problem, is that its 100% configurable, but that is also the beauty of it
+19:22:44 <jieryn-w> abayer: that would be best
+19:22:57 <jieryn-w> if the problem persists, original reporter re-opens
+19:23:06 <redsolo> abayer: I like it. in between the reporter can close it if they are using a snapshot version
+19:23:10 <abayer> That'd help with plugins that don't have fix versions too - makes it easier to see when a fix has actually gone out the door and is available via the update center.
+19:23:20 <larrys> redsolo: Yup. Don't get me started on unneeded extra custom fields, especially ones that vary from issue type to issue type.
+19:23:38 * redsolo shrugs
+19:23:39 <freddy33> I don't think you can reopen closed issue?
+19:23:48 <redsolo> yes I think you can
+19:23:51 <aheritier> an intersting thing thing we could add in issues is a checkbox that the assigned can set to tell if it added a testcase to validate the fix
+19:23:59 <larrys> freddy33: It depends on security configuration, which can be changed in the workflow.
+19:24:06 <abayer> #idea When developer pushes code to fix the bug, state goes to resolved. When the code gets released, state goes to closed. If the bug persists, the state goes back to reopened.
+19:24:09 <hare_brain> If changelog entries have JIRA #'s associated, can we add automation to the release process to automatically move them from resolved to closed?
+19:24:23 <abayer> #action abayer to make sure our JIRA setup allows reopening closed bugs.
+19:24:40 <abayer> hare_brain: I should have mentioned that - that's implicit in my proposal. =)
+19:25:09 <redsolo> abayer: it allows reopening issues today
+19:25:34 <abayer> #idea addendum - [FIXED JENKINS-XYZ] in commit message will switch the state on build in ci.jenkins-ci.org to resolved, and will switch the state to closed on plugin release - will require tweaks to hpi plugin, but should be doable.
+19:25:57 <hare_brain> Why not for the core as well?
+19:26:38 <abayer> hare_brain: Core wouldn't require changes to the hpi plugin - we could just add that to the changelog-related stuff.
+19:27:16 <abayer> When it comes to automation, I'm more worried about making sure the plugin release process doesn't require additional steps than the core release process.
+19:27:18 <mwalling> #idea allow the [FIXED ... regex to also match [FIXES
+19:27:26 <abayer> +1
+19:28:27 <abayer> #action abayer to modify the ci.jenkins-ci.org JIRA integration to look for [FIXES …] or [FIXED …].
+19:28:39 <hare_brain> It sounded like you were proposing automatically moving resolve->closed for plugin releases only. It should be done for core as well. Obviously different tooling involved.
+19:28:48 <hare_brain> [FIX ...] ?
+19:29:05 <abayer> #action addendum - or [FIX …] But that's it!
+19:29:08 <abayer> =)
+19:29:09 <hare_brain> Localizations? ;)
+19:29:16 <larrys> NIEN
+19:29:21 <hare_brain> jk!
+19:29:36 <abayer> #idea (clarification - auto resolved->closed to happen on core release as well)
+19:29:39 <abayer> Ok!
+19:29:53 <abayer> So - are we all on board with that workflow?
+19:30:19 <redsolo> yes, its a good start
+19:31:11 <redsolo> There are currently 4345 resolved issues
+19:32:06 <abayer> #agreed The above idea on JIRA workflow going forward.
+19:32:14 <redsolo> 3161 ones were resolved for more than a year ago
+19:32:31 <abayer> #idea Mark all bugs in resolved state that entered resolved state at least 6 months ago as closed?
+19:32:38 <wolfs> +1
+19:32:56 <aheritier> +1
+19:33:01 <jieryn-w> +1
+19:33:05 <mwalling> +1
+19:33:08 <redsolo> or at least hasnt been updated for 6 months... ppl may discuss on the issue even after it has been closed
+19:33:16 <redsolo> resolved that is
+19:33:22 <fabrice31> +1
+19:33:26 <kutzi> +1
+19:33:33 <abayer> redsolo: I don't think closing the issue blocks comments.
+19:33:43 <redsolo> true
+19:33:55 <redsolo> +1
+19:33:57 <aheritier> If someone think an issue isn't resolved he should reopen it
+19:33:59 <fabrice31> closed ticket can be reopened ;)
+19:34:09 <aheritier> no it doesn't block thus no problem
+19:34:15 <abayer> #agreed That thing I just said - closing all >6 months resolved bugs.
+19:34:28 <abayer> #action abayer to close all bugs resolved >6 months ago.
+19:35:07 <abayer> And in a few months we'll revisit the open bugs.
+19:35:40 <abayer> (resolved bugs - i.e., the ones from the last 6 months)
+19:36:47 <redsolo> good thing is that you can resolve 1000 issues in bulk
+19:36:47 <hsoj> fix my bug tia
+19:37:04 <abayer> Alright, so that's the JIRA stuff. =)
+19:37:23 <abayer> Anyone have anything else they'd like to discuss?
+19:37:40 <jieryn-w> will we have another one of these in a week?
+19:37:45 <tom_huybrechts> #idea post these meetings on the website calendar
+19:38:06 <abayer> (sorry, work distracting me)
+19:38:17 <redsolo> #idea and a preliminary agenda attached to it
+19:38:41 <fabrice31> will there be a control to avoid duplicate issues ?
+19:38:43 <abayer> #agreed We just dropped the ball on the agenda again. =)
+19:38:45 <wolfs> What about putting the agenda on confluence to make it editable?
+19:38:54 <abayer> #action rtyler to do better on agenda.
+19:40:01 <redsolo> fabrice31: there was someone mention a tool that could find duplicates... that sounded interesting
+19:40:03 <mwalling> yeah, either confluence or something like google moderator... post agenda items to that
+19:40:21 <abayer> Aaaand rtyler's AFK.
+19:40:36 <larrys> since he's afk, assign all items to him them.
+19:40:40 <abayer> hoorah!
+19:40:47 <fabrice31> ok, thanks !
+19:41:53 <abayer> #idea Next meeting, 11am PST (7pm GMT, 8pm CET) next Wednesday (Feb 16)?
+19:42:02 <abayer> Does this time work for everyone?
+19:42:06 <mwalling> +1
+19:42:12 <hare_brain> One of the things we need to figure out amongst ourselves is what's in the scope of "governance." IMO, the JIRA discussion belongs to the community, and the governance board would only have stepped in if there was no consensus. Part of getting an agenda out is fixing the scope, so that our day jobs don't interfere.
+19:42:19 <abayer> Oh, yeah, that too.
+19:42:41 <abayer> I'm admittedly faking this as I go.
+19:42:47 <hare_brain> So if there's no governance agenda, no meeting.
+19:42:56 <hare_brain> At least, related to that topic.
+19:43:07 <mwalling> hell, agenda items could be JIRA issues
+19:43:18 <hare_brain> It seems like people like having a set time to meet in real time to discuss things like JIRA workflow.
+19:43:20 <mwalling> -> closed after meetings with resolutions
+19:43:25 <larrys> they use jira issues at my job to group together for agenda items
+19:43:36 <abayer> (sorry, AFK a few minutes to deal with a work thing)
+19:44:22 <abayer> #chair hare_brain
+19:44:22 <robobutler> Current chairs: abayer hare_brain
+19:44:44 <redsolo> fabrice31: its named http://www.suggestimate.com/. dont know if it will give out a list of duplicated issues
+19:46:39 <hare_brain> Are we done?
+19:47:09 <tom_huybrechts> looks that way
+19:47:34 <mwalling> motiuon to adjourn!
+19:47:48 <jieryn-w> +1
+19:47:51 <hare_brain> #endmeeting

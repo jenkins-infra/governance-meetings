@@ -1,0 +1,265 @@
+18:01:11 <kohsuke> #startmeeting
+18:01:11 <robobutler> Let the Jenkins meeting commence!
+18:01:13 <jglick> (sorry kohsuke)
+18:01:16 <Slide-O-Mix> oh, sorry, missed that
+18:01:19 <marshzor> okay sorry guys
+18:01:22 <kohsuke> #chair abayer rtyler hare_brain
+18:01:22 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:01:26 <kohsuke> No problem
+18:01:35 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:01:47 <kohsuke> And my apologies for the last minute announcement
+18:02:03 <jglick> BTW Mar 20 meeting did not happen
+18:02:17 <kohsuke> OK, so let's start with that agenda items
+18:02:22 <kohsuke> #topic cleanup changelog handling
+18:02:44 <kohsuke> that's yours jglick
+18:03:03 <jglick> So there was a bit of discussion of this on the list.
+18:03:21 <jglick> Problems were basically that changelog.html is really hard to merge/backport/etc.
+18:03:27 <kohsuke> Yes
+18:03:30 <jglick> And often misses entries.
+18:03:34 <jglick> Also hard for PRs to add to.
+18:03:56 <jglick> (Note that 1.480.3 changelog is quite incomplete for example.)
+18:04:03 <jglick> Some proposals were to use a directory of files for changes, or to use git log.
+18:04:32 <jglick> git log is more automatic but hard to edit later. Dir of files is more explicit but could easily be forgotten.
+18:04:33 <kohsuke> jglick: what's the subject line of the discussion you are referring to? I'm drawing blank
+18:04:40 <jglick> Uh let me see.
+18:04:46 <jenkins-builds> Project jenkins_main_trunk build #2431: SUCCESS in 1 hr 3 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/2431/
+18:04:47 <jenkins-builds> Jesse Glick: [FIXED JENKINS-17454] Display parameters of queue items in build history widget.
+18:04:49 <jenkins-admin> JENKINS-17454:Difficult to determine parameters of queue items (Open) http://jenkins-ci.org/issue/17454
+18:04:58 <kohsuke> mc1arke: also, does this relate any way to what you were working on?
+18:05:03 <kpfleming_> One concern with using 'git log' is there is almost no consistency in how commit log messages are written.
+18:05:11 <mc1arke> I suspect so
+18:05:26 <mc1arke> although would need all features to be in Jira
+18:05:32 <kohsuke> kpfleming_: if there's a bot using it, I think it creates more incentive, like that "FIXED JENKINS-..." marker
+18:05:39 <jglick> https://groups.google.com/d/msg/jenkinsci-dev/HPoCM6NJJZw/Kd_YryJVkPwJ maybe
+18:06:05 <kpfleming_> agreed. many projects have strong policies on how commit messages should be composed, and it ends up benefiting everyone.
+18:06:57 <jglick> Normative format for commit messages would be nice. I think generally [FIXED JENKINS-nnnnn] or [JENKINS-nnnnn] are agreed upon.
+18:07:22 <jglick> The latter for commits relating to, but not exactly solving, the issue.
+18:07:34 <kohsuke> For the records, the LTS changelog generation is now done via the script that builds it automatically from git log
+18:07:38 <kpfleming_> There are two apsects: format and content. When I was running the Asterisk project, we worked hard to get people to write good commit messages.
+18:07:51 <kohsuke> My intent was to soak it there a bit and deploy this on the trunk
+18:07:54 <kpfleming_> Format is easy... writing concise summaries is harder.
+18:08:11 <jglick> kohsuke: what is this new script?
+18:08:45 <kohsuke> I need to find where the repository is, but it's a little Groovy script that looks for all the FIXED JENKINS-XXXX between two releases and lists that up into a file
+18:09:23 <One-Man-Bucket> i think it's important to be able to track a changenote to code or a jira issue.
+18:09:25 <jglick> You would probably also want a “Miscellaneous” section of other commits lacking this format.
+18:09:39 <jglick> Though obviously we would encourage as much as possible to use this style.
+18:10:09 <jglick> And you may want to hide intermediate commits merged in a commit that says [FIXED JENKINS-nnnnn] as would be common in a PR.
+18:10:26 <jglick> (Which reminds me: we should try to enforce that PR titles start with [FIXED JENKINS-nnnnn].)
+18:11:08 <vjuranek> does this assumes existing JIRA for every commit?
+18:11:11 <kohsuke> doing "git log" alone is pretty straight-forward, but are you thinking about combining it with other arbitrary "merge in" changelog entries?
+18:11:20 <jglick> Linking to JIRA helps in that you can always go back and edit the JIRA summary.
+18:12:05 <jglick> But yes there is the problem that if you forget to put in an issue ID, or file the issue retroactively, or mistyped it, or whatever, you have no control over the result.
+18:12:09 <kohsuke> I guess what we can do is to put these per-version auto-generated changelog files in a separate repository to let humans edit after the release?
+18:12:40 <jglick> Does it need to be a separate repo? I guess so.
+18:13:03 <jglick> Since you may need to edit changelogs for a branch, etc.
+18:13:39 <kohsuke> We can clam that into the main jenkins repo, but I think it makes more sense as a separate repository
+18:13:51 <kohsuke> editing those files in a branch of Jenkins make no sense
+18:13:57 <jglick> Agreed that it should not be in jenkinsci/jenkins#master branch.
+18:14:13 <jglick> Could be in an independent branch in jenkinsci/jenkins as for gh-pages and the like.
+18:14:18 <jglick> But a separate repo is fine too.
+18:14:22 <kpfleming_> in my previous project we made our release tag, then generated changelog and other files and committed them to the tag
+18:14:52 <jglick> What do you mean “to the tag”?
+18:15:04 <jglick> There should be one changelog for all historical versions, right?
+18:15:09 <kohsuke> Maybe we can combine this with git note so that additional entries can be added in that way
+18:15:19 <jglick> Ooh, git note, fancy.
+18:15:21 <kohsuke> So you can write some entries without waiting for a release to be cut
+18:15:24 <kpfleming_> no, you need more than on changelog
+18:15:42 <kpfleming_> every time you branch for an LTS, the changelog branches too
+18:16:18 <mc1arke> git note would make sense for retrospective commenting on commits
+18:16:20 <jglick> Unfortunately when you backport to an LTS the changelog gets enormous merge conflicts. So that does not work too well.
+18:16:44 <kpfleming_> right. that branch should have its own changelog, which is updated by importing the additional commits.
+18:16:48 <jglick> Yes +1 for git notes. If you screw up the commit message, add a note in a predetermined format which would specify the right issue ID etc.
+18:16:54 <kohsuke> git-note works well with cherry-picking too
+18:17:08 <kpfleming_> in that project, the master branch does not have a changelog
+18:17:10 <kohsuke> we can make the changelog generation script looks the note attached to the original commit a cherry pick come from
+18:17:56 <kohsuke> All right, so who's going to implement this? :-)
+18:17:57 <jglick> Right, assuming git-cherry-pick does not copy notes.
+18:18:27 <jglick> Hmm, the implementation…
+18:18:28 <kohsuke> I'll dig up the script I have today. If it's useful that's great, if it's not, that's fine.
+18:18:45 <kohsuke> I'd be happy to do it, or if someone else wants to do it, that's good
+18:18:46 <jglick> Post a reference to it to the list, preferably in the abovementioned thread.
+18:19:05 <jglick> One question regarding notes:
+18:19:29 <jglick> Should you be able to suppress items from the changelog? Or add items not in an existing commit?
+18:19:40 <jglick> I guess the latter does not make sense.
+18:20:05 <hare_brain> I would answer that question with another question.
+18:20:17 <jglick> Also do we want to allow JIRA-less notes/commit messages that point only to a PR?
+18:20:26 <jglick> Often a PR is a decent substitute for the JIRA issue.
+18:20:34 <hare_brain> Even though it's called changelog.html, is the intent of that to be release notes, or a change list? Because I tend to distinguish between the two.
+18:20:42 <jglick> (In fact nicer, for those of us who prefer Markdown to the JIRA wiki abomination.)
+18:20:47 <hare_brain> I think release notes are probably a curated version of a change list.
+18:21:08 <hare_brain> So there would be the opportunity to add items not in an existing commit but is considered part of a "release"
+18:21:12 <jglick> I would say a change list; release notes should be heavily edited and talk about upgrading and so on.
+18:21:48 <jglick> Well the question is whether we actually need a directly editable changelog if we have git notes.
+18:21:48 <hare_brain> As a user, I would be more interested in release notes than a change list.
+18:22:17 <jglick> Yes full release notes are nicer for a user but who is volunteering to write them up each week? We have a hard enough time getting a complete changelog.
+18:22:25 <jglick> Half the changes every week are just missing.
+18:23:03 <jglick> Sometimes important things.
+18:23:05 <kohsuke> jglick: I think you get manual editability free because we'll likely push the generated changelog to Git repository anyway so that the process generating them can hand them over easily to the web server
+18:23:38 <jglick> So the generation would only append one week’s worth of changes.
+18:23:50 <jglick> Leaving any edits to prior weeks untouched.
+18:24:07 <kohsuke> hare_brain: I think our attacking the narrow problem of automating the current manual editing of changelog.html is a sound one
+18:24:31 <kohsuke> separte from your broader question of if more edited release note is something we should/can take of
+18:24:37 <jglick> So my understanding is that directly editing the generated log would be possible, but would rarely be necessary, since you could use git notes to make routine touch-ups.
+18:25:10 <kpfleming_> as an example of how complex this can be, look at http://svn.asterisk.org/svn/repotools/mkrelease this uses Subversion, but the concepts are the same
+18:25:14 <kohsuke> jglick: or it generates stuff into one branch and humans edit stuff in another branch
+18:25:26 <jglick> And then merge the two?
+18:25:35 <kohsuke> anyway, I think we want to spend some of the time today on other topics
+18:25:42 <jglick> Agreed.
+18:25:48 <kohsuke> Let's put together something that works and play with it a bit
+18:26:17 <kohsuke> Sorry to cut the lively discussion in the middle, but moving on to the  next topic...
+18:26:29 <kohsuke> #topic board election process proposal
+18:26:39 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process+Proposal
+18:27:19 <kohsuke> My apologies for procrastinating on this for so long, but hare_brain, abayer, and I met and we think this is what we'd like to push forward
+18:27:23 <abayer> Agreed.
+18:28:20 <kpfleming_> Looks sound.
+18:28:28 <kohsuke> The goal is to ensure smooth transition as board members come & go
+18:28:46 <kohsuke> ... and to ensure the diversity
+18:29:14 <kohsuke> Given that, and given that we don't want something too complicated to implement, we came down to what's listed there
+18:29:36 <kohsuke> Since we currently have only 3, the first election would be unusual in that it won't replace existing board members
+18:29:39 <kohsuke> We just add 2 more.
+18:30:09 <kohsuke> But the year after that abayer, hare_brain, and I will be replaced by the newly elected people
+18:30:15 <kpfleming_> and the 2 year terms for the existing members would begin then?
+18:30:21 <hare_brain> Or re-elected if that's what people want.
+18:30:22 <kpfleming_> oh
+18:30:32 * kpfleming_ needs a better IRC client
+18:30:37 <kohsuke> And the year after that 2 people that we elect in 2013 will be up for re-election
+18:31:02 <kohsuke> I'll leave STV's description for Wikipedia
+18:31:22 <kohsuke> but basically you write the order of preferences
+18:31:56 <kohsuke> The advantages of STV is that (1) it lets you elect multiple people in one shot, and (2) there's an existing implementation that we can just use that handles the algorithm
+18:32:18 <kohsuke> And I'm thinking we can enhance our account app to handle all this
+18:32:38 <kohsuke> Any thoughts on this?
+18:32:50 <kpfleming_> for what it's worth, i think it's a great propoal
+18:32:57 <kohsuke> kpfleming_:  Thanks
+18:33:01 <mc1arke> +1 from me
+18:33:13 <vjuranek> 5. You earn the voting right by registering or voting in the previous election. - this means that if I were registered by time of previous electiion, I'm allowed to elect in election?
+18:33:30 <vjuranek> otherwise sounds good to me so +1
+18:33:36 <kinow> +1 too, sounds nice
+18:33:57 <hare_brain> vjuranek do you have a concern with registered but not voting in the previous elections?
+18:34:50 <vjuranek> no, just to make clear what "registering" means
+18:35:55 <kohsuke> What I had in mind in that during the voting period, you can either cast a vote if you are eligible (aka "registered"), or if not, we say "we can't take your vote for this election but we've registered you for the next one"
+18:36:08 <hare_brain> OK. So yeah, kohsuke, the definition of registering is subtle. We should make it more clear that registering means having an account on jenkins-ci.org.
+18:36:43 <kohsuke> All right, I'll revise the text
+18:36:48 <kpfleming_> so prior to the election you pull an eligible voter list from the account system
+18:36:59 <vjuranek> kohsuke: ok, now I understand, thanks
+18:37:06 <kohsuke> kpfleming_: yeah
+18:37:32 <kohsuke> All right, I think we can record sufficient consensus on this
+18:37:34 <hare_brain> Jenkins "I voted" stickers? ;)
+18:37:43 <kohsuke> nice
+18:38:05 <kohsuke> a plugin that gives you a star for each vote you did or something
+18:38:08 <hare_brain> Just kidding. Although we could show those as badges online somewhere.
+18:38:26 <kohsuke> #action kohsuke to clarify the meaning of the registration
+18:38:28 <hare_brain> Sorry, big time tangent.
+18:39:22 <kohsuke> I'll advertise this more in the dev&users list, and I'll start implementing the account app enhancement
+18:39:47 <kohsuke> and hopefully we'll be able to get to the first election before this summar
+18:40:05 <kohsuke> OK, unless somebody wants to add something now, moving on to the next topic...
+18:40:13 <kohsuke> #topic Next LTS candidate
+18:40:25 <kohsuke> This is from vjuranek
+18:40:36 <kohsuke> #info http://jenkins-ci.org/changelog
+18:40:45 <jglick> So we are nearly two months overdue.
+18:40:53 <kohsuke> Yes
+18:41:16 <vjuranek> there were some concenrs about lazy loading related bugs
+18:41:46 <kohsuke> I've sweeped the lazy loading fall out, and put all the fixes by 1.508
+18:41:58 <jglick> JENKINS-16845 is still broken.
+18:42:01 <jenkins-admin> JENKINS-16845:NullPointer in getPreviousBuild (Open) http://jenkins-ci.org/issue/16845
+18:42:02 <jglick> I am looking at it.
+18:42:10 <kohsuke> OK
+18:42:50 <jglick> My bigger concern is whether someone has confirmed that lazy loading is actually effective on installations with lots of plugins, or do some of them eagerly load builds?
+18:43:18 <kohsuke> I think we talked the last time that we don't want to push the next LTS for too long, so I prefer to pick one release now even if it's not complete
+18:43:45 <jglick> Agreed, there are two many fixes just sitting around not getting to people, and we are way overdue.
+18:43:58 <jglick> 1.509 has OK ratings.
+18:44:01 <vjuranek> +1 to release next LTS
+18:44:03 <jglick> ^+, 1-
+18:44:04 <nanonyme> jglick, if so, would that be likely to cause a bigger impact than lazy just not happening?
+18:44:07 <jglick> 6+, 1- I meant
+18:44:32 <jglick> Eager loading at runtime probably worse than eager loading at startup.
+18:44:38 <jglick> Could block HTTP response threads, etc.
+18:44:45 <nanonyme> Okay
+18:44:57 <jglick> I mean, if it were extreme: most/all builds getting loaded.
+18:45:03 <jglick> But I hope this is not the case.
+18:45:23 <kohsuke> 1.509 is too young in our past process, but in this case I think it's probably the best one
+18:45:36 <kohsuke> ... according to our past process, that is
+18:46:18 <jglick> 1.508 is out of the question.
+18:46:18 <vjuranek> I'm also fine 1.509
+18:46:19 <larrys> I still have not updated to 1.509 from 1.505 due to JENKINS-13465 (which is really a bug in the m2release plugin)
+18:46:21 <kohsuke> The one before is 1.505. For some reasons it has a great review
+18:46:21 <jenkins-admin> JENKINS-13465:Unable perform release: ClassCastException: net.sf.json.JSONNull cannot be cast to net.sf.json.JSONObject on Hudson 2.2.0 (Open) http://jenkins-ci.org/issue/13465
+18:46:56 <jglick> Or maybe it is 1.507 I am thinking of.
+18:47:14 <kohsuke> larrys: I put 'lts-candidate' on it
+18:47:25 <kohsuke> jglick: yeah, I think you are thinking of 1.507
+18:47:32 <kohsuke> #info http://jenkins-ci.org/changelog
+18:47:33 <jglick> Still 1.508 has poor reviews.
+18:47:45 <jglick> Unclear why.
+18:48:14 <jglick> Anyway we can expect to be backporting some trunk fixes.
+18:48:23 <larrys> would be nice to show the number of times each jira issue is put in as the reason for the negative review,
+18:48:56 <kohsuke> Since vjuranek and jglick are OK with it, let's do 1.509.
+18:49:15 <kohsuke> #agreed Next LTS will be based on 1.509
+18:49:21 <vjuranek> do we want to backport trunk fixes?
+18:49:31 <kohsuke> It's bit out of the process, so hopefully we won't have to repeat this again
+18:50:24 <kohsuke> vjuranek: there's a Windows symlink bug fix that I want to check if it needs to be in for 1.509.1
+18:50:26 <jglick> vjuranek: there are definitely some lts-candidate things after 1.509.
+18:50:39 <jglick> JENKINS-17330 for example.
+18:50:42 <jenkins-admin> JENKINS-17330:FilePath.installIfNecessaryFrom routes download over remoting channel (Resolved) http://jenkins-ci.org/issue/17330
+18:50:56 <hare_brain> Basically what you're saying is that recent releases have been so buggy that we feel that the most recent release is a better LTS candidate than something that has been out for a while.
+18:51:07 <vjuranek> I mean the procedure was to have the fix some time in the release before backporting
+18:51:21 <hare_brain> Which is an OK position to take, since we're trying to maximize for stability primarily on LTS.
+18:51:58 <jglick> vjuranek: oh right, agreed that having a grace period for fixes in trunk is a good idea.
+18:52:02 <kohsuke> hare_brain: yes, in the past we picked an older release
+18:52:27 <kohsuke> it's unusual to pick $MAINLINE_VERSION-1 as the basis
+18:52:52 <vjuranek> ok, so we took latest release - it's an exception and we can do another one this time to backport trunk fixes. Agree?
+18:53:30 <jglick> Well we always have the option to backport trunk fixes, it is just a question of how long they have soaked, right?
+18:53:43 <hare_brain> Yes.
+18:53:52 <kohsuke> Is JENKINS-17330 that critical?
+18:53:54 <jenkins-admin> JENKINS-17330:FilePath.installIfNecessaryFrom routes download over remoting channel (Resolved) http://jenkins-ci.org/issue/17330
+18:54:00 <hare_brain> We don't want to churn on LTS because bug fixes have bugs.
+18:54:06 <jglick> “those commits that have already been a part of a main line release for more than a week”
+18:54:11 <jglick> #info https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line
+18:54:25 <kohsuke> I mean it only happens once per slave and it's not likely it's broken, it's just slower, right? And the remoting change helps that
+18:54:55 <jglick> kohsuke: in the case I know about it is so much slower that it just plain fails.
+18:55:08 <kohsuke> OK
+18:55:08 <vjuranek> jglick: ah, sorry, you are right
+18:55:12 <jglick> (When you are talking about Gradle or similar.)
+18:55:52 <jglick> I have been pretty liberal about marking things lts-candidate; any individual item should be hashed out on the list I suppose.
+18:56:22 <kohsuke> we have to sweep through lts-candidate. Since 1.509 is pretty new, chances are good that many of them are already in it
+18:56:37 <jglick> But yes hare_brain we do not want to backport so much that we introduce regressions that need secondary fixes.
+18:57:10 <jglick> Some things marked lts-candidate are still 1.480.x candidates, though.
+18:57:15 <jglick> 1.480.4 currently.
+18:57:25 <jglick> If we ever want to do one.
+18:57:29 <kohsuke> I don't think we'll be doing 1.480.4
+18:57:41 <jglick> Then not.
+18:58:23 <jglick> BTW I would like to amend “We aim for no API change.” to say that @Restricted(NoExternalUse.class) should be used whenever applicable.
+18:58:41 <kohsuke> Let's shoot for backporting in 2 weeks. It'll give us a bit more soaking time on 1.509, too
+18:58:54 <kohsuke> And then aim for a release in another 2 weeks?
+18:59:17 <vjuranek> +1
+18:59:17 <jglick> So to start selecting backports in mid-April you mean?
+18:59:25 <hare_brain> jglick I'm not familiar with that annotation. What does it do?
+18:59:45 <kohsuke> backporting starts now
+18:59:46 <vjuranek> I gues to have finished backport in mid-april
+18:59:54 <kohsuke> by mid Apirl we want an RC
+18:59:58 <jglick> hare_brain: prevents the method etc. from being called outside Jenkins core. So we do not introduce a new API in branch just to have a method called from Jelly scripts, for example.
+19:00:15 <kohsuke> hare_brain: it's the annotation that we defined, not a part of Java
+19:00:16 <jglick> OK, then mid-Apr to end of Apr to run tests.
+19:00:20 <kohsuke> right
+19:00:27 <hare_brain> Got it, thanks.
+19:01:01 <jglick> So then when are trunk fixes available for backport? If in trunk for a week, that means that they have to be in by Apr 10 or thereabouts?
+19:01:16 <jglick> Or no, in a trunk _release_ by Apr 10, so really like now.
+19:01:54 <kohsuke> Yeah, this time around there really shouldn't be many backporting
+19:02:09 <kohsuke> I just mainly wants a bit of time to make sure all the really serious ones are accounted for
+19:02:16 <kohsuke> like breaking all the Windows XP
+19:02:45 <kohsuke> Time check... let me wrap this up
+19:02:50 <kohsuke> #topic next meeting
+19:02:58 <vjuranek> (btw: this is still weak part of testing  - we don't do any testing on windows:-()
+19:03:28 <kohsuke> vjuranek: yes, I'm going to resurrect a Windows XP VM somewhere
+19:03:46 <Slide-O-Mix> kohsuke: Windows 7 has different issues that you may not see on XP
+19:03:50 <mc1arke> anything I can do to provide a windows host?
+19:03:52 <Slide-O-Mix> and Win2k8, etc
+19:04:13 <kohsuke> mc1arke: if you have one lying around, we can use it!
+19:04:35 <kohsuke> Slide-O-Mix: yes, more the merrier if we have those
+19:04:55 <kohsuke> #info So the next meeting is in 2 weeks, April 17th the same time
+19:04:55 <hare_brain> Can we use this: http://www.modern.ie/en-us/virtualization-tools?
+19:05:22 <kohsuke> hare_brain: not quite, we want to run master on Windows
+19:05:22 <hare_brain> +1 to meeting time
+19:05:26 <vjuranek> +1
+19:05:28 <abayer> +1
+19:05:40 <mc1arke> +1 to meeting time
+19:05:41 <kohsuke> All right, see you in 2 weeks
+19:05:46 <kohsuke> #endmeeting

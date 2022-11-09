@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 19:01:23 UTC
+(<a href="jenkins.2013-11-13-19.01.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li>
+<ol type="a">
+  <li><span
+    class="INFO">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+    <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-4'>kohsuke</a>,
+    19:01:29)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">name grant request take 2</b> <span class="details">(<a href='jenkins.2013-11-13-19.01.log.html#l-6'>kohsuke</a>, 19:01:55)</span>
+<ol type="a">
+  <li><span class="INFO">in the previous meeting I've asked for "Jenkins
+    Multi-master by CloudBees" and that subsequently got approved</span>
+    <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-7'>kohsuke</a>,
+    19:02:37)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">LTS status</b> <span class="details">(<a href='jenkins.2013-11-13-19.01.log.html#l-22'>kohsuke</a>, 19:07:06)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    produce 1.532.1 RC today</span> <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-24'>kohsuke</a>,
+    19:08:07)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">ogondza to
+    create 1.532.x testing page in Wiki</span> <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-31'>kohsuke</a>,
+    19:12:56)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">we'll aim for
+    a release in a week</span> <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-56'>kohsuke</a>,
+    19:22:10)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    look at selenium-tests and try to help maintain it</span> <span
+    class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-57'>kohsuke</a>,
+    19:22:31)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    make sure https://jenkins-ci.org/stable-rc shows the RC version
+    number</span> <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-66'>kohsuke</a>,
+    19:24:09)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    make sure https://jenkins-ci.org/changelog-stable shows 1.532.1
+    changes after posting RC</span> <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-70'>kohsuke</a>,
+    19:25:28)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">commit loss status updates</b> <span class="details">(<a href='jenkins.2013-11-13-19.01.log.html#l-71'>kohsuke</a>, 19:25:57)</span>
+<ol type="a">
+  <li><span class="INFO">so in case people haven't been paying attention
+    to the dev list, on Saturday an accident resulted in the effective
+    "git push -f" on a large number of repositories in the jenkinsci
+    org</span> <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-72'>kohsuke</a>,
+    19:26:43)</span></li>
+  <li><span class="INFO">... resulting in us losing about a month worth
+    of commits in various branches</span> <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-74'>kohsuke</a>,
+    19:27:20)</span></li>
+  <li><span class="INFO">GitHub support helped us recover a large number
+    of it, although exactly how they identify what commits, we don't
+    know</span> <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-75'>kohsuke</a>,
+    19:27:55)</span></li>
+  <li><span class="INFO">and I wrote a program that reconstructs what
+    commits were lost from GitHub API and resurrected the rest of the
+    commits that GitHub support missed</span> <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-76'>kohsuke</a>,
+    19:28:33)</span></li>
+  <li><span class="INFO">At this moment we consider all commits
+    recovered in all the branches in all the repositories</span> <span
+    class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-77'>kohsuke</a>,
+    19:29:01)</span></li>
+  <li><span class="INFO">but your checking sanity on this claim by
+    looking at your repositories would be greatly appreciated</span>
+    <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-78'>kohsuke</a>,
+    19:29:21)</span></li>
+  <li><span class="INFO">we'll write up something and post it on
+    http://jenkins-ci.org/node</span> <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-81'>kohsuke</a>,
+    19:30:52)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting</b> <span class="details">(<a href='jenkins.2013-11-13-19.01.log.html#l-94'>kohsuke</a>, 19:34:49)</span>
+<ol type="a">
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">next meeting
+    is Dec 11th</span> <span class="details">(<a
+    href='jenkins.2013-11-13-19.01.log.html#l-106'>kohsuke</a>,
+    19:36:58)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 19:37:11 UTC
+(<a href="jenkins.2013-11-13-19.01.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>kohsuke to produce 1.532.1 RC today</li>
+  <li>ogondza to create 1.532.x testing page in Wiki</li>
+  <li>kohsuke to look at selenium-tests and try to help maintain it</li>
+  <li>kohsuke to make sure https://jenkins-ci.org/stable-rc shows the RC version number</li>
+  <li>kohsuke to make sure https://jenkins-ci.org/changelog-stable shows 1.532.1 changes after posting RC</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> kohsuke <ol>
+    <li>kohsuke to produce 1.532.1 RC today</li>
+    <li>kohsuke to look at selenium-tests and try to help maintain it</li>
+    <li>kohsuke to make sure https://jenkins-ci.org/stable-rc shows the RC version number</li>
+    <li>kohsuke to make sure https://jenkins-ci.org/changelog-stable shows 1.532.1 changes after posting RC</li>
+  </ol></li>
+  <li> ogondza <ol>
+    <li>ogondza to create 1.532.x testing page in Wiki</li>
+  </ol></li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>kohsuke (76)</li>
+  <li>ogondza (13)</li>
+  <li>hare_brain (8)</li>
+  <li>kpfleming (4)</li>
+  <li>scl (2)</li>
+  <li>jglick (2)</li>
+  <li>rpetti (2)</li>
+  <li>robobutler (1)</li>
+  <li>KaibutsuX (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

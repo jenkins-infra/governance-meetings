@@ -1,0 +1,185 @@
+================
+#jenkins Meeting
+================
+
+
+Meeting started by kohsuke at 18:02:10 UTC. The full logs are available
+at
+http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-04-13-18.02.log.html
+.
+
+
+
+Meeting summary
+---------------
+* JIRA project split  (kohsuke, 18:03:42)
+  *
+    https://wiki.jenkins-ci.org/display/JENKINS/Jira+Projects+Split+and+Cleanup
+    (aheritier, 18:04:44)
+  * The main issue is that it is impossible in jira to manage versions
+    for components  (rtyler, 18:06:20)
+  * the goal is to split the current jenkins in one project dedicated to
+    the core, one for plugins, one for infrastructure  (aheritier,
+    18:08:23)
+  * note that this proposal doesn't preclude doing more later  (kohsuke,
+    18:09:25)
+  * just as a data point, even to implement the current automation in
+    ircbot, I had to do some page scraping  (kohsuke, 18:14:04)
+  * you just need to have a voice in the channel, which every committer
+    should, and then you let the ircbot does it for you.  (kohsuke,
+    18:15:49)
+  * IDEA: Normally, when you have versions in JIRA, the person who fix
+    the issue marks the bug with a certain version. But I could more
+    easily and more reliably do it by having a release process do "git
+    rev-list" and identify fixes that went into that release.  (kohsuke,
+    18:18:05)
+  * IDEA: between backporting to the stable branch, marking bugs closed
+    scm-issue-link, and branching/merging , I think this works
+    (kohsuke, 18:18:57)
+  * IDEA: Come to think of it, I can do this "mark JIRA by release
+    number" as a daemon that works externally, and thus make it work
+    across all plugins  (kohsuke, 18:25:20)
+  * ACTION: rtyler and/or kohsuke to set up a test instance of JIRA for
+    aheritier  (rtyler, 18:33:59)
+
+* "ULTIMATE ROBO LOGO SHOWDOWN" results  (kohsuke, 18:37:10)
+  * Overall the runoff vote received just shy of 2000 votes  (rtyler,
+    18:37:48)
+  * I've got the branch that incorporated the new art work. It'll ship
+    in the next release this weekend.  (kohsuke, 18:37:49)
+  * This evening at the Engine Yard meetup we'll be unveiling the logo,
+    and I will also be updating jenkins-ci.org with a newer look
+    (rtyler, 18:38:31)
+  * ACTION: kohsuke to unveil the logo at the Bay Area Meetup tonight
+    (rtyler, 18:39:25)
+  * ACTION: rtyler to update the site with the new logo/look  (rtyler,
+    18:39:35)
+  * ACTION: everybody else to be shocked, amazed, delighted!  (rtyler,
+    18:39:54)
+  * ACTION: rtyler to look into creating a new bunch of Jenkins logo
+    stickers  (rtyler, 18:41:37)
+  * ACTION: mwalling to do east coast distribution (he has no idea what
+    he's just signed up for)  (rtyler, 18:42:47)
+  * i said *MIGHT*  (mwalling, 18:43:04)
+  * ACTION: rtyler and kohsuke to follow up with the current thread with
+    the winner to get some paper work in place to assure our rights to
+    use the logo  (kohsuke, 18:43:21)
+
+* trademark registration status  (kohsuke, 18:43:59)
+  * I just uploaded the PDFs that pledge to that extent at
+    https://wiki.jenkins-ci.org/pages/viewpageattachments.action?pageId=54722987&sortBy=date&highlight=Trademark+pledge.pdf&
+    (kohsuke, 18:45:45)
+  * if you have any concerns about the wording, etc, please let me know.
+    (kohsuke, 18:46:57)
+  * SHA1sum: 847b69dff6c5d0494bb760a3d562bdee6ebed71b  and
+    30803b0d711af09f2f02ca30db82b6f5fc71f7af  (kohsuke, 18:48:38)
+
+* SFC/SPI/Apache status  (kohsuke, 18:50:13)
+  * I've pinged SFC yesterday as we planned in the last minutes, but
+    haven't heard back yet, understandably.  (kohsuke, 18:51:05)
+  * I've also initiated the next step with SPI, that is to ask for an
+    application  (kohsuke, 18:51:44)
+  * The next step is for them to decide if they can take us or not, and
+    then we will have 60 days to decide if we want to get married like
+    that or not.  (kohsuke, 18:53:59)
+  * LINK: http://sfconservancy.org/ SFC  (rtyler, 18:54:08)
+  * LINK: http://www.spi-inc.org/ SPI  (rtyler, 18:54:26)
+
+* next meeting time  (kohsuke, 18:58:36)
+
+* Infrastructure update  (rtyler, 18:59:07)
+  * We've cut a dramatic amount of our overages out for bandwidth from
+    jenkins-ci.org by pushing more and more onto our mirror network
+    (rtyler, 18:59:40)
+  * We're still using up a lot of bandwidth (we're so popular!), so I'm
+    actively working with Contegix to get a blessing on that machine to
+    where we don't have to pay for it ;)  (rtyler, 19:00:21)
+  * Still working on getting the two fancy new machines from Chicago to
+    Oregon (OSUOSL)  (rtyler, 19:01:07)
+  * ACTION: need to post a "we love you" post or seven  (rtyler,
+    19:01:19)
+
+* next meeting time  (kohsuke, 19:02:03)
+
+* next meeting time  (rtyler, 19:02:03)
+  * IDEA: The natural candidate is two weeks from now, same time. Any
+    other suggestions/objections?  (kohsuke, 19:02:38)
+  * AGREED:   (rtyler, 19:02:46)
+  * AGREED:   (hare_brain, 19:03:00)
+
+Meeting ended at 19:03:44 UTC.
+
+
+
+
+Action Items
+------------
+* rtyler and/or kohsuke to set up a test instance of JIRA for aheritier
+* kohsuke to unveil the logo at the Bay Area Meetup tonight
+* rtyler to update the site with the new logo/look
+* everybody else to be shocked, amazed, delighted!
+* rtyler to look into creating a new bunch of Jenkins logo stickers
+* mwalling to do east coast distribution (he has no idea what he's just
+  signed up for)
+* rtyler and kohsuke to follow up with the current thread with the
+  winner to get some paper work in place to assure our rights to use the
+  logo
+* need to post a "we love you" post or seven
+
+
+
+
+Action Items, by person
+-----------------------
+* aheritier
+  * rtyler and/or kohsuke to set up a test instance of JIRA for
+    aheritier
+* kohsuke
+  * rtyler and/or kohsuke to set up a test instance of JIRA for
+    aheritier
+  * kohsuke to unveil the logo at the Bay Area Meetup tonight
+  * rtyler and kohsuke to follow up with the current thread with the
+    winner to get some paper work in place to assure our rights to use
+    the logo
+* mwalling
+  * mwalling to do east coast distribution (he has no idea what he's
+    just signed up for)
+* rtyler
+  * rtyler and/or kohsuke to set up a test instance of JIRA for
+    aheritier
+  * rtyler to update the site with the new logo/look
+  * rtyler to look into creating a new bunch of Jenkins logo stickers
+  * rtyler and kohsuke to follow up with the current thread with the
+    winner to get some paper work in place to assure our rights to use
+    the logo
+* **UNASSIGNED**
+  * everybody else to be shocked, amazed, delighted!
+  * need to post a "we love you" post or seven
+
+
+
+
+People Present (lines said)
+---------------------------
+* kohsuke (107)
+* rtyler (68)
+* aheritier (54)
+* abayer (23)
+* fcamblor (17)
+* rodmidde (11)
+* fredg02 (10)
+* ndeloof (5)
+* thafreeze (5)
+* magnayn (4)
+* hare_brain (4)
+* bap2000 (4)
+* mwalling (4)
+* robobutler (2)
+* code_fu_blkbelt (1)
+
+
+
+
+Generated by `MeetBot`_ 0.1.4
+
+.. _`MeetBot`: http://www.jenkins-ci.org/meetings/

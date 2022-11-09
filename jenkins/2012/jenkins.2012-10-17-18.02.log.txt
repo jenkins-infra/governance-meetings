@@ -1,0 +1,108 @@
+18:02:17 <kohsuke> #startmeeting
+18:02:17 <robobutler> Let the Jenkins meeting commence!
+18:02:32 <kohsuke> #chair hare_brain abayer rtyler
+18:02:32 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:02:41 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-October17thMeeting
+18:02:54 <kohsuke> #topic recap of actions
+18:03:16 <kohsuke> #info https://issues.jenkins-ci.org/browse/MEETING
+18:03:16 <faulkner> Sorry if this isn't the right place to be asking this, but is there any way of applying a filter to the job log?  We have tons of branches at the moment and it would be nice if the first page or two of every build wasn't just a bunch of "Seen branch in repository ..." lines.  Is this currently possible?
+18:03:55 <kohsuke> faulkner: meeting in session --- let's do that later
+18:04:23 <kohsuke> I guess I need to deliver FreedomSponsor guest post
+18:04:29 <kohsuke> I'll do that
+18:04:32 <kohsuke> and before I forget
+18:04:46 <kohsuke> #action kohsuke to finish up the jenkinsci-cert@googlegroups.com setup and initial additions
+18:05:10 <kohsuke> #topic Picking next LTS
+18:05:24 <kohsuke> #info http://jenkins-ci.org/changelog
+18:05:45 <vjuranek> any suggestions?
+18:05:48 <kohsuke> the context for those who are new: it's about time we decide the next base release for LTS
+18:06:07 <kohsuke> let's see here
+18:06:18 <hare_brain> Last week, someone came here into the channel was was campaigning for a version that has the lazy loading feature.
+18:06:21 <hare_brain> I forget who that was.
+18:06:34 <kohsuke> It's still probably too new
+18:06:42 <hare_brain> I would agree.
+18:06:51 <oldelvet> +1
+18:06:52 <kohsuke> I know 1.485 was pretty bad, while 1.486 is good, that's the very latest
+18:06:57 <vjuranek> hm, I would prefere not to incelude lazy loading (howver it's greate feature)
+18:07:18 <kohsuke> then there's aheritier's pet peeve Maven bug that we probably need to avoid
+18:07:19 <oldelvet> I think 1.486 still has a few lazy loading related issues in it.
+18:07:32 <kohsuke> oldelvet: OK. I should do a sweep
+18:07:39 <hare_brain> We've been using 1.475 here with no problems
+18:07:56 <hare_brain> 1.471 also looks like it's got very good community ratings
+18:08:00 <kohsuke> aheritier's pet peeve problem crept in in 1.481
+18:08:50 <kohsuke> 1.466 to 1.471 isn't much of a jump
+18:08:58 <vjuranek> isn't 1.471 too close to 1.466 (current LTS)?
+18:08:58 <nanonyme> 1.486 seemed to have some fairly weird build cause messages as well (builds that didn't relate to current were shown in addition to actual cause)
+18:09:19 <kohsuke> nanonyme: if you can file a ticket about that, that'd be good
+18:09:20 <hare_brain> We can find a more recent release. I was just giving data points.
+18:09:22 <jenkins-builds> Project jenkins_main_trunk build #2012: SUCCESS in 47 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/2012/
+18:09:22 <jenkins-builds> * Jesse Glick: [FIXED JENKINS-15426] Run animal-sniffer:check by default (-DskipTests suppresses).
+18:09:23 <jenkins-builds> * Jesse Glick: Miscellaneous POM warnings.
+18:09:25 <jenkins-admin> JENKINS-15426:Run animal-sniffer:check as part of build (Resolved) http://jenkins-ci.org/issue/15426
+18:09:46 <vjuranek> what about 1.480?
+18:10:37 <kohsuke> interestingly 1.479 has a better rating but I agree that 1.480 should be more stable than 1.479
+18:10:51 <hare_brain> Yeah I was going to say the same thing.
+18:11:00 <hare_brain> Either 1.479 or 1.480 seem OK to me.
+18:11:21 <hare_brain> (Said without any experience with either version.)
+18:11:32 <kohsuke> Let's do 1.480
+18:11:38 <hare_brain> +1
+18:11:43 <kohsuke> the behaviour.js fix is kind of important
+18:12:11 <kohsuke> vjuranek: what's the time frame for a release?
+18:12:55 <vjuranek> kohsuke: let's say 3 weeks? (I'm quite bussy past few months:-()
+18:12:55 <kohsuke> RC by the next Wed and two more weeks to release?
+18:13:02 <vjuranek> yes
+18:13:04 <kohsuke> I guess we agreed
+18:13:23 <kohsuke> #agreed next LTS will be based on 1.480
+18:13:34 * vjuranek needs to implement more selenium tests to speed up testin :-(
+18:13:49 <kohsuke> #agreed the goal is to get to RC by next Wed and 2 more weeks for a release
+18:14:10 <kohsuke> Yes, let's push that ball rolling a bit more
+18:14:45 <kohsuke> #info there's http://github.com/jenkinsci/selenium-tests that we are trying to improve as the blackbox integration test. soliciting more volunteers
+18:15:01 <kohsuke> the quality came high on the survey's intermediate result, too
+18:15:14 <kohsuke> moving on...
+18:15:29 <kohsuke> #topic Advertising survey on http://jenkins-ci.org/
+18:15:50 <kohsuke> lisa wanted me to advertise the Jenkins survey a bit more, which runs until the end of October, I believe
+18:16:13 <kohsuke> #info jenkins-ci.org/survey
+18:16:52 <kohsuke> I'm very happy to put the banner in but because I didn't want to do it unilaterally
+18:17:17 <kohsuke> I'd like to get the sense of how people feel about it
+18:17:48 <vjuranek> as the results will be sgared with community, I don't see any problem here... btw: was is announced on mailing lists? (if yes, I completely missed it)
+18:18:10 <kohsuke> yes, the result will be shared like the last year
+18:18:22 <kohsuke> #action kohsuke to send in the survey announcement in e-mail
+18:18:41 <KostyaSha> kohsuke, vjuranek hi, did you ever think about isolations during builds in jenkins?
+18:19:12 <kohsuke> hare_brain: abayer: any thought?
+18:19:17 <hare_brain> kohsuke were you thinking about a banner on the jenkins-ci.org home page?
+18:19:26 <kohsuke> yes, just like JUC banner
+18:19:35 <cheezey> question: i have a junit running in jenkins but the stdout for a particular test seems to encompass the entire test suite. any idea why this is the case (expected?).
+18:19:37 <abayer> Sorry, distracted - fine by me.
+18:19:53 <kohsuke> KostyaSha: cheezey: meeting in session, please postpone those Qs until after the meeting
+18:20:03 <hare_brain> Fine by me. I was just thinking about what's the most effective place to show the banner.
+18:20:06 <KostyaSha> oh, sorry
+18:20:18 <kohsuke> OK, I think I'll add it then
+18:20:43 <kohsuke> #agreed people see no problem adding a banner to the http://jenkins-ci.org/ page,
+18:20:50 <kohsuke> #action kohsuke to add it until the end of October
+18:21:01 <hare_brain> I've already forgotten what the JUC banner looked like. Did that show up on wiki and jira as well, or just on jenkins-ci.org home?
+18:21:20 <kohsuke> hare_brain: it was on all 3 places
+18:21:36 <hare_brain> OK. So you'll put it on all three for this as well?
+18:21:54 <kohsuke> If I may, sure!
+18:22:03 <kohsuke> I think I'll add a smaller one this time that's not too tall
+18:22:45 <hare_brain> If the goal is to maximize the chances of getting responses, I think wiki and jira probably get more visitors than the home page.
+18:22:56 <hare_brain> change log, too.
+18:23:12 <kohsuke> yes, and people using Jenkins for a while (whom we want to hear from) would most likely go there
+18:23:31 <kohsuke> #action kohsuke to add a banner to http://jenkins-ci.org/, wiki, and issues
+18:23:43 <nanonyme> hehe, yeah. harly a day goes by that I wouldn't study the changelogs ;)
+18:24:04 <kohsuke> #topic next meeting
+18:24:27 <hare_brain> Halloween!
+18:24:40 <kohsuke> Is it a holiday in  the US?
+18:24:41 <abayer> fyi, I'll be on an airplane for the next meeting, but given how distracted I was this time, that's probably ok. =)
+18:24:50 <hare_brain> Well, it's not a day off.
+18:25:23 <kohsuke> OK, then I think we can still do one in 2 weeks
+18:25:24 <hare_brain> I'm sure kids would want to be able to collect (and eat) candy all day.
+18:25:30 <hare_brain> +1
+18:25:48 <kohsuke> #agreed next meeting will be in 2 weeks, the same time
+18:25:53 <kohsuke> abayer: where are you heading to?
+18:26:05 <KostyaSha> JenkinsSurvey has difficult questions...
+18:26:23 <kohsuke> abayer: maybe you need a CIA post + T-shirt + stickers?
+18:26:35 <kohsuke> in any case, I think that's it for today
+18:26:44 <abayer> I'll be on my way back from the trip I leave on this Saturday - Berlin for a few days, then Bulgaria for Java2Days (and my Jenkins Power Tools talk, which will also go up on youtube) and then back to Berlin for a couple more days, and then home.
+18:26:45 <kohsuke> unless anyone else wants to bring up anything
+18:26:49 <hare_brain> Wow, I think that's a record for quickest meeting.
+18:26:53 <abayer> heh
+18:27:06 <kohsuke> #endmeeting

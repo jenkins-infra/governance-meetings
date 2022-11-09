@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app228.us.archive.org';v.server_ms=262;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-11-08-18.00.log.html","20210115141331","https://web.archive.org/","web","/_static/",
+	      "1610720011");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:25</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-4"></a><span class="tm">18:00:43</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck kohsuke</span>
+<a name="l-5"></a><span class="tm">18:00:43</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:00:56</span><span class="nk"> &lt;rtyler&gt;</span> last meeting notes can be found here http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-10-25-17.59.html
+<a name="l-7"></a><span class="tm">18:01:11</span><span class="nk"> &lt;danielbeck&gt;</span> and we got an RC
+<a name="l-8"></a><span class="tm">18:01:11</span><span class="nk"> &lt;rtyler&gt;</span> looks like ogondza pushing the RC was the only actual action, which obviously happened :)
+<a name="l-9"></a><span class="tm">18:01:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yey
+<a name="l-10"></a><span class="tm">18:02:32</span><span class="nk"> &lt;rtyler&gt;</span> I don't think we've got any other older actions to discuss here
+<a name="l-11"></a><span class="tm">18:02:41</span><span class="nk"> &lt;danielbeck&gt;</span> agree
+<a name="l-12"></a><span class="tm">18:03:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-13"></a><span class="tm">18:03:09</span><span class="nk"> &lt;danielbeck&gt;</span> It's out
+<a name="l-14"></a><span class="tm">18:03:12</span><span class="nk"> &lt;danielbeck&gt;</span> ~6 hours or so ago
+<a name="l-15"></a><span class="tm">18:03:17</span><span class="nk"> &lt;rtyler&gt;</span> IT
+<a name="l-16"></a><span class="tm">18:03:21</span><span class="nk"> &lt;danielbeck&gt;</span> everyone should be updating their instance
+<a name="l-17"></a><span class="tm">18:03:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I did. Worked like a charm
+<a name="l-18"></a><span class="tm">18:03:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">2.73.3 was a security oriented release which went out this morning</span>
+<a name="l-19"></a><span class="tm">18:04:21</span><span class="nk"> &lt;rtyler&gt;</span> this is the last in the 2.73 line yeah?
+<a name="l-20"></a><span class="tm">18:04:25</span><span class="nk"> &lt;danielbeck&gt;</span> yes
+<a name="l-21"></a><span class="tm">18:04:37</span><span class="nk"> &lt;danielbeck&gt;</span> unless something goes _really_ wrong
+<a name="l-22"></a><span class="tm">18:04:40</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-23"></a><span class="tm">18:04:52</span><span class="nk"> &lt;rtyler&gt;</span> is it next time around we choose the next baseline?
+<a name="l-24"></a><span class="tm">18:04:57</span><span class="nk"> &lt;danielbeck&gt;</span> today
+<a name="l-25"></a><span class="tm">18:05:01</span><span class="nk"> &lt;danielbeck&gt;</span> bumped your topic
+<a name="l-26"></a><span class="tm">18:05:03</span><span class="nk"> &lt;rtyler&gt;</span> oh right, there it is
+<a name="l-27"></a><span class="tm">18:05:21</span><span class="nk"> &lt;rtyler&gt;</span> so I don't think there are any other things to discuss on the current LTS  correct?
+<a name="l-28"></a><span class="tm">18:05:26</span><span class="nk"> &lt;danielbeck&gt;</span> yes
+<a name="l-29"></a><span class="tm">18:05:29</span><span class="nk"> &lt;rtyler&gt;</span> other than "yay" it's out
+<a name="l-30"></a><span class="tm">18:05:40</span><span class="nk"> &lt;danielbeck&gt;</span> as usual in security fixes, we're early
+<a name="l-31"></a><span class="tm">18:06:09</span><span class="nk"> &lt;rtyler&gt;</span> "yay"
+<a name="l-32"></a><span class="tm">18:06:35</span><span class="nk"> &lt;rtyler&gt;</span> I'd like to pause for a minute or two to see if ogondza pops online before our next topic
+<a name="l-33"></a><span class="tm">18:07:05</span><span class="nk"> &lt;danielbeck&gt;</span> I'm blaming DST :-/
+<a name="l-34"></a><span class="tm">18:07:34</span><span class="nk"> &lt;rtyler&gt;</span> timezones are hard amirite
+<a name="l-35"></a><span class="tm">18:07:49</span><span class="nk"> &lt;olblak&gt;</span> indeed
+<a name="l-36"></a><span class="tm">18:07:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Well, IIRC danielbeck notified people a while ago to remind that the meetings are in UTC
+<a name="l-37"></a><span class="tm">18:08:19</span><span class="nk"> &lt;danielbeck&gt;</span> don't get me started about last week when the US hadn't changed over… everything was off by one hour
+<a name="l-38"></a><span class="tm">18:08:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> do not remind about that...
+<a name="l-39"></a><span class="tm">18:08:41</span><span class="nk"> &lt;rtyler&gt;</span> just set all your clocks to UTC :)
+<a name="l-40"></a><span class="tm">18:09:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Russia has fixed UTC+3 now. Probably the best law I have ever seen
+<a name="l-41"></a><span class="tm">18:09:20</span><span class="nk"> &lt;rtyler&gt;</span> hah
+<a name="l-42"></a><span class="tm">18:09:28</span><span class="nk"> &lt;rtyler&gt;</span> alright, let's keep going
+<a name="l-43"></a><span class="tm">18:09:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS baseline selection</span>
+<a name="l-44"></a><span class="tm">18:09:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> I'll let you drive this topic
+<a name="l-45"></a><span class="tm">18:09:53</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://jenkins-ci.org/changelog</span>
+<a name="l-46"></a><span class="tm">18:10:09</span><span class="nk"> &lt;danielbeck&gt;</span> so, obviously, whatever we choose will get today's fixes backported
+<a name="l-47"></a><span class="tm">18:10:34</span><span class="nk"> &lt;jglick&gt;</span> I have already taken the liberty of adding `lts-candidate` to a bunch of stuff in 2.86 onwards.
+<a name="l-48"></a><span class="tm">18:10:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.87+ are green. And 2.88/2.89 have nothing much excepting  Security fix
+<a name="l-49"></a><span class="tm">18:10:55</span><span class="nk"> &lt;danielbeck&gt;</span> 2.86+ suffer from JENKINS-47593 (which is why 2.86 feedback is so bad), otherwise any release looks good
+<a name="l-50"></a><span class="tm">18:11:14</span><span class="nk"> &lt;rtyler&gt;</span> 2.88 looks pretty good to me
+<a name="l-51"></a><span class="tm">18:11:24</span><span class="nk"> &lt;rtyler&gt;</span> but hell, why not just 2.89
+<a name="l-52"></a><span class="tm">18:11:26 </span><span class="nka">* rtyler</span> <span class="ac">ducks</span>
+<a name="l-53"></a><span class="tm">18:11:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes.
+<a name="l-54"></a><span class="tm">18:11:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.88 is this Sunday
+<a name="l-55"></a><span class="tm">18:11:42</span><span class="nk"> &lt;jglick&gt;</span> What is our usual policy? two-week soak?
+<a name="l-56"></a><span class="tm">18:11:43</span><span class="nk"> &lt;danielbeck&gt;</span> 2.88 makes no sense, as 2.89 is just that + security
+<a name="l-57"></a><span class="tm">18:11:59</span><span class="nk"> &lt;danielbeck&gt;</span> jglick for specific fixes. no firm rules on baseline
+<a name="l-58"></a><span class="tm">18:12:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.87 or 2.89 IMHO
+<a name="l-59"></a><span class="tm">18:12:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.88 has almost nothing inside
+<a name="l-60"></a><span class="tm">18:12:21</span><span class="nk"> &lt;danielbeck&gt;</span> TBH I like 2.87
+<a name="l-61"></a><span class="tm">18:12:28</span><span class="nk"> &lt;rtyler&gt;</span> I'm in favor of anything 2.87+
+<a name="l-62"></a><span class="tm">18:12:30 </span><span class="nka">* rtyler</span> <span class="ac">shrugs</span>
+<a name="l-63"></a><span class="tm">18:12:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am fine with that
+<a name="l-64"></a><span class="tm">18:13:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, vote for 2.87? +1
+<a name="l-65"></a><span class="tm">18:13:15</span><span class="nk"> &lt;rtyler&gt;</span> summoning markewaite, I think he's done some testing on 2.87 lately
+<a name="l-66"></a><span class="tm">18:13:39</span><span class="nk"> &lt;jglick&gt;</span> 2.87 is a little weird in that we would be backporting the security fixes from 2.89, and I marked JENKINS-45977 for backport, so then the only things not there would be Russian localization (likely very safe) and a new sidebar link.
+<a name="l-67"></a><span class="tm">18:14:04</span><span class="nk"> &lt;bitwiseman&gt;</span> (Hello all This meeting is at 11 on my calendar right now. :| )
+<a name="l-68"></a><span class="tm">18:14:41</span><span class="nk"> &lt;danielbeck&gt;</span> bitwiseman welcome to the time zone chaos fan club
+<a name="l-69"></a><span class="tm">18:15:06</span><span class="nk"> &lt;danielbeck&gt;</span> let's look at the differences
+<a name="l-70"></a><span class="tm">18:15:37</span><span class="nk"> &lt;danielbeck&gt;</span> the whole point of this is to stay conservative and not invite unproven changes
+<a name="l-71"></a><span class="tm">18:15:39</span><span class="nk"> &lt;danielbeck&gt;</span> https://github.com/jenkinsci/jenkins/compare/jenkins-2.87...jenkins-2.88
+<a name="l-72"></a><span class="tm">18:16:14</span><span class="nk"> &lt;danielbeck&gt;</span> really barely anything in there
+<a name="l-73"></a><span class="tm">18:16:35</span><span class="nk"> &lt;danielbeck&gt;</span> so we could well go with 2.89
+<a name="l-74"></a><span class="tm">18:16:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We will have 2 weeks till RC in the worst case
+<a name="l-75"></a><span class="tm">18:17:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Assuming we discover a critical issue in NewView impl, heh
+<a name="l-76"></a><span class="tm">18:17:27</span><span class="nk"> &lt;danielbeck&gt;</span> right, and honestly the riskiest change is SECURITY-499, which would be a problem either way
+<a name="l-77"></a><span class="tm">18:17:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">markewaite:</span> have you happened to do much testing with recent cores like 2.87 or later?
+<a name="l-78"></a><span class="tm">18:17:53</span><span class="nk"> &lt;markewaite&gt;</span> <span class="hi">rtyler:</span> none, all my testing was with the LTS RC
+<a name="l-79"></a><span class="tm">18:17:58</span><span class="nk"> &lt;jglick&gt;</span> Backporting the 2.89 advisory on top of 2.87 seems riskier than anything that went into 2.88, really.
+<a name="l-80"></a><span class="tm">18:18:16</span><span class="nk"> &lt;andresrc&gt;</span> :+1 to jglick comment
+<a name="l-81"></a><span class="tm">18:18:27</span><span class="nk"> &lt;jglick&gt;</span> The main risk in 2.87 (vs. 2.86) seems to be the Stapler/Servlet changes.
+<a name="l-82"></a><span class="tm">18:18:44</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler wants 2.87
+<a name="l-83"></a><span class="tm">18:18:46</span><span class="nk"> &lt;jglick&gt;</span> Much of the rest I already marked `lts-candidate` anyway.
+<a name="l-84"></a><span class="tm">18:18:47</span><span class="nk"> &lt;danielbeck&gt;</span> unclear why
+<a name="l-85"></a><span class="tm">18:19:30</span><span class="nk"> &lt;danielbeck&gt;</span> jglick shouldn't we have seen problems in stapler by now?
+<a name="l-86"></a><span class="tm">18:19:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Stapler didn't blow up this time from what I see
+<a name="l-87"></a><span class="tm">18:19:39</span><span class="nk"> &lt;rtyler&gt;</span> I said 2.87+
+<a name="l-88"></a><span class="tm">18:19:40</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">danielbeck:</span> probably
+<a name="l-89"></a><span class="tm">18:19:59</span><span class="nk"> &lt;jglick&gt;</span> FWIW I have no problem with 2.89.
+<a name="l-90"></a><span class="tm">18:20:05</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler right, but we were discussing 2.86/2.87
+<a name="l-91"></a><span class="tm">18:20:09</span><span class="nk"> &lt;rtyler&gt;</span> there were a number of issues reported against 2.86 which is why I don't consider it viable
+<a name="l-92"></a><span class="tm">18:20:32</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler those are all present in newer releases, except the java.sun.com one
+<a name="l-93"></a><span class="tm">18:20:42</span><span class="nk"> &lt;danielbeck&gt;</span> 5×JENKINS-47593 2×JENKINS-47393 &lt; these are 2.86 and up
+<a name="l-94"></a><span class="tm">18:20:50</span><span class="nk"> &lt;danielbeck&gt;</span> but the fix will need to be in the ec2-plugin anyway
+<a name="l-95"></a><span class="tm">18:21:00</span><span class="nk"> &lt;jglick&gt;</span> Exactly.
+<a name="l-96"></a><span class="tm">18:21:14</span><span class="nk"> &lt;danielbeck&gt;</span> so there's little point in going with an older core for this -- not a core regression per se
+<a name="l-97"></a><span class="tm">18:21:29</span><span class="nk"> &lt;rtyler&gt;</span> ah
+<a name="l-98"></a><span class="tm">18:22:31</span><span class="nk"> &lt;danielbeck&gt;</span> one of 2 modes in ec2 plugin uses CommandLauncher, which now needs script approval in 2.86+; and the plugin cannot handle that
+<a name="l-99"></a><span class="tm">18:23:07</span><span class="nk"> &lt;rtyler&gt;</span> oh hey, there's ogondza
+<a name="l-100"></a><span class="tm">18:23:26</span><span class="nk"> &lt;ogondza&gt;</span> at last
+<a name="l-101"></a><span class="tm">18:23:30</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-102"></a><span class="tm">18:23:30</span><span class="nk"> &lt;bitwiseman&gt;</span> Are the security fixes from 2.89 going to have to be back ported to the LTS?
+<a name="l-103"></a><span class="tm">18:23:32</span><span class="nk"> &lt;jglick&gt;</span> Something we would want fixed for weekly users even if LTS were 2.85-, so I see little point in holding up LTS for that.
+<a name="l-104"></a><span class="tm">18:23:41</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">bitwiseman:</span> yes
+<a name="l-105"></a><span class="tm">18:23:50</span><span class="nk"> &lt;danielbeck&gt;</span> jglick +1
+<a name="l-106"></a><span class="tm">18:23:51</span><span class="nk"> &lt;jglick&gt;</span> (unless 2.89 itself is chosen)
+<a name="l-107"></a><span class="tm">18:24:02</span><span class="nk"> &lt;ogondza&gt;</span> it is unlikely we would go with 2.85-, though
+<a name="l-108"></a><span class="tm">18:24:02</span><span class="nk"> &lt;danielbeck&gt;</span> bitwiseman of course we'd backport 2.89 fixes
+<a name="l-109"></a><span class="tm">18:24:21</span><span class="nk"> &lt;bitwiseman&gt;</span> So, if we're discussing 2.87, is there anything in 2.88 that we would not take?
+<a name="l-110"></a><span class="tm">18:24:36</span><span class="nk"> &lt;danielbeck&gt;</span> well, the Russian
+<a name="l-111"></a><span class="tm">18:24:43</span><span class="nk"> &lt;danielbeck&gt;</span> and the sidebar link
+<a name="l-112"></a><span class="tm">18:24:54</span><span class="nk"> &lt;danielbeck&gt;</span> which is why we were considering 2.89
+<a name="l-113"></a><span class="tm">18:24:59</span><span class="nk"> &lt;danielbeck&gt;</span> less backporting work
+<a name="l-114"></a><span class="tm">18:25:08</span><span class="nk"> &lt;danielbeck&gt;</span> nothing really risky in 2.88
+<a name="l-115"></a><span class="tm">18:25:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> famous last words (c)
+<a name="l-116"></a><span class="tm">18:25:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But seriously, I agree in this case
+<a name="l-117"></a><span class="tm">18:25:37</span><span class="nk"> &lt;bitwiseman&gt;</span> right. I'm just saying if there's nothing risky in 2.88, then a vote for 2.87 is a vote for 2.89
+<a name="l-118"></a><span class="tm">18:25:44</span><span class="nk"> &lt;danielbeck&gt;</span> basically
+<a name="l-119"></a><span class="tm">18:26:40</span><span class="nk"> &lt;jglick&gt;</span> Let me just put in a +1 for 2.89 then. YOLO
+<a name="l-120"></a><span class="tm">18:27:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1, why not
+<a name="l-121"></a><span class="tm">18:27:47</span><span class="nk"> &lt;danielbeck&gt;</span> +1 we'll need to be somewhat more vigilant about newly reported issues in the next two weeks, but otherwise should be fine
+<a name="l-122"></a><span class="tm">18:27:50</span><span class="nk"> &lt;ogondza&gt;</span> yes, let's go with 2.89
+<a name="l-123"></a><span class="tm">18:27:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for anything in 2.87...2.89
+<a name="l-124"></a><span class="tm">18:28:21</span><span class="nk"> &lt;markewaite&gt;</span> +1 for 2.89
+<a name="l-125"></a><span class="tm">18:28:23</span><span class="nk"> &lt;andresrc&gt;</span> +1 for 2.89
+<a name="l-126"></a><span class="tm">18:28:30</span><span class="nk"> &lt;danielbeck&gt;</span> WHAT COULD POSSIBLY GO WRONG
+<a name="l-127"></a><span class="tm">18:29:09</span><span class="nk"> &lt;rtyler&gt;</span> that's the spirit
+<a name="l-128"></a><span class="tm">18:29:15</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next LTS will be based on 2.89</span>
+<a name="l-129"></a><span class="tm">18:29:32</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza will initiate the new LTS line</span>
+<a name="l-130"></a><span class="tm">18:30:30</span><span class="nk"> &lt;rtyler&gt;</span> welp
+<a name="l-131"></a><span class="tm">18:30:34</span><span class="nk"> &lt;rtyler&gt;</span> *drumroll*
+<a name="l-132"></a><span class="tm">18:30:37</span><span class="nk"> &lt;rtyler&gt;</span> shall we move on?
+<a name="l-133"></a><span class="tm">18:30:50</span><span class="nk"> &lt;ogondza&gt;</span> moving on
+<a name="l-134"></a><span class="tm">18:31:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins Enhancement Proposals</span>
+<a name="l-135"></a><span class="tm">18:31:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/jep/tree/jep-1/jep/1</span>
+<a name="l-136"></a><span class="tm">18:31:46</span><span class="nk"> &lt;rtyler&gt;</span> JEP-1 contains a tremendous amount of work and discussion, so thanks everybody for participating in the process
+<a name="l-137"></a><span class="tm">18:32:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the pull request to master for JEP-1 is : https://github.com/jenkinsci/jep/pull/12</span>
+<a name="l-138"></a><span class="tm">18:33:09</span><span class="nk"> &lt;rtyler&gt;</span> the goal of this agenda item is to finalize agreement on this structure so we can start moving forward with it
+<a name="l-139"></a><span class="tm">18:33:20</span><span class="nk"> &lt;rtyler&gt;</span> which jglick and ndeloof have already done :P
+<a name="l-140"></a><span class="tm">18:33:21</span><span class="nk"> &lt;jglick&gt;</span> though if https://github.com/jenkinsci/jep/pull/29 were merged then it would already be in `master` :-)
+<a name="l-141"></a><span class="tm">18:33:22</span><span class="nk"> &lt;rtyler&gt;</span> *claps*
+<a name="l-142"></a><span class="tm">18:34:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Is there a plan to approve the JEP process? Or **only** the structure?
+<a name="l-143"></a><span class="tm">18:34:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I don't understand the distinction between those two
+<a name="l-144"></a><span class="tm">18:34:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 1) JEP becomes a formally approved process
+<a name="l-145"></a><span class="tm">18:35:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2) We approve structure of JEP and give green light to starting drafts, but we still reserve to make changes according to the experience in drafts
+<a name="l-146"></a><span class="tm">18:35:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#1  </span><span class="cmdline">is what we're doing here, but that doesn't mean #2 doesn't happen at any point in the future</span>
+<a name="l-147"></a><span class="tm">18:35:55</span><span class="nk"> &lt;rtyler&gt;</span> this should never ever be set in stone
+<a name="l-148"></a><span class="tm">18:35:58</span><span class="nk"> &lt;danielbeck&gt;</span> I think changes to format can be done while we're using it
+<a name="l-149"></a><span class="tm">18:36:15</span><span class="nk"> &lt;danielbeck&gt;</span> if we notice something doesn't work, revisit the process
+<a name="l-150"></a><span class="tm">18:36:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep
+<a name="l-151"></a><span class="tm">18:36:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Then I just misread "agreement on this structure" as "agreement on JEP structure"
+<a name="l-152"></a><span class="tm">18:36:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks for the clarification
+<a name="l-153"></a><span class="tm">18:36:55</span><span class="nk"> &lt;bitwiseman&gt;</span> agreed.  The process and the format/structure of the documents can change over time.
+<a name="l-154"></a><span class="tm">18:37:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">kohsuke's absentee ballot vote for +1 https://groups.google.com/d/msg/jenkinsci-dev/5Lmd8GYt40w/tE7FTF-kCAAJ</span>
+<a name="l-155"></a><span class="tm">18:37:56</span><span class="nk"> &lt;jglick&gt;</span> FWIW, my +1 on JEP-1
+<a name="l-156"></a><span class="tm">18:38:09</span><span class="nk"> &lt;rtyler&gt;</span> I'm obviously +1, and very excited that jglick and ndeloof have already started kicking the tires
+<a name="l-157"></a><span class="tm">18:38:14</span><span class="nk"> &lt;danielbeck&gt;</span> +1 as well
+<a name="l-158"></a><span class="tm">18:38:25</span><span class="nk"> &lt;danielbeck&gt;</span> can't wait to apply this
+<a name="l-159"></a><span class="tm">18:39:05</span><span class="nk"> &lt;markewaite&gt;</span> +1 on JEP-1 for me
+<a name="l-160"></a><span class="tm">18:39:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am +1. I have some reservations, but we need to go forward to enable major contributions. Whatever works.
+<a name="l-161"></a><span class="tm">18:39:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> All my major concerns have been addressed, thanks to bitwiseman, kohsuke and rtyler
+<a name="l-162"></a><span class="tm">18:40:25</span><span class="nk"> &lt;andresrc&gt;</span> +1
+<a name="l-163"></a><span class="tm">18:41:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> orrc ogondza Slide-O-Mix: WDYT?
+<a name="l-164"></a><span class="tm">18:41:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">michaelneale (of blueocean fame) sent his absentee ballot too https://groups.google.com/d/msg/jenkinsci-dev/5Lmd8GYt40w/hlwfZqkYBQAJ</span>
+<a name="l-165"></a><span class="tm">18:41:23</span><span class="nk"> &lt;rtyler&gt;</span> of +1 if that wasn't clear
+<a name="l-166"></a><span class="tm">18:41:28</span><span class="nk"> &lt;danielbeck&gt;</span> as a reminder to the lurkers, today is your best chance to still stop this ;-)
+<a name="l-167"></a><span class="tm">18:42:04</span><span class="nk"> &lt;ogondza&gt;</span> kudos for the tremendous effort behind all this. Here is my +1
+<a name="l-168"></a><span class="tm">18:42:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The Jenkins board is onboard, right?
+<a name="l-169"></a><span class="tm">18:42:25</span><span class="nk"> &lt;olblak&gt;</span> +1
+<a name="l-170"></a><span class="tm">18:42:25</span><span class="nk"> &lt;rtyler&gt;</span> I haven't heard from hare_brain in ages, so 2/3 are :P
+<a name="l-171"></a><span class="tm">18:42:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I have heard nothing from Dean as well. 2/3 are fine for me
+<a name="l-172"></a><span class="tm">18:44:15 </span><span class="nka">* danielbeck</span> <span class="ac">looks at the clock</span>
+<a name="l-173"></a><span class="tm">18:44:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Probably it's a time to start countdown
+<a name="l-174"></a><span class="tm">18:44:20</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-175"></a><span class="tm">18:44:48</span><span class="nk"> &lt;bitwiseman&gt;</span> Do I have a vote? Do I even need to say +1.
+<a name="l-176"></a><span class="tm">18:44:54</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-177"></a><span class="tm">18:45:00</span><span class="nk"> &lt;danielbeck&gt;</span> we should have told abayer, he likes to be contrarian
+<a name="l-178"></a><span class="tm">18:45:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Everybody has a vote
+<a name="l-179"></a><span class="tm">18:45:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I will ping him
+<a name="l-180"></a><span class="tm">18:45:22 </span><span class="nka">* rtyler</span> <span class="ac">facepalms</span>
+<a name="l-181"></a><span class="tm">18:46:04</span><span class="nk"> &lt;rtyler&gt;</span> I'll give abayer a minute to wake up
+<a name="l-182"></a><span class="tm">18:46:36</span><span class="nk"> &lt;rtyler&gt;</span> he's been vaguing following a process like this for declarative pipeline changes in pipeline-model-definition-plugin so I strongly doubt that he'd be a contrarian here :)
+<a name="l-183"></a><span class="tm">18:46:51</span><span class="nk"> &lt;rtyler&gt;</span> but he would have to resist the subconscious urge :P
+<a name="l-184"></a><span class="tm">18:47:19</span><span class="nk"> &lt;rtyler&gt;</span> alright, last call!
+<a name="l-185"></a><span class="tm">18:47:50</span><span class="nk"> &lt;rtyler&gt;</span> I really do want to thank everybody who participated in the process of drafting JEP-1
+<a name="l-186"></a><span class="tm">18:48:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yeah, thanks all!
+<a name="l-187"></a><span class="tm">18:48:26</span><span class="nk"> &lt;rtyler&gt;</span> I know it was messy at times, and even a bit heated at others, but community building is at times messy :)
+<a name="l-188"></a><span class="tm">18:48:49</span><span class="nk"> &lt;andresrc&gt;</span> +1000
+<a name="l-189"></a><span class="tm">18:48:51</span><span class="nk"> &lt;rtyler&gt;</span> I am really looking forward to some of the big improvements we can develop with JEP as a tool in our community toolbox
+<a name="l-190"></a><span class="tm">18:49:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Jenkins Enhancement Proposals as a process (defined in JEP-1) for improving Jenkins</span>
+<a name="l-191"></a><span class="tm">18:49:50</span><span class="nk"> &lt;danielbeck&gt;</span> I pinned the repo
+<a name="l-192"></a><span class="tm">18:50:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">bitwiseman to merge the JEP-1 pull request and update the draft status appropriately to Final</span>
+<a name="l-193"></a><span class="tm">18:50:37</span><span class="nk"> &lt;rtyler&gt;</span> thanks danielbeck
+<a name="l-194"></a><span class="tm">18:50:41</span><span class="nk"> &lt;bitwiseman&gt;</span> rtyler - it will be Active not final.
+<a name="l-195"></a><span class="tm">18:50:46</span><span class="nk"> &lt;rtyler&gt;</span> or whatever
+<a name="l-196"></a><span class="tm">18:51:32</span><span class="nk"> &lt;rtyler&gt;</span> because it's process, right
+<a name="l-197"></a><span class="tm">18:51:38 </span><span class="nka">* rtyler</span> <span class="ac">has a mushy brain</span>
+<a name="l-198"></a><span class="tm">18:51:41</span><span class="nk"> &lt;bitwiseman&gt;</span> yes.
+<a name="l-199"></a><span class="tm">18:51:52</span><span class="nk"> &lt;bitwiseman&gt;</span> and there's still a bit to be done.  I'll move it to accepted.
+<a name="l-200"></a><span class="tm">18:52:05</span><span class="nk"> &lt;autojack&gt;</span> erf, didn't realize we moved to 10am.
+<a name="l-201"></a><span class="tm">18:52:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> shipit
+<a name="l-202"></a><span class="tm">18:52:09</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-203"></a><span class="tm">18:52:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">autojack:</span> we didn't move, the US moved
+<a name="l-204"></a><span class="tm">18:52:25</span><span class="nk"> &lt;rtyler&gt;</span> the meeting time hasn't changed :)
+<a name="l-205"></a><span class="tm">18:52:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-206"></a><span class="tm">18:53:29</span><span class="nk"> &lt;rtyler&gt;</span> as we come up on the holidays, I expect we're going to start skipping a meeting here or there, but looks like Nov 22nd is still a workday in the US :)
+<a name="l-207"></a><span class="tm">18:53:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Nov 22nd, 18:00 UTC</span>
+<a name="l-208"></a><span class="tm">18:54:07</span><span class="nk"> &lt;rtyler&gt;</span> anything else before we call it a day?
+<a name="l-209"></a><span class="tm">18:54:42</span><span class="nk"> &lt;rtyler&gt;</span> going once...
+<a name="l-210"></a><span class="tm">18:54:53</span><span class="nk"> &lt;rtyler&gt;</span> going twice.....
+<a name="l-211"></a><span class="tm">18:55:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 14:13:31 Jan 15, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:12:21 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 167.971
+  exclusion.robots: 0.141
+  exclusion.robots.policy: 0.127
+  RedisCDXSource: 0.731
+  esindex: 0.013
+  LoadShardBlock: 134.923 (3)
+  PetaboxLoader3.datanode: 39.725 (4)
+  CDXLines.iter: 26.501 (3)
+  PetaboxLoader3.resolve: 127.742 (3)
+  load_resource: 74.779
+-->

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app213.us.archive.org';v.server_ms=890;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-02-26-18.00.log.html","20211027224803","https://web.archive.org/","web","/_static/",
+	      "1635374883");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:28</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:32 </span><span class="nka">* Slide-O-Mix</span> <span class="ac">waves</span>
+<a name="l-4"></a><span class="tm">18:00:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> anyone around? :_
+<a name="l-5"></a><span class="tm">18:00:45</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I am
+<a name="l-6"></a><span class="tm">18:01:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">agenda https://docs.google.com/document/d/11Nr8QpqYgBiZjORplL_3Zkwys2qK1vEvK-NYyYa4rzg/edit#heading=h.vylsknw2s91m</span>
+<a name="l-7"></a><span class="tm">18:01:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I believe we do not have any action items from the previous meeting
+<a name="l-8"></a><span class="tm">18:01:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS Baseline selection updates</span>
+<a name="l-9"></a><span class="tm">18:01:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/VRxRCP_IKhQ</span>
+<a name="l-10"></a><span class="tm">18:02:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">2.222 looks to be a winner, final decision is yet to be made by Oliver Gondza (Jenkins Release officer)</span>
+<a name="l-11"></a><span class="tm">18:02:30</span><span class="nk"> &lt;markewaite&gt;</span> I am here
+<a name="l-12"></a><span class="tm">18:02:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> any comments about the LTS?
+<a name="l-13"></a><span class="tm">18:02:58</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> So, the main decision is going to be on the mailing list with a ratification from this meeting, or just Oliver?
+<a name="l-14"></a><span class="tm">18:03:06</span><span class="nk"> &lt;markewaite&gt;</span> My testing of 2.222 supports it as a good candidate for LTS
+<a name="l-15"></a><span class="tm">18:03:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Kudos to mcirioli timja and many other contributors who delivered JEP-223/224 changes for it (and many other ones)
+<a name="l-16"></a><span class="tm">18:03:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">Slide-O-Mix:</span> Just Oliver, I believe
+<a name="l-17"></a><span class="tm">18:04:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We can do a vote, but I see no reason while there is a consensus
+<a name="l-18"></a><span class="tm">18:04:12</span><span class="nk"> &lt;markewaite&gt;</span> As of now, 3 rollbacks with 50 reports of "No major issues". The one issue report is unclear what concern is being raised
+<a name="l-19"></a><span class="tm">18:04:24</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Sounds good to me
+<a name="l-20"></a><span class="tm">18:04:48</span><span class="nk"> &lt;markewaite&gt;</span> https://jenkins.io/changelog/#v2.222 is the changelog status link
+<a name="l-21"></a><span class="tm">18:04:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/changelog/#v2.222</span>
+<a name="l-22"></a><span class="tm">18:05:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, moving on?
+<a name="l-23"></a><span class="tm">18:05:22</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1
+<a name="l-24"></a><span class="tm">18:05:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Terms of service document for IBM Z (s390x) use as ci.jenkins.io agents</span>
+<a name="l-25"></a><span class="tm">18:05:45</span><span class="nk"> &lt;markewaite&gt;</span> +1
+<a name="l-26"></a><span class="tm">18:06:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I believe it is rather LinuxOne agreement, right? It is not only about s390x AFAICT
+<a name="l-27"></a><span class="tm">18:06:13</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Do we have a lawyer anywhere than can review the doc from a legal standpoint to make sure there is nothing we are missing?
+<a name="l-28"></a><span class="tm">18:06:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We could ask CDF/LinuxFoundation
+<a name="l-29"></a><span class="tm">18:06:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ETA for the response is unclear tho
+<a name="l-30"></a><span class="tm">18:07:16</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> yeah, based on past experience
+<a name="l-31"></a><span class="tm">18:07:18</span><span class="nk"> &lt;markewaite&gt;</span> The agreement is titled "LinuxOne" but as described by Jim Crowley, it applies to s390x only, not to ppc64le. They have provided ppc64le separately without a signed agreement
+<a name="l-32"></a><span class="tm">18:08:28</span><span class="nk"> &lt;markewaite&gt;</span> I don't see significant benefit to asking CDF/LF legal. IBM's legal team has no doubt reviewed in depth when creating it and other projects have signed to use their services. Risk seems quite low to me (but I am not a lawyer)
+<a name="l-33"></a><span class="tm">18:08:51</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I'm just always afraid there is something I am missing, though I agree that the risk is low
+<a name="l-34"></a><span class="tm">18:09:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Basically all the risks are on olblak
+<a name="l-35"></a><span class="tm">18:09:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Could we ask the Jenkins IRC Bot sign it? :)
+<a name="l-36"></a><span class="tm">18:09:52</span><span class="nk"> &lt;markewaite&gt;</span> :)
+<a name="l-37"></a><span class="tm">18:09:58</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Wut? ;-)
+<a name="l-38"></a><span class="tm">18:10:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Speaking seriously, I am fine with the agreement as long as olblak or other Jenkins official sign that &amp;&amp; they are fine with that
+<a name="l-39"></a><span class="tm">18:10:47</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I agree
+<a name="l-40"></a><span class="tm">18:11:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, what should we approve markewaite ?
+<a name="l-41"></a><span class="tm">18:11:33</span><span class="nk"> &lt;markewaite&gt;</span> I agree that olblak is first choice to sign. If he's unwilling, I'd be willing to sign as part of my role in the Platform SIG.
+<a name="l-42"></a><span class="tm">18:11:35</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I think we approve that olblak can sign it without needing a board member
+<a name="l-43"></a><span class="tm">18:11:50</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> or, in lieu of a board member
+<a name="l-44"></a><span class="tm">18:12:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for olblak as an Infra officer
+<a name="l-45"></a><span class="tm">18:12:44</span><span class="nk"> &lt;markewaite&gt;</span> I agree with slide.  Governance approves that olblak can sign without requiring consultation with CDF legal and without requiring a board member to also sign.
+<a name="l-46"></a><span class="tm">18:13:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we can get all board members to sign it if we want to explicitly share the responsibility
+<a name="l-47"></a><span class="tm">18:13:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> but imho it is an overkill
+<a name="l-48"></a><span class="tm">18:13:49</span><span class="nk"> &lt;rtyler&gt;</span> I don't think it matters so long as there are no external impacts of the agreement
+<a name="l-49"></a><span class="tm">18:13:50</span><span class="nk"> &lt;markewaite&gt;</span> I don't think it is worth that extra effort nor does it significantly change the risk
+<a name="l-50"></a><span class="tm">18:14:06</span><span class="nk"> &lt;rtyler&gt;</span> for example, previous agreements I have signed have included terms that were around marketing and exclusivity
+<a name="l-51"></a><span class="tm">18:14:34</span><span class="nk"> &lt;rtyler&gt;</span> if it's just "terms and conditions to use some machines" and the terms are isolated to simply the use of those machines, then yeah, I agree with Slide-O-Mix and markewaite
+<a name="l-52"></a><span class="tm">18:16:11</span><span class="nk"> &lt;markewaite&gt;</span> As far as I can tell, it is terms and conditions to use some machines. Includes the usual trademark requirement that use of the machines does not grant us rights to use IBM trademarks in promotion or publication without written consent.
+<a name="l-53"></a><span class="tm">18:16:54</span><span class="nk"> &lt;rtyler&gt;</span> yeah, then I think that's fine for olblak to sign off on as an officer
+<a name="l-54"></a><span class="tm">18:17:17</span><span class="nk"> &lt;markewaite&gt;</span> <span class="cmd">#info </span><span class="cmdline">document is at https://drive.google.com/drive/folders/1-Ci-zoUGIagyNLbqpgtzLQGPJXesX6VJ</span>
+<a name="l-55"></a><span class="tm">18:18:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Let's vote in 5 min so that anyone can read it
+<a name="l-56"></a><span class="tm">18:19:25</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I've read it, +1 from me
+<a name="l-57"></a><span class="tm">18:19:33</span><span class="nk"> &lt;markewaite&gt;</span> I've read it, +1 from me
+<a name="l-58"></a><span class="tm">18:20:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-59"></a><span class="tm">18:21:16</span><span class="nk"> &lt;rtyler&gt;</span> scanned, looks fine
+<a name="l-60"></a><span class="tm">18:23:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">that's fine for olblak to sign the contract as an Infra officer</span>
+<a name="l-61"></a><span class="tm">18:23:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks all
+<a name="l-62"></a><span class="tm">18:23:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Depublishing the Jenkins Design Language 2 resource</span>
+<a name="l-63"></a><span class="tm">18:23:46</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I think this is an easy +1
+<a name="l-64"></a><span class="tm">18:23:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So... We just had some of contributors confused this week
+<a name="l-65"></a><span class="tm">18:24:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would like to kill it taking the current Blue Ocean state and the ongoing UX revamp which does NOT use JDL
+<a name="l-66"></a><span class="tm">18:24:49 </span><span class="nka">* rtyler</span> <span class="ac">shrugs</span>
+<a name="l-67"></a><span class="tm">18:25:08</span><span class="nk"> &lt;markewaite&gt;</span> +1 from me and agree with the reasons.  JDL 2.0 is not likely to release in its current state
+<a name="l-68"></a><span class="tm">18:26:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> anyone against?
+<a name="l-69"></a><span class="tm">18:26:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/bEriiXYZ0lw</span>
+<a name="l-70"></a><span class="tm">18:26:58 </span><span class="nka">* rtyler</span> <span class="ac">shrugs</span>
+<a name="l-71"></a><span class="tm">18:27:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +5 in total then
+<a name="l-72"></a><span class="tm">18:27:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">R.I.P JDL 2.x</span>
+<a name="l-73"></a><span class="tm">18:27:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to implement the decion</span>
+<a name="l-74"></a><span class="tm">18:27:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> typos...
+<a name="l-75"></a><span class="tm">18:27:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any other topics for today?
+<a name="l-76"></a><span class="tm">18:28:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 1min timeout
+<a name="l-77"></a><span class="tm">18:28:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-78"></a><span class="tm">18:29:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next meeting will be held on  Mar 11, 6 PM UTC. usual time</span>
+<a name="l-79"></a><span class="tm">18:29:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Thanks all
+<a name="l-80"></a><span class="tm">18:29:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:48:03 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 14:59:34 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 625.81
+  exclusion.robots: 0.136
+  exclusion.robots.policy: 0.124
+  cdx.remote: 0.088
+  esindex: 0.011
+  LoadShardBlock: 465.971 (3)
+  PetaboxLoader3.datanode: 276.86 (4)
+  CDXLines.iter: 22.36 (3)
+  PetaboxLoader3.resolve: 184.118 (2)
+  load_resource: 253.536
+-->

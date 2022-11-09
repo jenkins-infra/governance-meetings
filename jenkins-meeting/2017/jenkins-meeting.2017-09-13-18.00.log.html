@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app203.us.archive.org';v.server_ms=427;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-09-13-18.00.log.html","20211022184801","https://web.archive.org/","web","/_static/",
+	      "1634928481");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:40</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:41</span><span class="nk"> &lt;danielbeck&gt;</span> so glad this isn't a Google Hangout
+<a name="l-4"></a><span class="tm">18:00:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting actions</span>
+<a name="l-5"></a><span class="tm">18:01:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-08-16-17.59.html</span>
+<a name="l-6"></a><span class="tm">18:01:16</span><span class="nk"> &lt;rtyler&gt;</span> I believe kohsuke published 2.60.3 :)
+<a name="l-7"></a><span class="tm">18:01:41</span><span class="nk"> &lt;rtyler&gt;</span> if I remember correctly, ogondza started testing on 2.73.1 for the next LTS baseline right?
+<a name="l-8"></a><span class="tm">18:01:47</span><span class="nk"> &lt;batmat&gt;</span> yes
+<a name="l-9"></a><span class="tm">18:01:50</span><span class="nk"> &lt;ogondza&gt;</span> the line was initiated
+<a name="l-10"></a><span class="tm">18:01:52</span><span class="nk"> &lt;ogondza&gt;</span> right
+<a name="l-11"></a><span class="tm">18:01:54</span><span class="nk"> &lt;batmat&gt;</span> https://github.com/jenkinsci/jenkins/tree/jenkins-2.60.3 is 28 days old :)
+<a name="l-12"></a><span class="tm">18:02:06</span><span class="nk"> &lt;rtyler&gt;</span> hooray
+<a name="l-13"></a><span class="tm">18:02:22</span><span class="nk"> &lt;rtyler&gt;</span> we did discuss some LTS/release stuff at the Jenkins World Contributor Summit
+<a name="l-14"></a><span class="tm">18:02:52</span><span class="nk"> &lt;rtyler&gt;</span> not sure there are other items we need to discuss from the last meeting
+<a name="l-15"></a><span class="tm">18:03:06</span><span class="nk"> &lt;danielbeck&gt;</span> The Stapler thing didn't happen, or at least no backport
+<a name="l-16"></a><span class="tm">18:03:10</span><span class="nk"> &lt;ogondza&gt;</span> Do we have jglick?
+<a name="l-17"></a><span class="tm">18:03:11</span><span class="nk"> &lt;danielbeck&gt;</span> jglick may know
+<a name="l-18"></a><span class="tm">18:03:20</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> no
+<a name="l-19"></a><span class="tm">18:03:36</span><span class="nk"> &lt;ogondza&gt;</span> thee is the remoting discussion ongoing on devlist
+<a name="l-20"></a><span class="tm">18:03:41</span><span class="nk"> &lt;jglick&gt;</span> present
+<a name="l-21"></a><span class="tm">18:03:53</span><span class="nk"> &lt;danielbeck&gt;</span> jglick what happened to the Stapler backporting plans?
+<a name="l-22"></a><span class="tm">18:04:01</span><span class="nk"> &lt;jglick&gt;</span> What Stapler backporting plans?
+<a name="l-23"></a><span class="tm">18:04:02</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">tl;dr:</span> the, remoting version from 2.73 weekly has rather severe regression
+<a name="l-24"></a><span class="tm">18:04:09</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza next topic ;-)
+<a name="l-25"></a><span class="tm">18:04:28</span><span class="nk"> &lt;danielbeck&gt;</span> jglick those in http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-08-16-17.59.html
+<a name="l-26"></a><span class="tm">18:04:32</span><span class="nk"> &lt;danielbeck&gt;</span> but seems like this hasn't happened
+<a name="l-27"></a><span class="tm">18:04:36</span><span class="nk"> &lt;rtyler&gt;</span> continuing down the agenda (https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-September13thmeeting)
+<a name="l-28"></a><span class="tm">18:04:42</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-29"></a><span class="tm">18:04:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jglick:</span> if you and oleg-nenashev haven't had much time to discuss, then no worries, we'll keep on going
+<a name="l-30"></a><span class="tm">18:05:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-31"></a><span class="tm">18:05:25</span><span class="nk"> &lt;jglick&gt;</span> There was an issue that stephenc supposedly fixed.
+<a name="l-32"></a><span class="tm">18:05:30</span><span class="nk"> &lt;jglick&gt;</span> But I could find no evidence of this.
+<a name="l-33"></a><span class="tm">18:05:39</span><span class="nk"> &lt;jglick&gt;</span> And that was the only reason to even consider a Stapler backport.
+<a name="l-34"></a><span class="tm">18:05:48</span><span class="nk"> &lt;jglick&gt;</span> So I said we should not treat it as `lts-candidate`.
+<a name="l-35"></a><span class="tm">18:05:53</span><span class="nk"> &lt;danielbeck&gt;</span> ah okay
+<a name="l-36"></a><span class="tm">18:05:53</span><span class="nk"> &lt;jglick&gt;</span> Cannot recall issue number offhand.
+<a name="l-37"></a><span class="tm">18:05:54</span><span class="nk"> &lt;danielbeck&gt;</span> thanks
+<a name="l-38"></a><span class="tm">18:06:29</span><span class="nk"> &lt;danielbeck&gt;</span> re LTS status, 2.73.1 has a problem with remoting
+<a name="l-39"></a><span class="tm">18:06:30</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-45903 I think
+<a name="l-40"></a><span class="tm">18:06:41</span><span class="nk"> &lt;jglick&gt;</span> yes that is the one
+<a name="l-41"></a><span class="tm">18:07:03</span><span class="nk"> &lt;jglick&gt;</span> was rejected for 2.73.1 and I think not a candidate for .2 either
+<a name="l-42"></a><span class="tm">18:07:17</span><span class="nk"> &lt;jglick&gt;</span> unless its mechanism can be cleared up
+<a name="l-43"></a><span class="tm">18:07:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the 2.73.1 backporting thread is quite long https://groups.google.com/d/msgid/jenkinsci-dev/44cba1b8-e653-3ab3-3383-eb63d8e004f1%40gmail.com</span>
+<a name="l-44"></a><span class="tm">18:07:23</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">jglick:</span> definitely until we understand the fix
+<a name="l-45"></a><span class="tm">18:07:36</span><span class="nk"> &lt;danielbeck&gt;</span> jglick thanks
+<a name="l-46"></a><span class="tm">18:07:51</span><span class="nk"> &lt;ogondza&gt;</span> keeping it a candidate to revisit just in case it clarifies
+<a name="l-47"></a><span class="tm">18:08:06</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">proposed LTS delay to allow for fix in https://groups.google.com/d/msg/jenkinsci-dev/uv2SG7k2log/K9bZiySQAQAJ</span>
+<a name="l-48"></a><span class="tm">18:08:37</span><span class="nk"> &lt;ogondza&gt;</span> I will have to discuss this with oleg, presumable after the meeting
+<a name="l-49"></a><span class="tm">18:08:46</span><span class="nk"> &lt;danielbeck&gt;</span> basically, Jenkins masters with read only home dir (not Jenkins home, but user home) can't have remoting connections
+<a name="l-50"></a><span class="tm">18:08:58</span><span class="nk"> &lt;rtyler&gt;</span> o_O
+<a name="l-51"></a><span class="tm">18:09:03</span><span class="nk"> &lt;rtyler&gt;</span> yjsy
+<a name="l-52"></a><span class="tm">18:09:05</span><span class="nk"> &lt;rtyler&gt;</span> interesting
+<a name="l-53"></a><span class="tm">18:09:30</span><span class="nk"> &lt;danielbeck&gt;</span> it's not too common outside dockering, but we probably don't want an LTS with this issue
+<a name="l-54"></a><span class="tm">18:09:32</span><span class="nk"> &lt;jglick&gt;</span> I mean, the workaround is straightforward—fix your `$HOME`—but it could screw up a lot of people.
+<a name="l-55"></a><span class="tm">18:09:50</span><span class="nk"> &lt;jglick&gt;</span> Seems worth delaying a couple days to get a hotfix for it.
+<a name="l-56"></a><span class="tm">18:09:54</span><span class="nk"> &lt;ogondza&gt;</span> The question is, are we ok postponing release until Friday as Oleg suggests?
+<a name="l-57"></a><span class="tm">18:10:08</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> ^?
+<a name="l-58"></a><span class="tm">18:10:09</span><span class="nk"> &lt;kohsuke&gt;</span> is this issue present in the baseline that we chose?
+<a name="l-59"></a><span class="tm">18:10:17</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke yes, has been in there for weeks
+<a name="l-60"></a><span class="tm">18:10:18</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> yes
+<a name="l-61"></a><span class="tm">18:10:42</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke doesn't happen with installers and packages though, just the docker, and just when you have agents, so probably not a very common use case
+<a name="l-62"></a><span class="tm">18:11:03</span><span class="nk"> &lt;kohsuke&gt;</span> Without understanding the full context, it just feels like this is against the train model
+<a name="l-63"></a><span class="tm">18:11:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> that sounds like a very common use-case
+<a name="l-64"></a><span class="tm">18:11:22</span><span class="nk"> &lt;ogondza&gt;</span> not that there is an alternative - we either release with the problem or with hotfix
+<a name="l-65"></a><span class="tm">18:11:30</span><span class="nk"> &lt;rtyler&gt;</span> that's literally how ci.jenkins.io and trusted-ci are both deployed
+<a name="l-66"></a><span class="tm">18:11:57</span><span class="nk"> &lt;ogondza&gt;</span> reverting remoting by 1 minor version to distribute older than what 2.73 has, is brittle
+<a name="l-67"></a><span class="tm">18:12:16</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler to clarify, I tried explaining why this hasn't blown up until now. Between weekly only, quasi Docker only, and requiring agents, it removes a lot of instances
+<a name="l-68"></a><span class="tm">18:12:17</span><span class="nk"> &lt;kohsuke&gt;</span> if the issue has been present that long and it didn't show up in that community feedback, our default mode of operation is to ship it, right?
+<a name="l-69"></a><span class="tm">18:12:21</span><span class="nk"> &lt;jglick&gt;</span> IIUC the official Docker image can easily be corrected to make ~ writable so the problem would affect mainly people who roll their own images?
+<a name="l-70"></a><span class="tm">18:12:22</span><span class="nk"> &lt;rtyler&gt;</span> it's problematic to me if we release an LTS which I cannot deploy on our own Jenkins infra
+<a name="l-71"></a><span class="tm">18:12:31</span><span class="nk"> &lt;kohsuke&gt;</span> Then the fix would work through the usual process of starting in the weekly and make its way to the next LTS
+<a name="l-72"></a><span class="tm">18:13:15</span><span class="nk"> &lt;jglick&gt;</span> Certainly the workaround would need to be mentioned in 2.73.1 release notes.
+<a name="l-73"></a><span class="tm">18:13:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jglick:</span> that's a good question we can ask carlosg about
+<a name="l-74"></a><span class="tm">18:13:20</span><span class="nk"> &lt;ogondza&gt;</span> It does not sound all that severe to me, but the voices are pretty strong
+<a name="l-75"></a><span class="tm">18:13:26</span><span class="nk"> &lt;danielbeck&gt;</span> jglick https://github.com/daniel-beck/jenkins.io/blob/4d8ce210e2ea3492582ff0880159c3dc8dc3dbb8/content/doc/upgrade-guide/2.73.adoc#possible-issue-with-agents-on-systems-with-undefined-or-non-writable-home-directory
+<a name="l-76"></a><span class="tm">18:14:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> with regards to community feedback, the linnked ticket from danielbeck was filed against 2.68 as a regression
+<a name="l-77"></a><span class="tm">18:14:32</span><span class="nk"> &lt;rtyler&gt;</span> fwiw
+<a name="l-78"></a><span class="tm">18:14:34</span><span class="nk"> &lt;jglick&gt;</span> It does not seem that terrible to me as the failure is an exception with a pretty clear message, even if it is not clear why you are only getting this error now.
+<a name="l-79"></a><span class="tm">18:14:51</span><span class="nk"> &lt;danielbeck&gt;</span> the _least_ we need to do is fix our own docker image
+<a name="l-80"></a><span class="tm">18:15:05 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-81"></a><span class="tm">18:15:21</span><span class="nk"> &lt;rtyler&gt;</span> do we need to make a decision here on when 2.73.1 will be released?
+<a name="l-82"></a><span class="tm">18:15:41</span><span class="nk"> &lt;danielbeck&gt;</span> if we can make our docker images work, it will "only" affect everyone on typical Tomcat setups etc. AFAICT
+<a name="l-83"></a><span class="tm">18:16:23</span><span class="nk"> &lt;rtyler&gt;</span> but to date we do not have a fix in the weekly?
+<a name="l-84"></a><span class="tm">18:16:32</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler no
+<a name="l-85"></a><span class="tm">18:16:43</span><span class="nk"> &lt;danielbeck&gt;</span> the current weekly docker image cannot connect agents
+<a name="l-86"></a><span class="tm">18:17:13</span><span class="nk"> &lt;danielbeck&gt;</span> at least according to vlatombe in the issue
+<a name="l-87"></a><span class="tm">18:17:46</span><span class="nk"> &lt;jglick&gt;</span> https://issues.jenkins-ci.org/browse/JENKINS-45755?focusedCommentId=313602&amp;page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-313602
+<a name="l-88"></a><span class="tm">18:17:52</span><span class="nk"> &lt;rtyler&gt;</span> if we fix our docker image, and get a fix into a weekly before 2.73.1 such that we can cherry-pick it into 2.73.2, then I'm fine with that approach
+<a name="l-89"></a><span class="tm">18:17:53</span><span class="nk"> &lt;kohsuke&gt;</span> I think we should either revert the problematic change if we can, or let the train leave on time
+<a name="l-90"></a><span class="tm">18:18:09</span><span class="nk"> &lt;ogondza&gt;</span> so, are we ok to release with the bug and fix our docker container?
+<a name="l-91"></a><span class="tm">18:18:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> help me understand why the train "schedule" is so important here
+<a name="l-92"></a><span class="tm">18:18:34</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">rtyler:</span> “before 2.73.1”? I guess you mean “soon”
+<a name="l-93"></a><span class="tm">18:18:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jglick:</span> yes :)
+<a name="l-94"></a><span class="tm">18:19:08</span><span class="nk"> &lt;kohsuke&gt;</span> https://www.engadget.com/2016/01/26/japan-trains/
+<a name="l-95"></a><span class="tm">18:19:38</span><span class="nk"> &lt;rtyler&gt;</span> the docker image is a really important packaging format and is increasingly used, I strongly object to releasing things which we know would break docker users
+<a name="l-96"></a><span class="tm">18:19:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> heh, that only somewhat answers the question :P
+<a name="l-97"></a><span class="tm">18:20:54</span><span class="nk"> &lt;kohsuke&gt;</span> The point of the train model is to provide predictability of the schedule for other downstream consumers
+<a name="l-98"></a><span class="tm">18:21:00</span><span class="nk"> &lt;jglick&gt;</span> Let me see if I can fix the image now…
+<a name="l-99"></a><span class="tm">18:21:09</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">jglick:</span> Am I right to conclude the docker should be updated even when we fix remoting?
+<a name="l-100"></a><span class="tm">18:21:16</span><span class="nk"> &lt;kohsuke&gt;</span> I represent one such org in one of my hats
+<a name="l-101"></a><span class="tm">18:21:31</span><span class="nk"> &lt;ogondza&gt;</span> even though it would not be that urgent then...
+<a name="l-102"></a><span class="tm">18:21:34</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> that is my opinion
+<a name="l-103"></a><span class="tm">18:21:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> wearing my "I run this project's CI infrastructure on Docker containers" predictably breaking ci.jenkins.io is not an acceptable resolution t othis discussion :P
+<a name="l-104"></a><span class="tm">18:22:15</span><span class="nk"> &lt;kohsuke&gt;</span> The bug in question slipped through all the gates we put up
+<a name="l-105"></a><span class="tm">18:22:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> our production infrastructure does not operate on weeklies
+<a name="l-106"></a><span class="tm">18:22:30</span><span class="nk"> &lt;ogondza&gt;</span> well, squeezing a hotfix never released is what scares me...
+<a name="l-107"></a><span class="tm">18:22:32</span><span class="nk"> &lt;rtyler&gt;</span> (nor will it)
+<a name="l-108"></a><span class="tm">18:22:55</span><span class="nk"> &lt;rtyler&gt;</span> again, if we can fix the docker image to where this won't affect docker usage of 2.73.1, that's sufficient to me for right now
+<a name="l-109"></a><span class="tm">18:23:05</span><span class="nk"> &lt;rtyler&gt;</span> then getting the fix into weeklies and then percolating into 2.73.2
+<a name="l-110"></a><span class="tm">18:23:11</span><span class="nk"> &lt;jglick&gt;</span> I think it is possible. Looking into it.
+<a name="l-111"></a><span class="tm">18:23:16</span><span class="nk"> &lt;kohsuke&gt;</span> We do not have fix ready, and with just 1 vote &amp; 7 watchers, I don't think this is P1 show stopper
+<a name="l-112"></a><span class="tm">18:23:23</span><span class="nk"> &lt;danielbeck&gt;</span> AFAIUI it shouldbe feasible to fix the docker image, add some docs, perhaps a nice yellow warning on the changelog "known issue" and that's good enougb for .1?
+<a name="l-113"></a><span class="tm">18:23:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> yes, that's fine with me
+<a name="l-114"></a><span class="tm">18:24:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Just landed
+<a name="l-115"></a><span class="tm">18:24:21</span><span class="nk"> &lt;danielbeck&gt;</span> and with so many people in UTC-7 or so around that image should be adapted today
+<a name="l-116"></a><span class="tm">18:24:40</span><span class="nk"> &lt;danielbeck&gt;</span> so a release tomorrow should be feasible, with the adapted docker
+<a name="l-117"></a><span class="tm">18:24:48 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-118"></a><span class="tm">18:25:11</span><span class="nk"> &lt;ogondza&gt;</span> sounds like a plan
+<a name="l-119"></a><span class="tm">18:25:15</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-120"></a><span class="tm">18:25:32</span><span class="nk"> &lt;danielbeck&gt;</span> any further opinions / questions, or can we record this?
+<a name="l-121"></a><span class="tm">18:25:36</span><span class="nk"> &lt;jglick&gt;</span> +1
+<a name="l-122"></a><span class="tm">18:25:43</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> I think we're good
+<a name="l-123"></a><span class="tm">18:25:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +0, should read the thread, fine with any decision
+<a name="l-124"></a><span class="tm">18:26:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">danielbeck's plan for fixing the docker image, releasing on time, and gratuitous use of yellow boxes</span>
+<a name="l-125"></a><span class="tm">18:26:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">CloudBees request for mark usage for events "Jenkins Days by CloudBees"</span>
+<a name="l-126"></a><span class="tm">18:26:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> hope you're awake :)
+<a name="l-127"></a><span class="tm">18:27:01</span><span class="nk"> &lt;alyssat_&gt;</span> yes
+<a name="l-128"></a><span class="tm">18:27:04</span><span class="nk"> &lt;alyssat_&gt;</span> I'd like to request mark usage "Jenkins Days by CloudBees" on behalf of CloudBees.
+<a name="l-129"></a><span class="tm">18:27:14</span><span class="nk"> &lt;alyssat_&gt;</span> A bit of background - CloudBees has been using event name "DevOps Connect &amp; Jenkins Days" (the approved mark usage) for their roadshow this year. Recently DevOps.com and CloudBees parted ways in this project thus event name needs to change. The format for the Jenkins track will remain the same, just without the DevOps track. Therefore, I am asking for mark usage "Jenkins Days by CloudBees"
+<a name="l-130"></a><span class="tm">18:27:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage</span>
+<a name="l-131"></a><span class="tm">18:28:32</span><span class="nk"> &lt;rtyler&gt;</span> from my perspective, assuming CloudBees properly uses the mark and ensures the content is Jenkins-relevant for these events, it's fine
+<a name="l-132"></a><span class="tm">18:28:47</span><span class="nk"> &lt;autojack&gt;</span> +1
+<a name="l-133"></a><span class="tm">18:28:50</span><span class="nk"> &lt;olblak&gt;</span> +1
+<a name="l-134"></a><span class="tm">18:28:57</span><span class="nk"> &lt;alyssat_&gt;</span> yes. i'll make sure it's properly attributed, etc
+<a name="l-135"></a><span class="tm">18:29:37</span><span class="nk"> &lt;rtyler&gt;</span> any concerns or objections?
+<a name="l-136"></a><span class="tm">18:29:45 </span><span class="nka">* batmat</span> <span class="ac">abstains</span>
+<a name="l-137"></a><span class="tm">18:29:52 </span><span class="nka">* kohsuke</span> <span class="ac">cheers</span>
+<a name="l-138"></a><span class="tm">18:29:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> do you have any link to agendas or upcoming scheduled events which can be added to the meeting minutes?
+<a name="l-139"></a><span class="tm">18:30:31</span><span class="nk"> &lt;alyssat_&gt;</span> yes. hang on while i grab it
+<a name="l-140"></a><span class="tm">18:30:49</span><span class="nk"> &lt;alyssat_&gt;</span> http://www.cvent.com/events/cloudbees-continuous-delivery-day/event-summary-a58f1d17f9bc435bac5ea1ea84b6eb2e.aspx?i=3d71d11c-b143-4a81-b724-92c87d807a78&amp;r=1
+<a name="l-141"></a><span class="tm">18:31:06</span><span class="nk"> &lt;rtyler&gt;</span> word on the street is that abayer is going to be in europe later this year, so I think one of these events would be a good way to convince him to add more Declarative Pipeline features that you might want ;-P
+<a name="l-142"></a><span class="tm">18:31:07</span><span class="nk"> &lt;alyssat_&gt;</span> event name will change after I let them know of approval mark usage
+<a name="l-143"></a><span class="tm">18:31:24</span><span class="nk"> &lt;rtyler&gt;</span> alright, it seems like there's no concerns here, I'm going to record an agreement on this
+<a name="l-144"></a><span class="tm">18:31:28</span><span class="nk"> &lt;alyssat_&gt;</span> cool..
+<a name="l-145"></a><span class="tm">18:31:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> I'll update the wiki page after the meeting
+<a name="l-146"></a><span class="tm">18:31:39</span><span class="nk"> &lt;alyssat_&gt;</span> thank you
+<a name="l-147"></a><span class="tm">18:31:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Trademark sublicense granted to CloudBees for "Jenkins Days by CloudBees"</span>
+<a name="l-148"></a><span class="tm">18:32:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">TechMatrix request for mark usage for event "Jenkins Day Japan"</span>
+<a name="l-149"></a><span class="tm">18:32:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> you're up buddy
+<a name="l-150"></a><span class="tm">18:32:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!msg/jenkinsci-dev/WViZHkAtuvg/Ijww8BxmAAAJ</span>
+<a name="l-151"></a><span class="tm">18:32:51</span><span class="nk"> &lt;kohsuke&gt;</span> This one is basically a replay of the past event that happened in Germany
+<a name="l-152"></a><span class="tm">18:33:11</span><span class="nk"> &lt;danielbeck&gt;</span> (It's 3:30 AM in Tokyo, so that's understandable)
+<a name="l-153"></a><span class="tm">18:33:20</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-154"></a><span class="tm">18:33:31 </span><span class="nka">* batmat</span> <span class="ac">was checking exactly that  :)</span>
+<a name="l-155"></a><span class="tm">18:33:32</span><span class="nk"> &lt;kohsuke&gt;</span> The organizers are a part of the Japanese Jenkins User Group who have organized JUCs in the past, and they are talking to other JJUG leaders about this, too
+<a name="l-156"></a><span class="tm">18:33:54</span><span class="nk"> &lt;kohsuke&gt;</span> I'm involved in the event myself, and I know them all by face
+<a name="l-157"></a><span class="tm">18:33:54 </span><span class="nka">* batmat</span> <span class="ac">vents that it's Jenkins Area Meetup, JAM</span>
+<a name="l-158"></a><span class="tm">18:34:04</span><span class="nk"> &lt;kohsuke&gt;</span> Right, but they predate JAM
+<a name="l-159"></a><span class="tm">18:34:06 </span><span class="nka">* batmat</span> <span class="ac">to not mix with Java User Groups</span>
+<a name="l-160"></a><span class="tm">18:34:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the event in Germany's agenda: https://cdn.evbuc.com/eventlogos/161496473/printclbautomotiveeventagenda20160421.jpg</span>
+<a name="l-161"></a><span class="tm">18:34:29</span><span class="nk"> &lt;kohsuke&gt;</span> and they do now participate in JAM, for that matter
+<a name="l-162"></a><span class="tm">18:34:45</span><span class="nk"> &lt;kohsuke&gt;</span> Requested mark is "Jenkins Day Japan"
+<a name="l-163"></a><span class="tm">18:34:52</span><span class="nk"> &lt;kohsuke&gt;</span> And all the usual attributions, etc. applies
+<a name="l-164"></a><span class="tm">18:34:58</span><span class="nk"> &lt;batmat&gt;</span> +1 seems fine
+<a name="l-165"></a><span class="tm">18:35:01</span><span class="nk"> &lt;danielbeck&gt;</span> +1
+<a name="l-166"></a><span class="tm">18:35:03</span><span class="nk"> &lt;olblak&gt;</span> +1
+<a name="l-167"></a><span class="tm">18:35:07</span><span class="nk"> &lt;alyssat_&gt;</span> +1
+<a name="l-168"></a><span class="tm">18:35:17</span><span class="nk"> &lt;rtyler&gt;</span> I'm fine with it so long as it's Jenkins-related ^_^
+<a name="l-169"></a><span class="tm">18:35:24</span><span class="nk"> &lt;rtyler&gt;</span> which I'm sure it will be if kohsuke's there
+<a name="l-170"></a><span class="tm">18:35:27</span><span class="nk"> &lt;autojack&gt;</span> +1
+<a name="l-171"></a><span class="tm">18:35:34</span><span class="nk"> &lt;rtyler&gt;</span> he's like a Japanese hacker superhero from what I remember at JUC Tokyo :P
+<a name="l-172"></a><span class="tm">18:35:50</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, this will obviously be Jenkins focused
+<a name="l-173"></a><span class="tm">18:36:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> are the organizers active on the dev list at all?
+<a name="l-174"></a><span class="tm">18:36:27</span><span class="nk"> &lt;kohsuke&gt;</span> No, not really
+<a name="l-175"></a><span class="tm">18:36:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> not related to the mark, but it would be nice if they, or you, posted some more details on the event organization to the users list when they have it
+<a name="l-176"></a><span class="tm">18:37:02</span><span class="nk"> &lt;rtyler&gt;</span> but +1
+<a name="l-177"></a><span class="tm">18:37:09</span><span class="nk"> &lt;kohsuke&gt;</span> In general I've tried to encourage people in that group to participate more actively in the events list, but I haven't been very successful
+<a name="l-178"></a><span class="tm">18:37:20</span><span class="nk"> &lt;rtyler&gt;</span> and it sounds like everybody's fine with this, so I'll record an approval here so we can keep moving
+<a name="l-179"></a><span class="tm">18:37:26</span><span class="nk"> &lt;kohsuke&gt;</span> yeah
+<a name="l-180"></a><span class="tm">18:37:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Sublicense granted to TechMatrix for "Jenkins Day Japan" following all the usual mark attribution and usage guidelines</span>
+<a name="l-181"></a><span class="tm">18:37:58</span><span class="nk"> &lt;rtyler&gt;</span> sounds cool, I wonder if my boss will let me travel to japan for that event..
+<a name="l-182"></a><span class="tm">18:38:03</span><span class="nk"> &lt;rtyler&gt;</span> in business class even!
+<a name="l-183"></a><span class="tm">18:38:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Introduction to Forest Jing - JAM Shanghai &amp; Beijing organizer</span>
+<a name="l-184"></a><span class="tm">18:38:18</span><span class="nk"> &lt;kohsuke&gt;</span> I have some space available in my suit case
+<a name="l-185"></a><span class="tm">18:38:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> I believe you added this item? :)
+<a name="l-186"></a><span class="tm">18:38:25</span><span class="nk"> &lt;alyssat_&gt;</span> LOL!
+<a name="l-187"></a><span class="tm">18:38:46</span><span class="nk"> &lt;alyssat_&gt;</span> yes. the next item i've added to the agenda.
+<a name="l-188"></a><span class="tm">18:38:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">forest_:</span> good morning ^_^
+<a name="l-189"></a><span class="tm">18:39:00</span><span class="nk"> &lt;forest_&gt;</span> morning
+<a name="l-190"></a><span class="tm">18:39:06</span><span class="nk"> &lt;forest_&gt;</span> Hi everyone, my name is Forest from China, the co-founder of Beijing Huayou Tech Ltd.  I am new to the IRC.
+<a name="l-191"></a><span class="tm">18:39:26</span><span class="nk"> &lt;forest_&gt;</span> I am a deeper user of Jenkins for 4 years, and the first Certified Jenkins Engineer in China. I am also the organizer of Jenkins Area Meetup in Beijing, Shanghai etc.There would be almost 100 attendees in JAM Beijing on Sep 17th.
+<a name="l-192"></a><span class="tm">18:39:46</span><span class="nk"> &lt;forest_&gt;</span> About my company  Beijing Huayou Tech Ltd, Our company is the co-organizer of DevOpsDays in China.We have held DevOpsDays Beijing and Shanghai this year, there are about 1000 attendees at each DevOpsDays event. Godfather of DevOps Mr Patrick Debois joined the DevOpsDays Beijing and he was very satisfied with our job.
+<a name="l-193"></a><span class="tm">18:40:02</span><span class="nk"> &lt;forest_&gt;</span> We are also operating a DevOps community in China. There are about 100,000 members here. We hope to spread DevOps in China and help more engineers to master Jenkins and use it well.
+<a name="l-194"></a><span class="tm">18:40:13</span><span class="nk"> &lt;kohsuke&gt;</span> I believe I met you in Beijing earlier this year, if I'm not mistaken?
+<a name="l-195"></a><span class="tm">18:40:26</span><span class="nk"> &lt;forest_&gt;</span> Yeah
+<a name="l-196"></a><span class="tm">18:40:29</span><span class="nk"> &lt;batmat&gt;</span> 100k members? wow
+<a name="l-197"></a><span class="tm">18:40:32</span><span class="nk"> &lt;batmat&gt;</span> welcome
+<a name="l-198"></a><span class="tm">18:40:34</span><span class="nk"> &lt;forest_&gt;</span> together with xiao
+<a name="l-199"></a><span class="tm">18:40:44</span><span class="nk"> &lt;forest_&gt;</span> thank you for your welcome
+<a name="l-200"></a><span class="tm">18:40:47</span><span class="nk"> &lt;danielbeck&gt;</span> O_O is that the largest JAM? alyssat_ ?
+<a name="l-201"></a><span class="tm">18:40:48</span><span class="nk"> &lt;forest_&gt;</span> There are millions of Jenkins users in China. We really hope to hold Jenkins User Conference in China to create a chance for Jenkins users in China to communicate with each others and experts from international Jenkins community. We also hope more Jenkins users could know CloudBees and benefit from it.
+<a name="l-202"></a><span class="tm">18:41:10</span><span class="nk"> &lt;forest_&gt;</span> More to come about this - I will send an email to the devlist with more information later.
+<a name="l-203"></a><span class="tm">18:41:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> their DevOps community is 100k, not the JAM as far as I understand :)
+<a name="l-204"></a><span class="tm">18:41:18</span><span class="nk"> &lt;danielbeck&gt;</span> well, 100 attendees…
+<a name="l-205"></a><span class="tm">18:41:30</span><span class="nk"> &lt;forest_&gt;</span> yes it's really cool
+<a name="l-206"></a><span class="tm">18:41:40</span><span class="nk"> &lt;alyssat_&gt;</span> danielbeck; 100,000 is an impressive #
+<a name="l-207"></a><span class="tm">18:41:45</span><span class="nk"> &lt;danielbeck&gt;</span> anyway, pretty cool
+<a name="l-208"></a><span class="tm">18:41:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">forest_:</span> thanks for joining and introducing yourself
+<a name="l-209"></a><span class="tm">18:42:11</span><span class="nk"> &lt;kohsuke&gt;</span> ... especially given the time in your time zone!
+<a name="l-210"></a><span class="tm">18:42:11</span><span class="nk"> &lt;rtyler&gt;</span> I think a Jenkins conference in China sounds like a very good idea :0
+<a name="l-211"></a><span class="tm">18:42:13</span><span class="nk"> &lt;danielbeck&gt;</span> (also, 2:30 AM, that's dedication)
+<a name="l-212"></a><span class="tm">18:42:23</span><span class="nk"> &lt;alyssat_&gt;</span> forest_:thanks for starting JAMs in china
+<a name="l-213"></a><span class="tm">18:42:27</span><span class="nk"> &lt;batmat&gt;</span> \o/
+<a name="l-214"></a><span class="tm">18:42:32</span><span class="nk"> &lt;rtyler&gt;</span> I have seom friends working in the Shanghai startup industry, lots of cool tech work happening in China :)
+<a name="l-215"></a><span class="tm">18:42:38</span><span class="nk"> &lt;forest_&gt;</span> thank you all for your support and encourage
+<a name="l-216"></a><span class="tm">18:42:49</span><span class="nk"> &lt;forest_&gt;</span> Yeah
+<a name="l-217"></a><span class="tm">18:43:04</span><span class="nk"> &lt;forest_&gt;</span> we have organized DevOpsDays shanghai last month
+<a name="l-218"></a><span class="tm">18:43:38</span><span class="nk"> &lt;rtyler&gt;</span> everybody, to be respectful of forest_'s late tiemzone, are there any questions we have right now, or can we continue to talk about Jenkins in China events on our mailing lists?
+<a name="l-219"></a><span class="tm">18:43:41</span><span class="nk"> &lt;batmat&gt;</span> +1 with rtyler, forest_ don't hesitate to come and discuss all this on the devlist. Also, how/if we can help involve more people from your community.
+<a name="l-220"></a><span class="tm">18:43:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">forest_:</span> I got in touch with some Huawei people who are very interested in participating the event, I'll make introductions
+<a name="l-221"></a><span class="tm">18:43:59</span><span class="nk"> &lt;alyssat_&gt;</span> +1 let forest_go to sleep!!
+<a name="l-222"></a><span class="tm">18:44:16</span><span class="nk"> &lt;forest_&gt;</span> haha
+<a name="l-223"></a><span class="tm">18:44:23</span><span class="nk"> &lt;batmat&gt;</span> he's the danielbeck of China
+<a name="l-224"></a><span class="tm">18:44:35</span><span class="nk"> &lt;kohsuke&gt;</span> I could use more danielbeck
+<a name="l-225"></a><span class="tm">18:44:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> please also share my personal email with forest_ so we can help with any blog posts on jenkins.io or other advocacy work for chinese events
+<a name="l-226"></a><span class="tm">18:44:46</span><span class="nk"> &lt;alyssat_&gt;</span> maybe we all go to China to help forest_
+<a name="l-227"></a><span class="tm">18:44:47</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-228"></a><span class="tm">18:44:58</span><span class="nk"> &lt;alyssat_&gt;</span> will do
+<a name="l-229"></a><span class="tm">18:45:09</span><span class="nk"> &lt;forest_&gt;</span> great,welcome you all
+<a name="l-230"></a><span class="tm">18:45:14</span><span class="nk"> &lt;rtyler&gt;</span> anyways, thank you so much for joining and introducing yourself forest_, I look forward to seeing you around more :)
+<a name="l-231"></a><span class="tm">18:45:23</span><span class="nk"> &lt;rtyler&gt;</span> I think we can move onto the latest topic, yes?
+<a name="l-232"></a><span class="tm">18:45:26</span><span class="nk"> &lt;forest_&gt;</span> thanks again
+<a name="l-233"></a><span class="tm">18:45:33</span><span class="nk"> &lt;forest_&gt;</span> sure
+<a name="l-234"></a><span class="tm">18:45:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-235"></a><span class="tm">18:45:52</span><span class="nk"> &lt;rtyler&gt;</span> Looks like Sept 27th will be the next scheduled meeting time
+<a name="l-236"></a><span class="tm">18:46:04</span><span class="nk"> &lt;rtyler&gt;</span> I don't see any major holidays or conflicts with that, anybody else?
+<a name="l-237"></a><span class="tm">18:46:09</span><span class="nk"> &lt;kohsuke&gt;</span> See you then
+<a name="l-238"></a><span class="tm">18:46:13</span><span class="nk"> &lt;batmat&gt;</span> o/
+<a name="l-239"></a><span class="tm">18:46:15</span><span class="nk"> &lt;alyssat_&gt;</span> sounds good
+<a name="l-240"></a><span class="tm">18:46:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting sept 27th at 18:00 UTC</span>
+<a name="l-241"></a><span class="tm">18:46:47</span><span class="nk"> &lt;rtyler&gt;</span> on the off chance there are daylight savings time changes, please adjust your mental calendars
+<a name="l-242"></a><span class="tm">18:46:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 18:48:01 Oct 22, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:11:36 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 312.316
+  exclusion.robots: 0.099
+  exclusion.robots.policy: 0.091
+  cdx.remote: 0.07
+  esindex: 0.009
+  LoadShardBlock: 257.212 (3)
+  PetaboxLoader3.resolve: 154.935 (3)
+  PetaboxLoader3.datanode: 136.813 (4)
+  CDXLines.iter: 20.781 (3)
+  load_resource: 95.103
+-->

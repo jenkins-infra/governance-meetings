@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app214.us.archive.org';v.server_ms=477;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-05-10-18.00.log.html","20210115140543","https://web.archive.org/","web","/_static/",
+	      "1610719543");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:04</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain danielbeck ogondza kohsuke</span>
+<a name="l-4"></a><span class="tm">18:00:15</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke ogondza rtyler
+<a name="l-5"></a><span class="tm">18:00:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-6"></a><span class="tm">18:00:31</span><span class="nk"> &lt;rtyler&gt;</span> http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-04-26-18.01.html
+<a name="l-7"></a><span class="tm">18:00:47</span><span class="nk"> &lt;danielbeck&gt;</span> that was a quick one
+<a name="l-8"></a><span class="tm">18:00:57</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-9"></a><span class="tm">18:01:07</span><span class="nk"> &lt;rtyler&gt;</span> alyssat_ did send the ambassador program wiki page out
+<a name="l-10"></a><span class="tm">18:01:10</span><span class="nk"> &lt;rtyler&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Ambassador
+<a name="l-11"></a><span class="tm">18:01:20</span><span class="nk"> &lt;rtyler&gt;</span> the discussion is on the dev list
+<a name="l-12"></a><span class="tm">18:01:28</span><span class="nk"> &lt;rtyler&gt;</span> I don't think there's anything else we need to cover there?
+<a name="l-13"></a><span class="tm">18:01:39</span><span class="nk"> &lt;danielbeck&gt;</span> right
+<a name="l-14"></a><span class="tm">18:01:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Missed the thread, todo the second AI
+<a name="l-15"></a><span class="tm">18:01:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-16"></a><span class="tm">18:01:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> all you buddy
+<a name="l-17"></a><span class="tm">18:02:10</span><span class="nk"> &lt;ogondza&gt;</span> the backporting is done
+<a name="l-18"></a><span class="tm">18:02:23</span><span class="nk"> &lt;rtyler&gt;</span> is this for 2.46.3?
+<a name="l-19"></a><span class="tm">18:02:23</span><span class="nk"> &lt;ogondza&gt;</span> the ATH looks good
+<a name="l-20"></a><span class="tm">18:02:26</span><span class="nk"> &lt;danielbeck&gt;</span> wasn't there a recent lts-candidate addition?
+<a name="l-21"></a><span class="tm">18:02:31</span><span class="nk"> &lt;ogondza&gt;</span> yes
+<a name="l-22"></a><span class="tm">18:02:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">ogondza:</span> There are some candidates
+<a name="l-23"></a><span class="tm">18:02:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ... w/o response
+<a name="l-24"></a><span class="tm">18:02:47</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza https://issues.jenkins-ci.org/browse/JENKINS-42707 was recently nominated
+<a name="l-25"></a><span class="tm">18:03:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%20lts-candidate
+<a name="l-26"></a><span class="tm">18:03:31</span><span class="nk"> &lt;ogondza&gt;</span> since testing takes forever It is hard to get the latest candidate backported and have the results by the meeting time
+<a name="l-27"></a><span class="tm">18:03:38</span><span class="nk"> &lt;ogondza&gt;</span> any, I will have a look
+<a name="l-28"></a><span class="tm">18:04:07</span><span class="nk"> &lt;danielbeck&gt;</span> 44010 doesn't seem that relevant, but ReverseBuildTrigger may be
+<a name="l-29"></a><span class="tm">18:04:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yep, there is no guaranteed merge for fixes arriving after the beginning of backporting timeframe
+<a name="l-30"></a><span class="tm">18:04:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> JENKINS-42728 may be a candidate as well
+<a name="l-31"></a><span class="tm">18:05:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Though I doubt it is a painful issue
+<a name="l-32"></a><span class="tm">18:05:20</span><span class="nk"> &lt;danielbeck&gt;</span> right
+<a name="l-33"></a><span class="tm">18:05:44</span><span class="nk"> &lt;danielbeck&gt;</span> none of these seem super important, although fixing the Discover issue would be nice IMO
+<a name="l-34"></a><span class="tm">18:06:24</span><span class="nk"> &lt;danielbeck&gt;</span> that said nice selection of https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.46.3-fixed
+<a name="l-35"></a><span class="tm">18:06:26</span><span class="nk"> &lt;ogondza&gt;</span> Discover?
+<a name="l-36"></a><span class="tm">18:06:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We need to cleanup mess like https://issues.jenkins-ci.org/browse/JENKINS-21052 . I doubt anybody work on it, so lts-candidate is too optimistic
+<a name="l-37"></a><span class="tm">18:06:46</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza Sorry, JENKINS-42707 about Item.Discover permission
+<a name="l-38"></a><span class="tm">18:07:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would also backport JENKINS-44010. Just because it is trivial
+<a name="l-39"></a><span class="tm">18:08:01</span><span class="nk"> &lt;danielbeck&gt;</span> seems reasonable, even though I still wonder how this happens :-)
+<a name="l-40"></a><span class="tm">18:09:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> Do we also want to discuss merge approach for 2.60+ since it is related to the next LTS?
+<a name="l-41"></a><span class="tm">18:09:14</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev can't hurt
+<a name="l-42"></a><span class="tm">18:09:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> By now you successfully evade my questions in IRC :)
+<a name="l-43"></a><span class="tm">18:09:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I thought batmat had taken an interest in copy/paste stuff like JENKINS-21052? :)
+<a name="l-44"></a><span class="tm">18:09:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Are we done with 2.46.3?
+<a name="l-45"></a><span class="tm">18:10:26</span><span class="nk"> &lt;kohsuke&gt;</span> sounds like it
+<a name="l-46"></a><span class="tm">18:10:30</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza anything else on it?
+<a name="l-47"></a><span class="tm">18:10:37</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to rereview candidates before pushing out rc</span>
+<a name="l-48"></a><span class="tm">18:10:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, 2.x.1
+<a name="l-49"></a><span class="tm">18:10:47</span><span class="nk"> &lt;ogondza&gt;</span> nothing else
+<a name="l-50"></a><span class="tm">18:11:00</span><span class="nk"> &lt;rtyler&gt;</span> okie doke
+<a name="l-51"></a><span class="tm">18:11:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Do we think that 2.59 is good enough to start the Big Bang integration?
+<a name="l-52"></a><span class="tm">18:11:12</span><span class="nk"> &lt;rtyler&gt;</span> big bang integration?
+<a name="l-53"></a><span class="tm">18:11:19</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev we should probably wait until the end of the meeting for this
+<a name="l-54"></a><span class="tm">18:11:26</span><span class="nk"> &lt;danielbeck&gt;</span> there's another topic on the agenda
+<a name="l-55"></a><span class="tm">18:11:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe. I've thought it is related to the LTS status. But let's wait
+<a name="l-56"></a><span class="tm">18:11:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> if you'd like to discuss the next LTS, we can tack that on to the end if ogondza will stick around
+<a name="l-57"></a><span class="tm">18:12:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Infrastructure update</span>
+<a name="l-58"></a><span class="tm">18:12:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">olblak_:</span> are you awake maybe? :D
+<a name="l-59"></a><span class="tm">18:12:42</span><span class="nk"> &lt;rtyler&gt;</span> I wanted to provide an update on the on-going status of our Azure migration, and some contemporary infra availability issues
+<a name="l-60"></a><span class="tm">18:12:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">olblak is currently working on tickets to expand the resources Confluence makes use of</span>
+<a name="l-61"></a><span class="tm">18:13:13</span><span class="nk"> &lt;rtyler&gt;</span> this should help address some of the flapping of that service.
+<a name="l-62"></a><span class="tm">18:13:29</span><span class="nk"> &lt;rtyler&gt;</span> we have more RAM available on the VM, but the JVM running Confluence is not taking advantage of it
+<a name="l-63"></a><span class="tm">18:13:45</span><span class="nk"> &lt;rtyler&gt;</span> https://issues.jenkins-ci.org/browse/INFRA-1150 FYI
+<a name="l-64"></a><span class="tm">18:14:27</span><span class="nk"> &lt;rtyler&gt;</span> olblak is also trying to resolve this issue this week: https://issues.jenkins-ci.org/browse/INFRA-1176
+<a name="l-65"></a><span class="tm">18:14:35</span><span class="nk"> &lt;rtyler&gt;</span> which is around caching repo.jenkins-ci.org for ci.jenkins.io
+<a name="l-66"></a><span class="tm">18:14:55</span><span class="nk"> &lt;rtyler&gt;</span> since I know that there have been performance issues affecting plugin contribution feedback from ci.j.io
+<a name="l-67"></a><span class="tm">18:15:22</span><span class="nk"> &lt;rtyler&gt;</span> without olblak_ awake, I can't promise a timeframe there, but we optimistically discussed deploying something this week to help speed things up on ci.j.io
+<a name="l-68"></a><span class="tm">18:16:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">olblak working to improve repo.jenkins-ci.org access speeds for ci.jenkins.io pipelines</span>
+<a name="l-69"></a><span class="tm">18:16:20</span><span class="nk"> &lt;rtyler&gt;</span> any questions on either of those two before I continue to the next?
+<a name="l-70"></a><span class="tm">18:16:21</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler have we figured out what's going on, or are we just fixing it?
+<a name="l-71"></a><span class="tm">18:17:01</span><span class="nk"> &lt;rtyler&gt;</span> without telemetry from Artifactory Online, it would be very difficult to determine where issues are cropping up; classic downside of a SaaS offering :)
+<a name="l-72"></a><span class="tm">18:17:09</span><span class="nk"> &lt;rtyler&gt;</span> so we're just fixing it
+<a name="l-73"></a><span class="tm">18:17:19</span><span class="nk"> &lt;danielbeck&gt;</span> ok
+<a name="l-74"></a><span class="tm">18:17:35</span><span class="nk"> &lt;rtyler&gt;</span> JFrog hosts in AWS and ci.jenkins.io is in Azure, so it's definitely cross-internet transit going on here
+<a name="l-75"></a><span class="tm">18:17:57</span><span class="nk"> &lt;rtyler&gt;</span> an in-Azure cache close to ci.j.io will also reduce our costs since Azure charges when you cross that cloud&lt;-&gt;internet boundary
+<a name="l-76"></a><span class="tm">18:18:45</span><span class="nk"> &lt;rtyler&gt;</span> alright, moving onto some other ones
+<a name="l-77"></a><span class="tm">18:18:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">JIRA has experienced a few outages related to GC pressure in the JVM</span>
+<a name="l-78"></a><span class="tm">18:19:16</span><span class="nk"> &lt;rtyler&gt;</span> we currently haven't had time to investigate and fix anything there, so we have just been restarting JIRA when it happens
+<a name="l-79"></a><span class="tm">18:19:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We are still on 1 GB, right?
+<a name="l-80"></a><span class="tm">18:20:06</span><span class="nk"> &lt;rtyler&gt;</span> yes
+<a name="l-81"></a><span class="tm">18:21:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> maybe we just need to clone https://issues.jenkins-ci.org/browse/INFRA-1150 and s/Confluence/JIRA
+<a name="l-82"></a><span class="tm">18:21:19</span><span class="nk"> &lt;kohsuke&gt;</span> Did olblak_ do a blog post about all the infra work?
+<a name="l-83"></a><span class="tm">18:21:25</span><span class="nk"> &lt;rtyler&gt;</span> if there are contributors who wish to test and update the JIRA container: https://github.com/jenkins-infra/jira
+<a name="l-84"></a><span class="tm">18:21:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that's in a pull request right now
+<a name="l-85"></a><span class="tm">18:21:41</span><span class="nk"> &lt;kohsuke&gt;</span> Yay
+<a name="l-86"></a><span class="tm">18:21:44</span><span class="nk"> &lt;rtyler&gt;</span> it's not all
+<a name="l-87"></a><span class="tm">18:21:45</span><span class="nk"> &lt;rtyler&gt;</span> it's some
+<a name="l-88"></a><span class="tm">18:22:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the accounts "signup-might-be-spammer" queue is severely backed up and not properly being addressed</span>
+<a name="l-89"></a><span class="tm">18:22:34</span><span class="nk"> &lt;rtyler&gt;</span> for background, accounts.jenkins.io sends a confirmation email to a list whenever a signup that looks spammy signs up
+<a name="l-90"></a><span class="tm">18:22:41</span><span class="nk"> &lt;danielbeck&gt;</span> I keep forgetting to look at that -.-
+<a name="l-91"></a><span class="tm">18:22:50</span><span class="nk"> &lt;rtyler&gt;</span> that requires human review, which once upon a time larrys spent a lot of effort keeping tidy
+<a name="l-92"></a><span class="tm">18:23:20</span><span class="nk"> &lt;rtyler&gt;</span> there are dozens (probably &gt; 50) valid signups backlogged in that queue which I am personally no longer addressing either
+<a name="l-93"></a><span class="tm">18:24:00</span><span class="nk"> &lt;rtyler&gt;</span> unlike the mail spam management, the persons able to manage this queue must have LDAP admin access
+<a name="l-94"></a><span class="tm">18:24:05</span><span class="nk"> &lt;rtyler&gt;</span> which is understandably a much smaller list
+<a name="l-95"></a><span class="tm">18:24:21</span><span class="nk"> &lt;rtyler&gt;</span> (since they can delete accounts without any audit trail)
+<a name="l-96"></a><span class="tm">18:24:52</span><span class="nk"> &lt;rtyler&gt;</span> I have not spent any mental bandwidth to addressing this issue
+<a name="l-97"></a><span class="tm">18:25:10</span><span class="nk"> &lt;rtyler&gt;</span> I have personally declared accounts-signup bankruptcy and ignore it entirely now
+<a name="l-98"></a><span class="tm">18:25:50</span><span class="nk"> &lt;rtyler&gt;</span> if somebody wishes to step up and figure this out, please volunteer in #jenkins-infra
+<a name="l-99"></a><span class="tm">18:26:10</span><span class="nk"> &lt;rtyler&gt;</span> any infra questions before I return the mic to oleg-nenashev for LTS discussion?
+<a name="l-100"></a><span class="tm">18:26:29</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe we need to adjust the bar of signup spam detection. Something to think about.
+<a name="l-101"></a><span class="tm">18:26:43</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> like I said, I declared bankruptcy
+<a name="l-102"></a><span class="tm">18:26:50</span><span class="nk"> &lt;rtyler&gt;</span> if you want to spend time talking about this we can
+<a name="l-103"></a><span class="tm">18:27:09</span><span class="nk"> &lt;rtyler&gt;</span> but these spam rules have been hard won after massive non-automated attacks over the years
+<a name="l-104"></a><span class="tm">18:27:28</span><span class="nk"> &lt;kohsuke&gt;</span> I need to think about it before talking.
+<a name="l-105"></a><span class="tm">18:27:29</span><span class="nk"> &lt;rtyler&gt;</span> so much wiki defacing :(
+<a name="l-106"></a><span class="tm">18:27:38</span><span class="nk"> &lt;kohsuke&gt;</span> Right
+<a name="l-107"></a><span class="tm">18:27:58</span><span class="nk"> &lt;rtyler&gt;</span> our spam and account infrastructure was heavily relying on larrys' time for a long while
+<a name="l-108"></a><span class="tm">18:28:01</span><span class="nk"> &lt;rtyler&gt;</span> and then me
+<a name="l-109"></a><span class="tm">18:28:05</span><span class="nk"> &lt;rtyler&gt;</span> and no neither of us have the time
+<a name="l-110"></a><span class="tm">18:28:07</span><span class="nk"> &lt;rtyler&gt;</span> so
+<a name="l-111"></a><span class="tm">18:28:08</span><span class="nk"> &lt;rtyler&gt;</span> :(
+<a name="l-112"></a><span class="tm">18:28:31</span><span class="nk"> &lt;rtyler&gt;</span> any other questions?
+<a name="l-113"></a><span class="tm">18:28:42</span><span class="nk"> &lt;ogondza&gt;</span> shall we move on?
+<a name="l-114"></a><span class="tm">18:28:45</span><span class="nk"> &lt;ogondza&gt;</span> :P
+<a name="l-115"></a><span class="tm">18:28:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Upcoming LTS Discussion</span>
+<a name="l-116"></a><span class="tm">18:29:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> yohu're back :)
+<a name="l-117"></a><span class="tm">18:29:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, weekly Big Bang before LTS... So we have the following updates incoming: Groovy 2.4.11, Jetty 9.4.5, SSHD Module 2.0 with SSHD Core 1.5.0, WinP 1.25, Remoting 3.8.
+<a name="l-118"></a><span class="tm">18:29:10</span><span class="nk"> &lt;ogondza&gt;</span> https://jenkins.io/changelog/
+<a name="l-119"></a><span class="tm">18:29:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And Pipelne/AbstractProject abstraction layer fun (multiple PRs). I wonder if we can proceed with these changes taking the LTS selection in 2 weeks. Do we consider 2.59 as "good enough" just in case?
+<a name="l-120"></a><span class="tm">18:29:31</span><span class="nk"> &lt;danielbeck&gt;</span> we already have two non-trivial PRs merged this week: WinSW update (PR 2870) and pulling ChangelogSet out of AbstractProject (PR 2730) in addition to the ones Oleg mentioned
+<a name="l-121"></a><span class="tm">18:29:46</span><span class="nk"> &lt;danielbeck&gt;</span> PR 2874 is Jesse's (+ those linked from there)
+<a name="l-122"></a><span class="tm">18:29:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Some of fixes above were on hold due to the Trilead fallout
+<a name="l-123"></a><span class="tm">18:30:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But I think we need to move forward
+<a name="l-124"></a><span class="tm">18:30:03</span><span class="nk"> &lt;danielbeck&gt;</span> If we merge all of them towards 2.60, we may not want to choose that (or newer) as LTS baseline, and none of these changes will make it into the next LTS line. Are we okay with that?
+<a name="l-125"></a><span class="tm">18:30:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.60 barely fits the 2-week criteria
+<a name="l-126"></a><span class="tm">18:30:40</span><span class="nk"> &lt;danielbeck&gt;</span> right, but this many large changes will basically disqualify it
+<a name="l-127"></a><span class="tm">18:30:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> definitely
+<a name="l-128"></a><span class="tm">18:31:15</span><span class="nk"> &lt;danielbeck&gt;</span> jglick and abayer brought up a desire to see the disabling of Jobs in LTS IIRC
+<a name="l-129"></a><span class="tm">18:31:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We can delay some changes for another week if we want to integrate small features into LTS
+<a name="l-130"></a><span class="tm">18:31:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Disabling of jobs is not small, actually
+<a name="l-131"></a><span class="tm">18:31:43</span><span class="nk"> &lt;danielbeck&gt;</span> (or at least give these features a chance to make it in…)
+<a name="l-132"></a><span class="tm">18:31:55</span><span class="nk"> &lt;danielbeck&gt;</span> just saying that was mentioned
+<a name="l-133"></a><span class="tm">18:32:05</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">danielbeck:</span> no this is not necessary, I think you were thinking of `SCM` changes by abayer
+<a name="l-134"></a><span class="tm">18:32:13</span><span class="nk"> &lt;danielbeck&gt;</span> ah okay
+<a name="l-135"></a><span class="tm">18:32:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> SCM is in
+<a name="l-136"></a><span class="tm">18:32:28</span><span class="nk"> &lt;danielbeck&gt;</span> still, those are only in 2.60, if we merge more, then 2.60 will unlikely be chosen
+<a name="l-137"></a><span class="tm">18:32:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But if we merge Jetty/Groovy into the same release...
+<a name="l-138"></a><span class="tm">18:33:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So... Do we put all merges on hold?
+<a name="l-139"></a><span class="tm">18:33:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Excepting bugfixes, of course
+<a name="l-140"></a><span class="tm">18:33:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> is there a wiki page or document capturing all this? there's the Java 8 thing, then trilead cropped up, and I'm honestly having trouble keeping up with all the moving part for this next LTS :(
+<a name="l-141"></a><span class="tm">18:34:12</span><span class="nk"> &lt;rtyler&gt;</span> I don't know how ogondza keeps everything straight!
+<a name="l-142"></a><span class="tm">18:34:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> No upgrade guide/changelog so far
+<a name="l-143"></a><span class="tm">18:34:39</span><span class="nk"> &lt;rtyler&gt;</span> I don't mean that so much as something capturing the variables being discussed
+<a name="l-144"></a><span class="tm">18:34:41</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler the changelog, once it's in :-) We write the upgrade guide and major changes since previous LTS after baseline selection
+<a name="l-145"></a><span class="tm">18:34:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But yeah. Java 8, Trilead, WinSW 2.0, some other hackery
+<a name="l-146"></a><span class="tm">18:35:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/changelog/</span>
+<a name="l-147"></a><span class="tm">18:35:47</span><span class="nk"> &lt;ogondza&gt;</span> so where are we? do we really want to have something that is unmerged now as lts baseline?
+<a name="l-148"></a><span class="tm">18:36:03</span><span class="nk"> &lt;ogondza&gt;</span> ... in lts baseline
+<a name="l-149"></a><span class="tm">18:36:05</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler no wiki page. list as above: WinP update (no PR yet); Groovy 2.4.10 (PR 2814); Jetty 2.4.5 (PR 2840); SSHD 1.4.0 (PR 2853), and Jesse PR 2874 (and related ones). This has only cropped up now as a few changes were held back a bit to fix the trilead fallout without introducing new problems, others just arrived recently
+<a name="l-150"></a><span class="tm">18:36:44</span><span class="nk"> &lt;danielbeck&gt;</span> I mean if we're good with what's in 2.59, feature-wise, then we're done here
+<a name="l-151"></a><span class="tm">18:36:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I really want to have SSHD Module in, but we are blocked
+<a name="l-152"></a><span class="tm">18:36:59</span><span class="nk"> &lt;danielbeck&gt;</span> I think oleg-nenashev just wanted to give others a chance to speak up before we close the door
+<a name="l-153"></a><span class="tm">18:37:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> kinda
+<a name="l-154"></a><span class="tm">18:37:50</span><span class="nk"> &lt;jglick&gt;</span> So what options we choosing between today, exactly?
+<a name="l-155"></a><span class="tm">18:38:04</span><span class="nk"> &lt;jglick&gt;</span> s/we/are we/
+<a name="l-156"></a><span class="tm">18:38:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 1) Big Bang in 2.60
+<a name="l-157"></a><span class="tm">18:38:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2) Big Bang in 2.61
+<a name="l-158"></a><span class="tm">18:38:49</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev could we summarize as "Do we want to give specific changes in 2.60 the chance to be in next LTS by holding everything else back? If so, which changes?"?
+<a name="l-159"></a><span class="tm">18:38:51</span><span class="nk"> &lt;jglick&gt;</span> And what is in 2.60-2.59? Just `SCM` changes?
+<a name="l-160"></a><span class="tm">18:38:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Since there is a request for abayer's PR, likely (2)
+<a name="l-161"></a><span class="tm">18:39:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> yes
+<a name="l-162"></a><span class="tm">18:39:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Nobody else shouts anyway
+<a name="l-163"></a><span class="tm">18:39:53</span><span class="nk"> &lt;jglick&gt;</span> No strong opinion I guess.
+<a name="l-164"></a><span class="tm">18:40:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I think a conservative 2.61 then
+<a name="l-165"></a><span class="tm">18:40:26</span><span class="nk"> &lt;ogondza&gt;</span> My suggestion is to pick conservative baseline (what a surprise) and then merge the PRs that are ready ASAP to master
+<a name="l-166"></a><span class="tm">18:40:37</span><span class="nk"> &lt;jglick&gt;</span> Usually prefer a train model: merge when something is approved, and wait until the LTS decision meeting to decide based on community feedback whether we can actually go with which release.
+<a name="l-167"></a><span class="tm">18:40:46</span><span class="nk"> &lt;ogondza&gt;</span> what proves to be correct will get backported, potentially to .1
+<a name="l-168"></a><span class="tm">18:40:57</span><span class="nk"> &lt;danielbeck&gt;</span> jglick hence 'giving new features a chance' rather than pick 2.60 today.
+<a name="l-169"></a><span class="tm">18:40:59</span><span class="nk"> &lt;jglick&gt;</span> Well API changes do not get backported.
+<a name="l-170"></a><span class="tm">18:41:08</span><span class="nk"> &lt;jglick&gt;</span> ^ to ogondza
+<a name="l-171"></a><span class="tm">18:41:38</span><span class="nk"> &lt;danielbeck&gt;</span> but with what's currently queued up, there's no way we'd pick 2.60 if it all makes it in
+<a name="l-172"></a><span class="tm">18:41:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> right
+<a name="l-173"></a><span class="tm">18:41:55</span><span class="nk"> &lt;ogondza&gt;</span> let's pick .59 then
+<a name="l-174"></a><span class="tm">18:42:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> abayer jglick: ^^^ how badly you need that PR?
+<a name="l-175"></a><span class="tm">18:42:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/jenkins/pull/2730</span>
+<a name="l-176"></a><span class="tm">18:42:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I a fine if WinSW 2.1.0 misses the LTS
+<a name="l-177"></a><span class="tm">18:42:56</span><span class="nk"> &lt;ogondza&gt;</span> those changes ware never released, putting multiple of big changes to single lts does not sound wise to me
+<a name="l-178"></a><span class="tm">18:43:11</span><span class="nk"> &lt;jglick&gt;</span> aggregate ~102 votes
+<a name="l-179"></a><span class="tm">18:43:23</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-24141 + JENKINS-26100
+<a name="l-180"></a><span class="tm">18:43:25</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza note we're only picking two weeks from today ;-)
+<a name="l-181"></a><span class="tm">18:43:46</span><span class="nk"> &lt;ogondza&gt;</span> oh, good point
+<a name="l-182"></a><span class="tm">18:44:27</span><span class="nk"> &lt;rtyler&gt;</span> anything else on this topic today?
+<a name="l-183"></a><span class="tm">18:44:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#vote </span><span class="cmdline">Do we postpone pending changes to give a chance to 2.60?</span>
+<a name="l-184"></a><span class="tm">18:44:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-185"></a><span class="tm">18:44:56</span><span class="nk"> &lt;jglick&gt;</span> So if you consider &gt;100 votes “important” and you have already decided that other PRs would automatically disqualify a baseline if merged, then we would need to pick 2.60 and hold off on merges.
+<a name="l-186"></a><span class="tm">18:45:00</span><span class="nk"> &lt;danielbeck&gt;</span> jglick to clarify, JENKINS-24141 and 26100 are resolved by the PR 2730 merge?
+<a name="l-187"></a><span class="tm">18:45:57</span><span class="nk"> &lt;jglick&gt;</span> Mostly it enables downstream plugin changes using a new baseline which resolve those issues. I mean, we could release that plugin against a weekly baseline I suppose, and the people who really need those changes could run weeklies.
+<a name="l-188"></a><span class="tm">18:47:06</span><span class="nk"> &lt;danielbeck&gt;</span> 79 votes / 98 watchers and 23 votes / 39 watchers is a lot, so that would indicate we should give 2.60 a chance to be picked and hold off more big merges for another week, so I'd be fine with doing that. We're not losing anything and if 2.60 is good enough to make LTS, that'd make a lot of users happy
+<a name="l-189"></a><span class="tm">18:47:29</span><span class="nk"> &lt;danielbeck&gt;</span> obviously, if 2.60 is terrible we wouldn't pick it, but this would increase its chances
+<a name="l-190"></a><span class="tm">18:47:30</span><span class="nk"> &lt;jglick&gt;</span> We can also release &gt;1 build per week.
+<a name="l-191"></a><span class="tm">18:48:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> does not make much difference to bother kohsuke
+<a name="l-192"></a><span class="tm">18:48:12</span><span class="nk"> &lt;kohsuke&gt;</span> It sounds like he is saying there is no need to distort the integration of pr into weekly for the upcoming LTS?
+<a name="l-193"></a><span class="tm">18:48:27</span><span class="nk"> &lt;ogondza&gt;</span> I am +1 on releasing 2.60 with PR2730 and PR2870 being the main stuff in it and consider that for baseline
+<a name="l-194"></a><span class="tm">18:48:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 from danielbeck I assume
+<a name="l-195"></a><span class="tm">18:48:55</span><span class="nk"> &lt;jglick&gt;</span> Right, if we wanted a “2.59½” with just `SCM` changes that could be considered seriously as a baseline, without affecting other development processes.
+<a name="l-196"></a><span class="tm">18:49:18</span><span class="nk"> &lt;jglick&gt;</span> Or just make an exemption for LTS backporting policies and allow the feature to be backported. Comes to much the same thing.
+<a name="l-197"></a><span class="tm">18:49:24</span><span class="nk"> &lt;danielbeck&gt;</span> seems ogondza oleg-nenashev and I agree on holding off merges of other large scale changes into 2.60, any other opinions?
+<a name="l-198"></a><span class="tm">18:50:08</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> could you cut .60 sooner so merging can continue for .61 to get the PRs out?
+<a name="l-199"></a><span class="tm">18:50:15</span><span class="nk"> &lt;kohsuke&gt;</span> Sure
+<a name="l-200"></a><span class="tm">18:50:51</span><span class="nk"> &lt;ogondza&gt;</span> then there is no need to hold off merger as I understand it. danielbeck, oleg-nenashev?
+<a name="l-201"></a><span class="tm">18:50:58</span><span class="nk"> &lt;ogondza&gt;</span> merges, I mean
+<a name="l-202"></a><span class="tm">18:51:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We probably need to get the RSS fix in 2.60
+<a name="l-203"></a><span class="tm">18:51:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Just to avoid backporting
+<a name="l-204"></a><span class="tm">18:51:33</span><span class="nk"> &lt;ogondza&gt;</span> https://github.com/jenkinsci/jenkins/pull/2878/files ? why?
+<a name="l-205"></a><span class="tm">18:51:34</span><span class="nk"> &lt;danielbeck&gt;</span> too tiny to care
+<a name="l-206"></a><span class="tm">18:52:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep. Reported as a regression in 2.59
+<a name="l-207"></a><span class="tm">18:52:09</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> well under that plan we would need to hold off merges until kohsuke has a chance to cut a `master` release. The arguably simpler approach is to propose the `SCM` feature as a backport.
+<a name="l-208"></a><span class="tm">18:52:39</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">jglick:</span> that would mean .59 is the baseline?
+<a name="l-209"></a><span class="tm">18:52:45</span><span class="nk"> &lt;jglick&gt;</span> Then we do not need to decide today, we can just merge whatever looks ready without thinking too hard about LTS, and in two weeks we can agree to use 2.59 + backports
+<a name="l-210"></a><span class="tm">18:53:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> better to cut 2.60
+<a name="l-211"></a><span class="tm">18:53:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I mean out-of-order
+<a name="l-212"></a><span class="tm">18:53:25</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke can you cut 2.60 later today?
+<a name="l-213"></a><span class="tm">18:53:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Same effort as backporting, but it will be much more clear
+<a name="l-214"></a><span class="tm">18:53:41</span><span class="nk"> &lt;kohsuke&gt;</span> I can do that
+<a name="l-215"></a><span class="tm">18:53:44</span><span class="nk"> &lt;jglick&gt;</span> An OoO release works for me too. No strong preference.
+<a name="l-216"></a><span class="tm">18:53:50</span><span class="nk"> &lt;ogondza&gt;</span> I am trying to get the changes released ASAP so they get battle-tested not to make my backporting job simpler :)
+<a name="l-217"></a><span class="tm">18:54:18</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">abayer:</span> we are discussing whether we can cut an out-of-order release of 2.60 so we can get your `SCM` changes into an LTS without picking up other potentially dangerous changes
+<a name="l-218"></a><span class="tm">18:54:23</span><span class="nk"> &lt;abayer&gt;</span> Ah.
+<a name="l-219"></a><span class="tm">18:54:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I think we have an agreement
+<a name="l-220"></a><span class="tm">18:55:02</span><span class="nk"> &lt;rtyler&gt;</span> time check, we have 5 minues left in the scheduled time for this meeting
+<a name="l-221"></a><span class="tm">18:55:12</span><span class="nk"> &lt;ogondza&gt;</span> 2.59 + backports sounds safest, 2.60 from current master + fewer backports is still fine with me. Big fat 2.60 is what I do not like
+<a name="l-222"></a><span class="tm">18:55:38</span><span class="nk"> &lt;jglick&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/jenkins/compare/jenkins-2.59...master</span>
+<a name="l-223"></a><span class="tm">18:55:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Cut 2.60 on May 10th</span>
+<a name="l-224"></a><span class="tm">18:56:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev and danielbeck to merge minor bugfixes and let kohsuke know when it's done</span>
+<a name="l-225"></a><span class="tm">18:56:42</span><span class="nk"> &lt;danielbeck&gt;</span> not a fan of backporting features due to 2.60 &gt; 2.59.1 in dependencies
+<a name="l-226"></a><span class="tm">18:57:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We can think about it later anyway
+<a name="l-227"></a><span class="tm">18:57:31</span><span class="nk"> &lt;kohsuke&gt;</span> I think we are done with this
+<a name="l-228"></a><span class="tm">18:57:41</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">danielbeck:</span> yeah there is that issue, though does not matter in this case since the dep would be 2.59.1+ which matches 2.60 but not 2.59
+<a name="l-229"></a><span class="tm">18:58:34</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to write 2.60 changelog for today</span>
+<a name="l-230"></a><span class="tm">18:58:43</span><span class="nk"> &lt;jglick&gt;</span> Sounds like a plan to me.
+<a name="l-231"></a><span class="tm">18:59:09</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler I think we can finish this up
+<a name="l-232"></a><span class="tm">18:59:12</span><span class="nk"> &lt;rtyler&gt;</span> w00t
+<a name="l-233"></a><span class="tm">18:59:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-234"></a><span class="tm">18:59:29</span><span class="nk"> &lt;rtyler&gt;</span> looks like May 24th would be next scheduled
+<a name="l-235"></a><span class="tm">18:59:43</span><span class="nk"> &lt;rtyler&gt;</span> I don't see any major holidays or anything in the way
+<a name="l-236"></a><span class="tm">19:00:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting May 24th 18:00 UTC</span>
+<a name="l-237"></a><span class="tm">19:00:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 14:05:43 Jan 15, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:09:29 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 387.171
+  exclusion.robots: 0.148
+  exclusion.robots.policy: 0.137
+  cdx.remote: 0.08
+  esindex: 0.009
+  LoadShardBlock: 222.938 (3)
+  PetaboxLoader3.datanode: 194.877 (4)
+  CDXLines.iter: 16.21 (3)
+  load_resource: 76.899
+  PetaboxLoader3.resolve: 51.56
+-->

@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app225.us.archive.org';v.server_ms=5261;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-04-27-18.01.log.html","20211020062659","https://web.archive.org/","web","/_static/",
+	      "1634711219");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:50</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">danielbeck kohsuke hare_brain</span>
+<a name="l-4"></a><span class="tm">18:02:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck kohsuke hare_brain</span>
+<a name="l-5"></a><span class="tm">18:02:03</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:02:05</span><span class="nk"> &lt;rtyler&gt;</span> there we go
+<a name="l-7"></a><span class="tm">18:02:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-8"></a><span class="tm">18:02:17</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks
+<a name="l-9"></a><span class="tm">18:02:24</span><span class="nk"> &lt;rtyler&gt;</span> I just see two from kohsuke and ogondza
+<a name="l-10"></a><span class="tm">18:02:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> 1.651.1 was released right?
+<a name="l-11"></a><span class="tm">18:02:42 </span><span class="nka">* ogondza</span> <span class="ac">hides</span>
+<a name="l-12"></a><span class="tm">18:02:44</span><span class="nk"> &lt;kohsuke&gt;</span> 1.651.1 is out as you can see
+<a name="l-13"></a><span class="tm">18:03:01</span><span class="nk"> &lt;rtyler&gt;</span> did any of the process get documented?
+<a name="l-14"></a><span class="tm">18:03:17</span><span class="nk"> &lt;ogondza&gt;</span> not by me, unfortunately
+<a name="l-15"></a><span class="tm">18:03:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> I'm sure we'll have more chances soon to document it :)
+<a name="l-16"></a><span class="tm">18:03:44</span><span class="nk"> &lt;kohsuke&gt;</span> I think this was the week I was absent
+<a name="l-17"></a><span class="tm">18:03:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-18"></a><span class="tm">18:03:54</span><span class="nk"> &lt;kohsuke&gt;</span> I assume this is about the release process?
+<a name="l-19"></a><span class="tm">18:03:56</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> are there any public docs we would like to extend?
+<a name="l-20"></a><span class="tm">18:04:09</span><span class="nk"> &lt;ogondza&gt;</span> yes, release process
+<a name="l-21"></a><span class="tm">18:05:00</span><span class="nk"> &lt;ogondza&gt;</span> Extending backporting page about the actual procedure is merely about finding a bit of time to do it for me
+<a name="l-22"></a><span class="tm">18:05:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> I think we should set up some time to kick start this.
+<a name="l-23"></a><span class="tm">18:05:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to work with kohsuke to get whatever is undocumented about the release process documented to the extent  that it is possible</span>
+<a name="l-24"></a><span class="tm">18:05:14 </span><span class="nka">* rtyler</span> <span class="ac">points to /topic</span>
+<a name="l-25"></a><span class="tm">18:05:21</span><span class="nk"> &lt;ogondza&gt;</span> ack
+<a name="l-26"></a><span class="tm">18:05:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> is there something you need from others?
+<a name="l-27"></a><span class="tm">18:05:49</span><span class="nk"> &lt;ogondza&gt;</span> not for now, I will have to chase you and KK to clarify things
+<a name="l-28"></a><span class="tm">18:05:54</span><span class="nk"> &lt;rtyler&gt;</span> okie doke
+<a name="l-29"></a><span class="tm">18:05:59</span><span class="nk"> &lt;ogondza&gt;</span> moving on to LTS
+<a name="l-30"></a><span class="tm">18:06:05</span><span class="nk"> &lt;ogondza&gt;</span> I am done backporting
+<a name="l-31"></a><span class="tm">18:06:16</span><span class="nk"> &lt;ogondza&gt;</span> the version of remoting is 2.57
+<a name="l-32"></a><span class="tm">18:06:28</span><span class="nk"> &lt;danielbeck&gt;</span> does this include JNLP3?
+<a name="l-33"></a><span class="tm">18:06:34</span><span class="nk"> &lt;ogondza&gt;</span> not really battletested but look good enough
+<a name="l-34"></a><span class="tm">18:06:52</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> not the jenkins part so it should not be used
+<a name="l-35"></a><span class="tm">18:07:13</span><span class="nk"> &lt;ogondza&gt;</span> the fix we rejected last time actually made it the default protocol
+<a name="l-36"></a><span class="tm">18:07:36</span><span class="nk"> &lt;danielbeck&gt;</span> okay, maybe something for the LTS RC test to be sure
+<a name="l-37"></a><span class="tm">18:07:37</span><span class="nk"> &lt;ogondza&gt;</span> so it is not there this time either. 2 other remoting fixes are however
+<a name="l-38"></a><span class="tm">18:07:47</span><span class="nk"> &lt;ogondza&gt;</span> JNLP test?
+<a name="l-39"></a><span class="tm">18:07:54</span><span class="nk"> &lt;danielbeck&gt;</span> https://issues.jenkins-ci.org/issues/?jql=labels+%3D+1.651.2-fixed
+<a name="l-40"></a><span class="tm">18:08:12</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza you write 'should not be used' :-)
+<a name="l-41"></a><span class="tm">18:08:14</span><span class="nk"> &lt;ogondza&gt;</span> not sure this is covered by ATH, TBH
+<a name="l-42"></a><span class="tm">18:09:01</span><span class="nk"> &lt;danielbeck&gt;</span> right
+<a name="l-43"></a><span class="tm">18:09:10</span><span class="nk"> &lt;ogondza&gt;</span> JNLP3 support is in remoting but Jenkins should still be using v2
+<a name="l-44"></a><span class="tm">18:09:53</span><span class="nk"> &lt;danielbeck&gt;</span> okay, so we're ready for… who to create the RC? still KK?
+<a name="l-45"></a><span class="tm">18:09:59</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to push rc</span>
+<a name="l-46"></a><span class="tm">18:10:00</span><span class="nk"> &lt;kohsuke&gt;</span> ogondza now
+<a name="l-47"></a><span class="tm">18:10:03</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-48"></a><span class="tm">18:10:21</span><span class="nk"> &lt;ogondza&gt;</span> moving on
+<a name="l-49"></a><span class="tm">18:10:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain</span>
+<a name="l-50"></a><span class="tm">18:10:22</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-51"></a><span class="tm">18:10:27</span><span class="nk"> &lt;rtyler&gt;</span> alrighty
+<a name="l-52"></a><span class="tm">18:10:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">2.0 status check</span>
+<a name="l-53"></a><span class="tm">18:10:37</span><span class="nk"> &lt;danielbeck&gt;</span> it's out \o/
+<a name="l-54"></a><span class="tm">18:10:53</span><span class="nk"> &lt;rtyler&gt;</span> yey
+<a name="l-55"></a><span class="tm">18:11:00</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/blog/2016/04/26/jenkins-20-is-here/</span>
+<a name="l-56"></a><span class="tm">18:11:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> I think we should find some time maybe two weeks from now to have a 2.0 retrospective?
+<a name="l-57"></a><span class="tm">18:11:27</span><span class="nk"> &lt;rtyler&gt;</span> I think it would be good to figure out what went well and what didn't with this long-running-branch
+<a name="l-58"></a><span class="tm">18:11:36</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler Would have used next week's office hour, but overlaps with vJAM
+<a name="l-59"></a><span class="tm">18:11:44</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler So, yes, definitely.
+<a name="l-60"></a><span class="tm">18:11:56</span><span class="nk"> &lt;rtyler&gt;</span> we don't always have to do things on wednesdays :P
+<a name="l-61"></a><span class="tm">18:12:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler and danielbeck to figure out when to schedule a 2.0 retrospective</span>
+<a name="l-62"></a><span class="tm">18:12:27</span><span class="nk"> &lt;kohsuke&gt;</span> I say it doesn't hurt to just congratulate ourselves for the big milestone now!
+<a name="l-63"></a><span class="tm">18:12:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> per the email you sent out previously, when is 2.1?
+<a name="l-64"></a><span class="tm">18:12:37</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler May 1(ish)
+<a name="l-65"></a><span class="tm">18:12:53</span><span class="nk"> &lt;danielbeck&gt;</span> and after that, back to regular weekly releases, i.e. 2.2 around May 8
+<a name="l-66"></a><span class="tm">18:13:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the first followup release (2.1) should be sometime around May 1, then back to regular weekly releases</span>
+<a name="l-67"></a><span class="tm">18:13:17</span><span class="nk"> &lt;rtyler&gt;</span> anything else before we move on?
+<a name="l-68"></a><span class="tm">18:13:23</span><span class="nk"> &lt;danielbeck&gt;</span> This makes 2.1 a pretty big update as well
+<a name="l-69"></a><span class="tm">18:13:27</span><span class="nk"> &lt;rtyler&gt;</span> I'm going to pull an agenda update up
+<a name="l-70"></a><span class="tm">18:13:29</span><span class="nk"> &lt;danielbeck&gt;</span> four weeks of changes, potentially
+<a name="l-71"></a><span class="tm">18:13:32</span><span class="nk"> &lt;rtyler&gt;</span> agenda item*
+<a name="l-72"></a><span class="tm">18:13:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> ATH is running on master again properly right&gt;?
+<a name="l-73"></a><span class="tm">18:13:55 </span><span class="nka">* rtyler</span> <span class="ac">&lt;3 automated tests</span>
+<a name="l-74"></a><span class="tm">18:14:25</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler I don't know how our build system is structured since the infra update
+<a name="l-75"></a><span class="tm">18:14:55</span><span class="nk"> &lt;rtyler&gt;</span> ATH was always running in DEV@Cloud I thought?
+<a name="l-76"></a><span class="tm">18:14:57</span><span class="nk"> &lt;kohsuke&gt;</span> That one is on jenkins.ci.cloudbees.com
+<a name="l-77"></a><span class="tm">18:14:59</span><span class="nk"> &lt;danielbeck&gt;</span> right
+<a name="l-78"></a><span class="tm">18:15:03</span><span class="nk"> &lt;danielbeck&gt;</span> I had tfennelly look into the ATH before 2.0 release and he said he fixed all the tests
+<a name="l-79"></a><span class="tm">18:15:04</span><span class="nk"> &lt;rtyler&gt;</span> that is unchanged
+<a name="l-80"></a><span class="tm">18:15:08</span><span class="nk"> &lt;rtyler&gt;</span> ah okay
+<a name="l-81"></a><span class="tm">18:15:17</span><span class="nk"> &lt;danielbeck&gt;</span> all brokenness was due to deliberate changes
+<a name="l-82"></a><span class="tm">18:15:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> how about this, if 2.1 is going to be meaty and you think we need more testing, I can pitch in
+<a name="l-83"></a><span class="tm">18:15:32</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler I'll let you know later
+<a name="l-84"></a><span class="tm">18:15:38</span><span class="nk"> &lt;rtyler&gt;</span> alright
+<a name="l-85"></a><span class="tm">18:15:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Google Summer of Code update</span>
+<a name="l-86"></a><span class="tm">18:15:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> this is you
+<a name="l-87"></a><span class="tm">18:15:53</span><span class="nk"> &lt;rtyler&gt;</span> (keeping our updates together in the meeting)
+<a name="l-88"></a><span class="tm">18:16:37 </span><span class="nka">* rtyler</span> <span class="ac">twiddles thumbs</span>
+<a name="l-89"></a><span class="tm">18:16:50</span><span class="nk"> &lt;batmat&gt;</span> sorry, was away a few seconds, thinking it was later
+<a name="l-90"></a><span class="tm">18:16:54</span><span class="nk"> &lt;batmat&gt;</span> OKAY!
+<a name="l-91"></a><span class="tm">18:16:59</span><span class="nk"> &lt;batmat&gt;</span> Some days ago, on the 22th of april, were announced the 5 accepted proposals.
+<a name="l-92"></a><span class="tm">18:17:02</span><span class="nk"> &lt;batmat&gt;</span> That means we have 5 students to mentor until the end of august around different subjects.
+<a name="l-93"></a><span class="tm">18:17:07</span><span class="nk"> &lt;batmat&gt;</span> <span class="cmd">#info </span><span class="cmdline">5 accepted GSoC proposals/students https://summerofcode.withgoogle.com/organizations/5668199471251456/</span>
+<a name="l-94"></a><span class="tm">18:17:17</span><span class="nk"> &lt;batmat&gt;</span> We're now in the so-called "Community-Bonding Period" until the 23th of May.
+<a name="l-95"></a><span class="tm">18:17:21</span><span class="nk"> &lt;batmat&gt;</span> <span class="cmd">#info </span><span class="cmdline">the GSoC timeline: https://developers.google.com/open-source/gsoc/timeline</span>
+<a name="l-96"></a><span class="tm">18:17:29</span><span class="nk"> &lt;batmat&gt;</span> Accepted proposals:
+<a name="l-97"></a><span class="tm">18:17:29</span><span class="nk"> &lt;batmat&gt;</span> * Support-core plugin improvements, with Minudika Malshan
+<a name="l-98"></a><span class="tm">18:17:29</span><span class="nk"> &lt;batmat&gt;</span> * Automatic Plugin Documentation Publishin, with canyango
+<a name="l-99"></a><span class="tm">18:17:29</span><span class="nk"> &lt;batmat&gt;</span> * External Workspace Manager Plugin, with alexsomai
+<a name="l-100"></a><span class="tm">18:17:29</span><span class="nk"> &lt;batmat&gt;</span> * Jenkins 2.0 Web Interface Improvements: New Job Creation and Configuration, with Samat Davletshin
+<a name="l-101"></a><span class="tm">18:17:32</span><span class="nk"> &lt;batmat&gt;</span> * Jenkins Usage Statistics Analysis, by Payal Priyadarshini
+<a name="l-102"></a><span class="tm">18:17:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> for the room, what does community bonding mean
+<a name="l-103"></a><span class="tm">18:18:02</span><span class="nk"> &lt;kohsuke&gt;</span> Congrats to those 5 people.
+<a name="l-104"></a><span class="tm">18:18:17</span><span class="nk"> &lt;batmat&gt;</span> As discussed just now with danielbeck, we decided to put an item on the Gov Meeting for a gsoc status check until the end of august
+<a name="l-105"></a><span class="tm">18:18:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> uff, I've finally got to the meeting
+<a name="l-106"></a><span class="tm">18:18:47</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> it's the time students are expected to start working w/ the community.
+<a name="l-107"></a><span class="tm">18:18:52 </span><span class="nka">* batmat</span> <span class="ac">looks for the link</span>
+<a name="l-108"></a><span class="tm">18:19:15</span><span class="nk"> &lt;batmat&gt;</span> <span class="cmd">#info </span><span class="cmdline">What is community-bonding period http://googlesummerofcode.blogspot.fr/2007/04/so-what-is-this-community-bonding-all.html</span>
+<a name="l-109"></a><span class="tm">18:19:16</span><span class="nk"> &lt;rtyler&gt;</span> don't talk to me, talk to #info :)
+<a name="l-110"></a><span class="tm">18:19:19</span><span class="nk"> &lt;rtyler&gt;</span> there ya go
+<a name="l-111"></a><span class="tm">18:19:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> kohsuke danielbeck Have you contacted your student?
+<a name="l-112"></a><span class="tm">18:19:30</span><span class="nk"> &lt;kohsuke&gt;</span> No I haven't
+<a name="l-113"></a><span class="tm">18:19:37</span><span class="nk"> &lt;danielbeck&gt;</span> me neither.
+<a name="l-114"></a><span class="tm">18:19:47</span><span class="nk"> &lt;kohsuke&gt;</span> We will do that, assuming that's what you mean
+<a name="l-115"></a><span class="tm">18:19:53</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck and kohsuke to contact Payal</span>
+<a name="l-116"></a><span class="tm">18:20:15</span><span class="nk"> &lt;rtyler&gt;</span> you should start to familiarize your student with the community and relevant community projects/tools/etc I think
+<a name="l-117"></a><span class="tm">18:20:17</span><span class="nk"> &lt;batmat&gt;</span> For sure, we've heard from Minudika, canyango, Samat
+<a name="l-118"></a><span class="tm">18:20:23</span><span class="nk"> &lt;batmat&gt;</span> not sure about the other two for now
+<a name="l-119"></a><span class="tm">18:20:46</span><span class="nk"> &lt;rtyler&gt;</span> IMO oneo f the most beneficial things is for students to start to meet people in the project who they can learn from, etc
+<a name="l-120"></a><span class="tm">18:20:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> mda14 contacted Alexandru
+<a name="l-121"></a><span class="tm">18:20:56</span><span class="nk"> &lt;batmat&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke danielbeck to contact their GSoC studnet</span>
+<a name="l-122"></a><span class="tm">18:21:06</span><span class="nk"> &lt;batmat&gt;</span> *student :-/
+<a name="l-123"></a><span class="tm">18:21:07</span><span class="nk"> &lt;rtyler&gt;</span> mentors aren't the only people students should interact with
+<a name="l-124"></a><span class="tm">18:21:16</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> absolutely
+<a name="l-125"></a><span class="tm">18:21:41</span><span class="nk"> &lt;batmat&gt;</span> the point here is just for mentors to /push/ their students to start creating that /bond/
+<a name="l-126"></a><span class="tm">18:21:47</span><span class="nk"> &lt;danielbeck&gt;</span> right, so subscribe to all the lists, join all the channels
+<a name="l-127"></a><span class="tm">18:21:50</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-128"></a><span class="tm">18:21:51</span><span class="nk"> &lt;batmat&gt;</span> and indeed, use the public communication by default
+<a name="l-129"></a><span class="tm">18:21:58</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">danielbeck:</span> exactly
+<a name="l-130"></a><span class="tm">18:22:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> anything else we need to cover right now?
+<a name="l-131"></a><span class="tm">18:22:46</span><span class="nk"> &lt;batmat&gt;</span> no, I think we're done for a status check
+<a name="l-132"></a><span class="tm">18:22:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> swags
+<a name="l-133"></a><span class="tm">18:23:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We need an approval for spending some money if we want to distribute them to applicants
+<a name="l-134"></a><span class="tm">18:23:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> alyssat ^^
+<a name="l-135"></a><span class="tm">18:23:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> send the board a more formal "we need $X for Y" kind of thing, I think that's easy to do
+<a name="l-136"></a><span class="tm">18:23:44</span><span class="nk"> &lt;rtyler&gt;</span> or actually, I can just buy and reimburse
+<a name="l-137"></a><span class="tm">18:23:45</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">canyango1:</span> welcome
+<a name="l-138"></a><span class="tm">18:23:50</span><span class="nk"> &lt;rtyler&gt;</span> there's no problem sending some swag to students ASAP
+<a name="l-139"></a><span class="tm">18:24:00</span><span class="nk"> &lt;alyssat&gt;</span> what kind of swag do you have in mind?
+<a name="l-140"></a><span class="tm">18:24:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Approval of Q2 patron messages</span>
+<a name="l-141"></a><span class="tm">18:24:10</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/patron/pull/11</span>
+<a name="l-142"></a><span class="tm">18:24:13</span><span class="nk"> &lt;rtyler&gt;</span> let's talk about swag in #jenkins-community
+<a name="l-143"></a><span class="tm">18:24:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yeah, I can also send them. Some stickers + maybe t-short
+<a name="l-144"></a><span class="tm">18:24:24</span><span class="nk"> &lt;danielbeck&gt;</span> We have new messages from patrons
+<a name="l-145"></a><span class="tm">18:24:25</span><span class="nk"> &lt;rtyler&gt;</span> that's not part of the meeting agenda and not critical for the project
+<a name="l-146"></a><span class="tm">18:24:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> agreed
+<a name="l-147"></a><span class="tm">18:24:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> can you #info the patron program details for posterity
+<a name="l-148"></a><span class="tm">18:25:00</span><span class="nk"> &lt;danielbeck&gt;</span> links to the tester with preview of the new messages are in the PR
+<a name="l-149"></a><span class="tm">18:25:02</span><span class="nk"> &lt;alyssat&gt;</span> we don't don't have t-short ..just t-shirts :o)
+<a name="l-150"></a><span class="tm">18:25:07</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Patron+of+Jenkins+program</span>
+<a name="l-151"></a><span class="tm">18:25:11</span><span class="nk"> &lt;rtyler&gt;</span> and the other patrons are fine with their messages in Q2?
+<a name="l-152"></a><span class="tm">18:25:26</span><span class="nk"> &lt;danielbeck&gt;</span> One didn't renew for Q2, the other kept their message
+<a name="l-153"></a><span class="tm">18:25:34 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-154"></a><span class="tm">18:25:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agree </span><span class="cmdline">the Q2 patron messages look fine to me</span>
+<a name="l-155"></a><span class="tm">18:25:55</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-156"></a><span class="tm">18:25:58</span><span class="nk"> &lt;alyssat&gt;</span> +1
+<a name="l-157"></a><span class="tm">18:26:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-158"></a><span class="tm">18:26:58</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-159"></a><span class="tm">18:27:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Q2 patrom message is accepted</span>
+<a name="l-160"></a><span class="tm">18:27:29</span><span class="nk"> &lt;kohsuke&gt;</span> (I think this is how you do it)
+<a name="l-161"></a><span class="tm">18:27:32</span><span class="nk"> &lt;rtyler&gt;</span> alright, I'm going to move along so we can eat
+<a name="l-162"></a><span class="tm">18:27:36 </span><span class="nka">* rtyler</span> <span class="ac">looks at lunch</span>
+<a name="l-163"></a><span class="tm">18:27:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">CERT membership request process changes (</span>
+<a name="l-164"></a><span class="tm">18:27:49</span><span class="nk"> &lt;rtyler&gt;</span> whoops, left a parens on there
+<a name="l-165"></a><span class="tm">18:27:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> whatcha got
+<a name="l-166"></a><span class="tm">18:28:00</span><span class="nk"> &lt;danielbeck&gt;</span> historically, CERT membership requests were requested on the mailing list and approved in this meeting
+<a name="l-167"></a><span class="tm">18:28:13</span><span class="nk"> &lt;danielbeck&gt;</span> due to the biweekly scheduled this adds a delay to approval
+<a name="l-168"></a><span class="tm">18:28:53</span><span class="nk"> &lt;danielbeck&gt;</span> so I'd like to handle this via the lists directly, and approval implemented by me as needed
+<a name="l-169"></a><span class="tm">18:29:12</span><span class="nk"> &lt;jglick&gt;</span> +1
+<a name="l-170"></a><span class="tm">18:29:38</span><span class="nk"> &lt;rtyler&gt;</span> I think it is reasonable to treat the security officer as the lead of the CERT team
+<a name="l-171"></a><span class="tm">18:29:49</span><span class="nk"> &lt;rtyler&gt;</span> since the security officer is alerady running the meetings and ultimately responsible
+<a name="l-172"></a><span class="tm">18:29:59</span><span class="nk"> &lt;kohsuke&gt;</span> As I wrote in the dev list I think it's in danielbeck 's authority as the security team lead to define this: https://groups.google.com/forum/?utm_medium=email&amp;utm_source=footer#!msg/jenkinsci-dev/5_k8Uj5rErA/RolFdAUgBwAJ
+<a name="l-173"></a><span class="tm">18:30:09</span><span class="nk"> &lt;batmat&gt;</span> +1
+<a name="l-174"></a><span class="tm">18:30:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> I think, so long as the process is transparent and documented for consistency among future security officers
+<a name="l-175"></a><span class="tm">18:30:39</span><span class="nk"> &lt;rtyler&gt;</span> then this is great, more efficiency in our security team is a good thing for the project
+<a name="l-176"></a><span class="tm">18:30:42</span><span class="nk"> &lt;rtyler&gt;</span> +1
+<a name="l-177"></a><span class="tm">18:31:21</span><span class="nk"> &lt;danielbeck&gt;</span> The other part to this is that I'd like to also remove people from the security team if I don't consider their membership useful to the project any longer.
+<a name="l-178"></a><span class="tm">18:31:22</span><span class="nk"> &lt;rtyler&gt;</span> are there any concerns with this proposal?
+<a name="l-179"></a><span class="tm">18:31:36</span><span class="nk"> &lt;danielbeck&gt;</span> right now, we have no process for that at all.
+<a name="l-180"></a><span class="tm">18:31:47</span><span class="nk"> &lt;kohsuke&gt;</span> It'd be also nice to have somewhere to see the list of current members, too
+<a name="l-181"></a><span class="tm">18:31:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> see aforementioned "transparent and documented"
+<a name="l-182"></a><span class="tm">18:32:01</span><span class="nk"> &lt;batmat&gt;</span> +1, anything left to you danielbeck as long as says rtyler it's made in the open
+<a name="l-183"></a><span class="tm">18:32:07</span><span class="nk"> &lt;danielbeck&gt;</span> of course.
+<a name="l-184"></a><span class="tm">18:32:21</span><span class="nk"> &lt;batmat&gt;</span> nobody can be added privately to that list for example
+<a name="l-185"></a><span class="tm">18:32:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">batmat:</span> he's proposing to handle approval by the list. So assuming dev list, it's still in public
+<a name="l-186"></a><span class="tm">18:33:17</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> yup, np.
+<a name="l-187"></a><span class="tm">18:33:29</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> so, next subject?
+<a name="l-188"></a><span class="tm">18:33:33</span><span class="nk"> &lt;batmat&gt;</span> you wanted to eat? :D
+<a name="l-189"></a><span class="tm">18:33:41</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-190"></a><span class="tm">18:33:44</span><span class="nk"> &lt;rsandell&gt;</span> but would that still require core committership approved by this meeting?
+<a name="l-191"></a><span class="tm">18:34:05</span><span class="nk"> &lt;kohsuke&gt;</span> core committership is only really contingent on the CLA
+<a name="l-192"></a><span class="tm">18:34:15</span><span class="nk"> &lt;kohsuke&gt;</span> It has never required a blessing here.
+<a name="l-193"></a><span class="tm">18:34:21</span><span class="nk"> &lt;rsandell&gt;</span> ok
+<a name="l-194"></a><span class="tm">18:34:29</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's somewhere in the governance doc
+<a name="l-195"></a><span class="tm">18:34:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the security officer is empowered to curate the CERT team so long as it is done in a transparent and documented fashion</span>
+<a name="l-196"></a><span class="tm">18:34:51</span><span class="nk"> &lt;rsandell&gt;</span> just wondering if we could end up in a situation where cert membership was approved without committership to core
+<a name="l-197"></a><span class="tm">18:34:51</span><span class="nk"> &lt;rtyler&gt;</span> which makes this subject funny
+<a name="l-198"></a><span class="tm">18:34:58</span><span class="nk"> &lt;rsandell&gt;</span> it would be a strange situation
+<a name="l-199"></a><span class="tm">18:34:58</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler set it!
+<a name="l-200"></a><span class="tm">18:34:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Approval of CERT membership requests</span>
+<a name="l-201"></a><span class="tm">18:35:02</span><span class="nk"> &lt;danielbeck&gt;</span> Given the outcome of the previous topic I'd like to inform the meeting that I approve the requests by Andres and Antonio. I will respond on the mailing list accordingly.
+<a name="l-202"></a><span class="tm">18:35:06</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-203"></a><span class="tm">18:35:07</span><span class="nk"> &lt;danielbeck&gt;</span> done.
+<a name="l-204"></a><span class="tm">18:35:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Infra update</span>
+<a name="l-205"></a><span class="tm">18:35:47</span><span class="nk"> &lt;rtyler&gt;</span> since there's time, I would like to invite everybody to join me in #jenkins-infra in 25 minutes for more details and Q&amp;A around what's been going on with our infra lately
+<a name="l-206"></a><span class="tm">18:36:11</span><span class="nk"> &lt;rtyler&gt;</span> things are currently stable and we've addressed some technical debt while hardening our infrastructure
+<a name="l-207"></a><span class="tm">18:36:18</span><span class="nk"> &lt;rtyler&gt;</span> but, especially with something like 2.0
+<a name="l-208"></a><span class="tm">18:36:44</span><span class="nk"> &lt;rtyler&gt;</span> I want people to please start to remember that plugins, the update center and jenkins-on-jenkins are all important pieces of infrastructure for contributors and users alike
+<a name="l-209"></a><span class="tm">18:36:55 </span><span class="nka">* kohsuke</span> <span class="ac">updates calendar event entry</span>
+<a name="l-210"></a><span class="tm">18:36:59</span><span class="nk"> &lt;rtyler&gt;</span> and it can't be a 1.5 man show (between kohsuke and I) and continue to grow
+<a name="l-211"></a><span class="tm">18:37:08</span><span class="nk"> &lt;rtyler&gt;</span> so like
+<a name="l-212"></a><span class="tm">18:37:09</span><span class="nk"> &lt;rtyler&gt;</span> OMG HALP
+<a name="l-213"></a><span class="tm">18:37:10</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-214"></a><span class="tm">18:37:16</span><span class="nk"> &lt;rtyler&gt;</span> that is all :)
+<a name="l-215"></a><span class="tm">18:37:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-216"></a><span class="tm">18:37:33</span><span class="nk"> &lt;rtyler&gt;</span> I think this puts us at May 11th
+<a name="l-217"></a><span class="tm">18:37:38</span><span class="nk"> &lt;rtyler&gt;</span> any issues with that?
+<a name="l-218"></a><span class="tm">18:38:05</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> wiz wut?
+<a name="l-219"></a><span class="tm">18:38:09</span><span class="nk"> &lt;danielbeck&gt;</span> no?
+<a name="l-220"></a><span class="tm">18:38:11</span><span class="nk"> &lt;batmat&gt;</span> oops, OK
+<a name="l-221"></a><span class="tm">18:38:13</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-222"></a><span class="tm">18:38:17</span><span class="nk"> &lt;rtyler&gt;</span> okay
+<a name="l-223"></a><span class="tm">18:38:19</span><span class="nk"> &lt;kohsuke&gt;</span> I'm going to miss the next meeting
+<a name="l-224"></a><span class="tm">18:38:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting same time, same place, May 11th</span>
+<a name="l-225"></a><span class="tm">18:38:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 06:26:59 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:40:20 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 366.626
+  exclusion.robots: 0.08
+  exclusion.robots.policy: 0.073
+  RedisCDXSource: 276.121
+  esindex: 0.008
+  LoadShardBlock: 67.69 (3)
+  PetaboxLoader3.datanode: 82.702 (4)
+  CDXLines.iter: 20.042 (3)
+  load_resource: 4875.015
+  PetaboxLoader3.resolve: 4841.78
+-->

@@ -1,0 +1,259 @@
+18:00:34 <kohsuke> #startmeeting
+18:00:34 <robobutler> Let the Jenkins meeting commence!
+18:00:47 <kohsuke> #chair hare_brain abayer rtyler
+18:00:47 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:01:03 <rtyler> #info Agenda https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Mar21stMeeting
+18:01:08 <kohsuke> Thanks
+18:01:29 <rtyler> #info last meeting items http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-03-07-19.01.html
+18:01:32 <aheritier> Hi
+18:01:49 <andref> hi
+18:01:50 <kohsuke> Slide-O-Mix and I need to set up a time for office hours for new e-mailer
+18:02:17 <kohsuke> which basically means he need to tell me which of https://wiki.jenkins-ci.org/display/JENKINS/Office+Hours would work for him
+18:02:27 <kohsuke> 3/28 is up for grab, and so is 4/11
+18:03:08 <kohsuke> The other "add CB to sponsors" action is my mistake that it's pending more work on jenkins.ci.cloudbees.com
+18:03:59 <kohsuke> and ndeloof in time!
+18:04:13 <ndeloof> just in time, but for few minutes only
+18:04:32 <kohsuke> He made some progress in https://jenkins.ci.cloudbees.com/ AIU
+18:04:41 <ndeloof> indeed
+18:04:52 <ndeloof> need to fix some configuration to have unlimited executors
+18:05:01 <ndeloof> but that's cloudbees details
+18:05:47 <aheritier> too much red :-)
+18:05:48 <kohsuke> On page like https://jenkins.ci.cloudbees.com/job/plugins/job/active-directory/configure you can see that the only setting in a plugin is just its name
+18:06:09 <kohsuke> it's all red I guess because we need to set ~/.m2/settings.xml for m.g.o-public -> repo.jenkins-ci.org
+18:06:13 <aheritier> cool, using templating feature ?
+18:06:19 <kohsuke> yes
+18:06:27 <ndeloof> right, I've used cloudbees template plugin to setup a single parameter job
+18:06:31 <aheritier> fucking maven settings :-)
+18:06:43 <ndeloof> will fix this tomorrow (or next day)
+18:07:11 <ndeloof> I also created some jobs for core
+18:07:26 <ndeloof> https://jenkins.ci.cloudbees.com/job/core/
+18:07:42 <ndeloof> but have some test failure that don't occur on ci.jenkins-ci.org, will look further
+18:07:55 <kohsuke> hmm, 2 hours...
+18:08:03 <ndeloof> I thing cloudbees hosting is nice for plugin as we can use the templates for job config
+18:08:13 <ndeloof> can also host jobs for libs
+18:08:21 <kohsuke> oops, did we just kill the instance?
+18:08:26 <ndeloof> and probably selenium tests (didn't investigated yet)
+18:08:47 <ndeloof> nop, just launched a migration command to FOSS "special"
+18:08:51 <ndeloof> so that it has unlimited quota
+18:08:53 <kohsuke> ah
+18:09:01 <ndeloof> will be back in few minutes
+18:09:24 <kohsuke> All right. Thanks for the update. Shall we move on to the next topic?
+18:09:26 <ndeloof> so, will experiment with ci.jenkins-ci.org job migration and report status on next governance meeting
+18:09:29 <ndeloof> right,
+18:09:40 <ndeloof> have to quit, have a nice day folks
+18:09:46 <kohsuke> ndeloof:  thanks
+18:09:55 <kohsuke> #topic please sign CLAs
+18:10:24 <kohsuke> So, it's been long over due, but I finally spent some time to kick off the CLA collection
+18:10:43 <kohsuke> I've moved every core committer to "CLA signature pending" team,
+18:10:51 <kohsuke> and created another team for those who have signed
+18:11:24 <kohsuke> #info Encrypted signed CLA PDFs can be seen here: https://github.com/jenkinsci/infra-cla/tree/master/collected
+18:11:24 <aheritier> You have a public list ?
+18:12:02 <kohsuke> I think it has enough details in public about those who have filed
+18:12:10 <aheritier> I agree
+18:12:12 <aheritier> perfect
+18:12:29 <kohsuke> And I need to pass on the key to hare_brain and abayer
+18:12:41 <kohsuke> #action kohsuke to pass on the key to hare_brain and abayer
+18:13:05 <kohsuke> anyway, that's detail, and what we need from folks is to send us signed CLAs to jenkinsci-cla@googlegroups.com
+18:13:29 <kohsuke> Please see https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document for more background
+18:14:07 <kohsuke> #info 1. if you work on Jenkins on your time, you need to file ICLA
+18:14:23 <kohsuke> #info 2. if you work on Jenkins for your day job, you need to file CCLA
+18:14:33 <kohsuke> I believe those are the guidelines
+18:14:55 <kohsuke> Any questions? thoughts? etc?
+18:15:13 <hare_brain> #info 3. In some cases, your employment contract may stipulate that work you do on your own time may be company property, if it's related to your job.
+18:15:31 <kohsuke> that's true
+18:15:35 <kohsuke> Glad I live in Califronia
+18:15:39 <vjuranek> kohsuke: if I work in my free time as well as partially in work time, I need to sign both, right?
+18:15:49 <kohsuke> vjuranek: Yes
+18:16:23 <aheritier> In france such close is common too
+18:16:54 <aheritier> s/close/clause
+18:16:55 <kohsuke> Shall we move on?
+18:17:04 <aheritier> yes
+18:17:17 <kohsuke> #topic Launching Jenkins CIA
+18:17:24 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CIA+Program
+18:17:49 <kohsuke> As a quick recap, the idea was to promote the grassroot evangelism by providing some incentive, and have fun while we are at it
+18:18:16 <kohsuke> It was waiting for the stock slide decks to be ready, but that's not making any progress for several months,
+18:18:37 <kohsuke> so I think we should just launch with what we have, without official stock slide decks, at least initially
+18:18:43 <rtyler> yeah, because libreoffice is the worst
+18:18:46 <rtyler> and nobody likes it
+18:19:02 <kohsuke> There was a resolution to fund the T-shirts for up to $500 a few month ago, I believe
+18:19:26 <kohsuke> And yesterday I cooked up http://www.cafepress.com/jenkinscia.630461642
+18:19:40 <rtyler> looks legit
+18:20:03 <kohsuke> And I have stickers in my room, so I'll take care of the mailing, at least initially
+18:20:34 <rtyler> can we distribute that to abayer or myself? especially if /somebody/ is going to travel again anytime soon
+18:20:42 <rtyler> *coughs*
+18:20:53 <kohsuke> Yeah, that's right
+18:21:07 <kohsuke> We were supposed to have a drink-up that didn't work out
+18:21:24 <kohsuke> I guess I'll just mail them to you guys
+18:21:50 <kohsuke> #action kohsuke to mail sticker batches to abayer and rtyler
+18:22:03 <kohsuke> and you need to send me your address
+18:22:11 <rtyler> did we come up with good t-shirt qualification guidelines?
+18:22:50 <kohsuke> The current plan on that Wiki page is that you just need to go make a public presentation about Jenkins
+18:23:00 <kohsuke> That qualifies you for one T-shirt and a batch of stickers
+18:23:44 <rtyler> sending stickers after the fact?
+18:24:02 <kohsuke> No, bofore the event
+18:24:13 <kohsuke> It's so that he can hand them out to attendees
+18:24:13 <rtyler> t-shirt too?
+18:24:16 <kohsuke> yeah
+18:24:52 <kohsuke> CafePress lets me ship those to arbitrary address
+18:25:06 <kohsuke> and one batch of stickers fit in a postal envelope.
+18:25:20 <rtyler> sounds good
+18:25:45 <kohsuke> So I guess I'm looking for some +1s to second/approve the motion
+18:25:52 <aheritier> Don't forget to provide them for JUC @ Paris :-)
+18:26:08 <aheritier> +1
+18:26:17 <mc1arke> +1
+18:26:18 <kohsuke> aheritier:  Yes, I have a box full, so it should last for a while
+18:26:21 <vjuranek> +1
+18:26:54 <kohsuke> #agreed the project meeting blessed the launch of the CIA program
+18:27:06 <kohsuke> rtyler: I think I need your help in publicizing it
+18:27:22 <kohsuke> I guess I'll do a blog post
+18:27:23 <kohsuke> or can you?
+18:27:37 <rtyler> I can work something up, we're already past prime-publishing time this week
+18:27:46 <rtyler> #action rtyler to write up a fanciful blog post for publication next monday
+18:27:52 <kohsuke> thanks
+18:28:14 <kohsuke> All right, moving on to the next topic...
+18:28:29 <kohsuke> #topic "Jenkins@cloud for GitHub" and "Jenkins@cloud by CloudBees" name usage approval
+18:29:10 <kohsuke> So, I'm tasked by my boss to seek for an approval for using the mark "Jenkins"
+18:29:18 * kohsuke puts CloudBees hat on
+18:29:42 * rtyler puts his Lookout galoshes on
+18:29:59 <kohsuke> CB would like to call the hosted Jenkins part of DEV@cloud "Jenkins@cloud by CloudBees"
+18:30:01 * aheritier opens a beer
+18:30:15 <jjj_> CloudBees
+18:30:24 <kohsuke> It's basically what you can see https://jenkins.ci.cloudbees.com/
+18:30:27 <jjj_> I want one of your plugins
+18:30:35 <rtyler> jjj_: not right now, project meeting ;)
+18:30:39 <jjj_> lol ok
+18:30:44 <kohsuke> ... for those who don't know what hosted Jenkins on DEV@cloud is.
+18:31:05 <kohsuke> I think it's sufficiently long and descriptive name
+18:31:13 <aheritier> What will change in the current site ?
+18:31:20 <aheritier> jenkins is already in the URL
+18:31:35 <aheritier> it is just to give it a friendly name ?
+18:31:40 <kohsuke> and the branding of the UI puts enough emphasis on CB
+18:32:25 <kohsuke> ... that I'd like to think that it has very little chance of causing confusion to users about who offers the service
+18:32:47 <kohsuke> aheritier: yeah, I think it's just to give it a friendly name
+18:33:19 <kohsuke> My understanding is that it makes it easier (or reduce the need) to describe what it is.
+18:33:44 <kohsuke> The other one is "Jenkins@cloud for GitHub" because "Jenkins@cloud for GitHub by CloudBees" would be too much
+18:34:37 <kohsuke> It's not publicly launched yet, but we are working on a set of plugins on DEV@cloud to improve integration with GitHub
+18:34:54 <kohsuke> "A few click of buttons and your GitHub project is building on Jenkins" kind of idea
+18:35:17 <kohsuke> It'll run on a similar *.cloudbees.com domain, and the UI should be similar, too.
+18:35:32 <kohsuke> So the same argument about unlikeness of causing confusion
+18:35:45 <kohsuke> So that's my case.
+18:35:50 <hare_brain> For the purposes of this community, the point is to make sure that people don't think that this is a service provided by us, or don't think that Jenkins is produced by CloudBees.
+18:35:59 <kohsuke> Exactly
+18:36:17 <rtyler> I think both usages are just fine
+18:36:39 <hare_brain> Agree
+18:36:44 <vjuranek> +1
+18:37:18 <mc1arke> +1
+18:37:25 <lov> "Jenkins Serves Bees to Clouds; host your build on Jenkins' Bees today!"
+18:37:30 <aheritier> +1
+18:37:48 <rtyler> lov: needs more enterprise
+18:37:48 <kohsuke> I think I'd like to get +1 for abayer before recording an agreement
+18:38:01 <kohsuke> now where are the backlogs...
+18:38:24 <kohsuke> abayer: http://echelog.com/logs/browse/jenkins/1332284400
+18:38:38 <kohsuke> from [19:28:29]
+18:38:47 <abayer> Jenkins@Cloud from CloudBees? +1
+18:38:59 <kohsuke> and "Jenkins@cloud for GitHub"
+18:39:51 <kohsuke> #agreed the project approves the request from CloudBees to use "Jenkins@cloud by CloudBees" and "Jenkins@cloud for GitHub"
+18:39:57 <kohsuke> Thank you
+18:40:12 <kohsuke> I actually have one more quick topic since it looks like we have time today
+18:40:24 <nfylo> Hello, can i bother someone with my weird configuration (reverse proxy with nginx resulting in XmlHttpRequest problems)
+18:40:24 <hare_brain> Before you move off.
+18:40:29 <hare_brain> This approval aside, do people have thoughts on how permissive we want to be in granting usages of the Jenkins trademark? I was saying to Kohsuke privately that real companies have whole binders dealing with how their trademarks and brand identities should be used.
+18:40:47 <hare_brain> I'd like to hear people's thoughts on that, if there are strong opinions out there.
+18:41:21 <abayer> I'm fairly comfortable with people using it, but yeah, we really need formal policies.
+18:41:31 <rtyler> nfylo: give us a few minutes, we're still in a project meeting
+18:41:38 <nfylo> oups sorry
+18:42:12 <kohsuke> My feeling has been that we should be liberal about the use
+18:42:37 <aheritier> maybe we can have a look at ASF rules but there are very light
+18:42:44 <kohsuke> To me, it's one of the formalities that we have to deal with
+18:42:53 <aheritier> For me its creates more issues than something else to be too much protected
+18:42:58 <hare_brain> What if someone tried to sell a commercial product that merged Hudson and Jenkins, and they asked for our permission to use Jenkins in the name of their product?
+18:43:10 <rtyler> Huwhat?
+18:43:24 <hare_brain> I'm just throwing a use case out.
+18:43:29 <aheritier> or to host another Jenkins on demand SAAS ?
+18:44:12 <hare_brain> I'm not looking for answers right now, but I just ask that people think about it a bit.
+18:44:16 <rtyler> hare_brain: I downloaded the GitHub logo art they distribute yesterday, in the README included they had some good guidelines
+18:44:43 <hare_brain> rtyler: link?
+18:44:43 <rtyler> "* for GitHub" or "Hub*" were fine usecases for them, but GitHub*" wasn't
+18:44:43 <kohsuke> +1 on finding anything that we can piggy back on
+18:44:58 <rtyler> hare_brain: right-click on the github logo ;)
+18:45:18 <aheritier> I remember a git front-end that said the github like UI and they changed
+18:45:43 <aheritier> rtyler: awesome :-)
+18:45:58 <rtyler> I think at a base-level, "X for Jenkins" or "Jenkins for X" are totally fine
+18:46:10 <hare_brain> I would agree with that.
+18:46:12 <rtyler> Jenkins for Hudson? if that's something somebody srsly wants to do, hokay
+18:46:21 <rtyler> it's idiotic, but hokay :D
+18:46:43 <hare_brain> OK, I've had my say. We can move on.
+18:46:57 <kohsuke> hare_brain:  Thanks for bringing this up
+18:47:05 <abayer> I think we should work with the SPI guys to see if they have any advice on drawing up formal terms.
+18:47:17 <rtyler> not-it!
+18:47:53 <kohsuke> SPI has been pretty hands free about those stuff, so we'll see
+18:47:53 <abayer> I'm gone and/or busy for the next couple weeks. =)
+18:48:07 <kohsuke> #topic Jenkins User Conference Tokyo
+18:48:17 <rtyler> wooooo
+18:48:28 <kohsuke> So, when I went to Tokyo and told them that we had this 4 JUC going on around the world
+18:48:37 <kohsuke> Naturally those guys wanted to have their own
+18:48:46 <kohsuke> So one is getting organized
+18:49:10 <kohsuke> This one is very much driven by Japanese community folks, and no CloudBees people except me (because no one else speaks the damn language)
+18:49:20 <aheritier> :-)
+18:49:43 <kohsuke> We are nicely lining up the ducks but they have one request
+18:49:50 <kohsuke> We? They?
+18:49:51 <abayer> I'm going!
+18:49:52 <aheritier> you give few months to a bayer to learn Japanese and to come with you :-)
+18:49:59 <abayer> aheritier: =)
+18:50:21 <aheritier> If I could … I would love !!
+18:50:31 <kohsuke> In that part of Asia, it is customary for those conferences to have a drink/dinner afterward
+18:50:38 <kohsuke> So one is being planned
+18:50:58 <kohsuke> That part is payed by the subset of conference attendees that also attend the dinner
+18:51:22 <aheritier> No local sponsors ?
+18:51:26 <kohsuke> but because we need to pay for the place upfront and there's always people cancelling and changing minds in the last minute,
+18:51:55 <kohsuke> there's an inherent risk about mis-estimating
+18:52:09 <kohsuke> aheritier: there are local sponsors, believe it or not
+18:53:06 <kohsuke> we expect some last minute cancellations and factor that into the amount we charge,
+18:53:20 <kohsuke> but at something like $50-$70/person and 100+ people coming
+18:53:42 <kohsuke> say if you are off by 10 it's more than the amount any single person wants to pay for
+18:54:17 <kohsuke> So, that finally brings me to the request, which is to see if we can tap into the project funding if the worst case scenario happens
+18:54:37 <toxboi> Hi, I'm trying to run phpunit test in Jenkins. When I do a new build, I get this in console output http://pastie.org/private/gfqwzxkj1awjal9byvyq
+18:54:45 <kohsuke> (and obviously, the flip side is that if we estimate well and get little extra, they'll come back to the project funding)
+18:54:55 <rtyler> toxboi: give us a few minutes, we're in the middle of a project meeting
+18:55:01 <toxboi> rtyler: ok
+18:55:25 <kohsuke> Right now the sponsor line up looks better than I anticipated, so likely we'll be able to pay it off from there.
+18:55:31 <rtyler> kohsuke: I don't think it's that bad of an idea, but I wouldn't mind if the JA jenkins community participated as a result a bit more with the rest of us :)
+18:56:02 <kohsuke> rtyler: yes, that has always been my pet peeve
+18:56:47 <aheritier> otherwise we'll ask for a new donation if it costs too much :-)
+18:56:52 <aheritier> But I agree to do it.
+18:57:06 <kohsuke> rtyler That's why I want you to go there, and abayer going would help, too
+18:57:09 <aheritier> And yes in exchange they try to be more present :-)
+18:57:15 <abayer> =)
+18:57:22 <kohsuke> We'd be only on the hook for less than $1000
+18:57:28 <rtyler> I thought it was so you could get us drunk and leave us at a train station in tokyo
+18:57:35 <aheritier> :-)
+18:57:38 <kohsuke> so it's well within our current fund
+18:57:58 <kohsuke> rtyler: that too
+18:58:05 <rtyler> I reserve +1s until there's a bit clearer of an estimate
+18:58:18 <hare_brain> So it's not to use the fund to pay for the upfront fee, but to cover shortages from last minute cancellations?
+18:58:31 <kohsuke> hare_brain: yes
+18:58:49 <hare_brain> And we wouldn't know how much that would be until after the fact.
+18:59:23 <kohsuke> the usual formula I believe is that (1) we have them register for participation to the dinner, (2) we multiply it by 0.8 for the actual # of people showing up, and (3) divide the cost by that and decide how much to charge
+18:59:48 <kohsuke> hare_brain: yes, and that's why they need a bigger purse to tap to in case it goes badly wrong
+19:00:10 <kohsuke> For the record, in their past 5 meetups nothing bad happened
+19:00:26 <hare_brain> I wouldn't feel comfortable with a +1 either, unless there was an upper limit.
+19:01:01 <kohsuke> OK, what would be a reasonable upper limit?
+19:01:13 <hare_brain> I would be OK with the $1,000
+19:01:19 <abayer> Same here.
+19:01:48 <kohsuke> I think that's quite good
+19:02:25 <kohsuke> We are running out of time, so I'll push the approval  to the next meeting
+19:02:26 <jf__> is there a pluging that i could use to display something like the dashboard plugin but to group builds together and see the status of each of them?
+19:02:47 <kohsuke> I'll pass this on to them.
+19:02:54 <mc1arke> jf__: wait a few minutes, there's a project meeting going on
+19:03:15 <kohsuke> And that brings me to the final topic...
+19:03:19 <kohsuke> #topic next meeting time
+19:03:37 <kohsuke> 2 weeks from now same time?
+19:04:03 <kohsuke> (going back to rtyler's theme it'd be nice to try having a meeting in a time that those JUC Tokyo folks can attend)
+19:04:21 <kohsuke> but probably not for the next time
+19:04:25 <hare_brain> That would be 4/4 for people not in front of a calendar.
+19:04:30 <abayer> I've expressed my support for rotating meeting times in the past.
+19:04:38 <abayer> But yeah, 4/4 same time is good.
+19:05:00 <kohsuke> #agreed next meeting is 4/4 same time
+19:05:09 <kohsuke> And I think that's it for today.
+19:05:13 <kohsuke> Thanks everyone
+19:05:19 <kohsuke> #endmeeting

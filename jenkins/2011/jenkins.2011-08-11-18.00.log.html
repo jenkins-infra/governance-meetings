@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:56</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">abayer rtyler</span>
+<a name="l-4"></a><span class="tm">18:01:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer rtyler</span>
+<a name="l-5"></a><span class="tm">18:01:15</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:01:19</span><span class="nk"> &lt;abayer&gt;</span> So we have an agenda! https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-7"></a><span class="tm">18:02:19</span><span class="nk"> &lt;abayer&gt;</span> What's the command to change subject?
+<a name="l-8"></a><span class="tm">18:02:25</span><span class="nk"> &lt;kohsuke&gt;</span> hang in there...
+<a name="l-9"></a><span class="tm">18:02:28</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-10"></a><span class="tm">18:02:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Plugin deprecations https://wiki.jenkins-ci.org/display/JENKINS/Proposed+Plugin+Deprecation</span>
+<a name="l-11"></a><span class="tm">18:02:48</span><span class="nk"> &lt;kohsuke&gt;</span> The only command you should remember is pound-info and pound-idea
+<a name="l-12"></a><span class="tm">18:03:06</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">Ok, this one's my baby. We've got a bunch of plugins that do more or less the same thing, and that's causing confusion, duplication of effort, etc.</span>
+<a name="l-13"></a><span class="tm">18:03:45</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">I propose we comb the plugin list to find possible duplications and when possible, deprecate older plugins in favor of newer ones providing the same functionality and possibly more.</span>
+<a name="l-14"></a><span class="tm">18:04:08</span><span class="nk"> &lt;kohsuke&gt;</span> what's the migration story for users using them?
+<a name="l-15"></a><span class="tm">18:04:16</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">e.g., the ones that prompted this - envfile and setenv have all their behavior incorporated into envinject.</span>
+<a name="l-16"></a><span class="tm">18:04:23</span><span class="nk"> &lt;myusuf3&gt;</span> abayer, it would be nice if there was a place to see all the available plugins
+<a name="l-17"></a><span class="tm">18:04:41</span><span class="nk"> &lt;abayer&gt;</span> In the case of envinject, gbois has already added automatic migration of config info from envfile and setsenv.
+<a name="l-18"></a><span class="tm">18:04:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">myusuf3:</span> that's your update center
+<a name="l-19"></a><span class="tm">18:04:50</span><span class="nk"> &lt;kohsuke&gt;</span> but I guess we can auto-generate Wiki page for it
+<a name="l-20"></a><span class="tm">18:05:01</span><span class="nk"> &lt;kohsuke&gt;</span> ah, nice
+<a name="l-21"></a><span class="tm">18:05:13</span><span class="nk"> &lt;kohsuke&gt;</span> let me see how that works...
+<a name="l-22"></a><span class="tm">18:05:40</span><span class="nk"> &lt;abayer&gt;</span> My work-in-progress proposal needs to get wrapped up and wiki'd, but the gist is that we'd record deprecated plugins and their replacements in a properties file in the update center generator.
+<a name="l-23"></a><span class="tm">18:05:42</span><span class="nk"> &lt;myusuf3&gt;</span> i am not sure how much effort you guys would like to put behind it
+<a name="l-24"></a><span class="tm">18:06:10</span><span class="nk"> &lt;myusuf3&gt;</span> but it would nice to have a clean changelog for plugins, without the super old comments.
+<a name="l-25"></a><span class="tm">18:06:19</span><span class="nk"> &lt;abayer&gt;</span> Along with an optional groovy migration script, so that we don't need to have the replacement plugins depend on the old ones or have all their config information defined, etc.
+<a name="l-26"></a><span class="tm">18:06:23</span><span class="nk"> &lt;myusuf3&gt;</span> confusing everyone.
+<a name="l-27"></a><span class="tm">18:07:03</span><span class="nk"> &lt;abayer&gt;</span> And then when generating the update center, the deprecated plugins' entries would magically be replaced (with the same key) with the new one, with a flag that it's a deprecation replacement and the optional migration script added.
+<a name="l-28"></a><span class="tm">18:07:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">IIUC the migration implementation in envinject plugin is quite transparent and also backward compatible</span>
+<a name="l-29"></a><span class="tm">18:07:39</span><span class="nk"> &lt;abayer&gt;</span> The UI for upgrades would say "Hey, plugin X is deprecated in favor of plugin Y - check here to migrate".
+<a name="l-30"></a><span class="tm">18:07:49</span><span class="nk"> &lt;abayer&gt;</span> And if there was a migration script, it'd be run.
+<a name="l-31"></a><span class="tm">18:07:50</span><span class="nk"> &lt;kohsuke&gt;</span> It doesn't modify configuration on disk eagerly, so you can upgrade/downgrade
+<a name="l-32"></a><span class="tm">18:08:01</span><span class="nk"> &lt;abayer&gt;</span> Then the old plugin gets disabled, but not removed.
+<a name="l-33"></a><span class="tm">18:08:06</span><span class="nk"> &lt;abayer&gt;</span> Like I said, very rough.
+<a name="l-34"></a><span class="tm">18:08:29</span><span class="nk"> &lt;abayer&gt;</span> I'll get the wiki entry up today. I just wanted to make sure we got this talked about, because we've got bloat problems in the plugin count.
+<a name="l-35"></a><span class="tm">18:08:56</span><span class="nk"> &lt;jieryn&gt;</span> even if we just mark plugins as deprecated, and have that appear somehow in the manage plugins area .... that'd be a good start
+<a name="l-36"></a><span class="tm">18:09:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-37"></a><span class="tm">18:09:16</span><span class="nk"> &lt;kutzi&gt;</span> +1
+<a name="l-38"></a><span class="tm">18:09:18</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">jieryn:</span> I still think there's no reason why we can't do more pretty easily. =)
+<a name="l-39"></a><span class="tm">18:09:21</span><span class="nk"> &lt;kohsuke&gt;</span> I'd like to point out that envinject is better than the git-plugin migration story you are thinking.
+<a name="l-40"></a><span class="tm">18:09:28</span><span class="nk"> &lt;jieryn&gt;</span> i'm all for that :)
+<a name="l-41"></a><span class="tm">18:09:35</span><span class="nk"> &lt;myusuf3&gt;</span> If you give me a way to get at the list for plugin database; I would write something that would help do this real quick in django
+<a name="l-42"></a><span class="tm">18:09:55</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> Oh, it definitely is, but the git plugin situation is hairy since I want to junk the whole old one, including some config options, etc.
+<a name="l-43"></a><span class="tm">18:10:03</span><span class="nk"> &lt;kohsuke&gt;</span> In this case we can simply present envinject as an upgrade to any envfile.
+<a name="l-44"></a><span class="tm">18:10:19</span><span class="nk"> &lt;kohsuke&gt;</span> and likewise downgrade
+<a name="l-45"></a><span class="tm">18:11:03</span><span class="nk"> &lt;kohsuke&gt;</span> I'd personally love to see other deprecation upgrade path offer the same degree of experience.
+<a name="l-46"></a><span class="tm">18:11:04</span><span class="nk"> &lt;abayer&gt;</span> In any case, I'm not talking about this here for the git plugin - more for the cases that already exist.
+<a name="l-47"></a><span class="tm">18:11:19</span><span class="nk"> &lt;kohsuke&gt;</span> And have UX around this
+<a name="l-48"></a><span class="tm">18:11:41</span><span class="nk"> &lt;kohsuke&gt;</span> I guess what I'm saying is I'm not sure if you can treat this and your git-plugin situation in the same bucket
+<a name="l-49"></a><span class="tm">18:12:14</span><span class="nk"> &lt;harpreet&gt;</span> <span class="hi">kohsuke:</span> Hi, I have a small question, in multi configuration project (configured with multiple slaves per platform) is it possible to get same changelog with evry build (INFO: I have old hudson yet, so if that feature has been added in the newer releases then, thanks in advance).
+<a name="l-50"></a><span class="tm">18:13:02</span><span class="nk"> &lt;bap2000&gt;</span> <span class="hi">kohsuke:</span> with some of my plugins, I decided to create new names, and start again because I had zero confidence of the state of the original configuration, or of the actual behaviou
+<a name="l-51"></a><span class="tm">18:13:05</span><span class="nk"> &lt;harpreet&gt;</span> I am asking this as with the change in the slave the changelog changes accross slaves.
+<a name="l-52"></a><span class="tm">18:13:09</span><span class="nk"> &lt;kohsuke&gt;</span> IOW, wouldn't this call for two different mechanisms?
+<a name="l-53"></a><span class="tm">18:13:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">harpreet:</span> we'll come back around to general support stuff after our project meeting
+<a name="l-54"></a><span class="tm">18:13:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">harpreet:</span> let's postpone questions until after the meeting
+<a name="l-55"></a><span class="tm">18:13:44</span><span class="nk"> &lt;sjakubowski&gt;</span> when are you guys expecting to finish?
+<a name="l-56"></a><span class="tm">18:13:52</span><span class="nk"> &lt;sjakubowski&gt;</span> the meeting
+<a name="l-57"></a><span class="tm">18:13:56</span><span class="nk"> &lt;rtyler&gt;</span> 45 minutes I would assume
+<a name="l-58"></a><span class="tm">18:13:57</span><span class="nk"> &lt;bap2000&gt;</span> I did not want to completely break someones setup, or start running code on a host that it was not expected to run on
+<a name="l-59"></a><span class="tm">18:13:58</span><span class="nk"> &lt;abayer&gt;</span> kohsuke, bap2000: Yeah. In some cases, it might just make sense to remove the existing plugin from the update center altogether.
+<a name="l-60"></a><span class="tm">18:14:02</span><span class="nk"> &lt;harpreet&gt;</span> sorry, will wait
+<a name="l-61"></a><span class="tm">18:14:10</span><span class="nk"> &lt;sjakubowski&gt;</span> 3pm EST? ok, thanks.
+<a name="l-62"></a><span class="tm">18:14:29</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to write up his proposal for deprecated plugin behavior in the update center on the wiki</span>
+<a name="l-63"></a><span class="tm">18:14:31</span><span class="nk"> &lt;jieryn&gt;</span> probably 3pm EDT
+<a name="l-64"></a><span class="tm">18:14:42</span><span class="nk"> &lt;bap2000&gt;</span> yep, allow an admin to make a concious choice of when and how to upgrade
+<a name="l-65"></a><span class="tm">18:14:46</span><span class="nk"> &lt;jieryn&gt;</span> EDT != EST .. sorry &lt;/nitpick&gt;
+<a name="l-66"></a><span class="tm">18:15:11</span><span class="nk"> &lt;abayer&gt;</span> So are we agreed that the principle (by some method getting deprecated/obsolete/replaced plugins out of the update center) is a good one?
+<a name="l-67"></a><span class="tm">18:15:19</span><span class="nk"> &lt;abayer&gt;</span> With the question being implementation?
+<a name="l-68"></a><span class="tm">18:15:26</span><span class="nk"> &lt;bap2000&gt;</span> obviously a seamless automatic upgrade is preferable
+<a name="l-69"></a><span class="tm">18:15:57</span><span class="nk"> &lt;kohsuke&gt;</span> +1 to the upgrade story
+<a name="l-70"></a><span class="tm">18:16:11</span><span class="nk"> &lt;jieryn&gt;</span> maybe some custom MANIFEST entry for deprecated
+<a name="l-71"></a><span class="tm">18:16:28</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Review deprecation implementation ideas next meeting?</span>
+<a name="l-72"></a><span class="tm">18:16:34</span><span class="nk"> &lt;jieryn&gt;</span> k
+<a name="l-73"></a><span class="tm">18:16:45</span><span class="nk"> &lt;kohsuke&gt;</span> And +1 to marking deprecated plugins (in some loose sense) that signals people to go look another plugin.
+<a name="l-74"></a><span class="tm">18:16:51</span><span class="nk"> &lt;abayer&gt;</span> I just wanted to be sure this was worth pursuing in the first place. =)
+<a name="l-75"></a><span class="tm">18:17:05</span><span class="nk"> &lt;rtyler&gt;</span> seems so :)
+<a name="l-76"></a><span class="tm">18:17:06</span><span class="nk"> &lt;bap2000&gt;</span> <span class="hi">abayer:</span> yes
+<a name="l-77"></a><span class="tm">18:17:07</span><span class="nk"> &lt;olamy_&gt;</span> <span class="hi">jieryn:</span> agree why not modyfing hpi with adding a flag
+<a name="l-78"></a><span class="tm">18:17:32</span><span class="nk"> &lt;jieryn&gt;</span> that'd be better, no new release / deploy required
+<a name="l-79"></a><span class="tm">18:17:33</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Plugin deprecation is good. Implementation ideas are also good. Write 'em on the wiki, review 'em next week.</span>
+<a name="l-80"></a><span class="tm">18:17:34</span><span class="nk"> &lt;kohsuke&gt;</span> I suppose another part of it is to help spread the techniques for plugin devs to preserve/migrate configuration
+<a name="l-81"></a><span class="tm">18:18:16</span><span class="nk"> &lt;kohsuke&gt;</span> We've identified at least two techniques thus far --- one that gbois used, another that we need for abayer
+<a name="l-82"></a><span class="tm">18:18:24</span><span class="nk"> &lt;kutzi&gt;</span> And also how to unit test thta the migration works ;)
+<a name="l-83"></a><span class="tm">18:18:34</span><span class="nk"> &lt;kohsuke&gt;</span> rigth
+<a name="l-84"></a><span class="tm">18:18:49</span><span class="nk"> &lt;kohsuke&gt;</span> that can be tested too already.
+<a name="l-85"></a><span class="tm">18:19:11</span><span class="nk"> &lt;kohsuke&gt;</span> Need to evangelize how
+<a name="l-86"></a><span class="tm">18:19:29</span><span class="nk"> &lt;abayer&gt;</span> Can we move to the next topic? I've got a meeting in not too long =)
+<a name="l-87"></a><span class="tm">18:19:41</span><span class="nk"> &lt;kohsuke&gt;</span> yes
+<a name="l-88"></a><span class="tm">18:19:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins User Conference http://jenkins-ci.org/content/jenkins-user-conference</span>
+<a name="l-89"></a><span class="tm">18:19:50</span><span class="nk"> &lt;bap2000&gt;</span> How do we handle the case where the old and the new are both installed?
+<a name="l-90"></a><span class="tm">18:20:02</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">bap2000:</span> see proposals to come. =)
+<a name="l-91"></a><span class="tm">18:20:09</span><span class="nk"> &lt;bap2000&gt;</span> k
+<a name="l-92"></a><span class="tm">18:20:10</span><span class="nk"> &lt;abayer&gt;</span> So yeah, JUC!
+<a name="l-93"></a><span class="tm">18:20:16</span><span class="nk"> &lt;abayer&gt;</span> October 2nd!
+<a name="l-94"></a><span class="tm">18:20:18</span><span class="nk"> &lt;abayer&gt;</span> Submit talks!
+<a name="l-95"></a><span class="tm">18:20:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">bap2000:</span> I expect the metadata in plugin to signal Jenkins to reject that
+<a name="l-96"></a><span class="tm">18:20:23</span><span class="nk"> &lt;abayer&gt;</span> Also come!
+<a name="l-97"></a><span class="tm">18:20:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">If we have a bit of time, I'd love to hear what kind of talks people want to hear</span>
+<a name="l-98"></a><span class="tm">18:21:33</span><span class="nk"> &lt;kohsuke&gt;</span> It helps us reaching out to the right people.
+<a name="l-99"></a><span class="tm">18:21:54</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">kohsuke:</span> I think they would like to see a lot of "Jenkins in action"
+<a name="l-100"></a><span class="tm">18:22:02</span><span class="nk"> &lt;aheritier&gt;</span> In many contexts
+<a name="l-101"></a><span class="tm">18:22:21</span><span class="nk"> &lt;kohsuke&gt;</span> So actual war stories from users about how they do it, what did/didn't work, etc?
+<a name="l-102"></a><span class="tm">18:22:25</span><span class="nk"> &lt;aheritier&gt;</span> And perhaps few of them could be interested to have hands in the code
+<a name="l-103"></a><span class="tm">18:22:46</span><span class="nk"> &lt;abayer&gt;</span> I love the idea of a cowboyd talk on Ruby plugins. =)
+<a name="l-104"></a><span class="tm">18:22:48</span><span class="nk"> &lt;aheritier&gt;</span> yes
+<a name="l-105"></a><span class="tm">18:23:14</span><span class="nk"> &lt;aheritier&gt;</span> perhaps you may find also someone who can compare Jenkins with others CI
+<a name="l-106"></a><span class="tm">18:23:24</span><span class="nk"> &lt;kohsuke&gt;</span> My assumptoin is that Hackathon won't fit very well with JUC, since it tends to work better with smaller number of people, and it takes a lot of time
+<a name="l-107"></a><span class="tm">18:23:34</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">aheritier:</span> That could get a bit…political. =)
+<a name="l-108"></a><span class="tm">18:23:36</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">kohsuke:</span> I agree
+<a name="l-109"></a><span class="tm">18:23:58</span><span class="nk"> &lt;kohsuke&gt;</span> Does it make sense to schedule hackathon on another day?
+<a name="l-110"></a><span class="tm">18:24:09</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> Why ? because Jenkins is the best one ? I'm sure we can find some wrong things about it :-)
+<a name="l-111"></a><span class="tm">18:24:13</span><span class="nk"> &lt;abayer&gt;</span> heehee
+<a name="l-112"></a><span class="tm">18:24:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> probably, not sure how many folks will be in town for JUC and/or JavaOne
+<a name="l-113"></a><span class="tm">18:24:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> I can list a LOT ;)
+<a name="l-114"></a><span class="tm">18:24:38</span><span class="nk"> &lt;rtyler&gt;</span> if you filter out ones that refer to the git plugin, it might be a much smaller list ;)
+<a name="l-115"></a><span class="tm">18:24:49</span><span class="nk"> &lt;aheritier&gt;</span> A User conf need to focus on users, not on contributors/developpers, thus use cases ....
+<a name="l-116"></a><span class="tm">18:24:57</span><span class="nk"> &lt;rtyler&gt;</span> agreed
+<a name="l-117"></a><span class="tm">18:25:11</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-118"></a><span class="tm">18:25:25</span><span class="nk"> &lt;aheritier&gt;</span> and there are a lot of usecases
+<a name="l-119"></a><span class="tm">18:25:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I think a later in the week hackathon is a good idea, but probably should be tabled until the javaone schedules are a bit clearer
+<a name="l-120"></a><span class="tm">18:25:28</span><span class="nk"> &lt;aheritier&gt;</span> various technos
+<a name="l-121"></a><span class="tm">18:25:34</span><span class="nk"> &lt;aheritier&gt;</span> build, continuous deployment ...
+<a name="l-122"></a><span class="tm">18:25:50</span><span class="nk"> &lt;aheritier&gt;</span> some are managing infra instead of a crontab ….
+<a name="l-123"></a><span class="tm">18:26:49</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I think that was good input
+<a name="l-124"></a><span class="tm">18:26:56</span><span class="nk"> &lt;abayer&gt;</span> I actually have to run in a minute - could we quickly hit the olamy_ as owner on jenkinsci on github question? =)
+<a name="l-125"></a><span class="tm">18:27:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">olamy_ as owner on jenkinsci on github question</span>
+<a name="l-126"></a><span class="tm">18:27:28</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">olamy_ should be added as an owner.</span>
+<a name="l-127"></a><span class="tm">18:27:29</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-128"></a><span class="tm">18:27:36</span><span class="nk"> &lt;olamy_&gt;</span> heh
+<a name="l-129"></a><span class="tm">18:27:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-130"></a><span class="tm">18:27:40</span><span class="nk"> &lt;rtyler&gt;</span> also
+<a name="l-131"></a><span class="tm">18:27:43</span><span class="nk"> &lt;rtyler&gt;</span> autocomplete, really
+<a name="l-132"></a><span class="tm">18:27:45</span><span class="nk"> &lt;aheritier&gt;</span> +1
+<a name="l-133"></a><span class="tm">18:27:57</span><span class="nk"> &lt;abayer&gt;</span> I'd like to get a European person with admin, and olamy seems the logical choice.
+<a name="l-134"></a><span class="tm">18:28:08</span><span class="nk"> &lt;kohsuke&gt;</span> Out of curiosity, what is that the current admin bot doesn't do that needs manual work?
+<a name="l-135"></a><span class="tm">18:28:30</span><span class="nk"> &lt;aheritier&gt;</span> reboot Confluence ?
+<a name="l-136"></a><span class="tm">18:28:34</span><span class="nk"> &lt;abayer&gt;</span> This was prompted when olamy_ needed some mail hook added or something, I don't remember the details. =)
+<a name="l-137"></a><span class="tm">18:28:41</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">aheritier:</span> here I'm actually just talking about Github.
+<a name="l-138"></a><span class="tm">18:28:44</span><span class="nk"> &lt;jieryn&gt;</span> +1 olamy
+<a name="l-139"></a><span class="tm">18:28:48</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> ok
+<a name="l-140"></a><span class="tm">18:28:52</span><span class="nk"> &lt;rtyler&gt;</span> IMHO not everything should/needs to be in jenkins-admin &lt;_&lt;
+<a name="l-141"></a><span class="tm">18:28:57</span><span class="nk"> &lt;aheritier&gt;</span> About GitHub I don't see
+<a name="l-142"></a><span class="tm">18:29:01</span><span class="nk"> &lt;abayer&gt;</span> I just like the idea of redundancy.
+<a name="l-143"></a><span class="tm">18:29:12</span><span class="nk"> &lt;abayer&gt;</span> Right now, it's just me, mindless, kohsuke.
+<a name="l-144"></a><span class="tm">18:29:13</span><span class="nk"> &lt;olamy_&gt;</span> follow the sun !
+<a name="l-145"></a><span class="tm">18:29:39</span><span class="nk"> &lt;aheritier&gt;</span> All those who are admin here can play with the bot ?
+<a name="l-146"></a><span class="tm">18:29:41</span><span class="nk"> &lt;abayer&gt;</span> It's not a huge deal, obviously, but if there's no opposition, it can't hurt. =)
+<a name="l-147"></a><span class="tm">18:29:47</span><span class="nk"> &lt;kohsuke&gt;</span> For example, bot sets up the email hook so that commit msgs come to the right list.
+<a name="l-148"></a><span class="tm">18:29:56</span><span class="nk"> &lt;abayer&gt;</span> Say, if the bot's down overnight US time or something.
+<a name="l-149"></a><span class="tm">18:29:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">aheritier:</span> anyone with voice
+<a name="l-150"></a><span class="tm">18:30:12</span><span class="nk"> &lt;kohsuke&gt;</span> so you included
+<a name="l-151"></a><span class="tm">18:30:16</span><span class="nk"> &lt;aheritier&gt;</span> ok thus there are many people with voice ?
+<a name="l-152"></a><span class="tm">18:30:21</span><span class="nk"> &lt;kohsuke&gt;</span> exactly.
+<a name="l-153"></a><span class="tm">18:30:33</span><span class="nk"> &lt;aheritier&gt;</span> in that case what loamy could do more ?
+<a name="l-154"></a><span class="tm">18:30:39</span><span class="nk"> &lt;abayer&gt;</span> Redundancy.
+<a name="l-155"></a><span class="tm">18:30:56</span><span class="nk"> &lt;abayer&gt;</span> Renaming repos, adding someone to core, etc.
+<a name="l-156"></a><span class="tm">18:31:02</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> I agree, if there is something he cannot do with the bot
+<a name="l-157"></a><span class="tm">18:31:03</span><span class="nk"> &lt;bap2000&gt;</span> <span class="hi">aheritier:</span> admin guthub org
+<a name="l-158"></a><span class="tm">18:31:38</span><span class="nk"> &lt;kohsuke&gt;</span> I'm not opposing it, but I want to make sure that the admin bot is used to do most of the work.
+<a name="l-159"></a><span class="tm">18:31:39</span><span class="nk"> &lt;aheritier&gt;</span> In any case I agree to give him more credentials
+<a name="l-160"></a><span class="tm">18:31:41</span><span class="nk"> &lt;abayer&gt;</span> I don't expect this'll almost ever be an issue,but just in case sort of thing.
+<a name="l-161"></a><span class="tm">18:31:43</span><span class="nk"> &lt;bap2000&gt;</span> <span class="hi">olamy:</span> GH org owner +1
+<a name="l-162"></a><span class="tm">18:31:53</span><span class="nk"> &lt;rtyler&gt;</span> let's move on,  I'm hungry :D
+<a name="l-163"></a><span class="tm">18:31:58</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> Oh, agreed wholeheartedly. But for one-off tasks, etc.
+<a name="l-164"></a><span class="tm">18:32:01</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-165"></a><span class="tm">18:32:05</span><span class="nk"> &lt;aheritier&gt;</span> but I'm not sure we have often some important/critical/urgent tasks with github
+<a name="l-166"></a><span class="tm">18:32:08</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">olamy's an owner....now!</span>
+<a name="l-167"></a><span class="tm">18:32:28</span><span class="nk"> &lt;kohsuke&gt;</span> next topic?
+<a name="l-168"></a><span class="tm">18:32:41</span><span class="nk"> &lt;abayer&gt;</span> Yup. And I'm going AFK for a meeting. =)
+<a name="l-169"></a><span class="tm">18:33:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark Registration Status</span>
+<a name="l-170"></a><span class="tm">18:33:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">so the ball started rolling between SPI and us</span>
+<a name="l-171"></a><span class="tm">18:33:48</span><span class="nk"> &lt;kohsuke&gt;</span> It's been in limbo for a while as my e-mail waited moderator approval by their board list
+<a name="l-172"></a><span class="tm">18:34:03</span><span class="nk"> &lt;kohsuke&gt;</span> But I need to get back to that e-mail thread.
+<a name="l-173"></a><span class="tm">18:34:21</span><span class="nk"> &lt;kohsuke&gt;</span> So the cat isn't in the bag yet.
+<a name="l-174"></a><span class="tm">18:34:35 </span><span class="nka">* rtyler</span> <span class="ac">isn't sure that's how the expression works</span>
+<a name="l-175"></a><span class="tm">18:34:35</span><span class="nk"> &lt;kohsuke&gt;</span> That's the update from me.
+<a name="l-176"></a><span class="tm">18:35:00</span><span class="nk"> &lt;kohsuke&gt;</span> I keep saying you are my English teacher for a reason!
+<a name="l-177"></a><span class="tm">18:35:10</span><span class="nk"> &lt;rtyler&gt;</span> i'll explain after the meeting :)
+<a name="l-178"></a><span class="tm">18:35:16</span><span class="nk"> &lt;rtyler&gt;</span> anyways, what's up next, LTS?
+<a name="l-179"></a><span class="tm">18:35:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Kohsuke wanted to discuss this (JENKINS-9488 - align topbar colors): https://github.com/jenkinsci/jenkins/pull/179</span>
+<a name="l-180"></a><span class="tm">18:35:29</span><span class="nk"> &lt;rtyler&gt;</span> or that one
+<a name="l-181"></a><span class="tm">18:35:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">so there's a pending request to change the color of the top bar of Jenkins UI</span>
+<a name="l-182"></a><span class="tm">18:35:58</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-9488:align color palette used in Jenkins with jenkins-ci.org and issues.jenkins-ci.org (Open) http://jenkins-ci.org/issue/9488
+<a name="l-183"></a><span class="tm">18:35:59</span><span class="nk"> &lt;aheritier&gt;</span> Funny 9488 : I remember having proposed it a long time ago in the chat.
+<a name="l-184"></a><span class="tm">18:35:59</span><span class="nk"> &lt;kohsuke&gt;</span> from current blue + orange to black + red, the same colors used in wiki and issues
+<a name="l-185"></a><span class="tm">18:36:09</span><span class="nk"> &lt;aheritier&gt;</span> +1 from me
+<a name="l-186"></a><span class="tm">18:36:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">one point I'd like to make is that the current color came from the same palette that's used for all the other icons</span>
+<a name="l-187"></a><span class="tm">18:36:42</span><span class="nk"> &lt;rtyler&gt;</span> I'm definitely on board, but the colors on the wiki are not pure black -_-
+<a name="l-188"></a><span class="tm">18:36:45</span><span class="nk"> &lt;aheritier&gt;</span> As it will be more coherent and it will make us a little bit different
+<a name="l-189"></a><span class="tm">18:37:02 </span><span class="nka">* olamy</span> <span class="ac">tested the pull request and like it</span>
+<a name="l-190"></a><span class="tm">18:37:05</span><span class="nk"> &lt;kohsuke&gt;</span> and the same color palette is used for hyperlinks, trend graphs, blue/red/yellow ball, etc.
+<a name="l-191"></a><span class="tm">18:37:16</span><span class="nk"> &lt;kohsuke&gt;</span> So I'm bit mixed about the change
+<a name="l-192"></a><span class="tm">18:37:26</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">kohsuke:</span> the palette must be documented in the wiki
+<a name="l-193"></a><span class="tm">18:37:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">olamy:</span> can you post a screenshot?'
+<a name="l-194"></a><span class="tm">18:37:38</span><span class="nk"> &lt;aheritier&gt;</span> and I agree we need to be sure to use it everywhere
+<a name="l-195"></a><span class="tm">18:37:56</span><span class="nk"> &lt;olamy&gt;</span> arf I have reverted locally
+<a name="l-196"></a><span class="tm">18:38:03</span><span class="nk"> &lt;jieryn&gt;</span> does this highlight a larger need for an easier to theme/skin jenkins?
+<a name="l-197"></a><span class="tm">18:38:38</span><span class="nk"> &lt;aheritier&gt;</span> I'm also interested in skinning capabilities but it is  a larger subject I think
+<a name="l-198"></a><span class="tm">18:38:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jieryn:</span> I don't think so, I think this is just a matter of our branding being woefully dated
+<a name="l-199"></a><span class="tm">18:38:46</span><span class="nk"> &lt;rtyler&gt;</span> (theming is a different can of worms)
+<a name="l-200"></a><span class="tm">18:39:14</span><span class="nk"> &lt;kohsuke&gt;</span> or does this mean we should look at changing other colors at the same time? The new palette uses different blue &amp; red
+<a name="l-201"></a><span class="tm">18:39:43</span><span class="nk"> &lt;olamy&gt;</span> <span class="hi">ahertiter:</span> some company/organisations like to have their own design
+<a name="l-202"></a><span class="tm">18:40:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> we do have the color pallette up here: https://wiki.jenkins-ci.org/display/JENKINS/Logo
+<a name="l-203"></a><span class="tm">18:40:19</span><span class="nk"> &lt;rtyler&gt;</span> IMHO it's definitely time to start using it
+<a name="l-204"></a><span class="tm">18:40:25</span><span class="nk"> &lt;jieryn&gt;</span> ..this is possibly the first literal bike-shedding in a software project i've ever seen..
+<a name="l-205"></a><span class="tm">18:40:35</span><span class="nk"> &lt;jieryn&gt;</span> we are literally debating colors
+<a name="l-206"></a><span class="tm">18:40:38</span><span class="nk"> &lt;rtyler&gt;</span> woot!
+<a name="l-207"></a><span class="tm">18:40:42</span><span class="nk"> &lt;kohsuke&gt;</span> And this is the one currently in use http://tango.freedesktop.org/Tango_Icon_Theme_Guidelines
+<a name="l-208"></a><span class="tm">18:41:11</span><span class="nk"> &lt;rtyler&gt;</span> aha
+<a name="l-209"></a><span class="tm">18:42:22</span><span class="nk"> &lt;kohsuke&gt;</span> I'm fine either way but I was inclined to keep the current one
+<a name="l-210"></a><span class="tm">18:42:45</span><span class="nk"> &lt;jieryn&gt;</span> i'd prefer to keep the original one unless we're going to wholesale replace the ui for easy theming, via extension or whatever
+<a name="l-211"></a><span class="tm">18:44:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">screenshot: http://postimage.org/image/2u9iq9v0k/</span>
+<a name="l-212"></a><span class="tm">18:44:27</span><span class="nk"> &lt;rtyler&gt;</span> that looks good to me
+<a name="l-213"></a><span class="tm">18:44:42</span><span class="nk"> &lt;aheritier&gt;</span> +1 for me IF everything is updated (links …)
+<a name="l-214"></a><span class="tm">18:44:48</span><span class="nk"> &lt;kutzi&gt;</span> like it, too
+<a name="l-215"></a><span class="tm">18:45:15</span><span class="nk"> &lt;kutzi&gt;</span> should we ask the users as they will be using it?
+<a name="l-216"></a><span class="tm">18:45:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> do you think imod might be open to expanding his commit a bit? :)
+<a name="l-217"></a><span class="tm">18:45:31</span><span class="nk"> &lt;kohsuke&gt;</span> doesn't hurt to ask
+<a name="l-218"></a><span class="tm">18:45:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kutzi:</span> that's an even scarier bike shedding opportunity
+<a name="l-219"></a><span class="tm">18:45:38</span><span class="nk"> &lt;rtyler&gt;</span> xD
+<a name="l-220"></a><span class="tm">18:45:52</span><span class="nk"> &lt;kohsuke&gt;</span> OK, let's ask him or others to push this effort bit further then
+<a name="l-221"></a><span class="tm">18:46:03</span><span class="nk"> &lt;kohsuke&gt;</span> If enough people care to do it and it happens, then we'll swap
+<a name="l-222"></a><span class="tm">18:46:13</span><span class="nk"> &lt;bap2000&gt;</span> aren't the links the browser default?
+<a name="l-223"></a><span class="tm">18:46:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">bap2000:</span> actually, no
+<a name="l-224"></a><span class="tm">18:46:46</span><span class="nk"> &lt;bap2000&gt;</span> ok - looks like it to me o_O
+<a name="l-225"></a><span class="tm">18:46:47</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we move on to next topic?
+<a name="l-226"></a><span class="tm">18:46:48</span><span class="nk"> &lt;kutzi&gt;</span> <span class="hi">rtyler:</span> you have to explain me later what that phrase means
+<a name="l-227"></a><span class="tm">18:46:55 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-228"></a><span class="tm">18:47:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> IMHO yep
+<a name="l-229"></a><span class="tm">18:47:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic</span><span class="topicline">: When is it time to release a new LTS release?</span>
+<a name="l-230"></a><span class="tm">18:47:14</span><span class="nk"> &lt;rtyler&gt;</span> where's hare_brain for this one :/
+<a name="l-231"></a><span class="tm">18:47:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> ping
+<a name="l-232"></a><span class="tm">18:47:30</span><span class="nk"> &lt;kohsuke&gt;</span> Doesn't look like we have the right guys here
+<a name="l-233"></a><span class="tm">18:47:34</span><span class="nk"> &lt;rtyler&gt;</span> damnit
+<a name="l-234"></a><span class="tm">18:47:39</span><span class="nk"> &lt;kutzi&gt;</span> I've put that on the agenda
+<a name="l-235"></a><span class="tm">18:47:42</span><span class="nk"> &lt;bap2000&gt;</span> how long has the fix for the jdk download been in the wild?
+<a name="l-236"></a><span class="tm">18:47:42</span><span class="nk"> &lt;kohsuke&gt;</span> but there are a couple of good remoting changes that are nice candidate
+<a name="l-237"></a><span class="tm">18:47:49</span><span class="nk"> &lt;kohsuke&gt;</span> yes, and that one, too
+<a name="l-238"></a><span class="tm">18:48:03</span><span class="nk"> &lt;rtyler&gt;</span> you're talking backporting or jumping the LTS branch forward?
+<a name="l-239"></a><span class="tm">18:48:15</span><span class="nk"> &lt;kohsuke&gt;</span> I was thinking backporting
+<a name="l-240"></a><span class="tm">18:48:23 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-241"></a><span class="tm">18:48:34</span><span class="nk"> &lt;kutzi&gt;</span> yes
+<a name="l-242"></a><span class="tm">18:49:10</span><span class="nk"> &lt;kohsuke&gt;</span> Although LTS release was June 8th, so according to our original plan of the record, it's time to start thinking about jumping to the next one
+<a name="l-243"></a><span class="tm">18:49:25</span><span class="nk"> &lt;kohsuke&gt;</span> one is due in 3 months.
+<a name="l-244"></a><span class="tm">18:49:38</span><span class="nk"> &lt;kohsuke&gt;</span> meaning Sep 8th
+<a name="l-245"></a><span class="tm">18:49:47</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> pong I;m sorry, I was AFK
+<a name="l-246"></a><span class="tm">18:50:08</span><span class="nk"> &lt;kohsuke&gt;</span> So we are talking about the next patch release of LTS
+<a name="l-247"></a><span class="tm">18:50:28</span><span class="nk"> &lt;kohsuke&gt;</span> so far JDK installer change and remoting changes are identified as candidates
+<a name="l-248"></a><span class="tm">18:51:04</span><span class="nk"> &lt;kohsuke&gt;</span> Do you have any other candidates?
+<a name="l-249"></a><span class="tm">18:51:05</span><span class="nk"> &lt;olamy&gt;</span> I like the change we made with imod
+<a name="l-250"></a><span class="tm">18:51:14</span><span class="nk"> &lt;olamy&gt;</span> for config file provider
+<a name="l-251"></a><span class="tm">18:51:37</span><span class="nk"> &lt;kohsuke&gt;</span> ticket id, any other reference? It doesn't ring a bell for me
+<a name="l-252"></a><span class="tm">18:51:55</span><span class="nk"> &lt;vjuranek&gt;</span> I'll have to look, but probably not other candidate right now on my mind
+<a name="l-253"></a><span class="tm">18:52:00</span><span class="nk"> &lt;olamy&gt;</span> oups no ticket
+<a name="l-254"></a><span class="tm">18:52:18</span><span class="nk"> &lt;kutzi&gt;</span> I would like to have JENKINS-6700
+<a name="l-255"></a><span class="tm">18:52:22</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-6700:Failure in test class constructor or @Before method is not reported (was: Maven plugin doesn't set build to unstable on SurefireExecutionException) (Resolved) http://jenkins-ci.org/issue/6700
+<a name="l-256"></a><span class="tm">18:52:58</span><span class="nk"> &lt;olamy&gt;</span> kohsuke : a new extension point see https://wiki.jenkins-ci.org/display/JENKINS/Config+File+Provider+Plugin
+<a name="l-257"></a><span class="tm">18:53:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">Kohsuke to run his script to identify tickets that are (1) marked as critical and (2) reported fixed in the trunk</span>
+<a name="l-258"></a><span class="tm">18:53:26</span><span class="nk"> &lt;kutzi&gt;</span> JENKINS-10346 might also be a candidate, but I cannot say if and how often it really shows in practice
+<a name="l-259"></a><span class="tm">18:53:27</span><span class="nk"> &lt;kohsuke&gt;</span> I was thinking the general rule of thumb is that this is bug fix only
+<a name="l-260"></a><span class="tm">18:53:29</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-10346:Race condition in creating fingerprints for artifacts (Resolved) http://jenkins-ci.org/issue/10346
+<a name="l-261"></a><span class="tm">18:53:47</span><span class="nk"> &lt;kohsuke&gt;</span> ah yes, this is a good one
+<a name="l-262"></a><span class="tm">18:54:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> would you be interested in backporting fixes? or would you like me to?
+<a name="l-263"></a><span class="tm">18:54:58</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> if you are bussy, I can do it
+<a name="l-264"></a><span class="tm">18:55:09</span><span class="nk"> &lt;kohsuke&gt;</span> thanks, if you can take a shot at it, that'd be awesome
+<a name="l-265"></a><span class="tm">18:55:25</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> ok, I'll do it
+<a name="l-266"></a><span class="tm">18:55:37</span><span class="nk"> &lt;vjuranek&gt;</span> I guess we talk about 1.409.2, right?
+<a name="l-267"></a><span class="tm">18:55:42</span><span class="nk"> &lt;kohsuke&gt;</span> yes
+<a name="l-268"></a><span class="tm">18:56:06</span><span class="nk"> &lt;kohsuke&gt;</span> when is the goal for a release? 3-4 weeks from now?
+<a name="l-269"></a><span class="tm">18:56:34</span><span class="nk"> &lt;kutzi&gt;</span> 3-4 weeks would be the next LTS branch, already, according to the original plan
+<a name="l-270"></a><span class="tm">18:57:58</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I'm thinking 1.409.2, and then to 1.42x.1, so it won't happen in 3 month cycle, and I think that's OK.
+<a name="l-271"></a><span class="tm">18:57:59</span><span class="nk"> &lt;bap2000&gt;</span> <span class="hi">kutzi:</span> right, but surely there's still support (backporting) for an overlap
+<a name="l-272"></a><span class="tm">18:58:09</span><span class="nk"> &lt;vjuranek&gt;</span> originally yes, on the other hand, does it make sense to do the release of 1.409.2 and one or two weeks later new major release?
+<a name="l-273"></a><span class="tm">18:58:41</span><span class="nk"> &lt;kohsuke&gt;</span> I suppose the other option is to skip 1.409.2 and go straight to the next 1.42x.1
+<a name="l-274"></a><span class="tm">18:59:25</span><span class="nk"> &lt;kutzi&gt;</span> or the 3 month period was to ambitious and we shift 1.42x.1
+<a name="l-275"></a><span class="tm">18:59:31</span><span class="nk"> &lt;kohsuke&gt;</span> yeah
+<a name="l-276"></a><span class="tm">18:59:42</span><span class="nk"> &lt;bap2000&gt;</span> .. but then everyone on the stable cycle is forced to immediately upgrade to get the jdk download working, and I'm not sure that's a nice experience for those wanting a more stable platform
+<a name="l-277"></a><span class="tm">18:59:53</span><span class="nk"> &lt;vjuranek&gt;</span> personally I prefer 1.409.2 and pospone 1.42x.1
+<a name="l-278"></a><span class="tm">18:59:59</span><span class="nk"> &lt;bap2000&gt;</span> +1
+<a name="l-279"></a><span class="tm">19:00:00</span><span class="nk"> &lt;jieryn&gt;</span> arent they broken already?
+<a name="l-280"></a><span class="tm">19:00:07</span><span class="nk"> &lt;jieryn&gt;</span> w/r/t jdk auto install
+<a name="l-281"></a><span class="tm">19:00:09</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, let's do 1.409.2
+<a name="l-282"></a><span class="tm">19:00:32</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, JDK install is already broken
+<a name="l-283"></a><span class="tm">19:00:56</span><span class="nk"> &lt;kutzi&gt;</span> So, there's agood reason to go to 1.42x.1 already, isn't it?
+<a name="l-284"></a><span class="tm">19:01:21</span><span class="nk"> &lt;kohsuke&gt;</span> But that's a fix planned to be backported into 409.2
+<a name="l-285"></a><span class="tm">19:01:28</span><span class="nk"> &lt;kohsuke&gt;</span> So either way users will get it
+<a name="l-286"></a><span class="tm">19:01:35</span><span class="nk"> &lt;kutzi&gt;</span> ah, yeah
+<a name="l-287"></a><span class="tm">19:02:12</span><span class="nk"> &lt;kutzi&gt;</span> okay, fine to have a 1.409.2 first
+<a name="l-288"></a><span class="tm">19:02:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">aiming 1.409.2 in 3-4 weeks, and then move to rebumping to 1.42x after that.</span>
+<a name="l-289"></a><span class="tm">19:02:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-290"></a><span class="tm">19:03:07</span><span class="nk"> &lt;kohsuke&gt;</span> I'm assuming 8/17 will be office hours and the next project meeting will be 8/24
+<a name="l-291"></a><span class="tm">19:03:36</span><span class="nk"> &lt;kohsuke&gt;</span> and we are back to the usual Wednesday time
+<a name="l-292"></a><span class="tm">19:03:50</span><span class="nk"> &lt;kohsuke&gt;</span> Is that OK?
+<a name="l-293"></a><span class="tm">19:03:55</span><span class="nk"> &lt;olamy&gt;</span> k
+<a name="l-294"></a><span class="tm">19:04:02</span><span class="nk"> &lt;kutzi&gt;</span> ok
+<a name="l-295"></a><span class="tm">19:04:04</span><span class="nk"> &lt;vjuranek&gt;</span> I;m fine with it
+<a name="l-296"></a><span class="tm">19:04:36</span><span class="nk"> &lt;kohsuke&gt;</span> All right. With that, we are done for the day.
+<a name="l-297"></a><span class="tm">19:04:40</span><span class="nk"> &lt;rtyler&gt;</span> /win11
+<a name="l-298"></a><span class="tm">19:04:42</span><span class="nk"> &lt;rtyler&gt;</span> whoops xD
+<a name="l-299"></a><span class="tm">19:04:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

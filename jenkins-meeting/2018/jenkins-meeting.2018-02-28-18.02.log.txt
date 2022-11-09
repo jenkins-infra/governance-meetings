@@ -1,0 +1,84 @@
+18:02:41 <danielbeck> #startmeeting
+18:02:41 <robobutler> Let the Jenkins meeting commence!
+18:02:44 <danielbeck> #chair rtyler kohsuke
+18:02:44 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:02:55 <danielbeck> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:03:08 <danielbeck> well, https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda?nocache
+18:03:25 <rtyler> sorry danielbeck, bouncing between all the tabs :)
+18:03:29 <danielbeck> #topic Recap last meeting's actions
+18:03:41 * rtyler was dealing with an alert
+18:03:44 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-02-14-18.00.html
+18:03:56 <danielbeck> oleg-nenashev two actions from you…?
+18:04:15 <oleg-nenashev> Blogpost - done
+18:04:24 <oleg-nenashev> Jumbotron - decided not to do that
+18:04:41 <danielbeck> okay, great
+18:04:46 <danielbeck> #topic LTS status check
+18:04:50 <danielbeck> ogondza around?
+18:05:05 * rtyler puts on his flame retardant suit
+18:05:07 <ogondza> right
+18:05:25 <ogondza> there were a discussion around reverting from 2.107
+18:05:33 <ogondza> or whether we should continue as suggested
+18:05:40 <danielbeck> #info https://groups.google.com/d/msg/jenkinsci-dev/7nR0_kI71xA/TNrMNVlmAAAJ
+18:06:00 <ogondza> no consensus, though most people felt for not-reverting
+18:06:02 <oleg-nenashev> I'd guess I am the only one who voted for fallback to 2.104
+18:06:15 <ogondza> oleg-nenashev, yes. and it is perfectly fine
+18:06:17 <oleg-nenashev> So likely there is a consensus
+18:06:21 <ogondza> ack
+18:06:32 <danielbeck> just not enough to investigate from the reporters :(
+18:06:33 <oleg-nenashev> I am fine with 2.107 since others vote for that
+18:06:51 <ogondza> https://issues.jenkins-ci.org/browse/JENKINS-49543 was backported on the last moment
+18:06:57 <ogondza> danielbeck, WDYM?
+18:07:04 <rtyler> markewaite: you have done some poking lately too haven't you?
+18:07:22 <danielbeck> ogondza I checked some of the issues oleg-nenashev was concerned about but not enough information to investigate further
+18:07:37 <oleg-nenashev> For the record, I am still concerned about landing JEP-200 and XML 1.1 at once. OTOH we need a PLEASE DO BACKUP in guidelines anyway
+18:08:08 <danielbeck> ogondza JENKINS-49498 :)
+18:08:08 <ogondza> right, for me this is a signal for next LTS baseline check as the extra soaking time would make this a lot easier
+18:08:20 <ogondza> s/check/selection/
+18:09:03 <markewaite> rtyler Yes, I've been running 2.107 in my test environment since the day it was selected as the version for the release candidate.  No failures that I detected.
+18:09:13 <oleg-nenashev> ogondza: Have you integrated my ping about JENKINS-49543?
+18:09:27 <ogondza> so, the tests are running with JENKINS-49543 in
+18:09:31 <ogondza> oleg-nenashev, ^
+18:09:38 <oleg-nenashev> thanks!
+18:09:52 <ogondza> unless it blows up, the (real) rc will be pushed tomorrow
+18:09:58 <danielbeck> oops, wrong link -- it's pretty minor but JENKINS-49387 seems irritating and simple
+18:10:27 <oleg-nenashev> Would be great to port JENKINS-49788 just in case, but I am fine if it waits till .2
+18:10:44 <oleg-nenashev> Could we finally add jenkins-admin to this chat? :)
+18:11:30 <danielbeck> 49388 is lacking urgency IMO
+18:11:30 <oleg-nenashev> JENKINS-49387 porting would be great for sure
+18:11:48 <danielbeck> 49387 is a very visible and confusing UI regression
+18:12:07 <ogondza> agreed JENKINS-49387 seem trivial
+18:13:13 <ogondza> so I will add that and _then_ it will be it
+18:13:24 <danielbeck> looking over the rest of https://issues.jenkins-ci.org/issues/?jql=labels %3D lts-candidate there's plenty that looks useful, but nothing that needs last minute inclusion
+18:13:38 <danielbeck> ogondza +1
+18:14:05 <ogondza> alright, I am done
+18:14:10 <danielbeck> \o/
+18:14:14 <oleg-nenashev> the reporter was grumbling that JENKINS-49498 is a security issue. I do not care much
+18:14:20 <rtyler> bitwiseman: you may want to consider some blogging effort around the next LTWS
+18:14:23 <rtyler> LTS* rather
+18:14:29 <danielbeck> oleg-nenashev it's been in there forever so ¯\_(ツ)_/¯
+18:14:49 <danielbeck> not great but a good .2 candidate IMO
+18:14:58 <oleg-nenashev> fine with me
+18:15:24 <bitwiseman> rtyler: giving a bump to JEP-200 and XML 1.1 change awareness.
+18:15:37 <oleg-nenashev> rtyler: Maybe I will set up a JOM about JEP-200 next week. TBD
+18:16:12 <danielbeck> anything else on LTS status?
+18:16:18 <rtyler> oleg-nenashev: if you wish to do a screencast, that's also something easy to arrange and embed in a blog post
+18:16:36 <oleg-nenashev> What is ETA of upgrade guideliness PR?
+18:16:41 <oleg-nenashev> danielbeck: ^^
+18:16:53 <danielbeck> before release?
+18:16:56 <danielbeck> as usual
+18:17:31 <oleg-nenashev> Would be nice to have them with 2-day advance so that I could review JEP-200 side carefully
+18:17:35 <danielbeck> right
+18:17:37 <danielbeck> got it
+18:17:44 <oleg-nenashev> Though probably I should write that section :D
+18:17:59 <danielbeck> #action danielbeck to write upgrade guide and publish PR on Monday before release for oleg-nenashev to review
+18:18:14 <oleg-nenashev> rtyler: Yeah, makes sense
+18:18:54 <danielbeck> can we move on?
+18:19:01 * oleg-nenashev wanted to write a JEP-200 post as well, but he probably needs to finish the FKA "January Remoting Update" blog-post
+18:19:09 <oleg-nenashev> yes, let's go
+18:19:10 <ogondza> moving on
+18:19:20 <danielbeck> #topic next meeting
+18:19:28 <oleg-nenashev> #action: oleg_nenashev to prepare a screencast about JEP-200
+18:19:33 <danielbeck> Mar 14
+18:19:56 <rtyler> woop
+18:20:00 <rtyler> beware the ides of march
+18:20:12 <danielbeck> #endmeeting

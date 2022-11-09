@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 18:02:29 UTC
+(<a href="jenkins.2011-07-06-18.02.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li><b class="TOPIC">How do we handle pull requests which are pending for a long time</b> <span class="details">(<a href='jenkins.2011-07-06-18.02.log.html#l-4'>kohsuke</a>, 18:03:08)</span>
+<ol type="a">
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">the pull
+    request bot should tell contributors that they just need to ask in
+    the dev list to get the push access.</span> <span
+    class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-57'>kohsuke</a>,
+    18:17:38)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">the bot can and
+    should also make other comments, like "hey, I noticed that you don't
+    have any tests for this patch -- see this page for how to write
+    one"</span> <span class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-58'>kohsuke</a>,
+    18:18:02)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">another obvious
+    one is "does this have a ticket in issues.jenkins-ci.org?"</span>
+    <span class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-60'>kohsuke</a>,
+    18:18:33)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">What is the current state of the 'The new EMailer':  https://wiki.jenkins-ci.org/display/JENKINS/The+new+EMailer</b> <span class="details">(<a href='jenkins.2011-07-06-18.02.log.html#l-66'>kohsuke</a>, 18:19:48)</span>
+<ol type="a">
+  <li><span class="INFO">Originally back in 2009 August</span> <span
+    class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-70'>kohsuke</a>,
+    18:20:46)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kutzi to
+    update the wiki page with the roadmap/plan for email-ext  -&gt;
+    email2core with lots of extension points</span> <span
+    class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-131'>rtyler</a>,
+    18:34:21)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">: Infra update from R. Tyler Croy regarding new machines at the OSUOSL</b> <span class="details">(<a href='jenkins.2011-07-06-18.02.log.html#l-139'>kohsuke</a>, 18:35:44)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">z00dax6 to
+    help get lettuce set up with some basic puppet manifests</span>
+    <span class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-159'>rtyler</a>,
+    18:40:32)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    properly set up access to lettuce for kohsuke, abayer and
+    aheriter</span> <span class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-161'>rtyler</a>,
+    18:40:52)</span></li>
+  <li><span class="INFO">Throttling crawlers to JIRA
+    http://www.theserverside.com/discussions/thread.tss?thread_id=62375</span>
+    <span class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-168'>rtyler</a>,
+    18:42:43)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to get
+    off his lazy ass and finally order that second NIC for
+    cucumber</span> <span class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-170'>rtyler</a>,
+    18:43:21)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">Kohsuke to
+    write to SPI what it means for them to own assets --- any processes,
+    steps, etc.</span> <span class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-180'>kohsuke</a>,
+    18:45:31)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    start a thread on -dev detailing access rights, usage policy, etc
+    for hardware</span> <span class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-187'>rtyler</a>,
+    18:46:19)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">CLA discussion</b> <span class="details">(<a href='jenkins.2011-07-06-18.02.log.html#l-188'>kohsuke</a>, 18:46:31)</span>
+<ol type="a">
+  <li><span class="INFO">So the current plan on the record is here:
+    https://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code</span>
+    <span class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-189'>kohsuke</a>,
+    18:46:46)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2011-07-06-18.02.log.html#l-248'>kohsuke</a>, 19:02:34)</span>
+<ol type="a">
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">next meeting
+    time is June 20th, same time --- 2 weeks from now</span> <span
+    class="details">(<a
+    href='jenkins.2011-07-06-18.02.log.html#l-263'>kohsuke</a>,
+    19:04:05)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 19:05:20 UTC
+(<a href="jenkins.2011-07-06-18.02.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>kutzi to update the wiki page with the roadmap/plan for email-ext  -&gt; email2core with lots of extension points</li>
+  <li>z00dax6 to help get lettuce set up with some basic puppet manifests</li>
+  <li>rtyler to properly set up access to lettuce for kohsuke, abayer and aheriter</li>
+  <li>rtyler to get off his lazy ass and finally order that second NIC for cucumber</li>
+  <li>Kohsuke to write to SPI what it means for them to own assets --- any processes, steps, etc.</li>
+  <li>rtyler to start a thread on -dev detailing access rights, usage policy, etc for hardware</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> kohsuke <ol>
+    <li>rtyler to properly set up access to lettuce for kohsuke, abayer and aheriter</li>
+  </ol></li>
+  <li> kutzi <ol>
+    <li>kutzi to update the wiki page with the roadmap/plan for email-ext  -&gt; email2core with lots of extension points</li>
+  </ol></li>
+  <li> rtyler <ol>
+    <li>rtyler to properly set up access to lettuce for kohsuke, abayer and aheriter</li>
+    <li>rtyler to get off his lazy ass and finally order that second NIC for cucumber</li>
+    <li>rtyler to start a thread on -dev detailing access rights, usage policy, etc for hardware</li>
+  </ol></li>
+  <li><b>UNASSIGNED</b><ol>
+    <li>z00dax6 to help get lettuce set up with some basic puppet manifests</li>
+    <li>Kohsuke to write to SPI what it means for them to own assets --- any processes, steps, etc.</li>
+  </ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>kohsuke (114)</li>
+  <li>rtyler (75)</li>
+  <li>kutzi (36)</li>
+  <li>magnayn (21)</li>
+  <li>hare_brain (11)</li>
+  <li>rpetti (4)</li>
+  <li>drulli (3)</li>
+  <li>vjuranek (3)</li>
+  <li>cowboyd (1)</li>
+  <li>nigjo (1)</li>
+  <li>robobutler (1)</li>
+  <li>bap2000 (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

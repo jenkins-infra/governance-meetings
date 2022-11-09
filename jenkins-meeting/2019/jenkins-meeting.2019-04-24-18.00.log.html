@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app225.us.archive.org';v.server_ms=465;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-04-24-18.00.log.html","20211027233237","https://web.archive.org/","web","/_static/",
+	      "1635377557");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:04</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:04</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:12</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler kohsuke</span>
+<a name="l-4"></a><span class="tm">18:00:12</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:16</span><span class="nk"> &lt;danielbeck&gt;</span> hi everyone!
+<a name="l-6"></a><span class="tm">18:00:22</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-7"></a><span class="tm">18:00:38</span><span class="nk"> &lt;bitwiseman&gt;</span> hello
+<a name="l-8"></a><span class="tm">18:00:47</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting actions</span>
+<a name="l-9"></a><span class="tm">18:01:01</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-04-10-18.00.html</span>
+<a name="l-10"></a><span class="tm">18:01:04</span><span class="nk"> &lt;danielbeck&gt;</span> no actions
+<a name="l-11"></a><span class="tm">18:01:25</span><span class="nk"> &lt;alyssat_&gt;</span> hi danielbeck
+<a name="l-12"></a><span class="tm">18:01:26</span><span class="nk"> &lt;danielbeck&gt;</span> I think we can move on then
+<a name="l-13"></a><span class="tm">18:01:29</span><span class="nk"> &lt;danielbeck&gt;</span> o/
+<a name="l-14"></a><span class="tm">18:01:38</span><span class="nk"> &lt;markewaite&gt;</span> o/
+<a name="l-15"></a><span class="tm">18:01:42</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-16"></a><span class="tm">18:02:01</span><span class="nk"> &lt;danielbeck&gt;</span> hmmm, no ogondza around
+<a name="l-17"></a><span class="tm">18:02:49</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!msg/jenkinsci-dev/NKf22rIafiE/0fJFKwCdCgAJ</span>
+<a name="l-18"></a><span class="tm">18:03:43</span><span class="nk"> &lt;danielbeck&gt;</span> I got a fairly late backport in today, and nothing else would be a candidate, so I asusme we're good to go -- but up to ogondza
+<a name="l-19"></a><span class="tm">18:03:59</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to poke ogondza about LTS RC</span>
+<a name="l-20"></a><span class="tm">18:04:17</span><span class="nk"> &lt;danielbeck&gt;</span> without him around this is about the extent of what we can do now
+<a name="l-21"></a><span class="tm">18:04:45</span><span class="nk"> &lt;danielbeck&gt;</span> anyone else know something, or should we move on?
+<a name="l-22"></a><span class="tm">18:05:48</span><span class="nk"> &lt;danielbeck&gt;</span> let's move on
+<a name="l-23"></a><span class="tm">18:05:54</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Google Summer of Code update</span>
+<a name="l-24"></a><span class="tm">18:06:02</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev ?
+<a name="l-25"></a><span class="tm">18:06:19</span><span class="nk"> &lt;danielbeck&gt;</span> unsure whose entry this is
+<a name="l-26"></a><span class="tm">18:07:33</span><span class="nk"> &lt;danielbeck&gt;</span> doesn't look like there's an update for this, moving on
+<a name="l-27"></a><span class="tm">18:07:47</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Google Season of Docs update</span>
+<a name="l-28"></a><span class="tm">18:07:51</span><span class="nk"> &lt;markewaite&gt;</span> Google Season of Docs application has been submitted by the Jenkins project with markewaite as org admin and tracymiranda as assistant org admin.
+<a name="l-29"></a><span class="tm">18:07:59</span><span class="nk"> &lt;markewaite&gt;</span> Project ideas are being collected.  Several mentors have agreed to assist.
+<a name="l-30"></a><span class="tm">18:08:04</span><span class="nk"> &lt;markewaite&gt;</span> Next key milestone is April 30, 2019 when Google publishes the list of accepted mentoring organizations.
+<a name="l-31"></a><span class="tm">18:08:10</span><span class="nk"> &lt;markewaite&gt;</span> Timeline is at https://developers.google.com/season-of-docs/docs/timeline.
+<a name="l-32"></a><span class="tm">18:08:21</span><span class="nk"> &lt;tracymiranda&gt;</span> woohoo
+<a name="l-33"></a><span class="tm">18:08:32</span><span class="nk"> &lt;markewaite&gt;</span> <span class="cmd">#action </span><span class="cmdline">markewaite submit pull request to propose docs special interest group</span>
+<a name="l-34"></a><span class="tm">18:09:03</span><span class="nk"> &lt;danielbeck&gt;</span> nice
+<a name="l-35"></a><span class="tm">18:09:05</span><span class="nk"> &lt;markewaite&gt;</span> <span class="cmd">#action </span><span class="cmdline">markewaite complete pull request to create Google Season of Docs project, similar to Google Summer of Code project</span>
+<a name="l-36"></a><span class="tm">18:09:13</span><span class="nk"> &lt;tracymiranda&gt;</span> fingers crossed we get accepted
+<a name="l-37"></a><span class="tm">18:09:53</span><span class="nk"> &lt;markewaite&gt;</span> end of status report
+<a name="l-38"></a><span class="tm">18:09:56</span><span class="nk"> &lt;danielbeck&gt;</span> thanks!
+<a name="l-39"></a><span class="tm">18:10:04</span><span class="nk"> &lt;bitwiseman&gt;</span> awesome!
+<a name="l-40"></a><span class="tm">18:10:11</span><span class="nk"> &lt;danielbeck&gt;</span> will you post to the dev list on April 30/May 1 with the result?
+<a name="l-41"></a><span class="tm">18:10:17</span><span class="nk"> &lt;danielbeck&gt;</span> or where would the update be?
+<a name="l-42"></a><span class="tm">18:10:37</span><span class="nk"> &lt;markewaite&gt;</span> <span class="cmd">#action </span><span class="cmdline">markewaite provide blog posts of GSoD status to jenkins.io</span>
+<a name="l-43"></a><span class="tm">18:11:37</span><span class="nk"> &lt;danielbeck&gt;</span> I guess that's the answer
+<a name="l-44"></a><span class="tm">18:11:43</span><span class="nk"> &lt;danielbeck&gt;</span> thanks markewaite
+<a name="l-45"></a><span class="tm">18:11:55</span><span class="nk"> &lt;danielbeck&gt;</span> moving on…
+<a name="l-46"></a><span class="tm">18:11:55</span><span class="nk"> &lt;markewaite&gt;</span> Yes @danielbeck that's the answer
+<a name="l-47"></a><span class="tm">18:12:08</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Outreachy update</span>
+<a name="l-48"></a><span class="tm">18:12:16</span><span class="nk"> &lt;danielbeck&gt;</span> tracymiranda you're up
+<a name="l-49"></a><span class="tm">18:12:26</span><span class="nk"> &lt;tracymiranda&gt;</span> Thanks, reference is here https://groups.google.com/d/msg/jenkinsci-dev/9N3C5lMQ1p0/gjE2QvgiDQAJ
+<a name="l-50"></a><span class="tm">18:12:54</span><span class="nk"> &lt;tracymiranda&gt;</span> <span class="cmd">#info </span><span class="cmdline">We have 2 applicants from Outreachy for the next round</span>
+<a name="l-51"></a><span class="tm">18:13:26</span><span class="nk"> &lt;tracymiranda&gt;</span> Matt Sicker says they are both excellent candidates and would be up for mentoring both (with support) similar to the last round
+<a name="l-52"></a><span class="tm">18:13:35</span><span class="nk"> &lt;tracymiranda&gt;</span> We have however, only committed to 1 round of funding so far.
+<a name="l-53"></a><span class="tm">18:13:42</span><span class="nk"> &lt;tracymiranda&gt;</span> For the last round Outreachy funded our 2nd intern from the general fund. This round they have had 11 requests for the general fund so will be less likely to be able to fund a second again.
+<a name="l-54"></a><span class="tm">18:14:24</span><span class="nk"> &lt;tracymiranda&gt;</span> So one question is whether Jenkins project is in a position to fund a second outreachy intern for this round?
+<a name="l-55"></a><span class="tm">18:14:50</span><span class="nk"> &lt;danielbeck&gt;</span> to clarify, who's paying the first one? Also us?
+<a name="l-56"></a><span class="tm">18:15:01</span><span class="nk"> &lt;tracymiranda&gt;</span> yes, we pay the first one
+<a name="l-57"></a><span class="tm">18:15:20</span><span class="nk"> &lt;danielbeck&gt;</span> and the question is, should we pay for a second as well. how much is one internship?
+<a name="l-58"></a><span class="tm">18:15:40</span><span class="nk"> &lt;tracymiranda&gt;</span> yes. An internship is $5500 USD
+<a name="l-59"></a><span class="tm">18:16:24</span><span class="nk"> &lt;danielbeck&gt;</span> I think you and rtyler are the ones with the best idea about what our project finances look like
+<a name="l-60"></a><span class="tm">18:16:46</span><span class="nk"> &lt;tracymiranda&gt;</span> is rtyler around?
+<a name="l-61"></a><span class="tm">18:16:48</span><span class="nk"> &lt;danielbeck&gt;</span> I think we were at 30k or something in the bank last we checked? Did CDF change anything there already?
+<a name="l-62"></a><span class="tm">18:17:15</span><span class="nk"> &lt;tracymiranda&gt;</span> no, transistion to CDF has not happened. When it does CDF will have a budget allocation for such programs.
+<a name="l-63"></a><span class="tm">18:18:09</span><span class="nk"> &lt;tracymiranda&gt;</span> It might be good to do this especially as it ensures funds are spent on Jenkins project and do not have to be transferred to the general CDF pool - makes transition simpler.
+<a name="l-64"></a><span class="tm">18:18:17</span><span class="nk"> &lt;rtyler&gt;</span> I am
+<a name="l-65"></a><span class="tm">18:18:18</span><span class="nk"> &lt;rtyler&gt;</span> sorry
+<a name="l-66"></a><span class="tm">18:18:30</span><span class="nk"> &lt;bitwiseman&gt;</span> +1 to using it
+<a name="l-67"></a><span class="tm">18:19:09</span><span class="nk"> &lt;rtyler&gt;</span> we definitely have more than $5500 in the bank :)
+<a name="l-68"></a><span class="tm">18:19:26</span><span class="nk"> &lt;rtyler&gt;</span> I'm fine with two interns assuming the mentorship is there
+<a name="l-69"></a><span class="tm">18:19:57</span><span class="nk"> &lt;danielbeck&gt;</span> Azure will last us through the end of the year, right? We won't need real money tp pay for clouds and stuff for a while?
+<a name="l-70"></a><span class="tm">18:20:24</span><span class="nk"> &lt;rtyler&gt;</span> correct
+<a name="l-71"></a><span class="tm">18:20:27</span><span class="nk"> &lt;tracymiranda&gt;</span> yes, and by then it azure/cloud funding should be assumed by CDF
+<a name="l-72"></a><span class="tm">18:20:41</span><span class="nk"> &lt;danielbeck&gt;</span> re mentorship, Matt did 2 interns before and committed to do it again, so no concerns there from me
+<a name="l-73"></a><span class="tm">18:20:50</span><span class="nk"> &lt;tracymiranda&gt;</span> +1 officially from me
+<a name="l-74"></a><span class="tm">18:21:03</span><span class="nk"> &lt;danielbeck&gt;</span> +1 lgtm
+<a name="l-75"></a><span class="tm">18:21:46</span><span class="nk"> &lt;danielbeck&gt;</span> any other opinions?
+<a name="l-76"></a><span class="tm">18:22:53</span><span class="nk"> &lt;rtyler&gt;</span> dozens, but not on this topic :)
+<a name="l-77"></a><span class="tm">18:23:00</span><span class="nk"> &lt;danielbeck&gt;</span> you have a blog for those
+<a name="l-78"></a><span class="tm">18:23:18</span><span class="nk"> &lt;danielbeck&gt;</span> well, doesn't look like it
+<a name="l-79"></a><span class="tm">18:23:26</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll pay for the second intern if Outreachy doesn't</span>
+<a name="l-80"></a><span class="tm">18:23:44</span><span class="nk"> &lt;danielbeck&gt;</span> tracymiranda are we done with Outreachy?
+<a name="l-81"></a><span class="tm">18:23:51</span><span class="nk"> &lt;tracymiranda&gt;</span> yes
+<a name="l-82"></a><span class="tm">18:23:59</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-83"></a><span class="tm">18:24:18</span><span class="nk"> &lt;danielbeck&gt;</span> That would be May 8
+<a name="l-84"></a><span class="tm">18:24:34</span><span class="nk"> &lt;danielbeck&gt;</span> thanks everyone!
+<a name="l-85"></a><span class="tm">18:24:35</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:32:37 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:02:11 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 263.428
+  exclusion.robots: 0.088
+  exclusion.robots.policy: 0.08
+  RedisCDXSource: 15.194
+  esindex: 0.014
+  LoadShardBlock: 222.638 (3)
+  PetaboxLoader3.resolve: 264.555 (4)
+  PetaboxLoader3.datanode: 81.714 (4)
+  CDXLines.iter: 21.26 (3)
+  load_resource: 187.925
+-->

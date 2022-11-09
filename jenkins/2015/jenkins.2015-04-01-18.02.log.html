@@ -1,0 +1,600 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app227.us.archive.org';v.server_ms=145;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-04-01-18.02.log.html","20200504160451","https://web.archive.org/","web","/_static/",
+	      "1588608291");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:02:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:02:31</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-4"></a><span class="tm">18:02:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">recap of actions</span>
+<a name="l-5"></a><span class="tm">18:03:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/browse/MEETING</span>
+<a name="l-6"></a><span class="tm">18:03:25</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm, I guess I haven't kept that up to date for a while
+<a name="l-7"></a><span class="tm">18:03:38</span><span class="nk"> &lt;kohsuke&gt;</span> Any specific AIs that we want to review?
+<a name="l-8"></a><span class="tm">18:04:00</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke patron program progress?
+<a name="l-9"></a><span class="tm">18:04:04</span><span class="nk"> &lt;Kamran&gt;</span> hey kohsuke :)
+<a name="l-10"></a><span class="tm">18:04:12</span><span class="nk"> &lt;kohsuke&gt;</span> Ah
+<a name="l-11"></a><span class="tm">18:04:22</span><span class="nk"> &lt;kohsuke&gt;</span> I'm afraid no progress to report
+<a name="l-12"></a><span class="tm">18:04:34</span><span class="nk"> &lt;kohsuke&gt;</span> I need to follow up that one
+<a name="l-13"></a><span class="tm">18:04:40</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">kohsuke:</span> Did you happen to take a look at my ICLA yet? :D
+<a name="l-14"></a><span class="tm">18:04:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write to christina</span>
+<a name="l-15"></a><span class="tm">18:04:52</span><span class="nk"> &lt;danielbeck&gt;</span> Kamran Meeting right now, please wait a bit
+<a name="l-16"></a><span class="tm">18:05:02</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> Okay.
+<a name="l-17"></a><span class="tm">18:05:15</span><span class="nk"> &lt;kohsuke&gt;</span> shall we move on to other topics, sinec we have a lot of them?
+<a name="l-18"></a><span class="tm">18:05:36</span><span class="nk"> &lt;danielbeck&gt;</span> +1
+<a name="l-19"></a><span class="tm">18:05:42</span><span class="nk"> &lt;Kamran&gt;</span> +3
+<a name="l-20"></a><span class="tm">18:05:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">JUC 2015 - obtain approval for a Mobile Morning mini-track that focus on Jenkins mobile development (Alyssa)</span>
+<a name="l-21"></a><span class="tm">18:06:26</span><span class="nk"> &lt;kohsuke&gt;</span> Some sponsors are interested in having a clump of mobile related sessions &amp; panel in JUC
+<a name="l-22"></a><span class="tm">18:06:45</span><span class="nk"> &lt;kohsuke&gt;</span> And so alyssa wanted to socialize that idea &amp; see how people feel
+<a name="l-23"></a><span class="tm">18:07:39</span><span class="nk"> &lt;kohsuke&gt;</span> (All the usual caveats about no product pitch etc still applies.)
+<a name="l-24"></a><span class="tm">18:07:59</span><span class="nk"> &lt;danielbeck&gt;</span> would that be in parallel to other tracks?
+<a name="l-25"></a><span class="tm">18:08:59</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think so, it's just putting all the mobile related talks back to back in one of the existing tracks
+<a name="l-26"></a><span class="tm">18:09:21</span><span class="nk"> &lt;kohsuke&gt;</span> So it's really just a grouping with a little bit of extra visibility
+<a name="l-27"></a><span class="tm">18:09:49</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I take silence as "it's OK"
+<a name="l-28"></a><span class="tm">18:09:51</span><span class="nk"> &lt;kohsuke&gt;</span> going once...
+<a name="l-29"></a><span class="tm">18:09:52</span><span class="nk"> &lt;aheritier&gt;</span> mobile developments. Oh my god, I had to fight with xcode and ios build all the day…
+<a name="l-30"></a><span class="tm">18:10:16</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, I'm sure there are a lot of battle scar stories to share
+<a name="l-31"></a><span class="tm">18:10:22</span><span class="nk"> &lt;danielbeck&gt;</span> should be fine if attendees have other things to do if not interested.
+<a name="l-32"></a><span class="tm">18:10:27</span><span class="nk"> &lt;aheritier&gt;</span> I’m sure too
+<a name="l-33"></a><span class="tm">18:10:34</span><span class="nk"> &lt;kohsuke&gt;</span> Right, it's one of the two tracks
+<a name="l-34"></a><span class="tm">18:10:43</span><span class="nk"> &lt;kohsuke&gt;</span> OK, moving on...
+<a name="l-35"></a><span class="tm">18:10:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Build/publisher steps &amp; AbortException handling</span>
+<a name="l-36"></a><span class="tm">18:11:17</span><span class="nk"> &lt;kohsuke&gt;</span> oh but kostyasha is not here
+<a name="l-37"></a><span class="tm">18:11:23</span><span class="nk"> &lt;danielbeck&gt;</span> I added the two supplementary links in the wiki but Kostya indicated they we're really what this is about. Sorry about that!
+<a name="l-38"></a><span class="tm">18:11:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Defining guidelines on expected behavior and/or structure for plugins? If so, should we enforce them?</span>
+<a name="l-39"></a><span class="tm">18:12:20</span><span class="nk"> &lt;danielbeck&gt;</span> Let's skip this, I added this as it's somewhat related to Kostya's topic
+<a name="l-40"></a><span class="tm">18:12:29</span><span class="nk"> &lt;kohsuke&gt;</span> all right
+<a name="l-41"></a><span class="tm">18:12:37</span><span class="nk"> &lt;danielbeck&gt;</span> We already discussed it in October, it's recently come up again
+<a name="l-42"></a><span class="tm">18:12:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Would changing the meeting time to 10 AM PST/PDT allow overruns?</span>
+<a name="l-43"></a><span class="tm">18:13:00</span><span class="nk"> &lt;danielbeck&gt;</span> Basically what it says on the tin. WDYT?
+<a name="l-44"></a><span class="tm">18:13:04</span><span class="nk"> &lt;kohsuke&gt;</span> would changing the time allow overrun?
+<a name="l-45"></a><span class="tm">18:13:38</span><span class="nk"> &lt;danielbeck&gt;</span> we've had several meeting we had to abort or hurry through, so the question is whether the problem is duration or time
+<a name="l-46"></a><span class="tm">18:13:52</span><span class="nk"> &lt;danielbeck&gt;</span> and if it's the latter, would moving the meeting time help?
+<a name="l-47"></a><span class="tm">18:13:58</span><span class="nk"> &lt;kohsuke&gt;</span> or frequency.
+<a name="l-48"></a><span class="tm">18:14:16</span><span class="nk"> &lt;danielbeck&gt;</span> I think it would also help eastern europe (e.g. Oleg, Kostya) if it was earlier
+<a name="l-49"></a><span class="tm">18:14:31</span><span class="nk"> &lt;kohsuke&gt;</span> Personally, if we really need to overrun, I can stay around even in the current time
+<a name="l-50"></a><span class="tm">18:14:46</span><span class="nk"> &lt;kohsuke&gt;</span> And likewise, even if we change the time, I'll still be just as likely to want to wrap this up in an hour
+<a name="l-51"></a><span class="tm">18:15:25</span><span class="nk"> &lt;danielbeck&gt;</span> alright, so the meeting time is not actually a problem (unless others want it to end earlier due to TZ issues)
+<a name="l-52"></a><span class="tm">18:15:28</span><span class="nk"> &lt;kohsuke&gt;</span> If this is to accomodate oleg, kostyasha, etc., I want to hear from them
+<a name="l-53"></a><span class="tm">18:15:45</span><span class="nk"> &lt;danielbeck&gt;</span> agreed
+<a name="l-54"></a><span class="tm">18:15:56</span><span class="nk"> &lt;kohsuke&gt;</span> I'm open to changing time, but there's certain inertia for things like this
+<a name="l-55"></a><span class="tm">18:16:17</span><span class="nk"> &lt;kohsuke&gt;</span> so in the absense of people saying "I can make it if the time moves", I'm inclined to keep it as is
+<a name="l-56"></a><span class="tm">18:16:28</span><span class="nk"> &lt;aheritier&gt;</span> +1
+<a name="l-57"></a><span class="tm">18:16:33</span><span class="nk"> &lt;kohsuke&gt;</span> and obviously, my apologies for blowing the previous one
+<a name="l-58"></a><span class="tm">18:16:43</span><span class="nk"> &lt;Kamran&gt;</span> +2
+<a name="l-59"></a><span class="tm">18:16:48</span><span class="nk"> &lt;danielbeck&gt;</span> As I wrote, from past meetings I got the impression that end time was a rather hard limit, hence the suggestion.
+<a name="l-60"></a><span class="tm">18:17:08</span><span class="nk"> &lt;danielbeck&gt;</span> let's move on
+<a name="l-61"></a><span class="tm">18:17:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">if oleg, kostyasha or anyone else really want to change the time, we'll reconsider, but for now we keep the time as is.</span>
+<a name="l-62"></a><span class="tm">18:17:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Who gets voice on IRC? "Committers"... to any plugin? To core?</span>
+<a name="l-63"></a><span class="tm">18:17:36</span><span class="nk"> &lt;danielbeck&gt;</span> I couldn't find any info on that.
+<a name="l-64"></a><span class="tm">18:17:48</span><span class="nk"> &lt;kohsuke&gt;</span> So the intent of the voice was to (1) give some visibility to active people in the community and
+<a name="l-65"></a><span class="tm">18:17:55</span><span class="nk"> &lt;kohsuke&gt;</span> (2) grant access to ircbot
+<a name="l-66"></a><span class="tm">18:18:20</span><span class="nk"> &lt;kohsuke&gt;</span> So to me, it is open to any plugin developers
+<a name="l-67"></a><span class="tm">18:18:38</span><span class="nk"> &lt;kohsuke&gt;</span> I guess your point is that it should be written down somewhere
+<a name="l-68"></a><span class="tm">18:18:43</span><span class="nk"> &lt;aheritier&gt;</span> AFAIR it was the case. For any developer who asked to have it
+<a name="l-69"></a><span class="tm">18:18:47</span><span class="nk"> &lt;danielbeck&gt;</span> we've recently added destructive commands to the bot.
+<a name="l-70"></a><span class="tm">18:18:56</span><span class="nk"> &lt;kohsuke&gt;</span> hm
+<a name="l-71"></a><span class="tm">18:19:00</span><span class="nk"> &lt;danielbeck&gt;</span> so "any plugin dev" seems to be too permissive
+<a name="l-72"></a><span class="tm">18:19:17</span><span class="nk"> &lt;jenkins-builds&gt;</span> Starting build #4061 for job jenkins_main_trunk (previous build: SUCCESS)
+<a name="l-73"></a><span class="tm">18:19:40</span><span class="nk"> &lt;kohsuke&gt;</span> maybe we limit who can run those destructive commands?
+<a name="l-74"></a><span class="tm">18:20:01</span><span class="nk"> &lt;kohsuke&gt;</span> we can just hard-code them in the bot, or maybe limit that to ops?
+<a name="l-75"></a><span class="tm">18:20:07</span><span class="nk"> &lt;Kamran&gt;</span> probably.
+<a name="l-76"></a><span class="tm">18:20:08</span><span class="nk"> &lt;danielbeck&gt;</span> too few ops
+<a name="l-77"></a><span class="tm">18:20:19</span><span class="nk"> &lt;Kamran&gt;</span> ^
+<a name="l-78"></a><span class="tm">18:20:48</span><span class="nk"> &lt;danielbeck&gt;</span> just seems weird to have someone request a fork of the 1010th plugin and give them control over all the repos and Jira.
+<a name="l-79"></a><span class="tm">18:20:50</span><span class="nk"> &lt;aheritier&gt;</span> there are few ops, thus +1 to allow them to do launch that destructive commands instead of people with only voice
+<a name="l-80"></a><span class="tm">18:21:31</span><span class="nk"> &lt;kohsuke&gt;</span> what if we use +v in jenkins-infra for more delicate commands?
+<a name="l-81"></a><span class="tm">18:21:31</span><span class="nk"> &lt;danielbeck&gt;</span> then I'll need to finish the jira component refatoring before that goes live :-)
+<a name="l-82"></a><span class="tm">18:21:53</span><span class="nk"> &lt;Kamran&gt;</span> jira component refactoring?
+<a name="l-83"></a><span class="tm">18:21:55</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke would reduced visibility be a problem?
+<a name="l-84"></a><span class="tm">18:22:18</span><span class="nk"> &lt;kohsuke&gt;</span> No, it's still the same bot, just that some commands you need to ask from #jenkins-infra
+<a name="l-85"></a><span class="tm">18:22:28</span><span class="nk"> &lt;kohsuke&gt;</span> And really, how many times do you need to remove components?
+<a name="l-86"></a><span class="tm">18:22:36</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Visibility as in the community seems what's going on
+<a name="l-87"></a><span class="tm">18:22:48</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke A few dozen times or so still, but that's still part of https://wiki.jenkins-ci.org/display/JENKINS/2014+JIRA+Components+Refactoring so ... rarely
+<a name="l-88"></a><span class="tm">18:23:40</span><span class="nk"> &lt;kohsuke&gt;</span> if we log #jenkins-infra I think the visibility concern should be addressed
+<a name="l-89"></a><span class="tm">18:23:58</span><span class="nk"> &lt;danielbeck&gt;</span> right
+<a name="l-90"></a><span class="tm">18:24:11</span><span class="nk"> &lt;kohsuke&gt;</span> (and perhaps that way we can make the bot even more capable, like restarting jira)
+<a name="l-91"></a><span class="tm">18:24:17</span><span class="nk"> &lt;Kamran&gt;</span> yeah
+<a name="l-92"></a><span class="tm">18:25:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> is that good enough in your opinion?
+<a name="l-93"></a><span class="tm">18:25:23</span><span class="nk"> &lt;danielbeck&gt;</span> still a bit too permissive for my taste, but that's the nature of the project I guess.
+<a name="l-94"></a><span class="tm">18:25:36</span><span class="nk"> &lt;kohsuke&gt;</span> yes
+<a name="l-95"></a><span class="tm">18:25:40</span><span class="nk"> &lt;danielbeck&gt;</span> so yeah, should at least prevent abuse.
+<a name="l-96"></a><span class="tm">18:26:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to log #jenkins-infra</span>
+<a name="l-97"></a><span class="tm">18:26:25</span><span class="nk"> &lt;kohsuke&gt;</span> can somebody volunteer to update ircbot for this new permission scheme?
+<a name="l-98"></a><span class="tm">18:26:40</span><span class="nk"> &lt;kohsuke&gt;</span> I think oleg hacks on ircbot
+<a name="l-99"></a><span class="tm">18:26:51</span><span class="nk"> &lt;danielbeck&gt;</span> he's not here, but we can ask
+<a name="l-100"></a><span class="tm">18:26:56</span><span class="nk"> &lt;Kamran&gt;</span> Doesn't jenkins-admin use PircBotX?
+<a name="l-101"></a><span class="tm">18:27:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Kamran:</span> yeah
+<a name="l-102"></a><span class="tm">18:27:13</span><span class="nk"> &lt;kohsuke&gt;</span> Do you want to take this on?
+<a name="l-103"></a><span class="tm">18:27:26</span><span class="nk"> &lt;kohsuke&gt;</span> It's a small Java program: https://github.com/jenkins-infra/ircbot
+<a name="l-104"></a><span class="tm">18:27:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll run jenkins-admin bot also in #jenkins-infra and restrict destructive commands to people with +v on #jenkins-infra</span>
+<a name="l-105"></a><span class="tm">18:28:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to ask oleg if he can hack ircbot to do this</span>
+<a name="l-106"></a><span class="tm">18:28:30</span><span class="nk"> &lt;kohsuke&gt;</span> if that fails I guess it'll be on me
+<a name="l-107"></a><span class="tm">18:28:40</span><span class="nk"> &lt;kohsuke&gt;</span> shall we move on?
+<a name="l-108"></a><span class="tm">18:28:45</span><span class="nk"> &lt;danielbeck&gt;</span> yes
+<a name="l-109"></a><span class="tm">18:28:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">JENKINS-27268</span>
+<a name="l-110"></a><span class="tm">18:28:53</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-27268:"dumb" slave? (Open) https://issues.jenkins-ci.org/browse/JENKINS-27268
+<a name="l-111"></a><span class="tm">18:29:12</span><span class="nk"> &lt;danielbeck&gt;</span> A user brought up the terminology issue in Jenkins
+<a name="l-112"></a><span class="tm">18:29:31</span><span class="nk"> &lt;danielbeck&gt;</span> similar issue in Django a while back: https://github.com/django/django/pull/2692
+<a name="l-113"></a><span class="tm">18:29:51</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I thought for a moment he has a trouble with "dumb" part
+<a name="l-114"></a><span class="tm">18:30:00</span><span class="nk"> &lt;kohsuke&gt;</span> but IIUC he's complaining about the "slave" part
+<a name="l-115"></a><span class="tm">18:30:01</span><span class="nk"> &lt;danielbeck&gt;</span> So I wanted to raise awareness of this issue and discuss whether it needs to change
+<a name="l-116"></a><span class="tm">18:30:11</span><span class="nk"> &lt;danielbeck&gt;</span> It's worse in combination I think
+<a name="l-117"></a><span class="tm">18:30:12</span><span class="nk"> &lt;ogondza&gt;</span> we have enough ambiguity in terminology, imo. I do not feel master/slave to be that problematic personally
+<a name="l-118"></a><span class="tm">18:30:28</span><span class="nk"> &lt;ogondza&gt;</span> the "dump" part worries me more, too
+<a name="l-119"></a><span class="tm">18:31:10</span><span class="nk"> &lt;kohsuke&gt;</span> I originally named it "dumb slave" in anticipation of newer smarter slave types, but that never really materialized
+<a name="l-120"></a><span class="tm">18:31:53</span><span class="nk"> &lt;kohsuke&gt;</span> So I can definitely change it to "Build slave" or something by just a few changes in the core
+<a name="l-121"></a><span class="tm">18:32:07</span><span class="nk"> &lt;Kamran&gt;</span> I could take that on, since it seems quite easy.
+<a name="l-122"></a><span class="tm">18:32:20</span><span class="nk"> &lt;kohsuke&gt;</span> Renaming "slave" to another word that's more politically correct word would be a bit more work
+<a name="l-123"></a><span class="tm">18:32:42</span><span class="nk"> &lt;kohsuke&gt;</span> but if some people are offended by it, I suppose we need to do it
+<a name="l-124"></a><span class="tm">18:33:05</span><span class="nk"> &lt;kohsuke&gt;</span> Being an immigrant, I don't have the proper American sensibilities to that issue.
+<a name="l-125"></a><span class="tm">18:33:36</span><span class="nk"> &lt;Kamran&gt;</span> I think we should keep slave, but at least change it to build slave like you mentioned.
+<a name="l-126"></a><span class="tm">18:34:05</span><span class="nk"> &lt;kohsuke&gt;</span> Is that good enough for the submitter of JENKINS-27268?
+<a name="l-127"></a><span class="tm">18:34:08</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-27268:"dumb" slave? (Open) https://issues.jenkins-ci.org/browse/JENKINS-27268
+<a name="l-128"></a><span class="tm">18:34:24</span><span class="nk"> &lt;danielbeck&gt;</span> I don't know. I can ask.
+<a name="l-129"></a><span class="tm">18:34:33</span><span class="nk"> &lt;kohsuke&gt;</span> And looking at that django issue, looks like they have rejected it
+<a name="l-130"></a><span class="tm">18:34:46</span><span class="nk"> &lt;kohsuke&gt;</span> or not
+<a name="l-131"></a><span class="tm">18:34:50</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke I think only this particular solution
+<a name="l-132"></a><span class="tm">18:35:00</span><span class="nk"> &lt;danielbeck&gt;</span> and implemented another
+<a name="l-133"></a><span class="tm">18:35:12</span><span class="nk"> &lt;ogondza&gt;</span> I suggest "static slave" or "permanent slave"
+<a name="l-134"></a><span class="tm">18:35:12</span><span class="nk"> &lt;bookwar&gt;</span> or please tell me this is the april's joke..
+<a name="l-135"></a><span class="tm">18:35:30</span><span class="nk"> &lt;danielbeck&gt;</span> bookwar Sorry, no.
+<a name="l-136"></a><span class="tm">18:35:33</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> What about "build node"?
+<a name="l-137"></a><span class="tm">18:35:39</span><span class="nk"> &lt;danielbeck&gt;</span> master is also a node
+<a name="l-138"></a><span class="tm">18:35:48</span><span class="nk"> &lt;danielbeck&gt;</span> "standalone slave"? "simple slave"?
+<a name="l-139"></a><span class="tm">18:35:55</span><span class="nk"> &lt;kohsuke&gt;</span> Wow, that PR quickly turned into a PR circus
+<a name="l-140"></a><span class="tm">18:36:18</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke The reason I wanted to bring this up here, so we don't get caught in the same mess
+<a name="l-141"></a><span class="tm">18:36:40</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, I'm more inclined to fix this now that I see that shit storm
+<a name="l-142"></a><span class="tm">18:36:48</span><span class="nk"> &lt;kohsuke&gt;</span> Unwanted attention
+<a name="l-143"></a><span class="tm">18:37:16</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">kohsuke:</span> What would you guys change "dumb slave" to though?
+<a name="l-144"></a><span class="tm">18:37:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Kamran:</span> yeah "build node" would work
+<a name="l-145"></a><span class="tm">18:37:22</span><span class="nk"> &lt;Kamran&gt;</span> yay :D
+<a name="l-146"></a><span class="tm">18:37:30</span><span class="nk"> &lt;kohsuke&gt;</span> It's close to internal name, too
+<a name="l-147"></a><span class="tm">18:37:41</span><span class="nk"> &lt;kohsuke&gt;</span> class Slave extends from Node
+<a name="l-148"></a><span class="tm">18:37:54</span><span class="nk"> &lt;kohsuke&gt;</span> Other tools call them agents
+<a name="l-149"></a><span class="tm">18:37:55</span><span class="nk"> &lt;jglick&gt;</span> Dunno, “slave” term appears throughout documentation and UI.
+<a name="l-150"></a><span class="tm">18:37:56</span><span class="nk"> &lt;kohsuke&gt;</span> So that's another option
+<a name="l-151"></a><span class="tm">18:37:57</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke so then there's node-to-master access control? huh?
+<a name="l-152"></a><span class="tm">18:38:11</span><span class="nk"> &lt;jglick&gt;</span> Changing the basic term now seems ill advised.
+<a name="l-153"></a><span class="tm">18:38:36</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> It wouldn't take that much work to change "slave" from "node" on Jenkins' wiki I don't think.
+<a name="l-154"></a><span class="tm">18:38:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span>  you have proper American sensibilities!
+<a name="l-155"></a><span class="tm">18:38:51</span><span class="nk"> &lt;jglick&gt;</span> “Dumb” was never a useful adjective in this context, though. “Static” or “permanent” or “manual” etc. would be more helpful.
+<a name="l-156"></a><span class="tm">18:39:24</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> yeah, but i don't think the submitter of that issue likes "slave" either.
+<a name="l-157"></a><span class="tm">18:40:25</span><span class="nk"> &lt;kohsuke&gt;</span> I just don't want to see HN/reddit thead like "Jenkins developers insists of using racial terms"
+<a name="l-158"></a><span class="tm">18:40:41</span><span class="nk"> &lt;kohsuke&gt;</span> Guaranteed frontpage hitter with charged comments from both sides
+<a name="l-159"></a><span class="tm">18:41:03</span><span class="nk"> &lt;Kamran&gt;</span> yeah, that would really suck to have to deal with that crap.
+<a name="l-160"></a><span class="tm">18:41:28</span><span class="nk"> &lt;jieryn&gt;</span> leader/follower
+<a name="l-161"></a><span class="tm">18:41:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> you can correct me, but my impression of US of A is that you don't want to be seen defending those things
+<a name="l-162"></a><span class="tm">18:41:53</span><span class="nk"> &lt;danielbeck&gt;</span> It's worse with the 'dumb' anthropomorphizing the term, but it seems Django blew up without that anyway
+<a name="l-163"></a><span class="tm">18:41:57</span><span class="nk"> &lt;Kamran&gt;</span> lol, "US of A" :D
+<a name="l-164"></a><span class="tm">18:42:05</span><span class="nk"> &lt;jglick&gt;</span> I think there is precedent for using “slave” in a purely technical sense. http://en.wikipedia.org/wiki/Master_cylinder for example.
+<a name="l-165"></a><span class="tm">18:42:42</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, I was thinking about master/slave disks in IDE interfaces
+<a name="l-166"></a><span class="tm">18:42:56</span><span class="nk"> &lt;ogondza&gt;</span> "Is it at all ironic that this got merged into  master ?"
+<a name="l-167"></a><span class="tm">18:42:58</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> I still think we should change "slave" to "node", and change "dumb" to "standalone" or "build" like I mentioned earlier.
+<a name="l-168"></a><span class="tm">18:43:29</span><span class="nk"> &lt;Kamran&gt;</span> however jglick, "static" seems like another good one.
+<a name="l-169"></a><span class="tm">18:43:32</span><span class="nk"> &lt;danielbeck&gt;</span> master is also a 'node', so that doesn't help
+<a name="l-170"></a><span class="tm">18:43:38</span><span class="nk"> &lt;jglick&gt;</span> -0 on using “node” which also encompasses the master.
+<a name="l-171"></a><span class="tm">18:43:54</span><span class="nk"> &lt;kohsuke&gt;</span> "static build agent"?
+<a name="l-172"></a><span class="tm">18:43:54</span><span class="nk"> &lt;jglick&gt;</span> “Slave” is the only term which unambiguously excludes the master node.
+<a name="l-173"></a><span class="tm">18:44:02</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">kohsuke:</span> yeah, i like that
+<a name="l-174"></a><span class="tm">18:44:20</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke master and agents?
+<a name="l-175"></a><span class="tm">18:44:49</span><span class="nk"> &lt;kohsuke&gt;</span> yeah, I'm too lazy to change that. I don't think people would be complaining about master
+<a name="l-176"></a><span class="tm">18:44:54</span><span class="nk"> &lt;microm&gt;</span> Does Jenkins support junitparams ?
+<a name="l-177"></a><span class="tm">18:45:06</span><span class="nk"> &lt;danielbeck&gt;</span> microm Meeting right now, please ask later.
+<a name="l-178"></a><span class="tm">18:45:26</span><span class="nk"> &lt;jglick&gt;</span> http://en.wikipedia.org/wiki/Master/slave_%28technology%29 generally
+<a name="l-179"></a><span class="tm">18:45:42</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">kohsuke:</span> How many files would one need to edit in order to change slave to agent?
+<a name="l-180"></a><span class="tm">18:45:50</span><span class="nk"> &lt;danielbeck&gt;</span> jglick "Due to the controversy, the term was selected as the most politically incorrect word in 2004 by Global Language Monitor"
+<a name="l-181"></a><span class="tm">18:45:50</span><span class="nk"> &lt;jglick&gt;</span> So as long as we do not sell products in LA we are fine!
+<a name="l-182"></a><span class="tm">18:46:12</span><span class="nk"> &lt;danielbeck&gt;</span> Oh, Drupal was also changed
+<a name="l-183"></a><span class="tm">18:46:26</span><span class="nk"> &lt;kohsuke&gt;</span> I'm trying to see if I can get at least -0 from jglick about "static build agent"
+<a name="l-184"></a><span class="tm">18:46:43</span><span class="nk"> &lt;Kamran&gt;</span> i'll do a search through the Jenkins repo, see how many source files refers to "slave", since GitHub has that ability
+<a name="l-185"></a><span class="tm">18:46:49</span><span class="nk"> &lt;kohsuke&gt;</span> I don't want to waste too much on this
+<a name="l-186"></a><span class="tm">18:46:59</span><span class="nk"> &lt;danielbeck&gt;</span> Kamran We cannot change classes due to plugin compatibility
+<a name="l-187"></a><span class="tm">18:47:04</span><span class="nk"> &lt;Kamran&gt;</span> oh
+<a name="l-188"></a><span class="tm">18:47:05</span><span class="nk"> &lt;Kamran&gt;</span> dang
+<a name="l-189"></a><span class="tm">18:47:15</span><span class="nk"> &lt;jglick&gt;</span> Will possibly confuse existing Jenkins users. New users probably would not notice, though the continued use of the term “master” is then just weird.
+<a name="l-190"></a><span class="tm">18:47:17</span><span class="nk"> &lt;danielbeck&gt;</span> (which adds an unfortunately layer of terminology confusion for any devs)
+<a name="l-191"></a><span class="tm">18:48:03</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> Master could possibly be called "Master build agent", but that would require changing the classes.
+<a name="l-192"></a><span class="tm">18:48:07</span><span class="nk"> &lt;danielbeck&gt;</span> as we cannot just get rid of it cleanly
+<a name="l-193"></a><span class="tm">18:48:21</span><span class="nk"> &lt;danielbeck&gt;</span> I wonder whether consistent use of "slave node" would be sufficinet
+<a name="l-194"></a><span class="tm">18:48:24</span><span class="nk"> &lt;kohsuke&gt;</span> I think existing users will understand what they mean, especially because they see it in the place where they used to see "dumb slave"
+<a name="l-195"></a><span class="tm">18:49:40</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">kohsuke:</span> yeah.
+<a name="l-196"></a><span class="tm">18:49:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> not if I'm reading JENKINS-27268 right
+<a name="l-197"></a><span class="tm">18:49:44</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-27268:"dumb" slave? (Open) https://issues.jenkins-ci.org/browse/JENKINS-27268
+<a name="l-198"></a><span class="tm">18:50:41</span><span class="nk"> &lt;ogondza&gt;</span> lets get rid of "dumb" part and see if the requestor is satisfied
+<a name="l-199"></a><span class="tm">18:50:59</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Given how extensively 'slave' is used it going to be really difficult
+<a name="l-200"></a><span class="tm">18:51:02</span><span class="nk"> &lt;bookwar&gt;</span> "I just don't want to see HN/reddit thead like "Jenkins developers insists of using racial terms" i would be really surprised if the change(if it will be performed) doesn't hit the reddit . Don't do changes because of shitstorm blackmailing please, do it because they are reasonable. if they are.
+<a name="l-201"></a><span class="tm">18:51:27</span><span class="nk"> &lt;danielbeck&gt;</span> I mean, agent.jar alone is going to be fun
+<a name="l-202"></a><span class="tm">18:51:36</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">ogondza:</span> That wouldn't require modifying classes right? Because that would break plugin compatability, like kohsuke just mentioned a few minutes ago.
+<a name="l-203"></a><span class="tm">18:51:49</span><span class="nk"> &lt;Kamran&gt;</span> *changing
+<a name="l-204"></a><span class="tm">18:51:57</span><span class="nk"> &lt;jglick&gt;</span> -1 on changes to filenames. Much too risky.
+<a name="l-205"></a><span class="tm">18:52:15</span><span class="nk"> &lt;ogondza&gt;</span> I have never considered actually renaming classes, only UI labels
+<a name="l-206"></a><span class="tm">18:52:24</span><span class="nk"> &lt;danielbeck&gt;</span> jglick "Want to connect your machine as an agent? Run slave.jar" o_O
+<a name="l-207"></a><span class="tm">18:52:40</span><span class="nk"> &lt;kohsuke&gt;</span> I think this is one of the rare moments in which I wave the BDFL flag
+<a name="l-208"></a><span class="tm">18:52:51</span><span class="nk"> &lt;Kamran&gt;</span> BDFL flag?
+<a name="l-209"></a><span class="tm">18:53:00</span><span class="nk"> &lt;jglick&gt;</span> Benevolent Dictator For Life
+<a name="l-210"></a><span class="tm">18:53:12</span><span class="nk"> &lt;Kamran&gt;</span> Oh, lol.
+<a name="l-211"></a><span class="tm">18:53:18</span><span class="nk"> &lt;kohsuke&gt;</span> Basically "let's not argue, please let me have it my way" plea
+<a name="l-212"></a><span class="tm">18:53:21</span><span class="nk"> &lt;sjmikem&gt;</span> For "Copy artifacts from another project", do I have to specify project name?  Or can it be any upstream project?
+<a name="l-213"></a><span class="tm">18:53:29</span><span class="nk"> &lt;danielbeck&gt;</span> sjmikem Meeting right now, please wait a bit
+<a name="l-214"></a><span class="tm">18:53:40</span><span class="nk"> &lt;kohsuke&gt;</span> I think we are all on the same page about not upsetting the compatibility requirements
+<a name="l-215"></a><span class="tm">18:53:54</span><span class="nk"> &lt;kohsuke&gt;</span> So I feel comfortable getting the changes mostly right
+<a name="l-216"></a><span class="tm">18:54:00</span><span class="nk"> &lt;danielbeck&gt;</span> user confusion!
+<a name="l-217"></a><span class="tm">18:54:13</span><span class="nk"> &lt;kohsuke&gt;</span> That's mangeable.
+<a name="l-218"></a><span class="tm">18:54:54</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">kohsuke:</span> We might be able to just change the UI labels, but if we were to get rid of "dumb" what would we rename that to in the UI?
+<a name="l-219"></a><span class="tm">18:55:04</span><span class="nk"> &lt;kohsuke&gt;</span> Can we move on?
+<a name="l-220"></a><span class="tm">18:55:15</span><span class="nk"> &lt;Kamran&gt;</span> yes
+<a name="l-221"></a><span class="tm">18:55:17</span><span class="nk"> &lt;kohsuke&gt;</span> I feel like we can keep talking about this forever, and there's really more important things
+<a name="l-222"></a><span class="tm">18:55:19</span><span class="nk"> &lt;batmat&gt;</span> FWIW I'm french and I never had an issue with this. Though I see some ppl in other parts of the world that may see those words carrying strong meaning...
+<a name="l-223"></a><span class="tm">18:55:28</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> yes, agreed.
+<a name="l-224"></a><span class="tm">18:55:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Bug bounties/rewards for security issues</span>
+<a name="l-225"></a><span class="tm">18:55:54</span><span class="nk"> &lt;danielbeck&gt;</span> A reporter of a security issue brought this up
+<a name="l-226"></a><span class="tm">18:56:12</span><span class="nk"> &lt;danielbeck&gt;</span> Basically asking for a reward of some kind
+<a name="l-227"></a><span class="tm">18:56:23</span><span class="nk"> &lt;kohsuke&gt;</span> our pockets aren't deep enough to offer anything significant, but I thought perhaps some token gifts would be doable
+<a name="l-228"></a><span class="tm">18:56:44</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">kohsuke:</span> agreed
+<a name="l-229"></a><span class="tm">18:56:45</span><span class="nk"> &lt;danielbeck&gt;</span> we don't have money, but something like a mug or t-shirt maybe?
+<a name="l-230"></a><span class="tm">18:57:05</span><span class="nk"> &lt;Kamran&gt;</span> Ooh, I like the mugs idea Daniel.
+<a name="l-231"></a><span class="tm">18:57:06</span><span class="nk"> &lt;kohsuke&gt;</span> Right, maybe a gift card for cafepress.com/jenkinsci
+<a name="l-232"></a><span class="tm">18:57:35</span><span class="nk"> &lt;kohsuke&gt;</span> something easy administration wise would be nice, too
+<a name="l-233"></a><span class="tm">18:57:42</span><span class="nk"> &lt;kohsuke&gt;</span> something that can be sent over email
+<a name="l-234"></a><span class="tm">18:57:46</span><span class="nk"> &lt;Kamran&gt;</span> yeah
+<a name="l-235"></a><span class="tm">18:58:01</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Would it be feasible to have exclusive designs?
+<a name="l-236"></a><span class="tm">18:58:24</span><span class="nk"> &lt;kohsuke&gt;</span> we need to find someone who can do the artwork
+<a name="l-237"></a><span class="tm">18:59:04</span><span class="nk"> &lt;Kamran&gt;</span> yeah
+<a name="l-238"></a><span class="tm">18:59:04</span><span class="nk"> &lt;kohsuke&gt;</span> I can ask to some CB folks, but I've always felt their illustrator creates pictures that feel different
+<a name="l-239"></a><span class="tm">18:59:17</span><span class="nk"> &lt;kohsuke&gt;</span> see http://jenkins-ci.org/content/jenkins-100k-celebration-pictures
+<a name="l-240"></a><span class="tm">18:59:20</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-100:tag this build icon has bad name (Closed) https://issues.jenkins-ci.org/browse/JENKINS-100
+<a name="l-241"></a><span class="tm">19:00:04</span><span class="nk"> &lt;kohsuke&gt;</span> shapeway $25 gift card can do for https://www.shapeways.com/model/upload-and-buy/2183445
+<a name="l-242"></a><span class="tm">19:00:04</span><span class="nk"> &lt;danielbeck&gt;</span> http://blog.cloudbees.com/2015/01/breakingbuilds-twitter-contest-results.html
+<a name="l-243"></a><span class="tm">19:00:29</span><span class="nk"> &lt;Kamran&gt;</span> (off-topic) odd, i just noticed, jenkins-admin doesn't have the ability to connect to IRC using SSL.
+<a name="l-244"></a><span class="tm">19:00:49</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke non-public link
+<a name="l-245"></a><span class="tm">19:00:55</span><span class="nk"> &lt;kohsuke&gt;</span> oh
+<a name="l-246"></a><span class="tm">19:01:20</span><span class="nk"> &lt;kohsuke&gt;</span> https://www.shapeways.com/product/NZAN5AGUS/mr-jenkins-v2
+<a name="l-247"></a><span class="tm">19:01:52</span><span class="nk"> &lt;Kamran&gt;</span> Hmm, those look nice, I quite like the 4th one actually
+<a name="l-248"></a><span class="tm">19:02:04</span><span class="nk"> &lt;Kamran&gt;</span> oh wait, you made those
+<a name="l-249"></a><span class="tm">19:02:05</span><span class="nk"> &lt;Kamran&gt;</span> :D
+<a name="l-250"></a><span class="tm">19:02:05</span><span class="nk"> &lt;kohsuke&gt;</span> The other part of the program is to limit this to one per person
+<a name="l-251"></a><span class="tm">19:02:11</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Definitely.
+<a name="l-252"></a><span class="tm">19:02:12</span><span class="nk"> &lt;kohsuke&gt;</span> Sorry, danielbeck &amp; jglick you'll only get one
+<a name="l-253"></a><span class="tm">19:02:41</span><span class="nk"> &lt;jglick&gt;</span> I would just say to disqualify committers.
+<a name="l-254"></a><span class="tm">19:03:01</span><span class="nk"> &lt;jglick&gt;</span> (Or their families!)
+<a name="l-255"></a><span class="tm">19:03:04</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> Why?
+<a name="l-256"></a><span class="tm">19:03:16</span><span class="nk"> &lt;danielbeck&gt;</span> Kamran It costs money.
+<a name="l-257"></a><span class="tm">19:03:34</span><span class="nk"> &lt;kohsuke&gt;</span> I'm afraid I'm running out of time today
+<a name="l-258"></a><span class="tm">19:03:37</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> Yeah, true
+<a name="l-259"></a><span class="tm">19:03:39</span><span class="nk"> &lt;kohsuke&gt;</span> I want to hear from hare_brain on this one
+<a name="l-260"></a><span class="tm">19:03:43</span><span class="nk"> &lt;jglick&gt;</span> It is just part of our job. Anyway what if I tried to illicitly build my coffee mug collection by *introducing* vulnerabilities and then reporting them?
+<a name="l-261"></a><span class="tm">19:04:05</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke I think mug/shirt, possibly with exclusive design (if it's just the Jenkins logo +  "security team" below, doesn't have to be super elaborate IMO) would be fine.
+<a name="l-262"></a><span class="tm">19:04:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck jglick</span>
+<a name="l-263"></a><span class="tm">19:04:07</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck jglick kohsuke
+<a name="l-264"></a><span class="tm">19:04:21</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I'll ask CB folks to see if they can do an artwork
+<a name="l-265"></a><span class="tm">19:04:23</span><span class="nk"> &lt;hare_brain&gt;</span> I’m sorry.
+<a name="l-266"></a><span class="tm">19:04:29</span><span class="nk"> &lt;hare_brain&gt;</span> I’ve been in meetings and not paying attention.
+<a name="l-267"></a><span class="tm">19:04:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain</span>
+<a name="l-268"></a><span class="tm">19:04:32</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain jglick kohsuke
+<a name="l-269"></a><span class="tm">19:04:46</span><span class="nk"> &lt;kohsuke&gt;</span> I need to run now, I'm really sorry
+<a name="l-270"></a><span class="tm">19:04:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> bounty / thank you gift for security vulnerabilities
+<a name="l-271"></a><span class="tm">19:05:05</span><span class="nk"> &lt;danielbeck&gt;</span> hare_brain Can we afford t-shirts or mugs for security issue reporters as a token gift?
+<a name="l-272"></a><span class="tm">19:05:31</span><span class="nk"> &lt;hare_brain&gt;</span> Seems like we should be able to.
+<a name="l-273"></a><span class="tm">19:05:49</span><span class="nk"> &lt;hare_brain&gt;</span> We’re not getting these reports every day are we
+<a name="l-274"></a><span class="tm">19:06:17</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">kohsuke:</span> Would you please be able to take a look at my ICLA before you run off?
+<a name="l-275"></a><span class="tm">19:06:30</span><span class="nk"> &lt;danielbeck&gt;</span> Fairly few, and most are from regular devs, see the recent advisories
+<a name="l-276"></a><span class="tm">19:07:46</span><span class="nk"> &lt;jglick&gt;</span> So can we agree on (a) token non-cash gifts, (b) not for committers, (c) accepted (or fixed?) issues only?
+<a name="l-277"></a><span class="tm">19:08:08</span><span class="nk"> &lt;danielbeck&gt;</span> d) no repeats
+<a name="l-278"></a><span class="tm">19:08:28</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-279"></a><span class="tm">19:08:41</span><span class="nk"> &lt;danielbeck&gt;</span> Published fixes should be fine
+<a name="l-280"></a><span class="tm">19:08:54</span><span class="nk"> &lt;danielbeck&gt;</span> e) must be exploitable, no hardening
+<a name="l-281"></a><span class="tm">19:09:32</span><span class="nk"> &lt;Kamran&gt;</span> agreed
+<a name="l-282"></a><span class="tm">19:09:46</span><span class="nk"> &lt;jglick&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">non-cash gifts to be provided to reporters of SECURITY issues if and when the issue is accepted as a vulnerability (not merely security hardening) and a fix published. Maximum one gift per reporter and Jenkins committers are excluded.</span>
+<a name="l-283"></a><span class="tm">19:10:30</span><span class="nk"> &lt;danielbeck&gt;</span> great
+<a name="l-284"></a><span class="tm">19:10:34</span><span class="nk"> &lt;jglick&gt;</span> Whether we retroactively offer gifts to historical reporters is another question I would leave for now unless anyone feels strongly.
+<a name="l-285"></a><span class="tm">19:11:09</span><span class="nk"> &lt;danielbeck&gt;</span> let's move on
+<a name="l-286"></a><span class="tm">19:11:13</span><span class="nk"> &lt;Kamran&gt;</span> agreed
+<a name="l-287"></a><span class="tm">19:11:23</span><span class="nk"> &lt;jglick&gt;</span> danielbeck do you want to take the other agenda items? Most are from you.
+<a name="l-288"></a><span class="tm">19:11:45</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Resurrecting the MEETING Jira project (maybe even have the bot create issues for action items automatically)</span>
+<a name="l-289"></a><span class="tm">19:12:15</span><span class="nk"> &lt;danielbeck&gt;</span> Just as kohsuke discovered a few minutes ago, this Jira project is basically dead
+<a name="l-290"></a><span class="tm">19:12:40</span><span class="nk"> &lt;danielbeck&gt;</span> I think it would be a great tool for tracking meeting action items, if we can manage to have the bot create issues
+<a name="l-291"></a><span class="tm">19:12:48</span><span class="nk"> &lt;danielbeck&gt;</span> or we just shut it down.
+<a name="l-292"></a><span class="tm">19:13:08</span><span class="nk"> &lt;danielbeck&gt;</span> any opinions on this?
+<a name="l-293"></a><span class="tm">19:13:16</span><span class="nk"> &lt;jglick&gt;</span> Never heard of it before.
+<a name="l-294"></a><span class="tm">19:13:21</span><span class="nk"> &lt;danielbeck&gt;</span> https://issues.jenkins-ci.org/browse/MEETING
+<a name="l-295"></a><span class="tm">19:13:46</span><span class="nk"> &lt;jglick&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/browse/MEETING</span>
+<a name="l-296"></a><span class="tm">19:14:12</span><span class="nk"> &lt;jglick&gt;</span> No opinion from me.
+<a name="l-297"></a><span class="tm">19:14:13</span><span class="nk"> &lt;Kamran&gt;</span> Maybe we could try figuring out how to make the bot create issues?
+<a name="l-298"></a><span class="tm">19:14:48</span><span class="nk"> &lt;jglick&gt;</span> May be tricky since in general IRC nick != jenkins-ci.org username.
+<a name="l-299"></a><span class="tm">19:15:01</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> yeah, true.
+<a name="l-300"></a><span class="tm">19:15:50</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> What's your opinion on this?
+<a name="l-301"></a><span class="tm">19:15:59</span><span class="nk"> &lt;danielbeck&gt;</span> I don't know where the bot source is, unfortunately.
+<a name="l-302"></a><span class="tm">19:16:11</span><span class="nk"> &lt;danielbeck&gt;</span> I'd love to get MEETING revived
+<a name="l-303"></a><span class="tm">19:16:15</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> https://github.com/jenkins-infra/ircbot
+<a name="l-304"></a><span class="tm">19:16:33</span><span class="nk"> &lt;danielbeck&gt;</span> I've forgotten probably half the action items assigned to me
+<a name="l-305"></a><span class="tm">19:16:40</span><span class="nk"> &lt;danielbeck&gt;</span> Proper tracking would be great
+<a name="l-306"></a><span class="tm">19:16:45</span><span class="nk"> &lt;Kamran&gt;</span> That's the bot source, daniel.
+<a name="l-307"></a><span class="tm">19:16:57</span><span class="nk"> &lt;danielbeck&gt;</span> Kamran Isn't that jenkins-admin? This is about robobutler
+<a name="l-308"></a><span class="tm">19:17:01</span><span class="nk"> &lt;Kamran&gt;</span> no
+<a name="l-309"></a><span class="tm">19:17:03</span><span class="nk"> &lt;Kamran&gt;</span> *oh
+<a name="l-310"></a><span class="tm">19:17:15</span><span class="nk"> &lt;Kamran&gt;</span> you guys have two bots in here, totally forgot about that
+<a name="l-311"></a><span class="tm">19:17:24</span><span class="nk"> &lt;danielbeck&gt;</span> there's also jenkins-builds
+<a name="l-312"></a><span class="tm">19:17:40</span><span class="nk"> &lt;danielbeck&gt;</span> So yeah, not something we can manage without input from kohsuke I'm afraif
+<a name="l-313"></a><span class="tm">19:17:50</span><span class="nk"> &lt;jenkins-builds&gt;</span> Project jenkins_main_trunk build #4061: SUCCESS in 58 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/4061/
+<a name="l-314"></a><span class="tm">19:17:50</span><span class="nk"> &lt;jenkins-builds&gt;</span> Jesse Glick: [JENKINS-27700] Noting that JENKINS-27565 changed settings format.
+<a name="l-315"></a><span class="tm">19:17:53</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-27700:Node configuration missing after downgrading from 1.607 to 1.606 (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-27700
+<a name="l-316"></a><span class="tm">19:17:55</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-27565:Nodes can be removed as idle before the assigned tasks have started (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-27565
+<a name="l-317"></a><span class="tm">19:18:05</span><span class="nk"> &lt;danielbeck&gt;</span> so I think we should just move on
+<a name="l-318"></a><span class="tm">19:18:10</span><span class="nk"> &lt;Kamran&gt;</span> Alright.
+<a name="l-319"></a><span class="tm">19:18:10</span><span class="nk"> &lt;danielbeck&gt;</span> and postpone this
+<a name="l-320"></a><span class="tm">19:18:47</span><span class="nk"> &lt;Kamran&gt;</span> uh, danielbeck: https://github.com/jenkins-infra/robobutler
+<a name="l-321"></a><span class="tm">19:19:03</span><span class="nk"> &lt;danielbeck&gt;</span> Kamran Nice
+<a name="l-322"></a><span class="tm">19:19:16</span><span class="nk"> &lt;Kamran&gt;</span> :D
+<a name="l-323"></a><span class="tm">19:19:51</span><span class="nk"> &lt;danielbeck&gt;</span> still, doesn't look like there's a lot of interest in this topic?
+<a name="l-324"></a><span class="tm">19:20:35</span><span class="nk"> &lt;Kamran&gt;</span> I still think we could at least try and figure out how to make the bot create issues, but not sure how much work that would take, however, I do have an IRC bot coded in python as well, which is what robobutler is coded in
+<a name="l-325"></a><span class="tm">19:20:35</span><span class="nk"> &lt;schristou&gt;</span> cccccceefndcngbdvrbjrkvgkjjbfdfdherdcjhbfnkg
+<a name="l-326"></a><span class="tm">19:20:47</span><span class="nk"> &lt;schristou&gt;</span> ops sorry
+<a name="l-327"></a><span class="tm">19:21:01</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">schristou:</span> were you sleeping on your keyboard? :D
+<a name="l-328"></a><span class="tm">19:21:05</span><span class="nk"> &lt;danielbeck&gt;</span> Kamran Could you maybe take a shot to see whether this would be feasible?
+<a name="l-329"></a><span class="tm">19:21:28</span><span class="nk"> &lt;schristou&gt;</span> <span class="hi">Kamran:</span> SHH! ;)
+<a name="l-330"></a><span class="tm">19:22:11</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> I'll give it a shot. :D
+<a name="l-331"></a><span class="tm">19:23:00</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">Kamran to look into adding MEETING issue creation to robobutler</span>
+<a name="l-332"></a><span class="tm">19:23:06</span><span class="nk"> &lt;danielbeck&gt;</span> great!
+<a name="l-333"></a><span class="tm">19:23:09</span><span class="nk"> &lt;Kamran&gt;</span> :)
+<a name="l-334"></a><span class="tm">19:23:29</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">The important content of the Wiki is difficult to find (between outdated or even empty pages), and there's no real introduction to Jenkins – What can we do about it?</span>
+<a name="l-335"></a><span class="tm">19:23:41</span><span class="nk"> &lt;danielbeck&gt;</span> This also includes the web site.
+<a name="l-336"></a><span class="tm">19:24:06</span><span class="nk"> &lt;danielbeck&gt;</span> It seems to be unnecessarily difficult to find anything in the wiki
+<a name="l-337"></a><span class="tm">19:24:36</span><span class="nk"> &lt;danielbeck&gt;</span> Even the wiki home page is outdated and borderline wrong
+<a name="l-338"></a><span class="tm">19:24:59</span><span class="nk"> &lt;danielbeck&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/Meet+Jenkins
+<a name="l-339"></a><span class="tm">19:25:16</span><span class="nk"> &lt;Kamran&gt;</span> (kinda un-related, but kinda related) Maybe updating the atlassian software (Confluence, JIRA, etc) might make the wiki easier to navigate? Because right now, the Jenkins Wiki is stuck at Confluence version 3.4.7, which is really out of date now. Same applies to JIRA as well.
+<a name="l-340"></a><span class="tm">19:25:30</span><span class="nk"> &lt;danielbeck&gt;</span> The second most important function of Jenkins is 'monitor external job'
+<a name="l-341"></a><span class="tm">19:26:21</span><span class="nk"> &lt;danielbeck&gt;</span> so I'd really like to clean and/or restructure up the wiki, or anything else that makes the important bits easier to find
+<a name="l-342"></a><span class="tm">19:27:24</span><span class="nk"> &lt;danielbeck&gt;</span> maybe having a wiki isn't the best approach to begin with, and something more like a knowledge base site with specific questions/answers might work better for some of the content?
+<a name="l-343"></a><span class="tm">19:27:36</span><span class="nk"> &lt;ogondza&gt;</span> I agree, though have no idea where to start or a vision of the future
+<a name="l-344"></a><span class="tm">19:27:47</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> I think we should keep the wiki.
+<a name="l-345"></a><span class="tm">19:28:06</span><span class="nk"> &lt;Kamran&gt;</span> Because to be honest, I find wikis to be easier to navigate than knowledge bases.
+<a name="l-346"></a><span class="tm">19:28:57</span><span class="nk"> &lt;hare_brain&gt;</span> If you were to restructure the wiki, would you want to move it to GitHub wiki?
+<a name="l-347"></a><span class="tm">19:29:02</span><span class="nk"> &lt;danielbeck&gt;</span> Kamran To clarify, 'having _only_ a wiki'
+<a name="l-348"></a><span class="tm">19:29:17</span><span class="nk"> &lt;danielbeck&gt;</span> hare_brain That's per repo, right?
+<a name="l-349"></a><span class="tm">19:29:21</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> yes.
+<a name="l-350"></a><span class="tm">19:29:37</span><span class="nk"> &lt;Kamran&gt;</span> each github wiki is per repository.
+<a name="l-351"></a><span class="tm">19:29:39</span><span class="nk"> &lt;danielbeck&gt;</span> that makes as little sense for Jenkins as per-repo issue trackers.
+<a name="l-352"></a><span class="tm">19:29:45</span><span class="nk"> &lt;Kamran&gt;</span> yeah
+<a name="l-353"></a><span class="tm">19:30:02</span><span class="nk"> &lt;Kamran&gt;</span> However, the Jenkins wiki being stuck at Confluence 3.4.7 is kind of a bad thing, especially since that's a really old version.
+<a name="l-354"></a><span class="tm">19:30:45</span><span class="nk"> &lt;danielbeck&gt;</span> Kamran I think an update is planned
+<a name="l-355"></a><span class="tm">19:31:00</span><span class="nk"> &lt;Kamran&gt;</span> Really? :D
+<a name="l-356"></a><span class="tm">19:31:16</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> I am afraid that using knowledgebase would suffer from outdated content as well
+<a name="l-357"></a><span class="tm">19:31:19</span><span class="nk"> &lt;danielbeck&gt;</span> But I doubt the wiki version will help a lot with making the content more accessible
+<a name="l-358"></a><span class="tm">19:32:38</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> It might actually, because Confluence was given a revamp in version 5.x.
+<a name="l-359"></a><span class="tm">19:32:55</span><span class="nk"> &lt;Kamran&gt;</span> and that revamp made Confluence a lot easier to navigate
+<a name="l-360"></a><span class="tm">19:33:02</span><span class="nk"> &lt;jglick&gt;</span> Maybe we should link more prominently to http://stackoverflow.com/questions/tagged/jenkins ?
+<a name="l-361"></a><span class="tm">19:33:10</span><span class="nk"> &lt;Kamran&gt;</span> in my opinion, anyway
+<a name="l-362"></a><span class="tm">19:33:16</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza It would help if we could have a better overview of the content we have, so if something changes, we can actually find the wiki pages to change
+<a name="l-363"></a><span class="tm">19:33:54</span><span class="nk"> &lt;danielbeck&gt;</span> jglick Looks more like a mailing list alternative to be honest
+<a name="l-364"></a><span class="tm">19:34:24</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> the images on the wiki also need to be updated, such as wiki pages with Jenkins screenshots
+<a name="l-365"></a><span class="tm">19:34:25</span><span class="nk"> &lt;jglick&gt;</span> Well you talked about a “knowledge base” and that is what I think of as the modern version of KBs.
+<a name="l-366"></a><span class="tm">19:34:58</span><span class="nk"> &lt;danielbeck&gt;</span> right
+<a name="l-367"></a><span class="tm">19:35:36</span><span class="nk"> &lt;danielbeck&gt;</span> As I wrote, for some of the content
+<a name="l-368"></a><span class="tm">19:36:00</span><span class="nk"> &lt;danielbeck&gt;</span> that would allow us to focus the wiki more on general documentation
+<a name="l-369"></a><span class="tm">19:36:14</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> yeah
+<a name="l-370"></a><span class="tm">19:37:24</span><span class="nk"> &lt;danielbeck&gt;</span> Should we continue this to the dev list to get more ideas?
+<a name="l-371"></a><span class="tm">19:37:32</span><span class="nk"> &lt;danielbeck&gt;</span> *on
+<a name="l-372"></a><span class="tm">19:37:42</span><span class="nk"> &lt;ogondza&gt;</span> +1
+<a name="l-373"></a><span class="tm">19:37:47</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> yeah
+<a name="l-374"></a><span class="tm">19:37:50</span><span class="nk"> &lt;Kamran&gt;</span> *sure
+<a name="l-375"></a><span class="tm">19:38:33</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to ask for ideas on improving the documentation on the dev list</span>
+<a name="l-376"></a><span class="tm">19:38:49</span><span class="nk"> &lt;Kamran&gt;</span> shall we move on?
+<a name="l-377"></a><span class="tm">19:38:50</span><span class="nk"> &lt;Kamran&gt;</span> :D
+<a name="l-378"></a><span class="tm">19:39:09</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Proposal: move Jenkins official image repo to jenkinsci org so enhancement / version updates can be managed by the community</span>
+<a name="l-379"></a><span class="tm">19:39:23</span><span class="nk"> &lt;danielbeck&gt;</span> ndeloof isn't here
+<a name="l-380"></a><span class="tm">19:39:25</span><span class="nk"> &lt;Kamran&gt;</span> +1
+<a name="l-381"></a><span class="tm">19:39:37</span><span class="nk"> &lt;danielbeck&gt;</span> jglick Can you contact him?
+<a name="l-382"></a><span class="tm">19:39:52</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">danielbeck:</span> he said he could not make the meeting.
+<a name="l-383"></a><span class="tm">19:40:01</span><span class="nk"> &lt;jglick&gt;</span> But I think he is not necessary for the topic.
+<a name="l-384"></a><span class="tm">19:40:08</span><span class="nk"> &lt;jglick&gt;</span> Seems like a reasonable proposal to me.
+<a name="l-385"></a><span class="tm">19:40:18</span><span class="nk"> &lt;Kamran&gt;</span> Yeah, i agree with jglick.
+<a name="l-386"></a><span class="tm">19:40:18</span><span class="nk"> &lt;jglick&gt;</span> Right now there are several open issues and PRs.
+<a name="l-387"></a><span class="tm">19:40:38</span><span class="nk"> &lt;jglick&gt;</span> I think it is just for historical reasons that it landed in @cloudbees.
+<a name="l-388"></a><span class="tm">19:40:55</span><span class="nk"> &lt;jglick&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/cloudbees/jenkins-ci.org-docker</span>
+<a name="l-389"></a><span class="tm">19:41:01</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> Doesn't all issues &amp; PRs stay in the repo even when you move it to an organization?
+<a name="l-390"></a><span class="tm">19:41:17</span><span class="nk"> &lt;jglick&gt;</span> Yes, if you *move* rather than clone.
+<a name="l-391"></a><span class="tm">19:42:07</span><span class="nk"> &lt;danielbeck&gt;</span> Should the repo be renamed as well, or is this an established docker naming convention?
+<a name="l-392"></a><span class="tm">19:42:23</span><span class="nk"> &lt;danielbeck&gt;</span> From the name it looks more like part of jenkins-infra to me
+<a name="l-393"></a><span class="tm">19:42:23</span><span class="nk"> &lt;jglick&gt;</span> Not sure if there is any particular convention.
+<a name="l-394"></a><span class="tm">19:42:49</span><span class="nk"> &lt;jglick&gt;</span> Is that a GH org?
+<a name="l-395"></a><span class="tm">19:42:55</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> yes
+<a name="l-396"></a><span class="tm">19:43:04</span><span class="nk"> &lt;jglick&gt;</span> https://github.com/jenkins-infra
+<a name="l-397"></a><span class="tm">19:43:16</span><span class="nk"> &lt;Kamran&gt;</span> dang it, you beat me to it
+<a name="l-398"></a><span class="tm">19:43:44</span><span class="nk"> &lt;jglick&gt;</span> Not sure. This is not part of jenkins-ci.org.
+<a name="l-399"></a><span class="tm">19:43:49</span><span class="nk"> &lt;jglick&gt;</span> That is, the site.
+<a name="l-400"></a><span class="tm">19:43:50</span><span class="nk"> &lt;danielbeck&gt;</span> jglick Would be wrong in jenkins-infra, but that's why I wrote that the name confuses. Looks like the docker container driving www.jenkins-ci.org
+<a name="l-401"></a><span class="tm">19:44:15</span><span class="nk"> &lt;Kamran&gt;</span> Odd, how is github at "Everything operating normally", when the avatar server is still having problems?
+<a name="l-402"></a><span class="tm">19:44:15</span><span class="nk"> &lt;danielbeck&gt;</span> based on name only
+<a name="l-403"></a><span class="tm">19:44:35</span><span class="nk"> &lt;arminius&gt;</span> so i decided to make my jenkins look a bit more awesome: http://arminius.org/shot.png - anyone an idea why this seems to be only present when accessing jenkins from my desktop machine but not from my thinkpad?
+<a name="l-404"></a><span class="tm">19:44:36</span><span class="nk"> &lt;jglick&gt;</span> Oh, yes, I see your point. Agreed, the name should change.
+<a name="l-405"></a><span class="tm">19:44:58</span><span class="nk"> &lt;danielbeck&gt;</span> arminius Meeting ongoing, please wait a bit
+<a name="l-406"></a><span class="tm">19:45:26</span><span class="nk"> &lt;jglick&gt;</span> Maybe @jenkinsci/jenkins-docker-image?
+<a name="l-407"></a><span class="tm">19:45:38</span><span class="nk"> &lt;danielbeck&gt;</span> much better
+<a name="l-408"></a><span class="tm">19:46:13</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">arminius:</span> dang, that theme looks awesome. Would you consider making it public? I would love to use it. Also yeah, danielbeck is right, there is a meeting going on right now :D
+<a name="l-409"></a><span class="tm">19:46:50</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> yeah, i like that
+<a name="l-410"></a><span class="tm">19:46:53</span><span class="nk"> &lt;arminius&gt;</span> <span class="hi">Kamran:</span> it's just a css modification of a theme i downloaded, will try to tar/gz that, sure. :)
+<a name="l-411"></a><span class="tm">19:47:25</span><span class="nk"> &lt;Kamran&gt;</span> Okay, PM me it once you do, since I don't want to disturb the meeting :D
+<a name="l-412"></a><span class="tm">19:47:28</span><span class="nk"> &lt;jglick&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://registry.hub.docker.com/_/jenkins/</span>
+<a name="l-413"></a><span class="tm">19:47:47</span><span class="nk"> &lt;Kamran&gt;</span> *when you do
+<a name="l-414"></a><span class="tm">19:47:56</span><span class="nk"> &lt;jglick&gt;</span> https://registry.hub.docker.com/search?q=library&amp;f=official
+<a name="l-415"></a><span class="tm">19:47:59</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> Where does that even go when you do #info?
+<a name="l-416"></a><span class="tm">19:48:11</span><span class="nk"> &lt;danielbeck&gt;</span> Kamran Meeting minutes
+<a name="l-417"></a><span class="tm">19:48:17</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">Kamran:</span> meeting notes http://meetbot.debian.net/Manual.html#commands
+<a name="l-418"></a><span class="tm">19:48:32</span><span class="nk"> &lt;Kamran&gt;</span> Ah, okay.
+<a name="l-419"></a><span class="tm">19:48:55</span><span class="nk"> &lt;jglick&gt;</span> I can find no solid convention but docker-jenkins looks most conventional.
+<a name="l-420"></a><span class="tm">19:49:07</span><span class="nk"> &lt;jglick&gt;</span> So revised proposal: @jenkinsci/docker-jenkins
+<a name="l-421"></a><span class="tm">19:49:35</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> I do see a lot of repos going by projectname-docker-container
+<a name="l-422"></a><span class="tm">19:49:51</span><span class="nk"> &lt;jglick&gt;</span> Also some at: https://github.com/docker-library
+<a name="l-423"></a><span class="tm">19:49:53</span><span class="nk"> &lt;Kamran&gt;</span> or am i being a derp?
+<a name="l-424"></a><span class="tm">19:50:05</span><span class="nk"> &lt;danielbeck&gt;</span> would also help disambiguate from the plugin
+<a name="l-425"></a><span class="tm">19:50:12</span><span class="nk"> &lt;Kamran&gt;</span> yeah
+<a name="l-426"></a><span class="tm">19:50:14</span><span class="nk"> &lt;jglick&gt;</span> But I think we want to keep it in @jenkinsci.
+<a name="l-427"></a><span class="tm">19:50:32</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">jglick:</span> no, i mean as the repository name :D
+<a name="l-428"></a><span class="tm">19:50:35</span><span class="nk"> &lt;danielbeck&gt;</span> docker-jenkins could be the plugin with a bad repo name as well. jenkins-docker-container, not so much
+<a name="l-429"></a><span class="tm">19:50:51</span><span class="nk"> &lt;jglick&gt;</span> Yeah I suppose so. (In fact it is docker-plugin.)
+<a name="l-430"></a><span class="tm">19:51:05</span><span class="nk"> &lt;jglick&gt;</span> (And we do try to enforce repo names when cloning into @jenkinsci.)
+<a name="l-431"></a><span class="tm">19:51:18</span><span class="nk"> &lt;jglick&gt;</span> But jenkins-docker-container is fine with me too.
+<a name="l-432"></a><span class="tm">19:51:23</span><span class="nk"> &lt;Kamran&gt;</span> yay :D
+<a name="l-433"></a><span class="tm">19:51:38</span><span class="nk"> &lt;arminius&gt;</span> <span class="hi">Kamran:</span> wget arminius.org/jenkins-theme.tar.gz
+<a name="l-434"></a><span class="tm">19:52:14</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">arminius:</span> Alright, thanks! :D
+<a name="l-435"></a><span class="tm">19:52:19</span><span class="nk"> &lt;danielbeck&gt;</span> So #agreed? Or are you looking for more opinions?
+<a name="l-436"></a><span class="tm">19:52:27</span><span class="nk"> &lt;Kamran&gt;</span> <span class="cmd">#agreed.</span><span class="cmdline"></span>
+<a name="l-437"></a><span class="tm">19:52:31</span><span class="nk"> &lt;arminius&gt;</span> <span class="hi">Kamran:</span> much welcome. if it works for you i would be very happy to know. :)
+<a name="l-438"></a><span class="tm">19:52:33</span><span class="nk"> &lt;jglick&gt;</span> Yes.
+<a name="l-439"></a><span class="tm">19:53:30</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">move Jenkins docker repo from @cloudbees into @jenkinsci, rename to jenkins-docker-container</span>
+<a name="l-440"></a><span class="tm">19:53:53</span><span class="nk"> &lt;jglick&gt;</span> <span class="cmd">#action </span><span class="cmdline">ndeloof to do the move</span>
+<a name="l-441"></a><span class="tm">19:53:53</span><span class="nk"> &lt;danielbeck&gt;</span> Who's doing that? jglick? ndeloof?
+<a name="l-442"></a><span class="tm">19:53:56</span><span class="nk"> &lt;danielbeck&gt;</span> ok
+<a name="l-443"></a><span class="tm">19:53:56</span><span class="nk"> &lt;Kamran&gt;</span> shall we move on?
+<a name="l-444"></a><span class="tm">19:53:58</span><span class="nk"> &lt;danielbeck&gt;</span> yes
+<a name="l-445"></a><span class="tm">19:54:16</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Disabling "Clone" feature in JIRA</span>
+<a name="l-446"></a><span class="tm">19:54:24</span><span class="nk"> &lt;danielbeck&gt;</span> Is there any legitimate use case for this?
+<a name="l-447"></a><span class="tm">19:54:32</span><span class="nk"> &lt;Kamran&gt;</span> No there isn't.
+<a name="l-448"></a><span class="tm">19:55:17</span><span class="nk"> &lt;danielbeck&gt;</span> I've only ever seen it to improve visibility by ... fragmenting... things, or to create new issues that then still carry around a half broken issue description
+<a name="l-449"></a><span class="tm">19:55:33</span><span class="nk"> &lt;orrc_&gt;</span> yeah, in any JIRA I've seen, nobody ever clones issues properly
+<a name="l-450"></a><span class="tm">19:55:36</span><span class="nk"> &lt;danielbeck&gt;</span> so if that's possible, I'd like to see this removed/disabled
+<a name="l-451"></a><span class="tm">19:55:49</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> Not sure if it's a thing you can actually disable
+<a name="l-452"></a><span class="tm">19:55:58</span><span class="nk"> &lt;danielbeck&gt;</span> take away permissions?
+<a name="l-453"></a><span class="tm">19:56:07</span><span class="nk"> &lt;Kamran&gt;</span> Is there a permission node for that?
+<a name="l-454"></a><span class="tm">19:56:28</span><span class="nk"> &lt;danielbeck&gt;</span> Would need to look this up
+<a name="l-455"></a><span class="tm">19:56:38</span><span class="nk"> &lt;danielbeck&gt;</span> but is there anyone who thinks it's useful?
+<a name="l-456"></a><span class="tm">19:56:48</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> nope, not useful to me
+<a name="l-457"></a><span class="tm">19:56:53</span><span class="nk"> &lt;orrc_&gt;</span> a DDG search for "jira disable clone" suggests that feature was implemented a while ago
+<a name="l-458"></a><span class="tm">19:57:15</span><span class="nk"> &lt;danielbeck&gt;</span> IOW, we urgently need a Jira update now :-)
+<a name="l-459"></a><span class="tm">19:57:34</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">danielbeck:</span> yup, same goes for confluence :D
+<a name="l-460"></a><span class="tm">19:57:57</span><span class="nk"> &lt;orrc_&gt;</span> we're on JIRA 5, it was implemented in JIRA 3.7 :)
+<a name="l-461"></a><span class="tm">19:58:12</span><span class="nk"> &lt;orrc_&gt;</span> <span class="hi">Kamran:</span> kk has been working on updating Confluence too
+<a name="l-462"></a><span class="tm">19:58:27</span><span class="nk"> &lt;danielbeck&gt;</span> so, can we agree on removing this?
+<a name="l-463"></a><span class="tm">19:58:34</span><span class="nk"> &lt;Kamran&gt;</span> Yes.
+<a name="l-464"></a><span class="tm">19:58:38</span><span class="nk"> &lt;Kamran&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-465"></a><span class="tm">19:58:41</span><span class="nk"> &lt;ogondza&gt;</span> +1
+<a name="l-466"></a><span class="tm">19:59:05</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Remove/disable clone action in Jira</span>
+<a name="l-467"></a><span class="tm">19:59:07</span><span class="nk"> &lt;orrc_&gt;</span> kill it. nobody wants it. in the super rare case that somebody has a real reason to use it, we can just flip the switch again
+<a name="l-468"></a><span class="tm">19:59:38</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to figure out how to get rid of clone in Jira</span>
+<a name="l-469"></a><span class="tm">19:59:49</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">The Chinese mirror is a mess</span>
+<a name="l-470"></a><span class="tm">19:59:58</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://mirrors.jenkins-ci.org/status.html</span>
+<a name="l-471"></a><span class="tm">20:00:10</span><span class="nk"> &lt;danielbeck&gt;</span> great timing: that was at 100+ days age just a few days ago
+<a name="l-472"></a><span class="tm">20:00:44</span><span class="nk"> &lt;Kamran&gt;</span> wow, all them red indicators under the chinese mirror though
+<a name="l-473"></a><span class="tm">20:00:49</span><span class="nk"> &lt;danielbeck&gt;</span> resulting in some users getting broken updates due to INFRA-260
+<a name="l-474"></a><span class="tm">20:00:52</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-260:The Chinese mirror is outdated (Open) https://issues.jenkins-ci.org/browse/INFRA-260
+<a name="l-475"></a><span class="tm">20:01:41</span><span class="nk"> &lt;danielbeck&gt;</span> Unfortunately I have no idea who's running the mirrors, and if there's any way to get a better mirror in that region
+<a name="l-476"></a><span class="tm">20:02:13</span><span class="nk"> &lt;orrc_&gt;</span> there was an offer on the mailing list a few days ago from someone who has US, GB, RU and AU mirrors (I think)
+<a name="l-477"></a><span class="tm">20:02:31</span><span class="nk"> &lt;orrc_&gt;</span> it would be nice if the mirror management stuff was in puppet, but it doesn't seem to be at all
+<a name="l-478"></a><span class="tm">20:02:37</span><span class="nk"> &lt;danielbeck&gt;</span> orrc_ Nothing near China though?
+<a name="l-479"></a><span class="tm">20:02:46</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler?
+<a name="l-480"></a><span class="tm">20:03:01</span><span class="nk"> &lt;kohsuke&gt;</span> I'm back and hey this is still going!
+<a name="l-481"></a><span class="tm">20:03:08</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">kohsuke:</span> welcome back!
+<a name="l-482"></a><span class="tm">20:03:34</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe I should read backlog, but should we just remove that mirror from the list?
+<a name="l-483"></a><span class="tm">20:03:47</span><span class="nk"> &lt;danielbeck&gt;</span> I don't know how useful/essential it is
+<a name="l-484"></a><span class="tm">20:03:49</span><span class="nk"> &lt;orrc_&gt;</span> <span class="hi">danielbeck:</span> not that I remember. we still have two mirrors in JP
+<a name="l-485"></a><span class="tm">20:04:01</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">kohsuke:</span> yes, because there's no point in having a mirror that's so outdated.
+<a name="l-486"></a><span class="tm">20:04:20</span><span class="nk"> &lt;danielbeck&gt;</span> a few days aren't that bad, but 100+? that's completely useless
+<a name="l-487"></a><span class="tm">20:04:22</span><span class="nk"> &lt;kohsuke&gt;</span> mirrorbrain only redirects traffic to a mirror when it knows the mirror has up-to-date file
+<a name="l-488"></a><span class="tm">20:04:36</span><span class="nk"> &lt;rtyler&gt;</span> is it meeting time?
+<a name="l-489"></a><span class="tm">20:04:37</span><span class="nk"> &lt;kohsuke&gt;</span> So it's probably not doing any real harm
+<a name="l-490"></a><span class="tm">20:04:39</span><span class="nk"> &lt;rtyler&gt;</span> damnit
+<a name="l-491"></a><span class="tm">20:04:40</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Any explanation for INFRA-260 then?
+<a name="l-492"></a><span class="tm">20:04:43</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-260:The Chinese mirror is outdated (Open) https://issues.jenkins-ci.org/browse/INFRA-260
+<a name="l-493"></a><span class="tm">20:04:50</span><span class="nk"> &lt;Kamran&gt;</span> <span class="hi">rtyler:</span> yes, it's been going on for over 2 hours now :D
+<a name="l-494"></a><span class="tm">20:04:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> do you know how to disable a mirror in mb?
+<a name="l-495"></a><span class="tm">20:05:00</span><span class="nk"> &lt;kohsuke&gt;</span> yeah, I think I do
+<a name="l-496"></a><span class="tm">20:05:01</span><span class="nk"> &lt;rtyler&gt;</span> east coast time is really messing with me
+<a name="l-497"></a><span class="tm">20:05:02</span><span class="nk"> &lt;danielbeck&gt;</span> I rewrote it a bit but the original error is in there
+<a name="l-498"></a><span class="tm">20:05:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> alright, let's do that later then?
+<a name="l-499"></a><span class="tm">20:05:20</span><span class="nk"> &lt;kohsuke&gt;</span> I see, so it is actually causing harm
+<a name="l-500"></a><span class="tm">20:05:28</span><span class="nk"> &lt;orrc_&gt;</span> <span class="hi">kohsuke:</span> rtyler: can the mirror management be puppetised or automated somehow?
+<a name="l-501"></a><span class="tm">20:05:32</span><span class="nk"> &lt;rtyler&gt;</span> I dropped the ball on that, there's unread infra emails that I deprioritized in favor of reviewing those PRs
+<a name="l-502"></a><span class="tm">20:05:42</span><span class="nk"> &lt;orrc_&gt;</span> also, the guy wrote back today: http://lists.jenkins-ci.org/pipermail/jenkins-infra/2015-April/000284.html
+<a name="l-503"></a><span class="tm">20:05:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc_:</span> it can, that's one of the oldest INFRA tickets :P
+<a name="l-504"></a><span class="tm">20:05:58</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Also, see comments from someone in India who solved it by using the German mirror
+<a name="l-505"></a><span class="tm">20:06:03</span><span class="nk"> &lt;orrc_&gt;</span> jolly good
+<a name="l-506"></a><span class="tm">20:06:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> considering the recent work you've done I think we should get the mirrors into functional state so users aren't affected but continue to focus on the jira stuff
+<a name="l-507"></a><span class="tm">20:07:25</span><span class="nk"> &lt;kohsuke&gt;</span> so IIUC, the action is to remove the mirror now, then puppetizing mirrorbrain in a not-so-long term?
+<a name="l-508"></a><span class="tm">20:07:41</span><span class="nk"> &lt;rtyler&gt;</span> depending on how you define not-so-long term, sure
+<a name="l-509"></a><span class="tm">20:07:44</span><span class="nk"> &lt;kohsuke&gt;</span> I assume Ray Sison from Go-Parts is a different conversation, right?
+<a name="l-510"></a><span class="tm">20:07:50</span><span class="nk"> &lt;rtyler&gt;</span> oh yeah
+<a name="l-511"></a><span class="tm">20:08:10</span><span class="nk"> &lt;rtyler&gt;</span> mirrorbrain is very database driven, and tohse types of applications tend to be more challenging to properly puppetize
+<a name="l-512"></a><span class="tm">20:08:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to disable mirror.bit.edu.cn</span>
+<a name="l-513"></a><span class="tm">20:08:33</span><span class="nk"> &lt;orrc_&gt;</span> <span class="hi">kohsuke:</span> related: INFRA-225 is back
+<a name="l-514"></a><span class="tm">20:08:36</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-225:Appears backend crawler hasn't run since Oct 2014 (Reopened) https://issues.jenkins-ci.org/browse/INFRA-225
+<a name="l-515"></a><span class="tm">20:08:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">somebody needs to file INFRA ticket to puppetize mirrobrain</span>
+<a name="l-516"></a><span class="tm">20:08:55</span><span class="nk"> &lt;rtyler&gt;</span> it's there
+<a name="l-517"></a><span class="tm">20:08:58</span><span class="nk"> &lt;rtyler&gt;</span> it's like INFRA-4
+<a name="l-518"></a><span class="tm">20:08:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc_:</span>  aye, I meant to get to it over the weekend and got carried away with JIRA/Confluence hacking
+<a name="l-519"></a><span class="tm">20:08:59</span><span class="nk"> &lt;rtyler&gt;</span> :P
+<a name="l-520"></a><span class="tm">20:09:00</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-4:Upgrade spinach from 10.10 to 12.04 LTS (Resolved) https://issues.jenkins-ci.org/browse/INFRA-4
+<a name="l-521"></a><span class="tm">20:09:39</span><span class="nk"> &lt;kohsuke&gt;</span> Nope, I'm not seeing a ticket for that
+<a name="l-522"></a><span class="tm">20:10:08 </span><span class="nka">* rtyler</span> <span class="ac">fetches</span>
+<a name="l-523"></a><span class="tm">20:10:32</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else on this topic?
+<a name="l-524"></a><span class="tm">20:10:43</span><span class="nk"> &lt;danielbeck&gt;</span> done with disabling the mirror
+<a name="l-525"></a><span class="tm">20:10:54</span><span class="nk"> &lt;kohsuke&gt;</span> that was fast!
+<a name="l-526"></a><span class="tm">20:10:55</span><span class="nk"> &lt;orrc_&gt;</span> <span class="hi">kohsuke:</span> cool. that JIRA/Confluence stuff is really nice
+<a name="l-527"></a><span class="tm">20:11:05</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks
+<a name="l-528"></a><span class="tm">20:11:23</span><span class="nk"> &lt;kohsuke&gt;</span> Turns out that JIRA license has expired, so we need to get a new license issued before we can upgrade
+<a name="l-529"></a><span class="tm">20:11:38</span><span class="nk"> &lt;Kamran&gt;</span> And Confluence?
+<a name="l-530"></a><span class="tm">20:11:40</span><span class="nk"> &lt;kohsuke&gt;</span> So I'm thinking maybe I should postpone migration until that
+<a name="l-531"></a><span class="tm">20:12:10</span><span class="nk"> &lt;kohsuke&gt;</span> The thing is, usually the license renewal is automatic, but Atlassian has abandone the unlimited JIRA user license
+<a name="l-532"></a><span class="tm">20:12:21</span><span class="nk"> &lt;kohsuke&gt;</span> so it looks like we need to be transferred to a different kind of license
+<a name="l-533"></a><span class="tm">20:12:30</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke next meeting / end meeting? Or is this for the meeting?
+<a name="l-534"></a><span class="tm">20:12:33</span><span class="nk"> &lt;kohsuke&gt;</span> I've already applied for it, but it says it'll take multiple business days
+<a name="l-535"></a><span class="tm">20:12:38</span><span class="nk"> &lt;kohsuke&gt;</span> sorry, you are right
+<a name="l-536"></a><span class="tm">20:12:49</span><span class="nk"> &lt;kohsuke&gt;</span> let's wrap this up and I can update outside the meeting
+<a name="l-537"></a><span class="tm">20:12:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-538"></a><span class="tm">20:13:12</span><span class="nk"> &lt;kohsuke&gt;</span> Next meeting will be April 15th
+<a name="l-539"></a><span class="tm">20:13:17</span><span class="nk"> &lt;kohsuke&gt;</span> same time as always
+<a name="l-540"></a><span class="tm">20:13:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 16:04:51 May 04, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:53:48 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 65.063
+  exclusion.robots: 0.292
+  exclusion.robots.policy: 0.274
+  RedisCDXSource: 1.0
+  esindex: 0.009
+  LoadShardBlock: 36.784 (3)
+  PetaboxLoader3.datanode: 35.916 (4)
+  CDXLines.iter: 22.851 (3)
+  load_resource: 55.796
+  PetaboxLoader3.resolve: 38.91
+-->

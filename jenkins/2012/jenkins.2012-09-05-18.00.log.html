@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:37</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:37</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:56</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer hare_brain kohsuke rtyler</span>
+<a name="l-4"></a><span class="tm">18:00:56</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:01:18 </span><span class="nka">* kohsuke</span> <span class="ac">tweets</span>
+<a name="l-6"></a><span class="tm">18:01:46</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap action items</span>
+<a name="l-7"></a><span class="tm">18:01:57</span><span class="nk"> &lt;rtyler&gt;</span> uh
+<a name="l-8"></a><span class="tm">18:02:00</span><span class="nk"> &lt;rtyler&gt;</span> so I sent in the proposal
+<a name="l-9"></a><span class="tm">18:02:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/browse/MEETING</span>
+<a name="l-10"></a><span class="tm">18:02:03</span><span class="nk"> &lt;rtyler&gt;</span> for the FOSDEM dev room
+<a name="l-11"></a><span class="tm">18:02:08</span><span class="nk"> &lt;hare_brain&gt;</span> We carried forward a lot of action items from the 8/8 eeting
+<a name="l-12"></a><span class="tm">18:02:26</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I'm going to close MEETING-5 then
+<a name="l-13"></a><span class="tm">18:02:33</span><span class="nk"> &lt;kohsuke&gt;</span> is the proposal visible somewhere?
+<a name="l-14"></a><span class="tm">18:02:35</span><span class="nk"> &lt;rtyler&gt;</span> we have JIRAs for these O_o
+<a name="l-15"></a><span class="tm">18:02:48</span><span class="nk"> &lt;PvM_Iain&gt;</span> Hello
+<a name="l-16"></a><span class="tm">18:02:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">The FOSDEM devroom proposal: https://gist.github.com/6546c827b777c55f1ff7/48124395c9690ff0f95964acf32cce9dd6c1ea2a</span>
+<a name="l-17"></a><span class="tm">18:03:13</span><span class="nk"> &lt;hare_brain&gt;</span> Wow I had no idea
+<a name="l-18"></a><span class="tm">18:03:30</span><span class="nk"> &lt;rtyler&gt;</span> I can't tell if kohsuke is messing with us
+<a name="l-19"></a><span class="tm">18:03:39</span><span class="nk"> &lt;rtyler&gt;</span> I think he's messing with us
+<a name="l-20"></a><span class="tm">18:03:54</span><span class="nk"> &lt;hare_brain&gt;</span> He did this a month ago.
+<a name="l-21"></a><span class="tm">18:03:59</span><span class="nk"> &lt;hare_brain&gt;</span> According to the dates on the issues
+<a name="l-22"></a><span class="tm">18:04:25</span><span class="nk"> &lt;kohsuke&gt;</span> I think it was discussed in the meeting and I got an AI to set up JIRA to track actions
+<a name="l-23"></a><span class="tm">18:04:29</span><span class="nk"> &lt;abayer&gt;</span> Well, huh.
+<a name="l-24"></a><span class="tm">18:04:38</span><span class="nk"> &lt;rtyler&gt;</span> how'bout that
+<a name="l-25"></a><span class="tm">18:04:46</span><span class="nk"> &lt;abayer&gt;</span> I suck even more than I thought I did.
+<a name="l-26"></a><span class="tm">18:04:58</span><span class="nk"> &lt;hare_brain&gt;</span> That was even the action item #1 from the last meeting
+<a name="l-27"></a><span class="tm">18:05:02</span><span class="nk"> &lt;hare_brain&gt;</span> kohsuke to set up JIRA for project meeting actions
+<a name="l-28"></a><span class="tm">18:05:02</span><span class="nk"> &lt;rtyler&gt;</span> no ndeloof, so I'm guessing his items are still lingering another couple weeks :)
+<a name="l-29"></a><span class="tm">18:05:12</span><span class="nk"> &lt;hare_brain&gt;</span> So we can cross that one off.
+<a name="l-30"></a><span class="tm">18:05:20</span><span class="nk"> &lt;stephenc_&gt;</span> KK where is your "I have a bot for that" stock answer
+<a name="l-31"></a><span class="tm">18:05:49</span><span class="nk"> &lt;kohsuke&gt;</span> What is the "travel grant" action?
+<a name="l-32"></a><span class="tm">18:06:04</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, in due time, stephenc_
+<a name="l-33"></a><span class="tm">18:06:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that was what we discussed to some extent in japan
+<a name="l-34"></a><span class="tm">18:06:40</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, I know the context
+<a name="l-35"></a><span class="tm">18:07:05</span><span class="nk"> &lt;kohsuke&gt;</span> ah, so this action was "let's discuss FOSDEM travel grant in the next meeting" action
+<a name="l-36"></a><span class="tm">18:07:09</span><span class="nk"> &lt;rtyler&gt;</span> yes
+<a name="l-37"></a><span class="tm">18:07:19</span><span class="nk"> &lt;rtyler&gt;</span> sorry, we were all drunk last time round
+<a name="l-38"></a><span class="tm">18:07:21</span><span class="nk"> &lt;kohsuke&gt;</span> I'll add it to the end of the agenda then
+<a name="l-39"></a><span class="tm">18:07:49</span><span class="nk"> &lt;rtyler&gt;</span> mika packaged the ircbot up and I've merged his changes in
+<a name="l-40"></a><span class="tm">18:07:56</span><span class="nk"> &lt;kohsuke&gt;</span> oh nice
+<a name="l-41"></a><span class="tm">18:07:58</span><span class="nk"> &lt;rtyler&gt;</span> it's now on me to add the puppet bits
+<a name="l-42"></a><span class="tm">18:08:12</span><span class="nk"> &lt;kohsuke&gt;</span> closing https://issues.jenkins-ci.org/browse/MEETING-1 then
+<a name="l-43"></a><span class="tm">18:08:16</span><span class="nk"> &lt;rtyler&gt;</span> I don't think lisa ever got around to a write-up
+<a name="l-44"></a><span class="tm">18:08:16</span><span class="nk"> &lt;mika&gt;</span> if you need any further help, just ping me
+<a name="l-45"></a><span class="tm">18:08:26</span><span class="nk"> &lt;rtyler&gt;</span> on meat-space meetups
+<a name="l-46"></a><span class="tm">18:08:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">LisaWells to publish the write up on hat we can help to facilitate meet-ups in meat space</span>
+<a name="l-47"></a><span class="tm">18:09:20</span><span class="nk"> &lt;stephenc__&gt;</span> s/hat/what/
+<a name="l-48"></a><span class="tm">18:10:01</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's it for actions
+<a name="l-49"></a><span class="tm">18:10:09</span><span class="nk"> &lt;rtyler&gt;</span> let's mooooooooooooooooooooove it
+<a name="l-50"></a><span class="tm">18:10:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Should the "Sponsor this issue" link be ommited for closed issues</span>
+<a name="l-51"></a><span class="tm">18:10:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">tonylampada:</span> I believe it's yours
+<a name="l-52"></a><span class="tm">18:10:34</span><span class="nk"> &lt;tonylampada&gt;</span> all right, my turn
+<a name="l-53"></a><span class="tm">18:10:45</span><span class="nk"> &lt;tonylampada&gt;</span> Hi folks
+<a name="l-54"></a><span class="tm">18:11:14</span><span class="nk"> &lt;tonylampada&gt;</span> so, I just wanted to ask if should implement https://github.com/freedomsponsors/freedomsponsors-jira-plugin/issues/4
+<a name="l-55"></a><span class="tm">18:11:42</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's up to you, but personally, if you ask me, it makes sense to implement it
+<a name="l-56"></a><span class="tm">18:11:45</span><span class="nk"> &lt;tonylampada&gt;</span> I also, do a quick check to how do you guys like the new plugin, and if there's anything I can do do improve it
+<a name="l-57"></a><span class="tm">18:12:21</span><span class="nk"> &lt;kohsuke&gt;</span> As far as I'm concerned, all I need to hear is "here's the new version, please deploy it"
+<a name="l-58"></a><span class="tm">18:12:26</span><span class="nk"> &lt;rtyler&gt;</span> I've had no interaction with it
+<a name="l-59"></a><span class="tm">18:12:58 </span><span class="nka">* kohsuke</span> <span class="ac">now sees that the OpenID fix is somehow not working for him</span>
+<a name="l-60"></a><span class="tm">18:13:24</span><span class="nk"> &lt;tonylampada&gt;</span> Do you guys know if ppl check up on http://freedomsponsors.org/ from time to time ?
+<a name="l-61"></a><span class="tm">18:13:53</span><span class="nk"> &lt;tonylampada&gt;</span> There's. ummm U$ 270 hanging on open issues already :-)
+<a name="l-62"></a><span class="tm">18:14:22</span><span class="nk"> &lt;kohsuke&gt;</span> That's good to know
+<a name="l-63"></a><span class="tm">18:14:26</span><span class="nk"> &lt;tonylampada&gt;</span> I mean, the commiters
+<a name="l-64"></a><span class="tm">18:15:02</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think there's much else to this topic.
+<a name="l-65"></a><span class="tm">18:15:05</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Publicize freedomsponsors.org at JUC?</span>
+<a name="l-66"></a><span class="tm">18:15:08</span><span class="nk"> &lt;msm&gt;</span> has anyone seen this bug:
+<a name="l-67"></a><span class="tm">18:15:09</span><span class="nk"> &lt;msm&gt;</span> https://gist.github.com/3641693
+<a name="l-68"></a><span class="tm">18:15:15</span><span class="nk"> &lt;tonylampada&gt;</span> ok. I will implement it then
+<a name="l-69"></a><span class="tm">18:15:22</span><span class="nk"> &lt;tonylampada&gt;</span> :-)
+<a name="l-70"></a><span class="tm">18:15:24</span><span class="nk"> &lt;tonylampada&gt;</span> thanks
+<a name="l-71"></a><span class="tm">18:15:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">or a guest post on http://jenkins-ci.org/ ?</span>
+<a name="l-72"></a><span class="tm">18:15:34</span><span class="nk"> &lt;imod&gt;</span> is there some feedback to the issue itself as soon as there is some sponsoring on it already?
+<a name="l-73"></a><span class="tm">18:15:43</span><span class="nk"> &lt;rtyler&gt;</span> I like the guest post idea
+<a name="l-74"></a><span class="tm">18:16:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">imod:</span> that's another idea for tonylampada to implement on his service
+<a name="l-75"></a><span class="tm">18:16:16</span><span class="nk"> &lt;tonylampada&gt;</span> I like hare_brain's idea! hehe
+<a name="l-76"></a><span class="tm">18:16:42</span><span class="nk"> &lt;kohsuke&gt;</span> I'll mention this in my slides then
+<a name="l-77"></a><span class="tm">18:16:42</span><span class="nk"> &lt;tonylampada&gt;</span> the guest post idea is a good one too
+<a name="l-78"></a><span class="tm">18:17:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">tonylampada to write a guest post on jenkins-ci.org about Freedom Sponsors</span>
+<a name="l-79"></a><span class="tm">18:17:34</span><span class="nk"> &lt;tonylampada&gt;</span> If someone could take a picture of Kohsuke with a FS slide in the background, it would make my day :-)
+<a name="l-80"></a><span class="tm">18:17:41</span><span class="nk"> &lt;rtyler&gt;</span> hah
+<a name="l-81"></a><span class="tm">18:17:57</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Jenkins newsletter would be another place to talk about this</span>
+<a name="l-82"></a><span class="tm">18:17:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">imod:</span> looks like your comment is already filed as https://github.com/freedomsponsors/freedomsponsors-jira-plugin/issues/5
+<a name="l-83"></a><span class="tm">18:18:10</span><span class="nk"> &lt;imod&gt;</span> yep, just seen it too :)
+<a name="l-84"></a><span class="tm">18:18:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I'll mention that to Lisa
+<a name="l-85"></a><span class="tm">18:18:32</span><span class="nk"> &lt;kohsuke&gt;</span> it looks like she's away today
+<a name="l-86"></a><span class="tm">18:18:55</span><span class="nk"> &lt;kohsuke&gt;</span> moving on to next topic?
+<a name="l-87"></a><span class="tm">18:19:16</span><span class="nk"> &lt;tonylampada&gt;</span> I think implementing issue 5 is easy enough. Will do that too okay?
+<a name="l-88"></a><span class="tm">18:19:28</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-89"></a><span class="tm">18:19:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">election process proposal</span>
+<a name="l-90"></a><span class="tm">18:19:48</span><span class="nk"> &lt;kohsuke&gt;</span> I need to send this to dev and all
+<a name="l-91"></a><span class="tm">18:19:59</span><span class="nk"> &lt;rtyler&gt;</span> oh snap
+<a name="l-92"></a><span class="tm">18:20:11</span><span class="nk"> &lt;kohsuke&gt;</span> and I just wrote it up, so my apologies for being last minute
+<a name="l-93"></a><span class="tm">18:20:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process+Proposal</span>
+<a name="l-94"></a><span class="tm">18:20:35</span><span class="nk"> &lt;hare_brain&gt;</span> I had made this comment to you in email, kohsuke, but your proposal doesn't talk about how people get nominated.
+<a name="l-95"></a><span class="tm">18:20:55</span><span class="nk"> &lt;hare_brain&gt;</span> Does the current board nominate new candidates and voters just vote to approve the nomination(s)?
+<a name="l-96"></a><span class="tm">18:21:07</span><span class="nk"> &lt;hare_brain&gt;</span> Or do you think it should be more wide open?
+<a name="l-97"></a><span class="tm">18:21:34</span><span class="nk"> &lt;kohsuke&gt;</span> I didn't think about that
+<a name="l-98"></a><span class="tm">18:22:03</span><span class="nk"> &lt;stephenc__&gt;</span> The risk with wide open is a hijacking by a load of fly by night committers joining
+<a name="l-99"></a><span class="tm">18:22:25</span><span class="nk"> &lt;hare_brain&gt;</span> I agree with stephenc__. My preference would be for the first. That's how boards typically work anyway.
+<a name="l-100"></a><span class="tm">18:22:27</span><span class="nk"> &lt;dapak&gt;</span> yeah there needs to be a stipulation somewhere in there
+<a name="l-101"></a><span class="tm">18:22:40</span><span class="nk"> &lt;stephenc__&gt;</span> If you do "semi" I would say any 2 year+ committers can propose
+<a name="l-102"></a><span class="tm">18:23:08</span><span class="nk"> &lt;stephenc__&gt;</span> And 10% of that population is required for a nomination
+<a name="l-103"></a><span class="tm">18:23:10</span><span class="nk"> &lt;hare_brain&gt;</span> Or write-ins I guess.
+<a name="l-104"></a><span class="tm">18:24:02</span><span class="nk"> &lt;stephenc__&gt;</span> Iow if 10%+ of the 2yr+ committers think ted should be on the board then he is nominated and a vote must be held by all to approve
+<a name="l-105"></a><span class="tm">18:24:05</span><span class="nk"> &lt;hare_brain&gt;</span> Do I have this right? 2 year+ committers can propose a nominee. 10%+ approval to get that proposal on the ballot in the first place?
+<a name="l-106"></a><span class="tm">18:24:48</span><span class="nk"> &lt;kohsuke&gt;</span> I was hoping that we can keep it simple
+<a name="l-107"></a><span class="tm">18:25:01</span><span class="nk"> &lt;kohsuke&gt;</span> the more complicated the rules, the harder it is to justify
+<a name="l-108"></a><span class="tm">18:25:04</span><span class="nk"> &lt;stephenc__&gt;</span> Ted then needs sufficient votes to get on the board... I am not making a suggestion on the voting process
+<a name="l-109"></a><span class="tm">18:25:16</span><span class="nk"> &lt;abayer&gt;</span> …all I know is I'm voting for Ted.
+<a name="l-110"></a><span class="tm">18:25:25</span><span class="nk"> &lt;stephenc__&gt;</span> Simple is the existing board nominate their replacements
+<a name="l-111"></a><span class="tm">18:25:26</span><span class="nk"> &lt;rtyler&gt;</span> ALL GLORY TO THE HYPNOTED
+<a name="l-112"></a><span class="tm">18:25:42</span><span class="nk"> &lt;hare_brain&gt;</span> I tend to agree with kohsuke. stephenc__'s proposal adds a lot more overhead.
+<a name="l-113"></a><span class="tm">18:26:30</span><span class="nk"> &lt;hare_brain&gt;</span> As long as we don't fall into cronyism
+<a name="l-114"></a><span class="tm">18:27:28</span><span class="nk"> &lt;lov&gt;</span> but I want to be a crony :(
+<a name="l-115"></a><span class="tm">18:27:30</span><span class="nk"> &lt;dapak&gt;</span> when you say that "voters vote to approve" the candidates selected by the board, are there stipulations on who those voters are
+<a name="l-116"></a><span class="tm">18:27:38</span><span class="nk"> &lt;stephenc_&gt;</span> Well if the proposal is rejected by 51% you have to come up with a second proposals
+<a name="l-117"></a><span class="tm">18:27:52</span><span class="nk"> &lt;harpreet_&gt;</span> I have never commented here: are you looking to replace all board members at once or will it be rolling upgrade ;-)
+<a name="l-118"></a><span class="tm">18:28:07</span><span class="nk"> &lt;hare_brain&gt;</span> dapak, harpreet_: read the propsal. :)
+<a name="l-119"></a><span class="tm">18:28:13</span><span class="nk"> &lt;hare_brain&gt;</span> Both of your questions are covered.
+<a name="l-120"></a><span class="tm">18:28:35</span><span class="nk"> &lt;dapak&gt;</span> words?  reading?  THIS WOULD NEVER HAPPEN UNDER TED'S RULE
+<a name="l-121"></a><span class="tm">18:28:37</span><span class="nk"> &lt;kohsuke&gt;</span> I think if we can find who's interested in serving, while allowing the board to filter out weirdos, that'd be the best of the both worlds
+<a name="l-122"></a><span class="tm">18:28:40</span><span class="nk"> &lt;dapak&gt;</span> ;)
+<a name="l-123"></a><span class="tm">18:29:02</span><span class="nk"> &lt;abayer&gt;</span> My only quibble with the proposal is that I feel like I should be stepping down sooner than a year from now - I really haven't been pulling my weight.
+<a name="l-124"></a><span class="tm">18:30:14</span><span class="nk"> &lt;harpreet_&gt;</span> <span class="hi">hare_brain:</span> thanks
+<a name="l-125"></a><span class="tm">18:30:33</span><span class="nk"> &lt;kohsuke&gt;</span> I think I'm OK with letting people nominate themselves
+<a name="l-126"></a><span class="tm">18:30:49</span><span class="nk"> &lt;kohsuke&gt;</span> I'm not really worried about weirdos caring enough to nominate themselves and then winning
+<a name="l-127"></a><span class="tm">18:30:53</span><span class="nk"> &lt;abayer&gt;</span> (total sidenote - looks like there are under a thousand Jenkins *nodes* (slaves and masters) running JDK 1.5)
+<a name="l-128"></a><span class="tm">18:30:54</span><span class="nk"> &lt;dapak&gt;</span> so as far as voting restriction, i feel like if you can somehow prove you are a jenkins community member you have a right to vote — perhaps contributing in some way traceable to your jenkins account (jira bug, github pull requests, etc)
+<a name="l-129"></a><span class="tm">18:31:25</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">dapak:</span> If you register or have voted previously, you're eligible.
+<a name="l-130"></a><span class="tm">18:31:28</span><span class="nk"> &lt;abayer&gt;</span> That simple.
+<a name="l-131"></a><span class="tm">18:31:39</span><span class="nk"> &lt;kohsuke&gt;</span> my concern with hare_brain's "board nominates and the community would approve" is that how do the board find out who's willing
+<a name="l-132"></a><span class="tm">18:31:49</span><span class="nk"> &lt;abayer&gt;</span> There's that.
+<a name="l-133"></a><span class="tm">18:32:14</span><span class="nk"> &lt;hare_brain&gt;</span> Ah well, my thinking is that we have an idea of the types of perspectives we want represented on the board.
+<a name="l-134"></a><span class="tm">18:32:22</span><span class="nk"> &lt;abayer&gt;</span> (ack, that was just masters)
+<a name="l-135"></a><span class="tm">18:32:24</span><span class="nk"> &lt;hare_brain&gt;</span> We know people who align with that, and we ask.
+<a name="l-136"></a><span class="tm">18:32:27</span><span class="nk"> &lt;rtyler&gt;</span> I propose we say the existing proposal is a good start, discuss this further on the mailing lists to tweak it as needed
+<a name="l-137"></a><span class="tm">18:32:33</span><span class="nk"> &lt;rtyler&gt;</span> we're getting a little bogged down
+<a name="l-138"></a><span class="tm">18:32:45</span><span class="nk"> &lt;dapak&gt;</span> elect everyone, problem solved
+<a name="l-139"></a><span class="tm">18:33:01</span><span class="nk"> &lt;hare_brain&gt;</span> Occupy Jenkins!
+<a name="l-140"></a><span class="tm">18:33:02</span><span class="nk"> &lt;hare_brain&gt;</span> Sorry.
+<a name="l-141"></a><span class="tm">18:33:03</span><span class="nk"> &lt;stephenc_&gt;</span> <span class="hi">dapak:</span> Now you have two problems
+<a name="l-142"></a><span class="tm">18:33:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> OK.
+<a name="l-143"></a><span class="tm">18:33:43</span><span class="nk"> &lt;hare_brain&gt;</span> I second rtyler's motion. Clearly we need to work out the nomination process. We can do that over email
+<a name="l-144"></a><span class="tm">18:33:44</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">rtyler:</span> +1 mroe wide discussion on mailing list
+<a name="l-145"></a><span class="tm">18:33:54</span><span class="nk"> &lt;rtyler&gt;</span> yay i'm contributing
+<a name="l-146"></a><span class="tm">18:34:13</span><span class="nk"> &lt;stephenc_&gt;</span> <span class="hi">rtyler:</span> It won't last
+<a name="l-147"></a><span class="tm">18:34:18</span><span class="nk"> &lt;kohsuke&gt;</span> I'll write up hare_brain's "please trust the boards to nominate good people" model and send it to the dev list
+<a name="l-148"></a><span class="tm">18:34:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">I'll write up hare_brain's "please trust the boards to nominate good people" model and send it to the dev list</span>
+<a name="l-149"></a><span class="tm">18:34:40</span><span class="nk"> &lt;kohsuke&gt;</span> moving on...
+<a name="l-150"></a><span class="tm">18:34:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Help wanted: spams are on the rise</span>
+<a name="l-151"></a><span class="tm">18:35:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">there has been some on-going spam problem on Wiki</span>
+<a name="l-152"></a><span class="tm">18:35:09</span><span class="nk"> &lt;stephenc_&gt;</span> Where is your bot for today
+<a name="l-153"></a><span class="tm">18:35:19</span><span class="nk"> &lt;stephenc_&gt;</span> And jira
+<a name="l-154"></a><span class="tm">18:35:32</span><span class="nk"> &lt;kohsuke&gt;</span> I've been deleting the posts and banning them manually
+<a name="l-155"></a><span class="tm">18:35:44</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, and JIRA, apparently, although I haven't checked it
+<a name="l-156"></a><span class="tm">18:35:59</span><span class="nk"> &lt;rtyler&gt;</span> I think we should have a project in JIRA for spam reports to go into
+<a name="l-157"></a><span class="tm">18:36:04</span><span class="nk"> &lt;stephenc_&gt;</span> At least one issue is just spam
+<a name="l-158"></a><span class="tm">18:36:11</span><span class="nk"> &lt;kohsuke&gt;</span> 1. I wonder if anyone has experience dealing with those stuff
+<a name="l-159"></a><span class="tm">18:36:13</span><span class="nk"> &lt;rtyler&gt;</span> then we'll at least have a queue
+<a name="l-160"></a><span class="tm">18:36:18</span><span class="nk"> &lt;lov&gt;</span> Are you really planning on handling spam manually?
+<a name="l-161"></a><span class="tm">18:36:32</span><span class="nk"> &lt;kohsuke&gt;</span> and 2. if we can give more power to more people to fight spams
+<a name="l-162"></a><span class="tm">18:36:54</span><span class="nk"> &lt;stephenc_&gt;</span> <span class="hi">rtyler:</span> Do you mean a project for the spammers to put their spam issues in, or a project for us to report them in
+<a name="l-163"></a><span class="tm">18:36:58</span><span class="nk"> &lt;dapak&gt;</span> isn't there some kind of wiki plugin to prevent this
+<a name="l-164"></a><span class="tm">18:37:00</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, JIRA project could work
+<a name="l-165"></a><span class="tm">18:37:13</span><span class="nk"> &lt;dapak&gt;</span> if not, perhaps switch to something that's better secure
+<a name="l-166"></a><span class="tm">18:37:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">dapak:</span> switching the system is too much work and not practical
+<a name="l-167"></a><span class="tm">18:37:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">stephenc_:</span> heh, more of a "report the spam" queue
+<a name="l-168"></a><span class="tm">18:37:54</span><span class="nk"> &lt;stephenc_&gt;</span> There was me thinking you had a honeypot idea
+<a name="l-169"></a><span class="tm">18:38:11</span><span class="nk"> &lt;kohsuke&gt;</span> I did track down 2 spammers sign-up history and they don't look like robots
+<a name="l-170"></a><span class="tm">18:38:18</span><span class="nk"> &lt;vjuranek&gt;</span> moreover I;m not sure if it's generated by bot, maybe it's manual spam
+<a name="l-171"></a><span class="tm">18:38:37</span><span class="nk"> &lt;kohsuke&gt;</span> (at least they didn't look like a program making HTTP calls right away)
+<a name="l-172"></a><span class="tm">18:39:23</span><span class="nk"> &lt;lov&gt;</span> If you're convinced that these are real people signing up just to generate spam, you could try hellbanning them.
+<a name="l-173"></a><span class="tm">18:39:34</span><span class="nk"> &lt;kohsuke&gt;</span> what is hellbanning?
+<a name="l-174"></a><span class="tm">18:39:36</span><span class="nk"> &lt;lov&gt;</span> hellbanning is where only that user can actually see content that they create
+<a name="l-175"></a><span class="tm">18:39:57</span><span class="nk"> &lt;stephenc_&gt;</span> There is no way Kohsuke could write a bot to clean up all the spam over lunch
+<a name="l-176"></a><span class="tm">18:40:19</span><span class="nk"> &lt;imod&gt;</span> lets bet on it...
+<a name="l-177"></a><span class="tm">18:40:28</span><span class="nk"> &lt;lov&gt;</span> that said, I can't imagine anyone is actually manually performing the spam themself.
+<a name="l-178"></a><span class="tm">18:40:29</span><span class="nk"> &lt;kohsuke&gt;</span> It does seem somewhat possible
+<a name="l-179"></a><span class="tm">18:40:40</span><span class="nk"> &lt;dapak&gt;</span> can you enable a captcha on editing / commenting
+<a name="l-180"></a><span class="tm">18:40:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to create a 'report-the-spam' project in JIRA to help track and report spam</span>
+<a name="l-181"></a><span class="tm">18:40:48</span><span class="nk"> &lt;dapak&gt;</span> https://confluence.atlassian.com/display/DOC/Configuring+Captcha+for+Spam+Prevention
+<a name="l-182"></a><span class="tm">18:41:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">lov:</span> yes, I agree, but then, I find it hard that someone cared enough to write a program against our custom user signup app
+<a name="l-183"></a><span class="tm">18:41:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">dapak:</span> thanks, I'll check that out
+<a name="l-184"></a><span class="tm">18:41:15</span><span class="nk"> &lt;stephenc_&gt;</span> No way. I will bet "five minutes of worshiping KK at the next huddle" that it cannot be done
+<a name="l-185"></a><span class="tm">18:41:42</span><span class="nk"> &lt;kohsuke&gt;</span> stephenc_ knows how to poke me...
+<a name="l-186"></a><span class="tm">18:42:07</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway, I think I'm good on this topic for now
+<a name="l-187"></a><span class="tm">18:42:13</span><span class="nk"> &lt;hare_brain&gt;</span> When I was on the Yahoo! Games team, we had all sorts of problem with spam and bots in the game rooms. I used to think like kohsuke did, why would anyone take the time to reverse engineer our protocol just to do this, but they did.
+<a name="l-188"></a><span class="tm">18:42:23</span><span class="nk"> &lt;stephenc_&gt;</span> We'll see how effective my incentivising is...
+<a name="l-189"></a><span class="tm">18:42:38</span><span class="nk"> &lt;hare_brain&gt;</span> It was an arms race
+<a name="l-190"></a><span class="tm">18:42:41</span><span class="nk"> &lt;kohsuke&gt;</span> I wouldn't compare Yahoo! Games and Jenkins at the same level, but ...
+<a name="l-191"></a><span class="tm">18:42:49</span><span class="nk"> &lt;rtyler&gt;</span> mooooooooooooooveee it
+<a name="l-192"></a><span class="tm">18:42:50</span><span class="nk"> &lt;abayer&gt;</span> Yeah, Jenkins is waaaaaaaay bigger.
+<a name="l-193"></a><span class="tm">18:43:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">if anyone is willing to volunteer to be a spam police, please let us know</span>
+<a name="l-194"></a><span class="tm">18:43:03</span><span class="nk"> &lt;hare_brain&gt;</span> My point is that some people get their kicks out of the strangest things.
+<a name="l-195"></a><span class="tm">18:43:32</span><span class="nk"> &lt;kohsuke&gt;</span> I'm one of those
+<a name="l-196"></a><span class="tm">18:43:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">FOSDEM travel grant</span>
+<a name="l-197"></a><span class="tm">18:43:56</span><span class="nk"> &lt;kohsuke&gt;</span> Am I correct that I think there's a reasonable consensus for that?
+<a name="l-198"></a><span class="tm">18:44:01</span><span class="nk"> &lt;rtyler&gt;</span> let's hurry on this topic, I'm hungry :D
+<a name="l-199"></a><span class="tm">18:44:02</span><span class="nk"> &lt;abayer&gt;</span> I'm strongly in favor.
+<a name="l-200"></a><span class="tm">18:44:12</span><span class="nk"> &lt;kohsuke&gt;</span> If so the only real question is how much we should spend
+<a name="l-201"></a><span class="tm">18:44:38</span><span class="nk"> &lt;imod&gt;</span> I'm not gona be there this time so -1 :)
+<a name="l-202"></a><span class="tm">18:44:42</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-203"></a><span class="tm">18:45:05</span><span class="nk"> &lt;kohsuke&gt;</span> I was looking forward to seeing you
+<a name="l-204"></a><span class="tm">18:45:28</span><span class="nk"> &lt;imod&gt;</span> you'l have to get to australia ...
+<a name="l-205"></a><span class="tm">18:45:59</span><span class="nk"> &lt;imod&gt;</span> holidays are nice too
+<a name="l-206"></a><span class="tm">18:46:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I haven't done the exact count, but I believe we have more than $5000 on our account in SPI</span>
+<a name="l-207"></a><span class="tm">18:46:29</span><span class="nk"> &lt;rtyler&gt;</span> how many people do we want to bring? :P
+<a name="l-208"></a><span class="tm">18:46:30</span><span class="nk"> &lt;jenkins-builds&gt;</span> Project jenkins_main_trunk build #1892: SUCCESS in 47 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/1892/
+<a name="l-209"></a><span class="tm">18:46:30</span><span class="nk"> &lt;jenkins-builds&gt;</span> * imod: update to new parent pom and cleanup plugin config to also work with m2e
+<a name="l-210"></a><span class="tm">18:46:31</span><span class="nk"> &lt;jenkins-builds&gt;</span> * imod: update plugins parent to pickup new parent for cleaner m2e support
+<a name="l-211"></a><span class="tm">18:46:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">$7348.12 to be exact</span>
+<a name="l-212"></a><span class="tm">18:46:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://spi-inc.org/meetings/minutes/2012/2012-08-09/</span>
+<a name="l-213"></a><span class="tm">18:46:49</span><span class="nk"> &lt;rtyler&gt;</span> if we get the devroom, I'll need all the help I can get :)
+<a name="l-214"></a><span class="tm">18:47:07</span><span class="nk"> &lt;kohsuke&gt;</span> $1000 each for 2 people?
+<a name="l-215"></a><span class="tm">18:47:10</span><span class="nk"> &lt;hare_brain&gt;</span> This grant is to pay for completely, or just subsidize
+<a name="l-216"></a><span class="tm">18:47:13</span><span class="nk"> &lt;stephenc_&gt;</span> Where and when is it?
+<a name="l-217"></a><span class="tm">18:47:13</span><span class="nk"> &lt;rtyler&gt;</span> I think we should shoot for at least 2 people
+<a name="l-218"></a><span class="tm">18:47:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I like 1k for two people
+<a name="l-219"></a><span class="tm">18:47:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> most likely just to subsidize
+<a name="l-220"></a><span class="tm">18:47:44</span><span class="nk"> &lt;rtyler&gt;</span> if we're nominating people, I'd like to bring jieryn over :P
+<a name="l-221"></a><span class="tm">18:47:52</span><span class="nk"> &lt;kohsuke&gt;</span> the whole trip will likely cost more than $1K and I think we want to decide how much we spend upfront
+<a name="l-222"></a><span class="tm">18:48:11</span><span class="nk"> &lt;hare_brain&gt;</span> $2K is 27% of our funds.
+<a name="l-223"></a><span class="tm">18:48:19</span><span class="nk"> &lt;rtyler&gt;</span> I think starting at $1k will be good, I'll see what I can scrounge up for specific sponsorships
+<a name="l-224"></a><span class="tm">18:48:38</span><span class="nk"> &lt;rtyler&gt;</span> it might be feasible to get a few entities to help sponsor something specific around travel grants to FOSDEM
+<a name="l-225"></a><span class="tm">18:49:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> you have some idea about who might pitch in?
+<a name="l-226"></a><span class="tm">18:49:35 </span><span class="nka">* rtyler</span> <span class="ac">coughs redhat</span>
+<a name="l-227"></a><span class="tm">18:50:00</span><span class="nk"> &lt;rtyler&gt;</span> let's decide on $2k spend on 2 travel grants for now
+<a name="l-228"></a><span class="tm">18:50:04</span><span class="nk"> &lt;rtyler&gt;</span> hare_brain, abayer?
+<a name="l-229"></a><span class="tm">18:50:09</span><span class="nk"> &lt;abayer&gt;</span> +!
+<a name="l-230"></a><span class="tm">18:50:16</span><span class="nk"> &lt;abayer&gt;</span> or +1, y'know, whatever.
+<a name="l-231"></a><span class="tm">18:50:31</span><span class="nk"> &lt;hare_brain&gt;</span> 0 undecided but willing to go along with the majority
+<a name="l-232"></a><span class="tm">18:50:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> our run rate has been mostly pretty low
+<a name="l-233"></a><span class="tm">18:50:51</span><span class="nk"> &lt;dapak&gt;</span> redhat just purchased naming rights to an ampitheater here in raleigh for a million+, they could probably squeeze a couple extra dollars for travel   :P
+<a name="l-234"></a><span class="tm">18:50:54</span><span class="nk"> &lt;kohsuke&gt;</span> it's been just CIA T-shirts and stickers
+<a name="l-235"></a><span class="tm">18:51:29</span><span class="nk"> &lt;rtyler&gt;</span> I'd like to come up with a good program proposal, to structure this so it's not a one time thing
+<a name="l-236"></a><span class="tm">18:51:30</span><span class="nk"> &lt;kohsuke&gt;</span> so I think we should be able to spend it
+<a name="l-237"></a><span class="tm">18:51:52</span><span class="nk"> &lt;hare_brain&gt;</span> It just feels like a big chunk of what we've built up. Is this what we want to spend a quarter of our reserves on?
+<a name="l-238"></a><span class="tm">18:52:00</span><span class="nk"> &lt;abayer&gt;</span> I think so.
+<a name="l-239"></a><span class="tm">18:52:09</span><span class="nk"> &lt;rtyler&gt;</span> we'll do another end-of-year fundraiser
+<a name="l-240"></a><span class="tm">18:52:21</span><span class="nk"> &lt;rtyler&gt;</span> I'm hopeful that we can raise a few thousand dollars, at least, every year
+<a name="l-241"></a><span class="tm">18:52:22</span><span class="nk"> &lt;kohsuke&gt;</span> No, please let's not do fundraising every year
+<a name="l-242"></a><span class="tm">18:52:27</span><span class="nk"> &lt;rtyler&gt;</span> really?
+<a name="l-243"></a><span class="tm">18:52:32</span><span class="nk"> &lt;hare_brain&gt;</span> As I said, I'm willing to go along if everyone else thinks this is a good idea.
+<a name="l-244"></a><span class="tm">18:52:35</span><span class="nk"> &lt;dapak&gt;</span> no fundraising?
+<a name="l-245"></a><span class="tm">18:52:39</span><span class="nk"> &lt;kohsuke&gt;</span> That's so Wikipedia!
+<a name="l-246"></a><span class="tm">18:52:55</span><span class="nk"> &lt;abayer&gt;</span> You don't want to be a massively successful household name? =)
+<a name="l-247"></a><span class="tm">18:53:00</span><span class="nk"> &lt;imod&gt;</span> +1 from me, if I get some support to get to SF next time :)
+<a name="l-248"></a><span class="tm">18:53:09</span><span class="nk"> &lt;dapak&gt;</span> GIANT PICTURE OF YOU REPLACING THE JENKINS LOGO UNTIL WE GET MONEY
+<a name="l-249"></a><span class="tm">18:53:28</span><span class="nk"> &lt;rtyler&gt;</span> fundraising is an unfortunate fact of life though, we don't have to go full Wikitard, but I think it should be a end-of-year ask
+<a name="l-250"></a><span class="tm">18:53:32</span><span class="nk"> &lt;hare_brain&gt;</span> I suggest future funding sources as a topic for the next meeting.
+<a name="l-251"></a><span class="tm">18:53:41</span><span class="nk"> &lt;rtyler&gt;</span> lots of companies have end-of-year budgets that need to spend some money ;)
+<a name="l-252"></a><span class="tm">18:53:43</span><span class="nk"> &lt;dapak&gt;</span> i second that suggestion
+<a name="l-253"></a><span class="tm">18:53:46 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-254"></a><span class="tm">18:53:50</span><span class="nk"> &lt;rtyler&gt;</span> I'll add it
+<a name="l-255"></a><span class="tm">18:53:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">next agenda item: "I suggest future funding sources as a topic for the next meeting."</span>
+<a name="l-256"></a><span class="tm">18:54:02</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-257"></a><span class="tm">18:54:23</span><span class="nk"> &lt;rtyler&gt;</span> that's all the time I have, i'll be back later :)
+<a name="l-258"></a><span class="tm">18:54:26</span><span class="nk"> &lt;kohsuke&gt;</span> Let's also see if some people actually want to come to FOSDEM, too
+<a name="l-259"></a><span class="tm">18:54:31</span><span class="nk"> &lt;abayer&gt;</span> We can also do more targeted fundraising - i.e., raise $2k for the travel grants specifically.
+<a name="l-260"></a><span class="tm">18:55:11</span><span class="nk"> &lt;abayer&gt;</span> And I gotta run momentarily too. =)
+<a name="l-261"></a><span class="tm">18:55:15</span><span class="nk"> &lt;hare_brain&gt;</span> Five minutes left
+<a name="l-262"></a><span class="tm">18:55:27</span><span class="nk"> &lt;hare_brain&gt;</span> I had one thing to bring up before rubber stamping the next meeting time
+<a name="l-263"></a><span class="tm">18:55:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we are basically OK with spending $1K x 2 people for FOSDEM travel grant, but we want to make sure money is used well</span>
+<a name="l-264"></a><span class="tm">18:55:42</span><span class="nk"> &lt;stephenc_&gt;</span> Well if KK is going to fosdem, I may go anyway
+<a name="l-265"></a><span class="tm">18:55:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">stephenc_:</span>  I'm going
+<a name="l-266"></a><span class="tm">18:55:58</span><span class="nk"> &lt;stephenc_&gt;</span> If we can convince sacha to pay that is ;-)
+<a name="l-267"></a><span class="tm">18:56:02</span><span class="nk"> &lt;hare_brain&gt;</span> I had proposed to kohsuke that we should have a project meeting at JUC at the end of the month
+<a name="l-268"></a><span class="tm">18:56:07</span><span class="nk"> &lt;kohsuke&gt;</span> but let's give the floor to hare_brain
+<a name="l-269"></a><span class="tm">18:56:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> want to change the topic accordingly?
+<a name="l-270"></a><span class="tm">18:56:44</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="topic">#topic </span><span class="topicline">Hold project meeting at JUC SF on 9/30</span>
+<a name="l-271"></a><span class="tm">18:56:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> and +1 to the project meeting at JUC
+<a name="l-272"></a><span class="tm">18:56:57</span><span class="nk"> &lt;abayer&gt;</span> I'll +1 it on the condition that I get to resign from the board then. =)
+<a name="l-273"></a><span class="tm">18:56:57</span><span class="nk"> &lt;kohsuke&gt;</span> I'm curious what it's going to look like.
+<a name="l-274"></a><span class="tm">18:57:13</span><span class="nk"> &lt;hare_brain&gt;</span> We'd have to work out some logistics, since not everyone will be there.
+<a name="l-275"></a><span class="tm">18:57:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> that won't be sending the right message
+<a name="l-276"></a><span class="tm">18:57:18</span><span class="nk"> &lt;abayer&gt;</span> bah1
+<a name="l-277"></a><span class="tm">18:57:23</span><span class="nk"> &lt;hare_brain&gt;</span> Probably "simulcast" over IRC
+<a name="l-278"></a><span class="tm">18:57:24</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-279"></a><span class="tm">18:57:42</span><span class="nk"> &lt;hare_brain&gt;</span> But my hope is that we get other people involved that normally not vocal here.
+<a name="l-280"></a><span class="tm">18:58:08</span><span class="nk"> &lt;hare_brain&gt;</span> Could we use the panel session time slot at the conference for this?
+<a name="l-281"></a><span class="tm">18:58:24</span><span class="nk"> &lt;hare_brain&gt;</span> Or do we need to do this out of band of the conference sessions?
+<a name="l-282"></a><span class="tm">18:58:27</span><span class="nk"> &lt;abayer&gt;</span> I've got a lightning talk then, but I can finish up quick and run over.
+<a name="l-283"></a><span class="tm">18:58:29</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe I could report how we spent money last year
+<a name="l-284"></a><span class="tm">18:58:49</span><span class="nk"> &lt;kohsuke&gt;</span> what we should be spending money on could be a great topic, too
+<a name="l-285"></a><span class="tm">18:59:13</span><span class="nk"> &lt;hare_brain&gt;</span> I just wanted to get the idea in people's heads, and we can talk more about it at the next meeting, but I wanted to bring it up so we have time to figure it out before JUC
+<a name="l-286"></a><span class="tm">18:59:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I'll check with Alyssa, but I'm sure  it's doable
+<a name="l-287"></a><span class="tm">18:59:26</span><span class="nk"> &lt;hare_brain&gt;</span> I don't think there's time right now to get it all sorted it
+<a name="l-288"></a><span class="tm">18:59:52</span><span class="nk"> &lt;hare_brain&gt;</span> That's it. I yield the floor. :)
+<a name="l-289"></a><span class="tm">18:59:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-290"></a><span class="tm">19:00:08</span><span class="nk"> &lt;abayer&gt;</span> Two weeks from today, same time?
+<a name="l-291"></a><span class="tm">19:00:11</span><span class="nk"> &lt;kohsuke&gt;</span> naturally, 9/19, the same time
+<a name="l-292"></a><span class="tm">19:00:16</span><span class="nk"> &lt;abayer&gt;</span> Rightie-o.
+<a name="l-293"></a><span class="tm">19:00:19</span><span class="nk"> &lt;hare_brain&gt;</span> Yup!
+<a name="l-294"></a><span class="tm">19:00:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting is the same time in 2 weeks (9/19)</span>
+<a name="l-295"></a><span class="tm">19:00:32</span><span class="nk"> &lt;kohsuke&gt;</span> And I think that's it for today
+<a name="l-296"></a><span class="tm">19:00:39</span><span class="nk"> &lt;hare_brain&gt;</span> abayer, no sneeking your resignation from the board onto the next meeting's agenda. :p
+<a name="l-297"></a><span class="tm">19:00:42</span><span class="nk"> &lt;abayer&gt;</span> bah!
+<a name="l-298"></a><span class="tm">19:00:45</span><span class="nk"> &lt;kohsuke&gt;</span> Thank you gentlemen
+<a name="l-299"></a><span class="tm">19:00:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

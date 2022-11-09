@@ -1,0 +1,243 @@
+18:01:32 <rtyler> #startmeeting
+18:01:32 <robobutler> Let the Jenkins meeting commence!
+18:01:38 <rtyler> #topic Last Meeting Actions
+18:01:48 <rtyler> #chair danielbeck
+18:01:48 <robobutler> Current chairs: danielbeck rtyler
+18:02:04 <rtyler> I'm going to just assume that it's been so long that we don't have anything to cover :P
+18:02:18 <rtyler> #info Today's meeting agenda can be found here: https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-July31
+18:02:23 <oleg-nenashev> somewhat
+18:02:37 <rtyler> #topic Weekly release delay
+18:02:41 <rtyler> Let's get right into the topics
+18:02:46 <rtyler> we have a lot to cover actually
+18:02:49 <oleg-nenashev> So.... it is getting delayed
+18:02:54 <rtyler> hah
+18:03:02 <oleg-nenashev> Hoped to see kohsuke there
+18:03:03 <rtyler> this is the DevOps World Jenkins WOrld related thread?
+18:03:26 <oleg-nenashev> No. It is about the delay of the weekly we expected to have last Sunday
+18:03:47 <oleg-nenashev> It is not that I care much, but it would be great to get clarity about the next release
+18:04:03 <rtyler> ah, so what you're saying is that the last week's weekly didn't happen and you're curious to why?
+18:04:09 <oleg-nenashev> There are pretty important changes which need soak testing before the LTS baseline selection
+18:04:34 <oleg-nenashev> I;d guess we cannot do much without KK
+18:04:47 <oleg-nenashev> I used contact channels I had, except Twitter
+18:04:49 <rtyler> I cannot remember what timezone he's in this week, bummer
+18:05:12 <oleg-nenashev> Anyway, working with Daniel to get it clarified
+18:05:18 <rtyler> technically I could call him by telephone, but I'll reserve that for emergencies :P
+18:05:42 <oleg-nenashev> Whomever cares about it, let's help olblak to get the release automation over the line
+18:06:03 <rtyler> indeed, he's on vacation right now as I understand it
+18:06:09 <rtyler> so we'll have to figure that out when he returns
+18:06:25 <oleg-nenashev> rtyler: I may ask about a call if there is no updates by Friday evening
+18:07:01 <rtyler> hah, okay
+18:07:34 <oleg-nenashev> #action oleg-nenashev to ping rtyler about pinging KK if there is no clarity about the Weekly  release by Friday
+18:07:34 <rtyler> the only kohsuke magic of the release IIRC is the signing keys
+18:07:45 <tracymiranda> btw release automation is close but we need to establish/agree on new processes around security signing - so job for the whole community
+18:08:14 <rtyler> tracymiranda: if there's a JEP or a discussion thread I may have missed on the subject, do let me know
+18:08:33 <rtyler> anything else we need to discuss on this topic?
+18:08:41 <oleg-nenashev> nope
+18:08:58 <tracymiranda> just the IEP but we have not made the proposals formally - still looking around at prior art
+18:09:04 <oleg-nenashev> As a Plan B, I might get other OSS organization to sponsor signing keys
+18:09:13 <rtyler> ogondza: I hope you're around  for the next topic :)
+18:09:17 <rtyler> #topic LTS status check
+18:09:42 <rtyler> #info danielbeck started a thread about the LTS schedule around DevOps World Jenkins World here: https://groups.google.com/d/msgid/jenkinsci-dev/956E3B69-90A4-4897-8023-8811DE8FBD90%40beckweb.net
+18:10:09 <ogondza> hello
+18:10:10 <rtyler> does the delay in the weeklies affect the shifted LTS schedule?
+18:10:20 <oleg-nenashev> afaict no
+18:10:29 <ogondza> we decided to postpone to avoid conference dates
+18:10:39 <ogondza> which was the sole reason, IFAICT
+18:10:48 <rtyler> righto
+18:10:54 <oleg-nenashev> Weeklies delay may impact soak testing and finally lead to older release to be picked
+18:10:59 <oleg-nenashev> But that's it
+18:11:14 <ogondza> apart from that, RC will be available as usual.
+18:11:17 <rtyler> when would the next LTS baseline need to be picked?
+18:11:33 <ogondza> 4 weeks from now
+18:11:53 <oleg-nenashev> Aug 28
+18:12:05 <oleg-nenashev> #info LTS release schedule is available n https://jenkins.io/event-calendar/
+18:13:19 <oleg-nenashev> So we have plenty of time till the selection
+18:13:37 * rtyler nods
+18:13:48 <rtyler> any other LTS status related things we need to chat about?
+18:14:15 <oleg-nenashev> We have changelogs for LTS Docker images!
+18:14:24 <ogondza> the RC will be out tomorrow
+18:14:36 <oleg-nenashev> #info https://github.com/jenkinsci/docker/releases for new changelogs
+18:14:38 <rtyler> aw yeah
+18:14:39 <rtyler> thanks
+18:15:02 <ogondza> hopefully not later than usual, we are holding an internal workshop on JCasC+Job DSL
+18:15:02 <oleg-nenashev> Should help a bit
+18:15:26 <oleg-nenashev> make sure to use JCasC 1.25+
+18:15:43 <rtyler> alright, moving on
+18:15:46 <rtyler> lots to get through
+18:15:47 <ogondza> ack
+18:15:48 <rtyler> #topic GSoC update
+18:15:57 <rtyler> oleg-nenashev: this is all you buddy
+18:16:01 <oleg-nenashev> Yep
+18:16:40 <oleg-nenashev> So... Last week we had phase 2 evaluation for GSoC. All 5 students passed the evaluation. Thanks to all students and mentors!
+18:16:52 <rtyler> \o/
+18:16:56 <rtyler> that's great news
+18:17:10 <tracymiranda> hooray, good stuff!
+18:17:27 <oleg-nenashev> We also had joint summer project demos with Outreachy and GSoC students from other organizations
+18:17:43 <oleg-nenashev> #info Video recordings: https://www.youtube.com/watch?v=tnoObQqGhyM , https://www.youtube.com/watch?v=HlENuZZq7zc
+18:18:00 <oleg-nenashev> I need to fix thumbnails fir videos...
+18:18:39 <oleg-nenashev> 7 projects were presented in total, we are working to get more presentation for Phase 3 evaluations which will be a Jenkins Online Meetup
+18:18:55 <oleg-nenashev> Basically that;s it
+18:19:17 <oleg-nenashev> Ah yes, Natasha Stopa will join DW-JW US to talk about new Plugin Installation Manager tool
+18:19:27 <oleg-nenashev> + some community booth activities
+18:19:39 <natashaaa> looking forward to it :)
+18:19:45 <rtyler> o/
+18:19:54 <oleg-nenashev> thumbs up!
+18:19:58 <rtyler> any questions for oleg-nenashev before we move to the next stopic?
+18:20:23 <tracymiranda> will be great to meet you Natasha at DWJW
+18:20:30 <markyjackson> agreed
+18:20:53 <natashaaa> likewise
+18:21:12 <oleg-nenashev> For other students we do some planningfor Lisbon
+18:21:36 <oleg-nenashev> .... next topic?
+18:21:46 <rtyler> oki
+18:21:52 <rtyler> #topic GSoC Budgeting
+18:22:05 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/MaFMYoo8Nxg
+18:22:19 <oleg-nenashev> #info https://github.com/jenkinsci/jep/tree/master/jep/8
+18:22:26 <rtyler> ah beat me to it
+18:22:53 <oleg-nenashev> Basically I would like to get JEP-8 approved for 2019
+18:23:26 <oleg-nenashev> IIUC we are going to use SPI until the transition to CDF is completed, so JEP-8 should be relevant for this year
+18:23:59 <oleg-nenashev> tracymiranda: please correct me if I am wrong
+18:24:02 <rtyler> I think this is a reasonable approach, the GSoC budget needs require a little bit more attention than elsewhere in the organization
+18:24:24 <oleg-nenashev> Yes, too many requests in the dev list already :)
+18:25:05 <tracymiranda> +1 sounds good to me
+18:25:05 <oleg-nenashev> Basically our budget for 2019 is around 9k USD, assuming that Google payments  go through right this September
+18:25:59 <rtyler> +1 from me
+18:26:09 <oleg-nenashev> any other votes?
+18:26:16 <markyjackson> +1 from me
+18:26:17 <markewaite> +1 from me
+18:26:53 <oleg-nenashev> So the agreement is that JEP-8 is approved for this year, right? If so, I will make adjustements and accept the JEP as a BDFL delegate
+18:26:55 <rtyler> oleg-nenashev: do you mind if I propose some slight changes to JEP-8 based on the audit-trail discussion on the mailing list?
+18:27:03 <oleg-nenashev> rtyler: sure
+18:27:07 <rtyler> just to make sure we're keeping track of things
+18:28:10 <rtyler> #agreed JEP-8 looks good and GSoC Budgeting can be delegated to GSoC admins
+18:28:33 <oleg-nenashev> #action rtyler and oleg_nenashev to finalize the JEP and to get it accepted
+18:28:35 <rtyler> oleg-nenashev: I'll get some edits proposed today, and if I get too busy, then just mark the thing as accepted tomoorrow. I don't want to be a blocker
+18:28:46 <rtyler> #topic Budget approvals for the Community Bridge dry-run
+18:28:53 <rtyler> this is another oleg-nenashev topic (woo!)
+18:29:00 <oleg-nenashev> heh
+18:29:03 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/ZyLV-FTPbcM
+18:29:38 <oleg-nenashev> TL;DR: We want to run another Outreach program on Community Bridge (service by Linux Foundation)
+18:30:11 <rtyler> I'm a big fan of using project funds to fund development :clap:
+18:30:11 <oleg-nenashev> The target project is JCasC development tools: schema validation, IDE integration, and so on
+18:30:57 <rtyler> #info This topic is discussing using Community Bridge for a single project as an experiment to validate the approach
+18:31:05 <rtyler> dry-run might imply to people that we're not going to actually spend money :P
+18:31:30 <oleg-nenashev> trial run, not a dry run
+18:31:34 <rtyler> aye
+18:31:47 <rtyler> oleg-nenashev: so on the mailing list you listed a number of options for how we can slice up budget here
+18:31:54 <rtyler> what is your objective from this topic in this meeting?
+18:32:13 <oleg-nenashev> Though in JCasC dry run of YAML configurator may imply trial YOLO run on your instance :( In the scope for the project
+18:32:34 <oleg-nenashev> rtyler:  My objective is to agree on the option and to approve it
+18:32:45 <oleg-nenashev> Would be nice to get feedback from others
+18:33:51 <oleg-nenashev> My preference would be to go with explicit 1500USD stipend and conditional 1500USD travel grant, but would like to hear from tracymiranda  .
+18:33:56 <tracymiranda> #info Jenkins now has a funding page available on Community Bridge, where the project can receive community donations https://funding.communitybridge.org/projects/jenkins
+18:34:09 <tracymiranda> off topic -just was typing that up
+18:34:30 <oleg-nenashev> Well, never hurts to mention
+18:34:39 <tracymiranda> yes, that sounds good - oleg provided more info on details so think that works for this pilot program
+18:34:51 <rtyler> what's the conditional part of the travel grant?
+18:34:55 <oleg-nenashev> Maybe we should update https://jenkins.io/donate/
+18:35:09 <rtyler> steer back on topic kids
+18:35:13 <tracymiranda> only question I had was about whether we set the number of weeks or is it still open-ended - I think it should be ideally fixed
+18:35:38 <oleg-nenashev> tracymiranda: we target 3 months as a fixed timeframe
+18:35:58 <tracymiranda> that's great - better clarity for mentors & interns
+18:36:24 <oleg-nenashev> rtyler: Condition is basically "mentors are happy with the delivered work" and "student is able to go to Jenkins World or other similar event"
+18:36:44 <rtyler> so there's a guaranteed $1500 for the work done, and then the travel grant assuming the project has been successful?
+18:36:48 <rtyler> (a la GSoC)
+18:36:59 <oleg-nenashev> kinda
+18:37:34 <oleg-nenashev> Or 2500USD + standard 500USD travel grant
+18:38:14 <oleg-nenashev> We can also split the payment eligibility by phases if we have concerns. But 1500 + 1500 might be a more simple option
+18:38:25 <tracymiranda> I would prefer this option (from original email) 3000 USD + 500 USD travel grant - Equal to GSoC for full-time, with extra standard travel grant
+18:38:36 <rtyler> I agree with tracymiranda
+18:38:44 <oleg-nenashev> fine with me
+18:38:53 <rtyler> I would recommend that we structure this similar to GSoC's phases to ensure that we're not just giving money away
+18:39:05 <oleg-nenashev> I can do that
+18:39:05 <rtyler> half up front, and half at project completion
+18:39:11 <tracymiranda> that sounds good
+18:39:22 <markyjackson> +1 on half and half option
+18:39:40 <oleg-nenashev> anyone opposed?
+18:39:57 <markewaite> No opposition from me.
+18:40:14 <oleg-nenashev> I wonder how much money we have in our coffers BTW
+18:40:23 <rtyler> I'm +1 on 2500 + 500 travel grant disbursed in the two installments
+18:40:56 <rtyler> let me see what I can dig up real quick from the last SPI budget
+18:41:31 <oleg-nenashev> So... 2500 + 500 or 3000 + 500  ?Just to make sure we vote for the same thing
+18:41:43 <rtyler> 24741.63 at the beginning of july
+18:41:51 <rtyler> oh, my bad, was doing shitty math
+18:41:59 <rtyler> what tracymiranda said, 3000/500
+18:42:12 <rtyler> so we'd budget 3500 for each potential project, starting with this first experiement
+18:42:27 <tracymiranda> +1
+18:42:31 <markyjackson> +1 for half and half of 3000/500 from me
+18:43:03 <rtyler> any other questions, votes, concerns?
+18:43:25 <oleg-nenashev> +1
+18:43:34 <markewaite> +1
+18:43:57 <rtyler> again, I want to thank oleg-nenashev for driving these initiatives to help us pay people to contribute to the Jenkins project :)
+18:44:09 * oleg-nenashev bows
+18:44:33 * tracymiranda claps
+18:44:37 <oleg-nenashev> #action oleg_nenashev to document the payment process as a JEP draft
+18:44:41 <rtyler> #agreed we're going to do a trial run project with Community bridge, allocating $3500 of budget
+18:44:55 <rtyler> #topic SIG status reports
+18:45:01 <rtyler> markewaite: you're up buckaroo
+18:45:07 <markewaite> Jenkins Platform Special Interest Group meets every two weeks and reviews platform related Jenkins topics.
+18:45:15 <markewaite> Topics since the last status report to the Jenkins governance meeting have included (1) GSoC plugin installation manager project, (2) GSoC performance test framework project (microbenchmarks), (3) Windows installer progress, (4) Release drafter for changelogs that are more accurate and easier to create, (5) Oracle Java SE Development Kit Installer (was JDK Tool plugin), (6) CentOS image support for Jenkins docker
+18:45:15 <markewaite> image
+18:45:35 <markewaite> Meetings are recorded (using markewaite Zoom account).  Recordings are placed on the publicly visible Jenkins youtube account.
+18:45:43 <markewaite> No Platform SIG meeting the week of Aug 12 due to DevOps World | Jenkins World 2019 in San Francisco.
+18:45:52 <markewaite> Special thanks to oleg-nenashev, Alex Earl, natashaa, and Abhyudaya Sharma for their contributions to the Platform SIG.
+18:46:09 <markewaite> end of Platform SIG report --- starting Docs SIG report
+18:46:10 <rtyler> I'm happy to hear that the platform sig seems to be chugging along
+18:46:26 <oleg-nenashev> Getting the stuff done
+18:46:43 <tracymiranda> Do we have any platform sig members intending to attend  DevOps World | Jenkins World 2019 - could do a platform sig meeting at contributor summit on Aug 12
+18:46:43 <oleg-nenashev> As usual, Trusted CI access remains a significant issue for SIG members
+18:46:44 <markewaite> Yes, it feels like it is getting things done and helping the project
+18:47:18 <markewaite> Code signing discussions happening elsewhere are still a topic and will continue as a topic pending the release initiative
+18:47:46 <rtyler> oleg-nenashev: was there anybody else other than Alex who needed access? I believe we unblocked him
+18:48:38 <oleg-nenashev> rtyler: We definitely had issues with Java 11 releases. It would be nie to get access for me and batmat so that we can triage issues when Docker packaging release goes south
+18:48:56 <markewaite> tracymiranda: I will be at Jenkins World but unable to attend the summit, I'm teaching a course that day.  Natasha will be there, while Oleg and Alex will not
+18:48:58 <rtyler> yeah that should be no problem, will you file an INFRA ticket for me
+18:49:21 <oleg-nenashev> We also have multi-platform Docker images project revived thanks to Alex Earl, so we will likely need access soon
+18:49:56 <rtyler> party time
+18:49:58 <markewaite> tracymiranda: Not enough Platform SIG members attending to make a meeting effective.
+18:50:00 <tracymiranda> ok thanks markewaite
+18:50:13 <rtyler> any other platform sig comments or questions?
+18:50:20 <oleg-nenashev> #action oleg_nenashev  to request access to Trusted CI for him and batmat
+18:50:33 <oleg-nenashev> Java 14 is coming, booo
+18:50:44 <tracymiranda> Happy to encourage and offer help for blog posts for the various topics so we can shout about them far and wide
+18:50:54 <oleg-nenashev> +100
+18:51:03 <oleg-nenashev> We have not even announced the SIG formally
+18:51:21 <oleg-nenashev> Kudos to markewaite for driving it
+18:51:50 <markewaite> oleg-nenashev: I'm not sure I understand the "haven't announced formally".  I thought we followed all the JEP-4 steps for Platform SIG
+18:51:54 <tracymiranda> yes thanks markewaite, lots of exciting things happening there
+18:53:27 <markewaite> ready for docs SIG status report rtyler ?
+18:53:28 <oleg-nenashev> markewaite: Yeah, it is just an announcement blogpost missing. We can do "Platform SIG 2019 report" or so later this year with all the stuff done there
+18:54:03 <markewaite> #action markewaite write Platform SIG 2019 report to highlight contributions and contributors
+18:54:35 <rtyler> markewaite: go for docs sig
+18:54:47 <markewaite> Jenkins Documentation Special Interest Group has low attendance at meetings every two weeks. The jenkins.io docs site has received several improvements since the Docs SIG started.
+18:54:54 <markewaite> Improvements have included (1) better social media integration with opengraph images, (2) author pages, (3) accessibility improvements, (4) Blue Ocean page styling better matches rest of site, (5) SIG mailing lists automatically included on the mailing list page.
+18:55:01 <markewaite> Meetings are recorded  (using markewaite Zoom account).  Recordings are placed on the publicly visible Jenkins youtube account. No Docs SIG meeting the week of Aug 12 due to DevOps World | Jenkins World 2019 in San Francisco.
+18:55:08 <markewaite> Special thanks to Zbynek Konecny (https://github.com/zbynek) for the site improvements
+18:55:37 <markewaite> Docs SIG is not getting same traction as Platform SIG, needs more help
+18:55:51 <oleg-nenashev> +100
+18:56:27 <markewaite> end of docs sig report
+18:56:39 <oleg-nenashev> To add more context  there, there were also some discussions for changelog automation and default docs in the Docs SIG. Now everything is available through https://github.com/jenkinsci/.github
+18:57:15 <markewaite> I love the release drafter automation and the dependabot automation. They make my life as a plugin maintainer simpler and easier
+18:57:33 <markyjackson> +1
+18:57:44 <markyjackson> and also awesome job markewaite
+18:57:48 <oleg-nenashev> Also, Code of Conduct and Security reporting guidelines are now shown by default to any new contributor/reporter in GitHub
+18:58:29 <tracymiranda> very nice
+18:59:52 <markewaite> Can we cover one more topic rtyler, SIG status report process change?
+19:00:46 <oleg-nenashev> I think we should just move reports to the Dev List
+19:00:58 <markewaite> Proposed new SIG status report policy: Special interest groups may periodically report their status as jenkins.io blog posts or e-mail status reports to related mailing lists in order to satisfy the JEP-4 requirement for periodic status reports.
+19:01:05 <markewaite> This would replace the JEP-4 requirement that SIG's must report at least once every 6 weeks to the Jenkins governance meeting
+19:01:10 <markewaite> #info https://github.com/jenkinsci/jep/tree/master/jep/4#specification "Report activity in the bi-weekly Governance Meeting at least once every 6 weeks"
+19:01:27 <oleg-nenashev> +1
+19:01:31 <rtyler> sure
+19:01:54 <rtyler> want me to jump topics now? we're one minute over time and I'd like to wrap this up nowe :)
+19:02:03 <markewaite> I'm done with my topics.  Thanks.
+19:02:23 <rtyler> let's talk more about sig reports on the dev list
+19:02:28 <rtyler> I'm calling it, thanks markewaite
+19:02:28 <markewaite> Ok
+19:02:32 <rtyler> #topic Next meeting
+19:02:49 <rtyler> two weeks from is conveniently DevOps World Jenkins WOrld
+19:03:07 <rtyler> I think we should strive for another meeting two weeks after that,  on Aug 28th
+19:03:10 <rtyler> make sense?
+19:03:15 <markyjackson> +1
+19:03:17 <markewaite> +1 for Aug 28th meeting
+19:03:41 <rtyler> good enough, I'll make sure to update the wiki page after this meeting, thanks everybody for participating
+19:03:44 <rtyler> #endmeeting

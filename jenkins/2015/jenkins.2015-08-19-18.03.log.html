@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app222.us.archive.org';v.server_ms=158;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-08-19-18.03.log.html","20200504055858","https://web.archive.org/","web","/_static/",
+	      "1588571938");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:03:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:03:07</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:03:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-4"></a><span class="tm">18:03:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap of actions</span>
+<a name="l-5"></a><span class="tm">18:03:45</span><span class="nk"> &lt;danielbeck&gt;</span> Those were essentially all mine
+<a name="l-6"></a><span class="tm">18:04:16</span><span class="nk"> &lt;danielbeck&gt;</span> Writing a draft on the travel program: topic https://wiki.jenkins-ci.org/display/JENKINS/Travel+Grant+Program
+<a name="l-7"></a><span class="tm">18:04:28 </span><span class="nka">* kohsuke</span> <span class="ac">reads</span>
+<a name="l-8"></a><span class="tm">18:05:32</span><span class="nk"> &lt;danielbeck&gt;</span> While you're reading; KK had an action to op me here so I can set up logging from botbot.me -- I got op but so far have not heard back regarding logging. I'll stay on the ball here.
+<a name="l-9"></a><span class="tm">18:05:39</span><span class="nk"> &lt;kohsuke&gt;</span> This looks good to me, but I'd suggest we add one thing to the application
+<a name="l-10"></a><span class="tm">18:06:00</span><span class="nk"> &lt;kohsuke&gt;</span> a pitch of why we should sponsor your trip
+<a name="l-11"></a><span class="tm">18:06:29</span><span class="nk"> &lt;danielbeck&gt;</span> right... that is basically implied by the rest of the doc but let's make it explicit
+<a name="l-12"></a><span class="tm">18:07:04</span><span class="nk"> &lt;kohsuke&gt;</span> Any other thoughts? I'm ready to just bless it
+<a name="l-13"></a><span class="tm">18:07:08</span><span class="nk"> &lt;danielbeck&gt;</span> no need to decide on this today, I deliberately haven't made it a topic. I suggest you review this and provide improvement suggestions.
+<a name="l-14"></a><span class="tm">18:07:19</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-15"></a><span class="tm">18:07:20</span><span class="nk"> &lt;danielbeck&gt;</span> Too late for this year anyway AFAICT
+<a name="l-16"></a><span class="tm">18:07:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Does it make sense to specify travel grant limits?
+<a name="l-17"></a><span class="tm">18:07:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> $500 is set as a cap
+<a name="l-18"></a><span class="tm">18:07:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Oh, I see
+<a name="l-19"></a><span class="tm">18:07:41</span><span class="nk"> &lt;danielbeck&gt;</span> we have 2k funds, so that's 4
+<a name="l-20"></a><span class="tm">18:08:00</span><span class="nk"> &lt;kohsuke&gt;</span> orrc preferred that cap so that we can support more short leg trips
+<a name="l-21"></a><span class="tm">18:08:02</span><span class="nk"> &lt;danielbeck&gt;</span> Right, I forgot one person is only eligible once per year. At least I think that makes sense.
+<a name="l-22"></a><span class="tm">18:08:05</span><span class="nk"> &lt;hare_brain&gt;</span> What does this statement mean: "While you're free to attend in case there are any questions, please refrain from more active participation while your application is discussed."
+<a name="l-23"></a><span class="tm">18:08:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain</span>
+<a name="l-24"></a><span class="tm">18:08:26</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: hare_brain kohsuke
+<a name="l-25"></a><span class="tm">18:08:36</span><span class="nk"> &lt;danielbeck&gt;</span> hare_brain This meeting is public. I think you should shut up unless asked while we're discussing your application
+<a name="l-26"></a><span class="tm">18:08:47</span><span class="nk"> &lt;hare_brain&gt;</span> LOL
+<a name="l-27"></a><span class="tm">18:09:19</span><span class="nk"> &lt;hare_brain&gt;</span> I thought it could mean, "don't try to appear more active after you've submitted your application."
+<a name="l-28"></a><span class="tm">18:09:30</span><span class="nk"> &lt;KostyaSha&gt;</span> +1
+<a name="l-29"></a><span class="tm">18:09:39</span><span class="nk"> &lt;kohsuke&gt;</span> Come to think of it, in fact I'd welcome to have the person come and hang around
+<a name="l-30"></a><span class="tm">18:09:39</span><span class="nk"> &lt;danielbeck&gt;</span> oh, right, participation in the meeting
+<a name="l-31"></a><span class="tm">18:10:08</span><span class="nk"> &lt;danielbeck&gt;</span> Right, but participating in the discussion of exactly how deserving they are? That's what the application is for.
+<a name="l-32"></a><span class="tm">18:10:36</span><span class="nk"> &lt;hare_brain&gt;</span> That's fair. I was just asking for clarification of the intent of that sentence.
+<a name="l-33"></a><span class="tm">18:10:48</span><span class="nk"> &lt;danielbeck&gt;</span> Specifically meeting participation
+<a name="l-34"></a><span class="tm">18:11:15</span><span class="nk"> &lt;hare_brain&gt;</span> And the same person can apply for a travel grant every year?
+<a name="l-35"></a><span class="tm">18:11:20</span><span class="nk"> &lt;danielbeck&gt;</span> I'll change the document and we'll review next time.
+<a name="l-36"></a><span class="tm">18:11:26</span><span class="nk"> &lt;kohsuke&gt;</span> OK, do we want to move on?
+<a name="l-37"></a><span class="tm">18:11:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-38"></a><span class="tm">18:11:48</span><span class="nk"> &lt;KostyaSha&gt;</span> hare_brain, it will be weird
+<a name="l-39"></a><span class="tm">18:11:49</span><span class="nk"> &lt;danielbeck&gt;</span> hare_brain Right now, every event, but I think once a year is good enough. Of course we should take previous grants into account
+<a name="l-40"></a><span class="tm">18:12:01</span><span class="nk"> &lt;kohsuke&gt;</span> oh sorry
+<a name="l-41"></a><span class="tm">18:12:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap of actions</span>
+<a name="l-42"></a><span class="tm">18:12:20</span><span class="nk"> &lt;KostyaSha&gt;</span> ogondza, highlight
+<a name="l-43"></a><span class="tm">18:12:25</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke I also have one more recap
+<a name="l-44"></a><span class="tm">18:12:46</span><span class="nk"> &lt;danielbeck&gt;</span> Let's discuss the details of the travel grant next time. It's not urgent I think, and we have a full plate today
+<a name="l-45"></a><span class="tm">18:13:02</span><span class="nk"> &lt;hare_brain&gt;</span> OK
+<a name="l-46"></a><span class="tm">18:13:03</span><span class="nk"> &lt;kohsuke&gt;</span> I suspect if we end up sponsoring the same guy every single time we'd move to shut down the program
+<a name="l-47"></a><span class="tm">18:13:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> what's the other recap?
+<a name="l-48"></a><span class="tm">18:13:32</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, you will win every time :D
+<a name="l-49"></a><span class="tm">18:13:41</span><span class="nk"> &lt;kohsuke&gt;</span> Oh, can I apply?
+<a name="l-50"></a><span class="tm">18:13:47 </span><span class="nka">* kohsuke</span> <span class="ac">jumps in joy</span>
+<a name="l-51"></a><span class="tm">18:13:53</span><span class="nk"> &lt;hare_brain&gt;</span> No. :)
+<a name="l-52"></a><span class="tm">18:14:20</span><span class="nk"> &lt;danielbeck&gt;</span> And the last action was a blog post about the travel grant featuring our first recipient: I haven't been able to reach him since, but apparently his company is getting bought right now so he's busy. So I decided to wait a bit, especially given that we don't have the rules doc done either.
+<a name="l-53"></a><span class="tm">18:14:41</span><span class="nk"> &lt;danielbeck&gt;</span> so I'm still on this one
+<a name="l-54"></a><span class="tm">18:14:56</span><span class="nk"> &lt;danielbeck&gt;</span> that's it for the actions of the last meeting
+<a name="l-55"></a><span class="tm">18:15:00</span><span class="nk"> &lt;kohsuke&gt;</span> I guess we'll all meet him in JUC SF
+<a name="l-56"></a><span class="tm">18:15:04</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, i think it in his interests to reply, so just wait
+<a name="l-57"></a><span class="tm">18:15:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-58"></a><span class="tm">18:15:38</span><span class="nk"> &lt;ogondza&gt;</span> I suggest to move next LTS picking to the next time as we have to postpone 1.609.3
+<a name="l-59"></a><span class="tm">18:15:48</span><span class="nk"> &lt;danielbeck&gt;</span> I cut in line with this one, but thought it was important to get to
+<a name="l-60"></a><span class="tm">18:15:50</span><span class="nk"> &lt;ogondza&gt;</span> as RC was not published
+<a name="l-61"></a><span class="tm">18:16:07</span><span class="nk"> &lt;kohsuke&gt;</span> My apologies
+<a name="l-62"></a><span class="tm">18:16:13</span><span class="nk"> &lt;danielbeck&gt;</span> Right. Assuming RC today, will make release and new LTS selection in two weeks. I think this is a good idea.
+<a name="l-63"></a><span class="tm">18:16:28</span><span class="nk"> &lt;ogondza&gt;</span> right
+<a name="l-64"></a><span class="tm">18:16:29</span><span class="nk"> &lt;ogondza&gt;</span> What about JENKINS-29936?
+<a name="l-65"></a><span class="tm">18:16:31</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-29936:deadlock between OldDataMonitor and AuthorizationStrategy. (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-29936
+<a name="l-66"></a><span class="tm">18:16:40</span><span class="nk"> &lt;danielbeck&gt;</span> You merged it, right?
+<a name="l-67"></a><span class="tm">18:16:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to kick RC script today and actually verify that bits are published</span>
+<a name="l-68"></a><span class="tm">18:17:06</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza at least you set the label
+<a name="l-69"></a><span class="tm">18:17:15</span><span class="nk"> &lt;kohsuke&gt;</span> Unless you tell me not to include it, it'll be a part of RC
+<a name="l-70"></a><span class="tm">18:17:30</span><span class="nk"> &lt;kohsuke&gt;</span> oh wait, 29936
+<a name="l-71"></a><span class="tm">18:17:35</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> please wait until agree what comes in
+<a name="l-72"></a><span class="tm">18:17:46</span><span class="nk"> &lt;danielbeck&gt;</span> I added it to the agenda when I saw teilo request inclusion
+<a name="l-73"></a><span class="tm">18:17:48</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so it's not in stable-1.609 yet
+<a name="l-74"></a><span class="tm">18:18:03</span><span class="nk"> &lt;ogondza&gt;</span> sorry, JENKINS-29568 is in already
+<a name="l-75"></a><span class="tm">18:18:08</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-29568:When NodeProvisioner processes planned nodes, it must always call spent() (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-29568
+<a name="l-76"></a><span class="tm">18:18:10</span><span class="nk"> &lt;danielbeck&gt;</span> sorry, jglick suggested it
+<a name="l-77"></a><span class="tm">18:18:22</span><span class="nk"> &lt;ogondza&gt;</span> the other one was labeled prematurely
+<a name="l-78"></a><span class="tm">18:18:38</span><span class="nk"> &lt;ogondza&gt;</span> any +1s for JENKINS-29936?
+<a name="l-79"></a><span class="tm">18:18:40</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-29936:deadlock between OldDataMonitor and AuthorizationStrategy. (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-29936
+<a name="l-80"></a><span class="tm">18:19:01</span><span class="nk"> &lt;KostyaSha&gt;</span> JENKINS-29936 sounds bad, +1 to have fix in lts....
+<a name="l-81"></a><span class="tm">18:19:02</span><span class="nk"> &lt;danielbeck&gt;</span> https://github.com/jenkinsci/jenkins/commit/c1b60f18b548852428b835ecba72a3467d726ba0?w=1
+<a name="l-82"></a><span class="tm">18:19:21</span><span class="nk"> &lt;danielbeck&gt;</span> looks safe enough really
+<a name="l-83"></a><span class="tm">18:19:29</span><span class="nk"> &lt;ogondza&gt;</span> agree
+<a name="l-84"></a><span class="tm">18:19:40</span><span class="nk"> &lt;danielbeck&gt;</span> so +1 for inclusion despite age
+<a name="l-85"></a><span class="tm">18:19:47</span><span class="nk"> &lt;ogondza&gt;</span> let's push it in an cut the RC
+<a name="l-86"></a><span class="tm">18:19:59</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-87"></a><span class="tm">18:20:09</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">JENKINS-29936 will be in 1.609.3 RC</span>
+<a name="l-88"></a><span class="tm">18:20:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">JENKINS-29936 is expedited into 1.609.3 RC</span>
+<a name="l-89"></a><span class="tm">18:20:11</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-29936:deadlock between OldDataMonitor and AuthorizationStrategy. (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-29936
+<a name="l-90"></a><span class="tm">18:20:15</span><span class="nk"> &lt;danielbeck&gt;</span> :-)
+<a name="l-91"></a><span class="tm">18:20:35</span><span class="nk"> &lt;ogondza&gt;</span> looks I really have to backport it ...
+<a name="l-92"></a><span class="tm">18:20:48</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we move on?
+<a name="l-93"></a><span class="tm">18:20:51</span><span class="nk"> &lt;ogondza&gt;</span> sure
+<a name="l-94"></a><span class="tm">18:20:52</span><span class="nk"> &lt;danielbeck&gt;</span> Yes
+<a name="l-95"></a><span class="tm">18:21:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">revisiting bundled plugins</span>
+<a name="l-96"></a><span class="tm">18:21:49</span><span class="nk"> &lt;kohsuke&gt;</span> If people who are arguing against it is here perhaps we could have spent some time here to discuss that, but I don't think they are
+<a name="l-97"></a><span class="tm">18:22:48</span><span class="nk"> &lt;kohsuke&gt;</span> So I think I'm going to leave this proposal dead
+<a name="l-98"></a><span class="tm">18:23:22</span><span class="nk"> &lt;kohsuke&gt;</span> It's really unfortunate that we can't make this simple improvement
+<a name="l-99"></a><span class="tm">18:23:46</span><span class="nk"> &lt;kohsuke&gt;</span> I just don't understand why the pinning behavior different is such a big deal
+<a name="l-100"></a><span class="tm">18:23:47</span><span class="nk"> &lt;kohsuke&gt;</span> oh well
+<a name="l-101"></a><span class="tm">18:23:49</span><span class="nk"> &lt;kohsuke&gt;</span> next topic...
+<a name="l-102"></a><span class="tm">18:24:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Allow file browsing in artifactory for ability view javadocs, add link in confluence macros live link, send request to jfrog support to get newer artifactory version.</span>
+<a name="l-103"></a><span class="tm">18:24:30</span><span class="nk"> &lt;KostyaSha&gt;</span> yeah, mine
+<a name="l-104"></a><span class="tm">18:24:49</span><span class="nk"> &lt;KostyaSha&gt;</span> so first idea is to enable javadocs browsing at artifactory
+<a name="l-105"></a><span class="tm">18:25:09</span><span class="nk"> &lt;kohsuke&gt;</span> You mean repo.jenkins-ci.org ?
+<a name="l-106"></a><span class="tm">18:25:11</span><span class="nk"> &lt;KostyaSha&gt;</span> yes
+<a name="l-107"></a><span class="tm">18:25:21</span><span class="nk"> &lt;KostyaSha&gt;</span> this checkbox is disabled by default
+<a name="l-108"></a><span class="tm">18:25:26</span><span class="nk"> &lt;danielbeck&gt;</span> http://www.jfrog.com/confluence/display/RTF/Local+Repositories#LocalRepositories-AdvancedSettings "If set, allows you to view file contents (e.g., Javadoc browsing, HTML files) directly from Artifactory. When content browsing is allowed we recommend strict content moderation to ensure that any uploaded content does not compromise security (for example, cross-site scripting attacks) "
+<a name="l-109"></a><span class="tm">18:25:52</span><span class="nk"> &lt;KostyaSha&gt;</span> it may look like http://repo.jfrog.org/artifactory/libs-releases-local/org/artifactory/artifactory-papi/%5BRELEASE%5D/artifactory-papi-%5BRELEASE%5D-javadoc.jar!/index.html?overview-summary.html
+<a name="l-110"></a><span class="tm">18:26:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Do we have a "strict content moderation"? I'd guess the answer is no
+<a name="l-111"></a><span class="tm">18:26:11</span><span class="nk"> &lt;KostyaSha&gt;</span> (@jbaruch from jfrog showed me this trick)
+<a name="l-112"></a><span class="tm">18:26:23</span><span class="nk"> &lt;KostyaSha&gt;</span> oleg-nenashev, do we have any security in jenkins infra at all?
+<a name="l-113"></a><span class="tm">18:26:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> OTOH people can upload html as artifact already anyway
+<a name="l-114"></a><span class="tm">18:27:13</span><span class="nk"> &lt;KostyaSha&gt;</span> we can try at least :(
+<a name="l-115"></a><span class="tm">18:27:15</span><span class="nk"> &lt;kohsuke&gt;</span> .., though maybe they don't serve that with html content-type
+<a name="l-116"></a><span class="tm">18:27:29</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke exactly, right now you only get download
+<a name="l-117"></a><span class="tm">18:27:43</span><span class="nk"> &lt;KostyaSha&gt;</span> either you will need additional sites and in this variant you hava javadocs out of the box
+<a name="l-118"></a><span class="tm">18:27:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> If I understand correctly, it will increase the load on the VMs, because artifactory will need to unpack the content
+<a name="l-119"></a><span class="tm">18:28:04</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, somebody can insert XSS into plugin that you install
+<a name="l-120"></a><span class="tm">18:28:17</span><span class="nk"> &lt;KostyaSha&gt;</span> oleg-nenashev, artifactory hosted by jfrog
+<a name="l-121"></a><span class="tm">18:28:25</span><span class="nk"> &lt;danielbeck&gt;</span> true. I still don't see that as argument for making other parts unsafe.
+<a name="l-122"></a><span class="tm">18:28:27</span><span class="nk"> &lt;KostyaSha&gt;</span> oleg-nenashev, is it your pain?
+<a name="l-123"></a><span class="tm">18:28:40</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev It's hosted by JFrog
+<a name="l-124"></a><span class="tm">18:29:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> If it's being hosted on JFrog, I'm ok from the performance perspective
+<a name="l-125"></a><span class="tm">18:29:46</span><span class="nk"> &lt;kohsuke&gt;</span> if javadoc browsing is a popular feature, maybe we can write an app ourselves? I'm sure it's a nice POTD for an intercontinental air trip
+<a name="l-126"></a><span class="tm">18:30:40</span><span class="nk"> &lt;KostyaSha&gt;</span> what app?
+<a name="l-127"></a><span class="tm">18:30:46</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Please no more infra we'll have to maintain.
+<a name="l-128"></a><span class="tm">18:30:54</span><span class="nk"> &lt;kohsuke&gt;</span> Okay
+<a name="l-129"></a><span class="tm">18:31:06</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck,  :D
+<a name="l-130"></a><span class="tm">18:31:39</span><span class="nk"> &lt;danielbeck&gt;</span> is there a way to generate a static site from many javadocs? maybe even merge them?
+<a name="l-131"></a><span class="tm">18:31:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> I think the proposal is rejected, sorry
+<a name="l-132"></a><span class="tm">18:32:01</span><span class="nk"> &lt;kohsuke&gt;</span> I think I'm seeing the proposal is rejected, that is
+<a name="l-133"></a><span class="tm">18:32:05</span><span class="nk"> &lt;kohsuke&gt;</span> Next topic?
+<a name="l-134"></a><span class="tm">18:32:11</span><span class="nk"> &lt;danielbeck&gt;</span> sure
+<a name="l-135"></a><span class="tm">18:32:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Provide public list of JIRA/confluence/artifactory admins in wiki</span>
+<a name="l-136"></a><span class="tm">18:32:39</span><span class="nk"> &lt;danielbeck&gt;</span> I could provide wiki and Jira, but don't have artifactory access
+<a name="l-137"></a><span class="tm">18:32:46</span><span class="nk"> &lt;danielbeck&gt;</span> of course the question is why this is needed
+<a name="l-138"></a><span class="tm">18:32:58</span><span class="nk"> &lt;danielbeck&gt;</span> if something needs fixing, we have #jenkins-infra and the infra list
+<a name="l-139"></a><span class="tm">18:33:13</span><span class="nk"> &lt;kohsuke&gt;</span> the intent was to use the LDAP 'administrators' group as a single point of control for all access, but I guess the reality turned out to be different
+<a name="l-140"></a><span class="tm">18:33:16</span><span class="nk"> &lt;KostyaSha&gt;</span> small story, when i worked in Gentoo Project i saw all responsible persons, in jenkins it's dark
+<a name="l-141"></a><span class="tm">18:33:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> I think it's a fair request for transparency
+<a name="l-142"></a><span class="tm">18:33:39</span><span class="nk"> &lt;KostyaSha&gt;</span> sometimes some unknown people appears with admin permissions in wiki for example
+<a name="l-143"></a><span class="tm">18:33:55</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke True.
+<a name="l-144"></a><span class="tm">18:34:23</span><span class="nk"> &lt;dash562&gt;</span> Im having an issue where I have two different nodes building two different projects. However even assigned nodes to those projects are building on the other nodes. When setting usage on the node to Only build jobs with label restrictions matching the nodes. Builds will go into queue and not build on the assigned node.
+<a name="l-145"></a><span class="tm">18:34:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for "infra component owners" and "admin listings"
+<a name="l-146"></a><span class="tm">18:34:34</span><span class="nk"> &lt;kohsuke&gt;</span> I just thought it'd have been nicer if we don't have to produce this list manually for each app
+<a name="l-147"></a><span class="tm">18:34:40</span><span class="nk"> &lt;kohsuke&gt;</span> hence the comment about 'administrators' group
+<a name="l-148"></a><span class="tm">18:34:40</span><span class="nk"> &lt;danielbeck&gt;</span> I'm +1 as I had this question in the past. If it gets abused regularly (so much easier to ping people than write to the mailing list) we'll need to reevaluate
+<a name="l-149"></a><span class="tm">18:35:08</span><span class="nk"> &lt;kohsuke&gt;</span> Oh I see, you are worried about people pestering admins
+<a name="l-150"></a><span class="tm">18:36:20</span><span class="nk"> &lt;danielbeck&gt;</span> it's possible. Not a major concern though
+<a name="l-151"></a><span class="tm">18:36:27</span><span class="nk"> &lt;danielbeck&gt;</span> And if it happens we can always go 'dark' again
+<a name="l-152"></a><span class="tm">18:36:44</span><span class="nk"> &lt;kohsuke&gt;</span> Looks like repo.jenkins-ci.org is correctly referring to the admin group in LDAP
+<a name="l-153"></a><span class="tm">18:37:02</span><span class="nk"> &lt;kohsuke&gt;</span> But JIRA &amp; Confluence I suspect we added some additional users in the system
+<a name="l-154"></a><span class="tm">18:37:14</span><span class="nk"> &lt;kohsuke&gt;</span> ... in the respective system
+<a name="l-155"></a><span class="tm">18:37:23</span><span class="nk"> &lt;danielbeck&gt;</span> users are from the directory, but groups and membership are local I think
+<a name="l-156"></a><span class="tm">18:37:58</span><span class="nk"> &lt;kohsuke&gt;</span> Would it be too much hassle if we use the opportunity to fix them to honor the LDAP group?
+<a name="l-157"></a><span class="tm">18:38:16</span><span class="nk"> &lt;kohsuke&gt;</span> Or do we actually want to give different admin access to different system separately?
+<a name="l-158"></a><span class="tm">18:38:43</span><span class="nk"> &lt;danielbeck&gt;</span> An inventory of current admins would be useful there I think
+<a name="l-159"></a><span class="tm">18:38:49</span><span class="nk"> &lt;danielbeck&gt;</span> to answer that
+<a name="l-160"></a><span class="tm">18:39:08</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so we'll just produce a list manually once and see if further automation/consolidation is in order
+<a name="l-161"></a><span class="tm">18:39:17</span><span class="nk"> &lt;kohsuke&gt;</span> sounds good
+<a name="l-162"></a><span class="tm">18:39:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-163"></a><span class="tm">18:39:24</span><span class="nk"> &lt;danielbeck&gt;</span> +1
+<a name="l-164"></a><span class="tm">18:39:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to produce a list of JIRA/Confluence/Artifactory admins once</span>
+<a name="l-165"></a><span class="tm">18:40:06</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to give danielbeck admin access to Artifactory</span>
+<a name="l-166"></a><span class="tm">18:40:19</span><span class="nk"> &lt;KostyaSha&gt;</span> <span class="hi">example:</span> https://wiki.gentoo.org/wiki/Project:Infrastructure
+<a name="l-167"></a><span class="tm">18:40:25</span><span class="nk"> &lt;KostyaSha&gt;</span> Lead, members
+<a name="l-168"></a><span class="tm">18:40:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> you should already have one
+<a name="l-169"></a><span class="tm">18:40:32</span><span class="nk"> &lt;kohsuke&gt;</span> I thought you are a member of the admin group
+<a name="l-170"></a><span class="tm">18:40:34</span><span class="nk"> &lt;kohsuke&gt;</span> but I'll check
+<a name="l-171"></a><span class="tm">18:40:43</span><span class="nk"> &lt;danielbeck&gt;</span> nope
+<a name="l-172"></a><span class="tm">18:40:55</span><span class="nk"> &lt;danielbeck&gt;</span> I'm only wiki and Jira admin and got those separately
+<a name="l-173"></a><span class="tm">18:41:05</span><span class="nk"> &lt;danielbeck&gt;</span> never needed repo so far
+<a name="l-174"></a><span class="tm">18:41:19</span><span class="nk"> &lt;kohsuke&gt;</span> Filed https://issues.jenkins-ci.org/browse/INFRA-350
+<a name="l-175"></a><span class="tm">18:41:21</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-350:Make danielbeck belong to 'admins' LDAP group (Open) https://issues.jenkins-ci.org/browse/INFRA-350
+<a name="l-176"></a><span class="tm">18:41:34</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we move on?
+<a name="l-177"></a><span class="tm">18:41:38</span><span class="nk"> &lt;danielbeck&gt;</span> yes
+<a name="l-178"></a><span class="tm">18:41:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">HTMLUnit update</span>
+<a name="l-179"></a><span class="tm">18:42:15</span><span class="nk"> &lt;danielbeck&gt;</span> tfennelly/Gus had some concerns about updating HTMLUnit
+<a name="l-180"></a><span class="tm">18:42:23</span><span class="nk"> &lt;danielbeck&gt;</span> We're currently on a patched older release
+<a name="l-181"></a><span class="tm">18:42:28</span><span class="nk"> &lt;danielbeck&gt;</span> Work to fix that is done in https://github.com/jenkinsci/jenkins/pull/1774
+<a name="l-182"></a><span class="tm">18:42:32</span><span class="nk"> &lt;danielbeck&gt;</span> *being done
+<a name="l-183"></a><span class="tm">18:42:45</span><span class="nk"> &lt;danielbeck&gt;</span> And the concern is that it'll break tests in plugins
+<a name="l-184"></a><span class="tm">18:43:08</span><span class="nk"> &lt;danielbeck&gt;</span> This will be relevant when devs update their parent pom version to a newer release that includes new HTMLUnit
+<a name="l-185"></a><span class="tm">18:43:14</span><span class="nk"> &lt;kohsuke&gt;</span> Breaking tests is not as bad as breaking plugins, so I can live with that
+<a name="l-186"></a><span class="tm">18:43:25</span><span class="nk"> &lt;danielbeck&gt;</span> I don't think this is a problem, but wanted to bring this up anyway to get some opinions
+<a name="l-187"></a><span class="tm">18:43:41</span><span class="nk"> &lt;kohsuke&gt;</span> But some of the patches to htmlunit does serve useful purposes
+<a name="l-188"></a><span class="tm">18:43:49</span><span class="nk"> &lt;kohsuke&gt;</span> so we are going to lose them
+<a name="l-189"></a><span class="tm">18:44:01</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, why they wasn't firstly submitted to upstream?
+<a name="l-190"></a><span class="tm">18:44:15</span><span class="nk"> &lt;kohsuke&gt;</span> Many of them are, I believe.
+<a name="l-191"></a><span class="tm">18:44:15</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke If tfennelly gets core tests to pass it seems to me that plugins should be able to adapt in a similar way
+<a name="l-192"></a><span class="tm">18:44:38</span><span class="nk"> &lt;kohsuke&gt;</span> There's one I remember, for example, which is a pretty big one
+<a name="l-193"></a><span class="tm">18:45:05</span><span class="nk"> &lt;kohsuke&gt;</span> In real JavaScript, everything executes in one thread, including callbacks from XHR.
+<a name="l-194"></a><span class="tm">18:45:06</span><span class="nk"> &lt;tfennelly&gt;</span> and ... worse case scenario they will always be able to work their dependencies to remove the new HtmlUnit and use the jenkins HtmlUnit instead
+<a name="l-195"></a><span class="tm">18:45:07</span><span class="nk"> &lt;danielbeck&gt;</span> Related dev list discussion: https://groups.google.com/d/msg/jenkinsci-dev/woLn-ubRGkY/GpMNiDL3BKYJ
+<a name="l-196"></a><span class="tm">18:45:27</span><span class="nk"> &lt;kohsuke&gt;</span> HtmlUnit doesn't do that. It calls the callback in another thread, running JavaScript concurrently in multiple threads
+<a name="l-197"></a><span class="tm">18:46:22</span><span class="nk"> &lt;kohsuke&gt;</span> But I realize I am minority in my high tolerance level of local patches, so I don't want to block it
+<a name="l-198"></a><span class="tm">18:46:43</span><span class="nk"> &lt;tfennelly&gt;</span> right, I am hitting issues (will be back working on this tomorrow morning I hope) and this could be one that I hit
+<a name="l-199"></a><span class="tm">18:46:58</span><span class="nk"> &lt;kohsuke&gt;</span> IIUC, this htmlunit upgrade was an attempt done in the hope that newer htmlunit will be able to correctly run config-ui-changes branch, which it didn't
+<a name="l-200"></a><span class="tm">18:47:07</span><span class="nk"> &lt;tfennelly&gt;</span> but I think we should get the fixes for these pushed back upstream and stay with the herd
+<a name="l-201"></a><span class="tm">18:47:34</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">kohsuke:</span> that is correct
+<a name="l-202"></a><span class="tm">18:48:04</span><span class="nk"> &lt;KostyaSha&gt;</span> jglick, javadocs browsing in artifactory rejected
+<a name="l-203"></a><span class="tm">18:48:13</span><span class="nk"> &lt;tfennelly&gt;</span> that jenkins pages with jquery etc will work
+<a name="l-204"></a><span class="tm">18:48:23</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">KostyaSha:</span> “rejected”?
+<a name="l-205"></a><span class="tm">18:48:27</span><span class="nk"> &lt;danielbeck&gt;</span> If it doesn't work it doesn't work. If we need to patch newer HTMLUnit as well, so be it. But still, the question is, do we care that it'll break tests in plugins when devs update their parent?
+<a name="l-206"></a><span class="tm">18:48:37</span><span class="nk"> &lt;tfennelly&gt;</span> I have verified that the latest HtmlUnit can load the javascript bundles we are trying to load there
+<a name="l-207"></a><span class="tm">18:48:48</span><span class="nk"> &lt;teilo&gt;</span> Update it.  it's currently broken for some plugins anyway (bad JS support).
+<a name="l-208"></a><span class="tm">18:49:07</span><span class="nk"> &lt;teilo&gt;</span> core updates have history of breaking breaking plugin builds anyway
+<a name="l-209"></a><span class="tm">18:49:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> it's OK for test dependencies to change
+<a name="l-210"></a><span class="tm">18:49:19</span><span class="nk"> &lt;danielbeck&gt;</span> alright so
+<a name="l-211"></a><span class="tm">18:49:21</span><span class="nk"> &lt;KostyaSha&gt;</span> jglick, they think about security in project that has no security and granting write/upload permissions everyone
+<a name="l-212"></a><span class="tm">18:49:47</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">danielbeck:</span> so long as it is possible for a developer to select the newer versions *without* updating the parent, so that they can get ahead of the curve and we can address problems `plugin-compat-tester` finds.
+<a name="l-213"></a><span class="tm">18:51:14</span><span class="nk"> &lt;kohsuke&gt;</span> BTW, patched htmlunit 2.17 https://github.com/jenkinsci/htmlunit/tree/master-2.17
+<a name="l-214"></a><span class="tm">18:51:27</span><span class="nk"> &lt;kohsuke&gt;</span> I did that while working with gusreiber and tfennelly
+<a name="l-215"></a><span class="tm">18:51:55</span><span class="nk"> &lt;kohsuke&gt;</span> Like I said, I'm happy to go back to the prestine 2.17 but if we need those fixes we've got that
+<a name="l-216"></a><span class="tm">18:52:21</span><span class="nk"> &lt;danielbeck&gt;</span> So can we agree that there's no problem here and changes to HTMLUnit can be done as necessary?
+<a name="l-217"></a><span class="tm">18:52:25</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">kohsuke:</span> thanks ... I will use that as a ref
+<a name="l-218"></a><span class="tm">18:53:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> I think that's what we are hearing. No objection raised from anyone
+<a name="l-219"></a><span class="tm">18:53:29</span><span class="nk"> &lt;danielbeck&gt;</span> that's the full extend of what I wanted to discuss here, so that's good
+<a name="l-220"></a><span class="tm">18:53:34</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">changes to HTMLUnit can be done as necessary</span>
+<a name="l-221"></a><span class="tm">18:53:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-222"></a><span class="tm">18:53:54</span><span class="nk"> &lt;danielbeck&gt;</span> During JUC US West?
+<a name="l-223"></a><span class="tm">18:54:03</span><span class="nk"> &lt;hare_brain&gt;</span> That hasn't gone well in the past.
+<a name="l-224"></a><span class="tm">18:54:10</span><span class="nk"> &lt;kohsuke&gt;</span> I remember the first year we did the project meeting live from JUC
+<a name="l-225"></a><span class="tm">18:54:17</span><span class="nk"> &lt;danielbeck&gt;</span> So the LTS schedule gets delayed by 4 weeks :-/
+<a name="l-226"></a><span class="tm">18:54:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> can we do it from "meet the community" / "ask the experts" room?
+<a name="l-227"></a><span class="tm">18:54:48</span><span class="nk"> &lt;kohsuke&gt;</span> We did fail to engage audience but if it's just us...
+<a name="l-228"></a><span class="tm">18:55:17</span><span class="nk"> &lt;hare_brain&gt;</span> Right. If it's just us, sure. I meant, the experiment to engage the audience was a failure, and wouldn't want to try that again.
+<a name="l-229"></a><span class="tm">18:55:37</span><span class="nk"> &lt;danielbeck&gt;</span> Tuesday Sep 1 same time maybe?
+<a name="l-230"></a><span class="tm">18:55:48</span><span class="nk"> &lt;hare_brain&gt;</span> What's the agenda at the conference for that time?
+<a name="l-231"></a><span class="tm">18:55:57</span><span class="nk"> &lt;hare_brain&gt;</span> Make sure there are no conflicts with speakers.
+<a name="l-232"></a><span class="tm">18:56:08</span><span class="nk"> &lt;kohsuke&gt;</span> Let me see
+<a name="l-233"></a><span class="tm">18:56:24</span><span class="nk"> &lt;danielbeck&gt;</span> 11:30 AM—12:15 PM Jesse on Workflow
+<a name="l-234"></a><span class="tm">18:56:30</span><span class="nk"> &lt;danielbeck&gt;</span> 10:30 AM—11:15 AM other talks
+<a name="l-235"></a><span class="tm">18:56:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://www.cloudbees.com/jenkins/juc-2015/us-west</span>
+<a name="l-236"></a><span class="tm">18:56:42</span><span class="nk"> &lt;hare_brain&gt;</span> Who needs jglick? ;)
+<a name="l-237"></a><span class="tm">18:56:48</span><span class="nk"> &lt;danielbeck&gt;</span> And this meeting is 11-12
+<a name="l-238"></a><span class="tm">18:56:53</span><span class="nk"> &lt;KostyaSha&gt;</span> hare_brain, who needs workflow ;)
+<a name="l-239"></a><span class="tm">18:56:59</span><span class="nk"> &lt;kailoAtWork&gt;</span> After a number of changes by another individual, our jenkins setup is no longer propagating jobs to the slaves correctly.  It was last seen working with the slaves only running build jobs with labels matching this node.   Now, it only seems to work if I open up the slaves to run all jobs (which is not viable)
+<a name="l-240"></a><span class="tm">18:57:21</span><span class="nk"> &lt;danielbeck&gt;</span> kailoAtWork Meeting right now, please wait a bit
+<a name="l-241"></a><span class="tm">18:57:39</span><span class="nk"> &lt;KostyaSha&gt;</span> yes, struggle, because they can't create #jenkins-meeting channel
+<a name="l-242"></a><span class="tm">18:57:52</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha The channel exists, I just need to bit robobutler
+<a name="l-243"></a><span class="tm">18:57:55</span><span class="nk"> &lt;danielbeck&gt;</span> *fix
+<a name="l-244"></a><span class="tm">18:58:01</span><span class="nk"> &lt;kailoAtWork&gt;</span> What could be causing this issue?  The starting task always kicks off on the slave, but the actual multi-configuration task sits in a build queue indefinitely
+<a name="l-245"></a><span class="tm">18:58:19</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Postpone by 30 minutes so it's during the talk?
+<a name="l-246"></a><span class="tm">18:58:44</span><span class="nk"> &lt;danielbeck&gt;</span> Basically 11:30-12:15 Track 4: Governance Meeting :-)
+<a name="l-247"></a><span class="tm">18:58:54</span><span class="nk"> &lt;kohsuke&gt;</span> I was going to suggest pull up by 30minutes so it's during the other talk
+<a name="l-248"></a><span class="tm">18:59:27</span><span class="nk"> &lt;kohsuke&gt;</span> But I'm fine either way
+<a name="l-249"></a><span class="tm">18:59:31</span><span class="nk"> &lt;danielbeck&gt;</span> later is safer when you forget
+<a name="l-250"></a><span class="tm">18:59:35</span><span class="nk"> &lt;kohsuke&gt;</span> true
+<a name="l-251"></a><span class="tm">18:59:46</span><span class="nk"> &lt;hare_brain&gt;</span> I will be there to remind him. ;)
+<a name="l-252"></a><span class="tm">19:00:04</span><span class="nk"> &lt;danielbeck&gt;</span> Maybe not 'you' the JUC attendees, more in general
+<a name="l-253"></a><span class="tm">19:00:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting is live from JUC but will start 30mins late</span>
+<a name="l-254"></a><span class="tm">19:00:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Sept 2nd 11:30 PT</span>
+<a name="l-255"></a><span class="tm">19:00:31</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I think that's it
+<a name="l-256"></a><span class="tm">19:00:35</span><span class="nk"> &lt;hare_brain&gt;</span> Wait...
+<a name="l-257"></a><span class="tm">19:00:38</span><span class="nk"> &lt;kohsuke&gt;</span> oh
+<a name="l-258"></a><span class="tm">19:00:54</span><span class="nk"> &lt;hare_brain&gt;</span> How does moving it to 11:30 help? That would completely confict with jglick's talk.
+<a name="l-259"></a><span class="tm">19:01:25</span><span class="nk"> &lt;ogondza&gt;</span> so 1.609.3 will be 2 weeks late, not 4?
+<a name="l-260"></a><span class="tm">19:01:31</span><span class="nk"> &lt;kohsuke&gt;</span> I think danielbeck is suspecting jglick is happy to skip ;-)
+<a name="l-261"></a><span class="tm">19:01:43</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza That's what we're trying to set up now by scheduling during JUC
+<a name="l-262"></a><span class="tm">19:01:55</span><span class="nk"> &lt;danielbeck&gt;</span> hare_brain Better that than have all JUC attendees busy at the expert booth
+<a name="l-263"></a><span class="tm">19:02:08</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we do 30mins earlier instead?
+<a name="l-264"></a><span class="tm">19:02:11</span><span class="nk"> &lt;danielbeck&gt;</span> So now the question is just which talk to miss
+<a name="l-265"></a><span class="tm">19:02:37</span><span class="nk"> &lt;danielbeck&gt;</span> And I think 30 min later is better than 30 min earlier for those who forget the different starting time and just show up at 11
+<a name="l-266"></a><span class="tm">19:03:23</span><span class="nk"> &lt;teilo&gt;</span> what's the issue with missing one - IIRC we have slack in the LTS schedule so that it is not presicly every N weeks to account for holidays etc
+<a name="l-267"></a><span class="tm">19:03:47</span><span class="nk"> &lt;danielbeck&gt;</span> teilo We already used all the slack this year I think
+<a name="l-268"></a><span class="tm">19:03:53</span><span class="nk"> &lt;teilo&gt;</span> <span class="hi">danielbeck:</span> :-P
+<a name="l-269"></a><span class="tm">19:03:57 </span><span class="nka">* kohsuke</span> <span class="ac">hides</span>
+<a name="l-270"></a><span class="tm">19:04:16</span><span class="nk"> &lt;kohsuke&gt;</span> and it's a nice fun addition to the conference I think
+<a name="l-271"></a><span class="tm">19:04:37</span><span class="nk"> &lt;danielbeck&gt;</span> I mean it's not a strict schedule so we could do 4 weeks as well... still, seems unnecessary
+<a name="l-272"></a><span class="tm">19:04:46</span><span class="nk"> &lt;hare_brain&gt;</span> This is my fault for not paying enough attention to the JUC, but is the expert booth being manned full time this year? Is that the concern?
+<a name="l-273"></a><span class="tm">19:04:53</span><span class="nk"> &lt;danielbeck&gt;</span> if everyone here who attends is at the experts booth anyway
+<a name="l-274"></a><span class="tm">19:05:10 </span><span class="nka">* teilo</span> <span class="ac">won't be there</span>
+<a name="l-275"></a><span class="tm">19:05:17</span><span class="nk"> &lt;hare_brain&gt;</span> It seems simpler to just keep it at 11, and close the booth for an hour if necessary.
+<a name="l-276"></a><span class="tm">19:05:51</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> thanks for JENKINS-29936 backport BTW
+<a name="l-277"></a><span class="tm">19:05:53</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-29936:deadlock between OldDataMonitor and AuthorizationStrategy. (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-29936
+<a name="l-278"></a><span class="tm">19:06:03</span><span class="nk"> &lt;kohsuke&gt;</span> OK, let's do it. Maybe the agenda gets light and we can wrap up quickly
+<a name="l-279"></a><span class="tm">19:06:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> is that OK with you?
+<a name="l-280"></a><span class="tm">19:06:16</span><span class="nk"> &lt;danielbeck&gt;</span> sure
+<a name="l-281"></a><span class="tm">19:06:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">scratch that, we'll keep the meeting at the same time as usual</span>
+<a name="l-282"></a><span class="tm">19:06:36</span><span class="nk"> &lt;kohsuke&gt;</span> OK, that's it
+<a name="l-283"></a><span class="tm">19:06:42</span><span class="nk"> &lt;hare_brain&gt;</span> Sorry for the confusion.
+<a name="l-284"></a><span class="tm">19:06:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">looking forward to seeing you in JUC!</span>
+<a name="l-285"></a><span class="tm">19:06:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 05:58:58 May 04, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:55:33 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 81.039
+  exclusion.robots: 0.165
+  exclusion.robots.policy: 0.15
+  RedisCDXSource: 2.892
+  esindex: 0.012
+  LoadShardBlock: 48.142 (3)
+  PetaboxLoader3.datanode: 47.717 (4)
+  CDXLines.iter: 24.139 (3)
+  load_resource: 58.356
+  PetaboxLoader3.resolve: 28.108
+-->

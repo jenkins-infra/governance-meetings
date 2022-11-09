@@ -1,0 +1,106 @@
+18:00:27 <rtyler> #startmeeting
+18:00:27 <robobutler> Let the Jenkins meeting commence!
+18:00:31 <danielbeck> \o/
+18:00:32 <rtyler> #chair danielbeck kohsuke
+18:00:32 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:01:10 <rtyler> #topic Last meeting actions
+18:01:10 <danielbeck> https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+18:01:16 <rtyler> #info http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-03-27-18.24.html
+18:01:32 <rtyler> Last meeting was pretty bare bones, I think the only thing we discussed of note was around Google Season of Docs
+18:01:48 <rtyler> oleg-nenashev: If I remember correctly, there are a couple people helping with that effort now?
+18:02:12 <markewaite> I'm willing to be a Google Season of Docs org admin
+18:02:39 <tracymiranda> woo!
+18:03:00 <danielbeck> doesn't look like oleg-nenashev is around, so let's move on?
+18:03:09 <rtyler> oki
+18:03:21 <rtyler> #topic LTS status check
+18:03:27 <rtyler> now for the ogondza and danielbeck show :D
+18:03:33 <rtyler> **polite applause**
+18:03:40 <danielbeck> ¯\_(ツ)_/¯ it's out. update today.
+18:03:49 <danielbeck> https://jenkins.io/security/advisory/2019-04-10/
+18:04:03 <rtyler> #info Security update went out today with an LTS release (plz upgrade)
+18:04:06 <danielbeck> (or not, there's a solid chance you're not affected, like ci.j.io)
+18:04:35 <tracymiranda> good stuff
+18:05:30 <rtyler> anything we need to discuss for the next LTS?
+18:05:53 <danielbeck> no, this was only .2
+18:05:55 <danielbeck> .2 updates are the boringest
+18:06:21 <danielbeck> barely any new stuff, no new baseline to choose
+18:06:27 <rtyler> aw
+18:06:46 <rtyler> so nothing else really to discuss here?
+18:07:01 <danielbeck> perhaps ogondza knows something I don't?
+18:07:14 <rtyler> markewaite: (off current topic) btw, I trust you've already coordinated with Rick and Oleg about Google Summer of Docs
+18:07:39 <markewaite> I've talked with Oleg but have not yet engaged with Rick.  Coming soon
+18:08:00 <rtyler> oki
+18:08:01 <tracymiranda> mark let's also sync as I'm talking to some other docs folks about mentoring/getting involved
+18:08:43 <rtyler> nothing else on the LTS topic it looks like
+18:08:44 <markewaite> tracymiranda: that's a good idea. My decision to be an org admin was directly tied to your discussions with other doc folks.
+18:09:05 <rtyler> #topic Google Season of Docs
+18:09:20 <rtyler> so what are the action items on this topic for posterity tracymiranda?
+18:09:57 <tracymiranda> I will sync with mark and we will help co-ordinate mentors
+18:11:24 <rtyler> anything else?
+18:12:14 <tracymiranda> not from me
+18:12:30 <rtyler> okie, I suppose we can move on
+18:12:38 <rtyler> #topic Outreachy Update
+18:13:05 <tracymiranda> OK that's me
+18:13:36 <tracymiranda> First of all the last round of Outreachy all concluded successfully, Matt Sicker wrote a post wrapping it all up https://jenkins.io/blog/2019/03/28/outreachy-review/
+18:14:05 <tracymiranda> Except for one thing, we have not yet paid the invoice to Outreachy for that round yet
+18:15:20 <tracymiranda> I'm not sure where things are stuck so would like some help with this
+18:15:26 <rtyler> right , I saw that mail traffic. Were you able to reach out to the SPI treasurer?
+18:16:04 <tracymiranda> the outreachy folks offered to reach out directly, which is good since I don't have contact deets for SPI treasurer
+18:16:10 <tracymiranda> Is that who we need to chase?
+18:16:30 <rtyler> treasurer@spi-inc.org fwiw
+18:16:47 <tracymiranda> thanks, I'll help nudge things along
+18:16:48 <rtyler> I suggest emailing them and CC the Jenkins board alias, and I'll chime in immediately and say "plz sign the checks"
+18:16:59 <tracymiranda> Awesome, sounds like a plan!
+18:17:27 <tracymiranda> OK then onto this round of Outreachy then
+18:18:08 <tracymiranda> The application process has closed and I am pleased to share that we have had 2 applicants for the Audit Log plugin project we submitted.
+18:19:15 <tracymiranda> Matt Sicker & other mentors will be rating the applicants to make our selection, which will be announced May 6th
+18:19:30 <rtyler> nice
+18:19:45 <oleg-nenashev> Hmm... somebody pinged me. Reading
+18:19:50 <tracymiranda> I'd like to thank all the community members who supported all the applicants in making their contributions.
+18:20:52 <tracymiranda> Once again we will choose the best candidate and if both are high quality we will pursue options to have both in the project provided the mentors are ok with this.
+18:21:20 * rtyler nods
+18:21:46 <tracymiranda> That's the end of my update. Let me know if any questions/comments.
+18:22:11 <rtyler> the next batch, what's the timeframe for that internship?
+18:22:48 <tracymiranda> Internships start in May and end in August.
+18:23:39 <rtyler> gotcha, anybody else have any other questions about our involvement in Outreachy
+18:24:25 <rtyler> going once
+18:24:50 <rtyler> going twice..
+18:24:59 * rtyler slams gavel
+18:25:08 <rtyler> anything else we need to discuss today, or are we wrapped up?
+18:25:40 <oleg-nenashev> Can do a quick GSoC update if anyonwe is interested
+18:25:49 <rtyler> let's do it
+18:25:51 <markewaite> +1 for GSoC update
+18:25:56 <rtyler> #topic Google Summer of Code update
+18:26:00 <oleg-nenashev> GSoD was covered above IIUC
+18:26:04 <rtyler> correct
+18:26:45 <oleg-nenashev> #info GSoC student application deadline has passed. We got many applications from students
+18:27:23 <oleg-nenashev> I cannot say the exact number, but I am optikistic about having 5+ projects this year
+18:27:26 * tracymiranda applauds
+18:27:29 <rtyler> \o/
+18:27:37 <danielbeck> \o/
+18:27:41 <rtyler> that's as much as we had the first year IIRC
+18:27:46 <rtyler> which was a great learning experience :)
+18:27:55 <oleg-nenashev> #info projects will be announced on May 06
+18:28:24 <oleg-nenashev> 5 projects in 2019 are quite different :) we learned our lessons
+18:28:36 <rtyler> definitely!
+18:29:17 <oleg-nenashev> But yeah, let's see what would be the final results
+18:29:54 <oleg-nenashev> Meanwhile, we have already got around 40 PRs from students
+18:30:05 <rtyler> O_o
+18:30:08 <rtyler> wow
+18:30:54 <oleg-nenashev> So, having newbie-friendly tickets is good :)
+18:31:21 <oleg-nenashev> That's it from me
+18:32:25 <rtyler> markewaite: any GSoC questions, or do you feel suitably updated? :)
+18:32:29 <rtyler> same for anybody else
+18:32:36 <oleg-nenashev> Currently I can disclose much details about the projects, but everyone is welcome to read the public GSoC mailing list if you want to see some proposals
+18:32:46 <rtyler> can not* you mean?
+18:32:48 <markewaite> rtyler: I am suitably updated
+18:32:52 <rtyler> :)
+18:33:14 * tracymiranda has no questions but needs to learn to use the info tag as modelled so well
+18:33:49 <rtyler> going once.
+18:34:26 <oleg-nenashev> #info https://groups.google.com/forum/m/#!forum/jenkinsci-gsoc-all-public
+18:34:42 <oleg-nenashev> Yup, cannot
+18:35:11 <rtyler> going twice..
+18:35:27 <rtyler> going thrice..
+18:35:30 <rtyler> #topic Next meeting
+18:35:53 <rtyler> April 24th looks next up
+18:36:13 <rtyler> #endmeeting

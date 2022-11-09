@@ -1,0 +1,282 @@
+19:00:03 <danielbeck> #startmeeting
+19:00:03 <robobutler> Let the Jenkins meeting commence!
+19:00:19 <danielbeck> #chair rtyler kohsuke
+19:00:19 <robobutler> Current chairs: danielbeck kohsuke rtyler
+19:00:26 <danielbeck> #chair hare_brain
+19:00:26 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+19:00:49 <danielbeck> Hi everyone!
+19:00:54 <danielbeck> agenda: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:01:04 <rtyler> yey
+19:01:06 <alyssat> hola
+19:01:11 <danielbeck> #topic Recap last meeting's actions
+19:01:21 <danielbeck> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-01-20-19.03.html (which isn't complete unfortunately)
+19:01:40 <kohsuke> I'll be half particiing this
+19:01:53 <rtyler> I believe oleg-nenashev had an item, but don't remember much else
+19:02:09 <danielbeck> I skimmed the full log, seems to be complete after all
+19:02:16 <danielbeck> oleg-nenashev ?
+19:02:44 <oleg-nenashev> My AI was to process the feedback from press contacts. Have not handled it yet
+19:03:03 <oleg-nenashev> @action oleg_nenashev to incorporate the feedback about Press contacts
+19:03:09 <oleg-nenashev> #action oleg_nenashev to incorporate the feedback about Press contacts
+19:03:20 <danielbeck> Let's move on then…
+19:03:23 <danielbeck> #topic LTS status check
+19:03:39 <ogondza> danielbeck: you are right
+19:03:48 <ogondza> I have messed up the merge
+19:04:12 <ogondza> Working on a fix and will respin the tests later today
+19:04:39 <ogondza> anyway, one issue was rejected: https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%201.642.2-rejected
+19:04:46 <danielbeck> For the others: I commented on a merge commit earlier today that it looked like it included too much (1.643 in stable-1.642)
+19:04:56 <ogondza> most was backported https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%201.642.2-fixed
+19:05:24 <ogondza> would anybody mind --force push?
+19:05:31 <danielbeck> I published the changelog here based on 1.642.2-fixed: https://github.com/jenkins-infra/jenkins.io/pull/64
+19:06:42 <ogondza> danielbeck: cool, thanks. please track this to be part of LTS routine
+19:07:21 <oleg-nenashev> danielbeck: Have we announced the incoming security patch?
+19:07:32 <danielbeck> and there I thought you handled LTS stuff :-)
+19:07:49 <danielbeck> oleg-nenashev Nope, we do this one week before, i.e. in one week. So, thanks for that :-)
+19:08:23 <oleg-nenashev> Maybe makes sense to add it to the "LTS forecast"
+19:08:48 <danielbeck> maybe... but let's discuss this some other time
+19:08:49 <ogondza> danielbeck: changelog was always published by Jesse I think on CB pages
+19:09:07 <ogondza> sure, I will report tomorrow on dev list
+19:09:10 <danielbeck> So FYI everyone, we'll have a security update in two weeks.
+19:09:35 <danielbeck> ogondza Yep, and the Jenkins one was generated, but we got rid of that
+19:09:52 <danielbeck> ogondza Other than the merge problem, we're good to go?
+19:10:22 <ogondza> danielbeck: yes, we are
+19:10:52 <danielbeck> #action kohsuke to publish 1.642.2 RC once ogondza fixes up the merge commit problem
+19:10:55 <danielbeck> great!
+19:11:15 <danielbeck> #topic Seek trademark approval for Jenkins World 2016 logo
+19:11:19 <danielbeck> alyssat this is yours
+19:11:21 <alyssat> i'm seeking approval for CB to use this logo https://wiki.jenkins-ci.org/download/attachments/54722987/Jenkins-World-revised-logo.jpg?version=1&modificationDate=1453408974536 for Jenkins World (formerly JUC)
+19:12:04 <rtyler> #info trademark guidelines we use: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Trademark
+19:12:18 <danielbeck> Not sure who owns the butler head, but AFAIU the trademark approval needs to be for a name that includes "Jenkins".
+19:12:47 <danielbeck> I.e. we'd be approving "Jenkins World" with/without a year afterwards?
+19:12:51 <rtyler> danielbeck: the butler head is http://creativecommons.org/licenses/by-sa/3.0/
+19:12:54 <oleg-nenashev> I don't like the oversized left hand, but it's not a topic for the approval
+19:13:03 <rtyler> heh
+19:13:20 <rtyler> the logo itself is irrelevant, the use of the Jenkins mark is what needs to be addressed
+19:13:24 <rtyler> hare_brain: ping
+19:13:25 <rtyler> kohsuke: ping
+19:13:35 <kohsuke> aye
+19:13:51 <alyssat> i think this is the logo we'll be using moving forward, except the year will change of course.
+19:13:55 <rtyler> I actually think this probably should have just been an email to the board alias, not a governance meeting topic
+19:13:55 <oleg-nenashev> IMO "Jenkins World" is fine
+19:14:18 <hare_brain> I don't see any problems with this request or usage.
+19:14:34 <oleg-nenashev> So let's vote?
+19:14:37 <danielbeck> alyssat Again, I don't think the logo needs approval. The term "Jenkins World" needs approval.
+19:14:38 <alyssat> oleg-nenashev: +1 for the left hand. the designer can't seem to make it any better than that
+19:14:40 <rtyler> yeah, it pertains to a Jenkins conference
+19:14:57 <rtyler> if hare_brain is fine with it, and i'm fine with it, it's good
+19:15:13 <kohsuke> Jenkins World is meant to be the biggest event for the user community so it'd be a disaster if we don't have "Jenkins" in its name
+19:15:35 <rtyler> who is the "we" in that sentence
+19:15:47 <hare_brain> Haha
+19:15:49 <kohsuke> ... if it doesn't have Jenkins in its name
+19:16:23 <rtyler> I'm not sure how that has any relevance, I think the usage is totally legit as far as our previous trademarking sublicensing has gone
+19:16:40 <hare_brain> +1 for approving this usage.
+19:16:43 <rtyler> but hare_brain said he's fine with it, I'm fine with it, kohsuke's clearly fine with it, shall we move on?
+19:16:44 <oleg-nenashev> alyssat: Anyway the logo can be adjusted a bit after the approval.
+19:16:47 <oleg-nenashev> +1
+19:16:59 <danielbeck> doesn't look like anyone's opposed.
+19:17:02 <oleg-nenashev> rtyler: It's not a decision of the board
+19:17:09 <rtyler> since when?
+19:17:17 <alyssat> super! thank you
+19:17:29 <danielbeck> rtyler https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Decisionmaking
+19:17:41 <oleg-nenashev> since board does not make decisions according our previous discsussion
+19:18:01 * rtyler nods
+19:18:02 <rtyler> fair enough
+19:18:14 <danielbeck> Just to be sure, is anyone opposed to Jenkins World trademark usage?
+19:18:40 <batmat> +1 I'm OK
+19:18:48 <oleg-nenashev> re +1
+19:18:59 <kohsuke> danielbeck: I think we can record the agreement and move on
+19:19:00 <danielbeck> #agreed Jenkins World trademark usage is approved
+19:19:09 <alyssat> thank you again
+19:19:09 <danielbeck> #action danielbeck to record approval
+19:19:28 <danielbeck> #topic Infrastructure status report
+19:19:31 <danielbeck> rtyler
+19:19:33 <rtyler> wheee
+19:20:02 <rtyler> so many of you may or may have noticed we've had more challenging availability issues with wiki.jenkins-ci.org over the past couple months
+19:20:25 <rtyler> we've seen escalating spam attacks, which larrys has done a lot of good work to help mitigate
+19:20:40 <rtyler> it's 'manually-automated' in that there are clearly people being paid to deface and spam our wiki
+19:20:59 <larrys> rtyler: why do you have to remind me ;)
+19:21:31 <oleg-nenashev> would a migration to GitHub static pages help? I know it's hard :)
+19:21:33 <rtyler> we're increasing counter-measures daily, but there's no guarantee that I can make that we won't see some instability in the future with the spammers hammering the wiki, and our spam counter measures also hammering the wiki
+19:21:54 <danielbeck> this also means that clever captchas or similar solutions don't help. They use VPNs and proxies to change IP addresses etc., so clearly know what they're doing.
+19:22:13 <larrys> oleg-nenashev: they have hit JIRA a few times, and if we removed the wiki, and went some other way, then JIRA would be attacked
+19:22:19 <rtyler> so that's one item I wanted to update the organization on
+19:22:49 <rtyler> another major thing I wanted to inform folks about was that we're seeking some major infrastructure sponsorship this year
+19:22:57 <oleg-nenashev> Of course, no chance to fight on the legal front :(
+19:23:16 <rtyler> I don't have more concrete details I can share at this moment, but I'm hoping to secure a sponsorship which would allow us to both consolidate infrastructure into one "data center" (instead of four)
+19:23:32 <rtyler> but also would allow us to invest more resources in ci.j.o and other developer services
+19:23:44 <rtyler> since right now we're a bit "bare bones" as far as our infra goes
+19:23:58 <batmat> rtyler: cool.
+19:24:13 <rtyler> an ideal end-state for me would being able to consolidate from jenkins.ci.cloudbees.com and ci.jenkins-ci.org into one installation
+19:24:22 <rtyler> with many bells, and many more whistles :)
+19:24:40 <oleg-nenashev> yep, it would be great
+19:24:50 <rtyler> if there aren't any questions on these two points, we can move on
+19:24:55 <oleg-nenashev> Especially if we manage to have the OSS-only instance
+19:25:04 <danielbeck> rtyler Any ETA on sponsorship?
+19:25:22 <rtyler> danielbeck: given the size and scope, there's a bit of negotiation to be had
+19:25:35 <rtyler> danielbeck: I am expecting to know whether we can secure the sponsorship in the next 3 months
+19:25:41 <danielbeck> so ration the excitement it may hold a few months?
+19:25:45 <danielbeck> got it
+19:25:50 <rtyler> but that doesn't guarantee that the funds would be dismursed at the end of that 3 months
+19:25:58 <rtyler> first you have to get them to agree to give you money
+19:26:05 <rtyler> then they give you money
+19:26:51 <danielbeck> any other questions?
+19:27:02 <oleg-nenashev> rtyler. Yoy've forgotten the step #2. "Then they budget it"
+19:27:22 <rtyler> heh
+19:27:24 <danielbeck> let's move on…
+19:27:29 <danielbeck> #topic Should Jenkins be a mentor organisation for Google Summer of Code?
+19:27:34 <danielbeck> oleg-nenashev this is yours
+19:27:40 <oleg-nenashev> #info https://developers.google.com/open-source/gsoc/
+19:27:42 <rtyler> oh man, oleg-nenashev has a slideshow
+19:27:48 <rtyler> #info https://speakerdeck.com/onenashev/jenkins-2-dot-0-google-code-of-summer-proposals
+19:27:50 <oleg-nenashev> #info https://speakerdeck.com/onenashev/jenkins-2-dot-0-google-code-of-summer-proposals
+19:27:56 <rtyler> heh
+19:28:09 <oleg-nenashev> I just prepared several slides for the Monday's meeting :)
+19:28:19 <rtyler> so I participated in GSoC in 2006; it's a great program
+19:28:34 <rtyler> the biggest challenge I see lying ahead for us is getting mentors
+19:29:01 <oleg-nenashev> And Jenkins 2.0 is a good opportunity
+19:29:27 <rtyler> I don't see any *downside* to attempting to participate
+19:29:43 <oleg-nenashev> I mentor students at my university BTW, so I can take care of mentoring if the application get's accepted
+19:30:14 <danielbeck> rtyler Assuming we don't fail terribly in mentoring someone...
+19:30:49 <danielbeck> But if oleg-nenashev offers to do it, I'm all for it
+19:30:51 <rtyler> oleg-nenashev: please #info some deadlines
+19:31:21 <oleg-nenashev> #info Feb 19 is the application deadline
+19:31:41 <rtyler> I think we should go for it, but I would order the work as: 1. braindump some sample projects 2. identify mentors 3. submit application 4. profit
+19:31:59 <danielbeck> (time line is on slide 4 of Oleg's deck)
+19:32:07 <batmat> +1 good idea.
+19:32:12 <oleg-nenashev> Only the first part
+19:32:29 <oleg-nenashev> I can make proposal on sample projects in the mailing list
+19:32:49 <rtyler> I think encouraging projects which will increase quality in core, or user experience from core would be good
+19:32:58 <rtyler> projects which work on plugins is less exciting to me
+19:33:09 <rtyler> (imho)
+19:33:29 <batmat> rtyler: I'll be against more ruby in the core ;)
+19:33:48 <oleg-nenashev> Yes, I would vote for a work aligned with Jenkins 2.0. Core or "core plugins"
+19:34:00 <rtyler> batmat: didn't you hear, we're switching to scala
+19:34:01 * rtyler ducks
+19:34:14 <rtyler> oleg-nenashev: so you're volunteering to spearhead the effort I assume?
+19:34:21 <batmat> rtyler: would suit me better than ruby actually :)
+19:34:24 <oleg-nenashev> The idea is that students make proposals and discuss the efforts
+19:35:12 <oleg-nenashev> rtyler: I can do it, but I need to re-check the Mentor requirements. I earn money for Jenkins-related work, so there may be a conflict
+19:35:29 <oleg-nenashev> But I can drive the application process in any case
+19:35:34 <rtyler> oleg-nenashev: regardless of mentorship, can you organize the program part?
+19:35:37 * rtyler nods
+19:35:59 <rtyler> anybody object to oleg-nenashev proceeding with the sample project, mentor finding and application process?
+19:36:15 <rtyler> oleg-nenashev: I can help with the application once you think we're ready
+19:36:38 <batmat> no, oleg-nenashev be our Champion!
+19:36:50 <oleg-nenashev> Yep. We will also need alyssat. GSoC participants may qualify for Jenkins World or whatever event
+19:38:20 <oleg-nenashev> Seems nobody is against
+19:38:20 <danielbeck> Doesn't look like anyone's opposed, so I think oleg-nenashev can go ahead.
+19:38:37 <alyssat> oleg-nenashev: happy to help out where ever needed
+19:38:43 <danielbeck> Shall we move on?
+19:38:56 <oleg-nenashev> #action oleg_nenashev to handle the GSoC application process
+19:39:20 <danielbeck> #topic Do we have a timeline for the Governance Board elections?
+19:39:24 <danielbeck> orrc's topic
+19:39:25 <oleg-nenashev> allysat ty :)
+19:39:31 <rtyler> yey
+19:39:35 <rtyler> #info https://issues.jenkins-ci.org/browse/INFRA-536
+19:39:36 <oleg-nenashev> Yes we need
+19:39:38 <rtyler> so here's the update
+19:39:47 <rtyler> I haven't had the time to actually /implement/ the voting
+19:39:53 <rtyler> so we have a couple options
+19:40:03 <rtyler> either somebody can take a crack at submitting a pull request for the account-app
+19:40:12 <rtyler> evaluate steve and update the ticket, or $OTHER
+19:40:22 <rtyler> #info https://github.com/jenkins-infra/account-app
+19:40:38 <rtyler> this is really the only blocker, is we don't yet have the facilities to operate an election
+19:40:50 <rtyler> when we did it the first time around it was....a google spreadsheet I think
+19:41:35 <rtyler> the nearest time I think I would have to work on it is maybe the end of february :'(
+19:41:35 <batmat> rtyler: or maybe use a github issue in some project?
+19:41:51 <batmat> and use the GH API to count +1/-1?
+19:41:56 <rtyler> batmat: and then manually correlate to everybody in LDAP?
+19:42:09 <rtyler> that also doesn't allow anonymous voting now does it
+19:42:50 <batmat> we don't have that correlation? again trying to remember how it works
+19:43:05 <rtyler> batmat: it's not guaranteed to exist
+19:43:07 <batmat> rtyler: oh yeah, right.
+19:43:07 <rtyler> but anyways
+19:43:39 <batmat> I thought about that because we voted publicly IIRC for Hudson->Jenkins
+19:43:52 <batmat> but I understand this is different for an election of ppl
+19:44:22 <rtyler> so orrc that's the shitty update I have for you on this front :(
+19:44:57 <danielbeck> Looks like orrc isn't here…?
+19:45:08 <oleg-nenashev> What about apps like SurveyMonkey?
+19:45:23 <batmat> oleg-nenashev: would still need to correlate at some pt?
+19:45:34 <rtyler> this has to be integrated into our LDAP somehow
+19:45:43 <rtyler> but this is not the time nor place to discuss solutions here
+19:45:51 <danielbeck> yeah, let's move on…
+19:45:53 <rtyler> if somebody wants to propose something, jupm on that ticket
+19:45:54 <rtyler> halp
+19:45:57 <oleg-nenashev> #info http://help.surveymonkey.com/articles/en_US/kb/Can-I-create-a-poll-or-voting-environment
+19:46:13 * rtyler facepalms
+19:46:13 <oleg-nenashev> We can just extract e-mails and send invites
+19:46:24 <rtyler> this is not productive
+19:46:32 <rtyler> if you want to implement a voting system that ties into LDAP with surveymonkey
+19:46:36 <rtyler> we can talk about doing that
+19:47:02 <danielbeck> #topic Discussion: clarify that plugins available through the update center are required to have their source code canonical repository hosted under the Jenkinsci GitHub organization
+19:47:10 <danielbeck> batmat's topic
+19:47:41 <batmat> #info last thread about it https://groups.google.com/forum/#!topic/jenkinsci-dev/IoRmYHNn3Q4
+19:47:53 <kohsuke> sounds like another step of the noose tightening that we've started (wiki requirement, etc)
+19:48:46 <batmat> kohsuke: cool you're here. What's your feeling about it? rtyler has already expressed his opinion on the ML. Basically IIRC he said he finds it "reasonable"
+19:49:04 <kohsuke> FWIW I'm all +1 for slow & steadily improving those requirements
+19:49:24 <oleg-nenashev> May be a good case for Jenkins 2.0 UC
+19:49:57 <batmat> oleg-nenashev: not sure it's totally related. UC 2.0 might a way to relax some of those requirements, you mean?
+19:50:14 <rtyler> I think stephenc's suggestion is good followup work if anybody is willing to do it
+19:50:21 <danielbeck> oleg-nenashev So for the plugins we keep compatible by limiting the breakage, we throw them away arbitrarily this way?
+19:50:45 <rtyler> like, we set requirements for what it means for the Jenkins project to continue to distribute $plugin but make it more easy (like apt) to subscribe to additional sources of plugins
+19:51:04 <batmat> rtyler: can you clarify? Are you talking about the Maven Central sync?
+19:51:28 <batmat> (the sentence about stephenc)
+19:51:44 <rtyler> no
+19:51:51 <oleg-nenashev> batmat danielbeck: I think that Jenkins 2.0 is a good excuse for NEW releases of plugins We need to centralize the stuff to setup CI, so I think it's reasonable
+19:51:55 <danielbeck> rtyler UpdateSites Manager Plugin exists today. Just nobody running an update site.
+19:52:07 <rtyler> I personally would be in favour of making it easier for people to manage
+19:52:11 <rtyler> multiple update centres
+19:52:33 <rtyler> oleg-nenashev: that gets into the infra status update a bit
+19:52:49 <rtyler> we cannot possibly support CI for all plugins anywhere but jenkins.ci.cloudbees.com right now, and we have limited control over that
+19:53:05 <oleg-nenashev> GitHuborg  belongs to infra, isn't it? :)
+19:53:12 <rtyler> ideally a consolidated + improved jenkins instance would address that limitation to make what you suggest possible
+19:55:02 * rtyler isn't sure where to go with this discussion
+19:55:12 <batmat> So, as stated on the subject, I think this is a bit too quick to try and get a statement/decision here. So I'd like to gather opinions (not votes) on the original question
+19:55:22 <batmat> Which is
+19:55:28 <jglick> Jenkins supports multiple UCs internally, but does not expose a UI to manage them. So you need to have a plugin which adds additional ones (and manages their certificates).
+19:56:35 <batmat> "Should all plugins presented through the official Jenkins-ci.org UC have their canonical source code repository hosted under the github.com/jenkinsci org?"
+19:56:41 <kohsuke> doing things like universe/multiverse (multiple UCs) require more work, so here I think we should just focus on limiting what gets distributed in the community UC, which is how we've been doing this.
+19:57:09 <danielbeck> batmat define "canonical". Keeping all the releases there isn't enough, you want no  PRs elsewhere etc.?
+19:57:11 <kohsuke> I like the idea of starting this with UC for 2.0
+19:57:35 <rtyler> kohsuke: are we going to be generating and hosting a fully different update-center.json for 2.0?
+19:57:45 <batmat> kohsuke: some ppl pretend this is going back. But many, like Andrew, indeed confirms this may not have always been crystal clear, but always assumed.
+19:57:51 <kohsuke> rtyler: we already do that for each LTS line
+19:58:28 <kohsuke> batmat: I agree with Andrew that this has been the intent but it wasn't crystal clear
+19:58:29 <rtyler> that didn't really answer my question
+19:58:52 <rtyler> but I infer "yes" is the answer
+19:58:56 <danielbeck> kohsuke Right, but essentially based on the same rules. Are you saying 2.0 UC would have different content rules (besides version req)?
+19:58:59 <kohsuke> rtyler: yeah, sorry
+19:59:13 <rtyler> considering we already have jenkins 2.0 builds, will you send me out of band the ticket that's tracked in
+19:59:34 <kohsuke> danielbeck: I'd say it's the same rules in spirit, just more clarified rules
+20:00:08 <oleg-nenashev> Unless we develop a new policy for whatever reason
+20:00:09 <kohsuke> danielbeck: IIUC you are a big supporter of this effort, right?
+20:00:17 <danielbeck> kohsuke Would the 1.x update sites continue to operate on the more relaxed/unenforced rules?
+20:00:22 <danielbeck> kohsuke Yes.
+20:01:02 * rtyler would rather see less version specific logic in UC generation than more
+20:01:03 <kohsuke> I just think taking things down from existing UC would cause more friction where saying you won't be a part of the new UC will be easier
+20:01:34 <kohsuke> ... given that for some people this comes across as imposing more rules
+20:01:40 <jglick> Seems reasonable to me to say that 1.x UCs behave unchanged, but 2.x UCs enforce the hosting rule. Surely not a big deal to change the backend generation script this way?
+20:01:45 <rtyler> kohsuke: plugins disappearing from the UC would also be a reason for sombody to avoid upgrading
+20:01:54 <rtyler> keep that in mind
+20:01:56 <kohsuke> rtyler: that's true
+20:02:09 <danielbeck> I have the same concern as rtyler. The new update sites would be worse than the old ones on some metrics.
+20:02:22 <rtyler> anyways, we've exhausted the time for today, i think we've met our quota of filling batmat's scrollback with some opinions like he asked us to :P
+20:02:26 <oleg-nenashev> We can announce the list in the blog && try to contact plugin owners
+20:02:35 <jglick> rtyler: but they would not notice that the plugin *updates* were no longer on the UC until after they upgraded core…they would just assume the plugin has not done any new releases recently. :-)
+20:02:38 <danielbeck> oleg-nenashev You mean like for wiki URLs?
+20:02:51 <oleg-nenashev> danielbeck: kinda
+20:03:02 <rtyler> that took over 6 months to sort out IIRC
+20:03:05 <rtyler> which is ridiculous
+20:03:06 <danielbeck> oleg-nenashev Oh look it didn't work, the majority of plugins just disappeared
+20:03:35 <danielbeck> So not sure how successful that would be, I'd expect not at all.
+20:03:46 <oleg-nenashev> danielbeck: I'd like to use API/plugin deprecation API, but seems we won't have it in 2.0
+20:04:16 <danielbeck> Clearly there's more to discuss here
+20:04:23 <oleg-nenashev> yep
+20:04:25 <batmat> danielbeck: that was the intent
+20:04:25 <kohsuke> yeah
+20:04:31 <danielbeck> maybe in two weeks and batmat suggests the topic now so it's further up on the list :)
+20:05:05 <danielbeck> Since we've run out of time I suggest we end this now -- anyone wants to still add something?
+20:05:36 <danielbeck> Doesn't look like it…
+20:05:38 <danielbeck> #topic next meeting
+20:05:54 <danielbeck> next meeting in two weeks, Feb 17, same time, same channel
+20:06:01 <orrc> \o/
+20:06:02 <danielbeck> #endmeeting

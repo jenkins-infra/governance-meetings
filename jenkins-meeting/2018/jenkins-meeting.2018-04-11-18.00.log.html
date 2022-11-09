@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app215.us.archive.org';v.server_ms=894;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-04-11-18.00.log.html","20211027232438","https://web.archive.org/","web","/_static/",
+	      "1635377078");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:09</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:12</span><span class="nk"> &lt;rtyler&gt;</span> Woohoo let's go
+<a name="l-4"></a><span class="tm">18:00:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke danielbeck</span>
+<a name="l-5"></a><span class="tm">18:00:18</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:00:40</span><span class="nk"> &lt;rtyler&gt;</span> unfortunately I believe kohsuke is on an airplane, and who knows where danielbeck is but he said he wasn't going to be able to join
+<a name="l-7"></a><span class="tm">18:01:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-8"></a><span class="tm">18:01:15</span><span class="nk"> &lt;jglick&gt;</span> present FWIW
+<a name="l-9"></a><span class="tm">18:01:35</span><span class="nk"> &lt;rtyler&gt;</span> the last meeting notes: http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-03-28-18.00.html
+<a name="l-10"></a><span class="tm">18:01:52</span><span class="nk"> &lt;zobel&gt;</span> SPI board members may visit this meeting?
+<a name="l-11"></a><span class="tm">18:01:57</span><span class="nk"> &lt;rtyler&gt;</span> the only action that we had was oleg-nenashev encouraging everybody to help with Jenkins Essentials
+<a name="l-12"></a><span class="tm">18:02:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">zobel:</span> yes indeed
+<a name="l-13"></a><span class="tm">18:02:04</span><span class="nk"> &lt;rtyler&gt;</span> it's open to everybody
+<a name="l-14"></a><span class="tm">18:02:23</span><span class="nk"> &lt;rtyler&gt;</span> welcome :D
+<a name="l-15"></a><span class="tm">18:02:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">zobel:</span> we use a real IRC bot rather than irssi scripts  though ;)
+<a name="l-16"></a><span class="tm">18:02:50</span><span class="nk"> &lt;rtyler&gt;</span> I saw ogondza earlier, but he's disappeared
+<a name="l-17"></a><span class="tm">18:02:52</span><span class="nk"> &lt;zobel&gt;</span> <span class="hi">rtyler:</span> same as in #debconf-team :)
+<a name="l-18"></a><span class="tm">18:03:04</span><span class="nk"> &lt;rtyler&gt;</span> aye, we're using debian's meetbot :D
+<a name="l-19"></a><span class="tm">18:03:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">today's agenda https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-April11thmeeting</span>
+<a name="l-20"></a><span class="tm">18:03:55</span><span class="nk"> &lt;rtyler&gt;</span> welp, keep on goin' and hope he shows up
+<a name="l-21"></a><span class="tm">18:03:59 </span><span class="nka">* zobel</span> <span class="ac">will look into RT if we have outstanding transactions for jenkins.</span>
+<a name="l-22"></a><span class="tm">18:04:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-23"></a><span class="tm">18:04:24</span><span class="nk"> &lt;rtyler&gt;</span> oleg-nenashev and jglick, would either of you be able to update on the current LTS status?
+<a name="l-24"></a><span class="tm">18:04:50</span><span class="nk"> &lt;jglick&gt;</span> well, it seems to exist, so?
+<a name="l-25"></a><span class="tm">18:05:05</span><span class="nk"> &lt;rtyler&gt;</span> heh, that's a low bar
+<a name="l-26"></a><span class="tm">18:05:09</span><span class="nk"> &lt;jglick&gt;</span> Yup.
+<a name="l-27"></a><span class="tm">18:05:15</span><span class="nk"> &lt;rtyler&gt;</span> I exist all the time, it's not very impressive I am told
+<a name="l-28"></a><span class="tm">18:05:24</span><span class="nk"> &lt;markewaite&gt;</span> <span class="hi">rtyler:</span> are you asking status of 2.107.2, the most recent LTS?
+<a name="l-29"></a><span class="tm">18:06:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">markewaite:</span> I am asking aloud, I'm not following the LTS process very closely as of late, so I have no idea if we are awaiting release, have releases, everything on target, etc
+<a name="l-30"></a><span class="tm">18:06:07</span><span class="nk"> &lt;markewaite&gt;</span> <span class="hi">rtyler:</span> it is available and I've deployed it in my environment, running and well-behaved.
+<a name="l-31"></a><span class="tm">18:07:03</span><span class="nk"> &lt;rtyler&gt;</span> that's good :D
+<a name="l-32"></a><span class="tm">18:07:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> will be avail in 5 min, sorry. Confedence
+<a name="l-33"></a><span class="tm">18:07:14</span><span class="nk"> &lt;rtyler&gt;</span> ah, okay
+<a name="l-34"></a><span class="tm">18:07:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> * typos as well
+<a name="l-35"></a><span class="tm">18:08:12</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-36"></a><span class="tm">18:08:22</span><span class="nk"> &lt;jglick&gt;</span> It was part of today’s security release, so danielbeck would know all the details, but as far as I am concerned there is nothing more that needs to be discussed.
+<a name="l-37"></a><span class="tm">18:08:25</span><span class="nk"> &lt;rtyler&gt;</span> okay, i'll pause on this topic for a little to allow ogondza to come back
+<a name="l-38"></a><span class="tm">18:09:13</span><span class="nk"> &lt;markewaite&gt;</span> <span class="hi">rtyler:</span> only surprise with the LTS (for me) was that the Debian package did not appear to be marked as a security fix. I can discuss separately with danielbeck
+<a name="l-39"></a><span class="tm">18:10:09 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-40"></a><span class="tm">18:10:20</span><span class="nk"> &lt;jglick&gt;</span> “Essentials” for me will mean that we will not need to have a meeting to discuss the fact that a release was cut. :-)
+<a name="l-41"></a><span class="tm">18:10:21</span><span class="nk"> &lt;rtyler&gt;</span> if I remember correctly, we're on track to have three point releases under 2.107.x?
+<a name="l-42"></a><span class="tm">18:10:59 </span><span class="nka">* oleg-nenashev</span> <span class="ac">is online now</span>
+<a name="l-43"></a><span class="tm">18:11:06</span><span class="nk"> &lt;jglick&gt;</span> unless something urgent comes up in CERT land, I suppose so
+<a name="l-44"></a><span class="tm">18:11:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jglick:</span> I'll make sure to put a meeting on your calendar every day to discuss new Essentials deployments ;)
+<a name="l-45"></a><span class="tm">18:11:21</span><span class="nk"> &lt;rtyler&gt;</span> continuous meetings XD
+<a name="l-46"></a><span class="tm">18:11:21</span><span class="nk"> &lt;bitwiseman&gt;</span> Hourly.
+<a name="l-47"></a><span class="tm">18:11:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> .2 community ratings are fine so far
+<a name="l-48"></a><span class="tm">18:12:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> based on jglick's comments I would presume that there is no actionable tasks relating to the next LTS point release worth discussing?
+<a name="l-49"></a><span class="tm">18:12:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I think so. Business as usual
+<a name="l-50"></a><span class="tm">18:12:49</span><span class="nk"> &lt;jglick&gt;</span> I would presume Oliver would start the backporting process for .3 soon.
+<a name="l-51"></a><span class="tm">18:13:25</span><span class="nk"> &lt;rtyler&gt;</span> okay, just checking, I  think we can move forward then
+<a name="l-52"></a><span class="tm">18:13:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I pinged you earlier in #jenkins-community, can we make the next agenda item GSoC update if you don't mind?
+<a name="l-53"></a><span class="tm">18:13:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> sure
+<a name="l-54"></a><span class="tm">18:13:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC Status Update</span>
+<a name="l-55"></a><span class="tm">18:14:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">We have requested project slots from Google and got all slots we requested. Student projects will be announced on April 23</span>
+<a name="l-56"></a><span class="tm">18:15:21</span><span class="nk"> &lt;rtyler&gt;</span> how many slotswas that?
+<a name="l-57"></a><span class="tm">18:15:31</span><span class="nk"> &lt;rtyler&gt;</span> or are we not allowed to know yet
+<a name="l-58"></a><span class="tm">18:15:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I cannot tell that yet, sorry
+<a name="l-59"></a><span class="tm">18:15:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But enough taking the applications we've got
+<a name="l-60"></a><span class="tm">18:16:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> All active students with mentors will be accepted =&gt; fine
+<a name="l-61"></a><span class="tm">18:16:09</span><span class="nk"> &lt;rtyler&gt;</span> cool
+<a name="l-62"></a><span class="tm">18:16:22</span><span class="nk"> &lt;zobel&gt;</span> payment of the students will happen through whom?
+<a name="l-63"></a><span class="tm">18:16:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">we will be doing some training sessions for newcomer contributors starting from April 23. Stay tuned for announcements in the dev list if you are interested</span>
+<a name="l-64"></a><span class="tm">18:17:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">zobel:</span> my understanding was that students were sent their stipends directly
+<a name="l-65"></a><span class="tm">18:17:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">zobel:</span> Through Google. We do not manage student payments
+<a name="l-66"></a><span class="tm">18:17:34</span><span class="nk"> &lt;zobel&gt;</span> ok. just asking. some projects to that through SPI.
+<a name="l-67"></a><span class="tm">18:17:42</span><span class="nk"> &lt;zobel&gt;</span> s/to/do/
+<a name="l-68"></a><span class="tm">18:18:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Jenkins project get's its Google funding and will reimburse things to mentors (travel expenses, etc.) through SPI
+<a name="l-69"></a><span class="tm">18:18:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But it's not related to Mentor payments
+<a name="l-70"></a><span class="tm">18:18:26</span><span class="nk"> &lt;zobel&gt;</span> k.
+<a name="l-71"></a><span class="tm">18:18:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> *student payments
+<a name="l-72"></a><span class="tm">18:18:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> SPI is generally fine. No other way till Jenkins project has a legal entity
+<a name="l-73"></a><span class="tm">18:19:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> are there any things you could use help on at this point, any calls to action for other contributors who are not involved in mentorship?
+<a name="l-74"></a><span class="tm">18:20:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Not for now. If somebody wants to run "Plugin development 101", "How to contribute to Jenkins?" and other such entry presentations, let me know
+<a name="l-75"></a><span class="tm">18:20:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I'd guess we want to do it as Online Meetup
+<a name="l-76"></a><span class="tm">18:20:57</span><span class="nk"> &lt;rtyler&gt;</span> we do have some older content on YouTube for that, are those worth revisiting?
+<a name="l-77"></a><span class="tm">18:21:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would prefer interactive sessions with live Q&amp;A for students, but let's see
+<a name="l-78"></a><span class="tm">18:21:53</span><span class="nk"> &lt;rtyler&gt;</span> okay
+<a name="l-79"></a><span class="tm">18:21:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> My action item is to review materials
+<a name="l-80"></a><span class="tm">18:22:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to introduce oleg-nenashev to the YouTube channel "Manager" settings so he can run GSoC sessions</span>
+<a name="l-81"></a><span class="tm">18:22:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Wiki =&gt; jenkins.io migration is in the middle, so we need to review materials
+<a name="l-82"></a><span class="tm">18:22:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Would be cool, thanks!
+<a name="l-83"></a><span class="tm">18:22:48</span><span class="nk"> &lt;rtyler&gt;</span> are we wrapped with this topic then?
+<a name="l-84"></a><span class="tm">18:23:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I do HoA in Jenkins RU, so I generally need to get permissions and study Jenkins policies
+<a name="l-85"></a><span class="tm">18:23:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I'm done if there is no questions
+<a name="l-86"></a><span class="tm">18:23:20</span><span class="nk"> &lt;rtyler&gt;</span> any GSoC questions before we move on?
+<a name="l-87"></a><span class="tm">18:23:53</span><span class="nk"> &lt;rtyler&gt;</span> alright, moving on
+<a name="l-88"></a><span class="tm">18:23:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark sublicensing request "DevOps World - Jenkins World"</span>
+<a name="l-89"></a><span class="tm">18:24:17</span><span class="nk"> &lt;rtyler&gt;</span> this is a request from CloudBees by way of kohsuke, which is now by way of me since he's on a plane &gt;_&lt;
+<a name="l-90"></a><span class="tm">18:24:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">kohsuke's mail to the dev list https://groups.google.com/d/msg/jenkinsci-dev/d1rrCcY-VyM/Pu4RdH2LBwAJ</span>
+<a name="l-91"></a><span class="tm">18:24:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">for those not familiar with our trademark policies https://jenkins.io/project/governance/#trademark</span>
+<a name="l-92"></a><span class="tm">18:26:11</span><span class="nk"> &lt;rtyler&gt;</span> are there any questions about this request?
+<a name="l-93"></a><span class="tm">18:26:40</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> seems pretty straight forward
+<a name="l-94"></a><span class="tm">18:27:15</span><span class="nk"> &lt;rtyler&gt;</span> that is my assessment as well from a trademark perspective
+<a name="l-95"></a><span class="tm">18:28:10</span><span class="nk"> &lt;rtyler&gt;</span> danielbeck was unable to be here so he left his +1 on the list
+<a name="l-96"></a><span class="tm">18:28:44</span><span class="nk"> &lt;rtyler&gt;</span> I believe this request is reasonable in accordance with our sublicense policies and also +1
+<a name="l-97"></a><span class="tm">18:28:50</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1
+<a name="l-98"></a><span class="tm">18:29:04</span><span class="nk"> &lt;alyssat_&gt;</span> +1 from me as well
+<a name="l-99"></a><span class="tm">18:29:11</span><span class="nk"> &lt;markewaite&gt;</span> +1
+<a name="l-100"></a><span class="tm">18:29:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-101"></a><span class="tm">18:30:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> As long as nobody makes me to say "DevOps" during my talk
+<a name="l-102"></a><span class="tm">18:30:44</span><span class="nk"> &lt;alyssat_&gt;</span> i'm sure that won't be required Oleg :)
+<a name="l-103"></a><span class="tm">18:30:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I was going to submit a John Malkovich-styled ignite talk where all I say is DevOps
+<a name="l-104"></a><span class="tm">18:30:55</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-105"></a><span class="tm">18:31:20</span><span class="nk"> &lt;rtyler&gt;</span> any other comments or concerns before we move on?
+<a name="l-106"></a><span class="tm">18:31:50 </span><span class="nka">* rtyler</span> <span class="ac">taps a bit</span>
+<a name="l-107"></a><span class="tm">18:31:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Do a Balmer-styled one, eh?
+<a name="l-108"></a><span class="tm">18:32:01</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> sweaty pits and everything?
+<a name="l-109"></a><span class="tm">18:32:10 </span><span class="nka">* Slide-O-Mix</span> <span class="ac">digresses</span>
+<a name="l-110"></a><span class="tm">18:32:12</span><span class="nk"> &lt;rtyler&gt;</span> that's just the usual
+<a name="l-111"></a><span class="tm">18:32:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">sublicense request for "DevOps World - Jenkins World" approved</span>
+<a name="l-112"></a><span class="tm">18:33:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">CloudBees, Inc is expected to follow the appropriate trademark sublicense attribution requirements for the event, as outlined here https://jenkins.io/project/governance/#attribution-for-sublicensees</span>
+<a name="l-113"></a><span class="tm">18:33:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to update the approved trademark usage wiki page</span>
+<a name="l-114"></a><span class="tm">18:34:01</span><span class="nk"> &lt;rtyler&gt;</span> I'm going to add one more item onto the agenda by special request here :)
+<a name="l-115"></a><span class="tm">18:34:07</span><span class="nk"> &lt;rtyler&gt;</span> (sorry)
+<a name="l-116"></a><span class="tm">18:34:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">SPI financial request for review</span>
+<a name="l-117"></a><span class="tm">18:35:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">meet zobel, one of the memebers of the Software in the Public Interest board</span>
+<a name="l-118"></a><span class="tm">18:35:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">zobel:</span> you're up buddy
+<a name="l-119"></a><span class="tm">18:35:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> hi!
+<a name="l-120"></a><span class="tm">18:35:38</span><span class="nk"> &lt;zobel&gt;</span> SPI is currently working through financial data of 2017
+<a name="l-121"></a><span class="tm">18:35:48</span><span class="nk"> &lt;zobel&gt;</span> and we try to close the books for 2017.
+<a name="l-122"></a><span class="tm">18:36:09</span><span class="nk"> &lt;zobel&gt;</span> i am not sure who of you is subscribed to spi-general@lists.spi-inc.org
+<a name="l-123"></a><span class="tm">18:36:35</span><span class="nk"> &lt;zobel&gt;</span> <span class="hi">so:</span> there are draft reports for all of 2017 in http://lists.spi-inc.org/pipermail/spi-general/2018-April/thread.html
+<a name="l-124"></a><span class="tm">18:36:51</span><span class="nk"> &lt;zobel&gt;</span> the most important one is http://lists.spi-inc.org/pipermail/spi-general/2018-April/003845.html
+<a name="l-125"></a><span class="tm">18:37:31</span><span class="nk"> &lt;zobel&gt;</span> if you check the second apperance of "jenkins" you will find the donations and expenses of jenkins in 2017.
+<a name="l-126"></a><span class="tm">18:38:00</span><span class="nk"> &lt;zobel&gt;</span> it would be nice if someone could give at least feedback if things look fine or not.
+<a name="l-127"></a><span class="tm">18:38:04</span><span class="nk"> &lt;zobel&gt;</span> &lt;/done&gt;
+<a name="l-128"></a><span class="tm">18:38:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">zobel:</span> do you have a time frame for when you're trying to close this out?
+<a name="l-129"></a><span class="tm">18:38:51</span><span class="nk"> &lt;markewaite&gt;</span> As far as I can see, that says there is a growing positive balance year over year for the Jenkins project. That seems like a good thing to me.
+<a name="l-130"></a><span class="tm">18:39:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">markewaite:</span> if we weren't getting free Azure credits, that number would be strongly going in the other direction xD
+<a name="l-131"></a><span class="tm">18:39:19</span><span class="nk"> &lt;zobel&gt;</span> my goal is to close the books with the next spi board meeting. which is around May 14th
+<a name="l-132"></a><span class="tm">18:39:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to make sure to review the 2017 Jenkins financial data with kohsuke once he's back from walkabout</span>
+<a name="l-133"></a><span class="tm">18:40:24</span><span class="nk"> &lt;zobel&gt;</span> <span class="hi">otherwise:</span> rtyler thank you for letting me talk here, and for joining boards of directors @spi_inc.
+<a name="l-134"></a><span class="tm">18:40:24</span><span class="nk"> &lt;rtyler&gt;</span> part of the reason I wanted to make some space for zobel's request today is that we have long not been paying much attention to what our actual budget is as a project
+<a name="l-135"></a><span class="tm">18:40:55</span><span class="nk"> &lt;rtyler&gt;</span> this is something I would like many of the core contributors to start to think about as we grow, a healthy budget means we can do more things and invest in more "stuff"
+<a name="l-136"></a><span class="tm">18:41:35</span><span class="nk"> &lt;rtyler&gt;</span> any questions for zobel before we close this topic out?
+<a name="l-137"></a><span class="tm">18:41:36</span><span class="nk"> &lt;zobel&gt;</span> it is nice to see more donations as expenses, but i would like to also see projects doing expenses. we have a lot of money @spi_inc on behalf of associated projects
+<a name="l-138"></a><span class="tm">18:42:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> right
+<a name="l-139"></a><span class="tm">18:42:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We will definitely do some GSoC expences this year, within the budget
+<a name="l-140"></a><span class="tm">18:42:43</span><span class="nk"> &lt;markewaite&gt;</span> <span class="hi">rtyler:</span> will our likely future test automation needs (Jenkins Essentials) need funding from SPI, or can the Azure credits be used there?
+<a name="l-141"></a><span class="tm">18:43:03</span><span class="nk"> &lt;rtyler&gt;</span> good question, let me FYI something here
+<a name="l-142"></a><span class="tm">18:43:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">our current contract with Microsoft is approximate 2/3rds complete, which means we have "free" infra funding into mid April 2019</span>
+<a name="l-143"></a><span class="tm">18:43:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">markewaite:</span> Jenkins Essentials infrastructure is going to be part of the overall project infra, so its cost will be associated under that item
+<a name="l-144"></a><span class="tm">18:44:34</span><span class="nk"> &lt;rtyler&gt;</span> it's really basic CRUD apps which push bits back and forth at this point
+<a name="l-145"></a><span class="tm">18:44:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Do we plan to prolongate the contract with MS? I am not sure how much we spend on Azure, but probably a lot
+<a name="l-146"></a><span class="tm">18:45:05</span><span class="nk"> &lt;zobel&gt;</span> if any financial questions arise, find me in #spi on irc.oftc.net
+<a name="l-147"></a><span class="tm">18:45:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I discussed this in the Infra team meeting a bit on monday, but my plan is to start the discussions with Microsoft at Jenkins World SF to extend the current contract and terms
+<a name="l-148"></a><span class="tm">18:45:20</span><span class="nk"> &lt;zobel&gt;</span> also if you wait for reimbursements too long.
+<a name="l-149"></a><span class="tm">18:45:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks for that!
+<a name="l-150"></a><span class="tm">18:45:30</span><span class="nk"> &lt;alyssat_&gt;</span> we've sent out quite a stickers to JAMs I just need to do a better job at doing the expenses
+<a name="l-151"></a><span class="tm">18:45:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the SPI board and extended community can be found in the #spi channel on irc.oftc.net</span>
+<a name="l-152"></a><span class="tm">18:46:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> if we're going to expense that stuff through SPI, you and I should talk about how much we can budget appropriately for that, and make sure that request is approved in this meeting
+<a name="l-153"></a><span class="tm">18:46:38</span><span class="nk"> &lt;rtyler&gt;</span> now that everybody's primed thinking about money, folks wanna talk :D
+<a name="l-154"></a><span class="tm">18:46:54</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="hi">rtyler:</span> will do
+<a name="l-155"></a><span class="tm">18:47:14</span><span class="nk"> &lt;rtyler&gt;</span> any other SPI or zobel questions before we wrap?
+<a name="l-156"></a><span class="tm">18:47:41 </span><span class="nka">* rtyler</span> <span class="ac">taps</span>
+<a name="l-157"></a><span class="tm">18:48:18</span><span class="nk"> &lt;rtyler&gt;</span> alright, I'm going to close this item out, let's keep the discussion around GSoC and JAM budget going in #jenkins-community if you all would like
+<a name="l-158"></a><span class="tm">18:48:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-159"></a><span class="tm">18:48:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">zobel:</span> If there are any things with GSoC payments from Google, please reach out to me or to jenkinsci orgs directly. But they usually go smooth AFAIK
+<a name="l-160"></a><span class="tm">18:48:55</span><span class="nk"> &lt;rtyler&gt;</span> based on my calendar I see our next meeting should be April 25th, 2018
+<a name="l-161"></a><span class="tm">18:48:58</span><span class="nk"> &lt;rtyler&gt;</span> any concerns with that?
+<a name="l-162"></a><span class="tm">18:49:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> and again, thanks to SPI for all the help!
+<a name="l-163"></a><span class="tm">18:49:17</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-164"></a><span class="tm">18:49:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> April 25 is fine, I'd guess
+<a name="l-165"></a><span class="tm">18:49:50</span><span class="nk"> &lt;rtyler&gt;</span> I don't see any major holidays or anything
+<a name="l-166"></a><span class="tm">18:49:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am out tho (Jenkins meetup)
+<a name="l-167"></a><span class="tm">18:50:02</span><span class="nk"> &lt;zobel&gt;</span> <span class="hi">oleg-nenashev:</span> rtyler is now SPI board member as well..
+<a name="l-168"></a><span class="tm">18:50:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting will be April 25th, same time of day 18:00 UTC</span>
+<a name="l-169"></a><span class="tm">18:50:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yey
+<a name="l-170"></a><span class="tm">18:50:22</span><span class="nk"> &lt;rtyler&gt;</span> with that, I'm going to close this out
+<a name="l-171"></a><span class="tm">18:50:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:24:38 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:05:33 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 460.111
+  exclusion.robots: 0.089
+  exclusion.robots.policy: 0.081
+  cdx.remote: 0.063
+  esindex: 0.01
+  LoadShardBlock: 362.873 (3)
+  PetaboxLoader3.datanode: 143.822 (4)
+  CDXLines.iter: 15.43 (3)
+  load_resource: 422.386
+  PetaboxLoader3.resolve: 353.028
+-->

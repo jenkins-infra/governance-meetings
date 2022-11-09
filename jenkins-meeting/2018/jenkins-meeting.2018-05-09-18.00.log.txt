@@ -1,0 +1,197 @@
+18:00:06 <danielbeck> #startmeeting
+18:00:06 <robobutler> Let the Jenkins meeting commence!
+18:00:20 <danielbeck> #chair kohsuke rtyler
+18:00:20 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:26 <danielbeck> hi everyone!
+18:00:35 <oleg-nenashev> hey
+18:00:35 <danielbeck> today's agenda: https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+18:00:45 <danielbeck> we're selecting an LTS baseline today \o/
+18:00:52 <danielbeck> #topic Recap last meeting's actions
+18:00:58 <danielbeck> #info meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-04-25-18.00.html
+18:01:16 <danielbeck> well, LTS RC has been out for a while, so that's done
+18:01:21 <ogondza> yep
+18:01:39 <danielbeck> moving on…
+18:01:46 <danielbeck> #topic LTS status check
+18:02:01 <ogondza> this will be quick
+18:02:06 <danielbeck> LTS is out. It's a security update, so you should update :)
+18:02:10 <danielbeck> 2.107.3 and 2.121
+18:02:49 <danielbeck> #info https://jenkins.io/security/advisory/2018-05-09/
+18:03:20 <jglick> present FWIW
+18:03:32 <danielbeck> ogondza FYI, apparently (based on a report in #jenkins) we messed up packaging
+18:03:41 <oleg-nenashev> uh
+18:03:46 <danielbeck> IOW, our previous mess has been undone
+18:03:58 <danielbeck> 2.107.1 and .2 were released with stable-2.60 packaging
+18:04:11 <ogondza> you mean it was messed before .3 and now it is fine?
+18:04:13 <danielbeck> and it looks like 2.107.3 got a different branch despite ogondza and me agreeing to keep it
+18:04:32 <ogondza> huh, any undesirable impact?
+18:04:34 <danielbeck> sort of, but it's a change from .2, so we now seem to have the unexpected change we wanted to prevent
+18:04:39 <danielbeck> not sure yet
+18:04:49 <danielbeck> just a heads up, learned it a few minutes ago
+18:04:53 <danielbeck> TLDR: Packaging is weird
+18:05:21 <ogondza> I suspect kk's automation just picked the latest matching branch - we tried to be sure nothing gets updated to pick it
+18:05:21 <jglick> uh, trunk is messed up I think
+18:05:31 <danielbeck> jglick trunk of…?
+18:05:48 <jglick> `jenkinsci/jenkins/master` is `2.121-SNAPSHOT`
+18:06:13 <jglick> Should be `2.122-SNAPSHOT` now, no?
+18:06:21 <oleg-nenashev> it should
+18:06:40 <danielbeck> probably https://github.com/jenkinsci/jenkins/commit/91e1cf2d3e0fa1c4766c62f2db54cd3a28cd9d32 wrong merge, since it's so new
+18:06:44 <oleg-nenashev> maybe the changes didn't get pushed or the released happened from a branch. Checking
+18:07:03 <jglick> I do not see the `jenkins-2.121` tag in `master`.
+18:07:38 <oleg-nenashev> It says it's in master: https://github.com/jenkinsci/jenkins/commit/9bc3aa68b196fbf9c676541793f4b59f663c4af8
+18:08:00 <oleg-nenashev> just 2 days ago. Has KK staged the release or what?
+18:08:09 <danielbeck> yes
+18:08:11 <jglick> mm, yes, so something else went wrong here
+18:08:18 <danielbeck> we're staging security updates on Mondays
+18:08:27 <danielbeck> probably just off by one in the merge commit
+18:08:29 <jglick> anyway, can be sorted out elsewhere, we can move on I suppose
+18:08:31 <oleg-nenashev> likely kohsuke just needs to push the code
+18:08:39 <danielbeck> oleg-nenashev he did
+18:08:49 <oleg-nenashev> oh right
+18:08:58 <oleg-nenashev> anyway, +1 for moving on
+18:09:01 <ogondza> is this cause by messed packaging or it is unrelated?
+18:09:01 <danielbeck> ok, we'll figure this out elsewhere
+18:09:05 <danielbeck> unrelated
+18:09:15 <danielbeck> our security process is, uh, intricate
+18:09:16 <ogondza> ok, thanks
+18:09:28 <oleg-nenashev> So we may need 2.107.4 if the packaging is really bad, right?
+18:09:53 <danielbeck> it was wrong before, but seems correct now. That however introduced changes from .2
+18:10:07 <danielbeck> but going with .4 to go back to wrong packaging seems counterproductive
+18:10:26 <oleg-nenashev> +1
+18:10:28 <ogondza> lets not do this until we hear about regression important enough
+18:10:34 <danielbeck> +1
+18:10:40 <danielbeck> alright, moving on
+18:10:43 <danielbeck> # topic LTS next baseline selection
+18:10:49 <danielbeck> #topic LTS next baseline selection
+18:11:05 <danielbeck> #info https://jenkins.io/changelog/
+18:11:29 <ogondza> lets get this started. 2.119?
+18:11:51 <danielbeck> 2.118 looks good if we're scared. Otherwise 2.121 looks good, too. All the problems in 2.120 were just transitory or related to a new admin monitor and addressed in 2.120
+18:11:52 <oleg-nenashev> has some bad ratings, but the issues got fixed in 2.120
+18:12:03 <danielbeck> sorry, problems in 2.119
+18:12:11 <oleg-nenashev> 2.118 has extremely good community ratings, yes
+18:12:44 <danielbeck> and the problems in 2.119 were project infra related, or addressed in 2.120
+18:12:48 <oleg-nenashev> We have untriaged regression in JENKINS-51136 on Solaris 10, which is supposedly related to the Jetty upgrade
+18:13:02 <oleg-nenashev> JENKINS-51136 is 2.117+
+18:13:24 <oleg-nenashev> I do not consider it as a blocker . Only a single report
+18:13:26 <danielbeck> > Solaris
+18:13:52 <danielbeck> 3 watchers but 2 of them are team, so really just one report
+18:14:07 <danielbeck> IMO we have free choice of versions
+18:14:37 <oleg-nenashev> I would be 1000% confident if I knew that this is the only affected platform. But, since there is no triage so far, I am totally fine with picking 2.118 or above
+18:15:24 <oleg-nenashev> Would be great to know wadeck's opinion about 2.119+ if he is around
+18:15:31 <danielbeck> any reason we shouldn't just plan for 2.121 and see what happens over the next week or so?
+18:15:57 <dnusbaum> oleg-nenashev: You mean regarding the root url stuff?
+18:16:04 <oleg-nenashev> yes, JENKINS-51064
+18:16:14 <ogondza> we ware this adventurous last time. twice in a row?
+18:16:19 <oleg-nenashev> There is a pending PR to address the rest of the problems
+18:17:09 <dnusbaum> Yes, but imo if there are any other regression we would just back out the validation entirely
+18:17:35 <jglick> at least in LTS
+18:17:42 <oleg-nenashev> Yes, shipping last weekly becomes a habit. We generally reduce our response time to newly discovered regressions. But the issue queue is triaged well now, so I am fine with that
+18:18:04 <danielbeck> ogondza last time we had cause for concern, like XML 1.1. this time I'm looking at the changelog and nothing really stands out in the last two weeks
+18:18:22 <danielbeck> the install state storage perhaps, but that's jglick quality
+18:18:24 <danielbeck> :)
+18:18:47 <ogondza> I do not object, though it caused some extra coordination
+18:18:55 <danielbeck> process killing veto (JENKINS-9104) basically cannot make it worse than it was before
+18:19:07 <oleg-nenashev> I would prefer to avoid Root URL validator in LTS since it didn't get soaked enough IMO && already caused issues in weeklys
+18:19:12 <danielbeck> and then there are the options for builds and workspace directories
+18:19:21 <danielbeck> other than that all looks fairly straightforward
+18:19:41 <danielbeck> oleg-nenashev rip out the admin monitor from LTS, and done?
+18:19:54 <oleg-nenashev> "builds and workspace directories" would require upgrade guide for sure, but I would rather bite the bullet
+18:19:55 <ogondza> shell we go this way, I would like us to agree on a decision date so there is enough time to rebackport in base we reconsider
+18:20:10 <dnusbaum> oleg-nenashev you mean the whole root url monitor or just the validation?
+18:20:25 <oleg-nenashev> whole root URL monitor
+18:20:33 <danielbeck> oleg-nenashev upgrade guide is no reason to delay, we need it either this time or next. risk OTOH would be.
+18:21:00 <danielbeck> oleg-nenashev rip out monitor, keep setup change?
+18:21:26 <oleg-nenashev> works for me
+18:21:30 <oleg-nenashev> or just 2.118
+18:22:05 <oleg-nenashev> the latter option would require backporting JEP-200 whitelists twice, but it's not a problem IIUC
+18:22:10 <oleg-nenashev> ogondza: ^
+18:22:17 <danielbeck> plus security fixes
+18:23:18 <ogondza> java.util.EnumMap and org.jruby.RubyNil ware fairly trivial. Deferring to Daniel
+18:23:52 <danielbeck> IMO 2.121 is a reasonable choice, and the only thing that's brought up so far is the admin monitor, which can either be dropped or mentioned in the upgrade guide
+18:24:12 <danielbeck> feedback looks reasonable
+18:24:32 <oleg-nenashev> any compat concerns?
+18:24:40 <danielbeck> regarding? builds dir?
+18:24:59 <oleg-nenashev> Do wadeck's changes include new non-Restricted APIs? IIRC no
+18:25:06 <dnusbaum> no
+18:25:21 <danielbeck> not the admin monitor
+18:25:36 <oleg-nenashev> then it's fine with me though it's not a common practice to remove changes from LTS
+18:26:06 <danielbeck> oleg-nenashev TBH that's something I'd hold back for a week at least and wait for feedback
+18:26:13 <danielbeck> if that works for ogondza
+18:27:04 <ogondza> it feels going with 2.119 tentatively for a week and reconsider sounds as a plan for all 3 of us
+18:27:31 <ogondza> we can fallback to 2.118 or something based on the data we get in the mean time
+18:27:32 <ogondza> ?
+18:27:35 <danielbeck> 2.119 looks like the worst possible option since 2.117
+18:27:46 <oleg-nenashev> yes
+18:27:51 <ogondza> s/2.119/2.121/
+18:27:57 <ogondza> :facepalm:
+18:27:59 <danielbeck> ah
+18:28:06 <oleg-nenashev> 2.118 or 2.121 IMO. +1 from me for both
+18:28:36 <danielbeck> so, 2.121 and keep watch for negative reports?
+18:28:49 <ogondza> yes
+18:28:53 <danielbeck> check back in a week to finalize or revise?
+18:29:16 <jglick> 2.121 (at least provisionally) seems fine to me
+18:29:53 <ogondza> sure, how will we sync?
+18:30:04 <danielbeck> dev list thread?
+18:30:42 <danielbeck> any dissenting opinions?
+18:30:53 <ogondza> not sure
+18:31:17 <ogondza> should we announce the temporary plan and whoever object will speak up in the thread?
+18:31:29 <danielbeck> how did we do it last time?
+18:32:11 <ogondza> oleg-nenashev spoken up suggesting to change the temporary option, IIRC
+18:32:46 <oleg-nenashev> last time? :)
+18:33:14 <oleg-nenashev> Not sure I enjoyed the discussion afterwards
+18:33:24 <danielbeck> https://groups.google.com/forum/#!msg/jenkinsci-dev/7nR0_kI71xA/TNrMNVlmAAAJ
+18:33:50 <oleg-nenashev> IMHO we need to reconsider our LTS process if we continue doing temporary options
+18:34:23 <ogondza> agreed
+18:35:11 <oleg-nenashev> Previously it was clear. LTS baseline is selected, done. All users were able to start testing immediately
+18:35:54 <oleg-nenashev> Now every user just waits till it's finalized. If you manage Jenkins as internal service team in a big company, that's not fun
+18:36:18 <oleg-nenashev> If you have a product which uses Jenkins inside, it's not good as well
+18:36:51 <ogondza> I do favor clear baselines, too.
+18:36:52 <danielbeck> Then let's announce it as usual, and if we find a major problem, we'll revisit the choice. It's not temporary, but just acknowledging that we have a plan if critical regressions show up
+18:37:04 <ogondza> how about me starting a thread next Tue and we will evaluate the responses by Wed?
+18:37:35 <danielbeck> if we somehow find a major regression introduced in 2.118 and cannot recover in time during LTS testing, would we proceed with 2.118.1?
+18:37:36 <ogondza> dont feel strongly either way
+18:38:06 <oleg-nenashev> danielbeck: works for me. RC is always a risk
+18:38:08 <danielbeck> for me the choice today is final, except in case of unexpected critical issues. But IMO that would be the footnote for any choice.
+18:38:19 <oleg-nenashev> +1
+18:38:26 <ogondza> agreed
+18:38:54 <ogondza> so I will start a baseline remarking we may reevaluate
+18:39:11 <ogondza> ... of 2.121
+18:39:17 <danielbeck> +1
+18:39:21 <markewaite> +1
+18:39:51 <ogondza> #ogondza I will start a baseline of 2.121 remarking we may reevaluate in case of critical regressions
+18:39:57 <danielbeck> TBH I wouldn't even remark. If testing reveals critical problems I expect that we'd discuss solutions no matter what the baseline ¯\_(ツ)_/¯
+18:39:59 <ogondza> #action ogondza I will start a baseline of 2.121 remarking we may reevaluate in case of critical regressions
+18:40:49 <danielbeck> shall we move on?
+18:40:59 <ogondza> IMO we can
+18:41:16 <oleg-nenashev> yep
+18:41:29 <danielbeck> #agreed 2.121 is the next LTS baseline
+18:41:37 <danielbeck> #topic GSoC status check
+18:41:40 <danielbeck> oleg-nenashev \o/
+18:41:44 <oleg-nenashev> okay
+18:41:54 <oleg-nenashev> #info GSoC projects: https://jenkins.io/projects/gsoc/#projects
+18:42:24 <oleg-nenashev> So, we have scheduled project-specific office hours & Co
+18:42:47 <oleg-nenashev> #info GSoC Special Interest Group chat: https://gitter.im/jenkinsci/gsoc-sig
+18:43:16 <danielbeck> oh, that was implemented, nice
+18:43:18 <oleg-nenashev> We also started a SIG chat according to the discussion, because all projects are in Gitter
+18:43:29 <oleg-nenashev> Well, I went forward and implemented it
+18:44:03 <oleg-nenashev> "sig" is just the only thing in the name which refers to the sig proposal, but IMHO this is fine. CC rtyler
+18:44:13 <oleg-nenashev> And we have some updates...
+18:45:22 <oleg-nenashev> #info Jeff Pearce (https://github.com/jeffpearce, Cobertura plugin maintainer) joins the Code Coverage API Plugin project as a mentor. Welcome aboard Jeff!
+18:46:14 <oleg-nenashev> Another update is that we have one project at risk, and it will likely get cancelled. Will update at the next governance meeting. Other 3 projects are fine, design is in progress
+18:46:57 <oleg-nenashev> that's all from me
+18:47:02 <danielbeck> thanks oleg-nenashev !
+18:47:18 <danielbeck> how bad is having one project at risk?
+18:47:26 <oleg-nenashev> #action oleg_nenashev to reach out to the board and alyssat_ regarding swag and conference logistics for GSoC
+18:47:27 <danielbeck> isn't it early for that?
+18:47:36 <oleg-nenashev> it happens
+18:48:18 <oleg-nenashev> It's not good, but we will be fine. More updates at the next governance
+18:48:21 <danielbeck> hm, ok
+18:48:22 <danielbeck> thanks
+18:48:29 <danielbeck> any questions for oleg?
+18:48:30 <oleg-nenashev> any questions?
+18:48:49 <oleg-nenashev> how did I get 3 underscores in the name? :(
+18:49:01 <oleg-nenashev> At least nobody pings me in IRC
+18:49:26 <danielbeck> #topic next meeting
+18:49:40 <danielbeck> that would be May 23
+18:49:53 <danielbeck> same time same channel
+18:49:57 <danielbeck> thanks everyone!
+18:50:02 <danielbeck> #endmeeting

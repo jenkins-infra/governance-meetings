@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app214.us.archive.org';v.server_ms=298;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-02-01-18.27.log.html","20210509144657","https://web.archive.org/","web","/_static/",
+	      "1620571617");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:27:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:27:01</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:27:07</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-4"></a><span class="tm">18:27:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> travel days I have only intermittent connectivity and power :/
+<a name="l-5"></a><span class="tm">18:27:42</span><span class="nk"> &lt;orrc&gt;</span> fwiw, I really only have a couple of minutes, but the Trademark issue seems ok to me
+<a name="l-6"></a><span class="tm">18:28:07</span><span class="nk"> &lt;kohsuke&gt;</span> I'm doing this from a flight, so my internet is really slow
+<a name="l-7"></a><span class="tm">18:28:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark usage approval for upcoming "CloudBees Jenkins" product names</span>
+<a name="l-8"></a><span class="tm">18:28:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> gimme chair
+<a name="l-9"></a><span class="tm">18:28:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">chair:</span> rtyler
+<a name="l-10"></a><span class="tm">18:28:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler</span>
+<a name="l-11"></a><span class="tm">18:28:29</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: kohsuke rtyler
+<a name="l-12"></a><span class="tm">18:28:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark usage approval for upcoming "CloudBees Jenkins" product names</span>
+<a name="l-13"></a><span class="tm">18:28:43</span><span class="nk"> &lt;kohsuke&gt;</span> wow it works retroactively
+<a name="l-14"></a><span class="tm">18:28:52</span><span class="nk"> &lt;kohsuke&gt;</span> nah, just a time lag
+<a name="l-15"></a><span class="tm">18:29:31</span><span class="nk"> &lt;kohsuke&gt;</span> I've sent out the email earlier that details the names being requested and how they are used
+<a name="l-16"></a><span class="tm">18:29:34</span><span class="nk"> &lt;kohsuke&gt;</span> https://groups.google.com/forum/#!topic/jenkinsci-dev/1jZmjgSDcqM
+<a name="l-17"></a><span class="tm">18:30:04</span><span class="nk"> &lt;rtyler&gt;</span> I don't know how to decipher oleg-nenashev's feedback with regards to this
+<a name="l-18"></a><span class="tm">18:30:11</span><span class="nk"> &lt;rtyler&gt;</span> people only get one vote here :P
+<a name="l-19"></a><span class="tm">18:30:28</span><span class="nk"> &lt;kohsuke&gt;</span> Oh, I must have missed that
+<a name="l-20"></a><span class="tm">18:30:34</span><span class="nk"> &lt;rtyler&gt;</span> it was on the mailing list
+<a name="l-21"></a><span class="tm">18:30:37</span><span class="nk"> &lt;kohsuke&gt;</span> And the google group mail link is too big to load here :-(
+<a name="l-22"></a><span class="tm">18:31:06</span><span class="nk"> &lt;kohsuke&gt;</span> Can you summarize his comment for me?
+<a name="l-23"></a><span class="tm">18:31:12</span><span class="nk"> &lt;rtyler&gt;</span> as far as I am concerned the usage of "CloudBees Jenkins Foo" is acceptable by our trademark guidelines
+<a name="l-24"></a><span class="tm">18:31:32</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev is saying he abstains but would expect CloudBees to enforce correct usage
+<a name="l-25"></a><span class="tm">18:31:41</span><span class="nk"> &lt;danielbeck&gt;</span> e.g. no "CloudBees Jenkins" in NVD
+<a name="l-26"></a><span class="tm">18:31:53</span><span class="nk"> &lt;rtyler&gt;</span> NVD?
+<a name="l-27"></a><span class="tm">18:32:05</span><span class="nk"> &lt;danielbeck&gt;</span> the CVE guys called Jenkins "CloudBees Jenkins" for a while
+<a name="l-28"></a><span class="tm">18:32:15</span><span class="nk"> &lt;kohsuke&gt;</span> That "CloudBees is responsible to make sure it's used correctly" is already an ongoing commitment
+<a name="l-29"></a><span class="tm">18:32:23</span><span class="nk"> &lt;danielbeck&gt;</span> right, and needs to continue
+<a name="l-30"></a><span class="tm">18:32:27 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-31"></a><span class="tm">18:32:27</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-32"></a><span class="tm">18:32:57</span><span class="nk"> &lt;rtyler&gt;</span> which as far as I can tell CloudBees is committing to, right kohsuke?
+<a name="l-33"></a><span class="tm">18:33:05 </span><span class="nka">* rtyler</span> <span class="ac">has seen recent actions by CB in that regard already</span>
+<a name="l-34"></a><span class="tm">18:33:10</span><span class="nk"> &lt;danielbeck&gt;</span> (FTR it was KK who asked NVD to fix their naming, so this is being done.)
+<a name="l-35"></a><span class="tm">18:33:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> that's correct
+<a name="l-36"></a><span class="tm">18:33:36</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so basically oleg is somewhere between abstrain to +1
+<a name="l-37"></a><span class="tm">18:33:43</span><span class="nk"> &lt;kohsuke&gt;</span> abstain
+<a name="l-38"></a><span class="tm">18:33:44</span><span class="nk"> &lt;danielbeck&gt;</span> no, plain abstain
+<a name="l-39"></a><span class="tm">18:34:16</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I'm hoping to hear from orrc and ogondza
+<a name="l-40"></a><span class="tm">18:34:32</span><span class="nk"> &lt;ogondza&gt;</span> i am fine with all the names. Agree with Oleg that "CloudBees Jenkins Team" is odd product name, though
+<a name="l-41"></a><span class="tm">18:35:02</span><span class="nk"> &lt;rtyler&gt;</span> naming is what cloudbees excels at :P
+<a name="l-42"></a><span class="tm">18:35:06</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza We have weirder names for actual teams, so that's clearly distinctive ;-)
+<a name="l-43"></a><span class="tm">18:35:28</span><span class="nk"> &lt;danielbeck&gt;</span> distinct
+<a name="l-44"></a><span class="tm">18:36:02</span><span class="nk"> &lt;rtyler&gt;</span> for my role on the board, with my grumpy trademark guideline reading hat on, I am +1 on this
+<a name="l-45"></a><span class="tm">18:36:47</span><span class="nk"> &lt;kohsuke&gt;</span> maybe we lost orrc
+<a name="l-46"></a><span class="tm">18:37:12</span><span class="nk"> &lt;kohsuke&gt;</span> so I'm just going to copy his earlier "fwiw, I really only have a couple of minutes, but the Trademark issue seems ok to me"
+<a name="l-47"></a><span class="tm">18:38:06</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's OK to record this as accepted unless someone speaks up
+<a name="l-48"></a><span class="tm">18:38:11 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-49"></a><span class="tm">18:38:12</span><span class="nk"> &lt;orrc&gt;</span> So long as it's subject to the same conditions as before, it seems ok
+<a name="l-50"></a><span class="tm">18:38:19</span><span class="nk"> &lt;danielbeck&gt;</span> he's back \o/
+<a name="l-51"></a><span class="tm">18:38:46</span><span class="nk"> &lt;orrc&gt;</span> I'm outside, and trying to type without freezing :D
+<a name="l-52"></a><span class="tm">18:38:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the trademark request in https://groups.google.com/forum/#!topic/jenkinsci-dev/1jZmjgSDcqM is approved, provided that the same conditions of enforcement are kept by CloudBees</span>
+<a name="l-53"></a><span class="tm">18:39:09</span><span class="nk"> &lt;rtyler&gt;</span> my topic now? :D
+<a name="l-54"></a><span class="tm">18:39:26</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks! I'm glad I paid $11 for this 30minutes internet access!
+<a name="l-55"></a><span class="tm">18:39:33</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-56"></a><span class="tm">18:39:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> go on
+<a name="l-57"></a><span class="tm">18:39:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> comically you were able to get online about the same time I was
+<a name="l-58"></a><span class="tm">18:39:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Infra Update</span>
+<a name="l-59"></a><span class="tm">18:40:09</span><span class="nk"> &lt;rtyler&gt;</span> this wlil be quick, but I just wanted to mention some ongoing bits
+<a name="l-60"></a><span class="tm">18:40:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> yeah, you and I work together for too long and our minds start to sync
+<a name="l-61"></a><span class="tm">18:40:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Kubernetes (k8s) is /technically/ deployed into Azure right now, olblak and I are working to get the orchestration of applications on top of it hammered down</span>
+<a name="l-62"></a><span class="tm">18:41:18</span><span class="nk"> &lt;rtyler&gt;</span> at https://www.meetup.com/jenkinsmeetup/events/236370750/ we will be hacking on it
+<a name="l-63"></a><span class="tm">18:42:07</span><span class="nk"> &lt;rtyler&gt;</span> outside of that, bits are still being distributed via Azure, and the majority of the work is done in https://github.com/jenkins-infra/azure
+<a name="l-64"></a><span class="tm">18:42:36</span><span class="nk"> &lt;rtyler&gt;</span> the goal is still to finish the azure migration before end of april, deploying apps on k8s is a huge fundamental part of that
+<a name="l-65"></a><span class="tm">18:42:47</span><span class="nk"> &lt;rtyler&gt;</span> I expect accounts.jenkins.io and plugins.jenkins.io to be the first apps moving over
+<a name="l-66"></a><span class="tm">18:42:59</span><span class="nk"> &lt;rtyler&gt;</span> any questions I can answer?
+<a name="l-67"></a><span class="tm">18:43:01</span><span class="nk"> &lt;kohsuke&gt;</span> go olblak!
+<a name="l-68"></a><span class="tm">18:44:08</span><span class="nk"> &lt;rtyler&gt;</span> tick tock tick tock
+<a name="l-69"></a><span class="tm">18:44:21</span><span class="nk"> &lt;kohsuke&gt;</span> I think we are all in awe about the good progress
+<a name="l-70"></a><span class="tm">18:44:34</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-71"></a><span class="tm">18:44:37</span><span class="nk"> &lt;rtyler&gt;</span> i'm sure that's it
+<a name="l-72"></a><span class="tm">18:44:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> you have the green light to up the jenkinsci-cert repos right?
+<a name="l-73"></a><span class="tm">18:44:59</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler skipped due to nobody being there
+<a name="l-74"></a><span class="tm">18:45:10</span><span class="nk"> &lt;danielbeck&gt;</span> orrc approved otherwise no feedback
+<a name="l-75"></a><span class="tm">18:45:18</span><span class="nk"> &lt;danielbeck&gt;</span> so I thought I'd go through the dev list first
+<a name="l-76"></a><span class="tm">18:45:36</span><span class="nk"> &lt;kohsuke&gt;</span> I think your being security officer is enough to approve the spend
+<a name="l-77"></a><span class="tm">18:45:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> kohsuke's credit card is on that account, if he's fine with it, I say do it
+<a name="l-78"></a><span class="tm">18:45:47</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-79"></a><span class="tm">18:46:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Request for 50 private repos in the jenkinsci-cert GitHub org (1200 USD/year, up from 20 repos for 600 USD/year)</span>
+<a name="l-80"></a><span class="tm">18:46:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">danielbeck can spend money</span>
+<a name="l-81"></a><span class="tm">18:46:06</span><span class="nk"> &lt;kohsuke&gt;</span> (FTR I'm reimbursing that from SPI, so it's coming out from the project account
+<a name="l-82"></a><span class="tm">18:46:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 14:46:57 May 09, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:07:21 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 203.25
+  exclusion.robots: 0.101
+  exclusion.robots.policy: 0.092
+  cdx.remote: 0.074
+  esindex: 0.01
+  LoadShardBlock: 117.234 (3)
+  PetaboxLoader3.datanode: 120.098 (4)
+  CDXLines.iter: 19.967 (3)
+  PetaboxLoader3.resolve: 53.689 (2)
+  load_resource: 86.539
+-->

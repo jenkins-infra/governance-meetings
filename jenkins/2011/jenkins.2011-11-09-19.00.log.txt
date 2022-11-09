@@ -1,0 +1,301 @@
+19:00:58 <kohsuke> #startmeeting
+19:00:58 <robobutler> Let the Jenkins meeting commence!
+19:01:06 <kohsuke> #chair hare_brain abayer rtyler
+19:01:06 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+19:01:13 <rtyler> woohoo
+19:01:26 <kohsuke> #topic recap of actions
+19:01:33 <rtyler> #info today's meeting agenda: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Nov9thMeeting
+19:01:46 <rtyler> #info last meeting's actions: http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-10-26-18.04.html
+19:01:56 <rtyler> this is mostly me ain't it
+19:01:58 <rtyler> so
+19:02:00 <kohsuke> :-)
+19:02:08 <rtyler> started a thread on the users list about Google Analytics data
+19:02:18 <rtyler> one suggestion I have to look into, but it's not looking terribly easy
+19:02:29 <rtyler> shuffling JIRA backups still isn't addressed whatsoever
+19:02:54 <rtyler> NIC and riser card purchased for cucumber as per JENKINS-11632
+19:02:55 <q0rban> is there a way to have another job executed when one is cancelled? instead of it just dying
+19:02:57 <jenkins-admin> JENKINS-11632:Purchase a new NIC for cucumber (Resolved) http://jenkins-ci.org/issue/11632
+19:03:08 <rtyler> q0rban: ask on the list or come back in an hour, it's meetin' time :D
+19:03:15 <q0rban> rtyler: cool, thanks!
+19:03:17 <rtyler> kohsuke: next!
+19:03:27 <kohsuke> #topic State of the Jenkins development environment
+19:03:51 <kohsuke> kutzi: it's yours
+19:03:55 <kutzi> Yeah, I had put them on the agenda at the time when I was seriously pissed, because I couldn't work ;)
+19:04:03 <kohsuke> my apologies
+19:04:20 <kutzi> Unfortunately, I don't have any good suggestions how to fix it -
+19:04:30 <kutzi> unless the usual ones:
+19:04:48 <kutzi> work carefully, good unit tests
+19:05:05 <kutzi> (which everyone is doing already, right? ;)
+19:05:10 <Majost> To what is 'it' you are referring?
+19:05:30 <kohsuke> tip of the repository breaking and blocking developers
+19:05:35 <Majost> ah
+19:05:55 <jieryn> i think the instance that led to the rant was m-hpi-p breakage
+19:06:13 <kutzi> No, not in my case
+19:06:30 <jieryn> thought removal of javadoc plugin from core caused m-hpi-p:run to fail cnfe
+19:06:53 <kutzi> Ah, okay. If that's what you meant, then yes
+19:07:04 <kutzi> I thought you meant some bug in mvn hpi p
+19:07:34 <kutzi> One point, I'd like to point at (again):
+19:08:08 <kutzi> the test-harness keeps to be more than senseless to me
+19:08:33 <kutzi> I don't remember the last time it used to run without errors when I started it locally
+19:08:37 <kohsuke> meaning it doesn't make sense to you, right?
+19:08:41 <kutzi> yes
+19:08:52 <imod> agree
+19:09:17 <kutzi> It still runs > 1 hour on my machine and currently always fails because some slaves fail to go online
+19:09:33 <Majost> I skip the unit tests when building our in-house version -- throws errors I am not sure even are relevant.
+19:09:40 <Majost> not good practice, I know... heh
+19:09:52 <kohsuke> I'd like to see those error reports
+19:09:58 <Majost> ok
+19:10:01 <kutzi> sure
+19:10:23 <hare_brain> There are three tests we commonly see failing when the slaves the builds are running on are under load.
+19:10:29 <hare_brain> The NodeProvisionerTest
+19:10:40 <kohsuke> If there's a flaky test we should rewrite/remove them
+19:10:41 <hare_brain> And configRoundTrip on the MatrixProject test
+19:11:22 <kohsuke> NodeProvisioner I can see. It's time sensitive.
+19:11:22 <kutzi> We could have an integration/unstable test suite which only runs on J-o-J if we like to keep those tests
+19:11:38 <bap2000> ...errr, so what's the craic?
+19:11:46 <kutzi> But IMO we need a quick-running and stable test suite for running locally
+19:11:59 <hare_brain> hudson.slaves.NodeProvisionerTest.testAutoProvision
+19:12:00 <hare_brain> hudson.slaves.NodeProvisionerTest.testLoadSpike
+19:12:00 <hare_brain> hudson.matrix.MatrixProjectTest.testConfigRoundTrip
+19:12:13 <kohsuke> There's also https://wiki.jenkins-ci.org/display/JENKINS/Unit+Test+JUnit4 that might help
+19:12:30 <kohsuke> I understand that this allows you to setup one Jenkins instance for multiple tests
+19:13:09 <Majost> I don't mind building J-o-J if it is clearly documented as the correct way to do so.
+19:13:27 <kohsuke> #action Kohsuke to remove NodeProvisionerTest
+19:13:47 <kohsuke> MatrixProjectTest config roundtrip sounds like a real bug though. Please send me the stack trace if you have one
+19:14:09 <kohsuke> #action kutzi imod and Majost to report the failing tests
+19:14:33 <kohsuke> Is that good enough set of actions for the time being?
+19:14:43 <imod> sure
+19:14:52 <Majost> sure
+19:15:03 <hare_brain> Done
+19:15:07 <kutzi> okay for me, but I'll kepp bugging everyone about proper unit test ;)
+19:15:28 <kohsuke> Yes. I think we need to do more work to enable/facilitate/encourage mock-based testing
+19:15:31 <hare_brain> I have a vague recollection of someone looking into splitting the test harness out of the core build?
+19:15:58 <kutzi> actually, it's possible with -Plight-tests already
+19:16:05 <kohsuke> I think we considered moving it into a separate profile that requires manual activation
+19:16:06 <kutzi> But maybe it should be the default
+19:16:18 <kohsuke> I don't think we want to put it to separate repository
+19:16:35 <kutzi> no
+19:17:23 <kohsuke> I think it's OK as is. People probably already know how to skip tests if they wanted to.
+19:17:29 <hare_brain> Ah, from the May 24 meeting, kutzi was going to write up a test support proposal.
+19:17:33 <kohsuke> Whereas it's harder to figure out what profile they need to activate.
+19:18:42 <kohsuke> moving on to the next topic?
+19:18:54 <kutzi> ok
+19:18:58 <hare_brain> Sure.
+19:19:02 * rtyler starts paying attention again :)
+19:19:12 <kohsuke> #topic add jieryn to infra admin
+19:19:17 <hare_brain> #info Reference to prior conversation http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-05-24-16.09.log.html#l-292
+19:19:17 <rtyler> this one is mine
+19:19:39 <rtyler> in puppet we have a "users-core" moduel
+19:19:55 <rtyler> basically all users in that module will be installed on all machines in the jenkins infra
+19:20:26 <kohsuke> My +1
+19:20:33 <rtyler> jieryn has been very helpful in managing backend scripts and tools, and I believe has earned (for better or for worst) some more responsibility :D
+19:20:39 <hare_brain> +1
+19:20:41 <jieryn> lol
+19:20:50 <rtyler> this is more of a board decision thing
+19:20:51 <rtyler> IMHO
+19:21:22 <kohsuke> That leaves abayer
+19:21:37 <rtyler> he's not here, AI'm pretty sure he'd say yes :P
+19:21:41 <kohsuke> Yeah
+19:21:52 <rtyler> #agreed jieryn to be added to users-core module
+19:21:58 <rtyler> NEXT!
+19:22:01 <jieryn> thx
+19:22:09 <rtyler> jieryn: I'll get the change setup today
+19:22:30 <kohsuke> #topic Appprove CloudBees request for the "Jenkins Enterprise from CloudBees" use request as per Governance Document
+19:22:56 <kohsuke> So I'm following our shiny governance document and seeking for the approval to use the mark "Jenkins"
+19:23:11 <rtyler> can we do this one without abayer? :/
+19:23:16 <kohsuke> I've already run it by the board and got the OK.
+19:23:16 <hare_brain> LOL, since abayer is afk, and kohsuke as a conflict of interest in this one, I hold all the power.
+19:23:21 <hare_brain> ;)
+19:23:26 <rtyler> heh
+19:23:31 <kohsuke> abayer said +1
+19:23:37 <rtyler> pics or it didn't happen
+19:23:48 <Majost> heh
+19:23:54 <jieryn> non binding +1 from me, but does SPI have to approve?
+19:24:05 <Majost> From a community perspective
+19:24:07 <Majost> what does this mean?
+19:24:20 <jieryn> https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Trademark
+19:24:34 <Majost> I get that
+19:24:55 <Majost> but I am asking more about the intended use, and overall plan
+19:25:16 <kohsuke> OK. The intended use is to rename our Nectar to "Jenkins Enterprise from CloudBees"
+19:25:18 <Majost> perhaps something which can be discussed after the meeting, if deemed off topic
+19:25:31 <Majost> ah
+19:25:50 <kohsuke> I believe this is in line with the spirit of the governance document, which is to run it like Linux trademark
+19:26:05 <kohsuke> (that is, it's like RedHat Enterprise Linux)
+19:26:19 <Majost> gotcha
+19:26:25 <jieryn> does trademark holder have to issue a formal permission to cb ?
+19:26:45 <Majost> yeah, thats the actual discussion point -- approving it
+19:26:52 <kohsuke> I don't think so. But I'll check.
+19:27:12 <kohsuke> That is, on all things Jenkins, SPI recognizes Jenkins governance board as the authority.
+19:27:12 <Majost> I just wanted to understand what it means for the average consumer, such as myself.
+19:27:21 <jieryn> on kk's or spi's letterhead, granting permission, etc, but..anyhow
+19:28:06 <kohsuke> For the time being, I'd like to get this forum's blessing.
+19:28:26 <kohsuke> Beyond that, I can figure out the logistics
+19:28:52 * rtyler puts on his robe and wizard hat
+19:28:52 <jieryn> mazel tov
+19:28:55 * rtyler blesses it
+19:29:03 <Majost> From a user, I think thats fine. I feel it clarifies the product.
+19:29:17 <imod> although not relevant, but granted from my site
+19:29:25 <Majost> it also makes it easier to sell  to management. ;)
+19:29:25 <rtyler> if this means people stop saying "Nectar", then great :D
+19:29:51 <hare_brain> Looks like the trademark sublicense document doesn't tell you where to go to make this request.
+19:30:08 <hare_brain> We should probably set up another mail alias for that. Also, a template request form.
+19:30:33 <kohsuke> jenkinsci-boards@googlegroups.com ?
+19:30:50 <imod> does it mean we get the Hierachical Folders Plugin from Nectar? :)
+19:31:20 <rtyler> kohsuke: minus the "s" and I think that's fine
+19:31:29 <kohsuke> got it.
+19:31:46 <kohsuke> I'd like to get +1 recorded from hare_brain
+19:31:52 <hare_brain> +1
+19:32:07 <hair_brain> +1
+19:32:19 <kohsuke> heh
+19:32:38 <kohsuke> #action kohsuke to set up jenkinsci-board@googlegroups.com
+19:32:45 <hare_brain> Wait, was that +1 for the approval, or +1 for the email address?
+19:32:59 <hare_brain> I was +1'ing the sublicense request.
+19:32:59 <kohsuke> You tell me :-) I was asking for the approval.
+19:33:07 <kohsuke> ... of the use of the mark
+19:33:12 <hare_brain> +1 to that.
+19:33:42 <kohsuke> #action kohsuke to double check SPI doesn't need to approve this separately
+19:34:03 <hare_brain> I'm mulling on the email address. Debating pros and cons of generic -board address versus specific -trademark address
+19:34:21 <kohsuke> #agreed board approves "Jenkins Enterprise from CloudBees" as a use of mark with kohsuke abstained
+19:35:05 <kohsuke> OK, do we want to scratch that action?
+19:35:17 <hare_brain> I guess go with -board for now, and we can always split it out later if requests get lost in other mail that goes to that address.
+19:35:30 <kohsuke> I don't think we are expecting high volume anyway
+19:35:44 <rtyler> I'm going to email -board all the time
+19:35:50 <rtyler> ask -board how their day is going
+19:35:56 <rtyler> compliment -board on its hair
+19:35:57 <rtyler> etc
+19:36:08 <kohsuke> Moving on...
+19:36:10 <rtyler> heh
+19:36:16 <kohsuke> #topic LTS discussion
+19:36:36 <kohsuke> I hope vjuranek is here
+19:36:43 <vjuranek> yup
+19:36:50 <kohsuke> The first is "Augmenting LTS Test Matrix with written test plans"
+19:36:53 <kohsuke> from Majost I believe
+19:36:59 <Majost> yep
+19:37:19 <Majost> So the one issue I am concerned about is with the testing
+19:37:24 <Majost> there is a big matrix
+19:37:37 <Majost> but there isn't clear, repeatable steps for people to do the testing
+19:38:01 <Majost> moreover, I feel there may also be a lot of redundancy in the community with regards to acceptance testing
+19:38:06 <rtyler> Majost: one of the reasons I started the selenium bits
+19:38:35 <Majost> are the selenium tests currently available to the masses?
+19:38:46 <vjuranek> yes, matrix is just temporal solution
+19:39:00 <hare_brain> It should all be automated testing in the long run.
+19:39:06 <Majost> agreed
+19:39:16 <vjuranek> Majost:https://github.com/jenkinsci/selenium-tests
+19:39:23 <kohsuke> I don't know, some of the tests aren't that easy to automate
+19:39:28 <kohsuke> like package installation
+19:39:35 <Majost> and that said, many people may have automated that for acceptance testing for Jenkins in their own environment
+19:39:53 <rtyler> kohsuke: package installation is automatable
+19:40:02 <rtyler> kohsuke: vagrant + some simple ruby tests
+19:40:06 <kohsuke> ok
+19:40:15 <rtyler> I didn't see anything in vjuranek's matrix we cannot automate
+19:40:25 <rtyler> it's just varying levels of trickiness :)
+19:40:47 <Majost> so is the answer to have self-documented automation?
+19:41:00 <rtyler> Majost: IMHO that's the most sustainable and scalable solution
+19:41:02 <kohsuke> while it's not explicit, I imagined some of the "assertions" are eyeballs looking for broken UIs
+19:41:20 <rtyler> we have a number of talented QA engineers lurking around in the project :P
+19:42:05 <kohsuke> So I guess we'll call for volunteers to put more details to the tests and expand on the selenium tests?
+19:42:26 <Majost> I think its a good start
+19:42:40 <rtyler> vjuranek: ?
+19:42:51 <Majost> I know we spend a good amount of time running our own acceptance tests, some of which I want to push upstream if possible
+19:42:59 <rtyler> that'd be great
+19:43:02 <Majost> I think the bigger challenge is the testing environment
+19:43:05 <vjuranek> agree... (written test would be nice, if someone writes it:-)
+19:43:18 <rtyler> I'm sure I can also convince either the OSUOSL or Sauce Labs to donate some cycles/VMs for acceptance test automation :)
+19:43:53 <kohsuke> technically this is bit orthogonal to LTS
+19:44:02 <kohsuke> If tests are automated, there's no reason not to run them for mainline releases
+19:44:07 * rtyler nods
+19:44:13 <rtyler> perhaps next topic then?
+19:44:14 <hare_brain> Agreed
+19:44:21 <Majost> yep
+19:44:40 <kohsuke> I wonder if I can convince vjuranek or rtyler to host an office hour to talk about the selenium test?
+19:44:45 <kohsuke> as a way to solicit more volunteers?
+19:44:53 <rtyler> let's chat about that after this
+19:44:57 <kohsuke> OK
+19:45:11 <kohsuke> #topic LTS: what else to backport?
+19:45:24 <vjuranek> SECURITY-17 already backported
+19:45:28 <kohsuke> As I posted in the e-mail, I think SECURITY-17 is a no brainer
+19:45:30 <kohsuke> great
+19:45:31 <hare_brain> +1 to SECURITY-17
+19:45:38 <hare_brain> -1 to -10989
+19:45:40 <hare_brain> For now
+19:45:48 <vjuranek> and I agree witk kohsuke that there's no need to backport JENKINS-10989
+19:45:50 <jenkins-admin> JENKINS-10989:Repeated ids, expandTextArea() and multiple "Invoke Ant" build steps (Resolved) http://jenkins-ci.org/issue/10989
+19:45:53 <kutzi> agree
+19:46:12 <kohsuke> Anyone else wants us to consider any other bugs?
+19:46:17 <Majost> yes
+19:46:25 <Majost> JENKINS-11586
+19:46:26 <hare_brain> Does that even qualify under the "critical bug" criteria?
+19:46:28 <jenkins-admin> JENKINS-11586:Regression introduced with Slave Side ChannelPinger (Open) http://jenkins-ci.org/issue/11586
+19:46:32 <Majost> not technically resolved
+19:46:44 <Majost> but I very much isolated and pinpointed the issue
+19:47:08 <Majost> not sure how its not seen by anyone else though
+19:47:17 <Majost> unless Windows builds are not very common
+19:47:22 <kohsuke> The current operating rule is that the fix needs to be available in the main line release for at least 2 weeks before it can be considered for backporting.
+19:47:28 <Majost> damn
+19:47:36 <Majost> np
+19:47:48 <kohsuke> Looking at JENKINS-11586, it looks like the fix hasn't even hit the main line?
+19:47:51 <jenkins-admin> JENKINS-11586:Regression introduced with Slave Side ChannelPinger (Open) http://jenkins-ci.org/issue/11586
+19:48:01 <Majost> Well, my fix was to strip the cset
+19:48:01 <Majost> heh
+19:48:21 <Majost> the two fixes I maintain are really hacks
+19:48:21 <Majost> heh
+19:49:11 <kohsuke> OK. Let's resolve this in the mainline first and then we can consider this for the next 1.424.2
+19:49:28 <kohsuke> If that's OK, I think we have the 1.424.1 RC now.
+19:49:41 <Majost> sounds good
+19:50:12 <kohsuke> vjuranek would recreate https://wiki.jenkins-ci.org/display/JENKINS/LTS+1.409.x+RC+Testing fo 1.424.x ?
+19:50:21 <vjuranek> kohsuke: yes
+19:50:51 <kohsuke> and we'll try to do our share in doing the work
+19:51:12 <kohsuke> Do you have any timeline in mind for the release?
+19:51:51 <vjuranek> kohsuke: in 1-2 weeks (i;m quite bussy now, so I'm not sure if 1 week is enough for me)
+19:52:00 <kohsuke> #action kohsuke to respin another RC to pick up SECURITY-17
+19:52:21 <kohsuke> #action vjuranek to create a Wiki page for 1.424.x testing
+19:52:36 <kohsuke> #agreed we'll try to get LTS released in 2 weeks
+19:52:53 <vjuranek> yes, 2 weeks should be doable
+19:53:06 <kohsuke> and finally, handling security vulnerabilities in LTS
+19:53:36 <kohsuke> In the last SECURITY-17, I chatted with abayer and decided that it's better to get a fix released even without the normal degree of testing
+19:53:52 <vjuranek> kohsuke: imho should be backported and realeased immediatelly, as 1.409.3
+19:54:10 <kohsuke> but I wanted to make sure if we should continue doing that.
+19:54:22 <vjuranek> +1 for doing so
+19:54:33 <kutzi> IMO depends on the severity of the issue, but generally yes
+19:55:14 <hare_brain> Agree that security issues can generally be exempted from the wait two weeks on mainline rule.
+19:55:35 <kohsuke> Hopefully LTS testing automation would help improve the comfort level
+19:55:48 <kohsuke> Good. I think we are on the same page
+19:55:57 <Majost> Well
+19:56:03 <kohsuke> ... or not
+19:56:06 <Majost> this actually begs the question
+19:56:22 <Majost> For how long is an LTS supported?
+19:56:31 <Majost> until the next lts
+19:56:34 <kohsuke> we were aiming for 3 months, until the next one is out.
+19:56:41 <vjuranek> until another LTS is out?:_)
+19:57:10 <kohsuke> I think that's written somewhere in the LTS Wiki page. Let's see...
+19:57:25 <kohsuke> https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line
+19:57:45 <kohsuke> Shall we decide on the next meeting time and wrap up?
+19:57:53 <Majost> yep
+19:57:57 <kohsuke> #topic next meeting time
+19:58:08 <rtyler> two weeks from now is the week of thanksgiving
+19:58:14 <rtyler> so I think we should slip until the 30th
+19:58:30 <kohsuke> Yeah, works better for me.
+19:58:37 <rtyler> hare_brain: 30th work?
+19:58:44 <hare_brain> Checking...
+19:58:45 <rtyler> anybody else have 2 cents to throw in?
+19:58:58 <hare_brain> Yeah, that's fine.
+19:59:09 * rtyler bangs his gavel
+19:59:11 <kohsuke> 19:00 UTC?
+19:59:14 <hare_brain> Are we resetting the bi-weekly schedule based on the 30th?
+19:59:21 <hare_brain> Or just do a one off slip?
+19:59:27 <rtyler> hare_brain: it's going to get tricky around xmas
+19:59:41 <rtyler> I think we will have to play it by ear until january really
+20:00:01 <kohsuke> my beuatiful recurrence setting in calendar is ruined
+20:00:06 <rtyler> heh
+20:00:09 <hare_brain> That's what I'm worried about too. :)
+20:00:21 <rtyler> I think we might be able to reset after the 30th
+20:00:29 <rtyler> do the 14th
+20:00:33 <rtyler> then adjorn until 2012 :P
+20:00:38 <kohsuke> yeah
+20:00:41 <hare_brain> +1
+20:00:58 <kohsuke> #agreed next one is Nov 30th 19:00 UTC
+20:01:16 <kohsuke> And with that I think we are done.
+20:01:19 <hare_brain> #info http://www.timeanddate.com/worldclock/fixedtime.html?msg=Jenkins+Governance+Meeting&iso=20111123T11&p1=224&ah=1&sort=1
+20:01:40 <kohsuke> But that's 23rd
+20:01:44 <Majost> hah
+20:01:49 <rtyler> #endmeeting

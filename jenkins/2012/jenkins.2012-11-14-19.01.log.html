@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:01:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:01:46</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:01:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-4"></a><span class="tm">19:02:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">recap of actions</span>
+<a name="l-5"></a><span class="tm">19:02:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/browse/MEETING</span>
+<a name="l-6"></a><span class="tm">19:03:00</span><span class="nk"> &lt;kohsuke&gt;</span> MEETING-8 is complete
+<a name="l-7"></a><span class="tm">19:03:13</span><span class="nk"> &lt;kohsuke&gt;</span> except rtyler hasn't sent in the reimbursement form
+<a name="l-8"></a><span class="tm">19:03:21</span><span class="nk"> &lt;kohsuke&gt;</span> please do
+<a name="l-9"></a><span class="tm">19:03:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span>  I'm not sure if I heared back from FFI
+<a name="l-10"></a><span class="tm">19:04:00</span><span class="nk"> &lt;kohsuke&gt;</span> (wrt MEETING-9)
+<a name="l-11"></a><span class="tm">19:04:16</span><span class="nk"> &lt;orrc&gt;</span> I haven't heard anything
+<a name="l-12"></a><span class="tm">19:04:47</span><span class="nk"> &lt;kohsuke&gt;</span> trying to locate the e-mail
+<a name="l-13"></a><span class="tm">19:05:27</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I'll write to Martin Schulze
+<a name="l-14"></a><span class="tm">19:05:42</span><span class="nk"> &lt;kohsuke&gt;</span> is he a member of ffis?
+<a name="l-15"></a><span class="tm">19:05:52</span><span class="nk"> &lt;kohsuke&gt;</span> or someone whose project is affilated with ffis?
+<a name="l-16"></a><span class="tm">19:06:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">action:</span> kohsuke to ping ffis again
+<a name="l-17"></a><span class="tm">19:06:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to ping ffis again</span>
+<a name="l-18"></a><span class="tm">19:06:32</span><span class="nk"> &lt;orrc&gt;</span> He replied to my first ffis email, so I guess he's involved
+<a name="l-19"></a><span class="tm">19:06:53</span><span class="nk"> &lt;kohsuke&gt;</span> other AIs still incomplete
+<a name="l-20"></a><span class="tm">19:07:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Balancing personal information of JUC attendees vs cost</span>
+<a name="l-21"></a><span class="tm">19:07:42</span><span class="nk"> &lt;kohsuke&gt;</span> so I asked Alyssa to produce a summary of the income/expense of JUCs
+<a name="l-22"></a><span class="tm">19:07:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://docs.google.com/spreadsheet/ccc?key=0ApE2WVyiXL0hdGZSRTZVQmdTN2VnVWdJMWZCNEJqa1E</span>
+<a name="l-23"></a><span class="tm">19:08:24</span><span class="nk"> &lt;kohsuke&gt;</span> The context here is that we've been passing attendee contact information to sponsors, and we haven't been explicit about it
+<a name="l-24"></a><span class="tm">19:09:21</span><span class="nk"> &lt;kohsuke&gt;</span> So we want to fix this
+<a name="l-25"></a><span class="tm">19:09:26</span><span class="nk"> &lt;LisaWells&gt;</span> On that note, we want to apologize that you felt like you were being harassed by JUC sponsors because we shared lead information. You should know that both when sponsors signed up originally, and when we sent attendee details to them, sponsors were urged to “please treat the list gently, maybe send only one follow-up email with useful assets and an Opt In capability, and not to merge people into their main databases.”
+<a name="l-26"></a><span class="tm">19:10:05</span><span class="nk"> &lt;kohsuke&gt;</span> OTOH, people talking to sponsors said without those "lead" information, it'd be very difficult to get sponsors at all
+<a name="l-27"></a><span class="tm">19:10:37</span><span class="nk"> &lt;LisaWells&gt;</span> Gold sponsors paid $5000 for the privilege of getting contact information – which is $2000 more than Silver sponsors paid, and the contact info is the only difference. I signed these guys up myself, and it was the names they wanted.
+<a name="l-28"></a><span class="tm">19:11:19</span><span class="nk"> &lt;kohsuke&gt;</span> The "eventbrite" line is the income from ticket sales
+<a name="l-29"></a><span class="tm">19:11:37</span><span class="nk"> &lt;kohsuke&gt;</span> if you compare that with the total expense, it's pretty clear that they don't match up
+<a name="l-30"></a><span class="tm">19:12:10</span><span class="nk"> &lt;kohsuke&gt;</span> I believe "F&amp;B" is food&amp;beverages and that actually includes room fee
+<a name="l-31"></a><span class="tm">19:12:44</span><span class="nk"> &lt;LisaWells&gt;</span> in case you're not on the Gdoc: $28k of EventBrite income vs $45k of expenses
+<a name="l-32"></a><span class="tm">19:12:52</span><span class="nk"> &lt;kohsuke&gt;</span> Alyssa told me that the way it works with these venues is that hotels bundle them into one to make you pay more
+<a name="l-33"></a><span class="tm">19:13:48</span><span class="nk"> &lt;LisaWells&gt;</span> So how can we make this better next year?
+<a name="l-34"></a><span class="tm">19:14:06</span><span class="nk"> &lt;kohsuke&gt;</span> I think we continue to try to find a venue that's free/cheap like we did in JUC Tokyo, but we haven't found one in San Francisco.
+<a name="l-35"></a><span class="tm">19:14:08</span><span class="nk"> &lt;LisaWells&gt;</span> We want to make sure not to upset people in future. Going forward, we’d like the community to agree on what sponsors receive and on how to share (or not share) information. We are also looking into options where people could Opt Out of contact sharing upon registration and also looking into Badge Scanning options for next year (maybe individual QR codes as suggested) .
+<a name="l-36"></a><span class="tm">19:14:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> any thoughts?
+<a name="l-37"></a><span class="tm">19:15:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> ?
+<a name="l-38"></a><span class="tm">19:15:21</span><span class="nk"> &lt;hare_brain&gt;</span> For me, I understand that I'm probably going to receive solicitations when I register for something. What annoyed me was a particular vendor emailed me several times, *and* called me on my personal phone. Worse, the way they presented themselves was that we had had a conversation at JUC which I absolutely did not.
+<a name="l-39"></a><span class="tm">19:15:50</span><span class="nk"> &lt;abayer&gt;</span> Yeah, that was my only issue.
+<a name="l-40"></a><span class="tm">19:15:55</span><span class="nk"> &lt;quidryan&gt;</span> Am I reading the spreadsheet correctly, even without Gold Sponsors, SF JUC would have been in the black?
+<a name="l-41"></a><span class="tm">19:15:58</span><span class="nk"> &lt;abayer&gt;</span> Spam is one thing - cold-calling is another.
+<a name="l-42"></a><span class="tm">19:16:10</span><span class="nk"> &lt;hare_brain&gt;</span> So one thing I would suggest is a clearer disclosure about what information would be disclosed.
+<a name="l-43"></a><span class="tm">19:16:18</span><span class="nk"> &lt;LisaWells&gt;</span> So next year we definitely want to have an "Opt Out" checkbox when you register (if EventBrite will let us) - with the plea to please understand that sponsors really help out and the contact info makes it worth their while
+<a name="l-44"></a><span class="tm">19:16:29</span><span class="nk"> &lt;LisaWells&gt;</span> also we were thinking next year we don't share phone at all?
+<a name="l-45"></a><span class="tm">19:16:36</span><span class="nk"> &lt;hare_brain&gt;</span> I gave my personal number under the assumption that it would have been used to contact me about problems with the event. I did not expect that it would be given to a vendor.
+<a name="l-46"></a><span class="tm">19:16:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">quidryan:</span> Yes, I think JUC SF 2012 was in black
+<a name="l-47"></a><span class="tm">19:16:58</span><span class="nk"> &lt;LisaWells&gt;</span> our apologies for not being clear aobugt that.
+<a name="l-48"></a><span class="tm">19:17:23 </span><span class="nka">* rtyler</span> <span class="ac">shows up</span>
+<a name="l-49"></a><span class="tm">19:17:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">quidryan:</span> but there were 6 gold sponsors so I don't think it was in black if we didn't have any of them
+<a name="l-50"></a><span class="tm">19:17:37</span><span class="nk"> &lt;hare_brain&gt;</span> At the end of the day, it's an annoyance, and not a travesty. I wouldn't NOT come to JUC because of this. :)
+<a name="l-51"></a><span class="tm">19:18:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> https://docs.google.com/spreadsheet/ccc?key=0ApE2WVyiXL0hdGZSRTZVQmdTN2VnVWdJMWZCNEJqa1E#gid=0
+<a name="l-52"></a><span class="tm">19:18:35</span><span class="nk"> &lt;quidryan&gt;</span> kohsuke, I see line 11, line 13 and maybe line 12 as Gold Sponsors. I don't see 6.
+<a name="l-53"></a><span class="tm">19:18:48</span><span class="nk"> &lt;rtyler&gt;</span> bad url
+<a name="l-54"></a><span class="tm">19:19:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> how about https://docs.google.com/spreadsheet/ccc?key=0ApE2WVyiXL0hdGZSRTZVQmdTN2VnVWdJMWZCNEJqa1E
+<a name="l-55"></a><span class="tm">19:19:14</span><span class="nk"> &lt;kohsuke&gt;</span> oh the same thing
+<a name="l-56"></a><span class="tm">19:19:19</span><span class="nk"> &lt;LisaWells&gt;</span> We did have 6 Gold sponsors. Some we had to negotiate more heavily with than others.
+<a name="l-57"></a><span class="tm">19:19:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://www.cloudbees.com/jenkins-user-conference-2012-san-francisco.cb for sponsor list</span>
+<a name="l-58"></a><span class="tm">19:19:35</span><span class="nk"> &lt;LisaWells&gt;</span> HP, for example, would not have sponsored if we hadn't given them Gold at half price.
+<a name="l-59"></a><span class="tm">19:20:06 </span><span class="nka">* rtyler</span> <span class="ac">boggles at NY and Paris</span>
+<a name="l-60"></a><span class="tm">19:20:36</span><span class="nk"> &lt;jenkins-builds&gt;</span> Starting build #2077 for job jenkins_main_trunk (previous build: SUCCESS)
+<a name="l-61"></a><span class="tm">19:21:32</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I'm hoping that opt-out + being more explicit about this would be acceptable for future events of this sort
+<a name="l-62"></a><span class="tm">19:21:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> if every company called me like sonatype did, I wouldn't attend
+<a name="l-63"></a><span class="tm">19:22:13</span><span class="nk"> &lt;kohsuke&gt;</span> and I guess I'll personally ask LisaWells to tell this episode to future sponsors
+<a name="l-64"></a><span class="tm">19:22:16</span><span class="nk"> &lt;hare_brain&gt;</span> rtyler Fair enough. I'll rephrase as "What happened after JUC SF 2012 wouldn't stop me from attending."
+<a name="l-65"></a><span class="tm">19:22:55</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think it's in anyone's interest to be perceived like sonatype
+<a name="l-66"></a><span class="tm">19:23:15</span><span class="nk"> &lt;hare_brain&gt;</span> Heh. So much for my attempt to keep things anonymous.
+<a name="l-67"></a><span class="tm">19:24:03</span><span class="nk"> &lt;kohsuke&gt;</span> Let me move on to the next topic as it's kind of related
+<a name="l-68"></a><span class="tm">19:24:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Forming the Events subgroup in the community for the purpose of coordinating and running event</span>
+<a name="l-69"></a><span class="tm">19:24:50</span><span class="nk"> &lt;kohsuke&gt;</span> there's a couple of related efforts here
+<a name="l-70"></a><span class="tm">19:24:53</span><span class="nk"> &lt;LisaWells_&gt;</span> so... how do we do this better next year?
+<a name="l-71"></a><span class="tm">19:25:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">LisaWells_:</span> my sense is that opt-out + transparent about what happens to your contact info received reasonable acceptance
+<a name="l-72"></a><span class="tm">19:26:04</span><span class="nk"> &lt;LisaWells_&gt;</span> what does everyone else think about that?
+<a name="l-73"></a><span class="tm">19:26:13</span><span class="nk"> &lt;hare_brain&gt;</span> Not requiring/not sharing phone numbers would be welcome.
+<a name="l-74"></a><span class="tm">19:26:13 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-75"></a><span class="tm">19:26:56</span><span class="nk"> &lt;LisaWells_&gt;</span> i don't think Phone was a Required field during registration, fwiw. but next year we won't share that even if provided
+<a name="l-76"></a><span class="tm">19:27:14</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, I like that
+<a name="l-77"></a><span class="tm">19:27:20 </span><span class="nka">* kohsuke</span> <span class="ac">is phone phobia</span>
+<a name="l-78"></a><span class="tm">19:27:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">LisaWells_:</span>  Can I resume talking about the next topic?
+<a name="l-79"></a><span class="tm">19:28:13</span><span class="nk"> &lt;kohsuke&gt;</span> I take it as yes
+<a name="l-80"></a><span class="tm">19:28:14</span><span class="nk"> &lt;LisaWells_&gt;</span> Please :)
+<a name="l-81"></a><span class="tm">19:28:34</span><span class="nk"> &lt;kohsuke&gt;</span> kinow is trying to bootstrap the brazilian user community
+<a name="l-82"></a><span class="tm">19:28:53</span><span class="nk"> &lt;kohsuke&gt;</span> and independently I'm working with Samsung folks to get one going in Korea as well
+<a name="l-83"></a><span class="tm">19:29:32</span><span class="nk"> &lt;kohsuke&gt;</span> I'm also trying to bring more JUC conversations in public, which requires a channel for communication for folks like LisaWells_ and alyssa
+<a name="l-84"></a><span class="tm">19:29:57</span><span class="nk"> &lt;kohsuke&gt;</span> so I mentioned this to rtyler a bit but I finally got events@lists.jenkins-ci.org created
+<a name="l-85"></a><span class="tm">19:30:11</span><span class="nk"> &lt;kohsuke&gt;</span> http://lists.jenkins-ci.org/mailman/listinfo/jenkins-events
+<a name="l-86"></a><span class="tm">19:30:27</span><span class="nk"> &lt;kohsuke&gt;</span> in the past we had event specific list like http://lists.jenkins-ci.org/mailman/listinfo
+<a name="l-87"></a><span class="tm">19:31:03</span><span class="nk"> &lt;LisaWells_&gt;</span> we are hoping to help the community drive a lot of events, so having a streamlined comm link will be most excellent
+<a name="l-88"></a><span class="tm">19:31:16</span><span class="nk"> &lt;kohsuke&gt;</span> but for smaller events and for cross-pollination between different local community, I wanted the project meeting to bless the new list for event related stuff
+<a name="l-89"></a><span class="tm">19:31:29</span><span class="nk"> &lt;rtyler&gt;</span> I think it's a good idea
+<a name="l-90"></a><span class="tm">19:32:13</span><span class="nk"> &lt;kohsuke&gt;</span> There are a few more things I thought this list would be a good fir for in https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-November14thMeeting
+<a name="l-91"></a><span class="tm">19:32:49</span><span class="nk"> &lt;kohsuke&gt;</span> like doing the CIA program bookkeeping
+<a name="l-92"></a><span class="tm">19:32:51</span><span class="nk"> &lt;rtyler&gt;</span> I think getting the right people on the list that can help new organizers will be useful too
+<a name="l-93"></a><span class="tm">19:33:00</span><span class="nk"> &lt;rtyler&gt;</span> offering advice, etc
+<a name="l-94"></a><span class="tm">19:33:02</span><span class="nk"> &lt;kohsuke&gt;</span> exactly
+<a name="l-95"></a><span class="tm">19:33:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> who should we invite, aside from you?
+<a name="l-96"></a><span class="tm">19:33:38</span><span class="nk"> &lt;LisaWells_&gt;</span> Alyssa &amp; I are hoping we can help share knowledge, give ideas, suggest structure that has worked (and not worked :) ), etc
+<a name="l-97"></a><span class="tm">19:33:51</span><span class="nk"> &lt;rtyler&gt;</span> kinow, ndeloof
+<a name="l-98"></a><span class="tm">19:34:03</span><span class="nk"> &lt;kohsuke&gt;</span> and some folks from Tokyo
+<a name="l-99"></a><span class="tm">19:34:03</span><span class="nk"> &lt;rtyler&gt;</span> the israeli guys, copenhagen guys
+<a name="l-100"></a><span class="tm">19:34:31</span><span class="nk"> &lt;kohsuke&gt;</span> israeli guys = I'll check with JFrog, copenhagen guys = rsandell and Knud
+<a name="l-101"></a><span class="tm">19:35:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">action:</span> kohsuke to write to kinow, ndeloof, JFrog, ikikko, cactusman et al, rsandll and Knud Poulsen to join events (and encourage others they think of to do so the same)
+<a name="l-102"></a><span class="tm">19:35:36</span><span class="nk"> &lt;kohsuke&gt;</span> should I do a post about it on jenkins-ci.org?
+<a name="l-103"></a><span class="tm">19:35:52</span><span class="nk"> &lt;alyssa_&gt;</span> I think bruno kinoshita would like to join as well
+<a name="l-104"></a><span class="tm">19:35:53</span><span class="nk"> &lt;LisaWells_&gt;</span> +1
+<a name="l-105"></a><span class="tm">19:36:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">alyssa_:</span> that's kinow
+<a name="l-106"></a><span class="tm">19:36:12</span><span class="nk"> &lt;LisaWells_&gt;</span> with the encouragement for people to sign up for the list AND start thinking about events for next year
+<a name="l-107"></a><span class="tm">19:36:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> yes
+<a name="l-108"></a><span class="tm">19:36:14</span><span class="nk"> &lt;rtyler&gt;</span> I think so
+<a name="l-109"></a><span class="tm">19:36:20</span><span class="nk"> &lt;rtyler&gt;</span> yes to what LisaWells_ said too
+<a name="l-110"></a><span class="tm">19:36:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">action:</span> kohsuke to announce it on jenkins-ci.org post
+<a name="l-111"></a><span class="tm">19:36:41</span><span class="nk"> &lt;rtyler&gt;</span> I'm going to be swamped with fosdem, but we should start trying to get more things organically organized in 2013
+<a name="l-112"></a><span class="tm">19:36:51</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-113"></a><span class="tm">19:37:26</span><span class="nk"> &lt;LisaWells_&gt;</span> we've been talking about what we can do to encourage meetups, Jenkins events, etc. any thoughts?
+<a name="l-114"></a><span class="tm">19:37:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span>  wrt FOSDEM, one of the Tokyo people might after all be able to come with your grant
+<a name="l-115"></a><span class="tm">19:37:47</span><span class="nk"> &lt;orrc&gt;</span> So the aim is to help people organise any sort of Jenkins-related event or talk?
+<a name="l-116"></a><span class="tm">19:37:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> let's chat more about that after :)
+<a name="l-117"></a><span class="tm">19:37:54</span><span class="nk"> &lt;LisaWells_&gt;</span> yes
+<a name="l-118"></a><span class="tm">19:38:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> more the event stuff I think
+<a name="l-119"></a><span class="tm">19:38:28</span><span class="nk"> &lt;LisaWells_&gt;</span> talks too - CIA is another thing that could use some TLC
+<a name="l-120"></a><span class="tm">19:38:47</span><span class="nk"> &lt;LisaWells_&gt;</span> and could maybe be addressed by Events subgroup?
+<a name="l-121"></a><span class="tm">19:38:47</span><span class="nk"> &lt;kohsuke&gt;</span> although a part of the original Jenkins CIA idea was to come up with some reusable slides, so if anyone wants to take it on, I think it'd fit, too
+<a name="l-122"></a><span class="tm">19:40:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">events@lists.jenkins-ci.org is blessed</span>
+<a name="l-123"></a><span class="tm">19:40:24</span><span class="nk"> &lt;kohsuke&gt;</span> shall we move on?
+<a name="l-124"></a><span class="tm">19:40:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Status of moving Jenkins to java 6 as minimal runtime</span>
+<a name="l-125"></a><span class="tm">19:40:48</span><span class="nk"> &lt;rtyler&gt;</span> I thought we already did this? or was it just for development
+<a name="l-126"></a><span class="tm">19:41:09</span><span class="nk"> &lt;kohsuke&gt;</span> No, we haven't done this
+<a name="l-127"></a><span class="tm">19:41:28</span><span class="nk"> &lt;rtyler&gt;</span> ah
+<a name="l-128"></a><span class="tm">19:41:33 </span><span class="nka">* rtyler</span> <span class="ac">backs away</span>
+<a name="l-129"></a><span class="tm">19:41:50</span><span class="nk"> &lt;kohsuke&gt;</span> My suggestion is to start producing releases with Java6 but without adding tons of Java6 dependencies right away
+<a name="l-130"></a><span class="tm">19:42:10</span><span class="nk"> &lt;kohsuke&gt;</span> That gives a chance  to anyone not tuning into the last round of e-mail conversations
+<a name="l-131"></a><span class="tm">19:42:16</span><span class="nk"> &lt;imod&gt;</span> I'd love to see this happen - but what was the issue olamy was mentioning?
+<a name="l-132"></a><span class="tm">19:42:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jorgenpt:</span> ^
+<a name="l-133"></a><span class="tm">19:42:37</span><span class="nk"> &lt;jorgenpt&gt;</span> What am I looking at?
+<a name="l-134"></a><span class="tm">19:42:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jorgenpt:</span> /topic
+<a name="l-135"></a><span class="tm">19:42:52</span><span class="nk"> &lt;kohsuke&gt;</span> requiring Java6 to run Jenkins master, slave, and Maven builds
+<a name="l-136"></a><span class="tm">19:42:55</span><span class="nk"> &lt;rtyler&gt;</span> wanted to make sure you were in on this to some extent
+<a name="l-137"></a><span class="tm">19:42:58</span><span class="nk"> &lt;jorgenpt&gt;</span> Okay
+<a name="l-138"></a><span class="tm">19:43:11</span><span class="nk"> &lt;jorgenpt&gt;</span> Sounds good to me - I'm all for it. :-)
+<a name="l-139"></a><span class="tm">19:43:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">imod:</span> the only issue I'm aware of is that Maven builds now need to run with Java6
+<a name="l-140"></a><span class="tm">19:43:43</span><span class="nk"> &lt;imod&gt;</span> ok, so lets do it
+<a name="l-141"></a><span class="tm">19:44:10</span><span class="nk"> &lt;kohsuke&gt;</span> yeah, my proposal is to start producing releases with Java6 class files but without adding new dependencies
+<a name="l-142"></a><span class="tm">19:44:38</span><span class="nk"> &lt;imod&gt;</span> what kind of dependencies are you thinking about?
+<a name="l-143"></a><span class="tm">19:44:39</span><span class="nk"> &lt;kohsuke&gt;</span> if by 1.500 or so we don't hear any major backlash, all Java6 dependencies are good to go
+<a name="l-144"></a><span class="tm">19:44:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">imod:</span> calls to java.util.*, etc
+<a name="l-145"></a><span class="tm">19:45:03</span><span class="nk"> &lt;imod&gt;</span> ok
+<a name="l-146"></a><span class="tm">19:45:26</span><span class="nk"> &lt;kohsuke&gt;</span> IOW, for a while I think we should be able to back off from Java6 requirement easily
+<a name="l-147"></a><span class="tm">19:46:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">action:</span> kohsuke to send an e-mail to the dev list about the above plan and start acting accordingly
+<a name="l-148"></a><span class="tm">19:46:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to send an e-mail to the dev list about the above plan and start acting accordingly</span>
+<a name="l-149"></a><span class="tm">19:46:43</span><span class="nk"> &lt;rtyler&gt;</span> users list as well
+<a name="l-150"></a><span class="tm">19:46:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">CC to the users list as well</span>
+<a name="l-151"></a><span class="tm">19:47:00</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, one more heads up
+<a name="l-152"></a><span class="tm">19:47:11</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's it for today
+<a name="l-153"></a><span class="tm">19:47:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-154"></a><span class="tm">19:47:47</span><span class="nk"> &lt;rtyler&gt;</span> just before xmas?
+<a name="l-155"></a><span class="tm">19:47:48</span><span class="nk"> &lt;kohsuke&gt;</span> 11/28
+<a name="l-156"></a><span class="tm">19:47:55</span><span class="nk"> &lt;kohsuke&gt;</span> wait, what?
+<a name="l-157"></a><span class="tm">19:47:58</span><span class="nk"> &lt;hare_brain&gt;</span> Would we call that the last one for the year?
+<a name="l-158"></a><span class="tm">19:48:00</span><span class="nk"> &lt;rtyler&gt;</span> will that be the last of the year?
+<a name="l-159"></a><span class="tm">19:48:00</span><span class="nk"> &lt;hare_brain&gt;</span> 11/28
+<a name="l-160"></a><span class="tm">19:48:04</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-161"></a><span class="tm">19:48:27</span><span class="nk"> &lt;rtyler&gt;</span> I wouldn't mind making 2012.12.05 the last meeting of the year
+<a name="l-162"></a><span class="tm">19:48:38</span><span class="nk"> &lt;rtyler&gt;</span> next week is a total wash as far as I'm concerned :P
+<a name="l-163"></a><span class="tm">19:48:38</span><span class="nk"> &lt;kohsuke&gt;</span> is 12/12 (the day after that) some special day?
+<a name="l-164"></a><span class="tm">19:49:01</span><span class="nk"> &lt;kohsuke&gt;</span> 12/5 would be out of bi-weekly cycle though
+<a name="l-165"></a><span class="tm">19:49:06</span><span class="nk"> &lt;rtyler&gt;</span> it would
+<a name="l-166"></a><span class="tm">19:49:20</span><span class="nk"> &lt;rtyler&gt;</span> the question I meant to ask is more, will we have sufficient business to discuss
+<a name="l-167"></a><span class="tm">19:49:44</span><span class="nk"> &lt;kohsuke&gt;</span> I probably won't be able to make 12/5
+<a name="l-168"></a><span class="tm">19:49:47</span><span class="nk"> &lt;kohsuke&gt;</span> I'm flying somewhere
+<a name="l-169"></a><span class="tm">19:49:54</span><span class="nk"> &lt;rtyler&gt;</span> you always are
+<a name="l-170"></a><span class="tm">19:50:01</span><span class="nk"> &lt;rtyler&gt;</span> we could just skip to 12/12 then IMO
+<a name="l-171"></a><span class="tm">19:50:19</span><span class="nk"> &lt;hare_brain&gt;</span> Well aren't we getting ahead of ourselves?
+<a name="l-172"></a><span class="tm">19:50:26</span><span class="nk"> &lt;rtyler&gt;</span> I don't think we'll have much to talk about if we meet 11/28
+<a name="l-173"></a><span class="tm">19:50:42</span><span class="nk"> &lt;hare_brain&gt;</span> Oh, so you're proposing skipping one
+<a name="l-174"></a><span class="tm">19:50:47</span><span class="nk"> &lt;rtyler&gt;</span> yes
+<a name="l-175"></a><span class="tm">19:51:11</span><span class="nk"> &lt;hare_brain&gt;</span> Skip straight to 12/12 then?
+<a name="l-176"></a><span class="tm">19:51:13</span><span class="nk"> &lt;kohsuke&gt;</span> I'm fine either way
+<a name="l-177"></a><span class="tm">19:51:25</span><span class="nk"> &lt;LisaWells_&gt;</span> anyone want to talk about events sooner than that?
+<a name="l-178"></a><span class="tm">19:51:40</span><span class="nk"> &lt;rtyler&gt;</span> the mailing list will be good for that :)
+<a name="l-179"></a><span class="tm">19:52:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting is in 4 weeks, 12/12</span>
+<a name="l-180"></a><span class="tm">19:52:20</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-181"></a><span class="tm">19:52:49</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else?
+<a name="l-182"></a><span class="tm">19:53:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app215.us.archive.org';v.server_ms=1199;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-01-21-19.01.log.html","20200505084111","https://web.archive.org/","web","/_static/",
+	      "1588668071");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:01:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:01:06</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:01:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">rtyler hare_brain</span>
+<a name="l-4"></a><span class="tm">19:01:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler hare_brain</span>
+<a name="l-5"></a><span class="tm">19:01:31</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: hare_brain kohsuke rtyler
+<a name="l-6"></a><span class="tm">19:02:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-7"></a><span class="tm">19:02:03</span><span class="nk"> &lt;kohsuke&gt;</span> oops
+<a name="l-8"></a><span class="tm">19:02:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-9"></a><span class="tm">19:02:09</span><span class="nk"> &lt;jenkins-builds&gt;</span> Starting build #3940 for job jenkins_main_trunk (previous build: SUCCESS)
+<a name="l-10"></a><span class="tm">19:02:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Releases of Windows libraries: winp and winsw</span>
+<a name="l-11"></a><span class="tm">19:02:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> it looks like this is mostly between you and me?
+<a name="l-12"></a><span class="tm">19:03:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Probably. The main topic for the community is MVS  version
+<a name="l-13"></a><span class="tm">19:03:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Since there're many contributors, it makes sense to agree on this topic
+<a name="l-14"></a><span class="tm">19:03:49</span><span class="nk"> &lt;kohsuke&gt;</span> MVS = Micorsoft Visual Studio ?
+<a name="l-15"></a><span class="tm">19:03:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes
+<a name="l-16"></a><span class="tm">19:04:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I propose to use Visual Studio Community 2013
+<a name="l-17"></a><span class="tm">19:04:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> http://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx
+<a name="l-18"></a><span class="tm">19:04:42</span><span class="nk"> &lt;kohsuke&gt;</span> OK, that works for me
+<a name="l-19"></a><span class="tm">19:05:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any objections from others? If no, I'll migrate projects
+<a name="l-20"></a><span class="tm">19:05:37</span><span class="nk"> &lt;kohsuke&gt;</span> And I should just merge PR #12? https://github.com/kohsuke/winp/pull/12
+<a name="l-21"></a><span class="tm">19:05:41</span><span class="nk"> &lt;kohsuke&gt;</span> I don't have a problem with the change
+<a name="l-22"></a><span class="tm">19:05:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Seems so
+<a name="l-23"></a><span class="tm">19:06:26</span><span class="nk"> &lt;kohsuke&gt;</span> And that leaves JENKINS-10547 &amp; JENKINS-22685 ?
+<a name="l-24"></a><span class="tm">19:06:29</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-10547:Windows service can't start if Windows Application Event log is full (In Progress) https://issues.jenkins-ci.org/browse/JENKINS-10547
+<a name="l-25"></a><span class="tm">19:06:30</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-22685:Jenkins cannot restart Windows service (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-22685
+<a name="l-26"></a><span class="tm">19:06:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Both fixes have been merged
+<a name="l-27"></a><span class="tm">19:06:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We just need to release them
+<a name="l-28"></a><span class="tm">19:06:56</span><span class="nk"> &lt;kohsuke&gt;</span> Ah
+<a name="l-29"></a><span class="tm">19:07:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I can do it for winsw. In the case of winp I have no permissions
+<a name="l-30"></a><span class="tm">19:07:53</span><span class="nk"> &lt;kohsuke&gt;</span> IIRC the bits also need to be digitally signed.
+<a name="l-31"></a><span class="tm">19:07:59</span><span class="nk"> &lt;kohsuke&gt;</span> Do you have the certificate etc to do that?
+<a name="l-32"></a><span class="tm">19:08:29</span><span class="nk"> &lt;kohsuke&gt;</span> the permission you speak of in winp is which permission? git push? Maven repo?
+<a name="l-33"></a><span class="tm">19:08:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It's optional IMO. I have my old MS Dev certificate, but yours one would be bettter
+<a name="l-34"></a><span class="tm">19:09:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> &gt; the permission you speak of in winp is which permission? git push? Maven repo?
+<a name="l-35"></a><span class="tm">19:09:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Git push
+<a name="l-36"></a><span class="tm">19:09:24</span><span class="nk"> &lt;kohsuke&gt;</span> git push I just fixed
+<a name="l-37"></a><span class="tm">19:09:52</span><span class="nk"> &lt;kohsuke&gt;</span> But to release you need maven central permission as well
+<a name="l-38"></a><span class="tm">19:10:30</span><span class="nk"> &lt;kohsuke&gt;</span> looks like winsw is pushed to Jenkins maven repo so that one has no issues
+<a name="l-39"></a><span class="tm">19:10:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Thanks :) I'll, check maven central permissions for winp. AFAIK I've released somethin to MavenCentral long-long ago
+<a name="l-40"></a><span class="tm">19:11:21</span><span class="nk"> &lt;kohsuke&gt;</span> The permission is specific to group ID
+<a name="l-41"></a><span class="tm">19:11:41</span><span class="nk"> &lt;kohsuke&gt;</span> So I think I need to know your oss.sonatype.org ID to be able to file a request
+<a name="l-42"></a><span class="tm">19:12:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> OK, I'll try to restore the access
+<a name="l-43"></a><span class="tm">19:12:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg-nenashev to migrate winp and winsw to MVS2013 Community Edition</span>
+<a name="l-44"></a><span class="tm">19:12:39</span><span class="nk"> &lt;kohsuke&gt;</span> FYI this is what I've done for jglick: https://issues.sonatype.org/browse/OSSRH-7827
+<a name="l-45"></a><span class="tm">19:13:46</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's it for this topic
+<a name="l-46"></a><span class="tm">19:13:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes
+<a name="l-47"></a><span class="tm">19:14:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> you around?
+<a name="l-48"></a><span class="tm">19:14:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Thanks for your time. The agenda does not have much items
+<a name="l-49"></a><span class="tm">19:14:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">sticker approvals</span>
+<a name="l-50"></a><span class="tm">19:15:02</span><span class="nk"> &lt;kohsuke&gt;</span> I'm going to sneak in this one quickly if there are enough others who can give +1s
+<a name="l-51"></a><span class="tm">19:15:36</span><span class="nk"> &lt;kohsuke&gt;</span> Between Tokyo JUC, FOSDEM, and SCALE, I needed more stickers
+<a name="l-52"></a><span class="tm">19:15:53</span><span class="nk"> &lt;kohsuke&gt;</span> So I went ahead and ordered 500 each of two new designs
+<a name="l-53"></a><span class="tm">19:16:15</span><span class="nk"> &lt;kohsuke&gt;</span> https://twitter.com/kohsukekawa/status/547899082820169729
+<a name="l-54"></a><span class="tm">19:16:53</span><span class="nk"> &lt;danielbeck&gt;</span> that left one is Japanese only?
+<a name="l-55"></a><span class="tm">19:16:55</span><span class="nk"> &lt;kohsuke&gt;</span> I'd like to expense this from the project, and I usually get a prior approval, but in this case I placed the order first for timing issue
+<a name="l-56"></a><span class="tm">19:17:22</span><span class="nk"> &lt;kohsuke&gt;</span> It's written in Japanese but meant to be used globally, actually
+<a name="l-57"></a><span class="tm">19:17:34</span><span class="nk"> &lt;ScottHebertErics&gt;</span> +1 for me
+<a name="l-58"></a><span class="tm">19:17:49</span><span class="nk"> &lt;kohsuke&gt;</span> It's a play on Super Sentai http://en.wikipedia.org/wiki/Super_Sentai
+<a name="l-59"></a><span class="tm">19:17:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1. You can also distribute stickers for votes :)
+<a name="l-60"></a><span class="tm">19:17:53</span><span class="nk"> &lt;alyssa_&gt;</span> +1
+<a name="l-61"></a><span class="tm">19:18:08</span><span class="nk"> &lt;ogondza&gt;</span> +1 from me
+<a name="l-62"></a><span class="tm">19:18:21</span><span class="nk"> &lt;KostyaSha&gt;</span> +1
+<a name="l-63"></a><span class="tm">19:18:26</span><span class="nk"> &lt;kohsuke&gt;</span> Great, thanks
+<a name="l-64"></a><span class="tm">19:18:54 </span><span class="nka">* kohsuke</span> <span class="ac">tries to remember how to record an agreement</span>
+<a name="l-65"></a><span class="tm">19:19:08</span><span class="nk"> &lt;danielbeck&gt;</span> "Outside Japan, the Super Sentai Series is best known as the source material for the Power Rangers franchise." looks like very limited international appeal... ±0
+<a name="l-66"></a><span class="tm">19:20:17</span><span class="nk"> &lt;danielbeck&gt;</span> nothing against regional stickers but I wonder about how useful they are (if you still have some left)
+<a name="l-67"></a><span class="tm">19:20:29</span><span class="nk"> &lt;kohsuke&gt;</span> I have about 250 of that one left I think
+<a name="l-68"></a><span class="tm">19:20:46</span><span class="nk"> &lt;kohsuke&gt;</span> I'll see how that goes in SCALE &amp; FOSDEM
+<a name="l-69"></a><span class="tm">19:21:14</span><span class="nk"> &lt;kohsuke&gt;</span> So far, people who saw them liked them, and who doesn't like freebies!?
+<a name="l-70"></a><span class="tm">19:21:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">robobutler:</span> help
+<a name="l-71"></a><span class="tm">19:21:23</span><span class="nk"> &lt;robobutler&gt;</span> <span class="hi">kohsuke:</span> (help [&lt;plugin&gt;] [&lt;command&gt;]) -- This command gives a useful description of what &lt;command&gt; does. &lt;plugin&gt; is only necessary if the command is in more than one plugin.
+<a name="l-72"></a><span class="tm">19:21:51</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke it's #agreed
+<a name="l-73"></a><span class="tm">19:22:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">sticker expense for Jan 2015 batch was blessed</span>
+<a name="l-74"></a><span class="tm">19:22:24</span><span class="nk"> &lt;kohsuke&gt;</span> thanks
+<a name="l-75"></a><span class="tm">19:22:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins at 100K active users</span>
+<a name="l-76"></a><span class="tm">19:22:49</span><span class="nk"> &lt;HeidiG&gt;</span> Probably in February, we will hit a milestone for the Jenkins project of 100,000 active installations.
+<a name="l-77"></a><span class="tm">19:22:59</span><span class="nk"> &lt;HeidiG&gt;</span> What does everyone think about celebrating it, within the community?
+<a name="l-78"></a><span class="tm">19:23:02</span><span class="nk"> &lt;danielbeck&gt;</span> who are you?
+<a name="l-79"></a><span class="tm">19:23:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/msgid/jenkinsci-users/897a42d6-4830-4604-868a-964360593005%40googlegroups.com</span>
+<a name="l-80"></a><span class="tm">19:23:24</span><span class="nk"> &lt;HeidiG&gt;</span> I am Heidi Gilmore
+<a name="l-81"></a><span class="tm">19:23:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Great. It was not about 100k users on a single installation
+<a name="l-82"></a><span class="tm">19:23:32</span><span class="nk"> &lt;kohsuke&gt;</span> HeidiG is the marketing person from CloudBees
+<a name="l-83"></a><span class="tm">19:23:42</span><span class="nk"> &lt;HeidiG&gt;</span> No - 100K active installations of Jenkins around the world.
+<a name="l-84"></a><span class="tm">19:23:49</span><span class="nk"> &lt;danielbeck&gt;</span> oh, ok
+<a name="l-85"></a><span class="tm">19:23:59</span><span class="nk"> &lt;kohsuke&gt;</span> She thought this would be a good excuse to celebrate, which I thought is a great idea
+<a name="l-86"></a><span class="tm">19:24:16</span><span class="nk"> &lt;KostyaSha&gt;</span> i thought 100k on single instance... :(
+<a name="l-87"></a><span class="tm">19:24:32</span><span class="nk"> &lt;danielbeck&gt;</span> "we finally made Jenkins scale" :D
+<a name="l-88"></a><span class="tm">19:24:44</span><span class="nk"> &lt;HeidiG&gt;</span> LOL!
+<a name="l-89"></a><span class="tm">19:24:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> the trajectory came from http://stats.jenkins-ci.org/jenkins-stats/svg/total-jenkins.svg
+<a name="l-90"></a><span class="tm">19:25:10</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, i know
+<a name="l-91"></a><span class="tm">19:25:14</span><span class="nk"> &lt;HeidiG&gt;</span> Sometime in Feb, we should hit 100K active installations (100K separate installations - just to be clear) ;)
+<a name="l-92"></a><span class="tm">19:25:14</span><span class="nk"> &lt;kohsuke&gt;</span> (the year end always see a seasonal drop if you look back)
+<a name="l-93"></a><span class="tm">19:25:29</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, can i put one topic on stack ? http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-11-26-19.13.html 5c and infra at all
+<a name="l-94"></a><span class="tm">19:25:37</span><span class="nk"> &lt;HeidiG&gt;</span> What does everyone think about celebrating it, in some way?
+<a name="l-95"></a><span class="tm">19:25:44</span><span class="nk"> &lt;danielbeck&gt;</span> from anon usage stats, so the real numbers are likely much higher, still, as good a reason to celebrate as any I guess
+<a name="l-96"></a><span class="tm">19:25:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Have you found the plugin #1000?
+<a name="l-97"></a><span class="tm">19:25:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Just a good topic to celebrate as well
+<a name="l-98"></a><span class="tm">19:26:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> yes, and for that one I've already sent a 3D Mr.Jenkins
+<a name="l-99"></a><span class="tm">19:26:15</span><span class="nk"> &lt;KostyaSha&gt;</span> maybe i will finally get some sticker or t-shirt...
+<a name="l-100"></a><span class="tm">19:26:36</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, and didn't print yourself?)
+<a name="l-101"></a><span class="tm">19:26:44</span><span class="nk"> &lt;HeidiG&gt;</span> 100K active installs, 1,000+ plugins, 10+ years of continuously delivering software
+<a name="l-102"></a><span class="tm">19:26:45</span><span class="nk"> &lt;kohsuke&gt;</span> Oh man, looks like I didn't even blog about 1000th plugin
+<a name="l-103"></a><span class="tm">19:26:52</span><span class="nk"> &lt;KostyaSha&gt;</span> 1000k bugs?)
+<a name="l-104"></a><span class="tm">19:27:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> I did print one for myself, and then I lost it. I need to order another one.
+<a name="l-105"></a><span class="tm">19:27:20</span><span class="nk"> &lt;HeidiG&gt;</span> 1000K fixes?
+<a name="l-106"></a><span class="tm">19:27:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 20000 commits BTW
+<a name="l-107"></a><span class="tm">19:27:52</span><span class="nk"> &lt;HeidiG&gt;</span> Anyway - it's an excuse to celebrate.
+<a name="l-108"></a><span class="tm">19:27:56</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev since importing to Git?
+<a name="l-109"></a><span class="tm">19:28:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yep
+<a name="l-110"></a><span class="tm">19:28:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Or no...
+<a name="l-111"></a><span class="tm">19:28:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 20048 commits on GitHub stats
+<a name="l-112"></a><span class="tm">19:28:43</span><span class="nk"> &lt;kohsuke&gt;</span> 19926 on master (since import into SVN)
+<a name="l-113"></a><span class="tm">19:28:51</span><span class="nk"> &lt;dtrainor&gt;</span> <span class="hi">re:</span> save/create jobs from API or some automated method, this is a godsend
+<a name="l-114"></a><span class="tm">19:28:58</span><span class="nk"> &lt;dtrainor&gt;</span> godsend, too - http://stackoverflow.com/questions/8424228/export-import-jobs-in-jenkins
+<a name="l-115"></a><span class="tm">19:29:01</span><span class="nk"> &lt;HeidiG&gt;</span> So probably all kinds of great stats that we can pull into a Jenkins Day or some sort of celebration
+<a name="l-116"></a><span class="tm">19:29:03</span><span class="nk"> &lt;dtrainor&gt;</span> wish i could type today, that would be cool.
+<a name="l-117"></a><span class="tm">19:29:05</span><span class="nk"> &lt;danielbeck&gt;</span> I wouldn't celebrate bugs, fixes, or commits, too weird and too easily attacked. Current Jenkins seems pretty buggy.
+<a name="l-118"></a><span class="tm">19:29:23</span><span class="nk"> &lt;KostyaSha&gt;</span> dtrainor, please ask questions after meeting
+<a name="l-119"></a><span class="tm">19:29:23</span><span class="nk"> &lt;kohsuke&gt;</span> Oh, 20048, never mind.
+<a name="l-120"></a><span class="tm">19:29:23</span><span class="nk"> &lt;dtrainor&gt;</span> (i'm sorry, just realized the meeting)
+<a name="l-121"></a><span class="tm">19:29:48</span><span class="nk"> &lt;kohsuke&gt;</span> it certainly doesn't fit the nice "power of ten" theme
+<a name="l-122"></a><span class="tm">19:30:08</span><span class="nk"> &lt;phschwartz&gt;</span> I am building a docker container that has just the java jre, jenkins.war, and jenkins plugins installed. Jenkins comes up without issue, but no matter what I try, to get plugins pre-loaded I am never successful.
+<a name="l-123"></a><span class="tm">19:30:13</span><span class="nk"> &lt;kohsuke&gt;</span> The question for me is what can be done as a celebration
+<a name="l-124"></a><span class="tm">19:30:18</span><span class="nk"> &lt;danielbeck&gt;</span> phschwartz Project meeting right now, please wait a bit
+<a name="l-125"></a><span class="tm">19:30:46</span><span class="nk"> &lt;kohsuke&gt;</span> For 1000th plugin, we were able to pin it on a specific person to send something to. 100K th user, not so much
+<a name="l-126"></a><span class="tm">19:31:04</span><span class="nk"> &lt;HeidiG&gt;</span> Right. If we agree we should celebrate, what ideas does everyone have? In the spirit of brainstorming, anything is fair game (except bugs, issues, etc.)
+<a name="l-127"></a><span class="tm">19:31:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Additional posters/stickers for FOSDEM? It seems to be too late
+<a name="l-128"></a><span class="tm">19:31:38</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, I'm afraid it's too late for that
+<a name="l-129"></a><span class="tm">19:31:43</span><span class="nk"> &lt;HeidiG&gt;</span> Well - what if we created a badge for Jenkins users to use on Twitter or their Jenkins profile or somewhere that said, "I am part of the 100K"
+<a name="l-130"></a><span class="tm">19:31:59</span><span class="nk"> &lt;HeidiG&gt;</span> That way it's all-inclusive.
+<a name="l-131"></a><span class="tm">19:32:11</span><span class="nk"> &lt;HeidiG&gt;</span> Just throwing that out in the spirit of brainstorming
+<a name="l-132"></a><span class="tm">19:32:37</span><span class="nk"> &lt;kohsuke&gt;</span> Perhaps if we could use that as a raffle entry to win 3D Mr.Jenkins figure or something...
+<a name="l-133"></a><span class="tm">19:32:51</span><span class="nk"> &lt;kohsuke&gt;</span> (if it's something we can track, that is)
+<a name="l-134"></a><span class="tm">19:32:51</span><span class="nk"> &lt;hare_brain&gt;</span> Hashtag?
+<a name="l-135"></a><span class="tm">19:32:55</span><span class="nk"> &lt;HeidiG&gt;</span> Sure - great!
+<a name="l-136"></a><span class="tm">19:33:24</span><span class="nk"> &lt;kohsuke&gt;</span> Is there a way of listing up all the tweets that have the specific hash tag?
+<a name="l-137"></a><span class="tm">19:33:31</span><span class="nk"> &lt;HeidiG&gt;</span> We could definitely track by hashtag
+<a name="l-138"></a><span class="tm">19:33:59</span><span class="nk"> &lt;HeidiG&gt;</span> Yes - we have done that for other hashtags/Twitter promotions
+<a name="l-139"></a><span class="tm">19:34:40</span><span class="nk"> &lt;HeidiG&gt;</span> It's quite easy to track
+<a name="l-140"></a><span class="tm">19:34:42</span><span class="nk"> &lt;kohsuke&gt;</span> The other idea I had was to track down rtyler, abayer, hare_brain, etc and do some audio recording to reflect on the history
+<a name="l-141"></a><span class="tm">19:34:57</span><span class="nk"> &lt;kohsuke&gt;</span> ... of the project.
+<a name="l-142"></a><span class="tm">19:35:14</span><span class="nk"> &lt;hare_brain&gt;</span> I have been coughing up a storm lately. I have a nice gravelly radoi voice because of that. :)
+<a name="l-143"></a><span class="tm">19:35:32</span><span class="nk"> &lt;HeidiG&gt;</span> +1
+<a name="l-144"></a><span class="tm">19:35:40</span><span class="nk"> &lt;danielbeck&gt;</span> that one would be interesting I think
+<a name="l-145"></a><span class="tm">19:35:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> abayer has already recorded a good video. http://jenkins-ci.org/content/andrew-bayer-discusses-jenkins-tim-obrien
+<a name="l-146"></a><span class="tm">19:35:59</span><span class="nk"> &lt;HeidiG&gt;</span> Not +1 on the gravelly voice, but on kohsuke
+<a name="l-147"></a><span class="tm">19:36:02</span><span class="nk"> &lt;HeidiG&gt;</span> s idea
+<a name="l-148"></a><span class="tm">19:36:36</span><span class="nk"> &lt;kohsuke&gt;</span> as always hare_brain is enriching my English vocabulary
+<a name="l-149"></a><span class="tm">19:36:51</span><span class="nk"> &lt;hare_brain&gt;</span> Hahaha
+<a name="l-150"></a><span class="tm">19:37:28</span><span class="nk"> &lt;HeidiG&gt;</span> rtyler, abayer, hare_brain --&gt; what do you think about the recording idea with kohsuke?
+<a name="l-151"></a><span class="tm">19:37:54</span><span class="nk"> &lt;hare_brain&gt;</span> What would that actually be? A podcast/talk show? Something that gets embedded and played on a web site?
+<a name="l-152"></a><span class="tm">19:37:54</span><span class="nk"> &lt;kohsuke&gt;</span> This one needs a bit of prep-work though. I need some material / somebody to drive the conversation
+<a name="l-153"></a><span class="tm">19:38:05</span><span class="nk"> &lt;HeidiG&gt;</span> Will also check out abayer's recording
+<a name="l-154"></a><span class="tm">19:38:16</span><span class="nk"> &lt;KostyaSha&gt;</span> you can do hangouts meeting
+<a name="l-155"></a><span class="tm">19:38:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I was thinking of just an mp3 file that gets posted on the blog
+<a name="l-156"></a><span class="tm">19:38:47</span><span class="nk"> &lt;HeidiG&gt;</span> 10 years of Jenkins, 100K individual active users, 1000+ plugins --&gt;this is big
+<a name="l-157"></a><span class="tm">19:38:54</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, or you can do in terms of some existed  podcast
+<a name="l-158"></a><span class="tm">19:38:54</span><span class="nk"> &lt;kohsuke&gt;</span> hangout could work, too
+<a name="l-159"></a><span class="tm">19:39:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> oh that's a great idea
+<a name="l-160"></a><span class="tm">19:39:14</span><span class="nk"> &lt;KostyaSha&gt;</span> linux podcast or something else
+<a name="l-161"></a><span class="tm">19:39:27</span><span class="nk"> &lt;KostyaSha&gt;</span> afair there was java podcast (or closed)
+<a name="l-162"></a><span class="tm">19:39:48</span><span class="nk"> &lt;HeidiG&gt;</span> Could be any of the above ideas - talk show format would be nice, talk about the history of Jenkins and how far the community has come over the 10 years
+<a name="l-163"></a><span class="tm">19:39:53</span><span class="nk"> &lt;kohsuke&gt;</span> We've done FLOSS weekly once: http://twit.tv/show/floss-weekly
+<a name="l-164"></a><span class="tm">19:39:54 </span><span class="nka">* KostyaSha</span> <span class="ac">put on meeting stack infra item</span>
+<a name="l-165"></a><span class="tm">19:40:35</span><span class="nk"> &lt;danielbeck&gt;</span> June '11
+<a name="l-166"></a><span class="tm">19:40:47</span><span class="nk"> &lt;KostyaSha&gt;</span> HeidiG, kohsuke infographics
+<a name="l-167"></a><span class="tm">19:40:49</span><span class="nk"> &lt;danielbeck&gt;</span> http://twit.tv/show/floss-weekly/169
+<a name="l-168"></a><span class="tm">19:41:22</span><span class="nk"> &lt;KostyaSha&gt;</span> then i can cut infographits to slides in case of some reports on conferences :)
+<a name="l-169"></a><span class="tm">19:41:32</span><span class="nk"> &lt;kohsuke&gt;</span> "Changelog" also sounds familiar but I need to check if I know people from this show: https://itunes.apple.com/us/podcast/the-changelog/id341623264?mt=2
+<a name="l-170"></a><span class="tm">19:41:54</span><span class="nk"> &lt;kohsuke&gt;</span> Oh I guess I do: episode #89 from 2011 Feb
+<a name="l-171"></a><span class="tm">19:42:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> do you know of any other OSS/Linux podcasts?
+<a name="l-172"></a><span class="tm">19:42:52</span><span class="nk"> &lt;HeidiG&gt;</span> So KostyaSha - you are suggesting some sort of inforgraphic about Jenkins - maybe w/milestones, etc. ?
+<a name="l-173"></a><span class="tm">19:43:02</span><span class="nk"> &lt;KostyaSha&gt;</span> only http://tuxradar.com/podcast but i mostly listening native language podcasts
+<a name="l-174"></a><span class="tm">19:43:30</span><span class="nk"> &lt;danielbeck&gt;</span> How about software engineering themed podcasts?
+<a name="l-175"></a><span class="tm">19:43:33</span><span class="nk"> &lt;kohsuke&gt;</span> http://www.javaposse.com/ ?
+<a name="l-176"></a><span class="tm">19:44:28</span><span class="nk"> &lt;kohsuke&gt;</span> I need to see if they are open to the idea and willing to give us the air time, so I need multiple prospects
+<a name="l-177"></a><span class="tm">19:45:41</span><span class="nk"> &lt;HeidiG&gt;</span> I'll offer it up, since I have access to it - we could use WebEx, record it and make it available to the community?
+<a name="l-178"></a><span class="tm">19:45:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> if you know of any, let us know and I can try to approach
+<a name="l-179"></a><span class="tm">19:46:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">HeidiG:</span> webex/hangout/etc would be a fallback plan. We just need to find a host
+<a name="l-180"></a><span class="tm">19:47:05</span><span class="nk"> &lt;kohsuke&gt;</span> maybe abayer can convince Tim Obrien like he did before
+<a name="l-181"></a><span class="tm">19:47:07</span><span class="nk"> &lt;HeidiG&gt;</span> We can post it on the Jenkins site/share so anyone can view. Could even record it live and promote people to attend/participate
+<a name="l-182"></a><span class="tm">19:47:21</span><span class="nk"> &lt;KostyaSha&gt;</span> who did this image http://www.businesswire.com/news/home/20130108005628/en/Survey-Shows-Jenkins-Mission-Critical-Platform-Application-Development ?
+<a name="l-183"></a><span class="tm">19:47:30</span><span class="nk"> &lt;HeidiG&gt;</span> K. Sounds good - but it is there for fallback.
+<a name="l-184"></a><span class="tm">19:47:43</span><span class="nk"> &lt;KostyaSha&gt;</span> "The state of jenkins CI"
+<a name="l-185"></a><span class="tm">19:47:50</span><span class="nk"> &lt;kohsuke&gt;</span> The nice thing about being on existing podcast is added visibility + less work on our side
+<a name="l-186"></a><span class="tm">19:48:08</span><span class="nk"> &lt;KostyaSha&gt;</span> yeap plus guests for podcast
+<a name="l-187"></a><span class="tm">19:48:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> so you are game for this, right? assuming that the timing works out?
+<a name="l-188"></a><span class="tm">19:48:46</span><span class="nk"> &lt;HeidiG&gt;</span> KostyaSha - that infographic was done by Lisa Wells/CloudBees from the JUC survey of a couple of years ago.
+<a name="l-189"></a><span class="tm">19:48:48</span><span class="nk"> &lt;KostyaSha&gt;</span> some java podcast will be more suitable imho
+<a name="l-190"></a><span class="tm">19:48:53</span><span class="nk"> &lt;kohsuke&gt;</span> I need to chase down rtyler and abayer at least
+<a name="l-191"></a><span class="tm">19:49:20</span><span class="nk"> &lt;HeidiG&gt;</span> Ok - sounds like the beginnings of a plan for celebrating Jenkins. Other thoughts?
+<a name="l-192"></a><span class="tm">19:49:23</span><span class="nk"> &lt;hare_brain&gt;</span> Sure, if timing works out.
+<a name="l-193"></a><span class="tm">19:49:28</span><span class="nk"> &lt;KostyaSha&gt;</span> HeidiG, right, after survey! My company also forgot to answer CB managers
+<a name="l-194"></a><span class="tm">19:49:56</span><span class="nk"> &lt;HeidiG&gt;</span> +1 KostyaSha - that is correct. Done after the survey
+<a name="l-195"></a><span class="tm">19:50:10</span><span class="nk"> &lt;KostyaSha&gt;</span> Do we need new survey?)
+<a name="l-196"></a><span class="tm">19:50:28</span><span class="nk"> &lt;kohsuke&gt;</span> Any other ways to give out stuff to people?
+<a name="l-197"></a><span class="tm">19:50:30</span><span class="nk"> &lt;KostyaSha&gt;</span> or CB will spam people again?)
+<a name="l-198"></a><span class="tm">19:50:38</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe a cake in FOSDEM?
+<a name="l-199"></a><span class="tm">19:51:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> are you coming to FOSDEM?
+<a name="l-200"></a><span class="tm">19:51:11</span><span class="nk"> &lt;HeidiG&gt;</span> Depends on what we want to show. If we want an infographic celebrating our 10's and other things, we have enough content for that.
+<a name="l-201"></a><span class="tm">19:51:23</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Don't have time
+<a name="l-202"></a><span class="tm">19:51:28</span><span class="nk"> &lt;kohsuke&gt;</span> ok
+<a name="l-203"></a><span class="tm">19:52:05</span><span class="nk"> &lt;ogondza&gt;</span> How about a spread the word weak? Everyone who blogs about Jenkins and let us know can win something nice.
+<a name="l-204"></a><span class="tm">19:52:19</span><span class="nk"> &lt;ogondza&gt;</span> or, one of the people
+<a name="l-205"></a><span class="tm">19:52:29</span><span class="nk"> &lt;HeidiG&gt;</span> Twitter is a good way to promote
+<a name="l-206"></a><span class="tm">19:52:40</span><span class="nk"> &lt;alyssa_&gt;</span> <span class="hi">+ogondza:</span> i like that i idea
+<a name="l-207"></a><span class="tm">19:53:18</span><span class="nk"> &lt;HeidiG&gt;</span> excellent idea - get people to blog and promote
+<a name="l-208"></a><span class="tm">19:53:36</span><span class="nk"> &lt;HeidiG&gt;</span> Tweets, also - lots of us are on Twitter
+<a name="l-209"></a><span class="tm">19:53:46</span><span class="nk"> &lt;kohsuke&gt;</span> We ask those posts to ping back the master blog or something, and we collect them all?
+<a name="l-210"></a><span class="tm">19:53:53</span><span class="nk"> &lt;HeidiG&gt;</span> Use a hashtag #Jenkins100K
+<a name="l-211"></a><span class="tm">19:54:22</span><span class="nk"> &lt;kohsuke&gt;</span> And then maybe  in our little podcast we can go over those to drive the conversation
+<a name="l-212"></a><span class="tm">19:54:34</span><span class="nk"> &lt;HeidiG&gt;</span> +1
+<a name="l-213"></a><span class="tm">19:54:45</span><span class="nk"> &lt;HeidiG&gt;</span> Highlight ones that were esp informative, creative, funny, etc.
+<a name="l-214"></a><span class="tm">19:55:18</span><span class="nk"> &lt;alyssa_&gt;</span> maybe announce winner of the blog on the podcast to encourage attendance
+<a name="l-215"></a><span class="tm">19:56:16</span><span class="nk"> &lt;danielbeck&gt;</span> like that will work
+<a name="l-216"></a><span class="tm">19:56:17</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I think the idea is solidifying
+<a name="l-217"></a><span class="tm">19:57:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> I think the incentive won't hurt
+<a name="l-218"></a><span class="tm">19:57:44</span><span class="nk"> &lt;kohsuke&gt;</span> it might not make a big difference, but just some more cherries to add on top
+<a name="l-219"></a><span class="tm">19:57:46</span><span class="nk"> &lt;danielbeck&gt;</span> we're still talking about someone being guest on someone else's podcast, right?
+<a name="l-220"></a><span class="tm">19:58:17</span><span class="nk"> &lt;danielbeck&gt;</span> I have my doubts that they could take over the whole thing to pick winners of some promotion...
+<a name="l-221"></a><span class="tm">19:58:20</span><span class="nk"> &lt;HeidiG&gt;</span> It woudl be great to have abayer, tcroy, hare brain and koshuke all together
+<a name="l-222"></a><span class="tm">19:58:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> I'll have to see if they are willing
+<a name="l-223"></a><span class="tm">19:59:06</span><span class="nk"> &lt;kohsuke&gt;</span> perhaps logistics-wise it'd be easier to just record on our own
+<a name="l-224"></a><span class="tm">19:59:32</span><span class="nk"> &lt;HeidiG&gt;</span> Main conversation is still talking about Jenkins/milestones, but holding some sort of drawing/announcing winners, too.
+<a name="l-225"></a><span class="tm">19:59:39</span><span class="nk"> &lt;HeidiG&gt;</span> Great idea
+<a name="l-226"></a><span class="tm">20:00:16</span><span class="nk"> &lt;jenkins-builds&gt;</span> Project jenkins_main_trunk build #3940: SUCCESS in 58 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/3940/
+<a name="l-227"></a><span class="tm">20:00:17</span><span class="nk"> &lt;jenkins-builds&gt;</span> * Jesse Glick: [JENKINS-26519] Confirming that it is safe to rerun migration by just deleting legacyId files.
+<a name="l-228"></a><span class="tm">20:00:17</span><span class="nk"> &lt;jenkins-builds&gt;</span> * Jesse Glick: [FIXED JENKINS-26519] Accept Windows text file quasi-symlinks for build numbers.
+<a name="l-229"></a><span class="tm">20:00:19</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-26519:Build records not migrated due to ?failed to rename" (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-26519
+<a name="l-230"></a><span class="tm">20:00:27</span><span class="nk"> &lt;jenkins-builds&gt;</span> Starting build #3941 for job jenkins_main_trunk (previous build: SUCCESS)
+<a name="l-231"></a><span class="tm">20:00:43</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe it can be combined. The main show is recorded on our own, and one of us can go talk to some of the existing podcasts for 5 mins
+<a name="l-232"></a><span class="tm">20:00:49</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway, I think we are running out of time
+<a name="l-233"></a><span class="tm">20:00:58</span><span class="nk"> &lt;HeidiG&gt;</span> Ok - to be continued, I guess. But sounds like we are generally in favor of celebrating
+<a name="l-234"></a><span class="tm">20:00:59</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke That last suggestion seems good
+<a name="l-235"></a><span class="tm">20:01:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to chase down abayer and rtyler about the idea</span>
+<a name="l-236"></a><span class="tm">20:01:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write to people doing those podcasts to see the options</span>
+<a name="l-237"></a><span class="tm">20:01:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">HeidiG to come up a blog-fest proposal</span>
+<a name="l-238"></a><span class="tm">20:02:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-239"></a><span class="tm">20:02:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting will be Feb 4th same time</span>
+<a name="l-240"></a><span class="tm">20:02:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 08:41:11 May 05, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:52:59 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 933.75
+  exclusion.robots: 0.081
+  exclusion.robots.policy: 0.074
+  cdx.remote: 0.058
+  esindex: 0.008
+  LoadShardBlock: 432.88 (3)
+  PetaboxLoader3.datanode: 245.059 (4)
+  CDXLines.iter: 14.043 (3)
+  load_resource: 253.21
+  PetaboxLoader3.resolve: 156.142
+-->

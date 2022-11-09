@@ -1,0 +1,586 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:44</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:56</span><span class="nk"> &lt;ndeloof&gt;</span> yeah ;)
+<a name="l-4"></a><span class="tm">18:01:58</span><span class="nk"> &lt;kohsuke&gt;</span> The agenda is https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-5"></a><span class="tm">18:02:18</span><span class="nk"> &lt;kohsuke&gt;</span> I propose that we spend the first 15 minutes taking care of easy things
+<a name="l-6"></a><span class="tm">18:02:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the agenda, as per usual is located on the wiki: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-7"></a><span class="tm">18:02:24</span><span class="nk"> &lt;rtyler&gt;</span> agreed
+<a name="l-8"></a><span class="tm">18:02:27</span><span class="nk"> &lt;abayer&gt;</span> So, anything interesting happen in the last couple weeks? =)
+<a name="l-9"></a><span class="tm">18:02:31</span><span class="nk"> &lt;abayer&gt;</span> brb
+<a name="l-10"></a><span class="tm">18:02:39</span><span class="nk"> &lt;kohsuke&gt;</span> Then spend the remaining time talking about the first topic listed in the agenda
+<a name="l-11"></a><span class="tm">18:02:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">kohsuke, abayer, hare_brain_</span>
+<a name="l-12"></a><span class="tm">18:03:05</span><span class="nk"> &lt;abayer&gt;</span> So yeah, easy stuff first.
+<a name="l-13"></a><span class="tm">18:03:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">permalink from jenkins-ci.org to his book</span>
+<a name="l-14"></a><span class="tm">18:03:27</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-15"></a><span class="tm">18:03:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke abayer hare_brain_</span>
+<a name="l-16"></a><span class="tm">18:03:28</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain_ kohsuke rtyler
+<a name="l-17"></a><span class="tm">18:03:33</span><span class="nk"> &lt;magnayn&gt;</span> +1
+<a name="l-18"></a><span class="tm">18:03:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">permalink from jenkins-ci.org to his book</span>
+<a name="l-19"></a><span class="tm">18:03:43</span><span class="nk"> &lt;abayer&gt;</span> It's the first book on Jenkins, it's a friend of the community, why not?
+<a name="l-20"></a><span class="tm">18:03:59</span><span class="nk"> &lt;aheritier_&gt;</span> It will be about Jenkins and Hudson ?
+<a name="l-21"></a><span class="tm">18:04:03</span><span class="nk"> &lt;rtyler&gt;</span> there's also a german book I think we should link?
+<a name="l-22"></a><span class="tm">18:04:08</span><span class="nk"> &lt;abayer&gt;</span> The book is "Jenkins: The Definitive Guide".
+<a name="l-23"></a><span class="tm">18:04:11</span><span class="nk"> &lt;magnayn&gt;</span> (and it's available as a free PDF!)
+<a name="l-24"></a><span class="tm">18:04:30</span><span class="nk"> &lt;ndeloof&gt;</span> any reason *not* to link to any book with significant documentation on jenkins ?
+<a name="l-25"></a><span class="tm">18:04:31</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, Simon wrote a book called "Continuous Integration with Hudson"
+<a name="l-26"></a><span class="tm">18:04:34</span><span class="nk"> &lt;jieryn&gt;</span> sounds good to me
+<a name="l-27"></a><span class="tm">18:04:38</span><span class="nk"> &lt;abayer&gt;</span> Let's link that too.
+<a name="l-28"></a><span class="tm">18:04:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-29"></a><span class="tm">18:04:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">hardware access for drulli and olamy (primarily eggplant)</span>
+<a name="l-30"></a><span class="tm">18:05:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to link wakeleo's book as well as Simon's book "Continuous Integration with Hudson"</span>
+<a name="l-31"></a><span class="tm">18:05:05</span><span class="nk"> &lt;aheritier_&gt;</span> +1 but he changes the URL : http://www.wakaleo.com/download-ci-with-hudson :-)
+<a name="l-32"></a><span class="tm">18:05:10</span><span class="nk"> &lt;kohsuke&gt;</span> sorry, I went too fast :-(
+<a name="l-33"></a><span class="tm">18:05:13</span><span class="nk"> &lt;rtyler&gt;</span> yeah, no shit
+<a name="l-34"></a><span class="tm">18:05:14</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-35"></a><span class="tm">18:05:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">we ask John to kindly update the URL to say jenkins</span>
+<a name="l-36"></a><span class="tm">18:05:41</span><span class="nk"> &lt;rtyler&gt;</span> alright, so let's hardware access then
+<a name="l-37"></a><span class="tm">18:05:42</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-38"></a><span class="tm">18:06:03</span><span class="nk"> &lt;aheritier&gt;</span> +1
+<a name="l-39"></a><span class="tm">18:06:04</span><span class="nk"> &lt;kohsuke&gt;</span> The motivation of adding more admins is to get a better time zone coverage
+<a name="l-40"></a><span class="tm">18:06:24</span><span class="nk"> &lt;rtyler&gt;</span> that only helps if there's good documentation on what needs to be done as well as monitoring
+<a name="l-41"></a><span class="tm">18:06:31</span><span class="nk"> &lt;abayer&gt;</span> True.
+<a name="l-42"></a><span class="tm">18:06:42</span><span class="nk"> &lt;rtyler&gt;</span> which is something we can cover separately :)
+<a name="l-43"></a><span class="tm">18:06:43</span><span class="nk"> &lt;kohsuke&gt;</span> Not to mention that drulli and olamy have been around for some time and we want them to spend more time on Jenkins
+<a name="l-44"></a><span class="tm">18:06:45</span><span class="nk"> &lt;aheritier&gt;</span> Do we have some monitoring tools ?
+<a name="l-45"></a><span class="tm">18:07:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> I mostly rely on twitter complainers alerting me to issues :-P
+<a name="l-46"></a><span class="tm">18:07:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> "we should"
+<a name="l-47"></a><span class="tm">18:07:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">There is infra wiki space that captures some of the basic operations like restart</span>
+<a name="l-48"></a><span class="tm">18:07:14</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> :-)
+<a name="l-49"></a><span class="tm">18:07:35</span><span class="nk"> &lt;rtyler&gt;</span> it's funny that neither olamy nor drulli are online for this :)
+<a name="l-50"></a><span class="tm">18:07:42</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, it'd be good to have nagios or something like that.
+<a name="l-51"></a><span class="tm">18:07:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> are we talking eggplant access for both? or system-wide?
+<a name="l-52"></a><span class="tm">18:07:59</span><span class="nk"> &lt;rtyler&gt;</span> I am fine with eggplant access, cucumber I'm less fine with right now
+<a name="l-53"></a><span class="tm">18:07:59</span><span class="nk"> &lt;kohsuke&gt;</span> drulli volunteered for JIRA primarily
+<a name="l-54"></a><span class="tm">18:08:10</span><span class="nk"> &lt;aheritier&gt;</span> @kohsuke : yes. And it isn't too difficult to have a basic setup for that
+<a name="l-55"></a><span class="tm">18:08:16</span><span class="nk"> &lt;mwalling&gt;</span> i'm willing to help out too, i do enough trolling of the irc channel
+<a name="l-56"></a><span class="tm">18:08:22</span><span class="nk"> &lt;rtyler&gt;</span> if we're going to be giving out access for cucumber for more folks, then I'll want to spend some time hardening
+<a name="l-57"></a><span class="tm">18:08:31</span><span class="nk"> &lt;abayer&gt;</span> I think JIRA/Confluence shell access is probably sufficient for now.
+<a name="l-58"></a><span class="tm">18:08:34</span><span class="nk"> &lt;rtyler&gt;</span> (i.e. SELinux, monitoring and better alerting in my inbox)
+<a name="l-59"></a><span class="tm">18:08:55</span><span class="nk"> &lt;kohsuke&gt;</span> Let's start with eggplant access
+<a name="l-60"></a><span class="tm">18:09:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to grant drulli and olamy access to eggplant for JIRA/Confluence admin</span>
+<a name="l-61"></a><span class="tm">18:09:23</span><span class="nk"> &lt;rtyler&gt;</span> next?
+<a name="l-62"></a><span class="tm">18:09:26</span><span class="nk"> &lt;kutzi&gt;</span> sorry for diverting, but are we going to talkabout the Hudson/Eclipse stuff, too?
+<a name="l-63"></a><span class="tm">18:09:36</span><span class="nk"> &lt;abayer&gt;</span> Yeah, we're killing the easy stuff first. =)
+<a name="l-64"></a><span class="tm">18:09:41</span><span class="nk"> &lt;aheritier&gt;</span> :-)
+<a name="l-65"></a><span class="tm">18:09:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kutzi:</span> https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-66"></a><span class="tm">18:10:01</span><span class="nk"> &lt;kohsuke&gt;</span> Can we move on to the next topic?
+<a name="l-67"></a><span class="tm">18:10:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> yes
+<a name="l-68"></a><span class="tm">18:10:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Can the localization committers push their changes directly? If so, please put the approval in the record(from tyuki39)</span>
+<a name="l-69"></a><span class="tm">18:10:33</span><span class="nk"> &lt;kohsuke&gt;</span> This was from the guy who mainly works on Japanese l10n
+<a name="l-70"></a><span class="tm">18:10:44</span><span class="nk"> &lt;kohsuke&gt;</span> He wants to make sure that people don't mind him pushing l10n to plugins
+<a name="l-71"></a><span class="tm">18:10:47</span><span class="nk"> &lt;rtyler&gt;</span> time for plugin committers to speak up :)
+<a name="l-72"></a><span class="tm">18:11:05</span><span class="nk"> &lt;abayer&gt;</span> I think it's probably best to do it as pull requests, at least for plugins with active development.
+<a name="l-73"></a><span class="tm">18:11:10</span><span class="nk"> &lt;kohsuke&gt;</span> I don't see any problem because I don't see how anyone else can review them.
+<a name="l-74"></a><span class="tm">18:11:11</span><span class="nk"> &lt;jieryn&gt;</span> someone is going to localize my plugin for me? sounds great
+<a name="l-75"></a><span class="tm">18:11:17</span><span class="nk"> &lt;magnayn&gt;</span> Sounds good to me, I'd have no way to verify them..
+<a name="l-76"></a><span class="tm">18:11:24</span><span class="nk"> &lt;abayer&gt;</span> But I'm fine with whatever.
+<a name="l-77"></a><span class="tm">18:11:38</span><span class="nk"> &lt;rtyler&gt;</span> I think pushing cool, not cutting releases though
+<a name="l-78"></a><span class="tm">18:11:43</span><span class="nk"> &lt;bap2000&gt;</span> I'm cool with that
+<a name="l-79"></a><span class="tm">18:11:45</span><span class="nk"> &lt;aheritier&gt;</span> I was thinking about core not plugin. That's a good question. I think it is possible if we don't do releases without maintener agreement first
+<a name="l-80"></a><span class="tm">18:11:50</span><span class="nk"> &lt;kutzi&gt;</span> would be no problem for me - as soon as I've migrated my plugins to github :)
+<a name="l-81"></a><span class="tm">18:11:51</span><span class="nk"> &lt;abayer&gt;</span> Oh, definitely not cutting releases.
+<a name="l-82"></a><span class="tm">18:11:58</span><span class="nk"> &lt;kohsuke&gt;</span> No one is asking to do releases, obviously.
+<a name="l-83"></a><span class="tm">18:12:15</span><span class="nk"> &lt;abayer&gt;</span> And make sure to update the plugin's wiki page with the localization change.
+<a name="l-84"></a><span class="tm">18:12:20</span><span class="nk"> &lt;aheritier&gt;</span> I say that because we had the case some months ago
+<a name="l-85"></a><span class="tm">18:12:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Please push right away. "someone is going to localize my plugin for me? sounds great"</span>
+<a name="l-86"></a><span class="tm">18:12:49</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, it happened once in the entire history of the project
+<a name="l-87"></a><span class="tm">18:13:02</span><span class="nk"> &lt;kohsuke&gt;</span> It was more like a few years ago, IIRC.
+<a name="l-88"></a><span class="tm">18:13:25</span><span class="nk"> &lt;rtyler&gt;</span> next!
+<a name="l-89"></a><span class="tm">18:13:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">Kohsuke to update a Wiki page to encourage l10n to be pushed directly</span>
+<a name="l-90"></a><span class="tm">18:13:27</span><span class="nk"> &lt;aheritier&gt;</span> so much time ? :(
+<a name="l-91"></a><span class="tm">18:13:30</span><span class="nk"> &lt;rtyler&gt;</span> xD
+<a name="l-92"></a><span class="tm">18:13:32</span><span class="nk"> &lt;kutzi&gt;</span> sorry, I've to leave now, but when the talk comes to Hudson/Eclipse, count myself as a -1 regarding joining the Eclipse project - at least under the current circumstances
+<a name="l-93"></a><span class="tm">18:13:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kutzi:</span> noted :)
+<a name="l-94"></a><span class="tm">18:13:43</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kutzi:</span> cheers
+<a name="l-95"></a><span class="tm">18:13:54</span><span class="nk"> &lt;kutzi&gt;</span> bye
+<a name="l-96"></a><span class="tm">18:14:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">Kohsuke to also write a note that l10n contributiors sshouldn't unilatelarly release a new version</span>
+<a name="l-97"></a><span class="tm">18:14:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Discuss status on the JenkinsCI cafe press store</span>
+<a name="l-98"></a><span class="tm">18:14:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">So I just created http://www.cafepress.com/jenkinsci</span>
+<a name="l-99"></a><span class="tm">18:14:39</span><span class="nk"> &lt;magnayn&gt;</span> I want stickers!
+<a name="l-100"></a><span class="tm">18:14:39</span><span class="nk"> &lt;kohsuke&gt;</span> But it needs to have more stuff
+<a name="l-101"></a><span class="tm">18:14:40</span><span class="nk"> &lt;aheritier&gt;</span> cool
+<a name="l-102"></a><span class="tm">18:14:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">magnayn:</span> that's on my list :)
+<a name="l-103"></a><span class="tm">18:14:48</span><span class="nk"> &lt;aheritier&gt;</span> I want the mug
+<a name="l-104"></a><span class="tm">18:14:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> this isn't what we were going to discuss ;)
+<a name="l-105"></a><span class="tm">18:15:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> where do funds go currently?
+<a name="l-106"></a><span class="tm">18:15:06</span><span class="nk"> &lt;rtyler&gt;</span> assuming there are funds :P
+<a name="l-107"></a><span class="tm">18:15:07</span><span class="nk"> &lt;kohsuke&gt;</span> There's zero profit today
+<a name="l-108"></a><span class="tm">18:15:09</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> I'm sad :(
+<a name="l-109"></a><span class="tm">18:15:14</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-110"></a><span class="tm">18:15:27</span><span class="nk"> &lt;kohsuke&gt;</span> We can set some amount but then as you say, the question is where to assign it to.
+<a name="l-111"></a><span class="tm">18:15:44</span><span class="nk"> &lt;kohsuke&gt;</span> And if the CafePress store for Hudson was of any indication, it's not worth the hassle of even discussing
+<a name="l-112"></a><span class="tm">18:15:56</span><span class="nk"> &lt;rtyler&gt;</span> that logo sucked though :)
+<a name="l-113"></a><span class="tm">18:16:00</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-114"></a><span class="tm">18:16:03</span><span class="nk"> &lt;abayer&gt;</span> I'm fine with tabling the question of proceeds for now.
+<a name="l-115"></a><span class="tm">18:16:09 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-116"></a><span class="tm">18:16:19</span><span class="nk"> &lt;abayer&gt;</span> If Kohsuke makes a few bucks off it, I'm not going to complain. =)
+<a name="l-117"></a><span class="tm">18:16:30</span><span class="nk"> &lt;rtyler&gt;</span> great that it's up, but IMHO not worth the time spending on at this time
+<a name="l-118"></a><span class="tm">18:16:34</span><span class="nk"> &lt;kohsuke&gt;</span> Just for the record, like I said, I am not making any profit.
+<a name="l-119"></a><span class="tm">18:16:52</span><span class="nk"> &lt;kohsuke&gt;</span> And I intend to keep it that way.
+<a name="l-120"></a><span class="tm">18:16:58</span><span class="nk"> &lt;aheritier&gt;</span> If kk becomes to be rich with that we'll study the question :-)
+<a name="l-121"></a><span class="tm">18:16:59</span><span class="nk"> &lt;abayer&gt;</span> Alright then. We're good.
+<a name="l-122"></a><span class="tm">18:17:03</span><span class="nk"> &lt;magnayn&gt;</span> Is the logo MIT / CC ? If anyone cared about profits they could always manufacture their own
+<a name="l-123"></a><span class="tm">18:17:06</span><span class="nk"> &lt;kohsuke&gt;</span> ... at least for the time being.
+<a name="l-124"></a><span class="tm">18:17:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">magnayn:</span> it's CC-BY-SA
+<a name="l-125"></a><span class="tm">18:17:28</span><span class="nk"> &lt;kohsuke&gt;</span> I thought I captured that in the logo page. Let me check
+<a name="l-126"></a><span class="tm">18:17:50</span><span class="nk"> &lt;rtyler&gt;</span> next topic? we're getting into the harder bits
+<a name="l-127"></a><span class="tm">18:17:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">see https://wiki.jenkins-ci.org/display/JENKINS/Logo for the license of the logo</span>
+<a name="l-128"></a><span class="tm">18:17:54</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-129"></a><span class="tm">18:18:16</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we push the remaining items to the next week and talk about the elephant in the room?
+<a name="l-130"></a><span class="tm">18:18:25</span><span class="nk"> &lt;lunks&gt;</span> Hello, I'm having a weird issue with Jenkins. I have set it up to get changes from git, then run a bash/rake/ruby/whatever script. For some reason, it's not running the script. It's weird in a way that the build output doesn't show much more than getting things from git and finishing the build. How could I debug this?
+<a name="l-131"></a><span class="tm">18:18:27</span><span class="nk"> &lt;abayer&gt;</span> Fine by me. I'll move the git plugin thing to email.
+<a name="l-132"></a><span class="tm">18:18:34</span><span class="nk"> &lt;aheritier&gt;</span> which elephant ?? :-)
+<a name="l-133"></a><span class="tm">18:18:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">discuss progress with SFC/SPI/ASF/EF regarding an umbrella organization</span>
+<a name="l-134"></a><span class="tm">18:18:46</span><span class="nk"> &lt;hare_brain_&gt;</span> Who are you calling an elephant? :p
+<a name="l-135"></a><span class="tm">18:18:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I really would like to discuss infra
+<a name="l-136"></a><span class="tm">18:18:54</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-137"></a><span class="tm">18:19:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">infra update from rtyler</span>
+<a name="l-138"></a><span class="tm">18:19:07</span><span class="nk"> &lt;rtyler&gt;</span> YAY
+<a name="l-139"></a><span class="tm">18:19:10</span><span class="nk"> &lt;kohsuke&gt;</span> Better be quick
+<a name="l-140"></a><span class="tm">18:19:12</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-141"></a><span class="tm">18:19:14</span><span class="nk"> &lt;rtyler&gt;</span> alright
+<a name="l-142"></a><span class="tm">18:19:19</span><span class="nk"> &lt;mwalling&gt;</span> rtyler broke the build. next!
+<a name="l-143"></a><span class="tm">18:19:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">We have one 3U machine racked at the OSUOSL waiting for an OS installation</span>
+<a name="l-144"></a><span class="tm">18:19:40</span><span class="nk"> &lt;aheritier&gt;</span> cool
+<a name="l-145"></a><span class="tm">18:19:43</span><span class="nk"> &lt;kohsuke&gt;</span> great
+<a name="l-146"></a><span class="tm">18:19:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">The original datacenter completely botched shipping rails for the 2U machine (cabbage)</span>
+<a name="l-147"></a><span class="tm">18:19:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">They'll hopefully be sending those along soon</span>
+<a name="l-148"></a><span class="tm">18:20:07</span><span class="nk"> &lt;rtyler&gt;</span> once lettuce (3U) is online, aheritier gets his test JIRA :)
+<a name="l-149"></a><span class="tm">18:20:14</span><span class="nk"> &lt;aheritier&gt;</span> yeahhh
+<a name="l-150"></a><span class="tm">18:20:18</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-151"></a><span class="tm">18:20:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Our MirrorBrain installation is still broken in that it's not geolocating properly</span>
+<a name="l-152"></a><span class="tm">18:20:57</span><span class="nk"> &lt;ndeloof&gt;</span> <span class="hi">aheritier:</span> some more non-sleeping nights ;)
+<a name="l-153"></a><span class="tm">18:20:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Because of this, we still have disabled all international mirrors (for speed concerns in our round-robin setup)</span>
+<a name="l-154"></a><span class="tm">18:21:00</span><span class="nk"> &lt;kohsuke&gt;</span> Is it at least controlling out bandwidth usage?
+<a name="l-155"></a><span class="tm">18:21:05</span><span class="nk"> &lt;rtyler&gt;</span> yes
+<a name="l-156"></a><span class="tm">18:21:10</span><span class="nk"> &lt;rtyler&gt;</span> we still use our mirrors for a LOT
+<a name="l-157"></a><span class="tm">18:21:19</span><span class="nk"> &lt;lunks&gt;</span> hmm help? :P
+<a name="l-158"></a><span class="tm">18:21:19</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">ndeloof:</span> one more, one less :-)
+<a name="l-159"></a><span class="tm">18:21:22</span><span class="nk"> &lt;rtyler&gt;</span> but we cannot use our asian and european mirrors effectively until geolocation works properly
+<a name="l-160"></a><span class="tm">18:21:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">lunks:</span> /topic
+<a name="l-161"></a><span class="tm">18:21:36</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">lunks:</span> We'll help you after the meeting. Sorry
+<a name="l-162"></a><span class="tm">18:21:47</span><span class="nk"> &lt;lunks&gt;</span> oh, it's ok
+<a name="l-163"></a><span class="tm">18:21:57</span><span class="nk"> &lt;lunks&gt;</span> good luck you all. :)
+<a name="l-164"></a><span class="tm">18:22:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">We have free backup provided by Contegix.com, unfortunately I've got to get some more parts to the data center to get that going</span>
+<a name="l-165"></a><span class="tm">18:22:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to order and ship a new NIC to Contegix to get proper backups of cucumber setup</span>
+<a name="l-166"></a><span class="tm">18:22:25</span><span class="nk"> &lt;rtyler&gt;</span> in the meantime, I've been manually encrypting and sending backups offsite
+<a name="l-167"></a><span class="tm">18:22:31</span><span class="nk"> &lt;rtyler&gt;</span> eggplant has no backups right now though
+<a name="l-168"></a><span class="tm">18:22:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">that reminds me that "we love you Contegix/Rackspace/OSUOSL" post is badly needed</span>
+<a name="l-169"></a><span class="tm">18:22:47</span><span class="nk"> &lt;rtyler&gt;</span> but AFAIK JIRA/Confluence are in the OSUOSL's shared DB setup which *is* backed up
+<a name="l-170"></a><span class="tm">18:23:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Yes, the database and attachments in the file system are both backed up</span>
+<a name="l-171"></a><span class="tm">18:23:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Contegix has also graciously bumped our bandwidth allocated up to 1TB *free* for the month</span>
+<a name="l-172"></a><span class="tm">18:23:20</span><span class="nk"> &lt;rtyler&gt;</span> well, every month
+<a name="l-173"></a><span class="tm">18:23:34</span><span class="nk"> &lt;rtyler&gt;</span> but we won't have to worry about bandwidth on our Contegix machines any longer, since those guys are so damned awesome
+<a name="l-174"></a><span class="tm">18:24:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler still working on offsite backups for cucumber</span>
+<a name="l-175"></a><span class="tm">18:24:00</span><span class="nk"> &lt;aheritier&gt;</span> yes they are great. It's cool to work with them
+<a name="l-176"></a><span class="tm">18:24:09</span><span class="nk"> &lt;mwalling&gt;</span> contegix++
+<a name="l-177"></a><span class="tm">18:24:17</span><span class="nk"> &lt;jieryn&gt;</span> contegix++
+<a name="l-178"></a><span class="tm">18:24:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to send change-order for 1TB of free bandwidth per month to the Jenkins project</span>
+<a name="l-179"></a><span class="tm">18:24:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that's the infra updates from me, the floor is yours :)
+<a name="l-180"></a><span class="tm">18:24:36</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-181"></a><span class="tm">18:24:41</span><span class="nk"> &lt;jieryn&gt;</span> thx rt
+<a name="l-182"></a><span class="tm">18:24:49</span><span class="nk"> &lt;magnayn&gt;</span> should we give these infra guys some kudos on the www page ?
+<a name="l-183"></a><span class="tm">18:24:56</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, thanks for keeping the bits getting served
+<a name="l-184"></a><span class="tm">18:25:21</span><span class="nk"> &lt;kohsuke&gt;</span> I should have taken a picture of rtyler installing brackets to a machine rack
+<a name="l-185"></a><span class="tm">18:25:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">magnayn:</span> yeah, I need to post some thank-yous :)
+<a name="l-186"></a><span class="tm">18:25:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Discuss progress with SFC/SPI/ASF/EF regarding an umbrella organization</span>
+<a name="l-187"></a><span class="tm">18:25:42</span><span class="nk"> &lt;abayer&gt;</span> So, yeah, last week happened. =)
+<a name="l-188"></a><span class="tm">18:25:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> want to give a status report, then we discuss?
+<a name="l-189"></a><span class="tm">18:25:58</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah
+<a name="l-190"></a><span class="tm">18:26:16</span><span class="nk"> &lt;kohsuke&gt;</span> So time line wise...
+<a name="l-191"></a><span class="tm">18:26:26</span><span class="nk"> &lt;kohsuke&gt;</span> We were making a good progress with SPI application
+<a name="l-192"></a><span class="tm">18:26:36</span><span class="nk"> &lt;rtyler&gt;</span> that is to say
+<a name="l-193"></a><span class="tm">18:26:39</span><span class="nk"> &lt;kohsuke&gt;</span> There's a draft resolution to take us under SPI.
+<a name="l-194"></a><span class="tm">18:26:50</span><span class="nk"> &lt;mwalling&gt;</span> yay!
+<a name="l-195"></a><span class="tm">18:26:50</span><span class="nk"> &lt;kohsuke&gt;</span> ... and I believe the meeting date was set or soon to be set.
+<a name="l-196"></a><span class="tm">18:26:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">There is a resolution for the board meeting at SPI which should be happening today</span>
+<a name="l-197"></a><span class="tm">18:26:55</span><span class="nk"> &lt;rtyler&gt;</span> it's today
+<a name="l-198"></a><span class="tm">18:27:00</span><span class="nk"> &lt;kohsuke&gt;</span> oh, today, I missed that.
+<a name="l-199"></a><span class="tm">18:27:00</span><span class="nk"> &lt;rtyler&gt;</span> later i believe
+<a name="l-200"></a><span class="tm">18:27:03</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">kohsuke:</span> i heard from spi.. yeah, that
+<a name="l-201"></a><span class="tm">18:27:08</span><span class="nk"> &lt;abayer&gt;</span> The resolution is to invite us, I believe.
+<a name="l-202"></a><span class="tm">18:27:13</span><span class="nk"> &lt;kohsuke&gt;</span> Yes.
+<a name="l-203"></a><span class="tm">18:27:20</span><span class="nk"> &lt;kohsuke&gt;</span> And then the last week happened.
+<a name="l-204"></a><span class="tm">18:27:37</span><span class="nk"> &lt;kohsuke&gt;</span> Namely, Oracle is proposing to transfer the Hudson project to Eclipse,
+<a name="l-205"></a><span class="tm">18:27:47</span><span class="nk"> &lt;kohsuke&gt;</span> and naturally people are asking "what about Jenkins?"
+<a name="l-206"></a><span class="tm">18:27:52</span><span class="nk"> &lt;ndeloof&gt;</span> the dark side of the force ? http://4.bp.blogspot.com/-MiSH5L8mcQw/TcLdg1OiBdI/AAAAAAAAFdA/epYCJdU7ns0/s1600/eclipse.jpg (thx @aheritier for logo idea :P)
+<a name="l-207"></a><span class="tm">18:27:54</span><span class="nk"> &lt;abayer&gt;</span> In case you were sleeping under a rock, http://www.eclipse.org/proposals/technology.hudson/ and about fifty thousand news stories.
+<a name="l-208"></a><span class="tm">18:28:28</span><span class="nk"> &lt;kohsuke&gt;</span> So the ball is kind of in our court to figure out what to do next
+<a name="l-209"></a><span class="tm">18:28:59</span><span class="nk"> &lt;mwalling&gt;</span> <span class="cmd">#info </span><span class="cmdline">the spi meeting is at `date -d @1305145800` in #spi on irc.oftc.net</span>
+<a name="l-210"></a><span class="tm">18:29:05</span><span class="nk"> &lt;kohsuke&gt;</span> We've been talking to some folks on the Eclipse side to get some sense of what they think about this.
+<a name="l-211"></a><span class="tm">18:29:41</span><span class="nk"> &lt;jieryn&gt;</span> i have my doubts as to whether hudson will meet entrance criteria for eclipse
+<a name="l-212"></a><span class="tm">18:29:47</span><span class="nk"> &lt;abayer&gt;</span> I think it's worth figuring out what conditions would need to be met in order for a reconciliation to actually happen.
+<a name="l-213"></a><span class="tm">18:29:53</span><span class="nk"> &lt;abayer&gt;</span> Be it at Eclipse or elsewhere.
+<a name="l-214"></a><span class="tm">18:29:58</span><span class="nk"> &lt;magnayn&gt;</span> I have my doubts as to whether it can meet the legal requirements for eclipse
+<a name="l-215"></a><span class="tm">18:30:07</span><span class="nk"> &lt;jieryn&gt;</span> that is what i meant ;)
+<a name="l-216"></a><span class="tm">18:30:24</span><span class="nk"> &lt;abayer&gt;</span> If Sonatype, Oracle, and the other participants in the proposal really do want a reunion, it's worth seeing what exactly that would mean.
+<a name="l-217"></a><span class="tm">18:30:33</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">magnayn:</span> jieryn : they'll just have to spend few hours to rewrite a part of the code
+<a name="l-218"></a><span class="tm">18:30:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> in terms of them joining Jenkins, or us joining Hudson again?
+<a name="l-219"></a><span class="tm">18:30:48</span><span class="nk"> &lt;kohsuke&gt;</span> Just to set the expectation, one thing I've heard is that the Oracle Hudson team doesn't really care much about a merge, any more than before.
+<a name="l-220"></a><span class="tm">18:30:57</span><span class="nk"> &lt;mwalling&gt;</span> personal feeling, they dont actually want a reunion, they want to make the jenkins project look bad
+<a name="l-221"></a><span class="tm">18:31:00</span><span class="nk"> &lt;rtyler&gt;</span> I still maintain that Hudson is a tainted brand now
+<a name="l-222"></a><span class="tm">18:31:01</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> That there would be one of the conditions to figure out. =)
+<a name="l-223"></a><span class="tm">18:31:06</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">mwalling:</span> agree
+<a name="l-224"></a><span class="tm">18:31:18</span><span class="nk"> &lt;rtyler&gt;</span> well, forgetting about Hudson entirely
+<a name="l-225"></a><span class="tm">18:31:33</span><span class="nk"> &lt;magnayn&gt;</span> For Jenkins to merge with hudson = they (sonatype, mainly) got everything they wanted
+<a name="l-226"></a><span class="tm">18:31:37</span><span class="nk"> &lt;rtyler&gt;</span> who wants to work with abayer on putting together a list of things "we" need to go to Eclipse?
+<a name="l-227"></a><span class="tm">18:31:49</span><span class="nk"> &lt;jieryn&gt;</span> i'm not understanding why we'd want to
+<a name="l-228"></a><span class="tm">18:31:51</span><span class="nk"> &lt;rtyler&gt;</span> there's also ASF which there's a lot of love for
+<a name="l-229"></a><span class="tm">18:31:53</span><span class="nk"> &lt;magnayn&gt;</span> Not me - I'm 'dead body' -1 on EF
+<a name="l-230"></a><span class="tm">18:32:15</span><span class="nk"> &lt;rtyler&gt;</span> perhaps we should submit a formal proposal to the ASF while we're at it
+<a name="l-231"></a><span class="tm">18:32:20</span><span class="nk"> &lt;zx&gt;</span> technically you can modify the eclipse.org proposal anyway you want (e.g., change the name to Jenkins)
+<a name="l-232"></a><span class="tm">18:32:21</span><span class="nk"> &lt;abayer&gt;</span> magnayn, mwalling: even if they don't actually want it, I think it'd be a good idea/healthy to at least figure out what we'd need to make it work. Nothing wrong with investigation/understanding what our options are and what our needs are.
+<a name="l-233"></a><span class="tm">18:32:40</span><span class="nk"> &lt;kreyssel&gt;</span> +1 for ASF
+<a name="l-234"></a><span class="tm">18:32:50</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">abayer:</span> ecipse process is too hateful. IMO there's no way to make it sane.
+<a name="l-235"></a><span class="tm">18:33:00</span><span class="nk"> &lt;domi_&gt;</span> I think should realy make first step to reach out for a future togather - not always just talk abaout it (e.g. everyone is welcome to join...)
+<a name="l-236"></a><span class="tm">18:33:03</span><span class="nk"> &lt;rtyler&gt;</span> there is work on SFC and SPI right now
+<a name="l-237"></a><span class="tm">18:33:25</span><span class="nk"> &lt;abayer&gt;</span> I'm not necessarily saying anything about Eclipse specifically - I'm thinking more on a "wherever it ends up living" level.
+<a name="l-238"></a><span class="tm">18:33:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">domi_:</span> Oracle was offered an interim board seat when Jenkins started
+<a name="l-239"></a><span class="tm">18:33:26</span><span class="nk"> &lt;kohsuke&gt;</span> Right, I should also mention that SFC heard about the development last week, and they are a lot more keen on helping us.
+<a name="l-240"></a><span class="tm">18:33:50</span><span class="nk"> &lt;aheritier&gt;</span> For me Eclipse is good to build a product between companies and to be able to do business with it. But it is  a community killer. Myself as an opensource contributor I'm not interested in that
+<a name="l-241"></a><span class="tm">18:33:54</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">abayer:</span> hudson teams are committed to it being @ eclipse - we knew this from the start
+<a name="l-242"></a><span class="tm">18:34:01</span><span class="nk"> &lt;domi_&gt;</span> <span class="hi">rtyler:</span> nice
+<a name="l-243"></a><span class="tm">18:34:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> I've been hearing that a lot
+<a name="l-244"></a><span class="tm">18:34:08</span><span class="nk"> &lt;abayer&gt;</span> I think we owe our users to at least *try* to see if reconciliation is possible. If it's not, well, then that's that.
+<a name="l-245"></a><span class="tm">18:34:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">domi_:</span> they turned it down, so it's not clear that they want to work with us
+<a name="l-246"></a><span class="tm">18:34:31</span><span class="nk"> &lt;domi_&gt;</span> <span class="hi">rtyler:</span> I know, but the same was offered on the other site
+<a name="l-247"></a><span class="tm">18:34:31</span><span class="nk"> &lt;magnayn&gt;</span> quite. Why does reconciliation have to be on their terms?
+<a name="l-248"></a><span class="tm">18:34:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> how can we collaborate on a list of must haves and nice to haves
+<a name="l-249"></a><span class="tm">18:34:34</span><span class="nk"> &lt;abayer&gt;</span> But there's obviously a lot of interest out there in getting rid of the split.
+<a name="l-250"></a><span class="tm">18:34:36</span><span class="nk"> &lt;zx&gt;</span> aheritier, how is eclipse.org a community killer?
+<a name="l-251"></a><span class="tm">18:34:39</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">magnayn:</span> It doesn't, IMO.
+<a name="l-252"></a><span class="tm">18:34:44</span><span class="nk"> &lt;rtyler&gt;</span> besides an epic mail thread? :/
+<a name="l-253"></a><span class="tm">18:34:48</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> wiki?
+<a name="l-254"></a><span class="tm">18:34:55</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> And we'll lost a lot of time to talk instead of working on the project ...
+<a name="l-255"></a><span class="tm">18:34:58</span><span class="nk"> &lt;rtyler&gt;</span> that will probably work
+<a name="l-256"></a><span class="tm">18:35:03</span><span class="nk"> &lt;magnayn&gt;</span> So they're welcome to join at any time @ jenkins. We're not refusing patches from them, are we?
+<a name="l-257"></a><span class="tm">18:35:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to start a wiki page on "things needed" by an overarching org, whether it be Eclipse, ASF, etc</span>
+<a name="l-258"></a><span class="tm">18:35:27 </span><span class="nka">* phyto</span> <span class="ac">thinks if hudson goes EF, you shoudl go ASF</span>
+<a name="l-259"></a><span class="tm">18:35:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">magnayn:</span> no, we're not in the business of refusing patches :)
+<a name="l-260"></a><span class="tm">18:35:40</span><span class="nk"> &lt;phyto&gt;</span> only way to compete with the number of eyes on it
+<a name="l-261"></a><span class="tm">18:35:45</span><span class="nk"> &lt;rtyler&gt;</span> I've seen a LOT of pull requests merged this week :)
+<a name="l-262"></a><span class="tm">18:35:49</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">rtyler:</span> but EF is...
+<a name="l-263"></a><span class="tm">18:35:57</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">zx:</span> A lot of rules and processes to follow. This is product focused and not community focused. At least not OSS community. With a community of companies it works (they are paid to lost their time to fill papers)
+<a name="l-264"></a><span class="tm">18:35:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">magnayn:</span> yeah, I'm aware of their committer olicies
+<a name="l-265"></a><span class="tm">18:36:05</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">magnayn:</span> No, we aren't. But if there are things we could reasonably do that would make them more comfortable with rejoining Jenkins, I'd like to at least look into it.
+<a name="l-266"></a><span class="tm">18:36:22</span><span class="nk"> &lt;cybernd&gt;</span> from a user perspective: if sonatype is able to integrate a maven release cycle into hudson and eases the pain of javas main buildsystem, then jenkins is not an alternative for hudson (keep in mind that mylyn and m2eclipse are also part of eclipse adding value to the stack)
+<a name="l-267"></a><span class="tm">18:36:34</span><span class="nk"> &lt;kohsuke&gt;</span> I kind of agree that we owe it to our users to try to work it out, but the other part of me thinks that when there's this deep division, I'm not sure how the combined group of people can work productively. I think that's the biggest show-stopper, although it might not be a good enough PR.
+<a name="l-268"></a><span class="tm">18:36:38</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">abayer:</span> fair enough, but we never could find out what was driving the split in the first place...
+<a name="l-269"></a><span class="tm">18:37:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I agree to an extent
+<a name="l-270"></a><span class="tm">18:37:19</span><span class="nk"> &lt;abayer&gt;</span> Plus, it's been made pretty clear that at least some people involved in the Hudson proposal would like to see a reunion, so it seems like we should do something more than just saying "No" and walking away. =)
+<a name="l-271"></a><span class="tm">18:37:28</span><span class="nk"> &lt;rtyler&gt;</span> IMHO we should be most concerned with what makes those contributing to core and plugins happy first
+<a name="l-272"></a><span class="tm">18:37:41</span><span class="nk"> &lt;rtyler&gt;</span> the recipe for success with Hudson, and now Jenkins has been a flourishing developer ecosystem
+<a name="l-273"></a><span class="tm">18:37:46</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">kohsuke:</span> I don't see how we could have a project managed by at least 2 people like you and JVZ. You are the opposite
+<a name="l-274"></a><span class="tm">18:37:51</span><span class="nk"> &lt;rtyler&gt;</span> end-users tend to follow when that part is locked down
+<a name="l-275"></a><span class="tm">18:37:52</span><span class="nk"> &lt;domi_&gt;</span> <span class="hi">abayer:</span> that exaclty what I mean
+<a name="l-276"></a><span class="tm">18:37:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> Good point
+<a name="l-277"></a><span class="tm">18:37:54</span><span class="nk"> &lt;zx&gt;</span> aheritier, apache has similar rules... at eclipse.org each project is run the way they want as long as the Eclipse Development Process (EDP) is followed (this is coming from an eclipse committer)
+<a name="l-278"></a><span class="tm">18:38:05</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">abayer:</span> We're not saying no. But their terms are inevitably going to be, bottom line, @ eclipse, following eclipse policy
+<a name="l-279"></a><span class="tm">18:38:14</span><span class="nk"> &lt;magnayn&gt;</span> which is a showstopper, IMO
+<a name="l-280"></a><span class="tm">18:38:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> it'd be managed by Jason and Ted xD
+<a name="l-281"></a><span class="tm">18:38:22</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">zx:</span> I didn't say that I would like to see Jenkins at Apache :-)
+<a name="l-282"></a><span class="tm">18:38:59</span><span class="nk"> &lt;phyto&gt;</span> as i community developer that's contributed in the past to core and plugins i'd hate to submit that to hudson
+<a name="l-283"></a><span class="tm">18:38:59</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">magnayn:</span> I'm still working on getting a better understanding of eclipse policy and how flexible it is - I mean, I thought Apache policies weren't particularly flexible until Kohsuke and I had a chat with Doug Cutting and he explained just what you can do. Which was a lot more than I'd thought.
+<a name="l-284"></a><span class="tm">18:39:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">We are currently courting both the SFC and SPI</span>
+<a name="l-285"></a><span class="tm">18:39:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">aheritier:</span> but if we remain separate, I think going under Apache has a number of strong appeals.
+<a name="l-286"></a><span class="tm">18:39:22</span><span class="nk"> &lt;jieryn&gt;</span> and we have been for a long while
+<a name="l-287"></a><span class="tm">18:39:24</span><span class="nk"> &lt;phyto&gt;</span> after the way things shook out
+<a name="l-288"></a><span class="tm">18:39:25</span><span class="nk"> &lt;rtyler&gt;</span> I don't see any reason we can't submit an ASF proposal since there's obvious some desire for that to happen
+<a name="l-289"></a><span class="tm">18:39:25</span><span class="nk"> &lt;abayer&gt;</span> fwiw, it's pretty clear that the Hudson Eclipse proposal does not include non-core plugins, at the very least.
+<a name="l-290"></a><span class="tm">18:39:30</span><span class="nk"> &lt;jieryn&gt;</span> we are not following orcl here.. we have been leading
+<a name="l-291"></a><span class="tm">18:39:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jieryn:</span> their board meetings take for fscking ever :)
+<a name="l-292"></a><span class="tm">18:39:38</span><span class="nk"> &lt;zx&gt;</span> aheritier, well in my opinion Apache and Eclipse are two well run organizations with good governance and maturity... they have been through it all... from grievance issues (ever had a committer that was poisonous) to trademarks
+<a name="l-293"></a><span class="tm">18:39:51</span><span class="nk"> &lt;zx&gt;</span> rtyler, why do an ASF proposal? what would be different? the name?
+<a name="l-294"></a><span class="tm">18:40:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">zx:</span> ASF has a lot to offer in terms of community support, both in users and infrastructure
+<a name="l-295"></a><span class="tm">18:40:22</span><span class="nk"> &lt;d_a_carver&gt;</span> zx, Apache and Eclipse dev processes a bit different.  I'm committer in both.   Eclipse is a bit more formal.
+<a name="l-296"></a><span class="tm">18:40:26</span><span class="nk"> &lt;rtyler&gt;</span> ASF takes dogfooding pretty serious :)
+<a name="l-297"></a><span class="tm">18:40:31</span><span class="nk"> &lt;jieryn&gt;</span> there are really good pieces to the eclipse proposal though, in that .. removing the lgpl code into extension points with the existing lgpl as default impl
+<a name="l-298"></a><span class="tm">18:40:42</span><span class="nk"> &lt;rtyler&gt;</span> they're also a really great bunch of folks, I've been to ApacheCon a couple times, great community over there
+<a name="l-299"></a><span class="tm">18:40:43</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">jieryn:</span> Yeah, I'm a big fan of that.
+<a name="l-300"></a><span class="tm">18:40:45</span><span class="nk"> &lt;jieryn&gt;</span> e.g. graph
+<a name="l-301"></a><span class="tm">18:40:46</span><span class="nk"> &lt;kohsuke&gt;</span> One of the benefits is that it makes it easier for corporations to contribute.
+<a name="l-302"></a><span class="tm">18:40:57</span><span class="nk"> &lt;aheritier&gt;</span> IPs control process is many more important on eclipse side I thing (which is a good think for business, but annoying for the community contributors)
+<a name="l-303"></a><span class="tm">18:41:18</span><span class="nk"> &lt;zx&gt;</span> rtyler, eclipse's community relies heavily on build.eclipse.org (and older Hudson instance atm) and other things... the committers dogfood as much as we can
+<a name="l-304"></a><span class="tm">18:41:31</span><span class="nk"> &lt;aheritier&gt;</span> But I always like ASF (even if its not easy every day)
+<a name="l-305"></a><span class="tm">18:41:38</span><span class="nk"> &lt;d_a_carver&gt;</span> aheritier, correct that is the hurdle for eclipse is the IP process, but there is a Parallel IP process that can be invoked.
+<a name="l-306"></a><span class="tm">18:41:45</span><span class="nk"> &lt;abayer&gt;</span> Ok, so here's what I'd like to propose.
+<a name="l-307"></a><span class="tm">18:41:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">zx:</span> *nod*
+<a name="l-308"></a><span class="tm">18:42:09</span><span class="nk"> &lt;zx&gt;</span> aheritier, well... having good code provenance is a good thing... it protects you and sometimes forces you to minimize your deps (or say get rid of some LGPL deps) and is good thing if you want to maximize who uses you... from commercial to just normal folks
+<a name="l-309"></a><span class="tm">18:42:11</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">d_a_carver:</span> and I know that it killed few projects which didn't have enought resources to process it
+<a name="l-310"></a><span class="tm">18:42:29</span><span class="nk"> &lt;aheritier&gt;</span> zx:I agree
+<a name="l-311"></a><span class="tm">18:42:38</span><span class="nk"> &lt;abayer&gt;</span> 1) We, the Jenkins community, figure out what conditions would need to be met for a reconciliation with the Hudson people, regardless of foundation, etc. Just cultural/technical requirements that we'd need in order to actually work together effectively.
+<a name="l-312"></a><span class="tm">18:42:46</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">zx:</span> Not fun, but necessary and important
+<a name="l-313"></a><span class="tm">18:43:14</span><span class="nk"> &lt;abayer&gt;</span> 2) We research both Eclipse and ASF as options for submitting Jenkins to, building up a sense of plusses and minuses for both.
+<a name="l-314"></a><span class="tm">18:43:28</span><span class="nk"> &lt;d_a_carver&gt;</span> aheritier, actually in most cases for eclipse IP it comes down to one person being the lead on it.  But the sticky point comes when a dependency is rejected because of unclear IP.  Then an alternative has to be found.  That is what kills a lot of projects.
+<a name="l-315"></a><span class="tm">18:43:42</span><span class="nk"> &lt;abayer&gt;</span> I mean, we're in a pretty good position here - the two leading non-Stallman OSS foundations are both interested in giving us a home. =)
+<a name="l-316"></a><span class="tm">18:43:56</span><span class="nk"> &lt;zx&gt;</span> aheritier, tell me about it... been dealing with IP issues for a long time... at least it makes me sensitive to depending on third party stuff...
+<a name="l-317"></a><span class="tm">18:43:58</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> yes.
+<a name="l-318"></a><span class="tm">18:44:06</span><span class="nk"> &lt;d_a_carver&gt;</span> aheritier, an example, is Saxon support in the XSL Tools project at eclipse.  We can redistribute it because of some concerns of IP and permissions.
+<a name="l-319"></a><span class="tm">18:44:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">on everything abayer just said :P</span>
+<a name="l-320"></a><span class="tm">18:44:16</span><span class="nk"> &lt;d_a_carver&gt;</span> We can't.
+<a name="l-321"></a><span class="tm">18:44:28</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">zx:</span>  yes. Mmany people don't take care of that enough
+<a name="l-322"></a><span class="tm">18:44:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> are you throwing yourself under the bus on taking point on nay of those :)
+<a name="l-323"></a><span class="tm">18:44:42</span><span class="nk"> &lt;zx&gt;</span> aheritier, some good comes out of it though... recently ANTLR rewrote some of their code after eclipse.org found issues with it and now is clean :D
+<a name="l-324"></a><span class="tm">18:44:58</span><span class="nk"> &lt;kohsuke&gt;</span> I think the next question then is what are the conditions that we want?
+<a name="l-325"></a><span class="tm">18:45:05</span><span class="nk"> &lt;abayer&gt;</span> This is really two separate questions that need to be answered: can the Jenkins and Hudson projects fold back together? And given the choice, which of Eclipse and ASF feels like the right home for the project?
+<a name="l-326"></a><span class="tm">18:45:05</span><span class="nk"> &lt;billbillingsly&gt;</span> sorry to butt in. why does Jenkins need to join an umbrella foundation?
+<a name="l-327"></a><span class="tm">18:45:09</span><span class="nk"> &lt;zx&gt;</span> abayer, I would add a #3) what license do you guys want?
+<a name="l-328"></a><span class="tm">18:45:18</span><span class="nk"> &lt;magnayn&gt;</span> MIT
+<a name="l-329"></a><span class="tm">18:45:31</span><span class="nk"> &lt;abayer&gt;</span> zx - true, though I personally think anything in the MIT/ASL/CDL continuum works.
+<a name="l-330"></a><span class="tm">18:45:32</span><span class="nk"> &lt;zx&gt;</span> EPL? BSD? Apache? joining a foundation may limit your choice
+<a name="l-331"></a><span class="tm">18:45:41</span><span class="nk"> &lt;abayer&gt;</span> EDL, rather.
+<a name="l-332"></a><span class="tm">18:46:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I think a fast way to bring committers in is a must
+<a name="l-333"></a><span class="tm">18:46:17</span><span class="nk"> &lt;magnayn&gt;</span> Persoally, i think foundations are a retrograde step
+<a name="l-334"></a><span class="tm">18:46:23</span><span class="nk"> &lt;rtyler&gt;</span> I'm loathe to require any signatures or goddamn fax machines before a committer can contribute
+<a name="l-335"></a><span class="tm">18:46:41</span><span class="nk"> &lt;magnayn&gt;</span> I think the question as posed makes it a false dichotomy
+<a name="l-336"></a><span class="tm">18:46:49</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> :-) Welcome at ESF and ASF :-)
+<a name="l-337"></a><span class="tm">18:47:02</span><span class="nk"> &lt;jieryn&gt;</span> <span class="hi">requirements:</span> maintain release per week cycle, quick commits for pull requests
+<a name="l-338"></a><span class="tm">18:47:04</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">billbillingsly:</span> In part because we need a legal umbrella for funds, IP, etc, in part because we'd get a lot of infrastructure/logistical benefits, and in part because of the synergistic relationships you get between projects living in a foundation together.
+<a name="l-339"></a><span class="tm">18:47:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">magnayn:</span> you see other ways?
+<a name="l-340"></a><span class="tm">18:47:25</span><span class="nk"> &lt;magnayn&gt;</span> I'd rather carry on as we are, accept contributions from wherever wants to contribute, and parhaps get an umberalla a-la SFLC to sort out legal stuff
+<a name="l-341"></a><span class="tm">18:47:41</span><span class="nk"> &lt;abayer&gt;</span> I should also say that I *strongly* don't think non-core plugins should get automatically pulled along with core to any foundation.
+<a name="l-342"></a><span class="tm">18:48:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">magnayn:</span> my primary concern in doing that is that it might drive corporate interests to the other side.
+<a name="l-343"></a><span class="tm">18:48:39</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> it will be less easy to manage if we have things on various locations
+<a name="l-344"></a><span class="tm">18:48:44</span><span class="nk"> &lt;d_a_carver&gt;</span> magnayn, right, but you then have to manage a lot of IP related concerns yourself.
+<a name="l-345"></a><span class="tm">18:48:48</span><span class="nk"> &lt;domi_&gt;</span> I this realy an honest discussion about rejoining in any way with hudson or is it just a discusion because you feel it has to be held to be kind - I hoppe you are realy considering this to be a possibility
+<a name="l-346"></a><span class="tm">18:48:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">magnayn:</span> I kind of like that approach too
+<a name="l-347"></a><span class="tm">18:48:55</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">magnayn:</span> Assuming that we can't reconcile with Hudson (which, sadly, is probably the case), then flying solo will mean Hudson will get more focus from companies wanting to contribute, etc. Which would suck.
+<a name="l-348"></a><span class="tm">18:49:04</span><span class="nk"> &lt;magnayn&gt;</span> I have *no* IP concerns whatsoever
+<a name="l-349"></a><span class="tm">18:49:21</span><span class="nk"> &lt;magnayn&gt;</span> IMO, this IP nonsense is total FUD
+<a name="l-350"></a><span class="tm">18:49:24</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">domi_:</span> I want it to happen, if it can work. But I'm not going to advocate for breaking what we've got just for the sake of reconciliation.
+<a name="l-351"></a><span class="tm">18:49:27</span><span class="nk"> &lt;d_a_carver&gt;</span> magnayn, yeah, but many out there do.  Unfortunately that is the litigation world we live in.
+<a name="l-352"></a><span class="tm">18:50:10</span><span class="nk"> &lt;d_a_carver&gt;</span> abayer, personally, I think both projects can survive on their own.
+<a name="l-353"></a><span class="tm">18:50:27</span><span class="nk"> &lt;aheritier&gt;</span> IP is a problem only for thus doing business with the product. In the community we have cloudbees but otherwise a lot of us are only users ..
+<a name="l-354"></a><span class="tm">18:50:27</span><span class="nk"> &lt;magnayn&gt;</span> Hudson *may* get corporate attention, but my guess is Jenkins will get far, far more _developer_ attention
+<a name="l-355"></a><span class="tm">18:50:48 </span><span class="nka">* rtyler</span> <span class="ac">agrees</span>
+<a name="l-356"></a><span class="tm">18:51:02</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">aheritier:</span> Yeah, that would be a challenge to deal with, but the alternative is forcing three hundred odd plugins into ASF/EF and putting a higher bar on our barrier to entry for new plugin devs than I think is the right way to go. *shrug*
+<a name="l-357"></a><span class="tm">18:51:05</span><span class="nk"> &lt;rtyler&gt;</span> we're also talking about something that's not happened
+<a name="l-358"></a><span class="tm">18:51:07</span><span class="nk"> &lt;magnayn&gt;</span> Furthermore, my guess is even @ eclipse, hudson will have to be dual-MIT licensed
+<a name="l-359"></a><span class="tm">18:51:13</span><span class="nk"> &lt;domi_&gt;</span> from what I see at my daily work, the one having better maven support will win at the end
+<a name="l-360"></a><span class="tm">18:51:16</span><span class="nk"> &lt;magnayn&gt;</span> so we can cherry-pick changes there anyway
+<a name="l-361"></a><span class="tm">18:51:17</span><span class="nk"> &lt;rtyler&gt;</span> Hudson under Sun had even more issues
+<a name="l-362"></a><span class="tm">18:51:17</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">magnayn:</span> but managers have the last word and Oracle we'll give them a little present to choose the good one :-)
+<a name="l-363"></a><span class="tm">18:51:20</span><span class="nk"> &lt;zx&gt;</span> I think both corporate and developers (who extend Hudson) crave stability and good releases
+<a name="l-364"></a><span class="tm">18:51:21</span><span class="nk"> &lt;kreyssel&gt;</span> i think rejoining is possible, but who drive the things - i really heard this some times ago ;-)
+<a name="l-365"></a><span class="tm">18:51:28</span><span class="nk"> &lt;zx&gt;</span> you have never dealt with commercial companies from government to private sector if you think IP is FUD... yes IP sucks but it's a reality, I'm sorry
+<a name="l-366"></a><span class="tm">18:51:34</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> I totally agree
+<a name="l-367"></a><span class="tm">18:51:37</span><span class="nk"> &lt;jieryn&gt;</span> one of the things that came up on the ML was about these silent companies wanting to commit but haven't been doing so ---- by saying want to reconcile, we're now admitting that there are many of these groups? most people in this room MOCKED Ted about this point..
+<a name="l-368"></a><span class="tm">18:51:49</span><span class="nk"> &lt;abayer&gt;</span> Turns out there was, well, one. =)
+<a name="l-369"></a><span class="tm">18:51:53</span><span class="nk"> &lt;zx&gt;</span> magnayn, things at eclipse.org can be either EPL, EPL/EDL (BSD) or just EDL (BSD)
+<a name="l-370"></a><span class="tm">18:51:58</span><span class="nk"> &lt;jieryn&gt;</span> to now say that we want to engage companies would be a 180 turn
+<a name="l-371"></a><span class="tm">18:52:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jieryn:</span> we mocked him for plenty of things :)
+<a name="l-372"></a><span class="tm">18:52:11</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">zx:</span> So how is relicensing from MIT going to occur ?
+<a name="l-373"></a><span class="tm">18:52:20</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">domi_:</span> Not sure. The most important thing is the important set of plugins and thus all evolutions you can do
+<a name="l-374"></a><span class="tm">18:52:25</span><span class="nk"> &lt;d_a_carver&gt;</span> jieryn, which isn't necessarily a bad thing.
+<a name="l-375"></a><span class="tm">18:52:26</span><span class="nk"> &lt;jieryn&gt;</span> ok, but to now say that we need to work with these silent companies is admitting one of orcl's main points, one which we mocked and renamed over
+<a name="l-376"></a><span class="tm">18:52:27</span><span class="nk"> &lt;rtyler&gt;</span> I think jieryn makes a good point
+<a name="l-377"></a><span class="tm">18:52:27</span><span class="nk"> &lt;abayer&gt;</span> It's not that I want to engage companies - it's that I don't want to scare companies into Hudson's arms with no real benefit accruing to us by doing so.
+<a name="l-378"></a><span class="tm">18:52:29</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">zx:</span> e.g: I wrote the (Start of) the git plugin. It's not EPL.
+<a name="l-379"></a><span class="tm">18:52:38</span><span class="nk"> &lt;rcjsuen&gt;</span> <span class="hi">zx:</span> Actually, isn't one of the projects EPL/ALv2 (Jetty or EclipseLink)?
+<a name="l-380"></a><span class="tm">18:52:38</span><span class="nk"> &lt;rtyler&gt;</span> we should be optimizing for the community we've been building, not for imaginary companies
+<a name="l-381"></a><span class="tm">18:52:48</span><span class="nk"> &lt;kreyssel&gt;</span> i think IP is one part of things, but also technical directions should be part of discussion on rejoining
+<a name="l-382"></a><span class="tm">18:52:49</span><span class="nk"> &lt;rtyler&gt;</span> I honestly don't care if VMware pours millions of dollars into Hudson
+<a name="l-383"></a><span class="tm">18:52:52</span><span class="nk"> &lt;mwalling&gt;</span> rtyler++
+<a name="l-384"></a><span class="tm">18:52:58</span><span class="nk"> &lt;zx&gt;</span> rcjsuen, yes, you're right
+<a name="l-385"></a><span class="tm">18:52:59</span><span class="nk"> &lt;rtyler&gt;</span> I don't want to be in the same room with some of those Oracle guys
+<a name="l-386"></a><span class="tm">18:53:06</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">rtyler:</span> quite
+<a name="l-387"></a><span class="tm">18:53:06</span><span class="nk"> &lt;rtyler&gt;</span> so I wouldn't use it anyways
+<a name="l-388"></a><span class="tm">18:53:09</span><span class="nk"> &lt;phyto&gt;</span> +1 rtyler
+<a name="l-389"></a><span class="tm">18:53:19</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> I'm not saying this should be the sole or even a major concern, but it's not worth dismissing entirely.
+<a name="l-390"></a><span class="tm">18:53:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> +1
+<a name="l-391"></a><span class="tm">18:53:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> isn't it?
+<a name="l-392"></a><span class="tm">18:53:35</span><span class="nk"> &lt;zx&gt;</span> in the end, if it's Apache or Eclipse... project leads make the decisions... so ensure that you have the correct project leads
+<a name="l-393"></a><span class="tm">18:53:42</span><span class="nk"> &lt;rtyler&gt;</span> kohsuke is the only one here working on Jenkins for a company AFAIK :P
+<a name="l-394"></a><span class="tm">18:53:52</span><span class="nk"> &lt;kohsuke&gt;</span> True
+<a name="l-395"></a><span class="tm">18:54:21</span><span class="nk"> &lt;magnayn&gt;</span> If I were in that position, I'd just follow the indemnity insurance route.
+<a name="l-396"></a><span class="tm">18:55:17</span><span class="nk"> &lt;phyto&gt;</span> one of the things i love about jenkins is kohsuke is so eager to put the code and reigns in the hands of the developers
+<a name="l-397"></a><span class="tm">18:55:29</span><span class="nk"> &lt;phyto&gt;</span> i'd hate to see that go beit by a merger and/or a foundation
+<a name="l-398"></a><span class="tm">18:55:32</span><span class="nk"> &lt;abayer&gt;</span> That is the absolute key to Jenkins working.
+<a name="l-399"></a><span class="tm">18:55:36</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm, I'm hearing quite a few voices to maintain the current course.
+<a name="l-400"></a><span class="tm">18:55:37</span><span class="nk"> &lt;rtyler&gt;</span> well, I think the way to move this discussion community
+<a name="l-401"></a><span class="tm">18:55:40</span><span class="nk"> &lt;magnayn&gt;</span> yup
+<a name="l-402"></a><span class="tm">18:55:41</span><span class="nk"> &lt;rtyler&gt;</span> er
+<a name="l-403"></a><span class="tm">18:55:44</span><span class="nk"> &lt;rtyler&gt;</span> move this discussion forward
+<a name="l-404"></a><span class="tm">18:56:05</span><span class="nk"> &lt;rtyler&gt;</span> is to figure out what we need, as abayer said, see if ASF/ESF can meet us there, or SFC/SPI can, and then reevaluate
+<a name="l-405"></a><span class="tm">18:56:22</span><span class="nk"> &lt;rtyler&gt;</span> this is good that we're enumerating what we feel we need as a community though
+<a name="l-406"></a><span class="tm">18:56:32</span><span class="nk"> &lt;aheritier&gt;</span> perhaps a wiki page with pros and cons of each choice ?
+<a name="l-407"></a><span class="tm">18:56:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> that's what abayer said like, 20 minutes ago :P
+<a name="l-408"></a><span class="tm">18:56:43</span><span class="nk"> &lt;abayer&gt;</span> I'll create a wiki page - please comment on it as well as update it.
+<a name="l-409"></a><span class="tm">18:56:44</span><span class="nk"> &lt;magnayn&gt;</span> Can we find out about the MIT license and changing ?
+<a name="l-410"></a><span class="tm">18:56:59</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> oups, I missed it
+<a name="l-411"></a><span class="tm">18:57:01</span><span class="nk"> &lt;kohsuke&gt;</span> Such a Wiki page for ASF was long over due. AI for abayer and me
+<a name="l-412"></a><span class="tm">18:57:02</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">E.g:</span> If ASF is blocked because MIT relicensing issue, but turns out can be relicensed, ASF is an option
+<a name="l-413"></a><span class="tm">18:57:05</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">magnayn:</span> fwiw, if we were to go to ASF, the existing code would still be MIT licensed, and new code would be ASL'd.
+<a name="l-414"></a><span class="tm">18:57:18</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">abayer:</span> ok, cool.
+<a name="l-415"></a><span class="tm">18:57:21</span><span class="nk"> &lt;billbillingsly&gt;</span> is there a list of specific concrete needs we're trying to meet?
+<a name="l-416"></a><span class="tm">18:57:32</span><span class="nk"> &lt;abayer&gt;</span> i.e., the existing code doesn't have to be relicensed, since MIT is compatible with ASL.
+<a name="l-417"></a><span class="tm">18:57:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">billbillingsly:</span> I've been wanting more feather t-shirts
+<a name="l-418"></a><span class="tm">18:57:35</span><span class="nk"> &lt;billbillingsly&gt;</span> aside from potential ip concerns?
+<a name="l-419"></a><span class="tm">18:57:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">magnayn:</span> abayer: and plugins would be kept close but separate from ASF, right? So they can continue to be in MIT.
+<a name="l-420"></a><span class="tm">18:58:02</span><span class="nk"> &lt;larrys&gt;</span> there is apache extras where the plugins can live
+<a name="l-421"></a><span class="tm">18:58:07</span><span class="nk"> &lt;billbillingsly&gt;</span> ill buy u some if u can ensure a Kohsuke dictatorship
+<a name="l-422"></a><span class="tm">18:58:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">billbillingsly:</span> additional support to take some of the busywork off core team members so they can focus on building Jenkins is important to me
+<a name="l-423"></a><span class="tm">18:58:13</span><span class="nk"> &lt;d_a_carver&gt;</span> I guess the general thing for everybody to decide, does the jenkins project/committers views line up with the guidelines for an ASF project. http://www.apache.org/foundation/how-it-works.html
+<a name="l-424"></a><span class="tm">18:58:16</span><span class="nk"> &lt;zx&gt;</span> at Eclipse you can do EDL only (BSD) or dual license... and how you want to license the core versus the plug-ins are two different things
+<a name="l-425"></a><span class="tm">18:58:17</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">kohsuke:</span> I was thinking more eclipse - I can't for the life of me see how they can just relicense to EPL
+<a name="l-426"></a><span class="tm">18:58:18</span><span class="nk"> &lt;ndeloof&gt;</span> ASF has apache extra (google code) for this
+<a name="l-427"></a><span class="tm">18:58:23</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">kohsuke:</span> magnayn abayer yes they could continue to be at github
+<a name="l-428"></a><span class="tm">18:58:34</span><span class="nk"> &lt;abayer&gt;</span> IP concerns, infrastructure/logistics, more dogfooding, more confidence for users (especially corporate users) in the stability/IP etc/of the project, etc.
+<a name="l-429"></a><span class="tm">18:59:00</span><span class="nk"> &lt;d_a_carver&gt;</span> magnayn, lawyers will go through all that, if there are sticky points, the eclipse ip lawyers are very good about finding them.
+<a name="l-430"></a><span class="tm">18:59:09</span><span class="nk"> &lt;zx&gt;</span> ndeloof, eclipse also has EclipseLabs: http://code.google.com/a/eclipselabs.org/hosting/ but I would prefer plug-ins to be in GitHub or in Git... SVN can go !@#$ itself
+<a name="l-431"></a><span class="tm">18:59:19</span><span class="nk"> &lt;phyto&gt;</span> <span class="hi">abayer:</span> i hear you on that, but if there is an educated buildguy making the decision, he will go with jenkins regardless of a foundation
+<a name="l-432"></a><span class="tm">18:59:28</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">d_a_carver:</span> it's hardly a sticky point. My code is MIT. I'm not willing to license it as EPL. Now what ?
+<a name="l-433"></a><span class="tm">18:59:29</span><span class="nk"> &lt;phyto&gt;</span> that's what happened at my company
+<a name="l-434"></a><span class="tm">18:59:36</span><span class="nk"> &lt;kreyssel&gt;</span> but the "main" plugins should be on ASF
+<a name="l-435"></a><span class="tm">18:59:38</span><span class="nk"> &lt;abayer&gt;</span> Yeah. Logistics for plug-ins would be tough regardless of EF or ASF, but I've got ideas on that front.
+<a name="l-436"></a><span class="tm">18:59:39</span><span class="nk"> &lt;ndeloof&gt;</span> <span class="hi">zx:</span> agree :)
+<a name="l-437"></a><span class="tm">18:59:57</span><span class="nk"> &lt;d_a_carver&gt;</span> magnayn, then it can't be in the eclispe repositories, but it could be used as a third party dependency.
+<a name="l-438"></a><span class="tm">19:00:01</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">phyto:</span> Yeah, but sadly, a lot of people may not be able to make the decisions themselves, etc.
+<a name="l-439"></a><span class="tm">19:00:09</span><span class="nk"> &lt;zx&gt;</span> ndeloof, that's my big problem with Apache, their ass needs to get on Git stat... !@$ SVN but we are diverging a bit here
+<a name="l-440"></a><span class="tm">19:00:09</span><span class="nk"> &lt;d_a_carver&gt;</span> magnayn, that is what eclipse has Orbit for.
+<a name="l-441"></a><span class="tm">19:00:09</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, I want to keep JenkinsCI org in GitHub. It's kind of going nicely for us.
+<a name="l-442"></a><span class="tm">19:00:16 </span><span class="nka">* btrim</span> <span class="ac">wouldn't have bothered submitting anything at all, plugin or core without github</span>
+<a name="l-443"></a><span class="tm">19:00:26</span><span class="nk"> &lt;magnayn&gt;</span> Isn't that an admission that hudson @ eclipse is dead in the water without Kohsuke's consent ?
+<a name="l-444"></a><span class="tm">19:00:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">magnayn:</span> it depends on how many outsourced engineers Oracle is willing to hire :P
+<a name="l-445"></a><span class="tm">19:00:48</span><span class="nk"> &lt;phyto&gt;</span> <span class="hi">abayer:</span> fair point, i'm just wondering if it's not such a bad thing that the same people that would have chosen bamboo or some other POS would go with Hudson
+<a name="l-446"></a><span class="tm">19:00:51</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">kohsuke:</span> as far as you push the code on SVN@Apache ...
+<a name="l-447"></a><span class="tm">19:00:52</span><span class="nk"> &lt;d_a_carver&gt;</span> magnayn, again, depends on what code you are talking about, even kohsuke has said as much.,
+<a name="l-448"></a><span class="tm">19:01:34</span><span class="nk"> &lt;magnayn&gt;</span> the core code that is (C) KK (I.E: NOT (c) Sun or ORCL) and MIT. There's &gt; 6 months of that
+<a name="l-449"></a><span class="tm">19:01:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">our european users, I appreciate you taking time out of your evenings to join in the discussion</span>
+<a name="l-450"></a><span class="tm">19:01:40</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-451"></a><span class="tm">19:02:01</span><span class="nk"> &lt;domi_&gt;</span> noting on TV :)
+<a name="l-452"></a><span class="tm">19:02:22</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> +1 with domi_ :-)
+<a name="l-453"></a><span class="tm">19:02:26</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-454"></a><span class="tm">19:02:33</span><span class="nk"> &lt;kohsuke&gt;</span> We need to start closing up --- what are conclusions/next steps/AI here.
+<a name="l-455"></a><span class="tm">19:02:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#save</span><span class="cmdline"></span>
+<a name="l-456"></a><span class="tm">19:03:05</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to start a wiki entry for coming up with the requirements we'd have to work with the Hudson guys again.</span>
+<a name="l-457"></a><span class="tm">19:03:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">mwalling:</span> will you be in the SPI meeting?
+<a name="l-458"></a><span class="tm">19:03:36</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to start wiki entries on the plusses/minuses of the potential foundations.</span>
+<a name="l-459"></a><span class="tm">19:04:08</span><span class="nk"> &lt;phyto&gt;</span> thanks guys for hearing the views of the underlings ;)
+<a name="l-460"></a><span class="tm">19:04:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">phyto:</span> no such thing :)
+<a name="l-461"></a><span class="tm">19:04:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">phyto:</span> stick around, we're here all day :)
+<a name="l-462"></a><span class="tm">19:04:37</span><span class="nk"> &lt;phyto&gt;</span> i pop in from time to time
+<a name="l-463"></a><span class="tm">19:04:38</span><span class="nk"> &lt;rtyler&gt;</span> any other AIs before we wrap this up?
+<a name="l-464"></a><span class="tm">19:04:47</span><span class="nk"> &lt;phyto&gt;</span> oh rtyler heh, ok got it
+<a name="l-465"></a><span class="tm">19:04:54</span><span class="nk"> &lt;hare_brain_&gt;</span> There were like three or four conversation threads going on at the same time. Can we clean up the archive before posting it?
+<a name="l-466"></a><span class="tm">19:04:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Eclipse proposal review is 30 days(?), so we need to work on this quickly</span>
+<a name="l-467"></a><span class="tm">19:04:59</span><span class="nk"> &lt;abayer&gt;</span> I moved the git one to the dev list.
+<a name="l-468"></a><span class="tm">19:05:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain_:</span> the archive is has raw logs
+<a name="l-469"></a><span class="tm">19:05:12</span><span class="nk"> &lt;rtyler&gt;</span> http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-05-11-18.01.html
+<a name="l-470"></a><span class="tm">19:05:48</span><span class="nk"> &lt;hare_brain_&gt;</span> I'll ask it a different way. If I took the time to detangle the threads, will you post them?
+<a name="l-471"></a><span class="tm">19:05:56</span><span class="nk"> &lt;rtyler&gt;</span> haha, sure
+<a name="l-472"></a><span class="tm">19:05:58</span><span class="nk"> &lt;abayer&gt;</span> +1 to that!
+<a name="l-473"></a><span class="tm">19:06:21</span><span class="nk"> &lt;rtyler&gt;</span> can I close it out?
+<a name="l-474"></a><span class="tm">19:06:26</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">rtyler:</span> i am in the channel now
+<a name="l-475"></a><span class="tm">19:06:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> before that...
+<a name="l-476"></a><span class="tm">19:06:32</span><span class="nk"> &lt;rtyler&gt;</span> actually
+<a name="l-477"></a><span class="tm">19:06:34</span><span class="nk"> &lt;rtyler&gt;</span> one more thing
+<a name="l-478"></a><span class="tm">19:06:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-479"></a><span class="tm">19:06:37</span><span class="nk"> &lt;rtyler&gt;</span> exactly
+<a name="l-480"></a><span class="tm">19:07:10</span><span class="nk"> &lt;kohsuke&gt;</span> The natural date would be two weeks from now. Jun 1st.
+<a name="l-481"></a><span class="tm">19:07:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that will be a few days before the 30 days is up
+<a name="l-482"></a><span class="tm">19:07:21</span><span class="nk"> &lt;rtyler&gt;</span> soon enough?
+<a name="l-483"></a><span class="tm">19:07:26</span><span class="nk"> &lt;abayer&gt;</span> fyi, I don't think I'll be able to make it then.
+<a name="l-484"></a><span class="tm">19:07:30</span><span class="nk"> &lt;abayer&gt;</span> On an airplane.
+<a name="l-485"></a><span class="tm">19:07:34</span><span class="nk"> &lt;kohsuke&gt;</span> Wait, sorry, it is 25th
+<a name="l-486"></a><span class="tm">19:07:36</span><span class="nk"> &lt;abayer&gt;</span> Oh, wait.
+<a name="l-487"></a><span class="tm">19:07:56</span><span class="nk"> &lt;abayer&gt;</span> Ok, I'm on an airplane then too. =) But with internet. Lemme make sure of the time...
+<a name="l-488"></a><span class="tm">19:08:05</span><span class="nk"> &lt;Lmtd_Atonement&gt;</span> larrys:
+<a name="l-489"></a><span class="tm">19:08:08</span><span class="nk"> &lt;kohsuke&gt;</span> I'll be traveling on that day
+<a name="l-490"></a><span class="tm">19:08:14</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">kohsuke:</span> you won't be in a plane going to france ?
+<a name="l-491"></a><span class="tm">19:08:14</span><span class="nk"> &lt;Lmtd_Atonement&gt;</span> I tried to send a message to the list, but I don't have permission.
+<a name="l-492"></a><span class="tm">19:08:18</span><span class="nk"> &lt;aheritier&gt;</span> :-)
+<a name="l-493"></a><span class="tm">19:08:30</span><span class="nk"> &lt;larrys&gt;</span> <span class="hi">Lmtd_Atonement:</span> subscribe to the list
+<a name="l-494"></a><span class="tm">19:08:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> let's pick a day you're not traveling and jetlagged
+<a name="l-495"></a><span class="tm">19:08:42</span><span class="nk"> &lt;abayer&gt;</span> I'd vote for Tuesday of that week, if possible.
+<a name="l-496"></a><span class="tm">19:08:58</span><span class="nk"> &lt;hare_brain_&gt;</span> 24th?
+<a name="l-497"></a><span class="tm">19:09:03</span><span class="nk"> &lt;abayer&gt;</span> I'm flying on the 25th, and then offline until the next week.
+<a name="l-498"></a><span class="tm">19:09:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> are you onilne for the 24th?
+<a name="l-499"></a><span class="tm">19:09:13</span><span class="nk"> &lt;Lmtd_Atonement&gt;</span> <span class="hi">larrys:</span> No thanks.
+<a name="l-500"></a><span class="tm">19:09:13</span><span class="nk"> &lt;kohsuke&gt;</span> For me that'd be 25th 3am in Tokyo.
+<a name="l-501"></a><span class="tm">19:09:18</span><span class="nk"> &lt;Lmtd_Atonement&gt;</span> <span class="hi">larrys:</span> Perhaps you can submit for me
+<a name="l-502"></a><span class="tm">19:09:20</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-503"></a><span class="tm">19:09:20</span><span class="nk"> &lt;Lmtd_Atonement&gt;</span> <span class="hi">larrys:</span> http://pastie.org/1890153
+<a name="l-504"></a><span class="tm">19:09:31</span><span class="nk"> &lt;kohsuke&gt;</span> Can we move it up a bit?
+<a name="l-505"></a><span class="tm">19:09:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">larrys:</span> can you guys hold this conversation for a couple minutes?
+<a name="l-506"></a><span class="tm">19:09:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> 20th?
+<a name="l-507"></a><span class="tm">19:09:43</span><span class="nk"> &lt;kohsuke&gt;</span> Say 3 hours earlier?
+<a name="l-508"></a><span class="tm">19:09:49</span><span class="nk"> &lt;rtyler&gt;</span> ah
+<a name="l-509"></a><span class="tm">19:09:52</span><span class="nk"> &lt;kohsuke&gt;</span> 20th I'm still in Tokyo
+<a name="l-510"></a><span class="tm">19:10:11</span><span class="nk"> &lt;rtyler&gt;</span> hm
+<a name="l-511"></a><span class="tm">19:10:16</span><span class="nk"> &lt;rtyler&gt;</span> stop traveling everybody
+<a name="l-512"></a><span class="tm">19:10:18</span><span class="nk"> &lt;rtyler&gt;</span> sit still
+<a name="l-513"></a><span class="tm">19:10:22</span><span class="nk"> &lt;aheritier&gt;</span> :-)
+<a name="l-514"></a><span class="tm">19:10:42</span><span class="nk"> &lt;kohsuke&gt;</span> If we can do it 8am PDT / 11am EDT, 5pm CET, midnight Tokyo...
+<a name="l-515"></a><span class="tm">19:10:44</span><span class="nk"> &lt;rtyler&gt;</span> it'll be tough, but I think I can make an 8am IRC meeting
+<a name="l-516"></a><span class="tm">19:10:47 </span><span class="nka">* rtyler</span> <span class="ac">vomits</span>
+<a name="l-517"></a><span class="tm">19:10:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain_:</span> how about you?
+<a name="l-518"></a><span class="tm">19:11:02</span><span class="nk"> &lt;abayer&gt;</span> Which day?
+<a name="l-519"></a><span class="tm">19:11:03</span><span class="nk"> &lt;hare_brain_&gt;</span> 8am PT? That's hard for me. Usually in the middle of getting the kids out the door right then.
+<a name="l-520"></a><span class="tm">19:11:08</span><span class="nk"> &lt;rtyler&gt;</span> 24th
+<a name="l-521"></a><span class="tm">19:11:18</span><span class="nk"> &lt;abayer&gt;</span> Ah, 'k, I'm flexible on the 24th.
+<a name="l-522"></a><span class="tm">19:11:35</span><span class="nk"> &lt;kohsuke&gt;</span> 9am PDT / noon EDT / 6pm CET / 1am Tokyo?
+<a name="l-523"></a><span class="tm">19:11:49</span><span class="nk"> &lt;rtyler&gt;</span> will you be able to be awake? :)
+<a name="l-524"></a><span class="tm">19:11:53</span><span class="nk"> &lt;kohsuke&gt;</span> It seems like it'd maximize the total happiness if I suffer.
+<a name="l-525"></a><span class="tm">19:12:01</span><span class="nk"> &lt;hare_brain_&gt;</span> Skip one?
+<a name="l-526"></a><span class="tm">19:12:20</span><span class="nk"> &lt;hare_brain_&gt;</span> Seems like coordinating a time that week is hard.
+<a name="l-527"></a><span class="tm">19:12:29</span><span class="nk"> &lt;abayer&gt;</span> Kind of an important week, though.
+<a name="l-528"></a><span class="tm">19:12:57</span><span class="nk"> &lt;hare_brain_&gt;</span> 23rd @ 9:30 PT?
+<a name="l-529"></a><span class="tm">19:13:08</span><span class="nk"> &lt;hare_brain_&gt;</span> 9:30am
+<a name="l-530"></a><span class="tm">19:13:17</span><span class="nk"> &lt;rtyler&gt;</span> I find that also workable :)
+<a name="l-531"></a><span class="tm">19:13:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> how about you?
+<a name="l-532"></a><span class="tm">19:13:43</span><span class="nk"> &lt;kohsuke&gt;</span> 24th is a lot better for me, as next day I can be wasted on airplane.
+<a name="l-533"></a><span class="tm">19:13:54</span><span class="nk"> &lt;rtyler&gt;</span> in that case, I'm okay with kohsuke suffering :)
+<a name="l-534"></a><span class="tm">19:13:55</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> with which one ?
+<a name="l-535"></a><span class="tm">19:13:57</span><span class="nk"> &lt;kohsuke&gt;</span> If it's 23rd, I need to deliver a talk next morning.
+<a name="l-536"></a><span class="tm">19:14:25</span><span class="nk"> &lt;hare_brain_&gt;</span> My morning on the 24th is pretty full. I could do @ 11, but not earlier.
+<a name="l-537"></a><span class="tm">19:14:39</span><span class="nk"> &lt;rtyler&gt;</span> hm
+<a name="l-538"></a><span class="tm">19:15:18</span><span class="nk"> &lt;hare_brain_&gt;</span> Honestly, it's more important to find a time that works for kohsuke and abayer.
+<a name="l-539"></a><span class="tm">19:15:28</span><span class="nk"> &lt;aheritier&gt;</span> +1
+<a name="l-540"></a><span class="tm">19:15:46</span><span class="nk"> &lt;hare_brain_&gt;</span> I can always sync up with you guys out of band
+<a name="l-541"></a><span class="tm">19:16:11</span><span class="nk"> &lt;abayer&gt;</span> I can do whenever on the 24th.
+<a name="l-542"></a><span class="tm">19:16:28</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so 8am PDT / 11am EDT, 5pm CET, midnight Tokyo on 24th?
+<a name="l-543"></a><span class="tm">19:16:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next meeting May 24th at 9am PST 16:00 UTC</span>
+<a name="l-544"></a><span class="tm">19:16:35</span><span class="nk"> &lt;rtyler&gt;</span> er, 8am
+<a name="l-545"></a><span class="tm">19:16:36</span><span class="nk"> &lt;rtyler&gt;</span> whoops
+<a name="l-546"></a><span class="tm">19:16:37</span><span class="nk"> &lt;kohsuke&gt;</span> No, that's right
+<a name="l-547"></a><span class="tm">19:16:40</span><span class="nk"> &lt;kohsuke&gt;</span> sorry, 9am
+<a name="l-548"></a><span class="tm">19:16:47</span><span class="nk"> &lt;kohsuke&gt;</span> Let's do 9am PT
+<a name="l-549"></a><span class="tm">19:16:56</span><span class="nk"> &lt;rtyler&gt;</span> all in favor say #agreed
+<a name="l-550"></a><span class="tm">19:17:01</span><span class="nk"> &lt;rtyler&gt;</span> :P
+<a name="l-551"></a><span class="tm">19:17:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-552"></a><span class="tm">19:17:07</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-553"></a><span class="tm">19:17:09</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-554"></a><span class="tm">19:17:12</span><span class="nk"> &lt;aheritier&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-555"></a><span class="tm">19:17:16</span><span class="nk"> &lt;hare_brain_&gt;</span> <span class="cmd">#abstain</span><span class="cmdline"></span>
+<a name="l-556"></a><span class="tm">19:17:23</span><span class="nk"> &lt;rtyler&gt;</span> I'll thank everybody for joining in today, we have much to do!
+<a name="l-557"></a><span class="tm">19:17:26 </span><span class="nka">* olamy</span> <span class="ac">as usual I missed the meeting maybe one day I will not be too late</span>
+<a name="l-558"></a><span class="tm">19:17:28</span><span class="nk"> &lt;rtyler&gt;</span> now get back to work!
+<a name="l-559"></a><span class="tm">19:17:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

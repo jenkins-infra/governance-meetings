@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 18:02:10 UTC
+(<a href="jenkins.2011-04-13-18.02.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li><b class="TOPIC">JIRA project split</b> <span class="details">(<a href='jenkins.2011-04-13-18.02.log.html#l-14'>kohsuke</a>, 18:03:42)</span>
+<ol type="a">
+  <li><span
+    class="INFO">https://wiki.jenkins-ci.org/display/JENKINS/Jira+Projects+Split+and+Cleanup</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-21'>aheritier</a>,
+    18:04:44)</span></li>
+  <li><span class="INFO">The main issue is that it is impossible in jira
+    to manage versions for components</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-25'>rtyler</a>,
+    18:06:20)</span></li>
+  <li><span class="INFO">the goal is to split the current jenkins in one
+    project dedicated to the core, one for plugins, one for
+    infrastructure</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-35'>aheritier</a>,
+    18:08:23)</span></li>
+  <li><span class="INFO">note that this proposal doesn't preclude doing
+    more later</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-41'>kohsuke</a>,
+    18:09:25)</span></li>
+  <li><span class="INFO">just as a data point, even to implement the
+    current automation in ircbot, I had to do some page scraping</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-74'>kohsuke</a>,
+    18:14:04)</span></li>
+  <li><span class="INFO">you just need to have a voice in the channel,
+    which every committer should, and then you let the ircbot does it
+    for you.</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-91'>kohsuke</a>,
+    18:15:49)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Normally, when
+    you have versions in JIRA, the person who fix the issue marks the
+    bug with a certain version. But I could more easily and more
+    reliably do it by having a release process do "git rev-list" and
+    identify fixes that went into that release.</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-99'>kohsuke</a>,
+    18:18:05)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">between
+    backporting to the stable branch, marking bugs closed
+    scm-issue-link, and branching/merging , I think this works</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-100'>kohsuke</a>,
+    18:18:57)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Come to think of
+    it, I can do this "mark JIRA by release number" as a daemon that
+    works externally, and thus make it work across all plugins</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-127'>kohsuke</a>,
+    18:25:20)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler and/or
+    kohsuke to set up a test instance of JIRA for aheritier</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-163'>rtyler</a>,
+    18:33:59)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">"ULTIMATE ROBO LOGO SHOWDOWN" results</b> <span class="details">(<a href='jenkins.2011-04-13-18.02.log.html#l-178'>kohsuke</a>, 18:37:10)</span>
+<ol type="a">
+  <li><span class="INFO">Overall the runoff vote received just shy of
+    2000 votes</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-184'>rtyler</a>,
+    18:37:48)</span></li>
+  <li><span class="INFO">I've got the branch that incorporated the new
+    art work. It'll ship in the next release this weekend.</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-185'>kohsuke</a>,
+    18:37:49)</span></li>
+  <li><span class="INFO">This evening at the Engine Yard meetup we'll be
+    unveiling the logo, and I will also be updating jenkins-ci.org with
+    a newer look</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-187'>rtyler</a>,
+    18:38:31)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    unveil the logo at the Bay Area Meetup tonight</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-191'>rtyler</a>,
+    18:39:25)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    update the site with the new logo/look</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-192'>rtyler</a>,
+    18:39:35)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">everybody
+    else to be shocked, amazed, delighted!</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-193'>rtyler</a>,
+    18:39:54)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    look into creating a new bunch of Jenkins logo stickers</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-210'>rtyler</a>,
+    18:41:37)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">mwalling to
+    do east coast distribution (he has no idea what he's just signed up
+    for)</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-216'>rtyler</a>,
+    18:42:47)</span></li>
+  <li><span class="INFO">i said *MIGHT*</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-219'>mwalling</a>,
+    18:43:04)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler and
+    kohsuke to follow up with the current thread with the winner to get
+    some paper work in place to assure our rights to use the logo</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-221'>kohsuke</a>,
+    18:43:21)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">trademark registration status</b> <span class="details">(<a href='jenkins.2011-04-13-18.02.log.html#l-224'>kohsuke</a>, 18:43:59)</span>
+<ol type="a">
+  <li><span class="INFO">I just uploaded the PDFs that pledge to that
+    extent at
+    https://wiki.jenkins-ci.org/pages/viewpageattachments.action?pageId=54722987&amp;sortBy=date&amp;highlight=Trademark+pledge.pdf&amp;</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-229'>kohsuke</a>,
+    18:45:45)</span></li>
+  <li><span class="INFO">if you have any concerns about the wording,
+    etc, please let me know.</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-234'>kohsuke</a>,
+    18:46:57)</span></li>
+  <li><span class="INFO">SHA1sum:
+    847b69dff6c5d0494bb760a3d562bdee6ebed71b  and
+    30803b0d711af09f2f02ca30db82b6f5fc71f7af</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-242'>kohsuke</a>,
+    18:48:38)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">SFC/SPI/Apache status</b> <span class="details">(<a href='jenkins.2011-04-13-18.02.log.html#l-252'>kohsuke</a>, 18:50:13)</span>
+<ol type="a">
+  <li><span class="INFO">I've pinged SFC yesterday as we planned in the
+    last minutes, but haven't heard back yet, understandably.</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-254'>kohsuke</a>,
+    18:51:05)</span></li>
+  <li><span class="INFO">I've also initiated the next step with SPI,
+    that is to ask for an application</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-255'>kohsuke</a>,
+    18:51:44)</span></li>
+  <li><span class="INFO">The next step is for them to decide if they can
+    take us or not, and then we will have 60 days to decide if we want
+    to get married like that or not.</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-259'>kohsuke</a>,
+    18:53:59)</span></li>
+  <li><a href="http://sfconservancy.org/">http://sfconservancy.org/</a>
+    SFC <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-260'>rtyler</a>,
+    18:54:08)</span></li>
+  <li><a href="http://www.spi-inc.org/">http://www.spi-inc.org/</a> SPI
+    <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-262'>rtyler</a>,
+    18:54:26)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2011-04-13-18.02.log.html#l-281'>kohsuke</a>, 18:58:36)</span>
+<br></li>
+<li><b class="TOPIC">Infrastructure update</b> <span class="details">(<a href='jenkins.2011-04-13-18.02.log.html#l-284'>rtyler</a>, 18:59:07)</span>
+<ol type="a">
+  <li><span class="INFO">We've cut a dramatic amount of our overages out
+    for bandwidth from jenkins-ci.org by pushing more and more onto our
+    mirror network</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-287'>rtyler</a>,
+    18:59:40)</span></li>
+  <li><span class="INFO">We're still using up a lot of bandwidth (we're
+    so popular!), so I'm actively working with Contegix to get a
+    blessing on that machine to where we don't have to pay for it
+    ;)</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-291'>rtyler</a>,
+    19:00:21)</span></li>
+  <li><span class="INFO">Still working on getting the two fancy new
+    machines from Chicago to Oregon (OSUOSL)</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-295'>rtyler</a>,
+    19:01:07)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">need to post
+    a "we love you" post or seven</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-297'>rtyler</a>,
+    19:01:19)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2011-04-13-18.02.log.html#l-304'>kohsuke</a>, 19:02:03)</span>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2011-04-13-18.02.log.html#l-305'>rtyler</a>, 19:02:03)</span>
+<ol type="a">
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">The natural
+    candidate is two weeks from now, same time. Any other
+    suggestions/objections?</span> <span class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-309'>kohsuke</a>,
+    19:02:38)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED"></span> <span
+    class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-310'>rtyler</a>,
+    19:02:46)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED"></span> <span
+    class="details">(<a
+    href='jenkins.2011-04-13-18.02.log.html#l-311'>hare_brain</a>,
+    19:03:00)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 19:03:44 UTC
+(<a href="jenkins.2011-04-13-18.02.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>rtyler and/or kohsuke to set up a test instance of JIRA for aheritier</li>
+  <li>kohsuke to unveil the logo at the Bay Area Meetup tonight</li>
+  <li>rtyler to update the site with the new logo/look</li>
+  <li>everybody else to be shocked, amazed, delighted!</li>
+  <li>rtyler to look into creating a new bunch of Jenkins logo stickers</li>
+  <li>mwalling to do east coast distribution (he has no idea what he's just signed up for)</li>
+  <li>rtyler and kohsuke to follow up with the current thread with the winner to get some paper work in place to assure our rights to use the logo</li>
+  <li>need to post a "we love you" post or seven</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> aheritier <ol>
+    <li>rtyler and/or kohsuke to set up a test instance of JIRA for aheritier</li>
+  </ol></li>
+  <li> kohsuke <ol>
+    <li>rtyler and/or kohsuke to set up a test instance of JIRA for aheritier</li>
+    <li>kohsuke to unveil the logo at the Bay Area Meetup tonight</li>
+    <li>rtyler and kohsuke to follow up with the current thread with the winner to get some paper work in place to assure our rights to use the logo</li>
+  </ol></li>
+  <li> mwalling <ol>
+    <li>mwalling to do east coast distribution (he has no idea what he's just signed up for)</li>
+  </ol></li>
+  <li> rtyler <ol>
+    <li>rtyler and/or kohsuke to set up a test instance of JIRA for aheritier</li>
+    <li>rtyler to update the site with the new logo/look</li>
+    <li>rtyler to look into creating a new bunch of Jenkins logo stickers</li>
+    <li>rtyler and kohsuke to follow up with the current thread with the winner to get some paper work in place to assure our rights to use the logo</li>
+  </ol></li>
+  <li><b>UNASSIGNED</b><ol>
+    <li>everybody else to be shocked, amazed, delighted!</li>
+    <li>need to post a "we love you" post or seven</li>
+  </ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>kohsuke (107)</li>
+  <li>rtyler (68)</li>
+  <li>aheritier (54)</li>
+  <li>abayer (23)</li>
+  <li>fcamblor (17)</li>
+  <li>rodmidde (11)</li>
+  <li>fredg02 (10)</li>
+  <li>ndeloof (5)</li>
+  <li>thafreeze (5)</li>
+  <li>magnayn (4)</li>
+  <li>hare_brain (4)</li>
+  <li>bap2000 (4)</li>
+  <li>mwalling (4)</li>
+  <li>robobutler (2)</li>
+  <li>code_fu_blkbelt (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

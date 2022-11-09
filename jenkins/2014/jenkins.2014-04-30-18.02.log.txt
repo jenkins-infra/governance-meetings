@@ -1,0 +1,166 @@
+18:02:09 <kohsuke_> #startmeeting
+18:02:09 <robobutler> Let the Jenkins meeting commence!
+18:02:13 <kohsuke_> oh I guess it is
+18:02:23 <kohsuke_> #chair rtyler abayer  hare_brain
+18:02:23 <robobutler> Current chairs: abayer hare_brain kohsuke_ rtyler
+18:02:46 <kohsuke_> #topic 1.554.1 status
+18:02:57 <kohsuke_> ogondza: ?
+18:03:18 <ogondza> hi, I believe we are ready
+18:03:26 * rtyler awakens
+18:03:28 <kohsuke_> OK, thanks, I'll just spin the release then
+18:03:50 <kohsuke_> jglick: anything to add?
+18:03:52 <ogondza> as reported on ML, automated and manual tests confirms
+18:04:02 <kohsuke_> #agreed 1.554.1 is good to go
+18:04:17 <kohsuke_> This week I'm hacking infra with rtyler and has been away from emails
+18:04:19 <jglick> Nothing to add, sounds good.
+18:04:33 <kohsuke_> OK, then moving on
+18:04:50 <kohsuke_> #topic Jenkins joining the software patent non-aggression community
+18:05:11 <kohsuke_> So I was contacted by someone from http://www.openinventionnetwork.com/
+18:05:35 <kohsuke_> and he wants the Jenkins project to "sign" http://www.openinventionnetwork.com/pat_license_agreement.php
+18:06:36 <hare_brain> I don’t know what he means by that.
+18:06:43 <Slide-O-Mix> It's a .com not a .org?
+18:07:03 <kohsuke_> The idea, IIUC, is that "I pledge that I do not sue other open-source and Linux communities"
+18:07:04 <abayer> Yeah, that creeps me out.
+18:07:08 <hare_brain> It’s an “intellectual property company"
+18:07:14 <rtyler> I'm not sure what we get from this
+18:07:14 <hare_brain> Patent troll?
+18:07:16 <Slide-O-Mix> that sounds horrible
+18:07:24 <rtyler> we also don't have patents
+18:07:25 <rtyler> <_<
+18:07:40 <rtyler> unless abayer has patented his surly disposition on behalf of the jenkins project
+18:07:50 <abayer> Looks from http://www.openinventionnetwork.com/about_faq.php like it's supposed to be a kind of inverse patent troll for Linux-related patents, but...yeah.
+18:07:52 <Slide-O-Mix> no, that's a copyright
+18:08:04 <xmj> IANAL but that'd prevent you from countersuing someone that sues you yet engages in opensource stuff, no?
+18:08:25 <Slide-O-Mix> Does Jenkins have access to a lawyer to look it over?
+18:08:34 <rtyler> not really
+18:08:34 <kohsuke_> Apparently this is not legally binding
+18:08:41 <rtyler> there's no open source projects in here
+18:08:44 <rtyler> so I don't know what we get
+18:08:51 <rtyler> other than lending somebody our name
+18:09:01 <kohsuke_> After all I don't really have any signing power on behalf of any organizations, including SPI, which CLA assigns some rights to
+18:09:26 <Slide-O-Mix> I think it's pretty clear that Jenkins likes open source, so what does this gain the project?
+18:09:53 <rtyler> I pinky swear that our loose collection of bandits won't sue anybody
+18:10:02 <Slide-O-Mix> :)
+18:11:36 <hare_brain> I also don’t know what this means to companies that have signed our CCLA.
+18:11:55 * rtyler nods
+18:12:21 <kohsuke_> All right, it looks like we are going to punt on this
+18:12:31 <rtyler> I vote we say "cool story bro, but we don't have the resources to validate what this is or whether we can/should get involved"
+18:12:49 <hare_brain> Nice.
+18:12:58 <kohsuke_> All right, that works for me
+18:13:02 <kohsuke_> Moving on...
+18:13:16 <kohsuke_> #topic Permanently switch to acceptance-tests for LTS testing
+18:13:35 <rtyler> kohsuke_: repo link plz
+18:13:35 <ogondza> I suggest we completely abandon selenium tests
+18:13:47 <ogondza> in favor of acceptance tests
+18:13:53 <kohsuke_> #info https://github.com/jenkinsci/acceptance-test-harness
+18:14:08 <kohsuke_> #info https://jenkins.ci.cloudbees.com/job/core/job/acceptance-test-harness-stable/
+18:14:12 <rtyler> if we're running the acceptance-test harness in an automated fashion then it's a hands-down winner IMO
+18:14:21 <rtyler> we never got the Selenium work far enough along to run consistently
+18:14:40 <kohsuke_> I think we are good to switch
+18:14:57 <ogondza> perfect
+18:15:07 <kohsuke_> I don't know what you've done to stablize tests
+18:15:44 <kohsuke_> I see # of tests doubled recently. What has changed?
+18:15:56 <ogondza> https://jenkins.ci.cloudbees.com/job/core/job/acceptance-test-harness-stable/ was pretty stable.
+18:16:24 <ogondza> oh, we forgot to run cucumber as it produced a lot of failures
+18:16:36 <ogondza> when steps was not implemented
+18:16:49 <kohsuke_> Oh I see
+18:17:27 <kohsuke_> All right, let's update README.md on both repos appropriately
+18:17:37 <ogondza> ill do it
+18:17:52 <kohsuke_> #agreed we've declared porting from selenium-tests to acceptance-test-harness complete, and the latter is the officially blessed one now
+18:18:03 <kohsuke_> #action ogondza to update READMD.md on both repos
+18:18:06 <rtyler> nuke selenium-tests from orbit
+18:18:38 <kohsuke_> No, we should keep the repo for archival purposes
+18:19:01 <kohsuke_> OK, anything else?
+18:19:15 <kohsuke_> #topic next meeting
+18:19:20 <LisaWells> wait...
+18:19:21 <LisaWells> JUC?
+18:19:22 <kohsuke_> oh
+18:19:30 <LisaWells> didn't know if you meant anything else on that topic
+18:19:42 <kohsuke_> #topic JUC
+18:19:55 <Alyssa> Just a quick update on JUC
+18:20:11 <kohsuke_> LisaWells: Alyssa : want to provide any status updates?
+18:20:22 <Alyssa> Agendas for both JUC US East (Boston) & JUC Europe (Berlin) are now available. Pls help promote  http://www.cloudbees.com/jenkins/juc-2014/boston   http://www.cloudbees.com/jenkins/juc-2014/berlin
+18:20:59 <Alyssa> Current registration counts are as follows JUC US East (Boston) 145 / JUC Europe (Berlin) 94 / JUC Israel 36
+18:21:11 <LisaWells> picking up fast! much more than 2 weeks ago
+18:21:14 <kohsuke_> What would "panel discussion" do?
+18:21:28 <kohsuke_> Do we need to come up with some themes/topics to get that going?
+18:21:42 <Alyssa> that's due to our aggressive promo plan
+18:21:58 <LisaWells> Kohsuke: are you suggesting we add panel discussion?
+18:22:18 <Alyssa> 'panel disc' i was thinking Q&A but am happy to take suggestions
+18:22:46 <rtyler> at FOSDEM we had a somewhat ad-hoc (read: poorly organized) BoF at the end of the day, that turned into a half discussion half Q&A
+18:22:53 <Alyssa> we didn't have a panel discussion last time and i think someone mentioned we should have it..that's why it's there
+18:23:06 <LisaWells> we've had several requests for BOFs
+18:23:08 <kohsuke_> I saw "panel discussion" in the agenda, and the only panel discussion that we've done in the past is in San Francisco a few years ago
+18:23:20 <hare_brain> Well, there’s panel discussion and there’s Q&A session. Those are slightly different beasts.
+18:23:29 <rtyler> Q&A requires somebody with a mic
+18:23:35 <rtyler> panel requires a moderator and a train of topics
+18:23:46 <LisaWells> what about half-half?
+18:24:31 * rtyler shrugs
+18:24:40 <rtyler> all I'm saying is you guys should figure it out :p
+18:24:56 <kohsuke_> We'd also need to know who'd be there so that we can ask them to be on the stage
+18:25:30 <LisaWells> we can look at the attendee list and see who we want to invite?
+18:25:56 <kohsuke_> yeah, that'd work
+18:26:25 <Alyssa> or get the speakers as we've done in the past as well
+18:26:49 <Alyssa> we can work this offline.
+18:26:58 <Daemoen> lo all
+18:27:15 <LisaWells> other updates?
+18:27:22 <Alyssa> yes
+18:27:37 <Alyssa> CloudBees has  been tweeting free ticket for tweeting #jenkinsconf  "Win a free ticket to the 2014 Jenkins User Conference! Use hashtag #jenkinsconf to help spread the word. We are picking a winner by May 3"
+18:28:00 <Alyssa> wanted to throw this out there to the community as well
+18:28:06 <hare_brain> I think you need to be clearer about *which* JUC you’re giving free tickets to. :)
+18:28:18 <LisaWells> i think they can choose
+18:28:21 <LisaWells> but good point!
+18:28:22 <Alyssa> Boston and Berlin at the moment
+18:28:46 <hare_brain> So it’s a free ticket to *a* 2014 JUC.
+18:28:52 <LisaWells> y
+18:29:17 <hare_brain> Because to me, the one in the Bay Area is *the* JUC. ;)
+18:29:29 <LisaWells> :)
+18:29:42 <Alyssa> last item. CloudBees is advertising on the Eclipse site. They have budgeted $2000 to run ads from  5/1-5/31.
+18:30:23 <Daemoen> we're running jenkins 1.561 on CentOS 6, and having some issues with a bug
+18:30:29 <Alyssa> that's it for me
+18:30:36 <Daemoen> appears we are seeing the "supposed to be resolved" legacy Add build step bug
+18:30:40 <LisaWells> on the sponsor side, things are lining up
+18:30:56 <LisaWells> to date we have...
+18:31:19 <LisaWells> Boston Gold - JFrog, XebiaLabs, BDS, Midvision; Silver - Choose Digital
+18:31:36 <LisaWells> Berlin GOld: codecentric AG (pending), Midvision, Zend, Ravello (pending) and Silver - XebiaLabs
+18:31:44 <LisaWells> not sure about Israel yet - waiting for word on that
+18:31:48 <rtyler> Daemoen: hold on a second, we're still in the middle of a project meeting
+18:32:03 <Daemoen> sorryjust noticed that, my apologies
+18:32:06 <LisaWells> Bay Area Gold - JFrog, XebiaLabs, Black Diamond, Zend; Silver - Choose Digital and Sauce Labs
+18:32:26 <LisaWells> so a pretty good showing so far. please help show appreciation to them so they sponsor more next year
+18:32:34 <LisaWells> we also have a new community sponsorship level
+18:32:48 <LisaWells> it is available for JUGs, Meetups, and other organizations who want to promote JUC
+18:33:13 <LisaWells> basically help promote by sending an email to your members and get a 20% discount code
+18:33:29 <rtyler> LisaWells: have you guys created a good blog post for that?
+18:33:31 <LisaWells> can also do a blog post, put the JUC banner on website, etc
+18:33:33 <kohsuke_> Sounds like it should be a blog post
+18:33:35 <LisaWells> not yet, it just happened
+18:33:38 <rtyler> zomg jinx!
+18:33:38 <LisaWells> does!
+18:33:42 <LisaWells> will do
+18:34:06 <LisaWells> JUG Berlin is already signed up to make the offer to their 2700 member list
+18:34:45 <LisaWells> if you know anyone who runs a group who may be interested, please send 'em my way or Alyssa's
+18:35:13 <kohsuke_> All right, anything else?
+18:35:18 <LisaWells> that's it on the sponsor side. but i have one more topic
+18:35:35 <rtyler> jeeeez
+18:35:41 <LisaWells> next Jenkins newsletter - I'm hoping to get one out by mid-June if possible. if you have submissions or topic ideas, please send?
+18:35:59 <LisaWells> sorry @rtyler:
+18:36:08 <rtyler> heh
+18:36:12 <LisaWells> ;)
+18:36:19 <rtyler> LisaWells: you might want to look at how the FreeBSD project runs their quarterly newsletter
+18:36:29 <LisaWells> will do, thanks
+18:36:34 <kohsuke_> I'm sure we have something to write up about the infra work?
+18:36:38 <rtyler> they do a great job of pulling together topics from different slics of the community
+18:36:41 <rtyler> kohsuke_: definitely
+18:37:14 <kohsuke_> Are we ready to wrap up?
+18:37:15 <LisaWells> I'll check it out. ping me if you want to submit - lisa@cloudbees.com
+18:37:16 <rtyler> I think we have the sections of: events, core, plugins, infra
+18:37:33 * rtyler shuts up so we can end the meeting
+18:37:37 <kohsuke_> #topic next meeting
+18:38:01 <kohsuke_> May 14th
+18:38:01 <rtyler> 14!
+18:38:06 <kohsuke_> OMG it's almost May
+18:38:16 <rtyler> it's literally tomorrow
+18:38:19 <kohsuke_> #agreed next meeting will be May 14th 11am PT
+18:38:29 * rtyler nods
+18:38:32 <kohsuke_> #endmeeting

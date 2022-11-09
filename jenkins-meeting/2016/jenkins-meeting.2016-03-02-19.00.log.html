@@ -1,0 +1,442 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app211.us.archive.org';v.server_ms=1335;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-03-02-19.00.log.html","20211020061208","https://web.archive.org/","web","/_static/",
+	      "1634710328");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:00:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:00:17</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:00:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler hare_brain danielbeck</span>
+<a name="l-4"></a><span class="tm">19:00:33</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">19:00:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">19:00:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">recap of the actions from the last week</span>
+<a name="l-7"></a><span class="tm">19:01:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-02-17-19.00.html</span>
+<a name="l-8"></a><span class="tm">19:02:02</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's mainly rtyler's action but anyone?
+<a name="l-9"></a><span class="tm">19:02:11</span><span class="nk"> &lt;rtyler&gt;</span> well, the RCs got posted yeah?
+<a name="l-10"></a><span class="tm">19:02:22</span><span class="nk"> &lt;rtyler&gt;</span> I figured we were going chronologically :P
+<a name="l-11"></a><span class="tm">19:02:22</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> it did
+<a name="l-12"></a><span class="tm">19:02:41</span><span class="nk"> &lt;rtyler&gt;</span> alright, so the certification related action items are still in progress I'm going to give more of an update in a later section on those
+<a name="l-13"></a><span class="tm">19:02:57</span><span class="nk"> &lt;rtyler&gt;</span> the call for participation for the Events Officer went out, I'm behind in sending the announcement out on the person selected
+<a name="l-14"></a><span class="tm">19:03:00</span><span class="nk"> &lt;rtyler&gt;</span> will do that today
+<a name="l-15"></a><span class="tm">19:03:04 </span><span class="nka">* rtyler</span> <span class="ac">writes in notebook</span>
+<a name="l-16"></a><span class="tm">19:03:30</span><span class="nk"> &lt;rtyler&gt;</span> then the only other one was on batmat and abayer
+<a name="l-17"></a><span class="tm">19:03:48</span><span class="nk"> &lt;kohsuke&gt;</span> I think we can move on
+<a name="l-18"></a><span class="tm">19:03:58</span><span class="nk"> &lt;kohsuke&gt;</span> unless batmat is here
+<a name="l-19"></a><span class="tm">19:04:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-20"></a><span class="tm">19:04:23</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza
+<a name="l-21"></a><span class="tm">19:04:30</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> I have done the backporting and tests looks good
+<a name="l-22"></a><span class="tm">19:04:45</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> but the release commits was not pushed
+<a name="l-23"></a><span class="tm">19:04:54</span><span class="nk"> &lt;kohsuke&gt;</span> grr
+<a name="l-24"></a><span class="tm">19:04:57</span><span class="nk"> &lt;ogondza&gt;</span> please merge it / rebase my changes as you release
+<a name="l-25"></a><span class="tm">19:05:33</span><span class="nk"> &lt;ogondza&gt;</span> I was not trying to locate and apply them because IIRC there is one more commit after the tagged one
+<a name="l-26"></a><span class="tm">19:05:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to push 1.642.2 release commit and ping ogondza so that he can post RC</span>
+<a name="l-27"></a><span class="tm">19:05:43</span><span class="nk"> &lt;danielbeck&gt;</span> the tag exists https://github.com/jenkinsci/jenkins/commits/jenkins-1.642.2
+<a name="l-28"></a><span class="tm">19:05:49</span><span class="nk"> &lt;danielbeck&gt;</span> just not in stable-1.642
+<a name="l-29"></a><span class="tm">19:06:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> I think you figured out the packaging script and access necessary to post LTS RCs, right?
+<a name="l-30"></a><span class="tm">19:06:15</span><span class="nk"> &lt;batmat&gt;</span> I'm here actually, but we're not done with aba
+<a name="l-31"></a><span class="tm">19:06:21</span><span class="nk"> &lt;batmat&gt;</span> *abayer
+<a name="l-32"></a><span class="tm">19:06:32</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> more or less, I will post it
+<a name="l-33"></a><span class="tm">19:06:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">1.642.3 RC is good to go</span>
+<a name="l-34"></a><span class="tm">19:06:44</span><span class="nk"> &lt;kohsuke&gt;</span> Moving on...
+<a name="l-35"></a><span class="tm">19:06:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">board election update</span>
+<a name="l-36"></a><span class="tm">19:06:56</span><span class="nk"> &lt;rtyler&gt;</span> YAY
+<a name="l-37"></a><span class="tm">19:07:00</span><span class="nk"> &lt;danielbeck&gt;</span> huh?
+<a name="l-38"></a><span class="tm">19:07:05</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke reload the page
+<a name="l-39"></a><span class="tm">19:07:11</span><span class="nk"> &lt;teilo&gt;</span> kohsuke, ogondza - what about the windows bundled JDK?
+<a name="l-40"></a><span class="tm">19:07:12</span><span class="nk"> &lt;danielbeck&gt;</span> oh, sorry, nevermind
+<a name="l-41"></a><span class="tm">19:07:21</span><span class="nk"> &lt;kohsuke&gt;</span> phew
+<a name="l-42"></a><span class="tm">19:07:33</span><span class="nk"> &lt;teilo&gt;</span> kohsuke, I updated this if you used cloudbees infra to build - but otherwise this may regress?
+<a name="l-43"></a><span class="tm">19:07:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">board election logistics are still stalled based on the zero time available to work on it</span>
+<a name="l-44"></a><span class="tm">19:07:42</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">teilo:</span> I am not following
+<a name="l-45"></a><span class="tm">19:07:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">teilo:</span> no worries, LTS RC is war only for now
+<a name="l-46"></a><span class="tm">19:08:02</span><span class="nk"> &lt;rtyler&gt;</span> orrc did some initial experimenting with Steve (http://steve.apache.org) but we've not stood it up anywhere in the infrastructure
+<a name="l-47"></a><span class="tm">19:08:35</span><span class="nk"> &lt;rtyler&gt;</span> I wanted to float an idea for *how* candidates would get introduced and a timeline, if we can wrap the topic up quick cause there's some big stuff later in the meeting
+<a name="l-48"></a><span class="tm">19:09:12</span><span class="nk"> &lt;rtyler&gt;</span> I was thinkin candidates all submit blog posts introducing themselves on the blog (give two weeks for that), then we post the blog posts all on a monday
+<a name="l-49"></a><span class="tm">19:09:18</span><span class="nk"> &lt;rtyler&gt;</span> then leave those up for a week
+<a name="l-50"></a><span class="tm">19:09:25</span><span class="nk"> &lt;rtyler&gt;</span> then open voting, and let voting happen for a week
+<a name="l-51"></a><span class="tm">19:09:39</span><span class="nk"> &lt;teilo&gt;</span> <span class="hi">ogondza:</span> the windows installer just picks the JRE used on the slave used to build the JRE (JENKINS-31583)
+<a name="l-52"></a><span class="tm">19:09:43</span><span class="nk"> &lt;rtyler&gt;</span> this is just some thinking I've had on /how/ this would actually work (outside of using something like steve)
+<a name="l-53"></a><span class="tm">19:10:28</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> do you mean each candidate would have a post for two weeks up on the blog? Or that they'd have 2 weeks to provide it?
+<a name="l-54"></a><span class="tm">19:10:35</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> seems globally sensible
+<a name="l-55"></a><span class="tm">19:10:36</span><span class="nk"> &lt;rtyler&gt;</span> two weeks to provide it
+<a name="l-56"></a><span class="tm">19:11:07</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> OK, and then they're published in a batch somehow? In the same post?
+<a name="l-57"></a><span class="tm">19:11:11</span><span class="nk"> &lt;teilo&gt;</span> 2 weeks from post to vote end seems short
+<a name="l-58"></a><span class="tm">19:11:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">given my current workload and the difficulty in getting all the logistics in place, I think we would reasonably be able to start the election process in April</span>
+<a name="l-59"></a><span class="tm">19:11:45</span><span class="nk"> &lt;kohsuke&gt;</span> I think 2 weeks is adequate
+<a name="l-60"></a><span class="tm">19:11:47</span><span class="nk"> &lt;teilo&gt;</span> esp for the duration of the place
+<a name="l-61"></a><span class="tm">19:11:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> batched was my thinking, each an hour or two apart on a day
+<a name="l-62"></a><span class="tm">19:12:03</span><span class="nk"> &lt;danielbeck&gt;</span> Day 0 open posts / Day 14 all candidates provided posts, posts published / Day 21 open voting / Day 28 end voting
+<a name="l-63"></a><span class="tm">19:12:12</span><span class="nk"> &lt;rtyler&gt;</span> yeah that ^
+<a name="l-64"></a><span class="tm">19:12:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">teilo:</span> is your concern around the voting part, or the candidacy intro part?
+<a name="l-65"></a><span class="tm">19:12:24</span><span class="nk"> &lt;kohsuke&gt;</span> "open posts"?
+<a name="l-66"></a><span class="tm">19:12:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> call for candidacy basically
+<a name="l-67"></a><span class="tm">19:12:42</span><span class="nk"> &lt;danielbeck&gt;</span> yes that's what I meant
+<a name="l-68"></a><span class="tm">19:13:13</span><span class="nk"> &lt;teilo&gt;</span> <span class="hi">rtyler:</span> basically april is normally easter - so holiday season.  so the length of time someone would see to vote and vote could be entirly lost
+<a name="l-69"></a><span class="tm">19:13:51</span><span class="nk"> &lt;teilo&gt;</span> <span class="hi">rtyler:</span> not that I want this to turn into an american style election campagne!
+<a name="l-70"></a><span class="tm">19:13:53</span><span class="nk"> &lt;rtyler&gt;</span> do people in some countries take weeks off in april?
+<a name="l-71"></a><span class="tm">19:14:04</span><span class="nk"> &lt;kohsuke&gt;</span> We need time before that for the board to "review all submissions and compile a final list of candidates" then
+<a name="l-72"></a><span class="tm">19:14:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process</span>
+<a name="l-73"></a><span class="tm">19:14:29</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler school holidays and public holidays around easter in Germany
+<a name="l-74"></a><span class="tm">19:14:36</span><span class="nk"> &lt;teilo&gt;</span> <span class="hi">rtyler:</span> some countries get holidays :-)
+<a name="l-75"></a><span class="tm">19:14:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">teilo:</span> I'm pushing to get this started before summer
+<a name="l-76"></a><span class="tm">19:14:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">teilo:</span> crazytalk!
+<a name="l-77"></a><span class="tm">19:14:54</span><span class="nk"> &lt;rtyler&gt;</span> I'm comfortable extending the timelines a bit, and prepending some time per kohsuke's point
+<a name="l-78"></a><span class="tm">19:14:59</span><span class="nk"> &lt;batmat&gt;</span> in France too
+<a name="l-79"></a><span class="tm">19:15:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to compile a more exact timeline of the candidacy process for the next meeting</span>
+<a name="l-80"></a><span class="tm">19:15:25</span><span class="nk"> &lt;rtyler&gt;</span> I think this is some good directional feedback for me
+<a name="l-81"></a><span class="tm">19:15:27</span><span class="nk"> &lt;rtyler&gt;</span> we can move on
+<a name="l-82"></a><span class="tm">19:15:30</span><span class="nk"> &lt;alyssat&gt;</span> <span class="hi">rtyler:</span> can we have a specific due date(s) so we can stick it on our calendar.
+<a name="l-83"></a><span class="tm">19:15:34</span><span class="nk"> &lt;kohsuke&gt;</span> Any volunteer on helping logistics?
+<a name="l-84"></a><span class="tm">19:15:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat:</span> yes
+<a name="l-85"></a><span class="tm">19:15:41</span><span class="nk"> &lt;alyssat&gt;</span> i can help
+<a name="l-86"></a><span class="tm">19:15:41</span><span class="nk"> &lt;rtyler&gt;</span> but of course :)
+<a name="l-87"></a><span class="tm">19:15:52</span><span class="nk"> &lt;danielbeck&gt;</span> how are dates going to work when we don't have the tools ready?
+<a name="l-88"></a><span class="tm">19:16:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> deadline driven development!
+<a name="l-89"></a><span class="tm">19:16:02</span><span class="nk"> &lt;teilo&gt;</span> <span class="hi">danielbeck:</span> deadlines :)
+<a name="l-90"></a><span class="tm">19:16:04</span><span class="nk"> &lt;kohsuke&gt;</span> exactly, hence the call for more help
+<a name="l-91"></a><span class="tm">19:16:07</span><span class="nk"> &lt;danielbeck&gt;</span> m(
+<a name="l-92"></a><span class="tm">19:16:26</span><span class="nk"> &lt;kohsuke&gt;</span> I sense that we should move on...
+<a name="l-93"></a><span class="tm">19:16:29</span><span class="nk"> &lt;rtyler&gt;</span> alyssat can definitely help with the logistics and timlines, not as much with infra
+<a name="l-94"></a><span class="tm">19:16:35</span><span class="nk"> &lt;rtyler&gt;</span> but yes, let's mosey on along here
+<a name="l-95"></a><span class="tm">19:16:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">2.0 status check</span>
+<a name="l-96"></a><span class="tm">19:16:53</span><span class="nk"> &lt;kohsuke&gt;</span> YAY
+<a name="l-97"></a><span class="tm">19:17:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins-ci.org/2.0</span>
+<a name="l-98"></a><span class="tm">19:17:08</span><span class="nk"> &lt;danielbeck&gt;</span> the alpha bits have been posted: https://jenkins-ci.org/blog/2016/02/29/jenkins2-alphas/
+<a name="l-99"></a><span class="tm">19:17:18</span><span class="nk"> &lt;danielbeck&gt;</span> We're asking for user feedback right now
+<a name="l-100"></a><span class="tm">19:17:29</span><span class="nk"> &lt;alyssat&gt;</span> <span class="hi">rtyler:</span> +111111..no infra
+<a name="l-101"></a><span class="tm">19:17:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">feedback thread on the jenkinsci-users list: https://groups.google.com/d/msg/jenkinsci-users/fEWFVUj0UVY/GbG0ChvkIgAJ</span>
+<a name="l-102"></a><span class="tm">19:17:55</span><span class="nk"> &lt;danielbeck&gt;</span> We have the initial plugin setup dialog, some config changes, and pipeline in the current builds.
+<a name="l-103"></a><span class="tm">19:18:04</span><span class="nk"> &lt;kohsuke&gt;</span> For people here, I'd love to have you take a look at Demo instance too: https://github.com/jenkins-inc/meta
+<a name="l-104"></a><span class="tm">19:18:10</span><span class="nk"> &lt;danielbeck&gt;</span> More changes are coming soon, including my personal favorite, the secure-by-default setup :)
+<a name="l-105"></a><span class="tm">19:18:13</span><span class="nk"> &lt;rtyler&gt;</span> danielbeck or kohsuke could somebody summarize "what's left"?
+<a name="l-106"></a><span class="tm">19:18:36</span><span class="nk"> &lt;rtyler&gt;</span> besides responding to user feedback of course ;)
+<a name="l-107"></a><span class="tm">19:18:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">we need to have that better tracked in our JIRA</span>
+<a name="l-108"></a><span class="tm">19:19:10</span><span class="nk"> &lt;kohsuke&gt;</span> Or even just a Wiki page
+<a name="l-109"></a><span class="tm">19:19:16</span><span class="nk"> &lt;kohsuke&gt;</span> Something we can all see
+<a name="l-110"></a><span class="tm">19:19:21</span><span class="nk"> &lt;danielbeck&gt;</span> Secure-by-default setup, real plugin selection for the setup dialog, including stage view; some styling changes on the config forms; and possibly (if we manage it) a new create item dialog
+<a name="l-111"></a><span class="tm">19:19:24 </span><span class="nka">* rtyler</span> <span class="ac">coughs https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+2.0</span>
+<a name="l-112"></a><span class="tm">19:19:44</span><span class="nk"> &lt;rtyler&gt;</span> is the servlet change in there already?
+<a name="l-113"></a><span class="tm">19:19:52</span><span class="nk"> &lt;danielbeck&gt;</span> Right, we also have the terminology and servlet 3.1 changes in alpha-2
+<a name="l-114"></a><span class="tm">19:20:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">I'm going to ask Patrick to take on "what's left" page</span>
+<a name="l-115"></a><span class="tm">19:20:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> nobody knows who Patrick is
+<a name="l-116"></a><span class="tm">19:20:10</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> what are the install stats for pipeline compared to other plugins that have been chosen for "default" install?
+<a name="l-117"></a><span class="tm">19:20:14</span><span class="nk"> &lt;orrc&gt;</span> more consistent terminology
+<a name="l-118"></a><span class="tm">19:20:15</span><span class="nk"> &lt;rtyler&gt;</span> you mean hrmpw
+<a name="l-119"></a><span class="tm">19:20:25</span><span class="nk"> &lt;danielbeck&gt;</span> Slide-O-Mix https://docs.google.com/spreadsheets/d/1TKziW5oEfX9NYAPrZkz-wXPt5s-zG-znIB5-Jwt3tmw/edit#gid=0
+<a name="l-120"></a><span class="tm">19:20:50</span><span class="nk"> &lt;danielbeck&gt;</span> This is the doc I'm basing plugin selection on. Right now, the discussion on what to include is ongoing on the dev list
+<a name="l-121"></a><span class="tm">19:21:15</span><span class="nk"> &lt;kohsuke&gt;</span> Patrick has the title of product manager at CloudBees  and he helps us keep track of those things.
+<a name="l-122"></a><span class="tm">19:21:15</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/msg/jenkinsci-dev/84dTygm378g/7oct6gbJBwAJ</span>
+<a name="l-123"></a><span class="tm">19:21:28</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> +1 kohsuke already asked who he was
+<a name="l-124"></a><span class="tm">19:21:36</span><span class="nk"> &lt;batmat&gt;</span> OK, read that.
+<a name="l-125"></a><span class="tm">19:21:53</span><span class="nk"> &lt;rtyler&gt;</span> Patrick's nick when he's on IRC is 'hrmpw' so please make sure to send him many GIFs :)
+<a name="l-126"></a><span class="tm">19:22:15</span><span class="nk"> &lt;teilo&gt;</span> <span class="hi">danielbeck:</span> what defines what gets a plugin into that list?
+<a name="l-127"></a><span class="tm">19:22:21</span><span class="nk"> &lt;kohsuke&gt;</span> I need to ask him what that acronym expands to
+<a name="l-128"></a><span class="tm">19:22:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Plugin+Selection+for+the+Setup+Dialog</span>
+<a name="l-129"></a><span class="tm">19:22:52</span><span class="nk"> &lt;danielbeck&gt;</span> teilo The list is popularity (basically install count * increase over the last year) -- it should be on the dev list thread
+<a name="l-130"></a><span class="tm">19:22:58</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">teilo:</span> https://groups.google.com/forum/#!msg/jenkinsci-dev/84dTygm378g/7oct6gbJBwAJ
+<a name="l-131"></a><span class="tm">19:23:05</span><span class="nk"> &lt;batmat&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke what does hrmpw mean :-)</span>
+<a name="l-132"></a><span class="tm">19:23:19</span><span class="nk"> &lt;rtyler&gt;</span> this topic is a status update, if there is additional discussion on the criteria or what's what, I will kindly ask you to join the mailing list discussions in progress already
+<a name="l-133"></a><span class="tm">19:23:26</span><span class="nk"> &lt;autojack&gt;</span> <span class="hi">(FWIW:</span> Easter is in March this year...)
+<a name="l-134"></a><span class="tm">19:23:37</span><span class="nk"> &lt;autojack&gt;</span> YOU HEATHENS
+<a name="l-135"></a><span class="tm">19:23:42</span><span class="nk"> &lt;kohsuke&gt;</span> anything more to add before moving on?
+<a name="l-136"></a><span class="tm">19:24:02</span><span class="nk"> &lt;orrc&gt;</span> is there more concrete UI stuff planned for 2.0? i386 keeps posting colourful pictures, saying that that UI changes are coming soon to jenkins
+<a name="l-137"></a><span class="tm">19:24:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> what i386 is working on is definitely longer term than 2.0
+<a name="l-138"></a><span class="tm">19:24:27</span><span class="nk"> &lt;rtyler&gt;</span> I've been working with him on opening up and framing the work he's been donig
+<a name="l-139"></a><span class="tm">19:24:27</span><span class="nk"> &lt;teilo&gt;</span> Hmm suprised at the incusion of some plugins vs leaving other plugins out based on that criteria
+<a name="l-140"></a><span class="tm">19:24:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> I'm trying to get that stuff introduced this week
+<a name="l-141"></a><span class="tm">19:24:45</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">teilo:</span> agreed
+<a name="l-142"></a><span class="tm">19:24:46</span><span class="nk"> &lt;rtyler&gt;</span> he's in .au which is a silly timezone :P
+<a name="l-143"></a><span class="tm">19:24:48</span><span class="nk"> &lt;kohsuke&gt;</span> I believe Gus is working on some more stuff
+<a name="l-144"></a><span class="tm">19:24:53</span><span class="nk"> &lt;rtyler&gt;</span> makes things tricky
+<a name="l-145"></a><span class="tm">19:24:55</span><span class="nk"> &lt;danielbeck&gt;</span> teilo Slide-O-Mix  Please voice your concerns on the dev list.
+<a name="l-146"></a><span class="tm">19:25:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Make i386 to present the stuff at Office Hours :P
+<a name="l-147"></a><span class="tm">19:25:05</span><span class="nk"> &lt;kohsuke&gt;</span> And danielbeck mentioned about "new create item dialog"
+<a name="l-148"></a><span class="tm">19:25:21</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">rtyler:</span> righto
+<a name="l-149"></a><span class="tm">19:25:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> a solid chunk of danielbeck's job and my own is to push people into the public mailing lists from cloudbees :P
+<a name="l-150"></a><span class="tm">19:25:59</span><span class="nk"> &lt;rtyler&gt;</span> so I've been workin' on him :)
+<a name="l-151"></a><span class="tm">19:25:59</span><span class="nk"> &lt;kohsuke&gt;</span> I also wondered the new tabs in config pages should be expanded to cover more forms
+<a name="l-152"></a><span class="tm">19:26:06</span><span class="nk"> &lt;rtyler&gt;</span> so
+<a name="l-153"></a><span class="tm">19:26:13</span><span class="nk"> &lt;rtyler&gt;</span> are we done with the *status* *update* ?
+<a name="l-154"></a><span class="tm">19:26:14</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-155"></a><span class="tm">19:26:26</span><span class="nk"> &lt;kohsuke&gt;</span> I'll let danielbeck have the final word
+<a name="l-156"></a><span class="tm">19:26:48</span><span class="nk"> &lt;orrc&gt;</span> good job on getting binaries out, and communicating, and collecting feedback \o/
+<a name="l-157"></a><span class="tm">19:27:09</span><span class="nk"> &lt;kohsuke&gt;</span> danielbeck must have stepped aside. Moving on...
+<a name="l-158"></a><span class="tm">19:27:10</span><span class="nk"> &lt;danielbeck&gt;</span> I have nothing to add. I'm always available for feedback, praise, complaints etc., so if you have concerns, please let me know
+<a name="l-159"></a><span class="tm">19:27:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Certification update from beta exams</span>
+<a name="l-160"></a><span class="tm">19:27:23</span><span class="nk"> &lt;rtyler&gt;</span> yey
+<a name="l-161"></a><span class="tm">19:27:52</span><span class="nk"> &lt;rtyler&gt;</span> so many of the action items I took away from last meeting (http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-02-17-19.00.html) I've been working with Francois who runs the certification program at CloudBees
+<a name="l-162"></a><span class="tm">19:28:20</span><span class="nk"> &lt;rtyler&gt;</span> this includes figuring out a more clearly defined community involvement aspect, which is definitely important IMO
+<a name="l-163"></a><span class="tm">19:28:36</span><span class="nk"> &lt;rtyler&gt;</span> I do not have specific updates ready to share on that, but I wanted to let everybody know that I'm working on it
+<a name="l-164"></a><span class="tm">19:28:55</span><span class="nk"> &lt;rtyler&gt;</span> my work email is tyler@cloudbees.com if you have specific questions/concerns too btw
+<a name="l-165"></a><span class="tm">19:29:09</span><span class="nk"> &lt;rtyler&gt;</span> as far as the beta exams, which happened last week
+<a name="l-166"></a><span class="tm">19:29:17</span><span class="nk"> &lt;kohsuke&gt;</span> action to come back on this next week?
+<a name="l-167"></a><span class="tm">19:29:30</span><span class="nk"> &lt;kohsuke&gt;</span> (sorry, keep going)
+<a name="l-168"></a><span class="tm">19:29:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I'm not going to have anything by next meeting
+<a name="l-169"></a><span class="tm">19:29:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> my boss has asked me to focus on 2.0
+<a name="l-170"></a><span class="tm">19:29:40</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-171"></a><span class="tm">19:30:16</span><span class="nk"> &lt;rtyler&gt;</span> so there were beta exams in 12 cities, "Jenkins Certification" had roughly 200 folks try out the exam that had signed up
+<a name="l-172"></a><span class="tm">19:30:50</span><span class="nk"> &lt;batmat&gt;</span> Question about that exam: is this considered to have it takable online some day? (I suppose not)
+<a name="l-173"></a><span class="tm">19:31:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> from my understanding no, there is an exam proctor involved to make sure the exam scores are legit ;0
+<a name="l-174"></a><span class="tm">19:31:28</span><span class="nk"> &lt;kohsuke&gt;</span> You actually do it in a room with a presence of a coordinator who ensures that you are not googling your way out
+<a name="l-175"></a><span class="tm">19:31:43</span><span class="nk"> &lt;rtyler&gt;</span> I don't have scores or any feedback to share yet
+<a name="l-176"></a><span class="tm">19:32:06</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> yeah, sensible. That's also what makes the difference between certifs you have to pass, and the ones you have to just pay.
+<a name="l-177"></a><span class="tm">19:32:31 </span><span class="nka">* batmat</span> <span class="ac">looks directly and Certified Scrum Masters</span>
+<a name="l-178"></a><span class="tm">19:32:35</span><span class="nk"> &lt;batmat&gt;</span> *at
+<a name="l-179"></a><span class="tm">19:32:44 </span><span class="nka">* kohsuke</span> <span class="ac">hides my certified scrum master certificate</span>
+<a name="l-180"></a><span class="tm">19:32:46</span><span class="nk"> &lt;rtyler&gt;</span> I have a new volunteer from outside cloudbees to sit on the advisory board kohsuke originally proposed, I don't want to name the individual unless they wish to out themselves
+<a name="l-181"></a><span class="tm">19:32:59</span><span class="nk"> &lt;rtyler&gt;</span> :D
+<a name="l-182"></a><span class="tm">19:33:00</span><span class="nk"> &lt;kohsuke&gt;</span> that's a great news
+<a name="l-183"></a><span class="tm">19:33:02</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">batmat:</span> hey, I passed my CSM exam fair and square
+<a name="l-184"></a><span class="tm">19:33:13</span><span class="nk"> &lt;rtyler&gt;</span> (he's in here)
+<a name="l-185"></a><span class="tm">19:33:15 </span><span class="nka">* rtyler</span> <span class="ac">coughs</span>
+<a name="l-186"></a><span class="tm">19:33:19 </span><span class="nka">* autojack</span> <span class="ac">outs himself</span>
+<a name="l-187"></a><span class="tm">19:33:24</span><span class="nk"> &lt;rtyler&gt;</span> OH HEY, there he is
+<a name="l-188"></a><span class="tm">19:33:38</span><span class="nk"> &lt;autojack&gt;</span> MAKE JENKINS GREAT AGAIN!
+<a name="l-189"></a><span class="tm">19:33:43</span><span class="nk"> &lt;rtyler&gt;</span> YAY
+<a name="l-190"></a><span class="tm">19:33:48</span><span class="nk"> &lt;kohsuke&gt;</span> Only Americans will understand that
+<a name="l-191"></a><span class="tm">19:33:54</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Sadly, no.
+<a name="l-192"></a><span class="tm">19:33:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> oh how I wish that were the case
+<a name="l-193"></a><span class="tm">19:33:58</span><span class="nk"> &lt;rtyler&gt;</span> anwyays
+<a name="l-194"></a><span class="tm">19:33:58</span><span class="nk"> &lt;autojack&gt;</span> oh, I'm not sure about that at all.
+<a name="l-195"></a><span class="tm">19:34:01</span><span class="nk"> &lt;autojack&gt;</span> hehe
+<a name="l-196"></a><span class="tm">19:34:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">autojack sits on the certification advisory board</span>
+<a name="l-197"></a><span class="tm">19:34:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> false
+<a name="l-198"></a><span class="tm">19:34:12</span><span class="nk"> &lt;rtyler&gt;</span> he's volunteered
+<a name="l-199"></a><span class="tm">19:34:13</span><span class="nk"> &lt;kohsuke&gt;</span> oh
+<a name="l-200"></a><span class="tm">19:34:24</span><span class="nk"> &lt;rtyler&gt;</span> there's one or two steps between now and that :)
+<a name="l-201"></a><span class="tm">19:34:32</span><span class="nk"> &lt;rtyler&gt;</span> one is a polygraph test I'm pretty sure
+<a name="l-202"></a><span class="tm">19:34:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">correction, autojack volunteered to the certification advisory board</span>
+<a name="l-203"></a><span class="tm">19:34:47</span><span class="nk"> &lt;rtyler&gt;</span> so that's the status update, further questions/concerns, please ping me at tyler@cloudbees.com
+<a name="l-204"></a><span class="tm">19:34:53</span><span class="nk"> &lt;rtyler&gt;</span> we can move on now kohsuke :)
+<a name="l-205"></a><span class="tm">19:34:59</span><span class="nk"> &lt;kohsuke&gt;</span> Aye aye boss
+<a name="l-206"></a><span class="tm">19:35:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Conversion of Office Hours to Jenkins Online meetup</span>
+<a name="l-207"></a><span class="tm">19:35:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> ^^
+<a name="l-208"></a><span class="tm">19:35:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/LMTCNDv-jgY</span>
+<a name="l-209"></a><span class="tm">19:35:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/LMTCNDv-jgY</span>
+<a name="l-210"></a><span class="tm">19:35:40</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-211"></a><span class="tm">19:35:52</span><span class="nk"> &lt;kohsuke&gt;</span> basically everyone is in  favor,  so the rest is just logistics, I think
+<a name="l-212"></a><span class="tm">19:36:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, it's just about voting
+<a name="l-213"></a><span class="tm">19:36:21</span><span class="nk"> &lt;rtyler&gt;</span> I think the big change that would have to happen is timing though
+<a name="l-214"></a><span class="tm">19:36:24</span><span class="nk"> &lt;rtyler&gt;</span> 2 weeks is too short
+<a name="l-215"></a><span class="tm">19:36:28</span><span class="nk"> &lt;rtyler&gt;</span> monthly would work though
+<a name="l-216"></a><span class="tm">19:36:33</span><span class="nk"> &lt;batmat&gt;</span> +1 good idea oleg-nenashev
+<a name="l-217"></a><span class="tm">19:36:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Right
+<a name="l-218"></a><span class="tm">19:36:52</span><span class="nk"> &lt;rtyler&gt;</span> +1 to monthly vJAMs instead of office hours :D
+<a name="l-219"></a><span class="tm">19:36:58</span><span class="nk"> &lt;batmat&gt;</span> +1 rtyler and nothing prevents indeed to plan more when it happens there're things to talk about
+<a name="l-220"></a><span class="tm">19:37:04</span><span class="nk"> &lt;alyssat&gt;</span> +1
+<a name="l-221"></a><span class="tm">19:37:08</span><span class="nk"> &lt;orrc&gt;</span> sounds good. Jenkins project will pay for a Meetup account?
+<a name="l-222"></a><span class="tm">19:37:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We need to setup a talk proposal form, but Meetup allows it
+<a name="l-223"></a><span class="tm">19:37:13</span><span class="nk"> &lt;rtyler&gt;</span> we already do orrc :)
+<a name="l-224"></a><span class="tm">19:37:19</span><span class="nk"> &lt;rtyler&gt;</span> www.meetup.com/jenkinsmeetup/
+<a name="l-225"></a><span class="tm">19:37:30</span><span class="nk"> &lt;rtyler&gt;</span> which technically I pay for, then some years later the SPI reimburses me for :P
+<a name="l-226"></a><span class="tm">19:37:32</span><span class="nk"> &lt;orrc&gt;</span> ah, you want to reuse that for the virtual JAM
+<a name="l-227"></a><span class="tm">19:37:39</span><span class="nk"> &lt;rtyler&gt;</span> I'm nto sure if we should use that or not
+<a name="l-228"></a><span class="tm">19:37:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> I think we have borked the idea of Office Hours a bit
+<a name="l-229"></a><span class="tm">19:37:49</span><span class="nk"> &lt;danielbeck&gt;</span> Also means no need to spam other meetups about virtual events anymore
+<a name="l-230"></a><span class="tm">19:37:49</span><span class="nk"> &lt;alyssat&gt;</span> if we put it under the pro account cloudbees can pay for it
+<a name="l-231"></a><span class="tm">19:37:52</span><span class="nk"> &lt;kohsuke&gt;</span> No, it should be a separate meetup under the same umbrella
+<a name="l-232"></a><span class="tm">19:37:53</span><span class="nk"> &lt;rtyler&gt;</span> but since this would be a globally available event, I'm fine with it
+<a name="l-233"></a><span class="tm">19:38:12</span><span class="nk"> &lt;orrc&gt;</span> separate "Jenkins" meetup account would be great, IMO
+<a name="l-234"></a><span class="tm">19:38:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> We use it for internal stuff, but there is not so much experience sharing. So I propose to decouple this part. Timing - TBD
+<a name="l-235"></a><span class="tm">19:38:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for the separate meetup
+<a name="l-236"></a><span class="tm">19:38:49</span><span class="nk"> &lt;rtyler&gt;</span> so we have option A) New Virtual JAM meetup group (under JAM umbrella) or B) create events under jenkinsmeetup
+<a name="l-237"></a><span class="tm">19:38:56</span><span class="nk"> &lt;rtyler&gt;</span> sounds like most are in favor of A
+<a name="l-238"></a><span class="tm">19:39:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for A, -1 for B
+<a name="l-239"></a><span class="tm">19:39:17</span><span class="nk"> &lt;orrc&gt;</span> eyyyyyyyy
+<a name="l-240"></a><span class="tm">19:39:20</span><span class="nk"> &lt;alyssat&gt;</span> i vote for A
+<a name="l-241"></a><span class="tm">19:39:24</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-242"></a><span class="tm">19:39:43</span><span class="nk"> &lt;danielbeck&gt;</span> +1 A
+<a name="l-243"></a><span class="tm">19:39:57</span><span class="nk"> &lt;kohsuke&gt;</span> Does danielbeck continue to organize the agenda?
+<a name="l-244"></a><span class="tm">19:40:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">create a new virtual JAM meetup group</span>
+<a name="l-245"></a><span class="tm">19:40:06</span><span class="nk"> &lt;kohsuke&gt;</span> Or is this effort going to move under the event team?
+<a name="l-246"></a><span class="tm">19:40:17</span><span class="nk"> &lt;rtyler&gt;</span> IMO this should go under events, with a JAM organizer
+<a name="l-247"></a><span class="tm">19:40:19</span><span class="nk"> &lt;rtyler&gt;</span> just like every other JAM
+<a name="l-248"></a><span class="tm">19:40:26 </span><span class="nka">* oleg-nenashev</span> <span class="ac">want to kill the jenkinsmeetup group. Or at least to decouple it to Americas and Europe areas</span>
+<a name="l-249"></a><span class="tm">19:40:27</span><span class="nk"> &lt;danielbeck&gt;</span> As the focus is more towards users, events team makes more sense
+<a name="l-250"></a><span class="tm">19:40:49</span><span class="nk"> &lt;kohsuke&gt;</span> but somebody needs to play the role of the vJAM organizer
+<a name="l-251"></a><span class="tm">19:40:56</span><span class="nk"> &lt;rtyler&gt;</span> not it
+<a name="l-252"></a><span class="tm">19:41:00 </span><span class="nka">* rtyler</span> <span class="ac">hides under his standing desk</span>
+<a name="l-253"></a><span class="tm">19:41:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We need several organizers
+<a name="l-254"></a><span class="tm">19:41:28</span><span class="nk"> &lt;alyssat&gt;</span> I can be one if Oleg joins w me
+<a name="l-255"></a><span class="tm">19:41:31</span><span class="nk"> &lt;rtyler&gt;</span> I can do it part time with danielbeck and oleg-nenashev I think, a group for this would be better
+<a name="l-256"></a><span class="tm">19:41:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So let's just let us alyssat to headhunt people :)
+<a name="l-257"></a><span class="tm">19:41:47</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-258"></a><span class="tm">19:41:48</span><span class="nk"> &lt;orrc&gt;</span> +1, virtual leader for the virtual JAM
+<a name="l-259"></a><span class="tm">19:41:51</span><span class="nk"> &lt;rtyler&gt;</span> hah
+<a name="l-260"></a><span class="tm">19:41:55</span><span class="nk"> &lt;batmat&gt;</span> +1
+<a name="l-261"></a><span class="tm">19:41:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, I'm in
+<a name="l-262"></a><span class="tm">19:41:59</span><span class="nk"> &lt;rtyler&gt;</span> by our powers combined..
+<a name="l-263"></a><span class="tm">19:42:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> More organizers == less chances of dropping the ball
+<a name="l-264"></a><span class="tm">19:42:30</span><span class="nk"> &lt;batmat&gt;</span> May The Force Be... The mass times the acceleration
+<a name="l-265"></a><span class="tm">19:42:31</span><span class="nk"> &lt;alyssat&gt;</span> agreed
+<a name="l-266"></a><span class="tm">19:42:46</span><span class="nk"> &lt;rtyler&gt;</span> can we move on?
+<a name="l-267"></a><span class="tm">19:42:47</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so the JAM lead for vJAM start with danielbeck &amp; oleg-nenashev
+<a name="l-268"></a><span class="tm">19:42:54</span><span class="nk"> &lt;rtyler&gt;</span> we might finish on time!
+<a name="l-269"></a><span class="tm">19:42:57</span><span class="nk"> &lt;kohsuke&gt;</span> Not quite
+<a name="l-270"></a><span class="tm">19:43:13</span><span class="nk"> &lt;kohsuke&gt;</span> We need to pay for WebEx or GTM or some such to actually host a meetup
+<a name="l-271"></a><span class="tm">19:43:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Or find a sponsor...
+<a name="l-272"></a><span class="tm">19:43:30</span><span class="nk"> &lt;danielbeck&gt;</span> Hangout on Air doesn't cut it?
+<a name="l-273"></a><span class="tm">19:43:41</span><span class="nk"> &lt;kohsuke&gt;</span> ... which is fine, but somebody needs to figure out that logistics.
+<a name="l-274"></a><span class="tm">19:44:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> you can only have up to 15 participants or so, and you told me you had too much  trouble hooking up speakers correctly
+<a name="l-275"></a><span class="tm">19:44:28</span><span class="nk"> &lt;orrc&gt;</span> AFAIK, that's the limitation for a hangout; not a hangout-on-air, which is streamed live (and after) on YouTube
+<a name="l-276"></a><span class="tm">19:44:31</span><span class="nk"> &lt;rtyler&gt;</span> hangout-on-air live streams to youtube
+<a name="l-277"></a><span class="tm">19:44:32</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's better to have a proper conferencing setup so that people can ask questions, etc in placce
+<a name="l-278"></a><span class="tm">19:44:34</span><span class="nk"> &lt;rtyler&gt;</span> and is automatically archived
+<a name="l-279"></a><span class="tm">19:44:41</span><span class="nk"> &lt;batmat&gt;</span> FWIW, IIRC the last Docker virtual meetup was held with WebEx indeed
+<a name="l-280"></a><span class="tm">19:44:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But we need HoA to record the sessions
+<a name="l-281"></a><span class="tm">19:44:53</span><span class="nk"> &lt;rtyler&gt;</span> neither WebEx or GTM don't work well on Linux if at all
+<a name="l-282"></a><span class="tm">19:45:06</span><span class="nk"> &lt;rtyler&gt;</span> wompwomp
+<a name="l-283"></a><span class="tm">19:45:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> They should implement it. What's the problem? :D
+<a name="l-284"></a><span class="tm">19:45:38</span><span class="nk"> &lt;orrc&gt;</span> the vJAM leaders can clear this up before their first meeting
+<a name="l-285"></a><span class="tm">19:45:40</span><span class="nk"> &lt;kohsuke&gt;</span> All right, sounds like this is going to be the first work for oleg-nenashev and danielbeck to decide as vJAM lead
+<a name="l-286"></a><span class="tm">19:45:46 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-287"></a><span class="tm">19:45:58</span><span class="nk"> &lt;danielbeck&gt;</span> agreed
+<a name="l-288"></a><span class="tm">19:46:10</span><span class="nk"> &lt;alyssat&gt;</span> i'll get a VJAM page set up
+<a name="l-289"></a><span class="tm">19:46:11</span><span class="nk"> &lt;rtyler&gt;</span> one size may not fit every meetup either
+<a name="l-290"></a><span class="tm">19:46:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> lgtm. Let's go forward
+<a name="l-291"></a><span class="tm">19:46:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">as vJAM lead oleg-nenashev  and danielbeck will figure out how to actually run the meetup virtually, webex/gtm/hangout-on-air</span>
+<a name="l-292"></a><span class="tm">19:46:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">alyssat will set up vJAM group in meetup.com</span>
+<a name="l-293"></a><span class="tm">19:46:35</span><span class="nk"> &lt;batmat&gt;</span> just stream bytes to some IRC channel and decode from there?
+<a name="l-294"></a><span class="tm">19:46:41 </span><span class="nka">* batmat</span> <span class="ac">ducks</span>
+<a name="l-295"></a><span class="tm">19:46:50 </span><span class="nka">* rtyler</span> <span class="ac">feeds the ducks</span>
+<a name="l-296"></a><span class="tm">19:46:56</span><span class="nk"> &lt;danielbeck&gt;</span> Telnet ASCII video!
+<a name="l-297"></a><span class="tm">19:47:15</span><span class="nk"> &lt;rtyler&gt;</span> next up!
+<a name="l-298"></a><span class="tm">19:47:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Planning of GSoC office hours</span>
+<a name="l-299"></a><span class="tm">19:47:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Let's do meetups at a Minecraft server then
+<a name="l-300"></a><span class="tm">19:47:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://docs.google.com/document/d/1dv9UXyT_FPukJXrBYauIKvxrZeEU6BT7v90LSQX36MU/edit#</span>
+<a name="l-301"></a><span class="tm">19:47:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Jenkins has been accepted to GSoC</span>
+<a name="l-302"></a><span class="tm">19:47:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> gsoc office hours are primarily for who?
+<a name="l-303"></a><span class="tm">19:47:58 </span><span class="nka">* batmat</span> <span class="ac">is thinking as to how we could use a Jenkins instance to handle that. A job that would take questions as param?</span>
+<a name="l-304"></a><span class="tm">19:47:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">We have committed to perform special office hours</span>
+<a name="l-305"></a><span class="tm">19:48:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Sync-up between students and mentors
+<a name="l-306"></a><span class="tm">19:48:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Google+Summer+Of+Code+2016</span>
+<a name="l-307"></a><span class="tm">19:48:38</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">oleg-nenashev:</span> to be sure, does biweekly mean twice a week, or once every two weeks? (I suppose it's the first)
+<a name="l-308"></a><span class="tm">19:48:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">We should help students to prepare their applications by March 14th</span>
+<a name="l-309"></a><span class="tm">19:48:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> will this be occurring prior to the program starting? or only once we have students and mentors paired up and working?
+<a name="l-310"></a><span class="tm">19:48:56</span><span class="nk"> &lt;rtyler&gt;</span> well, that answers my question!
+<a name="l-311"></a><span class="tm">19:49:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> as organizers for the project, aren't we involved in reviewing those very applications?
+<a name="l-312"></a><span class="tm">19:49:30</span><span class="nk"> &lt;kohsuke&gt;</span> Are we responsible for recruiting &amp; finding interested students?
+<a name="l-313"></a><span class="tm">19:49:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> We already do it. See the mailing list
+<a name="l-314"></a><span class="tm">19:49:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> only if we want to have students participate :P
+<a name="l-315"></a><span class="tm">19:50:01</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> no, students candidate. There already have been some on the list, and privately on the gsoc admin list.
+<a name="l-316"></a><span class="tm">19:50:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Any advertisement will be appreciated
+<a name="l-317"></a><span class="tm">19:50:05</span><span class="nk"> &lt;kohsuke&gt;</span> I guess the idea is that we do a kind of "open house" equivalent so that prospects can show up and get a better feel of what it's going to be like?
+<a name="l-318"></a><span class="tm">19:50:06</span><span class="nk"> &lt;orrc&gt;</span> <span class="cmd">#info </span><span class="cmdline">GSoC students will find Jenkins and its ideas page via the official org page: https://summerofcode.withgoogle.com/organizations/5668199471251456/</span>
+<a name="l-319"></a><span class="tm">19:50:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> have you not seen the wiki page of ours for GSoc?
+<a name="l-320"></a><span class="tm">19:50:30</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> but indeed, sure, we can encourage the ones we happen to meet
+<a name="l-321"></a><span class="tm">19:50:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 5 students have already contacted us
+<a name="l-322"></a><span class="tm">19:50:50</span><span class="nk"> &lt;kohsuke&gt;</span> I'm sorry if I missed it
+<a name="l-323"></a><span class="tm">19:50:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I propose to have a Meeting on Monday with students
+<a name="l-324"></a><span class="tm">19:50:55</span><span class="nk"> &lt;schristou&gt;</span> Someone was in the other channel asking for more information also
+<a name="l-325"></a><span class="tm">19:51:05</span><span class="nk"> &lt;orrc&gt;</span> <span class="cmd">#info </span><span class="cmdline">overall GSoC timeline: https://developers.google.com/open-source/gsoc/timeline</span>
+<a name="l-326"></a><span class="tm">19:51:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> my question was largely around the accepting of applications
+<a name="l-327"></a><span class="tm">19:51:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> aren't organizers involved in selecting which student applications we will take as a project?
+<a name="l-328"></a><span class="tm">19:51:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Yes, we make a final decision
+<a name="l-329"></a><span class="tm">19:52:13</span><span class="nk"> &lt;rtyler&gt;</span> I just want to make sure there's no conflict between helping students write applications and ultimately reviewing them for acceptance
+<a name="l-330"></a><span class="tm">19:52:26</span><span class="nk"> &lt;rtyler&gt;</span> (for those mentors/organizers)
+<a name="l-331"></a><span class="tm">19:52:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://developers.google.com/open-source/gsoc/timeline</span>
+<a name="l-332"></a><span class="tm">19:53:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> No conflict. Currently we discuss topics and try to answer their questions
+<a name="l-333"></a><span class="tm">19:53:26</span><span class="nk"> &lt;orrc&gt;</span> tbh, I'm not sure what needs to be planned here. students are chosen on 22nd April, development starts in summer, mentors and students will talk in private
+<a name="l-334"></a><span class="tm">19:53:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> ah, no problem
+<a name="l-335"></a><span class="tm">19:53:42</span><span class="nk"> &lt;orrc&gt;</span> and then there will be a "midterm" public showing at an office hours (or vJAM now)
+<a name="l-336"></a><span class="tm">19:53:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> E.g. "What does this project mean?" or whatever
+<a name="l-337"></a><span class="tm">19:54:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> if we need to organize a public office hours, I think that should be no problem to coordinate
+<a name="l-338"></a><span class="tm">19:54:12</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">orrc:</span> we're actually encouraging them to take it public, when it comes to content (logistics can/stays private indeed)
+<a name="l-339"></a><span class="tm">19:54:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">orrc:</span> Yes. My action item is to publish our plan as a blogpost
+<a name="l-340"></a><span class="tm">19:54:20</span><span class="nk"> &lt;rtyler&gt;</span> I can work with you on that to make sure it gets scheduled/published via HoA
+<a name="l-341"></a><span class="tm">19:54:55</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, we should have an "open hosue" meeting in public and use that to make some noise
+<a name="l-342"></a><span class="tm">19:55:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> are the mentors and prospective students OK with that Monday time you are proposing?
+<a name="l-343"></a><span class="tm">19:55:34</span><span class="nk"> &lt;kohsuke&gt;</span> If they aren't coming it's kind of pointless
+<a name="l-344"></a><span class="tm">19:55:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Thanks! We just need to occupy the timeslot on March 9th + probably set up something to Friday/Monday
+<a name="l-345"></a><span class="tm">19:55:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> rtyler batmat: Should we take it offline?
+<a name="l-346"></a><span class="tm">19:56:09</span><span class="nk"> &lt;rtyler&gt;</span> yeah, let's hash this out in #jenkins-community either after this or tomorrow
+<a name="l-347"></a><span class="tm">19:56:16</span><span class="nk"> &lt;rtyler&gt;</span> looking good though
+<a name="l-348"></a><span class="tm">19:56:19</span><span class="nk"> &lt;batmat&gt;</span> +1
+<a name="l-349"></a><span class="tm">19:56:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> That's the problem. We need to cover [India...US] timezones
+<a name="l-350"></a><span class="tm">19:56:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> we can probably do two
+<a name="l-351"></a><span class="tm">19:56:52</span><span class="nk"> &lt;rtyler&gt;</span> I can run one later in the afternoon US time
+<a name="l-352"></a><span class="tm">19:57:01</span><span class="nk"> &lt;rtyler&gt;</span> that stretches into morning in india IIRC
+<a name="l-353"></a><span class="tm">19:57:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> My work is to make mentors come. At least some of them
+<a name="l-354"></a><span class="tm">19:57:06</span><span class="nk"> &lt;rtyler&gt;</span> (and eastern asia)
+<a name="l-355"></a><span class="tm">19:57:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> India/China are fine to me
+<a name="l-356"></a><span class="tm">19:57:36</span><span class="nk"> &lt;rtyler&gt;</span> okie
+<a name="l-357"></a><span class="tm">19:57:53</span><span class="nk"> &lt;rtyler&gt;</span> I think we can hash this all out in #jenkins-community though, doesn't seem like there's much more for discussion here?
+<a name="l-358"></a><span class="tm">19:57:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the conversation about the virtual open house will continue in #jenkins-community</span>
+<a name="l-359"></a><span class="tm">19:58:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-360"></a><span class="tm">19:58:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2 minutes left :)
+<a name="l-361"></a><span class="tm">19:58:21</span><span class="nk"> &lt;rtyler&gt;</span> WE CAN DO IT
+<a name="l-362"></a><span class="tm">19:58:26</span><span class="nk"> &lt;kohsuke&gt;</span> next meeting will be in March 16th the usual time
+<a name="l-363"></a><span class="tm">19:58:29</span><span class="nk"> &lt;rtyler&gt;</span> March 16th same time same place? :D
+<a name="l-364"></a><span class="tm">19:58:36</span><span class="nk"> &lt;autojack&gt;</span> same bat-channel
+<a name="l-365"></a><span class="tm">19:58:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting will be in March 16th the usual time</span>
+<a name="l-366"></a><span class="tm">19:58:41</span><span class="nk"> &lt;batmat&gt;</span> cool.
+<a name="l-367"></a><span class="tm">19:58:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> When does the next timeshift happen in US?
+<a name="l-368"></a><span class="tm">19:58:54</span><span class="nk"> &lt;kohsuke&gt;</span> oh
+<a name="l-369"></a><span class="tm">19:58:56</span><span class="nk"> &lt;rtyler&gt;</span> april or may
+<a name="l-370"></a><span class="tm">19:58:57</span><span class="nk"> &lt;batmat&gt;</span> and welcome to a GSoC candidate pakhandibaba in this channel :)
+<a name="l-371"></a><span class="tm">19:59:00</span><span class="nk"> &lt;rtyler&gt;</span> maybe
+<a name="l-372"></a><span class="tm">19:59:03</span><span class="nk"> &lt;rtyler&gt;</span> I have no idea
+<a name="l-373"></a><span class="tm">19:59:05</span><span class="nk"> &lt;autojack&gt;</span> March 13.
+<a name="l-374"></a><span class="tm">19:59:07</span><span class="nk"> &lt;kohsuke&gt;</span> No, it's March 13th
+<a name="l-375"></a><span class="tm">19:59:13</span><span class="nk"> &lt;rtyler&gt;</span> 13th
+<a name="l-376"></a><span class="tm">19:59:16</span><span class="nk"> &lt;rtyler&gt;</span> right
+<a name="l-377"></a><span class="tm">19:59:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">watch out for US DST change. For the rest of the world this meeting will move up by an hour</span>
+<a name="l-378"></a><span class="tm">19:59:43</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's it
+<a name="l-379"></a><span class="tm">19:59:43</span><span class="nk"> &lt;rtyler&gt;</span> ONE MINUTE
+<a name="l-380"></a><span class="tm">19:59:46</span><span class="nk"> &lt;rtyler&gt;</span> kill it quick!
+<a name="l-381"></a><span class="tm">19:59:51</span><span class="nk"> &lt;batmat&gt;</span> March 26th in France.
+<a name="l-382"></a><span class="tm">19:59:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 06:12:08 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:39:09 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 912.143
+  exclusion.robots: 0.089
+  exclusion.robots.policy: 0.082
+  cdx.remote: 0.058
+  esindex: 0.009
+  LoadShardBlock: 213.296 (3)
+  PetaboxLoader3.datanode: 285.895 (4)
+  CDXLines.iter: 16.141 (3)
+  load_resource: 405.13
+  PetaboxLoader3.resolve: 259.364
+-->

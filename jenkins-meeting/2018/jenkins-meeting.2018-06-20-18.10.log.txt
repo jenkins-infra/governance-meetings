@@ -1,0 +1,102 @@
+18:10:39 <kohsuke> #startmeeting
+18:10:39 <robobutler> Let the Jenkins meeting commence!
+18:10:54 <oleg-nenashev> thumbs up
+18:10:57 <kohsuke> #chair rtyler  danielbeck
+18:10:57 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:11:02 <kohsuke> not that they are here, but hey
+18:11:17 <kohsuke> #topic Recap last meeting's actions
+18:11:18 <ewel> I don’t know how it works but I guess my topic is he only one in the agenda?
+18:11:34 <kohsuke> ewel: I suspect so given the attendance, but I'll go through the motion for the rest of the agenda
+18:11:36 <oleg-nenashev> nope
+18:11:37 <ogondza> #info https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+18:11:43 <ewel> Sure
+18:12:01 <kohsuke> Let's see, where are the action items...
+18:12:11 <oleg-nenashev> Emm... I have submitted the agenda patches
+18:12:26 <ogondza> http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-06-06-18.00.html
+18:12:31 <oleg-nenashev> Catnfluence ate my update again :)
+18:12:42 <ogondza> 1-3 are done
+18:13:10 <kohsuke> oleg-nenashev: the rest of AI seems to be yours
+18:13:10 <oleg-nenashev> My action items are done
+18:13:31 <oleg-nenashev> We had GSoC demos, still need to blogpost them
+18:13:37 <kohsuke> Yay, all action items done from the last week, that's unusual!
+18:13:43 <kohsuke> Then let's move on...
+18:13:53 <kohsuke> #topic LTS status check
+18:14:09 <ogondza> I have announced backporting done earlier today
+18:14:22 <ogondza> some things postponed, lot fixed added
+18:14:47 <ogondza> I will push the RC in ~14 hours unless I hear I should not
+18:14:56 <oleg-nenashev> some rejected. My only concern is a fix for JNLP Launcher compatibility
+18:15:19 <oleg-nenashev> Unfortunately we do not have ndeloof here, but we have ewel at the meeting
+18:15:47 <ogondza> oleg-nenashev: are you confident in backporting both the parts? IIRC the fixup was too new at the beginning of the window
+18:15:51 <oleg-nenashev> #info https://issues.jenkins-ci.org/browse/JENKINS-51603
+18:16:28 <ogondza> I see the amendment is formerly soaked by now...
+18:16:31 <oleg-nenashev> ogondza: I am not comfortable about the second part at all
+18:16:41 <ewel> I can’t really comment on that, I’m actually on vacation and walking now :| sorry, I thought it will be only about the use of Jenkins name :(
+18:16:50 <oleg-nenashev> But https://github.com/jenkinsci/jenkins/pull/3463 seems to be safe enough - no API changes
+18:17:12 <oleg-nenashev> I can live without it though
+18:17:23 <ogondza> oleg-nenashev: I see it is flagged as minor so as long as that is adequate so suggest to wait for 03
+18:17:28 <ogondza> .3, I mean
+18:17:36 <oleg-nenashev> I doubt there will be so many people doing 2.60.x => 2.121.x migration with JCasC
+18:17:51 <ogondza> yeah, .3 it is
+18:17:56 <oleg-nenashev> ok
+18:18:05 <ogondza> anyway, that is all from me
+18:18:39 <kohsuke> OK, shall we move on?
+18:18:53 <ogondza> #action ogondza to push the RC
+18:18:58 <ogondza> yes, now we can
+18:19:14 <kohsuke> #topic Trademark Sublicensing Request: Day of Jenkins [as code]
+18:19:20 <kohsuke> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/bmd6ooZZ7wI
+18:19:28 <kohsuke> There are a bunch of +1s in that thread
+18:19:42 <kohsuke> And here's my +1 as well
+18:20:08 <kohsuke> Anything more to add ewel?
+18:20:23 <ewel> If there is a need to convince anyone?
+18:20:40 <ewel> We just want to highlight it will be focused on “as code”
+18:20:49 <ogondza> +1 from me, too
+18:20:49 <ewel> Thought it’s a good idea
+18:20:57 <oleg-nenashev> So, does anybody has any concerns?
+18:21:00 <oleg-nenashev> +1 from me
+18:21:08 <kohsuke> Going once ...
+18:21:24 <kohsuke> Going twice...
+18:21:39 <kohsuke> Given that it's been approved in the past I think it's a no brainer
+18:21:43 <kohsuke> GONE!
+18:21:48 <ewel> Thanks!
+18:21:55 <ewel> Hope to see some of you there :)
+18:22:05 <oleg-nenashev> When do you start CFP?
+18:22:22 <kohsuke> #agreed trademark sublicense request approved for "Day of Jenkins [as code ]"
+18:22:32 <kohsuke> ewel: looking forward to the event
+18:22:42 <ewel> I’ll let Jasmine to start communicating details in a minute
+18:22:54 <oleg-nenashev> kohsuke: We also need an action for somebody to update Trademark Wiki Page
+18:23:09 <oleg-nenashev> #info https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage
+18:23:10 <kohsuke> oleg-nenashev: ack
+18:23:32 <oleg-nenashev> It's restricted, not sure who has permissions nowadays
+18:23:33 <kohsuke> Why don't we let you do GSoC update and I'll get to it while you are doing that
+18:23:43 <oleg-nenashev> fine with me
+18:23:51 <kohsuke> #topic GSoC status check
+18:24:30 <oleg-nenashev> #info So, we have 3 GSoC projects. All students passed the first evaluation
+18:24:50 <oleg-nenashev> Also, all of them created blogposts about their projects
+18:25:02 <oleg-nenashev> #info https://jenkins.io/blog/2018/06/13/code-coverage-api-plugin/
+18:25:12 <oleg-nenashev> #info https://jenkins.io/blog/2018/06/15/simple-pull-request-plugin/
+18:25:22 <oleg-nenashev> #info https://jenkins.io/blog/2018/06/18/remoting-over-message-bus/
+18:25:28 <oleg-nenashev> Next steps are just coding
+18:25:54 <oleg-nenashev> #info If you want to see demos, see the blogposts. They have links to the recording we had last Thursday
+18:26:12 <oleg-nenashev> Next phase presentations will be a Jenkins Online Meetup
+18:26:29 <oleg-nenashev> So... this is an update. Any questions? :)
+18:27:12 <kohsuke> I popped into the meeting earlier in Hangout and it looks like something good is cooking, so :thumbup:
+18:27:29 <oleg-nenashev> #action oleg_nenashev to sync-up with the Jenkins Board about budgets for JW sponsorships, etc.
+18:27:42 <oleg-nenashev> work in progress
+18:28:03 <oleg-nenashev> But yeah, all projects achieved really good results
+18:28:17 <oleg-nenashev> If there is no questions, we can move on
+18:28:33 <kohsuke> All right
+18:28:41 <kohsuke> #topic Update: Jenkins & Java 10 Online Hackathon
+18:29:04 <oleg-nenashev> Not sure how many people we have here
+18:29:50 <kohsuke> Yeah we can't skip
+18:29:56 <oleg-nenashev> #info So, we have got Jenkins Pipeline running. So all crucial Jenkins bits seem to work well now. There is ongoing work on tooling. https://jenkins.io/blog/2018/06/19/jenkins-java10-hackathon-day2/
+18:30:09 <kohsuke> I mean we "can"
+18:30:20 <oleg-nenashev> yup
+18:30:36 <oleg-nenashev> #info if anybody wants to try Jenkins on Java 10/11, see https://jenkins.io/blog/2018/06/17/running-jenkins-with-java10-11/
+18:30:41 <oleg-nenashev> I'd guess that's it
+18:31:00 <kohsuke> All right
+18:31:07 <kohsuke> Anything else?
+18:31:11 <oleg-nenashev> Next meeting time?
+18:31:19 <oleg-nenashev> We have July 4th in 2 weeks
+18:31:39 <kohsuke> #topic next meeting time
+18:31:54 <kohsuke> #info July 4th, happy independence day!
+18:31:59 <kohsuke> #endmeeting

@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:11</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:13</span><span class="nk"> &lt;jglick&gt;</span> (sorry kohsuke)
+<a name="l-4"></a><span class="tm">18:01:16</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> oh, sorry, missed that
+<a name="l-5"></a><span class="tm">18:01:19</span><span class="nk"> &lt;marshzor&gt;</span> okay sorry guys
+<a name="l-6"></a><span class="tm">18:01:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer rtyler hare_brain</span>
+<a name="l-7"></a><span class="tm">18:01:22</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-8"></a><span class="tm">18:01:26</span><span class="nk"> &lt;kohsuke&gt;</span> No problem
+<a name="l-9"></a><span class="tm">18:01:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-10"></a><span class="tm">18:01:47</span><span class="nk"> &lt;kohsuke&gt;</span> And my apologies for the last minute announcement
+<a name="l-11"></a><span class="tm">18:02:03</span><span class="nk"> &lt;jglick&gt;</span> BTW Mar 20 meeting did not happen
+<a name="l-12"></a><span class="tm">18:02:17</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so let's start with that agenda items
+<a name="l-13"></a><span class="tm">18:02:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">cleanup changelog handling</span>
+<a name="l-14"></a><span class="tm">18:02:44</span><span class="nk"> &lt;kohsuke&gt;</span> that's yours jglick
+<a name="l-15"></a><span class="tm">18:03:03</span><span class="nk"> &lt;jglick&gt;</span> So there was a bit of discussion of this on the list.
+<a name="l-16"></a><span class="tm">18:03:21</span><span class="nk"> &lt;jglick&gt;</span> Problems were basically that changelog.html is really hard to merge/backport/etc.
+<a name="l-17"></a><span class="tm">18:03:27</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-18"></a><span class="tm">18:03:30</span><span class="nk"> &lt;jglick&gt;</span> And often misses entries.
+<a name="l-19"></a><span class="tm">18:03:34</span><span class="nk"> &lt;jglick&gt;</span> Also hard for PRs to add to.
+<a name="l-20"></a><span class="tm">18:03:56</span><span class="nk"> &lt;jglick&gt;</span> (Note that 1.480.3 changelog is quite incomplete for example.)
+<a name="l-21"></a><span class="tm">18:04:03</span><span class="nk"> &lt;jglick&gt;</span> Some proposals were to use a directory of files for changes, or to use git log.
+<a name="l-22"></a><span class="tm">18:04:32</span><span class="nk"> &lt;jglick&gt;</span> git log is more automatic but hard to edit later. Dir of files is more explicit but could easily be forgotten.
+<a name="l-23"></a><span class="tm">18:04:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> what's the subject line of the discussion you are referring to? I'm drawing blank
+<a name="l-24"></a><span class="tm">18:04:40</span><span class="nk"> &lt;jglick&gt;</span> Uh let me see.
+<a name="l-25"></a><span class="tm">18:04:46</span><span class="nk"> &lt;jenkins-builds&gt;</span> Project jenkins_main_trunk build #2431: SUCCESS in 1 hr 3 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/2431/
+<a name="l-26"></a><span class="tm">18:04:47</span><span class="nk"> &lt;jenkins-builds&gt;</span> Jesse Glick: [FIXED JENKINS-17454] Display parameters of queue items in build history widget.
+<a name="l-27"></a><span class="tm">18:04:49</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17454:Difficult to determine parameters of queue items (Open) http://jenkins-ci.org/issue/17454
+<a name="l-28"></a><span class="tm">18:04:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">mc1arke:</span> also, does this relate any way to what you were working on?
+<a name="l-29"></a><span class="tm">18:05:03</span><span class="nk"> &lt;kpfleming_&gt;</span> One concern with using 'git log' is there is almost no consistency in how commit log messages are written.
+<a name="l-30"></a><span class="tm">18:05:11</span><span class="nk"> &lt;mc1arke&gt;</span> I suspect so
+<a name="l-31"></a><span class="tm">18:05:26</span><span class="nk"> &lt;mc1arke&gt;</span> although would need all features to be in Jira
+<a name="l-32"></a><span class="tm">18:05:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kpfleming_:</span> if there's a bot using it, I think it creates more incentive, like that "FIXED JENKINS-..." marker
+<a name="l-33"></a><span class="tm">18:05:39</span><span class="nk"> &lt;jglick&gt;</span> https://groups.google.com/d/msg/jenkinsci-dev/HPoCM6NJJZw/Kd_YryJVkPwJ maybe
+<a name="l-34"></a><span class="tm">18:06:05</span><span class="nk"> &lt;kpfleming_&gt;</span> agreed. many projects have strong policies on how commit messages should be composed, and it ends up benefiting everyone.
+<a name="l-35"></a><span class="tm">18:06:57</span><span class="nk"> &lt;jglick&gt;</span> Normative format for commit messages would be nice. I think generally [FIXED JENKINS-nnnnn] or [JENKINS-nnnnn] are agreed upon.
+<a name="l-36"></a><span class="tm">18:07:22</span><span class="nk"> &lt;jglick&gt;</span> The latter for commits relating to, but not exactly solving, the issue.
+<a name="l-37"></a><span class="tm">18:07:34</span><span class="nk"> &lt;kohsuke&gt;</span> For the records, the LTS changelog generation is now done via the script that builds it automatically from git log
+<a name="l-38"></a><span class="tm">18:07:38</span><span class="nk"> &lt;kpfleming_&gt;</span> There are two apsects: format and content. When I was running the Asterisk project, we worked hard to get people to write good commit messages.
+<a name="l-39"></a><span class="tm">18:07:51</span><span class="nk"> &lt;kohsuke&gt;</span> My intent was to soak it there a bit and deploy this on the trunk
+<a name="l-40"></a><span class="tm">18:07:54</span><span class="nk"> &lt;kpfleming_&gt;</span> Format is easy... writing concise summaries is harder.
+<a name="l-41"></a><span class="tm">18:08:11</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">kohsuke:</span> what is this new script?
+<a name="l-42"></a><span class="tm">18:08:45</span><span class="nk"> &lt;kohsuke&gt;</span> I need to find where the repository is, but it's a little Groovy script that looks for all the FIXED JENKINS-XXXX between two releases and lists that up into a file
+<a name="l-43"></a><span class="tm">18:09:23</span><span class="nk"> &lt;One-Man-Bucket&gt;</span> i think it's important to be able to track a changenote to code or a jira issue.
+<a name="l-44"></a><span class="tm">18:09:25</span><span class="nk"> &lt;jglick&gt;</span> You would probably also want a “Miscellaneous” section of other commits lacking this format.
+<a name="l-45"></a><span class="tm">18:09:39</span><span class="nk"> &lt;jglick&gt;</span> Though obviously we would encourage as much as possible to use this style.
+<a name="l-46"></a><span class="tm">18:10:09</span><span class="nk"> &lt;jglick&gt;</span> And you may want to hide intermediate commits merged in a commit that says [FIXED JENKINS-nnnnn] as would be common in a PR.
+<a name="l-47"></a><span class="tm">18:10:26</span><span class="nk"> &lt;jglick&gt;</span> (Which reminds me: we should try to enforce that PR titles start with [FIXED JENKINS-nnnnn].)
+<a name="l-48"></a><span class="tm">18:11:08</span><span class="nk"> &lt;vjuranek&gt;</span> does this assumes existing JIRA for every commit?
+<a name="l-49"></a><span class="tm">18:11:11</span><span class="nk"> &lt;kohsuke&gt;</span> doing "git log" alone is pretty straight-forward, but are you thinking about combining it with other arbitrary "merge in" changelog entries?
+<a name="l-50"></a><span class="tm">18:11:20</span><span class="nk"> &lt;jglick&gt;</span> Linking to JIRA helps in that you can always go back and edit the JIRA summary.
+<a name="l-51"></a><span class="tm">18:12:05</span><span class="nk"> &lt;jglick&gt;</span> But yes there is the problem that if you forget to put in an issue ID, or file the issue retroactively, or mistyped it, or whatever, you have no control over the result.
+<a name="l-52"></a><span class="tm">18:12:09</span><span class="nk"> &lt;kohsuke&gt;</span> I guess what we can do is to put these per-version auto-generated changelog files in a separate repository to let humans edit after the release?
+<a name="l-53"></a><span class="tm">18:12:40</span><span class="nk"> &lt;jglick&gt;</span> Does it need to be a separate repo? I guess so.
+<a name="l-54"></a><span class="tm">18:13:03</span><span class="nk"> &lt;jglick&gt;</span> Since you may need to edit changelogs for a branch, etc.
+<a name="l-55"></a><span class="tm">18:13:39</span><span class="nk"> &lt;kohsuke&gt;</span> We can clam that into the main jenkins repo, but I think it makes more sense as a separate repository
+<a name="l-56"></a><span class="tm">18:13:51</span><span class="nk"> &lt;kohsuke&gt;</span> editing those files in a branch of Jenkins make no sense
+<a name="l-57"></a><span class="tm">18:13:57</span><span class="nk"> &lt;jglick&gt;</span> Agreed that it should not be in jenkinsci/jenkins#master branch.
+<a name="l-58"></a><span class="tm">18:14:13</span><span class="nk"> &lt;jglick&gt;</span> Could be in an independent branch in jenkinsci/jenkins as for gh-pages and the like.
+<a name="l-59"></a><span class="tm">18:14:18</span><span class="nk"> &lt;jglick&gt;</span> But a separate repo is fine too.
+<a name="l-60"></a><span class="tm">18:14:22</span><span class="nk"> &lt;kpfleming_&gt;</span> in my previous project we made our release tag, then generated changelog and other files and committed them to the tag
+<a name="l-61"></a><span class="tm">18:14:52</span><span class="nk"> &lt;jglick&gt;</span> What do you mean “to the tag”?
+<a name="l-62"></a><span class="tm">18:15:04</span><span class="nk"> &lt;jglick&gt;</span> There should be one changelog for all historical versions, right?
+<a name="l-63"></a><span class="tm">18:15:09</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe we can combine this with git note so that additional entries can be added in that way
+<a name="l-64"></a><span class="tm">18:15:19</span><span class="nk"> &lt;jglick&gt;</span> Ooh, git note, fancy.
+<a name="l-65"></a><span class="tm">18:15:21</span><span class="nk"> &lt;kohsuke&gt;</span> So you can write some entries without waiting for a release to be cut
+<a name="l-66"></a><span class="tm">18:15:24</span><span class="nk"> &lt;kpfleming_&gt;</span> no, you need more than on changelog
+<a name="l-67"></a><span class="tm">18:15:42</span><span class="nk"> &lt;kpfleming_&gt;</span> every time you branch for an LTS, the changelog branches too
+<a name="l-68"></a><span class="tm">18:16:18</span><span class="nk"> &lt;mc1arke&gt;</span> git note would make sense for retrospective commenting on commits
+<a name="l-69"></a><span class="tm">18:16:20</span><span class="nk"> &lt;jglick&gt;</span> Unfortunately when you backport to an LTS the changelog gets enormous merge conflicts. So that does not work too well.
+<a name="l-70"></a><span class="tm">18:16:44</span><span class="nk"> &lt;kpfleming_&gt;</span> right. that branch should have its own changelog, which is updated by importing the additional commits.
+<a name="l-71"></a><span class="tm">18:16:48</span><span class="nk"> &lt;jglick&gt;</span> Yes +1 for git notes. If you screw up the commit message, add a note in a predetermined format which would specify the right issue ID etc.
+<a name="l-72"></a><span class="tm">18:16:54</span><span class="nk"> &lt;kohsuke&gt;</span> git-note works well with cherry-picking too
+<a name="l-73"></a><span class="tm">18:17:08</span><span class="nk"> &lt;kpfleming_&gt;</span> in that project, the master branch does not have a changelog
+<a name="l-74"></a><span class="tm">18:17:10</span><span class="nk"> &lt;kohsuke&gt;</span> we can make the changelog generation script looks the note attached to the original commit a cherry pick come from
+<a name="l-75"></a><span class="tm">18:17:56</span><span class="nk"> &lt;kohsuke&gt;</span> All right, so who's going to implement this? :-)
+<a name="l-76"></a><span class="tm">18:17:57</span><span class="nk"> &lt;jglick&gt;</span> Right, assuming git-cherry-pick does not copy notes.
+<a name="l-77"></a><span class="tm">18:18:27</span><span class="nk"> &lt;jglick&gt;</span> Hmm, the implementation…
+<a name="l-78"></a><span class="tm">18:18:28</span><span class="nk"> &lt;kohsuke&gt;</span> I'll dig up the script I have today. If it's useful that's great, if it's not, that's fine.
+<a name="l-79"></a><span class="tm">18:18:45</span><span class="nk"> &lt;kohsuke&gt;</span> I'd be happy to do it, or if someone else wants to do it, that's good
+<a name="l-80"></a><span class="tm">18:18:46</span><span class="nk"> &lt;jglick&gt;</span> Post a reference to it to the list, preferably in the abovementioned thread.
+<a name="l-81"></a><span class="tm">18:19:05</span><span class="nk"> &lt;jglick&gt;</span> One question regarding notes:
+<a name="l-82"></a><span class="tm">18:19:29</span><span class="nk"> &lt;jglick&gt;</span> Should you be able to suppress items from the changelog? Or add items not in an existing commit?
+<a name="l-83"></a><span class="tm">18:19:40</span><span class="nk"> &lt;jglick&gt;</span> I guess the latter does not make sense.
+<a name="l-84"></a><span class="tm">18:20:05</span><span class="nk"> &lt;hare_brain&gt;</span> I would answer that question with another question.
+<a name="l-85"></a><span class="tm">18:20:17</span><span class="nk"> &lt;jglick&gt;</span> Also do we want to allow JIRA-less notes/commit messages that point only to a PR?
+<a name="l-86"></a><span class="tm">18:20:26</span><span class="nk"> &lt;jglick&gt;</span> Often a PR is a decent substitute for the JIRA issue.
+<a name="l-87"></a><span class="tm">18:20:34</span><span class="nk"> &lt;hare_brain&gt;</span> Even though it's called changelog.html, is the intent of that to be release notes, or a change list? Because I tend to distinguish between the two.
+<a name="l-88"></a><span class="tm">18:20:42</span><span class="nk"> &lt;jglick&gt;</span> (In fact nicer, for those of us who prefer Markdown to the JIRA wiki abomination.)
+<a name="l-89"></a><span class="tm">18:20:47</span><span class="nk"> &lt;hare_brain&gt;</span> I think release notes are probably a curated version of a change list.
+<a name="l-90"></a><span class="tm">18:21:08</span><span class="nk"> &lt;hare_brain&gt;</span> So there would be the opportunity to add items not in an existing commit but is considered part of a "release"
+<a name="l-91"></a><span class="tm">18:21:12</span><span class="nk"> &lt;jglick&gt;</span> I would say a change list; release notes should be heavily edited and talk about upgrading and so on.
+<a name="l-92"></a><span class="tm">18:21:48</span><span class="nk"> &lt;jglick&gt;</span> Well the question is whether we actually need a directly editable changelog if we have git notes.
+<a name="l-93"></a><span class="tm">18:21:48</span><span class="nk"> &lt;hare_brain&gt;</span> As a user, I would be more interested in release notes than a change list.
+<a name="l-94"></a><span class="tm">18:22:17</span><span class="nk"> &lt;jglick&gt;</span> Yes full release notes are nicer for a user but who is volunteering to write them up each week? We have a hard enough time getting a complete changelog.
+<a name="l-95"></a><span class="tm">18:22:25</span><span class="nk"> &lt;jglick&gt;</span> Half the changes every week are just missing.
+<a name="l-96"></a><span class="tm">18:23:03</span><span class="nk"> &lt;jglick&gt;</span> Sometimes important things.
+<a name="l-97"></a><span class="tm">18:23:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> I think you get manual editability free because we'll likely push the generated changelog to Git repository anyway so that the process generating them can hand them over easily to the web server
+<a name="l-98"></a><span class="tm">18:23:38</span><span class="nk"> &lt;jglick&gt;</span> So the generation would only append one week’s worth of changes.
+<a name="l-99"></a><span class="tm">18:23:50</span><span class="nk"> &lt;jglick&gt;</span> Leaving any edits to prior weeks untouched.
+<a name="l-100"></a><span class="tm">18:24:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I think our attacking the narrow problem of automating the current manual editing of changelog.html is a sound one
+<a name="l-101"></a><span class="tm">18:24:31</span><span class="nk"> &lt;kohsuke&gt;</span> separte from your broader question of if more edited release note is something we should/can take of
+<a name="l-102"></a><span class="tm">18:24:37</span><span class="nk"> &lt;jglick&gt;</span> So my understanding is that directly editing the generated log would be possible, but would rarely be necessary, since you could use git notes to make routine touch-ups.
+<a name="l-103"></a><span class="tm">18:25:10</span><span class="nk"> &lt;kpfleming_&gt;</span> as an example of how complex this can be, look at http://svn.asterisk.org/svn/repotools/mkrelease this uses Subversion, but the concepts are the same
+<a name="l-104"></a><span class="tm">18:25:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> or it generates stuff into one branch and humans edit stuff in another branch
+<a name="l-105"></a><span class="tm">18:25:26</span><span class="nk"> &lt;jglick&gt;</span> And then merge the two?
+<a name="l-106"></a><span class="tm">18:25:35</span><span class="nk"> &lt;kohsuke&gt;</span> anyway, I think we want to spend some of the time today on other topics
+<a name="l-107"></a><span class="tm">18:25:42</span><span class="nk"> &lt;jglick&gt;</span> Agreed.
+<a name="l-108"></a><span class="tm">18:25:48</span><span class="nk"> &lt;kohsuke&gt;</span> Let's put together something that works and play with it a bit
+<a name="l-109"></a><span class="tm">18:26:17</span><span class="nk"> &lt;kohsuke&gt;</span> Sorry to cut the lively discussion in the middle, but moving on to the  next topic...
+<a name="l-110"></a><span class="tm">18:26:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">board election process proposal</span>
+<a name="l-111"></a><span class="tm">18:26:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process+Proposal</span>
+<a name="l-112"></a><span class="tm">18:27:19</span><span class="nk"> &lt;kohsuke&gt;</span> My apologies for procrastinating on this for so long, but hare_brain, abayer, and I met and we think this is what we'd like to push forward
+<a name="l-113"></a><span class="tm">18:27:23</span><span class="nk"> &lt;abayer&gt;</span> Agreed.
+<a name="l-114"></a><span class="tm">18:28:20</span><span class="nk"> &lt;kpfleming_&gt;</span> Looks sound.
+<a name="l-115"></a><span class="tm">18:28:28</span><span class="nk"> &lt;kohsuke&gt;</span> The goal is to ensure smooth transition as board members come &amp; go
+<a name="l-116"></a><span class="tm">18:28:46</span><span class="nk"> &lt;kohsuke&gt;</span> ... and to ensure the diversity
+<a name="l-117"></a><span class="tm">18:29:14</span><span class="nk"> &lt;kohsuke&gt;</span> Given that, and given that we don't want something too complicated to implement, we came down to what's listed there
+<a name="l-118"></a><span class="tm">18:29:36</span><span class="nk"> &lt;kohsuke&gt;</span> Since we currently have only 3, the first election would be unusual in that it won't replace existing board members
+<a name="l-119"></a><span class="tm">18:29:39</span><span class="nk"> &lt;kohsuke&gt;</span> We just add 2 more.
+<a name="l-120"></a><span class="tm">18:30:09</span><span class="nk"> &lt;kohsuke&gt;</span> But the year after that abayer, hare_brain, and I will be replaced by the newly elected people
+<a name="l-121"></a><span class="tm">18:30:15</span><span class="nk"> &lt;kpfleming_&gt;</span> and the 2 year terms for the existing members would begin then?
+<a name="l-122"></a><span class="tm">18:30:21</span><span class="nk"> &lt;hare_brain&gt;</span> Or re-elected if that's what people want.
+<a name="l-123"></a><span class="tm">18:30:22</span><span class="nk"> &lt;kpfleming_&gt;</span> oh
+<a name="l-124"></a><span class="tm">18:30:32 </span><span class="nka">* kpfleming_</span> <span class="ac">needs a better IRC client</span>
+<a name="l-125"></a><span class="tm">18:30:37</span><span class="nk"> &lt;kohsuke&gt;</span> And the year after that 2 people that we elect in 2013 will be up for re-election
+<a name="l-126"></a><span class="tm">18:31:02</span><span class="nk"> &lt;kohsuke&gt;</span> I'll leave STV's description for Wikipedia
+<a name="l-127"></a><span class="tm">18:31:22</span><span class="nk"> &lt;kohsuke&gt;</span> but basically you write the order of preferences
+<a name="l-128"></a><span class="tm">18:31:56</span><span class="nk"> &lt;kohsuke&gt;</span> The advantages of STV is that (1) it lets you elect multiple people in one shot, and (2) there's an existing implementation that we can just use that handles the algorithm
+<a name="l-129"></a><span class="tm">18:32:18</span><span class="nk"> &lt;kohsuke&gt;</span> And I'm thinking we can enhance our account app to handle all this
+<a name="l-130"></a><span class="tm">18:32:38</span><span class="nk"> &lt;kohsuke&gt;</span> Any thoughts on this?
+<a name="l-131"></a><span class="tm">18:32:50</span><span class="nk"> &lt;kpfleming_&gt;</span> for what it's worth, i think it's a great propoal
+<a name="l-132"></a><span class="tm">18:32:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kpfleming_:</span>  Thanks
+<a name="l-133"></a><span class="tm">18:33:01</span><span class="nk"> &lt;mc1arke&gt;</span> +1 from me
+<a name="l-134"></a><span class="tm">18:33:13</span><span class="nk"> &lt;vjuranek&gt;</span> 5. You earn the voting right by registering or voting in the previous election. - this means that if I were registered by time of previous electiion, I'm allowed to elect in election?
+<a name="l-135"></a><span class="tm">18:33:30</span><span class="nk"> &lt;vjuranek&gt;</span> otherwise sounds good to me so +1
+<a name="l-136"></a><span class="tm">18:33:36</span><span class="nk"> &lt;kinow&gt;</span> +1 too, sounds nice
+<a name="l-137"></a><span class="tm">18:33:57</span><span class="nk"> &lt;hare_brain&gt;</span> vjuranek do you have a concern with registered but not voting in the previous elections?
+<a name="l-138"></a><span class="tm">18:34:50</span><span class="nk"> &lt;vjuranek&gt;</span> no, just to make clear what "registering" means
+<a name="l-139"></a><span class="tm">18:35:55</span><span class="nk"> &lt;kohsuke&gt;</span> What I had in mind in that during the voting period, you can either cast a vote if you are eligible (aka "registered"), or if not, we say "we can't take your vote for this election but we've registered you for the next one"
+<a name="l-140"></a><span class="tm">18:36:08</span><span class="nk"> &lt;hare_brain&gt;</span> OK. So yeah, kohsuke, the definition of registering is subtle. We should make it more clear that registering means having an account on jenkins-ci.org.
+<a name="l-141"></a><span class="tm">18:36:43</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I'll revise the text
+<a name="l-142"></a><span class="tm">18:36:48</span><span class="nk"> &lt;kpfleming_&gt;</span> so prior to the election you pull an eligible voter list from the account system
+<a name="l-143"></a><span class="tm">18:36:59</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> ok, now I understand, thanks
+<a name="l-144"></a><span class="tm">18:37:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kpfleming_:</span> yeah
+<a name="l-145"></a><span class="tm">18:37:32</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I think we can record sufficient consensus on this
+<a name="l-146"></a><span class="tm">18:37:34</span><span class="nk"> &lt;hare_brain&gt;</span> Jenkins "I voted" stickers? ;)
+<a name="l-147"></a><span class="tm">18:37:43</span><span class="nk"> &lt;kohsuke&gt;</span> nice
+<a name="l-148"></a><span class="tm">18:38:05</span><span class="nk"> &lt;kohsuke&gt;</span> a plugin that gives you a star for each vote you did or something
+<a name="l-149"></a><span class="tm">18:38:08</span><span class="nk"> &lt;hare_brain&gt;</span> Just kidding. Although we could show those as badges online somewhere.
+<a name="l-150"></a><span class="tm">18:38:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to clarify the meaning of the registration</span>
+<a name="l-151"></a><span class="tm">18:38:28</span><span class="nk"> &lt;hare_brain&gt;</span> Sorry, big time tangent.
+<a name="l-152"></a><span class="tm">18:39:22</span><span class="nk"> &lt;kohsuke&gt;</span> I'll advertise this more in the dev&amp;users list, and I'll start implementing the account app enhancement
+<a name="l-153"></a><span class="tm">18:39:47</span><span class="nk"> &lt;kohsuke&gt;</span> and hopefully we'll be able to get to the first election before this summar
+<a name="l-154"></a><span class="tm">18:40:05</span><span class="nk"> &lt;kohsuke&gt;</span> OK, unless somebody wants to add something now, moving on to the next topic...
+<a name="l-155"></a><span class="tm">18:40:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Next LTS candidate</span>
+<a name="l-156"></a><span class="tm">18:40:25</span><span class="nk"> &lt;kohsuke&gt;</span> This is from vjuranek
+<a name="l-157"></a><span class="tm">18:40:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://jenkins-ci.org/changelog</span>
+<a name="l-158"></a><span class="tm">18:40:45</span><span class="nk"> &lt;jglick&gt;</span> So we are nearly two months overdue.
+<a name="l-159"></a><span class="tm">18:40:53</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-160"></a><span class="tm">18:41:16</span><span class="nk"> &lt;vjuranek&gt;</span> there were some concenrs about lazy loading related bugs
+<a name="l-161"></a><span class="tm">18:41:46</span><span class="nk"> &lt;kohsuke&gt;</span> I've sweeped the lazy loading fall out, and put all the fixes by 1.508
+<a name="l-162"></a><span class="tm">18:41:58</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-16845 is still broken.
+<a name="l-163"></a><span class="tm">18:42:01</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-16845:NullPointer in getPreviousBuild (Open) http://jenkins-ci.org/issue/16845
+<a name="l-164"></a><span class="tm">18:42:02</span><span class="nk"> &lt;jglick&gt;</span> I am looking at it.
+<a name="l-165"></a><span class="tm">18:42:10</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-166"></a><span class="tm">18:42:50</span><span class="nk"> &lt;jglick&gt;</span> My bigger concern is whether someone has confirmed that lazy loading is actually effective on installations with lots of plugins, or do some of them eagerly load builds?
+<a name="l-167"></a><span class="tm">18:43:18</span><span class="nk"> &lt;kohsuke&gt;</span> I think we talked the last time that we don't want to push the next LTS for too long, so I prefer to pick one release now even if it's not complete
+<a name="l-168"></a><span class="tm">18:43:45</span><span class="nk"> &lt;jglick&gt;</span> Agreed, there are two many fixes just sitting around not getting to people, and we are way overdue.
+<a name="l-169"></a><span class="tm">18:43:58</span><span class="nk"> &lt;jglick&gt;</span> 1.509 has OK ratings.
+<a name="l-170"></a><span class="tm">18:44:01</span><span class="nk"> &lt;vjuranek&gt;</span> +1 to release next LTS
+<a name="l-171"></a><span class="tm">18:44:03</span><span class="nk"> &lt;jglick&gt;</span> ^+, 1-
+<a name="l-172"></a><span class="tm">18:44:04</span><span class="nk"> &lt;nanonyme&gt;</span> jglick, if so, would that be likely to cause a bigger impact than lazy just not happening?
+<a name="l-173"></a><span class="tm">18:44:07</span><span class="nk"> &lt;jglick&gt;</span> 6+, 1- I meant
+<a name="l-174"></a><span class="tm">18:44:32</span><span class="nk"> &lt;jglick&gt;</span> Eager loading at runtime probably worse than eager loading at startup.
+<a name="l-175"></a><span class="tm">18:44:38</span><span class="nk"> &lt;jglick&gt;</span> Could block HTTP response threads, etc.
+<a name="l-176"></a><span class="tm">18:44:45</span><span class="nk"> &lt;nanonyme&gt;</span> Okay
+<a name="l-177"></a><span class="tm">18:44:57</span><span class="nk"> &lt;jglick&gt;</span> I mean, if it were extreme: most/all builds getting loaded.
+<a name="l-178"></a><span class="tm">18:45:03</span><span class="nk"> &lt;jglick&gt;</span> But I hope this is not the case.
+<a name="l-179"></a><span class="tm">18:45:23</span><span class="nk"> &lt;kohsuke&gt;</span> 1.509 is too young in our past process, but in this case I think it's probably the best one
+<a name="l-180"></a><span class="tm">18:45:36</span><span class="nk"> &lt;kohsuke&gt;</span> ... according to our past process, that is
+<a name="l-181"></a><span class="tm">18:46:18</span><span class="nk"> &lt;jglick&gt;</span> 1.508 is out of the question.
+<a name="l-182"></a><span class="tm">18:46:18</span><span class="nk"> &lt;vjuranek&gt;</span> I'm also fine 1.509
+<a name="l-183"></a><span class="tm">18:46:19</span><span class="nk"> &lt;larrys&gt;</span> I still have not updated to 1.509 from 1.505 due to JENKINS-13465 (which is really a bug in the m2release plugin)
+<a name="l-184"></a><span class="tm">18:46:21</span><span class="nk"> &lt;kohsuke&gt;</span> The one before is 1.505. For some reasons it has a great review
+<a name="l-185"></a><span class="tm">18:46:21</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-13465:Unable perform release: ClassCastException: net.sf.json.JSONNull cannot be cast to net.sf.json.JSONObject on Hudson 2.2.0 (Open) http://jenkins-ci.org/issue/13465
+<a name="l-186"></a><span class="tm">18:46:56</span><span class="nk"> &lt;jglick&gt;</span> Or maybe it is 1.507 I am thinking of.
+<a name="l-187"></a><span class="tm">18:47:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">larrys:</span> I put 'lts-candidate' on it
+<a name="l-188"></a><span class="tm">18:47:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> yeah, I think you are thinking of 1.507
+<a name="l-189"></a><span class="tm">18:47:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://jenkins-ci.org/changelog</span>
+<a name="l-190"></a><span class="tm">18:47:33</span><span class="nk"> &lt;jglick&gt;</span> Still 1.508 has poor reviews.
+<a name="l-191"></a><span class="tm">18:47:45</span><span class="nk"> &lt;jglick&gt;</span> Unclear why.
+<a name="l-192"></a><span class="tm">18:48:14</span><span class="nk"> &lt;jglick&gt;</span> Anyway we can expect to be backporting some trunk fixes.
+<a name="l-193"></a><span class="tm">18:48:23</span><span class="nk"> &lt;larrys&gt;</span> would be nice to show the number of times each jira issue is put in as the reason for the negative review,
+<a name="l-194"></a><span class="tm">18:48:56</span><span class="nk"> &lt;kohsuke&gt;</span> Since vjuranek and jglick are OK with it, let's do 1.509.
+<a name="l-195"></a><span class="tm">18:49:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Next LTS will be based on 1.509</span>
+<a name="l-196"></a><span class="tm">18:49:21</span><span class="nk"> &lt;vjuranek&gt;</span> do we want to backport trunk fixes?
+<a name="l-197"></a><span class="tm">18:49:31</span><span class="nk"> &lt;kohsuke&gt;</span> It's bit out of the process, so hopefully we won't have to repeat this again
+<a name="l-198"></a><span class="tm">18:50:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> there's a Windows symlink bug fix that I want to check if it needs to be in for 1.509.1
+<a name="l-199"></a><span class="tm">18:50:26</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">vjuranek:</span> there are definitely some lts-candidate things after 1.509.
+<a name="l-200"></a><span class="tm">18:50:39</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-17330 for example.
+<a name="l-201"></a><span class="tm">18:50:42</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17330:FilePath.installIfNecessaryFrom routes download over remoting channel (Resolved) http://jenkins-ci.org/issue/17330
+<a name="l-202"></a><span class="tm">18:50:56</span><span class="nk"> &lt;hare_brain&gt;</span> Basically what you're saying is that recent releases have been so buggy that we feel that the most recent release is a better LTS candidate than something that has been out for a while.
+<a name="l-203"></a><span class="tm">18:51:07</span><span class="nk"> &lt;vjuranek&gt;</span> I mean the procedure was to have the fix some time in the release before backporting
+<a name="l-204"></a><span class="tm">18:51:21</span><span class="nk"> &lt;hare_brain&gt;</span> Which is an OK position to take, since we're trying to maximize for stability primarily on LTS.
+<a name="l-205"></a><span class="tm">18:51:58</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">vjuranek:</span> oh right, agreed that having a grace period for fixes in trunk is a good idea.
+<a name="l-206"></a><span class="tm">18:52:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> yes, in the past we picked an older release
+<a name="l-207"></a><span class="tm">18:52:27</span><span class="nk"> &lt;kohsuke&gt;</span> it's unusual to pick $MAINLINE_VERSION-1 as the basis
+<a name="l-208"></a><span class="tm">18:52:52</span><span class="nk"> &lt;vjuranek&gt;</span> ok, so we took latest release - it's an exception and we can do another one this time to backport trunk fixes. Agree?
+<a name="l-209"></a><span class="tm">18:53:30</span><span class="nk"> &lt;jglick&gt;</span> Well we always have the option to backport trunk fixes, it is just a question of how long they have soaked, right?
+<a name="l-210"></a><span class="tm">18:53:43</span><span class="nk"> &lt;hare_brain&gt;</span> Yes.
+<a name="l-211"></a><span class="tm">18:53:52</span><span class="nk"> &lt;kohsuke&gt;</span> Is JENKINS-17330 that critical?
+<a name="l-212"></a><span class="tm">18:53:54</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17330:FilePath.installIfNecessaryFrom routes download over remoting channel (Resolved) http://jenkins-ci.org/issue/17330
+<a name="l-213"></a><span class="tm">18:54:00</span><span class="nk"> &lt;hare_brain&gt;</span> We don't want to churn on LTS because bug fixes have bugs.
+<a name="l-214"></a><span class="tm">18:54:06</span><span class="nk"> &lt;jglick&gt;</span> “those commits that have already been a part of a main line release for more than a week”
+<a name="l-215"></a><span class="tm">18:54:11</span><span class="nk"> &lt;jglick&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line</span>
+<a name="l-216"></a><span class="tm">18:54:25</span><span class="nk"> &lt;kohsuke&gt;</span> I mean it only happens once per slave and it's not likely it's broken, it's just slower, right? And the remoting change helps that
+<a name="l-217"></a><span class="tm">18:54:55</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">kohsuke:</span> in the case I know about it is so much slower that it just plain fails.
+<a name="l-218"></a><span class="tm">18:55:08</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-219"></a><span class="tm">18:55:08</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">jglick:</span> ah, sorry, you are right
+<a name="l-220"></a><span class="tm">18:55:12</span><span class="nk"> &lt;jglick&gt;</span> (When you are talking about Gradle or similar.)
+<a name="l-221"></a><span class="tm">18:55:52</span><span class="nk"> &lt;jglick&gt;</span> I have been pretty liberal about marking things lts-candidate; any individual item should be hashed out on the list I suppose.
+<a name="l-222"></a><span class="tm">18:56:22</span><span class="nk"> &lt;kohsuke&gt;</span> we have to sweep through lts-candidate. Since 1.509 is pretty new, chances are good that many of them are already in it
+<a name="l-223"></a><span class="tm">18:56:37</span><span class="nk"> &lt;jglick&gt;</span> But yes hare_brain we do not want to backport so much that we introduce regressions that need secondary fixes.
+<a name="l-224"></a><span class="tm">18:57:10</span><span class="nk"> &lt;jglick&gt;</span> Some things marked lts-candidate are still 1.480.x candidates, though.
+<a name="l-225"></a><span class="tm">18:57:15</span><span class="nk"> &lt;jglick&gt;</span> 1.480.4 currently.
+<a name="l-226"></a><span class="tm">18:57:25</span><span class="nk"> &lt;jglick&gt;</span> If we ever want to do one.
+<a name="l-227"></a><span class="tm">18:57:29</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think we'll be doing 1.480.4
+<a name="l-228"></a><span class="tm">18:57:41</span><span class="nk"> &lt;jglick&gt;</span> Then not.
+<a name="l-229"></a><span class="tm">18:58:23</span><span class="nk"> &lt;jglick&gt;</span> BTW I would like to amend “We aim for no API change.” to say that @Restricted(NoExternalUse.class) should be used whenever applicable.
+<a name="l-230"></a><span class="tm">18:58:41</span><span class="nk"> &lt;kohsuke&gt;</span> Let's shoot for backporting in 2 weeks. It'll give us a bit more soaking time on 1.509, too
+<a name="l-231"></a><span class="tm">18:58:54</span><span class="nk"> &lt;kohsuke&gt;</span> And then aim for a release in another 2 weeks?
+<a name="l-232"></a><span class="tm">18:59:17</span><span class="nk"> &lt;vjuranek&gt;</span> +1
+<a name="l-233"></a><span class="tm">18:59:17</span><span class="nk"> &lt;jglick&gt;</span> So to start selecting backports in mid-April you mean?
+<a name="l-234"></a><span class="tm">18:59:25</span><span class="nk"> &lt;hare_brain&gt;</span> jglick I'm not familiar with that annotation. What does it do?
+<a name="l-235"></a><span class="tm">18:59:45</span><span class="nk"> &lt;kohsuke&gt;</span> backporting starts now
+<a name="l-236"></a><span class="tm">18:59:46</span><span class="nk"> &lt;vjuranek&gt;</span> I gues to have finished backport in mid-april
+<a name="l-237"></a><span class="tm">18:59:54</span><span class="nk"> &lt;kohsuke&gt;</span> by mid Apirl we want an RC
+<a name="l-238"></a><span class="tm">18:59:58</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">hare_brain:</span> prevents the method etc. from being called outside Jenkins core. So we do not introduce a new API in branch just to have a method called from Jelly scripts, for example.
+<a name="l-239"></a><span class="tm">19:00:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> it's the annotation that we defined, not a part of Java
+<a name="l-240"></a><span class="tm">19:00:16</span><span class="nk"> &lt;jglick&gt;</span> OK, then mid-Apr to end of Apr to run tests.
+<a name="l-241"></a><span class="tm">19:00:20</span><span class="nk"> &lt;kohsuke&gt;</span> right
+<a name="l-242"></a><span class="tm">19:00:27</span><span class="nk"> &lt;hare_brain&gt;</span> Got it, thanks.
+<a name="l-243"></a><span class="tm">19:01:01</span><span class="nk"> &lt;jglick&gt;</span> So then when are trunk fixes available for backport? If in trunk for a week, that means that they have to be in by Apr 10 or thereabouts?
+<a name="l-244"></a><span class="tm">19:01:16</span><span class="nk"> &lt;jglick&gt;</span> Or no, in a trunk _release_ by Apr 10, so really like now.
+<a name="l-245"></a><span class="tm">19:01:54</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, this time around there really shouldn't be many backporting
+<a name="l-246"></a><span class="tm">19:02:09</span><span class="nk"> &lt;kohsuke&gt;</span> I just mainly wants a bit of time to make sure all the really serious ones are accounted for
+<a name="l-247"></a><span class="tm">19:02:16</span><span class="nk"> &lt;kohsuke&gt;</span> like breaking all the Windows XP
+<a name="l-248"></a><span class="tm">19:02:45</span><span class="nk"> &lt;kohsuke&gt;</span> Time check... let me wrap this up
+<a name="l-249"></a><span class="tm">19:02:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-250"></a><span class="tm">19:02:58</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">(btw:</span> this is still weak part of testing  - we don't do any testing on windows:-()
+<a name="l-251"></a><span class="tm">19:03:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> yes, I'm going to resurrect a Windows XP VM somewhere
+<a name="l-252"></a><span class="tm">19:03:46</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">kohsuke:</span> Windows 7 has different issues that you may not see on XP
+<a name="l-253"></a><span class="tm">19:03:50</span><span class="nk"> &lt;mc1arke&gt;</span> anything I can do to provide a windows host?
+<a name="l-254"></a><span class="tm">19:03:52</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> and Win2k8, etc
+<a name="l-255"></a><span class="tm">19:04:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">mc1arke:</span> if you have one lying around, we can use it!
+<a name="l-256"></a><span class="tm">19:04:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Slide-O-Mix:</span> yes, more the merrier if we have those
+<a name="l-257"></a><span class="tm">19:04:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">So the next meeting is in 2 weeks, April 17th the same time</span>
+<a name="l-258"></a><span class="tm">19:04:55</span><span class="nk"> &lt;hare_brain&gt;</span> Can we use this: http://www.modern.ie/en-us/virtualization-tools?
+<a name="l-259"></a><span class="tm">19:05:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> not quite, we want to run master on Windows
+<a name="l-260"></a><span class="tm">19:05:22</span><span class="nk"> &lt;hare_brain&gt;</span> +1 to meeting time
+<a name="l-261"></a><span class="tm">19:05:26</span><span class="nk"> &lt;vjuranek&gt;</span> +1
+<a name="l-262"></a><span class="tm">19:05:28</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-263"></a><span class="tm">19:05:40</span><span class="nk"> &lt;mc1arke&gt;</span> +1 to meeting time
+<a name="l-264"></a><span class="tm">19:05:41</span><span class="nk"> &lt;kohsuke&gt;</span> All right, see you in 2 weeks
+<a name="l-265"></a><span class="tm">19:05:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

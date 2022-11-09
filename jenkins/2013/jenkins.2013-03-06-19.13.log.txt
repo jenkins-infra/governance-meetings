@@ -1,0 +1,190 @@
+19:13:36 <kohsuke> #startmeeting
+19:13:36 <robobutler> Let the Jenkins meeting commence!
+19:13:47 <kohsuke> #chairs hare_brain abayer rtyler
+19:13:55 <vulwork> mclarke: I'll check right now, I'll be quiet for the meeting
+19:13:59 * vulwork shuts up
+19:14:07 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:14:33 <kohsuke> hare_brain:  Did people meet in Feb 20th?
+19:14:44 <kohsuke> I was travelling, and my apologies for not sending in my regrets sooner
+19:15:00 <kohsuke> ok looks like we didn't
+19:15:02 <hare_brain> I was actually sick that day so I was offline the entire time
+19:15:28 <kohsuke> vjuranek: are you here?
+19:15:32 <kohsuke> I know jglick is around
+19:15:36 <kohsuke> #topic Change LTS backport procedure
+19:15:43 <vjuranek> on Feb 20th it wasn't
+19:15:49 <jglick> yes here
+19:16:21 <kohsuke> I think the basic idea as I understand it is to stop using priority and switch to a label
+19:16:30 <vjuranek> yes
+19:16:56 <jglick> Were we using priority before?
+19:17:04 <kohsuke> Yes, roughly
+19:17:11 <jglick> But how roughly?
+19:17:35 <vjuranek> jglick: I search for blockeers and critical bug + asked on dev list and backport what other proposed
+19:17:56 <kohsuke> https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line doesn't actually say
+19:18:13 <jglick> Priority is pretty subjective however.
+19:18:23 <kohsuke> Yes
+19:18:41 <kohsuke> I'm good with using a label
+19:18:52 <jglick> I have been marking things 1.480.4-candidate that I think are easily backported and important enough to bother—really causing damage the way they are.
+19:19:08 <kohsuke> My only question is if "lts-candidate/lts-fixed/lts-rejected" works better instead of "$VERSION-candidate"
+19:19:18 <hare_brain> I was about to suggest the same
+19:19:24 <hare_brain> Keep the labels version independent.
+19:19:25 <jglick> (But with the expectation that any item can be argued over.)
+19:19:50 <jglick> For fixed bugs having the version number in there is handy.
+19:20:13 <hare_brain> I thought there was a field to record a fixed in version?
+19:20:15 <vjuranek> yes, that would make the search more easy IMHO
+19:20:23 <jglick> Even for rejected bugs, since there might be a reason it was rejected for one that does not apply to another release.
+19:20:32 <kpfleming> there should be such a field, but it can't hold more than one version
+19:20:46 <mc1arke> there's an item later in the agenda about adding version numbers of releases in Jira
+19:20:59 <jglick> That would be nice!
+19:21:00 <kohsuke> determining which release contains a given commit feels like a separate service?
+19:21:13 <kpfleming> that's something git can do easily
+19:21:19 <kohsuke> (I've been meaning to write a little webapp that does just that: git tag --contains=$COMMIT
+19:21:20 <jglick> Fine for it to be a separate service so long as that service actually exists.
+19:21:24 <hare_brain> Hang on, we're going off topic a little bit.
+19:21:44 <jglick> tag --contains works OK for master releases but problematic for backports.
+19:22:22 <kohsuke> hare_brain: I'll take this little app stuff off for now and discuss about it later outside the meeting
+19:22:29 <kohsuke> I guess your point is let's get back to labels
+19:22:33 <jglick> (OT: Versions field seems to support multiple selections.)
+19:22:51 <kpfleming> oh, good
+19:22:52 <kohsuke> Yes, I believe modern JIRA versions support multiple versions
+19:23:10 <kohsuke> multiple values in the "fixed version" field, that is
+19:23:16 <jglick> The reason 1.480.4-candidate is more informative than lts-candidate is that the latter is meaningless for something fixed in 1.503 when 1.520 (e.g.) is the next LTS base.
+19:24:03 <jglick> My thinking was to keep the specific version in the label since it is easy to automatically migrate some or all candidates to another.
+19:24:15 <kpfleming> would that label be changed once the backport was either accepted or rejected?
+19:24:56 <jglick> So if accepted, then changed to 1.480.4-fixed; if rejected, to 1.480.4-rejected, but later you could change to 1.480.5-candidate, 1.520.1-candidate, etc.
+19:24:58 <vjuranek> IMHO we should add new label or even better add fixed version fieald
+19:25:18 <kohsuke> if we expect users to put the *-candidate label, isn't it easier to have them do lts-candidate rather than ask them to look up the expected next version number?
+19:25:35 <jglick> I was not expecting the filer to add the label in general.
+19:25:41 <hare_brain> Agree with kohsuke. I think we need to be clear about how we want these workflows to work.
+19:25:43 <jglick> Something to be managed by committers.
+19:25:47 <mc1arke> surely it's the devs making the change
+19:25:59 <kohsuke> if it's already in the baseline don't we just need to remove the label or mark them as rejected?
+19:26:48 <hare_brain> It sounds like different people have different ideas about how is applying the label.
+19:26:50 <jglick> Typically, though some issues need multiple rounds of fixes. (Thinking of Windows JNA.)
+19:26:51 <hare_brain> who
+19:27:33 <hare_brain> I never thought I'd say "It sounds like we need a program manager."
+19:27:45 <jglick> No strong feeling about choice of label name, so long as we have _something_.
+19:27:45 <kohsuke> :-)
+19:28:30 <kohsuke> If that is the case, I propose we use lts-candidate, 1.480.3-fixed, and 1.480.3-rejected
+19:28:40 <vjuranek> yup, I also have no strong opinion what is better
+19:28:57 <vjuranek> on problem with this schme
+19:29:03 <vjuranek> s/on/no/
+19:29:20 <jglick> Seems OK to me.
+19:29:35 <kohsuke> (and I'm sure we can revisit this if someone starts to feel strongly)
+19:29:40 <jglick> How do you do a bulk update in JIRA BTW?
+19:29:50 <jglick> labels in ("1.480.4-candidate") has 16 hits currently.
+19:30:11 <vjuranek> jglick: I guess jira api and some script should work
+19:30:15 <kohsuke> #agreed change LTS backporting procedure to use labels. People will add 'lts-candidate', and devs will mark them as either $VER-rejected or $VER-fixed
+19:30:18 <jglick> Never mind, saw Bulk Change menu item.
+19:30:25 <kohsuke> #action kohsuke to update LTS document
+19:30:47 <kohsuke> #action jglick to bulk update existing tickets with $V-candidate convention
+19:30:49 <hare_brain> Who is "devs" in your statement kohsuke?
+19:30:58 <kohsuke> people doing backporting
+19:31:07 <kohsuke> jglick, vjuranek, me, etc
+19:31:30 <vjuranek> btw: everything should be backported or we are supposed to do some selection?
+19:31:38 <hare_brain> So user proposes that a ticket be backported to LTS by labeling with lts-candidate
+19:31:46 <hare_brain> Backporters can search for this label
+19:32:03 <hare_brain> They do the backport, and label with $VER-fixed to communicate to the user what LTS version(s) it's going to be in
+19:32:19 <hare_brain> Or they mark with $VER-rejected to tell the proposer that this ticket will not be backported?
+19:32:21 <jglick> Definitely we do some selection. Fix is easy and safe to backport, confident that the fix works, problem is important enough to justify risk, etc.
+19:32:34 <kohsuke> hare_brain: that's my understanding
+19:32:53 <kohsuke> shall we move on to the next topic?
+19:32:55 <jglick> BTW JIRA is too dumb to rename a label, it seems.
+19:32:57 <hare_brain> That's fine with me. I just wanted to make sure eveyrone is on the same page
+19:33:18 <vjuranek> ok (next topics)
+19:33:33 <jglick> (ditto)
+19:33:35 <kohsuke> #topic Notification of issues included in a release and Use of release numbers in JIRA
+19:33:50 <kohsuke> mc1arke: this is yours
+19:33:57 <mc1arke> that was my topic I believe
+19:33:57 <kohsuke> But I think it's basically what we started talking about, right?
+19:34:02 <mc1arke> yes
+19:34:35 <mc1arke> jglick had a post to the mailing list a few weeks back about updating issues with comments as a release is made so a user knows what version an issue was fixed in
+19:34:52 <kohsuke> I think the right approach is for me to write a little program that computes the release that contains the commit and reflects that to the ticket
+19:35:07 <mc1arke> I've got jenkins-issues listening on here and #jenkins-commits for such messages
+19:35:13 <mc1arke> jenkins-issues: status
+19:35:14 <jenkins-issues> I am listening for commits but am not commenting on issues
+19:35:16 <kohsuke> Because of our RC cycles and some out-of-cycle emergency fixes, we don't even know when the fix gets delivered
+19:35:21 <jglick> Should this be in a comment, or should it actually set the Fixed Version field?
+19:35:27 <kohsuke> oh wow, look, new bot!
+19:35:28 <mc1arke> both
+19:35:29 <kpfleming_> but you'd store that information in the 'fix version' field, not a comment, right?
+19:36:06 <kohsuke> I'm fine either way
+19:36:13 <mc1arke> still some work needed tbh, but I wanted views on whether it was worth getting the bot to add version numbers to Jira and then set versions on defects
+19:36:17 <larrys> Side effect is people can then put down affects version(s) for what version(s) a bug was found or affecting...
+19:36:36 <kpfleming_> putting it in fixed versions makes it much more easily searchable
+19:36:51 <jglick> The trouble is that versions will be the union of core & all plugins.
+19:37:02 <jglick> Because we use Component rather than product.
+19:37:06 <jglick> IIUC.
+19:37:19 <kpfleming_> JIRA supports component-level versioning, although it's a bit complex to use
+19:37:24 <kohsuke> Maybe we can create a new free-text field?
+19:37:35 <kohsuke> kpfleming_: oh that's good news
+19:37:47 <mc1arke> is it worth me doing a bit more digging into what Jira will let us do?
+19:38:00 <kohsuke> mc1arke: yeah, that'd be awesome
+19:38:05 <mc1arke> my bot uses the REST API to update defects, and Github's API to check for changes
+19:38:14 <jglick> Yes please (digging).
+19:38:21 <kohsuke> and this jenkins-issues bot --- you wrote this, right?
+19:38:26 <mc1arke> yes
+19:38:32 <kohsuke> Where is the source code?
+19:38:37 <jglick> (BTW my AI now complete.)
+19:38:38 <mc1arke> my github account
+19:38:38 <kpfleming_> also, if the only top-level project in that JIRA instance is JENKINS... it seems like everything could be moved up one level (components become their own projects), although that would be pretty major
+19:39:06 <jglick> Right is there a reason we did not set things up this way to begin with?
+19:39:07 <kohsuke> #info https://github.com/mc1arke/JenkinsReleaseIssueBot
+19:39:35 <kohsuke> jglick: just the byproduct of the java.net IssueZilla import process, I think
+19:39:44 <kohsuke> Or whatever reasons there were, those are lost in the history
+19:39:45 <jglick> Good grief.
+19:39:50 <mc1arke> the bot uses a snapshot of the github-api - I'm waiting for you to review a pull request on it Kohsuke
+19:40:04 <kohsuke> mc1arke:  I'm just going to add you as a committer
+19:40:11 <larrys> I think there was some concern about the number of projects in JIRA since we have what, 600ish plugins?
+19:41:24 <kohsuke> In practice no one has enough cycles to fight with JIRA and spend time doing large migration
+19:41:33 <jglick> OT: the Component system is a PIA from the standpoint of email notifications. Get 100 messages from JIRA, mostly about plugins I have never heard of and do not care about.
+19:41:53 <kohsuke> mc1arke: can you tell us bit more about your bot?
+19:41:56 <jglick> (With no indication in the subject header or elsewhere what the component is.)
+19:42:00 <mc1arke> sure
+19:42:12 <kohsuke> It looks like you are going to solve this problem
+19:42:37 <kohsuke> But the approach is probably very different from what I mentioned earlier
+19:43:02 <mc1arke> it listens for commit messages on #jenkins-commits and parses out the components name and version, uses the github api to pull out all commits, parses them for change messages and then uses the Jira REST API to update the issues
+19:43:06 <kpfleming_> jglick: iirc, the jira email template can be modified to include component information in a header in the message
+19:43:35 <jglick> (OT: that would be very nice!)
+19:43:39 <mc1arke> it still needs some work around working out the last release version for finding commits from,
+19:43:59 <kohsuke> mc1arke: so it basically looks at <version> in POM and remove -SNAPSHOT
+19:45:20 <kohsuke> All right, so I guess the action at this point is for mc1arke to make more progress on what he started, and we'll help him if he needs to get more info from JIRA?
+19:45:39 <mc1arke> it doesn't check the pom - it's listening for the maven 'prepare release message' in a commit notification, although this isn't very stable so I'll probably change it
+19:45:53 <kohsuke> oh I see
+19:46:38 <mc1arke> it works across plugins and core
+19:46:40 <kohsuke> I'll talk to you about what I thought I'd do, in case if any of those would be an useful building block
+19:46:54 <mc1arke> sure, happy to discuss it after the meeting
+19:47:15 <kohsuke> kpfleming_: and you seem to know a lot about JIRA --- any interest in helping us babysit our JIRA?
+19:47:17 <kohsuke> I'm a lousy admin
+19:47:39 <kohsuke> OK, moving on...
+19:47:46 <kohsuke> #topic Next LTS rebump?
+19:47:49 <kpfleming_> i used it heavily when i ran the asterisk project, and learned a lot about it, but my new job keeps me pretty busy... i can certainly help with answering directed questions and sharing experience though
+19:48:03 <kohsuke> kpfleming_: thanks
+19:48:18 <larrys> I can answer JIRA questions too, since I'm the jira admin at my $WORK
+19:48:18 <kohsuke> So the time frame wise I think it's about time we start thinking about next LTS
+19:48:20 <kpfleming_> for asterisk, at least, making good use of JIRA and admin of it was a solid part-time job
+19:48:33 <vjuranek> yes, any proposals? I was thinking about 1.501 or 1.502
+19:48:40 <kohsuke> but jglick was saying we need to clean up the fall out from lazy loading before we do that
+19:48:45 <jglick> Yup.
+19:49:01 <kpfleming_> 1.503 would be good for me, as it contains an API change that the next significant ec2-plugin release will depend on
+19:49:02 <jglick> And one of the fixed just went it to, what was it?, 1.505.
+19:49:12 <jglick> (…fixes… I meant)
+19:49:38 <jglick> JENKINS-8754 related issues.
+19:49:41 <jenkins-admin> JENKINS-8754:ROADMAP: Improve Start-up Time (Closed) http://jenkins-ci.org/issue/8754
+19:50:13 <kohsuke> I'm fine either way --- now that I'm not traveling for a few months, JENKINS-8754 fall out is high on my priority list
+19:50:20 <jglick> No real idea how much is really fixed now (usually hard to reproduce); JENKINS-16089 still open though.
+19:50:24 <jenkins-admin> JENKINS-16089:Standard view columns interact force builds to be eagerly loaded (Open) http://jenkins-ci.org/issue/16089
+19:50:49 <jglick> Which justinsb was working on.
+19:51:00 <kohsuke> But I'm also fine with doing LTS as the train model
+19:51:20 <kohsuke> I find the train model easier in OSS
+19:52:14 <jglick> So any outstanding 8754-related fixes just become lts-candidate as usual?
+19:52:38 <jglick> (Here is a case where distinguishing 1.480.4-candidate from e.g. 1.505.1-candidate would be useful BTW.)
+19:52:39 <kohsuke> I guess I shall sweep lazy loading issues before the next meeting, and one way or the other we'll come up the next LTS baseline then?
+19:53:28 <vjuranek> sounds reasonable
+19:53:58 <kohsuke> #agreed we'll sweep lazy loading issues before the next meeting, and one way or the other we'll come up the next LTS baseline
+19:54:00 <jglick> Seems reasonable to me too. I agree that we should not just wait indefinitely—other stuff gets broken in trunk in the meantime.
+19:54:29 <kohsuke> #topic next meeting time
+19:54:59 <kohsuke> It'll be 3/20, same time
+19:55:12 <vjuranek> fine for me
+19:55:29 <kpfleming_> see you all t hen
+19:55:29 <kohsuke> #info the next meeting will be 3/20 11 pacific time
+19:55:45 <kohsuke> #endmeeting

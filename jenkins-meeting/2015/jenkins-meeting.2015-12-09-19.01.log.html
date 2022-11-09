@@ -1,0 +1,448 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app227.us.archive.org';v.server_ms=435;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2015/jenkins-meeting.2015-12-09-19.01.log.html","20200503183422","https://web.archive.org/","web","/_static/",
+	      "1588530862");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:01:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:01:18</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:01:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">agenda https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Dec9meeting</span>
+<a name="l-4"></a><span class="tm">19:01:39</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke around?
+<a name="l-5"></a><span class="tm">19:01:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">last meeting's actions</span>
+<a name="l-6"></a><span class="tm">19:01:57</span><span class="nk"> &lt;kohsuke&gt;</span> Oops
+<a name="l-7"></a><span class="tm">19:02:01</span><span class="nk"> &lt;kohsuke&gt;</span> I'm around now
+<a name="l-8"></a><span class="tm">19:02:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">kohsuke danielbeck hare_brain</span>
+<a name="l-9"></a><span class="tm">19:02:12</span><span class="nk"> &lt;danielbeck&gt;</span> The only action was KK to publish RC and that happened
+<a name="l-10"></a><span class="tm">19:02:34</span><span class="nk"> &lt;kohsuke&gt;</span> yes, let's move on
+<a name="l-11"></a><span class="tm">19:02:34</span><span class="nk"> &lt;rtyler&gt;</span> anything else there to discuss?
+<a name="l-12"></a><span class="tm">19:03:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-13"></a><span class="tm">19:03:21</span><span class="nk"> &lt;rtyler&gt;</span> assuming this is ogondza's
+<a name="l-14"></a><span class="tm">19:03:22</span><span class="nk"> &lt;rtyler&gt;</span> ?
+<a name="l-15"></a><span class="tm">19:03:25</span><span class="nk"> &lt;kohsuke&gt;</span> So the release just went out and I think it's ready
+<a name="l-16"></a><span class="tm">19:03:27</span><span class="nk"> &lt;ogondza&gt;</span> All looks fine ,as reported
+<a name="l-17"></a><span class="tm">19:03:38</span><span class="nk"> &lt;ogondza&gt;</span> yeah, i just noticed that
+<a name="l-18"></a><span class="tm">19:03:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">1.625.3 is done</span>
+<a name="l-19"></a><span class="tm">19:03:47</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> do you need to hear from me sooner?
+<a name="l-20"></a><span class="tm">19:04:13</span><span class="nk"> &lt;ogondza&gt;</span> (than at the meeting time)
+<a name="l-21"></a><span class="tm">19:04:21</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza We need to include you in the security update process, let's discuss this separately.
+<a name="l-22"></a><span class="tm">19:04:50</span><span class="nk"> &lt;kohsuke&gt;</span> Yes that's true, I just assumed no news is a good news but you are right, technically I jumped the gun
+<a name="l-23"></a><span class="tm">19:05:22</span><span class="nk"> &lt;kohsuke&gt;</span> in any case, shall we move on?
+<a name="l-24"></a><span class="tm">19:05:25</span><span class="nk"> &lt;ogondza&gt;</span> sure
+<a name="l-25"></a><span class="tm">19:05:30</span><span class="nk"> &lt;danielbeck&gt;</span> FWIW I'll email jenkinsci-advisories later today to announce it
+<a name="l-26"></a><span class="tm">19:05:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next LTS baseline selection</span>
+<a name="l-27"></a><span class="tm">19:05:39</span><span class="nk"> &lt;danielbeck&gt;</span> everything else is done and just waits for caches to clear
+<a name="l-28"></a><span class="tm">19:05:55</span><span class="nk"> &lt;danielbeck&gt;</span> unfortunately it looks like jglick couldn't make it
+<a name="l-29"></a><span class="tm">19:06:09</span><span class="nk"> &lt;kohsuke&gt;</span> he's travelling
+<a name="l-30"></a><span class="tm">19:06:16</span><span class="nk"> &lt;danielbeck&gt;</span> http://jenkins-ci.org/changelog is mixed
+<a name="l-31"></a><span class="tm">19:06:26</span><span class="nk"> &lt;ogondza&gt;</span> mixed?
+<a name="l-32"></a><span class="tm">19:06:32</span><span class="nk"> &lt;danielbeck&gt;</span> no clear good release
+<a name="l-33"></a><span class="tm">19:06:36</span><span class="nk"> &lt;danielbeck&gt;</span> based on feedback
+<a name="l-34"></a><span class="tm">19:06:43</span><span class="nk"> &lt;danielbeck&gt;</span> 1.637 introduced two regressions
+<a name="l-35"></a><span class="tm">19:06:54</span><span class="nk"> &lt;danielbeck&gt;</span> JENKINS-31458
+<a name="l-36"></a><span class="tm">19:06:58</span><span class="nk"> &lt;danielbeck&gt;</span> JENKINS-31518
+<a name="l-37"></a><span class="tm">19:07:15</span><span class="nk"> &lt;ogondza&gt;</span> 1.638 contains security fixes, that would simplify a lot of things I presume
+<a name="l-38"></a><span class="tm">19:07:18</span><span class="nk"> &lt;danielbeck&gt;</span> both are supposed to be fixed by now, but one has several comments indicating it's not
+<a name="l-39"></a><span class="tm">19:07:30</span><span class="nk"> &lt;abayer&gt;</span> Yeah, JENKIN-31458 fix introduced a nasty regression itself.
+<a name="l-40"></a><span class="tm">19:07:40</span><span class="nk"> &lt;abayer&gt;</span> https://issues.jenkins-ci.org/browse/JENKINS-31954
+<a name="l-41"></a><span class="tm">19:08:02</span><span class="nk"> &lt;abayer&gt;</span> May not be a hard fix, but it's definitely happening in the new code from JENKINS-31458.
+<a name="l-42"></a><span class="tm">19:08:15</span><span class="nk"> &lt;kohsuke&gt;</span> 1.634?
+<a name="l-43"></a><span class="tm">19:08:24</span><span class="nk"> &lt;danielbeck&gt;</span> so basically everything since 1.636 is somewhat broken.
+<a name="l-44"></a><span class="tm">19:09:48</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Are you proposing that version?
+<a name="l-45"></a><span class="tm">19:09:57</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-46"></a><span class="tm">19:10:39</span><span class="nk"> &lt;danielbeck&gt;</span> it's not better than 635 because we have a fix for the one ugly bug with the JDK named null
+<a name="l-47"></a><span class="tm">19:10:55</span><span class="nk"> &lt;kohsuke&gt;</span> 1.635 change doesn't seem like the kinds that create many regressions so I don't know why 1.635 rating is significantly worse than 1.634 but trusting the knowledge of the crowd
+<a name="l-48"></a><span class="tm">19:11:19</span><span class="nk"> &lt;danielbeck&gt;</span> and 636 has very little new https://github.com/jenkinsci/jenkins/compare/jenkins-1.635...jenkins-1.636 over that.
+<a name="l-49"></a><span class="tm">19:11:58</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke 6 votes for the bug in JDK selection that was since fixed
+<a name="l-50"></a><span class="tm">19:12:00</span><span class="nk"> &lt;kohsuke&gt;</span> If 1.636 is your proposal I'm fine with that too
+<a name="l-51"></a><span class="tm">19:12:07</span><span class="nk"> &lt;danielbeck&gt;</span> so IMO 635 is good, as is 636.
+<a name="l-52"></a><span class="tm">19:12:35</span><span class="nk"> &lt;ogondza&gt;</span> 636 looks good to me
+<a name="l-53"></a><span class="tm">19:12:41</span><span class="nk"> &lt;kohsuke&gt;</span> You are obviously far more knowledgeable about the fixes &amp; bugs that went into those.
+<a name="l-54"></a><span class="tm">19:12:58</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so 1.636 it is?
+<a name="l-55"></a><span class="tm">19:13:30</span><span class="nk"> &lt;danielbeck&gt;</span> looks like a good choice to me
+<a name="l-56"></a><span class="tm">19:13:30</span><span class="nk"> &lt;kohsuke&gt;</span> And I guess we can merge security-stable-1.625 to get it patched up?
+<a name="l-57"></a><span class="tm">19:13:50</span><span class="nk"> &lt;kohsuke&gt;</span> Any objections before settling on 1.636?
+<a name="l-58"></a><span class="tm">19:14:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next LTS is 1.636 based</span>
+<a name="l-59"></a><span class="tm">19:14:26</span><span class="nk"> &lt;rtyler&gt;</span> onto next?
+<a name="l-60"></a><span class="tm">19:14:36</span><span class="nk"> &lt;danielbeck&gt;</span> yes
+<a name="l-61"></a><span class="tm">19:14:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> would you create stable-1.636 branch?
+<a name="l-62"></a><span class="tm">19:14:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Final review/adoption of Board Election Process Proposal</span>
+<a name="l-63"></a><span class="tm">19:14:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">proposal here https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process+Proposal</span>
+<a name="l-64"></a><span class="tm">19:14:55</span><span class="nk"> &lt;kohsuke&gt;</span> (or do you want me to?)
+<a name="l-65"></a><span class="tm">19:14:56</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza will create the stable branch</span>
+<a name="l-66"></a><span class="tm">19:15:03</span><span class="nk"> &lt;rtyler&gt;</span> ahem
+<a name="l-67"></a><span class="tm">19:15:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> now I'm ready to move on
+<a name="l-68"></a><span class="tm">19:15:24</span><span class="nk"> &lt;kohsuke&gt;</span> as in ready for the next topic
+<a name="l-69"></a><span class="tm">19:15:58</span><span class="nk"> &lt;rtyler&gt;</span> in the proposal what's different from last time can be seen: https://wiki.jenkins-ci.org/pages/diffpagesbyversion.action?pageId=63930772&amp;selectedPageVersions=10&amp;selectedPageVersions=8
+<a name="l-70"></a><span class="tm">19:16:19</span><span class="nk"> &lt;rtyler&gt;</span> basically fleshed out some more details from last meeting around resignation/interims and rules around corporate involvement
+<a name="l-71"></a><span class="tm">19:16:50</span><span class="nk"> &lt;rtyler&gt;</span> I know that orrc, teilo, fred02 and oleg-nenashev had some feedback
+<a name="l-72"></a><span class="tm">19:17:21</span><span class="nk"> &lt;rtyler&gt;</span> please everybody take a moment and look it over once again
+<a name="l-73"></a><span class="tm">19:17:40 </span><span class="nka">* rtyler</span> <span class="ac">waits for kohsuke and hare_brain in particular</span>
+<a name="l-74"></a><span class="tm">19:17:48 </span><span class="nka">* kohsuke</span> <span class="ac">reads</span>
+<a name="l-75"></a><span class="tm">19:18:46</span><span class="nk"> &lt;kohsuke&gt;</span> Looks good to me. I'm ready to cast +1
+<a name="l-76"></a><span class="tm">19:19:03</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler Since there are 5 seats, KK is permanent, and max of 2 candidates per company, will this result in CloudBees possibly getting 3/5 (KK + 2 candidates)?
+<a name="l-77"></a><span class="tm">19:19:17</span><span class="nk"> &lt;KostyaSha&gt;</span> could somebody describe why permanent?
+<a name="l-78"></a><span class="tm">19:19:23 </span><span class="nka">* batmat</span> <span class="ac">reads</span>
+<a name="l-79"></a><span class="tm">19:19:24</span><span class="nk"> &lt;abayer&gt;</span> I'd assume kohsuke counts as one of the CloudBees seats.
+<a name="l-80"></a><span class="tm">19:19:30</span><span class="nk"> &lt;batmat&gt;</span> same question as danielbeck
+<a name="l-81"></a><span class="tm">19:19:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> my understanding as well
+<a name="l-82"></a><span class="tm">19:19:39</span><span class="nk"> &lt;rtyler&gt;</span> that was my presumption as well, but should probably be clarified
+<a name="l-83"></a><span class="tm">19:19:43</span><span class="nk"> &lt;danielbeck&gt;</span> abayer Then make that clear. Right now it's not.
+<a name="l-84"></a><span class="tm">19:20:04</span><span class="nk"> &lt;danielbeck&gt;</span> as I wouldn't consider the one fixed member a "candidate" in the voting process.
+<a name="l-85"></a><span class="tm">19:20:09</span><span class="nk"> &lt;abayer&gt;</span> Good point.
+<a name="l-86"></a><span class="tm">19:20:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KostyaSha:</span> for the same reason Guido van Rossum or Matz occupies such a position in the Python and Ruby communities
+<a name="l-87"></a><span class="tm">19:20:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> will you update plz
+<a name="l-88"></a><span class="tm">19:20:17</span><span class="nk"> &lt;batmat&gt;</span> +1, let's not keep it ambiguous
+<a name="l-89"></a><span class="tm">19:20:24</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> Yeah, action item at me?
+<a name="l-90"></a><span class="tm">19:20:31</span><span class="nk"> &lt;rtyler&gt;</span> update it right now you weenie
+<a name="l-91"></a><span class="tm">19:20:32</span><span class="nk"> &lt;abayer&gt;</span> I need to think about how to word it.
+<a name="l-92"></a><span class="tm">19:20:35</span><span class="nk"> &lt;rtyler&gt;</span> I want to get this stamped
+<a name="l-93"></a><span class="tm">19:20:39</span><span class="nk"> &lt;abayer&gt;</span> sigh.
+<a name="l-94"></a><span class="tm">19:20:40</span><span class="nk"> &lt;abayer&gt;</span> Ok.
+<a name="l-95"></a><span class="tm">19:20:41</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, in many projects creators left, in many projects creators locked development and projects was forked.
+<a name="l-96"></a><span class="tm">19:20:43</span><span class="nk"> &lt;kohsuke&gt;</span> we can edit it right here if that's the only concern
+<a name="l-97"></a><span class="tm">19:20:45</span><span class="nk"> &lt;abayer&gt;</span> Move on and circle back, then. =)
+<a name="l-98"></a><span class="tm">19:21:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KostyaSha:</span> the phrasing is deliberate in that regard, "until such time he decides to resign"
+<a name="l-99"></a><span class="tm">19:21:20</span><span class="nk"> &lt;orrc&gt;</span> "regualrly" isn't a word, but I read the diff earlier and it seems good
+<a name="l-100"></a><span class="tm">19:21:25</span><span class="nk"> &lt;orrc&gt;</span> :)
+<a name="l-101"></a><span class="tm">19:21:27</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-102"></a><span class="tm">19:21:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> tidying this up may have been the first thing I did this morning
+<a name="l-103"></a><span class="tm">19:21:59</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, do you insist in your permanent place?
+<a name="l-104"></a><span class="tm">19:22:45</span><span class="nk"> &lt;kohsuke&gt;</span> I'd like to think that doing so ensures some degree of consistency, which is in the interest of the community.
+<a name="l-105"></a><span class="tm">19:22:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KostyaSha:</span> this was already discussed in the previous meeting, I think it is important that kohsuke's place as the founder/leader of the project is codified in this proposal
+<a name="l-106"></a><span class="tm">19:22:58</span><span class="nk"> &lt;abayer&gt;</span> https://wiki.jenkins-ci.org/pages/diffpages.action?pageId=63930772&amp;originalId=85590498
+<a name="l-107"></a><span class="tm">19:23:35</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, that shouldn't be a problem if he will have enough votes. Worst indicator will be if he didn't get enough votes.
+<a name="l-108"></a><span class="tm">19:23:53</span><span class="nk"> &lt;abayer&gt;</span> I made it generic so that it's not broken if we for some reason add another permanent seat in the future.
+<a name="l-109"></a><span class="tm">19:24:05</span><span class="nk"> &lt;batmat&gt;</span> +1 for well, not, I won't write the triple K this time, but +1 again for kohsuke as it's stated
+<a name="l-110"></a><span class="tm">19:24:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> the edit looks fine to me
+<a name="l-111"></a><span class="tm">19:24:27</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> cool cool
+<a name="l-112"></a><span class="tm">19:24:39</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Except if too many people don't vote for KK because nobody thinks he could possibly be gone
+<a name="l-113"></a><span class="tm">19:25:11</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, rules of voting should be clear for all voters, right?
+<a name="l-114"></a><span class="tm">19:25:18</span><span class="nk"> &lt;rtyler&gt;</span> IMO it's not the Jenkins project without kohsuke the same way it's not Linux without Linus
+<a name="l-115"></a><span class="tm">19:25:24</span><span class="nk"> &lt;abayer&gt;</span> Let's be blunt - the only real impact this will have is to simplify voting and vote calculations, since we won't always have Kohsuke votes to count.
+<a name="l-116"></a><span class="tm">19:25:31</span><span class="nk"> &lt;abayer&gt;</span> The end result will be identical.
+<a name="l-117"></a><span class="tm">19:25:56 </span><span class="nka">* rtyler</span> <span class="ac">pokes hare_brain</span>
+<a name="l-118"></a><span class="tm">19:26:14 </span><span class="nka">* hare_brain</span> <span class="ac">has been trying to get a sentence in edgewise.</span>
+<a name="l-119"></a><span class="tm">19:26:18</span><span class="nk"> &lt;abayer&gt;</span> heh
+<a name="l-120"></a><span class="tm">19:26:40</span><span class="nk"> &lt;rtyler&gt;</span> just making sure I didn't need to make a wake-up call to your cell phone xD
+<a name="l-121"></a><span class="tm">19:26:42</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">abayer:</span> +1. And if you wish KostyaSha get elected to the board and make that the subject of the board next year or so.
+<a name="l-122"></a><span class="tm">19:26:55</span><span class="nk"> &lt;KostyaSha&gt;</span> ok, can i then name this position as king?
+<a name="l-123"></a><span class="tm">19:27:04</span><span class="nk"> &lt;KostyaSha&gt;</span> (for my personal usage)
+<a name="l-124"></a><span class="tm">19:27:13</span><span class="nk"> &lt;rtyler&gt;</span> you can call it whatever you want KostyaSha
+<a name="l-125"></a><span class="tm">19:27:17</span><span class="nk"> &lt;KostyaSha&gt;</span> thanks!
+<a name="l-126"></a><span class="tm">19:27:25</span><span class="nk"> &lt;hare_brain&gt;</span> I agree with the proposal. I think Kohsuke's permanent position should not be up for discussion. We have to allow for his creatorship and leadership.
+<a name="l-127"></a><span class="tm">19:27:30</span><span class="nk"> &lt;abayer&gt;</span> …just don't use KKK as the initials. =)
+<a name="l-128"></a><span class="tm">19:27:31</span><span class="nk"> &lt;hare_brain&gt;</span> If he gets tired of it, he can resign.
+<a name="l-129"></a><span class="tm">19:27:40</span><span class="nk"> &lt;danielbeck&gt;</span> "Have election every year, electing 2 people and 3 people in each alternating year" &lt; with one permanent position, it's 2 and 2 (or 1 and 3)
+<a name="l-130"></a><span class="tm">19:27:41 </span><span class="nka">* rtyler</span> <span class="ac">contemplates kicking abayer</span>
+<a name="l-131"></a><span class="tm">19:27:55</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">abayer:</span> noooes, I tried myself to not use that again ;-)
+<a name="l-132"></a><span class="tm">19:27:59</span><span class="nk"> &lt;rtyler&gt;</span> whoops, didn't math update
+<a name="l-133"></a><span class="tm">19:28:21</span><span class="nk"> &lt;abayer&gt;</span> Also worth noting - if three other people on the board decide that they want to remote the permanent seat, they can do so. Kohsuke doesn't get veto power, he just gets a permanent seat.
+<a name="l-134"></a><span class="tm">19:28:23</span><span class="nk"> &lt;rtyler&gt;</span> whoops, updated underneath batmat
+<a name="l-135"></a><span class="tm">19:28:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> I may have screwed up your edit, sorry
+<a name="l-136"></a><span class="tm">19:28:56</span><span class="nk"> &lt;orrc&gt;</span> I'm ambivalent about the King position; +1 overall from me
+<a name="l-137"></a><span class="tm">19:29:11</span><span class="nk"> &lt;kohsuke&gt;</span> "electing 2 people and 2 people in each alternating year" looks awkward
+<a name="l-138"></a><span class="tm">19:29:16</span><span class="nk"> &lt;KostyaSha&gt;</span> as foss dev i just want to see positive results of such elections, not just cosmetic rules and actions
+<a name="l-139"></a><span class="tm">19:29:18</span><span class="nk"> &lt;kohsuke&gt;</span> just "electing 2 people each year" should do
+<a name="l-140"></a><span class="tm">19:29:24</span><span class="nk"> &lt;KostyaSha&gt;</span> that's why i'm asking
+<a name="l-141"></a><span class="tm">19:29:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KostyaSha:</span> if you view this as a cosmetic set of changes then I don't know how to better convince you otherwise
+<a name="l-142"></a><span class="tm">19:30:04</span><span class="nk"> &lt;rtyler&gt;</span> this would mean that next election we would append two people to the board
+<a name="l-143"></a><span class="tm">19:30:04</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, no, result will be clear later of course
+<a name="l-144"></a><span class="tm">19:30:21</span><span class="nk"> &lt;rtyler&gt;</span> then the year after that hare_brain and I, assuming neither of us resign, will be up
+<a name="l-145"></a><span class="tm">19:30:31</span><span class="nk"> &lt;hare_brain&gt;</span> I have to wait that long?
+<a name="l-146"></a><span class="tm">19:30:31</span><span class="nk"> &lt;KostyaSha&gt;</span> last 2 years i can treat as disaster of jenkins organisation (IMHO)
+<a name="l-147"></a><span class="tm">19:30:58 </span><span class="nka">* KostyaSha</span> <span class="ac">hopes for better future</span>
+<a name="l-148"></a><span class="tm">19:31:00</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">KostyaSha:</span> http://i2.wp.com/philosiblog.com/wp-content/uploads/2014/04/kindnessElephantsCrop.jpg
+<a name="l-149"></a><span class="tm">19:31:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> resignations are described thtere :P
+<a name="l-150"></a><span class="tm">19:31:29</span><span class="nk"> &lt;abayer&gt;</span> I was smart enough to resign before we had a policy!
+<a name="l-151"></a><span class="tm">19:31:39</span><span class="nk"> &lt;rtyler&gt;</span> but if you're planning, please be courteous and do it before our election early next year :P
+<a name="l-152"></a><span class="tm">19:31:44</span><span class="nk"> &lt;KostyaSha&gt;</span> abayer, :(
+<a name="l-153"></a><span class="tm">19:31:56</span><span class="nk"> &lt;kohsuke&gt;</span> I made the edit along my suggestion: https://wiki.jenkins-ci.org/pages/diffpages.action?pageId=63930772&amp;originalId=85590500
+<a name="l-154"></a><span class="tm">19:32:13</span><span class="nk"> &lt;rtyler&gt;</span> that looks good to me kohsuke
+<a name="l-155"></a><span class="tm">19:32:32</span><span class="nk"> &lt;hare_brain&gt;</span> Yes, that reads better.
+<a name="l-156"></a><span class="tm">19:32:38</span><span class="nk"> &lt;rtyler&gt;</span> it appears to me that this is solid and we can have some elections next year, no?
+<a name="l-157"></a><span class="tm">19:32:51</span><span class="nk"> &lt;abayer&gt;</span> Let's have a formal board vote. =)
+<a name="l-158"></a><span class="tm">19:32:56 </span><span class="nka">* batmat</span> <span class="ac">checks something to be sure</span>
+<a name="l-159"></a><span class="tm">19:32:58</span><span class="nk"> &lt;kohsuke&gt;</span> I think we are ready to vote
+<a name="l-160"></a><span class="tm">19:33:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">to the v13 of the proposal</span>
+<a name="l-161"></a><span class="tm">19:33:11</span><span class="nk"> &lt;danielbeck&gt;</span> current doc version?
+<a name="l-162"></a><span class="tm">19:33:14</span><span class="nk"> &lt;KostyaSha&gt;</span> Will candidates provide their jenkins future program before elections?
+<a name="l-163"></a><span class="tm">19:33:25</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">KostyaSha:</span> If they want to.
+<a name="l-164"></a><span class="tm">19:33:33</span><span class="nk"> &lt;abayer&gt;</span> don't think there'll be an obligation.
+<a name="l-165"></a><span class="tm">19:33:54</span><span class="nk"> &lt;kohsuke&gt;</span> All right, so my +1
+<a name="l-166"></a><span class="tm">19:34:10</span><span class="nk"> &lt;KostyaSha&gt;</span> What benefits community will have after elections and having new board members?
+<a name="l-167"></a><span class="tm">19:34:45</span><span class="nk"> &lt;batmat&gt;</span> sorry, but yet another question:
+<a name="l-168"></a><span class="tm">19:34:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> fire away
+<a name="l-169"></a><span class="tm">19:35:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> to lend legitimacy to the authority of the board
+<a name="l-170"></a><span class="tm">19:35:34</span><span class="nk"> &lt;batmat&gt;</span> maybe it's already written down, but: are the 2 people being out allowed to be-reelected?
+<a name="l-171"></a><span class="tm">19:35:49</span><span class="nk"> &lt;danielbeck&gt;</span> good question, term limits
+<a name="l-172"></a><span class="tm">19:35:52</span><span class="nk"> &lt;abayer&gt;</span> Since it's not stated that they aren't, yes, they are allowed to be reelected.
+<a name="l-173"></a><span class="tm">19:35:58</span><span class="nk"> &lt;batmat&gt;</span> I mean, could it be 10 years with the same team each time?
+<a name="l-174"></a><span class="tm">19:36:04</span><span class="nk"> &lt;rtyler&gt;</span> IMHO sure
+<a name="l-175"></a><span class="tm">19:36:11</span><span class="nk"> &lt;batmat&gt;</span> (not saying this'd be a bad/good thing)
+<a name="l-176"></a><span class="tm">19:36:12</span><span class="nk"> &lt;abayer&gt;</span> If they keep winning elections.
+<a name="l-177"></a><span class="tm">19:36:13</span><span class="nk"> &lt;rtyler&gt;</span> I don't see any benefit to enforcing a term limit
+<a name="l-178"></a><span class="tm">19:36:15</span><span class="nk"> &lt;KostyaSha&gt;</span> if person good and active, why not?
+<a name="l-179"></a><span class="tm">19:36:18</span><span class="nk"> &lt;abayer&gt;</span> And don't all get hired by the same company. =)
+<a name="l-180"></a><span class="tm">19:36:22</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-181"></a><span class="tm">19:36:37</span><span class="nk"> &lt;batmat&gt;</span> absolutely, just again trying to  make it the least ambiguous possible
+<a name="l-182"></a><span class="tm">19:36:41</span><span class="nk"> &lt;KostyaSha&gt;</span> abayer, /same/one/ :)
+<a name="l-183"></a><span class="tm">19:37:35</span><span class="nk"> &lt;kohsuke&gt;</span> If no further questions, I think we should proceed to vote
+<a name="l-184"></a><span class="tm">19:37:37</span><span class="nk"> &lt;danielbeck&gt;</span> is anything happening when a board member changes jobs and a company becomes dominant? Or will this be fixed in the next election, or the one after?
+<a name="l-185"></a><span class="tm">19:37:56</span><span class="nk"> &lt;rtyler&gt;</span> "If a board member gets employed by a company and the limitation gets violated, a new election is being scheduled"
+<a name="l-186"></a><span class="tm">19:38:02</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler thanks
+<a name="l-187"></a><span class="tm">19:38:06</span><span class="nk"> &lt;rtyler&gt;</span> forgive some silly grammar nits, but that's covered
+<a name="l-188"></a><span class="tm">19:38:40</span><span class="nk"> &lt;rtyler&gt;</span> batmat just added a couple words https://wiki.jenkins-ci.org/pages/diffpagesbyversion.action?pageId=63930772&amp;selectedPageVersions=14&amp;selectedPageVersions=13
+<a name="l-189"></a><span class="tm">19:38:46</span><span class="nk"> &lt;batmat&gt;</span> editing the page about that, is that better? https://wiki.jenkins-ci.org/pages/diffpages.action?pageId=63930772&amp;originalId=85590502
+<a name="l-190"></a><span class="tm">19:38:50</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-191"></a><span class="tm">19:39:06</span><span class="nk"> &lt;rtyler&gt;</span> still the same in my eyes, what do you think hare_brain
+<a name="l-192"></a><span class="tm">19:39:06</span><span class="nk"> &lt;kohsuke&gt;</span> shouldn't it be handled like a resignation?
+<a name="l-193"></a><span class="tm">19:39:24</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> Who should have to step down?
+<a name="l-194"></a><span class="tm">19:39:34</span><span class="nk"> &lt;rtyler&gt;</span> fight to the death!
+<a name="l-195"></a><span class="tm">19:39:41</span><span class="nk"> &lt;kohsuke&gt;</span> Up to the board to decide
+<a name="l-196"></a><span class="tm">19:39:53</span><span class="nk"> &lt;rtyler&gt;</span> hrm
+<a name="l-197"></a><span class="tm">19:40:24</span><span class="nk"> &lt;rtyler&gt;</span> I think I'm with kohsuke on this one, interim procedures so long as the company quota isn't violated
+<a name="l-198"></a><span class="tm">19:40:30</span><span class="nk"> &lt;abayer&gt;</span> Works for me for now.
+<a name="l-199"></a><span class="tm">19:40:42</span><span class="nk"> &lt;kohsuke&gt;</span> I don't want to micro-edit this to the death, but I thought that was the intent from earlier discussions
+<a name="l-200"></a><span class="tm">19:41:38</span><span class="nk"> &lt;batmat&gt;</span> +1 from me
+<a name="l-201"></a><span class="tm">19:42:09</span><span class="nk"> &lt;rtyler&gt;</span> https://wiki.jenkins-ci.org/pages/diffpagesbyversion.action?pageId=63930772&amp;selectedPageVersions=15&amp;selectedPageVersions=14
+<a name="l-202"></a><span class="tm">19:42:12</span><span class="nk"> &lt;hare_brain&gt;</span> I think it's good enough to kick off with.
+<a name="l-203"></a><span class="tm">19:42:33</span><span class="nk"> &lt;rtyler&gt;</span> getting hired and tipping the scales results in somebody needing to recuse themselves and interim procedures being followed
+<a name="l-204"></a><span class="tm">19:42:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> agreed
+<a name="l-205"></a><span class="tm">19:42:57</span><span class="nk"> &lt;rtyler&gt;</span> this is v15
+<a name="l-206"></a><span class="tm">19:43:02</span><span class="nk"> &lt;abayer&gt;</span> (back in a few minutes - gotta move rooms)
+<a name="l-207"></a><span class="tm">19:43:27</span><span class="nk"> &lt;orrc&gt;</span> v15 is go
+<a name="l-208"></a><span class="tm">19:43:28</span><span class="nk"> &lt;kohsuke&gt;</span> any more questions?
+<a name="l-209"></a><span class="tm">19:43:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> Can we vote now?
+<a name="l-210"></a><span class="tm">19:43:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to move the board election process into the governance document</span>
+<a name="l-211"></a><span class="tm">19:43:53</span><span class="nk"> &lt;rtyler&gt;</span> sure
+<a name="l-212"></a><span class="tm">19:43:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">on v15</span>
+<a name="l-213"></a><span class="tm">19:44:15</span><span class="nk"> &lt;batmat&gt;</span> https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=63930772 version yup
+<a name="l-214"></a><span class="tm">19:44:23</span><span class="nk"> &lt;kohsuke&gt;</span> Recording my +1 in the minutes
+<a name="l-215"></a><span class="tm">19:44:42</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-216"></a><span class="tm">19:44:52</span><span class="nk"> &lt;danielbeck&gt;</span> +1
+<a name="l-217"></a><span class="tm">19:44:56</span><span class="nk"> &lt;ogondza&gt;</span> +1
+<a name="l-218"></a><span class="tm">19:45:09</span><span class="nk"> &lt;batmat&gt;</span> +1
+<a name="l-219"></a><span class="tm">19:45:10</span><span class="nk"> &lt;rtyler&gt;</span> time for another fun topic
+<a name="l-220"></a><span class="tm">19:45:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Review/adopt a Code of Conduct</span>
+<a name="l-221"></a><span class="tm">19:45:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Code+of+Conduct</span>
+<a name="l-222"></a><span class="tm">19:45:32</span><span class="nk"> &lt;rtyler&gt;</span> I hope everybody has had time to read this
+<a name="l-223"></a><span class="tm">19:45:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> I believe I've incorporated all of your feedback in one form or another
+<a name="l-224"></a><span class="tm">19:45:50</span><span class="nk"> &lt;orrc&gt;</span> hopefully there's a way of querying when people signed up to the account app, so we can find out who's eligible to vote :)
+<a name="l-225"></a><span class="tm">19:45:52</span><span class="nk"> &lt;hare_brain&gt;</span> Luckily, Swift used the same template.
+<a name="l-226"></a><span class="tm">19:46:23</span><span class="nk"> &lt;KostyaSha&gt;</span> i have questions about CoC
+<a name="l-227"></a><span class="tm">19:46:29</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">rtyler:</span> yeah, I saw your changes. I don't agree that the project has power over FOSDEM and JAMs
+<a name="l-228"></a><span class="tm">19:46:43</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the code of conduct is largely sourced from http://contributor-covenant.org/</span>
+<a name="l-229"></a><span class="tm">19:46:50</span><span class="nk"> &lt;orrc&gt;</span> I like the suggestion that independent events like that are *encouraged* to apply the same Code
+<a name="l-230"></a><span class="tm">19:46:50</span><span class="nk"> &lt;KostyaSha&gt;</span> and it question that orrc  asked
+<a name="l-231"></a><span class="tm">19:47:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> my perspective on it is that if one is representing Jenkins at FOSDEM (i.e. manning the booth) then I would expect this to apply
+<a name="l-232"></a><span class="tm">19:47:27</span><span class="nk"> &lt;KostyaSha&gt;</span> Let's simulate, you banned me but i'm creating jenkins meetup, how they may work?
+<a name="l-233"></a><span class="tm">19:47:41</span><span class="nk"> &lt;orrc&gt;</span> the term "project maintainers" is still used a bunch, and is unclear
+<a name="l-234"></a><span class="tm">19:47:45</span><span class="nk"> &lt;orrc&gt;</span> (to me)
+<a name="l-235"></a><span class="tm">19:48:03</span><span class="nk"> &lt;KostyaSha&gt;</span> orrc, because this CoC copied from single project CoC and not organisation level
+<a name="l-236"></a><span class="tm">19:49:18</span><span class="nk"> &lt;KostyaSha&gt;</span> I want request add one point from https://wiki.jenkins-ci.org/display/JENKINS/Code+of+Conduct
+<a name="l-237"></a><span class="tm">19:49:18</span><span class="nk"> &lt;KostyaSha&gt;</span> If you screw up, take responsibility for your actions.
+<a name="l-238"></a><span class="tm">19:49:22</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> might be true for FOSDEM, but difficulty indeed for any JAM in the world to enforce. Ppl involved might decide to do what they want
+<a name="l-239"></a><span class="tm">19:49:26</span><span class="nk"> &lt;KostyaSha&gt;</span> (sorry wrong link)
+<a name="l-240"></a><span class="tm">19:49:33</span><span class="nk"> &lt;KostyaSha&gt;</span> From https://wiki.gentoo.org/wiki/Project:Council/Code_of_conduct
+<a name="l-241"></a><span class="tm">19:49:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> I think we can replace them by "project contributors"
+<a name="l-242"></a><span class="tm">19:50:28</span><span class="nk"> &lt;kohsuke&gt;</span> And there's one use of "project maintainer" that needs to be replaced by "board"
+<a name="l-243"></a><span class="tm">19:50:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> JAMs are indeed more difficult to do anything about, but if the Jenkins project is spending money on stickers/t-shirts for said meetup, I think we should expect the CoC to be followed
+<a name="l-244"></a><span class="tm">19:50:47</span><span class="nk"> &lt;orrc&gt;</span> ok, more generally: "project" is unclear :)
+<a name="l-245"></a><span class="tm">19:50:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I updated some references already
+<a name="l-246"></a><span class="tm">19:51:19</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, stickers are 20$, rooms usually provided by sponsors
+<a name="l-247"></a><span class="tm">19:51:45</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> absolutelyu, just saying not sure that CoC can be said to apply. Or yes, agreed if you mean that would make the Jenkins community to take actions against the said JAM
+<a name="l-248"></a><span class="tm">19:51:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> if someboyd organizes a Jenkins meetup completely independently there's not much we can do except pursue a trademark issue
+<a name="l-249"></a><span class="tm">19:52:02</span><span class="nk"> &lt;batmat&gt;</span> somehow excluding it, then indeed, I agree
+<a name="l-250"></a><span class="tm">19:52:39</span><span class="nk"> &lt;rtyler&gt;</span> I think there should be a followup action here perhaps, to say ask JAM organizers to agree to help follow the CoC prior to receiving materials/support from alyssat, etc
+<a name="l-251"></a><span class="tm">19:52:51</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> that's my point. But yeah, having a meetup that clearly doesn't follow that would make it 'officially excluded' somehow
+<a name="l-252"></a><span class="tm">19:52:58</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, please read my example
+<a name="l-253"></a><span class="tm">19:53:39</span><span class="nk"> &lt;hare_brain&gt;</span> You guys seem to be making this really complicated. If you go somewhere public as a representative of the Jenkins community, you should be well mannered. It doesn't matter what the forum is or who sponsors it.
+<a name="l-254"></a><span class="tm">19:53:41</span><span class="nk"> &lt;kohsuke&gt;</span> I think the intent here is that everything we do as project should be subject to CoC, and just that some of that is easier to enforce than others
+<a name="l-255"></a><span class="tm">19:53:43</span><span class="nk"> &lt;rtyler&gt;</span> realistically other than withdrawing any support from the community, I don't believe there's much that can be done in such an example
+<a name="l-256"></a><span class="tm">19:54:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> I was hoping that by defining community spaces "project" would be more clear
+<a name="l-257"></a><span class="tm">19:54:23</span><span class="nk"> &lt;rtyler&gt;</span> I agree it still feels a little more fuzzy
+<a name="l-258"></a><span class="tm">19:54:31</span><span class="nk"> &lt;hare_brain&gt;</span> What the CoC is saying is, "As a member of the Jenkins community, I pledge to behave a certain way in public."
+<a name="l-259"></a><span class="tm">19:54:42</span><span class="nk"> &lt;hare_brain&gt;</span> We're not trying to impose the CoC on the public space.
+<a name="l-260"></a><span class="tm">19:55:10</span><span class="nk"> &lt;rtyler&gt;</span> right
+<a name="l-261"></a><span class="tm">19:55:11</span><span class="nk"> &lt;danielbeck&gt;</span> hare_brain "when appearing as a member of the Jenkins community / when representing the Jenkins community"?
+<a name="l-262"></a><span class="tm">19:55:32</span><span class="nk"> &lt;hare_brain&gt;</span> I'm fine with "appearing as".
+<a name="l-263"></a><span class="tm">19:55:37</span><span class="nk"> &lt;hare_brain&gt;</span> I like that better.
+<a name="l-264"></a><span class="tm">19:55:52</span><span class="nk"> &lt;KostyaSha&gt;</span> like it was written in CloudBees vacancy, "be elite jenkins dev"
+<a name="l-265"></a><span class="tm">19:56:03</span><span class="nk"> &lt;hare_brain&gt;</span> No, that's different.
+<a name="l-266"></a><span class="tm">19:56:13</span><span class="nk"> &lt;hare_brain&gt;</span> This has nothing to do with being an elite dev.
+<a name="l-267"></a><span class="tm">19:56:18</span><span class="nk"> &lt;hare_brain&gt;</span> This is about being polite.
+<a name="l-268"></a><span class="tm">19:56:27</span><span class="nk"> &lt;KostyaSha&gt;</span> hare_brain, i mean term, it sounds cool
+<a name="l-269"></a><span class="tm">19:56:34</span><span class="nk"> &lt;KostyaSha&gt;</span> Elite person should be polite! :)
+<a name="l-270"></a><span class="tm">19:56:44</span><span class="nk"> &lt;hare_brain&gt;</span> Doesn't always seem to be the case.
+<a name="l-271"></a><span class="tm">19:57:03</span><span class="nk"> &lt;hare_brain&gt;</span> Linus is elite but not polite.
+<a name="l-272"></a><span class="tm">19:57:09</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">KostyaSha:</span> as written in the CoC, you don't have to be a developer on the project to be respected
+<a name="l-273"></a><span class="tm">19:57:11</span><span class="nk"> &lt;abayer&gt;</span> Stallman too.
+<a name="l-274"></a><span class="tm">19:57:15</span><span class="nk"> &lt;abayer&gt;</span> But anyway.
+<a name="l-275"></a><span class="tm">19:57:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> where would you put that statement in the document? I think it's good to add
+<a name="l-276"></a><span class="tm">19:57:48</span><span class="nk"> &lt;orrc&gt;</span> I think the removal sentence should be split in two: "The board can temporarily/permanently ban people ...", and "Repository maintainers have the right to delete code, commits, comments etc"
+<a name="l-277"></a><span class="tm">19:57:55</span><span class="nk"> &lt;batmat&gt;</span> anyone, even if he never pushed any line of code, granted he spends time and energy is welcome and respected
+<a name="l-278"></a><span class="tm">19:58:14</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler This code of conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. &lt;&lt; It already is in there
+<a name="l-279"></a><span class="tm">19:58:57</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, i have a situation question. I can be organiser, i want present my plugin and want blame jenkins core. Can i do?
+<a name="l-280"></a><span class="tm">19:59:03</span><span class="nk"> &lt;rtyler&gt;</span> aha
+<a name="l-281"></a><span class="tm">19:59:37</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Technical criticism is always valid. "Daniel is incompetent and Kohsuke doesn't give a shit" is not.
+<a name="l-282"></a><span class="tm">20:00:47</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha So if you're saying "This feature is weird/the plugin cannot do X because it's not supported in Jenkins core/it's a long standing bug" nothing wrong with that.
+<a name="l-283"></a><span class="tm">20:01:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> I don't see what you're referring to
+<a name="l-284"></a><span class="tm">20:01:34</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">rtyler:</span> sorry. the sentence starting "The Jenkins board has the right and responsibility to..."
+<a name="l-285"></a><span class="tm">20:01:38</span><span class="nk"> &lt;rtyler&gt;</span> ah
+<a name="l-286"></a><span class="tm">20:01:47</span><span class="nk"> &lt;orrc&gt;</span> then it lists a ton of things that plugin/repo maintainers should be able to do
+<a name="l-287"></a><span class="tm">20:01:56</span><span class="nk"> &lt;orrc&gt;</span> and then finally serious things that only the board should be able to do
+<a name="l-288"></a><span class="tm">20:02:34</span><span class="nk"> &lt;KostyaSha&gt;</span> so i can't say that "jenkins has problems because of 10y backward compatibility, because of jenkins organisation is bazaar model and SPOFs"?
+<a name="l-289"></a><span class="tm">20:02:56</span><span class="nk"> &lt;KostyaSha&gt;</span> orrc, +1
+<a name="l-290"></a><span class="tm">20:03:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> how about this:
+<a name="l-291"></a><span class="tm">20:03:10</span><span class="nk"> &lt;rtyler&gt;</span> "The Jenkins board has the right and responsibility to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful. Plugin and other maintainers also have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct."
+<a name="l-292"></a><span class="tm">20:03:14</span><span class="nk"> &lt;orrc&gt;</span> well, looking at the Go Code of Conduct "Avoid destructive behaviour: Unconstructive criticism: don't merely decry the current state of affairs; offer—or at least solicit—suggestions as to how things may be improved"
+<a name="l-293"></a><span class="tm">20:03:22</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">rtyler:</span> +1
+<a name="l-294"></a><span class="tm">20:03:53</span><span class="nk"> &lt;KostyaSha&gt;</span> as my proposal was ignored, trying repeat. Let's add "If you screw up, take responsibility for your actions." source: https://wiki.gentoo.org/wiki/Project:Council/Code_of_conduct
+<a name="l-295"></a><span class="tm">20:04:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> good edit
+<a name="l-296"></a><span class="tm">20:04:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KostyaSha:</span> I don't understand what the goal of that line is in their policies
+<a name="l-297"></a><span class="tm">20:04:27</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">KostyaSha:</span> what does that mean? if somebody receives a ban, they should actually take responsibility and carry it out?
+<a name="l-298"></a><span class="tm">20:04:28</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">KostyaSha:</span> this sentence does not mean anything clear to me. Obvious and empty
+<a name="l-299"></a><span class="tm">20:04:49</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, example, kohsuke committed to master and other people resolving issues after him. That what mostly raised my bad comments and lead to current CoC discussion
+<a name="l-300"></a><span class="tm">20:05:15</span><span class="nk"> &lt;KostyaSha&gt;</span> orrc, no, that mean that if you can't commit your personal thing and left
+<a name="l-301"></a><span class="tm">20:05:20</span><span class="nk"> &lt;KostyaSha&gt;</span> s/if/
+<a name="l-302"></a><span class="tm">20:05:23</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">KostyaSha:</span> that sentence is as clear as "be an adult"
+<a name="l-303"></a><span class="tm">20:05:27</span><span class="nk"> &lt;hare_brain&gt;</span> That is process, not behavior.
+<a name="l-304"></a><span class="tm">20:05:42</span><span class="nk"> &lt;batmat&gt;</span> useless as this leaves a whole room for interpretation
+<a name="l-305"></a><span class="tm">20:05:43</span><span class="nk"> &lt;hare_brain&gt;</span> CoC is about behavior.
+<a name="l-306"></a><span class="tm">20:06:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> I'm trying to find a place to incorporate that line from the Go CoC, i think it's a good one and captures what danielbeck was saying earlier
+<a name="l-307"></a><span class="tm">20:06:15</span><span class="nk"> &lt;KostyaSha&gt;</span> hare_brain, please look on title https://wiki.gentoo.org/wiki/Project:Council/Code_of_conduct#Behaviour_and_consequences
+<a name="l-308"></a><span class="tm">20:06:27</span><span class="nk"> &lt;rtyler&gt;</span> also, just as a time check, we're a little over the time scheduled for the meeting
+<a name="l-309"></a><span class="tm">20:07:01</span><span class="nk"> &lt;hare_brain&gt;</span> My point is that committing directly to master is a failure of development process, not a failure in conduct.
+<a name="l-310"></a><span class="tm">20:07:18</span><span class="nk"> &lt;KostyaSha&gt;</span> hare_brain, example jglick - he is always resolving things that he screwed. Excellent example.
+<a name="l-311"></a><span class="tm">20:07:23</span><span class="nk"> &lt;hare_brain&gt;</span> CoC is how we treat each other as people.
+<a name="l-312"></a><span class="tm">20:07:33</span><span class="nk"> &lt;KostyaSha&gt;</span> hare_brain, bad example probably
+<a name="l-313"></a><span class="tm">20:07:51</span><span class="nk"> &lt;hare_brain&gt;</span> All I am saying is your examples are outside the scope of what CoC covers.
+<a name="l-314"></a><span class="tm">20:07:52</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">KostyaSha:</span> What does any of that have to do with treating others with respect?
+<a name="l-315"></a><span class="tm">20:07:55</span><span class="nk"> &lt;abayer&gt;</span> I'm lost.
+<a name="l-316"></a><span class="tm">20:08:49</span><span class="nk"> &lt;KostyaSha&gt;</span> abayer, how i can respect person that breaking all plugins and running away instead of resolving his badness?
+<a name="l-317"></a><span class="tm">20:09:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to incorporate some more of orrc's feedback (see above)</span>
+<a name="l-318"></a><span class="tm">20:09:05</span><span class="nk"> &lt;abayer&gt;</span> You don't have to respect him personally, you just have to treat him with respect.
+<a name="l-319"></a><span class="tm">20:09:15</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">KostyaSha:</span> so you think those plugin break things on purpose? srsly?
+<a name="l-320"></a><span class="tm">20:09:24</span><span class="nk"> &lt;rtyler&gt;</span> we're getting off topic
+<a name="l-321"></a><span class="tm">20:09:28</span><span class="nk"> &lt;batmat&gt;</span> *people
+<a name="l-322"></a><span class="tm">20:09:31</span><span class="nk"> &lt;orrc&gt;</span> action item taken, move on :D
+<a name="l-323"></a><span class="tm">20:09:34</span><span class="nk"> &lt;abayer&gt;</span> There are *plenty* of people I have to interact with in my life who I think are idiots, but it's rude and disrespectful to treat them poorly because of my opinion. *shrug*
+<a name="l-324"></a><span class="tm">20:09:37</span><span class="nk"> &lt;rtyler&gt;</span> I think we should table this discussion and follow up next time with some more recent feedback from this meeting included
+<a name="l-325"></a><span class="tm">20:09:47</span><span class="nk"> &lt;orrc&gt;</span> +1
+<a name="l-326"></a><span class="tm">20:10:05</span><span class="nk"> &lt;batmat&gt;</span> +1, let it mature still a bit
+<a name="l-327"></a><span class="tm">20:10:05</span><span class="nk"> &lt;rtyler&gt;</span> kohsuke hare_brain: does that work for y'all?
+<a name="l-328"></a><span class="tm">20:10:06</span><span class="nk"> &lt;hare_brain&gt;</span> I got pulled off the comment I was going to make
+<a name="l-329"></a><span class="tm">20:10:08</span><span class="nk"> &lt;KostyaSha&gt;</span> abayer, in this project you see what person DO and SAYS, you don't care about he personal life style
+<a name="l-330"></a><span class="tm">20:10:17</span><span class="nk"> &lt;hare_brain&gt;</span> about that edit you made in response to orrc.
+<a name="l-331"></a><span class="tm">20:10:46</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, this will continue to the next meeting
+<a name="l-332"></a><span class="tm">20:11:03</span><span class="nk"> &lt;hare_brain&gt;</span> The original implied that board members had rights to take action in individual repositories on behalf of, or despite maintainers.
+<a name="l-333"></a><span class="tm">20:11:10</span><span class="nk"> &lt;KostyaSha&gt;</span> Btw, why not make meeting longer? All meetings didn't fit in 1hour
+<a name="l-334"></a><span class="tm">20:11:24</span><span class="nk"> &lt;hare_brain&gt;</span> The modified version does not have that implication.
+<a name="l-335"></a><span class="tm">20:11:38</span><span class="nk"> &lt;hare_brain&gt;</span> Not saying one is preferred over the other, just pointing out that difference.
+<a name="l-336"></a><span class="tm">20:11:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> noted
+<a name="l-337"></a><span class="tm">20:12:09</span><span class="nk"> &lt;kohsuke&gt;</span> Can we quickly cover batmat's topic and then wrap up?
+<a name="l-338"></a><span class="tm">20:12:20</span><span class="nk"> &lt;rtyler&gt;</span> yeah, I think we should
+<a name="l-339"></a><span class="tm">20:12:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">NOT tweet anymore plugins w/o a wiki page</span>
+<a name="l-340"></a><span class="tm">20:12:37</span><span class="nk"> &lt;batmat&gt;</span> <span class="cmd">#info </span><span class="cmdline">see https://groups.google.com/forum/?utm_medium=email&amp;utm_source=footer#!msg/jenkinsci-dev/qR8WqJZmNZs/1a9Zd3F0DAAJ</span>
+<a name="l-341"></a><span class="tm">20:12:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">for reference https://groups.google.com/forum/?utm_medium=email&amp;utm_source=footer#!msg/jenkinsci-dev/qR8WqJZmNZs/1a9Zd3F0DAAJ</span>
+<a name="l-342"></a><span class="tm">20:12:41</span><span class="nk"> &lt;orrc&gt;</span> this problem will resolve itself in ~3 weeks
+<a name="l-343"></a><span class="tm">20:12:41</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-344"></a><span class="tm">20:12:53</span><span class="nk"> &lt;batmat&gt;</span> cool
+<a name="l-345"></a><span class="tm">20:13:05</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah once it stops being a part of the UC metadata, where the twitter bot is fed from
+<a name="l-346"></a><span class="tm">20:13:13</span><span class="nk"> &lt;batmat&gt;</span> I was wondering how plugin publishing to the UC was related to the tweeting process
+<a name="l-347"></a><span class="tm">20:13:20</span><span class="nk"> &lt;batmat&gt;</span> So done I guess ;-)
+<a name="l-348"></a><span class="tm">20:13:36</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">batmat:</span> yeah, I can give you details in #jenkins if you want :)
+<a name="l-349"></a><span class="tm">20:13:37</span><span class="nk"> &lt;batmat&gt;</span> out of curiosity, where's the related code of the tweeting bot if available?
+<a name="l-350"></a><span class="tm">20:13:59</span><span class="nk"> &lt;orrc&gt;</span> but there is still somehow two versions of the bot running, which causes duplicates
+<a name="l-351"></a><span class="tm">20:14:02</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">orrc:</span> yup, with pleasure. Or #jenkins-infra maybe
+<a name="l-352"></a><span class="tm">20:14:08</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">batmat:</span> sure
+<a name="l-353"></a><span class="tm">20:14:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-354"></a><span class="tm">20:14:32</span><span class="nk"> &lt;rtyler&gt;</span> 23rd? :/
+<a name="l-355"></a><span class="tm">20:14:46</span><span class="nk"> &lt;rtyler&gt;</span> do people have more or less time close to xmas :P
+<a name="l-356"></a><span class="tm">20:15:05</span><span class="nk"> &lt;kohsuke&gt;</span> I expect the attendance to be light
+<a name="l-357"></a><span class="tm">20:15:09</span><span class="nk"> &lt;danielbeck&gt;</span> LTS testing fron 23rd to ~6th Jan? wow.
+<a name="l-358"></a><span class="tm">20:15:15</span><span class="nk"> &lt;rtyler&gt;</span> hah
+<a name="l-359"></a><span class="tm">20:15:17</span><span class="nk"> &lt;rtyler&gt;</span> yeah right ::P
+<a name="l-360"></a><span class="tm">20:15:18</span><span class="nk"> &lt;danielbeck&gt;</span> 636 will be complete crap.
+<a name="l-361"></a><span class="tm">20:15:27</span><span class="nk"> &lt;rtyler&gt;</span> what about Dec 30th instead?
+<a name="l-362"></a><span class="tm">20:15:53</span><span class="nk"> &lt;kohsuke&gt;</span> Trying to stick to the same cadence
+<a name="l-363"></a><span class="tm">20:16:05</span><span class="nk"> &lt;danielbeck&gt;</span> I suggest we skip Dec 23, next meeting Jan 6, with LTS RC then and release Jan 20.
+<a name="l-364"></a><span class="tm">20:16:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> +1
+<a name="l-365"></a><span class="tm">20:16:20</span><span class="nk"> &lt;batmat&gt;</span> +1, simpler I guess.
+<a name="l-366"></a><span class="tm">20:16:21</span><span class="nk"> &lt;rtyler&gt;</span> I think that's fine
+<a name="l-367"></a><span class="tm">20:16:45</span><span class="nk"> &lt;rtyler&gt;</span> we might have a lot on the agenda, to KostyaSha's point earlier, so think we could fit 90 minutes in ?
+<a name="l-368"></a><span class="tm">20:16:51</span><span class="nk"> &lt;rtyler&gt;</span> since we're skipping one
+<a name="l-369"></a><span class="tm">20:17:05</span><span class="nk"> &lt;batmat&gt;</span> so action: remove the next time from the agenda :)
+<a name="l-370"></a><span class="tm">20:17:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll skip Dec 23rd and next meeting is Jan 6th</span>
+<a name="l-371"></a><span class="tm">20:17:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">LTS will delay by 2 weeks</span>
+<a name="l-372"></a><span class="tm">20:17:41</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler could we determine this closer to the meeting after more mailing list discussion?
+<a name="l-373"></a><span class="tm">20:17:50</span><span class="nk"> &lt;danielbeck&gt;</span> or do we need to know now?
+<a name="l-374"></a><span class="tm">20:17:59</span><span class="nk"> &lt;rtyler&gt;</span> we /could/ I know that I'm not the only one that needs to schedule these things in advance
+<a name="l-375"></a><span class="tm">20:18:03</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> +1 with danielbeck : it heavily depends on what will be put on the agenda
+<a name="l-376"></a><span class="tm">20:18:12</span><span class="nk"> &lt;rtyler&gt;</span> if we schedule it now, then there's no harm in finishing a meeting early
+<a name="l-377"></a><span class="tm">20:18:23</span><span class="nk"> &lt;danielbeck&gt;</span> good point
+<a name="l-378"></a><span class="tm">20:18:24</span><span class="nk"> &lt;rtyler&gt;</span> we're allowed to finish early :P
+<a name="l-379"></a><span class="tm">20:18:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">come prepared for a longer meeting for Jan 6 if you can</span>
+<a name="l-380"></a><span class="tm">20:18:31</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-381"></a><span class="tm">20:18:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to extend the meeting invite for the 6th just to be safe</span>
+<a name="l-382"></a><span class="tm">20:18:57</span><span class="nk"> &lt;rtyler&gt;</span> I /think/ that wraps today, yeah?
+<a name="l-383"></a><span class="tm">20:19:08</span><span class="nk"> &lt;kohsuke&gt;</span> Happy Christmas and New Year everyone!
+<a name="l-384"></a><span class="tm">20:19:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span>
+<a name="l-385"></a><span class="tm">20:19:30</span><span class="nk"> &lt;rtyler&gt;</span> file back into #jenkins for your usual program of questions and jiras everybody :)
+<a name="l-386"></a><span class="tm">20:19:37</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span>
+<a name="l-387"></a><span class="tm">20:19:48</span><span class="nk"> &lt;danielbeck&gt;</span> robobutler?
+<a name="l-388"></a><span class="tm">20:19:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 18:34:22 May 03, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:27:38 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 177.301
+  exclusion.robots: 0.161
+  exclusion.robots.policy: 0.154
+  RedisCDXSource: 3.064
+  esindex: 0.008
+  LoadShardBlock: 148.905 (3)
+  PetaboxLoader3.datanode: 162.349 (4)
+  CDXLines.iter: 22.547 (3)
+  load_resource: 233.161
+  PetaboxLoader3.resolve: 174.115
+-->

@@ -1,0 +1,75 @@
+18:02:01 <kohsuke> #startmeeting
+18:02:01 <robobutler> Let the Jenkins meeting commence!
+18:02:04 <rtyler> that's the ticket
+18:02:14 <kohsuke> #chair abayer hare_brain rtyler
+18:02:14 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:02:24 <kohsuke> #topic https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:02:49 <kohsuke> #topic recap of actions
+18:02:53 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-06-27-18.01.html
+18:03:05 <kohsuke> I'm afraid I haven't made any progress at all
+18:03:18 <kohsuke> #action kohsuke to write to active users of svn.jenkins-ci.org that they can move to GitHub very easily if they want
+18:03:24 <kohsuke> #action kohsuke to write a scanner that auto-adds Jenkins jobs for plugins
+18:03:32 <kohsuke> #action kohsuke to split buildhive code into smaller pieces and install them to jenkins.ci.cloudbees.com
+18:03:44 <kohsuke> #action rtyler to make sure vjuranek have the sauce labs credentials
+18:03:48 <kohsuke> (I think I have the credential)
+18:03:55 <rtyler> whoops
+18:04:02 <rtyler> I knew I forgot
+18:04:04 <rtyler> something
+18:04:22 <kohsuke> I see your jykyl work, but where are we on Confluence and ircbot?
+18:04:35 <kohsuke> the latter is something I'd be happy to do
+18:04:41 <rtyler> ircbot is stalled, just needs packaging
+18:04:52 <kohsuke> I guess for the time being  I can stage the secret outside puppet
+18:04:54 <rtyler> nobody responded to my email to the infra list on confluence :(
+18:05:02 <kohsuke> my bad
+18:05:12 <rtyler> I'm more convinced now we need our own internal apt repo
+18:05:19 <kohsuke> aye yes, that one
+18:05:24 <rtyler> for ircbot, crawlers, stats tsuff, confluence, eventually jira
+18:05:26 <abayer> +1
+18:05:48 <kohsuke> yeah, it makes sense
+18:05:57 <rtyler> I'll add a ticket in infra-puppet for myself
+18:06:03 <rtyler> that's actually pretty farkin' easy to set up
+18:07:03 <kohsuke> OK, that's it for this part, then?
+18:07:06 <rtyler> https://github.com/jenkinsci/infra-puppet/issues/45
+18:07:07 <rtyler> yes
+18:07:20 <kohsuke> #topic How much if any advertisement is acceptable on plugin page
+18:07:42 <rtyler> for reference https://wiki.jenkins-ci.org/display/JENKINS/Warnings+Plugin
+18:07:53 <kohsuke> another might be: https://wiki.jenkins-ci.org/display/JENKINS/ClearCase+UCM+Plugin
+18:08:09 <abayer> This isn't an easy question.
+18:08:19 <rtyler> I don't necessarily think we nede a resolution here
+18:08:24 <hare_brain> I think the two are different
+18:08:27 <rtyler> the UCM plugin actually makes a lot of sense to me
+18:08:31 <hare_brain> Agreed.
+18:09:01 <kohsuke> I guess it's the reference to an Android game (which presumably have nothing to do with Jenkins) that makes it unique
+18:10:11 <hare_brain> Yeah, I don't know how I feel about this.
+18:10:24 <hare_brain> On the one hand, Ulli is entitled to ask for support for his work.
+18:10:35 <abayer> Part of me says "Screw it, who cares?" But my admitted bias towards Ulli is there.
+18:10:36 <hare_brain> On the other hand, I don't like the idea of ads cluttering up the wiki pages
+18:10:53 <hare_brain> Try to abstract away from Ulli.
+18:11:01 <hare_brain> s/Ulli/Billy Bob Plugin Dev/
+18:11:10 <abayer> Yup.
+18:11:43 <rtyler> "work sponsored by" to me is great
+18:12:41 <kohsuke> all right, so sounds like we can ask him to do it like ClearCase UCM, and see if he's OK with moving the ad to a page linked from his logo?
+18:13:01 <hare_brain> The clearcase logos aren't even links.
+18:13:01 <abayer> Works for me.
+18:13:01 <kohsuke> and if he feels strongly about this, we'll come back to this
+18:14:18 <kohsuke> hare_brain:  I think having links on those images are OK
+18:14:59 <kohsuke> sounds like simple enough criteria to me if we want to make it a clear rule
+18:15:01 <rtyler> I'll let you guys discuss, I need to run off to other things
+18:16:04 <kohsuke> hare_brain: is the course of action OK, or are you uncomfortable allowing links?
+18:16:18 <hare_brain> Yeah I think it's fine. I'm just going through in my head if we want to charge a "traffic acquisition cost" to the referre to page.
+18:16:49 <hare_brain> No disagreement from me.
+18:17:00 <hare_brain> Just thinking about other revenue opportunities. :)
+18:17:24 <kohsuke> I'm sure we can actually sell "the real estate" on the top page, etc., if we want
+18:17:42 <kohsuke> I believe codehaus puts Google adwords on every page
+18:19:10 <kohsuke> #action kohsuke to contact ulli to see if "logo + link to somewhere that hosts his ad" would be reasonable to him CC-ing board
+18:19:29 <kohsuke> OK, I think we can just wrap this up for the day
+18:19:51 <kohsuke> #topic next meeting time
+18:20:20 <kohsuke> It'd be 7/25 same time
+18:20:38 <kohsuke> ... which means me, abayer, rtyler will be traveling
+18:20:48 <abayer> Well, technically, I fly out the next day. =)
+18:21:22 <kohsuke> ah, ok, then let's just put it in there
+18:21:35 <kohsuke> you guys can cancel it if you see fit
+18:22:02 <kohsuke> is that OK?
+18:22:13 <abayer> okiedokie
+18:22:23 <kohsuke> #agreed next meeting is 7/25 same time
+18:22:28 <kohsuke> #endmeeting

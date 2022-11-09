@@ -1,0 +1,390 @@
+18:00:22 <kohsuke> #startmeeting
+18:00:22 <robobutler> Let the Jenkins meeting commence!
+18:00:31 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:00:40 <kohsuke> #topic actions from the last week
+18:01:04 <kohsuke> ... which is http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-03-16-18.00.html
+18:01:42 <kohsuke> Jenkins Days stuff, hmm, did we make more progress on that one?
+18:01:53 <danielbeck> alyssat?
+18:01:57 <alyssat> i updated the wiki page w/ more info
+18:02:11 <kohsuke> should that be added to the agenda for today?
+18:02:34 <alyssat> we can
+18:02:41 <rtyler> tail end, our agenda is really full :/
+18:02:43 <kohsuke> I'll let you do that in the background if that's ready
+18:02:50 <kohsuke> #topic LTS status check
+18:02:58 <rtyler> wait, we're not done yet
+18:03:02 <kohsuke> ogondza: ^^
+18:03:04 <rtyler> there are other actions mister
+18:03:09 <kohsuke> oh?
+18:03:21 <kohsuke> 1.652.3 has shipped
+18:03:30 <danielbeck> 1.642.3
+18:03:40 <kohsuke> Oops
+18:04:04 <kohsuke> rtyler: is that what you meant? any other actions?
+18:04:42 <rtyler> I had some candidacy things
+18:04:48 <rtyler> https://wiki.jenkins-ci.org/display/JENKINS/Board+Candidacy+Process
+18:04:55 <rtyler> anyways, we can keep going'
+18:05:26 <kohsuke> OK, back to LTS status check
+18:05:55 <kohsuke> Looks like backports are all there but waiting for ogondza to chime in...
+18:06:07 <ogondza> there ware 2 issues backported that require remoting update JENKINS-28289 and JENKINS-26580.
+18:06:34 <ogondza> the bump of remoting broke https://issues.jenkins-ci.org/browse/JENKINS-33886
+18:06:39 <danielbeck> https://issues.jenkins-ci.org/browse/JENKINS-28289 https://issues.jenkins-ci.org/browse/JENKINS-26580
+18:06:52 <ogondza> I do not feel one way or the other
+18:08:17 <kohsuke> Let me see, IIUC, you want to take some fixes in that requires remoting update, but that new version has significant issue(s)
+18:08:35 <kohsuke> in that case sounds like we cannot bring that version in, no?
+18:08:36 <danielbeck> there's no intermediate release that contains 28289 without all the JNLP3 stuff?
+18:08:45 <ogondza> only when several JNLP connection comming from single IP
+18:09:02 <ogondza> not sure that is significant
+18:09:20 <danielbeck> which isn't all that uncommon I imagine if they isolate by user account on the same hardware (which is kind of weird, but not unheard of)
+18:10:00 <danielbeck> but I may be biased, had to do this for years
+18:10:07 <kohsuke> I'm inclined to leave JENKINS-28289 out until we fix JENKINS-33886
+18:10:46 <ogondza> #action ogondza to revert JENKINS-28289 fix and announce backporting ready
+18:11:07 <danielbeck> kohsuke maybe it's worth to build a 2.xx.1 without JNLP3 that has the proxy fix?
+18:11:34 <kohsuke> 2.xx.1?
+18:11:53 <danielbeck> Basically a 'stable' remoting release
+18:11:53 <kohsuke> You mean 3 months from now? Hopefully by then we fix JENKINS-33886?
+18:11:54 <jglick> ogondza: JENKINS-33467 is ready to backport AFAICT
+18:11:58 <kohsuke> Oh
+18:12:42 <jglick> but your opinion may vary
+18:12:55 <danielbeck> Don't know whether worth the effort, just a suggestion that would allow fixing the issue without pulling in JNLP3 bugs
+18:13:05 <kohsuke> danielbeck: we can do that but then we'd be using this "new" remoting version for the first time in LTS
+18:13:09 <jglick> rsandell has an unmerged PR related to it, it seems
+18:13:09 <ogondza> jglick: there is one plugin that do not have the fix released
+18:13:25 <danielbeck> riiight. Could lead to more fun
+18:13:29 <jglick> ogondza: https://github.com/Diabol/delivery-pipeline-plugin/pull/170 seems to be merged and released
+18:13:41 * oleg-nenashev missed the remoting party again
+18:13:46 <kohsuke> I don't get the impression that JENKINS-28289 is that significant
+18:14:04 <kohsuke> I think we can aim to fix this in 1.651.2
+18:14:18 <kohsuke> Shall we move on?
+18:14:24 <danielbeck> +1
+18:14:26 <ogondza> yes
+18:14:29 <kohsuke> #topic 2.0 status check
+18:14:42 * kohsuke opens the floor to danielbeck
+18:14:51 <danielbeck> the beta is out: https://jenkins-ci.org/2.0/
+18:14:57 <rtyler> \o/
+18:14:58 <batmat> clap clap
+18:15:01 <autojack> yee ha
+18:15:06 <danielbeck> We still have a bunch of stuff to fix before we can RC: https://issues.jenkins-ci.org/secure/RapidBoard.jspa?rapidView=81
+18:15:23 <danielbeck> Blocker + critical must be fixed, major are nice to have
+18:15:32 <danielbeck> so that's why we delayed the schedule a bit
+18:15:42 <danielbeck> so RC is now planned for next Wednesday
+18:15:43 <rtyler> in the 2.0 feedback page (https://wiki.jenkins-ci.org/display/JENKINS/2.0+Feedback) I linked the hackernews and reddit thread about the beta
+18:15:57 <rtyler> actually, kk linked, but they're good reads
+18:16:07 <danielbeck> also, KK's twitter feed has a screenshot of Jenkins on top of hackernews :-)
+18:16:26 <danielbeck> So things are progressing quite well
+18:16:29 <danielbeck> (ish)
+18:16:48 <rtyler> alyssat and I are working on a vJAM around the 2.0 release date too
+18:16:53 <rtyler> (we can talk more about that in #jenkins-community)
+18:17:04 <danielbeck> Please note however that if you plan to review stuff that goes into 2.0 in detail, please start doing so now.
+18:17:27 <oleg-nenashev> Are we formally in the code freeze state?
+18:17:28 <rtyler> #info outstanding 2.0 tickets https://issues.jenkins-ci.org/secure/RapidBoard.jspa?rapidView=81
+18:17:33 <oleg-nenashev> Excepting bugs?
+18:17:43 <danielbeck> I doubt having a giant pull request open for any amount of time from 2.0 to master to get thousands of comments on indentation will accomplish anything ;-)
+18:17:49 <oleg-nenashev> Or to we delay this deadline as well?
+18:17:52 <kohsuke> Any questions, comments, etc?
+18:18:00 <oleg-nenashev> kohsuke ^
+18:18:03 <danielbeck> No new features.
+18:18:12 <kohsuke> #info 2.0 status check call on Hangout is on Monday and it's open to public
+18:18:32 <kohsuke> oleg-nenashev: let me dig up what I sent to the dev list...
+18:18:50 <oleg-nenashev> IIRC there was only RC and release delay
+18:19:20 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/f4iUVX7w_PE
+18:19:41 <kohsuke> 2.0 branch is in the feature freeze, so it's still accepting bug fixes that meet the severity criteria
+18:19:55 <oleg-nenashev> And for 1.x deadline is April 6th
+18:20:05 <oleg-nenashev> So April 6th is the final freeze
+18:20:41 <oleg-nenashev> But yeah, we should not push crap into 1.x even before this date
+18:20:48 <kohsuke> Yeah
+18:21:04 <danielbeck> which means 2.1 will be an abomination of a release :-)
+18:21:11 <rtyler> \o/
+18:21:32 <kohsuke> At some point that has to happen, and no, it won't be that bad!
+18:21:35 <teilo> and no one uses a .zero  :)
+18:21:40 <kohsuke> I think we are moving on..
+18:21:44 <oleg-nenashev> +1
+18:21:48 <batmat> +1
+18:21:53 <danielbeck> If there are questions, just shoot me a message.
+18:21:58 <oleg-nenashev> I'll ping KostyaSha
+18:22:00 <kohsuke> #topic Check status for action 3d - JetBrains licenses
+18:22:27 <oleg-nenashev> Ehh, old thread
+18:22:27 <batmat> kostya does not seem present
+18:22:35 <danielbeck> still, valid question
+18:22:35 <oleg-nenashev> I've pinged him
+18:22:35 <rtyler> we can still address this topic
+18:22:42 <danielbeck> is wolfs the owner of the licenses now?
+18:22:50 <oleg-nenashev> I think it's reasonable
+18:22:58 <oleg-nenashev> We know our AIs on it
+18:23:11 <kohsuke> I honestly don't remember wolfs angle on this
+18:23:14 <oleg-nenashev> wolfs in the infinite dark mode, unfortunately
+18:23:26 <oleg-nenashev> I would handover it to somebody like batmat
+18:23:44 <rtyler> what's the requirement for being a license holder?
+18:23:50 <rtyler> or license owner?
+18:23:55 <kohsuke> #info What I do know for certain is that JetBrains has changed the terms of OSS IntelliJ license and people working for a company that provides commercial solution is disqualified.
+18:24:05 <rtyler> aha
+18:24:07 <kohsuke> That includes anyone working for CloudBees
+18:24:11 <oleg-nenashev> yes
+18:24:34 <rtyler> I think this should be something that is parked with the board if possible
+18:24:36 <kohsuke> So I cannot apply on behalf of the project like I used to.
+18:24:44 <oleg-nenashev> hare_brain ^^^
+18:25:10 <oleg-nenashev> I would +1 on the board, but does not make much sense due to elections
+18:25:46 <rtyler> I think the action item to take away here is that we need to find a contributor who can own this moving forward
+18:25:54 <kohsuke> #info https://www.jetbrains.com/buy/opensource/?product=idea for the actual terms
+18:25:55 <rtyler> I'm not sure we're going to get that done here today
+18:25:55 <oleg-nenashev> Yes
+18:26:02 <danielbeck> rtyler+1
+18:26:09 <teilo> kohsuke: did you get that response from them - my interpretation is different.
+18:26:11 <rtyler> I suppose I can take this
+18:26:13 <orrc> FWIW, I applied once to JetBrains and listed some of my plugins, and got a licence directly
+18:26:20 <batmat> Having started to use IJ some weeks ago, why not
+18:26:28 <oleg-nenashev> At least if nobody steps forward
+18:26:35 <rtyler> #action rtyler to work with batmat to figure out an intellij license owner for the project
+18:26:54 <rtyler> onward!
+18:26:55 <oleg-nenashev> Also get orrc as a second community member?
+18:26:55 <kohsuke> OK, moving on...
+18:27:19 <kohsuke> #topic Google Summer Of Code 2016 update
+18:27:26 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/f4iUVX7w_PE
+18:27:26 * kohsuke moves mic to oleg-nenashev
+18:27:46 <danielbeck> oleg-nenashev wrong link
+18:27:49 <oleg-nenashev> We have successfully handled the student application period
+18:27:49 <oleg-nenashev> We have got a bunch of proposals (mentors cannot disclose the number)
+18:27:49 <oleg-nenashev> We have done the preliminary filtering of applications
+18:27:49 <oleg-nenashev> Currently GSoC mentors and org. admins are working on the student project slot application (deadline - April 11th)
+18:27:49 <oleg-nenashev> We are also looking for mentors.
+18:27:49 <oleg-nenashev> Hot areas - Web UI improvements, Fingerprints, Docker stuff
+18:28:05 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/bmLARYolMig
+18:28:08 <oleg-nenashev> Sorry
+18:28:18 <kohsuke> What's the next milestone?
+18:28:35 <oleg-nenashev> April 11th - project slot application
+18:28:49 <oleg-nenashev> We have a rough plan from yesterday's meeting
+18:29:03 <oleg-nenashev> But it's secret according to GSoC rules
+18:29:34 <oleg-nenashev> So the topic for the meeting. WE NEED MENTORS!!!!
+18:29:47 <rtyler> hehe
+18:29:52 <oleg-nenashev> #info we are good with student proposals
+18:29:58 <autojack> I wonder if I could be of any help, given I am clueless about Java.
+18:30:12 <autojack> also it may be too much time committment.
+18:30:13 <oleg-nenashev> #info we need mentors for WebUI, Fingerprints, Docker
+18:30:37 <danielbeck> oleg-nenashev To clarify, Web UI is Jenkins, not jenkins.io?
+18:30:37 <rtyler> autojack: we can talk about the time commitment with oleg-nenashev in #jenkins-community
+18:30:37 <oleg-nenashev> autojack: Max 5 hours per week, because we want to have 2 mentors for every student
+18:30:59 <autojack> OK. that is probably too much for me, realistically.
+18:31:03 <rtyler> or not
+18:31:05 <autojack> heh
+18:31:06 <rtyler> oleg-nenashev: anything else
+18:31:10 <oleg-nenashev> danielbeck: Yes
+18:31:15 <autojack> open to discuss more offline.
+18:31:32 <oleg-nenashev> If nobody wants to be a mentor, then let's go forward
+18:31:48 <oleg-nenashev> #action orgs to follow-up with autojack
+18:31:52 <kohsuke> Maybe a blog post about updates and call for more mentors might help
+18:32:00 <oleg-nenashev> Agreed
+18:32:00 <kohsuke> #topic release officer announcement
+18:32:08 <rtyler> hooray!@
+18:32:17 <oleg-nenashev> kohsuke: I'll write something
+18:32:20 <rtyler> I'm planning on sending an email out to the mailing lists today for this
+18:32:23 <rtyler> but
+18:32:30 <kohsuke> (drum roll)
+18:32:35 <rtyler> #info ogondza is the new Jenkins release officer
+18:32:39 <abayer> woo!
+18:32:39 <kohsuke> (trumpet fanfare)
+18:32:43 <danielbeck> \o/ \o/ \o/ \o/ \o/ \o/ \o/ \o/
+18:32:44 * batmat is very surprised
+18:32:47 <rtyler> #info responsibilities listed here https://wiki.jenkins-ci.org/display/JENKINS/Team+Leads#TeamLeads-Release
+18:32:49 <batmat> congrats ogondza
+18:32:51 <batmat> :)
+18:32:54 <alyssat> congrats!!
+18:33:00 <batmat> what a news!
+18:33:05 <oleg-nenashev> congrats!
+18:33:06 <autojack> lolling.
+18:33:09 <oleg-nenashev> Do we vote for it?
+18:33:13 <rtyler> we had good interest in this position, so I'm highly optimistic that we'll have a number of people who can help participate
+18:33:42 <rtyler> #action rtyler to email release officer announcement to the mailing list
+18:33:49 <kohsuke> ogondza: I'm happy to do my part in the team to transfer the knowledge and etc
+18:33:55 <rtyler> oleg-nenashev: we're following the existing process for team officers
+18:34:19 <rtyler> I don't have any further updates there, so I believe we can move on
+18:34:27 <oleg-nenashev> #action oleg_nenashev to finally RTFM on the process
+18:34:31 <rtyler> hah
+18:34:34 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Team+Leads
+18:34:41 <ogondza> whoa, thank you!
+18:34:55 <rtyler> ogondza: I emailed you this earlier this week, in case you're behind on email :)
+18:35:09 <kohsuke> #info process doc is https://wiki.jenkins-ci.org/display/JENKINS/Proposal+-+Project+sub-teams
+18:35:20 <kohsuke> "Proposal" needs to come off from here given that it was blessed
+18:35:27 <kohsuke> OK, next topic, I think
+18:35:29 <rtyler> aye
+18:35:38 <kohsuke> #topic Major infrastructure opportunity
+18:35:43 <rtyler> \o/
+18:35:55 * oleg-nenashev is excited
+18:36:00 <rtyler> before I dive into the opportunity I want to restate some of the challenges we see with our infrastructure
+18:36:25 <rtyler> we're spread currently across four different datacenters, with varying capabilities in each one, with varying capacity as well
+18:36:28 <rtyler> for example
+18:36:35 <rtyler> if I want new resources in OSUOSL, I file a ticket
+18:36:40 <rtyler> if I want it in Rackspace, I hit an API
+18:36:53 <rtyler> if I want it in our physical datacenter, I spent $1000 and wait two weeks :-P
+18:37:20 <rtyler> we also are heavily reliant on the mirror network, the vast majority of which we do not control, to distribute Jenkins
+18:37:34 <rtyler> I did the numbers for that and our mirrors are deliverying roughly 2TB of Jenkins bits daily
+18:37:59 <kohsuke> That's a lot of goodness spreading around the world!
+18:38:21 <rtyler> additionally
+18:38:50 <rtyler> because of our limited capacity, we cannot provide newer services or be flexibile, oleg-nenashev and I have talked a lot in the past about expanding what ci.jenkins-ci.org can do
+18:38:54 <rtyler> but we simply don't have the capacity
+18:39:14 <rtyler> tl;dr: status quo is unnecessarily complex, makes rtyler cry, and limits what infra services we can offer
+18:39:25 <danielbeck> capacity as in hardware, or time?
+18:39:29 <rtyler> yes
+18:39:30 <rtyler> :)
+18:39:59 <danielbeck> and now…?
+18:40:01 <danielbeck> (drum roll)
+18:40:05 <rtyler> hah
+18:40:34 <rtyler> so the board has been in discussions with Microsoft to work with the Jenkins project to move into Azure
+18:40:59 * batmat was about to say hell was really getting used on freezing those days ;)
+18:41:02 <autojack> *gasps*
+18:41:04 <rtyler> this would be a *huge* deal (I cannot stress that enough) which would bring three exciting things to the table
+18:41:13 <autojack> this is like the 1997 Macworld!
+18:41:16 <rtyler> 1) consolidation in a single cloud provider I can put behind an API for provisioning resources
+18:41:35 <rtyler> 2) Give us a SSL end-to-end CDN for distribution of Jenkins
+18:42:01 <rtyler> 3) Give us the capacity to build out jenkins build/release infrastructure to make plugin/core development a lot better than it is today
+18:42:11 <rtyler> (the last one is something I've been waiting ages to be able to do)
+18:43:06 <rtyler> we'd be operating a full Ubuntu-based deployment still, outside of Windows builders (new feature!) for ci.j.o
+18:43:08 <batmat> Swarm Is Coming, then? :)
+18:43:25 <rtyler> batmat: Azure Container Service yo!
+18:43:27 <kohsuke> Simplified infra that reduces ops overhead, with more capabilities
+18:43:31 <batmat> isn't it ci.j.io ? :)
+18:43:32 <rtyler> SO
+18:43:35 <rtyler> batmat: not yet
+18:44:11 <rtyler> SO, a deal hasn't been signed yet, we (the board) are still finishing up some terms, but it's important to me that I update you all
+18:45:16 <rtyler> the gist of what we're talking about would be a three year deal, so we'd have a great home for jenkins infra for the next three years minimum
+18:45:24 <danielbeck> (all the minds are blown, you're alone here)
+18:45:27 <rtyler> haha
+18:45:31 <orrc> cool. so what is the deal? they provide N servers, or $N budget, in return for ... something?
+18:46:28 <rtyler> orrc: the gist is, here's some Azure quota, use it however you want, in return for showing that Microsoft is supporting Jenkins (MS <3 Java or something)
+18:46:45 <oleg-nenashev> Do they get something like a place for jumbotron?
+18:47:04 <abayer> Wait, this would give us a way to do demented testing of Jenkins-on-Winbuntu! =)
+18:47:19 <kohsuke> The expectation is that we come up with a braggable model use of how to do modern infra with Jenkins + Azure
+18:47:31 <rtyler> oleg-nenashev: those specifics haven't been discussed, we've got an outstanding ticket to bring the sponsors block back to jenkins.io
+18:47:42 <rtyler> (which I need to fix up, regardless of this agenda item)
+18:48:24 <rtyler> I cannot stress enough how excited this will make me to cry less about Jenkins project infra :D
+18:48:26 <oleg-nenashev> yes, sponsor blocks need to be fixed before 2.0
+18:48:32 <rtyler> oleg-nenashev: agreed
+18:48:36 <oleg-nenashev> Sponsors should get this traffic
+18:48:40 <rtyler> orrc: did I answer your question?
+18:49:08 <orrc> rtyler: yeah. if there aren't any further details than that at the moment, fair enough
+18:49:21 <orrc> so long as the quota is big enough to run all the cool stuff you just mentioned :D
+18:49:30 <batmat> +1 Ok for the current state
+18:49:40 <rtyler> orrc: oh believe me it is :)
+18:49:48 <rtyler> bbenz is here from microsoft btw :)
+18:50:01 <kohsuke> bbenz hello!
+18:50:06 <batmat> hi bbenz :)
+18:50:14 <rtyler> part of the thing that I think is compelling for them, is we run a popular open source project, and with an open infrastructure
+18:50:23 <rtyler> which gives us the ability to talk ad nauseum about how we deploy
+18:50:27 <rtyler> (which I've done for years now)
+18:51:12 <kohsuke> Any other concerns, questions, etc?
+18:51:12 <rtyler> if there aren't any more immediate questions, feel free to email me or ping me on IRC outside of this meeting in #jenkins-infra
+18:51:27 <orrc> sounds good to me :)
+18:51:29 <kohsuke> I think this is a good opportunity for new people to join the infra team
+18:51:30 <batmat> fine by me
+18:51:44 <oleg-nenashev> lgtm
+18:51:46 <kohsuke> So I'd like to encourage that too
+18:51:48 <rtyler> let me info kohsuke
+18:52:00 <kohsuke> noun is a new verb
+18:52:12 <rtyler> #info rtyler and the board are working on finalizing a deal with Microsoft for running the Jenkins infra on Azure
+18:52:15 <rtyler> there, continue
+18:52:23 <kohsuke> All right, moving on
+18:52:32 <kohsuke> #topic Update to CD Summit & Jenkins Days wiki page
+18:52:37 <alyssat> #info https://wiki.jenkins-ci.org/display/JENKINS/Proposal+-+Revisiting+JUC+in+2016
+18:53:04 <alyssat> last wk i took the AI to provide more info to the CD Summit & Jenkins Days wiki page
+18:53:13 <bbenz_> Back, timed out...
+18:53:31 <alyssat> a recap: CB would like approval for the term "Jenkins Days"
+18:54:01 <oleg-nenashev> what were the action items from the previous discussion?
+18:54:17 <alyssat> I am hoping the diagram on the wiki page for CD Summit & Jenkins clarified things a bit
+18:54:37 <kohsuke> oleg-nenashev: "need more clarity on Jenkins Days since that appear to have changed since the early round"
+18:55:44 <alyssat> on Day 1 there we be workshops - one session is on 7 Habits of Highly Effective Jenkins User..thnx to abayer
+18:55:53 <alyssat> *will
+18:56:29 <alyssat> Day 2 of the event consist of Jenkins keynote + Pipeline talk ..thnx to rtyler
+18:56:51 <oleg-nenashev> Does the Jenkins Track target OSS or CloudBees stuff? Or both?
+18:56:54 <orrc> stupid question: day 1 and 2 of what?
+18:57:04 <rtyler> "Jenkins Days" :P
+18:57:15 <rtyler> the event that cloudbees would be running
+18:57:19 <alyssat> orrc: the event consist of 2 days
+18:57:41 <orrc> ah, so the line-up is the same for all of them?
+18:57:43 <batmat> +1 from me, gtg
+18:57:45 <rtyler> orrc: yes
+18:57:47 <orrc> from the cloudbees side, at least I suppose
+18:58:12 <alyssat> yes. the line up is pretty much the same
+18:58:26 <rtyler> from the Jenkins name usage, this seems like a reasonable use
+18:58:41 <hare_brain> "CD Summit & Jenkins Day" is awkward.
+18:58:52 <alyssat> in some cities we do have community member as speakers
+18:59:14 * oleg-nenashev read the rtfm again. Both OSS and CloudBees stuff are accepted to the Jenkins track
+18:59:21 <kohsuke> I believe we tried to pick locations that have local JAMs going
+18:59:26 <rtyler> hare_brain: I think that awkwardness stems from it being a joint operation
+18:59:27 <abayer> alyssat: You mean "community members who aren't also CloudBees employees". =)
+18:59:38 <alyssat> abayer: that's correct
+18:59:41 <abayer> =)
+18:59:44 <orrc> "Scaling Jenkins in the Enterprise with CloudBees" from the Dallas example on the "Jenkins Track" doesn't sound particularly community-like :)
+19:00:05 <alyssat> orrc: you're correct that isn't.
+19:00:55 <rtyler> the Jenkins track is a blend it looks like
+19:01:24 <alyssat> rtyler: yes
+19:01:27 <oleg-nenashev> maybe makes sense to explicitly set quota for OSS and CB stuff
+19:02:30 <kohsuke> alyssat: correct me if I'm wrong but I think we are trying to get the name usage approval here, right?
+19:02:54 <alyssat> that's correct!
+19:02:55 <kohsuke> the wiki page update was a pre-requisite for that
+19:04:14 <alyssat> could we vote for approval?
+19:04:30 <kohsuke> I think this helps JAMs around the world and help us reach Jenkins users
+19:04:45 <orrc> is there any guarantee, like oleg-nenashev says, that there is actually non-CB content?
+19:04:55 <hare_brain> That was my question as well.
+19:05:33 <hare_brain> I'm not concerned about so much CB stuff that non-CB stuff gets pushed out, but whether there will be non-CB content at all.
+19:05:54 <kohsuke> For example in the first one in Dallas the day 1 speaker is the JAM leader
+19:06:30 <alyssat> orrc: for the OSS sessions those are being created by our very own abayer and rtyler. should we make those slides visible to ensure  there's no CB content?
+19:07:00 <alyssat> *visible - public
+19:07:02 <abayer> orrc: fwiw, my talk is just an update of Seven Habits of Highly Effective Jenkins Users with no CB-specific content.
+19:07:16 <kohsuke> Ditto for mine
+19:07:31 <rtyler> dittoz
+19:07:45 <hare_brain> This would be easier if you guys stopped hiring everyone with Jenkins experience. ;)
+19:07:50 <alyssat> we are also  not using CB template
+19:07:53 <abayer> heh
+19:08:29 <rtyler> hare_brain: I'll followup with kohsuke to see if we can stop hiring qualified candidates
+19:08:32 <rtyler> xD
+19:08:38 <orrc> fair enough. so long as there's some sort of guarantee that there is actually non-CB content, even if 90% of it will be delivered by CB employees, it doesn't seem so bad :D
+19:08:52 <orrc> hare_brain: looking for a job?
+19:08:56 <hare_brain> No.
+19:09:08 <orrc> not until board elections are over, at least :)
+19:09:16 <orrc> anyway...
+19:09:26 <oleg-nenashev> If we could explicitly reserve 1-2 slots for JAM moderation, it should be file
+19:09:32 <oleg-nenashev> *fine
+19:09:46 <rtyler> wat
+19:09:46 <orrc> which are the 13 cities?
+19:09:54 <orrc> anyway, +1 ish from me
+19:10:21 <alyssat> orrc do you want me to list out all the cities? mostly in Americas and a few in EU
+19:10:37 <danielbeck> orrc You don't want this meeting to end, admit it :P
+19:10:39 <hare_brain> We're over, and I'm late for my next meeting. I'm not horribly against this use, but I do have concerns about the high number of CB employees that are doing the presentations. Nothing personal, just optics.
+19:10:42 <rtyler> +1 from me considering this request is inline with our trademark guidelines (and bonus that Jenkins content is being presented)
+19:10:47 <orrc> alyssat: was just wondering, since there was talk of JAM cooperation :)
+19:10:57 <orrc> I'm with hare_brain
+19:11:04 <orrc> danielbeck: I already voted!
+19:11:09 <rtyler> alyssat: please follow up with orrc in #jenkins-community on that
+19:11:18 <kohsuke> As I pitched when I originally introduced this wiki page, I think there's a real value in us showing Jenkins in person to people around the world. That's important for the project.
+19:11:19 <rtyler> we should also let the JAM list know if you haven't
+19:11:19 <alyssat> rtyler: will do
+19:11:36 <kohsuke> I think we can record agreement with a concern here
+19:11:42 <hare_brain> Yes.
+19:11:57 <alyssat> noted. thank you
+19:12:01 <danielbeck> Maybe some kind of preference to non CB speakers if we find them?
+19:12:36 <kohsuke> #agreed the name usage in "CD summit & Jenkins Days" is approved with a concern that CB speakers are disproportionately high.
+19:12:45 <kohsuke> danielbeck: I think we are already doing that
+19:12:53 <danielbeck> oh
+19:12:56 <rtyler> we are, when available
+19:13:08 <kohsuke> all right, let's do your topic quickly and wrap this up
+19:13:10 <danielbeck> So all orrc and hare_brain need to do is show up :-)
+19:13:13 <rtyler> hah
+19:13:26 <danielbeck> kohsuke You're the only chair
+19:13:29 <orrc> danielbeck: if you can fly me to Dallas, I'm in
+19:13:29 <kohsuke> ready to move on?
+19:13:31 <kohsuke> oh
+19:13:36 <kohsuke> #chair hare_brain danielbeck rtyler
+19:13:36 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+19:13:44 <kohsuke> orrc: we are coming to Europe, too
+19:13:52 <danielbeck> #topic Advance notice: Privacy affecting bug, 1.642.4 release
+19:13:54 <danielbeck> this is quick
+19:14:18 <danielbeck> We discovered a bug affecting the last ~2 months of Jenkins releases that results in Jenkins submitting anon usage stats data when it should not
+19:14:39 <danielbeck> I will publish an advisory later today, and notify dev/users/advisories lists
+19:14:59 <danielbeck> We'll also release 1.642.4 whose only change is the fix for this bug
+19:15:14 <danielbeck> FYI to this meeting so you're not surprised wtf is going on 2 hours from now.
+19:15:50 <rtyler> heh
+19:16:05 <kohsuke> all rigiht, are you done?
+19:16:16 <danielbeck> I'll be happy to answer questions in private, but note I'll publish more information later today
+19:16:20 <danielbeck> that's it from me
+19:16:26 <kohsuke> #topic next meeting
+19:16:39 <kohsuke> April 13th
+19:16:47 <kohsuke> #info next meeting is April 13th
+19:16:50 <kohsuke> See you with 2.0 RC!
+19:16:52 <kohsuke> #endmeeting

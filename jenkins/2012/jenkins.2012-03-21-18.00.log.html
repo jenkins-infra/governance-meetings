@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:34</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain abayer rtyler</span>
+<a name="l-4"></a><span class="tm">18:00:47</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:01:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Agenda https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Mar21stMeeting</span>
+<a name="l-6"></a><span class="tm">18:01:08</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks
+<a name="l-7"></a><span class="tm">18:01:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">last meeting items http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-03-07-19.01.html</span>
+<a name="l-8"></a><span class="tm">18:01:32</span><span class="nk"> &lt;aheritier&gt;</span> Hi
+<a name="l-9"></a><span class="tm">18:01:49</span><span class="nk"> &lt;andref&gt;</span> hi
+<a name="l-10"></a><span class="tm">18:01:50</span><span class="nk"> &lt;kohsuke&gt;</span> Slide-O-Mix and I need to set up a time for office hours for new e-mailer
+<a name="l-11"></a><span class="tm">18:02:17</span><span class="nk"> &lt;kohsuke&gt;</span> which basically means he need to tell me which of https://wiki.jenkins-ci.org/display/JENKINS/Office+Hours would work for him
+<a name="l-12"></a><span class="tm">18:02:27</span><span class="nk"> &lt;kohsuke&gt;</span> 3/28 is up for grab, and so is 4/11
+<a name="l-13"></a><span class="tm">18:03:08</span><span class="nk"> &lt;kohsuke&gt;</span> The other "add CB to sponsors" action is my mistake that it's pending more work on jenkins.ci.cloudbees.com
+<a name="l-14"></a><span class="tm">18:03:59</span><span class="nk"> &lt;kohsuke&gt;</span> and ndeloof in time!
+<a name="l-15"></a><span class="tm">18:04:13</span><span class="nk"> &lt;ndeloof&gt;</span> just in time, but for few minutes only
+<a name="l-16"></a><span class="tm">18:04:32</span><span class="nk"> &lt;kohsuke&gt;</span> He made some progress in https://jenkins.ci.cloudbees.com/ AIU
+<a name="l-17"></a><span class="tm">18:04:41</span><span class="nk"> &lt;ndeloof&gt;</span> indeed
+<a name="l-18"></a><span class="tm">18:04:52</span><span class="nk"> &lt;ndeloof&gt;</span> need to fix some configuration to have unlimited executors
+<a name="l-19"></a><span class="tm">18:05:01</span><span class="nk"> &lt;ndeloof&gt;</span> but that's cloudbees details
+<a name="l-20"></a><span class="tm">18:05:47</span><span class="nk"> &lt;aheritier&gt;</span> too much red :-)
+<a name="l-21"></a><span class="tm">18:05:48</span><span class="nk"> &lt;kohsuke&gt;</span> On page like https://jenkins.ci.cloudbees.com/job/plugins/job/active-directory/configure you can see that the only setting in a plugin is just its name
+<a name="l-22"></a><span class="tm">18:06:09</span><span class="nk"> &lt;kohsuke&gt;</span> it's all red I guess because we need to set ~/.m2/settings.xml for m.g.o-public -&gt; repo.jenkins-ci.org
+<a name="l-23"></a><span class="tm">18:06:13</span><span class="nk"> &lt;aheritier&gt;</span> cool, using templating feature ?
+<a name="l-24"></a><span class="tm">18:06:19</span><span class="nk"> &lt;kohsuke&gt;</span> yes
+<a name="l-25"></a><span class="tm">18:06:27</span><span class="nk"> &lt;ndeloof&gt;</span> right, I've used cloudbees template plugin to setup a single parameter job
+<a name="l-26"></a><span class="tm">18:06:31</span><span class="nk"> &lt;aheritier&gt;</span> fucking maven settings :-)
+<a name="l-27"></a><span class="tm">18:06:43</span><span class="nk"> &lt;ndeloof&gt;</span> will fix this tomorrow (or next day)
+<a name="l-28"></a><span class="tm">18:07:11</span><span class="nk"> &lt;ndeloof&gt;</span> I also created some jobs for core
+<a name="l-29"></a><span class="tm">18:07:26</span><span class="nk"> &lt;ndeloof&gt;</span> https://jenkins.ci.cloudbees.com/job/core/
+<a name="l-30"></a><span class="tm">18:07:42</span><span class="nk"> &lt;ndeloof&gt;</span> but have some test failure that don't occur on ci.jenkins-ci.org, will look further
+<a name="l-31"></a><span class="tm">18:07:55</span><span class="nk"> &lt;kohsuke&gt;</span> hmm, 2 hours...
+<a name="l-32"></a><span class="tm">18:08:03</span><span class="nk"> &lt;ndeloof&gt;</span> I thing cloudbees hosting is nice for plugin as we can use the templates for job config
+<a name="l-33"></a><span class="tm">18:08:13</span><span class="nk"> &lt;ndeloof&gt;</span> can also host jobs for libs
+<a name="l-34"></a><span class="tm">18:08:21</span><span class="nk"> &lt;kohsuke&gt;</span> oops, did we just kill the instance?
+<a name="l-35"></a><span class="tm">18:08:26</span><span class="nk"> &lt;ndeloof&gt;</span> and probably selenium tests (didn't investigated yet)
+<a name="l-36"></a><span class="tm">18:08:47</span><span class="nk"> &lt;ndeloof&gt;</span> nop, just launched a migration command to FOSS "special"
+<a name="l-37"></a><span class="tm">18:08:51</span><span class="nk"> &lt;ndeloof&gt;</span> so that it has unlimited quota
+<a name="l-38"></a><span class="tm">18:08:53</span><span class="nk"> &lt;kohsuke&gt;</span> ah
+<a name="l-39"></a><span class="tm">18:09:01</span><span class="nk"> &lt;ndeloof&gt;</span> will be back in few minutes
+<a name="l-40"></a><span class="tm">18:09:24</span><span class="nk"> &lt;kohsuke&gt;</span> All right. Thanks for the update. Shall we move on to the next topic?
+<a name="l-41"></a><span class="tm">18:09:26</span><span class="nk"> &lt;ndeloof&gt;</span> so, will experiment with ci.jenkins-ci.org job migration and report status on next governance meeting
+<a name="l-42"></a><span class="tm">18:09:29</span><span class="nk"> &lt;ndeloof&gt;</span> right,
+<a name="l-43"></a><span class="tm">18:09:40</span><span class="nk"> &lt;ndeloof&gt;</span> have to quit, have a nice day folks
+<a name="l-44"></a><span class="tm">18:09:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ndeloof:</span>  thanks
+<a name="l-45"></a><span class="tm">18:09:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">please sign CLAs</span>
+<a name="l-46"></a><span class="tm">18:10:24</span><span class="nk"> &lt;kohsuke&gt;</span> So, it's been long over due, but I finally spent some time to kick off the CLA collection
+<a name="l-47"></a><span class="tm">18:10:43</span><span class="nk"> &lt;kohsuke&gt;</span> I've moved every core committer to "CLA signature pending" team,
+<a name="l-48"></a><span class="tm">18:10:51</span><span class="nk"> &lt;kohsuke&gt;</span> and created another team for those who have signed
+<a name="l-49"></a><span class="tm">18:11:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Encrypted signed CLA PDFs can be seen here: https://github.com/jenkinsci/infra-cla/tree/master/collected</span>
+<a name="l-50"></a><span class="tm">18:11:24</span><span class="nk"> &lt;aheritier&gt;</span> You have a public list ?
+<a name="l-51"></a><span class="tm">18:12:02</span><span class="nk"> &lt;kohsuke&gt;</span> I think it has enough details in public about those who have filed
+<a name="l-52"></a><span class="tm">18:12:10</span><span class="nk"> &lt;aheritier&gt;</span> I agree
+<a name="l-53"></a><span class="tm">18:12:12</span><span class="nk"> &lt;aheritier&gt;</span> perfect
+<a name="l-54"></a><span class="tm">18:12:29</span><span class="nk"> &lt;kohsuke&gt;</span> And I need to pass on the key to hare_brain and abayer
+<a name="l-55"></a><span class="tm">18:12:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to pass on the key to hare_brain and abayer</span>
+<a name="l-56"></a><span class="tm">18:13:05</span><span class="nk"> &lt;kohsuke&gt;</span> anyway, that's detail, and what we need from folks is to send us signed CLAs to jenkinsci-cla@googlegroups.com
+<a name="l-57"></a><span class="tm">18:13:29</span><span class="nk"> &lt;kohsuke&gt;</span> Please see https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document for more background
+<a name="l-58"></a><span class="tm">18:14:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">1. if you work on Jenkins on your time, you need to file ICLA</span>
+<a name="l-59"></a><span class="tm">18:14:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">2. if you work on Jenkins for your day job, you need to file CCLA</span>
+<a name="l-60"></a><span class="tm">18:14:33</span><span class="nk"> &lt;kohsuke&gt;</span> I believe those are the guidelines
+<a name="l-61"></a><span class="tm">18:14:55</span><span class="nk"> &lt;kohsuke&gt;</span> Any questions? thoughts? etc?
+<a name="l-62"></a><span class="tm">18:15:13</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">3. In some cases, your employment contract may stipulate that work you do on your own time may be company property, if it's related to your job.</span>
+<a name="l-63"></a><span class="tm">18:15:31</span><span class="nk"> &lt;kohsuke&gt;</span> that's true
+<a name="l-64"></a><span class="tm">18:15:35</span><span class="nk"> &lt;kohsuke&gt;</span> Glad I live in Califronia
+<a name="l-65"></a><span class="tm">18:15:39</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> if I work in my free time as well as partially in work time, I need to sign both, right?
+<a name="l-66"></a><span class="tm">18:15:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> Yes
+<a name="l-67"></a><span class="tm">18:16:23</span><span class="nk"> &lt;aheritier&gt;</span> In france such close is common too
+<a name="l-68"></a><span class="tm">18:16:54</span><span class="nk"> &lt;aheritier&gt;</span> s/close/clause
+<a name="l-69"></a><span class="tm">18:16:55</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we move on?
+<a name="l-70"></a><span class="tm">18:17:04</span><span class="nk"> &lt;aheritier&gt;</span> yes
+<a name="l-71"></a><span class="tm">18:17:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Launching Jenkins CIA</span>
+<a name="l-72"></a><span class="tm">18:17:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CIA+Program</span>
+<a name="l-73"></a><span class="tm">18:17:49</span><span class="nk"> &lt;kohsuke&gt;</span> As a quick recap, the idea was to promote the grassroot evangelism by providing some incentive, and have fun while we are at it
+<a name="l-74"></a><span class="tm">18:18:16</span><span class="nk"> &lt;kohsuke&gt;</span> It was waiting for the stock slide decks to be ready, but that's not making any progress for several months,
+<a name="l-75"></a><span class="tm">18:18:37</span><span class="nk"> &lt;kohsuke&gt;</span> so I think we should just launch with what we have, without official stock slide decks, at least initially
+<a name="l-76"></a><span class="tm">18:18:43</span><span class="nk"> &lt;rtyler&gt;</span> yeah, because libreoffice is the worst
+<a name="l-77"></a><span class="tm">18:18:46</span><span class="nk"> &lt;rtyler&gt;</span> and nobody likes it
+<a name="l-78"></a><span class="tm">18:19:02</span><span class="nk"> &lt;kohsuke&gt;</span> There was a resolution to fund the T-shirts for up to $500 a few month ago, I believe
+<a name="l-79"></a><span class="tm">18:19:26</span><span class="nk"> &lt;kohsuke&gt;</span> And yesterday I cooked up http://www.cafepress.com/jenkinscia.630461642
+<a name="l-80"></a><span class="tm">18:19:40</span><span class="nk"> &lt;rtyler&gt;</span> looks legit
+<a name="l-81"></a><span class="tm">18:20:03</span><span class="nk"> &lt;kohsuke&gt;</span> And I have stickers in my room, so I'll take care of the mailing, at least initially
+<a name="l-82"></a><span class="tm">18:20:34</span><span class="nk"> &lt;rtyler&gt;</span> can we distribute that to abayer or myself? especially if /somebody/ is going to travel again anytime soon
+<a name="l-83"></a><span class="tm">18:20:42</span><span class="nk"> &lt;rtyler&gt;</span> *coughs*
+<a name="l-84"></a><span class="tm">18:20:53</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, that's right
+<a name="l-85"></a><span class="tm">18:21:07</span><span class="nk"> &lt;kohsuke&gt;</span> We were supposed to have a drink-up that didn't work out
+<a name="l-86"></a><span class="tm">18:21:24</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I'll just mail them to you guys
+<a name="l-87"></a><span class="tm">18:21:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to mail sticker batches to abayer and rtyler</span>
+<a name="l-88"></a><span class="tm">18:22:03</span><span class="nk"> &lt;kohsuke&gt;</span> and you need to send me your address
+<a name="l-89"></a><span class="tm">18:22:11</span><span class="nk"> &lt;rtyler&gt;</span> did we come up with good t-shirt qualification guidelines?
+<a name="l-90"></a><span class="tm">18:22:50</span><span class="nk"> &lt;kohsuke&gt;</span> The current plan on that Wiki page is that you just need to go make a public presentation about Jenkins
+<a name="l-91"></a><span class="tm">18:23:00</span><span class="nk"> &lt;kohsuke&gt;</span> That qualifies you for one T-shirt and a batch of stickers
+<a name="l-92"></a><span class="tm">18:23:44</span><span class="nk"> &lt;rtyler&gt;</span> sending stickers after the fact?
+<a name="l-93"></a><span class="tm">18:24:02</span><span class="nk"> &lt;kohsuke&gt;</span> No, bofore the event
+<a name="l-94"></a><span class="tm">18:24:13</span><span class="nk"> &lt;kohsuke&gt;</span> It's so that he can hand them out to attendees
+<a name="l-95"></a><span class="tm">18:24:13</span><span class="nk"> &lt;rtyler&gt;</span> t-shirt too?
+<a name="l-96"></a><span class="tm">18:24:16</span><span class="nk"> &lt;kohsuke&gt;</span> yeah
+<a name="l-97"></a><span class="tm">18:24:52</span><span class="nk"> &lt;kohsuke&gt;</span> CafePress lets me ship those to arbitrary address
+<a name="l-98"></a><span class="tm">18:25:06</span><span class="nk"> &lt;kohsuke&gt;</span> and one batch of stickers fit in a postal envelope.
+<a name="l-99"></a><span class="tm">18:25:20</span><span class="nk"> &lt;rtyler&gt;</span> sounds good
+<a name="l-100"></a><span class="tm">18:25:45</span><span class="nk"> &lt;kohsuke&gt;</span> So I guess I'm looking for some +1s to second/approve the motion
+<a name="l-101"></a><span class="tm">18:25:52</span><span class="nk"> &lt;aheritier&gt;</span> Don't forget to provide them for JUC @ Paris :-)
+<a name="l-102"></a><span class="tm">18:26:08</span><span class="nk"> &lt;aheritier&gt;</span> +1
+<a name="l-103"></a><span class="tm">18:26:17</span><span class="nk"> &lt;mc1arke&gt;</span> +1
+<a name="l-104"></a><span class="tm">18:26:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">aheritier:</span>  Yes, I have a box full, so it should last for a while
+<a name="l-105"></a><span class="tm">18:26:21</span><span class="nk"> &lt;vjuranek&gt;</span> +1
+<a name="l-106"></a><span class="tm">18:26:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the project meeting blessed the launch of the CIA program</span>
+<a name="l-107"></a><span class="tm">18:27:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> I think I need your help in publicizing it
+<a name="l-108"></a><span class="tm">18:27:22</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I'll do a blog post
+<a name="l-109"></a><span class="tm">18:27:23</span><span class="nk"> &lt;kohsuke&gt;</span> or can you?
+<a name="l-110"></a><span class="tm">18:27:37</span><span class="nk"> &lt;rtyler&gt;</span> I can work something up, we're already past prime-publishing time this week
+<a name="l-111"></a><span class="tm">18:27:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to write up a fanciful blog post for publication next monday</span>
+<a name="l-112"></a><span class="tm">18:27:52</span><span class="nk"> &lt;kohsuke&gt;</span> thanks
+<a name="l-113"></a><span class="tm">18:28:14</span><span class="nk"> &lt;kohsuke&gt;</span> All right, moving on to the next topic...
+<a name="l-114"></a><span class="tm">18:28:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">"Jenkins@cloud for GitHub" and "Jenkins@cloud by CloudBees" name usage approval</span>
+<a name="l-115"></a><span class="tm">18:29:10</span><span class="nk"> &lt;kohsuke&gt;</span> So, I'm tasked by my boss to seek for an approval for using the mark "Jenkins"
+<a name="l-116"></a><span class="tm">18:29:18 </span><span class="nka">* kohsuke</span> <span class="ac">puts CloudBees hat on</span>
+<a name="l-117"></a><span class="tm">18:29:42 </span><span class="nka">* rtyler</span> <span class="ac">puts his Lookout galoshes on</span>
+<a name="l-118"></a><span class="tm">18:29:59</span><span class="nk"> &lt;kohsuke&gt;</span> CB would like to call the hosted Jenkins part of DEV@cloud "Jenkins@cloud by CloudBees"
+<a name="l-119"></a><span class="tm">18:30:01 </span><span class="nka">* aheritier</span> <span class="ac">opens a beer</span>
+<a name="l-120"></a><span class="tm">18:30:15</span><span class="nk"> &lt;jjj_&gt;</span> CloudBees
+<a name="l-121"></a><span class="tm">18:30:24</span><span class="nk"> &lt;kohsuke&gt;</span> It's basically what you can see https://jenkins.ci.cloudbees.com/
+<a name="l-122"></a><span class="tm">18:30:27</span><span class="nk"> &lt;jjj_&gt;</span> I want one of your plugins
+<a name="l-123"></a><span class="tm">18:30:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jjj_:</span> not right now, project meeting ;)
+<a name="l-124"></a><span class="tm">18:30:39</span><span class="nk"> &lt;jjj_&gt;</span> lol ok
+<a name="l-125"></a><span class="tm">18:30:44</span><span class="nk"> &lt;kohsuke&gt;</span> ... for those who don't know what hosted Jenkins on DEV@cloud is.
+<a name="l-126"></a><span class="tm">18:31:05</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's sufficiently long and descriptive name
+<a name="l-127"></a><span class="tm">18:31:13</span><span class="nk"> &lt;aheritier&gt;</span> What will change in the current site ?
+<a name="l-128"></a><span class="tm">18:31:20</span><span class="nk"> &lt;aheritier&gt;</span> jenkins is already in the URL
+<a name="l-129"></a><span class="tm">18:31:35</span><span class="nk"> &lt;aheritier&gt;</span> it is just to give it a friendly name ?
+<a name="l-130"></a><span class="tm">18:31:40</span><span class="nk"> &lt;kohsuke&gt;</span> and the branding of the UI puts enough emphasis on CB
+<a name="l-131"></a><span class="tm">18:32:25</span><span class="nk"> &lt;kohsuke&gt;</span> ... that I'd like to think that it has very little chance of causing confusion to users about who offers the service
+<a name="l-132"></a><span class="tm">18:32:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">aheritier:</span> yeah, I think it's just to give it a friendly name
+<a name="l-133"></a><span class="tm">18:33:19</span><span class="nk"> &lt;kohsuke&gt;</span> My understanding is that it makes it easier (or reduce the need) to describe what it is.
+<a name="l-134"></a><span class="tm">18:33:44</span><span class="nk"> &lt;kohsuke&gt;</span> The other one is "Jenkins@cloud for GitHub" because "Jenkins@cloud for GitHub by CloudBees" would be too much
+<a name="l-135"></a><span class="tm">18:34:37</span><span class="nk"> &lt;kohsuke&gt;</span> It's not publicly launched yet, but we are working on a set of plugins on DEV@cloud to improve integration with GitHub
+<a name="l-136"></a><span class="tm">18:34:54</span><span class="nk"> &lt;kohsuke&gt;</span> "A few click of buttons and your GitHub project is building on Jenkins" kind of idea
+<a name="l-137"></a><span class="tm">18:35:17</span><span class="nk"> &lt;kohsuke&gt;</span> It'll run on a similar *.cloudbees.com domain, and the UI should be similar, too.
+<a name="l-138"></a><span class="tm">18:35:32</span><span class="nk"> &lt;kohsuke&gt;</span> So the same argument about unlikeness of causing confusion
+<a name="l-139"></a><span class="tm">18:35:45</span><span class="nk"> &lt;kohsuke&gt;</span> So that's my case.
+<a name="l-140"></a><span class="tm">18:35:50</span><span class="nk"> &lt;hare_brain&gt;</span> For the purposes of this community, the point is to make sure that people don't think that this is a service provided by us, or don't think that Jenkins is produced by CloudBees.
+<a name="l-141"></a><span class="tm">18:35:59</span><span class="nk"> &lt;kohsuke&gt;</span> Exactly
+<a name="l-142"></a><span class="tm">18:36:17</span><span class="nk"> &lt;rtyler&gt;</span> I think both usages are just fine
+<a name="l-143"></a><span class="tm">18:36:39</span><span class="nk"> &lt;hare_brain&gt;</span> Agree
+<a name="l-144"></a><span class="tm">18:36:44</span><span class="nk"> &lt;vjuranek&gt;</span> +1
+<a name="l-145"></a><span class="tm">18:37:18</span><span class="nk"> &lt;mc1arke&gt;</span> +1
+<a name="l-146"></a><span class="tm">18:37:25</span><span class="nk"> &lt;lov&gt;</span> "Jenkins Serves Bees to Clouds; host your build on Jenkins' Bees today!"
+<a name="l-147"></a><span class="tm">18:37:30</span><span class="nk"> &lt;aheritier&gt;</span> +1
+<a name="l-148"></a><span class="tm">18:37:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">lov:</span> needs more enterprise
+<a name="l-149"></a><span class="tm">18:37:48</span><span class="nk"> &lt;kohsuke&gt;</span> I think I'd like to get +1 for abayer before recording an agreement
+<a name="l-150"></a><span class="tm">18:38:01</span><span class="nk"> &lt;kohsuke&gt;</span> now where are the backlogs...
+<a name="l-151"></a><span class="tm">18:38:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> http://echelog.com/logs/browse/jenkins/1332284400
+<a name="l-152"></a><span class="tm">18:38:38</span><span class="nk"> &lt;kohsuke&gt;</span> from [19:28:29]
+<a name="l-153"></a><span class="tm">18:38:47</span><span class="nk"> &lt;abayer&gt;</span> Jenkins@Cloud from CloudBees? +1
+<a name="l-154"></a><span class="tm">18:38:59</span><span class="nk"> &lt;kohsuke&gt;</span> and "Jenkins@cloud for GitHub"
+<a name="l-155"></a><span class="tm">18:39:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the project approves the request from CloudBees to use "Jenkins@cloud by CloudBees" and "Jenkins@cloud for GitHub"</span>
+<a name="l-156"></a><span class="tm">18:39:57</span><span class="nk"> &lt;kohsuke&gt;</span> Thank you
+<a name="l-157"></a><span class="tm">18:40:12</span><span class="nk"> &lt;kohsuke&gt;</span> I actually have one more quick topic since it looks like we have time today
+<a name="l-158"></a><span class="tm">18:40:24</span><span class="nk"> &lt;nfylo&gt;</span> Hello, can i bother someone with my weird configuration (reverse proxy with nginx resulting in XmlHttpRequest problems)
+<a name="l-159"></a><span class="tm">18:40:24</span><span class="nk"> &lt;hare_brain&gt;</span> Before you move off.
+<a name="l-160"></a><span class="tm">18:40:29</span><span class="nk"> &lt;hare_brain&gt;</span> This approval aside, do people have thoughts on how permissive we want to be in granting usages of the Jenkins trademark? I was saying to Kohsuke privately that real companies have whole binders dealing with how their trademarks and brand identities should be used.
+<a name="l-161"></a><span class="tm">18:40:47</span><span class="nk"> &lt;hare_brain&gt;</span> I'd like to hear people's thoughts on that, if there are strong opinions out there.
+<a name="l-162"></a><span class="tm">18:41:21</span><span class="nk"> &lt;abayer&gt;</span> I'm fairly comfortable with people using it, but yeah, we really need formal policies.
+<a name="l-163"></a><span class="tm">18:41:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">nfylo:</span> give us a few minutes, we're still in a project meeting
+<a name="l-164"></a><span class="tm">18:41:38</span><span class="nk"> &lt;nfylo&gt;</span> oups sorry
+<a name="l-165"></a><span class="tm">18:42:12</span><span class="nk"> &lt;kohsuke&gt;</span> My feeling has been that we should be liberal about the use
+<a name="l-166"></a><span class="tm">18:42:37</span><span class="nk"> &lt;aheritier&gt;</span> maybe we can have a look at ASF rules but there are very light
+<a name="l-167"></a><span class="tm">18:42:44</span><span class="nk"> &lt;kohsuke&gt;</span> To me, it's one of the formalities that we have to deal with
+<a name="l-168"></a><span class="tm">18:42:53</span><span class="nk"> &lt;aheritier&gt;</span> For me its creates more issues than something else to be too much protected
+<a name="l-169"></a><span class="tm">18:42:58</span><span class="nk"> &lt;hare_brain&gt;</span> What if someone tried to sell a commercial product that merged Hudson and Jenkins, and they asked for our permission to use Jenkins in the name of their product?
+<a name="l-170"></a><span class="tm">18:43:10</span><span class="nk"> &lt;rtyler&gt;</span> Huwhat?
+<a name="l-171"></a><span class="tm">18:43:24</span><span class="nk"> &lt;hare_brain&gt;</span> I'm just throwing a use case out.
+<a name="l-172"></a><span class="tm">18:43:29</span><span class="nk"> &lt;aheritier&gt;</span> or to host another Jenkins on demand SAAS ?
+<a name="l-173"></a><span class="tm">18:44:12</span><span class="nk"> &lt;hare_brain&gt;</span> I'm not looking for answers right now, but I just ask that people think about it a bit.
+<a name="l-174"></a><span class="tm">18:44:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> I downloaded the GitHub logo art they distribute yesterday, in the README included they had some good guidelines
+<a name="l-175"></a><span class="tm">18:44:43</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="hi">rtyler:</span> link?
+<a name="l-176"></a><span class="tm">18:44:43</span><span class="nk"> &lt;rtyler&gt;</span> "* for GitHub" or "Hub*" were fine usecases for them, but GitHub*" wasn't
+<a name="l-177"></a><span class="tm">18:44:43</span><span class="nk"> &lt;kohsuke&gt;</span> +1 on finding anything that we can piggy back on
+<a name="l-178"></a><span class="tm">18:44:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> right-click on the github logo ;)
+<a name="l-179"></a><span class="tm">18:45:18</span><span class="nk"> &lt;aheritier&gt;</span> I remember a git front-end that said the github like UI and they changed
+<a name="l-180"></a><span class="tm">18:45:43</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> awesome :-)
+<a name="l-181"></a><span class="tm">18:45:58</span><span class="nk"> &lt;rtyler&gt;</span> I think at a base-level, "X for Jenkins" or "Jenkins for X" are totally fine
+<a name="l-182"></a><span class="tm">18:46:10</span><span class="nk"> &lt;hare_brain&gt;</span> I would agree with that.
+<a name="l-183"></a><span class="tm">18:46:12</span><span class="nk"> &lt;rtyler&gt;</span> Jenkins for Hudson? if that's something somebody srsly wants to do, hokay
+<a name="l-184"></a><span class="tm">18:46:21</span><span class="nk"> &lt;rtyler&gt;</span> it's idiotic, but hokay :D
+<a name="l-185"></a><span class="tm">18:46:43</span><span class="nk"> &lt;hare_brain&gt;</span> OK, I've had my say. We can move on.
+<a name="l-186"></a><span class="tm">18:46:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span>  Thanks for bringing this up
+<a name="l-187"></a><span class="tm">18:47:05</span><span class="nk"> &lt;abayer&gt;</span> I think we should work with the SPI guys to see if they have any advice on drawing up formal terms.
+<a name="l-188"></a><span class="tm">18:47:17</span><span class="nk"> &lt;rtyler&gt;</span> not-it!
+<a name="l-189"></a><span class="tm">18:47:53</span><span class="nk"> &lt;kohsuke&gt;</span> SPI has been pretty hands free about those stuff, so we'll see
+<a name="l-190"></a><span class="tm">18:47:53</span><span class="nk"> &lt;abayer&gt;</span> I'm gone and/or busy for the next couple weeks. =)
+<a name="l-191"></a><span class="tm">18:48:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins User Conference Tokyo</span>
+<a name="l-192"></a><span class="tm">18:48:17</span><span class="nk"> &lt;rtyler&gt;</span> wooooo
+<a name="l-193"></a><span class="tm">18:48:28</span><span class="nk"> &lt;kohsuke&gt;</span> So, when I went to Tokyo and told them that we had this 4 JUC going on around the world
+<a name="l-194"></a><span class="tm">18:48:37</span><span class="nk"> &lt;kohsuke&gt;</span> Naturally those guys wanted to have their own
+<a name="l-195"></a><span class="tm">18:48:46</span><span class="nk"> &lt;kohsuke&gt;</span> So one is getting organized
+<a name="l-196"></a><span class="tm">18:49:10</span><span class="nk"> &lt;kohsuke&gt;</span> This one is very much driven by Japanese community folks, and no CloudBees people except me (because no one else speaks the damn language)
+<a name="l-197"></a><span class="tm">18:49:20</span><span class="nk"> &lt;aheritier&gt;</span> :-)
+<a name="l-198"></a><span class="tm">18:49:43</span><span class="nk"> &lt;kohsuke&gt;</span> We are nicely lining up the ducks but they have one request
+<a name="l-199"></a><span class="tm">18:49:50</span><span class="nk"> &lt;kohsuke&gt;</span> We? They?
+<a name="l-200"></a><span class="tm">18:49:51</span><span class="nk"> &lt;abayer&gt;</span> I'm going!
+<a name="l-201"></a><span class="tm">18:49:52</span><span class="nk"> &lt;aheritier&gt;</span> you give few months to a bayer to learn Japanese and to come with you :-)
+<a name="l-202"></a><span class="tm">18:49:59</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">aheritier:</span> =)
+<a name="l-203"></a><span class="tm">18:50:21</span><span class="nk"> &lt;aheritier&gt;</span> If I could … I would love !!
+<a name="l-204"></a><span class="tm">18:50:31</span><span class="nk"> &lt;kohsuke&gt;</span> In that part of Asia, it is customary for those conferences to have a drink/dinner afterward
+<a name="l-205"></a><span class="tm">18:50:38</span><span class="nk"> &lt;kohsuke&gt;</span> So one is being planned
+<a name="l-206"></a><span class="tm">18:50:58</span><span class="nk"> &lt;kohsuke&gt;</span> That part is payed by the subset of conference attendees that also attend the dinner
+<a name="l-207"></a><span class="tm">18:51:22</span><span class="nk"> &lt;aheritier&gt;</span> No local sponsors ?
+<a name="l-208"></a><span class="tm">18:51:26</span><span class="nk"> &lt;kohsuke&gt;</span> but because we need to pay for the place upfront and there's always people cancelling and changing minds in the last minute,
+<a name="l-209"></a><span class="tm">18:51:55</span><span class="nk"> &lt;kohsuke&gt;</span> there's an inherent risk about mis-estimating
+<a name="l-210"></a><span class="tm">18:52:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">aheritier:</span> there are local sponsors, believe it or not
+<a name="l-211"></a><span class="tm">18:53:06</span><span class="nk"> &lt;kohsuke&gt;</span> we expect some last minute cancellations and factor that into the amount we charge,
+<a name="l-212"></a><span class="tm">18:53:20</span><span class="nk"> &lt;kohsuke&gt;</span> but at something like $50-$70/person and 100+ people coming
+<a name="l-213"></a><span class="tm">18:53:42</span><span class="nk"> &lt;kohsuke&gt;</span> say if you are off by 10 it's more than the amount any single person wants to pay for
+<a name="l-214"></a><span class="tm">18:54:17</span><span class="nk"> &lt;kohsuke&gt;</span> So, that finally brings me to the request, which is to see if we can tap into the project funding if the worst case scenario happens
+<a name="l-215"></a><span class="tm">18:54:37</span><span class="nk"> &lt;toxboi&gt;</span> Hi, I'm trying to run phpunit test in Jenkins. When I do a new build, I get this in console output http://pastie.org/private/gfqwzxkj1awjal9byvyq
+<a name="l-216"></a><span class="tm">18:54:45</span><span class="nk"> &lt;kohsuke&gt;</span> (and obviously, the flip side is that if we estimate well and get little extra, they'll come back to the project funding)
+<a name="l-217"></a><span class="tm">18:54:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">toxboi:</span> give us a few minutes, we're in the middle of a project meeting
+<a name="l-218"></a><span class="tm">18:55:01</span><span class="nk"> &lt;toxboi&gt;</span> <span class="hi">rtyler:</span> ok
+<a name="l-219"></a><span class="tm">18:55:25</span><span class="nk"> &lt;kohsuke&gt;</span> Right now the sponsor line up looks better than I anticipated, so likely we'll be able to pay it off from there.
+<a name="l-220"></a><span class="tm">18:55:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I don't think it's that bad of an idea, but I wouldn't mind if the JA jenkins community participated as a result a bit more with the rest of us :)
+<a name="l-221"></a><span class="tm">18:56:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> yes, that has always been my pet peeve
+<a name="l-222"></a><span class="tm">18:56:47</span><span class="nk"> &lt;aheritier&gt;</span> otherwise we'll ask for a new donation if it costs too much :-)
+<a name="l-223"></a><span class="tm">18:56:52</span><span class="nk"> &lt;aheritier&gt;</span> But I agree to do it.
+<a name="l-224"></a><span class="tm">18:57:06</span><span class="nk"> &lt;kohsuke&gt;</span> rtyler That's why I want you to go there, and abayer going would help, too
+<a name="l-225"></a><span class="tm">18:57:09</span><span class="nk"> &lt;aheritier&gt;</span> And yes in exchange they try to be more present :-)
+<a name="l-226"></a><span class="tm">18:57:15</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-227"></a><span class="tm">18:57:22</span><span class="nk"> &lt;kohsuke&gt;</span> We'd be only on the hook for less than $1000
+<a name="l-228"></a><span class="tm">18:57:28</span><span class="nk"> &lt;rtyler&gt;</span> I thought it was so you could get us drunk and leave us at a train station in tokyo
+<a name="l-229"></a><span class="tm">18:57:35</span><span class="nk"> &lt;aheritier&gt;</span> :-)
+<a name="l-230"></a><span class="tm">18:57:38</span><span class="nk"> &lt;kohsuke&gt;</span> so it's well within our current fund
+<a name="l-231"></a><span class="tm">18:57:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> that too
+<a name="l-232"></a><span class="tm">18:58:05</span><span class="nk"> &lt;rtyler&gt;</span> I reserve +1s until there's a bit clearer of an estimate
+<a name="l-233"></a><span class="tm">18:58:18</span><span class="nk"> &lt;hare_brain&gt;</span> So it's not to use the fund to pay for the upfront fee, but to cover shortages from last minute cancellations?
+<a name="l-234"></a><span class="tm">18:58:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> yes
+<a name="l-235"></a><span class="tm">18:58:49</span><span class="nk"> &lt;hare_brain&gt;</span> And we wouldn't know how much that would be until after the fact.
+<a name="l-236"></a><span class="tm">18:59:23</span><span class="nk"> &lt;kohsuke&gt;</span> the usual formula I believe is that (1) we have them register for participation to the dinner, (2) we multiply it by 0.8 for the actual # of people showing up, and (3) divide the cost by that and decide how much to charge
+<a name="l-237"></a><span class="tm">18:59:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> yes, and that's why they need a bigger purse to tap to in case it goes badly wrong
+<a name="l-238"></a><span class="tm">19:00:10</span><span class="nk"> &lt;kohsuke&gt;</span> For the record, in their past 5 meetups nothing bad happened
+<a name="l-239"></a><span class="tm">19:00:26</span><span class="nk"> &lt;hare_brain&gt;</span> I wouldn't feel comfortable with a +1 either, unless there was an upper limit.
+<a name="l-240"></a><span class="tm">19:01:01</span><span class="nk"> &lt;kohsuke&gt;</span> OK, what would be a reasonable upper limit?
+<a name="l-241"></a><span class="tm">19:01:13</span><span class="nk"> &lt;hare_brain&gt;</span> I would be OK with the $1,000
+<a name="l-242"></a><span class="tm">19:01:19</span><span class="nk"> &lt;abayer&gt;</span> Same here.
+<a name="l-243"></a><span class="tm">19:01:48</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's quite good
+<a name="l-244"></a><span class="tm">19:02:25</span><span class="nk"> &lt;kohsuke&gt;</span> We are running out of time, so I'll push the approval  to the next meeting
+<a name="l-245"></a><span class="tm">19:02:26</span><span class="nk"> &lt;jf__&gt;</span> is there a pluging that i could use to display something like the dashboard plugin but to group builds together and see the status of each of them?
+<a name="l-246"></a><span class="tm">19:02:47</span><span class="nk"> &lt;kohsuke&gt;</span> I'll pass this on to them.
+<a name="l-247"></a><span class="tm">19:02:54</span><span class="nk"> &lt;mc1arke&gt;</span> <span class="hi">jf__:</span> wait a few minutes, there's a project meeting going on
+<a name="l-248"></a><span class="tm">19:03:15</span><span class="nk"> &lt;kohsuke&gt;</span> And that brings me to the final topic...
+<a name="l-249"></a><span class="tm">19:03:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-250"></a><span class="tm">19:03:37</span><span class="nk"> &lt;kohsuke&gt;</span> 2 weeks from now same time?
+<a name="l-251"></a><span class="tm">19:04:03</span><span class="nk"> &lt;kohsuke&gt;</span> (going back to rtyler's theme it'd be nice to try having a meeting in a time that those JUC Tokyo folks can attend)
+<a name="l-252"></a><span class="tm">19:04:21</span><span class="nk"> &lt;kohsuke&gt;</span> but probably not for the next time
+<a name="l-253"></a><span class="tm">19:04:25</span><span class="nk"> &lt;hare_brain&gt;</span> That would be 4/4 for people not in front of a calendar.
+<a name="l-254"></a><span class="tm">19:04:30</span><span class="nk"> &lt;abayer&gt;</span> I've expressed my support for rotating meeting times in the past.
+<a name="l-255"></a><span class="tm">19:04:38</span><span class="nk"> &lt;abayer&gt;</span> But yeah, 4/4 same time is good.
+<a name="l-256"></a><span class="tm">19:05:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting is 4/4 same time</span>
+<a name="l-257"></a><span class="tm">19:05:09</span><span class="nk"> &lt;kohsuke&gt;</span> And I think that's it for today.
+<a name="l-258"></a><span class="tm">19:05:13</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks everyone
+<a name="l-259"></a><span class="tm">19:05:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

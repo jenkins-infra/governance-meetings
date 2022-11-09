@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app28.us.archive.org';v.server_ms=2360;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-09-03-18.01.log.html","20200505233302","https://web.archive.org/","web","/_static/",
+	      "1588721582");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:25</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:32</span><span class="nk"> &lt;kohsuke&gt;</span> It's been a while for me
+<a name="l-4"></a><span class="tm">18:01:41</span><span class="nk"> &lt;QuinnyPig&gt;</span> <span class="hi">ilhami3:</span> Couple of ways to do it. Have cron check git for new checkins on a schedule, or (more fancily) use a post-update hook to fire off Jenkins.
+<a name="l-5"></a><span class="tm">18:01:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">18:01:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-7"></a><span class="tm">18:02:09 </span><span class="nka">* kohsuke</span> <span class="ac">checks email</span>
+<a name="l-8"></a><span class="tm">18:02:10</span><span class="nk"> &lt;ilhami3&gt;</span> well I cannot even build anything as it is now on Jenkins. It just pends and the job disappears or what it is called.
+<a name="l-9"></a><span class="tm">18:02:23</span><span class="nk"> &lt;ogondza&gt;</span> no problems discovered
+<a name="l-10"></a><span class="tm">18:02:26</span><span class="nk"> &lt;QuinnyPig&gt;</span> <span class="hi">ilhami3:</span> Shh. They're doing a Jenkins meeting. :-)
+<a name="l-11"></a><span class="tm">18:02:33</span><span class="nk"> &lt;ilhami3&gt;</span> lol.
+<a name="l-12"></a><span class="tm">18:02:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> great, thanks
+<a name="l-13"></a><span class="tm">18:03:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">1.565.2 release will happen today as planned</span>
+<a name="l-14"></a><span class="tm">18:03:11</span><span class="nk"> &lt;ilhami3&gt;</span> I hope they will solve my problem after. At least I could get Jenkins to work on localhost. It doesn't work with Openshift.
+<a name="l-15"></a><span class="tm">18:03:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> I'm planning to add security fixes to the next 1.565.3 release
+<a name="l-16"></a><span class="tm">18:03:47</span><span class="nk"> &lt;kohsuke&gt;</span> I'll write to you offline about details
+<a name="l-17"></a><span class="tm">18:03:56</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> ok
+<a name="l-18"></a><span class="tm">18:04:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">How do we run the "Ask the Experts" section in JUC?</span>
+<a name="l-19"></a><span class="tm">18:04:37</span><span class="nk"> &lt;kohsuke&gt;</span> Alyssa told me that she set aside a room for us in JUC bay area and a bunch of us have signed up for it
+<a name="l-20"></a><span class="tm">18:04:49</span><span class="nk"> &lt;kohsuke&gt;</span> I wanted to get some clarity of how we intend to run it
+<a name="l-21"></a><span class="tm">18:04:59</span><span class="nk"> &lt;Alyssa&gt;</span> let me look to see how many has signed up for this
+<a name="l-22"></a><span class="tm">18:05:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> hare_brain: autojack: I believe you guys are on it, too
+<a name="l-23"></a><span class="tm">18:05:31</span><span class="nk"> &lt;hare_brain&gt;</span> Yes
+<a name="l-24"></a><span class="tm">18:05:53</span><span class="nk"> &lt;Alyssa&gt;</span> we have about 7 people signed up for this
+<a name="l-25"></a><span class="tm">18:05:59</span><span class="nk"> &lt;kohsuke&gt;</span> Do we want to create some time slots and put people's names next to it?
+<a name="l-26"></a><span class="tm">18:06:22</span><span class="nk"> &lt;kohsuke&gt;</span> Or is the promise more like "someone will be there all the time but you don't know who you get?"
+<a name="l-27"></a><span class="tm">18:06:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Alyssa:</span> what if those folks who signed up can get T-shirt in different color...
+<a name="l-28"></a><span class="tm">18:07:29</span><span class="nk"> &lt;Alyssa&gt;</span> I was thinking should we also indicate who specialize in what and have at least a couple of people specializing in diff areas to fill up each hour or so?
+<a name="l-29"></a><span class="tm">18:07:57</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">Kohsuke:</span> sure..diff color tshirt is OK
+<a name="l-30"></a><span class="tm">18:08:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Alyssa:</span> where do you keep track of the "ask the experts" detail?
+<a name="l-31"></a><span class="tm">18:09:04</span><span class="nk"> &lt;kohsuke&gt;</span> Not in http://www.cloudbees.com/event/juc/2014/san-francisco
+<a name="l-32"></a><span class="tm">18:09:10</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">Kohuske:</span> no where yet. it's been on email. i can create a gdoc
+<a name="l-33"></a><span class="tm">18:09:18</span><span class="nk"> &lt;kohsuke&gt;</span> Or wiki page
+<a name="l-34"></a><span class="tm">18:09:39</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">Kohsuke:</span> ok..wiki page
+<a name="l-35"></a><span class="tm">18:09:39</span><span class="nk"> &lt;kohsuke&gt;</span> BTW that page has the key note starting 6:25am which I assume is an error
+<a name="l-36"></a><span class="tm">18:09:55</span><span class="nk"> &lt;Alyssa&gt;</span> yeah..heidi is working on fixing it.
+<a name="l-37"></a><span class="tm">18:10:05</span><span class="nk"> &lt;Alyssa&gt;</span> we also have the agenda posted on the wiki page..
+<a name="l-38"></a><span class="tm">18:10:17</span><span class="nk"> &lt;Alyssa&gt;</span> it's buried tho
+<a name="l-39"></a><span class="tm">18:10:24</span><span class="nk"> &lt;kohsuke&gt;</span> Aha, https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+User+Conference+US+West+%28San+Francisco%29+Agenda
+<a name="l-40"></a><span class="tm">18:10:40</span><span class="nk"> &lt;kohsuke&gt;</span> No this is great
+<a name="l-41"></a><span class="tm">18:10:59</span><span class="nk"> &lt;jglick&gt;</span> Who are the experts BTW?
+<a name="l-42"></a><span class="tm">18:11:21</span><span class="nk"> &lt;Alyssa&gt;</span> you (jesse) http://jenkins-ci.org/content/juc-sf-2014-here
+<a name="l-43"></a><span class="tm">18:11:31</span><span class="nk"> &lt;Alyssa&gt;</span> + ryan campbell
+<a name="l-44"></a><span class="tm">18:11:42</span><span class="nk"> &lt;jglick&gt;</span> Ought to be linked to from the agenda no?
+<a name="l-45"></a><span class="tm">18:11:46</span><span class="nk"> &lt;Alyssa&gt;</span> he just volunteered this morning :o)
+<a name="l-46"></a><span class="tm">18:12:02</span><span class="nk"> &lt;Alyssa&gt;</span> yes. thnx. we'll get it linked
+<a name="l-47"></a><span class="tm">18:12:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> Alyssa signed up for AI to create another Wiki page for that
+<a name="l-48"></a><span class="tm">18:12:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">Alyssa to create a wiki page for "ask the experts" coordination</span>
+<a name="l-49"></a><span class="tm">18:13:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I'm also trying to create a feedback form: https://docs.google.com/forms/d/1tRerFOUu4tOFG1KjmYENVZuXdLAc6r79Wl-qh36K5Bc/viewform?usp=send_form</span>
+<a name="l-50"></a><span class="tm">18:13:34</span><span class="nk"> &lt;kohsuke&gt;</span> if anyone thinks of any other questions to ask to attendees please let me know
+<a name="l-51"></a><span class="tm">18:13:37</span><span class="nk"> &lt;Alyssa&gt;</span> i'm not clear on how we'd like to run the 'ask the experts'?
+<a name="l-52"></a><span class="tm">18:13:57</span><span class="nk"> &lt;hare_brain&gt;</span> I didn’t think it was a session that needed to be “run"
+<a name="l-53"></a><span class="tm">18:14:10</span><span class="nk"> &lt;hare_brain&gt;</span> The email thread, we were talking about just having a lab area.
+<a name="l-54"></a><span class="tm">18:14:27</span><span class="nk"> &lt;kohsuke&gt;</span> I do want to make sure at least someone is there all the time
+<a name="l-55"></a><span class="tm">18:14:29</span><span class="nk"> &lt;hare_brain&gt;</span> There would be experts available to help people with questions about Jenkins
+<a name="l-56"></a><span class="tm">18:14:41</span><span class="nk"> &lt;hare_brain&gt;</span> I was planning on spending most of the day there, personally.
+<a name="l-57"></a><span class="tm">18:14:47</span><span class="nk"> &lt;hare_brain&gt;</span> I’ve got someone else to go to the sessions. :)
+<a name="l-58"></a><span class="tm">18:14:50</span><span class="nk"> &lt;jglick&gt;</span> Oh, so not like a panel.
+<a name="l-59"></a><span class="tm">18:14:55</span><span class="nk"> &lt;Alyssa&gt;</span> no panel
+<a name="l-60"></a><span class="tm">18:15:13</span><span class="nk"> &lt;QuinnyPig&gt;</span> Breakfast starts at 5AM. I want to go, but that's... a smidgen early.
+<a name="l-61"></a><span class="tm">18:15:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">QuinnyPig:</span> exactly! see the Wiki page for correct time https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+User+Conference+US+West+%28San+Francisco%29+Agenda
+<a name="l-62"></a><span class="tm">18:15:51</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">QuinnyPig:</span> we are experiencing website issues...our team is working on fixing it now
+<a name="l-63"></a><span class="tm">18:16:18</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so maybe we'll just set up like 30 mins slots and ask people to put names next to it to ensure coverage
+<a name="l-64"></a><span class="tm">18:16:25</span><span class="nk"> &lt;hare_brain&gt;</span> Genius Bar. LOL.
+<a name="l-65"></a><span class="tm">18:16:40</span><span class="nk"> &lt;kohsuke&gt;</span> And we'll write up text along the line of what hare_brain to set the expectation
+<a name="l-66"></a><span class="tm">18:16:52</span><span class="nk"> &lt;kohsuke&gt;</span> I suggest someone brings a warm local Maven proxy
+<a name="l-67"></a><span class="tm">18:17:17</span><span class="nk"> &lt;kohsuke&gt;</span> or else people with dev questions will end up spending most of time waiting for Maven
+<a name="l-68"></a><span class="tm">18:17:22</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">Kohsuke:</span> ok got it. i'll set it up on wiki page and fill up w/ experts names &amp; their time for duty
+<a name="l-69"></a><span class="tm">18:17:48</span><span class="nk"> &lt;ilhami3&gt;</span> when is this meeting done ? :(
+<a name="l-70"></a><span class="tm">18:17:57</span><span class="nk"> &lt;QuinnyPig&gt;</span> Pardon the Quinnterruption, but is it too late to sponsor the JUC?
+<a name="l-71"></a><span class="tm">18:18:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ilhami3:</span> maybe in another 30 mins or so, but definitely by the top of the hour
+<a name="l-72"></a><span class="tm">18:18:23</span><span class="nk"> &lt;sujatha&gt;</span> when i try to run nodejs command in jekins, getting below exception
+<a name="l-73"></a><span class="tm">18:18:24</span><span class="nk"> &lt;sujatha&gt;</span> <span class="hi">FATAL:</span> command execution failed java.io.IOException: Cannot run program "C:\Windows\TEMP\hudson1852121606380592964.js" (in directory "C:\Users\&lt;username&gt;\.jenkins\jobs\TestNightWatch\workspace"):
+<a name="l-74"></a><span class="tm">18:18:24</span><span class="nk"> &lt;ilhami3&gt;</span> ok. :) I hope you can help me with my problem after kohsuke.
+<a name="l-75"></a><span class="tm">18:18:26</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">QuinnyPig:</span> pls contact lwells@cloudbees.com for sponsorship
+<a name="l-76"></a><span class="tm">18:18:37</span><span class="nk"> &lt;QuinnyPig&gt;</span> <span class="hi">Alyssa:</span> Will do. Let me make some calls.
+<a name="l-77"></a><span class="tm">18:18:37</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">sujatha:</span> Meeting right now, please ask afterwards
+<a name="l-78"></a><span class="tm">18:19:05 </span><span class="nka">* kohsuke</span> <span class="ac">wonders if people working in the genius bar calls themselves genuises?</span>
+<a name="l-79"></a><span class="tm">18:19:15</span><span class="nk"> &lt;nanonyme&gt;</span> Pardon my ignorance but what's JUC?
+<a name="l-80"></a><span class="tm">18:19:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">nanonyme:</span> Jenkins User Conference
+<a name="l-81"></a><span class="tm">18:19:30</span><span class="nk"> &lt;sujatha&gt;</span> <span class="hi">danielbeck:</span> ok
+<a name="l-82"></a><span class="tm">18:19:34</span><span class="nk"> &lt;nanonyme&gt;</span> Ah, okay
+<a name="l-83"></a><span class="tm">18:19:44</span><span class="nk"> &lt;Alyssa&gt;</span> do we want to have several experts at one time so that there's expertise in more than one areas?
+<a name="l-84"></a><span class="tm">18:20:17</span><span class="nk"> &lt;hare_brain&gt;</span> Yes, I think that’s a good idea.
+<a name="l-85"></a><span class="tm">18:20:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Alyssa:</span> yes, I think so. Let's divide up the time to 30min/1hr slots and we should be able to have more than one person around for every slot
+<a name="l-86"></a><span class="tm">18:20:42</span><span class="nk"> &lt;kohsuke&gt;</span> That way, if no one shows up at least we can shoot breeze
+<a name="l-87"></a><span class="tm">18:20:50</span><span class="nk"> &lt;hare_brain&gt;</span> Or work. ;)
+<a name="l-88"></a><span class="tm">18:20:52</span><span class="nk"> &lt;Alyssa&gt;</span> ok. thnx
+<a name="l-89"></a><span class="tm">18:21:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">3D Mr.Jenkins figure will be on display in that room</span>
+<a name="l-90"></a><span class="tm">18:21:26</span><span class="nk"> &lt;Alyssa&gt;</span> ok. i think i have what i need for this
+<a name="l-91"></a><span class="tm">18:21:34</span><span class="nk"> &lt;kohsuke&gt;</span> great, let's move on
+<a name="l-92"></a><span class="tm">18:21:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Decision on implementing Browser Compatibility Matrix</span>
+<a name="l-93"></a><span class="tm">18:21:46</span><span class="nk"> &lt;danielbeck&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/Browser+Compatibility+Matrix
+<a name="l-94"></a><span class="tm">18:22:05</span><span class="nk"> &lt;danielbeck&gt;</span> Looks good to me, no recent changes, so I suggest we implement this.
+<a name="l-95"></a><span class="tm">18:22:17</span><span class="nk"> &lt;danielbeck&gt;</span> Discussion was here: https://groups.google.com/forum/#!topic/jenkinsci-dev/XxPqJDCrf6M
+<a name="l-96"></a><span class="tm">18:23:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">tfennelly:</span> so the implication is that we'll require IE9 ?
+<a name="l-97"></a><span class="tm">18:24:00</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">kohsuke:</span> we'll aaccept patches for ie9 and 10 is what we were suggesting
+<a name="l-98"></a><span class="tm">18:24:15</span><span class="nk"> &lt;danielbeck&gt;</span> Safe enough patches for IE8 are also fine.
+<a name="l-99"></a><span class="tm">18:24:20</span><span class="nk"> &lt;fmartins&gt;</span> hello guys, i'm trying to install jenkins on a opensuse server. jenkins is installed but when start i receive this message "/var/log/jenkins # /etc/init.d/jenkins start Starting Jenkins                                                                                        failed"
+<a name="l-100"></a><span class="tm">18:24:30</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">kohsuke:</span> i.e. we don't guarantee it works all the time
+<a name="l-101"></a><span class="tm">18:24:30</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">fmartins:</span> Meeting right now, please wait a few minutes
+<a name="l-102"></a><span class="tm">18:25:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> IE8/9 have very different behaviors in Common and Compat modes. Do we need both of them?
+<a name="l-103"></a><span class="tm">18:25:03</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">kohsuke:</span> whereas IE11 we treat issues there as being critical bugs that we need to fix asap
+<a name="l-104"></a><span class="tm">18:25:06</span><span class="nk"> &lt;kohsuke&gt;</span> I see, so the minimum requirement is actually more like IE11 with this proposal
+<a name="l-105"></a><span class="tm">18:25:16</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">kohsuke:</span> +1
+<a name="l-106"></a><span class="tm">18:25:21</span><span class="nk"> &lt;fmartins&gt;</span> <span class="hi">danielbeck:</span> ok
+<a name="l-107"></a><span class="tm">18:25:35</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">oleg-nenashev:</span> IE8 is out, IE9 is "should mostly work"
+<a name="l-108"></a><span class="tm">18:26:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">koshuke:</span> Off-topic: What about Jenkins Enterprise? The most of "enterprise" companies still sit on IE8..10
+<a name="l-109"></a><span class="tm">18:26:26</span><span class="nk"> &lt;kohsuke&gt;</span> What technologies does this enable us to use?
+<a name="l-110"></a><span class="tm">18:27:06</span><span class="nk"> &lt;integer`&gt;</span> bloody enterprises...
+<a name="l-111"></a><span class="tm">18:27:21</span><span class="nk"> &lt;kohsuke&gt;</span> On one hand if this is what it takes to get tfennelly rolling out more UX changes, I'm all for it
+<a name="l-112"></a><span class="tm">18:27:42</span><span class="nk"> &lt;kohsuke&gt;</span> But OTOH I have this uninformed impression that IE11 requirement is a high bar
+<a name="l-113"></a><span class="tm">18:27:42</span><span class="nk"> &lt;nanonyme&gt;</span> I'd kinda suspect most of the employees in those companies in reality have some other browser installed than IE
+<a name="l-114"></a><span class="tm">18:28:07</span><span class="nk"> &lt;nanonyme&gt;</span> (ie with IE8 or whatnot)
+<a name="l-115"></a><span class="tm">18:28:16</span><span class="nk"> &lt;jglick&gt;</span> In some cases there is an official requirement to run IE, even 8.
+<a name="l-116"></a><span class="tm">18:28:17</span><span class="nk"> &lt;QuinnyPig&gt;</span> <span class="hi">nanonyme:</span> I'd think so. By the time you're allowed to run something like Jenkins, you're usually allowed to install a non-IE browser.
+<a name="l-117"></a><span class="tm">18:28:50</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">kohsuke:</span> at the end of the day... I think we will always be doing some browser specific stuff but in general I think it should mean we can do more CSS3 and HTML5 type stuff
+<a name="l-118"></a><span class="tm">18:28:52</span><span class="nk"> &lt;integer`&gt;</span> QuinnyPig, jenkins is as infra and not related to WS requirements
+<a name="l-119"></a><span class="tm">18:29:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">nanonyme:</span> Company policies are very painful thing. E.g. we have not such freedom at my company
+<a name="l-120"></a><span class="tm">18:29:11</span><span class="nk"> &lt;nanonyme&gt;</span> jglick, AP for JE to query from customers what they actually need support for? :)
+<a name="l-121"></a><span class="tm">18:29:51</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">kohsuke:</span> and for L2/L3 browsers that do not support these things (i.e. IE) ... we "do our best" to provide an alternate
+<a name="l-122"></a><span class="tm">18:29:57</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">nanonyme:</span> well support-core-plugin does capture the browser. We do not aggregate statistics across incoming bundles, though this might be useful.
+<a name="l-123"></a><span class="tm">18:30:13</span><span class="nk"> &lt;danielbeck&gt;</span> So things will still work in IE9+10, just not as shiny
+<a name="l-124"></a><span class="tm">18:30:19</span><span class="nk"> &lt;kohsuke&gt;</span> We can also probably get some approximation by looking at access log in jenkins-ci.org website
+<a name="l-125"></a><span class="tm">18:30:59</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I think people working on this seems to be in unanimous agreement for this, so I guess that means we'll have to bless this
+<a name="l-126"></a><span class="tm">18:31:11</span><span class="nk"> &lt;jglick&gt;</span> I would only be concerned if there were *no way* to perform some operation (configure a job, say) in an old browser.
+<a name="l-127"></a><span class="tm">18:31:49</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">jglick:</span> I think we should alays try and provide a way of doing something
+<a name="l-128"></a><span class="tm">18:32:03</span><span class="nk"> &lt;jglick&gt;</span> Right, even if not pretty, less dynamic, whatever.
+<a name="l-129"></a><span class="tm">18:32:07</span><span class="nk"> &lt;danielbeck&gt;</span> Given how conservative orgs will likely be LTS users, it'll take a while for any changes to reach them.
+<a name="l-130"></a><span class="tm">18:32:19</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">jglick:</span> right
+<a name="l-131"></a><span class="tm">18:32:34</span><span class="nk"> &lt;kohsuke&gt;</span> Would it make sense to add to L2 that "critical functionalities" be available? to capture that?
+<a name="l-132"></a><span class="tm">18:32:45</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">jglick:</span> they don't get the "L1" ux but get something less
+<a name="l-133"></a><span class="tm">18:32:54</span><span class="nk"> &lt;kohsuke&gt;</span> or maybe not much point in doing that without defining what "critical functionalities" are
+<a name="l-134"></a><span class="tm">18:33:04</span><span class="nk"> &lt;jglick&gt;</span> already says “at least one way to do any action”
+<a name="l-135"></a><span class="tm">18:33:14</span><span class="nk"> &lt;kohsuke&gt;</span> ok
+<a name="l-136"></a><span class="tm">18:33:27</span><span class="nk"> &lt;kohsuke&gt;</span> I think we need to write a blog post about this and send announcement to the users list
+<a name="l-137"></a><span class="tm">18:33:45</span><span class="nk"> &lt;tfennelly&gt;</span> I can do that
+<a name="l-138"></a><span class="tm">18:34:04</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">tfennelly:</span> Any concrete plans to drop IE8 in an upcoming change? Or is this more to be safe?
+<a name="l-139"></a><span class="tm">18:34:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It makes sense to decouple "administration", "public-readonly" and "public-configure" interfaces
+<a name="l-140"></a><span class="tm">18:34:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">tfennelly to write a blog post announcing this new compatibility matrix</span>
+<a name="l-141"></a><span class="tm">18:34:33</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">danielbeck:</span> no such plan
+<a name="l-142"></a><span class="tm">18:34:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> IE8 is almost dead due to huge JavaScripts
+<a name="l-143"></a><span class="tm">18:34:49</span><span class="nk"> &lt;kohsuke&gt;</span> Actually, anyone else who wants to -1 this?
+<a name="l-144"></a><span class="tm">18:34:59</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">oleg-nenashev:</span> and now it will be official
+<a name="l-145"></a><span class="tm">18:35:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Browser+Compatibility+Matrix is adopted</span>
+<a name="l-146"></a><span class="tm">18:35:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> Great :) IE8 can be freely discontinued (thanks to MS)
+<a name="l-147"></a><span class="tm">18:35:50</span><span class="nk"> &lt;danielbeck&gt;</span> I'm so resolving a few issues as Won't Fix today
+<a name="l-148"></a><span class="tm">18:35:57</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-149"></a><span class="tm">18:35:58</span><span class="nk"> &lt;ilhami3&gt;</span> When are you guys finished? :D
+<a name="l-150"></a><span class="tm">18:36:01</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">danielbeck:</span> rofl
+<a name="l-151"></a><span class="tm">18:36:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ilhami3:</span> just one more topic
+<a name="l-152"></a><span class="tm">18:36:14</span><span class="nk"> &lt;ilhami3&gt;</span> sure.
+<a name="l-153"></a><span class="tm">18:36:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">2014 JIRA Components Refactoring</span>
+<a name="l-154"></a><span class="tm">18:36:18</span><span class="nk"> &lt;danielbeck&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/2014+JIRA+Components+Refactoring
+<a name="l-155"></a><span class="tm">18:36:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> https://groups.google.com/forum/#!msg/jenkinsci-dev/luOqm4Qj4sc/aGK4JDvJRmQJ
+<a name="l-156"></a><span class="tm">18:36:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We also have several action items from the previous meeting
+<a name="l-157"></a><span class="tm">18:36:52</span><span class="nk"> &lt;danielbeck&gt;</span> I put this on the agenda to get a decision to implement at least the basic component naming changes
+<a name="l-158"></a><span class="tm">18:37:10</span><span class="nk"> &lt;kohsuke&gt;</span> thanks for putting this together
+<a name="l-159"></a><span class="tm">18:37:26</span><span class="nk"> &lt;danielbeck&gt;</span> i.e. add -plugin to every component name if it's a plugin, and the cleanup of some components like maven2/maven-project listed on the wiki page
+<a name="l-160"></a><span class="tm">18:37:39</span><span class="nk"> &lt;jglick&gt;</span> +1 to both
+<a name="l-161"></a><span class="tm">18:37:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We were going to make names equal to GitHub repos
+<a name="l-162"></a><span class="tm">18:38:07</span><span class="nk"> &lt;danielbeck&gt;</span> if there's further agreement, other parts of the proposal could also be decided on. But e.g. wrt to workflow changes, it seems there might still be need to discuss
+<a name="l-163"></a><span class="tm">18:38:11</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, I recall there was a broad consensus to that
+<a name="l-164"></a><span class="tm">18:38:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Are we going to rename them as well? It seems to be quite secure now
+<a name="l-165"></a><span class="tm">18:38:34</span><span class="nk"> &lt;nanonyme&gt;</span> FWIW what's the names vs labels distinction in your Jira usage?
+<a name="l-166"></a><span class="tm">18:38:46</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">nanonyme:</span> Please ask afterwards, thanks
+<a name="l-167"></a><span class="tm">18:39:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span>  I thought nanonyme's question is actually about this topic
+<a name="l-168"></a><span class="tm">18:39:12</span><span class="nk"> &lt;jglick&gt;</span> Yes I think so.
+<a name="l-169"></a><span class="tm">18:39:18</span><span class="nk"> &lt;danielbeck&gt;</span> right, sorry
+<a name="l-170"></a><span class="tm">18:39:25</span><span class="nk"> &lt;nanonyme&gt;</span> Yeap. I just noticed a lot of the names were changed to core
+<a name="l-171"></a><span class="tm">18:39:27</span><span class="nk"> &lt;jglick&gt;</span> I understand labels as being used to help subclassify a bit, but they are more freeform.
+<a name="l-172"></a><span class="tm">18:39:59</span><span class="nk"> &lt;danielbeck&gt;</span> the problem with separating core into a bunch of components means issues may get lost rather easily
+<a name="l-173"></a><span class="tm">18:40:00</span><span class="nk"> &lt;kohsuke&gt;</span> I've personally never paid attention to labels
+<a name="l-174"></a><span class="tm">18:40:08</span><span class="nk"> &lt;danielbeck&gt;</span> plus it's not always clear what component something is
+<a name="l-175"></a><span class="tm">18:40:12</span><span class="nk"> &lt;nanonyme&gt;</span> Okay
+<a name="l-176"></a><span class="tm">18:40:19</span><span class="nk"> &lt;nanonyme&gt;</span> Fair enough then
+<a name="l-177"></a><span class="tm">18:40:34</span><span class="nk"> &lt;jglick&gt;</span> I tried to do a modest label cleanup recently.
+<a name="l-178"></a><span class="tm">18:40:43</span><span class="nk"> &lt;danielbeck&gt;</span> with plugins vs. core there's a good reason to distinguish, entirely different devs etc., but within core, things aren't that clear cut
+<a name="l-179"></a><span class="tm">18:40:50</span><span class="nk"> &lt;jglick&gt;</span> At least killed all the ones ending in a comma b/c someone did not know how to separate labels with spaces.
+<a name="l-180"></a><span class="tm">18:41:26</span><span class="nk"> &lt;jglick&gt;</span> The worst are ‘plugin’ or ‘jenkins’ which are so common as to be meaningless.
+<a name="l-181"></a><span class="tm">18:41:39</span><span class="nk"> &lt;jglick&gt;</span> Sorry, rambling.
+<a name="l-182"></a><span class="tm">18:41:45</span><span class="nk"> &lt;kohsuke&gt;</span> So component renaming is agreed upon, right?
+<a name="l-183"></a><span class="tm">18:41:49</span><span class="nk"> &lt;kohsuke&gt;</span> Who has what AI?
+<a name="l-184"></a><span class="tm">18:42:10</span><span class="nk"> &lt;kohsuke&gt;</span> Do we need to add anyone to the JIRA admins?
+<a name="l-185"></a><span class="tm">18:42:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> We can teach Jenkins Bot
+<a name="l-186"></a><span class="tm">18:42:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> INFRA-100
+<a name="l-187"></a><span class="tm">18:42:32</span><span class="nk"> &lt;kohsuke&gt;</span> In INFRA-100 I think oleg-nenashev is volunteering
+<a name="l-188"></a><span class="tm">18:42:33</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-100:Add "delete component" and "rename component" IRC Bot Commands (In Progress) https://issues.jenkins-ci.org/browse/INFRA-100
+<a name="l-189"></a><span class="tm">18:42:39</span><span class="nk"> &lt;danielbeck&gt;</span> I have a script for -plugin, but it needs the REST API
+<a name="l-190"></a><span class="tm">18:42:41</span><span class="nk"> &lt;kohsuke&gt;</span> Oh you already even have pull requests
+<a name="l-191"></a><span class="tm">18:42:42</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">jglick:</span> lol... your ramblings are very entertaining
+<a name="l-192"></a><span class="tm">18:42:49</span><span class="nk"> &lt;nanonyme&gt;</span> Yeah, I think that naming should make it easier for out-of-project people to file bugs properly
+<a name="l-193"></a><span class="tm">18:42:57</span><span class="nk"> &lt;nanonyme&gt;</span> So sounds sensible
+<a name="l-194"></a><span class="tm">18:43:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> so basically the blocking AI is for me to merge &amp; deploy ircbot changes
+<a name="l-195"></a><span class="tm">18:43:54</span><span class="nk"> &lt;kohsuke&gt;</span> then you guys would keep this channel busy for a while to issue these changes?
+<a name="l-196"></a><span class="tm">18:43:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> I suppose it will be the most convenient way
+<a name="l-197"></a><span class="tm">18:44:06</span><span class="nk"> &lt;kohsuke&gt;</span> OK, got it
+<a name="l-198"></a><span class="tm">18:44:11</span><span class="nk"> &lt;ilhami3&gt;</span> can you highlight me when you are done? :D
+<a name="l-199"></a><span class="tm">18:44:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We may need such functionality in the future
+<a name="l-200"></a><span class="tm">18:44:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to integrate INFRA-100 and ping oleg-nenashev</span>
+<a name="l-201"></a><span class="tm">18:44:29</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-100:Add "delete component" and "rename component" IRC Bot Commands (In Progress) https://issues.jenkins-ci.org/browse/INFRA-100
+<a name="l-202"></a><span class="tm">18:44:34</span><span class="nk"> &lt;kohsuke&gt;</span> I'm bit worried about keeping "delete component" in the bot
+<a name="l-203"></a><span class="tm">18:44:35</span><span class="nk"> &lt;tfennelly&gt;</span> is it possible to config the help text in JIRA i.e. put something on the component selection field to indicate how component name and label are to be used?
+<a name="l-204"></a><span class="tm">18:45:08</span><span class="nk"> &lt;tfennelly&gt;</span> how they are suppose to work with each other
+<a name="l-205"></a><span class="tm">18:45:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">tfennelly:</span> I can't think of any way to do this except monkey patching
+<a name="l-206"></a><span class="tm">18:45:30</span><span class="nk"> &lt;tfennelly&gt;</span> ok
+<a name="l-207"></a><span class="tm">18:45:40</span><span class="nk"> &lt;danielbeck&gt;</span> some actions will require Jira admin I think, like fixing component descriptions
+<a name="l-208"></a><span class="tm">18:45:52</span><span class="nk"> &lt;tfennelly&gt;</span> I think there's always potential for confusion re how to use them
+<a name="l-209"></a><span class="tm">18:45:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> "delete component" requires a destination component, hence issues won't be lost
+<a name="l-210"></a><span class="tm">18:46:06</span><span class="nk"> &lt;nanonyme&gt;</span> How are you going to handle that where multiple components get the same name? Is there some merge functionality?
+<a name="l-211"></a><span class="tm">18:46:10</span><span class="nk"> &lt;nanonyme&gt;</span> Or is that the delete?
+<a name="l-212"></a><span class="tm">18:46:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">nanonyme:</span> sounds like that is deletion
+<a name="l-213"></a><span class="tm">18:46:21</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">nanonyme:</span> Delete specifies the component to move issues
+<a name="l-214"></a><span class="tm">18:46:23</span><span class="nk"> &lt;nanonyme&gt;</span> Okay
+<a name="l-215"></a><span class="tm">18:46:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">tfennelly:</span> actually, maybe we can do that by greasemonkey-like client-side DOM manipulation by injecting JavaScript
+<a name="l-216"></a><span class="tm">18:46:56</span><span class="nk"> &lt;kohsuke&gt;</span> we can indeed inject JavaScript to every page
+<a name="l-217"></a><span class="tm">18:47:25</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">kohsuke:</span> I thought you were joking for a min but I think you are serious now
+<a name="l-218"></a><span class="tm">18:47:31</span><span class="nk"> &lt;tfennelly&gt;</span> :)
+<a name="l-219"></a><span class="tm">18:47:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">tfennelly to file a ticket to INFRA about "is it possible to config the help text in JIRA i.e. put something on the component selection field to indicate how component name and label are to be used?"</span>
+<a name="l-220"></a><span class="tm">18:47:46</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">kohsuke:</span> sounds easy if you can get JS in there
+<a name="l-221"></a><span class="tm">18:48:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">tfennelly to not just file a ticket but write such JavaScript</span>
+<a name="l-222"></a><span class="tm">18:48:19</span><span class="nk"> &lt;danielbeck&gt;</span> BTW I'm currently rewriting the Issue Tracking wiki page to actually be a helpful reference how people should use our JIRA
+<a name="l-223"></a><span class="tm">18:48:32</span><span class="nk"> &lt;tfennelly&gt;</span> £action tfennelly keep your mouth closed lol
+<a name="l-224"></a><span class="tm">18:48:37</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-225"></a><span class="tm">18:48:41</span><span class="nk"> &lt;jglick&gt;</span> Thank you danielbeck, should be very useful.
+<a name="l-226"></a><span class="tm">18:49:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> and if we are going to mess around JIRA UI from JavaScript it can insert a link to that, too
+<a name="l-227"></a><span class="tm">18:49:16</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">kohsuke:</span> Right
+<a name="l-228"></a><span class="tm">18:49:19</span><span class="nk"> &lt;kohsuke&gt;</span> Now, about adding more states to the issue transition workflow...
+<a name="l-229"></a><span class="tm">18:49:41</span><span class="nk"> &lt;danielbeck&gt;</span> So we're doing this once you have the bot ready?
+<a name="l-230"></a><span class="tm">18:49:42</span><span class="nk"> &lt;jglick&gt;</span> # action tfennelly to move to a country where a pound sign is not a pound sign and is actually recognized by meetingbot
+<a name="l-231"></a><span class="tm">18:50:02</span><span class="nk"> &lt;kohsuke&gt;</span> as jglick notes we do use "Untriaged" state in SECURITY and I find it useful
+<a name="l-232"></a><span class="tm">18:50:13</span><span class="nk"> &lt;tfennelly&gt;</span> <span class="hi">jglick:</span> rofl
+<a name="l-233"></a><span class="tm">18:50:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-234"></a><span class="tm">18:50:23</span><span class="nk"> &lt;danielbeck&gt;</span> FWIW I've suggested that as well and find I don't need it
+<a name="l-235"></a><span class="tm">18:50:35</span><span class="nk"> &lt;jglick&gt;</span> “New” is the term used in some trackers.
+<a name="l-236"></a><span class="tm">18:51:21</span><span class="nk"> &lt;kohsuke&gt;</span> "Waiting on requester" state I've never used in the context of JIRA
+<a name="l-237"></a><span class="tm">18:51:25</span><span class="nk"> &lt;nanonyme&gt;</span> I've also seen unscheduled/uninvestigated and various others :)
+<a name="l-238"></a><span class="tm">18:51:43</span><span class="nk"> &lt;jglick&gt;</span> NEEDINFO in some Bugzillas.
+<a name="l-239"></a><span class="tm">18:52:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes. It work well in the case of lazy requesters
+<a name="l-240"></a><span class="tm">18:52:04</span><span class="nk"> &lt;danielbeck&gt;</span> 'waiting' should be Resolved as Incomplete or just a post-it note to check later IMO.
+<a name="l-241"></a><span class="tm">18:52:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> isn't one of the  substates of "Closed" "Need more info"?
+<a name="l-242"></a><span class="tm">18:52:21</span><span class="nk"> &lt;jglick&gt;</span> Sure you can just resolve that way.
+<a name="l-243"></a><span class="tm">18:52:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We can also create a cleanup bot to make danielbeck happy ^_^
+<a name="l-244"></a><span class="tm">18:52:31</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">oleg-nenashev:</span> I AM the cleanup bot.
+<a name="l-245"></a><span class="tm">18:53:05</span><span class="nk"> &lt;kohsuke&gt;</span> TIL that danielbeck is a robot, which I suspected long time any way...
+<a name="l-246"></a><span class="tm">18:53:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> so you said you actually felt we do not need New/Untriaged/Uninvestigated etc
+<a name="l-247"></a><span class="tm">18:53:50</span><span class="nk"> &lt;hare_brain&gt;</span> 7 minutes left…
+<a name="l-248"></a><span class="tm">18:54:22</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">kohsuke:</span> Tentatively, yes. Asking on dev ML would be useful though, as different from component rename that's actually a workflow change for everyone
+<a name="l-249"></a><span class="tm">18:54:55</span><span class="nk"> &lt;danielbeck&gt;</span> I wouldn't need these new statuses, but everyone's workflow is different
+<a name="l-250"></a><span class="tm">18:55:04</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think it affects people who are filing tickets, though. This mostly affects people who work on issues, and this channel has most of them I think
+<a name="l-251"></a><span class="tm">18:55:19</span><span class="nk"> &lt;danielbeck&gt;</span> all plugin devs?
+<a name="l-252"></a><span class="tm">18:55:36</span><span class="nk"> &lt;Gnosis&gt;</span> <span class="hi">danielbeck:</span> I saw it continue after a failed command, so presumably something was changed in my Jenkins install. But thank you, I'll figure it out :)
+<a name="l-253"></a><span class="tm">18:55:37</span><span class="nk"> &lt;kohsuke&gt;</span> All right, "most" was an overstatement
+<a name="l-254"></a><span class="tm">18:55:59</span><span class="nk"> &lt;nanonyme&gt;</span> kohsuke, well, it affects people who monitor the bugs they filed. Status should be informative on whether a bug is being worked on
+<a name="l-255"></a><span class="tm">18:56:21</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">nanonyme:</span> Accepting it as valid and working on it are very different
+<a name="l-256"></a><span class="tm">18:56:25</span><span class="nk"> &lt;nanonyme&gt;</span> (well, status+assignedness)
+<a name="l-257"></a><span class="tm">18:56:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> also, I don't know if you've tried, but in the SECURITY project, an untriaged issue can be resolved directly without going through "Open"
+<a name="l-258"></a><span class="tm">18:56:49</span><span class="nk"> &lt;danielbeck&gt;</span> I have no permissions in SECURITY
+<a name="l-259"></a><span class="tm">18:57:03</span><span class="nk"> &lt;danielbeck&gt;</span> but that would be essential to adopt
+<a name="l-260"></a><span class="tm">18:57:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> "Confirmed" and "Unconfirmed" statuses/fields would be useful for the initial analysis.
+<a name="l-261"></a><span class="tm">18:57:10</span><span class="nk"> &lt;nanonyme&gt;</span> danielbeck, yeah, I'm not suggesting every possible situation should have its own status. If anything, that would make monitoring status harder :)
+<a name="l-262"></a><span class="tm">18:57:26</span><span class="nk"> &lt;danielbeck&gt;</span> what's weird is that Untriaged specifically mentions security issues, so a new status with different description would be best
+<a name="l-263"></a><span class="tm">18:58:13</span><span class="nk"> &lt;danielbeck&gt;</span> https://issues.jenkins-ci.org/secure/ShowConstantsHelp.jspa?decorator=popup#StatusTypes
+<a name="l-264"></a><span class="tm">18:58:19</span><span class="nk"> &lt;danielbeck&gt;</span> New issue sits in this state until a developer agrees that this is a security issue
+<a name="l-265"></a><span class="tm">18:58:55</span><span class="nk"> &lt;kohsuke&gt;</span> I can update that description and/or display name if we decide to use it
+<a name="l-266"></a><span class="tm">18:59:05</span><span class="nk"> &lt;danielbeck&gt;</span> Great
+<a name="l-267"></a><span class="tm">18:59:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I also vote for a new status. BTW, an sign-off in the mailing list seems to be a valid proposal in any case
+<a name="l-268"></a><span class="tm">19:00:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> if you are OK with this, I'd like to propose that we try out this change and bless it here today
+<a name="l-269"></a><span class="tm">19:00:22</span><span class="nk"> &lt;kohsuke&gt;</span> I can rename it to "New", update description accordingly
+<a name="l-270"></a><span class="tm">19:00:35</span><span class="nk"> &lt;kohsuke&gt;</span> And if we discover we don't like that in few weeks, we can revert the workflow scheme
+<a name="l-271"></a><span class="tm">19:00:37</span><span class="nk"> &lt;danielbeck&gt;</span> Alright, we can always revert if it doesn't work.
+<a name="l-272"></a><span class="tm">19:00:51</span><span class="nk"> &lt;kohsuke&gt;</span> we lost jglick but he's a proponent of this, too
+<a name="l-273"></a><span class="tm">19:00:53</span><span class="nk"> &lt;danielbeck&gt;</span> This is about Untriaged/New only for now?
+<a name="l-274"></a><span class="tm">19:01:03</span><span class="nk"> &lt;danielbeck&gt;</span> Or both?
+<a name="l-275"></a><span class="tm">19:01:14</span><span class="nk"> &lt;kohsuke&gt;</span> Just for untriaged/new for now
+<a name="l-276"></a><span class="tm">19:01:30</span><span class="nk"> &lt;kohsuke&gt;</span> to add the other state I need to create another workflow and do more work
+<a name="l-277"></a><span class="tm">19:01:58</span><span class="nk"> &lt;danielbeck&gt;</span> let's do this then.
+<a name="l-278"></a><span class="tm">19:01:59</span><span class="nk"> &lt;kohsuke&gt;</span> When we announce this state change I'll ask people's thoughts on adding this new state there too
+<a name="l-279"></a><span class="tm">19:02:24</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I think that wraps this topic for today
+<a name="l-280"></a><span class="tm">19:02:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-281"></a><span class="tm">19:02:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next meeting will be Sep 17th same time</span>
+<a name="l-282"></a><span class="tm">19:03:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:33:02 May 05, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 16:00:41 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 2269.337
+  exclusion.robots: 0.117
+  exclusion.robots.policy: 0.109
+  cdx.remote: 0.076
+  esindex: 0.011
+  LoadShardBlock: 568.315 (3)
+  PetaboxLoader3.resolve: 360.139 (4)
+  PetaboxLoader3.datanode: 263.832 (4)
+  CDXLines.iter: 25.768 (3)
+  load_resource: 69.163
+-->

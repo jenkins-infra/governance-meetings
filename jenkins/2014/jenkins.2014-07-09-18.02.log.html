@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app220.us.archive.org';v.server_ms=623;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-07-09-18.02.log.html","20200506134110","https://web.archive.org/","web","/_static/",
+	      "1588772470");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:02:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:02:06</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-4"></a><span class="tm">18:02:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Brainstorming on improving the sponsor contact opt-in ratio</span>
+<a name="l-5"></a><span class="tm">18:02:42</span><span class="nk"> &lt;kohsuke&gt;</span> I assume this is yours, lisa_?
+<a name="l-6"></a><span class="tm">18:02:50</span><span class="nk"> &lt;lisa_&gt;</span> yes, didn't know if you wanted to introduce it
+<a name="l-7"></a><span class="tm">18:03:00</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I can do that
+<a name="l-8"></a><span class="tm">18:03:11</span><span class="nk"> &lt;kohsuke&gt;</span> So this is about JUC
+<a name="l-9"></a><span class="tm">18:03:39</span><span class="nk"> &lt;kohsuke&gt;</span> A big part of why sponsors pay us several $1000s to sponsor JUC is to get contact information of the attendees
+<a name="l-10"></a><span class="tm">18:03:52</span><span class="nk"> &lt;lisa_&gt;</span> $5000
+<a name="l-11"></a><span class="tm">18:04:20</span><span class="nk"> &lt;lisa_&gt;</span> So for our Boston &amp; Berlin JUC's, the registration form had an Opt Out, as we agreed last year
+<a name="l-12"></a><span class="tm">18:04:41</span><span class="nk"> &lt;lisa_&gt;</span> unfortunately 80% of people opted out of sharing their information - for both events. this breaks the business model
+<a name="l-13"></a><span class="tm">18:04:41</span><span class="nk"> &lt;kohsuke&gt;</span> In the first JUC (?) we passed all the attendee info to sponsors, and we had a backlash when some started getting phone calls from sponsors
+<a name="l-14"></a><span class="tm">18:05:21</span><span class="nk"> &lt;kohsuke&gt;</span> One of the proposed solutions back then was to enable badge scanning via QR code
+<a name="l-15"></a><span class="tm">18:06:00</span><span class="nk"> &lt;Alyssa&gt;</span> we tried that this time but QR code ended not working for us on the day of event
+<a name="l-16"></a><span class="tm">18:06:06</span><span class="nk"> &lt;hare_brain&gt;</span> More fine grained opt-out options? OK to contact by email, OK to contact by phone, etc?
+<a name="l-17"></a><span class="tm">18:06:08</span><span class="nk"> &lt;kohsuke&gt;</span> But for JUC Berlin &amp; Boston we didn't spend enough time to test it upfront, and so we had some technical problems
+<a name="l-18"></a><span class="tm">18:06:49</span><span class="nk"> &lt;kohsuke&gt;</span> Personally my understanding is that QR code is sound --- we just have to print them out big enough
+<a name="l-19"></a><span class="tm">18:07:01</span><span class="nk"> &lt;lisa_&gt;</span> we could take the names out of the sponsor package, but we'd raise less money and have to raise the admissions price
+<a name="l-20"></a><span class="tm">18:07:16</span><span class="nk"> &lt;lisa_&gt;</span> the QR code option helps but doesn't make sponsors want to pay $5000
+<a name="l-21"></a><span class="tm">18:07:20</span><span class="nk"> &lt;Alyssa&gt;</span> actually i tested it out prior to the events and also the day before and it worked fine but on the day of event it didn't work…just my luck
+<a name="l-22"></a><span class="tm">18:08:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Alyssa:</span> I thought the issue was that the code was too small to scan? If so, how can it work prior to the event?
+<a name="l-23"></a><span class="tm">18:08:17</span><span class="nk"> &lt;lisa_&gt;</span> on pain of death, i'll ask the question... how would people feel if we took away the Opt Out option but also did not collect phone number, just company name &amp; email?
+<a name="l-24"></a><span class="tm">18:08:24</span><span class="nk"> &lt;Alyssa&gt;</span> just fyi - i am looking into a more reliable scanning method for future JUC
+<a name="l-25"></a><span class="tm">18:08:36</span><span class="nk"> &lt;lisa_&gt;</span> no worries if that's a bad idea, just wanted to ask
+<a name="l-26"></a><span class="tm">18:09:08</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">Kohsuke:</span> I dunno - but i tested the it the nite before the event in the MA office @ 11:30pm and it worked at that time..
+<a name="l-27"></a><span class="tm">18:09:14</span><span class="nk"> &lt;lisa_&gt;</span> or we could include a note on the registration page that your data will be shared with sponsors to help fund the event unless you email us (e.g. you have to take an extra step)
+<a name="l-28"></a><span class="tm">18:10:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Alyssa:</span>  I also noticed that the code was probably http://en.wikipedia.org/wiki/Data_Matrix, not http://en.wikipedia.org/wiki/QR_code
+<a name="l-29"></a><span class="tm">18:11:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">lisa_:</span> the other brainstorming idea you had was to offer two price points to make the cost of personal information explicit
+<a name="l-30"></a><span class="tm">18:11:18</span><span class="nk"> &lt;lisa_&gt;</span> I think we do need to solve the QR code issue, but I don't think that solves the Opt Out problem. Sponsors can only scan a limited number of names; they pay $$ to get a larger part of the list. should we remove the option for the names next year?
+<a name="l-31"></a><span class="tm">18:11:32</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">Kohsuke:</span> we used eventbrite's QR code partner
+<a name="l-32"></a><span class="tm">18:12:51</span><span class="nk"> &lt;hare_brain&gt;</span> I think it’s about expectations. I think it’s reasonable that sponsors should be able to get the contact information in exchange for their sponsorship.
+<a name="l-33"></a><span class="tm">18:13:03</span><span class="nk"> &lt;kohsuke&gt;</span> Personally, I'm more OK about my email addresses used for marketing emails than my phone numbers
+<a name="l-34"></a><span class="tm">18:13:12</span><span class="nk"> &lt;hare_brain&gt;</span> However, as an attendee, I wasn’t *expecting* to be contacted — aggressively — by vendors after the event.
+<a name="l-35"></a><span class="tm">18:13:31</span><span class="nk"> &lt;kohsuke&gt;</span> I think a part of the backlash was the medium of contact
+<a name="l-36"></a><span class="tm">18:13:40</span><span class="nk"> &lt;hare_brain&gt;</span> Kohsuke, exactly.
+<a name="l-37"></a><span class="tm">18:13:42</span><span class="nk"> &lt;lisa_&gt;</span> I like the expectation angle. what's a community-acceptable way to set expectations? and then share emails but not phone
+<a name="l-38"></a><span class="tm">18:15:32</span><span class="nk"> &lt;hare_brain&gt;</span> Perhaps it needs to be more prominent on the registration that your contact information will be shared with sponshors. Obviously, worded in a way that will make people feel OK with it.
+<a name="l-39"></a><span class="tm">18:16:19</span><span class="nk"> &lt;Alyssa&gt;</span> i've seen conferences only share first, last name and company name
+<a name="l-40"></a><span class="tm">18:16:26</span><span class="nk"> &lt;kohsuke&gt;</span> If I may play rtyler, when I think of OSS community events, I generally do not think of vendor contacts
+<a name="l-41"></a><span class="tm">18:16:41</span><span class="nk"> &lt;hare_brain&gt;</span> But JUC is technically not an OSS community event.
+<a name="l-42"></a><span class="tm">18:17:14</span><span class="nk"> &lt;hare_brain&gt;</span> It’s a commercial conference.
+<a name="l-43"></a><span class="tm">18:17:15</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm I think we want it to be one
+<a name="l-44"></a><span class="tm">18:17:18</span><span class="nk"> &lt;danielbeck&gt;</span> what did the signup page look like? How did it ask for contact information?
+<a name="l-45"></a><span class="tm">18:17:27</span><span class="nk"> &lt;lisa_&gt;</span> we try to run it as an OSS conference
+<a name="l-46"></a><span class="tm">18:18:00</span><span class="nk"> &lt;lisa_&gt;</span> Yes or No checkboxes - ok to share info with sponsors. definitely we'd slant it to encourage Opt In in future
+<a name="l-47"></a><span class="tm">18:18:41 </span><span class="nka">* kohsuke</span> <span class="ac">was about to show JUC Israel registration page but looks like it's sold out</span>
+<a name="l-48"></a><span class="tm">18:19:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> what is your feeling about sponsors using emails to contact you after events?
+<a name="l-49"></a><span class="tm">18:20:03</span><span class="nk"> &lt;kohsuke&gt;</span> is that a big deal for you?
+<a name="l-50"></a><span class="tm">18:21:08</span><span class="nk"> &lt;hare_brain&gt;</span> So it sounds like there should be a minimum amount of contact information that needs to be shared; people can’t opt out of this. But then people can also opt-in to allow additional contact information to be released. (Whether it’s opt-out defaulted to off, or opt-in defaulted to on, I’ll leave to others to decide)
+<a name="l-51"></a><span class="tm">18:21:36</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I was trying to see if people are willing to automatically give up name, company, &amp; email address
+<a name="l-52"></a><span class="tm">18:21:40</span><span class="nk"> &lt;lisa_&gt;</span> so would it be ok to share name, company, email to everyone?
+<a name="l-53"></a><span class="tm">18:21:50</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">kohsuke:</span> The emails I got were fine, all allow opt out.
+<a name="l-54"></a><span class="tm">18:22:10</span><span class="nk"> &lt;hare_brain&gt;</span> I think that is a reasonable minimum.
+<a name="l-55"></a><span class="tm">18:22:30</span><span class="nk"> &lt;danielbeck&gt;</span> I think one problem is that some might provide private email + phone numbers because it's easier to get reached, giving those to sponsors wouldn't be OK
+<a name="l-56"></a><span class="tm">18:22:46</span><span class="nk"> &lt;danielbeck&gt;</span> hence the question how the signup page looks like.
+<a name="l-57"></a><span class="tm">18:23:00</span><span class="nk"> &lt;lisa_&gt;</span> if we tell them that sponsors will get the email addresses, then they can choose which email to share...
+<a name="l-58"></a><span class="tm">18:23:12</span><span class="nk"> &lt;lisa_&gt;</span> would that be ok?
+<a name="l-59"></a><span class="tm">18:23:19</span><span class="nk"> &lt;kohsuke&gt;</span> All right, maybe we'll write a post along this line and wait for some reaction
+<a name="l-60"></a><span class="tm">18:23:34</span><span class="nk"> &lt;lisa_&gt;</span> we need to write the page for the Bay Area JUC asap though...
+<a name="l-61"></a><span class="tm">18:24:30</span><span class="nk"> &lt;kohsuke&gt;</span> registration page for Bay Area JUC?
+<a name="l-62"></a><span class="tm">18:24:35</span><span class="nk"> &lt;lisa_&gt;</span> yes
+<a name="l-63"></a><span class="tm">18:24:38</span><span class="nk"> &lt;kohsuke&gt;</span> I thought the date hasn't even been decided yet
+<a name="l-64"></a><span class="tm">18:24:38</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">+danielbeck:</span> here's what the reg page looks like http://www.eventbrite.com/e/jenkins-user-conference-israel-herzliya-july-16-2014-tickets-10558710387
+<a name="l-65"></a><span class="tm">18:24:56</span><span class="nk"> &lt;lisa_&gt;</span> Alyssa is asking me for the page text
+<a name="l-66"></a><span class="tm">18:25:08</span><span class="nk"> &lt;lisa_&gt;</span> i think she's getting close to a date
+<a name="l-67"></a><span class="tm">18:25:23</span><span class="nk"> &lt;Alyssa&gt;</span> I am working on the date. hope to have it nailed down by this wk
+<a name="l-68"></a><span class="tm">18:25:40</span><span class="nk"> &lt;Alyssa&gt;</span> shooting for 10/23 but it's to be confirmed
+<a name="l-69"></a><span class="tm">18:25:45</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">Alyssa:</span> No form available there, it's sold out again just when I tried
+<a name="l-70"></a><span class="tm">18:26:21</span><span class="nk"> &lt;kohsuke&gt;</span> The form looks something like this: http://imgur.com/LDCnT0V
+<a name="l-71"></a><span class="tm">18:26:37</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">lisa_:</span> Some companies don't allow business email on employees' smartphones, so you can choose between getting updates and sponsor emails going to the business email account. Not sure how relevant this is though.
+<a name="l-72"></a><span class="tm">18:26:51</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">danielbeck:</span> i just added a ticket so you can see what the page looks like. lemme try again
+<a name="l-73"></a><span class="tm">18:26:58</span><span class="nk"> &lt;hockey567&gt;</span> Will there be a livestream of the conference on July 16th?
+<a name="l-74"></a><span class="tm">18:27:02</span><span class="nk"> &lt;danielbeck&gt;</span> Alyssa kohsuke provided a screenshot
+<a name="l-75"></a><span class="tm">18:27:26</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">hockey567:</span> i think so
+<a name="l-76"></a><span class="tm">18:27:30</span><span class="nk"> &lt;kohsuke&gt;</span> Remains to be seen if the "expectation setting" text can be added. It might only lets you add controls
+<a name="l-77"></a><span class="tm">18:27:32</span><span class="nk"> &lt;hockey567&gt;</span> Awesome
+<a name="l-78"></a><span class="tm">18:27:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Alyssa:</span> live steram? as opposed to just recordings?
+<a name="l-79"></a><span class="tm">18:27:55</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">kohsuke:</span> we'll do both
+<a name="l-80"></a><span class="tm">18:27:59</span><span class="nk"> &lt;kohsuke&gt;</span> oh wow
+<a name="l-81"></a><span class="tm">18:28:04</span><span class="nk"> &lt;kohsuke&gt;</span> good to know
+<a name="l-82"></a><span class="tm">18:28:29</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">kohsuke:</span> we did this for JUC Palo Alto last yr
+<a name="l-83"></a><span class="tm">18:29:17</span><span class="nk"> &lt;kohsuke&gt;</span> All right, my suggestion still is to aim for automatic name, company, &amp; email collection, and to make sure people are OK with this, post it as a blog on jenkins-ci.org and provide opportunities to reconsider
+<a name="l-84"></a><span class="tm">18:29:30</span><span class="nk"> &lt;danielbeck&gt;</span> IMO if you were to only share ticket holder name + the (unfortunately hidden in screenshot) Work Information section that should work. Maybe ask for contact email + business email separately as well, if the latter's missing share the former.
+<a name="l-85"></a><span class="tm">18:29:55</span><span class="nk"> &lt;kohsuke&gt;</span> If there are reactions I don't think it'll take long for them to appear
+<a name="l-86"></a><span class="tm">18:30:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> the rest of it is http://imgur.com/yoTEDG7
+<a name="l-87"></a><span class="tm">18:31:12</span><span class="nk"> &lt;kohsuke&gt;</span> Any more thoughts on this topic?
+<a name="l-88"></a><span class="tm">18:31:22</span><span class="nk"> &lt;kohsuke&gt;</span> should we move on?
+<a name="l-89"></a><span class="tm">18:31:28</span><span class="nk"> &lt;lisa_&gt;</span> this form doesn't have the Opt Out that the other JUC forms had
+<a name="l-90"></a><span class="tm">18:31:57</span><span class="nk"> &lt;kohsuke&gt;</span> correct, no mention of anything
+<a name="l-91"></a><span class="tm">18:32:11</span><span class="nk"> &lt;danielbeck&gt;</span> work phone/cell phone distinction is nice, something like that for email as well and it should be fine
+<a name="l-92"></a><span class="tm">18:32:13</span><span class="nk"> &lt;kohsuke&gt;</span> that's ... err, problem
+<a name="l-93"></a><span class="tm">18:32:52</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway, let's move on to the other ones
+<a name="l-94"></a><span class="tm">18:33:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Next Jenkins newsletter - Call for Content</span>
+<a name="l-95"></a><span class="tm">18:33:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">lisa_:</span>  That looks like yours, too
+<a name="l-96"></a><span class="tm">18:33:39</span><span class="nk"> &lt;lisa_&gt;</span> We started this topic in late April but got distracted by JUC
+<a name="l-97"></a><span class="tm">18:34:01</span><span class="nk"> &lt;lisa_&gt;</span> Starting again now - if anyone has content for the next newsletter, please reach out to me! lisa@cloudbees.com
+<a name="l-98"></a><span class="tm">18:34:59</span><span class="nk"> &lt;kohsuke&gt;</span> 2014 Q1 &amp; Q2 saw a lot of blog posts on http://jenkins-ci.org/node so perhaps that'd provide some contents
+<a name="l-99"></a><span class="tm">18:35:14</span><span class="nk"> &lt;lisa_&gt;</span> definitely
+<a name="l-100"></a><span class="tm">18:35:47</span><span class="nk"> &lt;kohsuke&gt;</span> I find it more manageable to post things as they come along, as opposed to trying to remember that for a few months to the next newsletter / JUC
+<a name="l-101"></a><span class="tm">18:36:25</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else on this topic?
+<a name="l-102"></a><span class="tm">18:36:29</span><span class="nk"> &lt;lisa_&gt;</span> I just log the big ones for future
+<a name="l-103"></a><span class="tm">18:36:31</span><span class="nk"> &lt;danielbeck&gt;</span> somewhat related, could we get an excerpt of the blog on the Jenkins home page? I was really surprised when I saw a bunch of new posts recently because I never click on the link to the blog…
+<a name="l-104"></a><span class="tm">18:36:37</span><span class="nk"> &lt;lisa_&gt;</span> i don't have anything else
+<a name="l-105"></a><span class="tm">18:36:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> yeah
+<a name="l-106"></a><span class="tm">18:36:58</span><span class="nk"> &lt;kohsuke&gt;</span> The only "problem" is that one needs to struggle with Drupal
+<a name="l-107"></a><span class="tm">18:37:09</span><span class="nk"> &lt;kohsuke&gt;</span> And I never really figured out the magic of creating a view
+<a name="l-108"></a><span class="tm">18:37:18</span><span class="nk"> &lt;kohsuke&gt;</span> (... which is what it is called internall)
+<a name="l-109"></a><span class="tm">18:37:26</span><span class="nk"> &lt;kohsuke&gt;</span> but let me at least file that in INFRA
+<a name="l-110"></a><span class="tm">18:37:51</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke great
+<a name="l-111"></a><span class="tm">18:38:32</span><span class="nk"> &lt;kohsuke&gt;</span> INFRA-103
+<a name="l-112"></a><span class="tm">18:38:34</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-103:jenkins-ci.org top page should show the summary of recent blog posts (Open) https://issues.jenkins-ci.org/browse/INFRA-103
+<a name="l-113"></a><span class="tm">18:38:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-114"></a><span class="tm">18:39:00</span><span class="nk"> &lt;kohsuke&gt;</span> The topic says 1.554.3 but that's released long ago
+<a name="l-115"></a><span class="tm">18:39:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> actually I failed to create a new stable branch in timely manner
+<a name="l-116"></a><span class="tm">18:39:35</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> we are ready for RC
+<a name="l-117"></a><span class="tm">18:39:45</span><span class="nk"> &lt;kohsuke&gt;</span> ... but sounds like you did that for us, so thank you
+<a name="l-118"></a><span class="tm">18:39:57</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> I hope it was done the usual way
+<a name="l-119"></a><span class="tm">18:40:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to produce 1.565.1 RC</span>
+<a name="l-120"></a><span class="tm">18:41:00</span><span class="nk"> &lt;kohsuke&gt;</span> FWIW, it looks good to me
+<a name="l-121"></a><span class="tm">18:41:06</span><span class="nk"> &lt;ogondza&gt;</span> I have no problem doing that regularly FTR
+<a name="l-122"></a><span class="tm">18:41:40</span><span class="nk"> &lt;kohsuke&gt;</span> I think that makes more sense, please do
+<a name="l-123"></a><span class="tm">18:42:06</span><span class="nk"> &lt;ogondza&gt;</span> sure
+<a name="l-124"></a><span class="tm">18:42:27</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I think that's it for today
+<a name="l-125"></a><span class="tm">18:42:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-126"></a><span class="tm">18:42:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the next meeting will be Jul 23rd</span>
+<a name="l-127"></a><span class="tm">18:43:07</span><span class="nk"> &lt;kohsuke&gt;</span> Thank you everyone!
+<a name="l-128"></a><span class="tm">18:43:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 13:41:10 May 06, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 16:00:17 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 560.498
+  exclusion.robots: 0.092
+  exclusion.robots.policy: 0.084
+  RedisCDXSource: 0.542
+  esindex: 0.008
+  LoadShardBlock: 540.194 (3)
+  PetaboxLoader3.datanode: 557.885 (4)
+  CDXLines.iter: 16.801 (3)
+  load_resource: 53.43
+  PetaboxLoader3.resolve: 28.784
+-->

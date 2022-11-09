@@ -1,0 +1,437 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app214.us.archive.org';v.server_ms=509;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2015/jenkins-meeting.2015-10-14-18.00.log.html","20200504001127","https://web.archive.org/","web","/_static/",
+	      "1588551087");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:29</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler  hare_brain danielbeck</span>
+<a name="l-4"></a><span class="tm">18:00:36</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">18:00:51</span><span class="nk"> &lt;rtyler&gt;</span> yay
+<a name="l-7"></a><span class="tm">18:01:05</span><span class="nk"> &lt;batmat&gt;</span> I would argue it's more 8pm actually :)
+<a name="l-8"></a><span class="tm">18:01:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">re-cap of actions</span>
+<a name="l-9"></a><span class="tm">18:01:16</span><span class="nk"> &lt;kohsuke&gt;</span> oops, my bad batmat
+<a name="l-10"></a><span class="tm">18:01:36</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> np, just joking
+<a name="l-11"></a><span class="tm">18:01:47</span><span class="nk"> &lt;danielbeck&gt;</span> No progress regarding trademark usage by the jenkins hosting guys
+<a name="l-12"></a><span class="tm">18:02:00</span><span class="nk"> &lt;kohsuke&gt;</span> There's actually a long list of actions here: http://meetings.jenkins-ci.org/jenkins-meeting/2015/jenkins-meeting.2015-09-30-18.00.html
+<a name="l-13"></a><span class="tm">18:02:12</span><span class="nk"> &lt;danielbeck&gt;</span> But I did update the wiki page to list all trademark approvals so far (that I know of)
+<a name="l-14"></a><span class="tm">18:02:39</span><span class="nk"> &lt;danielbeck&gt;</span> I just provided status of 1.-3.
+<a name="l-15"></a><span class="tm">18:02:43</span><span class="nk"> &lt;kohsuke&gt;</span> LTS and board role we have upcoming topics for that
+<a name="l-16"></a><span class="tm">18:02:57</span><span class="nk"> &lt;kohsuke&gt;</span> OK, let's move on?
+<a name="l-17"></a><span class="tm">18:03:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-18"></a><span class="tm">18:03:15</span><span class="nk"> &lt;ogondza&gt;</span> we are good to go
+<a name="l-19"></a><span class="tm">18:03:22</span><span class="nk"> &lt;kohsuke&gt;</span> Aye aye sir
+<a name="l-20"></a><span class="tm">18:03:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">1.625.1 is good to go</span>
+<a name="l-21"></a><span class="tm">18:03:46</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to set up 1.625 update site once the build is up</span>
+<a name="l-22"></a><span class="tm">18:03:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">New Website JIRA project to organize website efforts under</span>
+<a name="l-23"></a><span class="tm">18:03:59</span><span class="nk"> &lt;rtyler&gt;</span> zomg kohsuke you're killing me
+<a name="l-24"></a><span class="tm">18:04:03</span><span class="nk"> &lt;rtyler&gt;</span> refresh your agenda page :P
+<a name="l-25"></a><span class="tm">18:04:07</span><span class="nk"> &lt;kohsuke&gt;</span> oh
+<a name="l-26"></a><span class="tm">18:04:11</span><span class="nk"> &lt;rtyler&gt;</span> we can do this topic first though
+<a name="l-27"></a><span class="tm">18:04:23</span><span class="nk"> &lt;kohsuke&gt;</span> No, I'll go in the order
+<a name="l-28"></a><span class="tm">18:04:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Quick announcement of #jenkins-community</span>
+<a name="l-29"></a><span class="tm">18:04:29</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler the idea is to add stuff to the end of the list
+<a name="l-30"></a><span class="tm">18:04:29</span><span class="nk"> &lt;rtyler&gt;</span> hah, okay
+<a name="l-31"></a><span class="tm">18:04:30</span><span class="nk"> &lt;danielbeck&gt;</span> ;-)
+<a name="l-32"></a><span class="tm">18:04:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">#jenkins-community has been created on Freenode to help organize events, documentation and more "meta-conversations" around trhe jenkins project itself</span>
+<a name="l-33"></a><span class="tm">18:05:14</span><span class="nk"> &lt;rtyler&gt;</span> I would like to invite folks interested in building up and expanding the community to join the discussion there
+<a name="l-34"></a><span class="tm">18:05:23</span><span class="nk"> &lt;rtyler&gt;</span> JAMs, blogging, etc
+<a name="l-35"></a><span class="tm">18:05:28</span><span class="nk"> &lt;rtyler&gt;</span> that's all, we can move on now :)
+<a name="l-36"></a><span class="tm">18:05:32</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to update IRC Channel wiki page</span>
+<a name="l-37"></a><span class="tm">18:06:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> next?
+<a name="l-38"></a><span class="tm">18:06:21</span><span class="nk"> &lt;kohsuke&gt;</span> Right, this will prevent those communtiy building conversations from getting drawned in the user/support/dev conversations
+<a name="l-39"></a><span class="tm">18:06:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">New Website JIRA project to organize website efforts under</span>
+<a name="l-40"></a><span class="tm">18:06:46</span><span class="nk"> &lt;rtyler&gt;</span> okay so this is also a topic of mine
+<a name="l-41"></a><span class="tm">18:07:02</span><span class="nk"> &lt;rtyler&gt;</span> there's a lot of interest in restructuring and improving the jenkins website
+<a name="l-42"></a><span class="tm">18:07:13</span><span class="nk"> &lt;rtyler&gt;</span> and I'd like to create a WEBSITE project in JIRA to keep all that work organized
+<a name="l-43"></a><span class="tm">18:07:21</span><span class="nk"> &lt;rtyler&gt;</span> comments/questions/objections?
+<a name="l-44"></a><span class="tm">18:07:36</span><span class="nk"> &lt;batmat&gt;</span> +1
+<a name="l-45"></a><span class="tm">18:07:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> probably it's just a part of INFRA
+<a name="l-46"></a><span class="tm">18:07:42</span><span class="nk"> &lt;kohsuke&gt;</span> I supppose the idea is that the set of people working on the new website is different from the current infra stuff
+<a name="l-47"></a><span class="tm">18:07:45</span><span class="nk"> &lt;danielbeck&gt;</span> looks reasonable, especially if the future site becomes bigger than it's now
+<a name="l-48"></a><span class="tm">18:07:55</span><span class="nk"> &lt;danielbeck&gt;</span> right now it's the blog and five links to the downloads
+<a name="l-49"></a><span class="tm">18:07:56</span><span class="nk"> &lt;kohsuke&gt;</span> stuff -&gt; staff
+<a name="l-50"></a><span class="tm">18:08:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> I'm ok with a new project as well
+<a name="l-51"></a><span class="tm">18:08:11</span><span class="nk"> &lt;ogondza&gt;</span> +1
+<a name="l-52"></a><span class="tm">18:08:12</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-53"></a><span class="tm">18:08:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> the folks I expect to be interested in web changes are different from us bearded infra types :P
+<a name="l-54"></a><span class="tm">18:08:32</span><span class="nk"> &lt;rtyler&gt;</span> like, somebody who knows anything about graphic design
+<a name="l-55"></a><span class="tm">18:08:37</span><span class="nk"> &lt;rtyler&gt;</span> probably doesn't care about puppet :P
+<a name="l-56"></a><span class="tm">18:08:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +0.5
+<a name="l-57"></a><span class="tm">18:08:43</span><span class="nk"> &lt;rtyler&gt;</span> hah
+<a name="l-58"></a><span class="tm">18:08:44</span><span class="nk"> &lt;kohsuke&gt;</span> I need to grow some beard to blend in
+<a name="l-59"></a><span class="tm">18:08:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> add it to JIRA
+<a name="l-60"></a><span class="tm">18:08:57</span><span class="nk"> &lt;rtyler&gt;</span> xD
+<a name="l-61"></a><span class="tm">18:09:08</span><span class="nk"> &lt;rtyler&gt;</span> xD# rather
+<a name="l-62"></a><span class="tm">18:09:24</span><span class="nk"> &lt;batmat&gt;</span> :)
+<a name="l-63"></a><span class="tm">18:09:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">JIRA will get new WEBSITE project to keep track of the new website project</span>
+<a name="l-64"></a><span class="tm">18:09:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to create WEBSITE project in JIRA</span>
+<a name="l-65"></a><span class="tm">18:09:39</span><span class="nk"> &lt;rtyler&gt;</span> MOVING ON
+<a name="l-66"></a><span class="tm">18:09:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Approval of new Q4 patron messages by CloudBees</span>
+<a name="l-67"></a><span class="tm">18:10:04</span><span class="nk"> &lt;rtyler&gt;</span> where's that PR again?
+<a name="l-68"></a><span class="tm">18:10:07</span><span class="nk"> &lt;danielbeck&gt;</span> So last time I still thought we could run the same messages in Q4 as in Q3... turns out, not.
+<a name="l-69"></a><span class="tm">18:10:08</span><span class="nk"> &lt;danielbeck&gt;</span> https://github.com/jenkinsci/patron/pull/5
+<a name="l-70"></a><span class="tm">18:10:08 </span><span class="nka">* rtyler</span> <span class="ac">digs thorugh open tabs</span>
+<a name="l-71"></a><span class="tm">18:10:23</span><span class="nk"> &lt;danielbeck&gt;</span> Check out the linked PR, it links to the tester app where you can see the messages
+<a name="l-72"></a><span class="tm">18:10:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> "Templating Jenkins Environments with Docker" is a bit vague, but it's a business of CB marketing
+<a name="l-73"></a><span class="tm">18:11:00</span><span class="nk"> &lt;danielbeck&gt;</span> CloudBees is asking us to run these messages in Q4.
+<a name="l-74"></a><span class="tm">18:11:18 </span><span class="nka">* rtyler</span> <span class="ac">shrugs</span>
+<a name="l-75"></a><span class="tm">18:11:25</span><span class="nk"> &lt;rtyler&gt;</span> agreed on the vagueness, but it's not a big deal to me
+<a name="l-76"></a><span class="tm">18:11:33</span><span class="nk"> &lt;rtyler&gt;</span> Shrugs as a Service
+<a name="l-77"></a><span class="tm">18:11:34</span><span class="nk"> &lt;kohsuke&gt;</span> I think they are OK
+<a name="l-78"></a><span class="tm">18:12:02</span><span class="nk"> &lt;danielbeck&gt;</span> They certainly fit the criteria we have, relevant and supportive.
+<a name="l-79"></a><span class="tm">18:12:06</span><span class="nk"> &lt;kohsuke&gt;</span> From my PoV, the main thing I'm looking out for is for the message not to be overly advertising or against Jenkins
+<a name="l-80"></a><span class="tm">18:12:14 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-81"></a><span class="tm">18:12:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Too much Docker for a HW engineer like me. CB is eligible to do it according to the patroning policy, so +1
+<a name="l-82"></a><span class="tm">18:12:38</span><span class="nk"> &lt;rtyler&gt;</span> +1 on the messaging
+<a name="l-83"></a><span class="tm">18:12:39</span><span class="nk"> &lt;kohsuke&gt;</span> Any objections to blessing this?
+<a name="l-84"></a><span class="tm">18:13:19</span><span class="nk"> &lt;kohsuke&gt;</span> it'd be nice to get some votes from people outside the payroll of CB
+<a name="l-85"></a><span class="tm">18:13:28</span><span class="nk"> &lt;rtyler&gt;</span> I've not received a paycheck yet so.. :P
+<a name="l-86"></a><span class="tm">18:13:30</span><span class="nk"> &lt;rtyler&gt;</span> does that count?
+<a name="l-87"></a><span class="tm">18:13:50</span><span class="nk"> &lt;kohsuke&gt;</span> Going ...
+<a name="l-88"></a><span class="tm">18:14:01</span><span class="nk"> &lt;kohsuke&gt;</span> going ...
+<a name="l-89"></a><span class="tm">18:14:08</span><span class="nk"> &lt;ogondza&gt;</span> +1
+<a name="l-90"></a><span class="tm">18:14:09</span><span class="nk"> &lt;rtyler&gt;</span> c-c-c-c-combo breaker
+<a name="l-91"></a><span class="tm">18:14:14</span><span class="nk"> &lt;batmat&gt;</span> +1
+<a name="l-92"></a><span class="tm">18:14:18</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks!
+<a name="l-93"></a><span class="tm">18:14:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">new Q4 patron messages by CloudBees (https://github.com/jenkinsci/patron/pull/5) are blessed</span>
+<a name="l-94"></a><span class="tm">18:14:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Proposal - Project sub-teams</span>
+<a name="l-95"></a><span class="tm">18:14:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">proposal here https://wiki.jenkins-ci.org/display/JENKINS/Proposal+-+Project+sub-teams</span>
+<a name="l-96"></a><span class="tm">18:15:13</span><span class="nk"> &lt;rtyler&gt;</span> for anybody that hasn't yet seen the document, please take some time to read it
+<a name="l-97"></a><span class="tm">18:15:25 </span><span class="nka">* rtyler</span> <span class="ac">thinks we should wait 5 minutes to make sure folks have read it</span>
+<a name="l-98"></a><span class="tm">18:15:30</span><span class="nk"> &lt;danielbeck&gt;</span> agreed
+<a name="l-99"></a><span class="tm">18:15:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> did you add your edits this morning yet?
+<a name="l-100"></a><span class="tm">18:15:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I added LTS and Community teams
+<a name="l-101"></a><span class="tm">18:15:49</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, edited
+<a name="l-102"></a><span class="tm">18:15:56</span><span class="nk"> &lt;rtyler&gt;</span> thanks
+<a name="l-103"></a><span class="tm">18:16:14</span><span class="nk"> &lt;kohsuke&gt;</span> I can imagine what LTS team does, but what does the community team do?
+<a name="l-104"></a><span class="tm">18:16:18</span><span class="nk"> &lt;rtyler&gt;</span> the high level goal here is to empower leaders within the community to drive their different areas forward
+<a name="l-105"></a><span class="tm">18:16:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> see the document :P
+<a name="l-106"></a><span class="tm">18:16:49</span><span class="nk"> &lt;kohsuke&gt;</span> oh wow, this document is changing live
+<a name="l-107"></a><span class="tm">18:17:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">I am not proposing team leads at this point, only proposing the structure which will allow team leads</span>
+<a name="l-108"></a><span class="tm">18:17:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We need somebody to handle incoming requests. I and danielbeck do it right now, but there's no sync in these activities
+<a name="l-109"></a><span class="tm">18:17:38</span><span class="nk"> &lt;danielbeck&gt;</span> Do we need LTS or should that be "core"?
+<a name="l-110"></a><span class="tm">18:17:43</span><span class="nk"> &lt;rtyler&gt;</span> the teams that are most important to me to identify are: Security, Website, Events and LTS
+<a name="l-111"></a><span class="tm">18:18:05</span><span class="nk"> &lt;rtyler&gt;</span> IMHO LTS team is a good idea because that gives people in the community a point of contact for the LTS activities
+<a name="l-112"></a><span class="tm">18:18:17</span><span class="nk"> &lt;batmat&gt;</span> Aren't somehow events &amp; community close?
+<a name="l-113"></a><span class="tm">18:18:35</span><span class="nk"> &lt;danielbeck&gt;</span> batmat Very different fields though
+<a name="l-114"></a><span class="tm">18:18:46</span><span class="nk"> &lt;rtyler&gt;</span> I had originally scrapped a team I was calling "Plugins" wihch is what oleg-nenashev refers to as "Community"
+<a name="l-115"></a><span class="tm">18:18:54</span><span class="nk"> &lt;danielbeck&gt;</span> They sound similar but the tasks are very different
+<a name="l-116"></a><span class="tm">18:19:00</span><span class="nk"> &lt;rtyler&gt;</span> but I think the "Community" team here, is enabling the developer community
+<a name="l-117"></a><span class="tm">18:19:05</span><span class="nk"> &lt;kohsuke&gt;</span> The two tasks for the community team feel very different in nature
+<a name="l-118"></a><span class="tm">18:19:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> My POV is a bit different
+<a name="l-119"></a><span class="tm">18:19:08</span><span class="nk"> &lt;rtyler&gt;</span> whereas events is organizing around developer and user communities
+<a name="l-120"></a><span class="tm">18:19:17</span><span class="nk"> &lt;orrc&gt;</span> yeah, plugin herding seems like a job of its own
+<a name="l-121"></a><span class="tm">18:19:22</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-122"></a><span class="tm">18:19:32</span><span class="nk"> &lt;rtyler&gt;</span> says the man who I would name chief shepherder :P
+<a name="l-123"></a><span class="tm">18:19:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> "Community" team may provide advices for hanging PRs
+<a name="l-124"></a><span class="tm">18:20:00</span><span class="nk"> &lt;autojack&gt;</span> fine time for work internet to go down
+<a name="l-125"></a><span class="tm">18:20:27</span><span class="nk"> &lt;rtyler&gt;</span> so at this time I hope almost everybody has read through the proposal at least at a high level
+<a name="l-126"></a><span class="tm">18:21:08</span><span class="nk"> &lt;rtyler&gt;</span> I think the community should be empowered to propose new team leadership positions as we see necessary in future project meetings
+<a name="l-127"></a><span class="tm">18:21:17</span><span class="nk"> &lt;ogondza&gt;</span> I would like to see a team responsible for development, be it the one responsible for LTS or separate
+<a name="l-128"></a><span class="tm">18:21:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ogondza +1
+<a name="l-129"></a><span class="tm">18:21:34</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza What would the specific job be?
+<a name="l-130"></a><span class="tm">18:21:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have technical tracks for Jenkins 2.0
+<a name="l-131"></a><span class="tm">18:22:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But some kind of roadmaps would be useful
+<a name="l-132"></a><span class="tm">18:22:06</span><span class="nk"> &lt;kohsuke&gt;</span> I think there's two separate parts to this proposal, the notion of sub-teams and then what the actual teams are
+<a name="l-133"></a><span class="tm">18:22:08</span><span class="nk"> &lt;rtyler&gt;</span> I think this is diverging from what I want to get done first in this topic: agreement on the structure and appointment process
+<a name="l-134"></a><span class="tm">18:22:25</span><span class="nk"> &lt;danielbeck&gt;</span> True, we can always fine-tune later
+<a name="l-135"></a><span class="tm">18:22:26</span><span class="nk"> &lt;kohsuke&gt;</span> I think rtyler is trying to get us bless the former before spending too much on the latter
+<a name="l-136"></a><span class="tm">18:22:27</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> from last meeting agenda "Time to move to Java 8 and servlet 3.1?"
+<a name="l-137"></a><span class="tm">18:22:35</span><span class="nk"> &lt;ogondza&gt;</span> does not seem to fit anywhere
+<a name="l-138"></a><span class="tm">18:22:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep, "roadmaps"
+<a name="l-139"></a><span class="tm">18:22:56</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza "Roadmap Team"?
+<a name="l-140"></a><span class="tm">18:22:57</span><span class="nk"> &lt;ogondza&gt;</span> pending PRs, urgent releases, reverts, etc
+<a name="l-141"></a><span class="tm">18:23:01</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-142"></a><span class="tm">18:23:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> They could be useful to focus the community efforts
+<a name="l-143"></a><span class="tm">18:23:20</span><span class="nk"> &lt;danielbeck&gt;</span> Like that won't result in heads rolling
+<a name="l-144"></a><span class="tm">18:23:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> I'm curious on your opinion on this in particular, since I've seen you lead some different efforts over the year
+<a name="l-145"></a><span class="tm">18:23:25</span><span class="nk"> &lt;rtyler&gt;</span> years*
+<a name="l-146"></a><span class="tm">18:23:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> jenkinsci/core is supposed to handle PRs. It's not 100% true right now
+<a name="l-147"></a><span class="tm">18:23:53</span><span class="nk"> &lt;rtyler&gt;</span> to me an important aspect of my proposal is sending, basically an RFP, to the commnuity for leads
+<a name="l-148"></a><span class="tm">18:24:04</span><span class="nk"> &lt;danielbeck&gt;</span> RFP?
+<a name="l-149"></a><span class="tm">18:24:09</span><span class="nk"> &lt;rtyler&gt;</span> request for participation
+<a name="l-150"></a><span class="tm">18:24:16</span><span class="nk"> &lt;rtyler&gt;</span> sorry, will de-acronym as much as possible
+<a name="l-151"></a><span class="tm">18:24:28</span><span class="nk"> &lt;autojack&gt;</span> OK, trying to read the doc again now that internet is back.
+<a name="l-152"></a><span class="tm">18:25:36</span><span class="nk"> &lt;orrc&gt;</span> I think the proposal makes sense
+<a name="l-153"></a><span class="tm">18:25:53</span><span class="nk"> &lt;batmat&gt;</span> At least I like the problem description, about the fact it's certainly wasteful to ping the board abt subjects of little importance, sure. Do we examples of that btw?
+<a name="l-154"></a><span class="tm">18:26:02</span><span class="nk"> &lt;danielbeck&gt;</span> Yep, also +1 from me
+<a name="l-155"></a><span class="tm">18:26:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> ${WHATEVER} Officer
+<a name="l-156"></a><span class="tm">18:26:44</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-157"></a><span class="tm">18:26:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> or ${whatever} king :(
+<a name="l-158"></a><span class="tm">18:26:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">batmat:</span> yeah, for example to contact SPI &amp; ffis.de
+<a name="l-159"></a><span class="tm">18:26:57</span><span class="nk"> &lt;rtyler&gt;</span> (.*) person
+<a name="l-160"></a><span class="tm">18:27:05</span><span class="nk"> &lt;autojack&gt;</span> +1. the recent dust-up over a potential security vuln is a good example of how this would be useful.
+<a name="l-161"></a><span class="tm">18:27:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">autojack:</span> that was one of my primary motivators here :P
+<a name="l-162"></a><span class="tm">18:27:28</span><span class="nk"> &lt;kohsuke&gt;</span> Right, getting CVE IDs assigned is another one
+<a name="l-163"></a><span class="tm">18:27:33</span><span class="nk"> &lt;rtyler&gt;</span> the concept is basically pilfered in its entirely from FreeBSD
+<a name="l-164"></a><span class="tm">18:27:33</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> yeah, wasteful and putting ppl on the critical path unnecessarily
+<a name="l-165"></a><span class="tm">18:27:34</span><span class="nk"> &lt;rtyler&gt;</span> :P
+<a name="l-166"></a><span class="tm">18:27:36</span><span class="nk"> &lt;batmat&gt;</span> +1 for me
+<a name="l-167"></a><span class="tm">18:27:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> are you here?
+<a name="l-168"></a><span class="tm">18:27:56</span><span class="nk"> &lt;autojack&gt;</span> <span class="hi">rtyler:</span> free-what now? is that some kind of open source thing?
+<a name="l-169"></a><span class="tm">18:27:57</span><span class="nk"> &lt;autojack&gt;</span> ;)
+<a name="l-170"></a><span class="tm">18:28:02</span><span class="nk"> &lt;rtyler&gt;</span> my hope is that we can extend the "executive authority" to domain specific leaders who may be more qualified and more able to react such as Security in paritcular
+<a name="l-171"></a><span class="tm">18:28:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">autojack:</span> I heard it was dead :P
+<a name="l-172"></a><span class="tm">18:28:15</span><span class="nk"> &lt;autojack&gt;</span> lolz.
+<a name="l-173"></a><span class="tm">18:28:20</span><span class="nk"> &lt;rtyler&gt;</span> as it's my proposal, I'm obv. +1 on it :p
+<a name="l-174"></a><span class="tm">18:28:21</span><span class="nk"> &lt;kohsuke&gt;</span> I think a board blessing this would be nie on this because this is delegating some of your power to others
+<a name="l-175"></a><span class="tm">18:28:28</span><span class="nk"> &lt;autojack&gt;</span> another term for this type of group that I have heard used is Assembly of Experts.
+<a name="l-176"></a><span class="tm">18:28:31</span><span class="nk"> &lt;kohsuke&gt;</span> nie -&gt; nice
+<a name="l-177"></a><span class="tm">18:28:48</span><span class="nk"> &lt;hare_brain&gt;</span> +1 on the structure of the proposal/
+<a name="l-178"></a><span class="tm">18:28:50</span><span class="nk"> &lt;autojack&gt;</span> although... that might be what they call it in the Iranian government?
+<a name="l-179"></a><span class="tm">18:28:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-180"></a><span class="tm">18:29:04</span><span class="nk"> &lt;kohsuke&gt;</span> OK, my +1 as well
+<a name="l-181"></a><span class="tm">18:29:06</span><span class="nk"> &lt;danielbeck&gt;</span> +1
+<a name="l-182"></a><span class="tm">18:29:07</span><span class="nk"> &lt;rtyler&gt;</span> okay, I think it's safe to say we're largely in agreement here
+<a name="l-183"></a><span class="tm">18:29:25</span><span class="nk"> &lt;rtyler&gt;</span> can we agree right now to the need for a Security post at least?
+<a name="l-184"></a><span class="tm">18:29:31</span><span class="nk"> &lt;danielbeck&gt;</span> That leaves just figuring out which teams and responsibilities make sense :-)
+<a name="l-185"></a><span class="tm">18:29:34</span><span class="nk"> &lt;danielbeck&gt;</span> "just"
+<a name="l-186"></a><span class="tm">18:29:35</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">autojack:</span> dead for some at least https://twitter.com/randileeharper/status/651483473392234500
+<a name="l-187"></a><span class="tm">18:29:35</span><span class="nk"> &lt;autojack&gt;</span> yes, +1 to security post especially.
+<a name="l-188"></a><span class="tm">18:29:41</span><span class="nk"> &lt;rtyler&gt;</span> I would like to get started on Security, Infra and Events ASAP
+<a name="l-189"></a><span class="tm">18:29:51</span><span class="nk"> &lt;autojack&gt;</span> and +1 for community. I have tried to help out in that area over the years.
+<a name="l-190"></a><span class="tm">18:29:53</span><span class="nk"> &lt;rtyler&gt;</span> (infra is me though, :/)
+<a name="l-191"></a><span class="tm">18:29:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the subteam structure is blessed as of versrsion 10 of https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=82674793</span>
+<a name="l-192"></a><span class="tm">18:30:00</span><span class="nk"> &lt;rtyler&gt;</span> thakns kohsuke
+<a name="l-193"></a><span class="tm">18:30:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for security
+<a name="l-194"></a><span class="tm">18:30:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to work with the rest of the board to create a request for participation for a Security team lead</span>
+<a name="l-195"></a><span class="tm">18:31:29</span><span class="nk"> &lt;kohsuke&gt;</span> As a board member I'd like to see the events team up &amp; running toward FOSDEM &amp; SCALE
+<a name="l-196"></a><span class="tm">18:31:30</span><span class="nk"> &lt;rtyler&gt;</span> I think we should flesh out responsibilities of Security team lead, and others in separate documents
+<a name="l-197"></a><span class="tm">18:31:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I agree on that, so those don't crush me :P
+<a name="l-198"></a><span class="tm">18:32:02</span><span class="nk"> &lt;danielbeck&gt;</span> Security, events and infra should be pretty straightforward wrt responsibilities.
+<a name="l-199"></a><span class="tm">18:32:04</span><span class="nk"> &lt;kohsuke&gt;</span> Those things do require a lot of external coordinations where a clearly marked responsible person really helps
+<a name="l-200"></a><span class="tm">18:32:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssa__:</span> could I ask for your help to define the Events team lead responsibilities?
+<a name="l-201"></a><span class="tm">18:32:24</span><span class="nk"> &lt;rtyler&gt;</span> then we can go thorugh the team lead proposal process once that's defined?
+<a name="l-202"></a><span class="tm">18:32:28</span><span class="nk"> &lt;alyssa__&gt;</span> <span class="hi">rtyler:</span> sure thing
+<a name="l-203"></a><span class="tm">18:32:48</span><span class="nk"> &lt;rtyler&gt;</span> I'll create a page nuder the governance document for team lead specifications
+<a name="l-204"></a><span class="tm">18:32:51</span><span class="nk"> &lt;rtyler&gt;</span> er
+<a name="l-205"></a><span class="tm">18:33:00</span><span class="nk"> &lt;autojack&gt;</span> heh
+<a name="l-206"></a><span class="tm">18:33:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtlyer to create a page under the governance document outlining the team leadership responsibilities</span>
+<a name="l-207"></a><span class="tm">18:33:05</span><span class="nk"> &lt;rtyler&gt;</span> GAK
+<a name="l-208"></a><span class="tm">18:33:08</span><span class="nk"> &lt;rtyler&gt;</span> I CAN SPELL MY NAME
+<a name="l-209"></a><span class="tm">18:33:12</span><span class="nk"> &lt;danielbeck&gt;</span> no?
+<a name="l-210"></a><span class="tm">18:33:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to do that thing up there</span>
+<a name="l-211"></a><span class="tm">18:33:20</span><span class="nk"> &lt;rtyler&gt;</span> &lt;&gt;_&lt;
+<a name="l-212"></a><span class="tm">18:33:37</span><span class="nk"> &lt;kohsuke&gt;</span> LTS &amp; infra are existing functionalities that I think we should be able to bless more formally with this new structure
+<a name="l-213"></a><span class="tm">18:33:49</span><span class="nk"> &lt;rtyler&gt;</span> if there's no objections, I'll put together the infra team lead responsibilities
+<a name="l-214"></a><span class="tm">18:34:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> who can define the LTS team leadership role?
+<a name="l-215"></a><span class="tm">18:34:14</span><span class="nk"> &lt;kohsuke&gt;</span> If i'm not mistaken, I think we are all pretty clear what we do in those spaces because we've been doing it for so long
+<a name="l-216"></a><span class="tm">18:34:22</span><span class="nk"> &lt;kohsuke&gt;</span> ogondza?
+<a name="l-217"></a><span class="tm">18:34:27</span><span class="nk"> &lt;rtyler&gt;</span> that works for me
+<a name="l-218"></a><span class="tm">18:34:32</span><span class="nk"> &lt;ogondza&gt;</span> yeah, sure
+<a name="l-219"></a><span class="tm">18:34:35</span><span class="nk"> &lt;KostyaSha&gt;</span> but kohsuke usually do decisions about lts?
+<a name="l-220"></a><span class="tm">18:34:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-221"></a><span class="tm">18:34:40</span><span class="nk"> &lt;autojack&gt;</span> <span class="hi">rtyler:</span> as an aside, if you need help with infra support, I might be able to contribute.
+<a name="l-222"></a><span class="tm">18:34:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to define the LTS team leadership role</span>
+<a name="l-223"></a><span class="tm">18:34:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">autojack:</span> are you in #jenkins-infra?
+<a name="l-224"></a><span class="tm">18:35:01</span><span class="nk"> &lt;KostyaSha&gt;</span> +1 for ogondza
+<a name="l-225"></a><span class="tm">18:35:32</span><span class="nk"> &lt;rtyler&gt;</span> bear in mind, we're just defining teams right now, the board will follow the process outlined in the proposal above
+<a name="l-226"></a><span class="tm">18:35:58</span><span class="nk"> &lt;rtyler&gt;</span> so we've got somebody to define Security, Infra, Events and LTS
+<a name="l-227"></a><span class="tm">18:36:04</span><span class="nk"> &lt;rtyler&gt;</span> I'm happy with that for now TBH
+<a name="l-228"></a><span class="tm">18:36:21</span><span class="nk"> &lt;rtyler&gt;</span> that's already plenty of work :P
+<a name="l-229"></a><span class="tm">18:36:31</span><span class="nk"> &lt;kohsuke&gt;</span> I agree, is that OK oleg-nenashev ?
+<a name="l-230"></a><span class="tm">18:36:41</span><span class="nk"> &lt;kohsuke&gt;</span> Can we come back to some of the other teams you proposed later?
+<a name="l-231"></a><span class="tm">18:36:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-232"></a><span class="tm">18:37:10</span><span class="nk"> &lt;autojack&gt;</span> <span class="hi">rtyler:</span> no, but I can be.
+<a name="l-233"></a><span class="tm">18:37:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> would you mind pondering some of the plugin/community responsibilities in the meantime
+<a name="l-234"></a><span class="tm">18:37:39</span><span class="nk"> &lt;kohsuke&gt;</span> Should we move on to the next topic?
+<a name="l-235"></a><span class="tm">18:37:46</span><span class="nk"> &lt;rtyler&gt;</span> I think you and oleg-nenashev could/should work together to collate responsibilities there
+<a name="l-236"></a><span class="tm">18:37:47</span><span class="nk"> &lt;autojack&gt;</span> <span class="hi">rtyler:</span> orrc: I would be interested in talking about that too, pursuant to my comments in #jenkins earlier today.
+<a name="l-237"></a><span class="tm">18:37:53 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-238"></a><span class="tm">18:38:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> yes, no need to handle everything now
+<a name="l-239"></a><span class="tm">18:38:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I am fine moving on
+<a name="l-240"></a><span class="tm">18:38:12</span><span class="nk"> &lt;rtyler&gt;</span> thanks for the input folks
+<a name="l-241"></a><span class="tm">18:38:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">autojack orrc oleg-nenashev will get together to ponder plugin/community responsibilities</span>
+<a name="l-242"></a><span class="tm">18:38:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Permission request - Admin access to jenkinsci org</span>
+<a name="l-243"></a><span class="tm">18:38:43</span><span class="nk"> &lt;rtyler&gt;</span> what does this mean? :P
+<a name="l-244"></a><span class="tm">18:38:45</span><span class="nk"> &lt;kohsuke&gt;</span> I assume you mean the github org, oleg-nenashev
+<a name="l-245"></a><span class="tm">18:38:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> this is mine
+<a name="l-246"></a><span class="tm">18:38:48</span><span class="nk"> &lt;danielbeck&gt;</span> GitHub org
+<a name="l-247"></a><span class="tm">18:39:00</span><span class="nk"> &lt;rtyler&gt;</span> AH
+<a name="l-248"></a><span class="tm">18:39:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Lost something in the meeting agenda
+<a name="l-249"></a><span class="tm">18:39:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> See the e-mail thread
+<a name="l-250"></a><span class="tm">18:39:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> which thread?
+<a name="l-251"></a><span class="tm">18:39:19</span><span class="nk"> &lt;rtyler&gt;</span> what access is needed here/why?
+<a name="l-252"></a><span class="tm">18:39:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> https://groups.google.com/forum/#!topic/jenkinsci-dev/pFWSnJ3uHFU
+<a name="l-253"></a><span class="tm">18:40:25</span><span class="nk"> &lt;rtyler&gt;</span> +1 to this
+<a name="l-254"></a><span class="tm">18:40:39</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, given his involvement to plugin onboarding work, let's unblock him
+<a name="l-255"></a><span class="tm">18:40:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> you had some questions last week about updating the github org ACLs and way we handle things right?
+<a name="l-256"></a><span class="tm">18:40:48</span><span class="nk"> &lt;batmat&gt;</span> Already gave my +1 in the email thread, echoing here
+<a name="l-257"></a><span class="tm">18:40:54</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler Out of scope for today I think
+<a name="l-258"></a><span class="tm">18:40:57</span><span class="nk"> &lt;kohsuke&gt;</span> And he has CLA in place, so there's that.
+<a name="l-259"></a><span class="tm">18:41:12</span><span class="nk"> &lt;danielbeck&gt;</span> +1 for Oleg's request
+<a name="l-260"></a><span class="tm">18:41:14</span><span class="nk"> &lt;rtyler&gt;</span> definitely out of scope, but I'm thinking perhaps the two of you could work on a proposal for how to make this work go away or easier in the future
+<a name="l-261"></a><span class="tm">18:41:15</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> thank for volunteering for this job
+<a name="l-262"></a><span class="tm">18:41:24</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler Will do
+<a name="l-263"></a><span class="tm">18:41:40</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler FWIW I added an agenda item that kind of already does
+<a name="l-264"></a><span class="tm">18:41:40</span><span class="nk"> &lt;rtyler&gt;</span> very happy to have people volunteering for work, but if we can make the work go away, even better :)
+<a name="l-265"></a><span class="tm">18:41:50</span><span class="nk"> &lt;kohsuke&gt;</span> that's coming to the next topic
+<a name="l-266"></a><span class="tm">18:41:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It's my responsibility to deal with that jenkins-admin, because I too lazy to fox it :)
+<a name="l-267"></a><span class="tm">18:42:01</span><span class="nk"> &lt;autojack&gt;</span> +1 and thanks to oleg-nenashev
+<a name="l-268"></a><span class="tm">18:42:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">on granting oleg-nenashev github org admin access</span>
+<a name="l-269"></a><span class="tm">18:42:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> next!
+<a name="l-270"></a><span class="tm">18:42:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">oleg-nenashev will step up to more github repo house-keeping work &amp; get admin access to the org for that</span>
+<a name="l-271"></a><span class="tm">18:42:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">JIRA project for plugin hosting (and possibly similar) requests</span>
+<a name="l-272"></a><span class="tm">18:42:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, another guy
+<a name="l-273"></a><span class="tm">18:42:49</span><span class="nk"> &lt;danielbeck&gt;</span> So Oleg and I discussed recently the problems we have with plugin hosting requests
+<a name="l-274"></a><span class="tm">18:42:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> would this just be moving this out of the mailing list?
+<a name="l-275"></a><span class="tm">18:42:55</span><span class="nk"> &lt;rtyler&gt;</span> and IRC channel?
+<a name="l-276"></a><span class="tm">18:43:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Kinda
+<a name="l-277"></a><span class="tm">18:43:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> + workflow improvement
+<a name="l-278"></a><span class="tm">18:43:17</span><span class="nk"> &lt;danielbeck&gt;</span> For now. A big problem is that we miss some requests
+<a name="l-279"></a><span class="tm">18:43:27</span><span class="nk"> &lt;danielbeck&gt;</span> especially when they're not immediately resolved
+<a name="l-280"></a><span class="tm">18:43:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The idea is to use JIRA workflow to avoid missing requests
+<a name="l-281"></a><span class="tm">18:43:33</span><span class="nk"> &lt;ogondza&gt;</span> that should stop with the project
+<a name="l-282"></a><span class="tm">18:43:39</span><span class="nk"> &lt;ogondza&gt;</span> +1
+<a name="l-283"></a><span class="tm">18:43:42</span><span class="nk"> &lt;rtyler&gt;</span> yeah, that makes a lot of sense to me
+<a name="l-284"></a><span class="tm">18:43:42</span><span class="nk"> &lt;rtyler&gt;</span> +1
+<a name="l-285"></a><span class="tm">18:43:55</span><span class="nk"> &lt;danielbeck&gt;</span> Moving requests into Jira would still not automate, but it would make it basically impossible to lose some
+<a name="l-286"></a><span class="tm">18:44:03</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-287"></a><span class="tm">18:44:06</span><span class="nk"> &lt;rtyler&gt;</span> and better to have an audit trail for the discussion I hope
+<a name="l-288"></a><span class="tm">18:44:11</span><span class="nk"> &lt;kohsuke&gt;</span> Can someone create a custom project with custom field &amp; all that?
+<a name="l-289"></a><span class="tm">18:44:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> BTW the automation is also possible
+<a name="l-290"></a><span class="tm">18:44:23</span><span class="nk"> &lt;batmat&gt;</span> issue might be: how do discuss usefulness/possible duplicate as now?
+<a name="l-291"></a><span class="tm">18:44:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> IIRC danielbeck has already created the project
+<a name="l-292"></a><span class="tm">18:44:41</span><span class="nk"> &lt;batmat&gt;</span> Or worse https://groups.google.com/forum/#!topic/jenkinsci-dev/bMXeWrOyEN4
+<a name="l-293"></a><span class="tm">18:44:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> we could notify jenkinsci-dev on new issue creation in that project
+<a name="l-294"></a><span class="tm">18:44:57</span><span class="nk"> &lt;danielbeck&gt;</span> batmat We can email jenkinci-dev when an issue gets created and resolved
+<a name="l-295"></a><span class="tm">18:45:07</span><span class="nk"> &lt;danielbeck&gt;</span> nothing in between, just those two
+<a name="l-296"></a><span class="tm">18:45:10</span><span class="nk"> &lt;rtyler&gt;</span> zomg ur so smart danielbeck
+<a name="l-297"></a><span class="tm">18:45:11</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">danielbeck:</span> rtyler yeah right
+<a name="l-298"></a><span class="tm">18:45:22</span><span class="nk"> &lt;ogondza&gt;</span> -0.5 on the noise
+<a name="l-299"></a><span class="tm">18:45:28</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza Less than today
+<a name="l-300"></a><span class="tm">18:45:39</span><span class="nk"> &lt;rtyler&gt;</span> is the resolved mail necessary?'
+<a name="l-301"></a><span class="tm">18:45:43</span><span class="nk"> &lt;danielbeck&gt;</span> I'd really like there to be visibility to the dev community
+<a name="l-302"></a><span class="tm">18:45:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I doubt it's a "noice"
+<a name="l-303"></a><span class="tm">18:45:58</span><span class="nk"> &lt;KostyaSha&gt;</span> -1 for dev list email
+<a name="l-304"></a><span class="tm">18:45:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But probably a separate mailing list is better
+<a name="l-305"></a><span class="tm">18:46:02</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler Possibly not. I'd consider this fine-tuning
+<a name="l-306"></a><span class="tm">18:46:12</span><span class="nk"> &lt;danielbeck&gt;</span> Would also work, but reduce visibility
+<a name="l-307"></a><span class="tm">18:46:28</span><span class="nk"> &lt;rtyler&gt;</span> well, I think at a high level, we need some way to communicate requests to the dev community
+<a name="l-308"></a><span class="tm">18:46:31</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, you can create separate google group list like for issues
+<a name="l-309"></a><span class="tm">18:46:37</span><span class="nk"> &lt;ogondza&gt;</span> actually, one main with initial request (and possible rejection) sounds good to me
+<a name="l-310"></a><span class="tm">18:46:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Probably it's also a topic for "Website 2.0"
+<a name="l-311"></a><span class="tm">18:46:45</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Nobody ever subscribes to those extra lists
+<a name="l-312"></a><span class="tm">18:46:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It could display such requests
+<a name="l-313"></a><span class="tm">18:46:56</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, that's mean that nobody needs this info
+<a name="l-314"></a><span class="tm">18:46:56</span><span class="nk"> &lt;ogondza&gt;</span> s/main/mail/
+<a name="l-315"></a><span class="tm">18:47:08</span><span class="nk"> &lt;rtyler&gt;</span> can we try the "request created" email to the dev list and see at least if it's better or worse first?
+<a name="l-316"></a><span class="tm">18:47:19</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, + CloudBees forks plugins without any requests, so monitoring new plugins is impossible via dev list
+<a name="l-317"></a><span class="tm">18:47:22</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler looks good
+<a name="l-318"></a><span class="tm">18:47:23</span><span class="nk"> &lt;kohsuke&gt;</span> Fine either way. I don't like existing devs turning new people away just because they don't think it's a good idea or there's an overlap.
+<a name="l-319"></a><span class="tm">18:47:31</span><span class="nk"> &lt;rtyler&gt;</span> every third mailing list thread is about new hosting anyways
+<a name="l-320"></a><span class="tm">18:48:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KostyaSha:</span> I think the right expectation to set here is that all such requests go through JIRA
+<a name="l-321"></a><span class="tm">18:48:06</span><span class="nk"> &lt;kohsuke&gt;</span> And that's not inconsistent with us suggesting related plugins to consolidate or encourage communication between them
+<a name="l-322"></a><span class="tm">18:48:08</span><span class="nk"> &lt;rtyler&gt;</span> wihch would be better IMO
+<a name="l-323"></a><span class="tm">18:48:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">KostyaSha:</span> It's a very orthogonal topic, because every jenkinsci/core member is eligible to do it. BTW it's reasonable complain in particular cases
+<a name="l-324"></a><span class="tm">18:48:17</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, imho just don't flood mail list
+<a name="l-325"></a><span class="tm">18:48:31 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-326"></a><span class="tm">18:48:39</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Two emails per request is strictly less than today
+<a name="l-327"></a><span class="tm">18:48:44</span><span class="nk"> &lt;rtyler&gt;</span> does this mean we should restrict who can fork via jenkins-admin?
+<a name="l-328"></a><span class="tm">18:49:12</span><span class="nk"> &lt;batmat&gt;</span> I thing that there shouold be at least one email on the dev list when the request gets done or created?
+<a name="l-329"></a><span class="tm">18:49:13</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler I think it should suffice to define a process. If we know we should not fork without request in Jira, we won't.
+<a name="l-330"></a><span class="tm">18:49:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> my operating principle is that we should be free to create new plugins
+<a name="l-331"></a><span class="tm">18:49:14</span><span class="nk"> &lt;rtyler&gt;</span> if we were to create oleg-nenashev's community team, I would expect members of that team to be responsible for that forking
+<a name="l-332"></a><span class="tm">18:49:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> kinda
+<a name="l-333"></a><span class="tm">18:49:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> I doubt it should be too restricted, but who knows
+<a name="l-334"></a><span class="tm">18:49:49</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke's principal = make bazaar from project
+<a name="l-335"></a><span class="tm">18:49:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> nobody's stopping you from making a plugin, but this does consolidate hosting inside of jenkinsci which is IMO reasonable
+<a name="l-336"></a><span class="tm">18:50:14</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> I see your point, but I tend to disagree some review/encouraging to merge efforts is not good.
+<a name="l-337"></a><span class="tm">18:50:25</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, you can't also limit publishing into repo + UC, so limiting fork wouldn't make anything.
+<a name="l-338"></a><span class="tm">18:50:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">batmat:</span> I'm all for *encouraging* consolidation, so long as that's not used as a reason to block somebody
+<a name="l-339"></a><span class="tm">18:50:50</span><span class="nk"> &lt;KostyaSha&gt;</span> and we started this discussion from danielbeck's idea to post JIRA issues about plugin requests
+<a name="l-340"></a><span class="tm">18:51:03</span><span class="nk"> &lt;batmat&gt;</span> IMO, it's somehow not beneficial to users to have 3 or 4 plugins that generally only have parts of the picture, and IMO OSS is also about collaboration. So that's a pity
+<a name="l-341"></a><span class="tm">18:51:14</span><span class="nk"> &lt;danielbeck&gt;</span> I think we're going off track here right now
+<a name="l-342"></a><span class="tm">18:51:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-343"></a><span class="tm">18:51:18</span><span class="nk"> &lt;rtyler&gt;</span> heh, true
+<a name="l-344"></a><span class="tm">18:51:26</span><span class="nk"> &lt;KostyaSha&gt;</span> batmat, i said the same about cloudbees-docker-* but kohsuke likes it
+<a name="l-345"></a><span class="tm">18:51:44</span><span class="nk"> &lt;KostyaSha&gt;</span> and it other topic
+<a name="l-346"></a><span class="tm">18:51:45</span><span class="nk"> &lt;danielbeck&gt;</span> it seems this is something we'll need to discuss at a separate time, but it is out of scope today IMO
+<a name="l-347"></a><span class="tm">18:51:57</span><span class="nk"> &lt;rtyler&gt;</span> danielbeck oleg-nenashev AFAICT from this discussion you've got the green light
+<a name="l-348"></a><span class="tm">18:52:03</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-349"></a><span class="tm">18:52:13</span><span class="nk"> &lt;rtyler&gt;</span> but clearly lots of varying opinions about the plugin process :)
+<a name="l-350"></a><span class="tm">18:52:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">KostyaSha:</span> could you create a topic for the next meeting?
+<a name="l-351"></a><span class="tm">18:52:14</span><span class="nk"> &lt;batmat&gt;</span> +1 for the current subject, right.
+<a name="l-352"></a><span class="tm">18:52:37</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so "the current subject" is to create JIRA and redirect email plugin forking requst to there
+<a name="l-353"></a><span class="tm">18:52:39</span><span class="nk"> &lt;kohsuke&gt;</span> right?
+<a name="l-354"></a><span class="tm">18:52:42</span><span class="nk"> &lt;rtyler&gt;</span> AYE
+<a name="l-355"></a><span class="tm">18:52:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes
+<a name="l-356"></a><span class="tm">18:52:55</span><span class="nk"> &lt;KostyaSha&gt;</span> oleg-nenashev, no
+<a name="l-357"></a><span class="tm">18:53:04</span><span class="nk"> &lt;kohsuke&gt;</span> is there a name for that project in JIRA?
+<a name="l-358"></a><span class="tm">18:53:05 </span><span class="nka">* rtyler</span> <span class="ac">looks at the time</span>
+<a name="l-359"></a><span class="tm">18:53:15</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">oleg-nenashev:</span> yes, I think this is indeed a discussion that would clarify things. IMO the projects needs to define *some* rules of thumbs.
+<a name="l-360"></a><span class="tm">18:53:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll create a new JIRA project to receive plugin hosting request, and direct people to use it instead of sending emails to the dev list</span>
+<a name="l-361"></a><span class="tm">18:53:45</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to set up Jira project for plugin hosting requests and update dev docs to point there</span>
+<a name="l-362"></a><span class="tm">18:53:50</span><span class="nk"> &lt;kohsuke&gt;</span> Sounds like the name is TBD
+<a name="l-363"></a><span class="tm">18:53:52</span><span class="nk"> &lt;rtyler&gt;</span> next topic!
+<a name="l-364"></a><span class="tm">18:54:03</span><span class="nk"> &lt;danielbeck&gt;</span> next meeting :-)
+<a name="l-365"></a><span class="tm">18:54:05</span><span class="nk"> &lt;kohsuke&gt;</span> That's it
+<a name="l-366"></a><span class="tm">18:54:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-367"></a><span class="tm">18:54:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">batmat:</span> Yes, probably we're too restrictive
+<a name="l-368"></a><span class="tm">18:54:16</span><span class="nk"> &lt;KostyaSha&gt;</span> <span class="cmd">#MYCUTEPLUGIN-*</span><span class="cmdline"></span>
+<a name="l-369"></a><span class="tm">18:54:21</span><span class="nk"> &lt;rtyler&gt;</span> 10/28th looks fine to me
+<a name="l-370"></a><span class="tm">18:54:25</span><span class="nk"> &lt;rtyler&gt;</span> er, oct 28th
+<a name="l-371"></a><span class="tm">18:54:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the next meeting is Oct 28th</span>
+<a name="l-372"></a><span class="tm">18:54:43</span><span class="nk"> &lt;kohsuke&gt;</span> When is the DST switch over in US &amp; Europe?
+<a name="l-373"></a><span class="tm">18:54:53</span><span class="nk"> &lt;kohsuke&gt;</span> Whenever that is, just be careful
+<a name="l-374"></a><span class="tm">18:54:58</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to put up warning in wiki about DST</span>
+<a name="l-375"></a><span class="tm">18:55:01</span><span class="nk"> &lt;batmat&gt;</span> 24 / 25-10 in France
+<a name="l-376"></a><span class="tm">18:55:03</span><span class="nk"> &lt;rtyler&gt;</span> hheh
+<a name="l-377"></a><span class="tm">18:55:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 00:11:27 May 04, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:26:59 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 166.366
+  exclusion.robots: 0.082
+  exclusion.robots.policy: 0.076
+  cdx.remote: 0.062
+  esindex: 0.009
+  LoadShardBlock: 84.42 (3)
+  PetaboxLoader3.datanode: 186.328 (4)
+  CDXLines.iter: 16.186 (3)
+  load_resource: 325.258
+  PetaboxLoader3.resolve: 197.417
+-->

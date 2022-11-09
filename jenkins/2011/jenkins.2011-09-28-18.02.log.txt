@@ -1,0 +1,245 @@
+18:02:40 <kohsuke> #startmeeting
+18:02:40 <robobutler> Let the Jenkins meeting commence!
+18:02:55 <kohsuke> #chair abayer hare_brain  rtyler
+18:02:55 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:03:23 <kohsuke> #topic Recap of last meeting's action items
+18:03:40 <kohsuke> #info and that's captured in http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-09-14-18.01.html
+18:03:55 <kohsuke> "rtyler to prod kohsuke and the dev list to guage interest for a JavaOne Jenkins Hackathon"
+18:04:09 <kohsuke> I wonder if we should still plan on it, or is it getting too late?
+18:04:25 * kohsuke pokes rtyler
+18:04:42 <kohsuke> I guess I'll defer his actions until later
+18:05:16 <kohsuke> my donation related AIs are done
+18:05:19 <abayer> Woot.
+18:05:23 <kohsuke> So is hare_brain's CLA
+18:05:38 <kohsuke> and I did publicize that we are shooting for blessing CLA and governance doc in 9/28
+18:05:50 <kohsuke> ... by sending e-mail to the dev list.
+18:05:56 <abayer> fwiw, I'm +1 on both, but hey.
+18:06:07 <kohsuke> OK, so I think we are in good shape action-wise.
+18:06:20 <kohsuke> #topic Donation status update (@orrc)
+18:07:01 <kohsuke> #info I believe the current total amount is still at $3900
+18:07:29 <kohsuke> and I also forgot to add the SPI overhead into the calculation, so we need to raise $5130 + 5% or something like that
+18:08:02 <kohsuke> #idea I'd request folks presenting in JUC to mention donation in their slides
+18:08:17 <hare_brain> Actually, according to their minutes, they stopped collecting the 5%
+18:08:17 <abayer> That'd be a good idea, yeah.
+18:08:22 <hare_brain> Let me find that reference.
+18:08:32 <kohsuke> and maybe we can pass around the tip hat like people do in churches (or at least so I hear)
+18:08:38 <kohsuke> :-)
+18:09:10 <hare_brain> http://www.spi-inc.org/corporate/resolutions/2003/2003-04-01.wta.2/
+18:09:39 <kohsuke> ah
+18:10:51 <kohsuke> There's also a conversation about recurring payment?
+18:10:52 <mwalling> kohsuke: "offering plate"
+18:11:09 <hare_brain> When presenters open up their session for questions, people with questions must first donate before they get their questions answered. ;)
+18:11:31 <kohsuke> :-)
+18:12:09 <mwalling> hare_brain: http://www.spi-inc.org/meetings/minutes/2011/2011-08-10/ the treasurer's report still lists 5%
+18:12:26 <kohsuke> I guess orrc wants us to find out the SPI relationship with FFIS?
+18:12:29 <hare_brain> Yeah I noticed that.
+18:12:59 <kohsuke> I think I heard about that 5% in the SPI IRC channel, too
+18:13:41 <hare_brain> Something to follow up with SPI about then.
+18:14:31 <kohsuke> #action Kohsuke to follow up with SPI to make sure 5% withholding still applies, and finds out the resolution of re-introduction post 2003/4/1
+18:15:06 * rtyler wakes up
+18:15:45 <kohsuke> #info another idea in the thread orrc mentioned is to have some "seal" for showing off the fact that someone donated
+18:15:55 <kohsuke> I suppose we can do that
+18:16:09 <hare_brain> Where would the seal show up?
+18:16:17 <kohsuke> maybe the footer?
+18:16:22 <hare_brain> How would you handle seals for company donations?
+18:16:35 <hare_brain> Who's footer?
+18:17:08 <kohsuke> I guess we'll send them a special plugin?
+18:17:40 <kohsuke> in the name of the person who donated, or something
+18:17:47 <hare_brain> Hahaha. So they can be impressed with themselves for donating?
+18:18:03 <hare_brain> I guess I thought a seal would be more like the "I voted" stickers. To tell *other* people that you donated.
+18:18:07 <kohsuke> Yeah, it's like "I voted" seal
+18:18:28 <kohsuke> I guess to other users using your instance
+18:18:45 <kohsuke> Or maybe we should list their names publicly?
+18:18:51 <rtyler> if they want
+18:19:17 <hare_brain> A public list makes more sense. Sort of like the donation/sponsor placards at churches/hospitals.
+18:19:25 <kohsuke> Right
+18:19:32 <hare_brain> But +1 to rtyler's observation. Only if they want to be publicly listed.
+18:19:48 <kohsuke> OK, so we'll ask them if they want thir names to be listed, and have a Wiki page that lists them
+18:20:14 <kohsuke> Fortunately or unfortunately, the # of donations are small that it is quite feasible
+18:20:53 <kohsuke> #agreed we'll ask those who donated if they want their names to be listed, and have a Wiki page that lists them
+18:21:02 <hare_brain> Put it on the donation page itself.
+18:21:03 <hare_brain> https://wiki.jenkins-ci.org/display/JENKINS/Donation
+18:21:17 <kohsuke> #agreed we'll ask those who donated if they want their names to be listed, and have the donation page that lists them
+18:21:36 <kohsuke> Shall we move on to the next topic?
+18:21:47 <kinow_> Hi there, don't know if others can give their opinion here in the meeting, first time that I'm here in the channel during the meeting... but maybe something like what Eclipse does? When you donate you can say if you want your name to be displayed or not, and if so, there is a donor list (http://www.eclipse.org/donate/donorlist.php), they also have the Friends of Eclipse logo + special mirror with more bandwidth
+18:22:09 <rtyler> I don't think we can run a special mirror :P
+18:22:46 <rtyler> the Friends of Eclipse logo is also something that the OSL does
+18:22:48 <orrc> yeah, so if we can automatically accept donations via FFIS, that would be great for us Europe types
+18:22:50 <kohsuke> kinow_: everyone is welcome. And thanks, this is helpful
+18:23:08 <kohsuke> orrc: I got an action to find out their relationship
+18:23:27 <orrc> kohsuke: ah, I missed that
+18:23:47 <kohsuke> "Friend of Jenkins" logo is something we can do, too
+18:24:47 <kohsuke> interesting. "Friend of Eclipse" is for $35. I guess that's how they suggest the amount
+18:24:50 <kohsuke> anyway
+18:24:51 <kinow_> The special mirror is not really necessary, Jenkins war is much smalled than  Eclipse archives. But I would like to be a "Friend of Jenkins" :)
+18:26:04 <kohsuke> I'll see if I or someone else can hack that up quickly, maybe during JUC
+18:26:16 <kohsuke> I don't think it needs to be sophisticated and well protected.
+18:26:33 <rtyler> hack what up?
+18:26:45 <kohsuke> "Friend of Jenkins" seal plugin that we send to those who donated
+18:26:48 <rtyler> ah
+18:27:08 <rtyler> i thought you meant a special mirror, I was about to pull out my slappin' trout
+18:27:29 <kohsuke> No, I learnt my lesson, sir
+18:27:36 <kohsuke> Any more on this topic before we move on?
+18:27:50 <kohsuke> #topic Choosing next LTS baseline candidate (Yahoo! folk?)
+18:28:20 <kohsuke> hare_brain: any progress on 1.424 since then?
+18:29:14 <kohsuke> Maybe we lost him?
+18:29:25 <hare_brain> Yeah, so we fixed the problems we had with the HTML escaping feature, so our internal fork is now passing all built in tests and our additional tests.
+18:29:54 <kohsuke> so we are good to go?
+18:30:17 <hare_brain> But unfortunately, we've had to prioritize some internal work so we haven't had more chance to do further testing in larger setups yet.
+18:30:49 <hare_brain> But I think in general, 1.424 is a good baseline to start the next LTS version on.
+18:31:15 <hare_brain> With vjuranek's test matrix, that'll cover things we haven't covered.
+18:31:33 <kohsuke> As long as it's unlikely that you'll restart from scratch on another version as the baseline, it sounds like we can start on 1.424.
+18:31:51 <hare_brain> I don't think we will.
+18:32:08 <kohsuke> Any +1/-1, anyone else?
+18:32:23 <kohsuke> Otherwise I think we can record 1.424 as the agreement
+18:32:48 <kohsuke> (hoping to get a few more +1s for formality)
+18:32:56 <orrc> sounds good :)
+18:32:57 <vjuranek> user rating alos looks good for 1.424  so +1 for 1.424
+18:32:59 * rtyler has no points either way for LTS
+18:33:08 <imod> +1
+18:33:27 <kohsuke> #agreed Next LTS baseline would be 1.424
+18:33:48 <kohsuke> #topic Governance Document review/approval
+18:33:59 <vjuranek> one more point wrt LTS
+18:34:08 <kohsuke> ga
+18:34:25 <vjuranek> it would be nice to have specified number of days for backporting
+18:34:28 * kohsuke wonders if there's a command to have robobutler go back to the previous topic
+18:34:49 <kohsuke> window of accepting changes, I suppose.
+18:35:02 <vjuranek> yup, https://wiki.jenkins-ci.org/display/JENKINS/LTS+Outlines+Proposal
+18:35:04 <kohsuke> At Sun we use to call it the code freeze day
+18:35:12 <vjuranek> Jenkins release for ?? days
+18:35:21 <vjuranek> replace ?? with something
+18:36:26 <kohsuke> 2 weeks?
+18:36:40 <vjuranek> is 14 days OK, or it would be better to specify it in terms of releases...e.g. it has to be contained at least in two public releases?
+18:36:47 <hare_brain> According to the table, I think it was 1 public release.
+18:37:13 <hare_brain> 1.422 released JENKINS-10000 on 7/25
+18:37:15 <jenkins-admin> JENKINS-10000:Configuration methods for classes with no test methods are not displayed (Resolved) http://jenkins-ci.org/issue/10000
+18:37:30 <hare_brain> This was backported and released in LTS on 8/8
+18:37:39 <hare_brain> Thank you, jenkins-admin.
+18:38:06 <hare_brain> I'm totally fine with changing it. I was just pointing out that that information was encoded in the table
+18:38:28 <kohsuke> I'm fine either way
+18:38:42 <vjuranek> I would prefere 14 days
+18:39:01 <kohsuke> Let's start with 14 days and adjust if needed, then
+18:39:05 <hare_brain> OK, so two public releases.
+18:39:45 <hare_brain> The LTS minor release that coincides with the 3rd public release after a blocker bug was fixed in the public release line will contain the backported fix.
+18:40:19 <kohsuke> Just updated the wiki page and put 14 in there
+18:40:42 <kohsuke> OK, can we move on now?
+18:40:43 <hare_brain> The table needs to be updated to shift the releases in the LTS column down a row
+18:40:51 <hare_brain> I'll do that while we keep the meeting moving.
+18:41:03 <vjuranek> thanks
+18:41:10 <kohsuke> #topic Governance Document review/approval
+18:41:27 <kohsuke> I've made some edits since the last meeting
+18:42:03 <kohsuke> We've added CLA portion, trademark portion, expanded on the 3rd party license section, and moved some stuff around based on comments I received
+18:43:03 <abayer> It's been said before, it'll be said again, but goddamn, kohsuke, you've done a simply amazing job with that doc.
+18:43:34 <kohsuke> Anyone wants to discuss some parts of it further, or can we just do a vote?
+18:43:40 <imod> can only agree!!!
+18:43:45 <kohsuke> Thank you!
+18:44:13 <kohsuke> I should point out that some of the logistical aspects aren't fully taken care of, but I think that's OK. Those are just technicality.
+18:44:25 <kohsuke> (like how to keep track of who signed CLA, etc.)
+18:44:42 <hare_brain> I was going to point out the TODO on the list of core committers, but that falls into the technicality category as well.
+18:45:14 <hare_brain> Since we're only accepting electronic CLA submissions, just check them into the infra-cla repo
+18:45:24 <kohsuke> Let me remove that TODO now
+18:45:25 <abayer> …smart man, dean. =)
+18:45:38 <abayer> I was writing up a more elaborate version of exactly what Dean just suggested. =)
+18:46:10 <kohsuke> So people send in their CLA via pull requests? Nice.
+18:46:32 <abayer> Or email, etc.
+18:46:32 <orrc> with their personal address, email and phone number stored in git history forever?
+18:46:49 <hare_brain> Eh. Good point.
+18:46:50 <hare_brain> Details.
+18:46:57 <abayer> Bah. Stupid privacy!
+18:47:04 * rtyler slaps abayer with a trout
+18:47:05 <hare_brain> Well
+18:47:17 <orrc> ok, file that one back under technicalities
+18:47:25 <abayer> I'll take an action item to figure out the technicalities there.
+18:47:41 <hare_brain> orrc: Is your concern that the information is stored in GitHub, or just access to that repo?
+18:47:53 <rtyler> I share the same concern, and doesn't matter
+18:48:02 <kohsuke> abayer: and please make the signee list machine readable, too
+18:48:12 <orrc> hare_brain: ah, mainly the public part of it
+18:48:39 <kohsuke> rtyler: but we do need the PDFs maintained somewhere
+18:48:48 <abayer> #action abayer to figure out how to store submitted CLAs in a way that doesn't violate privacy, and to have a machine readable list generated from those CLAs.
+18:48:50 <hare_brain> So if the repo was restricted access?
+18:49:03 <rtyler> hare_brain: that could work, but not the pull requests part :)
+18:49:06 <kohsuke> I guess the google groups do the archiving
+18:49:07 <hare_brain> Right
+18:49:08 <abayer> I believe that's how ASF handles it.
+18:49:13 <abayer> (private repo, etc)
+18:49:23 <kohsuke> And our GitHub account doesn't do private repo
+18:49:31 <abayer> I'm fairly sure we can get our hands on one. =)
+18:49:41 <abayer> (would poke ksawicki if he were here now)
+18:50:04 <kohsuke> I think we should let abayer figure this out, as he took the action
+18:50:08 <hare_brain> ok
+18:50:09 <kohsuke> I think the concern is well understood
+18:50:15 <abayer> It'd have to be under a different account than jenkinsci, if I remember correctly, but yeah. I'll work it out.
+18:50:18 <hare_brain> orrc, thanks for bringing it up
+18:50:20 <hare_brain> That was important
+18:50:30 <abayer> I'll bang that out while I'm sitting around at JavaOne. =)
+18:50:54 <kohsuke> OK, does this mean we can vote now?
+18:51:05 <abayer> +1
+18:51:16 <imod> +1
+18:51:22 <vjuranek> +1
+18:51:27 <hare_brain> Are those votes, or votes to vote? ;)
+18:51:43 <abayer> Vote to vote. =)
+18:51:43 <vjuranek> vote:-)
+18:51:53 <vjuranek> ok, vote to vote:-)
+18:52:01 <kohsuke> Let me try again. Here's the motion to approve the governance document as of revision 21
+18:52:06 <orrc> what happens once it's approved? it can't be edited? I think the doc is brilliant, but I've had it open for a while, meaning to go through it and fix up spelling, grammar etc :)
+18:52:30 <hare_brain> I think if there are edits, we'll need to vote on the edits
+18:53:03 <hare_brain> Or, have a pointer to the official blessed revision, and let the page itself float with edits.
+18:53:16 <abayer> Yeah. So it may make sense to do a "feature freeze" on the doc now, and then take a week or two to do bug fixes - i.e., grammer/etc.
+18:53:25 <orrc> I like it
+18:53:31 <hare_brain> Agreed.
+18:53:42 <hare_brain> CI on a project governance document. Nice.
+18:53:49 <kohsuke> except I won't be able to announce it in JUC :-(
+18:53:59 <hare_brain> I think you can.
+18:54:06 <hare_brain> I think we're saying it's good enough for 1.0
+18:54:09 <orrc> 1.0 RC1 :)
+18:54:16 <hare_brain> But we should expect 1.1, 1.2 in the future.
+18:54:24 <kohsuke> Agreed about 1.1 and 1.2
+18:54:26 <rtyler> and thus began kohsuke's long decent into becoming a salesperson
+18:54:29 <hare_brain> Or 1.0.1 for grammar and spelling corrections
+18:54:47 <abayer> Yeah, 1.0.1.
+18:55:02 <kohsuke> Is that OK, orrc?
+18:55:09 <orrc> absolutely
+18:55:18 <kohsuke> 1.0 today, and 1.0.1 with minor bug fixes
+18:55:21 <kohsuke> OK
+18:55:27 <abayer> Let's vote on this as 1.0, and then orrc can make a copy of the page, clean it up, etc, and then we can vote on that as 1.0.1 in two weeks.
+18:55:40 <kohsuke> Sounds good
+18:55:44 <hare_brain> Agreed
+18:55:52 <kohsuke> Now I say let the voting commence!
+18:56:10 <hare_brain> +1 on rev 21 as 1.0
+18:56:10 <kohsuke> And here's my +1 to approve the document
+18:56:12 <imod> once again: +1
+18:56:15 <vjuranek> +1
+18:56:20 <abayer> +1
+18:56:45 <rtyler> +fish
+18:57:02 <kohsuke> what's that supposed to mean?
+18:57:20 <hare_brain> It means he wants to get slapped with a trout
+18:57:28 <abayer> I think rtyler's just being….difficult. =)
+18:57:37 <rtyler> yap
+18:57:56 <kohsuke> #agreed rev21 is approved as governance document 1.0
+18:58:08 <kohsuke> actually, I need to make it rev22 to remove "this is work in progress" header
+18:58:48 <abayer> =)
+18:58:51 <kohsuke> done
+18:59:11 <kohsuke> #topic next meeting time
+18:59:38 <kohsuke> Two weeks from now I'm in Tokyo
+18:59:45 <kohsuke> 3am is not going to work.
+18:59:49 <kohsuke> for me.
+18:59:54 <mwalling> aww, why not? ;)
+19:00:09 <kohsuke> so either you guys carry on without me, we'll change time, or we'll skip
+19:00:56 <kohsuke> If we do it 3 hours earlier, is that too hard for US west coast folks?
+19:01:00 <kohsuke> That's 8am?
+19:01:37 <hare_brain> For me, that's difficult. In the middle of getting everyone out the door.
+19:02:01 <hare_brain> What is 9pm PDT in other time zones?
+19:02:17 <hare_brain> (There's no time change between now and then, is there?)
+19:02:26 <abayer> Actually, there may be.
+19:02:36 <abayer> In any case, that's 6am Euro time.
+19:02:40 <abayer> 5am UK.
+19:02:54 <hare_brain> Alright, maybe a little too early.
+19:03:46 <kohsuke> I guess we'll leave it at the regular time, and we'll let others decide to cancel or have the meeting as scheduled?
+19:04:21 <kohsuke> OK. Let's do that.
+19:04:21 <hare_brain> That's what it sounds like.
+19:04:30 <hare_brain> (BTW, no time change until November 6.)
+19:05:04 <kohsuke> OK, I think we are done for the day.
+19:05:13 <kohsuke> Thank you very much!
+19:05:28 <hare_brain> Hope to see many of you at JUC
+19:05:35 <kohsuke> me too
+19:05:46 <kohsuke> #endmeeting

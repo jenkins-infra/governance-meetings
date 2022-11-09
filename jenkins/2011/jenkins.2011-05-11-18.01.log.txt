@@ -1,0 +1,559 @@
+18:01:44 <rtyler> #startmeeting
+18:01:44 <robobutler> Let the Jenkins meeting commence!
+18:01:56 <ndeloof> yeah ;)
+18:01:58 <kohsuke> The agenda is https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:02:18 <kohsuke> I propose that we spend the first 15 minutes taking care of easy things
+18:02:19 <rtyler> #info the agenda, as per usual is located on the wiki: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:02:24 <rtyler> agreed
+18:02:27 <abayer> So, anything interesting happen in the last couple weeks? =)
+18:02:31 <abayer> brb
+18:02:39 <kohsuke> Then spend the remaining time talking about the first topic listed in the agenda
+18:02:48 <rtyler> #chairs kohsuke, abayer, hare_brain_
+18:03:05 <abayer> So yeah, easy stuff first.
+18:03:20 <kohsuke> #topic permalink from jenkins-ci.org to his book
+18:03:27 <abayer> +1
+18:03:28 <rtyler> #chair kohsuke abayer hare_brain_
+18:03:28 <robobutler> Current chairs: abayer hare_brain_ kohsuke rtyler
+18:03:33 <magnayn> +1
+18:03:38 <kohsuke> #topic permalink from jenkins-ci.org to his book
+18:03:43 <abayer> It's the first book on Jenkins, it's a friend of the community, why not?
+18:03:59 <aheritier_> It will be about Jenkins and Hudson ?
+18:04:03 <rtyler> there's also a german book I think we should link?
+18:04:08 <abayer> The book is "Jenkins: The Definitive Guide".
+18:04:11 <magnayn> (and it's available as a free PDF!)
+18:04:30 <ndeloof> any reason *not* to link to any book with significant documentation on jenkins ?
+18:04:31 <kohsuke> Yeah, Simon wrote a book called "Continuous Integration with Hudson"
+18:04:34 <jieryn> sounds good to me
+18:04:38 <abayer> Let's link that too.
+18:04:39 <rtyler> #agreed
+18:04:57 <kohsuke> #topic hardware access for drulli and olamy (primarily eggplant)
+18:05:00 <rtyler> #action rtyler to link wakeleo's book as well as Simon's book "Continuous Integration with Hudson"
+18:05:05 <aheritier_> +1 but he changes the URL : http://www.wakaleo.com/download-ci-with-hudson :-)
+18:05:10 <kohsuke> sorry, I went too fast :-(
+18:05:13 <rtyler> yeah, no shit
+18:05:14 <rtyler> :)
+18:05:33 <kohsuke> #action we ask John to kindly update the URL to say jenkins
+18:05:41 <rtyler> alright, so let's hardware access then
+18:05:42 <abayer> =)
+18:06:03 <aheritier> +1
+18:06:04 <kohsuke> The motivation of adding more admins is to get a better time zone coverage
+18:06:24 <rtyler> that only helps if there's good documentation on what needs to be done as well as monitoring
+18:06:31 <abayer> True.
+18:06:42 <rtyler> which is something we can cover separately :)
+18:06:43 <kohsuke> Not to mention that drulli and olamy have been around for some time and we want them to spend more time on Jenkins
+18:06:45 <aheritier> Do we have some monitoring tools ?
+18:07:02 <rtyler> aheritier: I mostly rely on twitter complainers alerting me to issues :-P
+18:07:06 <rtyler> aheritier: "we should"
+18:07:09 <kohsuke> #info There is infra wiki space that captures some of the basic operations like restart
+18:07:14 <aheritier> rtyler: :-)
+18:07:35 <rtyler> it's funny that neither olamy nor drulli are online for this :)
+18:07:42 <kohsuke> Yeah, it'd be good to have nagios or something like that.
+18:07:45 <rtyler> kohsuke: are we talking eggplant access for both? or system-wide?
+18:07:59 <rtyler> I am fine with eggplant access, cucumber I'm less fine with right now
+18:07:59 <kohsuke> drulli volunteered for JIRA primarily
+18:08:10 <aheritier> @kohsuke : yes. And it isn't too difficult to have a basic setup for that
+18:08:16 <mwalling> i'm willing to help out too, i do enough trolling of the irc channel
+18:08:22 <rtyler> if we're going to be giving out access for cucumber for more folks, then I'll want to spend some time hardening
+18:08:31 <abayer> I think JIRA/Confluence shell access is probably sufficient for now.
+18:08:34 <rtyler> (i.e. SELinux, monitoring and better alerting in my inbox)
+18:08:55 <kohsuke> Let's start with eggplant access
+18:09:20 <rtyler> #action rtyler to grant drulli and olamy access to eggplant for JIRA/Confluence admin
+18:09:23 <rtyler> next?
+18:09:26 <kutzi> sorry for diverting, but are we going to talkabout the Hudson/Eclipse stuff, too?
+18:09:36 <abayer> Yeah, we're killing the easy stuff first. =)
+18:09:41 <aheritier> :-)
+18:09:48 <rtyler> kutzi: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:10:01 <kohsuke> Can we move on to the next topic?
+18:10:05 <rtyler> kohsuke: yes
+18:10:08 <kohsuke> #topic Can the localization committers push their changes directly? If so, please put the approval in the record(from tyuki39)
+18:10:33 <kohsuke> This was from the guy who mainly works on Japanese l10n
+18:10:44 <kohsuke> He wants to make sure that people don't mind him pushing l10n to plugins
+18:10:47 <rtyler> time for plugin committers to speak up :)
+18:11:05 <abayer> I think it's probably best to do it as pull requests, at least for plugins with active development.
+18:11:10 <kohsuke> I don't see any problem because I don't see how anyone else can review them.
+18:11:11 <jieryn> someone is going to localize my plugin for me? sounds great
+18:11:17 <magnayn> Sounds good to me, I'd have no way to verify them..
+18:11:24 <abayer> But I'm fine with whatever.
+18:11:38 <rtyler> I think pushing cool, not cutting releases though
+18:11:43 <bap2000> I'm cool with that
+18:11:45 <aheritier> I was thinking about core not plugin. That's a good question. I think it is possible if we don't do releases without maintener agreement first
+18:11:50 <kutzi> would be no problem for me - as soon as I've migrated my plugins to github :)
+18:11:51 <abayer> Oh, definitely not cutting releases.
+18:11:58 <kohsuke> No one is asking to do releases, obviously.
+18:12:15 <abayer> And make sure to update the plugin's wiki page with the localization change.
+18:12:20 <aheritier> I say that because we had the case some months ago
+18:12:34 <kohsuke> #agreed Please push right away. "someone is going to localize my plugin for me? sounds great"
+18:12:49 <kohsuke> Yeah, it happened once in the entire history of the project
+18:13:02 <kohsuke> It was more like a few years ago, IIRC.
+18:13:25 <rtyler> next!
+18:13:26 <kohsuke> #action Kohsuke to update a Wiki page to encourage l10n to be pushed directly
+18:13:27 <aheritier> so much time ? :(
+18:13:30 <rtyler> xD
+18:13:32 <kutzi> sorry, I've to leave now, but when the talk comes to Hudson/Eclipse, count myself as a -1 regarding joining the Eclipse project - at least under the current circumstances
+18:13:40 <rtyler> kutzi: noted :)
+18:13:43 <rtyler> kutzi: cheers
+18:13:54 <kutzi> bye
+18:14:00 <kohsuke> #action Kohsuke to also write a note that l10n contributiors sshouldn't unilatelarly release a new version
+18:14:08 <kohsuke> #topic Discuss status on the JenkinsCI cafe press store
+18:14:25 <kohsuke> #info So I just created http://www.cafepress.com/jenkinsci
+18:14:39 <magnayn> I want stickers!
+18:14:39 <kohsuke> But it needs to have more stuff
+18:14:40 <aheritier> cool
+18:14:47 <rtyler> magnayn: that's on my list :)
+18:14:48 <aheritier> I want the mug
+18:14:56 <rtyler> aheritier: this isn't what we were going to discuss ;)
+18:15:01 <rtyler> kohsuke: where do funds go currently?
+18:15:06 <rtyler> assuming there are funds :P
+18:15:07 <kohsuke> There's zero profit today
+18:15:09 <aheritier> rtyler: I'm sad :(
+18:15:14 <rtyler> heh
+18:15:27 <kohsuke> We can set some amount but then as you say, the question is where to assign it to.
+18:15:44 <kohsuke> And if the CafePress store for Hudson was of any indication, it's not worth the hassle of even discussing
+18:15:56 <rtyler> that logo sucked though :)
+18:16:00 <kohsuke> :-)
+18:16:03 <abayer> I'm fine with tabling the question of proceeds for now.
+18:16:09 * rtyler nods
+18:16:19 <abayer> If Kohsuke makes a few bucks off it, I'm not going to complain. =)
+18:16:30 <rtyler> great that it's up, but IMHO not worth the time spending on at this time
+18:16:34 <kohsuke> Just for the record, like I said, I am not making any profit.
+18:16:52 <kohsuke> And I intend to keep it that way.
+18:16:58 <aheritier> If kk becomes to be rich with that we'll study the question :-)
+18:16:59 <abayer> Alright then. We're good.
+18:17:03 <magnayn> Is the logo MIT / CC ? If anyone cared about profits they could always manufacture their own
+18:17:06 <kohsuke> ... at least for the time being.
+18:17:17 <kohsuke> magnayn: it's CC-BY-SA
+18:17:28 <kohsuke> I thought I captured that in the logo page. Let me check
+18:17:50 <rtyler> next topic? we're getting into the harder bits
+18:17:51 <kohsuke> #info see https://wiki.jenkins-ci.org/display/JENKINS/Logo for the license of the logo
+18:17:54 <kohsuke> Yes
+18:18:16 <kohsuke> Shall we push the remaining items to the next week and talk about the elephant in the room?
+18:18:25 <lunks> Hello, I'm having a weird issue with Jenkins. I have set it up to get changes from git, then run a bash/rake/ruby/whatever script. For some reason, it's not running the script. It's weird in a way that the build output doesn't show much more than getting things from git and finishing the build. How could I debug this?
+18:18:27 <abayer> Fine by me. I'll move the git plugin thing to email.
+18:18:34 <aheritier> which elephant ?? :-)
+18:18:42 <kohsuke> #topic discuss progress with SFC/SPI/ASF/EF regarding an umbrella organization
+18:18:46 <hare_brain_> Who are you calling an elephant? :p
+18:18:49 <rtyler> kohsuke: I really would like to discuss infra
+18:18:54 <kohsuke> OK
+18:19:05 <kohsuke> #topic infra update from rtyler
+18:19:07 <rtyler> YAY
+18:19:10 <kohsuke> Better be quick
+18:19:12 <rtyler> heh
+18:19:14 <rtyler> alright
+18:19:19 <mwalling> rtyler broke the build. next!
+18:19:30 <rtyler> #info We have one 3U machine racked at the OSUOSL waiting for an OS installation
+18:19:40 <aheritier> cool
+18:19:43 <kohsuke> great
+18:19:48 <rtyler> #info The original datacenter completely botched shipping rails for the 2U machine (cabbage)
+18:19:57 <rtyler> #info They'll hopefully be sending those along soon
+18:20:07 <rtyler> once lettuce (3U) is online, aheritier gets his test JIRA :)
+18:20:14 <aheritier> yeahhh
+18:20:18 <rtyler> :)
+18:20:38 <rtyler> #info Our MirrorBrain installation is still broken in that it's not geolocating properly
+18:20:57 <ndeloof> aheritier: some more non-sleeping nights ;)
+18:20:59 <rtyler> #info Because of this, we still have disabled all international mirrors (for speed concerns in our round-robin setup)
+18:21:00 <kohsuke> Is it at least controlling out bandwidth usage?
+18:21:05 <rtyler> yes
+18:21:10 <rtyler> we still use our mirrors for a LOT
+18:21:19 <lunks> hmm help? :P
+18:21:19 <aheritier> ndeloof: one more, one less :-)
+18:21:22 <rtyler> but we cannot use our asian and european mirrors effectively until geolocation works properly
+18:21:25 <rtyler> lunks: /topic
+18:21:36 <aheritier> lunks: We'll help you after the meeting. Sorry
+18:21:47 <lunks> oh, it's ok
+18:21:57 <lunks> good luck you all. :)
+18:22:02 <rtyler> #info We have free backup provided by Contegix.com, unfortunately I've got to get some more parts to the data center to get that going
+18:22:15 <rtyler> #action rtyler to order and ship a new NIC to Contegix to get proper backups of cucumber setup
+18:22:25 <rtyler> in the meantime, I've been manually encrypting and sending backups offsite
+18:22:31 <rtyler> eggplant has no backups right now though
+18:22:34 <kohsuke> #idea that reminds me that "we love you Contegix/Rackspace/OSUOSL" post is badly needed
+18:22:47 <rtyler> but AFAIK JIRA/Confluence are in the OSUOSL's shared DB setup which *is* backed up
+18:23:02 <kohsuke> #info Yes, the database and attachments in the file system are both backed up
+18:23:14 <rtyler> #info Contegix has also graciously bumped our bandwidth allocated up to 1TB *free* for the month
+18:23:20 <rtyler> well, every month
+18:23:34 <rtyler> but we won't have to worry about bandwidth on our Contegix machines any longer, since those guys are so damned awesome
+18:24:00 <rtyler> #action rtyler still working on offsite backups for cucumber
+18:24:00 <aheritier> yes they are great. It's cool to work with them
+18:24:09 <mwalling> contegix++
+18:24:17 <jieryn> contegix++
+18:24:19 <rtyler> #action rtyler to send change-order for 1TB of free bandwidth per month to the Jenkins project
+18:24:33 <rtyler> kohsuke: that's the infra updates from me, the floor is yours :)
+18:24:36 <kohsuke> OK
+18:24:41 <jieryn> thx rt
+18:24:49 <magnayn> should we give these infra guys some kudos on the www page ?
+18:24:56 <kohsuke> Yeah, thanks for keeping the bits getting served
+18:25:21 <kohsuke> I should have taken a picture of rtyler installing brackets to a machine rack
+18:25:22 <rtyler> magnayn: yeah, I need to post some thank-yous :)
+18:25:35 <kohsuke> #topic Discuss progress with SFC/SPI/ASF/EF regarding an umbrella organization
+18:25:42 <abayer> So, yeah, last week happened. =)
+18:25:51 <rtyler> kohsuke: want to give a status report, then we discuss?
+18:25:58 <kohsuke> Yeah
+18:26:16 <kohsuke> So time line wise...
+18:26:26 <kohsuke> We were making a good progress with SPI application
+18:26:36 <rtyler> that is to say
+18:26:39 <kohsuke> There's a draft resolution to take us under SPI.
+18:26:50 <mwalling> yay!
+18:26:50 <kohsuke> ... and I believe the meeting date was set or soon to be set.
+18:26:50 <rtyler> #info There is a resolution for the board meeting at SPI which should be happening today
+18:26:55 <rtyler> it's today
+18:27:00 <kohsuke> oh, today, I missed that.
+18:27:00 <rtyler> later i believe
+18:27:03 <mwalling> kohsuke: i heard from spi.. yeah, that
+18:27:08 <abayer> The resolution is to invite us, I believe.
+18:27:13 <kohsuke> Yes.
+18:27:20 <kohsuke> And then the last week happened.
+18:27:37 <kohsuke> Namely, Oracle is proposing to transfer the Hudson project to Eclipse,
+18:27:47 <kohsuke> and naturally people are asking "what about Jenkins?"
+18:27:52 <ndeloof> the dark side of the force ? http://4.bp.blogspot.com/-MiSH5L8mcQw/TcLdg1OiBdI/AAAAAAAAFdA/epYCJdU7ns0/s1600/eclipse.jpg (thx @aheritier for logo idea :P)
+18:27:54 <abayer> In case you were sleeping under a rock, http://www.eclipse.org/proposals/technology.hudson/ and about fifty thousand news stories.
+18:28:28 <kohsuke> So the ball is kind of in our court to figure out what to do next
+18:28:59 <mwalling> #info the spi meeting is at `date -d @1305145800` in #spi on irc.oftc.net
+18:29:05 <kohsuke> We've been talking to some folks on the Eclipse side to get some sense of what they think about this.
+18:29:41 <jieryn> i have my doubts as to whether hudson will meet entrance criteria for eclipse
+18:29:47 <abayer> I think it's worth figuring out what conditions would need to be met in order for a reconciliation to actually happen.
+18:29:53 <abayer> Be it at Eclipse or elsewhere.
+18:29:58 <magnayn> I have my doubts as to whether it can meet the legal requirements for eclipse
+18:30:07 <jieryn> that is what i meant ;)
+18:30:24 <abayer> If Sonatype, Oracle, and the other participants in the proposal really do want a reunion, it's worth seeing what exactly that would mean.
+18:30:33 <aheritier> magnayn: jieryn : they'll just have to spend few hours to rewrite a part of the code
+18:30:47 <rtyler> abayer: in terms of them joining Jenkins, or us joining Hudson again?
+18:30:48 <kohsuke> Just to set the expectation, one thing I've heard is that the Oracle Hudson team doesn't really care much about a merge, any more than before.
+18:30:57 <mwalling> personal feeling, they dont actually want a reunion, they want to make the jenkins project look bad
+18:31:00 <rtyler> I still maintain that Hudson is a tainted brand now
+18:31:01 <abayer> rtyler: That there would be one of the conditions to figure out. =)
+18:31:06 <magnayn> mwalling: agree
+18:31:18 <rtyler> well, forgetting about Hudson entirely
+18:31:33 <magnayn> For Jenkins to merge with hudson = they (sonatype, mainly) got everything they wanted
+18:31:37 <rtyler> who wants to work with abayer on putting together a list of things "we" need to go to Eclipse?
+18:31:49 <jieryn> i'm not understanding why we'd want to
+18:31:51 <rtyler> there's also ASF which there's a lot of love for
+18:31:53 <magnayn> Not me - I'm 'dead body' -1 on EF
+18:32:15 <rtyler> perhaps we should submit a formal proposal to the ASF while we're at it
+18:32:20 <zx> technically you can modify the eclipse.org proposal anyway you want (e.g., change the name to Jenkins)
+18:32:21 <abayer> magnayn, mwalling: even if they don't actually want it, I think it'd be a good idea/healthy to at least figure out what we'd need to make it work. Nothing wrong with investigation/understanding what our options are and what our needs are.
+18:32:40 <kreyssel> +1 for ASF
+18:32:50 <magnayn> abayer: ecipse process is too hateful. IMO there's no way to make it sane.
+18:33:00 <domi_> I think should realy make first step to reach out for a future togather - not always just talk abaout it (e.g. everyone is welcome to join...)
+18:33:03 <rtyler> there is work on SFC and SPI right now
+18:33:25 <abayer> I'm not necessarily saying anything about Eclipse specifically - I'm thinking more on a "wherever it ends up living" level.
+18:33:26 <rtyler> domi_: Oracle was offered an interim board seat when Jenkins started
+18:33:26 <kohsuke> Right, I should also mention that SFC heard about the development last week, and they are a lot more keen on helping us.
+18:33:50 <aheritier> For me Eclipse is good to build a product between companies and to be able to do business with it. But it is  a community killer. Myself as an opensource contributor I'm not interested in that
+18:33:54 <magnayn> abayer: hudson teams are committed to it being @ eclipse - we knew this from the start
+18:34:01 <domi_> rtyler: nice
+18:34:02 <rtyler> aheritier: I've been hearing that a lot
+18:34:08 <abayer> I think we owe our users to at least *try* to see if reconciliation is possible. If it's not, well, then that's that.
+18:34:15 <rtyler> domi_: they turned it down, so it's not clear that they want to work with us
+18:34:31 <domi_> rtyler: I know, but the same was offered on the other site
+18:34:31 <magnayn> quite. Why does reconciliation have to be on their terms?
+18:34:31 <rtyler> abayer: how can we collaborate on a list of must haves and nice to haves
+18:34:34 <abayer> But there's obviously a lot of interest out there in getting rid of the split.
+18:34:36 <zx> aheritier, how is eclipse.org a community killer?
+18:34:39 <abayer> magnayn: It doesn't, IMO.
+18:34:44 <rtyler> besides an epic mail thread? :/
+18:34:48 <abayer> rtyler: wiki?
+18:34:55 <aheritier> abayer: And we'll lost a lot of time to talk instead of working on the project ...
+18:34:58 <rtyler> that will probably work
+18:35:03 <magnayn> So they're welcome to join at any time @ jenkins. We're not refusing patches from them, are we?
+18:35:15 <rtyler> #action abayer to start a wiki page on "things needed" by an overarching org, whether it be Eclipse, ASF, etc
+18:35:27 * phyto thinks if hudson goes EF, you shoudl go ASF
+18:35:32 <rtyler> magnayn: no, we're not in the business of refusing patches :)
+18:35:40 <phyto> only way to compete with the number of eyes on it
+18:35:45 <rtyler> I've seen a LOT of pull requests merged this week :)
+18:35:49 <magnayn> rtyler: but EF is...
+18:35:57 <aheritier> zx: A lot of rules and processes to follow. This is product focused and not community focused. At least not OSS community. With a community of companies it works (they are paid to lost their time to fill papers)
+18:35:59 <rtyler> magnayn: yeah, I'm aware of their committer olicies
+18:36:05 <abayer> magnayn: No, we aren't. But if there are things we could reasonably do that would make them more comfortable with rejoining Jenkins, I'd like to at least look into it.
+18:36:22 <cybernd> from a user perspective: if sonatype is able to integrate a maven release cycle into hudson and eases the pain of javas main buildsystem, then jenkins is not an alternative for hudson (keep in mind that mylyn and m2eclipse are also part of eclipse adding value to the stack)
+18:36:34 <kohsuke> I kind of agree that we owe it to our users to try to work it out, but the other part of me thinks that when there's this deep division, I'm not sure how the combined group of people can work productively. I think that's the biggest show-stopper, although it might not be a good enough PR.
+18:36:38 <magnayn> abayer: fair enough, but we never could find out what was driving the split in the first place...
+18:37:12 <rtyler> kohsuke: I agree to an extent
+18:37:19 <abayer> Plus, it's been made pretty clear that at least some people involved in the Hudson proposal would like to see a reunion, so it seems like we should do something more than just saying "No" and walking away. =)
+18:37:28 <rtyler> IMHO we should be most concerned with what makes those contributing to core and plugins happy first
+18:37:41 <rtyler> the recipe for success with Hudson, and now Jenkins has been a flourishing developer ecosystem
+18:37:46 <aheritier> kohsuke: I don't see how we could have a project managed by at least 2 people like you and JVZ. You are the opposite
+18:37:51 <rtyler> end-users tend to follow when that part is locked down
+18:37:52 <domi_> abayer: that exaclty what I mean
+18:37:52 <kohsuke> rtyler: Good point
+18:37:54 <zx> aheritier, apache has similar rules... at eclipse.org each project is run the way they want as long as the Eclipse Development Process (EDP) is followed (this is coming from an eclipse committer)
+18:38:05 <magnayn> abayer: We're not saying no. But their terms are inevitably going to be, bottom line, @ eclipse, following eclipse policy
+18:38:14 <magnayn> which is a showstopper, IMO
+18:38:15 <rtyler> aheritier: it'd be managed by Jason and Ted xD
+18:38:22 <aheritier> zx: I didn't say that I would like to see Jenkins at Apache :-)
+18:38:59 <phyto> as i community developer that's contributed in the past to core and plugins i'd hate to submit that to hudson
+18:38:59 <abayer> magnayn: I'm still working on getting a better understanding of eclipse policy and how flexible it is - I mean, I thought Apache policies weren't particularly flexible until Kohsuke and I had a chat with Doug Cutting and he explained just what you can do. Which was a lot more than I'd thought.
+18:39:08 <rtyler> #info We are currently courting both the SFC and SPI
+18:39:18 <kohsuke> aheritier: but if we remain separate, I think going under Apache has a number of strong appeals.
+18:39:22 <jieryn> and we have been for a long while
+18:39:24 <phyto> after the way things shook out
+18:39:25 <rtyler> I don't see any reason we can't submit an ASF proposal since there's obvious some desire for that to happen
+18:39:25 <abayer> fwiw, it's pretty clear that the Hudson Eclipse proposal does not include non-core plugins, at the very least.
+18:39:30 <jieryn> we are not following orcl here.. we have been leading
+18:39:35 <rtyler> jieryn: their board meetings take for fscking ever :)
+18:39:38 <zx> aheritier, well in my opinion Apache and Eclipse are two well run organizations with good governance and maturity... they have been through it all... from grievance issues (ever had a committer that was poisonous) to trademarks
+18:39:51 <zx> rtyler, why do an ASF proposal? what would be different? the name?
+18:40:14 <rtyler> zx: ASF has a lot to offer in terms of community support, both in users and infrastructure
+18:40:22 <d_a_carver> zx, Apache and Eclipse dev processes a bit different.  I'm committer in both.   Eclipse is a bit more formal.
+18:40:26 <rtyler> ASF takes dogfooding pretty serious :)
+18:40:31 <jieryn> there are really good pieces to the eclipse proposal though, in that .. removing the lgpl code into extension points with the existing lgpl as default impl
+18:40:42 <rtyler> they're also a really great bunch of folks, I've been to ApacheCon a couple times, great community over there
+18:40:43 <abayer> jieryn: Yeah, I'm a big fan of that.
+18:40:45 <jieryn> e.g. graph
+18:40:46 <kohsuke> One of the benefits is that it makes it easier for corporations to contribute.
+18:40:57 <aheritier> IPs control process is many more important on eclipse side I thing (which is a good think for business, but annoying for the community contributors)
+18:41:18 <zx> rtyler, eclipse's community relies heavily on build.eclipse.org (and older Hudson instance atm) and other things... the committers dogfood as much as we can
+18:41:31 <aheritier> But I always like ASF (even if its not easy every day)
+18:41:38 <d_a_carver> aheritier, correct that is the hurdle for eclipse is the IP process, but there is a Parallel IP process that can be invoked.
+18:41:45 <abayer> Ok, so here's what I'd like to propose.
+18:41:46 <rtyler> zx: *nod*
+18:42:09 <zx> aheritier, well... having good code provenance is a good thing... it protects you and sometimes forces you to minimize your deps (or say get rid of some LGPL deps) and is good thing if you want to maximize who uses you... from commercial to just normal folks
+18:42:11 <aheritier> d_a_carver: and I know that it killed few projects which didn't have enought resources to process it
+18:42:29 <aheritier> zx:I agree
+18:42:38 <abayer> 1) We, the Jenkins community, figure out what conditions would need to be met for a reconciliation with the Hudson people, regardless of foundation, etc. Just cultural/technical requirements that we'd need in order to actually work together effectively.
+18:42:46 <aheritier> zx: Not fun, but necessary and important
+18:43:14 <abayer> 2) We research both Eclipse and ASF as options for submitting Jenkins to, building up a sense of plusses and minuses for both.
+18:43:28 <d_a_carver> aheritier, actually in most cases for eclipse IP it comes down to one person being the lead on it.  But the sticky point comes when a dependency is rejected because of unclear IP.  Then an alternative has to be found.  That is what kills a lot of projects.
+18:43:42 <abayer> I mean, we're in a pretty good position here - the two leading non-Stallman OSS foundations are both interested in giving us a home. =)
+18:43:56 <zx> aheritier, tell me about it... been dealing with IP issues for a long time... at least it makes me sensitive to depending on third party stuff...
+18:43:58 <aheritier> abayer: yes.
+18:44:06 <d_a_carver> aheritier, an example, is Saxon support in the XSL Tools project at eclipse.  We can redistribute it because of some concerns of IP and permissions.
+18:44:10 <rtyler> #agreed on everything abayer just said :P
+18:44:16 <d_a_carver> We can't.
+18:44:28 <aheritier> zx:  yes. Mmany people don't take care of that enough
+18:44:30 <rtyler> abayer: are you throwing yourself under the bus on taking point on nay of those :)
+18:44:42 <zx> aheritier, some good comes out of it though... recently ANTLR rewrote some of their code after eclipse.org found issues with it and now is clean :D
+18:44:58 <kohsuke> I think the next question then is what are the conditions that we want?
+18:45:05 <abayer> This is really two separate questions that need to be answered: can the Jenkins and Hudson projects fold back together? And given the choice, which of Eclipse and ASF feels like the right home for the project?
+18:45:05 <billbillingsly> sorry to butt in. why does Jenkins need to join an umbrella foundation?
+18:45:09 <zx> abayer, I would add a #3) what license do you guys want?
+18:45:18 <magnayn> MIT
+18:45:31 <abayer> zx - true, though I personally think anything in the MIT/ASL/CDL continuum works.
+18:45:32 <zx> EPL? BSD? Apache? joining a foundation may limit your choice
+18:45:41 <abayer> EDL, rather.
+18:46:01 <rtyler> kohsuke: I think a fast way to bring committers in is a must
+18:46:17 <magnayn> Persoally, i think foundations are a retrograde step
+18:46:23 <rtyler> I'm loathe to require any signatures or goddamn fax machines before a committer can contribute
+18:46:41 <magnayn> I think the question as posed makes it a false dichotomy
+18:46:49 <aheritier> rtyler: :-) Welcome at ESF and ASF :-)
+18:47:02 <jieryn> requirements: maintain release per week cycle, quick commits for pull requests
+18:47:04 <abayer> billbillingsly: In part because we need a legal umbrella for funds, IP, etc, in part because we'd get a lot of infrastructure/logistical benefits, and in part because of the synergistic relationships you get between projects living in a foundation together.
+18:47:08 <kohsuke> magnayn: you see other ways?
+18:47:25 <magnayn> I'd rather carry on as we are, accept contributions from wherever wants to contribute, and parhaps get an umberalla a-la SFLC to sort out legal stuff
+18:47:41 <abayer> I should also say that I *strongly* don't think non-core plugins should get automatically pulled along with core to any foundation.
+18:48:28 <kohsuke> magnayn: my primary concern in doing that is that it might drive corporate interests to the other side.
+18:48:39 <aheritier> abayer: it will be less easy to manage if we have things on various locations
+18:48:44 <d_a_carver> magnayn, right, but you then have to manage a lot of IP related concerns yourself.
+18:48:48 <domi_> I this realy an honest discussion about rejoining in any way with hudson or is it just a discusion because you feel it has to be held to be kind - I hoppe you are realy considering this to be a possibility
+18:48:55 <rtyler> magnayn: I kind of like that approach too
+18:48:55 <abayer> magnayn: Assuming that we can't reconcile with Hudson (which, sadly, is probably the case), then flying solo will mean Hudson will get more focus from companies wanting to contribute, etc. Which would suck.
+18:49:04 <magnayn> I have *no* IP concerns whatsoever
+18:49:21 <magnayn> IMO, this IP nonsense is total FUD
+18:49:24 <abayer> domi_: I want it to happen, if it can work. But I'm not going to advocate for breaking what we've got just for the sake of reconciliation.
+18:49:27 <d_a_carver> magnayn, yeah, but many out there do.  Unfortunately that is the litigation world we live in.
+18:50:10 <d_a_carver> abayer, personally, I think both projects can survive on their own.
+18:50:27 <aheritier> IP is a problem only for thus doing business with the product. In the community we have cloudbees but otherwise a lot of us are only users ..
+18:50:27 <magnayn> Hudson *may* get corporate attention, but my guess is Jenkins will get far, far more _developer_ attention
+18:50:48 * rtyler agrees
+18:51:02 <abayer> aheritier: Yeah, that would be a challenge to deal with, but the alternative is forcing three hundred odd plugins into ASF/EF and putting a higher bar on our barrier to entry for new plugin devs than I think is the right way to go. *shrug*
+18:51:05 <rtyler> we're also talking about something that's not happened
+18:51:07 <magnayn> Furthermore, my guess is even @ eclipse, hudson will have to be dual-MIT licensed
+18:51:13 <domi_> from what I see at my daily work, the one having better maven support will win at the end
+18:51:16 <magnayn> so we can cherry-pick changes there anyway
+18:51:17 <rtyler> Hudson under Sun had even more issues
+18:51:17 <aheritier> magnayn: but managers have the last word and Oracle we'll give them a little present to choose the good one :-)
+18:51:20 <zx> I think both corporate and developers (who extend Hudson) crave stability and good releases
+18:51:21 <kreyssel> i think rejoining is possible, but who drive the things - i really heard this some times ago ;-)
+18:51:28 <zx> you have never dealt with commercial companies from government to private sector if you think IP is FUD... yes IP sucks but it's a reality, I'm sorry
+18:51:34 <aheritier> abayer: I totally agree
+18:51:37 <jieryn> one of the things that came up on the ML was about these silent companies wanting to commit but haven't been doing so ---- by saying want to reconcile, we're now admitting that there are many of these groups? most people in this room MOCKED Ted about this point..
+18:51:49 <abayer> Turns out there was, well, one. =)
+18:51:53 <zx> magnayn, things at eclipse.org can be either EPL, EPL/EDL (BSD) or just EDL (BSD)
+18:51:58 <jieryn> to now say that we want to engage companies would be a 180 turn
+18:52:02 <rtyler> jieryn: we mocked him for plenty of things :)
+18:52:11 <magnayn> zx: So how is relicensing from MIT going to occur ?
+18:52:20 <aheritier> domi_: Not sure. The most important thing is the important set of plugins and thus all evolutions you can do
+18:52:25 <d_a_carver> jieryn, which isn't necessarily a bad thing.
+18:52:26 <jieryn> ok, but to now say that we need to work with these silent companies is admitting one of orcl's main points, one which we mocked and renamed over
+18:52:27 <rtyler> I think jieryn makes a good point
+18:52:27 <abayer> It's not that I want to engage companies - it's that I don't want to scare companies into Hudson's arms with no real benefit accruing to us by doing so.
+18:52:29 <magnayn> zx: e.g: I wrote the (Start of) the git plugin. It's not EPL.
+18:52:38 <rcjsuen> zx: Actually, isn't one of the projects EPL/ALv2 (Jetty or EclipseLink)?
+18:52:38 <rtyler> we should be optimizing for the community we've been building, not for imaginary companies
+18:52:48 <kreyssel> i think IP is one part of things, but also technical directions should be part of discussion on rejoining
+18:52:49 <rtyler> I honestly don't care if VMware pours millions of dollars into Hudson
+18:52:52 <mwalling> rtyler++
+18:52:58 <zx> rcjsuen, yes, you're right
+18:52:59 <rtyler> I don't want to be in the same room with some of those Oracle guys
+18:53:06 <magnayn> rtyler: quite
+18:53:06 <rtyler> so I wouldn't use it anyways
+18:53:09 <phyto> +1 rtyler
+18:53:19 <abayer> rtyler: I'm not saying this should be the sole or even a major concern, but it's not worth dismissing entirely.
+18:53:24 <kohsuke> rtyler: +1
+18:53:27 <rtyler> abayer: isn't it?
+18:53:35 <zx> in the end, if it's Apache or Eclipse... project leads make the decisions... so ensure that you have the correct project leads
+18:53:42 <rtyler> kohsuke is the only one here working on Jenkins for a company AFAIK :P
+18:53:52 <kohsuke> True
+18:54:21 <magnayn> If I were in that position, I'd just follow the indemnity insurance route.
+18:55:17 <phyto> one of the things i love about jenkins is kohsuke is so eager to put the code and reigns in the hands of the developers
+18:55:29 <phyto> i'd hate to see that go beit by a merger and/or a foundation
+18:55:32 <abayer> That is the absolute key to Jenkins working.
+18:55:36 <kohsuke> Hmm, I'm hearing quite a few voices to maintain the current course.
+18:55:37 <rtyler> well, I think the way to move this discussion community
+18:55:40 <magnayn> yup
+18:55:41 <rtyler> er
+18:55:44 <rtyler> move this discussion forward
+18:56:05 <rtyler> is to figure out what we need, as abayer said, see if ASF/ESF can meet us there, or SFC/SPI can, and then reevaluate
+18:56:22 <rtyler> this is good that we're enumerating what we feel we need as a community though
+18:56:32 <aheritier> perhaps a wiki page with pros and cons of each choice ?
+18:56:41 <rtyler> aheritier: that's what abayer said like, 20 minutes ago :P
+18:56:43 <abayer> I'll create a wiki page - please comment on it as well as update it.
+18:56:44 <magnayn> Can we find out about the MIT license and changing ?
+18:56:59 <aheritier> rtyler: oups, I missed it
+18:57:01 <kohsuke> Such a Wiki page for ASF was long over due. AI for abayer and me
+18:57:02 <magnayn> E.g: If ASF is blocked because MIT relicensing issue, but turns out can be relicensed, ASF is an option
+18:57:05 <abayer> magnayn: fwiw, if we were to go to ASF, the existing code would still be MIT licensed, and new code would be ASL'd.
+18:57:18 <magnayn> abayer: ok, cool.
+18:57:21 <billbillingsly> is there a list of specific concrete needs we're trying to meet?
+18:57:32 <abayer> i.e., the existing code doesn't have to be relicensed, since MIT is compatible with ASL.
+18:57:35 <rtyler> billbillingsly: I've been wanting more feather t-shirts
+18:57:35 <billbillingsly> aside from potential ip concerns?
+18:57:48 <kohsuke> magnayn: abayer: and plugins would be kept close but separate from ASF, right? So they can continue to be in MIT.
+18:58:02 <larrys> there is apache extras where the plugins can live
+18:58:07 <billbillingsly> ill buy u some if u can ensure a Kohsuke dictatorship
+18:58:09 <rtyler> billbillingsly: additional support to take some of the busywork off core team members so they can focus on building Jenkins is important to me
+18:58:13 <d_a_carver> I guess the general thing for everybody to decide, does the jenkins project/committers views line up with the guidelines for an ASF project. http://www.apache.org/foundation/how-it-works.html
+18:58:16 <zx> at Eclipse you can do EDL only (BSD) or dual license... and how you want to license the core versus the plug-ins are two different things
+18:58:17 <magnayn> kohsuke: I was thinking more eclipse - I can't for the life of me see how they can just relicense to EPL
+18:58:18 <ndeloof> ASF has apache extra (google code) for this
+18:58:23 <aheritier> kohsuke: magnayn abayer yes they could continue to be at github
+18:58:34 <abayer> IP concerns, infrastructure/logistics, more dogfooding, more confidence for users (especially corporate users) in the stability/IP etc/of the project, etc.
+18:59:00 <d_a_carver> magnayn, lawyers will go through all that, if there are sticky points, the eclipse ip lawyers are very good about finding them.
+18:59:09 <zx> ndeloof, eclipse also has EclipseLabs: http://code.google.com/a/eclipselabs.org/hosting/ but I would prefer plug-ins to be in GitHub or in Git... SVN can go !@#$ itself
+18:59:19 <phyto> abayer: i hear you on that, but if there is an educated buildguy making the decision, he will go with jenkins regardless of a foundation
+18:59:28 <magnayn> d_a_carver: it's hardly a sticky point. My code is MIT. I'm not willing to license it as EPL. Now what ?
+18:59:29 <phyto> that's what happened at my company
+18:59:36 <kreyssel> but the "main" plugins should be on ASF
+18:59:38 <abayer> Yeah. Logistics for plug-ins would be tough regardless of EF or ASF, but I've got ideas on that front.
+18:59:39 <ndeloof> zx: agree :)
+18:59:57 <d_a_carver> magnayn, then it can't be in the eclispe repositories, but it could be used as a third party dependency.
+19:00:01 <abayer> phyto: Yeah, but sadly, a lot of people may not be able to make the decisions themselves, etc.
+19:00:09 <zx> ndeloof, that's my big problem with Apache, their ass needs to get on Git stat... !@$ SVN but we are diverging a bit here
+19:00:09 <d_a_carver> magnayn, that is what eclipse has Orbit for.
+19:00:09 <kohsuke> Yeah, I want to keep JenkinsCI org in GitHub. It's kind of going nicely for us.
+19:00:16 * btrim wouldn't have bothered submitting anything at all, plugin or core without github
+19:00:26 <magnayn> Isn't that an admission that hudson @ eclipse is dead in the water without Kohsuke's consent ?
+19:00:46 <rtyler> magnayn: it depends on how many outsourced engineers Oracle is willing to hire :P
+19:00:48 <phyto> abayer: fair point, i'm just wondering if it's not such a bad thing that the same people that would have chosen bamboo or some other POS would go with Hudson
+19:00:51 <aheritier> kohsuke: as far as you push the code on SVN@Apache ...
+19:00:52 <d_a_carver> magnayn, again, depends on what code you are talking about, even kohsuke has said as much.,
+19:01:34 <magnayn> the core code that is (C) KK (I.E: NOT (c) Sun or ORCL) and MIT. There's > 6 months of that
+19:01:37 <rtyler> #info our european users, I appreciate you taking time out of your evenings to join in the discussion
+19:01:40 <rtyler> :)
+19:02:01 <domi_> noting on TV :)
+19:02:22 <aheritier> rtyler: +1 with domi_ :-)
+19:02:26 <rtyler> heh
+19:02:33 <kohsuke> We need to start closing up --- what are conclusions/next steps/AI here.
+19:02:42 <rtyler> #save
+19:03:05 <abayer> #action abayer to start a wiki entry for coming up with the requirements we'd have to work with the Hudson guys again.
+19:03:22 <rtyler> mwalling: will you be in the SPI meeting?
+19:03:36 <abayer> #action abayer to start wiki entries on the plusses/minuses of the potential foundations.
+19:04:08 <phyto> thanks guys for hearing the views of the underlings ;)
+19:04:17 <rtyler> phyto: no such thing :)
+19:04:25 <rtyler> phyto: stick around, we're here all day :)
+19:04:37 <phyto> i pop in from time to time
+19:04:38 <rtyler> any other AIs before we wrap this up?
+19:04:47 <phyto> oh rtyler heh, ok got it
+19:04:54 <hare_brain_> There were like three or four conversation threads going on at the same time. Can we clean up the archive before posting it?
+19:04:54 <kohsuke> #info Eclipse proposal review is 30 days(?), so we need to work on this quickly
+19:04:59 <abayer> I moved the git one to the dev list.
+19:05:10 <rtyler> hare_brain_: the archive is has raw logs
+19:05:12 <rtyler> http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-05-11-18.01.html
+19:05:48 <hare_brain_> I'll ask it a different way. If I took the time to detangle the threads, will you post them?
+19:05:56 <rtyler> haha, sure
+19:05:58 <abayer> +1 to that!
+19:06:21 <rtyler> can I close it out?
+19:06:26 <mwalling> rtyler: i am in the channel now
+19:06:32 <kohsuke> rtyler: before that...
+19:06:32 <rtyler> actually
+19:06:34 <rtyler> one more thing
+19:06:34 <kohsuke> #topic next meeting time
+19:06:37 <rtyler> exactly
+19:07:10 <kohsuke> The natural date would be two weeks from now. Jun 1st.
+19:07:18 <rtyler> kohsuke: that will be a few days before the 30 days is up
+19:07:21 <rtyler> soon enough?
+19:07:26 <abayer> fyi, I don't think I'll be able to make it then.
+19:07:30 <abayer> On an airplane.
+19:07:34 <kohsuke> Wait, sorry, it is 25th
+19:07:36 <abayer> Oh, wait.
+19:07:56 <abayer> Ok, I'm on an airplane then too. =) But with internet. Lemme make sure of the time...
+19:08:05 <Lmtd_Atonement> larrys:
+19:08:08 <kohsuke> I'll be traveling on that day
+19:08:14 <aheritier> kohsuke: you won't be in a plane going to france ?
+19:08:14 <Lmtd_Atonement> I tried to send a message to the list, but I don't have permission.
+19:08:18 <aheritier> :-)
+19:08:30 <larrys> Lmtd_Atonement: subscribe to the list
+19:08:32 <rtyler> kohsuke: let's pick a day you're not traveling and jetlagged
+19:08:42 <abayer> I'd vote for Tuesday of that week, if possible.
+19:08:58 <hare_brain_> 24th?
+19:09:03 <abayer> I'm flying on the 25th, and then offline until the next week.
+19:09:10 <rtyler> kohsuke: are you onilne for the 24th?
+19:09:13 <Lmtd_Atonement> larrys: No thanks.
+19:09:13 <kohsuke> For me that'd be 25th 3am in Tokyo.
+19:09:18 <Lmtd_Atonement> larrys: Perhaps you can submit for me
+19:09:20 <rtyler> heh
+19:09:20 <Lmtd_Atonement> larrys: http://pastie.org/1890153
+19:09:31 <kohsuke> Can we move it up a bit?
+19:09:35 <rtyler> larrys: can you guys hold this conversation for a couple minutes?
+19:09:42 <rtyler> kohsuke: 20th?
+19:09:43 <kohsuke> Say 3 hours earlier?
+19:09:49 <rtyler> ah
+19:09:52 <kohsuke> 20th I'm still in Tokyo
+19:10:11 <rtyler> hm
+19:10:16 <rtyler> stop traveling everybody
+19:10:18 <rtyler> sit still
+19:10:22 <aheritier> :-)
+19:10:42 <kohsuke> If we can do it 8am PDT / 11am EDT, 5pm CET, midnight Tokyo...
+19:10:44 <rtyler> it'll be tough, but I think I can make an 8am IRC meeting
+19:10:47 * rtyler vomits
+19:10:55 <rtyler> hare_brain_: how about you?
+19:11:02 <abayer> Which day?
+19:11:03 <hare_brain_> 8am PT? That's hard for me. Usually in the middle of getting the kids out the door right then.
+19:11:08 <rtyler> 24th
+19:11:18 <abayer> Ah, 'k, I'm flexible on the 24th.
+19:11:35 <kohsuke> 9am PDT / noon EDT / 6pm CET / 1am Tokyo?
+19:11:49 <rtyler> will you be able to be awake? :)
+19:11:53 <kohsuke> It seems like it'd maximize the total happiness if I suffer.
+19:12:01 <hare_brain_> Skip one?
+19:12:20 <hare_brain_> Seems like coordinating a time that week is hard.
+19:12:29 <abayer> Kind of an important week, though.
+19:12:57 <hare_brain_> 23rd @ 9:30 PT?
+19:13:08 <hare_brain_> 9:30am
+19:13:17 <rtyler> I find that also workable :)
+19:13:27 <rtyler> aheritier: how about you?
+19:13:43 <kohsuke> 24th is a lot better for me, as next day I can be wasted on airplane.
+19:13:54 <rtyler> in that case, I'm okay with kohsuke suffering :)
+19:13:55 <aheritier> rtyler: with which one ?
+19:13:57 <kohsuke> If it's 23rd, I need to deliver a talk next morning.
+19:14:25 <hare_brain_> My morning on the 24th is pretty full. I could do @ 11, but not earlier.
+19:14:39 <rtyler> hm
+19:15:18 <hare_brain_> Honestly, it's more important to find a time that works for kohsuke and abayer.
+19:15:28 <aheritier> +1
+19:15:46 <hare_brain_> I can always sync up with you guys out of band
+19:16:11 <abayer> I can do whenever on the 24th.
+19:16:28 <kohsuke> OK, so 8am PDT / 11am EDT, 5pm CET, midnight Tokyo on 24th?
+19:16:28 <rtyler> #info Next meeting May 24th at 9am PST 16:00 UTC
+19:16:35 <rtyler> er, 8am
+19:16:36 <rtyler> whoops
+19:16:37 <kohsuke> No, that's right
+19:16:40 <kohsuke> sorry, 9am
+19:16:47 <kohsuke> Let's do 9am PT
+19:16:56 <rtyler> all in favor say #agreed
+19:17:01 <rtyler> :P
+19:17:03 <kohsuke> #agreed
+19:17:07 <abayer> #agreed
+19:17:09 <rtyler> heh
+19:17:12 <aheritier> #agreed
+19:17:16 <hare_brain_> #abstain
+19:17:23 <rtyler> I'll thank everybody for joining in today, we have much to do!
+19:17:26 * olamy as usual I missed the meeting maybe one day I will not be too late
+19:17:28 <rtyler> now get back to work!
+19:17:30 <rtyler> #endmeeting

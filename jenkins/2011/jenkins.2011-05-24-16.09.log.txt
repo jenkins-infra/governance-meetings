@@ -1,0 +1,397 @@
+16:09:34 <kohsuke> #startmeeting
+16:09:34 <robobutler> Let the Jenkins meeting commence!
+16:09:47 <aheritier> good luck :-)
+16:09:59 <aheritier> let's try to do it quickly
+16:10:05 <kohsuke> #topic recap of actions
+16:10:32 <olamy> around too
+16:11:15 <kutzi> rtyler not here either?
+16:11:36 <kutzi> I guess then there's no one around who had action items assigned
+16:11:42 <kohsuke> Yeah
+16:12:04 <kutzi> except:
+16:12:06 <kutzi> Kohsuke to update a Wiki page to encourage l10n to be pushed directlyKohsuke to also write a note that l10n contributiors sshouldn't unilatelarly release a new version
+16:12:06 <kohsuke> And for me, things with my name are still TBD.
+16:12:11 <kutzi> ah
+16:12:17 <kohsuke> So let's skip right to the real meat
+16:12:39 <kohsuke> #topic umbrella foundation / reconcilation requirements
+16:12:55 <kohsuke> One quick report from me is that ...
+16:13:10 <kohsuke> SPI board has formally voted on the resolution to accept us and it was approved
+16:13:23 <magnayn> cool
+16:13:23 <aheritier> kohsuke: coool
+16:13:28 <aheritier> clap clap
+16:13:32 <kohsuke> So we have an open invitation there, which expires in 45 days or so.
+16:13:32 <kutzi> applause
+16:13:59 <kohsuke> So we got one clock ticking on that front. I think it should be plenty of time.
+16:14:26 <kutzi> nothing from the other organizations, yet?
+16:14:47 <kohsuke> #info SFC I don't think I've heard from specifically.
+16:14:48 <aheritier> Do we always want to study challengers ? like ASF & co ?
+16:15:23 <olamy> +1 to continue study others (asf)
+16:15:27 <kohsuke> I can ping them back, but in my mind SPI and SFC are so similar in their nature.
+16:15:41 <kohsuke> Yes, we should still consider other options.
+16:15:50 <kutzi> +1
+16:15:55 <magnayn> SPI/SFC look good to me
+16:16:26 <olamy> magnayn what is your issue with asf ?
+16:16:27 <kohsuke> It might be easier to talk about reconcilation process first
+16:16:44 <kohsuke> I think that's the one with the most early dead line.
+16:16:49 <magnayn> olamy: Infrastructure baggage, mainly - unless that can be circumvented
+16:17:10 <olamy> infra you mean what ? (git ? )
+16:17:21 <kohsuke> #info If we are to send some comments to Eclipse proposal process, I believe we need to do so in a few days.
+16:17:51 <magnayn> olamy: git, yes; I worry about the politicking I hear of Apache Infra.
+16:18:01 <kohsuke> I've just seen https://waynebeaton.wordpress.com/2011/05/23/the-eclipse-hudson-proposal/ and it made me even more pessimistic about making that work, though.
+16:18:09 <aheritier> kohsuke:  I agree
+16:18:20 <olamy> kohsuke agree too
+16:18:30 <magnayn> I'm -1 on eclipse anyway...
+16:18:57 <rtyler> sorry
+16:19:00 <olamy> magnayn btw git support @asf for canonical repo is really on study by infra folks
+16:19:01 <rtyler> lateness
+16:19:09 <aheritier> I think ASF will be too heavy for Jenkins thus Eclipse it will be worst
+16:19:16 <aheritier> It may kill the community I think
+16:19:23 <tofuatjava> hi, what's the problem with eclipse fondation
+16:19:37 <magnayn> olamy: Fine - but to me that's cart before horse. Infra should not be dictating to projects what they can and cannot use...
+16:20:03 <aheritier> magnayn: and it was always the case (jira, confluence ...)
+16:20:05 <olamy> aheritier : but here we talk about moving core and maybe bundled plugins
+16:20:25 <olamy> so not a too big community of dev folks
+16:20:41 <aheritier> olamy: yes but you think that we'll be able like oracle to replace all non compatible deps @ co ?
+16:20:58 <aheritier> in fact they started to move everything out of core because of that
+16:21:08 <olamy> sure
+16:21:18 <aheritier> at the end I'm sure they'll just move a class with a main()
+16:21:32 <rtyler> heh
+16:21:42 <rtyler> #save
+16:22:15 <aheritier> The core team is reduced (which is good thing to keep the control and ensure the stability) but they won't be able to do that with a stable and evolutions and ...
+16:22:32 <aheritier> I don't know perhaps they are supermen ...
+16:22:44 <rtyler> I think options that fracture core/plugin community are less than ideal
+16:22:58 <kutzi> yeah, agree
+16:23:00 <magnayn> rtyler: agree
+16:23:10 <kutzi> I'd like to stay core on Github, too
+16:23:17 <aheritier> I agree. It's my problem too with moving only core to ASF
+16:23:37 <olamy> rtyler true that's could be a problem
+16:23:53 <kutzi> IMO infrastructure is fine at the moment
+16:24:12 <magnayn> As I put on the wiki page, that's my problem with ASF - 'canonical repository' is a stupid term when we use a DVCS
+16:24:12 <kutzi> If we get some orga for the legal part, that would be enough
+16:24:22 <olamy> btw my main concern is more to move in a place where we don't have to handle infras (jira, confluence etc..) and concentrate on code
+16:24:23 <rtyler> I think it's worth putting this into the log
+16:24:34 <rtyler> #info Pros/Cons of umbrella orgs: https://wiki.jenkins-ci.org/display/JENKINS/Possible+Jenkins+Umbrella+Foundations
+16:24:45 <rtyler> #chairs
+16:24:48 <rtyler> #chair
+16:24:50 <rtyler> d'oh
+16:24:53 <rtyler> I have no powers
+16:25:15 <rtyler> olamy: there are pluses and minuses to managing our own infra
+16:25:26 <kohsuke> #chairs rtyler
+16:25:33 <kohsuke> #chair rtyler
+16:25:33 <robobutler> Current chairs: kohsuke rtyler
+16:25:35 <rtyler> we're far more free to customize JIRA or the maven repo as we see fit
+16:25:53 <rtyler> kohsuke: have you brought up the status of the SFC yet?
+16:26:00 <kohsuke> Yes, I did.
+16:26:04 <olamy> btw it's probably a bad comment from me as we will have to handle infra for plugins :-)
+16:26:07 <magnayn> ... rtyler: and to stop using them and choose whatever you want...
+16:26:14 <kohsuke> #info SPI board has formally voted on the resolution to accept us and it was approved
+16:26:24 <kohsuke> #info So we have an open invitation there, which expires in 45 days or so.
+16:26:56 <olamy> just to know SPI is  a just which will protect our name ?
+16:27:24 <knorrium> is it okay to ask a dev related question right now? :)
+16:27:25 <kohsuke> it'll hold other assets for us.
+16:27:32 <olamy> not a lot infos here http://wiki.jenkins-ci.org/x/oIZoAw regarding SPI
+16:27:33 <kohsuke> knorrium: let's do that later
+16:27:42 <knorrium> alright
+16:27:47 <knorrium> thanks :)
+16:27:57 <kohsuke> olamy: it has all the pros of SFC
+16:28:02 <magnayn> IIRC SPI / SFC are similar - basically equivalent to a non-profit without the effort
+16:28:21 <olamy> k
+16:28:30 <rtyler> they're similar, yes, SFC is a bit higher profile
+16:28:45 <magnayn> SPi has both OpenOffice and LibreOffice... :-)
+16:29:22 <olamy> arf fun to see jenkins with such good friends :-)
+16:30:06 <magnayn> The only reason I can see to pick anything else is if it's actively desired to hand over the infrastructure..
+16:30:44 <rtyler> I wonder if ASF could be willing to compromise on just about all their cons :P
+16:31:05 <aheritier> there is no compromise with ASF :-)
+16:31:10 <magnayn> Well, even if they could, I'm left wondering 'what is the benefit' ?
+16:31:13 <rtyler> well
+16:31:17 <rtyler> let's get this out of the way
+16:31:34 <rtyler> #info We have not applied or made *any* ASF proposals thus far
+16:32:15 <kohsuke> I think the benefit of ASF is that it creates the kind of stability that helps users feel comfortable.
+16:32:18 <rtyler> magnayn: IMHO there's a big benefit in moving to ASF in that they are the ASF which has a lot of mindshare (whether or not that's deserved)
+16:32:24 <rtyler> yeah, what he said :P
+16:32:33 <banoss> hi!
+16:32:38 <olamy> kohsuke +1
+16:32:45 <magnayn> My impression is that's less true today than it was, say, 5 years ago..
+16:32:53 <rtyler> as far as I can tell, nobody is honestly considering Eclipse
+16:32:58 <rtyler> which leaves SPI, SFC and ASF
+16:33:10 <rtyler> IMHO we should make a formal proposal and at least see if they even want us :P
+16:33:26 <rtyler> and by we
+16:33:28 <rtyler> I mean abayer
+16:33:29 <rtyler> xD
+16:33:53 <aheritier> you are talking about ASF ? The incubator process is long. And if it takes more than 45 days ?
+16:33:54 <olamy> btw the incubation process @asf will be some similar to the eclipse one
+16:34:00 <SaschaV> rtyler: I wouldn't say nobody, but probably nobody that counts ;)
+16:34:19 <magnayn> ASF just seems like a waterfall entity in an agile world
+16:34:25 <rtyler> aheritier: have you taken a prject trhough the incubator
+16:34:29 <rtyler> magnayn: I agree to some extent
+16:35:00 <aheritier> rtyler: I followed some but I never participated directly.
+16:35:00 <kutzi> Has anyone already considered: what if we decide for - say SPI - and in 1 year we want to re-unite with Hudson
+16:35:13 <kutzi> Would there be a way to get out of SPI to Eclipse?
+16:35:13 <olamy> IMHO agile process is made by the community not by the umbrella
+16:35:21 <rtyler> kutzi: I don't see why not
+16:35:29 <kutzi> okay
+16:35:32 <rtyler> kutzi: that said, I don't see that ever happening
+16:35:32 <kohsuke> kutzi: yes, a project can withdraw from SPI.
+16:35:47 <magnayn> olamy: but if the umbrella places technical obstacles, it stops the agility
+16:36:10 <rtyler> kohsuke: you know what we could try
+16:36:27 <rtyler> we could try a week or two of the "ASF way" as an experiment
+16:36:33 <rtyler> and if everybody completely fucking hates it
+16:36:38 <aheritier> kutzi: <troll>What could we do with Hudson ? it's a dead project. In one year we won't hear about it any more</troll>
+16:36:39 <rtyler> then that crosses them off the list, easy as pie :)
+16:37:07 <rtyler> #save
+16:37:08 <magnayn> rtyler: So that means shutting github for a week and setting up SVN ? :-/
+16:37:37 <rtyler> I mean with regards to the release process and new committer access
+16:37:56 <rtyler> the SVN thing is completely nuts :P
+16:38:15 <olamy> afaik abayer is working with dcutting so he probably can to have more infos (regarding the git support)
+16:38:15 <kohsuke> I think I agree that ASF introduces some technical obstacles, ranging from Git/SVN to LGPL, core/plugin split to votes. The question in my mind if it's worth the price of improving our standing in the eyes of users
+16:38:49 <magnayn> IMO, the stable branch will do more for users than stickerware
+16:39:01 * rtyler nods
+16:39:12 <kohsuke> Maybe I'm overly concerned about the Hudson Eclipse move, but it seems like a safer move.
+16:39:14 <kohsuke> OK
+16:39:31 <rtyler> here's my pep talk regarding that
+16:39:39 <rtyler> kohsuke: we shouldn't care about that honestly
+16:40:01 <magnayn> (I still wonder if hudson will ever make it into Eclipse if they want EPL)
+16:40:06 <rtyler> users are nice, but IMHO what's made Jenkins great has been developers creating the tools that they like in an atmosphere they like
+16:40:16 <rtyler> Jenkins doesn't have to crush Hudson to continue to be successful
+16:40:24 <tofuatjava> can anyone ecplain me what's the problem with eclipse in one or two sentence? i don't understand the problem...
+16:40:34 <rtyler> tofuatjava: https://wiki.jenkins-ci.org/display/JENKINS/Possible+Jenkins+Umbrella+Foundations
+16:41:07 <kohsuke> rtyler: yeah, I agree with that argument
+16:41:15 <rtyler> kohsuke: Hudson has a number of contributors that are outsourced for crying out loud
+16:41:24 <rtyler> Jenkins has a number of happy volunteers working on it in their free time
+16:41:35 <magnayn> tofuatjava: Prime example: git plugin uses a patched jgit. JGit is @ eclipse, and noone can be bothered to babysit the patches through that process.
+16:41:37 <rtyler> I think magnayn is right that a stable branch will do far more to shore up the "enterprise/slow moving" users
+16:42:10 <rtyler> kohsuke: do you know when the next SFC board meeting is off the top of your head?
+16:42:26 <kohsuke> rtyler: No, I don't know. Why?
+16:42:29 * rtyler is trying to move this discussion along
+16:43:00 <rtyler> I think at this point any org that imposes process on top of the community and there *will* be contributor churn
+16:43:02 <magnayn> Also, we can build credibility (if that's your worry) by listing the companies that use Jenkins on the website
+16:43:11 <rtyler> magnayn: that's on my todo
+16:43:29 <rtyler> I know abayer and a number of folks are passionate about the ASF
+16:43:51 <aheritier> and by publishing statics of usage from update site and co
+16:44:10 <kohsuke> One of the things I like about SPI is that it doesn't close any doors down the road.
+16:44:24 <kohsuke> If we go with SPI and later started feeling that we need to be with ASF, we can do that.
+16:44:41 <kohsuke> (the other way around is not the case)
+16:44:45 <rtyler> that's an interesting idea
+16:45:03 <rtyler> what if you, abayer, hare_brain said "we're going to go ahead and go with SPI, but continue talking with ASF"
+16:45:08 <rtyler> think that'd piss off SPI?
+16:45:47 <kohsuke> I don't think so, as long as we genuinely believe that SPI is right choice for us right now.
+16:45:49 <aheritier> +1 Let's go to SPI and continue to talk with ASF if one day ...
+16:46:09 <magnayn> Is there any substantive difference between SPI and SFC ?
+16:46:15 <rtyler> hare_brain: any thoughts?
+16:46:24 <banoss> It sounds non-commital. Will that keep folks wondering and affect contributions?
+16:46:33 <knorrium> I have an end user and recent dev point of view to share. I was using Hudson until Jenkins came out. I wanted to contribute to the project with translations so I just went to github and forked the repo. It was pretty easy and straightforward. I don't think that should change with an unbrella foundation backing the project up.
+16:47:01 <knorrium> so from what I understood after reading that link, any change in the repo might be a headache to new contributors
+16:47:04 <kohsuke> banoss: yeah. that's a point.
+16:47:07 <rtyler> knorrium: indeed, that workflow has made Jenkins fantastic
+16:47:46 <olamy> kohsuke I like the idea too  (when asf will have git we will be able to move :-) )
+16:47:47 <kohsuke> knorrium: I think we care a lot about keeping the barrier of entry low.
+16:47:49 <magnayn> that's the low barrier to entry at work
+16:48:33 <aheritier> the success of Jenkisn isn't in the product itself in term of quality (even if it is better day after day) but in its community and the large set of plugins. This is something that no other CI server has
+16:48:33 <hare_brain> rtyler: Joined in the middle, so still trying to catch up to the conversation.
+16:48:41 <rtyler> kohsuke: I think we should reach out to SFC and see what their timeline is
+16:48:51 <rtyler> but SPI is happy to have us, and we need to stop focusing on this shit for a while
+16:48:56 <rtyler> and get back to Jenkins :)
+16:49:18 <kohsuke> rtyler: time line for what? answering their invitation?
+16:49:29 <rtyler> I see no problem with the SPI, it keeps the status quo with some legal help
+16:49:35 <kutzi> +1 for SPI now, if that leaves the door open for other possibilities later
+16:49:39 <tofuatjava> but shareing git with svn is running fine for me, because i prefare to use a tool where i'm good in (maybe i will be good in git too, some time) so something like that can be driven anywhere, or not?
+16:49:47 <rtyler> kohsuke: SFC I thought they hadn't even talked about Jenkins at a board meeting yet
+16:49:55 <kohsuke> Oh, SFC.
+16:50:12 <kohsuke> Right.
+16:50:24 <magnayn> Does SFC have any difference to SPI (other than which projects they host) ?
+16:50:55 <kohsuke> I don't want to say bad things about SFC because it's making the world better, but I worry a bit about the pace in which they move.
+16:51:07 <kohsuke> There has been delays after delays.
+16:51:18 <rtyler> magnayn: SFC hasn't accepted us :P
+16:51:20 <kohsuke> In contrast, SPI moved very fast.
+16:51:34 <aheritier> ok thus let's move to SPI
+16:51:36 <aheritier> :-)
+16:51:39 <rtyler> heh
+16:51:39 <kohsuke> But yes, we can definitely ping them back.
+16:51:40 <magnayn> If there's no substantive difference then why bother with SFC ?
+16:51:42 <kutzi> seems like a perfect fir for Jenkins. we're fast, too :)
+16:51:45 <kutzi> fit
+16:52:57 <olamy> +1 for SPI
+16:53:17 <rtyler> kohsuke: I don't htink we've ever had something we really needed the interim board to vote on :)
+16:53:30 <magnayn> +1 for SPI if there's no particular advantage to SFC..
+16:53:43 <kohsuke> OK, I think I'm seeing the consensus emerging...
+16:54:02 <rtyler> kohsuke: from the folks in the meeting, yes
+16:54:05 <kohsuke> I suppose another +1 for SPI is that it's very close to the original vote that formed Jenkins.
+16:54:22 <rtyler> what do you mean?
+16:54:22 <olamy> +1 but we can keep in mind ASF for latter :P
+16:54:55 <hare_brain> olamy: I think if we're voting to go to SPI, it should be with the intention to stay there.
+16:55:03 <banoss> Is it at all a credibility concern?
+16:55:05 <kohsuke> hare_brain: yes.
+16:55:23 <tofuatjava> I also thin ki t would be good to be in touch with ASF
+16:55:24 <olamy> hare_brain : k
+16:55:57 <rtyler> tofuatjava: abayer works in the same office with many ASF committers and at least one board memeber :P
+16:56:19 <kohsuke> I think it'd be prudent to ask to meet with Doug Cutting with abayer's help once more to get more authoritative stories on the points raised.
+16:56:33 <hare_brain> Was there a discussion about whether choosing one foundation over another would mean that certain people who are currently contributing would stop?
+16:56:39 <rtyler> when's the next time you're in the country kohsuke  :)
+16:57:15 <kohsuke> Right now one -1 for ASF that worries me is that we can't use LGPL.
+16:57:31 <kohsuke> It has a lot of negative impacts on compatibility and functionalities.
+16:57:46 <aheritier> yes it is ASL no choice
+16:58:05 <kohsuke> rtyler: I'll be back on June 2nd or so.
+16:58:06 <olamy> hare_brain perso even if I would prefer ASF I won't stop contributing
+16:58:25 <rtyler> olamy: that's because you're just that awesome :P
+16:58:28 <hare_brain> olamy: Great to hear.
+16:58:58 <rtyler> not relevant to this discussion, but I have actually stopped contributing to projects I *like* in the past because of process nonsense
+16:59:19 <olamy> btw I'd like abayer ask doug regarding stuff like git etc...
+16:59:23 <olamy> @asf
+16:59:30 <magnayn> rtyler: ditto. eclipse. Oh, and, um, asf..
+16:59:36 <banoss> What about Jenkins under Eclipse? *ducks*
+16:59:37 <rtyler> olamy: I believe he has, I think we need to get the board to meet with doug
+16:59:42 <kohsuke> hare_brain: I think there's some kind of legal process integration with Git pull requests needed, until which point we'll likely lose some amount of one-off contributions.
+16:59:45 <rtyler> since they're all in the bay area
+16:59:52 <rtyler> banoss: don't make me come over there
+17:00:00 <olamy> yup that's was the point
+17:00:24 <olamy> as long I remember some emails
+17:00:58 <rtyler> #action kohsuke, hare_brain and abayer should meet with some ASF folks in person to talk
+17:01:25 <kohsuke> Yeah, I think it's a good idea.
+17:01:53 <kohsuke> I think we know where people in this meeting stands.
+17:02:04 <rtyler> indeed :)
+17:02:10 <olamy> :-)
+17:02:14 <rtyler> we're running long
+17:02:20 <kohsuke> Yes, that's right.
+17:02:23 <rtyler> can we jump to the next topic? I think we've beat this horse to death
+17:02:35 <rtyler> I think this next one is kutzi's item :)
+17:02:39 <rtyler> and more technical!
+17:02:44 <rtyler> \o/
+17:02:49 <kutzi> yeah :)
+17:03:10 <kohsuke> Before that, should we make some statement to Eclipse proposal process?
+17:03:26 <kohsuke> Or is it pointless and we should just mind our own business?
+17:03:33 <magnayn> How about "you may not relicense my code as EPL" ?
+17:03:41 <magnayn> :)
+17:03:50 <rtyler> kohsuke: it'
+17:03:51 <kohsuke> I think we originally wanted to do the former, but it seems more like the latter is getting more attractive.
+17:03:52 <rtyler> er
+17:03:58 <aheritier> We officaly reply that Jenkins team see no interest for the project and its users to go here and to merge back with hudson ?
+17:04:04 <rtyler> it's not our business, they're a fork, they can go fork themselves how they please :)
+17:04:20 <magnayn> I'd ignore them
+17:04:37 <banoss> I'm just amazed. I feel like a blog vent coming up...
+17:04:47 <aheritier> If we reply it is before all for ours users
+17:05:10 <aheritier> (and to do some buzz to let hudson users join us :-) )
+17:05:46 <mwalling> you dont acknowlege the child in the having a tantrum, that just gives them more fuel
+17:05:59 <mwalling> s/ in the//
+17:06:15 <kohsuke> OK, I guess given that no one is pushing for reunification any more, I suppose there's no point in talking with them. As mwalling say, it just gives it more fuel and publicity.
+17:06:18 <aheritier> the issue is that they kept the name and this is the only value they have
+17:06:33 <hare_brain> If there was no formal invitation sent to the Jenkins community to participate, I see no reason to make a comment about it.
+17:06:48 <aheritier> kohsuke: hare_brain ok
+17:06:51 <rtyler> I agree with hare_brain  on that point
+17:06:51 <banoss> thepublicity says that there is a hope for reunification...
+17:06:57 <kohsuke> hare_brain: good point. Yeah, that works for me.
+17:06:58 <magnayn> hare_brain: agree
+17:07:05 <mwalling> banoss: "publicity" spread by oracle
+17:07:12 <olamy> hare_brain good point
+17:07:15 <banoss> mwalling: totally
+17:07:17 <mwalling> banoss: trying to make the jenkins project look like the bad guys
+17:07:18 <hare_brain> I think the only thing that is in question is their right to use/relicense code contributed without a SCA/OCA.
+17:07:21 <aheritier> Let's them die in silnce
+17:07:34 <mwalling> aheritier++
+17:07:48 <rtyler> heh, can we move on now? :P
+17:07:59 <rtyler> kohsuke is staying up very late for us :)
+17:08:01 <kohsuke> rtyler: yes, from me.
+17:08:17 <rtyler> #topic The state of the Jenkins test harness
+17:08:17 <banoss> please - i dont want to ride home im wound up enough *harumpffff*
+17:08:31 <rtyler> kutzi: the floor is yours
+17:08:39 <kutzi> okay, I've put that on the agenda
+17:08:52 <kutzi> Trying to summarize in some sentences
+17:09:22 <kutzi> I was just frustated again on Sunday when jenkins test harness broke again locally
+17:09:35 <kutzi> Okay, these are the main problems I see:
+17:09:56 <kutzi> - test-harness takes like forever to run (~1 hour for me)
+17:10:12 <kutzi> - I get no (useful) visual feedback about the progress
+17:10:14 <kohsuke> kutzi: -Dconcurrency=2 or 3 does wonders.
+17:10:22 * aheritier s/broke again/broke always :(
+17:10:41 <kutzi> - has cryptic error messages when it fails
+17:10:50 <magnayn> I have had occasional pause / hangs trying to build on OS X
+17:10:55 <kohsuke> kutzi: yes, the feedback needs to be better.
+17:11:07 <kohsuke> but the error message you cite is from Maven
+17:11:38 <kutzi> kohsuke, maybe. The point is that it's broken locally while succeeding on J-o-J
+17:11:46 <kohsuke> OK.
+17:11:52 <kutzi> And I've got no clue what's wrong on my side
+17:11:57 <magnayn> Last time I tried to diagnose, I noticed it was using a junit-plugin... is surefire now fixed enough to move back to that ?
+17:12:13 <kutzi> yes, I'd propose using standard plugins
+17:12:18 <kohsuke> magnayn: sconnoly was saying that it will be soon.
+17:12:20 <kutzi> surefire has now concurrency, too
+17:12:29 <kohsuke> concurrency via multiple VMs?
+17:12:30 <aheritier> I began a branch with some maven build cleanup
+17:12:41 <aheritier> there is a lot of things to do :-)
+17:12:51 <kutzi> johsuke You, can fork per test if you mean that
+17:13:08 <kohsuke> kutzi: no.
+17:13:12 <olamy> btw last surefire version works very better
+17:13:25 <olamy> with concurrency supported too
+17:13:34 <kohsuke> The current junit plugin forks say 3 VMs first, then create a single worker queue from which all 3 VMs pull tests from.
+17:13:55 <kohsuke> So you won't incur the per-test fork overhead, but it still fully isolates concurrent executions.
+17:14:10 <kutzi> I don't know for sure, but I guess surefire can't do that
+17:14:21 <drulli> Did someone look into the changes in the Oracle Hudson release? They claimed to fix some testing problems. Maybe there is something we can copy/use?
+17:14:31 <kutzi> drulli +1
+17:14:37 <kohsuke> But according to our Maven experts in the Jenkins project, it'll be added to surefire soon, if not already
+17:15:00 <olamy> need to be tested
+17:15:03 <olamy> :-)
+17:15:11 <aheritier> I had a look at it but didn't finish
+17:15:29 <kohsuke> I think some plugins do more mock-oriented tests. Should we encourage that more?
+17:15:41 <kutzi> yes absolutely!
+17:15:42 <kohsuke> That has some obvious benefits that address kutzi's concerns.
+17:15:42 <aheritier> As tests are failing on the master I cannot validate my changes
+17:16:00 <kutzi> I'd like to make some proposals:
+17:16:02 <drulli> That would be a better :-)
+17:16:07 <aheritier> kohsuke: +1 for more mocks
+17:16:21 <aheritier> +1 too to move integration tests into  profile we can deactivate
+17:16:45 <hare_brain> +1 to both of those
+17:16:47 * kohsuke steps aside very quickly
+17:16:53 <kutzi> I) differentiate between unit and integration tests
+17:17:19 <kutzi> II) +1 aheritier: move it tests somewhere else (profile, own module, ...)
+17:17:35 <drulli> +1
+17:17:36 <olamy> sorry folks I have to leave now see you soon
+17:17:39 <kutzi> III) foster unit tests / mocking
+17:18:05 <kutzi> IV) stabilize it tests
+17:18:14 <kutzi> that's the main points
+17:18:17 <tofuatjava> what about functional testing on gui level
+17:18:20 * kohsuke is back
+17:18:39 <aheritier> I could had : V) Try to move back to official plugins and to incorporate in them changes done by KK
+17:18:42 <kohsuke> tofuatjava: that's a part of the current test mechanism
+17:19:01 <kutzi> aheritier +1
+17:19:01 <aheritier> VI) Try to better follow maven convetions/usages
+17:19:12 <banoss> how about analytics?
+17:19:27 <kutzi> banoss what analytics?
+17:19:33 <tofuatjava> koshuke: which framework/tool is in use for that
+17:19:36 <banoss> coverage for example
+17:19:48 * banoss is pplaying with sonar & jacoco atm
+17:19:51 <aheritier> I asked to activate sonar on our codebase
+17:19:53 <kutzi> I'd like to concentrate on tests right now
+17:19:57 <aheritier> it was done yesterday
+17:19:58 <kohsuke> banoss: there's already a profile for that, but it'd be good to run it on JoJ
+17:20:38 <aheritier> But I noticed there where already several settings (findbugs, cobertura...) but I'm not sure they are really used
+17:20:44 <kohsuke> isn't the entire test harness really an integration test? In that sense, aren't unit tests and IT tests already split?
+17:20:50 <rtyler> kutzi: let's try to get some action items out of this so we can wrap the meeting up ;)
+17:20:57 <kohsuke> +1
+17:20:58 <aheritier> kutzi: +1 tests quality first
+17:21:21 <kohsuke> I really need to sleep soon
+17:21:32 <kutzi> I could write down a proposal with my items and the ones other brought up here?
+17:21:42 <aheritier> kohsuke: I think yes. test harness = integration tests but i didn't reviewed everything
+17:21:55 <rtyler> kutzi: that sounds reasonable to me
+17:22:14 <kutzi> There wasn't a single unit test in the maven-plugin module until I wrote one on Sunday!
+17:22:28 <kohsuke> kutzi: because it's in the test harness
+17:22:49 <aheritier> #info Sonar applied on jenkins with basic settings : http://nemo.sonarsource.org/dashboard/index/319267?did=1
+17:22:50 <banoss> ^^ thats why I'm talkig about coverage both unit and IT
+17:22:51 <kutzi> Yeah, so test harness != integration tests ;)
+17:23:50 <kutzi> #idea I'll write a proposal for the test support in the wiki and we'll talk about it in the next meeting
+17:24:04 <kohsuke> kutzi: let's do that
+17:24:53 <kohsuke> OK, so let's decide the next time and wrap up
+17:25:21 <kohsuke> June 8th?
+17:25:29 <kohsuke> #topic next meeting time
+17:25:39 <rtyler> that is a couple weeks from now, so why not :P
+17:25:51 <kohsuke> We can get back to the usual 11am PDT, 2pm EDT, 8pm CET, 3am Tokyo.
+17:26:01 <drulli> +1
+17:26:08 <banoss> -1 ! :D
+17:26:24 <kutzi> +1
+17:26:27 <hare_brain> +1
+17:27:01 <kohsuke> Sorry banoss
+17:27:04 <banoss> lol
+17:27:06 <kohsuke> Which time zone are you from?
+17:27:15 <banoss> London
+17:27:21 <kohsuke> OK.
+17:27:29 <banoss> Hopefully see you at SkillsMatter
+17:27:51 <kohsuke> I still think at some point it'd be good to do this in a different time slot to accommodate Asian folks, but ...
+17:28:03 <kohsuke> I think the next would be our usual time, then
+17:28:14 <kohsuke> #agreed June 8th 11am PDT, 2pm EDT, 8pm CET, 3am Tokyo.
+17:28:25 <kohsuke> All right. I'm calling it a day.
+17:28:36 <kohsuke> #endmeeting

@@ -1,0 +1,77 @@
+18:01:26 <rtyler> #startmeeting
+18:01:26 <robobutler> Let the Jenkins meeting commence!
+18:01:32 <rtyler> #chair kohsuke danielbeck hare_brain
+18:01:32 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:01:51 <kohsuke> Hmm, https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda is empty
+18:01:54 <rtyler> #topic Last meeting actions
+18:02:02 <rtyler> yep, so we'll do the usual real quick
+18:02:07 <kohsuke> sounds good
+18:02:15 <rtyler> the only action was the release 2.19.2
+18:02:16 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-10-26-18.00.html
+18:02:18 <rtyler> which happened yeah?
+18:02:24 <danielbeck> yep
+18:02:31 <rtyler> \o/
+18:02:37 <rtyler> moving on then :D
+18:02:42 <rtyler> #topic LTS status check
+18:03:05 <danielbeck> ogondza isn't around
+18:03:13 <rtyler> ruh roh
+18:04:08 <rtyler> well..
+18:04:16 <rtyler> danielbeck: do you know anything about where we are?
+18:04:21 <rtyler> backporting started for .3 didn't it?
+18:04:31 <danielbeck> fairly active at https://groups.google.com/d/msg/jenkinsci-dev/Ejm1LrMf4h0/Hhz9HDwnAgAJ
+18:05:11 <danielbeck> Seems there's one outstanding backport which will be included with https://github.com/jenkinsci/jenkins/pull/2627 as followup
+18:05:20 <jglick> Active discussion about the B.O. I18N backport last I saw.
+18:05:36 <rtyler> oleg-nenashev: you around?
+18:05:38 <jglick> right
+18:06:37 <jglick> I suppose the status is “wrapping up”?
+18:06:41 <rtyler> heh
+18:07:00 <rtyler> if there's nothing that needs to be discussed here as far as the LTS for 2.19.3 is concerned, then that's no big deal IMO
+18:07:05 <danielbeck> right
+18:07:32 <rtyler> anything else on this topic?
+18:07:39 <danielbeck> #action danielbeck to send another UTC reminder to the dev list
+18:07:53 <danielbeck> (it's not like ogondza to miss a meeting)
+18:07:53 <oleg-nenashev> rtyler: Sorry, was offline
+18:08:24 <rtyler> oleg-nenashev: are there any issues around the LTS that you want to raise while we're on the topic?
+18:08:30 <oleg-nenashev> i think the RC is more or less ready. Yesterday we integrated the most of the stuff
+18:08:50 <oleg-nenashev> The only left issue is BlueOcean localization patch
+18:09:19 <oleg-nenashev> looking for the thread
+18:09:24 <kohsuke> I think we should move on
+18:09:30 <danielbeck> oleg-nenashev we linked that above already
+18:09:41 <danielbeck> oleg-nenashev so if that's all, we're up to date
+18:09:45 <oleg-nenashev> nice
+18:09:48 <rtyler> \o/
+18:09:57 <oleg-nenashev> JENKINS-35845 is pending, other stuff is integrated
+18:10:14 <rtyler> I'm going to throw a heads-up topic in real quick
+18:10:20 <oleg-nenashev> kohsuke: Maybe off-topic, but we need remoting-3.1 release for the next LTS
+18:10:27 <kohsuke> oleg-nenashev: already done
+18:10:30 <oleg-nenashev> ty
+18:10:36 <rtyler> #topic Some release archives served via Azure blob storage
+18:10:49 <rtyler> this is just a heads-up for posterity to be honest
+18:11:08 <rtyler> #info right no we're seving HTTPs downloads for pkg.jenkins.io for debian/opensuse/redhat repositories via Azure blob storage
+18:11:30 <jglick> So long as there are backups elsewhere, sounds fine.
+18:11:33 <rtyler> we're not fronting any more traffic via Azure right now just because I don't have enough data on whether it's been successful thus far or not
+18:11:45 <danielbeck> what defines success?
+18:12:00 <rtyler> lack of complaints :P
+18:12:13 <rtyler> well, also there are Azure metrics which show less than 100^ deliverability success rates
+18:12:27 <rtyler> I have a support call with Microsoft tomorrow to ask more about what that metric means
+18:12:46 <rtyler> if they're just tracking clients' connection resets, then that's not a concern
+18:13:05 <rtyler> jglick: Azure blob storage is geographically redundant
+18:13:55 <rtyler> danielbeck: I'm also using this experiment to get an idea of whether my cost models are correct
+18:14:30 <rtyler> but please keep an eye out for IRC, mailing list, or twitter traffic which might suggest end-users are seeing anything other than stellar experiences with these downloads
+18:14:48 <rtyler> any questions befoer moving on?
+18:14:55 <danielbeck> no
+18:15:20 <rtyler> #topic Next meeting
+18:15:43 <rtyler> Nov 23rd is  the week of thanksgiving in the US
+18:15:55 <rtyler> not a big deal, but there might be a fair bit of vacations floating around then
+18:16:00 <rtyler> any qualms with that day?
+18:16:11 <danielbeck> not from me but we could ask on the dev list
+18:16:30 * oleg-nenashev is out on 23rd
+18:16:33 <rtyler> considering t he agenda for the past two meetings, I don't think we should skip
+18:16:39 <danielbeck> FWIW 23rd is LTS baseline selection
+18:16:42 <rtyler> it'll likely be quick
+18:16:53 <oleg-nenashev> yes, we need it
+18:16:53 <danielbeck> LTS baseline selection!
+18:16:55 <kohsuke> Let's stick to the schedule
+18:17:09 <rtyler> okay
+18:17:17 <rtyler> #info next meeting Nov 23rd
+18:17:21 <rtyler> #endmeeting

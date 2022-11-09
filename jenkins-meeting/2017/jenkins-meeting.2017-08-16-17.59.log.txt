@@ -1,0 +1,165 @@
+17:59:31 <rtyler> #startmeeting
+17:59:31 <robobutler> Let the Jenkins meeting commence!
+17:59:41 <rtyler> #chair kohsuke danielbeck
+17:59:41 <robobutler> Current chairs: danielbeck kohsuke rtyler
+17:59:46 <rtyler> #topic Last meeting actions
+18:00:02 <rtyler> #info http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-08-02-18.00.html
+18:00:25 <rtyler> the Approved Trademark Usage page was updated
+18:01:10 <rtyler> oleg-nenashev: the rest of the actions are yours looks like
+18:01:49 <oleg-nenashev> Remoting changes are documented and announced
+18:02:05 <oleg-nenashev> #info https://jenkins.io//projects/remoting/
+18:02:17 <oleg-nenashev> #info https://jenkins.io/blog/2017/08/11/remoting-update/
+18:03:02 <kohsuke> Nice, project page for remoting
+18:03:02 <oleg-nenashev> JENKINS-45057 is done, but ogondza didn't respond to my comment in the thread
+18:03:42 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/3Vz_Db-rNzk
+18:03:55 <rtyler> I think that covers the last meeting actions rigth?
+18:04:13 <oleg-nenashev> kohsuke: There are much TODOs on this front,  hopefully I'll find some time for it :)
+18:04:30 <ogondza> right sorry, I did not get back to you
+18:05:06 <ogondza> I was not conviced to backport it on the last minute
+18:05:08 <oleg-nenashev> should have pinged you though
+18:05:28 <ogondza> chances are this will be consumed by next line
+18:05:31 <rtyler> #topic LTS status check
+18:05:40 * rtyler passes out boxing gloves
+18:05:56 <ogondza> upstream CI for ATH does not help me here much
+18:06:05 <oleg-nenashev> So JENKINS-45057  is missing LTS from what I see
+18:06:16 <ogondza> oleg-nenashev: yes
+18:06:24 <oleg-nenashev> updating the ticket
+18:06:33 <ogondza> based on internal test run the ATH seems as good as usually
+18:06:47 <ogondza> no reply in the testing thread
+18:07:07 <ogondza> I am tempted to as KK to release the thing
+18:07:09 <oleg-nenashev> Nothing failed on my instance
+18:07:26 <oleg-nenashev> But I had no time to do manual smoke testing on it
+18:08:12 <jglick> I suppose JENKINS-45057 was too new to backport?
+18:08:20 <rtyler> for my own understanding, this would be for 2.60.3 yes?
+18:08:33 <ogondza> rtyler: yes
+18:08:54 <jglick> Anyway there is a workaround in `credentials-binding` 1.13, one of the affected triggers, so probably not a big deal.
+18:08:59 <ogondza> jglick: too new and not straightforward enough for me to make an exception
+18:09:17 <jglick> :shipit:
+18:09:53 <ogondza> #action kohsuke will you please ship 2.60.3?
+18:10:04 <kohsuke> aye aye
+18:10:15 <rtyler> #topic Next LTS baseline selection
+18:10:27 <jglick> #info https://jenkins.io/changelog/
+18:10:44 <rtyler> 2.73 is unbelievably sunny
+18:10:55 <jglick> Yup 2.73 is looking like a good candidate.
+18:10:56 <oleg-nenashev> It's summer time
+18:11:21 <rtyler> that stapler leak fix from 2.74 looks really important though
+18:11:39 <oleg-nenashev> +1 for 2.73. We will also get JENKINS-45057 there OOTB
+18:12:20 <oleg-nenashev> rtyler kohsuke: I am not sure Stapler is backportable, but we need to check it. There are few other important fixes there
+18:12:31 <oleg-nenashev> #info https://github.com/stapler/stapler/blob/master/CHANGELOG.md
+18:12:37 * rtyler nods
+18:12:55 <kohsuke> oleg-nenashev: I thought we don't create backporting branches on stapler, we just instead of bundle newer version of stapler in the core
+18:13:11 <kohsuke> but then that used to be the case for remoting but it's different now AIU
+18:13:19 <oleg-nenashev> https://github.com/stapler/stapler/pull/106 is a feature with new API
+18:13:21 <kohsuke> so maybe now you do it a little differently
+18:13:55 <jglick> JENKINS-45903 does not look important to me. Small leak (presumably until GC), avoided just by fixing your Groovy script.
+18:14:32 <jglick> And JENKINS-43715 is only an issue for plugins which do something they should not be doing to begin with.
+18:14:42 <jglick> So I would see no need to backport Stapler into 2.73.x.
+18:14:46 <oleg-nenashev> kohsuke: It's definitely something to discuss. Usually we do not backport lib updates with major features. Too early to say if Stapler is fine anyway, 2.74 is only 1 day in the wild
+18:14:58 <jglick> JENKINS-46082 would be a trivial backport.
+18:15:26 <oleg-nenashev> I would vote for backport if jglick has time to spin it
+18:15:29 <jglick> ditto JENKINS-43848
+18:15:42 <rtyler> I'm +1 with 2.73 being used, I'm a bit afraid of an LTS that doesn't include fixes for known leaks
+18:16:10 <oleg-nenashev> Well, we rather need to discuss HOW too backport
+18:16:19 <ogondza> 2.73 does look good to me
+18:16:38 <ogondza> I agree, lets see if we want the stapler leak in and then discuss how
+18:16:41 <recena> IMHO, +1 for 2.73
+18:16:47 <jglick> +1 for 2.73
+18:16:50 <oleg-nenashev> +1
+18:16:53 <olblak> +1
+18:17:05 <ogondza> I forgot to count but it seems we have the consensus
+18:17:06 <rtyler> #agreed 2.73 should be the next baseline for LTS
+18:17:11 <rtyler> or is it
+18:17:15 <rtyler> #agree 2.73 should be the next baseline for LTS
+18:17:17 <rtyler> either way
+18:17:32 <rtyler> oleg-nenashev: I trust you all will be able to figure out how and what to backport to make sure this is a stable release :)
+18:17:41 <ogondza> #action ogondza initiate next LTS line for 2.73
+18:18:04 <ogondza> moving on?
+18:18:23 <rtyler> \o/
+18:18:33 <oleg-nenashev> #action: oleg_nenashev and jglick to syncup on Stapler backporting approach
+18:18:42 <oleg-nenashev> + KK of course
+18:18:53 <rtyler> oleg-nenashev: from my understanding this next item isn't going to be a vote, do we need to have a discussion in this time baout it?
+18:19:14 <oleg-nenashev> rtyler: Yes, only a discussion for now
+18:19:37 <rtyler> #topic Discuss proposal: Add optional "Released as" and "Stage Release" states to JIRA
+18:19:45 <oleg-nenashev> #info: https://docs.google.com/document/d/1EIRuCMOjmPgpxybkWRPHfx1f1yglcuYlqPWN8K1Ni28/edit#
+18:20:03 <oleg-nenashev> #info: https://groups.google.com/forum/#!topic/jenkinsci-dev/wzc4VLplHvs
+18:20:50 <oleg-nenashev> I have negative feedback from i386 and michaelneale, so I am not going to iterate on the proposal until I discuss the concerns with them offline
+18:21:53 <rtyler> I think that's a good move
+18:22:00 <oleg-nenashev> OTOH other feedback is positive, uhafners concerns have been addressed in the doc
+18:22:05 <rtyler> i386 probably spends more time in jira than the rest of us combined :P
+18:22:10 <rtyler> except for maybe danielbeck
+18:22:22 <oleg-nenashev> Well, I closed more than 100 tickets yesterday :D
+18:22:43 * oleg-nenashev still has 250 ones assigned to him
+18:22:47 <rtyler> heh
+18:23:00 <rtyler> I think coming up with a proposal that those guys are happy with is a good thing
+18:23:02 <oleg-nenashev> s/closed/unasssigned though
+18:23:20 <kohsuke> Should we punt on this for now and come back afterward?
+18:23:31 <rtyler> personally I'm somewhat indifferent, I just want to make sure we're nto adding organizational technical debt
+18:24:00 <rtyler> kohsuke: yeah, I'm cool with that
+18:24:07 <rtyler> with the links in the record to the WIP proposal
+18:24:15 <rtyler> oleg-nenashev: that suffice for today?
+18:24:28 <oleg-nenashev> Since there is no new feedback, then yes
+18:24:45 <oleg-nenashev> Thread and document are open for new feedback
+18:24:47 <rtyler> I'm going to throw one more thing on the agenda
+18:24:54 <rtyler> #topic Jenkins World preparation
+18:25:17 <rtyler> alyssat_ has done a *fucking* *lot* of work to make the Jenkins project's presence at Jenkins World nice
+18:25:29 <rtyler> if you're coming, you better damn well make sure you thank her :)
+18:25:41 <alyssat_> 😀
+18:25:43 <rtyler> #info We have a contributor summit on the 29th: https://www.meetup.com/jenkinsmeetup/events/241213280/
+18:25:54 <autojack> HAIL ALYSSA
+18:25:58 <rtyler> please make sure you have RSVPd and are planning to join that, we're going to have a lot of sessions and discussions there
+18:25:59 <alyssat_> as long as everyone can join us..that'll make it happy
+18:26:17 <rtyler> alyssat_: what's the link for the contributor appreciation dinner again? I don't have it handy
+18:26:40 <alyssat_> one moment
+18:27:08 <olblak> on eventbrite?
+18:27:08 <rtyler> if you're not able to attend Jenkins World, it would be nice if you were online later in the week (friday/saturday) to join some virtual hacking
+18:27:25 <kohsuke> And think about topics you want to discuss in the afternoon
+18:27:46 <rtyler> #info Please think about topics to discuss in the afternoon portion of the Contributor Summit
+18:28:00 <alyssat_> https://www.eventbrite.com/e/2017-jenkins-contributor-appreciation-evening-tickets-32591665549
+18:28:07 <kohsuke> Also for alyssat_, do we already know the room for Tuesday?
+18:28:22 <kohsuke> I think putting it in the meetup page will save people from looking for it
+18:28:41 <alyssat_> not off the top of my head, I will post the room to the meetup page
+18:28:55 <rtyler> thanks
+18:29:06 <rtyler> any other reminders should share for people?
+18:29:16 <rtyler> does anybody have questions about what the project is doing during Jenkins World?
+18:29:44 <kohsuke> ogondza: there will be officer updates like the last year and would it be possible for you to have a few slides? I can channel you and present it there, again like the last year
+18:30:45 <rtyler> #action kohsuke and ogondza to figure out what kind of Release/LTS updates should be presented at the Contributor Summit
+18:30:49 <rtyler> anything else?
+18:31:04 <rtyler> this is directly related to our final topic :)
+18:31:07 <rtyler> #topic Next Meeting
+18:31:25 <rtyler> August 30 is right at the beginning of Jenkins World, so many of us won't be able to be here
+18:31:39 <rtyler> I propose making the next meeting the following week, Sept 6th
+18:31:45 <rtyler> or wait, LTS scheduling
+18:31:45 <kohsuke> Shoot, I was planning to do live IRC project meeting from my keynote
+18:31:49 <rtyler> haha
+18:32:26 <rtyler> to keep in line with the LTS scheduling, does t hat mean we should punt until Sept 13th?
+18:32:59 <kohsuke> I guess danielbeck  is not here today
+18:33:08 <rtyler> he's not
+18:33:23 <kohsuke> I wanted to make sure if he is aware of any impact if this means slipping LTS by 2 weeks
+18:33:32 <oleg-nenashev> recena: ^^^
+18:33:58 <recena> oleg-nenashev: reading...
+18:34:24 <kohsuke> Correct me if I'm wrong, but I thought most of the time the LTS status check at the RC point is a non-event
+18:34:53 <kohsuke> If so, what if we just plan on having a short meeting just to do that?
+18:35:03 <rtyler> except when it isn't
+18:35:16 <rtyler> I don't think this meeting is necessary to sync on an RC status necessarily
+18:35:35 <ogondza> I agree - not much to discuss
+18:35:53 <ogondza> I can make sure you have RC out by the time of the conference if you want to
+18:36:16 <oleg-nenashev> We can do a longer meeting on the weekend after JW if required
+18:36:17 <rtyler> kohsuke: does that mean sept 13th is fine then?
+18:36:32 <recena> Correct me if I'm wrong.
+18:36:37 <rtyler> oleg-nenashev: heh, a meeting is the opposite of what I want to do on the weekend :P
+18:36:48 <recena> the idea is to delay 2.73.1, two weeks?
+18:36:53 <ogondza> no
+18:36:56 <recena> Instead of September 13th?
+18:37:01 <ogondza> just no RC check as I understood
+18:37:52 <kohsuke> Let me see if I got the current plan on the table
+18:37:57 <oleg-nenashev> rtyler: On that weekend you are going to CODE ;)
+18:38:23 <kohsuke> No meeting in this channel on Aug 30th, but ogondza will produce RC on that day unless something unexpected happen, and 2.73.1 will ship on Sep 13th
+18:38:41 <oleg-nenashev> +1
+18:38:43 <rtyler> that sounds good to me
+18:38:44 <ogondza> ack
+18:38:48 <kohsuke> If anything unexpected happen to 2.73.1 RC, coordination will be on the dev list
+18:39:00 <rtyler> #info next meeting will be Sept 13th
+18:39:01 <kohsuke> recena: I think you like this plan
+18:39:30 <recena> thanks so much for your explanations
+18:39:47 <rtyler> I think that wraps it up for today
+18:40:07 <rtyler> #endmeeting

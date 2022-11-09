@@ -1,0 +1,157 @@
+18:01:48 <kohsuke> #startmeeting
+18:01:48 <robobutler> Let the Jenkins meeting commence!
+18:01:58 <kohsuke> #chair abayer rtyler hare_brain
+18:01:58 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:02:16 <kohsuke> #topic recap of actions
+18:02:21 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-05-30-18.01.html
+18:02:48 <kohsuke> I think J-on-J is back to action
+18:02:56 <kohsuke> but I forgot what the root cause was
+18:03:24 <kohsuke> rtyler: I hope you got the check from SPI
+18:03:49 <rtyler> I did
+18:03:51 <rtyler> check that off the list
+18:03:57 <kohsuke> great
+18:04:00 <rtyler> I now have money for all kinds of fishes in tokyo
+18:04:21 <kohsuke> that reminds me if you want me to place a reservation you guys better decide a date soon
+18:04:40 <kohsuke> rtyler: you up for visiting another city in Japan while at it?
+18:04:49 <rtyler> let's figure this out later ;)
+18:04:51 <kohsuke> There's a conversation of another meet-up 2 hours away
+18:04:52 <kohsuke> yeah
+18:04:54 <kohsuke> sorry
+18:04:59 <kohsuke> let me just record other AIs
+18:04:59 <rtyler> #info Meeting Agenda https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-June13thMeeting
+18:05:09 <kohsuke> #action kohsuke to write to active users of svn.jenkins-ci.org that they can move to GitHub very easily if they want
+18:05:16 <kohsuke> #action kohsuke to write a scanner that auto-adds Jenkins jobs for plugins
+18:05:22 <kohsuke> #action kohsuke to split buildhive code into smaller pieces and install them to jenkins.ci.cloudbees.com
+18:05:25 <kohsuke> (this work is in progress)
+18:05:27 <rtyler> jinkeys
+18:05:39 <kohsuke> #action rtyler to puppet-ize ircbot on cucumber
+18:05:49 <kohsuke> #action rtyler and jieryn to KVM up some more slaves somehow
+18:06:01 <rtyler> that's not KVMable
+18:06:10 <rtyler> I think we'll have to ues jails or something else to isolate the slaves
+18:06:13 <kohsuke> meaning I should have scratched that?
+18:06:17 <rtyler> but that can be further discussed later
+18:06:28 <kohsuke> OK, moving on to the next topic...
+18:06:37 <kohsuke> #topic Selenium tests, switch to Cucumber/Capybara (vjuranek)
+18:06:40 <rtyler> vjuranek: you awake? :)
+18:06:49 <vjuranek> rtyler: yup
+18:06:58 <kohsuke> #info https://github.com/jenkinsci/selenium-tests
+18:06:59 <rtyler> great :)
+18:07:34 <vjuranek> but I have no experience with UI testing, so I don't consider myself to be quailified to make any comments;-)
+18:07:49 <kohsuke> this repository has a few tests on the "new" capybara/cucumber
+18:08:06 <kohsuke> and a bigger number of tests in the "old" (rspec?)  style
+18:08:13 <rtyler> test::unit
+18:08:30 <kohsuke> and we've made some improvements so that it has abstraction for starting/stopping Jenkins
+18:08:37 <kohsuke> ... including "/etc/init.d/jenkins start" kind of things
+18:09:07 <kohsuke> ... as well as vagrant based VM testing
+18:09:12 <kohsuke> so I thought it'd be nice if some of the LTS tests can be automated in this form
+18:09:25 <kohsuke> and then that can start running continuously on regular RC branch, etc
+18:09:44 <rtyler> where would the jenkins instance run?
+18:09:55 <rtyler> we have plenty of free minuts from sauce labs that we're not using, and should be
+18:10:01 <kohsuke> that's abstracted away inside the driver
+18:10:10 <kohsuke> the default "local" driver does "java -jar jenkins.war"
+18:10:23 * rtyler nods
+18:10:29 <kohsuke> if we are to run this continuously that's what we'll do
+18:10:37 <vjuranek> my point was to make some agreement how the tests should look like (cucumber/capybara)
+18:10:46 <kohsuke> but we can test RC *.deb and *.rpm with a different driver, running in VM
+18:11:19 <kohsuke> IIUC, this is the "new" format we should be writing this in: https://github.com/jenkinsci/selenium-tests/blob/master/features/freestyle_build.feature
+18:11:22 <rtyler> if we want to use the sauce labs stuff, that is best supported through cucumber+capybara, and that's also how we (at Lookout) are doing all of our browser testing
+18:11:47 <kohsuke> test::unit is just as alien to me, so I'm fine with cucumber+capybara
+18:11:54 <rtyler> heh
+18:12:15 <rtyler> my primary concern with test::unit, and why I want to switch us away, is that the tests become *utterly* unreadable
+18:12:32 <rtyler> at the very least with cucumber at the outside, you have a document in plain english of what the behavior of jenkins should be
+18:12:37 <rtyler> (I like that for other reasons too)
+18:12:41 <kohsuke> maybe we can spend the next office hours going through how you run tests and how to write more
+18:12:50 <vjuranek> ok, so looks like you agree with cucumber/capybara, so I start learing it and start writing tests in it
+18:12:58 <rtyler> kohsuke: that's a good idea
+18:13:07 <rtyler> vjuranek: are you around for office hours typically?
+18:13:15 <kohsuke> (meaning next week same time)
+18:14:00 <rtyler> #action rtyler to make sure kohsuke and vjuranek have the sauce labs credentials
+18:14:02 <vjuranek> rtyler: not always, but next week it could be probably possible
+18:14:33 <kohsuke> I'm also curious what can be improved in the core to help tests
+18:14:57 <kohsuke> I suspect verifying the intended side effects can be done more easily with groovy script execution
+18:14:59 <kohsuke> or even jruby
+18:15:23 <kohsuke> #action kohsuke to schedule next office hours for selenium-tests
+18:15:30 <kohsuke> should we move on?
+18:15:48 <kohsuke> #topic New home for wiki.jenkins-ci.org
+18:15:50 <vjuranek> kohsuke: every element having unique id? IIRC I have some troublems to find some elements in xpath when looked on it last time
+18:15:58 <kohsuke> oops
+18:16:00 <rtyler> heh
+18:16:10 <vjuranek> np, just quick idea, we can go on
+18:16:21 <rtyler> let's come back to that topic after the meeting
+18:16:25 <rtyler> I want to pick kohsuke's brain too ;)
+18:16:46 <kohsuke> #info I attempted JIRA and Wiki updates Monday evening
+18:16:58 <kohsuke> #info JIRA updated smoothly but Confluence didn't
+18:17:19 <kohsuke> In the end it came up all right, but it renders the "Plugins" page incredibly slow
+18:17:32 <kohsuke> and it quickly chokes up when I exposed it to public
+18:17:39 <rtyler> in all fairness ,that page is enormous
+18:17:44 <rtyler> was this an upgrade to confluence 4?
+18:17:51 <kohsuke> Yes,
+18:17:54 <kohsuke> 4.2.4 to be exact
+18:18:07 <kohsuke> So in the end, like in 3am , I had to cut loss and roll back
+18:18:32 <kohsuke> but there's a security advisory out there, so I do need to upgrade
+18:18:33 <Seb___> À
+18:18:51 <rtyler> there's not a fix in 3.xx?
+18:18:56 <kohsuke> No
+18:19:05 <rtyler> well shit
+18:19:10 <stephend> has anyone run 1.470 with the new LDAP Plugin, here?
+18:19:11 <rtyler> do we have any suppor contacts at atlassian?
+18:19:11 <kohsuke> #info I checked with rtyler and I'm going to try setting up a new instance with our current database dump on cabbage
+18:19:20 <rtyler> stephend: in the middle of a meeting, hold up
+18:19:25 <kohsuke> stephend: oh no, don't tell me it's broken again
+18:19:30 <stephend> I tried 1.469 last night and it didn't work
+18:19:35 <stephend> no, I just haven't yet tried it
+18:19:36 <rtyler> MEETING!
+18:19:47 <stephend> k, sry
+18:20:00 <kohsuke> #info Confluence is already acting strange even in the current version
+18:20:03 <rtyler> kohsuke: we can work together and try to bring up a new confluence on another host and see what we see
+18:20:16 <kohsuke> it's constantly using 30% CPU, and always rather slow
+18:20:31 <rtyler> yeah, needs to move off that vm anyways
+18:20:40 <kohsuke> Yeah, and by moving it to another machine we can give it more memory
+18:20:52 <kohsuke> Both JIRA and Confluence could really use more memory
+18:21:02 <kohsuke> so that's the plan.
+18:21:03 <rtyler> will you have time this weekend? I can make room in my schedule for jenkins infra this upcoming weekend
+18:21:21 <kohsuke> rtyler: I need to check with my wife
+18:21:28 <kohsuke> but I'd like to take that offer
+18:21:41 <kohsuke> I could really use your Puppet-fu
+18:21:42 <abayer> (argh, sorry, in a meeting)
+18:21:52 <rtyler> #action rtyler and kohsuke to look at moving confluence over to a new host this coming weekend (pending Mrs. Kawaguchi approval)
+18:22:10 <kohsuke> so that's it for this. mostly FYI
+18:22:12 <rtyler> kohsuke: I have a cookout saturday afternoon, so in the morning or on Sunday
+18:22:25 <kohsuke> "cookout"? another lookout thing?
+18:22:52 <kohsuke> moving on to the next topic?
+18:23:01 <kohsuke> #topic maven.jenkins-ci.org to repo.jenkins-ci.org switch over
+18:23:05 <rtyler> kohsuke: grilling, burgers, sausages, etc ;)
+18:23:15 <rtyler> I already like this topic
+18:23:17 <kohsuke> BBQ outing, got it.
+18:23:18 <rtyler> death to nexus
+18:23:45 <kohsuke> #info I switched over the update center index generation entirely to Artifactory a few days ago
+18:24:00 <kohsuke> and I verified that it's serving the same things
+18:24:22 <kohsuke> so on all technical fronts, we are ready to retire maven.jenkins-ci.org now
+18:24:32 <rtyler> jieryn: are you awake?
+18:25:01 <kohsuke> when we do the switch over, we'll set up Apache to reverse proxy maven.jenkins-ci.org:8081 (deploy endpoint) to repo.jenkins-ci.org
+18:25:12 <kohsuke> and HTTP redirect for maven.jenkins-ci.org to repo.jenkins-ci.org
+18:25:29 <kohsuke> there'll be one last rsync to move bits from maven.j.o to repo.j.o
+18:25:43 <kohsuke> and putting JFrog logo into the sponsor section (which has been long overdue)
+18:26:17 <kohsuke> so I guess I'm seeking the blessing of this meeting to this, which is technically still a "proof of concept"
+18:26:18 <rtyler> I'm okay with all of those words
+18:26:28 <rtyler> http://i.imgur.com/OabsH.jpg
+18:26:44 <rtyler> I figure abayer and jieryn are better blessing giving candidates
+18:26:54 <kohsuke> I take that image as your +1
+18:27:15 <kohsuke> abayer: ^^
+18:27:40 <kohsuke> anyone else cares to send in their +1/-1s?
+18:28:04 <kohsuke> :-(
+18:28:19 <vjuranek> +1
+18:28:20 <rtyler> where's dean, this meeting is disappointing
+18:28:40 <rtyler> kohsuke: I say just go for it then
+18:28:41 <kohsuke> he's somewhere in a beach of Hawaii
+18:28:45 <rtyler> heh
+18:28:58 <kohsuke> Yeah, I think I'll go ahead and do it anyway
+18:29:11 <kohsuke> So that's it for today
+18:29:19 <rtyler> send it home
+18:29:27 <kohsuke> #topic next meeting time
+18:29:46 <kohsuke> I guess June 27th, the same time
+18:29:59 <rtyler> works for me
+18:30:03 <kohsuke> #info the next meeting is in 2 weeks (Jun 27), the same time
+18:30:06 <rtyler> regular cadence is good IMO
+18:30:11 <kohsuke> Aye
+18:30:20 <kohsuke> #endmeeting

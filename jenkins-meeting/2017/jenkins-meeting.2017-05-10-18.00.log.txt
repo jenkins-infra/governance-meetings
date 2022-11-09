@@ -1,0 +1,237 @@
+18:00:04 <rtyler> #startmeeting
+18:00:04 <robobutler> Let the Jenkins meeting commence!
+18:00:15 <rtyler> #chair hare_brain danielbeck ogondza kohsuke
+18:00:15 <robobutler> Current chairs: danielbeck hare_brain kohsuke ogondza rtyler
+18:00:19 <rtyler> #topic Last meeting actions
+18:00:31 <rtyler> http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-04-26-18.01.html
+18:00:47 <danielbeck> that was a quick one
+18:00:57 <rtyler> heh
+18:01:07 <rtyler> alyssat_ did send the ambassador program wiki page out
+18:01:10 <rtyler> https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Ambassador
+18:01:20 <rtyler> the discussion is on the dev list
+18:01:28 <rtyler> I don't think there's anything else we need to cover there?
+18:01:39 <danielbeck> right
+18:01:47 <oleg-nenashev> Missed the thread, todo the second AI
+18:01:55 <rtyler> #topic LTS status check
+18:01:59 <rtyler> ogondza: all you buddy
+18:02:10 <ogondza> the backporting is done
+18:02:23 <rtyler> is this for 2.46.3?
+18:02:23 <ogondza> the ATH looks good
+18:02:26 <danielbeck> wasn't there a recent lts-candidate addition?
+18:02:31 <ogondza> yes
+18:02:33 <oleg-nenashev> ogondza: There are some candidates
+18:02:38 <oleg-nenashev> ... w/o response
+18:02:47 <danielbeck> ogondza https://issues.jenkins-ci.org/browse/JENKINS-42707 was recently nominated
+18:03:04 <oleg-nenashev> https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%20lts-candidate
+18:03:31 <ogondza> since testing takes forever It is hard to get the latest candidate backported and have the results by the meeting time
+18:03:38 <ogondza> any, I will have a look
+18:04:07 <danielbeck> 44010 doesn't seem that relevant, but ReverseBuildTrigger may be
+18:04:30 <oleg-nenashev> Yep, there is no guaranteed merge for fixes arriving after the beginning of backporting timeframe
+18:04:54 <oleg-nenashev> JENKINS-42728 may be a candidate as well
+18:05:03 <oleg-nenashev> Though I doubt it is a painful issue
+18:05:20 <danielbeck> right
+18:05:44 <danielbeck> none of these seem super important, although fixing the Discover issue would be nice IMO
+18:06:24 <danielbeck> that said nice selection of https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.46.3-fixed
+18:06:26 <ogondza> Discover?
+18:06:31 <oleg-nenashev> We need to cleanup mess like https://issues.jenkins-ci.org/browse/JENKINS-21052 . I doubt anybody work on it, so lts-candidate is too optimistic
+18:06:46 <danielbeck> ogondza Sorry, JENKINS-42707 about Item.Discover permission
+18:07:16 <oleg-nenashev> I would also backport JENKINS-44010. Just because it is trivial
+18:08:01 <danielbeck> seems reasonable, even though I still wonder how this happens :-)
+18:09:00 <oleg-nenashev> danielbeck: Do we also want to discuss merge approach for 2.60+ since it is related to the next LTS?
+18:09:14 <danielbeck> oleg-nenashev can't hurt
+18:09:17 <oleg-nenashev> By now you successfully evade my questions in IRC :)
+18:09:22 <rtyler> oleg-nenashev: I thought batmat had taken an interest in copy/paste stuff like JENKINS-21052? :)
+18:09:58 <oleg-nenashev> Are we done with 2.46.3?
+18:10:26 <kohsuke> sounds like it
+18:10:30 <danielbeck> ogondza anything else on it?
+18:10:37 <ogondza> #action ogondza to rereview candidates before pushing out rc
+18:10:41 <oleg-nenashev> So, 2.x.1
+18:10:47 <ogondza> nothing else
+18:11:00 <rtyler> okie doke
+18:11:03 <oleg-nenashev> Do we think that 2.59 is good enough to start the Big Bang integration?
+18:11:12 <rtyler> big bang integration?
+18:11:19 <danielbeck> oleg-nenashev we should probably wait until the end of the meeting for this
+18:11:26 <danielbeck> there's another topic on the agenda
+18:11:47 <oleg-nenashev> Maybe. I've thought it is related to the LTS status. But let's wait
+18:11:52 <rtyler> oleg-nenashev: if you'd like to discuss the next LTS, we can tack that on to the end if ogondza will stick around
+18:12:09 <rtyler> #topic Infrastructure update
+18:12:22 <rtyler> olblak_: are you awake maybe? :D
+18:12:42 <rtyler> I wanted to provide an update on the on-going status of our Azure migration, and some contemporary infra availability issues
+18:12:59 <rtyler> #info olblak is currently working on tickets to expand the resources Confluence makes use of
+18:13:13 <rtyler> this should help address some of the flapping of that service.
+18:13:29 <rtyler> we have more RAM available on the VM, but the JVM running Confluence is not taking advantage of it
+18:13:45 <rtyler> https://issues.jenkins-ci.org/browse/INFRA-1150 FYI
+18:14:27 <rtyler> olblak is also trying to resolve this issue this week: https://issues.jenkins-ci.org/browse/INFRA-1176
+18:14:35 <rtyler> which is around caching repo.jenkins-ci.org for ci.jenkins.io
+18:14:55 <rtyler> since I know that there have been performance issues affecting plugin contribution feedback from ci.j.io
+18:15:22 <rtyler> without olblak_ awake, I can't promise a timeframe there, but we optimistically discussed deploying something this week to help speed things up on ci.j.io
+18:16:05 <rtyler> #info olblak working to improve repo.jenkins-ci.org access speeds for ci.jenkins.io pipelines
+18:16:20 <rtyler> any questions on either of those two before I continue to the next?
+18:16:21 <danielbeck> rtyler have we figured out what's going on, or are we just fixing it?
+18:17:01 <rtyler> without telemetry from Artifactory Online, it would be very difficult to determine where issues are cropping up; classic downside of a SaaS offering :)
+18:17:09 <rtyler> so we're just fixing it
+18:17:19 <danielbeck> ok
+18:17:35 <rtyler> JFrog hosts in AWS and ci.jenkins.io is in Azure, so it's definitely cross-internet transit going on here
+18:17:57 <rtyler> an in-Azure cache close to ci.j.io will also reduce our costs since Azure charges when you cross that cloud<->internet boundary
+18:18:45 <rtyler> alright, moving onto some other ones
+18:18:56 <rtyler> #info JIRA has experienced a few outages related to GC pressure in the JVM
+18:19:16 <rtyler> we currently haven't had time to investigate and fix anything there, so we have just been restarting JIRA when it happens
+18:19:21 <oleg-nenashev> We are still on 1 GB, right?
+18:20:06 <rtyler> yes
+18:21:01 <oleg-nenashev> maybe we just need to clone https://issues.jenkins-ci.org/browse/INFRA-1150 and s/Confluence/JIRA
+18:21:19 <kohsuke> Did olblak_ do a blog post about all the infra work?
+18:21:25 <rtyler> if there are contributors who wish to test and update the JIRA container: https://github.com/jenkins-infra/jira
+18:21:34 <rtyler> kohsuke: that's in a pull request right now
+18:21:41 <kohsuke> Yay
+18:21:44 <rtyler> it's not all
+18:21:45 <rtyler> it's some
+18:22:11 <rtyler> #info the accounts "signup-might-be-spammer" queue is severely backed up and not properly being addressed
+18:22:34 <rtyler> for background, accounts.jenkins.io sends a confirmation email to a list whenever a signup that looks spammy signs up
+18:22:41 <danielbeck> I keep forgetting to look at that -.-
+18:22:50 <rtyler> that requires human review, which once upon a time larrys spent a lot of effort keeping tidy
+18:23:20 <rtyler> there are dozens (probably > 50) valid signups backlogged in that queue which I am personally no longer addressing either
+18:24:00 <rtyler> unlike the mail spam management, the persons able to manage this queue must have LDAP admin access
+18:24:05 <rtyler> which is understandably a much smaller list
+18:24:21 <rtyler> (since they can delete accounts without any audit trail)
+18:24:52 <rtyler> I have not spent any mental bandwidth to addressing this issue
+18:25:10 <rtyler> I have personally declared accounts-signup bankruptcy and ignore it entirely now
+18:25:50 <rtyler> if somebody wishes to step up and figure this out, please volunteer in #jenkins-infra
+18:26:10 <rtyler> any infra questions before I return the mic to oleg-nenashev for LTS discussion?
+18:26:29 <kohsuke> Maybe we need to adjust the bar of signup spam detection. Something to think about.
+18:26:43 <rtyler> kohsuke: like I said, I declared bankruptcy
+18:26:50 <rtyler> if you want to spend time talking about this we can
+18:27:09 <rtyler> but these spam rules have been hard won after massive non-automated attacks over the years
+18:27:28 <kohsuke> I need to think about it before talking.
+18:27:29 <rtyler> so much wiki defacing :(
+18:27:38 <kohsuke> Right
+18:27:58 <rtyler> our spam and account infrastructure was heavily relying on larrys' time for a long while
+18:28:01 <rtyler> and then me
+18:28:05 <rtyler> and no neither of us have the time
+18:28:07 <rtyler> so
+18:28:08 <rtyler> :(
+18:28:31 <rtyler> any other questions?
+18:28:42 <ogondza> shall we move on?
+18:28:45 <ogondza> :P
+18:28:57 <rtyler> #topic Upcoming LTS Discussion
+18:29:01 <rtyler> oleg-nenashev: yohu're back :)
+18:29:04 <oleg-nenashev> So, weekly Big Bang before LTS... So we have the following updates incoming: Groovy 2.4.11, Jetty 9.4.5, SSHD Module 2.0 with SSHD Core 1.5.0, WinP 1.25, Remoting 3.8.
+18:29:10 <ogondza> https://jenkins.io/changelog/
+18:29:15 <oleg-nenashev> And Pipelne/AbstractProject abstraction layer fun (multiple PRs). I wonder if we can proceed with these changes taking the LTS selection in 2 weeks. Do we consider 2.59 as "good enough" just in case?
+18:29:31 <danielbeck> we already have two non-trivial PRs merged this week: WinSW update (PR 2870) and pulling ChangelogSet out of AbstractProject (PR 2730) in addition to the ones Oleg mentioned
+18:29:46 <danielbeck> PR 2874 is Jesse's (+ those linked from there)
+18:29:50 <oleg-nenashev> Some of fixes above were on hold due to the Trilead fallout
+18:30:00 <oleg-nenashev> But I think we need to move forward
+18:30:03 <danielbeck> If we merge all of them towards 2.60, we may not want to choose that (or newer) as LTS baseline, and none of these changes will make it into the next LTS line. Are we okay with that?
+18:30:26 <oleg-nenashev> 2.60 barely fits the 2-week criteria
+18:30:40 <danielbeck> right, but this many large changes will basically disqualify it
+18:30:49 <oleg-nenashev> definitely
+18:31:15 <danielbeck> jglick and abayer brought up a desire to see the disabling of Jobs in LTS IIRC
+18:31:23 <oleg-nenashev> We can delay some changes for another week if we want to integrate small features into LTS
+18:31:41 <oleg-nenashev> Disabling of jobs is not small, actually
+18:31:43 <danielbeck> (or at least give these features a chance to make it in…)
+18:31:55 <danielbeck> just saying that was mentioned
+18:32:05 <jglick> danielbeck: no this is not necessary, I think you were thinking of `SCM` changes by abayer
+18:32:13 <danielbeck> ah okay
+18:32:15 <oleg-nenashev> SCM is in
+18:32:28 <danielbeck> still, those are only in 2.60, if we merge more, then 2.60 will unlikely be chosen
+18:32:30 <oleg-nenashev> But if we merge Jetty/Groovy into the same release...
+18:33:18 <oleg-nenashev> So... Do we put all merges on hold?
+18:33:28 <oleg-nenashev> Excepting bugfixes, of course
+18:33:45 <rtyler> danielbeck: is there a wiki page or document capturing all this? there's the Java 8 thing, then trilead cropped up, and I'm honestly having trouble keeping up with all the moving part for this next LTS :(
+18:34:12 <rtyler> I don't know how ogondza keeps everything straight!
+18:34:20 <oleg-nenashev> rtyler: No upgrade guide/changelog so far
+18:34:39 <rtyler> I don't mean that so much as something capturing the variables being discussed
+18:34:41 <danielbeck> rtyler the changelog, once it's in :-) We write the upgrade guide and major changes since previous LTS after baseline selection
+18:34:46 <oleg-nenashev> But yeah. Java 8, Trilead, WinSW 2.0, some other hackery
+18:35:33 <oleg-nenashev> #info https://jenkins.io/changelog/
+18:35:47 <ogondza> so where are we? do we really want to have something that is unmerged now as lts baseline?
+18:36:03 <ogondza> ... in lts baseline
+18:36:05 <danielbeck> rtyler no wiki page. list as above: WinP update (no PR yet); Groovy 2.4.10 (PR 2814); Jetty 2.4.5 (PR 2840); SSHD 1.4.0 (PR 2853), and Jesse PR 2874 (and related ones). This has only cropped up now as a few changes were held back a bit to fix the trilead fallout without introducing new problems, others just arrived recently
+18:36:44 <danielbeck> I mean if we're good with what's in 2.59, feature-wise, then we're done here
+18:36:54 <oleg-nenashev> I really want to have SSHD Module in, but we are blocked
+18:36:59 <danielbeck> I think oleg-nenashev just wanted to give others a chance to speak up before we close the door
+18:37:22 <oleg-nenashev> kinda
+18:37:50 <jglick> So what options we choosing between today, exactly?
+18:38:04 <jglick> s/we/are we/
+18:38:12 <oleg-nenashev> 1) Big Bang in 2.60
+18:38:12 <oleg-nenashev> 2) Big Bang in 2.61
+18:38:49 <danielbeck> oleg-nenashev could we summarize as "Do we want to give specific changes in 2.60 the chance to be in next LTS by holding everything else back? If so, which changes?"?
+18:38:51 <jglick> And what is in 2.60-2.59? Just `SCM` changes?
+18:38:53 <oleg-nenashev> Since there is a request for abayer's PR, likely (2)
+18:39:21 <oleg-nenashev> danielbeck: yes
+18:39:44 <oleg-nenashev> Nobody else shouts anyway
+18:39:53 <jglick> No strong opinion I guess.
+18:40:17 <oleg-nenashev> I think a conservative 2.61 then
+18:40:26 <ogondza> My suggestion is to pick conservative baseline (what a surprise) and then merge the PRs that are ready ASAP to master
+18:40:37 <jglick> Usually prefer a train model: merge when something is approved, and wait until the LTS decision meeting to decide based on community feedback whether we can actually go with which release.
+18:40:46 <ogondza> what proves to be correct will get backported, potentially to .1
+18:40:57 <danielbeck> jglick hence 'giving new features a chance' rather than pick 2.60 today.
+18:40:59 <jglick> Well API changes do not get backported.
+18:41:08 <jglick> ^ to ogondza
+18:41:38 <danielbeck> but with what's currently queued up, there's no way we'd pick 2.60 if it all makes it in
+18:41:46 <oleg-nenashev> right
+18:41:55 <ogondza> let's pick .59 then
+18:42:15 <oleg-nenashev> abayer jglick: ^^^ how badly you need that PR?
+18:42:36 <oleg-nenashev> #info https://github.com/jenkinsci/jenkins/pull/2730
+18:42:54 <oleg-nenashev> I a fine if WinSW 2.1.0 misses the LTS
+18:42:56 <ogondza> those changes ware never released, putting multiple of big changes to single lts does not sound wise to me
+18:43:11 <jglick> aggregate ~102 votes
+18:43:23 <jglick> JENKINS-24141 + JENKINS-26100
+18:43:25 <danielbeck> ogondza note we're only picking two weeks from today ;-)
+18:43:46 <ogondza> oh, good point
+18:44:27 <rtyler> anything else on this topic today?
+18:44:30 <oleg-nenashev> #vote Do we postpone pending changes to give a chance to 2.60?
+18:44:36 <oleg-nenashev> +1
+18:44:56 <jglick> So if you consider >100 votes “important” and you have already decided that other PRs would automatically disqualify a baseline if merged, then we would need to pick 2.60 and hold off on merges.
+18:45:00 <danielbeck> jglick to clarify, JENKINS-24141 and 26100 are resolved by the PR 2730 merge?
+18:45:57 <jglick> Mostly it enables downstream plugin changes using a new baseline which resolve those issues. I mean, we could release that plugin against a weekly baseline I suppose, and the people who really need those changes could run weeklies.
+18:47:06 <danielbeck> 79 votes / 98 watchers and 23 votes / 39 watchers is a lot, so that would indicate we should give 2.60 a chance to be picked and hold off more big merges for another week, so I'd be fine with doing that. We're not losing anything and if 2.60 is good enough to make LTS, that'd make a lot of users happy
+18:47:29 <danielbeck> obviously, if 2.60 is terrible we wouldn't pick it, but this would increase its chances
+18:47:30 <jglick> We can also release >1 build per week.
+18:48:05 <oleg-nenashev> does not make much difference to bother kohsuke
+18:48:12 <kohsuke> It sounds like he is saying there is no need to distort the integration of pr into weekly for the upcoming LTS?
+18:48:27 <ogondza> I am +1 on releasing 2.60 with PR2730 and PR2870 being the main stuff in it and consider that for baseline
+18:48:47 <oleg-nenashev> +1 from danielbeck I assume
+18:48:55 <jglick> Right, if we wanted a “2.59½” with just `SCM` changes that could be considered seriously as a baseline, without affecting other development processes.
+18:49:18 <jglick> Or just make an exemption for LTS backporting policies and allow the feature to be backported. Comes to much the same thing.
+18:49:24 <danielbeck> seems ogondza oleg-nenashev and I agree on holding off merges of other large scale changes into 2.60, any other opinions?
+18:50:08 <ogondza> kohsuke: could you cut .60 sooner so merging can continue for .61 to get the PRs out?
+18:50:15 <kohsuke> Sure
+18:50:51 <ogondza> then there is no need to hold off merger as I understand it. danielbeck, oleg-nenashev?
+18:50:58 <ogondza> merges, I mean
+18:51:03 <oleg-nenashev> We probably need to get the RSS fix in 2.60
+18:51:12 <oleg-nenashev> Just to avoid backporting
+18:51:33 <ogondza> https://github.com/jenkinsci/jenkins/pull/2878/files ? why?
+18:51:34 <danielbeck> too tiny to care
+18:52:07 <oleg-nenashev> yep. Reported as a regression in 2.59
+18:52:09 <jglick> ogondza: well under that plan we would need to hold off merges until kohsuke has a chance to cut a `master` release. The arguably simpler approach is to propose the `SCM` feature as a backport.
+18:52:39 <ogondza> jglick: that would mean .59 is the baseline?
+18:52:45 <jglick> Then we do not need to decide today, we can just merge whatever looks ready without thinking too hard about LTS, and in two weeks we can agree to use 2.59 + backports
+18:53:07 <oleg-nenashev> better to cut 2.60
+18:53:18 <oleg-nenashev> I mean out-of-order
+18:53:25 <danielbeck> kohsuke can you cut 2.60 later today?
+18:53:32 <oleg-nenashev> Same effort as backporting, but it will be much more clear
+18:53:41 <kohsuke> I can do that
+18:53:44 <jglick> An OoO release works for me too. No strong preference.
+18:53:50 <ogondza> I am trying to get the changes released ASAP so they get battle-tested not to make my backporting job simpler :)
+18:54:18 <jglick> abayer: we are discussing whether we can cut an out-of-order release of 2.60 so we can get your `SCM` changes into an LTS without picking up other potentially dangerous changes
+18:54:23 <abayer> Ah.
+18:54:54 <oleg-nenashev> I think we have an agreement
+18:55:02 <rtyler> time check, we have 5 minues left in the scheduled time for this meeting
+18:55:12 <ogondza> 2.59 + backports sounds safest, 2.60 from current master + fewer backports is still fine with me. Big fat 2.60 is what I do not like
+18:55:38 <jglick> #info https://github.com/jenkinsci/jenkins/compare/jenkins-2.59...master
+18:55:59 <oleg-nenashev> #agreed Cut 2.60 on May 10th
+18:56:27 <oleg-nenashev> #action oleg_nenashev and danielbeck to merge minor bugfixes and let kohsuke know when it's done
+18:56:42 <danielbeck> not a fan of backporting features due to 2.60 > 2.59.1 in dependencies
+18:57:22 <oleg-nenashev> We can think about it later anyway
+18:57:31 <kohsuke> I think we are done with this
+18:57:41 <jglick> danielbeck: yeah there is that issue, though does not matter in this case since the dep would be 2.59.1+ which matches 2.60 but not 2.59
+18:58:34 <danielbeck> #action danielbeck to write 2.60 changelog for today
+18:58:43 <jglick> Sounds like a plan to me.
+18:59:09 <danielbeck> rtyler I think we can finish this up
+18:59:12 <rtyler> w00t
+18:59:16 <rtyler> #topic next meeting
+18:59:29 <rtyler> looks like May 24th would be next scheduled
+18:59:43 <rtyler> I don't see any major holidays or anything in the way
+19:00:01 <rtyler> #info next meeting May 24th 18:00 UTC
+19:00:04 <rtyler> #endmeeting

@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app200.us.archive.org';v.server_ms=877;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-09-27-18.00.log.html","20211022194339","https://web.archive.org/","web","/_static/",
+	      "1634931819");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:09</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:14</span><span class="nk"> &lt;rtyler&gt;</span> YAY
+<a name="l-4"></a><span class="tm">18:00:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-5"></a><span class="tm">18:00:33</span><span class="nk"> &lt;rtyler&gt;</span> http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-09-13-18.00.html
+<a name="l-6"></a><span class="tm">18:00:36</span><span class="nk"> &lt;rtyler&gt;</span> none!
+<a name="l-7"></a><span class="tm">18:00:38</span><span class="nk"> &lt;rtyler&gt;</span> YAY
+<a name="l-8"></a><span class="tm">18:00:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-9"></a><span class="tm">18:01:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> all yours buddy
+<a name="l-10"></a><span class="tm">18:01:33</span><span class="nk"> &lt;ogondza&gt;</span> I am finishing the labeling and will send announcment later today
+<a name="l-11"></a><span class="tm">18:01:50</span><span class="nk"> &lt;ogondza&gt;</span> then I will push the RC, hopefully this week
+<a name="l-12"></a><span class="tm">18:02:02</span><span class="nk"> &lt;rtyler&gt;</span> this would be the 2.73.2 RC1?
+<a name="l-13"></a><span class="tm">18:02:08</span><span class="nk"> &lt;ogondza&gt;</span> yes
+<a name="l-14"></a><span class="tm">18:02:19</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-15"></a><span class="tm">18:02:28</span><span class="nk"> &lt;rtyler&gt;</span> anything you need from others on the RC?
+<a name="l-16"></a><span class="tm">18:02:30</span><span class="nk"> &lt;ogondza&gt;</span> Oleg, was kind enough to release special bits of remoting that needs a bit more love
+<a name="l-17"></a><span class="tm">18:02:50</span><span class="nk"> &lt;ogondza&gt;</span> so during the testing the actual dependency version will be replaced but the code will be the some
+<a name="l-18"></a><span class="tm">18:03:02</span><span class="nk"> &lt;ogondza&gt;</span> (hiccups with the release process)
+<a name="l-19"></a><span class="tm">18:03:08</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> glad yo uasked
+<a name="l-20"></a><span class="tm">18:03:27</span><span class="nk"> &lt;ogondza&gt;</span> Can someone have a look at INFRA-1346?
+<a name="l-21"></a><span class="tm">18:03:56</span><span class="nk"> &lt;ogondza&gt;</span> I would like to finally move LTS ATH to ci.jenkins.io but it will be sort of special
+<a name="l-22"></a><span class="tm">18:03:56</span><span class="nk"> &lt;rtyler&gt;</span> I'll go ahead and take that
+<a name="l-23"></a><span class="tm">18:04:08</span><span class="nk"> &lt;rtyler&gt;</span> ci.jenkins.io is Pipeline-only
+<a name="l-24"></a><span class="tm">18:04:12</span><span class="nk"> &lt;ogondza&gt;</span> cool, thanks
+<a name="l-25"></a><span class="tm">18:04:25</span><span class="nk"> &lt;rtyler&gt;</span> I'll have to investigate whether I had previously created an LDAP group which you are part of for permissions there
+<a name="l-26"></a><span class="tm">18:04:28</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> sure, I am not able to even create a job there
+<a name="l-27"></a><span class="tm">18:04:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> right, but once you're in a group with Job/Create permissions you would technically be able to create a Freestyle Job
+<a name="l-28"></a><span class="tm">18:05:09</span><span class="nk"> &lt;rtyler&gt;</span> which would cause that rtyler guy to be very upset with you if you did :P
+<a name="l-29"></a><span class="tm">18:05:16</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> You have my word I won't :P
+<a name="l-30"></a><span class="tm">18:05:23</span><span class="nk"> &lt;rtyler&gt;</span> but anyways, I'll review the LDAP groups and unblock you there
+<a name="l-31"></a><span class="tm">18:05:27</span><span class="nk"> &lt;danielbeck&gt;</span> I can write a plugin to prevent that ;-)
+<a name="l-32"></a><span class="tm">18:05:34</span><span class="nk"> &lt;rtyler&gt;</span> 2.73.2 RC1 will contain that jbcrypt fix right?
+<a name="l-33"></a><span class="tm">18:05:46</span><span class="nk"> &lt;rtyler&gt;</span> should we ping markewaite about helping with testing if he's available to help?
+<a name="l-34"></a><span class="tm">18:05:59</span><span class="nk"> &lt;ogondza&gt;</span> yes, jbcrypt is there
+<a name="l-35"></a><span class="tm">18:06:30</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> not sure he had a chance to test the weekly change. worth trying I guess
+<a name="l-36"></a><span class="tm">18:06:54</span><span class="nk"> &lt;rtyler&gt;</span> I will mention it to him when I catch him on IRC
+<a name="l-37"></a><span class="tm">18:07:08</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> sweet
+<a name="l-38"></a><span class="tm">18:07:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> I suggest asking folks for help in testing specific areas in your RC email fwiw
+<a name="l-39"></a><span class="tm">18:07:19</span><span class="nk"> &lt;rtyler&gt;</span> that seems to work really well
+<a name="l-40"></a><span class="tm">18:07:29</span><span class="nk"> &lt;rtyler&gt;</span> rather than a general "call for testing"
+<a name="l-41"></a><span class="tm">18:07:36</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">rtyler:</span> w.r.t. the BCrypt fix, I wrote an ATH regression test for it
+<a name="l-42"></a><span class="tm">18:07:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jglick:</span> I saw! \o/
+<a name="l-43"></a><span class="tm">18:08:00</span><span class="nk"> &lt;rtyler&gt;</span> one of the many reasons I'm hoping we can get ATH sorted on ci.jenkins.io and run it much more frequently
+<a name="l-44"></a><span class="tm">18:08:15</span><span class="nk"> &lt;jglick&gt;</span> so if we actually run ATH against LTS release candidates (apparently we did not run it against 2.80) then we should be OK
+<a name="l-45"></a><span class="tm">18:08:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> any other points to discuss here?
+<a name="l-46"></a><span class="tm">18:08:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jglick:</span> *nod*
+<a name="l-47"></a><span class="tm">18:08:49</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> any specific people to ask (for testing)
+<a name="l-48"></a><span class="tm">18:09:06</span><span class="nk"> &lt;ogondza&gt;</span> you mean people who fixed the things or some list of ussual suspects?
+<a name="l-49"></a><span class="tm">18:09:36</span><span class="nk"> &lt;rtyler&gt;</span> folks who originally reported some of these issues perhaps :)
+<a name="l-50"></a><span class="tm">18:10:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I can do some testing tomorrow. Today is tough
+<a name="l-51"></a><span class="tm">18:10:06</span><span class="nk"> &lt;ogondza&gt;</span> yes, why not
+<a name="l-52"></a><span class="tm">18:10:23</span><span class="nk"> &lt;ogondza&gt;</span> anyway, we can move on I guess
+<a name="l-53"></a><span class="tm">18:10:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> today is almost over!
+<a name="l-54"></a><span class="tm">18:10:28</span><span class="nk"> &lt;rtyler&gt;</span> :D
+<a name="l-55"></a><span class="tm">18:10:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yeah
+<a name="l-56"></a><span class="tm">18:10:38</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> tell me about it
+<a name="l-57"></a><span class="tm">18:10:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">Forest_:</span> you still awake and with us? :D
+<a name="l-58"></a><span class="tm">18:10:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> after the meeting would you be able to chat briefly with me in #jenkins about some ATH items?
+<a name="l-59"></a><span class="tm">18:11:08</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> sure
+<a name="l-60"></a><span class="tm">18:11:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Huayou Tech request for mark usage for events "Jenkins User Conference China"</span>
+<a name="l-61"></a><span class="tm">18:11:43</span><span class="nk"> &lt;rtyler&gt;</span> https://groups.google.com/d/msg/jenkinsci-dev/xeowuF-aDE0/NTrBhiHiBAAJ
+<a name="l-62"></a><span class="tm">18:12:02</span><span class="nk"> &lt;rtyler&gt;</span> Forest_ sent this request to the dev list already about a sublicense request for "Jenkins User Conference China"
+<a name="l-63"></a><span class="tm">18:12:20</span><span class="nk"> &lt;Forest_&gt;</span> Hello, everyone, I was here last project meeting :)
+<a name="l-64"></a><span class="tm">18:12:38</span><span class="nk"> &lt;alyssat_&gt;</span> Hi Forest_
+<a name="l-65"></a><span class="tm">18:12:52</span><span class="nk"> &lt;olblak&gt;</span> \o
+<a name="l-66"></a><span class="tm">18:13:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">Forest_:</span> for your information, make sure you read: https://jenkins.io/project/governance/#trademark and https://jenkins.io/project/governance/#attribution-for-sublicensees
+<a name="l-67"></a><span class="tm">18:13:25</span><span class="nk"> &lt;rtyler&gt;</span> (maybe tomorrow after a good sleep :))
+<a name="l-68"></a><span class="tm">18:13:41</span><span class="nk"> &lt;Forest_&gt;</span> understood, I'll check it later, thank you.
+<a name="l-69"></a><span class="tm">18:14:15</span><span class="nk"> &lt;alyssat_&gt;</span> I can also work with Forest_ to make sure he dot his i and cross his t's wrt trademark attributions
+<a name="l-70"></a><span class="tm">18:14:24</span><span class="nk"> &lt;Forest_&gt;</span> lol, I've joined dev list. And we would like to hold JUC China in Shanghai Nov.
+<a name="l-71"></a><span class="tm">18:14:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">Forest_:</span> for events done on behalf of the Jenkins project we also expect that the Code of Conduct to be followed at the event: https://jenkins.io/project/conduct
+<a name="l-72"></a><span class="tm">18:14:57</span><span class="nk"> &lt;rtyler&gt;</span> anyways
+<a name="l-73"></a><span class="tm">18:15:08</span><span class="nk"> &lt;Forest_&gt;</span> OK
+<a name="l-74"></a><span class="tm">18:15:14</span><span class="nk"> &lt;rtyler&gt;</span> I'm +1 on this sublicense request (exciting to see a growing chinese user community)
+<a name="l-75"></a><span class="tm">18:15:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-76"></a><span class="tm">18:15:23</span><span class="nk"> &lt;autojack&gt;</span> +1 from me.
+<a name="l-77"></a><span class="tm">18:15:24</span><span class="nk"> &lt;alyssat_&gt;</span> +1
+<a name="l-78"></a><span class="tm">18:15:24</span><span class="nk"> &lt;danielbeck&gt;</span> finally I get to write +1
+<a name="l-79"></a><span class="tm">18:15:37</span><span class="nk"> &lt;autojack&gt;</span> "even so..."
+<a name="l-80"></a><span class="tm">18:15:38</span><span class="nk"> &lt;olblak&gt;</span> +1
+<a name="l-81"></a><span class="tm">18:15:44</span><span class="nk"> &lt;alyssat_&gt;</span> exciting to see the growth
+<a name="l-82"></a><span class="tm">18:15:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">autojack:</span> even so?
+<a name="l-83"></a><span class="tm">18:16:07</span><span class="nk"> &lt;autojack&gt;</span> joke. ignore.
+<a name="l-84"></a><span class="tm">18:16:11</span><span class="nk"> &lt;rtyler&gt;</span> heh, okay
+<a name="l-85"></a><span class="tm">18:16:32</span><span class="nk"> &lt;Forest_&gt;</span> It will be a amazing event, hope you could come and join us :)
+<a name="l-86"></a><span class="tm">18:16:34</span><span class="nk"> &lt;rtyler&gt;</span> any questions or concerns we should discuss here?
+<a name="l-87"></a><span class="tm">18:16:49</span><span class="nk"> &lt;danielbeck&gt;</span> Forest_ could we get a blog post or two about it?
+<a name="l-88"></a><span class="tm">18:17:06</span><span class="nk"> &lt;Forest_&gt;</span> Sure about that.
+<a name="l-89"></a><span class="tm">18:17:17</span><span class="nk"> &lt;danielbeck&gt;</span> great
+<a name="l-90"></a><span class="tm">18:17:17</span><span class="nk"> &lt;Forest_&gt;</span> Once we get the approval :)
+<a name="l-91"></a><span class="tm">18:17:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">Forest_:</span> I suggest working with alyssat_ on those after the meeting (and sleep :))
+<a name="l-92"></a><span class="tm">18:17:43</span><span class="nk"> &lt;alyssat_&gt;</span> 😃+1:
+<a name="l-93"></a><span class="tm">18:18:06</span><span class="nk"> &lt;Forest_&gt;</span> No problem, I took a nap just now and very exciting to join this meeting.
+<a name="l-94"></a><span class="tm">18:18:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Trademark sublicense request for "Jenkins User Conference China" granted to Huayou Tech subject to the usual terms and conditions</span>
+<a name="l-95"></a><span class="tm">18:18:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to update the Approved Trademark Usage wiki page</span>
+<a name="l-96"></a><span class="tm">18:19:12</span><span class="nk"> &lt;rtyler&gt;</span> that concludes the agenda items \o/
+<a name="l-97"></a><span class="tm">18:19:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-98"></a><span class="tm">18:19:30</span><span class="nk"> &lt;rtyler&gt;</span> The next spot on the schedule is Oct 11th
+<a name="l-99"></a><span class="tm">18:19:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> I will need you to run that meeting, since i'll be at puppetconf
+<a name="l-100"></a><span class="tm">18:19:44</span><span class="nk"> &lt;danielbeck&gt;</span> ack
+<a name="l-101"></a><span class="tm">18:19:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting Oct 11th, same time, same place</span>
+<a name="l-102"></a><span class="tm">18:19:54</span><span class="nk"> &lt;rtyler&gt;</span> that's a wrap!
+<a name="l-103"></a><span class="tm">18:19:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 19:43:39 Oct 22, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:11:52 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 181.641
+  exclusion.robots: 0.087
+  exclusion.robots.policy: 0.078
+  cdx.remote: 0.071
+  esindex: 0.011
+  LoadShardBlock: 116.143 (3)
+  PetaboxLoader3.datanode: 169.585 (4)
+  CDXLines.iter: 23.148 (3)
+  load_resource: 687.005
+  PetaboxLoader3.resolve: 49.68
+-->

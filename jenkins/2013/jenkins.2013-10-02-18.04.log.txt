@@ -1,0 +1,87 @@
+18:04:22 <kohsuke> #startmeeting
+18:04:22 <robobutler> Let the Jenkins meeting commence!
+18:04:31 <kohsuke> so that the conversation gets logged and all
+18:04:58 <kohsuke> ogondza: I admit I haven't thought about 1.509.4.
+18:05:14 <s7726> schristou: macetw found his path to include the $PATH variable still, maybe the additional processing was preventing the variable expansion, or trying to insert things after the expansion was done, but also needed expanding its self?
+18:05:27 <ogondza> most backports are prepared in stable branch
+18:05:34 <kohsuke> I need to catch up with the dev thread on this
+18:05:52 <ogondza> i suggest to wait ~week until a couple of fixes becomes soaked
+18:06:03 <kohsuke> OK
+18:06:33 <kohsuke> JENKINS-14362 , I assuem
+18:06:35 <jglick> ogondza: did you say that you did *not* want to do a 1.509.5?
+18:06:37 <jenkins-admin> JENKINS-14362:100% CPU load during org.kohsuke.stapler.compression.CompressionFilter.reportException (Resolved) http://jenkins-ci.org/issue/14362
+18:07:01 <jglick> JENKINS-14362 could use a little extra soak time; action item for me is to verify a proposed jzlib fix
+18:07:07 <ogondza> jglick, yes, i hope new LTS will be ready at the time
+18:07:38 <jglick> Sure, if we can do a 1.535.1 or whatever, 1.509.5 should not be necessary.
+18:08:06 <ogondza> jglick, the commit you proposed is a workaround for the bug in jzlib. Can it be used in release or do we need the proper fix?
+18:08:26 <ogondza> already backported btw.
+18:08:40 <jglick> ogondza: I think the workaround is safe; it just calls jzlib with different parameters that are not known to tickle the bug, at least on the known test case.
+18:08:47 <kohsuke> by "proper fix" you mean fixing JDK?
+18:08:55 <jglick> No, proper fix in jzlib.
+18:09:02 <ogondza> jglick, yes
+18:09:10 <jglick> There is a subtle IIOBE caused by certain inputs.
+18:09:31 <kohsuke> wow
+18:09:50 <kohsuke> makes me wonder if that's causing infinite loop in native zlib implementation
+18:10:01 <jglick> Basically something was supposed to be <32768 and it was ≥32768 though <65536.
+18:10:30 <jglick> I guess it is conceivable that they ported the bug from zlib.c, but I doubt it is related.
+18:10:36 <kohsuke> OK
+18:10:46 <jglick> Appears as a regression after the jzlib switch.
+18:11:11 <jglick> Anyway, upstream dev has a proposed true fix, need to verify it and get back to him.
+18:11:27 <kohsuke> The only thing I'm afraid of is that there seems to be never-ending stream of backporting requests
+18:11:37 <kohsuke> I think we need to set the date and stick to it
+18:11:40 <jglick> The stream ends with the next LTS release!
+18:12:24 <kohsuke> Just the day before yesterday Daniel Beck wants JENKINS-19418
+18:12:26 <jenkins-admin> JENKINS-19418:Random HTTP 404 when viewing build details (Resolved) http://jenkins-ci.org/issue/19418
+18:12:57 <kohsuke> ah but that one appears already backported
+18:12:58 <ogondza> kohsuke, can we talk about this size of the LTSs as a next meeting item?
+18:13:40 <jglick> Do you think too many fixes are going in?
+18:13:42 <kohsuke> ogondza: sure, just put it up on https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:14:07 <jglick> The release driver should not be afraid to reject a fix as being too minor and/or risky to deal with.
+18:14:36 <ogondza> lots of candidates definitely, I dot intent to backport anything alse not needed for issues rejected in 1.509.3
+18:14:58 <ogondza> there is still 17 candidate bug fixes
+18:15:45 <kohsuke> if I were you I'd declare backporting done for 1.509.4
+18:15:54 <kohsuke> and not let anything further in unless they beg and bribe you
+18:16:32 <ogondza> jglick, can we do without JENKINS-19338. I guess maven suport is more important
+18:16:34 <jenkins-admin> JENKINS-19338:Cannot archive artifacts using Maven 3.1.0 on Windows slave (Open) http://jenkins-ci.org/issue/19338
+18:17:39 <jglick> Oh forgot about this one. Yes I think we can do without. Better to have Unix 3.1.0 support than none at all.
+18:18:35 <jglick> Not even sure if this is reproducible by anyone else, or just something wrong on my machine.
+18:18:43 <schristou> s7726: now looking at the tag changes https://github.com/jenkinsci/jenkins/commit/3eea39648943583a530f47f69f93737266537d9d might be the issue
+18:18:58 <ogondza> Then the backporting is pretty much closed
+18:19:25 <kohsuke> except the follow-up fix for jzlib fix (JENKINS-14362) ?
+18:19:28 <jenkins-admin> JENKINS-14362:100% CPU load during org.kohsuke.stapler.compression.CompressionFilter.reportException (Resolved) http://jenkins-ci.org/issue/14362
+18:19:38 <kohsuke> Or is that also what we can let go?
+18:20:08 <kohsuke> We could just produce RC and test while we soak
+18:20:14 <jglick> Well the proposed workaround for JENKINS-19473 is already backported IIUC.
+18:20:17 <jenkins-admin> JENKINS-19473:failed to archive slave artifacts. Unexpected end of ZLIB input stream (Resolved) http://jenkins-ci.org/issue/19473
+18:20:41 <kohsuke> oh well then, I suggest we declare 1.509.4 RC
+18:21:07 <ogondza> please wait for JENKINS-19251
+18:21:10 <jenkins-admin> JENKINS-19251:After upgrade from 1.519 to 1.526 -> NumberFormatException occurs during maven 3 build (Resolved) http://jenkins-ci.org/issue/19251
+18:21:11 <kohsuke> OK
+18:21:27 <jglick> ogondza: you plan to backport my fix for that?
+18:21:58 <ogondza> the NumberFormatException? yes
+18:22:05 <jglick> I think the fix is good, but it is rather new.
+18:22:35 <jglick> Up to you.
+18:22:42 <ogondza> I'll wait
+18:23:03 <jglick> What are we waiting for? Time to pass?
+18:23:29 <kohsuke> technically it'd take 2 weeks for this to pass the "soaked in the main line release" criteria
+18:24:30 <jglick> I am not sure JENKINS-19251 is worth waiting for. The bug is of course severe, but the workaround once you know it is trivial.
+18:24:32 <jenkins-admin> JENKINS-19251:After upgrade from 1.519 to 1.526 -> NumberFormatException occurs during maven 3 build (Resolved) http://jenkins-ci.org/issue/19251
+18:25:00 <jglick> Or you can exempt it from the soaking time if you think the fix is clearly correct.
+18:25:58 <kohsuke> ogondza: is this something that's affecting you guys?
+18:26:04 <ogondza> no
+18:26:17 <kohsuke> IMHO 4 votes don't seem too bad compared to other issues
+18:26:44 <ogondza> I dont mind leaving it out
+18:26:54 <jglick> kohsuke: FWIW came up with at least one CloudBees customer. Not sure how prevalent it is.
+18:27:04 <kohsuke> anyone searching stack trace on Google will probably quickly find this issue, and as jglick says there's an easy workaround
+18:27:46 <jglick> The main reason to include it is that we are including JENKINS-15935 and this is triggered by that change.
+18:27:48 <jenkins-admin> JENKINS-15935:Can't build using maven 3.1.0 (Resolved) http://jenkins-ci.org/issue/15935
+18:28:01 <jglick> I.e. will appear as a regression to a 1.509.3 user.
+18:29:32 <jglick> Up to ogondza’s judgment I think. Anything else on the topic?
+18:29:33 <kohsuke> I don't feel too strongly, but my preference is to skip it. I hate to wait 2 more weeks for this, yet this doesn't seem like a big enough issue to bend the self-imposed rules
+18:29:58 <kohsuke> +1 on ogondza's judgement
+18:30:14 <kohsuke> I'll watch out for backporting complete e-mail to stage RC
+18:30:44 <kohsuke> and no, nothing else on the agenda
+18:31:24 <kohsuke> #topic next meeting
+18:31:46 <kohsuke> we'll meet in two weeks
+18:31:51 <kohsuke> already up on https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:31:59 <kohsuke> #endmeeting

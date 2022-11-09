@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app201.us.archive.org';v.server_ms=2173;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-07-06-18.00.log.html","20211020065933","https://web.archive.org/","web","/_static/",
+	      "1634713173");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:11</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:19</span><span class="nk"> &lt;rtyler&gt;</span> you've got to remove the moderation first :)
+<a name="l-4"></a><span class="tm">18:00:23</span><span class="nk"> &lt;rtyler&gt;</span> else it will just be us talking :P
+<a name="l-5"></a><span class="tm">18:00:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler hare_brain</span>
+<a name="l-6"></a><span class="tm">18:00:26</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: hare_brain kohsuke rtyler
+<a name="l-7"></a><span class="tm">18:00:38</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks, I can never remember those IRC mode flags
+<a name="l-8"></a><span class="tm">18:00:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">actions from the last meeting</span>
+<a name="l-9"></a><span class="tm">18:01:11</span><span class="nk"> &lt;rtyler&gt;</span> oleg-nenashev is really the only person with an older action AFAICT
+<a name="l-10"></a><span class="tm">18:01:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yay
+<a name="l-11"></a><span class="tm">18:01:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> which action have I missed? :)
+<a name="l-12"></a><span class="tm">18:01:52</span><span class="nk"> &lt;kohsuke&gt;</span> oleg-nenashev to follow-up on SECR in the mailing list
+<a name="l-13"></a><span class="tm">18:01:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> oops
+<a name="l-14"></a><span class="tm">18:02:01</span><span class="nk"> &lt;kohsuke&gt;</span> (see http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-06-22-18.00.html)
+<a name="l-15"></a><span class="tm">18:02:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I need to get approval from my manager first
+<a name="l-16"></a><span class="tm">18:02:51</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so let's say "work in progress"
+<a name="l-17"></a><span class="tm">18:02:58</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-18"></a><span class="tm">18:03:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> my bad, sorry
+<a name="l-19"></a><span class="tm">18:03:49</span><span class="nk"> &lt;kohsuke&gt;</span> moving on
+<a name="l-20"></a><span class="tm">18:04:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-21"></a><span class="tm">18:04:17</span><span class="nk"> &lt;ogondza&gt;</span> I have done some testing and all looks good
+<a name="l-22"></a><span class="tm">18:04:18</span><span class="nk"> &lt;kohsuke&gt;</span> lots of excitement around the first 2.x LTS!!
+<a name="l-23"></a><span class="tm">18:04:29</span><span class="nk"> &lt;danielbeck&gt;</span> what could possibly go wrong?
+<a name="l-24"></a><span class="tm">18:04:39</span><span class="nk"> &lt;ogondza&gt;</span> have not heared from more people than usual, though
+<a name="l-25"></a><span class="tm">18:04:49</span><span class="nk"> &lt;rtyler&gt;</span> there's that characteristic german optimism xD
+<a name="l-26"></a><span class="tm">18:04:56</span><span class="nk"> &lt;ogondza&gt;</span> yeah, let's do it
+<a name="l-27"></a><span class="tm">18:05:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">ogondza:</span> We stick to remoting-2.59, right?
+<a name="l-28"></a><span class="tm">18:05:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">2.7.1 is good to go</span>
+<a name="l-29"></a><span class="tm">18:05:23</span><span class="nk"> &lt;ogondza&gt;</span> yes
+<a name="l-30"></a><span class="tm">18:05:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ok
+<a name="l-31"></a><span class="tm">18:05:30</span><span class="nk"> &lt;ogondza&gt;</span> I intend to bunp it in .2
+<a name="l-32"></a><span class="tm">18:05:35</span><span class="nk"> &lt;kohsuke&gt;</span> oops
+<a name="l-33"></a><span class="tm">18:05:51</span><span class="nk"> &lt;kohsuke&gt;</span> sorry, then "2.7.2 is good to go"?
+<a name="l-34"></a><span class="tm">18:05:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes
+<a name="l-35"></a><span class="tm">18:05:59</span><span class="nk"> &lt;danielbeck&gt;</span> ???
+<a name="l-36"></a><span class="tm">18:06:01</span><span class="nk"> &lt;danielbeck&gt;</span> no
+<a name="l-37"></a><span class="tm">18:06:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> :D
+<a name="l-38"></a><span class="tm">18:06:22</span><span class="nk"> &lt;kohsuke&gt;</span> I'm confused
+<a name="l-39"></a><span class="tm">18:06:26</span><span class="nk"> &lt;kohsuke&gt;</span> Oh
+<a name="l-40"></a><span class="tm">18:06:28</span><span class="nk"> &lt;ogondza&gt;</span> .1 is good to go
+<a name="l-41"></a><span class="tm">18:06:31</span><span class="nk"> &lt;kohsuke&gt;</span> You meant remoting 2.59 will be .2
+<a name="l-42"></a><span class="tm">18:06:47</span><span class="nk"> &lt;kohsuke&gt;</span> So my earlier # agreed is in good standing
+<a name="l-43"></a><span class="tm">18:06:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes
+<a name="l-44"></a><span class="tm">18:06:57</span><span class="nk"> &lt;ogondza&gt;</span> I promissed Oleg to backport it in next release, sorry
+<a name="l-45"></a><span class="tm">18:07:01</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else on this ogondza ?
+<a name="l-46"></a><span class="tm">18:07:06</span><span class="nk"> &lt;ogondza&gt;</span> not from me
+<a name="l-47"></a><span class="tm">18:07:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC status</span>
+<a name="l-48"></a><span class="tm">18:07:19 </span><span class="nka">* oleg-nenashev</span> <span class="ac">starts typing</span>
+<a name="l-49"></a><span class="tm">18:07:28</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev it's called copy &amp; paste :P
+<a name="l-50"></a><span class="tm">18:07:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Status update:
+<a name="l-51"></a><span class="tm">18:07:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">We finished Mid-term evaluations of students</span>
+<a name="l-52"></a><span class="tm">18:07:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">3 Projects have been cancelled: Support Core, Plugin Documentation Publishing, Jenkins Usage Stats analysis</span>
+<a name="l-53"></a><span class="tm">18:07:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">2 projects are active: Jenkins Web UI improvements and External Workspace Manager</span>
+<a name="l-54"></a><span class="tm">18:07:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">Links to mid-term presentations by students are here: https://jenkins.io/blog/2016/06/21/gsoc-midterm-presentations-ann/</span>
+<a name="l-55"></a><span class="tm">18:07:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action: </span><span class="cmdline">oleg_nenashev to follow-up with mentors on JW presentations and Mentor Summit</span>
+<a name="l-56"></a><span class="tm">18:07:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action: </span><span class="cmdline">oleg_nenashev to follow-up with rtyler on the SPI side (project money)</span>
+<a name="l-57"></a><span class="tm">18:07:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action: </span><span class="cmdline">oleg_nenashevto finally send something to alyssat</span>
+<a name="l-58"></a><span class="tm">18:08:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">We changed the schedule of Public Office Hours, TBA today</span>
+<a name="l-59"></a><span class="tm">18:09:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So this is the current status
+<a name="l-60"></a><span class="tm">18:09:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Generally we;re fine
+<a name="l-61"></a><span class="tm">18:09:22</span><span class="nk"> &lt;kohsuke&gt;</span> I've seen the mid-term presentation and there were some really exciting project accomplishments
+<a name="l-62"></a><span class="tm">18:09:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But students still do not bother to join this meeting
+<a name="l-63"></a><span class="tm">18:09:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Yes, there is some good outcome for the community
+<a name="l-64"></a><span class="tm">18:10:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also much topics to consider for the next year
+<a name="l-65"></a><span class="tm">18:10:14</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev how public can we do a retrospective once this is done? Any limitations?
+<a name="l-66"></a><span class="tm">18:11:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> Any preferences? Now we have mentor-internal and org-admin-internal retrospective docs
+<a name="l-67"></a><span class="tm">18:11:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also we would like to get feedback from students
+<a name="l-68"></a><span class="tm">18:11:42</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev Given that next year it may be a different set of mentors, I'd like to make at least the outcome as public as possible
+<a name="l-69"></a><span class="tm">18:11:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> OK
+<a name="l-70"></a><span class="tm">18:12:14</span><span class="nk"> &lt;danielbeck&gt;</span> hence my question how restricted we would be in discussing what happened
+<a name="l-71"></a><span class="tm">18:12:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Requires some filtering, but I'll do it before Contributor Summit
+<a name="l-72"></a><span class="tm">18:12:19</span><span class="nk"> &lt;danielbeck&gt;</span> okay
+<a name="l-73"></a><span class="tm">18:12:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> Not so much secrets there in any case
+<a name="l-74"></a><span class="tm">18:13:24</span><span class="nk"> &lt;kohsuke&gt;</span> I agree that it'd be good to schedule some retrospective for this GSoC as a whole, at some point as input to the next year
+<a name="l-75"></a><span class="tm">18:13:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We just don't want to to have a kind of public person feedback
+<a name="l-76"></a><span class="tm">18:13:38</span><span class="nk"> &lt;danielbeck&gt;</span> right
+<a name="l-77"></a><span class="tm">18:13:46</span><span class="nk"> &lt;kohsuke&gt;</span> If some people want to give feedback anonymously, I think oleg-nenashev would be happy to talk to them in private and summarize the lessons
+<a name="l-78"></a><span class="tm">18:13:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep
+<a name="l-79"></a><span class="tm">18:14:12</span><span class="nk"> &lt;kohsuke&gt;</span> It sounds like there's no restriction from the GSoC program side about what can be public vs what needs to be private
+<a name="l-80"></a><span class="tm">18:14:51</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we wrap up?
+<a name="l-81"></a><span class="tm">18:14:56</span><span class="nk"> &lt;kohsuke&gt;</span> Any more on GSoC?
+<a name="l-82"></a><span class="tm">18:15:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nothing from me
+<a name="l-83"></a><span class="tm">18:15:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-84"></a><span class="tm">18:15:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action: </span><span class="cmdline">oleg_nenashev to schedule the GSoC retrospective</span>
+<a name="l-85"></a><span class="tm">18:15:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting will be July 20th</span>
+<a name="l-86"></a><span class="tm">18:15:45</span><span class="nk"> &lt;kohsuke&gt;</span> Happy summer time, everyone
+<a name="l-87"></a><span class="tm">18:15:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 06:59:33 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:41:25 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 430.062
+  exclusion.robots: 0.276
+  exclusion.robots.policy: 0.254
+  cdx.remote: 0.137
+  esindex: 0.016
+  LoadShardBlock: 42.909 (3)
+  PetaboxLoader3.datanode: 59.635 (4)
+  CDXLines.iter: 20.02 (3)
+  load_resource: 1732.37
+  PetaboxLoader3.resolve: 1705.412
+-->

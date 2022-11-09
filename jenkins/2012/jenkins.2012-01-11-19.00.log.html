@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:00:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:00:03</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:00:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap of last meeting's action items</span>
+<a name="l-4"></a><span class="tm">19:00:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Jan11thMeeting</span>
+<a name="l-5"></a><span class="tm">19:00:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">abayer kohsuke</span>
+<a name="l-6"></a><span class="tm">19:00:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer kohsuke</span>
+<a name="l-7"></a><span class="tm">19:00:31</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer kohsuke rtyler
+<a name="l-8"></a><span class="tm">19:00:47</span><span class="nk"> &lt;rtyler&gt;</span> no dean, bummer
+<a name="l-9"></a><span class="tm">19:00:55</span><span class="nk"> &lt;rtyler&gt;</span> I'll go ahead and run down the list of my AIs
+<a name="l-10"></a><span class="tm">19:01:00</span><span class="nk"> &lt;kohsuke&gt;</span> he sent us a regret. Food poisoning
+<a name="l-11"></a><span class="tm">19:01:05</span><span class="nk"> &lt;rtyler&gt;</span> oh yikes
+<a name="l-12"></a><span class="tm">19:01:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">aheritier now in the users-core module</span>
+<a name="l-13"></a><span class="tm">19:01:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">backups at Contegix are actually blocked on me setting up a role account on the machine</span>
+<a name="l-14"></a><span class="tm">19:02:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">The 'contingency' plans on the infra wiki are still not really fleshed out, shame on me</span>
+<a name="l-15"></a><span class="tm">19:02:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> you're up :)
+<a name="l-16"></a><span class="tm">19:02:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">fund-raising is concluded successfully, and the post added. rtyler still needs to submit the reimbursement request.</span>
+<a name="l-17"></a><span class="tm">19:02:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">SCALE10x CI dinner --- oops</span>
+<a name="l-18"></a><span class="tm">19:03:02</span><span class="nk"> &lt;kohsuke&gt;</span> I think rtyler and I need to sync up a bit more
+<a name="l-19"></a><span class="tm">19:03:13</span><span class="nk"> &lt;kohsuke&gt;</span> ... on the date
+<a name="l-20"></a><span class="tm">19:03:17</span><span class="nk"> &lt;rtyler&gt;</span> indeed
+<a name="l-21"></a><span class="tm">19:03:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">The great seal of the Jenkins CIA program is ready for action, but not the slides</span>
+<a name="l-22"></a><span class="tm">19:04:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to post a template of Jenkins CIA intro slides</span>
+<a name="l-23"></a><span class="tm">19:04:43</span><span class="nk"> &lt;kohsuke&gt;</span> and imod and I should probably start putting contents in parallel and apply the template when it's ready
+<a name="l-24"></a><span class="tm">19:04:59</span><span class="nk"> &lt;imod&gt;</span> yep
+<a name="l-25"></a><span class="tm">19:05:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">LTS 1.424.2 is RC-ed, tested, and released.</span>
+<a name="l-26"></a><span class="tm">19:05:30</span><span class="nk"> &lt;kohsuke&gt;</span> ... mad props to vjuranek and others as alwaysy
+<a name="l-27"></a><span class="tm">19:05:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> are you there?
+<a name="l-28"></a><span class="tm">19:05:57</span><span class="nk"> &lt;abayer&gt;</span> Mostly. =)
+<a name="l-29"></a><span class="tm">19:06:12</span><span class="nk"> &lt;kohsuke&gt;</span> there's one action of yours to ping GitHub about a private repo
+<a name="l-30"></a><span class="tm">19:06:56</span><span class="nk"> &lt;abayer&gt;</span> Ah, yeah - I think we opted to go with one on one of our personal accounts for now, yes?
+<a name="l-31"></a><span class="tm">19:07:10</span><span class="nk"> &lt;rtyler&gt;</span> that's what I said I'd do for the infra secrets
+<a name="l-32"></a><span class="tm">19:07:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> if you feel this won't happen, then that's OK. We just need to figure out another plan.
+<a name="l-33"></a><span class="tm">19:08:09</span><span class="nk"> &lt;kohsuke&gt;</span> But if you think we just need to ask, then I think we should ask.
+<a name="l-34"></a><span class="tm">19:08:19</span><span class="nk"> &lt;abayer&gt;</span> Ah. I'll deal with it,t hen. Sorry.
+<a name="l-35"></a><span class="tm">19:08:38</span><span class="nk"> &lt;rtyler&gt;</span> next?
+<a name="l-36"></a><span class="tm">19:08:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to ping github again for a private repo for CLA (and infra secrets)</span>
+<a name="l-37"></a><span class="tm">19:08:59</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's it for actions
+<a name="l-38"></a><span class="tm">19:09:00</span><span class="nk"> &lt;abayer&gt;</span> brb
+<a name="l-39"></a><span class="tm">19:09:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Autopopulating Affected Version/s and Fix Version/s in JIRA</span>
+<a name="l-40"></a><span class="tm">19:09:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">fredg02:</span> you're up
+<a name="l-41"></a><span class="tm">19:09:36</span><span class="nk"> &lt;fredg02&gt;</span> thx, I just wanted to get the discussion started again.
+<a name="l-42"></a><span class="tm">19:10:04</span><span class="nk"> &lt;fredg02&gt;</span> it's been a long pending plan, so I thought it would be a good idea to bring it up again
+<a name="l-43"></a><span class="tm">19:10:20</span><span class="nk"> &lt;kohsuke&gt;</span> I'm now generating LTS changelogs from git-log and ticket IDs in the commit messages
+<a name="l-44"></a><span class="tm">19:10:35</span><span class="nk"> &lt;kohsuke&gt;</span> (That's http://jenkins-ci.org/changelog-stable)
+<a name="l-45"></a><span class="tm">19:10:53</span><span class="nk"> &lt;fredg02&gt;</span> I think it would be a good idea to popuplate the mentioned fields in JIRA (automatically if possible)
+<a name="l-46"></a><span class="tm">19:11:05</span><span class="nk"> &lt;kohsuke&gt;</span> So if we can define the appropriate field in JIRA, then I think expanding this script to fill that in would be easy enough.
+<a name="l-47"></a><span class="tm">19:11:27</span><span class="nk"> &lt;imod&gt;</span> but thats for core only - right?
+<a name="l-48"></a><span class="tm">19:11:41</span><span class="nk"> &lt;kohsuke&gt;</span> Yes.
+<a name="l-49"></a><span class="tm">19:11:53</span><span class="nk"> &lt;kohsuke&gt;</span> I think we need a bit more work to make it work to plugins
+<a name="l-50"></a><span class="tm">19:12:12</span><span class="nk"> &lt;imod&gt;</span> separate components in JIRA?
+<a name="l-51"></a><span class="tm">19:12:31</span><span class="nk"> &lt;fredg02&gt;</span> so before the fields get populated core and plugins need to be split right?
+<a name="l-52"></a><span class="tm">19:12:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">fredg02:</span> There are actually many ways to do it
+<a name="l-53"></a><span class="tm">19:13:10</span><span class="nk"> &lt;kohsuke&gt;</span> It's less useful but it can be done without moving plugins to separate JIRA projects
+<a name="l-54"></a><span class="tm">19:13:17</span><span class="nk"> &lt;imod&gt;</span> didn't someone start some investigation on this?
+<a name="l-55"></a><span class="tm">19:13:18</span><span class="nk"> &lt;fredg02&gt;</span> ok.
+<a name="l-56"></a><span class="tm">19:13:28</span><span class="nk"> &lt;kohsuke&gt;</span> ... by making them all share the same pool of version numbers
+<a name="l-57"></a><span class="tm">19:14:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">imod:</span> yes, aheritier, but to be fair, I think the arrangement was that we first give them the second instance to play with those new scheme
+<a name="l-58"></a><span class="tm">19:14:15</span><span class="nk"> &lt;kohsuke&gt;</span> ... which we haven't delivered.
+<a name="l-59"></a><span class="tm">19:14:22</span><span class="nk"> &lt;fredg02&gt;</span> I think it would be nice to give plugin developers some more freedom by making plugins separate JIRA projects
+<a name="l-60"></a><span class="tm">19:14:32</span><span class="nk"> &lt;imod&gt;</span> ok, understandable :)
+<a name="l-61"></a><span class="tm">19:15:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">fredg02:</span> IIRC, the downside is that multiple projects require higher admin overheads on our side
+<a name="l-62"></a><span class="tm">19:15:35</span><span class="nk"> &lt;kohsuke&gt;</span> ... and updating some existing automations, like jenkins-admin
+<a name="l-63"></a><span class="tm">19:15:37</span><span class="nk"> &lt;rpetti&gt;</span> where would the list of versions come from?
+<a name="l-64"></a><span class="tm">19:15:57</span><span class="nk"> &lt;rpetti&gt;</span> often, you might not know what next release's version number is going to be
+<a name="l-65"></a><span class="tm">19:16:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rpetti:</span> If there's an API to create a new version, then the automated filler program would be the right one to create it, I think
+<a name="l-66"></a><span class="tm">19:16:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rpetti:</span> exactly, that's why I'm advocating for retroactively parsing it from git-log
+<a name="l-67"></a><span class="tm">19:16:34</span><span class="nk"> &lt;rpetti&gt;</span> i agree
+<a name="l-68"></a><span class="tm">19:16:38</span><span class="nk"> &lt;kohsuke&gt;</span> ... after a release is made
+<a name="l-69"></a><span class="tm">19:16:44</span><span class="nk"> &lt;rpetti&gt;</span> +1
+<a name="l-70"></a><span class="tm">19:17:04</span><span class="nk"> &lt;kohsuke&gt;</span> And e-mail generated by that update would serve as a nice reminder to encourage people to use it
+<a name="l-71"></a><span class="tm">19:17:38</span><span class="nk"> &lt;fredg02&gt;</span> I can't judge how big the admin overhead is. but it would be worth a try in a sandbox environment, I guess
+<a name="l-72"></a><span class="tm">19:17:42</span><span class="nk"> &lt;imod&gt;</span> love it already!
+<a name="l-73"></a><span class="tm">19:18:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">fredg02:</span> maybe we can do this in parallel.
+<a name="l-74"></a><span class="tm">19:18:38</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm, not sure what I mean by that
+<a name="l-75"></a><span class="tm">19:19:09</span><span class="nk"> &lt;fredg02&gt;</span> if you need any help with this, feel free to contact me :)
+<a name="l-76"></a><span class="tm">19:19:13</span><span class="nk"> &lt;kohsuke&gt;</span> Evidently the main obstacle was that we failed to prepare the secondary JIRA instance necessary to play with this.
+<a name="l-77"></a><span class="tm">19:19:35</span><span class="nk"> &lt;fredg02&gt;</span> action item?
+<a name="l-78"></a><span class="tm">19:19:54</span><span class="nk"> &lt;kohsuke&gt;</span> I think JIRA not wanting to be puppet-ed discouraged us enough not to tackle it
+<a name="l-79"></a><span class="tm">19:20:14</span><span class="nk"> &lt;kohsuke&gt;</span> (or was it something else? am I fabricating the history?)
+<a name="l-80"></a><span class="tm">19:20:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> do you have any thoughts on the best way to start a secondary instance?
+<a name="l-81"></a><span class="tm">19:21:00</span><span class="nk"> &lt;rtyler&gt;</span> if only we had this monstrosity puppeted...
+<a name="l-82"></a><span class="tm">19:21:12</span><span class="nk"> &lt;rtyler&gt;</span> yeah, i'm not really sure
+<a name="l-83"></a><span class="tm">19:21:17</span><span class="nk"> &lt;kohsuke&gt;</span> I vaguely recall we were also waiting for another server to come online to house this.
+<a name="l-84"></a><span class="tm">19:21:20</span><span class="nk"> &lt;kohsuke&gt;</span> Was it cabbage?
+<a name="l-85"></a><span class="tm">19:21:25</span><span class="nk"> &lt;evilchili&gt;</span> you'll run into licensing problems with a second jira too :/
+<a name="l-86"></a><span class="tm">19:21:27</span><span class="nk"> &lt;rtyler&gt;</span> cabbage or lettuce
+<a name="l-87"></a><span class="tm">19:21:46</span><span class="nk"> &lt;rtyler&gt;</span> could we give fredg02 a backup and let him figure it out? :D
+<a name="l-88"></a><span class="tm">19:21:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">evilchili:</span> I'm sure we can get a FLOSS license for it too
+<a name="l-89"></a><span class="tm">19:21:57</span><span class="nk"> &lt;evilchili&gt;</span> indeed
+<a name="l-90"></a><span class="tm">19:21:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> fredg02: works for me
+<a name="l-91"></a><span class="tm">19:22:13</span><span class="nk"> &lt;kohsuke&gt;</span> but he also needs to have access to the infra, right?
+<a name="l-92"></a><span class="tm">19:22:27</span><span class="nk"> &lt;kohsuke&gt;</span> for him to do the experiment on this local system won't do any good
+<a name="l-93"></a><span class="tm">19:23:11</span><span class="nk"> &lt;rtyler&gt;</span> can we AI this to figure out, it's wider in scope than is suitable for this meeting IMHO
+<a name="l-94"></a><span class="tm">19:23:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Possibly related is that eggplant, the current server of JIRA, has a number of problems</span>
+<a name="l-95"></a><span class="tm">19:23:36</span><span class="nk"> &lt;kohsuke&gt;</span> ranging from smaller disk space to the database option being not friendly to JIRA...
+<a name="l-96"></a><span class="tm">19:24:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> would you want to phrase the AI?
+<a name="l-97"></a><span class="tm">19:24:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">fredg02:</span> how much does puppet scare you? :P
+<a name="l-98"></a><span class="tm">19:25:07</span><span class="nk"> &lt;fredg02&gt;</span> dunno yet. I'm definitely interested. wanted to talk to you about puppet at FOSDEM anyways ;)
+<a name="l-99"></a><span class="tm">19:25:14</span><span class="nk"> &lt;rtyler&gt;</span> if we could kill two birds with one stone: https://github.com/jenkinsci/infra-puppet/issues/1
+<a name="l-100"></a><span class="tm">19:25:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">fredg02 and rtyler to work together on figuring out bringing up a issues-beta.jenkins-ci.org on our infrastructure</span>
+<a name="l-101"></a><span class="tm">19:25:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> fredg02: we might as well get paid by Atlassian to do it!
+<a name="l-102"></a><span class="tm">19:25:53</span><span class="nk"> &lt;rtyler&gt;</span> paid o_O
+<a name="l-103"></a><span class="tm">19:26:05</span><span class="nk"> &lt;fredg02&gt;</span> sounds good B)
+<a name="l-104"></a><span class="tm">19:26:06</span><span class="nk"> &lt;rtyler&gt;</span> if we can figure out a way to use puppet for this great, if not, so be it
+<a name="l-105"></a><span class="tm">19:26:16</span><span class="nk"> &lt;kohsuke&gt;</span> I mean, they don't even have a debian package
+<a name="l-106"></a><span class="tm">19:26:45</span><span class="nk"> &lt;kohsuke&gt;</span> I think I'm going to improve my changelog generator script slowly &amp; steadily.
+<a name="l-107"></a><span class="tm">19:26:45</span><span class="nk"> &lt;rtyler&gt;</span> I've been in contact with the guy who coauthored Pro Puppet (also helped with puppet-jenkins)
+<a name="l-108"></a><span class="tm">19:26:50</span><span class="nk"> &lt;rtyler&gt;</span> I wonder if he'd be willing to help
+<a name="l-109"></a><span class="tm">19:27:11</span><span class="nk"> &lt;Majost&gt;</span> I have debian packaging experience
+<a name="l-110"></a><span class="tm">19:27:19</span><span class="nk"> &lt;Majost&gt;</span> pretty extensive really
+<a name="l-111"></a><span class="tm">19:27:20</span><span class="nk"> &lt;Majost&gt;</span> heh
+<a name="l-112"></a><span class="tm">19:27:41</span><span class="nk"> &lt;Majost&gt;</span> though time is something which has been hard for me to find lately. =/
+<a name="l-113"></a><span class="tm">19:28:21</span><span class="nk"> &lt;fredg02&gt;</span> as a side note, because it was asked yesterday: JIRA can handle multiple affects versions and multiple fix versions
+<a name="l-114"></a><span class="tm">19:28:27</span><span class="nk"> &lt;kohsuke&gt;</span> I think making JIRA a debian package is a nice separation of work.
+<a name="l-115"></a><span class="tm">19:29:48</span><span class="nk"> &lt;rtyler&gt;</span> we should close out the meeting if there are no more topics
+<a name="l-116"></a><span class="tm">19:29:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> I've added two
+<a name="l-117"></a><span class="tm">19:30:03</span><span class="nk"> &lt;rtyler&gt;</span> ah
+<a name="l-118"></a><span class="tm">19:30:03</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-119"></a><span class="tm">19:30:09</span><span class="nk"> &lt;rtyler&gt;</span> then let's move on xD
+<a name="l-120"></a><span class="tm">19:30:13</span><span class="nk"> &lt;kohsuke&gt;</span> And I was going to ask Majost if he's volunteering
+<a name="l-121"></a><span class="tm">19:30:18</span><span class="nk"> &lt;kohsuke&gt;</span> for jira.deb
+<a name="l-122"></a><span class="tm">19:30:21</span><span class="nk"> &lt;rtyler&gt;</span> he's always volunteering
+<a name="l-123"></a><span class="tm">19:30:25</span><span class="nk"> &lt;Majost&gt;</span> hah
+<a name="l-124"></a><span class="tm">19:30:25</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-125"></a><span class="tm">19:31:07</span><span class="nk"> &lt;kohsuke&gt;</span> Let's ask i386 if we can get some help from Atlassian
+<a name="l-126"></a><span class="tm">19:31:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to ping i386 about JIRA debian package</span>
+<a name="l-127"></a><span class="tm">19:31:34</span><span class="nk"> &lt;Majost&gt;</span> Right now, I can code review...
+<a name="l-128"></a><span class="tm">19:31:49</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I think we are done with this topic
+<a name="l-129"></a><span class="tm">19:31:55</span><span class="nk"> &lt;Majost&gt;</span> np
+<a name="l-130"></a><span class="tm">19:32:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">funding give-away items</span>
+<a name="l-131"></a><span class="tm">19:32:33</span><span class="nk"> &lt;rtyler&gt;</span> is abayer awake still? :D
+<a name="l-132"></a><span class="tm">19:32:44</span><span class="nk"> &lt;abayer&gt;</span> Sorry, distracted by work. =)
+<a name="l-133"></a><span class="tm">19:33:05</span><span class="nk"> &lt;kohsuke&gt;</span> So, we got SCALE10x, FOSDEM, and Jenkins CIA program, and as well as various local meet ups
+<a name="l-134"></a><span class="tm">19:33:10</span><span class="nk"> &lt;kohsuke&gt;</span> Not to mention 4 Jenkins User Conferences
+<a name="l-135"></a><span class="tm">19:33:27</span><span class="nk"> &lt;kohsuke&gt;</span> And we got a bit of money thanks to the fund-raising drive.
+<a name="l-136"></a><span class="tm">19:33:58</span><span class="nk"> &lt;kohsuke&gt;</span> So I wanted to see if people think it's a goo use of our money to buy some give-away materials for those events and efforts
+<a name="l-137"></a><span class="tm">19:34:24</span><span class="nk"> &lt;kohsuke&gt;</span> More concretely, stickers as a general give away
+<a name="l-138"></a><span class="tm">19:34:32</span><span class="nk"> &lt;kohsuke&gt;</span> ... and T-shirts for CIA agents
+<a name="l-139"></a><span class="tm">19:34:58</span><span class="nk"> &lt;ndeloof&gt;</span> Are stickers expensive ?
+<a name="l-140"></a><span class="tm">19:35:10</span><span class="nk"> &lt;kohsuke&gt;</span> I don't have the exact price, but a few hundreds for 1000
+<a name="l-141"></a><span class="tm">19:35:28</span><span class="nk"> &lt;kohsuke&gt;</span> based on Alyssa, who has done one for JUC
+<a name="l-142"></a><span class="tm">19:35:29</span><span class="nk"> &lt;kohsuke&gt;</span> http://www.stickermule.com/products/custom-die-cut-stickers
+<a name="l-143"></a><span class="tm">19:35:46</span><span class="nk"> &lt;fredg02&gt;</span> I'd pay for a t-shirt! :) (even more than retail if it's a donation)
+<a name="l-144"></a><span class="tm">19:35:54</span><span class="nk"> &lt;kohsuke&gt;</span> T-shirts are more expensive, so they aren't give aways for everyone.
+<a name="l-145"></a><span class="tm">19:36:12</span><span class="nk"> &lt;ndeloof&gt;</span> I did 1000 of them for my JUG and distribute to speakers &amp; attendees, that was a nice advertising to find more audience
+<a name="l-146"></a><span class="tm">19:36:13</span><span class="nk"> &lt;kohsuke&gt;</span> But rtyler and I thought it'd be a great incentive for recruiting CIA agents
+<a name="l-147"></a><span class="tm">19:36:19 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-148"></a><span class="tm">19:36:32</span><span class="nk"> &lt;ndeloof&gt;</span> I thing this makes sense to have such (low cost) goodies on conferences
+<a name="l-149"></a><span class="tm">19:36:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CIA+Program</span>
+<a name="l-150"></a><span class="tm">19:36:38</span><span class="nk"> &lt;imod&gt;</span> I'm all in for this
+<a name="l-151"></a><span class="tm">19:37:07</span><span class="nk"> &lt;kohsuke&gt;</span> To try to be fair, the arguments on the other side is that we need to live cheaply
+<a name="l-152"></a><span class="tm">19:37:19</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think we want to do fund-raising every year like Wikipedia does.
+<a name="l-153"></a><span class="tm">19:37:57</span><span class="nk"> &lt;imod&gt;</span> true, but I think now its the time to get more people into the Jenkins world and that will pay out again...
+<a name="l-154"></a><span class="tm">19:38:18</span><span class="nk"> &lt;ndeloof&gt;</span> agree
+<a name="l-155"></a><span class="tm">19:38:18</span><span class="nk"> &lt;fredg02&gt;</span> hehe. I like kohsuke staring at me from a banner more than those wikipedia guys
+<a name="l-156"></a><span class="tm">19:38:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> your thoughts?
+<a name="l-157"></a><span class="tm">19:38:57</span><span class="nk"> &lt;rtyler&gt;</span> we'll have to get some more fun images next time around ;)
+<a name="l-158"></a><span class="tm">19:39:11</span><span class="nk"> &lt;abayer&gt;</span> I think we've got some cash to burn. =)
+<a name="l-159"></a><span class="tm">19:39:14</span><span class="nk"> &lt;rtyler&gt;</span> I'll have to see if kohsuke can do a buddy christ impression: http://upload.wikimedia.org/wikipedia/en/thumb/9/93/Buddy_christ.jpg/300px-Buddy_christ.jpg
+<a name="l-160"></a><span class="tm">19:39:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I think setting a quarterly or annual budget for this makes sense
+<a name="l-161"></a><span class="tm">19:40:01</span><span class="nk"> &lt;rtyler&gt;</span> if we were to say we have a $1500 evangelism budget this year or something like that, that would guide our decisions much better IMHO
+<a name="l-162"></a><span class="tm">19:40:31</span><span class="nk"> &lt;kohsuke&gt;</span> We have about $6K in our bank right now (excluding what's already committed)
+<a name="l-163"></a><span class="tm">19:40:38</span><span class="nk"> &lt;imod&gt;</span> CIA Agents should make a note about donation at every presentation...
+<a name="l-164"></a><span class="tm">19:41:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I'm inclined to be more conservative with the funds honestly, I don't like begging :P
+<a name="l-165"></a><span class="tm">19:41:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> Me too
+<a name="l-166"></a><span class="tm">19:42:13</span><span class="nk"> &lt;fredg02&gt;</span> how about putting a small donation fee on every merchandise item?
+<a name="l-167"></a><span class="tm">19:43:03</span><span class="nk"> &lt;kohsuke&gt;</span> How about we allocate $500 for stickers and $500 for T-shirts (when CIA is ready to launch), and see how long it lasts?
+<a name="l-168"></a><span class="tm">19:43:12</span><span class="nk"> &lt;rtyler&gt;</span> I like that
+<a name="l-169"></a><span class="tm">19:43:15 </span><span class="nka">* rtyler</span> <span class="ac">pokes abayer</span>
+<a name="l-170"></a><span class="tm">19:43:25</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-171"></a><span class="tm">19:43:27</span><span class="nk"> &lt;kohsuke&gt;</span> I got some CloudBees-funded stickers on my way, so it should last.
+<a name="l-172"></a><span class="tm">19:43:56</span><span class="nk"> &lt;kohsuke&gt;</span> Any other +1/-1s?
+<a name="l-173"></a><span class="tm">19:44:02</span><span class="nk"> &lt;imod&gt;</span> +1
+<a name="l-174"></a><span class="tm">19:44:07</span><span class="nk"> &lt;fredg02&gt;</span> +1
+<a name="l-175"></a><span class="tm">19:44:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">How about we allocate $500 for stickers and $500 for T-shirts (when CIA is ready to launch), and see how long it lasts?</span>
+<a name="l-176"></a><span class="tm">19:44:32</span><span class="nk"> &lt;ndeloof&gt;</span> +1
+<a name="l-177"></a><span class="tm">19:44:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to get +1 from hare_brain for it</span>
+<a name="l-178"></a><span class="tm">19:44:44</span><span class="nk"> &lt;imod&gt;</span> <span class="hi">rtyler:</span> your right about the conservative fund raising!
+<a name="l-179"></a><span class="tm">19:44:47</span><span class="nk"> &lt;Majost&gt;</span> you might be able to setup some pre-orders too
+<a name="l-180"></a><span class="tm">19:44:57</span><span class="nk"> &lt;Majost&gt;</span> could offset the cost a little
+<a name="l-181"></a><span class="tm">19:45:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">fredg02:</span> the tricky part is to make the markup go to SPI without going through any individuals
+<a name="l-182"></a><span class="tm">19:45:24</span><span class="nk"> &lt;fredg02&gt;</span> ok.
+<a name="l-183"></a><span class="tm">19:45:36</span><span class="nk"> &lt;kohsuke&gt;</span> I suspect the said individual has to deal with taxes and other stuff, too
+<a name="l-184"></a><span class="tm">19:45:56</span><span class="nk"> &lt;kohsuke&gt;</span> but if you figure it out, let us know
+<a name="l-185"></a><span class="tm">19:46:07</span><span class="nk"> &lt;fredg02&gt;</span> ok :P
+<a name="l-186"></a><span class="tm">19:46:09</span><span class="nk"> &lt;ndeloof&gt;</span> agree : thinks aren't simple if we introduce local payments
+<a name="l-187"></a><span class="tm">19:46:32</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I think that's it for this
+<a name="l-188"></a><span class="tm">19:46:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">CLA collection</span>
+<a name="l-189"></a><span class="tm">19:47:10</span><span class="nk"> &lt;kohsuke&gt;</span> This last one is just to say that we will start collecting CLAs for the core, even while we figure out the final destinations of those PDFs
+<a name="l-190"></a><span class="tm">19:47:28</span><span class="nk"> &lt;kohsuke&gt;</span> More of a note to myself to get this ball rolling
+<a name="l-191"></a><span class="tm">19:47:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to start whipping us to sign CLAs</span>
+<a name="l-192"></a><span class="tm">19:47:52</span><span class="nk"> &lt;ndeloof&gt;</span> link to template for the doc ?
+<a name="l-193"></a><span class="tm">19:48:04</span><span class="nk"> &lt;kohsuke&gt;</span> It's in the governance document somewhere
+<a name="l-194"></a><span class="tm">19:48:07</span><span class="nk"> &lt;ndeloof&gt;</span> ok
+<a name="l-195"></a><span class="tm">19:48:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-196"></a><span class="tm">19:48:35</span><span class="nk"> &lt;ndeloof&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://raw.github.com/jenkinsci/infra-cla/approved/icla.txt</span>
+<a name="l-197"></a><span class="tm">19:48:41</span><span class="nk"> &lt;ndeloof&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://raw.github.com/jenkinsci/infra-cla/approved/ccla.txt</span>
+<a name="l-198"></a><span class="tm">19:49:03</span><span class="nk"> &lt;kohsuke&gt;</span> 1/25, same time?
+<a name="l-199"></a><span class="tm">19:49:18</span><span class="nk"> &lt;rtyler&gt;</span> works for me, that'll be right after SCALE so we'll have much to talk about
+<a name="l-200"></a><span class="tm">19:49:20</span><span class="nk"> &lt;rtyler&gt;</span> and right before FOSDEM!
+<a name="l-201"></a><span class="tm">19:50:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting is two weeks from now, same time</span>
+<a name="l-202"></a><span class="tm">19:50:19</span><span class="nk"> &lt;kohsuke&gt;</span> Anyone wants to talk about anything else?
+<a name="l-203"></a><span class="tm">19:50:46</span><span class="nk"> &lt;rtyler&gt;</span> I have this rash on my side..
+<a name="l-204"></a><span class="tm">19:50:53</span><span class="nk"> &lt;kohsuke&gt;</span> Guess not. Thanks!
+<a name="l-205"></a><span class="tm">19:50:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

@@ -1,0 +1,252 @@
+18:00:38 <danielbeck> #startmeeting
+18:00:38 <robobutler> Let the Jenkins meeting commence!
+18:00:45 <danielbeck> #chair kohsuke rtyler
+18:00:45 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:50 <rtyler> alright danielbeck get us started :0
+18:00:57 <rtyler> \o/
+18:01:01 <danielbeck> https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+18:01:01 <bitwiseman> hello
+18:01:04 <tracymiranda> hi
+18:01:06 <danielbeck> hi everyone!
+18:01:07 <alyssat_> hola
+18:01:11 <oleg-nenashev> hi
+18:01:13 <danielbeck> #topic Recap last meeting's actions
+18:01:18 <oleg-nenashev> No LTS status check today?
+18:01:36 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-07-18-18.00.html
+18:01:42 <danielbeck> probably just missing, we'll do that second
+18:01:49 <ogondza> yeah
+18:02:00 <danielbeck> ogondza did you add Jenkinsfiles?
+18:02:04 <oleg-nenashev> GSoC action item is done
+18:02:06 <ogondza> yep, thanks again
+18:02:23 <danielbeck> great
+18:02:34 <danielbeck> #topic LTS status check
+18:02:43 <danielbeck> ogondza I saw you did the backports today
+18:02:56 <ogondza> yeah, ATH still running
+18:03:18 <ogondza> presumably it will not blow up overnight, I will be pushing RC tomorrow afternoon UTC
+18:03:34 <danielbeck> ok
+18:03:56 <danielbeck> #info https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.121.3-fixed
+18:04:22 <ogondza> that would be it for me
+18:04:28 <danielbeck> #topic Travel grant request to DevOps World - Jenkins World SF
+18:04:35 <danielbeck> is Mandy around?
+18:04:57 <alyssat_> she mentioned she would join
+18:05:10 <krysjonaz> 
+18:05:13 <krysjonaz> 
+18:05:17 <krysjonaz>
+18:05:18 <oleg-nenashev> oh man
+18:05:20 <krysjonaz> A fascinating blog by freenode staff member Matthew 'mst' Trout https://MattSTrout.com/
+18:05:22 <alyssat_> she said she's having trouble joining
+18:05:56 * tracymiranda cheers for danielbeck's swift reaction
+18:06:03 <danielbeck> #info https://groups.google.com/d/msg/jenkinsci-dev/hG0zmAIiTN0/Fp9TPK2TCwAJ
+18:06:34 <oleg-nenashev> It seems that responders are fine with 500 USD grant
+18:06:52 <danielbeck> right, we still have the old grant program that wasn't really used
+18:06:57 <tracymiranda> seems like we should split in 2 parts: 1 for travel grant, 1 for anything beyond that
+18:07:04 <danielbeck> #info https://wiki.jenkins.io/display/JENKINS/Travel+Grant+Program
+18:07:18 <danielbeck> tracymiranda that seems reasonable
+18:07:21 <oleg-nenashev> Do 500USD make difference there?
+18:07:51 <oleg-nenashev> But yeah, fine with splitting
+18:07:57 <danielbeck> I don't think she's said anything about whether a partial grant would help her
+18:08:00 <bitwiseman> a percentage of total is better than nothing.
+18:08:27 <bitwiseman> We can make the offer and see what she says.
+18:08:33 <oleg-nenashev> yup
+18:08:44 <danielbeck> rtyler how are the project funds looking? SPI isn't really keeping up with the treasurer reports it seems
+18:08:59 <rtyler> well, there's the 2017 report :P
+18:09:00 <alyssat_> I can get approval from CloudBees to help with some as well. +1 w/ Liam on partial is better than nothing
+18:09:09 <rtyler> but yeah, we've got around 30k last I checked
+18:09:52 <danielbeck> ok
+18:10:02 <oleg-nenashev> so, let's vote?
+18:10:08 <danielbeck> shall we go ahead and vote for the basic program? I expect that will be fairly straightforward?
+18:10:23 <oleg-nenashev> +1
+18:10:32 <bitwiseman> +1
+18:10:35 <tracymiranda> +1
+18:10:39 <alyssat_> +1
+18:10:41 <rtyler> I'm +1 on allocating funds thorugh our existing grant program
+18:10:56 <danielbeck> thanks rtyler for making clear you're not voting to vote ;-)
+18:10:57 <bitwiseman> alyssat_ can see about more from cloudbees if Mandy asks.
+18:11:07 <danielbeck> I'm +1 as well
+18:11:19 <alyssat_> yes bitwiseman
+18:11:23 <oleg-nenashev> Also +1 from Mark
+18:11:33 <danielbeck> +1 from KK
+18:11:34 <oleg-nenashev> ... in the mailing list
+18:11:52 <oleg-nenashev> Any  concerns?
+18:12:00 <danielbeck> Correction, KK seems in favor but not explicit +1
+18:12:38 <alyssat_> no concerns from me
+18:12:39 <danielbeck> #agreed Mandy Hubbart to get 500 USD travel grant as per the 2015 program
+18:13:01 <danielbeck> now the question is, whether to go higher
+18:13:22 <tracymiranda> and how much higher
+18:13:27 <danielbeck> TBH I long thought treating any destination the same was a bit weird
+18:13:38 <alyssat_> I think we should consider the current market value and the location of the conf
+18:14:07 <danielbeck> as in, come to JW SF for 4 days and get the same as we might grant for a 2 day conf elsewhere
+18:14:12 <rtyler> I don't think this is the productive venue to discuss this
+18:14:27 <rtyler> if somebody wants to put forth a propose to enlarge the travel grant program, or change it, then I welcome an actual proposal
+18:14:37 <oleg-nenashev> I second rtyler's feedback
+18:15:00 <alyssat_> sounds good
+18:15:07 <danielbeck> just go to the vote then? What would we be voting on? Full 2k? Half? Or skip the vote?
+18:15:10 <bitwiseman> Possibly in a JEP.
+18:15:18 <oleg-nenashev> for sure as JEP :)
+18:15:24 <tracymiranda> i would advocate for an additional $500  as a merit/diversity grant
+18:15:44 <bitwiseman> tracymiranda: that sounds good to me.
+18:15:49 <alyssat_> +1
+18:15:54 <oleg-nenashev> no policy for that so far
+18:16:08 <tracymiranda> guess I have another agenda item for today then :-)
+18:16:11 <rtyler> I'm -1 on shooting from the hip here without an actual prroposal sent to the dev list
+18:16:22 <oleg-nenashev> I agree it is important, but there should be justification for that
+18:16:45 <tracymiranda> agree it should be done in a way others know they can apply for similar
+18:16:47 <danielbeck> do we know how urgent this is?
+18:17:17 <danielbeck> can we still decide on it in 2 weeks or is that too late to book etc.?
+18:17:17 <oleg-nenashev> Our policy says we will reply not later than 4 weeks before the event
+18:17:26 <alyssat_> Mandy needs to know asap so she can book her trip
+18:17:45 <danielbeck> would have been great to know about this more than 1 day before the meeting :-/
+18:18:57 <oleg-nenashev> so, do we want to vote?
+18:19:02 <danielbeck> given the time constraints, I propose a vote on an additional 500 USD. If there's consensus support for that, we're done, otherwise we can come back to this in the next meeting after further discussion. WDYT?
+18:19:09 <oleg-nenashev> Or do we take the discussion to the ML?
+18:19:41 <alyssat_> +1 danielbeck
+18:20:02 <rtyler> -1, I don't believe this is a fair way to appropriate Jenkins project funds
+18:20:08 <oleg-nenashev> -1
+18:20:12 <tracymiranda> what are requirements for a vote to pass?
+18:20:22 <tracymiranda> majority...super majority...
+18:20:28 <tracymiranda> unanimous...
+18:20:53 <tracymiranda> +1
+18:20:55 <oleg-nenashev> Just avoid the new board election algorithms :) KISS to make it working
+18:21:06 <danielbeck> ±0
+18:21:11 <rtyler> https://jenkins.io/project/governance/#meeting simply discusses "consensus"
+18:21:59 <oleg-nenashev> To clarify: My -1 is mostly about lack of the process definition or even a draft proposal
+18:22:17 <rtyler> I appreciate the perceived time pressure here, but this is not how we have spent project funds in the past, and would like to get consensus on the dev list first and foremost
+18:22:29 <bitwiseman> okay, it sounds like there is not consensus.
+18:23:00 <danielbeck> yes. If alyssat_'s vote is for the decision then we're at 50%, so should go back to the list for further discussion.
+18:23:12 <tracymiranda> anyone else would like to vote?
+18:23:13 <danielbeck> and well, if it's not, we're majority against
+18:23:48 <danielbeck> doesn't look like it
+18:23:55 <bitwiseman> How about we offer $500 and tell her that we are discussing additional?
+18:24:04 <bitwiseman> Well I said +1, but
+18:24:13 <bitwiseman> I'm all for consensus.
+18:25:39 <alyssat_> I'm fine with bitwiseman's suggestion
+18:25:47 <danielbeck> historically we've aimed at overwhelming majority and right now we're at less than 2/3
+18:25:59 <danielbeck> so I propose we circle back to the dev list for an actual proposal
+18:26:26 <rtyler> that's reasonable IMO
+18:26:48 <bitwiseman> Then Mandy can decide if $500 is enough - be clear that we additional funds should not be counted on.
+18:26:51 <tracymiranda> i would jump at the chance to be more inclusive right now imho
+18:27:43 <danielbeck> TBF, this was a very last minute proposal, so I'm not surprised we're not agreeing to rewrite project policy the same day
+18:27:45 <rtyler> I'm strongly aginst spending project funds without a proper proposal circulated to the dev list
+18:27:47 <bitwiseman> tracymiranda: I completely agree, and we can communicate that we are trying to do so, but there it will take time.
+18:28:05 <bitwiseman> rtyler: agreed, dev-list first.
+18:28:44 <bitwiseman> rtyler: with communication to Mandy in parallel.
+18:28:54 <rtyler> aye
+18:30:17 <alyssat_> Mandy joined...Hi DevMandy
+18:30:20 <danielbeck> tracymiranda IIUC you want to establish a general diversity grant program -- is that something you can prepare in the next week or so?
+18:30:46 <tracymiranda> yep - what format - dev list email or JEP
+18:30:58 <NightMonkey21> 
+18:30:58 <NightMonkey21> 
+18:30:58 <NightMonkey21> 
+18:31:02 <NightMonkey21> 
+18:31:09 <oleg-nenashev> JEP draft would be nice
+18:31:13 <bitwiseman> JEP includes dev-list
+18:31:45 <rtyler> I'm fine either way to be honest, just something written down accessible to all potential applicants
+18:31:53 <rtyler> our existing grant is program is just some stuff on the wiki
+18:32:14 <tracymiranda> what is a good amount % to invest in diversity and inclusion efforts?
+18:32:23 <tracymiranda> per year
+18:32:42 <DevMandy> Hi everyone.  I understand you don't quite have a protocol for this.  I am here to answer any questions about my request.
+18:33:39 <oleg-nenashev> define "diversity" please
+18:33:41 <tracymiranda> hi DevMandy!
+18:33:45 <rtyler> tracymiranda: 20-40 IMHO, assuming that kohsuke's going to go do more fundraising for us :)
+18:33:58 <danielbeck> DevMandy o/  we were able to agree on a 500 USD grant based on the existing program, but we'll need to do another round of discussion for more than that
+18:34:25 <oleg-nenashev> This is a wide thing which may be dangerous if applied incorrectly. Though I fully support having a program
+18:34:32 <danielbeck> rtyler 20-40% of the 0 USD income we have? :S
+18:34:34 <tracymiranda> inherent diversity traits such as gender, ethnicity, age, sexual orientation
+18:34:59 <oleg-nenashev> or disability, at least
+18:35:02 <rtyler> danielbeck: off the current (let's call it annual) budget
+18:35:29 <oleg-nenashev> Do we still have the Patron program tho?
+18:35:37 <danielbeck> no donations this year I think
+18:36:07 <alyssat_> danielbeck is correct. no donation so far this yr
+18:36:11 <danielbeck> basically since I've proposed stopping it it wasn't used at all
+18:36:31 <oleg-nenashev> yep
+18:36:47 <oleg-nenashev> It is not helpful until we have advertisement on jenkins.io
+18:37:06 <alyssat_> I would have to do more outreach to prospects
+18:37:23 <oleg-nenashev> JSF would solve it, no?
+18:37:52 <tracymiranda> that's the hope & plan
+18:38:03 <oleg-nenashev> yup
+18:39:19 <oleg-nenashev> So, does anybody have questions to DevMandy  while she is around?
+18:40:02 <alyssat_> I don't have any
+18:40:07 <rtyler> not from me
+18:40:18 <danielbeck> no
+18:40:28 <bitwiseman> It seems like there's no questions that we want to support, it's a matter of how and how much.
+18:40:41 <danielbeck> tracymiranda so you'll propose a revision of the travel grant program?
+18:40:55 <tracymiranda> should we limit to travel grant?
+18:41:07 <tracymiranda> I was looking at python general grant program...
+18:41:16 <tracymiranda> but maybe scope is too wide
+18:41:29 <rtyler> it'sll be faster to limit to travel right now
+18:41:43 <tracymiranda> ok
+18:41:44 <rtyler> much easier to get agreement quickly on, which is importnat here IMO
+18:42:01 <DevMandy> i won't be able to attend without the full amount :(
+18:42:23 <DevMandy> my company still hadn't gotten back to me when i accepted. i asked for more time, but that wasn't an option
+18:42:28 <danielbeck> DevMandy to clarify, anything less than 2000 won't help?
+18:42:41 <DevMandy> i would have to pay for it out of my own pocket
+18:43:20 <oleg-nenashev> TBF, it happens often in open-source communities
+18:43:36 <DevMandy> yeah, well i can't do that
+18:43:56 <oleg-nenashev> so, let's see if we can find a way
+18:44:06 <alyssat_> as mentioned earlier I can work with DevMandy on the CloudBees grant if it helps
+18:44:56 <tracymiranda> yes sounds like a good pincer move - we update grant proposal on Jenkins end and see if we can get policy for more and all push CloudBees to do more here
+18:45:09 <oleg-nenashev> Also, there are dozens of other sponsors listed
+18:45:11 <tracymiranda> *also (
+18:45:13 <danielbeck> #action tracymiranda to prepare updated grant proposal
+18:46:02 <danielbeck> #agreed we won't commit to a larger travel grant today
+18:47:01 <raSter^8> 
+18:47:01 <raSter^8> 
+18:47:01 <raSter^8> 
+18:47:04 <raSter^8> 
+18:47:15 <danielbeck> anything further about this topic right now, before we have a proposal from tracymiranda ?
+18:47:32 <tracymiranda> nope
+18:47:34 <oleg-nenashev> Just make sure that diversity does not apply to such spammers
+18:47:42 * rtyler rolls eyes
+18:48:03 <danielbeck> could probably set +m and give everyone +v :-/
+18:48:14 <tracymiranda> make sure spammers don't find a way to vote ;)
+18:48:19 <danielbeck> #topic GSoC status update
+18:48:25 <danielbeck> oleg-nenashev only saw this now, sorry for the skip
+18:48:31 <oleg-nenashev> Oh
+18:48:38 <oleg-nenashev> Who did add that? :)
+18:48:41 <danielbeck> hah
+18:48:43 <danielbeck> rtyler I think
+18:48:46 <oleg-nenashev> Anyway, so far so good
+18:48:53 <rtyler> :D
+18:49:01 <oleg-nenashev> @info Coding period ends on Aug 6
+18:49:09 <oleg-nenashev> whatever
+18:49:33 <oleg-nenashev> #info We will have final presentation on the week of Aug 10, TBA
+18:49:43 <rtyler> cool, will that be done through the Youtube channel?
+18:49:49 <oleg-nenashev> yes
+18:49:52 <danielbeck> oleg-nenashev all projects are successful? Or not determined yet?
+18:49:55 <oleg-nenashev> as JOM, likely
+18:50:03 <rtyler> cool
+18:50:06 <oleg-nenashev> danielbeck: Cannot comment on that, mentors will decide
+18:50:15 <danielbeck> ok
+18:50:16 <rtyler> danielbeck: I don't think that will be determined until their penciles have been put down after the 6th :p
+18:50:37 <danielbeck> it's like you're surprised I know nothing :P
+18:50:38 <oleg-nenashev> There are some issues, as always
+18:50:54 <oleg-nenashev> But we are working on them
+18:51:20 <oleg-nenashev> #info GSoC SIG will be introduced this weekend
+18:51:43 <oleg-nenashev> just to have it, we already have all channels in place
+18:52:02 <rtyler> \o/
+18:52:19 <oleg-nenashev> So, I am ready to answer any questions :)
+18:52:21 <bitwiseman> GSoC doesn't meet year-round.
+18:52:29 <oleg-nenashev> It should
+18:52:35 <bitwiseman> Okay, cool.
+18:52:37 <oleg-nenashev> GSoC never ends actually
+18:52:45 <bitwiseman> Forever summer.
+18:52:53 <oleg-nenashev> For org admins . yes
+18:53:08 <oleg-nenashev> We need to organize things and to find mentor teams
+18:53:15 <oleg-nenashev> Usually it starts in autumn
+18:53:28 <danielbeck> interesting, I was wondering why the sig, but this makes sense
+18:53:46 <rtyler> how northern hemisphere centric you are danielbeck  :P
+18:53:52 <oleg-nenashev> Well, the difference between SIGs and projects is something we could discuss
+18:54:02 <SWAT23> 
+18:54:05 <SWAT23> 
+18:54:19 <oleg-nenashev> If a project has regular meetings & leads, it's almost a SIG
+18:54:51 <oleg-nenashev> But whatever
+18:54:54 <danielbeck> oleg-nenashev any further updates?
+18:54:59 <oleg-nenashev> Nope
+18:55:07 <danielbeck> thanks!
+18:55:12 <oleg-nenashev> We just should produce more community buzz
+18:55:13 <danielbeck> #topic next meeting
+18:55:14 <oleg-nenashev> everywhere
+18:55:38 <danielbeck> that would be August 15
+18:56:18 <danielbeck> which, by the way, is the date for the next LTS baseline selection as well
+18:56:24 <danielbeck> so anyone interested in that should show up
+18:56:51 <danielbeck> #endmeeting

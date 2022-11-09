@@ -1,0 +1,271 @@
+18:02:29 <kohsuke> #startmeeting
+18:02:29 <robobutler> Let the Jenkins meeting commence!
+18:02:40 <kohsuke> #chairs hare_brain rtyler abayer
+18:03:08 <kohsuke> #topic How do we handle pull requests which are pending for a long time
+18:03:44 <kohsuke> The background of this is that the shift to GitHub changed the way we get new people into the project
+18:03:58 <kohsuke> So I think we need to make some adjustments.
+18:04:28 <kohsuke> It used to be that people wanted make changes had a higher incentive to want a commit access, as it was harder in Subversion to maintain local patches
+18:04:55 <kohsuke> But with GitHub, that incentive is smaller.
+18:05:54 <kutzi> I think this topic is also related to how we would like to handle 'abandoned' plugins
+18:05:59 <kohsuke> So we have people sending us pull requests and many of them get unattended for awfully long, which push potential contributors away.
+18:06:01 <kohsuke> Exactly.
+18:06:15 <kutzi> AFAI understood it, that was the original reason why this came up on IRC
+18:06:18 <magnayn> I think I agree with what you were saying in the linked IRC log
+18:06:20 <kohsuke> So I've been meaning to write some daemon that helps us.
+18:06:59 <kohsuke> I was initially thinking about just giving them the push access automatically after some conditions are met, but ...
+18:07:51 <kohsuke> since there were some push backs, maybe we can just have daemon say "hey, thanks for the pull requests, would you like to have a push access? If so, respond with YES." or something like that
+18:07:57 <vjuranek> and what is the problem? Not enough people to review all pull requests?
+18:08:17 <kohsuke> vjuranek: I think that's a part of it.
+18:08:39 <magnayn> IMO the key thing is (and what makes Jenkins a bit different from some other projects) is that it's a do-ocracy
+18:08:47 <kohsuke> But a part of it is that it's not necessarily a problem, but just the way it is in OSSS projects. People come and back.
+18:09:25 <kutzi> I agree basically with what abayer had said
+18:09:50 <kutzi> The daemon could encourage them to ask for access, but they should have to ask
+18:09:53 <kohsuke> magnayn: Yes. People willing to make changes should be able to make changes. That doesn't mean their changes cannot be rolled back, but they shouldn't be blocked by the inattention of existing developers.
+18:10:16 <rpetti> Maybe have the daemon CC the current maintainer as well when granting/offering access?
+18:10:24 <kutzi> +1
+18:10:26 <kohsuke> kutzi: is what I outlined above OK? Have the daemon remind contributors that all they need is to just ask and it's theirs.
+18:10:37 <magnayn> kohsuke: exactly. I found Linus' talk about git really inspirational about this
+18:11:08 <kutzi> kohsuke: what did you mean with 'If so, respond with YES.' then?
+18:11:21 <kohsuke> rpetti: the daemon will interact with us through GitHub pull requests, so relevant people automatically get reminders
+18:11:24 <kutzi> just respond to the bot, or respond to e.g. the dev list?
+18:11:30 <kohsuke> kutzi: if you then post "YES" as a comment, the daemon will pick that up
+18:11:35 <kohsuke> ... and give you the push access.
+18:11:35 <rpetti> brilliant! :)
+18:11:43 <magnayn> Isn't the only real issue that of who is capable of rolling a release ?
+18:12:02 <vjuranek> +1 give commit access upon request (but not by default)
+18:12:08 <magnayn> Since git is so much easier to remove commits if things go badly wrong
+18:12:29 <kohsuke> magnayn: in some sense yes, but I think what I'm hearing is that many of us want one more step before giving the commit access.
+18:12:50 <kutzi> I had never problems reverting commits in SVN either ...
+18:13:30 <kutzi> I'm not sure, if just asking a daemon would be enough ...
+18:13:52 <kutzi> But maybe if the current maintainer and the dev-list is CC'ed, I would agrre
+18:14:28 <kohsuke> kutzi: We've never required that, BTW. Thus far people just really needed to ask.
+18:14:45 <hare_brain> Are we talking about plugins or the core right now?
+18:14:48 <kohsuke> And we try to remind them that they should contact the existing devs.
+18:14:51 <kohsuke> hare_brain: plugins
+18:14:56 <kutzi> kohsuke: yeah but asking real people and not some bot
+18:15:01 <kohsuke> core CLA coming up later in the agenda
+18:15:27 <kohsuke> OK, so that's the difference in many people's minds
+18:16:20 <kohsuke> I personally don't see any downside in automatically granting access, but sounds like a good starting point since many people seemed to be concerned about automatic grant
+18:16:44 <kohsuke> And asking in the dev list is certainly not a big barrier --- the barrier has been that people didn't know that they can just ask.
+18:16:56 <kohsuke> Plus getting them hooked up into the dev list has other benefits
+18:17:03 <rpetti> +1
+18:17:11 <kutzi> win win situation ;)
+18:17:12 <kohsuke> So I'll record that as an agreement.
+18:17:13 <magnayn> sounds good to me
+18:17:15 <rtyler> heh
+18:17:26 <drulli> +1
+18:17:38 <kohsuke> #agreed the pull request bot should tell contributors that they just need to ask in the dev list to get the push access.
+18:18:02 <kohsuke> #idea the bot can and should also make other comments, like "hey, I noticed that you don't have any tests for this patch -- see this page for how to write one"
+18:18:32 <kutzi> absolutely +1 if you can get the bot smart enough to do that
+18:18:33 <kohsuke> #idea another obvious one is "does this have a ticket in issues.jenkins-ci.org?"
+18:18:41 <rpetti> I'm having clippy flashbacks now... "It looks like you are trying to contribute code, let me help you with that!"
+18:18:46 <hare_brain> LOL
+18:18:53 <kohsuke> :-)
+18:19:08 <kohsuke> I think we can move on to the next topic
+18:19:25 <magnayn> maybe there should be a trigger to stop commits happening that cause undecided patches to not be able to merge..
+18:19:48 <kohsuke> #topic What is the current state of the 'The new EMailer':  https://wiki.jenkins-ci.org/display/JENKINS/The+new+EMailer
+18:20:03 <kutzi> That was my topic
+18:20:25 <kutzi> I don't know how long ago the new E-Mailer was proposed
+18:20:38 <kutzi> but there's obviously not happening much
+18:20:46 <kohsuke> #info Originally back in 2009 August
+18:21:06 <kutzi> I wonder how many people using e-mail notfication are using email-ext
+18:21:11 <kohsuke> I don't remember seeing any objection. I think it's just lacking a driver.
+18:21:34 <kutzi> IMO when you want some really useful notification you're using email-ext
+18:21:39 <rtyler> I've never seen anybody *not* using email-ext :)
+18:21:41 <kutzi> at least for Maven jobs
+18:21:57 <kutzi> rtyler: yeah that's my observation, too
+18:22:04 <vjuranek> kutzi: 5085 instances in last anonymous survay
+18:22:32 <kohsuke> Is someone volunteering?
+18:22:49 <kutzi> for what, writing the new e-mailer?
+18:22:51 * rtyler hides
+18:23:00 <kohsuke> kutzi: yeah
+18:23:09 <rtyler> I nominate abayer since he's not here ;)
+18:23:19 <kutzi> I had one proposal (since probably no-one will step in): bundle email-ext
+18:23:20 <kohsuke> I think the page is on the right track --- a bunch of extension points to enable plugins to contribute fragments.
+18:23:48 <kohsuke> ... and it needs to be backward compatible with the current mailer configuration that people use
+18:24:29 <kutzi> Yes, certainly. Question is: should we start from scratch or can we take email-ext as a staring point?
+18:24:45 <nigjo> will this new mailer work on windows servers as well?
+18:25:01 <kohsuke> nigjo: All our mailers work with Windows
+18:25:09 <kutzi> I certainly doesn't fulfill all requirements for the new e-mailer, but still lot better than the current build-in one
+18:25:19 <kutzi> I -> It
+18:25:19 <kohsuke> If I remember correctly, core email has a few use cases that email-ext doesn't support
+18:25:46 <kohsuke> So maybe we just fix those and bundle email-ext to core, and upgrade all the instances of Mailers with the equivalent e-mail exts?
+18:25:56 <rtyler> I like that idea :)
+18:25:57 <kohsuke> And if we iteratively improve from there...
+18:26:12 <kohsuke> we now have a viable upgrade path from both core email and email-ext
+18:26:15 <kutzi> sounds like a good pragmatic solution to me
+18:26:27 <rtyler> would that allow those extension points?
+18:26:34 <rtyler> and do you mean incorporating email-ext, or pinning?
+18:26:44 <kohsuke> ... except email-ext has so many switches and I don't know if those can be "simplified" without breaking compatibility?
+18:27:02 <kutzi> one point: we should start a poll on dev- and user-list first, regarding usage percentage of email-ext
+18:27:10 <kohsuke> Or maybe they can be refactored into extension points + implementations that can be disabled?
+18:27:21 <kohsuke> kutzi: that's what we collect stats for
+18:27:34 <kohsuke> we should already have that data
+18:27:35 <rtyler> kohsuke: IMHO I think extension points are the way to go
+18:27:57 <kutzi> +1
+18:27:58 <rtyler> that gives us the added advantage in the future of having email become a much richer notification medium
+18:28:19 <kohsuke> Yes, and it also addresses the #1 voted issue in our tracker, the modular e-mail notification system.
+18:28:21 * rtyler pictures an RVM plugin that dumps the current ruby and gemset into the email notification
+18:28:29 <rtyler> \o/
+18:29:23 <kohsuke> Still would be nice to have a driver
+18:29:28 <kutzi> The proposal with the ext. point would still mean that email-ext is bundled?
+18:29:34 * rtyler coughs "abayer"
+18:29:35 <rtyler> xD
+18:29:47 <kohsuke> I'd love to do it but I should be realistic about the time I have...
+18:30:14 <kohsuke> kutzi: ideally we'd do some massaging before bundling
+18:30:33 <kutzi> okay, with that
+18:30:40 <kohsuke> so email-ext -> email2-core (with lots of extension points) + email-ext (implementations of those)
+18:30:52 <kutzi> I just want the current build-in emailer to be replaced at some point
+18:30:53 <kohsuke> and we start bundling email2-core
+18:30:53 <rtyler> kohsuke: I'm not sure how many volunteers you'll find running around right now ;)
+18:31:04 <rtyler> what's cowboyd up to now that ruby is almost done? ;)
+18:31:33 <cowboyd> you're relentless :P
+18:31:45 <kohsuke> In this way core (and out-of-the-box experience) doesn't have to have all the configuration options of email-ext
+18:32:48 <kohsuke> So I think we'll just update this Wiki page with the roadmap/plan and leave it at that for now?
+18:33:03 <rtyler> and solicit on the dev list :)
+18:33:05 <kutzi> We could use something like advanced advanced options in the config screens ;)
+18:33:23 <rtyler> kutzi: just like the Git plugin which is the pinnacle of usability ;)
+18:33:51 <magnayn> kitchen sink of usability...
+18:34:06 <kutzi> Maybe something like enabling an 'very advanced options' flag in the global config
+18:34:17 <kohsuke> In my mind, it's better for edge case features to be in separate plugin implementations
+18:34:21 <rtyler> #action kutzi to update the wiki page with the roadmap/plan for email-ext  -> email2core with lots of extension points
+18:34:38 <kutzi> okay
+18:34:47 * rtyler likes volunteering people for things :D
+18:34:55 <kohsuke> Otherwise the base never gets proper extension points, as in the case with Subversion/Git, and and the feature creep happens
+18:35:20 <kohsuke> Should we move on?
+18:35:29 <rtyler> move it or lose it sister
+18:35:34 <kohsuke> Any last words, kutzi?
+18:35:42 <rtyler> well, that's ominous
+18:35:44 <kohsuke> #topic: Infra update from R. Tyler Croy regarding new machines at the OSUOSL
+18:35:51 <rtyler> \o/
+18:36:19 <rtyler> So let's start with cabbage.jenkins-ci.org
+18:36:35 <rtyler> this machine is sitting on the floor somewhere in the data center, unracked, under appreciated
+18:36:38 <rtyler> and probably crying
+18:37:16 <rtyler> waiting for somebody to send a student at the datacenter to the hardware store to pickup some washers to make the rack mounts on the machine fit with the racks that the OSUOSL has
+18:37:38 <kohsuke> Does that mean one of us need to fly to Oregon?
+18:37:50 <rtyler> no ETA on that, between summer, semester turn-overs, and various vacations it's pretty tough getting access to the time-shared, overworked staff
+18:37:59 <rtyler> I don't think Corvallis has an airport
+18:38:13 <rtyler> frankly, I'm still not convinced it's a made-up place
+18:38:20 <rtyler> like the island for misfit toys
+18:38:21 <rtyler> but anyways
+18:38:24 <rtyler> that's the bad news
+18:38:42 <rtyler> good news, lettuce.jenkins-ci.org is online and z00dax6 has access
+18:39:07 <rtyler> lettuce is a quad core FWIW
+18:39:31 <kohsuke> And how much RAM?
+18:39:59 <rtyler> looks like 4GB
+18:40:05 <kohsuke> And this is going to be the JIRA sandbox for aheritier, right?
+18:40:11 <rtyler> I've created the infra-puppet repository for the puppet manifests
+18:40:12 <rtyler> correct
+18:40:32 <rtyler> #action z00dax6 to help get lettuce set up with some basic puppet manifests
+18:40:50 <magnayn> side issue: did you see the article about reducing concurrent JIRA sessions and the googlebot?
+18:40:52 <rtyler> #action rtyler to properly set up access to lettuce for kohsuke, abayer and aheriter
+18:41:01 <rtyler> I did not see it
+18:41:09 <kohsuke> magnayn: URL?
+18:41:17 <magnayn> ah - you probably want to do this - one sec I'll find the URL
+18:41:55 <magnayn> ASF drops concurrent sessions on Tomcat 7 by 95% : http://www.theserverside.com/discussions/thread.tss?thread_id=62375
+18:42:13 <kohsuke> Wow
+18:42:27 <rtyler> we're not quite as popular as issues.apache.org, but I'll keep this in mind
+18:42:43 <rtyler> #info Throttling crawlers to JIRA http://www.theserverside.com/discussions/thread.tss?thread_id=62375
+18:43:10 <rtyler> as it stands right now, lettuce is my primary focus for infra setup/preparation
+18:43:21 <rtyler> #action rtyler to get off his lazy ass and finally order that second NIC for cucumber
+18:43:37 <rtyler> kohsuke: that's it from me, update-wise
+18:43:41 <kohsuke> thanks
+18:43:45 <rtyler> any infra questions I can answer on record? :D
+18:44:02 <kohsuke> Should those new machines be owned by SPI?
+18:44:14 <rtyler> uh, sure?
+18:44:19 <kohsuke> Is it just a matter of us saying to ourselves "yep, it's their machines"?
+18:44:38 <rtyler> I guess so, z00dax6 shipped them to the OSUOSL, and I'm the primary contact on those
+18:44:52 <kohsuke> right
+18:45:05 <rtyler> we can say they're SPI owned assets for all I care, I don't think it really means much difference as far as my work goes :P
+18:45:31 <kohsuke> #action Kohsuke to write to SPI what it means for them to own assets --- any processes, steps, etc.
+18:45:37 <rtyler> kohsuke: why don't we discuss over -dev an access policy, and other things like that as well
+18:45:45 <kohsuke> maybe z00dax6 even get some tax deduction
+18:45:48 <rtyler> usage terms, etc
+18:45:58 <kohsuke> sure
+18:45:58 <rtyler> kohsuke: I think the machines were being junked :P
+18:46:11 <kohsuke> He doesn't have to say that to IRS
+18:46:19 <rtyler> #action rtyler to start a thread on -dev detailing access rights, usage policy, etc for hardware
+18:46:31 <kohsuke> #topic CLA discussion
+18:46:46 <kohsuke> #info So the current plan on the record is here: https://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code
+18:46:59 <kohsuke> Let me back up
+18:47:14 <kohsuke> Now that we are under SPI, I think it's time to start collecting CLA for core
+18:47:52 <kohsuke> The page doesn't capture all the past discussions --- I guess I should have looked them up from the minutes
+18:48:10 <magnayn> I still think CLAs have no clothes :)
+18:48:34 <kohsuke> But IIRC, I think the idea was to (1) ask for CLA from regular contributors and (2) define some simpler "click a checkbox" kind of agreement for one-time contributors, and ...
+18:49:09 <kohsuke> hopefully these are low enough bar that people are OK with this (and I do realize there were objections to the very concept of CLA from some of us)
+18:49:41 <kohsuke> I suppose that "click a checkbox" kind of agreement would have to be a part of JIRA and pull request bot
+18:50:24 <magnayn> You could use the Signed-Off-By: line for 1-off contributions if you don't need a CLA for them
+18:50:41 <kohsuke> And for the actual CLA wording, the plan on the record is to steal those of Apache (but with s/Apache/SPI/)
+18:51:18 <hare_brain> I forget: did SPI have a pre-crafted CLA for member projects?
+18:51:28 <kohsuke> hare_brain: possibly. We need to ask.
+18:52:59 <kohsuke> magnayn: IIRC, hare_brain checked this setup with Yahoo lawyers and I believe this was considered OK.
+18:53:24 <kohsuke> So at least we have some validation from a lawyer.
+18:53:38 <kohsuke> ... whereas I just don't know if Signed-Off-By scheme passes the same bar.
+18:54:07 <kohsuke> And I'm hoping the check box + CLA is easy enough not to be a impedance.
+18:54:19 <kutzi> Does some know: if I contribute something on company time, does my company have to sign the corporate CLA?
+18:54:23 <magnayn> well, IMO a CLA doesn't pass any bar anyway...
+18:55:04 <kohsuke> kutzi: One benefit of reusing Apache CLA is that we can refer to Apache policies for those questions
+18:55:23 <kohsuke> I think it's better not to be creative about this kind of stuff. I think we just want to piggy-back what someone else is doing.
+18:55:29 * rtyler nods
+18:55:36 <kohsuke> And Apache does this checkbox in JIRA thing.
+18:55:47 <magnayn> I think you're right - if you're going to do it, best copy an established scheme
+18:56:44 <magnayn> I'd just copy the linux scheme :)
+18:57:02 <kohsuke> kutzi: I don't know the direct answer to your question, but I'm pretty sure someone/some webpage in Apache can answer that.
+18:57:28 <kohsuke> magnayn: what I've been told is that some lawyers disagree with the Linux scheme while more are happy with this Apache scheme.
+18:58:01 <rtyler> I think the tone of the dev list was that the ASF approach to this is fine for us
+18:58:08 <magnayn> well, there is something about 2 lawyers will give you 4 opinions !
+18:58:13 <kohsuke> magnayn: and I believe you said ou can still live with the Apache scheme, even though you don't like it.
+18:58:19 <rtyler> heh
+18:58:20 <kohsuke> ou -> you
+18:58:22 <magnayn> Oh sure, absolutely
+18:58:34 * rtyler taps his watch
+18:58:38 <kohsuke> That's right.
+18:58:41 <rtyler> hare_brain: you still with us
+18:58:46 <hare_brain> Yes.
+18:58:56 <hare_brain> Flipping through reference material. :)
+18:58:59 <rtyler> okay, just making sure 2/3 of the board was paying attention to this topic :)
+18:59:08 <hare_brain> I am paying very close attention to this topic.
+18:59:19 <kohsuke> I was hoping to get this plan of record agreed today
+18:59:44 <kohsuke> Would I be rushing it?
+19:00:06 * rtyler has no idea
+19:00:15 <kohsuke> Any objections?
+19:00:22 <magnayn> Go for it
+19:00:34 <hare_brain> I think the only thing we still need to get an answer for is whether SPI has their own CLA.
+19:00:55 <hare_brain> It doesn't make sense to have people start signing the Apache-modified one if they have their own and people have to sign another one.
+19:01:06 <rtyler> good question
+19:01:21 <rtyler> I highly doubt it, but worth double-checking with them
+19:01:26 <kohsuke> OK. So we record the general consensus to the plan of record, and we'll take AI to verify this with SPI.
+19:01:29 <hare_brain> But the general flow works for me. Regular core contributors need to sign some CLA. Check-box workflow for one off contributions.
+19:01:41 <rtyler> #agreed
+19:01:49 <kutzi> +1
+19:02:11 <kohsuke> (hoping to see a few more +1s before moving on to the next meeting time)
+19:02:16 <magnayn> +1
+19:02:20 <rtyler> rpetti: say plus one
+19:02:21 <bap2000> +1
+19:02:22 <rtyler> xD
+19:02:23 <drulli> +1
+19:02:29 <kohsuke> Thank you
+19:02:34 <kohsuke> #topic next meeting time
+19:02:43 <kohsuke> As always, 2 weeks from now?
+19:02:45 <rtyler> I already put the 20th on the page :P
+19:02:50 <rtyler> heh
+19:03:10 <hare_brain> +1 to the 20th.
+19:03:11 <kohsuke> Unless we hear objections, 20th it is
+19:03:11 <rtyler> I am liking this every two week rhythm
+19:03:20 <rtyler> I kind of would like to stick with it unless we have a reason to change it
+19:03:24 <rtyler> predictability is nice :)
+19:03:28 <hare_brain> +1 to that.
+19:03:37 <drulli> +1
+19:03:42 <magnayn> +1 for predictability
+19:03:42 <kohsuke> Yes. The only concern for me is that this discourages my fellow Asian contributors.
+19:03:43 <rtyler> I can stick it on my big fat corporate schedule :)
+19:04:04 <rtyler> to date the only asia-friendly time we've had was when you were there
+19:04:05 <kohsuke> #agreed next meeting time is June 20th, same time --- 2 weeks from now
+19:04:09 <rtyler> and that was only two hours early
+19:04:23 <kohsuke> And even that was like still 1am there
+19:04:35 <kohsuke> Anyway, that's fine
+19:04:51 <rtyler> stick a fork in it, it's done
+19:05:01 <kohsuke> With that, I think the meeting is over
+19:05:05 <rtyler> :)
+19:05:17 <kohsuke> Have a good day everyone
+19:05:20 <kohsuke> #endmeeting

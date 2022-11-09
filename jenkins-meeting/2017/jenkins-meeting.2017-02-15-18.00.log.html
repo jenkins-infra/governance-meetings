@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app222.us.archive.org';v.server_ms=437;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-02-15-18.00.log.html","20210115135401","https://web.archive.org/","web","/_static/",
+	      "1610718841");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:10</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke danielbeck ogondza</span>
+<a name="l-4"></a><span class="tm">18:00:19</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke ogondza rtyler
+<a name="l-5"></a><span class="tm">18:00:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting's actions</span>
+<a name="l-6"></a><span class="tm">18:00:39</span><span class="nk"> &lt;rtyler&gt;</span> based on what I can see, there weren't any
+<a name="l-7"></a><span class="tm">18:00:39</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-8"></a><span class="tm">18:01:19 </span><span class="nka">* rtyler</span> <span class="ac">waits for people to show up</span>
+<a name="l-9"></a><span class="tm">18:01:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> you awake and ready for the next topic?
+<a name="l-10"></a><span class="tm">18:02:00</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> sure I am
+<a name="l-11"></a><span class="tm">18:02:31</span><span class="nk"> &lt;ogondza&gt;</span> I have done the backporting and will push RC as son as ATH reports completion
+<a name="l-12"></a><span class="tm">18:02:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-13"></a><span class="tm">18:02:56</span><span class="nk"> &lt;rtyler&gt;</span> this is for 2.32.x still right?
+<a name="l-14"></a><span class="tm">18:03:05</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> 2.32.3
+<a name="l-15"></a><span class="tm">18:03:20 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-16"></a><span class="tm">18:03:46</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> fyi, I intent to get this automates so that any backport pushed will produce rc for people to test
+<a name="l-17"></a><span class="tm">18:03:57</span><span class="nk"> &lt;ogondza&gt;</span> *atomated
+<a name="l-18"></a><span class="tm">18:04:09</span><span class="nk"> &lt;rtyler&gt;</span> the ATH testing?
+<a name="l-19"></a><span class="tm">18:04:13</span><span class="nk"> &lt;ogondza&gt;</span> so noone has to wait for me pushing the RC
+<a name="l-20"></a><span class="tm">18:04:20</span><span class="nk"> &lt;ogondza&gt;</span> that would be part of it
+<a name="l-21"></a><span class="tm">18:04:28</span><span class="nk"> &lt;rtyler&gt;</span> https://issues.jenkins-ci.org/browse/INFRA-960 is relevant to your interests then
+<a name="l-22"></a><span class="tm">18:04:35</span><span class="nk"> &lt;rtyler&gt;</span> we should have plenty of capacity for ATH on ci.j.io
+<a name="l-23"></a><span class="tm">18:04:39</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza that seems questionable to me, as nobody could be sure it's really the last one, but should be discussed elsewhere
+<a name="l-24"></a><span class="tm">18:04:47</span><span class="nk"> &lt;ogondza&gt;</span> I am thing about pipeline backport &gt; jenkins-test-harness &gt; ATH &gt; RC push
+<a name="l-25"></a><span class="tm">18:05:11</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> ok
+<a name="l-26"></a><span class="tm">18:05:57</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza so, what's .3 RC status? :)
+<a name="l-27"></a><span class="tm">18:06:19</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza will push 2.32.3 RC tomorrow morning</span>
+<a name="l-28"></a><span class="tm">18:06:27</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-29"></a><span class="tm">18:06:45</span><span class="nk"> &lt;ogondza&gt;</span> the snapshot version number did not make it
+<a name="l-30"></a><span class="tm">18:06:58</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">in two weeks we'll select the next LTS baseline</span>
+<a name="l-31"></a><span class="tm">18:07:05</span><span class="nk"> &lt;danielbeck&gt;</span> as a reminder
+<a name="l-32"></a><span class="tm">18:07:20 </span><span class="nka">* ogondza</span> <span class="ac">putting that on agenda</span>
+<a name="l-33"></a><span class="tm">18:07:34</span><span class="nk"> &lt;danielbeck&gt;</span> I think we can move on? rtyler ?
+<a name="l-34"></a><span class="tm">18:07:44</span><span class="nk"> &lt;ogondza&gt;</span> yes, we can
+<a name="l-35"></a><span class="tm">18:07:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC Update</span>
+<a name="l-36"></a><span class="tm">18:08:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> are you going to drive this topic?
+<a name="l-37"></a><span class="tm">18:08:58 </span><span class="nka">* rtyler</span> <span class="ac">counts down</span>
+<a name="l-38"></a><span class="tm">18:08:59</span><span class="nk"> &lt;danielbeck&gt;</span> doesn't seem to be around
+<a name="l-39"></a><span class="tm">18:09:20</span><span class="nk"> &lt;rtyler&gt;</span> alright, I'll fill in
+<a name="l-40"></a><span class="tm">18:09:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the GSoC 2017 application has been submitted</span>
+<a name="l-41"></a><span class="tm">18:09:36</span><span class="nk"> &lt;rtyler&gt;</span> https://jenkins.io/projects/gsoc for more details
+<a name="l-42"></a><span class="tm">18:09:55</span><span class="nk"> &lt;rtyler&gt;</span> not really much more for us to do here
+<a name="l-43"></a><span class="tm">18:09:56</span><span class="nk"> &lt;rtyler&gt;</span> IMO
+<a name="l-44"></a><span class="tm">18:10:03</span><span class="nk"> &lt;danielbeck&gt;</span> looking for projects and mentors?
+<a name="l-45"></a><span class="tm">18:10:08</span><span class="nk"> &lt;danielbeck&gt;</span> or too late anyway?
+<a name="l-46"></a><span class="tm">18:10:24</span><span class="nk"> &lt;rtyler&gt;</span> students can always suggest projects in their own applications
+<a name="l-47"></a><span class="tm">18:10:26</span><span class="nk"> &lt;schristouu88&gt;</span> I might be switching to a mentor, I got a student asking about the support core plugin improvements
+<a name="l-48"></a><span class="tm">18:10:35</span><span class="nk"> &lt;rtyler&gt;</span> as far as our application with suggested projects, that's kind of done
+<a name="l-49"></a><span class="tm">18:10:41</span><span class="nk"> &lt;danielbeck&gt;</span> okay
+<a name="l-50"></a><span class="tm">18:11:22</span><span class="nk"> &lt;danielbeck&gt;</span> so now we'd probably monitor the dev list and be responsive there when students post questions?
+<a name="l-51"></a><span class="tm">18:11:25 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-52"></a><span class="tm">18:11:43</span><span class="nk"> &lt;rtyler&gt;</span> any other gsoc related questions?
+<a name="l-53"></a><span class="tm">18:12:20</span><span class="nk"> &lt;ageer&gt;</span> when is mentor deadline?
+<a name="l-54"></a><span class="tm">18:12:50</span><span class="nk"> &lt;rtyler&gt;</span> uhhhhhh, I'm not sure, I believe we can pair mentors up with students right up to the beginning of the program
+<a name="l-55"></a><span class="tm">18:13:08</span><span class="nk"> &lt;rtyler&gt;</span> there's still plenty of time to volunteer as a mentor :)
+<a name="l-56"></a><span class="tm">18:13:18</span><span class="nk"> &lt;danielbeck&gt;</span> makes sense if students propose projects -- otherwise there'd be mismatches
+<a name="l-57"></a><span class="tm">18:13:38 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-58"></a><span class="tm">18:14:14</span><span class="nk"> &lt;danielbeck&gt;</span> also, probably afterwards too, if we need to improvise
+<a name="l-59"></a><span class="tm">18:14:20 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-60"></a><span class="tm">18:14:48</span><span class="nk"> &lt;rtyler&gt;</span> onwards?
+<a name="l-61"></a><span class="tm">18:15:07</span><span class="nk"> &lt;danielbeck&gt;</span> sure
+<a name="l-62"></a><span class="tm">18:15:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Infrastructure update</span>
+<a name="l-63"></a><span class="tm">18:15:17</span><span class="nk"> &lt;danielbeck&gt;</span> oh boy
+<a name="l-64"></a><span class="tm">18:15:20</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-65"></a><span class="tm">18:15:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Every monday we're having an infra hangout on https://jenkins.io/hangout at 20:00 UTC</span>
+<a name="l-66"></a><span class="tm">18:15:52</span><span class="nk"> &lt;rtyler&gt;</span> mostly just to review what's in the INFRA project and make sure that the right stuff is getting solved for
+<a name="l-67"></a><span class="tm">18:16:18</span><span class="nk"> &lt;rtyler&gt;</span> olblak is making progress on provisioning kubernetes (k8s) in Azure to migrate applications over to, starting with plugins.jenkins.io
+<a name="l-68"></a><span class="tm">18:16:41</span><span class="nk"> &lt;rtyler&gt;</span> we have a JIRA upgrade which we need to schedule a maintenance window for
+<a name="l-69"></a><span class="tm">18:16:52</span><span class="nk"> &lt;rtyler&gt;</span> we also have the SCM API 2 upgrades on ci.jenkins.io which we need to schedule a maintenance window for
+<a name="l-70"></a><span class="tm">18:17:13</span><span class="nk"> &lt;rtyler&gt;</span> unfortunately time has been sparse lately, and some of this won't get resolved until closer to the end of february :(
+<a name="l-71"></a><span class="tm">18:17:43</span><span class="nk"> &lt;rtyler&gt;</span> because of the lack of time, we're still seeing github rate limit errors daily on ci.j.io :(
+<a name="l-72"></a><span class="tm">18:18:07</span><span class="nk"> &lt;danielbeck&gt;</span> how is that related to your lack of time?
+<a name="l-73"></a><span class="tm">18:18:28</span><span class="nk"> &lt;rtyler&gt;</span> SCM API 2 is supposed to help reduce the github api calls
+<a name="l-74"></a><span class="tm">18:18:29</span><span class="nk"> &lt;ogondza&gt;</span> perhaps it is github's lack of time
+<a name="l-75"></a><span class="tm">18:18:39</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler makes sense
+<a name="l-76"></a><span class="tm">18:18:51</span><span class="nk"> &lt;rtyler&gt;</span> there's also the "crazy caching proxy" idea which would make this problem go away entirely :)
+<a name="l-77"></a><span class="tm">18:19:11</span><span class="nk"> &lt;rtyler&gt;</span> but requires time to prototype and determine whether it's a "crazy stupid idea" or "crazy smart idea"
+<a name="l-78"></a><span class="tm">18:19:34</span><span class="nk"> &lt;autojack&gt;</span> crazy like a fox.
+<a name="l-79"></a><span class="tm">18:19:43</span><span class="nk"> &lt;rtyler&gt;</span> another issue which has been causing trouble more and more is the increased prevelance of interdependent plugin releases
+<a name="l-80"></a><span class="tm">18:19:57</span><span class="nk"> &lt;rtyler&gt;</span> and a known "race condition" between mirrors serving update-center.json and the plugin HPIs themselves
+<a name="l-81"></a><span class="tm">18:20:04</span><span class="nk"> &lt;rtyler&gt;</span> this is more or less tracked in INFRA-160
+<a name="l-82"></a><span class="tm">18:20:37</span><span class="nk"> &lt;rtyler&gt;</span> and, as we discussed in our sync meeting on Monday, we basically need to expedite serving the update center from Azure storage instead of relying on our slow mirror network
+<a name="l-83"></a><span class="tm">18:20:46</span><span class="nk"> &lt;rtyler&gt;</span> which is not a good fit for the frequent changes to update-center.json
+<a name="l-84"></a><span class="tm">18:20:51</span><span class="nk"> &lt;danielbeck&gt;</span> this will result in https everywhere, right?
+<a name="l-85"></a><span class="tm">18:21:06</span><span class="nk"> &lt;rtyler&gt;</span> s/everywhere/moreplaces/
+<a name="l-86"></a><span class="tm">18:21:18</span><span class="nk"> &lt;danielbeck&gt;</span> well, all the update center stuff at least
+<a name="l-87"></a><span class="tm">18:21:21</span><span class="nk"> &lt;danielbeck&gt;</span> or no?
+<a name="l-88"></a><span class="tm">18:21:29</span><span class="nk"> &lt;rtyler&gt;</span> .war and installers are still through the mirror network right now
+<a name="l-89"></a><span class="tm">18:21:32</span><span class="nk"> &lt;rtyler&gt;</span> yes, for the update center
+<a name="l-90"></a><span class="tm">18:21:49</span><span class="nk"> &lt;danielbeck&gt;</span> okay
+<a name="l-91"></a><span class="tm">18:22:02</span><span class="nk"> &lt;rtyler&gt;</span> at my nearest opportunity I will be campaigning for revamping the way the update center works in Jenkins  regardless of this effort
+<a name="l-92"></a><span class="tm">18:22:24</span><span class="nk"> &lt;rtyler&gt;</span> as each instance fetching a 1MB JSON file every day is unnecessary and incurs real cost across 150k instances
+<a name="l-93"></a><span class="tm">18:22:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">rtyler will be pushing for better collaboration between core development changes and infrastructure changes where they are dependent</span>
+<a name="l-94"></a><span class="tm">18:23:36</span><span class="nk"> &lt;rtyler&gt;</span> i386 has also done some prototyping on new update center dependency resolution stuff, but I haven't reviewed his prototype yet, so I don't know whether it's addressing some of our present infra/cost issues
+<a name="l-95"></a><span class="tm">18:24:16</span><span class="nk"> &lt;danielbeck&gt;</span> I think that's more about transitive dependencies, to ensure everything can actually be installed
+<a name="l-96"></a><span class="tm">18:24:39</span><span class="nk"> &lt;rtyler&gt;</span> either way, I know there's some interest in fixing update center, so we have to make sure we address the infra impact as well
+<a name="l-97"></a><span class="tm">18:24:57</span><span class="nk"> &lt;danielbeck&gt;</span> right now, plugin A can depend on plugin B, and be published, but B may not be on the update site, breaking A installation
+<a name="l-98"></a><span class="tm">18:25:12</span><span class="nk"> &lt;danielbeck&gt;</span> AFAIU
+<a name="l-99"></a><span class="tm">18:25:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">as per usual, interested parties are recommended to join #jenkins-infra and infra@lists.jenkins-ci.org</span>
+<a name="l-100"></a><span class="tm">18:25:38</span><span class="nk"> &lt;rtyler&gt;</span> if there are questions, pipe up, otherwise we can move on
+<a name="l-101"></a><span class="tm">18:25:40</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler anything on the state of the wiki?
+<a name="l-102"></a><span class="tm">18:26:25</span><span class="nk"> &lt;rtyler&gt;</span> oh right
+<a name="l-103"></a><span class="tm">18:26:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the wiki is perpetually on fire</span>
+<a name="l-104"></a><span class="tm">18:26:31</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-105"></a><span class="tm">18:26:34</span><span class="nk"> &lt;danielbeck&gt;</span> lol
+<a name="l-106"></a><span class="tm">18:27:12</span><span class="nk"> &lt;ageer&gt;</span> why is it on fire and what exactly does that mean (forgive my unfamiliarity with this issue)
+<a name="l-107"></a><span class="tm">18:27:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">danielbeck and rtyler have started doing some initial research into what systems depend on the wiki so we can reduce the wiki load and get it upgraded sooner rather than later</span>
+<a name="l-108"></a><span class="tm">18:27:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ageer:</span> on fire means it's constantly at capacity nowadays
+<a name="l-109"></a><span class="tm">18:27:34</span><span class="nk"> &lt;ageer&gt;</span> thank you
+<a name="l-110"></a><span class="tm">18:27:40</span><span class="nk"> &lt;rtyler&gt;</span> occasionally resulting in no service for developers trying to edit pages
+<a name="l-111"></a><span class="tm">18:27:56</span><span class="nk"> &lt;rtyler&gt;</span> we have a number of layers of caching in between a request and the confluence app itself, but those can only do so much
+<a name="l-112"></a><span class="tm">18:27:59</span><span class="nk"> &lt;danielbeck&gt;</span> [Monitor Alert] Triggered: Confluence is choking &lt;&lt;&lt; THis arrived in my inbox a minute ago, timing SO perfect I suspect rtyler triggered it
+<a name="l-113"></a><span class="tm">18:28:05</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-114"></a><span class="tm">18:28:27</span><span class="nk"> &lt;rtyler&gt;</span> the issues are: old confluence, underpowered VM, exhorbinant load from malicious and benign actors
+<a name="l-115"></a><span class="tm">18:28:38</span><span class="nk"> &lt;rtyler&gt;</span> the wiki is a prime target for spammers
+<a name="l-116"></a><span class="tm">18:28:58</span><span class="nk"> &lt;rtyler&gt;</span> so there's no updates on that really other than, it's on fire
+<a name="l-117"></a><span class="tm">18:29:18</span><span class="nk"> &lt;rtyler&gt;</span> it's known, but there's so much dependent on the wiki that it's hard to fix without severe risk to downstream systems
+<a name="l-118"></a><span class="tm">18:29:25</span><span class="nk"> &lt;ageer&gt;</span> are analytics available on traffic to determine the significance of spam impact?
+<a name="l-119"></a><span class="tm">18:30:03</span><span class="nk"> &lt;rtyler&gt;</span> "available' in that I see it in the access logs
+<a name="l-120"></a><span class="tm">18:30:10</span><span class="nk"> &lt;rtyler&gt;</span> not available in that we don't publish logs anywhere
+<a name="l-121"></a><span class="tm">18:30:28</span><span class="nk"> &lt;rtyler&gt;</span> we have automated systems which clean up spam
+<a name="l-122"></a><span class="tm">18:30:44</span><span class="nk"> &lt;danielbeck&gt;</span> (which add to the load again)
+<a name="l-123"></a><span class="tm">18:30:53</span><span class="nk"> &lt;rtyler&gt;</span> so that means we have spammers (sweatshop spammers from india, etc) and our own tooling competing to see who can DDoS wiki.jenkins-ci.org faster :P
+<a name="l-124"></a><span class="tm">18:32:05</span><span class="nk"> &lt;rtyler&gt;</span> anything else before moving on?
+<a name="l-125"></a><span class="tm">18:32:32</span><span class="nk"> &lt;danielbeck&gt;</span> FWIW I've recently moved some of the more static wiki content over to jenkins.io, help is always welcome
+<a name="l-126"></a><span class="tm">18:33:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> awake? :)
+<a name="l-127"></a><span class="tm">18:33:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Should we host plugins with closed-source dependencies?</span>
+<a name="l-128"></a><span class="tm">18:33:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> how about you
+<a name="l-129"></a><span class="tm">18:35:10</span><span class="nk"> &lt;danielbeck&gt;</span> doesn't look like it?
+<a name="l-130"></a><span class="tm">18:35:17 </span><span class="nka">* rtyler</span> <span class="ac">facepalms</span>
+<a name="l-131"></a><span class="tm">18:35:27</span><span class="nk"> &lt;orrc&gt;</span> sort of awake
+<a name="l-132"></a><span class="tm">18:35:34</span><span class="nk"> &lt;orrc&gt;</span> but yeah, this was something that batmat brought up
+<a name="l-133"></a><span class="tm">18:35:36</span><span class="nk"> &lt;rtyler&gt;</span> the gist of this issue is that we have had a hosting request for a plugin which relies on closed source dependencies
+<a name="l-134"></a><span class="tm">18:35:39</span><span class="nk"> &lt;rtyler&gt;</span> https://issues.jenkins-ci.org/browse/HOSTING-271
+<a name="l-135"></a><span class="tm">18:36:31</span><span class="nk"> &lt;orrc&gt;</span> ah, it's been hosted
+<a name="l-136"></a><span class="tm">18:36:37</span><span class="nk"> &lt;rtyler&gt;</span> https://jenkins.io/project/governance/#license
+<a name="l-137"></a><span class="tm">18:36:46</span><span class="nk"> &lt;orrc&gt;</span> so we do explicitly say that closed source plugins aren't allowed
+<a name="l-138"></a><span class="tm">18:36:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">"But no such plugins will be hosted by the Jenkins project."</span>
+<a name="l-139"></a><span class="tm">18:37:11</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler right, but the question now is closed source dependencies
+<a name="l-140"></a><span class="tm">18:37:14</span><span class="nk"> &lt;orrc&gt;</span> but what about closed source dependencies, and by extension, I guess that would extend to their transitive dependencies
+<a name="l-141"></a><span class="tm">18:38:00</span><span class="nk"> &lt;rtyler&gt;</span> I wish Slide hadn't hosted this :/
+<a name="l-142"></a><span class="tm">18:38:06</span><span class="nk"> &lt;rtyler&gt;</span> somebody should have blocked this request pending this discussion
+<a name="l-143"></a><span class="tm">18:38:24</span><span class="nk"> &lt;orrc&gt;</span> I'm not sure if there's precedence here, but I could imagine we have some plugins that are open source but depend on some closed source SDK or so
+<a name="l-144"></a><span class="tm">18:38:44</span><span class="nk"> &lt;danielbeck&gt;</span> we probably need an inventory of existing plugins to even begin considering this
+<a name="l-145"></a><span class="tm">18:38:48</span><span class="nk"> &lt;ageer&gt;</span> is access to the closed source sdk freely available or proprietary?
+<a name="l-146"></a><span class="tm">18:39:03</span><span class="nk"> &lt;rtyler&gt;</span> the update-center.json just includes a reference to an .hpi
+<a name="l-147"></a><span class="tm">18:39:15</span><span class="nk"> &lt;rtyler&gt;</span> so in essence doesn't this mean that the plugin as built is not open source?
+<a name="l-148"></a><span class="tm">18:40:08</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler FWIW that plugin is not yet published, and no upload permissions granted, so we can block that while we determine how to proceed here
+<a name="l-149"></a><span class="tm">18:40:15 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-150"></a><span class="tm">18:40:34</span><span class="nk"> &lt;orrc&gt;</span> we're only hosting new plugins from jenkinsci, so we should know where the source is. and in artifactory the sources.jar for each release *should* be there
+<a name="l-151"></a><span class="tm">18:41:01</span><span class="nk"> &lt;danielbeck&gt;</span> orrc Just pull the Artifactory listing and take a look -- you have no idea.
+<a name="l-152"></a><span class="tm">18:41:04</span><span class="nk"> &lt;rtyler&gt;</span> as far as I understand this situation, the .hpi would contain proprietary software which we do not have a license for distribution
+<a name="l-153"></a><span class="tm">18:41:24</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> yeah, I know it's wild out there in reality :)
+<a name="l-154"></a><span class="tm">18:41:42</span><span class="nk"> &lt;rtyler&gt;</span> if that's correct, then I actually think this issue is relatively straight-forward within our existing guidelines
+<a name="l-155"></a><span class="tm">18:41:46</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">rtyler:</span> right
+<a name="l-156"></a><span class="tm">18:41:59</span><span class="nk"> &lt;danielbeck&gt;</span> Welllll
+<a name="l-157"></a><span class="tm">18:42:09</span><span class="nk"> &lt;rtyler&gt;</span> from a legal standpoint, we have no license to distribute this code
+<a name="l-158"></a><span class="tm">18:42:33</span><span class="nk"> &lt;danielbeck&gt;</span> depends on the license of the dependency
+<a name="l-159"></a><span class="tm">18:42:49</span><span class="nk"> &lt;rtyler&gt;</span> if it's not open source, then i'm not sure it matters
+<a name="l-160"></a><span class="tm">18:43:09</span><span class="nk"> &lt;rtyler&gt;</span> this plugin depends on some closed source stuff beign published to an s3 bucket
+<a name="l-161"></a><span class="tm">18:43:23</span><span class="nk"> &lt;rtyler&gt;</span> which is, bizarre to begin with :P
+<a name="l-162"></a><span class="tm">18:43:38</span><span class="nk"> &lt;danielbeck&gt;</span> well, a plugin can be open source but not have an OSI license, and what then?
+<a name="l-163"></a><span class="tm">18:43:49</span><span class="nk"> &lt;rtyler&gt;</span> that's not open source as far as I am concerned
+<a name="l-164"></a><span class="tm">18:44:15</span><span class="nk"> &lt;danielbeck&gt;</span> that should be clarified in the governance document then, that we mean Open Source, not just open source.
+<a name="l-165"></a><span class="tm">18:44:16</span><span class="nk"> &lt;ageer&gt;</span> this doesnt sound open source if you have a blackbox your pulling in as part of the plugin functionality
+<a name="l-166"></a><span class="tm">18:44:41</span><span class="nk"> &lt;danielbeck&gt;</span> mvn
+<a name="l-167"></a><span class="tm">18:44:42</span><span class="nk"> &lt;danielbeck&gt;</span> "plugins are free to choose their own licenses, so long as it’s an OSI-approved open-source license."
+<a name="l-168"></a><span class="tm">18:44:59</span><span class="nk"> &lt;danielbeck&gt;</span> so, rtyler is right
+<a name="l-169"></a><span class="tm">18:45:02</span><span class="nk"> &lt;rtyler&gt;</span> YAY
+<a name="l-170"></a><span class="tm">18:45:11</span><span class="nk"> &lt;rtyler&gt;</span> I've been waiting my whole week for that danielbeck :P
+<a name="l-171"></a><span class="tm">18:45:19</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler try harder then ;-)
+<a name="l-172"></a><span class="tm">18:45:22</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-173"></a><span class="tm">18:45:41</span><span class="nk"> &lt;rtyler&gt;</span> so a clarification point I think we can make to this plugin author in particular
+<a name="l-174"></a><span class="tm">18:45:59</span><span class="nk"> &lt;danielbeck&gt;</span> now to find out whether a thing can be OSI licensed without being open source all the way down -- I doubt it, but we should make sure
+<a name="l-175"></a><span class="tm">18:46:01</span><span class="nk"> &lt;rtyler&gt;</span> if the plugin, once installed, prompts the user to download proprietary dependencies or something like that, I think that's suitable
+<a name="l-176"></a><span class="tm">18:46:16</span><span class="nk"> &lt;rtyler&gt;</span> since that's more or less how many toolchain-based plugins operate
+<a name="l-177"></a><span class="tm">18:46:25</span><span class="nk"> &lt;danielbeck&gt;</span> right -- we've had that model a few times, like Black Duck and CloudBees "installers"
+<a name="l-178"></a><span class="tm">18:46:30 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-179"></a><span class="tm">18:46:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> I would hope Artifactory has some integration we can enable here
+<a name="l-180"></a><span class="tm">18:46:42</span><span class="nk"> &lt;ageer&gt;</span> that seems appropriate
+<a name="l-181"></a><span class="tm">18:47:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler and danielbeck to investigate whether we can ensure OSI-licensed code is being distributed "all the way down" for plugins to comply with governance document guidelines around proprietary code in plugins</span>
+<a name="l-182"></a><span class="tm">18:47:51</span><span class="nk"> &lt;danielbeck&gt;</span> I think this is all we can discuss on this topic for the moment?
+<a name="l-183"></a><span class="tm">18:47:52</span><span class="nk"> &lt;rtyler&gt;</span> I think from a practical standpoint, we should be gentle with plugin authors like this and explain why this is important and still welcome them into the community
+<a name="l-184"></a><span class="tm">18:48:13</span><span class="nk"> &lt;rtyler&gt;</span> chances are this developer isn't the one who made the decision to not kopen source something
+<a name="l-185"></a><span class="tm">18:48:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> what do you think, have we resolved this topic for today?
+<a name="l-186"></a><span class="tm">18:48:41</span><span class="nk"> &lt;orrc&gt;</span> sure
+<a name="l-187"></a><span class="tm">18:49:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">to summarize, bits being packaged into an .hpi should be OSI-licensed (Open Source) to be published through the official Jenkins Update Center</span>
+<a name="l-188"></a><span class="tm">18:49:17</span><span class="nk"> &lt;danielbeck&gt;</span> s/should/need to
+<a name="l-189"></a><span class="tm">18:49:40</span><span class="nk"> &lt;rtyler&gt;</span> go full RFC "MUST"
+<a name="l-190"></a><span class="tm">18:49:41</span><span class="nk"> &lt;rtyler&gt;</span> :D
+<a name="l-191"></a><span class="tm">18:49:43</span><span class="nk"> &lt;rtyler&gt;</span> anywhoo
+<a name="l-192"></a><span class="tm">18:49:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-193"></a><span class="tm">18:50:04</span><span class="nk"> &lt;rtyler&gt;</span> I see that ogondza has already added some items for Feb 29, which doesn't exist this year :P
+<a name="l-194"></a><span class="tm">18:50:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next meeting March 1st, 2017</span>
+<a name="l-195"></a><span class="tm">18:50:29</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-196"></a><span class="tm">18:50:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 13:54:01 Jan 15, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:07:31 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 296.788
+  exclusion.robots: 0.185
+  exclusion.robots.policy: 0.168
+  RedisCDXSource: 4.542
+  esindex: 0.02
+  LoadShardBlock: 261.206 (3)
+  PetaboxLoader3.resolve: 256.948 (3)
+  PetaboxLoader3.datanode: 105.679 (4)
+  CDXLines.iter: 24.475 (3)
+  load_resource: 118.388
+-->

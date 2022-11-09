@@ -1,0 +1,191 @@
+18:01:34 <kohsuke> #startmeeting
+18:01:34 <robobutler> Let the Jenkins meeting commence!
+18:01:38 <rtyler> aw yeah
+18:01:43 <kohsuke> #chair rtyler abayer hare_brain
+18:01:43 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:02:00 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:02:07 <kohsuke> #topic new LTS baseline
+18:02:26 <kohsuke> I hope vjuranek and ogondza are here
+18:03:15 <kohsuke> So we settled the train model, but we haven't decided when to start
+18:03:36 <rtyler> train model meaning?
+18:03:45 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line
+18:03:45 <rtyler> besides that vjuranek gets to wear a conductor's hat
+18:04:31 <kohsuke> To make the release more predictable, we are comitting to release LTS on the scheduled cycles
+18:04:43 <kohsuke> So say we pick the next LTS baseline today
+18:04:58 <kohsuke> in 2 weeks we push RC, a release in 4 weeks, etc
+18:05:46 <rtyler> that seems reasonable
+18:05:56 <kohsuke> To start this process we need to pick the base line, which I hope to do today
+18:05:57 <rtyler> is that enough time to qualify the release?
+18:06:24 <rtyler> the community ratings for 1.554 are pretty good
+18:06:26 <kohsuke> ogondza seems this is feasible
+18:06:32 <kohsuke> thinks
+18:06:39 <kohsuke> Yes, http://jenkins-ci.org/changelog
+18:06:52 <rtyler> in fact, 554 might be the best release we've had by the numbers in a long time
+18:07:04 <kohsuke> Isn't that bit too new?
+18:07:30 <kohsuke> 1.548?
+18:07:32 <rtyler> it will have been almost 2 months old by the time LTS is released
+18:07:54 <kohsuke> jglick: WDYT?
+18:07:55 <rtyler> kohsuke: there are just *so many* bug fixes in the releases from 548 to 554
+18:09:01 <kohsuke> 1.543
+18:09:28 <rtyler> that's so old!
+18:09:31 <jglick> Why would we not pick the newest release meeting time criteria?
+18:09:46 <jglick> Unless it is though to be particularly buggy.
+18:09:49 <hare_brain> The intent of favoring older releases was that there has been more time for problems to be discovered. If people feel that a newer release is getting wide adoption, we could go newer.
+18:10:21 <kohsuke> We could hardly backport anything if we are going with 1.554
+18:10:49 <hare_brain> That's not necessarily a bad thing. :)
+18:10:53 <rtyler> heh
+18:10:53 <kohsuke> jglick: but I assume you are arguing for 1.554?
+18:11:46 <jglick> Yes, or something near it.
+18:11:54 <jglick> 37 +1s and only two bad ratings.
+18:12:24 <kohsuke> OK, then let's do that
+18:12:27 <rtyler> \o/
+18:12:34 <jglick> (One of which also applies to the current LTS line, due to a security fix, so not a problem specifically in this build.)
+18:12:57 <kohsuke> #agreed next LTS baseline is 1.554
+18:13:01 <jglick> Mind you, I have not examined the issues reported for immediately preceding builds.
+18:13:19 <jglick> But I do not see why in general we would need pick something as new as possible.
+18:13:21 <hare_brain> We don't track when ratings are added, right? So we can't tell how soon after a release people start reporting bad ratings?
+18:13:40 <kohsuke> Maybe we do if we look at the database
+18:14:08 <kohsuke> nah, we don't
+18:14:21 <kohsuke> it'd be good to add
+18:14:54 <kohsuke> #info backporting for 1.554.1 is open for next 2 weeks
+18:14:55 <hare_brain> The rate at which people find problems (and rate a release) could help give us some more information to gauge the stability of a release to choose for LTS.
+18:14:56 <jglick> (but not seeing anything scary there)
+18:15:30 <kohsuke> and release April 18th
+18:15:38 <larrys> Would be nice to have people rate the version of Jenkins they are running from within the admin screens of Jenkins... might solicit more feedback that way too...
+18:15:41 <hare_brain> jglick, trying to parse "But I do not see why in general we would need pick something as new as possible." Are you advocating favoring newer releases?
+18:16:03 <jglick> Well, subject to our usual “soak time” constraint.
+18:16:38 <kohsuke> larrys: Maybe we should randomly show something in /manage to ask to rate the current version
+18:17:10 <kohsuke> #info BTW the backend is https://github.com/jenkinsci/infra-rating if anyone wants to hack
+18:17:25 <kohsuke> oh
+18:17:30 <kohsuke> there is a pull request from kinow
+18:17:42 <hare_brain> I would hope to avoid choosing a relatively new release to base LTS on, then finding out halfway through that there are serious problems with it, then having to either go back and choose an older one for better stability, or put a lot more effort into backporting bug fixes.
+18:17:50 <kohsuke> OMG, 40K LoC addition
+18:17:55 <rtyler> heh
+18:17:55 <hare_brain> I mean, I hope to avoid that situation.
+18:18:02 <rtyler> kohsuke: come back to that perhaps, we have a meeting :)
+18:18:19 <kohsuke> Yes
+18:18:29 <rtyler> hare_brain: the benefit of that approach is that we'll find serious problems faster
+18:19:27 <hare_brain> How would that find serious problems faster?
+18:19:39 <rtyler> then letting users organically run into them
+18:20:13 <hare_brain> That's sort of how we're doing it right now. Organically discovering them. That's essentially what the ratings are.
+18:20:13 <kohsuke> We've used to pick up LTS base versions that are a lot older than 2 releases back
+18:20:43 <kohsuke> IIRC, 1.532 was a bit of exception that we picked a very new release at the time of choosing
+18:20:55 <hare_brain> Mostly because that gave more time for the organic discovery process to find problems.
+18:21:56 <hare_brain> How many patches to the LTS are done because of the extra testing that vjuraneck has done?
+18:22:55 <kohsuke> We don't run these tests to find problems
+18:23:09 <kohsuke> We'd just run them to verify nothing is too broken after backporting
+18:23:57 <rtyler> "too broken" heh
+18:24:06 <kohsuke> Maybe we could start the clock ticking 2 weeks from now
+18:24:12 <hare_brain> OK, so I don't feel like I have a satisfactory answer to rtyler's assertion that picking a newer release to base LTS on will help us find serious problems faster.
+18:24:14 <kohsuke> Give 1.554 a bit more time to be battle tested
+18:24:30 <kohsuke> and give us a time to build up acceptance-test-harness too
+18:24:47 <nanonyme> Hmm, what's that?
+18:25:01 <kohsuke> https://github.com/jenkinsci/acceptance-test-harness
+18:26:50 <kohsuke> Also, the community rating should be taken with a grain of salt, too
+18:27:05 <hare_brain> I agree, but that's what we start with.
+18:27:10 <kohsuke> Say 1.543 only has one minor bug fix yet its rating drastically improves
+18:27:52 <hare_brain> Yeah, that's why I was curious about when these ratings come in.
+18:28:17 <hare_brain> Maybe we should also be considering installed base of each release. How widely a release is being used in addition to the community ratings.
+18:28:26 <hare_brain> As a method for picking LTS candidates.
+18:28:32 <hare_brain> nominees.
+18:28:47 <jglick> 1.543 had a critical bug fix, FWIW, but I must be missing the point here.
+18:29:31 <kohsuke> 1543 only has a fix for JENKINS-20800
+18:29:33 <jenkins-admin> JENKINS-20800:HTML metacharacters not escaped in log messages (Resolved) http://jenkins-ci.org/issue/20800
+18:29:36 <kohsuke> I don't think it has impact on most users
+18:29:42 <hare_brain> The point, from my perspective, is to favor stability over newness for the LTS. But how we judge stability is based on sparse data sets.
+18:29:48 <jglick> That was a crucial security fix.
+18:30:50 * kohsuke browses through changelog up and down
+18:31:07 <kohsuke> I guess this time we do want to pick >=1.551 because of security fixes
+18:31:17 <kohsuke> That avoids a lot of backporting
+18:31:27 <hare_brain> And that's a totally reasonable choice to make.
+18:32:46 <jglick> I guess I am not seeing what the purpose would be of intentionally picking something old with lots of bugs we know were since fixed. Any release has tons of bugs in it, most of them quite longstanding. We should just be on the lookout for releases that had some kind of major refactoring that seems to have been incomplete and introduced a lot of embarrassing regressions.
+18:33:43 <hare_brain> The theory is that we know more about older releases than we know about newer ones. In the past, we have been willing to backport the most critical fixes to the LTS.
+18:34:37 <jglick> I suppose it depends on where you set the threshold for “critical fix”. For recent LTSs it has been fairly low.
+18:34:53 <kohsuke> As a middle ground, I suggest we officially bless 1.554 in the next meeting
+18:35:06 <kohsuke> It gives time for various things as I said, and it lets vjuranek and ogondza say no
+18:35:14 <rtyler> seems reasonable
+18:35:17 <hare_brain> +1 to that
+18:35:31 <jglick> So then when is 1.554.1 scheduled?
+18:35:42 <larrys> While I appreciate the hand written changelog, I think having links to the commits between releases would be nice as well, similar to how plugins have "chances since last version" links to Github... I'm sure there are some changes that slip through from time to time...
+18:36:09 <kohsuke> we decide this one way or other in 2 week
+18:36:16 <jglick> Yes there are a lot of changes that do not get recorded. This is a conversation that keeps happening but there has been no real movement on it.
+18:36:29 <kohsuke> backport open from April 2-16th
+18:36:36 <nanonyme> Btw, is there a real "bugfixes only" policy for LTS .2+?
+18:36:38 <kohsuke> then RC on 16th, release on April 30th
+18:36:59 <kohsuke> nanonyme: yeah, see https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line under "Backporting process"
+18:37:00 <jglick> So is that the start of the proposed 12-week cycle?
+18:37:11 <kohsuke> Yes, April 2nd starts the 12 week cycles
+18:37:22 <nanonyme> kohsuke, good, then I haven't been lying to our IT :) I told them they should attempt to use as high dot release of their LTS as possible
+18:37:40 <nanonyme> They seem to think LTS's mature over time *eyeroll*
+18:38:23 <kohsuke> larrys: there's https://github.com/jenkinsci/backend-commit-history-parser that we built that produces raw data for it
+18:38:44 <kohsuke> looking for someone to put some pretty frontend to it
+18:39:00 <kohsuke> #agreed scratch my previous agreement. Official 1.554 go/no-go in the next meeting
+18:39:04 <rtyler> heh
+18:39:14 <rtyler> let's keep this moving, we've spent 40 minutes on this
+18:39:15 <kohsuke> Shall we move on, if we may
+18:39:31 <kohsuke> #topic Review of the 2014 Jenkins Infrastructure Roadmap
+18:39:35 <rtyler> YAY
+18:39:37 <rtyler> MY TURN
+18:39:39 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/2014+Jenkins+Infrastructure+Roadmap
+18:39:43 <rtyler> thanks
+18:40:23 <rtyler> so, the biggest part of this that I wanted to talk about was:
+18:40:30 <rtyler> #info "Migrate to Puppetmaster-based configuration management infrastructure"
+18:40:54 <rtyler> kohsuke has already been made aware of some of my work here
+18:41:22 <rtyler> basically, I've reached out to Puppet Labs, and they will be offering some help to get us migrated to Puppet Enterprise
+18:41:41 <rtyler> and a continuous delivery pipeline for our infrastructure code
+18:42:04 <kohsuke> Is puppetizing our existing services not a part of the goal?
+18:42:24 <kohsuke> I thought that is a major goal
+18:42:42 <rtyler> that's a major goal for *us*, I'm not sure yet whether they'll help with that in a substantial way
+18:42:48 <jenkins-builds> Project jenkins_main_trunk build #3241: SUCCESS in 1 hr 31 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/3241/
+18:42:49 <jenkins-builds> Jesse Glick: updateByXml need not call reload; just causes duplicated work.
+18:42:52 <kohsuke> OK
+18:42:55 <rtyler> I've not hashed out the work with them just yet
+18:43:08 <rtyler> the primary goals that I have to accomplish with their help are:
+18:43:21 <rtyler> * Refactor our Puppet infrastructure from masterless to master-ful(?)
+18:43:49 <rtyler> * Create a blueprint for developing, testing and deploying new "stuff"
+18:44:11 <rtyler> if in the process of the second item, we move more stuff into Puppet, great
+18:44:17 <rtyler> btu I don't know the extent of what we would do
+18:44:26 <rtyler> I have a call next tuesday to figure that out more
+18:44:31 <kohsuke> OK
+18:44:56 <rtyler> basically, they're experts at running a good Puppet infrastructure, that's what I want the most help with
+18:45:01 <nanonyme> Btw, is the intention to have some or most of the configurations publicly visible as per "this is how things should be done in 2014+"?
+18:45:05 <rtyler> they're not experts at deploying things like Mirrorbrain
+18:45:11 <kohsuke> if we are spending one time concentrated effort to do upgrades and stuff that has been long overdue, that's fine, but if we can automate those in such a way that future upgrades are easier, that's even better
+18:45:36 <rtyler> nanonyme: yes, except for sensitive information like passwords and private keys, all should be open sourced
+18:46:06 <rtyler> kohsuke: I called out Upgrading core services as a separate goal in the roadmap for that reason
+18:46:27 <kohsuke> so when I see something like "upgrade JIRA", I'm trying to understand whether it means "puppetize JIRA and prove that to ourselves by upgrading" or "let's do this update in the same way we've been doing"
+18:46:45 <nanonyme> Would also be nice to have some recommendations included on how you can integrate the sensitive information with the rest of stuff. This sounds like something we might want to mimick some day.
+18:47:01 <kohsuke> nanonyme: on that note, not sure whether it belongs here, but I'd like to see hiera-gpg (or whatever else that lets us handle secrets) deployed here
+18:47:04 <rtyler> kohsuke: depending on how we feel about the "modern puppet" work, we can evaluate then which is better :)
+18:47:52 <rtyler> kohsuke: I imagine that Puppet Labs will help with the 1-4 line items in the work scoped for the "modern puppet" project
+18:48:04 <rtyler> but 5 I'm unsure of
+18:48:46 <rtyler> I'll definitely keep the community aware of what's going on on the infra@ list, but I wanted to call attention to the roadmap as I've laid it out thus far
+18:49:18 <kohsuke> "CD pipeline" as in changes like JIRA upgrade would go through this CD pipeline?
+18:49:26 <rtyler> hopefully!
+18:49:31 <nanonyme> 5 would also be a good chance to evaluate the quality of documentation and tooling  gotten from Puppet Labs during 1-4
+18:50:52 <kohsuke> #idea I really want to see "figure out how to handle secrets and prove that it works by putting SSL certs in infra-puppet repo" tracked somewhere
+18:51:15 <rtyler> I'll definitely bring that up with the puppetlabs folks when we start hacking
+18:51:36 <kohsuke> #info I think rtyler is planning some on-site infra hack week in San Francisco, and any other volunteers would be welcome
+18:51:49 <rtyler> I am!
+18:51:58 <kohsuke> anything else on this topic?
+18:52:03 <rtyler> I don't believe so
+18:52:16 <nanonyme> Ie if during 5 non-puppet-labs engineers notice it's excessively hard to migrate a system to Puppet, 1-4 probably needs returning to
+18:52:21 <kohsuke> oh, and I suggest we consider Confluence upgrade carefully --- maybe even punt on it
+18:52:36 <rtyler> punt it out of 2014?
+18:53:07 <kohsuke> All the peripheral systems that talk to Confluence needs to be modified since Atlassian had completely redone their Wiki format in 4.0
+18:53:31 <kohsuke> Every automation that pushes pages into Confluence gets affected
+18:53:52 <rtyler> we can discuss this more later, but I believe upgrading Confluence and JIRA this year are critical tasks
+18:53:54 <kohsuke> #action kohsuke to inventory our backend systems that talk to Confluence
+18:54:13 <kohsuke> You are right, but it's daunting just to think about it
+18:54:18 <kohsuke> JIRA is OK
+18:54:21 <rtyler> it won't be easy
+18:54:29 <rtyler> perhaps we can find some Atlassian folks who will want to help :)
+18:54:53 <larrys> rtyler: like the bamboo devs? ;)
+18:55:05 <rtyler> I think that covers this topic as far as today is concerned, I didn't have specific action items to cover, just wanted to bring the roadmap up in a meeting
+18:55:17 <kohsuke> Thus another chpater added to the legend of rtyler, the dude who gets stuff for free
+18:55:27 <kohsuke> #topic next meeting
+18:55:40 <rtyler> 2nd/
+18:55:40 <kohsuke> ... would be April 2nd
+18:55:57 <kohsuke> hopefully the DST offset difference between Europe would be solved by then
+18:55:59 <rtyler> I have an all-day meeting that day, so I'm out unfortunately
+18:56:06 <kohsuke> #endmeeting

@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app228.us.archive.org';v.server_ms=307;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-10-10-17.59.log.html","20211027233742","https://web.archive.org/","web","/_static/",
+	      "1635377862");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">17:59:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">17:59:52</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">17:59:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbe_ kohsuke</span>
+<a name="l-4"></a><span class="tm">17:59:58</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbe_ kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:06</span><span class="nk"> &lt;rtyler&gt;</span> let's get this party started
+<a name="l-6"></a><span class="tm">18:00:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-7"></a><span class="tm">18:00:35</span><span class="nk"> &lt;rtyler&gt;</span> http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-09-26-18.02.html
+<a name="l-8"></a><span class="tm">18:00:50</span><span class="nk"> &lt;rtyler&gt;</span> looks like the only one was for oleg-nenashev who did in fact post a Hacktoberfest blog post!
+<a name="l-9"></a><span class="tm">18:00:59</span><span class="nk"> &lt;rtyler&gt;</span> https://jenkins.io/blog/2018/10/01/hacktoberfest/
+<a name="l-10"></a><span class="tm">18:01:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I believe so
+<a name="l-11"></a><span class="tm">18:01:17</span><span class="nk"> &lt;rtyler&gt;</span> I know so!
+<a name="l-12"></a><span class="tm">18:01:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We're going to GSoC mentor summit this week
+<a name="l-13"></a><span class="tm">18:01:37</span><span class="nk"> &lt;rtyler&gt;</span> by the way, our agenda is https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-October10
+<a name="l-14"></a><span class="tm">18:01:44</span><span class="nk"> &lt;kohsuke&gt;</span> I’m here for my agenda item but I’m in a car so if I look at this tiny screen too much I will get car sick :-)
+<a name="l-15"></a><span class="tm">18:01:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Updates will be posted at the SIG meeting on Oct 17 (TBA)
+<a name="l-16"></a><span class="tm">18:02:08</span><span class="nk"> &lt;rtyler&gt;</span> it's too bad irc doesn't support a good party parrot animation to help kohsuke :D
+<a name="l-17"></a><span class="tm">18:02:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I was going to move on, any other hacktoberfest things to squeeze in?
+<a name="l-18"></a><span class="tm">18:02:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> I hope you're also still with us  :)
+<a name="l-19"></a><span class="tm">18:02:43</span><span class="nk"> &lt;ogondza&gt;</span> yep
+<a name="l-20"></a><span class="tm">18:02:46</span><span class="nk"> &lt;rtyler&gt;</span> wunderbar
+<a name="l-21"></a><span class="tm">18:02:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Hacktoberfest is going.... good?
+<a name="l-22"></a><span class="tm">18:03:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Really, hard to estimate this year - no labeling in GiThub
+<a name="l-23"></a><span class="tm">18:03:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But there is some traffic and Q&amp;A
+<a name="l-24"></a><span class="tm">18:04:32</span><span class="nk"> &lt;rtyler&gt;</span> moving on
+<a name="l-25"></a><span class="tm">18:04:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-26"></a><span class="tm">18:04:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> all yours buddy
+<a name="l-27"></a><span class="tm">18:04:54</span><span class="nk"> &lt;ogondza&gt;</span> testing went well
+<a name="l-28"></a><span class="tm">18:05:03</span><span class="nk"> &lt;danielbe_&gt;</span> it's out
+<a name="l-29"></a><span class="tm">18:05:10</span><span class="nk"> &lt;ogondza&gt;</span> thanks, Daniel
+<a name="l-30"></a><span class="tm">18:05:14</span><span class="nk"> &lt;danielbe_&gt;</span> you all should update:
+<a name="l-31"></a><span class="tm">18:05:14</span><span class="nk"> &lt;danielbe_&gt;</span> https://jenkins.io/security/advisory/2018-10-10/
+<a name="l-32"></a><span class="tm">18:05:36</span><span class="nk"> &lt;ogondza&gt;</span> ATH being ported to selenium 3, hopefully .3 will be tested with both so we can switch to maintained version
+<a name="l-33"></a><span class="tm">18:05:48</span><span class="nk"> &lt;danielbe_&gt;</span> nice
+<a name="l-34"></a><span class="tm">18:06:02</span><span class="nk"> &lt;ogondza&gt;</span> backporting starts tomorrow, as always
+<a name="l-35"></a><span class="tm">18:06:40</span><span class="nk"> &lt;ogondza&gt;</span> and that would be it
+<a name="l-36"></a><span class="tm">18:07:37</span><span class="nk"> &lt;ogondza&gt;</span> moving on?
+<a name="l-37"></a><span class="tm">18:07:45</span><span class="nk"> &lt;rtyler&gt;</span> if you say so :D
+<a name="l-38"></a><span class="tm">18:07:47</span><span class="nk"> &lt;danielbe_&gt;</span> +1
+<a name="l-39"></a><span class="tm">18:07:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">tracymiranda:</span> you better be awake too :)
+<a name="l-40"></a><span class="tm">18:08:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Participating in Outreachy</span>
+<a name="l-41"></a><span class="tm">18:08:05 </span><span class="nka">* tracymiranda</span> <span class="ac">wakes up</span>
+<a name="l-42"></a><span class="tm">18:08:40</span><span class="nk"> &lt;tracymiranda&gt;</span> hey all, so Jenkins has been accepted as an outreachy org for this winter round
+<a name="l-43"></a><span class="tm">18:08:47</span><span class="nk"> &lt;tracymiranda&gt;</span> subject to funding and projects
+<a name="l-44"></a><span class="tm">18:09:26</span><span class="nk"> &lt;tracymiranda&gt;</span> so first I would like to ask for a vote of funding one intern at a cost of $6500
+<a name="l-45"></a><span class="tm">18:09:42</span><span class="nk"> &lt;tracymiranda&gt;</span> actually any questions first
+<a name="l-46"></a><span class="tm">18:10:27</span><span class="nk"> &lt;rtyler&gt;</span> how are interns matched to projects?
+<a name="l-47"></a><span class="tm">18:11:07</span><span class="nk"> &lt;kohsuke&gt;</span> What will this intern do?
+<a name="l-48"></a><span class="tm">18:11:09</span><span class="nk"> &lt;tracymiranda&gt;</span> we need to submit 2-3 project proposals. Interested interns must make 2-3 pull requests in area of interest then apply to be selected for that project.
+<a name="l-49"></a><span class="tm">18:11:51</span><span class="nk"> &lt;tracymiranda&gt;</span> I am gathering project proposals and mentors here https://docs.google.com/document/d/1EJuqP3rDO831kOmsSGhNwyjKEvbvjqD6hsmNIczHVE8/edit
+<a name="l-50"></a><span class="tm">18:12:04</span><span class="nk"> &lt;tracymiranda&gt;</span> projects can be more than code, so for example a pipeline documentation project
+<a name="l-51"></a><span class="tm">18:12:42 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-52"></a><span class="tm">18:12:51</span><span class="nk"> &lt;tracymiranda&gt;</span> if we have &gt;1 of the projects applied for outreachy has a surplus fund so they may be able to help us fund &gt;1 project
+<a name="l-53"></a><span class="tm">18:13:12</span><span class="nk"> &lt;tracymiranda&gt;</span> projects are live now so the sooner we can get ours listed the better
+<a name="l-54"></a><span class="tm">18:13:27</span><span class="nk"> &lt;tracymiranda&gt;</span> I am aiming for end this week/early next Monday
+<a name="l-55"></a><span class="tm">18:14:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> does that help answer your question?
+<a name="l-56"></a><span class="tm">18:14:10</span><span class="nk"> &lt;tracymiranda&gt;</span> Also propose a mentor briefing for next Monday 8am PT/5pm CEST on specifics of mentoring esp w.r.t impostor syndrome, etc
+<a name="l-57"></a><span class="tm">18:14:11</span><span class="nk"> &lt;kohsuke&gt;</span> I think it is a good and noble way to turn the fund into a good use. But it sounds like whether we get the most of it depends on our bandwidth to mentor.
+<a name="l-58"></a><span class="tm">18:14:25</span><span class="nk"> &lt;kohsuke&gt;</span> Yes it does answer my question.
+<a name="l-59"></a><span class="tm">18:14:41</span><span class="nk"> &lt;kohsuke&gt;</span> I’m +1
+<a name="l-60"></a><span class="tm">18:14:52</span><span class="nk"> &lt;tracymiranda&gt;</span> yes, like gsoc mentors need to be aware of time commitments
+<a name="l-61"></a><span class="tm">18:15:31</span><span class="nk"> &lt;tracymiranda&gt;</span> ok are we ready to vote? or other comments?
+<a name="l-62"></a><span class="tm">18:16:28</span><span class="nk"> &lt;kohsuke&gt;</span> I think we are ready
+<a name="l-63"></a><span class="tm">18:17:19</span><span class="nk"> &lt;rtyler&gt;</span> I'm hoping that perhaps kohsuke can turn some knobs at his employer to help with mentor capacity ;)
+<a name="l-64"></a><span class="tm">18:19:24</span><span class="nk"> &lt;kohsuke&gt;</span> Im happy to try but we shouldn’t assume that.
+<a name="l-65"></a><span class="tm">18:20:28 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-66"></a><span class="tm">18:20:57</span><span class="nk"> &lt;danielbe_&gt;</span> so, voting conditional on having enough mentor capacity beforehand? how would that work?
+<a name="l-67"></a><span class="tm">18:21:07</span><span class="nk"> &lt;rtyler&gt;</span> I don't think we need to make anything conditional
+<a name="l-68"></a><span class="tm">18:21:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">tracymiranda:</span> I would propose we plan to have at least 6500 present for a single intern, does that seem like a reasonable outcome for this topic?
+<a name="l-69"></a><span class="tm">18:21:39</span><span class="nk"> &lt;tracymiranda&gt;</span> yes
+<a name="l-70"></a><span class="tm">18:22:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">proposed plan to earmark 6500 USD from the budget with SPI for a single outreachy intern this winter</span>
+<a name="l-71"></a><span class="tm">18:22:21</span><span class="nk"> &lt;rtyler&gt;</span> I am an emphatic +1 :)
+<a name="l-72"></a><span class="tm">18:22:27</span><span class="nk"> &lt;tracymiranda&gt;</span> thanks +1
+<a name="l-73"></a><span class="tm">18:22:27</span><span class="nk"> &lt;danielbe_&gt;</span> rtyler could you clarify the 'at least'?
+<a name="l-74"></a><span class="tm">18:23:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbe_:</span> we don't need to cross the bridge of more funds unless we find ourselves later with more interns and projects possible, the #info is what I think we should concern ourselves with now
+<a name="l-75"></a><span class="tm">18:23:14</span><span class="nk"> &lt;danielbe_&gt;</span> works for me
+<a name="l-76"></a><span class="tm">18:23:26</span><span class="nk"> &lt;danielbe_&gt;</span> +1 for #info
+<a name="l-77"></a><span class="tm">18:23:38</span><span class="nk"> &lt;kohsuke&gt;</span> +1 as indicated earlier
+<a name="l-78"></a><span class="tm">18:23:55</span><span class="nk"> &lt;alyssat_&gt;</span> +1 for me
+<a name="l-79"></a><span class="tm">18:25:43</span><span class="nk"> &lt;rtyler&gt;</span> in the email thread abayer mentioned a strong +1
+<a name="l-80"></a><span class="tm">18:25:48</span><span class="nk"> &lt;rtyler&gt;</span> as did markewaite
+<a name="l-81"></a><span class="tm">18:25:55</span><span class="nk"> &lt;rtyler&gt;</span> and batmat
+<a name="l-82"></a><span class="tm">18:27:08</span><span class="nk"> &lt;rtyler&gt;</span> any other thoughts or concern?
+<a name="l-83"></a><span class="tm">18:28:13</span><span class="nk"> &lt;danielbe_&gt;</span> rtyler could we get a money update?
+<a name="l-84"></a><span class="tm">18:28:21</span><span class="nk"> &lt;danielbe_&gt;</span> last I checked (which was a while ago) SPI was months behind
+<a name="l-85"></a><span class="tm">18:28:44</span><span class="nk"> &lt;rtyler&gt;</span> the SPI is all at a board meeting in NYC this week, so I doubt we'd get anything real time
+<a name="l-86"></a><span class="tm">18:28:44</span><span class="nk"> &lt;danielbe_&gt;</span> or I'm looking in the wrong place
+<a name="l-87"></a><span class="tm">18:28:50</span><span class="nk"> &lt;rtyler&gt;</span> last we checked it was something lik $33k
+<a name="l-88"></a><span class="tm">18:28:53</span><span class="nk"> &lt;rtyler&gt;</span> IIRC
+<a name="l-89"></a><span class="tm">18:29:03</span><span class="nk"> &lt;rtyler&gt;</span> I believe that was before the completion of GSoC too
+<a name="l-90"></a><span class="tm">18:29:35</span><span class="nk"> &lt;danielbe_&gt;</span> it's the 2017/12 draft report
+<a name="l-91"></a><span class="tm">18:29:40</span><span class="nk"> &lt;danielbe_&gt;</span> ok, thanks
+<a name="l-92"></a><span class="tm">18:30:03</span><span class="nk"> &lt;rtyler&gt;</span> ample funds not being used to advance the project like they should IMO :)
+<a name="l-93"></a><span class="tm">18:30:57 </span><span class="nka">* rtyler</span> <span class="ac">waits around for more crickets</span>
+<a name="l-94"></a><span class="tm">18:31:17</span><span class="nk"> &lt;danielbe_&gt;</span> do we expect to run out of cloud dollars any time soon? Or is this venturing too far off topic? :)
+<a name="l-95"></a><span class="tm">18:31:43</span><span class="nk"> &lt;rtyler&gt;</span> many more moons until we run out of cloud dollars
+<a name="l-96"></a><span class="tm">18:31:51</span><span class="nk"> &lt;tracymiranda&gt;</span> lol cloud dollars
+<a name="l-97"></a><span class="tm">18:32:20</span><span class="nk"> &lt;danielbe_&gt;</span> nice, thanks!
+<a name="l-98"></a><span class="tm">18:32:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We should just implement the Jenkinscoin project by that time
+<a name="l-99"></a><span class="tm">18:32:45</span><span class="nk"> &lt;rtyler&gt;</span> if there are no other comments or questions, I think it is safe to say that this is approved....
+<a name="l-100"></a><span class="tm">18:33:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> belated +1
+<a name="l-101"></a><span class="tm">18:33:05</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1
+<a name="l-102"></a><span class="tm">18:33:10</span><span class="nk"> &lt;danielbe_&gt;</span> time for some hashtagging agreed
+<a name="l-103"></a><span class="tm">18:33:13</span><span class="nk"> &lt;rtyler&gt;</span> alright, let's move on
+<a name="l-104"></a><span class="tm">18:33:18 </span><span class="nka">* tracymiranda</span> <span class="ac">cheers!</span>
+<a name="l-105"></a><span class="tm">18:33:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-106"></a><span class="tm">18:33:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark sublicensing request</span>
+<a name="l-107"></a><span class="tm">18:33:38</span><span class="nk"> &lt;rtyler&gt;</span> see https://groups.google.com/d/topic/jenkinsci-dev/VysVavIJCnc/discussion
+<a name="l-108"></a><span class="tm">18:33:45</span><span class="nk"> &lt;kohsuke&gt;</span> Finally
+<a name="l-109"></a><span class="tm">18:34:06</span><span class="nk"> &lt;rtyler&gt;</span> "TechMatrix Jenkins Platform Package for $X" is reasonable to me
+<a name="l-110"></a><span class="tm">18:34:20</span><span class="nk"> &lt;kohsuke&gt;</span> I have a few plus ones on that thread. Any questions?
+<a name="l-111"></a><span class="tm">18:34:42</span><span class="nk"> &lt;danielbe_&gt;</span> We did not approve the same wildcard for CloudBees Jenkins X, what's different?
+<a name="l-112"></a><span class="tm">18:34:56</span><span class="nk"> &lt;danielbe_&gt;</span> (IIRC)
+<a name="l-113"></a><span class="tm">18:35:27</span><span class="nk"> &lt;rtyler&gt;</span> I recall suggesting we do that so that CloudBees would stop pestering us for every single product derivative name they came up with
+<a name="l-114"></a><span class="tm">18:35:48</span><span class="nk"> &lt;rtyler&gt;</span> fortunately the powers that be have stopped slapping "CloudBees Jenkins" in front of everything :P
+<a name="l-115"></a><span class="tm">18:36:22</span><span class="nk"> &lt;kohsuke&gt;</span> This one does feel narrower than CloudBees Jenkins $X
+<a name="l-116"></a><span class="tm">18:36:29</span><span class="nk"> &lt;rtyler&gt;</span> much
+<a name="l-117"></a><span class="tm">18:36:39</span><span class="nk"> &lt;danielbe_&gt;</span> right, "… for [technology or similar]"
+<a name="l-118"></a><span class="tm">18:37:21</span><span class="nk"> &lt;kohsuke&gt;</span> (I’m not trying to argue for or against CJX here)
+<a name="l-119"></a><span class="tm">18:37:38</span><span class="nk"> &lt;danielbe_&gt;</span> Can we approve TJPP and that will apply to any "TJPP for whatever"
+<a name="l-120"></a><span class="tm">18:37:39</span><span class="nk"> &lt;danielbe_&gt;</span> ?
+<a name="l-121"></a><span class="tm">18:37:49</span><span class="nk"> &lt;rtyler&gt;</span> I don't see why not
+<a name="l-122"></a><span class="tm">18:37:53</span><span class="nk"> &lt;danielbe_&gt;</span> I think that's the request, doh
+<a name="l-123"></a><span class="tm">18:38:07</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-124"></a><span class="tm">18:39:17</span><span class="nk"> &lt;rtyler&gt;</span> I'm +1 on the trademark sublicense request for "TechMatrix Jenkins Platform Package for $X"
+<a name="l-125"></a><span class="tm">18:39:33</span><span class="nk"> &lt;danielbe_&gt;</span> uh
+<a name="l-126"></a><span class="tm">18:39:39</span><span class="nk"> &lt;tracymiranda&gt;</span> +1
+<a name="l-127"></a><span class="tm">18:39:42</span><span class="nk"> &lt;danielbe_&gt;</span> the request is for TJPP only
+<a name="l-128"></a><span class="tm">18:40:01</span><span class="nk"> &lt;danielbe_&gt;</span> with the assumption any "…for x" will be fine
+<a name="l-129"></a><span class="tm">18:40:49</span><span class="nk"> &lt;danielbe_&gt;</span> So are we voting on "TechMatrix Jenkins Platform Package" or "TechMatrix Jenkins Platform Package for $anyX" ?
+<a name="l-130"></a><span class="tm">18:41:06</span><span class="nk"> &lt;kohsuke&gt;</span> I was trying to make it explicit that TJPP for $X is fine without leaving any ambiguity about whether “for $X” part can be assumed/implied.
+<a name="l-131"></a><span class="tm">18:41:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> your call, my suggestion would be the latter
+<a name="l-132"></a><span class="tm">18:41:37</span><span class="nk"> &lt;rtyler&gt;</span> IMHO we can and should grant a sublicense on both here today
+<a name="l-133"></a><span class="tm">18:41:45</span><span class="nk"> &lt;kohsuke&gt;</span> So i would rather get that wildcard part explicitly left in the decision
+<a name="l-134"></a><span class="tm">18:42:41</span><span class="nk"> &lt;danielbe_&gt;</span> Just both explicitly?
+<a name="l-135"></a><span class="tm">18:42:46</span><span class="nk"> &lt;danielbe_&gt;</span> then there's no ambiguity
+<a name="l-136"></a><span class="tm">18:42:53</span><span class="nk"> &lt;rtyler&gt;</span> aye
+<a name="l-137"></a><span class="tm">18:42:56</span><span class="nk"> &lt;danielbe_&gt;</span> or is anyone not happy with allowing both variants?
+<a name="l-138"></a><span class="tm">18:43:02</span><span class="nk"> &lt;kohsuke&gt;</span> Whether we feel that’s redundant or not is less important IMO. I also assume this doesn’t change how you vote danielbe_
+<a name="l-139"></a><span class="tm">18:43:06</span><span class="nk"> &lt;danielbe_&gt;</span> or want separate votes?
+<a name="l-140"></a><span class="tm">18:43:24</span><span class="nk"> &lt;danielbe_&gt;</span> it changes how to approval might be viewed in the future
+<a name="l-141"></a><span class="tm">18:43:28</span><span class="nk"> &lt;danielbe_&gt;</span> s/to/this
+<a name="l-142"></a><span class="tm">18:45:03</span><span class="nk"> &lt;kohsuke&gt;</span> I suggest we do one vote. I am not sensing anyone having a problem with this.
+<a name="l-143"></a><span class="tm">18:45:11</span><span class="nk"> &lt;danielbe_&gt;</span> IMO just combined vote for explicitly both "TechMatrix Jenkins Platform Package" and "TechMatrix Jenkins Platform Package for […]"
+<a name="l-144"></a><span class="tm">18:45:24</span><span class="nk"> &lt;kohsuke&gt;</span> That will also save me from car sickness
+<a name="l-145"></a><span class="tm">18:45:40</span><span class="nk"> &lt;rtyler&gt;</span> I kinda wanna see if we can make kohsuke puke in the car
+<a name="l-146"></a><span class="tm">18:45:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbe_:</span> combined vote makes sense to me :)
+<a name="l-147"></a><span class="tm">18:46:57</span><span class="nk"> &lt;rtyler&gt;</span> either way, I'm +1 for this combo
+<a name="l-148"></a><span class="tm">18:46:58</span><span class="nk"> &lt;kohsuke&gt;</span> I have such lovely caring coworkers around me.
+<a name="l-149"></a><span class="tm">18:47:26</span><span class="nk"> &lt;danielbe_&gt;</span> +1 explicitly for both "TechMatrix Jenkins Platform Package" and "TechMatrix Jenkins Platform Package for […]"
+<a name="l-150"></a><span class="tm">18:47:37</span><span class="nk"> &lt;tracymiranda&gt;</span> +1 for both
+<a name="l-151"></a><span class="tm">18:47:50</span><span class="nk"> &lt;kohsuke&gt;</span> And my +1
+<a name="l-152"></a><span class="tm">18:49:33</span><span class="nk"> &lt;kohsuke&gt;</span> Anyone else? If this is making you uncomfortable you should speak up, too
+<a name="l-153"></a><span class="tm">18:51:09</span><span class="nk"> &lt;rtyler&gt;</span> not all of us are experiencing motion sickness kohsuke xD
+<a name="l-154"></a><span class="tm">18:51:33</span><span class="nk"> &lt;rtyler&gt;</span> going once...
+<a name="l-155"></a><span class="tm">18:51:46</span><span class="nk"> &lt;rtyler&gt;</span> going twice...
+<a name="l-156"></a><span class="tm">18:52:09</span><span class="nk"> &lt;rtyler&gt;</span> welp, alright then
+<a name="l-157"></a><span class="tm">18:52:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Sublicense request granted for TechMatrix Jenkins Platform Package and TechMatrix Jenkins Platform Package for $X</span>
+<a name="l-158"></a><span class="tm">18:52:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to update the Approved Trademark Usage wiki page</span>
+<a name="l-159"></a><span class="tm">18:53:03</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks
+<a name="l-160"></a><span class="tm">18:53:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to communicate with TechMatrix the trademark sublicense attribution requirements documented on jenkins.io/project/governance</span>
+<a name="l-161"></a><span class="tm">18:53:52</span><span class="nk"> &lt;rtyler&gt;</span> I don't believe there are any other agenda items today
+<a name="l-162"></a><span class="tm">18:53:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-163"></a><span class="tm">18:54:18</span><span class="nk"> &lt;rtyler&gt;</span> my calendar indicates that the next meeting will be during DevOps World Jenkins World Nice
+<a name="l-164"></a><span class="tm">18:54:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza_:</span> do we need to meet on Oct 24 to discuss any LTS type thingies?
+<a name="l-165"></a><span class="tm">18:56:01</span><span class="nk"> &lt;rtyler&gt;</span> perhaps danielbe_ can shed some light on that too
+<a name="l-166"></a><span class="tm">18:56:45</span><span class="nk"> &lt;rtyler&gt;</span> did everybody fall asleep on me?
+<a name="l-167"></a><span class="tm">18:56:51</span><span class="nk"> &lt;danielbe_&gt;</span> LTS status should be feasible via email
+<a name="l-168"></a><span class="tm">18:57:05</span><span class="nk"> &lt;danielbe_&gt;</span> unless something really unusual comes up
+<a name="l-169"></a><span class="tm">18:57:09</span><span class="nk"> &lt;rtyler&gt;</span> so shall we just skip the next meeting and go straight to the one in november?
+<a name="l-170"></a><span class="tm">18:57:35</span><span class="nk"> &lt;danielbe_&gt;</span> should be fine IMO
+<a name="l-171"></a><span class="tm">18:58:04</span><span class="nk"> &lt;rtyler&gt;</span> unless somebody else hollers, I'm going to assume everybody else fell asleep
+<a name="l-172"></a><span class="tm">18:58:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting will be on November 7th due to DevOps World Jenkins World Nice</span>
+<a name="l-173"></a><span class="tm">18:58:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:37:42 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:07:18 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 115.084
+  exclusion.robots: 0.109
+  exclusion.robots.policy: 0.099
+  RedisCDXSource: 2.849
+  esindex: 0.008
+  LoadShardBlock: 90.02 (3)
+  PetaboxLoader3.datanode: 109.419 (4)
+  CDXLines.iter: 19.025 (3)
+  load_resource: 181.58
+  PetaboxLoader3.resolve: 100.85
+-->

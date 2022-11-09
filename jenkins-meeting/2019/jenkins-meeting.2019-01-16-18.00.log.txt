@@ -1,0 +1,158 @@
+18:00:22 <kohsuke> #startmeeting
+18:00:22 <robobutler> Let the Jenkins meeting commence!
+18:00:34 <kohsuke> #chair danielbeck rtyler
+18:00:34 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:48 <kohsuke> #info https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+18:01:07 <kohsuke> Lots to go through today, huh
+18:01:16 <kohsuke> #topic Recap last meeting actions
+18:02:08 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-01-02-18.06.html
+18:02:14 <kohsuke> I guess not much of an action
+18:02:39 <kohsuke> #topic LTS status check
+18:02:56 <kohsuke> who's here?
+18:03:21 <kohsuke> ogondza is not here
+18:03:23 <oleg-nenashev> o/
+18:03:35 <oleg-nenashev> I have no idea what is going in LTS tho
+18:04:11 <kohsuke> all right
+18:04:16 <kohsuke> I guess we need to skip this
+18:04:27 <kohsuke> #topic Platform SIG status report - Java 11 and more
+18:04:34 <kohsuke> markewaite?
+18:04:36 <markewaite> The platform SIG will meet Thursday to review the current state of Java 11, Windows installers, and multi-platform Docker images.  Java 11 support and development is continuing.  There are still some blockers open which prevent general availability of Jenkins weekly with JDK 11.
+18:05:00 <markewaite> Good progress has been made.  @batmat and I are leading the platform SIG and progressing
+18:05:22 <kohsuke> oh that's cool
+18:05:28 <kohsuke> Congrats
+18:05:40 <markewaite> I'm a little nervous that we don't have enough test time yet, but there is good progress on many fronts.
+18:05:48 <markewaite> end of status report...
+18:06:07 <kohsuke> Moving on...
+18:06:13 <kohsuke> #topic GSoC status report
+18:06:25 <oleg-nenashev> Hi all
+18:06:30 <batmat> o/
+18:06:46 <oleg-nenashev> So... We will be applying to GSoC this year
+18:07:08 <oleg-nenashev> #info Jenkins Project will apply to GSoC 2019. https://groups.google.com/forum/#!topic/jenkinsci-dev/dS_NluO4RW0
+18:07:31 <oleg-nenashev> Cool stats. We already have 20 project ideas and 23 mentors. More than in 2016 and 2018 all together
+18:07:39 <oleg-nenashev> And it's counting
+18:07:41 <batmat> :clap:
+18:07:59 <oleg-nenashev> All documentation is updated
+18:08:22 <oleg-nenashev> #info Application draft: https://jenkins.io/projects/gsoc/2019/application/
+18:08:48 <kohsuke> I see that the pool of mentors are expanding and they are bringing the project idea. Nice
+18:08:48 <oleg-nenashev> As discussed at the today's meeting, the application draft will be slightly reworked to reflect all sub-projects
+18:08:56 <oleg-nenashev> Yeah
+18:09:04 <kohsuke> There's something to be said about repeating and sticking...
+18:09:29 <oleg-nenashev> And we cooperate a lot with SIGs and sub-projects to get project ideas and stakeholders for projects
+18:09:38 <oleg-nenashev> In some cases it works really well
+18:09:47 <kohsuke> "repeating until sticking" is what I meant
+18:09:54 <oleg-nenashev> exactly
+18:10:09 <oleg-nenashev> I hope we will hit the 30 projects target this year
+18:10:28 <oleg-nenashev> And we want to make projects more diverse in terms of the technologies
+18:10:42 <oleg-nenashev> #info Project ideas: https://jenkins.io/projects/gsoc/2019/project-ideas/
+18:11:24 <oleg-nenashev> We are looking for few particular project ideas, especially around Jenkins X and Python
+18:11:51 <oleg-nenashev> Both of them get interest from students, but we have not been able to secure project ideas so far
+18:12:16 <oleg-nenashev> Does anyone have any project ideas or any questions? :)
+18:12:50 <oleg-nenashev> We are also interested in Jenkins INFRA projects
+18:12:58 <oleg-nenashev> ^ olblak rtyler
+18:13:12 <kohsuke> I suspect Jenkins X folks aren't watching here nor the dev list. Maybe you can reach out to James Rowlings about where to "advertise" GSoC+Jenkins X to reach their audience
+18:13:26 <oleg-nenashev> kohsuke: Be sure we used all known channels
+18:13:39 <kohsuke> OK, well then. I think you already have a big list
+18:13:54 <kohsuke> Shall we move on?
+18:14:01 <oleg-nenashev> We ping them almost every week at Slack and meetings, so I keep hope
+18:14:10 <oleg-nenashev> Nothing else from me
+18:14:23 <kohsuke> #topic Status report: Advocacy and Outreach SIG
+18:14:37 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/84vjWz_Ho1k
+18:14:51 <oleg-nenashev> bitwiseman: would you like to drive it?
+18:15:06 <bitwiseman> sure.
+18:15:39 <bitwiseman> one sec.
+18:16:27 <bitwiseman> had to find the agenda tab again .
+18:17:16 <bitwiseman> Okay, the advocacy and outreach sig has been created.
+18:18:00 <bitwiseman> The thread you pointed to covers discussion so far and there is a PR up add a sig page.
+18:19:07 <bitwiseman> #info https://github.com/jenkins-infra/jenkins.io/pull/2034
+18:19:26 <oleg-nenashev> Yes, I believe we will officially publish the SIG this week
+18:19:46 <rtylerish> sorry for the delay o/
+18:20:13 <bitwiseman> We'll discuss on gitter when to hold the first meeting.
+18:20:57 <bitwiseman> Marky has volunteered to co-lead. Yay!
+18:20:58 <oleg-nenashev> And it should become a central place for Advocacy/Evangelism and community outreach topics. We already have few discussions and related patches on jenkins.io (like getting communication channels explicit everywhere we can)
+18:21:39 <oleg-nenashev> Full scope is TBD. But, if you are interested in propmoting and expanding the Jenkins community, you may want to join this SIG
+18:22:55 <kohsuke> I got distracted a little, anything more about this?
+18:24:05 <bitwiseman> having a clearer gitter channel name is already paying off in lower static.
+18:24:18 <bitwiseman> :)
+18:24:20 <bitwiseman> That's it's from me.
+18:24:23 <oleg-nenashev> for sure
+18:24:47 <oleg-nenashev> I had a question to alyssat_ , but I am not sure she is around
+18:25:30 <tracymiranda> is this a swag question :-)
+18:25:36 <oleg-nenashev> nope
+18:25:46 <oleg-nenashev> Jenkins Ambassadors one. I will follow-up in email
+18:25:49 <kohsuke> In the mean time we shall move on then
+18:25:51 <alyssat_> hello. i'm here
+18:25:56 <kohsuke> ... or not
+18:26:31 <oleg-nenashev> alyssat_: So... It would be great Jenkins Ambassadors to be an active part of the Advocacy/Outreach SIG
+18:26:46 <oleg-nenashev> Unfortunately, I do not have contacts of all ambassadors
+18:27:03 <oleg-nenashev> It would be great to reach out to them and invite them to join
+18:27:03 <alyssat_> I can help provide that info to you
+18:27:17 <oleg-nenashev> Would be great, I will follow-up in email
+18:27:30 <alyssat_> sounds good
+18:27:33 <oleg-nenashev> thanks!
+18:27:52 <oleg-nenashev> nothing else from me
+18:28:01 <kohsuke> #topic Update: Hardware&EDA and Embedded SIGs
+18:28:07 <oleg-nenashev> Okay
+18:28:12 <kohsuke> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/a69DXm6qQms
+18:28:26 <oleg-nenashev> So, this is actually an Advocacy&Outreach topic again
+18:28:48 <oleg-nenashev> I would like to experiment with creating **user-focused** special interest groups
+18:29:22 <oleg-nenashev> And, since we had a lot of discussions about Embedded and HW&EDA topics, I decided to go forward and to get them created
+18:29:37 <oleg-nenashev> This update is a heads-up that it is happening
+18:29:50 <oleg-nenashev> If anybody is interested to join, please let me know
+18:30:18 <oleg-nenashev> Also, I am interested in creating C/C++ SIG which would be also a user-focusing SIG
+18:30:44 <kohsuke> I think this is all great, I just want to remind you that your one day is still 24hrs like the rest of us...
+18:30:47 <oleg-nenashev> As many Jenkins contributors know, my Java still looks like C sometimes :P
+18:31:34 <oleg-nenashev> kohsuke:  I am not doing it alone, and currently I reconsider what would be my priorities in the Jenkins community. https://groups.google.com/forum/#!topic/jenkinsci-dev/uc6NsMoCFQI
+18:32:26 <oleg-nenashev> I cannot really do maintenance of components nowadays, but facilitating SIGs does not require long timeslots. So I decided to try it
+18:32:41 <kohsuke> OK
+18:33:20 <oleg-nenashev> So, be sure it is not a commitment on the top of other commitments. Interested to do more community work
+18:33:52 <oleg-nenashev> so yeah, that's it from me
+18:34:20 <kohsuke> All right, then
+18:34:29 <kohsuke> #topic Request for Rick to be listed as Jenkins press contact for China
+18:35:18 <oleg-nenashev> There is no Jenkins Dev ML thread for that
+18:35:51 <rtylerish> I think that's a reasonable idea
+18:35:54 <oleg-nenashev> Just to provide some context, Rick has reached out to me today, and then tracymiranda and bitwiseman joined the discussion (Advocacy and Outreach SIG)
+18:36:09 <oleg-nenashev> I totally support the idea as well
+18:36:15 <kohsuke> I think it makes sense that we have reps in that region who understands the language
+18:36:27 <oleg-nenashev> Yes
+18:36:44 <kohsuke> What that tells me is that we need to build more bridge with him -- I don't know him anywhere near the same level I know others listed in press contacts
+18:36:49 <rtylerish> my only request would be for Rick to send updates to the dev list or something like that
+18:37:00 <rtylerish> to raise the awareness of press stuff in China for Jenkins
+18:37:01 <oleg-nenashev> We already have few Jenkins Ambassadors, but AFAIK they are not active much in the community channels now
+18:37:26 <kohsuke> How well is Rick connected to those folks?
+18:37:31 <oleg-nenashev> Rick is already a leder of the Chinese Localization SIG BYW
+18:37:35 <oleg-nenashev> *BTW
+18:37:46 <oleg-nenashev> Rick definitely has contacts of them
+18:38:04 <oleg-nenashev> But I am not sure how they coordinate the efforts nowadays
+18:38:30 <kohsuke> Right, OK
+18:38:39 <oleg-nenashev> Rick is active in the community every day, so I am +1 for the request
+18:39:05 <rtylerish> +1
+18:39:08 <oleg-nenashev> If Jenkins Ambassadors want to be press contacts, we can have multiple ones in the region. So it's a bit orthogonal
+18:40:02 <tracymiranda> +1
+18:40:17 <tracymiranda> should we ask Rick to mail dev-lists still?
+18:40:46 <kohsuke> Yeah, I'll write to him
+18:40:53 <tracymiranda> ok thanks
+18:40:59 <oleg-nenashev> I asked him to mail the SIG ML on the morning. But dev list works as well
+18:41:38 <kohsuke> So that he understands where that request is coming. It's not so much where the email goes matter IMO. I think the root of rtyler's request and mine are the same
+18:42:17 <oleg-nenashev> yeah, public trace. Which is totally reasonable
+18:42:37 <kohsuke> Oh, and I missed to ask the obvious -- he's willing to be listed as press contact, right?
+18:43:01 <oleg-nenashev> yup
+18:43:16 <kohsuke> #agreed rick to be listed as a Chinese press contact in https://jenkins.io/press/
+18:43:21 <oleg-nenashev> #info https://jenkins.io/press/#press-contacts
+18:43:38 <rtylerish> yey
+18:44:03 <kohsuke> #action kohsuke to write to rick asking that we work toward better visibility and more bridges
+18:44:18 <kohsuke> It's great to see those new leaders grow
+18:44:29 <oleg-nenashev> yup
+18:44:36 <kohsuke> Lots going on in China in particular for the past few years
+18:44:53 <kohsuke> Anything else on this?
+18:44:54 <oleg-nenashev> Rick also coordinates some technical projects (e.g. Gitlab Multi-Branch project idea in GSoC)
+18:45:05 <kohsuke> Or anything else for that matter?
+18:45:18 <kohsuke> #topic next meeting
+18:45:41 <kohsuke> Jan 30th same time
+18:45:47 <kohsuke> ... which is almost FOSDEM
+18:45:58 <rtylerish> dun dun dunnnn
+18:46:02 <rtylerish> thanks for running the meeting today kohsuke
+18:46:41 <kohsuke> #info If you haven't checked out, look at alyssat_ 's FOSDEM email for events around FOSDEM that are getting organized
+18:46:53 <kohsuke> I think that's the end of this
+18:46:55 <kohsuke> Bye all
+18:47:00 <tracymiranda> bye
+18:47:07 <kohsuke> #endmeeting

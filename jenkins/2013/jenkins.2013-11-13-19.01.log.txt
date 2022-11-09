@@ -1,0 +1,109 @@
+19:01:23 <kohsuke> #startmeeting
+19:01:23 <robobutler> Let the Jenkins meeting commence!
+19:01:27 <rpetti> davidcramer: honestly, but examining the source
+19:01:29 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:01:30 <rpetti> *by
+19:01:55 <kohsuke> #topic name grant request take 2
+19:02:37 <kohsuke> #info in the previous meeting I've asked for "Jenkins Multi-master by CloudBees" and that subsequently got approved
+19:02:54 <scl> is there already a candidate for the next LTS release?
+19:03:07 <kohsuke> scl: we'll get to it, that's the next topic
+19:03:15 <kohsuke> so just hold on to that thought for 5 more minutes
+19:03:24 <scl> no problem
+19:03:38 <kohsuke> and our folks have  been trying that name with prospects and conventions, and their feedback is that the name is just not working
+19:04:15 <kohsuke> and it also didn't help that we had some heated discussion earlier on leading up to "Jenkins Multi-master by CloudBees"
+19:04:38 <kohsuke> so CloudBees folks have another round of discussions and they came up with a new name
+19:04:55 <kohsuke> ... and now I'm looking stupid here asking another name to be approved
+19:05:07 <kohsuke> ... which is "Jenkins Operations Center by CloudBees"
+19:05:34 <kohsuke> I'll write to the board list like I did with the last one to get this and approvals recorded, but ...
+19:05:52 <kohsuke> I also wanted to mention it here in case people have any issues, questions, what not.
+19:06:18 <hare_brain> It's the same pattern, so I don't have an issue with it.
+19:06:24 <kohsuke> (the new name still follows the de-factro naming convention guideline)
+19:06:55 <kohsuke> All right, moving on unless I hear otherwise...
+19:07:06 <kohsuke> #topic LTS status
+19:07:26 <kohsuke> jglick told me that ogondza has already reported backporting complete, and that somehow I missed that
+19:08:07 <kohsuke> #action kohsuke to produce 1.532.1 RC today
+19:08:11 <ogondza> yes, I have backported two more issues since then. But we are ready for RC
+19:08:46 <kohsuke> When are we shooting for that release?
+19:09:25 <kohsuke> Would a week do, or would it be too short.
+19:10:22 <kohsuke> I guess we need 1.532.x testing page on https://wiki.jenkins-ci.org/display/JENKINS/LTS+RC+Testing
+19:10:43 <ogondza> kohsuke, I'll create it
+19:12:15 <kohsuke> vjuranek_: ogondza: do you have any time frame in mind?
+19:12:56 <kohsuke> #action ogondza to create 1.532.x testing page in Wiki
+19:13:29 <kohsuke> vjuranek_: ogondza: I'm happy to run selenium tests myself to help speed up the validation
+19:13:41 <kohsuke> I'd love to see the release out sooner than later
+19:14:16 <kohsuke> maybe I lost him
+19:14:16 <ogondza> kohsuke, https://jenkins.ci.cloudbees.com/job/selenium-tests-stable/ should be triggered by scm change
+19:14:37 <kohsuke> oh good
+19:14:40 <kohsuke> except it's failing
+19:15:10 <kohsuke> it's probably flaky tests that need fixing
+19:15:30 <ogondza> they are
+19:15:58 <ogondza> I guess we can create final releas in a week
+19:16:37 <kohsuke> ogondza: if you want me to run some of these tests please let me know so that we won't duplicate the effort
+19:16:55 <kohsuke> I'll run the selenium tests locally anyway
+19:17:20 <ogondza> I consider stable branch automatically tested
+19:17:29 <ogondza> including selenium
+19:17:55 <kohsuke> how do you handle these failures?
+19:18:08 <kohsuke> run them a few times and consider them a pass if it passes at least once?
+19:19:01 <ogondza> ws_cleanup is broken at cloudbees only
+19:19:08 <jglick> I usually see around a dozen failure from selenium-tests at any given time when I run them on the last LTS.
+19:19:30 <jglick> But I just know to not take failures too seriously.
+19:19:33 <ogondza> the failure are the same on master and stable branch
+19:20:16 <kohsuke> OK, so the current bar we set is no worse than the test results in the master
+19:20:40 <KaibutsuX> can anyone help me with a multi-scm project?
+19:21:05 <kpfleming> KaibutsuX: there is a meeting going on right now, hang out for a bit
+19:21:21 <kohsuke> Sounds like all the more reasons for me to go back to selenium-tests anyway
+19:21:36 <kohsuke> hopefully I get to see why tests are so flaky
+19:22:10 <kohsuke> #agreed we'll aim for a release in a week
+19:22:31 <kohsuke> #action kohsuke to look at selenium-tests and try to help maintain it
+19:22:35 <kohsuke> any more on this topic?
+19:22:55 <kohsuke> if not, a quick update on commit loss, maybe?
+19:23:03 <ogondza> is there anything we can about this page https://jenkins-ci.org/stable-rc
+19:23:31 <ogondza> as already pointed out, there is not stated what version we are testing
+19:23:31 <kohsuke> ogondza: when I produce an RC build this page will automatically point to 1.532.1 RC
+19:23:39 <kohsuke> Ah
+19:23:45 <kohsuke> Yeah, that I can fix
+19:24:00 <ogondza> list of incoming changes would be great
+19:24:09 <kohsuke> #action kohsuke to make sure https://jenkins-ci.org/stable-rc shows the RC version number
+19:24:35 <ogondza> for early adopters
+19:24:37 <kohsuke> Right, I probably need to do something to make sure https://jenkins-ci.org/changelog-stable shows 1.532.1 as the upcoming release
+19:24:52 <kohsuke> Hoping some automation somewhere I set does that for me
+19:25:28 <kohsuke> #action kohsuke to make sure https://jenkins-ci.org/changelog-stable shows 1.532.1 changes after posting RC
+19:25:57 <kohsuke> #topic commit loss status updates
+19:26:43 <kohsuke> #info so in case people haven't been paying attention to the dev list, on Saturday an accident resulted in the effective "git push -f" on a large number of repositories in the jenkinsci org
+19:27:04 <kpfleming> and we are all quite thankful for the work you put in to recover from it!
+19:27:20 <kohsuke> #info ... resulting in us losing about a month worth of commits in various branches
+19:27:55 <kohsuke> #info GitHub support helped us recover a large number of it, although exactly how they identify what commits, we don't know
+19:28:33 <kohsuke> #info and I wrote a program that reconstructs what commits were lost from GitHub API and resurrected the rest of the commits that GitHub support missed
+19:29:01 <kohsuke> #info At this moment we consider all commits recovered in all the branches in all the repositories
+19:29:21 <kohsuke> #info but your checking sanity on this claim by looking at your repositories would be greatly appreciated
+19:29:52 <kohsuke> and there's a thread on the dev list about how to prevent this in the future
+19:30:23 <kohsuke> kpfleming: thanks. it was an "interesting" distraction!
+19:30:52 <kohsuke> #info we'll write up something and post it on http://jenkins-ci.org/node
+19:31:16 <kohsuke> ... to assure people and what not
+19:31:43 <kohsuke> that's the update from me. any questions?
+19:31:58 <kpfleming> one of my friends commented that if you were still using subversion this would not have happened :-)
+19:32:06 <kohsuke> kpfleming: yes indeed
+19:32:23 <hare_brain> Was 1.539 cut before or after this?
+19:32:29 <kohsuke> Subversion guys have gotten somethings right!
+19:32:47 <hare_brain> And does this mean extra diligence for 1.540?
+19:32:59 <kohsuke> hare_brain: when I was running the release Monday I was unaware of this
+19:33:34 <kohsuke> but we do know now that the core repository was not one of the affected repositories
+19:33:44 <kohsuke> so 1.539 is as it's meant
+19:33:58 <kohsuke> I'll double check 1.540 but I'm pretty sure it's pointing at where it should, too
+19:34:42 <kohsuke> ok, moving on..
+19:34:49 <kohsuke> #topic next meeting
+19:35:06 <kohsuke> oh look, the first time I've seen the # of people in this room above 300
+19:35:21 <hare_brain> Next schedule puts us the Wednesday before Thanksgiving.
+19:35:31 <hare_brain> Do you want to skip, or push out by a week?
+19:35:32 <kohsuke> ... which means we'll probably skip that
+19:35:58 <kohsuke> I think it's OK to skip all the way to Dec 11th
+19:36:06 <kohsuke> Just because I'm too lazy to update my calendar :-)
+19:36:16 <hare_brain> That's too of us. :)
+19:36:17 <hare_brain> two
+19:36:26 <hare_brain> 11th would probably be the last for the year.
+19:36:28 <kpfleming> +1
+19:36:37 <kohsuke> Wow, we are good at colliding with holidays
+19:36:58 <kohsuke> #agreed next meeting is Dec 11th
+19:37:03 <kohsuke> OK, that's it I think
+19:37:08 <kohsuke> Thank you thank you thank you
+19:37:11 <kohsuke> #endmeeting

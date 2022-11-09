@@ -1,0 +1,141 @@
+18:00:51 <rtyler> #startmeeting
+18:00:52 <robobutler> Let the Jenkins meeting commence!
+18:00:59 <rtyler> #topic Recap last meeting actions
+18:01:13 <rtyler> so kohsuke did release 2.7.3, and I believe a 2.7.4 too!
+18:01:25 <rtyler> oleg-nenashev: there are a number of items from you here:
+18:01:28 <rtyler> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-08-31-18.00.html
+18:03:56 <oleg-nenashev_> o/
+18:04:03 <oleg-nenashev_> Am I online?
+18:04:11 <rtyler> you are!
+18:04:29 <oleg-nenashev_> yey
+18:04:58 <rtyler> oleg-nenashev: action items from last meeting
+18:05:03 <rtyler> you had the bulk of them
+18:05:39 <oleg-nenashev_> looking
+18:05:54 <oleg-nenashev_> Definitely didn't address the Upgrade doc for the LTS
+18:05:57 <rtyler> batmat: the retrospetive and feedback collection item, is that around GSoC
+18:06:54 <danielbeck> oleg-nenashev_ Still on my plate for later this week for 2.19.1
+18:07:01 <oleg-nenashev_> Would appreciate a link to AIs
+18:07:15 <rtyler> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-08-31-18.00.html
+18:08:41 * rtyler listens to hold music
+18:09:23 <oleg-nenashev_> Well, I failed to deliver all my AIs :(
+18:09:23 <batmat> rtyler: sorry, late
+18:09:43 <rtyler> it happens oleg-nenashev_, no worries
+18:09:53 <rtyler> swag for students, that's GSoC yeah?
+18:09:58 <oleg-nenashev_> yes
+18:10:06 <rtyler> is ther anything that alyssat could help with there?
+18:10:13 <batmat> we got to finish that, I've sent the email to mentors, but didn't have a look if they put anything there yet
+18:10:19 * batmat blushes
+18:10:20 <oleg-nenashev_> Yes once I get a list for her
+18:10:21 <rtyler> batmat: I know I dropped the ball on feedback
+18:10:45 <batmat> rtyler: me too, I only sent the email but didn't check if that had any effect afterwards
+18:10:46 <rtyler> list of what?
+18:10:54 <oleg-nenashev_> rtyler: How is the GSoC Mentor summit participation btw?
+18:11:10 <rtyler> #action batmat to remind mentors to provide feedback to start a GSoC retrospective process
+18:11:22 <rtyler> oleg-nenashev_: I'm all registered for that
+18:11:30 <oleg-nenashev_> yey
+18:11:48 <rtyler> oleg-nenashev_: what's the list you need to give alyssat ?
+18:12:19 <oleg-nenashev_> List of delvery destinations and what needs to be sent
+18:12:33 <oleg-nenashev_> we can discuss it f2f in October btw
+18:12:42 <rtyler> #action oleg-nenashev to prepare a list of delivery destinations and what swag needs to be sent to GSoC students for alyssat
+18:12:43 <oleg-nenashev_> #action oleg_nenashev and batmat to follow-up on the old retrospective and feedback collection AI
+18:12:46 <rtyler> alright , i'm going to move on
+18:12:47 <rtyler> heh
+18:12:55 <rtyler> ogondza: awake? :D
+18:12:59 <rtyler> #topic LTS status check
+18:13:03 <ogondza> rtyler: a bit
+18:13:06 <oleg-nenashev_> #action  oleg_nenashev to write a final blogpost about GSoC
+18:13:29 <ogondza> the testing looks reasonable good. we are ready for release
+18:13:43 <oleg-nenashev_> next topic is "kohsuke status check"
+18:13:44 <rtyler> we're just waiting on kohsuke to get online and cut the release?
+18:13:47 <rtyler> heh
+18:13:54 <ogondza> #action kohsuke to release 2.19.1
+18:14:14 <rtyler> any other LTS related things we need t o discuss, or shall I move on?
+18:14:31 <oleg-nenashev_> nothing specific from me
+18:14:32 <ogondza> lets move on unless there are questions
+18:14:32 <imouts> Hi, Ioannis Moutsatsos here. Joining IRC for first time sorry clumsiness
+18:14:44 <rtyler> #topic Discuss name use for Jenkins-LSCI (Life Science Continuous Integration
+18:14:51 <oleg-nenashev_> imouts: No problem at all, wecome!
+18:14:54 <rtyler> #info https://groups.google.com/forum/#!topic/jenkinsci-users/hP8uwU0y8K4
+18:15:01 <imouts> Yes , thank you
+18:15:07 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Trademark
+18:15:28 <danielbeck> imouts Welcome to 1988! :-)
+18:15:58 <imouts> Ha, Ha.. Have reviewed most documents on Jenkins trademark. Thanks for feedback
+18:16:02 <oleg-nenashev_> Well, I've missed that thread at all
+18:16:24 <rtyler> "Jenkins for Life Sciences Continuous Integration" as far as I can tell squarely falls under fair-use
+18:16:43 <oleg-nenashev_> I would recommend to replace "CI" by something else
+18:16:57 <imouts> I hope so. Please see preliminary post here: https://github.com/Novartis/Jenkins-LSCI
+18:16:58 <oleg-nenashev_> But I'm fine with the current name as well
+18:17:00 * rtyler shrugs
+18:17:22 <imouts> Any issues with the little project logo?
+18:17:35 <rtyler> I also think jenkins-lsci as an identifier is fine so long as it is clear that this is not part of the Jenkins project, and that Jenkins is trademarked
+18:17:35 <danielbeck> Jenkins-LSCI looks like a proper mark use, but no objections from me
+18:18:01 <oleg-nenashev_> I'm fine with logo
+18:18:09 <danielbeck> imouts the logo is governed by a separate license anyway AFAIR -- rtyler do you remember?
+18:18:13 <imouts> Sounds good guys!
+18:18:18 <rtyler> imouts: our Logo is licensed CC BY-SA 3.0, read more about that here https://wiki.jenkins-ci.org/display/JENKINS/Logo
+18:18:40 <rtyler> basically, as long as you attribute where the logo is from (the Jenkins project) and license it similarly, you're fine
+18:18:57 <imouts> I should say this is just as a little identifier for the project rather than logo.
+18:18:59 <ogondza> +1 for me on name and logo as well
+18:19:37 <rtyler> #agreed the Jenkins for Life Sciences Continuous Integration use is acceptable
+18:19:46 <danielbeck> #action danielbeck to record on wiki
+18:20:01 <rtyler> imouts: I recommend reading the licensing for the Logo just to be aware of it https://creativecommons.org/licenses/by-sa/3.0/
+18:20:08 <imouts> I hope to create some excitement in a differnet field about Jenkins. Kohsuke is quite aware of the project
+18:20:32 <ogondza> imouts: we appreciate that!
+18:20:46 <oleg-nenashev_> imouts: Would be great if you blogpost about it at jenkins.io at some point
+18:20:52 <rtyler> indeed1
+18:21:02 <danielbeck> imouts Exactly who are you representing here? Novartis?
+18:21:10 <rtyler> see https://github.com/jenkins-infra/jenkins.io/blob/master/CONTRIBUTING.adoc#adding-a-blog-post
+18:21:18 <imouts> I would love to. Severalposts already at http://biouno.org
+18:21:46 <batmat> yeah, +1, maybe add a "not affiliated to Jenkins ..." blurb somewhere in the README to clarify the relationship?
+18:21:55 <batmat> Apart from that, I'm OK.
+18:22:24 <imouts> This is a project done at Novartis for actual internal work . Novartis is OS many of suhc projects as we are not a software company
+18:22:25 <rtyler> imouts: did you catch all that? :)
+18:22:40 <alyssat> imouts where are you located? would love to have you speak at JAMs
+18:22:49 <batmat> Brasil?
+18:23:13 <danielbeck> imouts So we are issuing a trademark sublicense to Novartis AG?
+18:23:24 <imouts> @batmat Located in USA, MA
+18:23:31 <batmat> imouts: Ack
+18:24:08 <imouts> Do we need really a license? Or is it just fair use?
+18:24:32 <danielbeck> imouts We already approved the use, just need to record who we approved ;-)
+18:24:48 <imouts> <alyssat> I was a pseaker in 2014 Boston
+18:24:50 <batmat> IANAL, but IIRC it's fair use, but it's better to do what you're doing to be totally sure :)
+18:24:58 <rtyler> imouts: Jenkins for Life Sciences Continuous Integration I believe is fair use, if your employer attempts to trademark that, we might have an issue to discuss in the future
+18:25:10 <alyssat> imouts: well we definitely need a refresh :o)
+18:25:21 <danielbeck> I stand corrected. So rtyler no need to record on https://wiki.jenkins-ci.org/display/JENKINS/Approved+Trademark+Usage ?
+18:25:39 <imouts> I doubt Novartis would ever try to trademark this especially after outsourcing. All under Apache 2.0 license
+18:26:04 <rtyler> imouts: as the Jenkins project learned 5 years ago, licensing doesn't relate to the trademark :)
+18:26:41 <imouts> Sorry, I know a lot less that you guys do about licensing/trademark. Much appreaciate this feedback
+18:26:43 <batmat> It would still be possible to use Jenkins somewhere in a trademark, some company do. But you need then to ask for validation and so on to be sure you'd be on the right track imouts
+18:26:46 <oleg-nenashev_> Created https://github.com/Novartis/Jenkins-LSCI/issues/1 btw
+18:26:50 <rtyler> danielbeck: I would record it, and since this is a Novartis project, I would reflect taht in the document
+18:27:43 <danielbeck> rtyler imouts https://wiki.jenkins-ci.org/display/JENKINS/Approved+Trademark+Usage (link to minutes is not yet working)
+18:27:43 <imouts> If we all agree then I can leave you for the rest of the agenda items. Any Questions?
+18:28:14 <rtyler> danielbeck: looks fine to me, shall I move on to our next item?
+18:28:19 <danielbeck> +1
+18:28:37 <batmat> +1
+18:28:41 <rtyler> #topic Patron messages
+18:28:43 <imouts> Thanks guys! Enjoy the rest of the ...1988
+18:28:51 <batmat> imouts: o/
+18:29:05 <danielbeck> this is quick, just a notice that we don't have the new messages yet
+18:29:17 <danielbeck> So I may need to ask for approval on the dev list
+18:29:28 <danielbeck> Assuming there are new messages
+18:29:30 <rtyler> as in, nothing for Q4?
+18:29:39 <alyssat> CB will recycle past messages for Q4
+18:30:10 <alyssat> Xebia Labs will not renew in Q4
+18:30:15 <danielbeck> We may still get a new JFrog message though
+18:30:28 <alyssat> JFrog hasn't gotten back to me yet
+18:31:11 <danielbeck> I'd really prefer to get approval on the dev list rather than in two weeks as we dropped the ball here, suddenly it was October
+18:31:46 <danielbeck> assuming there's a new message
+18:32:11 * alyssat will be pimpin' for prospects
+18:32:37 <batmat> no opinion. I guess you're right. Though through the ML, it will have to anyway be waited on for some days and many +1 to be considered approved, likely
+18:32:39 <rtyler> soooo is there any action here?
+18:33:01 <danielbeck> no action, just FYI / hoping nobody objects to asking on the dev list
+18:33:09 <alyssat> +1
+18:33:21 * rtyler nods
+18:33:36 <rtyler> #topic Next meeting
+18:33:47 <rtyler> calendar says Oct 12th
+18:33:55 <rtyler> I will be at a conference, so danielbeck will have to drive :)
+18:34:14 <danielbeck> vroom vroom
+18:34:27 <rtyler> with that, I think we're done?
+18:34:36 <batmat> +1 sure
+18:34:45 <rtyler> #endmeeting

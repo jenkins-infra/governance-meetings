@@ -1,0 +1,307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by abayer at 19:04:03 UTC
+(<a href="jenkins.2011-02-09-19.04.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li>
+<ol type="a">
+  <li><span class="INFO">we should really have an agenda :)</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-4'>mwalling</a>,
+    19:04:38)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">JIRA - project reorganization and bug triage?</b> <span class="details">(<a href='jenkins.2011-02-09-19.04.log.html#l-8'>abayer</a>, 19:05:05)</span>
+<ol type="a">
+  <li><span class="INFO">So a while back, I pushed the idea of
+    separating plugins from core in JIRA, so that we could actually use
+    fix versions on core at the very least. This never got done, because
+    I, well, never did it.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-9'>abayer</a>,
+    19:05:42)</span></li>
+  <li><span class="INFO">The subject has come up again on the mailing
+    list and seems to have a lot of support.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-10'>abayer</a>,
+    19:05:59)</span></li>
+  <li><span class="INFO">For starters, I think we're only talking about
+    one project for Jenkins core, one project for Jenkins plugins, one
+    project for Jenkins infrastructure. Eventually, a separate project
+    for some individual plugins may make sense, but that's a *lot* of
+    work to get going right off the bat.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-19'>abayer</a>,
+    19:07:41)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Split into three
+    projects to start (core, plugins, infra), see how that goes, and
+    then review after a couple months to see if we want to start moving
+    on plugins getting their own projects, etc.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-34'>abayer</a>,
+    19:11:25)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">addendum -
+    SECURITY project remains as is.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-40'>abayer</a>,
+    19:12:13)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">Three-way
+    split of JENKINS into core/plugins/infra, to be coordinated with
+    volunteer help 'cos we have limited time. =)</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-43'>abayer</a>,
+    19:13:15)</span></li>
+  <li><span class="INFO">We have a verified status in JIRA. This is
+    there basically just because java.net's Issuezilla setup had it, and
+    so when I did the migration, I added verified so that we didn't have
+    to mess with bug status.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-45'>abayer</a>,
+    19:13:58)</span></li>
+  <li><span class="INFO">Verified is not really useful, and is in fact
+    kind of confusing.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-46'>abayer</a>,
+    19:14:30)</span></li>
+  <li><span class="INFO">That just makes the question of how to
+    determine when a bug goes from resolved to closed even
+    hairier.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-48'>abayer</a>,
+    19:14:50)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Move all bugs in
+    Verified -&gt; Closed (automated process to do this) and nuke the
+    Verified status.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-51'>abayer</a>,
+    19:15:40)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">Kill
+    Verified.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-56'>abayer</a>,
+    19:16:15)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer to
+    kill verified.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-57'>abayer</a>,
+    19:16:21)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer
+    specifically to kill verified by next Monday.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-58'>abayer</a>,
+    19:16:42)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">There's ambiguity
+    as to how/when a bug goes from resolved-&gt;verified.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-65'>abayer</a>,
+    19:17:34)</span></li>
+  <li><span class="INFO">I am dumb.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-67'>abayer</a>,
+    19:17:41)</span></li>
+  <li><span class="INFO">resolved-&gt;closed, info not idea.</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-68'>abayer</a>,
+    19:17:47)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">A fairly simple
+    workflow: when the developer fixes the bug (so far as they know),
+    state goes to resolved. When the reporter verifies the bug is fixed,
+    state goes to closed.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-83'>abayer</a>,
+    19:20:24)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">If the reporter
+    finds the bug is still there, state-&gt;reopen.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-87'>abayer</a>,
+    19:20:58)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">When developer
+    pushes code to fix the bug, state goes to resolved. When the code
+    gets released, state goes to closed. If the bug persists, the state
+    goes back to reopened.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-112'>abayer</a>,
+    19:24:06)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer to
+    make sure our JIRA setup allows reopening closed bugs.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-114'>abayer</a>,
+    19:24:23)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">addendum - [FIXED
+    JENKINS-XYZ] in commit message will switch the state on build in
+    ci.jenkins-ci.org to resolved, and will switch the state to closed
+    on plugin release - will require tweaks to hpi plugin, but should be
+    doable.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-117'>abayer</a>,
+    19:25:34)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">allow the [FIXED
+    ... regex to also match [FIXES</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-121'>mwalling</a>,
+    19:27:18)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer to
+    modify the ci.jenkins-ci.org JIRA integration to look for [FIXES …]
+    or [FIXED …].</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-123'>abayer</a>,
+    19:28:27)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">addendum - or
+    [FIX …] But that's it!</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-126'>abayer</a>,
+    19:29:05)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">(clarification -
+    auto resolved-&gt;closed to happen on core release as well)</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-131'>abayer</a>,
+    19:29:36)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">The above
+    idea on JIRA workflow going forward.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-136'>abayer</a>,
+    19:32:06)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Mark all bugs in
+    resolved state that entered resolved state at least 6 months ago as
+    closed?</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-138'>abayer</a>,
+    19:32:31)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">That thing I
+    just said - closing all &gt;6 months resolved bugs.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-153'>abayer</a>,
+    19:34:15)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer to
+    close all bugs resolved &gt;6 months ago.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-154'>abayer</a>,
+    19:34:28)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">post these
+    meetings on the website calendar</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-162'>tom_huybrechts</a>,
+    19:37:45)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">and a preliminary
+    agenda attached to it</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-164'>redsolo</a>,
+    19:38:17)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">We just
+    dropped the ball on the agenda again. =)</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-166'>abayer</a>,
+    19:38:43)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to do
+    better on agenda.</span> <span class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-168'>abayer</a>,
+    19:38:54)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Next meeting,
+    11am PST (7pm GMT, 8pm CET) next Wednesday (Feb 16)?</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-09-19.04.log.html#l-175'>abayer</a>,
+    19:41:53)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 19:47:51 UTC
+(<a href="jenkins.2011-02-09-19.04.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>abayer to kill verified.</li>
+  <li>abayer specifically to kill verified by next Monday.</li>
+  <li>abayer to make sure our JIRA setup allows reopening closed bugs.</li>
+  <li>abayer to modify the ci.jenkins-ci.org JIRA integration to look for [FIXES …] or [FIXED …].</li>
+  <li>addendum - or [FIX …] But that's it!</li>
+  <li>abayer to close all bugs resolved &gt;6 months ago.</li>
+  <li>rtyler to do better on agenda.</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> abayer <ol>
+    <li>abayer to kill verified.</li>
+    <li>abayer specifically to kill verified by next Monday.</li>
+    <li>abayer to make sure our JIRA setup allows reopening closed bugs.</li>
+    <li>abayer to modify the ci.jenkins-ci.org JIRA integration to look for [FIXES …] or [FIXED …].</li>
+    <li>abayer to close all bugs resolved &gt;6 months ago.</li>
+  </ol></li>
+  <li> rtyler <ol>
+    <li>rtyler to do better on agenda.</li>
+  </ol></li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>abayer (80)</li>
+  <li>redsolo (22)</li>
+  <li>jieryn-w (21)</li>
+  <li>mwalling (16)</li>
+  <li>hare_brain (12)</li>
+  <li>larrys (9)</li>
+  <li>rtyler (8)</li>
+  <li>aheritier (6)</li>
+  <li>wolfs (6)</li>
+  <li>tom_huybrechts (5)</li>
+  <li>fabrice31 (4)</li>
+  <li>robobutler (2)</li>
+  <li>hsoj (1)</li>
+  <li>kutzi (1)</li>
+  <li>banoss (1)</li>
+  <li>freddy33 (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

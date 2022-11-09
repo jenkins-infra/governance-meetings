@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app203.us.archive.org';v.server_ms=589;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-10-26-18.00.log.html","20211020061453","https://web.archive.org/","web","/_static/",
+	      "1634710493");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:19</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:19</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:26</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke rtyler hare_brain</span>
+<a name="l-4"></a><span class="tm">18:00:26</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:30</span><span class="nk"> &lt;danielbeck&gt;</span> hi everyone
+<a name="l-6"></a><span class="tm">18:00:41</span><span class="nk"> &lt;danielbeck&gt;</span> agenda today: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-7"></a><span class="tm">18:00:47</span><span class="nk"> &lt;danielbeck&gt;</span> pretty quick actually
+<a name="l-8"></a><span class="tm">18:00:59</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">recap last meeting's actions</span>
+<a name="l-9"></a><span class="tm">18:01:04</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-10-12-18.00.html</span>
+<a name="l-10"></a><span class="tm">18:01:30</span><span class="nk"> &lt;danielbeck&gt;</span> as I wrote to the dev list, we're still working on fixing the calendar to make the meeting UTC 18:00
+<a name="l-11"></a><span class="tm">18:01:52</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza oleg-nenashev around?
+<a name="l-12"></a><span class="tm">18:02:28</span><span class="nk"> &lt;ogondza&gt;</span> the rc was pushed
+<a name="l-13"></a><span class="tm">18:02:59</span><span class="nk"> &lt;ogondza&gt;</span> ... with the referenced issue in: https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.19.2-fixed
+<a name="l-14"></a><span class="tm">18:03:09</span><span class="nk"> &lt;danielbeck&gt;</span> awesome
+<a name="l-15"></a><span class="tm">18:03:27</span><span class="nk"> &lt;danielbeck&gt;</span> doesn't look like Oleg is around, but we merged remoting anyway, so that seems obsolete
+<a name="l-16"></a><span class="tm">18:03:35</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-17"></a><span class="tm">18:03:38</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-18"></a><span class="tm">18:03:46</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza how the RC looking?
+<a name="l-19"></a><span class="tm">18:03:52</span><span class="nk"> &lt;danielbeck&gt;</span> *is
+<a name="l-20"></a><span class="tm">18:03:55</span><span class="nk"> &lt;ogondza&gt;</span> my testing looks good
+<a name="l-21"></a><span class="tm">18:04:03</span><span class="nk"> &lt;ogondza&gt;</span> heard no complains from others
+<a name="l-22"></a><span class="tm">18:04:24</span><span class="nk"> &lt;danielbeck&gt;</span> are you getting help in LTS testing?
+<a name="l-23"></a><span class="tm">18:04:39 </span><span class="nka">* rtyler</span> <span class="ac">looks around sheepishly</span>
+<a name="l-24"></a><span class="tm">18:04:54</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> seldom. people are more active contributing to ATH which is also good
+<a name="l-25"></a><span class="tm">18:05:16</span><span class="nk"> &lt;ogondza&gt;</span> more manual testing would be better but noone wants to do so
+<a name="l-26"></a><span class="tm">18:05:18</span><span class="nk"> &lt;danielbeck&gt;</span> hm okay… maybe something we can advertise for more actively
+<a name="l-27"></a><span class="tm">18:05:36</span><span class="nk"> &lt;danielbeck&gt;</span> but looks like we're ready to have kohsuke release?
+<a name="l-28"></a><span class="tm">18:05:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> have you ever used the zephyr plugin in jira for managing manual test cases?
+<a name="l-29"></a><span class="tm">18:05:48</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to release 2.19.2</span>
+<a name="l-30"></a><span class="tm">18:05:51</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> no
+<a name="l-31"></a><span class="tm">18:05:52</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-32"></a><span class="tm">18:06:13</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler ogondza maybe a topic for #jenkins(-infra) afterwards?
+<a name="l-33"></a><span class="tm">18:06:17</span><span class="nk"> &lt;rtyler&gt;</span> last time I had some spare cycles and I wanted to help manual testing for the RC, I found the wiki page difficult to get into
+<a name="l-34"></a><span class="tm">18:06:28</span><span class="nk"> &lt;rtyler&gt;</span> so we might be able to add more tooling to the infra to support broader RC testing
+<a name="l-35"></a><span class="tm">18:06:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> aye aye
+<a name="l-36"></a><span class="tm">18:06:46</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-37"></a><span class="tm">18:06:57</span><span class="nk"> &lt;danielbeck&gt;</span> November 9
+<a name="l-38"></a><span class="tm">18:07:19</span><span class="nk"> &lt;danielbeck&gt;</span> 6 PM UTC (AFAIK it makes a difference then, so we need to pay attention)
+<a name="l-39"></a><span class="tm">18:07:33</span><span class="nk"> &lt;autojack&gt;</span> FYI if you want to set that time in Google Calendar
+<a name="l-40"></a><span class="tm">18:07:42</span><span class="nk"> &lt;autojack&gt;</span> Iceland has a GMT +0:00
+<a name="l-41"></a><span class="tm">18:07:45</span><span class="nk"> &lt;danielbeck&gt;</span> and a reminder, the calendar is still wrong because it appears to not be a series
+<a name="l-42"></a><span class="tm">18:07:46</span><span class="nk"> &lt;autojack&gt;</span> and does not observe DST.
+<a name="l-43"></a><span class="tm">18:07:52</span><span class="nk"> &lt;autojack&gt;</span> that seems to be the best solution there.
+<a name="l-44"></a><span class="tm">18:08:13</span><span class="nk"> &lt;danielbeck&gt;</span> autojack I found how to set GMT 0 without DST, but the series does not appear to be a series, so I need to configure each meeting individually which is insane
+<a name="l-45"></a><span class="tm">18:08:21</span><span class="nk"> &lt;autojack&gt;</span> that is insane
+<a name="l-46"></a><span class="tm">18:08:41</span><span class="nk"> &lt;danielbeck&gt;</span> haven't heard back from kohsuke yet who set this up
+<a name="l-47"></a><span class="tm">18:09:10</span><span class="nk"> &lt;danielbeck&gt;</span> I'll update the dev list when I get this resolved
+<a name="l-48"></a><span class="tm">18:09:22</span><span class="nk"> &lt;danielbeck&gt;</span> in the mean time, the "when" link in the wiki is correct
+<a name="l-49"></a><span class="tm">18:09:28</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 06:14:53 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:42:37 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 464.757
+  exclusion.robots: 0.09
+  exclusion.robots.policy: 0.083
+  cdx.remote: 0.055
+  esindex: 0.006
+  LoadShardBlock: 161.055 (3)
+  PetaboxLoader3.datanode: 163.895 (4)
+  CDXLines.iter: 21.275 (3)
+  load_resource: 115.512
+  PetaboxLoader3.resolve: 51.446
+-->

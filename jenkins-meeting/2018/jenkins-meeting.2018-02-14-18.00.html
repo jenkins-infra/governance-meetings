@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app226.us.archive.org';v.server_ms=647;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-02-14-18.00.html","20211027232929","https://web.archive.org/","web","/_static/",
+	      "1635377369");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins-meeting Meeting</h1>
+<span class="details">
+Meeting started by danielbeck at 18:00:07 UTC
+(<a href="jenkins-meeting.2018-02-14-18.00.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li><b class="TOPIC">Recap last meeting's actions</b> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-7">danielbeck</a>, 18:00:34)</span>
+<ol type="a">
+  <li><a href="https://web.archive.org/web/20211027232929/http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-01-17-18.01.html">http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-01-17-18.01.html</a>
+    <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-8">danielbeck</a>,
+    18:00:51)</span></li>
+  <li><a href="https://web.archive.org/web/20211027232929/https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage">https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage</a>
+    <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-17">rtyler</a>,
+    18:02:21)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">LTS status check</b> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-24">danielbeck</a>, 18:03:23)</span>
+<ol type="a">
+  <li><span class="INFO">https://jenkins.io/security/advisory/2018-02-14/</span>
+    <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-26">danielbeck</a>,
+    18:03:37)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">LTS baseline selection</b> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-38">danielbeck</a>, 18:05:53)</span>
+<ol type="a">
+  <li><span class="INFO">https://jenkins.io/changelog/</span> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-39">danielbeck</a>,
+    18:06:00)</span></li>
+  <li><span class="INFO">for JEP-200 we fixed around 50 plugins:
+    https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+fix+for+JEP-200</span>
+    <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-52">oleg-nenashev</a>,
+    18:08:01)</span></li>
+  <li><span class="INFO">JEP-200 is generally good, the biggest open
+    issue is Artifactory plugin which is not compatible</span> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-57">oleg-nenashev</a>,
+    18:08:35)</span></li>
+  <li><span class="INFO">SSHD changes in 2.106:
+    https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12341097&amp;styleName=Text&amp;projectId=12310849&amp;Create=Create&amp;atl_token=A5KQ-2QAV-T4JA-FDED%7C47f5fd1e799680219ff14477b5b2c29ce7aaf6fd%7Clin</span>
+    <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-72">oleg-nenashev</a>,
+    18:11:21)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">2.107 will be
+    the LTS baseline unless we find major problems, no currently planned
+    backports, testing can commence with the weekly, and ogondza will
+    announce it as such</span> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-176">danielbeck</a>,
+    18:33:16)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">2.107 will be
+    the LTS baseline unless we find major problems, no currently planned
+    backports, testing can commence with the weekly, and ogondza will
+    announce it as such</span> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-178">danielbeck</a>,
+    18:33:53)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Quick GSoC update</b> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-180">danielbeck</a>, 18:34:09)</span>
+<ol type="a">
+  <li><span class="INFO">: TL;DR: We have been accepted to GSoC 2018.
+    https://jenkins.io/projects/gsoc/</span> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-182">oleg-nenashev</a>,
+    18:34:34)</span></li>
+  <li><span class="INFO">So far we have 8 finalized project ideas and 11
+    mentors. We will be accepting new project ideas till March 05</span>
+    <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-188">oleg-nenashev</a>,
+    18:35:46)</span></li>
+  <li><span class="INFO">https://developers.google.com/open-source/gsoc/timeline</span>
+    <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-190">danielbeck</a>,
+    18:35:56)</span></li>
+  <li><span class="INFO">Org admins this year: oleg_nenashev martinda14
+    schristou</span> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-191">oleg-nenashev</a>,
+    18:36:14)</span></li>
+  <li><span class="INFO">Mentors are welcome, with or without project
+    ideas</span> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-196">oleg-nenashev</a>,
+    18:38:01)</span></li>
+  <li><span class="INFO">https://jenkins.io/blog/2018/01/06/gsoc2018-call-for-mentors/</span>
+    <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-198">oleg-nenashev</a>,
+    18:38:33)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">oleg_nenashev
+    to create a GSoC blog post for students/mentors</span> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-218">oleg-nenashev</a>,
+    18:44:06)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">oleg_nenashev
+    to create a Jumbotron patch in a SEPARATE pull request</span> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-221">oleg-nenashev</a>,
+    18:44:38)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting</b> <span class="details">(<a href="jenkins-meeting.2018-02-14-18.00.log.html#l-223">danielbeck</a>, 18:45:09)</span>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 18:46:06 UTC
+(<a href="jenkins-meeting.2018-02-14-18.00.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>oleg_nenashev to create a GSoC blog post for students/mentors</li>
+  <li>oleg_nenashev to create a Jumbotron patch in a SEPARATE pull request</li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>danielbeck (79)</li>
+  <li>oleg-nenashev (65)</li>
+  <li>jglick (31)</li>
+  <li>ogondza (23)</li>
+  <li>rtyler (18)</li>
+  <li>markewaite (4)</li>
+  <li>robobutler (2)</li>
+  <li>alyssat_ (2)</li>
+  <li>bitwiseman (1)</li>
+  <li>kohsuke (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="https://web.archive.org/web/20211027232929/http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:29:29 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:04:59 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 585.571
+  exclusion.robots: 0.183
+  exclusion.robots.policy: 0.16
+  RedisCDXSource: 0.791
+  esindex: 0.01
+  LoadShardBlock: 562.849 (3)
+  PetaboxLoader3.datanode: 576.969 (4)
+  CDXLines.iter: 18.22 (3)
+  load_resource: 51.343
+  PetaboxLoader3.resolve: 17.691
+-->

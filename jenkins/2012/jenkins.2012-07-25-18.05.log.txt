@@ -1,0 +1,92 @@
+18:05:28 <hare_brain> #startmeeting
+18:05:28 <robobutler> Let the Jenkins meeting commence!
+18:05:33 <abayer> …that'll do.
+18:05:37 <hare_brain> #chair abayer hare_brain
+18:05:37 <robobutler> Current chairs: abayer hare_brain
+18:06:00 <hare_brain> #info kohsuke is in Tokyo, so this will be quick
+18:06:10 <tonylampada> That's nice hare_brain, thank you
+18:06:29 <hare_brain> #topic Commercial use of the name "Jenkins". Do we need to take any actions?
+18:06:38 <hare_brain> Let's defer this one, since Kohsuke is not here.
+18:06:43 <abayer> Indeed.
+18:06:52 <hare_brain> #topic Installing the FreedomSponsors JIRA plugin - when it's finished development
+18:07:01 <hare_brain> OK tonylampada, the floor is yours
+18:07:13 <tonylampada> Thanks :-)
+18:07:56 <tonylampada> So, Hi, I'm Tony Lampada, I'm a software engineer, and I use Jenkins for 3+ years now
+18:08:31 <tonylampada> Me and my associate, Arthur Casals, are working  on a project called FreedomSponsors,
+18:08:37 <tonylampada> (Arthur, are you here?)
+18:08:49 <tonylampada> So...
+18:08:55 <tonylampada> Brief explanation about FreedomSponsors:
+18:08:57 <acasals> Barely, but yes - hi
+18:09:07 <tonylampada> FS is a crowdfunding platform for open source projects. Specifically, open source project's issues.
+18:09:17 <tonylampada> It lets anyone place small money bounties for open issues that they are interested, like I did here --> http://www.freedomsponsors.org/core/issue/11/make-openid-work-with-google-apps-accounts
+18:09:31 <tonylampada> The so called "sponsors" will only be asked to pay their offer after the issue is resolved.
+18:09:41 <tonylampada> If they're happy with the solution, they pay it directly to the developer.
+18:09:49 <tonylampada> That's the short story. The long story is here --> http://www.freedomsponsors.org/core/about/
+18:09:56 <wild_oscar> tonylampada: interesting. I had an argument with the developers of darktable the other day regarding this
+18:10:04 <tonylampada> We started this project as a way of stimulating the growth of open-source projects by
+18:10:15 <tonylampada> (i) getting more people involved (both users and developers) and
+18:10:21 <tonylampada> (ii) delivering extra help (issue solving and funding).
+18:10:31 <tonylampada> We believe we can promote and increase open-source colaboration by users and developers at the same time;
+18:10:39 <tonylampada> Our next step is to create a Jira plugin (already in development) to be used as an integration tool;
+18:10:50 <tonylampada> It will add a "Sponsor issue" to the issue screen, that will open an iframe pointing to FS, as described here --> http://www.freedomsponsors.org/core/issue/12/jira-plugin-to-link-from-tickets-to-freedomsponsors
+18:10:57 <wild_oscar> would be interesting if it were associated with stackoverflow
+18:10:58 <tonylampada> We are hoping that Jenkins will accept to be the first to use it. :-)
+18:11:08 <abayer> Definitely interesting.
+18:11:35 <tonylampada> (that's the end of the FS presentation text we had prepared) :-)
+18:11:57 <lov> that sounds pretty neat
+18:12:08 <seanh-corona> is the join plugin the recommended way to manage more than one build and collect all the artifacts in one place? or is there a better way to manage a multijob type setup?
+18:12:18 <tonylampada> Thanks :-)
+18:12:20 <abayer> Well, I don't think we can commit to anything without Kohsuke here, but I don't see a problem with the idea.
+18:12:28 <jieryn> seems like FS should just link to the jenkins jira, not the other way around
+18:12:38 <hare_brain> seanh-corona, we're in the middle of a project meeting. This one should be quick, so please hold your question for a little bit longer.
+18:12:51 <seanh-corona> hare_brain:  sorry, didn't realize
+18:13:19 <tonylampada> jieryn, it already works that way. The plugin would make the connection "bidirectional"
+18:13:23 <hare_brain> #info The FreedomSponsors proposal is to have Jenkins JIRA embed the "Sponsor this ticket" badge.
+18:13:24 <jieryn> have FS attach a label like 'bounty' or something
+18:13:35 <jieryn> why does it need to be bidirectional?
+18:13:52 <jieryn> i dunno, we just have a lot of problems with jira already, and adding more plugins .. :)
+18:13:53 <tonylampada> Please take a look at this FS ticket:
+18:14:07 <tonylampada> -->  http://www.freedomsponsors.org/core/issue/11/make-openid-work-with-google-apps-accounts
+18:14:17 <jieryn> yah, i already read that
+18:14:24 <tonylampada> It has a "View original issue" link that points to Jenkins JIRA
+18:14:50 <jieryn> i'm saying, from FS, i tell it to scan my issues, or i plugin in an existing issue #
+18:14:57 <jieryn> then it can add a comment saying there is a new bug bounty
+18:15:36 <hare_brain> So a question of what's the optimal workflow for sponsoring a bounty.
+18:16:06 <jieryn> aesthetically and architecturally, i don't think i have anything better than neutral opinion about making jenkins jira be the launch zone for a FS bounty
+18:16:06 <hare_brain> As a Jenkins user, I would be more likely to interact with our JIRA than go to the FS site, which I may or may not have heard of.
+18:16:23 <abayer> +1
+18:16:26 <lov> ^^
+18:16:35 <abayer> But JIRA stability is a real concern.
+18:16:40 <tonylampada> Yes. jieryn, that sounds like an improvement to the current workflow, and the new workflow that will be in place when the plugin is installed
+18:16:49 <abayer> How responsive would you guys be able to be if there were problems?
+18:17:50 <tonylampada> Probably would be able to address problems in less than 24h
+18:18:35 <tonylampada> @hare_brain: That's what I think too.
+18:18:38 <jieryn> i think a demo would be great, maybe a month long pilot or something.. then re-eval ? i dunno
+18:19:00 <jieryn> getting $ for work seems nice :)
+18:19:08 <zyltoid> no ways
+18:19:11 <abayer> Yeah - a demo at the next meeting would be great. rtyler and kohsuke do most of the JIRA admin, so they're the ones who'd really need to be comfortable adding it.
+18:19:29 <tonylampada> Sure thing jieryn, we'll have a demo up shortly
+18:20:11 <tonylampada> should this be adde as an "# action" ? :-)
+18:20:41 <hare_brain> #action tonylampada to demo FreedomSponsors at the next project meeting, when kohsuke and rytler are present
+18:20:42 <jieryn> yep
+18:21:01 <tonylampada> So that's in two weeks, right?
+18:21:30 <tonylampada> (That will be time enough to finish it)
+18:21:40 <hare_brain> #idea After demo, run as a pilot for a month (or so), and then re-evaluate based on stability of JIRA, possibly people supplying bounties
+18:21:56 <jieryn> cool
+18:22:18 <hare_brain> OK, tonylampada, is that all?
+18:22:25 <tonylampada> sounds good
+18:22:31 <tonylampada> yes, that is all!
+18:22:36 <hare_brain> #topic Next meeting time
+18:22:54 <abayer> Two weeks from now as always, yes?
+18:23:03 <hare_brain> According to the schedule, the next meeting would be on August 8th
+18:23:07 <tonylampada> meanwhile, please feel free to take a look at the FS website, and you have any other questions or suggestions, just let me know
+18:23:45 <tonylampada> (You can use FS feedback form or send me an email directly on tonylampada at gmail dot com)
+18:24:03 <hare_brain> I'm going to be on vacation that week, but as long as kohsuke and rtyler are present for their input about the freedomsponsors proposal, there's no reason to change the date to work around my schedule.
+18:24:12 <abayer> I believe they will be, yeah.
+18:24:45 <hare_brain> #agreed Next meeting to be on August 8, 2012 at 1100 PDT
+18:24:59 <tonylampada> I'll be here
+18:25:20 <hare_brain> #info 1100PDT == 1800 UTC
+18:25:58 <hare_brain> Unless anyone has anything else they want to bring up, we can wrap this one up
+18:26:15 <tonylampada> All right folks. Thanks everyone. Can't wait to have the plugin ready for show.
+18:26:42 <hare_brain> OK, seems like that's it.
+18:26:44 <hare_brain> #endmeeting

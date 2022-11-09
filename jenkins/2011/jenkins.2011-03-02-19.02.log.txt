@@ -1,0 +1,372 @@
+19:02:11 <rtyler> #startmeeting March 2nd Governance Meeting
+19:02:11 <robobutler> Let the Jenkins meeting commence!
+19:02:27 <rtyler> #topic Discuss what updates should be made to Copyright on source code
+19:02:33 <kohsuke2> Where was the documentation for that robot?
+19:02:42 <rtyler> http://meetbot.debian.net/Manual.html
+19:02:53 <abayer> #info First of all, agendas will be up at http://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda - feel free to add items to future agendas.
+19:03:07 <kohsuke2> rtyler: thanks
+19:03:43 <abayer> And I'll give a quick update on the logo contest as well.
+19:04:07 <kohsuke2> re: copyright source code, I guess some of it has to wait until the final org is settled
+19:04:26 <abayer> #info http://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code is our current info.
+19:04:44 <kohsuke2> In the mean time, I guess we'll need to say that "we need you to sign CLA when we are ready, and it'll be something like the one from Apache"
+19:04:55 <abayer> +1
+19:05:07 <aheritier> +1
+19:05:12 <jieryn-w> +1
+19:05:13 <rtyler> abayer: should that page list licensing of dependencies as well?
+19:05:17 <abayer> I'm fine with an informal agreement for the moment, given that there's nothing formal to agree with. =)
+19:05:18 <eric_n_dfw> +1
+19:05:26 <abayer> rtyler: I don't think so. That's a separate matter.
+19:05:30 <rtyler> kay
+19:06:05 <kohsuke2> I think it's http://www.apache.org/licenses/cla-corporate.txt and http://www.apache.org/licenses/icla.txt (thanks to hare_brain)
+19:06:27 <Squee-D> Do core contributions add you to a list of attributions?
+19:06:32 <abayer> #agreed New contributors to core will be asked to informally agree to sign a future CLA, likely to be similar to Apache's, once a formal system is in place.
+19:06:48 <hare_brain> #idea Provide a link the the Apache CLA on the Copyright wiki so people can see where we're going
+19:06:51 <kohsuke2> "list of attributions"?
+19:07:01 <abayer> hare_brain: +1
+19:07:16 <aheritier> hare_brain: +1
+19:07:20 <abayer> #action hare_brain to update the copyright wiki entry with the above. =)
+19:07:25 <hare_brain> LOL
+19:07:25 <Squee-D> hare_brain: +1
+19:07:41 <fcamblor> +1
+19:08:01 <kohsuke2> Would this also be the right place to say that we can merge changes from Oracle Hudson?
+19:08:24 <hare_brain> Is that a statement or a question?
+19:09:00 <makeusabrew> hi!
+19:09:08 <kohsuke2> I guess the right thing to say there is that the code contains stuff that's copyrighted and CLAed materials to Oracle?
+19:09:27 <Squee-D> kohsuke MIT only attributes efforts of the <copyright holders> - so it should be clear in the CLA (which i guess is another topic) that attribution will be informal?
+19:09:51 <kohsuke2> hare_brain: I wrote a question whether a statement should be added to a Wiki page, I guess
+19:10:07 <hare_brain> kohsuke2: Gotcha
+19:10:13 <hare_brain> (BTW, I don't have edit permissions on that page.)
+19:10:14 <abayer> And yeah, that would be the right palce for that.
+19:10:29 <abayer> me neither. =)
+19:10:35 <kohsuke2> fixing
+19:10:41 <hare_brain> So, I'm nothing close to a lawyer, but here's how I understand things to be:
+19:11:05 <kohsuke2> fixed
+19:11:06 <hare_brain> As long as the source from Oracle Hudson is MIT licensed, we can take it, because of its license.
+19:11:31 <hare_brain> Whoever merges it into Jenkins needs to attribute it to Oracle in the commit message.
+19:11:35 <abayer> Yup.
+19:11:40 <kohsuke2> Yes.
+19:11:41 <hare_brain> That's how I understand the Apache CLA covers this case.
+19:11:51 <aheritier> Sonatype contributed code is also under MIT ?
+19:12:02 <abayer> Unless they changed the license, yeah.
+19:12:03 <hare_brain> We'll have to look at the files to be sure.
+19:12:26 <hare_brain> And they'd better have a clear attribution after all the stuff they were saying about unclear IP.
+19:12:51 <kohsuke2> For plugins, are there anything we should add?
+19:13:04 <kohsuke2> #idea should we say we highly recommend adding <license> in POM?
+19:13:18 <abayer> Yeah, I think that'd be good.
+19:13:26 <aheritier> +1
+19:13:34 <aheritier> I think we should at least for core
+19:13:42 <kohsuke2> Maybe down the road some mechanical check can be added?
+19:13:46 <Squee-D> Please shoot me down if it's way too off topic, but i figure that ongoing core contributors will appreciate attribution. to me that's why most FOSS licences have 'maintain attribution/copywrite" clauses. So wouldn't it be worthwhile adding a contributions readme for a full list of participants?
+19:13:52 <jieryn-w> a la rat plugin
+19:13:56 <aheritier> we may use the license plugin also to verify if the header is set everywhere
+19:14:15 <jieryn-w> checkstyle has the same capability
+19:14:16 <kohsuke2> aheritier: core already has <license>, if not explicitly it definitely inherits.
+19:14:21 <aheritier> jieryn-w: kohsuke yes there is a plugin for that
+19:14:24 <aheritier> to check and fix
+19:14:41 <aheritier> kohsuke2: ok. I didn't see.
+19:15:03 <kohsuke2> Squee-D: I think we do encourage people to put attribution in the copyright header of the source files.
+19:15:16 <kohsuke2> But I guess you are suggesting we should start a separate file that lists the names
+19:15:31 <fcamblor> looks like Sonatype guys are commiting with MIT : https://github.com/hudson/hudson/blob/1fade2d2567831c1c7e6d0ef602903e424fbf44a/hudson-test-harness/src/test/resources/logback-test.xml
+19:16:15 <Squee-D> kohsuke I am, but that does make sense what you're already doing, just saying it might want to be adressed when you adress the CLA.
+19:16:33 <kohsuke2> OK. Shall we note that and move on?
+19:16:47 <kohsuke2> ... to the next topic?
+19:17:00 <fcamblor> https://github.com/hudson/hudson/commit/1fade2d2567831c1c7e6d0ef602903e424fbf44a#diff-10
+19:17:00 <abayer> +1
+19:17:25 <kohsuke2> #topic  the stable-branch/endorsed-release discussion
+19:17:31 <kohsuke2> or maybe I don't hae that karma
+19:17:47 <abayer> rtyler!
+19:17:51 <abayer> #chairs
+19:17:52 <rtyler> wut
+19:17:59 <rtyler> #chairs abayer,kohsuke2
+19:18:05 <rtyler> #topic  the stable-branch/endorsed-release discussion
+19:18:09 <kohsuke2> Thanks
+19:18:50 <rtyler> #chair abayer kohsuke2
+19:18:50 <robobutler> Current chairs: abayer kohsuke2 rtyler
+19:18:53 <rtyler> #chair hare_brain
+19:18:53 <robobutler> Current chairs: abayer hare_brain kohsuke2 rtyler
+19:19:08 <kohsuke2> My recollection is that people are very happy with the idea but we haven't settled on particular approach
+19:19:11 <Squee-D> robobutler is brilliant.
+19:19:11 <robobutler> Squee-D: Error: "is" is not a valid command.
+19:19:19 <Squee-D> well almost
+19:19:23 <rtyler> hah
+19:19:23 <kohsuke2> :-)
+19:19:47 <hare_brain> There used to be a link to an "older but stabler" build. Why did that go away?
+19:20:20 <kohsuke2> because I think I just stopped doing that.
+19:20:26 <kohsuke2> But I think we should resurrect that
+19:20:48 <aheritier> kohsuke2: The question is which rithm the stable branch may have and how it could be managed ?
+19:20:50 <rtyler> what was the criteria for updating those links?
+19:21:01 <aheritier> rtyler: Good question
+19:21:08 <rtyler> heh
+19:21:12 <aheritier> what is a stable branch/product ?
+19:21:37 <aheritier> AFAIK Jenkins isn't released if there are failures in automated tests
+19:21:42 <kohsuke2> #info The model behind "older but stable" was that I picked a bit old but stable-looking release in retrospect
+19:21:56 <Squee-D> what about the LTS model?
+19:22:01 <kohsuke2> It was planned to update about every once in 3/6 months
+19:22:11 <abayer> #idea Every X weeks, the core devs vote as to whether to promote a release from a few weeks earlier to be the new "stable" release.
+19:22:14 <hare_brain> Here at Yahoo, we have the concept of stable/current/test for our packages. "test" means a release is still being tested. "current" means the group feels that it's ready to be used in production environments. "stable" means it
+19:22:20 <kohsuke2> aheritier: yes, if there are test failures, it won't ship
+19:22:23 <hare_brain> it's been running in production for at least 6 months.
+19:22:30 <Squee-D> where the changelog is where you decide to pick a stable release that you're willing to run a side branch with specific fixes.
+19:22:42 <Squee-D> alongside the continuous improvement main branch
+19:22:43 <kohsuke2> hare_brain: that sounds similar to Debian
+19:22:47 <aheritier> and could we use community votes ?
+19:22:54 <hare_brain> Yeah, I'm pretty sure we stole that idea. :)
+19:23:29 <hare_brain> So questions I'd ask about a "stable" Jenkins are:
+19:23:29 <abayer> aheritier: I was suggesting core devs (or plugin devs) just to keep the vote manageable.
+19:23:39 <hare_brain> Does it lag several months behind?
+19:24:04 <hare_brain> Is the version that's on stable sequential or does it skip?
+19:24:11 <Squee-D> Is the LTS approach too painful to manage?
+19:24:16 <kutzi> IMO the best way for more stable releases is to massively increase the automated test coverage
+19:24:25 <aheritier> abayer: core and plugins dev are probably using more often recent releases than older ?
+19:24:25 <abayer> hare_brain: I'd say it lags behind, and it skips.
+19:24:35 <abayer> kutzi: +1
+19:24:37 <Squee-D> stable releases are not as valuable to me, as an end user, as "marked to be maintained" releases
+19:24:38 <hare_brain> Do major bug fixes get merged into that release? That's a huge infrastructure and process undertaking.
+19:24:40 <abayer> aheritier: True.
+19:24:48 <kohsuke2> On top of abayer's "Every X weeks, the core devs vote as to whether to promote a release from a few weeks earlier to be the new "stable" release.", I'd also like to propose that we consider doing patch releases off that release
+19:24:48 <abayer> hare_brain: −1 on that, personally.
+19:25:13 <rtyler> kohsuke2: 1.386.1 ?
+19:25:16 <abayer> hare_brain, kohsuke2: rather, I'm −1 on anything other than showstoppers.
+19:25:18 * kohsuke2 asked the same question as hare_brain
+19:25:40 <kohsuke2> rtyler: yeah, 1.X.1, 1.X.2, ... for stable releases until we nominate next 1.Y as stable
+19:25:52 <jieryn-w> sounds like tons of work
+19:25:58 <hare_brain> That's my concern as well.
+19:26:05 <rtyler> stable branches are always extra work :P
+19:26:07 <kohsuke2> Yes, it could be. Hence I said we should "consider"
+19:26:12 <abayer> And that's my rationale for −1. =)
+19:26:19 <eric_n_dfw> my client was within a day of switching us to TeamCity or Cruise/Go a few months ago when deadlocks were killing us.   +1 for patch builds
+19:26:26 <aheritier> and I saw in the meeting note the question about code review
+19:26:47 <aheritier> could we consider to put in stable branch only a code which were reviewed by several devs ?
+19:26:52 <kohsuke2> But while it's a lot of work, it seems to be valuable, too.
+19:26:59 <abayer> I'd prefer to crowdsource/do validation tests to determine the stable release, with x.1 releases for *only* showstoppers like eric_n_dfw's deadlock problem.
+19:27:01 <Squee-D> really? People will choose jenkins in critical environments only with a critical support branch
+19:27:02 <abayer> (I remember that one)
+19:27:04 <hare_brain> We maintain a private fork, so we rely on the community ratings to decide when to merge a new version in. So in a sense, we're already picking a "stable" for ourselves.
+19:27:13 <kohsuke2> aheritier: Yes, we want to control what changes can go in there.
+19:27:31 <Squee-D> LTS's do not need anything but support for "continues to function as specced
+19:28:01 <abayer> Squee-D: Yeah, that's the sort of thing I'm talking about.
+19:28:02 <jieryn-w> i think having a stable branch that isn't sponsored by people using jenkins in critical environments -- that is, new blood doing the work -- there's no way current devs are going to be able to support it
+19:28:04 <Squee-D> It's harder work for plugin dev's no? to support the 'stable' releae.
+19:28:30 <jieryn-w> it also steals thunder from people testing the new release
+19:28:31 <kohsuke2> I think if we limit ourselves to small number of important fixes backported from the main release line, maybe the overhead can be managed?
+19:28:44 <jieryn-w> why jump to latest when i can just use stable and not put any effort in
+19:28:47 <abayer> Squee-D: I actually see the stable release as a positive for plugin devs - if they don't *need* a new change in core, they can just always build against the last stable.
+19:28:52 <kohsuke2> jieryn-w: stealing thunder from the main release line is indeed one of the downside.
+19:28:55 <Squee-D> I would have thought so, but i certainly havent been following the code-commits
+19:29:08 <Squee-D> abayer thats a good point
+19:29:44 <Squee-D> I think your small teams, like ours, will all still run with the "agile" branch
+19:29:53 <aheritier> could we also use statitics of deployment to know who is using what ?
+19:30:04 <abayer> Basically, I think we should provide a "known quantity" release that's blessed by the community/devs, and we should backport fixes for showstopper bugs to it on a limited basis, when possible.
+19:30:04 <kohsuke2> Yes, we can
+19:30:04 <aheritier> perhaps it could help to define what as stable
+19:30:12 <Squee-D> but i really wouldn't blame enterprise users from dropping jenkins if it didnt have a stable branch.
+19:30:13 <abayer> aheritier: Yup - we'll actually have new census data available today.
+19:30:13 <hare_brain> aheritier: + 1
+19:30:31 <aheritier> s/as/was
+19:30:41 <kohsuke2> abayer: OK, that line of thinking is close to what I'm saying
+19:31:01 <abayer> For example, I can tell you that there are over 6500 installs of Hudson/Jenkins which were last seen at version 1.395. =)
+19:31:14 <hare_brain> Out of how many?
+19:31:25 <Squee-D> 6501
+19:31:32 <aheritier> abayer: +1with your point of view
+19:31:46 <eric_n_dfw> We're still at 1.393
+19:32:03 <abayer> Almost 23k seen hitting jenkins-ci.org/hudson-labs.org's usage-stats in Feb - that's only versions 1.368 and later.
+19:32:34 <kohsuke2> #info so sounds like a consensus is around voting/blessing a release as stable, then produce patch releases only with important bug fixes
+19:32:41 <eric_n_dfw> +1
+19:32:44 <Squee-D> +!
+19:32:51 <Squee-D> +1
+19:32:59 <hare_brain> So roughly 25% on something recent.
+19:33:17 <kohsuke2> #info we are also mindful that we aren't entirely sure how much work this entails
+19:33:40 <abayer> #idea Every…3? months, community/devs bless a 2+ month old release as the "known quantity" release. Until the next "known quantity" release, it'll be possible for absolutely critical bug fixes to core to be backported and a new version of the known quantity re-released.
+19:33:57 <abayer> hare_brain: actually, that's 25% on *one* specific version. =)
+19:34:04 <kutzi> +1
+19:34:28 <kohsuke2> How about 6 months? Would that be too long?
+19:34:38 <aheritier> kohsuke2: I think
+19:34:43 <rtyler> that's really long in Jenkins-time
+19:34:44 <kohsuke2> hare_brain: how frequent do you integrate?
+19:34:47 <kutzi> I would it may even younger than 3 month
+19:34:48 <Squee-D> I for one trust agile processes and trust my backups, so update our jenkins install as often as i can. But for the sake of the jenkins project's continuing popularity think it's a good thing.
+19:34:48 <abayer> There were something like 4k last seen on 1.396 or later, and I can't remember how many on other versions.
+19:34:50 <aheritier> 3 monthes is what we see in general
+19:34:57 <hare_brain> kohsuke2: Roughly once a quarter
+19:34:59 <abayer> I like 3month rotations.
+19:35:13 <abayer> Once a quarter, decent window of time for determining how stable a candidate release is.
+19:35:18 <kohsuke2> OK. So shall we start with 3 months and se e how that goes?
+19:35:20 <hare_brain> More frequently if a release fixes a lot of bugs, or has something interesting.
+19:35:25 <hare_brain> We try not to cherry pick changes.
+19:35:39 <Squee-D> +1
+19:35:46 <hare_brain> +1 for 3 months
+19:35:54 * rtyler likes 3 months as well
+19:36:26 <kohsuke2> #agreed we'll start with 3 month cycle for stable release and see how that goes
+19:36:27 <eric_n_dfw> 3 months is fine with me
+19:36:28 <abayer> Ok. Next step is scoping out the work involved.
+19:36:40 <abayer> Which we can do on the mailing list.=)
+19:36:48 <kohsuke2> I wanted to talk a bit about what kind of changes we want to backport
+19:36:57 <abayer> 'k.
+19:37:04 <kohsuke2> like "preferrably no API change"
+19:37:21 <kohsuke2> or "only backport a fix after it's released in the main line"? would that be too much?
+19:37:34 <abayer> #action A thread on the mailing list to talk about what work will be done to get the stable release stuff in place (update center changes, qualification process, etc)
+19:37:39 <aheritier> kohsuke2: Yes it is mandatory in bug fixes for the stable bracnh
+19:37:42 <abayer> kohsuke2: strong +1 for that.
+19:37:49 <abayer> Backports only.
+19:37:57 <Squee-D> +1 kohsuke
+19:38:10 <Squee-D> abayer is that a +1.999~ ?
+19:38:17 <kohsuke2> Are people agreeing to "after it's released in the main line" part?
+19:38:18 <aheritier> +1 to backport only something released (tested in real life)
+19:38:20 <hare_brain> #idea changelog entries that are marked "major bug" as candidates for backporting?
+19:38:21 <kohsuke2> Or just "backport only part"
+19:38:34 <Squee-D> kohsuke yeas to "mainline" - that is what a backport is no?
+19:38:50 <kohsuke2> hare_brain: yes. but there aren't that many of those
+19:38:58 <kohsuke2> Does that mean we've been pretty stable?
+19:39:11 <eric_n_dfw> +1 to mainline  tested live --> stable
+19:39:22 <Squee-D> Are there metrics for 'stability' ?
+19:39:45 <Squee-D> perhaps automation of such metrics are really a first step?
+19:39:48 <rtyler> community ratings, bug reports for a release
+19:39:59 <kohsuke2> #idea I think the stable release line would be good release train to tie in the "community acceptance test" effort
+19:40:32 <hare_brain> The only problem I have with the community ratings, is that the bug reports seem to carry forward, and it's not clear that a bug was actually introduced with that release. That's just when someone reported it.
+19:40:42 <kohsuke2> put another way, for example, if we start this effort, could Yahoo shift some of what it did internally to this release line?
+19:41:22 <abayer> kohsuke2: Could CloudBees as well for Nectar? =)
+19:41:25 <Squee-D> hare_brain could its inclusion in stability reporting wait for a dev to identify when it was introduced? Are most of these things identifiable with bisect?
+19:41:49 <kohsuke2> abayer: Yes, I'd be obviously spending my efforts/time into that branch
+19:41:52 <aheritier> hare_brain: I'm preparing the proposal to split  Jira
+19:41:59 <aheritier> thus will have versions in Jira now
+19:42:28 <abayer> Oh, yeah.
+19:42:35 <jieryn-w> well, still no project split yet
+19:42:50 <hare_brain> kohsuke2: We can certainly take our internal feedback and contribute that to the assessment of the stability of a release.
+19:42:54 <abayer> #action aheritier working on proposal for actually splitting JENKINS JIRA into core/infra/plugins.
+19:42:55 <kohsuke2> I think voting to pick a stable release would be reasonable and community rating would be a good input, if not a definitive input
+19:43:28 <abayer> Everyone ok with aheritier leading the JIRA split stuff? We'll need to give him admin on JIRA to actually do it, obviously.
+19:43:40 * rtyler nods
+19:43:55 <kohsuke2> We'll have a chance to see the proposal before it happens, right?
+19:44:06 <abayer> Oh yeah.
+19:44:09 <aheritier> kohsuke2: yes it's done for that
+19:44:11 <eric_n_dfw> +1
+19:44:17 <kohsuke2> +1
+19:44:20 <redsolo> +1
+19:44:21 <jieryn-w> +1
+19:44:22 <aheritier> but if someone else want to lead it :-) feel free !!
+19:44:24 <abayer> I'm just taking advantage of a sucker, er, um, I mean, volunteer. =)
+19:44:29 <jieryn-w> heh
+19:44:52 <aheritier> :-)
+19:45:07 <kohsuke2> OK, so in the interest of time, maybe the next topic?
+19:45:15 * redsolo can help out with the jira stuff..
+19:45:15 <kohsuke2> Did the release discussion come to a conclusion?
+19:45:32 <kohsuke2> I guess we have a consensus, and action to work out details?
+19:45:55 <aheritier> redsolo: ok, I note. I'll send an email on the dev list before the end of the week
+19:46:07 <aheritier> kohsuke2: yes
+19:46:24 <abayer> Yup.
+19:46:30 <kohsuke2> #topic Update on the long-term governance plans / progress on umbrella organisation
+19:46:39 <kohsuke2> #topic Update on the long-term governance plans
+19:46:56 <kohsuke2> I guess this one is to abayer?
+19:47:02 <abayer> Here's my update: I haven't done anything. I suck and have been busy. =)
+19:47:20 <rtyler> #agreed abayer sucks, and has been busy
+19:47:22 * rtyler ducks
+19:47:28 <kohsuke2> Anything we can help to make a progress there?
+19:47:45 <kohsuke2> Perhaps even just some bullet points?
+19:47:50 <aheritier> :-)
+19:47:54 <abayer> If we can  come up with questions we need answered, that'd help.
+19:48:16 <kohsuke2> OK
+19:48:23 <jieryn-w> there was chatter about going to apache ... is that ruled out?
+19:48:34 <kohsuke2> #topic progress on umbrella organisation
+19:48:38 <abayer> No, it is not ruled out.
+19:48:40 <kohsuke2> That's a question for this topic, I guess
+19:48:50 <kohsuke2> I can report an update on this
+19:48:50 <abayer> kohsuke2: any news from SFC?
+19:49:04 <kohsuke2> #info we've applied to SFC, and we are still not hearing back
+19:49:14 <kohsuke2> #action kohsuke to ping SFC on our current status
+19:49:22 <kohsuke2> I also think I should write to SPI
+19:49:39 <kohsuke2> (acryonym could be wrong but it's the foundation that has PostgreSQL)
+19:49:57 <kohsuke2> http://www.spi-inc.org/
+19:50:24 <kohsuke2> Apache isn't ruled out either, but I think we are still hoping that SFC would take us
+19:50:33 <kohsuke2> I think that's the current status
+19:50:40 <abayer> While my personal first choice would be to go to Apache over SFC or SPI, I'm perfectly fine with SFC as first option.
+19:50:44 <Squee-D> SFC?
+19:50:58 <kohsuke2> http://sfconservancy.org/
+19:51:04 <abayer> But if we don't get into SFC, I really think Apache is far and away the best option on the table, and I really think it can work nicely.
+19:51:19 <Squee-D> Apache Foundation has a lot of clout to its name alone.
+19:51:56 <kohsuke2> When this was discussed there certainly was a strong support for that from many
+19:52:17 <kohsuke2> Ready to move on to logo contest?
+19:52:37 <aheritier> I agree to try SFC before Apache to have less changes in the comunity if possible
+19:52:53 <kohsuke2> +1
+19:52:56 <aheritier> yes logos !!
+19:52:59 <kohsuke2> #topic updates on logo contest
+19:53:10 <kohsuke2> abayer?
+19:53:16 <aheritier> (damned I forgot to ask to my kids to draw something)
+19:53:27 <abayer> #info I extended the logo submission deadline through friday, 'cos I got a bunch over the weekend and into Monday.
+19:53:56 <abayer> #info this weekend, I'll be putting up a post on jenkins-ci.org with all the entries, and a poll for everyone to vote for their favorite.
+19:54:03 <kohsuke2> Any place where we can see the current submissions?
+19:54:08 <hare_brain> That eps that was sent to the mailing list reminded me of the Pringles guy.
+19:54:24 <eric_n_dfw> true
+19:54:36 <hare_brain> abayer: How many submissions have you received?
+19:54:46 <abayer> Something like 10, I think?
+19:54:49 <Squee-D> Im working on one :D
+19:54:53 <kohsuke2> Maybe a Wiki page?
+19:55:05 <Squee-D> but i suck more than abayer. Probably not busier tho.
+19:55:29 <kohsuke2> Shall we still try 99designs, or are we comfortable picking from what's submitted?
+19:55:43 <abayer> Yeah, I'll put 'em on the wiki in their original forms, and on the blog in png format for easy viewing.
+19:55:50 <abayer> One of the options on the poll will be "none of the above".
+19:55:53 <hare_brain> Maybe an option in the poll should be "None of he above"
+19:55:55 <hare_brain> LOL
+19:55:56 <abayer> If that wins, we go to 99 designs. =)
+19:55:59 <Squee-D> Can the vote include [x] try 99designs
+19:56:08 <Squee-D> make it explicit..
+19:56:09 <aheritier> abayer: hare_brain +1
+19:56:11 <kohsuke2> #info 99designs start from $300 and we don't have to pay if we don't pick it
+19:56:15 <abayer> Squee-D: That works for me.
+19:56:20 <abayer> Oh! New topic!
+19:56:23 <abayer> Trademark!
+19:56:28 <abayer> #topic Trademark!
+19:56:39 <abayer> kohsuke2: Have we started the ball rolling on that yet?
+19:56:52 <kohsuke2> I'm afraid not.
+19:56:57 <kohsuke2> Let's see, where am I on it
+19:56:59 <abayer> For now, I'm perfectly happy with fronting the cash for the fees.
+19:57:04 <abayer> We can fundraise to pay me back later.
+19:57:40 <kohsuke2> I think I had an AI to find the difference between the registration that costs a few $100s vs a registration that costs a few Ks.
+19:57:58 <abayer> (assuming we're talking a couple thousand bucks max, not something more like $10k)
+19:58:10 <kohsuke2> The main difference, as far as I can tell, is whether we get to see some human being doing it.
+19:58:51 <abayer> Yeah. How about we deputize to CloudBees' people to do the research for us as to what the best option is? I'm perfectly fine with donated labor from them - I just want to make sure it's not CloudBees actually paying for the trademark registration.
+19:59:17 <kohsuke2> And there's still an offer on the table for CB to donate the cost for the registration.
+19:59:57 <abayer> I don't feel comfortable taking actual money donations until we have a legal structure.
+20:00:03 <kohsuke2> But there's no "people doing the research" though. I believe CB only have a lawyer it can pay to have a research/registration done
+20:00:10 <abayer> Ah.
+20:00:32 <abayer> Let's take this offline and talk about it in person tonight?
+20:00:40 <aheritier> (We should ask to Oracle they did that few times ago :-D )
+20:00:43 <kohsuke2> I think earlier suggestion from hare_brain was to get some writing that it won't own the trademark
+20:00:51 <kohsuke2> "it" = CB
+20:01:14 <kohsuke2> Does that ease the concern enough, or not?
+20:01:15 <aheritier> (Sorry it's 3AM here)
+20:01:32 <abayer> #action kohsuke and abayer to talk tonight about trademark stuff and get the ball rolling.
+20:01:40 <abayer> And one last topic - trying to wrap up.
+20:01:41 <kohsuke2> The issue is that otherwise it's hard to make a progress
+20:01:45 <kohsuke2> Sounds good
+20:01:49 <abayer> #topic Next meeting.
+20:02:01 <kohsuke2> How about 2 weeks from now?
+20:02:04 <abayer> #info Let's go bi-weekly - next meeting in two weeks, Wed, March 16th
+20:02:05 <abayer> jinx!
+20:02:17 <kohsuke2> +1
+20:02:20 <aheritier> yes it is enough
+20:02:23 <hare_brain> I was going to suggest whenever we have a stable release. ;)
+20:02:51 <kohsuke2> Is this time OK?
+20:02:54 <rtyler> heh
+20:03:03 <kohsuke2> I hate to keep aheritier up at 3am
+20:03:15 <abayer> #idea Tentative agenda items: JIRA split proposal discussion, update on trademark.
+20:03:20 <hare_brain> This time on the 16th specifically won't work for me.
+20:03:25 <abayer> He's in vietnam at the moment. =)
+20:03:31 <kohsuke2> Ah
+20:03:54 <kohsuke2> hare_brain: any other time of that day?
+20:04:39 <aheritier> no problem I'll be back in EU
+20:04:48 <hare_brain> I'll be away from an internet connection all morning. Any time after 1pm will be fine, if that works for other people.
+20:04:57 <hare_brain> Otherwise, another day that week, at 11 is fine.
+20:05:14 <abayer> 1pm is 10 CET…is that too late for our Euros?
+20:05:30 <aheritier> abayer: for me it's goot
+20:05:49 <abayer> aheritier: given that I've put you up as an agenda item, that's good. =)
+20:06:03 <kohsuke2> Any objection to March 16th 1pm PST / 10pm CET / 9pm GMT?
+20:06:07 <aheritier> :-D
+20:06:15 <abayer> +1 for me.
+20:06:18 <hare_brain> Other option is to just have the meeting at 11 on the 16th and I'll pass on any comments I have about the agenda to abayer or kohsuke ahead of time.
+20:06:19 <aheritier> +1
+20:06:30 <redsolo> What happened to Internet time?
+20:06:37 <kohsuke2> #agreed March 16th 1pm PST / 10pm CET / 9pm GMT
+20:06:43 <hare_brain> Great. Thanks folks.
+20:06:59 <kohsuke2> OK, I think we declare a victory for the day
+20:07:11 <hare_brain> I'm declaring lunchtime. :)
+20:07:17 <kohsuke2> #endmeeting

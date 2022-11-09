@@ -1,0 +1,69 @@
+18:00:39 <kohsuke> #startmeeting
+18:00:39 <robobutler> Let the Jenkins meeting commence!
+18:00:50 <kohsuke> #chair hare_brain rtyler
+18:00:50 <robobutler> Current chairs: hare_brain kohsuke rtyler
+18:01:09 <hare_brain> Ha, I was wondering if you'd be here.
+18:01:43 <kohsuke> I'm attending this from a European time zone today
+18:01:54 <kohsuke> #topic LTS 1.509.2
+18:01:56 <hare_brain> Yeah, I figured. I don't even know what time it is where you are. :)
+18:02:17 <rpetti> 7pm?
+18:02:22 <kohsuke> 8pm here
+18:03:04 * kohsuke goes to see the backlog for 1.509.2 discussion
+18:03:19 <vjuranek> so, we intented to release LTS 1.509.X more often, as we expect more bugfixes
+18:03:36 <vjuranek> and there was already a request for 1.509.2: http://groups.google.com/group/jenkinsci-dev/browse_thread/thread/a6020dcf937162f3#
+18:03:57 <vjuranek> I backported all resolved lts-candidates today
+18:04:04 <kohsuke> ah, that's quick
+18:04:15 <vjuranek> just testing it
+18:04:28 <vjuranek> so can we release 1.509.2 in week or two?
+18:04:43 <kohsuke> Yes, sure
+18:04:48 <vjuranek> there were couple of issue fixed:
+18:04:55 <vjuranek> I backported fixes for
+18:04:57 <vjuranek> JENKINS-17402 - Failed to instantiate class hudson.plugins.copyartifact.CopyArtifact
+18:04:59 <vjuranek> JENKINS-17508 - The 'Discard Old Builds' advanced option - removal of only artifacts - does not work for me after 1.503.
+18:05:00 <vjuranek> JENKINS-17681 - LastSuccessful and LastStable symlinks are invalid under Windows
+18:05:02 <vjuranek> JENKINS-17715 - Display Name is not shown
+18:05:03 <jenkins-admin> JENKINS-17402:Failed to instantiate class hudson.plugins.copyartifact.CopyArtifact (Resolved) http://jenkins-ci.org/issue/17402
+18:05:03 <vjuranek> JENKINS-17721 - StringIndexOutOfBoundsException in PackageResult.findCorrespondingResult
+18:05:05 <vjuranek> JENKINS-17724 - /about no longer shows third-party licenses
+18:05:06 <vjuranek> JENKINS-17728 - NPE from MatrixConfiguration.newBuild
+18:05:08 <vjuranek> JENKINS-17775 - IllegalStateException from MavenProject.getParent can break MavenFingerprinter.recordParents
+18:05:09 <jenkins-admin> JENKINS-17508:The 'Discard Old Builds' advanced option - removal of only artifacts - does not work for me after 1.503. (Resolved) http://jenkins-ci.org/issue/17508
+18:05:13 <jenkins-admin> JENKINS-17681:LastSuccessful and LastStable symlinks are invalid under Windows (Resolved) http://jenkins-ci.org/issue/17681
+18:05:18 <jenkins-admin> JENKINS-17715:Display Name is not shown (Resolved) http://jenkins-ci.org/issue/17715
+18:05:23 <jenkins-admin> JENKINS-17721:StringIndexOutOfBoundsException in PackageResult.findCorrespondingResult (Resolved) http://jenkins-ci.org/issue/17721
+18:05:27 <jenkins-admin> JENKINS-17724:/about no longer shows third-party licenses (Resolved) http://jenkins-ci.org/issue/17724
+18:05:35 <jenkins-admin> JENKINS-17728:NPE from MatrixConfiguration.newBuild (Resolved) http://jenkins-ci.org/issue/17728
+18:05:42 <jenkins-admin> JENKINS-17775:IllegalStateException from MavenProject.getParent can break MavenFingerprinter.recordParents (Resolved) http://jenkins-ci.org/issue/17775
+18:06:17 <vjuranek> so, maybe we can skip usual procudure to ask on dev list for more candidates and eventually release 1.509.3 in 2 or 3 after 1.509.2 ?
+18:07:14 <kohsuke> I think the only thing I'm concerned about is whether those bug fixes are soaked enough.
+18:08:01 <kohsuke> But if they are, I think it's good that we are delivering bug fixes to LTS
+18:08:42 <vjuranek> some of them are, some of them not, but I guess we wanted to do some kind of exception in case 1.509.x as more problems were expected and we want to fix it fast
+18:09:21 <kohsuke> Yes. But some of the bugs you just cited doesn't seem like the fallout from lazy loading stuff?
+18:10:13 <kohsuke> (and I thought 1.509.x problems were mainly around lazy loading related)
+18:10:28 <vjuranek> no, I was about to backport all candidates, but not problem to backport just those which are 2 or more weeks old
+18:11:21 <vjuranek> so, if I backport only fixes 2 weeks old, you are fine with 1.509.2, right?
+18:11:32 <kohsuke> Yes
+18:11:40 <vjuranek> ok, will do so
+18:12:21 <kohsuke> Shall we shoot for 1 week or 2 weeks?
+18:13:25 <kohsuke> If you don't have a strong preference, let's shoot for 2 weeks
+18:13:25 <vjuranek> well, I guess I can do the backports today or tomorow, so maybe 1 week is enough
+18:13:37 <vjuranek> but no stong preference
+18:13:43 <kohsuke> OK. I'll be away until Saturday
+18:14:07 <kohsuke> I think it's good to announce 1.509.2 RC and ask people to try it out
+18:14:08 <vjuranek> so let's go with 2 week and if it's sooner, everybody will be happy:-)
+18:14:18 <kohsuke> Sounds good
+18:14:37 <kohsuke> I'll mention this to jglick
+18:14:50 <vjuranek> great
+18:15:11 <kohsuke> Thank you for being on top of this, vjuranek
+18:15:24 <vjuranek> you are welcome
+18:15:56 <kohsuke> #agreed Aiming 5/29 for 1.509.2 with some additional backports (but only with soaked ones)
+18:16:19 <kohsuke> #action kohsuke to stage 1.509.2 RC by Monday
+18:16:52 <kohsuke> #topic recap of the previous meetings
+18:17:07 <kohsuke> #action kohsuke really needs to implement the election addition to https://jenkins-ci.org/account/
+18:17:25 <kohsuke> anything else?
+18:17:56 <kohsuke> I guess not
+18:18:04 <kohsuke> #topic next meeting time
+18:18:25 <kohsuke> Our regular cadence put it to 5/29 same time
+18:18:34 <hare_brain> Yep
+18:18:42 <vjuranek> +1
+18:18:51 <kohsuke> #endmeeting

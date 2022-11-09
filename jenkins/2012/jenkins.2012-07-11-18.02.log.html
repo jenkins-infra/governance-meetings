@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:02:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:02:01</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:04</span><span class="nk"> &lt;rtyler&gt;</span> that's the ticket
+<a name="l-4"></a><span class="tm">18:02:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer hare_brain rtyler</span>
+<a name="l-5"></a><span class="tm">18:02:14</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:02:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-7"></a><span class="tm">18:02:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">recap of actions</span>
+<a name="l-8"></a><span class="tm">18:02:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-06-27-18.01.html</span>
+<a name="l-9"></a><span class="tm">18:03:05</span><span class="nk"> &lt;kohsuke&gt;</span> I'm afraid I haven't made any progress at all
+<a name="l-10"></a><span class="tm">18:03:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write to active users of svn.jenkins-ci.org that they can move to GitHub very easily if they want</span>
+<a name="l-11"></a><span class="tm">18:03:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write a scanner that auto-adds Jenkins jobs for plugins</span>
+<a name="l-12"></a><span class="tm">18:03:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to split buildhive code into smaller pieces and install them to jenkins.ci.cloudbees.com</span>
+<a name="l-13"></a><span class="tm">18:03:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to make sure vjuranek have the sauce labs credentials</span>
+<a name="l-14"></a><span class="tm">18:03:48</span><span class="nk"> &lt;kohsuke&gt;</span> (I think I have the credential)
+<a name="l-15"></a><span class="tm">18:03:55</span><span class="nk"> &lt;rtyler&gt;</span> whoops
+<a name="l-16"></a><span class="tm">18:04:02</span><span class="nk"> &lt;rtyler&gt;</span> I knew I forgot
+<a name="l-17"></a><span class="tm">18:04:04</span><span class="nk"> &lt;rtyler&gt;</span> something
+<a name="l-18"></a><span class="tm">18:04:22</span><span class="nk"> &lt;kohsuke&gt;</span> I see your jykyl work, but where are we on Confluence and ircbot?
+<a name="l-19"></a><span class="tm">18:04:35</span><span class="nk"> &lt;kohsuke&gt;</span> the latter is something I'd be happy to do
+<a name="l-20"></a><span class="tm">18:04:41</span><span class="nk"> &lt;rtyler&gt;</span> ircbot is stalled, just needs packaging
+<a name="l-21"></a><span class="tm">18:04:52</span><span class="nk"> &lt;kohsuke&gt;</span> I guess for the time being  I can stage the secret outside puppet
+<a name="l-22"></a><span class="tm">18:04:54</span><span class="nk"> &lt;rtyler&gt;</span> nobody responded to my email to the infra list on confluence :(
+<a name="l-23"></a><span class="tm">18:05:02</span><span class="nk"> &lt;kohsuke&gt;</span> my bad
+<a name="l-24"></a><span class="tm">18:05:12</span><span class="nk"> &lt;rtyler&gt;</span> I'm more convinced now we need our own internal apt repo
+<a name="l-25"></a><span class="tm">18:05:19</span><span class="nk"> &lt;kohsuke&gt;</span> aye yes, that one
+<a name="l-26"></a><span class="tm">18:05:24</span><span class="nk"> &lt;rtyler&gt;</span> for ircbot, crawlers, stats tsuff, confluence, eventually jira
+<a name="l-27"></a><span class="tm">18:05:26</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-28"></a><span class="tm">18:05:48</span><span class="nk"> &lt;kohsuke&gt;</span> yeah, it makes sense
+<a name="l-29"></a><span class="tm">18:05:57</span><span class="nk"> &lt;rtyler&gt;</span> I'll add a ticket in infra-puppet for myself
+<a name="l-30"></a><span class="tm">18:06:03</span><span class="nk"> &lt;rtyler&gt;</span> that's actually pretty farkin' easy to set up
+<a name="l-31"></a><span class="tm">18:07:03</span><span class="nk"> &lt;kohsuke&gt;</span> OK, that's it for this part, then?
+<a name="l-32"></a><span class="tm">18:07:06</span><span class="nk"> &lt;rtyler&gt;</span> https://github.com/jenkinsci/infra-puppet/issues/45
+<a name="l-33"></a><span class="tm">18:07:07</span><span class="nk"> &lt;rtyler&gt;</span> yes
+<a name="l-34"></a><span class="tm">18:07:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">How much if any advertisement is acceptable on plugin page</span>
+<a name="l-35"></a><span class="tm">18:07:42</span><span class="nk"> &lt;rtyler&gt;</span> for reference https://wiki.jenkins-ci.org/display/JENKINS/Warnings+Plugin
+<a name="l-36"></a><span class="tm">18:07:53</span><span class="nk"> &lt;kohsuke&gt;</span> another might be: https://wiki.jenkins-ci.org/display/JENKINS/ClearCase+UCM+Plugin
+<a name="l-37"></a><span class="tm">18:08:09</span><span class="nk"> &lt;abayer&gt;</span> This isn't an easy question.
+<a name="l-38"></a><span class="tm">18:08:19</span><span class="nk"> &lt;rtyler&gt;</span> I don't necessarily think we nede a resolution here
+<a name="l-39"></a><span class="tm">18:08:24</span><span class="nk"> &lt;hare_brain&gt;</span> I think the two are different
+<a name="l-40"></a><span class="tm">18:08:27</span><span class="nk"> &lt;rtyler&gt;</span> the UCM plugin actually makes a lot of sense to me
+<a name="l-41"></a><span class="tm">18:08:31</span><span class="nk"> &lt;hare_brain&gt;</span> Agreed.
+<a name="l-42"></a><span class="tm">18:09:01</span><span class="nk"> &lt;kohsuke&gt;</span> I guess it's the reference to an Android game (which presumably have nothing to do with Jenkins) that makes it unique
+<a name="l-43"></a><span class="tm">18:10:11</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah, I don't know how I feel about this.
+<a name="l-44"></a><span class="tm">18:10:24</span><span class="nk"> &lt;hare_brain&gt;</span> On the one hand, Ulli is entitled to ask for support for his work.
+<a name="l-45"></a><span class="tm">18:10:35</span><span class="nk"> &lt;abayer&gt;</span> Part of me says "Screw it, who cares?" But my admitted bias towards Ulli is there.
+<a name="l-46"></a><span class="tm">18:10:36</span><span class="nk"> &lt;hare_brain&gt;</span> On the other hand, I don't like the idea of ads cluttering up the wiki pages
+<a name="l-47"></a><span class="tm">18:10:53</span><span class="nk"> &lt;hare_brain&gt;</span> Try to abstract away from Ulli.
+<a name="l-48"></a><span class="tm">18:11:01</span><span class="nk"> &lt;hare_brain&gt;</span> s/Ulli/Billy Bob Plugin Dev/
+<a name="l-49"></a><span class="tm">18:11:10</span><span class="nk"> &lt;abayer&gt;</span> Yup.
+<a name="l-50"></a><span class="tm">18:11:43</span><span class="nk"> &lt;rtyler&gt;</span> "work sponsored by" to me is great
+<a name="l-51"></a><span class="tm">18:12:41</span><span class="nk"> &lt;kohsuke&gt;</span> all right, so sounds like we can ask him to do it like ClearCase UCM, and see if he's OK with moving the ad to a page linked from his logo?
+<a name="l-52"></a><span class="tm">18:13:01</span><span class="nk"> &lt;hare_brain&gt;</span> The clearcase logos aren't even links.
+<a name="l-53"></a><span class="tm">18:13:01</span><span class="nk"> &lt;abayer&gt;</span> Works for me.
+<a name="l-54"></a><span class="tm">18:13:01</span><span class="nk"> &lt;kohsuke&gt;</span> and if he feels strongly about this, we'll come back to this
+<a name="l-55"></a><span class="tm">18:14:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span>  I think having links on those images are OK
+<a name="l-56"></a><span class="tm">18:14:59</span><span class="nk"> &lt;kohsuke&gt;</span> sounds like simple enough criteria to me if we want to make it a clear rule
+<a name="l-57"></a><span class="tm">18:15:01</span><span class="nk"> &lt;rtyler&gt;</span> I'll let you guys discuss, I need to run off to other things
+<a name="l-58"></a><span class="tm">18:16:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> is the course of action OK, or are you uncomfortable allowing links?
+<a name="l-59"></a><span class="tm">18:16:18</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah I think it's fine. I'm just going through in my head if we want to charge a "traffic acquisition cost" to the referre to page.
+<a name="l-60"></a><span class="tm">18:16:49</span><span class="nk"> &lt;hare_brain&gt;</span> No disagreement from me.
+<a name="l-61"></a><span class="tm">18:17:00</span><span class="nk"> &lt;hare_brain&gt;</span> Just thinking about other revenue opportunities. :)
+<a name="l-62"></a><span class="tm">18:17:24</span><span class="nk"> &lt;kohsuke&gt;</span> I'm sure we can actually sell "the real estate" on the top page, etc., if we want
+<a name="l-63"></a><span class="tm">18:17:42</span><span class="nk"> &lt;kohsuke&gt;</span> I believe codehaus puts Google adwords on every page
+<a name="l-64"></a><span class="tm">18:19:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to contact ulli to see if "logo + link to somewhere that hosts his ad" would be reasonable to him CC-ing board</span>
+<a name="l-65"></a><span class="tm">18:19:29</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I think we can just wrap this up for the day
+<a name="l-66"></a><span class="tm">18:19:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-67"></a><span class="tm">18:20:20</span><span class="nk"> &lt;kohsuke&gt;</span> It'd be 7/25 same time
+<a name="l-68"></a><span class="tm">18:20:38</span><span class="nk"> &lt;kohsuke&gt;</span> ... which means me, abayer, rtyler will be traveling
+<a name="l-69"></a><span class="tm">18:20:48</span><span class="nk"> &lt;abayer&gt;</span> Well, technically, I fly out the next day. =)
+<a name="l-70"></a><span class="tm">18:21:22</span><span class="nk"> &lt;kohsuke&gt;</span> ah, ok, then let's just put it in there
+<a name="l-71"></a><span class="tm">18:21:35</span><span class="nk"> &lt;kohsuke&gt;</span> you guys can cancel it if you see fit
+<a name="l-72"></a><span class="tm">18:22:02</span><span class="nk"> &lt;kohsuke&gt;</span> is that OK?
+<a name="l-73"></a><span class="tm">18:22:13</span><span class="nk"> &lt;abayer&gt;</span> okiedokie
+<a name="l-74"></a><span class="tm">18:22:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting is 7/25 same time</span>
+<a name="l-75"></a><span class="tm">18:22:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

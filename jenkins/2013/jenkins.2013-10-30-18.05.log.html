@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:05:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:05:22</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:05:36</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">duncanm:</span> (meeting now, later)
+<a name="l-4"></a><span class="tm">18:05:41</span><span class="nk"> &lt;ddelrio1986&gt;</span> When my job is building I keep getting this: Timeout waiting for prompt
+<a name="l-5"></a><span class="tm">18:05:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">18:05:48</span><span class="nk"> &lt;ddelrio1986&gt;</span> How can I raise that timeout limit or get rid of it?
+<a name="l-7"></a><span class="tm">18:06:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ddelrio1986:</span> let's come back to that after the meeting
+<a name="l-8"></a><span class="tm">18:06:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status</span>
+<a name="l-9"></a><span class="tm">18:06:21</span><span class="nk"> &lt;ddelrio1986&gt;</span> kohsuke, huh? What meeting?
+<a name="l-10"></a><span class="tm">18:06:27</span><span class="nk"> &lt;jglick&gt;</span> vjuranek doing this one?
+<a name="l-11"></a><span class="tm">18:06:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ddelrio1986:</span>  https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-12"></a><span class="tm">18:07:06</span><span class="nk"> &lt;ddelrio1986&gt;</span> Oh you guys use this room for the meeting?
+<a name="l-13"></a><span class="tm">18:07:21</span><span class="nk"> &lt;jglick&gt;</span> ogondza, sorry.
+<a name="l-14"></a><span class="tm">18:07:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ddelrio1986:</span> one hour every two weeks, yes
+<a name="l-15"></a><span class="tm">18:07:48</span><span class="nk"> &lt;jglick&gt;</span> ogondza says he will be back online Friday.
+<a name="l-16"></a><span class="tm">18:07:51</span><span class="nk"> &lt;kohsuke&gt;</span> it looks like there has been good amount of backporting
+<a name="l-17"></a><span class="tm">18:08:11</span><span class="nk"> &lt;jglick&gt;</span> Seven issues so far.
+<a name="l-18"></a><span class="tm">18:08:16</span><span class="nk"> &lt;jglick&gt;</span> According to https://issues.jenkins-ci.org/secure/IssueNavigator.jspa?reset=true&amp;jqlQuery=labels+%3D+%221.532.1-fixed%22
+<a name="l-19"></a><span class="tm">18:08:54</span><span class="nk"> &lt;jglick&gt;</span> 37 lts-candidate, though a bunch of these are presumably not 1.532.1 candidates.
+<a name="l-20"></a><span class="tm">18:09:10</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so we need to chip in and triage them?
+<a name="l-21"></a><span class="tm">18:09:18</span><span class="nk"> &lt;jglick&gt;</span> I.e. were fixed in 1.510–1.532.
+<a name="l-22"></a><span class="tm">18:09:27</span><span class="nk"> &lt;kohsuke&gt;</span> yeah
+<a name="l-23"></a><span class="tm">18:10:20</span><span class="nk"> &lt;jglick&gt;</span> Was there a consensus on whether removal of maven-plugin from main repo should be backported?
+<a name="l-24"></a><span class="tm">18:10:58</span><span class="nk"> &lt;kohsuke&gt;</span> I actually didn't feel like it's something we need to do
+<a name="l-25"></a><span class="tm">18:11:02</span><span class="nk"> &lt;kohsuke&gt;</span> It's a pretty major commit
+<a name="l-26"></a><span class="tm">18:11:09</span><span class="nk"> &lt;jglick&gt;</span> Really?
+<a name="l-27"></a><span class="tm">18:11:19</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah.
+<a name="l-28"></a><span class="tm">18:11:21</span><span class="nk"> &lt;jglick&gt;</span> I though it was mostly deletions, and a few POM changes.
+<a name="l-29"></a><span class="tm">18:11:40</span><span class="nk"> &lt;kohsuke&gt;</span> Moving stuff off from core always makes me nervous
+<a name="l-30"></a><span class="tm">18:11:50</span><span class="nk"> &lt;kohsuke&gt;</span> between fixing up classloader dependencies and what not
+<a name="l-31"></a><span class="tm">18:12:04</span><span class="nk"> &lt;jglick&gt;</span> Class loader dependencies? It was already a plugin.
+<a name="l-32"></a><span class="tm">18:12:05</span><span class="nk"> &lt;kohsuke&gt;</span> oh, actually, that's different
+<a name="l-33"></a><span class="tm">18:13:00</span><span class="nk"> &lt;kohsuke&gt;</span> OK, well, then I have no argument against it
+<a name="l-34"></a><span class="tm">18:13:02</span><span class="nk"> &lt;jglick&gt;</span> If we do _not_ backport the removal, and especially if we do then backport plugin fixes, then we would have the odd situation of a 1.532.1 maven-plugin with a subset of fixes in 2.0.
+<a name="l-35"></a><span class="tm">18:13:32</span><span class="nk"> &lt;jglick&gt;</span> And I think some of the lts-candidate fixes were made after the split.
+<a name="l-36"></a><span class="tm">18:13:39</span><span class="nk"> &lt;jglick&gt;</span> So they cannot be cherry-picked directly.
+<a name="l-37"></a><span class="tm">18:13:48</span><span class="nk"> &lt;kohsuke&gt;</span> Maven plugin 2.0 depends on 1.533 in POM
+<a name="l-38"></a><span class="tm">18:14:13</span><span class="nk"> &lt;kohsuke&gt;</span> I wonder why that is
+<a name="l-39"></a><span class="tm">18:14:21</span><span class="nk"> &lt;kohsuke&gt;</span> oh now it's 1.532
+<a name="l-40"></a><span class="tm">18:14:38</span><span class="nk"> &lt;kohsuke&gt;</span> you've fixed that
+<a name="l-41"></a><span class="tm">18:14:42</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">kohsuke:</span> yeah you made it 1.533 and I changed it to 1.532.
+<a name="l-42"></a><span class="tm">18:14:48</span><span class="nk"> &lt;jglick&gt;</span> https://github.com/jenkinsci/jenkins/commit/f98070d3e6dabab0817f80f2526f78f61ffa1c83 for reference.
+<a name="l-43"></a><span class="tm">18:15:14</span><span class="nk"> &lt;kohsuke&gt;</span> all right, let's recommend this split be backported then
+<a name="l-44"></a><span class="tm">18:15:44</span><span class="nk"> &lt;jglick&gt;</span> Should war/pom.xml#stable also get maven-plugin 2.0?
+<a name="l-45"></a><span class="tm">18:16:07</span><span class="nk"> &lt;jglick&gt;</span> (Or 2.0-beta-1?)
+<a name="l-46"></a><span class="tm">18:16:09</span><span class="nk"> &lt;kohsuke&gt;</span> How long it been released
+<a name="l-47"></a><span class="tm">18:16:19</span><span class="nk"> &lt;kohsuke&gt;</span> Oct 22
+<a name="l-48"></a><span class="tm">18:16:39</span><span class="nk"> &lt;jglick&gt;</span> 2.0 I guess.
+<a name="l-49"></a><span class="tm">18:16:58</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah we can bundle 2.0
+<a name="l-50"></a><span class="tm">18:17:04</span><span class="nk"> &lt;kohsuke&gt;</span> People will see it in UC anyway
+<a name="l-51"></a><span class="tm">18:17:37</span><span class="nk"> &lt;jglick&gt;</span> 2.0-beta-1 misses e.g. JENKINS-19396 which is important
+<a name="l-52"></a><span class="tm">18:17:40</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19396:Extra logging added to Maven builds makes the build log hard to read - org.apache.maven.cli.event.ExecutionEventLogger (Resolved) http://jenkins-ci.org/issue/19396
+<a name="l-53"></a><span class="tm">18:17:43</span><span class="nk"> &lt;kohsuke&gt;</span> The only reason it got 2.x is just because of the split. There's no major change
+<a name="l-54"></a><span class="tm">18:17:52</span><span class="nk"> &lt;kohsuke&gt;</span> And beta in stable releases just feel odd
+<a name="l-55"></a><span class="tm">18:17:56</span><span class="nk"> &lt;jglick&gt;</span> Agreed.
+<a name="l-56"></a><span class="tm">18:18:28</span><span class="nk"> &lt;kohsuke&gt;</span> Let me backport the split and I'll let ogondoza roll back if he feels strongly
+<a name="l-57"></a><span class="tm">18:19:06</span><span class="nk"> &lt;kohsuke&gt;</span> I was hoping to talk about the timeline but we need him for that
+<a name="l-58"></a><span class="tm">18:19:16</span><span class="nk"> &lt;jglick&gt;</span> Yes.
+<a name="l-59"></a><span class="tm">18:19:54</span><span class="nk"> &lt;kohsuke&gt;</span> moving on to the next topic
+<a name="l-60"></a><span class="tm">18:20:07</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">kohsuke:</span> BTW JENKINS-20163 needs to be fixed promptly in core; we would want it in 1.532.1
+<a name="l-61"></a><span class="tm">18:20:10</span><span class="nk"> &lt;jenkins-admin&gt;</span> <span class="hi">JENKINS-20163:java.lang.NoClassDefFoundError:</span> sun/net/www/protocol/jar/JarURLConnection (In Progress) http://jenkins-ci.org/issue/20163
+<a name="l-62"></a><span class="tm">18:20:30</span><span class="nk"> &lt;jglick&gt;</span> (Should just be a Stapler version bump.)
+<a name="l-63"></a><span class="tm">18:20:45</span><span class="nk"> &lt;kohsuke&gt;</span> what platform doesn't have JarURLConnetion!?
+<a name="l-64"></a><span class="tm">18:20:56</span><span class="nk"> &lt;jglick&gt;</span> JBoss and the like block access to sun.** apparently.
+<a name="l-65"></a><span class="tm">18:21:11</span><span class="nk"> &lt;kohsuke&gt;</span> great, so it brings back file descriptor leaks
+<a name="l-66"></a><span class="tm">18:21:15</span><span class="nk"> &lt;kohsuke&gt;</span> oh well
+<a name="l-67"></a><span class="tm">18:21:27</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">kohsuke:</span> I think the fix does not bring back the leaks.
+<a name="l-68"></a><span class="tm">18:21:36</span><span class="nk"> &lt;jglick&gt;</span> Just avoids casting to the sun.** impl class.
+<a name="l-69"></a><span class="tm">18:21:53</span><span class="nk"> &lt;jglick&gt;</span> Committed fix to Stapler but did not test it yet.
+<a name="l-70"></a><span class="tm">18:22:11</span><span class="nk"> &lt;kohsuke&gt;</span> I see what you did, it makes sense
+<a name="l-71"></a><span class="tm">18:22:11</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-14336 is easy to reproduce so should be simple to confirm that it is not regressed.
+<a name="l-72"></a><span class="tm">18:22:15</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-14336:Too many open files upon HTTP listener init or shutdown (Resolved) http://jenkins-ci.org/issue/14336
+<a name="l-73"></a><span class="tm">18:22:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">name approval</span>
+<a name="l-74"></a><span class="tm">18:22:40</span><span class="nk"> &lt;jglick&gt;</span> Theoretically some other JarURLConnection from a non-Sun-derived JRE might not leak, I guess, but no matter.
+<a name="l-75"></a><span class="tm">18:23:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">So I'm back again to get another trademark usage approval for "Jenkins Multi-master by CloudBees"</span>
+<a name="l-76"></a><span class="tm">18:23:56</span><span class="nk"> &lt;kohsuke&gt;</span> I'm hoping that this is OK --- we chose this name partly because it follows the same format as the previous approval
+<a name="l-77"></a><span class="tm">18:24:24</span><span class="nk"> &lt;kohsuke&gt;</span> the argument being it avoids confusion by having "by CloudBees" part
+<a name="l-78"></a><span class="tm">18:24:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> any thoughts?
+<a name="l-79"></a><span class="tm">18:25:04</span><span class="nk"> &lt;hare_brain&gt;</span> I always have to dig through the archives to see what we approved.
+<a name="l-80"></a><span class="tm">18:25:15</span><span class="nk"> &lt;kohsuke&gt;</span> good question, when was it
+<a name="l-81"></a><span class="tm">18:25:47</span><span class="nk"> &lt;kohsuke&gt;</span> http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-11-09-19.00.html
+<a name="l-82"></a><span class="tm">18:26:37</span><span class="nk"> &lt;hare_brain&gt;</span> Agreed.
+<a name="l-83"></a><span class="tm">18:26:54</span><span class="nk"> &lt;hare_brain&gt;</span> Although the logs from that meeting do indicate we wanted to set up some process around that, that I don't think we did.
+<a name="l-84"></a><span class="tm">18:27:05</span><span class="nk"> &lt;hare_brain&gt;</span> At the very least, we should have a database of granted/approved requests.
+<a name="l-85"></a><span class="tm">18:27:18</span><span class="nk"> &lt;kohsuke&gt;</span> I think we do have jenkinsci-boards@googlegroups.com now
+<a name="l-86"></a><span class="tm">18:27:57</span><span class="nk"> &lt;kohsuke&gt;</span> But we should record approvals indeed
+<a name="l-87"></a><span class="tm">18:28:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to set up an edit-protected Wiki page the past approvals</span>
+<a name="l-88"></a><span class="tm">18:28:34</span><span class="nk"> &lt;kohsuke&gt;</span> ... Wiki page that records the past approvals
+<a name="l-89"></a><span class="tm">18:28:52</span><span class="nk"> &lt;hare_brain&gt;</span> Apparently I said the same thing last year: https://groups.google.com/d/msg/jenkinsci-board/ZpnZbpwMpAM/6V4hsFfhQssJ
+<a name="l-90"></a><span class="tm">18:29:07</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-91"></a><span class="tm">18:30:07</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I'll set this up and write a year-long reply to that thread
+<a name="l-92"></a><span class="tm">18:30:33</span><span class="nk"> &lt;kohsuke&gt;</span> In the mean time, can we record OK for "Jenkins Multi-master by CloudBees" ?
+<a name="l-93"></a><span class="tm">18:30:59</span><span class="nk"> &lt;hare_brain&gt;</span> OK
+<a name="l-94"></a><span class="tm">18:31:04</span><span class="nk"> &lt;kohsuke&gt;</span> I should probably write to abayer
+<a name="l-95"></a><span class="tm">18:32:29</span><span class="nk"> &lt;kohsuke&gt;</span> Assuming that's a binding +1, I'll check with abayer so that he can record his +1.
+<a name="l-96"></a><span class="tm">18:33:07</span><span class="nk"> &lt;hare_brain&gt;</span> Assuming he's checking jenkinsci-board@, just do it via the list, so it's archived.
+<a name="l-97"></a><span class="tm">18:33:13</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-98"></a><span class="tm">18:33:19</span><span class="nk"> &lt;kohsuke&gt;</span> That's it for me
+<a name="l-99"></a><span class="tm">18:33:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-100"></a><span class="tm">18:34:00</span><span class="nk"> &lt;jglick&gt;</span> BTW we are missing summary links for the past few meetings.
+<a name="l-101"></a><span class="tm">18:34:28</span><span class="nk"> &lt;kohsuke&gt;</span> my bad. I need to add a user macro
+<a name="l-102"></a><span class="tm">18:34:36</span><span class="nk"> &lt;kohsuke&gt;</span> I've been too lazy cutting&amp;pasting the timestamp 3 times
+<a name="l-103"></a><span class="tm">18:34:56</span><span class="nk"> &lt;kohsuke&gt;</span> next meeting is Nov 13th
+<a name="l-104"></a><span class="tm">18:35:09</span><span class="nk"> &lt;hare_brain&gt;</span> After that, it's Thanksgiving week, so I presume we'll skip.
+<a name="l-105"></a><span class="tm">18:35:25</span><span class="nk"> &lt;hare_brain&gt;</span> (11/27)
+<a name="l-106"></a><span class="tm">18:35:26</span><span class="nk"> &lt;kohsuke&gt;</span> actually, that reminds me that Luca was interested in convincing us why we should use his new service GerritForge
+<a name="l-107"></a><span class="tm">18:35:54</span><span class="nk"> &lt;kohsuke&gt;</span> It's free for open-source public GitHub repos
+<a name="l-108"></a><span class="tm">18:36:04</span><span class="nk"> &lt;kohsuke&gt;</span> Are we interested ?
+<a name="l-109"></a><span class="tm">18:36:09</span><span class="nk"> &lt;jglick&gt;</span> did you mean to #topic it?
+<a name="l-110"></a><span class="tm">18:36:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">any interest in using GerritForge?</span>
+<a name="l-111"></a><span class="tm">18:36:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info  </span><span class="cmdline">Luca is  interested in convincing us why we should use his new service GerritForge</span>
+<a name="l-112"></a><span class="tm">18:36:26</span><span class="nk"> &lt;kpfleming&gt;</span> from an outsider's point of view, it doesn't seem like tooling is a problem in this project, it's lack of time
+<a name="l-113"></a><span class="tm">18:36:44</span><span class="nk"> &lt;kohsuke&gt;</span> yes
+<a name="l-114"></a><span class="tm">18:36:59</span><span class="nk"> &lt;jglick&gt;</span> Agreed, I have been quite happy with GitHub PRs, I just lack time to actually read most of them.
+<a name="l-115"></a><span class="tm">18:37:03</span><span class="nk"> &lt;autojack&gt;</span> even with a calendar reminder I always miss the first half of this meeting :)
+<a name="l-116"></a><span class="tm">18:37:33</span><span class="nk"> &lt;kpfleming&gt;</span> personally, i think handling issues and code review on GitHub sucks compared to Gerrit, JIRA/Crucible, or other tools, but they are sufficient
+<a name="l-117"></a><span class="tm">18:37:38</span><span class="nk"> &lt;kpfleming&gt;</span> s/they are/it is/
+<a name="l-118"></a><span class="tm">18:38:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">It wasn't GerritForge, it was GerritHub: http://gerrithub.io/</span>
+<a name="l-119"></a><span class="tm">18:38:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kpfleming:</span> if you think Gerrit is superior, feel free to try that out and report back!
+<a name="l-120"></a><span class="tm">18:38:46</span><span class="nk"> &lt;kohsuke&gt;</span> I think Luca is willing to come here and answer Qs if we want him here
+<a name="l-121"></a><span class="tm">18:38:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> do you want to look at why Jenkins-on-Jenkins is fucked before I restart it?
+<a name="l-122"></a><span class="tm">18:39:00</span><span class="nk"> &lt;kohsuke&gt;</span> Yes I do
+<a name="l-123"></a><span class="tm">18:39:01</span><span class="nk"> &lt;kpfleming&gt;</span> i've used it before, i know it's good, and friends in the OpenStack community think it is excellent
+<a name="l-124"></a><span class="tm">18:39:11</span><span class="nk"> &lt;kpfleming&gt;</span> but it's more stuff to learn, and more integration to deal with
+<a name="l-125"></a><span class="tm">18:39:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> I'll get the heap/thread dump then restart
+<a name="l-126"></a><span class="tm">18:40:16</span><span class="nk"> &lt;autojack&gt;</span> I had a couple of thoughts coming out of JUC, I don't know if anyone wants to hear them in the context of this meeting or not.
+<a name="l-127"></a><span class="tm">18:40:21</span><span class="nk"> &lt;rtyler&gt;</span> I think it's dead
+<a name="l-128"></a><span class="tm">18:40:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">autojack:</span> yeah let's do JUC recap
+<a name="l-129"></a><span class="tm">18:40:56</span><span class="nk"> &lt;autojack&gt;</span> OK
+<a name="l-130"></a><span class="tm">18:41:03</span><span class="nk"> &lt;kohsuke&gt;</span> Anything more about GerritHub?
+<a name="l-131"></a><span class="tm">18:41:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">if people are willing to use it, it's there</span>
+<a name="l-132"></a><span class="tm">18:41:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">JUC recap</span>
+<a name="l-133"></a><span class="tm">18:41:30</span><span class="nk"> &lt;jglick&gt;</span> Still not really seeing the value. UI looks cluttered and awkward compared to GH to me.
+<a name="l-134"></a><span class="tm">18:42:00</span><span class="nk"> &lt;autojack&gt;</span> shall I start? I just have three thoughts for next year, I think.
+<a name="l-135"></a><span class="tm">18:42:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> yeah it looks dead
+<a name="l-136"></a><span class="tm">18:42:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> let's just start it
+<a name="l-137"></a><span class="tm">18:42:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">autojack:</span> please do
+<a name="l-138"></a><span class="tm">18:42:38</span><span class="nk"> &lt;autojack&gt;</span> OK. these all came to me during the course of the day.
+<a name="l-139"></a><span class="tm">18:43:25</span><span class="nk"> &lt;autojack&gt;</span> first idea is similar to something I saw at puppetconf this year - hack sessions. I have a feeling that a lot of people would like to write a plugin, or code a new feature in core even, but need help from more experienced people to get started.
+<a name="l-140"></a><span class="tm">18:43:40</span><span class="nk"> &lt;eric_n_dfw&gt;</span> +1 to that
+<a name="l-141"></a><span class="tm">18:43:48</span><span class="nk"> &lt;autojack&gt;</span> it would be cool to do a thing where people with experience can pair up, or go around the room, and help out other people.
+<a name="l-142"></a><span class="tm">18:43:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> starting
+<a name="l-143"></a><span class="tm">18:44:27</span><span class="nk"> &lt;autojack&gt;</span> you'd have to give people rerequisites ahead of time (dev env set up basically), but I think it could be cool. it might be difficult to make it useful in one hour though, and more time than that out of a one day conf could be challenging.
+<a name="l-144"></a><span class="tm">18:44:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">autojack:</span> is it basically just a room with tables?
+<a name="l-145"></a><span class="tm">18:45:00</span><span class="nk"> &lt;autojack&gt;</span> I think you would need to sign up some people to do the mentoring also.
+<a name="l-146"></a><span class="tm">18:45:07</span><span class="nk"> &lt;kohsuke&gt;</span> In the past hackathon elsewhere we sometimes try a quick crash course
+<a name="l-147"></a><span class="tm">18:45:38</span><span class="nk"> &lt;autojack&gt;</span> and there is a sub-idea that it could help steer people to project "best practices" vs some insane hack that breaks next time Jenkins is updated.
+<a name="l-148"></a><span class="tm">18:46:18</span><span class="nk"> &lt;autojack&gt;</span> yeah. I also wanted to talk about having occasional hack days/meetups, but that's for another time.
+<a name="l-149"></a><span class="tm">18:46:27</span><span class="nk"> &lt;autojack&gt;</span> ok, idea #2 from the conf:
+<a name="l-150"></a><span class="tm">18:46:38</span><span class="nk"> &lt;kohsuke&gt;</span> feel free to use #idea to record this in the minutes more prominently
+<a name="l-151"></a><span class="tm">18:47:03</span><span class="nk"> &lt;autojack&gt;</span> <span class="cmd">#idea </span><span class="cmdline">for next JUC, plugin/core coding hack session with knowledgable mentors</span>
+<a name="l-152"></a><span class="tm">18:47:35</span><span class="nk"> &lt;autojack&gt;</span> <span class="cmd">#idea </span><span class="cmdline">for next JUC, "how do/can/should I..." Q&amp;A with power users</span>
+<a name="l-153"></a><span class="tm">18:47:59</span><span class="nk"> &lt;kohsuke&gt;</span> maybe that could be like a panel discussion
+<a name="l-154"></a><span class="tm">18:48:04</span><span class="nk"> &lt;autojack&gt;</span> the thought being that again many people want to solve x problem with jenkins, and there are &gt;1 ways to do it, but there is probably one "good" way
+<a name="l-155"></a><span class="tm">18:48:12</span><span class="nk"> &lt;autojack&gt;</span> so it would be good to steer people toward that I think
+<a name="l-156"></a><span class="tm">18:48:27</span><span class="nk"> &lt;eric_n_dfw&gt;</span> You guys did that at JUC #1 and I liked it as the last event of the day
+<a name="l-157"></a><span class="tm">18:48:28</span><span class="nk"> &lt;autojack&gt;</span> and out of that also might come some feature ideas or other insight for the core team about what people want
+<a name="l-158"></a><span class="tm">18:48:35</span><span class="nk"> &lt;hare_brain&gt;</span> +1 to that second idea.
+<a name="l-159"></a><span class="tm">18:49:04</span><span class="nk"> &lt;eric_n_dfw&gt;</span> 'twas a nice way to wrap things up I mean
+<a name="l-160"></a><span class="tm">18:49:09</span><span class="nk"> &lt;autojack&gt;</span> I just think so much of the overall jenkins support process is helping people accomplish a task with the right mix of plugins etc.
+<a name="l-161"></a><span class="tm">18:49:16</span><span class="nk"> &lt;kohsuke&gt;</span> right
+<a name="l-162"></a><span class="tm">18:49:21</span><span class="nk"> &lt;autojack&gt;</span> and last idea
+<a name="l-163"></a><span class="tm">18:49:28</span><span class="nk"> &lt;hare_brain&gt;</span> Yes. And that would be popular enough that it shouldn't have a competing session.
+<a name="l-164"></a><span class="tm">18:50:09</span><span class="nk"> &lt;autojack&gt;</span> <span class="cmd">#idea </span><span class="cmdline">for the next JUC, consider grouping talks on functionally similar/identical topics into panel sessions where the speakers can discuss their different solutions with each other</span>
+<a name="l-165"></a><span class="tm">18:50:18</span><span class="nk"> &lt;autojack&gt;</span> kohsuke said something like this in one of his talks I think
+<a name="l-166"></a><span class="tm">18:50:26</span><span class="nk"> &lt;hare_brain&gt;</span> BoF sessions
+<a name="l-167"></a><span class="tm">18:50:36</span><span class="nk"> &lt;autojack&gt;</span> there were one or two topics that were covered in different ways by different speakers.
+<a name="l-168"></a><span class="tm">18:50:54</span><span class="nk"> &lt;autojack&gt;</span> it would be interesting to hear them talk together about why each others' thing wouldn't have worked for them, or whatever.
+<a name="l-169"></a><span class="tm">18:51:04</span><span class="nk"> &lt;eric_n_dfw&gt;</span> +1
+<a name="l-170"></a><span class="tm">18:51:22</span><span class="nk"> &lt;kohsuke&gt;</span> It'd also allow more spot lights on community people
+<a name="l-171"></a><span class="tm">18:51:24</span><span class="nk"> &lt;jenkins-builds&gt;</span> Starting build #2995 for job jenkins_main_trunk (previous build: ABORTED -- last SUCCESS #2993 1 day 20 hr ago)
+<a name="l-172"></a><span class="tm">18:51:28</span><span class="nk"> &lt;autojack&gt;</span> nod.
+<a name="l-173"></a><span class="tm">18:51:39</span><span class="nk"> &lt;autojack&gt;</span> that's it!
+<a name="l-174"></a><span class="tm">18:51:41</span><span class="nk"> &lt;kpfleming&gt;</span> <span class="hi">autojack:</span> ping me at kpfleming@bloomberg.net about future 'hack days', i have some ideas that may be useful
+<a name="l-175"></a><span class="tm">18:51:47</span><span class="nk"> &lt;autojack&gt;</span> OK
+<a name="l-176"></a><span class="tm">18:51:55</span><span class="nk"> &lt;eric_n_dfw&gt;</span> FWIW, It's probably already been said, but the track 2 room was too small this year.
+<a name="l-177"></a><span class="tm">18:51:58</span><span class="nk"> &lt;hare_brain&gt;</span> To generalize a theme out of both #2 and #3, it's to have some sessions that can be more interactive.
+<a name="l-178"></a><span class="tm">18:52:07</span><span class="nk"> &lt;autojack&gt;</span> yeah
+<a name="l-179"></a><span class="tm">18:52:16</span><span class="nk"> &lt;kohsuke&gt;</span> The scalability summit was organized more like unconference
+<a name="l-180"></a><span class="tm">18:52:37</span><span class="nk"> &lt;kohsuke&gt;</span> where people wrote what they want to discuss in post-its and we sorted them out mid-day and started talking on them later
+<a name="l-181"></a><span class="tm">18:52:40</span><span class="nk"> &lt;hare_brain&gt;</span> With regards to #1, it sounds like lab hours might be useful.
+<a name="l-182"></a><span class="tm">18:52:54</span><span class="nk"> &lt;kohsuke&gt;</span> Some people thought it'd work in even larger number of people
+<a name="l-183"></a><span class="tm">18:53:34</span><span class="nk"> &lt;kohsuke&gt;</span> I think one of the challenges in JUC is that # of available speaking slots are limited because of the slots we give away to sponsors
+<a name="l-184"></a><span class="tm">18:53:53</span><span class="nk"> &lt;hare_brain&gt;</span> I was about to say, the challenge is that it's hard to fit all of this into one day.
+<a name="l-185"></a><span class="tm">18:53:56</span><span class="nk"> &lt;kohsuke&gt;</span> ... meaning we need to figure out how to run this even cheaper to free up more time for these slots
+<a name="l-186"></a><span class="tm">18:54:07</span><span class="nk"> &lt;autojack&gt;</span> yeah, my major hesitation about the hack session is the time required for it to be valuable.
+<a name="l-187"></a><span class="tm">18:54:35</span><span class="nk"> &lt;hare_brain&gt;</span> Third track.
+<a name="l-188"></a><span class="tm">18:54:44</span><span class="nk"> &lt;eric_n_dfw&gt;</span> or get more silent sponsorship $$$$ :o)
+<a name="l-189"></a><span class="tm">18:54:47</span><span class="nk"> &lt;autojack&gt;</span> hehe
+<a name="l-190"></a><span class="tm">18:54:56</span><span class="nk"> &lt;autojack&gt;</span> yeah I didn't realizing that sponsoring was giving me a platform to speak! hah
+<a name="l-191"></a><span class="tm">18:55:03</span><span class="nk"> &lt;autojack&gt;</span> I missed my chance.
+<a name="l-192"></a><span class="tm">18:55:04</span><span class="nk"> &lt;autojack&gt;</span> ;)
+<a name="l-193"></a><span class="tm">18:55:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">eric_n_dfw:</span> if you know anyone willing to pony up money for conferences please send them on our way
+<a name="l-194"></a><span class="tm">18:55:39</span><span class="nk"> &lt;kohsuke&gt;</span> I think Alyssa was saying this year we could have gotten one more room if we wanted to
+<a name="l-195"></a><span class="tm">18:56:13</span><span class="nk"> &lt;kohsuke&gt;</span> So if we have a plan like a "roll up your sleeve hack room", then it'll probably be doable
+<a name="l-196"></a><span class="tm">18:56:37</span><span class="nk"> &lt;kohsuke&gt;</span> panel session that cuts across two sessions are trickier because it kills one talking slot
+<a name="l-197"></a><span class="tm">18:57:12</span><span class="nk"> &lt;autojack&gt;</span> nod.
+<a name="l-198"></a><span class="tm">18:57:25</span><span class="nk"> &lt;hare_brain&gt;</span> Well I would only do that for one panel session at the end of the day. If there are other panel sessions during the day, they would have to compete with another track.
+<a name="l-199"></a><span class="tm">18:57:53</span><span class="nk"> &lt;hare_brain&gt;</span> But I do think you need to judge by potential audience for each session.
+<a name="l-200"></a><span class="tm">18:58:18</span><span class="nk"> &lt;kohsuke&gt;</span> Right
+<a name="l-201"></a><span class="tm">18:58:21</span><span class="nk"> &lt;hare_brain&gt;</span> That would be my feedback about the session scheduling. There were some slots where I was interested in both tracks and had to choose, and other slots where I was interested in neither.
+<a name="l-202"></a><span class="tm">18:58:44</span><span class="nk"> &lt;hare_brain&gt;</span> I think that also relates to the comments about the 4th floor being too small. It could have been that session should have been in the larger room.
+<a name="l-203"></a><span class="tm">18:58:46</span><span class="nk"> &lt;autojack&gt;</span> maybe the panel could still be in an hour, you would just need to sort of suggest to the spekaers a different format for the talk they submitted.
+<a name="l-204"></a><span class="tm">18:58:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I'm pretty sure alyssa would be more than happy to get help on talk scheduling</span>
+<a name="l-205"></a><span class="tm">18:59:00</span><span class="nk"> &lt;autojack&gt;</span> yeah
+<a name="l-206"></a><span class="tm">18:59:09</span><span class="nk"> &lt;hare_brain&gt;</span> I already talked to her about it at the end of the conference. :)
+<a name="l-207"></a><span class="tm">18:59:11</span><span class="nk"> &lt;autojack&gt;</span> some of these are perennial conference-organizing problems :)
+<a name="l-208"></a><span class="tm">18:59:22</span><span class="nk"> &lt;autojack&gt;</span> I claim no experience with this, and recognize how complex it must be.
+<a name="l-209"></a><span class="tm">18:59:44</span><span class="nk"> &lt;kpfleming&gt;</span> Talk scheduling is the #1, #2 and #3 hardest problem of organizing a conference :-)
+<a name="l-210"></a><span class="tm">18:59:49</span><span class="nk"> &lt;autojack&gt;</span> hehe
+<a name="l-211"></a><span class="tm">18:59:54</span><span class="nk"> &lt;eric_n_dfw&gt;</span> <span class="hi">kohsuke:</span> I wish I knew someone like that myself
+<a name="l-212"></a><span class="tm">18:59:55</span><span class="nk"> &lt;kohsuke&gt;</span> She still doesn't quite grok this concept that  people will help her just out of good will
+<a name="l-213"></a><span class="tm">19:00:17</span><span class="nk"> &lt;autojack&gt;</span> haha
+<a name="l-214"></a><span class="tm">19:00:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">next year, encourage alyssa to get community input on scheduling talks</span>
+<a name="l-215"></a><span class="tm">19:00:29</span><span class="nk"> &lt;eric_n_dfw&gt;</span> (My prior manager might have been willing to do it, but he's long gone)
+<a name="l-216"></a><span class="tm">19:01:09</span><span class="nk"> &lt;kohsuke&gt;</span> my understanding is that the cost of the venue is the dominant factor
+<a name="l-217"></a><span class="tm">19:01:27</span><span class="nk"> &lt;hare_brain&gt;</span> I'm sure
+<a name="l-218"></a><span class="tm">19:01:32</span><span class="nk"> &lt;kohsuke&gt;</span> so any input in that area would be very, very useful
+<a name="l-219"></a><span class="tm">19:02:10</span><span class="nk"> &lt;kohsuke&gt;</span> And also, the scalability summit has drawn far more interest than I thought
+<a name="l-220"></a><span class="tm">19:02:24</span><span class="nk"> &lt;kohsuke&gt;</span> So maybe that's how we start slowing trying out 2-day format
+<a name="l-221"></a><span class="tm">19:02:25</span><span class="nk"> &lt;autojack&gt;</span> jenkins scalability?
+<a name="l-222"></a><span class="tm">19:02:28</span><span class="nk"> &lt;hare_brain&gt;</span> Seriously?
+<a name="l-223"></a><span class="tm">19:02:40</span><span class="nk"> &lt;kohsuke&gt;</span> http://www.meetup.com/jenkinsmeetup/events/126595572/
+<a name="l-224"></a><span class="tm">19:02:57</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, we had to turn down people
+<a name="l-225"></a><span class="tm">19:03:42</span><span class="nk"> &lt;hare_brain&gt;</span> "You must have a Jenkins cluster of X size" to attend. ;)
+<a name="l-226"></a><span class="tm">19:03:51</span><span class="nk"> &lt;autojack&gt;</span> hehe
+<a name="l-227"></a><span class="tm">19:03:53</span><span class="nk"> &lt;rsandell&gt;</span> The scalability summit was a success, one of the reasons though was probably that it was a good sized group, at least for the format we chose.
+<a name="l-228"></a><span class="tm">19:03:53</span><span class="nk"> &lt;kohsuke&gt;</span> No, I mean we'd turn it into a general unconference
+<a name="l-229"></a><span class="tm">19:04:38</span><span class="nk"> &lt;kohsuke&gt;</span> And shake down somebody like Yahoo! who has enough rooms to host it
+<a name="l-230"></a><span class="tm">19:04:57</span><span class="nk"> &lt;kohsuke&gt;</span> Netflix said they'd be happy to host it, too
+<a name="l-231"></a><span class="tm">19:05:30</span><span class="nk"> &lt;autojack&gt;</span> BrightRoll is always happy to host community events, though an all-day thing is probably not in the cards.
+<a name="l-232"></a><span class="tm">19:05:53</span><span class="nk"> &lt;autojack&gt;</span> we don't have a huge amount of space, but we have one big all-hands meeting area with projectors and whatnot, nicely set up.
+<a name="l-233"></a><span class="tm">19:06:02</span><span class="nk"> &lt;kpfleming&gt;</span> If you guys are ever interested in hosting events on the east coast, we at Bloomberg would be happy to host you at our facility in Manhattan. We have fabulous meeting spaces.
+<a name="l-234"></a><span class="tm">19:06:05</span><span class="nk"> &lt;autojack&gt;</span> I was thinking of offering it for a hack session.
+<a name="l-235"></a><span class="tm">19:06:20</span><span class="nk"> &lt;kohsuke&gt;</span> I think picking up a 2-hour evening meet-up every so often would be great
+<a name="l-236"></a><span class="tm">19:06:29</span><span class="nk"> &lt;kohsuke&gt;</span> We got that going in San Francisco for a while then it stopped
+<a name="l-237"></a><span class="tm">19:06:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kpfleming:</span> thanks!
+<a name="l-238"></a><span class="tm">19:06:57</span><span class="nk"> &lt;autojack&gt;</span> we're in SF!
+<a name="l-239"></a><span class="tm">19:07:10</span><span class="nk"> &lt;hare_brain&gt;</span> I know that Yahoo! has many evening meetups in their cafeteria. I can try to ping colleagues there to find out how to get in on that.
+<a name="l-240"></a><span class="tm">19:07:21</span><span class="nk"> &lt;autojack&gt;</span> ask me anytime.
+<a name="l-241"></a><span class="tm">19:07:25</span><span class="nk"> &lt;hare_brain&gt;</span> (I have know idea how that is set up.)
+<a name="l-242"></a><span class="tm">19:07:27</span><span class="nk"> &lt;hare_brain&gt;</span> no
+<a name="l-243"></a><span class="tm">19:07:42</span><span class="nk"> &lt;kohsuke&gt;</span> I should check with Alyssa how many people are from the city vs south bay
+<a name="l-244"></a><span class="tm">19:07:42</span><span class="nk"> &lt;autojack&gt;</span> sounds like we are off the JUC topic.
+<a name="l-245"></a><span class="tm">19:07:52</span><span class="nk"> &lt;kpfleming&gt;</span> Our SF office is nice as well (on Pier 3), but the meeting space is not setup very well.
+<a name="l-246"></a><span class="tm">19:08:17</span><span class="nk"> &lt;hare_brain&gt;</span> I think we were riffing off your third idea autojack. :)
+<a name="l-247"></a><span class="tm">19:08:26</span><span class="nk"> &lt;autojack&gt;</span> hehe
+<a name="l-248"></a><span class="tm">19:08:43</span><span class="nk"> &lt;autojack&gt;</span> yeah true
+<a name="l-249"></a><span class="tm">19:09:22</span><span class="nk"> &lt;kohsuke&gt;</span> I'd like to do a meet-up once in the south bay to measure the level of interest
+<a name="l-250"></a><span class="tm">19:09:27</span><span class="nk"> &lt;kohsuke&gt;</span> ... vs doing it in San Francisco
+<a name="l-251"></a><span class="tm">19:09:45</span><span class="nk"> &lt;autojack&gt;</span> yeah. I would think there would be a higher concentration of people down there.
+<a name="l-252"></a><span class="tm">19:10:05</span><span class="nk"> &lt;kohsuke&gt;</span> All right, shall we wrap it up?
+<a name="l-253"></a><span class="tm">19:10:16</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else anyone?
+<a name="l-254"></a><span class="tm">19:10:24</span><span class="nk"> &lt;hare_brain&gt;</span> Back to meeting times, if there's nothing else?
+<a name="l-255"></a><span class="tm">19:10:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">meeting time</span>
+<a name="l-256"></a><span class="tm">19:10:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting will be in  Nov 13th</span>
+<a name="l-257"></a><span class="tm">19:10:56</span><span class="nk"> &lt;kohsuke&gt;</span> US time zone will be back in sync with the rest of the world by then
+<a name="l-258"></a><span class="tm">19:11:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

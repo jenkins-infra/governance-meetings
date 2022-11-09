@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:05:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:05:28</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:05:35</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="hi">abayer:</span> Jealous
+<a name="l-4"></a><span class="tm">18:05:51</span><span class="nk"> &lt;jieryn&gt;</span> no joy bap2000 .. new descriptor http://pastebin.com/X9Zm00y5 .... setShowJobConfig() is never invoked, ... neither is configure()
+<a name="l-5"></a><span class="tm">18:05:54</span><span class="nk"> &lt;hare_brain&gt;</span> (But we probably won't notice the difference from usual. ;)
+<a name="l-6"></a><span class="tm">18:06:08</span><span class="nk"> &lt;kohsuke&gt;</span> I once again failed to advertise this in advance.
+<a name="l-7"></a><span class="tm">18:06:24</span><span class="nk"> &lt;abayer&gt;</span> =P
+<a name="l-8"></a><span class="tm">18:06:25</span><span class="nk"> &lt;kohsuke&gt;</span> I wonder if Google calendar or something else can send in a reminder for me
+<a name="l-9"></a><span class="tm">18:06:27</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> trademark? =)
+<a name="l-10"></a><span class="tm">18:06:36</span><span class="nk"> &lt;kohsuke&gt;</span> Yes sir, no sir.
+<a name="l-11"></a><span class="tm">18:06:45</span><span class="nk"> &lt;abayer&gt;</span> heheheh
+<a name="l-12"></a><span class="tm">18:06:58</span><span class="nk"> &lt;kohsuke&gt;</span> I did mention it to Sacha, but I promised to write him an e-mail and CC you and I haven't done that
+<a name="l-13"></a><span class="tm">18:07:01</span><span class="nk"> &lt;kohsuke&gt;</span> I really do it now.
+<a name="l-14"></a><span class="tm">18:07:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">Kohsuke to really really get the trademark registration going</span>
+<a name="l-15"></a><span class="tm">18:07:29</span><span class="nk"> &lt;fredg02&gt;</span> the meetings should be entered in the official Event Calendar!
+<a name="l-16"></a><span class="tm">18:07:37</span><span class="nk"> &lt;abayer&gt;</span> Did you get sent a nexus pro key for dealing with Maven Central?
+<a name="l-17"></a><span class="tm">18:07:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I believe I have the Nexus pro key in my inbox</span>
+<a name="l-18"></a><span class="tm">18:08:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">still looking for a volunteer to take the work to the completion</span>
+<a name="l-19"></a><span class="tm">18:08:16</span><span class="nk"> &lt;kohsuke&gt;</span> Are you volunteering?
+<a name="l-20"></a><span class="tm">18:08:20</span><span class="nk"> &lt;abayer&gt;</span> olamy and aheritier expressed interest as well. =)
+<a name="l-21"></a><span class="tm">18:08:32</span><span class="nk"> &lt;kohsuke&gt;</span> Great
+<a name="l-22"></a><span class="tm">18:09:14</span><span class="nk"> &lt;kohsuke&gt;</span> I'll CC the key to them and see if either of them could take it up
+<a name="l-23"></a><span class="tm">18:09:34</span><span class="nk"> &lt;abayer&gt;</span> Fantastic! Getting core into Maven Central will be a very good thing.
+<a name="l-24"></a><span class="tm">18:09:57</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, it'd be good to get that back.
+<a name="l-25"></a><span class="tm">18:10:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">Kohsuke to write to olamy and aheritier to see if either one can volunteer for restoring Maven central sync</span>
+<a name="l-26"></a><span class="tm">18:10:56</span><span class="nk"> &lt;kohsuke&gt;</span> Do we want to go through the topics in the order?
+<a name="l-27"></a><span class="tm">18:11:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> want to talk about the commit message formatting?
+<a name="l-28"></a><span class="tm">18:11:36</span><span class="nk"> &lt;abayer&gt;</span> Mind if I defer that  'til next time? I'm really not all here right now. =)
+<a name="l-29"></a><span class="tm">18:11:44</span><span class="nk"> &lt;kohsuke&gt;</span> Works for me.
+<a name="l-30"></a><span class="tm">18:12:00</span><span class="nk"> &lt;kohsuke&gt;</span> And kutzi isn't here
+<a name="l-31"></a><span class="tm">18:12:45</span><span class="nk"> &lt;hare_brain&gt;</span> Sounds like it's going to be a short meeting... :)
+<a name="l-32"></a><span class="tm">18:12:54</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-33"></a><span class="tm">18:12:58</span><span class="nk"> &lt;kohsuke&gt;</span> My apologies for failing to advertise this in time
+<a name="l-34"></a><span class="tm">18:13:14</span><span class="nk"> &lt;aheritier&gt;</span> I'm here
+<a name="l-35"></a><span class="tm">18:13:26</span><span class="nk"> &lt;vjuranek&gt;</span> what about LTS? Any comment to my proposal?
+<a name="l-36"></a><span class="tm">18:13:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> I've been meaning to get to it
+<a name="l-37"></a><span class="tm">18:14:15</span><span class="nk"> &lt;kohsuke&gt;</span> But I was swamped with preparations for a conference
+<a name="l-38"></a><span class="tm">18:14:45</span><span class="nk"> &lt;aheritier&gt;</span> ok, I'll help for the rsync to central
+<a name="l-39"></a><span class="tm">18:14:50</span><span class="nk"> &lt;abayer&gt;</span> hooray! =)
+<a name="l-40"></a><span class="tm">18:15:06</span><span class="nk"> &lt;jieryn&gt;</span> thank you, aheritier
+<a name="l-41"></a><span class="tm">18:17:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the LTS proposal from vjuranek is at http://jenkins.361315.n4.nabble.com/RFC-LTS-outlines-and-rules-td3605302.html</span>
+<a name="l-42"></a><span class="tm">18:18:19</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we spend some time talking about it?
+<a name="l-43"></a><span class="tm">18:18:40</span><span class="nk"> &lt;aheritier_&gt;</span> I see that some points are related to the ability to manage versions in Jira (ping rtyler)
+<a name="l-44"></a><span class="tm">18:19:34</span><span class="nk"> &lt;aheritier_&gt;</span> Otherwise I think these are good practices but not all of them we'll be easy to automate/control
+<a name="l-45"></a><span class="tm">18:19:34</span><span class="nk"> &lt;kohsuke&gt;</span> Historically it's been hard to commit to the target release for a given issue.
+<a name="l-46"></a><span class="tm">18:20:04</span><span class="nk"> &lt;aheritier&gt;</span> I agree
+<a name="l-47"></a><span class="tm">18:20:23</span><span class="nk"> &lt;kohsuke&gt;</span> Instead it was more of a train model.
+<a name="l-48"></a><span class="tm">18:20:32</span><span class="nk"> &lt;vjuranek&gt;</span> agree that it could be difficult... the proposal it rather "nice to have":-)
+<a name="l-49"></a><span class="tm">18:20:45</span><span class="nk"> &lt;kohsuke&gt;</span> And in 1.409.1, the fixes to it mainly came from the fixes we already had in the trunk.
+<a name="l-50"></a><span class="tm">18:20:46</span><span class="nk"> &lt;aheritier&gt;</span> it's easy to say on which version it will be solved when it is committed, but to say it before ...
+<a name="l-51"></a><span class="tm">18:21:16</span><span class="nk"> &lt;aheritier&gt;</span> For LTS it will always a set of fixes already in master versions
+<a name="l-52"></a><span class="tm">18:23:26</span><span class="nk"> &lt;kohsuke&gt;</span> But aside from some of "nice to have" being hard to do, it all makes sense.
+<a name="l-53"></a><span class="tm">18:23:32</span><span class="nk"> &lt;vjuranek&gt;</span> at least it would be nice to have some rules which fixes should be backpoted... not to backport randomly some fixes
+<a name="l-54"></a><span class="tm">18:23:58</span><span class="nk"> &lt;bap2000&gt;</span> As I understand, the LTS should only get major/critical fixes, so does it need a 1 month minor release schedule?
+<a name="l-55"></a><span class="tm">18:24:39</span><span class="nk"> &lt;kohsuke&gt;</span> Note that I believe JIRA marks all the issues as major by default.
+<a name="l-56"></a><span class="tm">18:25:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">bap2000:</span> to me, the idea is that we need some soak time before releasing it.
+<a name="l-57"></a><span class="tm">18:25:31</span><span class="nk"> &lt;kohsuke&gt;</span> So I was originally thinking about the train model.
+<a name="l-58"></a><span class="tm">18:25:49</span><span class="nk"> &lt;aheritier&gt;</span> yes by default they are major and I don't think that many people change the level
+<a name="l-59"></a><span class="tm">18:26:12</span><span class="nk"> &lt;hare_brain&gt;</span> I always thought that default was weird. Can it be changed?
+<a name="l-60"></a><span class="tm">18:26:13</span><span class="nk"> &lt;kohsuke&gt;</span> But I think the current thinking seems to be more like "release N days after fixes are backported"
+<a name="l-61"></a><span class="tm">18:26:16</span><span class="nk"> &lt;vjuranek&gt;</span> yes, in JIRA default is "major"...and therefore there are a lot of major issues
+<a name="l-62"></a><span class="tm">18:27:12</span><span class="nk"> &lt;kohsuke&gt;</span> So LTS isn't a train model, but more like "after N days of inactivity and no regression report"
+<a name="l-63"></a><span class="tm">18:27:14</span><span class="nk"> &lt;bap2000&gt;</span> I think that core developers can assess and update the severity of issues
+<a name="l-64"></a><span class="tm">18:27:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">shall we use blocker for that? If some of us think the bug is important enough, push it up to the blocker status?</span>
+<a name="l-65"></a><span class="tm">18:28:15</span><span class="nk"> &lt;kohsuke&gt;</span> And similarly, downgrade from blocker if needed.
+<a name="l-66"></a><span class="tm">18:28:27</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-67"></a><span class="tm">18:28:30</span><span class="nk"> &lt;aheritier&gt;</span> +1
+<a name="l-68"></a><span class="tm">18:28:34</span><span class="nk"> &lt;kohsuke&gt;</span> IIUC, the point of vjuranek is to use some automated tracking mechanism for changes we want to back port.
+<a name="l-69"></a><span class="tm">18:28:52</span><span class="nk"> &lt;kohsuke&gt;</span> I think it makes sense, and I think this is simple enough to get started.
+<a name="l-70"></a><span class="tm">18:28:59</span><span class="nk"> &lt;jieryn&gt;</span> if we had labels in jira, which i think we wanted for other reasons, we could just tag them as LTS
+<a name="l-71"></a><span class="tm">18:29:00</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> well, I put some times as you discuss it on the last meeting, but in fact I like idea to put it first into release and "battle-tested"  it
+<a name="l-72"></a><span class="tm">18:29:39</span><span class="nk"> &lt;kohsuke&gt;</span> Right, I think we should still stick to the backporting model.
+<a name="l-73"></a><span class="tm">18:29:55</span><span class="nk"> &lt;hare_brain&gt;</span> Agreed.
+<a name="l-74"></a><span class="tm">18:30:13</span><span class="nk"> &lt;kohsuke&gt;</span> I understand your proposal to use JIRA severity to collectively remember which ones we wanted to backport.
+<a name="l-75"></a><span class="tm">18:30:34</span><span class="nk"> &lt;kohsuke&gt;</span> precisely because there's going to be a delay till the fix gets battle-tested.
+<a name="l-76"></a><span class="tm">18:31:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jieryn:</span> label could work, too, but I think with severity we can expect angry users to help us triage.
+<a name="l-77"></a><span class="tm">18:31:26</span><span class="nk"> &lt;kohsuke&gt;</span> labels are harder and only usable for those of us who know the convention.
+<a name="l-78"></a><span class="tm">18:31:41</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> yes, that's the simplest scenario, but can be more comlicated - e.g. check JIRA for blockers and major issues &amp;&amp; git log for fixes which are already in the release
+<a name="l-79"></a><span class="tm">18:31:57</span><span class="nk"> &lt;jieryn&gt;</span> ok, that's a good point
+<a name="l-80"></a><span class="tm">18:31:59</span><span class="nk"> &lt;jieryn&gt;</span> +1 sev
+<a name="l-81"></a><span class="tm">18:32:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> Yes, we can and should eventually automate those.
+<a name="l-82"></a><span class="tm">18:32:15</span><span class="nk"> &lt;fredg02&gt;</span> will there be a separate changelog for the LTS releases?
+<a name="l-83"></a><span class="tm">18:32:33</span><span class="nk"> &lt;kohsuke&gt;</span> ... like list up fixes to  blocker tickets in the master branch that's not in the stable branch.
+<a name="l-84"></a><span class="tm">18:32:42</span><span class="nk"> &lt;kohsuke&gt;</span> Those are back-porting candidates. Completely scriptable.
+<a name="l-85"></a><span class="tm">18:33:02</span><span class="nk"> &lt;kohsuke&gt;</span> I think I like that.
+<a name="l-86"></a><span class="tm">18:33:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">I think vjuranek should capture his write up with this and put it to Wiki</span>
+<a name="l-87"></a><span class="tm">18:33:55</span><span class="nk"> &lt;hare_brain&gt;</span> closed blocker tickets in the master and not in stable.
+<a name="l-88"></a><span class="tm">18:34:06</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-89"></a><span class="tm">18:34:09</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> ok
+<a name="l-90"></a><span class="tm">18:34:35</span><span class="nk"> &lt;kohsuke&gt;</span> I was supposed to do a separate scripted daemon to update the ticket with the version that the fix is released in.
+<a name="l-91"></a><span class="tm">18:34:42</span><span class="nk"> &lt;hare_brain&gt;</span> I think there've been a couple of bug fixes that took a couple of commits, which happened to spread across weekly releases.
+<a name="l-92"></a><span class="tm">18:34:57</span><span class="nk"> &lt;hare_brain&gt;</span> So we just need to make sure a fix is in its final form before backporting.
+<a name="l-93"></a><span class="tm">18:35:04</span><span class="nk"> &lt;kohsuke&gt;</span> I think that can work both for master and stable, so people can see what releases the fix is in.
+<a name="l-94"></a><span class="tm">18:35:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> good point. I think so far we aren't thinking about automating backporting, so it should be easy to do.
+<a name="l-95"></a><span class="tm">18:36:04</span><span class="nk"> &lt;kohsuke&gt;</span> (although come to think of it, automated backporting where we can would be kind of nice...)
+<a name="l-96"></a><span class="tm">18:36:22</span><span class="nk"> &lt;kohsuke&gt;</span> but one step at a time.
+<a name="l-97"></a><span class="tm">18:36:30</span><span class="nk"> &lt;hare_brain&gt;</span> Hmm. I think I need to find some time to draw a diagram to illustrate some cases for myself. I think better in pictures. I'll share those if I can find time to create them.
+<a name="l-98"></a><span class="tm">18:36:40</span><span class="nk"> &lt;kohsuke&gt;</span> thanks
+<a name="l-99"></a><span class="tm">18:37:16</span><span class="nk"> &lt;kohsuke&gt;</span> OK, anything else on this topic for now?
+<a name="l-100"></a><span class="tm">18:37:42</span><span class="nk"> &lt;kohsuke&gt;</span> I guess not.
+<a name="l-101"></a><span class="tm">18:37:55</span><span class="nk"> &lt;kohsuke&gt;</span> And before we adjourn, ...
+<a name="l-102"></a><span class="tm">18:38:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I'm chasing two possibilities for companies to host office hours</span>
+<a name="l-103"></a><span class="tm">18:38:12</span><span class="nk"> &lt;kohsuke&gt;</span> Hopefully one of them will work out
+<a name="l-104"></a><span class="tm">18:38:26</span><span class="nk"> &lt;kohsuke&gt;</span> Will let this forum know if it works out.
+<a name="l-105"></a><span class="tm">18:38:34</span><span class="nk"> &lt;aheritier&gt;</span> cool
+<a name="l-106"></a><span class="tm">18:38:43</span><span class="nk"> &lt;kohsuke&gt;</span> And next meeting time? two weeks from now?
+<a name="l-107"></a><span class="tm">18:39:11</span><span class="nk"> &lt;hare_brain&gt;</span> That's July 6?
+<a name="l-108"></a><span class="tm">18:39:13</span><span class="nk"> &lt;aheritier&gt;</span> ok for me
+<a name="l-109"></a><span class="tm">18:39:17</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-110"></a><span class="tm">18:39:25</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-111"></a><span class="tm">18:39:35</span><span class="nk"> &lt;abayer&gt;</span> I'll be missing it due to being at a Jenkins meetup in London. But that's ok. =)
+<a name="l-112"></a><span class="tm">18:39:44</span><span class="nk"> &lt;vjuranek&gt;</span> not sure if I'll be able to attend, but we can discuss LTS on dev list
+<a name="l-113"></a><span class="tm">18:40:14</span><span class="nk"> &lt;kohsuke&gt;</span> OK. So 2 weeks from now same time.
+<a name="l-114"></a><span class="tm">18:40:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the next meeting is 2 weeks from now, same time.</span>
+<a name="l-115"></a><span class="tm">18:40:46</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else?
+<a name="l-116"></a><span class="tm">18:41:06</span><span class="nk"> &lt;kohsuke&gt;</span> If not, as always, thank you very much for coming
+<a name="l-117"></a><span class="tm">18:41:12</span><span class="nk"> &lt;aheritier&gt;</span> thx
+<a name="l-118"></a><span class="tm">18:41:16</span><span class="nk"> &lt;jieryn&gt;</span> nice
+<a name="l-119"></a><span class="tm">18:41:19</span><span class="nk"> &lt;kohsuke&gt;</span> And oh, we need to get CLAs started...
+<a name="l-120"></a><span class="tm">18:41:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

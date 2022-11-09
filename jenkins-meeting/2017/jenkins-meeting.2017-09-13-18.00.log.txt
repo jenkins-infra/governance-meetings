@@ -1,0 +1,242 @@
+18:00:40 <rtyler> #startmeeting
+18:00:40 <robobutler> Let the Jenkins meeting commence!
+18:00:41 <danielbeck> so glad this isn't a Google Hangout
+18:00:55 <rtyler> #topic Recap last meeting actions
+18:01:02 <rtyler> #info http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-08-16-17.59.html
+18:01:16 <rtyler> I believe kohsuke published 2.60.3 :)
+18:01:41 <rtyler> if I remember correctly, ogondza started testing on 2.73.1 for the next LTS baseline right?
+18:01:47 <batmat> yes
+18:01:50 <ogondza> the line was initiated
+18:01:52 <ogondza> right
+18:01:54 <batmat> https://github.com/jenkinsci/jenkins/tree/jenkins-2.60.3 is 28 days old :)
+18:02:06 <rtyler> hooray
+18:02:22 <rtyler> we did discuss some LTS/release stuff at the Jenkins World Contributor Summit
+18:02:52 <rtyler> not sure there are other items we need to discuss from the last meeting
+18:03:06 <danielbeck> The Stapler thing didn't happen, or at least no backport
+18:03:10 <ogondza> Do we have jglick?
+18:03:11 <danielbeck> jglick may know
+18:03:20 <ogondza> danielbeck: no
+18:03:36 <ogondza> thee is the remoting discussion ongoing on devlist
+18:03:41 <jglick> present
+18:03:53 <danielbeck> jglick what happened to the Stapler backporting plans?
+18:04:01 <jglick> What Stapler backporting plans?
+18:04:02 <ogondza> tl;dr: the, remoting version from 2.73 weekly has rather severe regression
+18:04:09 <danielbeck> ogondza next topic ;-)
+18:04:28 <danielbeck> jglick those in http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-08-16-17.59.html
+18:04:32 <danielbeck> but seems like this hasn't happened
+18:04:36 <rtyler> continuing down the agenda (https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-September13thmeeting)
+18:04:42 <rtyler> heh
+18:04:55 <rtyler> jglick: if you and oleg-nenashev haven't had much time to discuss, then no worries, we'll keep on going
+18:05:22 <rtyler> #topic LTS status check
+18:05:25 <jglick> There was an issue that stephenc supposedly fixed.
+18:05:30 <jglick> But I could find no evidence of this.
+18:05:39 <jglick> And that was the only reason to even consider a Stapler backport.
+18:05:48 <jglick> So I said we should not treat it as `lts-candidate`.
+18:05:53 <danielbeck> ah okay
+18:05:53 <jglick> Cannot recall issue number offhand.
+18:05:54 <danielbeck> thanks
+18:06:29 <danielbeck> re LTS status, 2.73.1 has a problem with remoting
+18:06:30 <jglick> JENKINS-45903 I think
+18:06:41 <jglick> yes that is the one
+18:07:03 <jglick> was rejected for 2.73.1 and I think not a candidate for .2 either
+18:07:17 <jglick> unless its mechanism can be cleared up
+18:07:22 <rtyler> #info the 2.73.1 backporting thread is quite long https://groups.google.com/d/msgid/jenkinsci-dev/44cba1b8-e653-3ab3-3383-eb63d8e004f1%40gmail.com
+18:07:23 <ogondza> jglick: definitely until we understand the fix
+18:07:36 <danielbeck> jglick thanks
+18:07:51 <ogondza> keeping it a candidate to revisit just in case it clarifies
+18:08:06 <danielbeck> #info proposed LTS delay to allow for fix in https://groups.google.com/d/msg/jenkinsci-dev/uv2SG7k2log/K9bZiySQAQAJ
+18:08:37 <ogondza> I will have to discuss this with oleg, presumable after the meeting
+18:08:46 <danielbeck> basically, Jenkins masters with read only home dir (not Jenkins home, but user home) can't have remoting connections
+18:08:58 <rtyler> o_O
+18:09:03 <rtyler> yjsy
+18:09:05 <rtyler> interesting
+18:09:30 <danielbeck> it's not too common outside dockering, but we probably don't want an LTS with this issue
+18:09:32 <jglick> I mean, the workaround is straightforward—fix your `$HOME`—but it could screw up a lot of people.
+18:09:50 <jglick> Seems worth delaying a couple days to get a hotfix for it.
+18:09:54 <ogondza> The question is, are we ok postponing release until Friday as Oleg suggests?
+18:10:08 <ogondza> kohsuke: ^?
+18:10:09 <kohsuke> is this issue present in the baseline that we chose?
+18:10:17 <danielbeck> kohsuke yes, has been in there for weeks
+18:10:18 <ogondza> kohsuke: yes
+18:10:42 <danielbeck> kohsuke doesn't happen with installers and packages though, just the docker, and just when you have agents, so probably not a very common use case
+18:11:03 <kohsuke> Without understanding the full context, it just feels like this is against the train model
+18:11:19 <rtyler> danielbeck: that sounds like a very common use-case
+18:11:22 <ogondza> not that there is an alternative - we either release with the problem or with hotfix
+18:11:30 <rtyler> that's literally how ci.jenkins.io and trusted-ci are both deployed
+18:11:57 <ogondza> reverting remoting by 1 minor version to distribute older than what 2.73 has, is brittle
+18:12:16 <danielbeck> rtyler to clarify, I tried explaining why this hasn't blown up until now. Between weekly only, quasi Docker only, and requiring agents, it removes a lot of instances
+18:12:17 <kohsuke> if the issue has been present that long and it didn't show up in that community feedback, our default mode of operation is to ship it, right?
+18:12:21 <jglick> IIUC the official Docker image can easily be corrected to make ~ writable so the problem would affect mainly people who roll their own images?
+18:12:22 <rtyler> it's problematic to me if we release an LTS which I cannot deploy on our own Jenkins infra
+18:12:31 <kohsuke> Then the fix would work through the usual process of starting in the weekly and make its way to the next LTS
+18:13:15 <jglick> Certainly the workaround would need to be mentioned in 2.73.1 release notes.
+18:13:19 <rtyler> jglick: that's a good question we can ask carlosg about
+18:13:20 <ogondza> It does not sound all that severe to me, but the voices are pretty strong
+18:13:26 <danielbeck> jglick https://github.com/daniel-beck/jenkins.io/blob/4d8ce210e2ea3492582ff0880159c3dc8dc3dbb8/content/doc/upgrade-guide/2.73.adoc#possible-issue-with-agents-on-systems-with-undefined-or-non-writable-home-directory
+18:14:29 <rtyler> kohsuke: with regards to community feedback, the linnked ticket from danielbeck was filed against 2.68 as a regression
+18:14:32 <rtyler> fwiw
+18:14:34 <jglick> It does not seem that terrible to me as the failure is an exception with a pretty clear message, even if it is not clear why you are only getting this error now.
+18:14:51 <danielbeck> the _least_ we need to do is fix our own docker image
+18:15:05 * rtyler nods
+18:15:21 <rtyler> do we need to make a decision here on when 2.73.1 will be released?
+18:15:41 <danielbeck> if we can make our docker images work, it will "only" affect everyone on typical Tomcat setups etc. AFAICT
+18:16:23 <rtyler> but to date we do not have a fix in the weekly?
+18:16:32 <danielbeck> rtyler no
+18:16:43 <danielbeck> the current weekly docker image cannot connect agents
+18:17:13 <danielbeck> at least according to vlatombe in the issue
+18:17:46 <jglick> https://issues.jenkins-ci.org/browse/JENKINS-45755?focusedCommentId=313602&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-313602
+18:17:52 <rtyler> if we fix our docker image, and get a fix into a weekly before 2.73.1 such that we can cherry-pick it into 2.73.2, then I'm fine with that approach
+18:17:53 <kohsuke> I think we should either revert the problematic change if we can, or let the train leave on time
+18:18:09 <ogondza> so, are we ok to release with the bug and fix our docker container?
+18:18:31 <rtyler> kohsuke: help me understand why the train "schedule" is so important here
+18:18:34 <jglick> rtyler: “before 2.73.1”? I guess you mean “soon”
+18:18:39 <rtyler> jglick: yes :)
+18:19:08 <kohsuke> https://www.engadget.com/2016/01/26/japan-trains/
+18:19:38 <rtyler> the docker image is a really important packaging format and is increasingly used, I strongly object to releasing things which we know would break docker users
+18:19:53 <rtyler> kohsuke: heh, that only somewhat answers the question :P
+18:20:54 <kohsuke> The point of the train model is to provide predictability of the schedule for other downstream consumers
+18:21:00 <jglick> Let me see if I can fix the image now…
+18:21:09 <ogondza> jglick: Am I right to conclude the docker should be updated even when we fix remoting?
+18:21:16 <kohsuke> I represent one such org in one of my hats
+18:21:31 <ogondza> even though it would not be that urgent then...
+18:21:34 <jglick> ogondza: that is my opinion
+18:21:47 <rtyler> kohsuke: wearing my "I run this project's CI infrastructure on Docker containers" predictably breaking ci.jenkins.io is not an acceptable resolution t othis discussion :P
+18:22:15 <kohsuke> The bug in question slipped through all the gates we put up
+18:22:26 <rtyler> kohsuke: our production infrastructure does not operate on weeklies
+18:22:30 <ogondza> well, squeezing a hotfix never released is what scares me...
+18:22:32 <rtyler> (nor will it)
+18:22:55 <rtyler> again, if we can fix the docker image to where this won't affect docker usage of 2.73.1, that's sufficient to me for right now
+18:23:05 <rtyler> then getting the fix into weeklies and then percolating into 2.73.2
+18:23:11 <jglick> I think it is possible. Looking into it.
+18:23:16 <kohsuke> We do not have fix ready, and with just 1 vote & 7 watchers, I don't think this is P1 show stopper
+18:23:23 <danielbeck> AFAIUI it shouldbe feasible to fix the docker image, add some docs, perhaps a nice yellow warning on the changelog "known issue" and that's good enougb for .1?
+18:23:34 <rtyler> danielbeck: yes, that's fine with me
+18:24:17 <oleg-nenashev> Just landed
+18:24:21 <danielbeck> and with so many people in UTC-7 or so around that image should be adapted today
+18:24:40 <danielbeck> so a release tomorrow should be feasible, with the adapted docker
+18:24:48 * rtyler nods
+18:25:11 <ogondza> sounds like a plan
+18:25:15 <kohsuke> +1
+18:25:32 <danielbeck> any further opinions / questions, or can we record this?
+18:25:36 <jglick> +1
+18:25:43 <rtyler> danielbeck: I think we're good
+18:25:56 <oleg-nenashev> +0, should read the thread, fine with any decision
+18:26:37 <rtyler> #agreed danielbeck's plan for fixing the docker image, releasing on time, and gratuitous use of yellow boxes
+18:26:49 <rtyler> #topic CloudBees request for mark usage for events "Jenkins Days by CloudBees"
+18:26:52 <rtyler> alyssat_: hope you're awake :)
+18:27:01 <alyssat_> yes
+18:27:04 <alyssat_> I'd like to request mark usage "Jenkins Days by CloudBees" on behalf of CloudBees.
+18:27:14 <alyssat_> A bit of background - CloudBees has been using event name "DevOps Connect & Jenkins Days" (the approved mark usage) for their roadshow this year. Recently DevOps.com and CloudBees parted ways in this project thus event name needs to change. The format for the Jenkins track will remain the same, just without the DevOps track. Therefore, I am asking for mark usage "Jenkins Days by CloudBees"
+18:27:42 <rtyler> #info https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage
+18:28:32 <rtyler> from my perspective, assuming CloudBees properly uses the mark and ensures the content is Jenkins-relevant for these events, it's fine
+18:28:47 <autojack> +1
+18:28:50 <olblak> +1
+18:28:57 <alyssat_> yes. i'll make sure it's properly attributed, etc
+18:29:37 <rtyler> any concerns or objections?
+18:29:45 * batmat abstains
+18:29:52 * kohsuke cheers
+18:29:58 <rtyler> alyssat_: do you have any link to agendas or upcoming scheduled events which can be added to the meeting minutes?
+18:30:31 <alyssat_> yes. hang on while i grab it
+18:30:49 <alyssat_> http://www.cvent.com/events/cloudbees-continuous-delivery-day/event-summary-a58f1d17f9bc435bac5ea1ea84b6eb2e.aspx?i=3d71d11c-b143-4a81-b724-92c87d807a78&r=1
+18:31:06 <rtyler> word on the street is that abayer is going to be in europe later this year, so I think one of these events would be a good way to convince him to add more Declarative Pipeline features that you might want ;-P
+18:31:07 <alyssat_> event name will change after I let them know of approval mark usage
+18:31:24 <rtyler> alright, it seems like there's no concerns here, I'm going to record an agreement on this
+18:31:28 <alyssat_> cool..
+18:31:33 <rtyler> alyssat_: I'll update the wiki page after the meeting
+18:31:39 <alyssat_> thank you
+18:31:47 <rtyler> #agreed Trademark sublicense granted to CloudBees for "Jenkins Days by CloudBees"
+18:32:07 <rtyler> #topic TechMatrix request for mark usage for event "Jenkins Day Japan"
+18:32:10 <rtyler> kohsuke: you're up buddy
+18:32:19 <kohsuke> #info https://groups.google.com/forum/#!msg/jenkinsci-dev/WViZHkAtuvg/Ijww8BxmAAAJ
+18:32:51 <kohsuke> This one is basically a replay of the past event that happened in Germany
+18:33:11 <danielbeck> (It's 3:30 AM in Tokyo, so that's understandable)
+18:33:20 <rtyler> heh
+18:33:31 * batmat was checking exactly that  :)
+18:33:32 <kohsuke> The organizers are a part of the Japanese Jenkins User Group who have organized JUCs in the past, and they are talking to other JJUG leaders about this, too
+18:33:54 <kohsuke> I'm involved in the event myself, and I know them all by face
+18:33:54 * batmat vents that it's Jenkins Area Meetup, JAM
+18:34:04 <kohsuke> Right, but they predate JAM
+18:34:06 * batmat to not mix with Java User Groups
+18:34:07 <rtyler> #info the event in Germany's agenda: https://cdn.evbuc.com/eventlogos/161496473/printclbautomotiveeventagenda20160421.jpg
+18:34:29 <kohsuke> and they do now participate in JAM, for that matter
+18:34:45 <kohsuke> Requested mark is "Jenkins Day Japan"
+18:34:52 <kohsuke> And all the usual attributions, etc. applies
+18:34:58 <batmat> +1 seems fine
+18:35:01 <danielbeck> +1
+18:35:03 <olblak> +1
+18:35:07 <alyssat_> +1
+18:35:17 <rtyler> I'm fine with it so long as it's Jenkins-related ^_^
+18:35:24 <rtyler> which I'm sure it will be if kohsuke's there
+18:35:27 <autojack> +1
+18:35:34 <rtyler> he's like a Japanese hacker superhero from what I remember at JUC Tokyo :P
+18:35:50 <kohsuke> Yes, this will obviously be Jenkins focused
+18:36:13 <rtyler> kohsuke: are the organizers active on the dev list at all?
+18:36:27 <kohsuke> No, not really
+18:36:56 <rtyler> kohsuke: not related to the mark, but it would be nice if they, or you, posted some more details on the event organization to the users list when they have it
+18:37:02 <rtyler> but +1
+18:37:09 <kohsuke> In general I've tried to encourage people in that group to participate more actively in the events list, but I haven't been very successful
+18:37:20 <rtyler> and it sounds like everybody's fine with this, so I'll record an approval here so we can keep moving
+18:37:26 <kohsuke> yeah
+18:37:40 <rtyler> #agreed Sublicense granted to TechMatrix for "Jenkins Day Japan" following all the usual mark attribution and usage guidelines
+18:37:58 <rtyler> sounds cool, I wonder if my boss will let me travel to japan for that event..
+18:38:03 <rtyler> in business class even!
+18:38:14 <rtyler> #topic Introduction to Forest Jing - JAM Shanghai & Beijing organizer
+18:38:18 <kohsuke> I have some space available in my suit case
+18:38:22 <rtyler> alyssat_: I believe you added this item? :)
+18:38:25 <alyssat_> LOL!
+18:38:46 <alyssat_> yes. the next item i've added to the agenda.
+18:38:46 <rtyler> forest_: good morning ^_^
+18:39:00 <forest_> morning
+18:39:06 <forest_> Hi everyone, my name is Forest from China, the co-founder of Beijing Huayou Tech Ltd.  I am new to the IRC.
+18:39:26 <forest_> I am a deeper user of Jenkins for 4 years, and the first Certified Jenkins Engineer in China. I am also the organizer of Jenkins Area Meetup in Beijing, Shanghai etc.There would be almost 100 attendees in JAM Beijing on Sep 17th.
+18:39:46 <forest_> About my company  Beijing Huayou Tech Ltd, Our company is the co-organizer of DevOpsDays in China.We have held DevOpsDays Beijing and Shanghai this year, there are about 1000 attendees at each DevOpsDays event. Godfather of DevOps Mr Patrick Debois joined the DevOpsDays Beijing and he was very satisfied with our job.
+18:40:02 <forest_> We are also operating a DevOps community in China. There are about 100,000 members here. We hope to spread DevOps in China and help more engineers to master Jenkins and use it well.
+18:40:13 <kohsuke> I believe I met you in Beijing earlier this year, if I'm not mistaken?
+18:40:26 <forest_> Yeah
+18:40:29 <batmat> 100k members? wow
+18:40:32 <batmat> welcome
+18:40:34 <forest_> together with xiao
+18:40:44 <forest_> thank you for your welcome
+18:40:47 <danielbeck> O_O is that the largest JAM? alyssat_ ?
+18:40:48 <forest_> There are millions of Jenkins users in China. We really hope to hold Jenkins User Conference in China to create a chance for Jenkins users in China to communicate with each others and experts from international Jenkins community. We also hope more Jenkins users could know CloudBees and benefit from it.
+18:41:10 <forest_> More to come about this - I will send an email to the devlist with more information later.
+18:41:10 <rtyler> danielbeck: their DevOps community is 100k, not the JAM as far as I understand :)
+18:41:18 <danielbeck> well, 100 attendees…
+18:41:30 <forest_> yes it's really cool
+18:41:40 <alyssat_> danielbeck; 100,000 is an impressive #
+18:41:45 <danielbeck> anyway, pretty cool
+18:41:52 <rtyler> forest_: thanks for joining and introducing yourself
+18:42:11 <kohsuke> ... especially given the time in your time zone!
+18:42:11 <rtyler> I think a Jenkins conference in China sounds like a very good idea :0
+18:42:13 <danielbeck> (also, 2:30 AM, that's dedication)
+18:42:23 <alyssat_> forest_:thanks for starting JAMs in china
+18:42:27 <batmat> \o/
+18:42:32 <rtyler> I have seom friends working in the Shanghai startup industry, lots of cool tech work happening in China :)
+18:42:38 <forest_> thank you all for your support and encourage
+18:42:49 <forest_> Yeah
+18:43:04 <forest_> we have organized DevOpsDays shanghai last month
+18:43:38 <rtyler> everybody, to be respectful of forest_'s late tiemzone, are there any questions we have right now, or can we continue to talk about Jenkins in China events on our mailing lists?
+18:43:41 <batmat> +1 with rtyler, forest_ don't hesitate to come and discuss all this on the devlist. Also, how/if we can help involve more people from your community.
+18:43:50 <kohsuke> forest_: I got in touch with some Huawei people who are very interested in participating the event, I'll make introductions
+18:43:59 <alyssat_> +1 let forest_go to sleep!!
+18:44:16 <forest_> haha
+18:44:23 <batmat> he's the danielbeck of China
+18:44:35 <kohsuke> I could use more danielbeck
+18:44:44 <rtyler> alyssat_: please also share my personal email with forest_ so we can help with any blog posts on jenkins.io or other advocacy work for chinese events
+18:44:46 <alyssat_> maybe we all go to China to help forest_
+18:44:47 <rtyler> heh
+18:44:58 <alyssat_> will do
+18:45:09 <forest_> great,welcome you all
+18:45:14 <rtyler> anyways, thank you so much for joining and introducing yourself forest_, I look forward to seeing you around more :)
+18:45:23 <rtyler> I think we can move onto the latest topic, yes?
+18:45:26 <forest_> thanks again
+18:45:33 <forest_> sure
+18:45:38 <rtyler> #topic Next meeting
+18:45:52 <rtyler> Looks like Sept 27th will be the next scheduled meeting time
+18:46:04 <rtyler> I don't see any major holidays or conflicts with that, anybody else?
+18:46:09 <kohsuke> See you then
+18:46:13 <batmat> o/
+18:46:15 <alyssat_> sounds good
+18:46:35 <rtyler> #info next meeting sept 27th at 18:00 UTC
+18:46:47 <rtyler> on the off chance there are daylight savings time changes, please adjust your mental calendars
+18:46:54 <rtyler> #endmeeting

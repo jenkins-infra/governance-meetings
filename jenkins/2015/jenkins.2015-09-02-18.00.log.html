@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app220.us.archive.org';v.server_ms=812;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-09-02-18.00.log.html","20200504001015","https://web.archive.org/","web","/_static/",
+	      "1588551015");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:28</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler hare_brain abayer</span>
+<a name="l-4"></a><span class="tm">18:00:43</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">live from JUC</span>
+<a name="l-6"></a><span class="tm">18:01:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Sep2meeting</span>
+<a name="l-7"></a><span class="tm">18:01:36</span><span class="nk"> &lt;jarden1&gt;</span> Hi all. I'm trying to configure SSH sites in my config.xml, I'm just trying to find a reference for how to do this. Can anyone help me please?
+<a name="l-8"></a><span class="tm">18:01:46</span><span class="nk"> &lt;danielbeck&gt;</span> jarden1 Project meeting right now, please wait a bit
+<a name="l-9"></a><span class="tm">18:02:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-10"></a><span class="tm">18:02:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck</span>
+<a name="l-11"></a><span class="tm">18:02:06</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer danielbeck hare_brain kohsuke rtyler
+<a name="l-12"></a><span class="tm">18:02:08</span><span class="nk"> &lt;tesaf&gt;</span> building an install script for a bunch of applications in a svn repo. Is best practice to have the shell script do the svn checkout/update or leave that to jenkins?
+<a name="l-13"></a><span class="tm">18:02:14</span><span class="nk"> &lt;danielbeck&gt;</span> Current status is in the agenda
+<a name="l-14"></a><span class="tm">18:02:38</span><span class="nk"> &lt;danielbeck&gt;</span> I blogged about the travel grant, we have botbot.me logging, and a partial infra access list in the wiki
+<a name="l-15"></a><span class="tm">18:02:43</span><span class="nk"> &lt;danielbeck&gt;</span> at https://wiki.jenkins-ci.org/display/JENKINS/Infrastructure+Admins
+<a name="l-16"></a><span class="tm">18:02:53</span><span class="nk"> &lt;danielbeck&gt;</span> Artifactory is still missing, waiting for KK to give me access
+<a name="l-17"></a><span class="tm">18:03:03</span><span class="nk"> &lt;kohsuke&gt;</span> Right, my bad
+<a name="l-18"></a><span class="tm">18:03:12</span><span class="nk"> &lt;danielbeck&gt;</span> And once the robobutler also joins #jenkins-meeting, we can move there
+<a name="l-19"></a><span class="tm">18:03:23</span><span class="nk"> &lt;danielbeck&gt;</span> that's still pending a prod merge by rtyler I think
+<a name="l-20"></a><span class="tm">18:03:24</span><span class="nk"> &lt;kohsuke&gt;</span> I need to figure our the right ldapclient command to run
+<a name="l-21"></a><span class="tm">18:03:33</span><span class="nk"> &lt;danielbeck&gt;</span> So that's the current status of past actions
+<a name="l-22"></a><span class="tm">18:04:16</span><span class="nk"> &lt;kohsuke&gt;</span> I hope Kostya is happy with that infra admin list
+<a name="l-23"></a><span class="tm">18:04:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS RC status check</span>
+<a name="l-24"></a><span class="tm">18:04:33</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza?
+<a name="l-25"></a><span class="tm">18:04:38</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> we are ready
+<a name="l-26"></a><span class="tm">18:04:50</span><span class="nk"> &lt;kohsuke&gt;</span> Great
+<a name="l-27"></a><span class="tm">18:04:57</span><span class="nk"> &lt;kohsuke&gt;</span> I'll get it going from here after this meeting
+<a name="l-28"></a><span class="tm">18:05:12</span><span class="nk"> &lt;ogondza&gt;</span> cool
+<a name="l-29"></a><span class="tm">18:05:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS baseline selection</span>
+<a name="l-30"></a><span class="tm">18:06:02</span><span class="nk"> &lt;danielbeck&gt;</span> Current versions look pretty good
+<a name="l-31"></a><span class="tm">18:06:12</span><span class="nk"> &lt;danielbeck&gt;</span> http://jenkins-ci.org/changelog
+<a name="l-32"></a><span class="tm">18:06:13</span><span class="nk"> &lt;kohsuke&gt;</span> This is the topic where I wanted to see jglick around
+<a name="l-33"></a><span class="tm">18:06:31</span><span class="nk"> &lt;danielbeck&gt;</span> and he's giving a talk now
+<a name="l-34"></a><span class="tm">18:06:40</span><span class="nk"> &lt;danielbeck&gt;</span> Which we knew when we discussed this meeting
+<a name="l-35"></a><span class="tm">18:06:45</span><span class="nk"> &lt;kohsuke&gt;</span> Not until later, actually
+<a name="l-36"></a><span class="tm">18:06:50</span><span class="nk"> &lt;kohsuke&gt;</span> But he's not around, yeah
+<a name="l-37"></a><span class="tm">18:07:21</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Are there new APIs that could be relevant? Pretty low activity in core lately
+<a name="l-38"></a><span class="tm">18:07:45</span><span class="nk"> &lt;danielbeck&gt;</span> something like 1.625 should be safe
+<a name="l-39"></a><span class="tm">18:08:02</span><span class="nk"> &lt;ogondza&gt;</span> 1.624 is 4 weeks old
+<a name="l-40"></a><span class="tm">18:08:16</span><span class="nk"> &lt;kohsuke&gt;</span> UC pluggability but that's too new
+<a name="l-41"></a><span class="tm">18:08:21</span><span class="nk"> &lt;danielbeck&gt;</span> JENKINS-28440 would be nice
+<a name="l-42"></a><span class="tm">18:08:24</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-28440:Allow to reject specific configurations via REST and CLI (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-28440
+<a name="l-43"></a><span class="tm">18:08:29</span><span class="nk"> &lt;danielbeck&gt;</span> and that's in 1.625
+<a name="l-44"></a><span class="tm">18:09:24</span><span class="nk"> &lt;danielbeck&gt;</span> but I understand if we want an older release, after the fun that was 1.609.x
+<a name="l-45"></a><span class="tm">18:09:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> probably we could just keep 1.609.4
+<a name="l-46"></a><span class="tm">18:10:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I don't see much killer-features in newer releases
+<a name="l-47"></a><span class="tm">18:10:16</span><span class="nk"> &lt;ogondza&gt;</span> https://github.com/jenkinsci/jenkins/compare/jenkins-1.624...jenkins-1.625
+<a name="l-48"></a><span class="tm">18:10:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> I don't see good reasons to change the process
+<a name="l-49"></a><span class="tm">18:10:47</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> I agree with 625, some deadlock fixes as well
+<a name="l-50"></a><span class="tm">18:10:59</span><span class="nk"> &lt;danielbeck&gt;</span> well, those would be backported anyway
+<a name="l-51"></a><span class="tm">18:11:22</span><span class="nk"> &lt;danielbeck&gt;</span> Any other opinions on which relese to use?
+<a name="l-52"></a><span class="tm">18:11:36</span><span class="nk"> &lt;ogondza&gt;</span> those are amendments of issues that are supposed to be fixed in earlier releases
+<a name="l-53"></a><span class="tm">18:12:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for 1.625
+<a name="l-54"></a><span class="tm">18:12:25</span><span class="nk"> &lt;kohsuke&gt;</span> OK, 1.625 it is?
+<a name="l-55"></a><span class="tm">18:12:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next LTS is based on 1.625</span>
+<a name="l-56"></a><span class="tm">18:12:46</span><span class="nk"> &lt;danielbeck&gt;</span> we should wait for 1.632 for maximum confusion :-)
+<a name="l-57"></a><span class="tm">18:12:46</span><span class="nk"> &lt;autojack&gt;</span> oops
+<a name="l-58"></a><span class="tm">18:12:57</span><span class="nk"> &lt;autojack&gt;</span> I was hoping for an LTS that can support the latest Workflow!
+<a name="l-59"></a><span class="tm">18:13:16</span><span class="nk"> &lt;kohsuke&gt;</span> What version does it require nowadays...
+<a name="l-60"></a><span class="tm">18:13:25</span><span class="nk"> &lt;danielbeck&gt;</span> 1.609.2 on master
+<a name="l-61"></a><span class="tm">18:13:32</span><span class="nk"> &lt;kohsuke&gt;</span> yeah, so shouldn't be a problem, autojack
+<a name="l-62"></a><span class="tm">18:13:33</span><span class="nk"> &lt;autojack&gt;</span> hang on. it has a new feature that, I thought, required a newer than LTS version.
+<a name="l-63"></a><span class="tm">18:13:37</span><span class="nk"> &lt;autojack&gt;</span> optional feature though...
+<a name="l-64"></a><span class="tm">18:13:40</span><span class="nk"> &lt;autojack&gt;</span> or else I'm wrong.
+<a name="l-65"></a><span class="tm">18:13:42</span><span class="nk"> &lt;danielbeck&gt;</span> https://github.com/jenkinsci/workflow-plugin/blob/master/pom.xml#L31
+<a name="l-66"></a><span class="tm">18:14:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">autojack:</span> I suspect that workflow will need new features in the core soon
+<a name="l-67"></a><span class="tm">18:14:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">autojack:</span> Just a drawback of the new megafeatures
+<a name="l-68"></a><span class="tm">18:14:30</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev are there new APIs between 1.625 and now?
+<a name="l-69"></a><span class="tm">18:14:43</span><span class="nk"> &lt;ogondza&gt;</span> ... and the situation was here for several LTS lines
+<a name="l-70"></a><span class="tm">18:14:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> only https://github.com/jenkinsci/jenkins/pull/1788
+<a name="l-71"></a><span class="tm">18:15:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> ^^
+<a name="l-72"></a><span class="tm">18:15:18</span><span class="nk"> &lt;danielbeck&gt;</span> unrelated to workflow, and too recent
+<a name="l-73"></a><span class="tm">18:15:20</span><span class="nk"> &lt;danielbeck&gt;</span> IMO
+<a name="l-74"></a><span class="tm">18:15:21</span><span class="nk"> &lt;autojack&gt;</span> ok, I can't find jglick's comment from the 1.9 release.
+<a name="l-75"></a><span class="tm">18:15:28</span><span class="nk"> &lt;autojack&gt;</span> perhaps I'm wrong.
+<a name="l-76"></a><span class="tm">18:15:31</span><span class="nk"> &lt;autojack&gt;</span> carry on!
+<a name="l-77"></a><span class="tm">18:15:36</span><span class="nk"> &lt;kohsuke&gt;</span> Let's stick to 1.625
+<a name="l-78"></a><span class="tm">18:15:45</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we move to the next topic
+<a name="l-79"></a><span class="tm">18:15:45</span><span class="nk"> &lt;kohsuke&gt;</span> ?
+<a name="l-80"></a><span class="tm">18:15:52</span><span class="nk"> &lt;danielbeck&gt;</span> yes
+<a name="l-81"></a><span class="tm">18:15:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Travel grant program blessing</span>
+<a name="l-82"></a><span class="tm">18:16:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Travel+Grant+Program</span>
+<a name="l-83"></a><span class="tm">18:16:15</span><span class="nk"> &lt;danielbeck&gt;</span> I updated this after the feedback from last time
+<a name="l-84"></a><span class="tm">18:16:46</span><span class="nk"> &lt;kohsuke&gt;</span> IIRC the changes are to reduce it to $500 so that we can cover more trips and shorter ones
+<a name="l-85"></a><span class="tm">18:17:04</span><span class="nk"> &lt;danielbeck&gt;</span> I think it can be blessed as currently written. If there's a minor issue we can always update it, I don't really expect travels this year
+<a name="l-86"></a><span class="tm">18:17:12</span><span class="nk"> &lt;hare_brain&gt;</span> +1 to its current form.
+<a name="l-87"></a><span class="tm">18:17:15</span><span class="nk"> &lt;hare_brain&gt;</span> Looks good.
+<a name="l-88"></a><span class="tm">18:17:18</span><span class="nk"> &lt;danielbeck&gt;</span> The draft was always 500 USD as we discussed during the original discussion
+<a name="l-89"></a><span class="tm">18:17:24</span><span class="nk"> &lt;hare_brain&gt;</span> And thanks for incorporating the feedback!
+<a name="l-90"></a><span class="tm">18:17:42</span><span class="nk"> &lt;kohsuke&gt;</span> +1 too
+<a name="l-91"></a><span class="tm">18:17:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +0.5
+<a name="l-92"></a><span class="tm">18:18:57 </span><span class="nka">* oleg-nenashev</span> <span class="ac">doubts that 500$ make much difference, but he's OK with it</span>
+<a name="l-93"></a><span class="tm">18:18:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Travel+Grant+Program is blessed as of rev.3</span>
+<a name="l-94"></a><span class="tm">18:19:25</span><span class="nk"> &lt;kohsuke&gt;</span> danielbeck says we should skip the next topic...
+<a name="l-95"></a><span class="tm">18:19:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Clarification what requires a CLA and what does not</span>
+<a name="l-96"></a><span class="tm">18:19:47</span><span class="nk"> &lt;danielbeck&gt;</span> It's not clear to me what does.
+<a name="l-97"></a><span class="tm">18:19:55</span><span class="nk"> &lt;danielbeck&gt;</span> We've been accepting PRs of others forever.
+<a name="l-98"></a><span class="tm">18:20:09</span><span class="nk"> &lt;danielbeck&gt;</span> So it's not "getting some code in" that requires that
+<a name="l-99"></a><span class="tm">18:20:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">IMO:</span> jenkins/core membership, CERT and INFRA teams
+<a name="l-100"></a><span class="tm">18:20:45</span><span class="nk"> &lt;hare_brain&gt;</span> It's supposed to be legal CYA.
+<a name="l-101"></a><span class="tm">18:20:47</span><span class="nk"> &lt;kohsuke&gt;</span> So one would hope that this is in https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Core
+<a name="l-102"></a><span class="tm">18:20:57</span><span class="nk"> &lt;kohsuke&gt;</span> CYA?
+<a name="l-103"></a><span class="tm">18:21:02</span><span class="nk"> &lt;autojack&gt;</span> cover your ass
+<a name="l-104"></a><span class="tm">18:21:28</span><span class="nk"> &lt;kohsuke&gt;</span> It's under "Making changes to core" section
+<a name="l-105"></a><span class="tm">18:21:37</span><span class="nk"> &lt;kohsuke&gt;</span> If you’d like to be involved more seriously, consider getting commit access. See the section about becoming a plugin developer for how to get this. In addition, we need to ask you to sign the contributor license agreement (CLA).
+<a name="l-106"></a><span class="tm">18:21:45</span><span class="nk"> &lt;kohsuke&gt;</span> That's the mode under which I'm operating
+<a name="l-107"></a><span class="tm">18:21:49</span><span class="nk"> &lt;kohsuke&gt;</span> Core commit access = requires CLA
+<a name="l-108"></a><span class="tm">18:22:03</span><span class="nk"> &lt;danielbeck&gt;</span> okay. And it's a prerequisite for SECURITY as well
+<a name="l-109"></a><span class="tm">18:22:12</span><span class="nk"> &lt;kohsuke&gt;</span> CERT commits to core (albeit in a protected repository) hence the same thing applies
+<a name="l-110"></a><span class="tm">18:22:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ...and INFRA
+<a name="l-111"></a><span class="tm">18:22:33</span><span class="nk"> &lt;danielbeck&gt;</span> well, INFRA access requires rtyler to like you :-)
+<a name="l-112"></a><span class="tm">18:22:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ... because it also influences the security
+<a name="l-113"></a><span class="tm">18:22:46</span><span class="nk"> &lt;danielbeck&gt;</span> CLA is copyright assignment
+<a name="l-114"></a><span class="tm">18:22:52</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think we required CLA for INFRA
+<a name="l-115"></a><span class="tm">18:23:17</span><span class="nk"> &lt;kohsuke&gt;</span> but that has higher bar to entry and people we trust tend to be people who have been working in core
+<a name="l-116"></a><span class="tm">18:23:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Obviously, it's required for JIRA admin rights (SECURITY access)
+<a name="l-117"></a><span class="tm">18:23:36</span><span class="nk"> &lt;danielbeck&gt;</span> well, no. Because you can read this without contributing
+<a name="l-118"></a><span class="tm">18:23:51</span><span class="nk"> &lt;danielbeck&gt;</span> THere's the CVE guy who has access there but he doesn't commit things
+<a name="l-119"></a><span class="tm">18:23:55</span><span class="nk"> &lt;danielbeck&gt;</span> -&gt; no CLA
+<a name="l-120"></a><span class="tm">18:24:21</span><span class="nk"> &lt;danielbeck&gt;</span> but we generally don't give access to that without giving access to jenkins-cert repos because why would we?
+<a name="l-121"></a><span class="tm">18:24:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> as danielbeck says, CLA is to cover contributions, so it's orthogonal to trust levels, at least technically
+<a name="l-122"></a><span class="tm">18:24:44</span><span class="nk"> &lt;danielbeck&gt;</span> So the explanation works for me. Thanks.
+<a name="l-123"></a><span class="tm">18:25:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> what clarification would be needed here?
+<a name="l-124"></a><span class="tm">18:25:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> If it's ortogonal, then OK
+<a name="l-125"></a><span class="tm">18:25:28</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Me being able to read, probably. Or making it explicit that CERT is about core commit access for fixed. I'll figure it out and do it myself.
+<a name="l-126"></a><span class="tm">18:25:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I'm mostly aware about unrequired permissions than about such paperwork
+<a name="l-127"></a><span class="tm">18:25:44</span><span class="nk"> &lt;kohsuke&gt;</span> maybe https://github.com/jenkinsci/infra-cla README should be updated?
+<a name="l-128"></a><span class="tm">18:25:54</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-129"></a><span class="tm">18:25:56</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Yep, you want PRs now
+<a name="l-130"></a><span class="tm">18:26:02</span><span class="nk"> &lt;danielbeck&gt;</span> but that's a different thing again
+<a name="l-131"></a><span class="tm">18:26:06</span><span class="nk"> &lt;danielbeck&gt;</span> I can do this
+<a name="l-132"></a><span class="tm">18:26:09</span><span class="nk"> &lt;kohsuke&gt;</span> Great
+<a name="l-133"></a><span class="tm">18:26:22</span><span class="nk"> &lt;danielbeck&gt;</span> moving on…
+<a name="l-134"></a><span class="tm">18:26:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">CERT Team membership request for Oleg Nenashev, Olivier Lamy and valentina armenise</span>
+<a name="l-135"></a><span class="tm">18:26:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> kohsuke, danielbeck: Do we have an NDA for the security stuff doc? ICLA does not cover it at all
+<a name="l-136"></a><span class="tm">18:26:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> it was for the previos topic, but can be postponed
+<a name="l-137"></a><span class="tm">18:27:05</span><span class="nk"> &lt;danielbeck&gt;</span> Let's do CERT
+<a name="l-138"></a><span class="tm">18:27:15</span><span class="nk"> &lt;kohsuke&gt;</span> We don't have any paperwork for that, but we sure hope you don't shout our unpatched vulnerabilities from rooftop!
+<a name="l-139"></a><span class="tm">18:27:16</span><span class="nk"> &lt;danielbeck&gt;</span> we're at the experts booth and it's weird to send people away :(
+<a name="l-140"></a><span class="tm">18:27:24</span><span class="nk"> &lt;kohsuke&gt;</span> Indeed :-)
+<a name="l-141"></a><span class="tm">18:27:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Here I just ask for the CERT membership for 3 contributors
+<a name="l-142"></a><span class="tm">18:27:35</span><span class="nk"> &lt;danielbeck&gt;</span> I think all of them should be approved
+<a name="l-143"></a><span class="tm">18:27:44</span><span class="nk"> &lt;kohsuke&gt;</span> oleg-nenashev has been around here very long
+<a name="l-144"></a><span class="tm">18:27:53</span><span class="nk"> &lt;danielbeck&gt;</span> So has olamy
+<a name="l-145"></a><span class="tm">18:28:02</span><span class="nk"> &lt;kohsuke&gt;</span> olamy has been around long, too, and he has done Maven plugin work
+<a name="l-146"></a><span class="tm">18:28:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Crap
+<a name="l-147"></a><span class="tm">18:28:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Vincent Latomber
+<a name="l-148"></a><span class="tm">18:28:14</span><span class="nk"> &lt;kohsuke&gt;</span> What's his interest in CERT? Is he going to spend time on it?
+<a name="l-149"></a><span class="tm">18:28:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> *Latombe. My bad, it was a typo in the Governance meeting agenda
+<a name="l-150"></a><span class="tm">18:28:35</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev To clarify, VIncent and not Olivier?
+<a name="l-151"></a><span class="tm">18:28:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, Vincent
+<a name="l-152"></a><span class="tm">18:28:46</span><span class="nk"> &lt;danielbeck&gt;</span> okay
+<a name="l-153"></a><span class="tm">18:28:48</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so no Olivier
+<a name="l-154"></a><span class="tm">18:28:59</span><span class="nk"> &lt;kohsuke&gt;</span> vlatombe has been around for some time, too. He's been doing literate plugin and others
+<a name="l-155"></a><span class="tm">18:29:13</span><span class="nk"> &lt;danielbeck&gt;</span> can we just ask whether someone objects?
+<a name="l-156"></a><span class="tm">18:29:23</span><span class="nk"> &lt;danielbeck&gt;</span> To any of Oleg, Vincent, Valentina?
+<a name="l-157"></a><span class="tm">18:29:47</span><span class="nk"> &lt;ogondza&gt;</span> no, +1 to more eyeballs
+<a name="l-158"></a><span class="tm">18:29:57</span><span class="nk"> &lt;batmat&gt;</span> +1
+<a name="l-159"></a><span class="tm">18:30:00</span><span class="nk"> &lt;kohsuke&gt;</span> varmenise is relatively new to the Jenkins community but she works for CloudBees and she's been working on Jenkins in the context of our products
+<a name="l-160"></a><span class="tm">18:30:02</span><span class="nk"> &lt;hare_brain&gt;</span> Who is Valentina?
+<a name="l-161"></a><span class="tm">18:30:24</span><span class="nk"> &lt;danielbeck&gt;</span> (and would undermine her job if she compromised the security project)
+<a name="l-162"></a><span class="tm">18:30:30</span><span class="nk"> &lt;kohsuke&gt;</span> https://github.com/varmenise
+<a name="l-163"></a><span class="tm">18:30:54</span><span class="nk"> &lt;hare_brain&gt;</span> I don't know her, but I'm fine with a circle of trust model.
+<a name="l-164"></a><span class="tm">18:31:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">add oleg-nenashev vlatombe and varmenise to CERT</span>
+<a name="l-165"></a><span class="tm">18:31:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-166"></a><span class="tm">18:31:41</span><span class="nk"> &lt;kohsuke&gt;</span> Next meeting is Sep 16th same time
+<a name="l-167"></a><span class="tm">18:31:52</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's it for today! Back to JUC...
+<a name="l-168"></a><span class="tm">18:31:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 00:10:15 May 04, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:55:45 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 583.241
+  exclusion.robots: 0.104
+  exclusion.robots.policy: 0.096
+  RedisCDXSource: 50.537
+  esindex: 0.007
+  LoadShardBlock: 512.844 (3)
+  PetaboxLoader3.datanode: 592.346 (4)
+  CDXLines.iter: 16.416 (3)
+  load_resource: 218.331
+  PetaboxLoader3.resolve: 79.908
+-->

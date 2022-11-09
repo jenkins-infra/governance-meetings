@@ -1,0 +1,173 @@
+19:01:09 <kohsuke> #startmeeting
+19:01:09 <robobutler> Let the Jenkins meeting commence!
+19:01:19 <kohsuke> #chair rtyler abayer hare_brain
+19:01:19 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+19:01:31 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:01:55 <kohsuke> #topic recap of actions
+19:02:07 <kohsuke> https://issues.jenkins-ci.org/browse/MEETING#selectedTab=com.atlassian.jira.plugin.system.project%3Aissues-panel
+19:02:30 <kohsuke> let's see here
+19:02:48 <kohsuke> I think I completed setting up jenkinsci-cert@googlegroups.com (MEETING-7)
+19:02:52 <kohsuke> will verify and close
+19:03:08 <kohsuke> #info affiliation with "Förderung Freier Informationen und Software" is also done
+19:03:22 <kohsuke> I think
+19:03:44 <kohsuke> yes
+19:04:01 <kohsuke> #info however, it is unclear if the tax exemption status would apply to donations from outside Germany
+19:04:25 <kohsuke> #action kohsuke to update the donation page with this information
+19:05:16 <kohsuke> also, unlike SPI, FFIS.de doesn't specify a fixed cut from donations
+19:05:39 <kohsuke> They just told me "they'd appreciate if the project donates some of their donations to ffis [to keep ffis going]"
+19:06:10 <kohsuke> so I suggest we give the same rate as SPI takes, which is 5%
+19:06:33 <kohsuke> ... unless I hear any objections
+19:06:52 * kohsuke looks for +1s
+19:07:10 <vjuranek> +1
+19:07:23 <kohsuke> thank you
+19:07:24 <larrys> +1
+19:07:56 <kohsuke> #agreed we'll pipe 5% of the donations via FFIS.de to running FFIS itself
+19:08:31 <kohsuke> and travel grant fundraising has been started (blog post at least) / MEETING-10
+19:08:45 <kohsuke> I think that's it
+19:09:24 <kohsuke> I'll put SSL and domain renewal later so that I can get +1 from hare_brain
+19:09:28 <kohsuke> #topic Donation status
+19:10:00 <kohsuke> #info so we've "started" the donation drive 11/15 http://jenkins-ci.org/content/fundraising-travel-grant
+19:10:25 <kohsuke> the goal is $2000 but so far we have $250
+19:10:47 <kohsuke> I think we want to improve the visibility a bit
+19:11:07 <kohsuke> so my main question is, how much would be acceptable?
+19:11:22 <kohsuke> Banner on the website like we did for JUC?
+19:11:44 <kohsuke> Another Wikipedia mockary?
+19:12:28 <kohsuke> (although this year there's no "Personal plea from Jimmy Wales" banner on Wikipedia)
+19:12:36 <LisaWells> would it make sense to put in a plug in the Jenkins Survey results to "Donate to the Jenkins Project"? maybe where we say 87% are Satisfied and 83% consider it mission-critical?
+19:13:06 <kohsuke> Yeah, that could be a good tagline
+19:13:15 <vjuranek> LisaWells: +1
+19:13:48 <LisaWells> will do!
+19:13:59 <vjuranek> but IMHO no problem ot have a banner too
+19:14:04 <kohsuke> rtyler: any objection to put something like that up in http://jenkins-ci.org/, Wiki & JIRA till the year end?
+19:15:04 <kohsuke> #info Parody really worked very well in the last drive, so if anyone can think of a good angle, that'd be highly appreciated
+19:16:02 <kohsuke> I think I tentatively record an agreement on putting the banner up
+19:16:18 <kohsuke> bit sad that there's no real quorum of people here
+19:16:31 <LisaWells> maybe a blog post mentioning how the funds are used and how great Jenkins is, then we can spread to Reddit/r/jenkinsci, Dzone, & various LinkedIn groups?
+19:16:31 <abayer> SOrry - running around doing work crap.
+19:16:55 <kohsuke> #agreed (tentatively by default) put donation drive banner on the landing page, Wiki, and JIRA till the end of the year
+19:17:13 <kohsuke> LisaWells: blog post did go up: http://jenkins-ci.org/content/fundraising-travel-grant
+19:17:39 <kohsuke> ... and it's on reddit too http://www.reddit.com/r/jenkinsci/comments/139hbn/were_fundraising_for_travel_grants_for_jenkins/
+19:18:10 <kohsuke> OK, moving on...
+19:18:27 <kohsuke> #topic SSL renewal + domain renewal
+19:19:05 <kohsuke> rtyler said the domain renewal of jenkins-ci.org is coming and he said he's going to renew that for 5 years
+19:19:39 <kohsuke> SSL certificate renewal for https://jenkins-ci.org/ is also due. This one I don't know if 5 years is a good idea
+19:20:53 <kohsuke> On GoDaddy (where it is currently bought from) $72/yr for 3 years and no further discount beyond
+19:21:31 <kohsuke> Domain renewal is probably a lot cheaper
+19:22:13 <kohsuke> probably $20-$40/yr range for jenkins-ci.org+jenkins-ci.com
+19:23:26 <kohsuke> So I think the motion is to let rtyler renew domains for 5 years so that he won't forget, then SSL cert for 3 years
+19:23:59 <larrys> I know we switched registars from GoDaddy for the domain a while back, were we going to switch SSL cert source too?
+19:24:15 <kohsuke> I could, if it's something we really care about
+19:24:32 <kohsuke> any good place to get them? we need a single cert that has multiple domain names
+19:24:47 <larrys> so a wildcard one... which is probably why it is more expensive...
+19:25:06 <kohsuke> "Multiple Domains UCC" is how it's written in GoDaddy
+19:26:01 * kohsuke looks around a bit
+19:26:51 <Vern_Burton> FYI: http://support.godaddy.com/help/article/3908/defining-a-multiple-domain-ucc-ssl-certificate
+19:27:32 <kohsuke> It looks like GoDaddy is the cheapest I can find at $72/yr
+19:28:28 <jaakkoo> godaddys admin console is also pretty good compared to many competitors
+19:29:10 <kohsuke> there's a bit of fiasco/history between GoDaddy and some proposed US legislation unpopular among geeks
+19:29:40 <Vern_Burton> Wildcard SSL under 100 - http://www.cheapssls.com/comodo-ssl-certificates/positivessl-wildcard.html
+19:30:39 <kohsuke> Vern_Burton: this is wildcard as opposed to multiple domain?
+19:30:41 <kohsuke> that's nice
+19:31:29 <kohsuke> OK, I think we can do this
+19:31:38 <Vern_Burton> and it still comes from a good CA which is also important, GoDaddy requires an intermediate cert
+19:32:13 <kohsuke> #action kohsuke to renew SSL certs from http://www.cheapssls.com/comodo-ssl-certificates/positivessl-wildcard.html
+19:32:41 <kohsuke> given that this is wildcard, is it a bad idea if several of our servers use the same key and the cert?
+19:32:47 <kohsuke> that'd be even more saving
+19:32:47 <evillyEvil> Is it possible to terminate/delete a slave from a Jenkins job
+19:32:48 <evillyEvil> ?
+19:33:10 <kohsuke> evillyEvil: let's postpone that question until after the end of the meeting
+19:33:30 <kohsuke> I'll check with sysadmin in CB to find out
+19:33:37 <larrys> kohsuke: That I'm not sure about... but you should run this past rtyler or people that are more ssl+security concious... I leave that up to people that know that stuff
+19:34:09 <Vern_Burton> As it is a wildcard, you are forced to share the private key across the machines, but those can be restricted via access control, etc
+19:34:32 <kohsuke> larrys: Yes, I'll run it by rtyler to be sure before I proceed
+19:34:54 * kohsuke wonders if hare_brain is back to give us some more +1s
+19:35:03 <rtyler> we can talk later about that kohsuke, today's pretty hectic for me
+19:35:16 <kohsuke> rtyler: all right. thanks
+19:35:20 <rtyler> in general wildcards are avoided if there are multiple machines using the cert
+19:35:27 <rtyler> (we're sticklers here about wildcard domains)
+19:35:59 <Vern_Burton> Wildcards should be preferred where more that 10 hostnames are going to be secured as a matter of general practice
+19:36:39 <rtyler> [reed]: ping
+19:36:46 <evillyEvil> kohsuke: sorry, what meeting?
+19:37:12 <rtyler> ah, I think [reed] is asleep still, rats
+19:37:19 <rtyler> he's a good security guy we can talk to later kohsuke :)
+19:37:33 <kohsuke> #info we have right now about 7 domains to secure
+19:37:52 <larrys> evillyEvil: We are in a governance meeting right now for Jenkins itself.
+19:37:52 <kohsuke> issues, wiki, www, usage, updates, svn, and ci
+19:38:20 <kohsuke> but doesn't hurt to have some more for sure
+19:38:59 <evillyEvil> larrys: kohsuke Oh, ok. Do you know when it's going to end?
+19:38:59 <kohsuke> #agreed kohsuke to check with rtyler, [reed], and others before renewing SSL certs
+19:39:10 <kohsuke> #info the other SSL cert expires in 2013 Feb
+19:39:13 <rtyler> \o/
+19:39:17 <rtyler> plenty of time ;)
+19:39:46 <kohsuke> one expires in 2/8 and the other in 2/28, to be exact
+19:39:51 <[reed]> rtyler: ?
+19:39:59 <kohsuke> oh, so GoDaddy fooled me. It said it's up for renewal in 30 days
+19:39:59 <hare_brain> I apologize. I am back now.
+19:40:00 <[reed]> I'm here
+19:40:26 <rtyler> [reed]: feelings on wildcard SSL certs
+19:40:32 <kohsuke> [reed]: we were wondering if getting a single *.jenkins-ci.org wildcard SSL cert and use the same private key + same cert on 2 (or more) machines are recommended or not
+19:40:33 <[reed]> rtyler: generally, bad idea
+19:40:45 <kohsuke> it does save money! about $80/yr
+19:40:56 <[reed]> due to DNS (anti-anti-...)rebinding attacks
+19:41:23 <rtyler> is mozilla a CA yet? I can't believe OSS projects have to pay for certs like this
+19:41:24 <kohsuke> [reed]: are two independent multi-domain SSL certs better?
+19:41:29 <larrys> I think we use wildcard certs for all internal stuff at my job, and then for external stuff, they have specific ones...
+19:41:39 <[reed]> kohsuke: yes
+19:42:48 <kohsuke> Is it worth paying 80% more? ($100->$180)
+19:42:50 <^4VAlien^> i have trouble testing '     private void update(AbstractBuild<?, ?> build, Launcher launcher, FilePath repository, BuildListener listener)
+19:42:50 <^4VAlien^> throws InterruptedException, IOException  ' (for mercurialscm plugin) i tried looking at the svn plugin but its a lot different in the testing suite, any ideas?
+19:43:07 <[reed]> DigiCert is pretty good... or StartSSL, if you want cheap... there are a few CAs who offer open source projects significant discounts
+19:43:09 <rtyler> ^4VAlien^: hold on a few minutes, we're still in a project meeting
+19:43:29 <rtyler> kohsuke: why don't we revisit this later and work out the ideal solution with [reed]
+19:43:53 <kohsuke> rtyler: yes. I let thae last "agreed" action stand
+19:44:06 <kohsuke> [reed]:  but thank you very much for the info
+19:44:19 <kohsuke> #topic website banner usage guideline for the events list
+19:44:30 <[reed]> choice of CA is very important, too, considering CRL and OCSP response times affect site load times
+19:44:33 <[reed]> anyway, talk later :)
+19:44:46 <kohsuke> So we've got the events list going, and so far so good
+19:45:15 <kohsuke> One thing that that list often wants is to publicize upcoming events to drive attendance
+19:45:41 <kohsuke> like a banner on the website+JIRA+Wiki
+19:46:04 <kohsuke> for example Sao Paulo meet-up didn't do that, partly because we didn't get that lined up in time for this meeting's blessing
+19:46:35 <rtyler> I think a banner is fine
+19:46:45 <kohsuke> So I wonder if we can give some kind of blanket approval for events to use those for up to a week or 2 without checking with this meeting?
+19:46:52 <rtyler> as long as they're not absolutely hideous ;)
+19:47:12 <kohsuke> we can always complain after the fact, and you are on that list anyway
+19:47:13 <larrys> rtyler: Good thing most browsers do not support <blink/> ;)
+19:48:00 <rtyler> <center><marquee><blink>New Jenkins event!</blink</marquee></center>
+19:48:18 <kohsuke> I think a week is good
+19:48:30 <kohsuke> I'm trying to avoid the situation where there's always somthing showing there
+19:48:37 <hare_brain> These days, I'm less worried about blink and more worried about things that expand/shrink or otherwise change the layout of the page.
+19:48:45 <jaakkoo> kohsuke: you mean that godaddy was supporting for acta?
+19:49:12 <hare_brain> Agree with the sentiment that as long as the banners are not obnoxiously animated, an approval for each shouldn't be necessary.
+19:49:46 <kohsuke> hare_brain: the upcoming ones that I'm hoping is London meet-up, Seoul meet-up, FOSDEM and then SCALE
+19:50:38 <kohsuke> #agreed we'll let people in the events to put banner up on jenkins-ci.org, wiki.jenkins-ci.org and issues.jenkins-ci.org for a week for one event without this meeting's blessing.
+19:50:51 <kohsuke> we'll be conservative and if needed we'll revisit
+19:51:06 <kohsuke> #topic adding larrs to the admin to help him fight spam
+19:51:19 <kohsuke> so hopefully this one just a ritual to get some +1s
+19:51:25 <larrys> do I need to /nick larrs? ;)
+19:51:33 <hare_brain> +1
+19:51:45 <kohsuke> larrys has been helping us greatly to combat spams, and I'd like him to be able to delete accounts from our LDAP
+19:51:48 <larrys> I think a way via jenkins-admin would be a nice way to nuke spammers for commiters, or at least ops in here
+19:52:04 <larrys> spread the love/load around
+19:52:50 <orrc> yeah, being able to delete accounts could be helpful (as well as the posts, which we can do now)
+19:53:08 <kohsuke> larrys: it's a bit of work to hook up the IRC daemon to LDAP code since they run on different hosts and LDAP access is protected, but we can certainly get to it
+19:53:48 <kohsuke> the other (probably more important) work is to hook up the website you told me that shares blacklisted IPs
+19:54:11 * kohsuke looks for more +1s as a welcome
+19:54:13 <larrys> Yeah, I need to look at the code you have for the registration to see how easy it would be to plumb in stopforumspam.com into registration
+19:54:27 <kohsuke> Yes, stopforumspam.com
+19:54:44 <kohsuke> I'll find the repo for the account app and let you know
+19:54:56 <larrys> I think there might be a few others in a similar vein.
+19:55:13 <kohsuke> #agreed welcomes larrys for LDAP admin access
+19:55:27 <kohsuke> I think that's it for today
+19:55:31 <kohsuke> #topic next meeting
+19:55:40 <orrc> sorry, I missed the start. but about fundraising, did you get a response from SPI about repeating donations etc? so we can get those Jenkins-is-mission-critical companies to donate regularly? ;)
+19:56:02 <kohsuke> orrc: let me see
+19:56:36 <kohsuke> "This should be an easy fix - I'll look into it in the next few days." is the last word from them at 9/26
+19:56:52 <kohsuke> #action kohsuke to ping SPI to see how the recurrent payment is going
+19:57:23 <kohsuke> wrt next meeting, 12/26 we'll skip, which leads to 1/9
+19:57:34 <kohsuke> same time
+19:57:55 <kohsuke> going once...
+19:58:02 <kohsuke> going twice...
+19:58:17 <kohsuke> #agreed  next meeting will be Jan 9th 2013, same time
+19:58:27 <kohsuke> That's it for this year, thank you very much everyone
+19:58:33 <kohsuke> #endmeeting

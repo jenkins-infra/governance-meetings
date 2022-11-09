@@ -1,0 +1,291 @@
+18:01:56 <kohsuke> #startmeeting
+18:01:56 <robobutler> Let the Jenkins meeting commence!
+18:02:07 <kohsuke> #chair rtyler abayer
+18:02:07 <robobutler> Current chairs: abayer kohsuke rtyler
+18:02:13 <ndeloof> and  - you know what ? -  that time I didn't forgot to join the meeting ;)
+18:02:18 <kohsuke> hmm, hare_brain isn't here, which is unusual
+18:02:24 <kohsuke> ndeloof: yes! I noticed that. Yay!
+18:02:28 <abayer> He said he'd be on vacation I believe.
+18:02:56 <kohsuke> ok
+18:02:59 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:03:38 <abayer> (brb in a few minutes)
+18:03:54 <kohsuke> so let's see, recap of actions
+18:04:01 <kohsuke> #topic recap of actions
+18:04:19 <kohsuke> most of the actions for July 11th is still carried forward
+18:04:29 <kohsuke> man, I feel so behind
+18:05:00 <kohsuke> I'm just going to transcode
+18:05:09 <kohsuke> or maybe we should start using tickets
+18:05:34 <kohsuke> #action kohsuke to set up JIRA project for project meeting actions
+18:05:39 <ndeloof> +1
+18:06:02 <kohsuke> #topic commercial use of Jenkins
+18:06:14 <kohsuke> #info http://itunes.apple.com/us/app/jenkins-ci-speak/id533789857?mt=12 triggered the conversation
+18:07:04 <kohsuke> #info this is the current guideline: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Trademark
+18:07:20 <abayer> (back)
+18:07:36 <ndeloof> I've no objection as long the project is tied to jenkins-ci.org in some way and don't work "against" the community
+18:08:22 <abayer> I'd say so long as the name makes it clear that it's not directly from the Jenkins project, it's ok. i.e., CloudBees Jenkins Enterprise etc.
+18:08:28 <ndeloof> mostly what gov doc is saying with more technical terms
+18:09:19 <kohsuke> http://www.linuxfoundation.org/programs/legal/trademark/faq#I_am_a_commercial_entity_a_company that this document refers to seems to imply that in this case this use should seek our approval
+18:10:13 <kohsuke> I think we are willing to let them use the mark, so maybe we should contact them and ask them to go through the ritual of seeking our approval?
+18:10:15 <abayer> Yeah, that sounds right to me.
+18:10:15 <ndeloof> "You need to apply for a https://wiki.jenkins-ci.org/display/JENKINS/Trademark+Sublicense if you are using the term "Jenkins""
+18:10:24 <abayer> +1
+18:10:38 <kohsuke> now how do we contact the publisher?
+18:11:07 <kohsuke> ok, http://www.mjsoft.com.au/action/about looks like it
+18:11:34 <kohsuke> #agreed we think this use requires the approval of the project.
+18:12:10 <kohsuke> #action kohsuke to write to the publisher, point to our document, and ask them to seek our approval of the use of the mark
+18:12:40 <ndeloof> google gives me 2 others "MJ software" ...
+18:12:41 <kohsuke> #info the consensus seems to be that we are OK with this use, but we want to make it clear that the use of the mark like this (as per FAQ) requires our approval
+18:13:00 <kohsuke> I get there by clicking "Jenkins CI Speak support" button of http://itunes.apple.com/us/app/jenkins-ci-speak/id533789857?mt=12
+18:13:09 <kohsuke> so I'm pretty sure that's it
+18:13:33 <kohsuke> shall we move on?
+18:13:37 <ndeloof> ok
+18:13:42 <kohsuke> #topic Demoing the FreedomSponsors JIRA plugin
+18:13:44 <abayer> +1
+18:13:54 <abayer> (the +1 was to moving on)
+18:13:57 <kohsuke> tonylampada: all yours
+18:14:07 <tonylampada> Thanks guys
+18:14:33 <tonylampada> So, we've finished version 1.0 of the JIRA plugin, as advertised
+18:14:57 <tonylampada> It's now open source on github (as is the freedomsponsors project itself)
+18:15:20 <tonylampada> please see https://github.com/freedomsponsors/freedomsponsors-jira-plugin
+18:15:31 <kohsuke> so this just adds a link?
+18:15:41 <tonylampada> That is the github page with a screenshot of the plugin in action
+18:15:42 <kohsuke> I guess it doesn't show any info about the current status of the sponsorship?
+18:16:06 <tonylampada> also with installation and dev environment instructions
+18:16:10 <kohsuke> I ask because http://ambtest.freedomsponsors.org/core/issue/2/research-teleport-technology seems to imply that http://ambtest.freedomsponsors.org:8080/browse/TLM-1 should say something
+18:16:39 <tonylampada> You're right. we just didn't finish that
+18:16:40 <kohsuke> like somehow highlighting $1000
+18:16:42 <kohsuke> OK
+18:17:00 <tonylampada> But we can get it done on a next version
+18:17:12 <tonylampada> this one only adds the link
+18:17:18 <tonylampada> (which opens in a new window)
+18:17:49 <tonylampada> You can play with it too --> http://ambtest.freedomsponsors.org:8080/browse/TLM-1
+18:17:57 <tonylampada> I've setup a test account on JIRA:
+18:18:10 <tonylampada> l / p = jenkins_crew / jenkinsrocks
+18:18:13 <kohsuke> #info Reading the raw log of the last meeting, I think one of the concerns was the possible stability impact of this to JIRA
+18:18:20 <tonylampada> just in
+18:18:27 <kohsuke> But looking at the code, it seems like this isn't a real problem
+18:18:41 <tonylampada> *just in case
+18:18:47 <tonylampada> no, its really simple
+18:18:59 <rtyler> I don't think it should be that big of an issue, it's pretty non-obtrusive on the test jira of tonylampada's
+18:19:14 <rtyler> there's the unrelated issue of freedomsponsors and getting people funds :P
+18:19:23 <tonylampada> I've made a few changes on FS side so that the link only need the "trackerURL" parameter, and FS will find all bout the issue
+18:20:00 <kohsuke> #idea I like hare_brain's proposal that we run it for a while and re-evaluate
+18:20:19 <rtyler> that sounds good for me
+18:20:25 <rtyler> how will we evaluate ? :P
+18:20:36 <rtyler> can we get an overview of sponsorships, etc from FS?
+18:20:41 <nanna> Hi
+18:20:56 <tonylampada> on FS site there's a search feature
+18:21:07 <tonylampada> you can filter by project
+18:21:11 <nanna> I am integration my project builds to Jenkins
+18:21:24 <kohsuke> nanna: meeting is in session now, let's hold that off until the meeting is over
+18:21:38 <kohsuke> If tonylampada can provide any metrics that's awesome
+18:21:49 <nanna> Ok.sorry
+18:21:49 <kohsuke> otherwise we can just see if anyone has any feelings about it
+18:22:16 <tonylampada> this is the search page --> http://www.freedomsponsors.org/core/issue/?s=&project_id=46&project_name=Jenkins
+18:22:36 <tonylampada> providing metrics is easy enough
+18:22:42 <tonylampada> no problem
+18:23:07 <kohsuke> is two months good enough trial?
+18:23:34 <tonylampada> we can communicate via the FS issue tracker if you like
+18:23:36 <tonylampada> https://github.com/freedomsponsors/www.freedomsponsors.org/issues
+18:24:01 <rtyler> kohsuke: that sounds good to me
+18:24:07 <kohsuke> #agreed we'll install this plugin on JIRA for two months and re-evaluate
+18:24:11 <tonylampada> or we could use the new jira project kohsuke will add
+18:24:30 <kohsuke> tonylampada: do I have your e-mail address?
+18:24:46 <tonylampada> you do, but here you go again tonylampada@gmail.com
+18:25:07 <kohsuke> Yeah, I do. Got confused a bit by your last name
+18:25:09 <kohsuke> Thanks
+18:25:22 <kohsuke> #action kohsuke to install this plugin on JIRA
+18:25:36 <tonylampada> (YAAAY!) hehehe
+18:25:37 <kohsuke> tonylampada: good luck to your project. I hope it'll work out
+18:25:56 <kohsuke> I think that's it for this. moving on...
+18:25:56 <ndeloof> now, you need an irc bot action to automatically create issues in jira for gov meeting actions :)
+18:25:57 <tonylampada> Thanks Kohsuke. I hope I can make you rich ;)
+18:26:21 * kohsuke remembers W3C meetings used to have a bot called zakim that does that and a lot more
+18:26:31 <kohsuke> #topic Upcoming event planning and brainstorming
+18:26:37 <kohsuke> #info https://groups.google.com/forum/?fromgroups#!topic/jenkinsci-dev/bokUEoheAAs%5B1-25%5D
+18:26:42 <kohsuke> #info https://groups.google.com/forum/?fromgroups#!topic/jenkinsci-dev/eFawHz1JWYg%5B1-25%5D
+18:26:58 <rtyler> awww yeah
+18:27:04 <kohsuke> so I think we are officially committing to FOSDEM
+18:27:29 <kohsuke> I wonder if rtyler or someone else is willing to make sure we won't miss any application deadlines, etc
+18:27:37 <rtyler> I'm on the fosdem list already :)
+18:27:38 <kohsuke> maybe alyssa_ can help?
+18:27:43 <rtyler> they're putting out calls in a few weeks
+18:27:46 <rtyler> I can be point on that
+18:28:00 <alyssa_> sure just let me know where and when :o)
+18:28:04 <rtyler> #info FOSDEM organization mailing list http://lists.jenkins-ci.org/mailman/listinfo/jenkins-fosdem
+18:28:26 <rtyler> abayer: how do you feel about "officially committing" to FOSDEM?
+18:28:27 <kohsuke> if rtyler is good at not missing deadlines (unlike me!), I think he'll probably enjoy doing it
+18:28:41 <rtyler> #info FOSDEM 2013 will be February 2nd and 3rd
+18:28:53 <abayer> rtyler: By end of month I'll be able to commit or not commit.
+18:29:06 <rtyler> abayer: I'm talking about as a board member you numby
+18:29:09 <abayer> I can't do both Devoxx and FOSDEM, and if myt alk gets into Devoxx I am going.
+18:29:11 <rtyler> for the project
+18:29:13 <abayer> Ohhhh.
+18:29:16 <abayer> Well, then +1000.
+18:29:26 <rtyler> whereas committing means at least budgeting some more stickers and some CIA shirts
+18:29:33 <rtyler> those numbers we can figure out later
+18:29:45 <kohsuke> yes, stickers reminds me that we need to order more
+18:29:55 <rtyler> as soon as the call for dev rooms is published, I'll coordinate with everybody to get that started
+18:30:10 <kohsuke> we spent initial allotted $500 and I'm scraping the bottom of a barrel now
+18:30:32 <rtyler> kohsuke: let's have another agenda item after ndeloof's and talk about that
+18:30:49 <kohsuke> no problem
+18:30:49 <rtyler> #action rtyler to work on the "Call for Dev Rooms" when it's published
+18:31:05 <ndeloof> I can have low-cost stickers here (only square ones) if this can help
+18:31:27 <kohsuke> I also wanted to spend a bit of time getting the feeling about our event roadmap
+18:31:29 <rtyler> #action the board to figure out at a later meeting how we can do a travel budget for one or two of our japanese friends to come to FOSDEM
+18:32:03 <rtyler> I think we're all in agreement on trying for a dev room, and naturally a stand
+18:32:14 <kohsuke> re: travel grant for our friends in Tokyo, rtyler generously donated some money for them to subsidize the trip
+18:32:23 <kohsuke> (kudos to him)
+18:32:31 <rtyler> I did?
+18:32:36 <kohsuke> Yeah, you did
+18:33:07 <rtyler> refresh my memory
+18:33:08 <rtyler> <_<
+18:33:15 <ndeloof> rtyler: just cross finger so they won't miss the flight
+18:33:29 <rtyler> oh right, thanks kohsuke
+18:33:52 <rtyler> I think we have more work and discussion on the mailing list to do to figure out how we'll manage travel grants
+18:34:03 <rtyler> but I think we're set on FOSDEM for now, shall we move on?
+18:34:14 <kohsuke> Did we have a list for FOSDEM?
+18:34:18 <kohsuke> was it just for 2012?
+18:34:22 <rtyler> http://lists.jenkins-ci.org/mailman/listinfo/jenkins-fosdem
+18:34:29 <rtyler> it's for every year if we're going to go every year ;)
+18:34:40 <ndeloof> other events planned for jenkins community ?
+18:34:52 <kohsuke> ndeloof: I wanted to talk about that, too
+18:35:17 <kohsuke> #agreed we'll commit to FOSDEM 2012 (by that we mean promote, coordinate, spend some project money, etc.)
+18:35:28 <kohsuke> #info those who are interested should join http://lists.jenkins-ci.org/mailman/listinfo/jenkins-fosdem
+18:35:29 <rtyler> #agreed FOSDEM 2013 too
+18:35:31 <rtyler> <M_<
+18:35:40 <kohsuke> thank you
+18:35:47 <kohsuke> yes, and other events
+18:36:09 <kohsuke> I thought it'd be good to have some things mapped out if we can, because attracting speakers are hard
+18:36:33 <kohsuke> especially given that CB-sponsored JUC will be once a year
+18:36:40 <rtyler> can we change topics for this
+18:36:52 <kohsuke> OK, what should it be?
+18:37:01 <kohsuke> why don't you change it with your chair superpower
+18:37:04 <rtyler> #topic Jenkins Event Planning/COordination
+18:37:27 <kohsuke> #idea  I thought it'd be good to have some things mapped out if we can, because attracting speakers are hard
+18:37:53 <kohsuke> #idea but a part of me also wonder if 1 JUC in SF, 1 FOSDEM, and 0.5 Tokyo JUC are about right given our size
+18:38:36 <kohsuke> aside from that, I think it'd be nice if what lars is doing can be packaged enough to be replicated elsewhere
+18:38:51 <kohsuke> Selenium people seem to do a better job at that
+18:38:57 <ndeloof> I can work with french mafia to have a (low-cost) event before devoxx-france (april)
+18:39:01 <rtyler> I like the idea from buep or somebody else, making the distinction between conferences and user-events
+18:39:22 <rtyler> JUCSF, JUCTokyo, FOSDEM == "Conferences" and have conference level resource committment
+18:39:37 <rtyler> anything else can be attached to CIA and be a "user event" and have a different level of resources
+18:39:45 <ndeloof> agree
+18:40:00 <rtyler> we'll send core people to conferences
+18:40:14 <rtyler> (for example)
+18:40:19 <kohsuke> Does what we do in SCALE fit this somewhere?
+18:40:27 <kohsuke> or maybe it's unique outlier
+18:40:35 <rtyler> it's more along the lines of a user event
+18:40:45 <rtyler> I think the resource commitment we made for SCALE was really stickers
+18:40:51 <rtyler> and then you and I decided to go on our own
+18:40:59 <rtyler> and that seems about right
+18:41:45 <kohsuke> All right, so I guess we'll try to see if some of us are willing to host the user event around the world somewhere
+18:41:59 <kohsuke> Copenhagen would be a great test, and Bruno would be another, if that works out
+18:42:05 * rtyler nods
+18:42:20 <kohsuke> I've got contacted offline by a big-co in the south bay who sounded like willing to host one
+18:42:33 <LisaWells> re: Selenium's method of fostering meetups: we're happy to help with that
+18:43:00 <kohsuke> LisaWells: if you know how they do it and see something we can replicate, I think that'd be great
+18:43:23 <kohsuke> I wonder if any of us are in China, Korea, or India
+18:43:39 <LisaWells> I do... and in fact have written a draft blog post I've been meaning to share with you. We (CloudBees) would like to help Jenkins meetups get started all over the world and help provide how-to
+18:44:03 <kohsuke> I really don't have any insights into the user community there, but our stats numbers seem to indicate that there are a lot of usage over there
+18:45:04 <kohsuke> #action LisaWells to publish a write up on what we can help to facilitate meet-ups in the meat space
+18:45:11 <LisaWells> kohsuke: check Sauce's How to Start a Meetup blog here: http://sauceio.com/index.php/2011/10/so-you-want-to-start-a-selenium-meetup-group-now-what/
+18:45:24 <LisaWells> and video here: http://www.youtube.com/watch?v=lXsISciWjtE&feature=plcp
+18:45:36 <kohsuke> I think it'll come off better if it comes from you the person as opposed to CloudBees
+18:45:44 <LisaWells> ok, sure
+18:45:45 <kohsuke> but I can talk to you offline about that
+18:45:58 <kohsuke> anyway
+18:46:33 <kohsuke> #action ndeloof volunteered to see if there's any opportunity to organize low-cost "user event" in Devoxx or in Paris
+18:46:38 <kohsuke> should we move on?
+18:46:46 <kohsuke> ... unless anyone else wants to add anything?
+18:46:59 <kohsuke> (and given the time zone no one from Asia is in here)
+18:47:23 <kohsuke> #topic Documentation of jenkins-admin IRC-bot infra, so that community can manage restart
+18:47:37 <kohsuke> so there's this action for rtyler to puppetize ircbot and deploy it on our server
+18:47:57 <ndeloof> jenkins-admin seems to be dead just now
+18:48:11 <kohsuke> maybe this is a good opportunity to pull in ndeloof to the infra-puppet world?
+18:48:50 <ndeloof> we also have a bunch of plugins that have been forked without committer Team set, and don't know how to debug this
+18:48:59 <ndeloof> (github API issue ?) ie, where to find the logs  ?
+18:50:00 <kohsuke> I think we really badly need someone to puppetize this
+18:50:16 <kohsuke> then the logs and all the other stuff would be available
+18:50:21 <ndeloof> I'm ok trying to puppetize ircbot, even I don't know much about pupet, but probably comparable to chef
+18:50:48 <kohsuke> yeah, I basically do monkey-see-monkey-do and let rtyler edit the result to his liking
+18:50:51 <kohsuke> so far it worked for me
+18:51:08 <rtyler> well, it needs to be thrown into a package
+18:51:12 <rtyler> that's easy to do with npm
+18:51:14 <rtyler> er, fpm
+18:51:21 <kohsuke> fpm?
+18:51:30 <rtyler> if we can package it, then managing it with puppet is easy
+18:51:41 <mika> kohsuke: https://github.com/jordansissel/fpm/
+18:51:50 <mika> simple tool for creating deb and rpms ec
+18:52:05 <mika> etc*
+18:52:07 <kohsuke> OK
+18:52:28 <kohsuke> I know how to do debbuild to package this up to *.deb like I did Confluence
+18:52:35 <rtyler> ah, that works too
+18:52:36 <kohsuke> but it'd take longer for me to do it via fpm
+18:52:51 <rtyler> heh, i highly doubt that :P
+18:53:03 <rtyler> anyways
+18:53:17 <rtyler> if we package up the bot, with a init.d script, managing it becomes much easier
+18:53:28 <mika> i'm happy to help with debian packaging, if that would help
+18:53:55 <kohsuke> mika: can I sign you up for this?
+18:54:00 <kohsuke> the code is in https://github.com/jenkinsci/backend-ircbot
+18:54:12 <kohsuke> ... which generates jar that can be run as "java -jar ircbot.jar"
+18:54:24 <mika> kohsuke: i'll figure it out, yes
+18:54:26 <kohsuke> we just need /etc/init.d/ircbot hook up and log rotation and stuff
+18:54:54 <kohsuke> #action mika to package https://github.com/jenkinsci/backend-ircbot to deb
+18:55:21 <kohsuke> #action then ndeloof will attempt puppetizing this
+18:55:24 <rtyler> <3
+18:55:35 <kohsuke> I think it'd be a good driver to debug the infra-puppet hacking readme/instructions
+18:55:46 <kohsuke> #info puppet module is in https://github.com/jenkinsci/infra-puppet
+18:55:46 <rtyler> heh, no kidding
+18:55:55 <kohsuke> we want more people to be hacking this stuff
+18:56:04 * rtyler nods
+18:56:25 <kohsuke> and I'm pretty sure ndeloof will manage it. I mean, even *I* can do it!
+18:56:42 <kohsuke> I think that's it for this
+18:57:08 <ndeloof> :)
+18:57:17 <kohsuke> if I can get the additional funding of stickers approved quickly, I'd like to get it done now
+18:57:35 <kohsuke> but I'm OK to push it to the next meeting
+18:57:46 <ndeloof> agree, people like them !
+18:58:04 <kohsuke> Basically my proposal is to spend another $500 to get 2000 more stickers from the same place
+18:58:19 <rtyler> #topic New shipment of Jenkins stickers
+18:58:28 <kohsuke> #idea my proposal is to spend another $500 to get 2000 more stickers from the same place
+18:58:37 <rtyler> I'm fine with that, they're good
+18:58:46 <kohsuke> I know ndeloof has a lot cheaper place to print them, but I don't remember actually seeing them in person
+18:58:59 <rtyler> square, booo
+18:59:09 <kohsuke> rtyler: so you saw them?
+18:59:15 <rtyler> well, they're squash
+18:59:16 <rtyler> er
+18:59:21 <rtyler> square, I know what that looks like :)
+18:59:35 <kohsuke> LOL
+18:59:43 <ndeloof> also can get round ones :) but they clearly are not that nice compared to the ones you gave me at JUC
+18:59:48 <kohsuke> abayer: any thoughts? +1?
+18:59:59 <rtyler> I am really partial to the current beautiful die-cut stickers
+19:00:17 <kohsuke> this time I'll do http://www.stickermule.com/products/kiss-cut-stickers
+19:00:27 <kohsuke> it still comes off in a die-cut form but the base sheet is square
+19:00:30 <abayer> +1 by me
+19:00:32 <kohsuke> easier to pack and carry around
+19:00:39 <rtyler> kohsuke: yeah, that makes sense
+19:00:43 <kohsuke> This is what I purchased for JUC Tokyo
+19:01:06 <ndeloof> http://www.lastickerie.com/stickers/ have 40cm diam round ones, 60€ for 1000
+19:01:40 <kohsuke> #agreed we'll approve another $500 to purchase 2000 stickers
+19:02:03 <kohsuke> Personally I wouldn't mind approving additional 60 EUR for him to try something like that
+19:02:07 <kohsuke> I hope it's 40mm, not 40cm, though
+19:02:42 <kohsuke> you've tried this place before and you are OK with the quality, right?
+19:02:43 <ndeloof> oups, right ;)
+19:03:02 <ndeloof> I used them for my JUG and conference
+19:03:26 <ndeloof> they're mostly ok, just not best quality
+19:03:44 <ndeloof> I'd say, good enough to put on openspace monitor to show jenkins build status
+19:04:12 <kohsuke> abayer: any thought?
+19:04:26 <abayer> Not really? =)
+19:04:34 <kohsuke> can we give that a blessing?
+19:04:40 <abayer> Yup. =)
+19:05:10 <kohsuke> #agreed make it $600, not $500, and ndeloof will order one from http://www.lastickerie.com/stickers/ on behalf of the community
+19:05:12 <kohsuke> thank you
+19:05:16 <kohsuke> #topic next meeting time
+19:05:28 <kohsuke> in 2 weeks would be ...
+19:05:38 <kohsuke> Aug 22nd
+19:05:51 <kohsuke> #info the next meeting time is Aug 22nd, same time as always
+19:05:58 <rtyler> I'm okay with that
+19:06:12 <kohsuke> I'd miss that one as I'll be making a quick trip to Tokyo
+19:06:22 <kohsuke> OK, I think that's it
+19:06:29 <kohsuke> Thanks everyone and sorry for running over
+19:06:32 <kohsuke> #endmeeting

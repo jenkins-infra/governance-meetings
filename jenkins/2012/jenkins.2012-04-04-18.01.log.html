@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:26</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain abayer rtyler</span>
+<a name="l-4"></a><span class="tm">18:01:36</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:02:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">18:02:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting action items</span>
+<a name="l-7"></a><span class="tm">18:02:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-03-21-18.00.html</span>
+<a name="l-8"></a><span class="tm">18:02:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> hare_brain: I still need your PGP public key
+<a name="l-9"></a><span class="tm">18:03:02</span><span class="nk"> &lt;kohsuke&gt;</span> You have one, right?
+<a name="l-10"></a><span class="tm">18:03:14</span><span class="nk"> &lt;abayer&gt;</span> Somewhere. Will find it.
+<a name="l-11"></a><span class="tm">18:03:41</span><span class="nk"> &lt;kohsuke&gt;</span> Please, please, pretty please.
+<a name="l-12"></a><span class="tm">18:03:51</span><span class="nk"> &lt;ndeloof&gt;</span> can you please recap the process to send iCLA ?
+<a name="l-13"></a><span class="tm">18:03:59</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-14"></a><span class="tm">18:04:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the most of the information for filing CLA is in here: https://github.com/jenkinsci/infra-cla/</span>
+<a name="l-15"></a><span class="tm">18:04:31</span><span class="nk"> &lt;hare_brain&gt;</span> I actually don't have one. I need to create one for myself.
+<a name="l-16"></a><span class="tm">18:04:39</span><span class="nk"> &lt;hare_brain&gt;</span> (But dealing with some company drama today.)
+<a name="l-17"></a><span class="tm">18:05:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">The only error prone part is that Google Groups apparently have some size restriction about attachments</span>
+<a name="l-18"></a><span class="tm">18:05:21</span><span class="nk"> &lt;kohsuke&gt;</span> I got a number of reports from people who said their submissions were rejected
+<a name="l-19"></a><span class="tm">18:05:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Another alternative is to submit your encrypted CLA as pull request as fredg did: https://github.com/jenkinsci/infra-cla/pull/1</span>
+<a name="l-20"></a><span class="tm">18:06:24</span><span class="nk"> &lt;ndeloof&gt;</span> geeks at work ;)
+<a name="l-21"></a><span class="tm">18:06:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Also, I believe we'd like to collect ICLA even when your employer signs CCLA</span>
+<a name="l-22"></a><span class="tm">18:07:14</span><span class="nk"> &lt;kohsuke&gt;</span> I'm looking at ndeloof stephenc rcampbell and rtyler
+<a name="l-23"></a><span class="tm">18:07:37</span><span class="nk"> &lt;kohsuke&gt;</span> and jorgenpt
+<a name="l-24"></a><span class="tm">18:07:43</span><span class="nk"> &lt;ndeloof&gt;</span> I have it on my desktop, just have to prepare a pull-request
+<a name="l-25"></a><span class="tm">18:07:53</span><span class="nk"> &lt;hare_brain&gt;</span> Why?
+<a name="l-26"></a><span class="tm">18:08:03</span><span class="nk"> &lt;hare_brain&gt;</span> That could be confusing
+<a name="l-27"></a><span class="tm">18:08:51</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I'm happy to stand corrected, but I thought we won't know if the contribution comes from someone's company time or someone's personal time?
+<a name="l-28"></a><span class="tm">18:09:29</span><span class="nk"> &lt;ndeloof&gt;</span> not sure about legals, for French folks everything you do even on spare time MAY be claimed by your company
+<a name="l-29"></a><span class="tm">18:09:58</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah, for folks where it can be distinguished like that, it's fine, but I don't think it can be a blanket policy.
+<a name="l-30"></a><span class="tm">18:10:50</span><span class="nk"> &lt;ndeloof&gt;</span> I'd like to ensure we get CCLA for contributors, prior to ICLA, if possible
+<a name="l-31"></a><span class="tm">18:10:54</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so I guess we'll say something like "if you'd be contributing your own intellectual property as an individual, you should file ICLA, regardless of whether you'll be also contributing IP of your employer as an employee"
+<a name="l-32"></a><span class="tm">18:11:06</span><span class="nk"> &lt;kohsuke&gt;</span> Is that accurate?
+<a name="l-33"></a><span class="tm">18:11:25</span><span class="nk"> &lt;hare_brain&gt;</span> Yes, I think that's right.
+<a name="l-34"></a><span class="tm">18:11:50</span><span class="nk"> &lt;ndeloof&gt;</span> I'm fine with that, as I'm not a lawyer ;)
+<a name="l-35"></a><span class="tm">18:11:57</span><span class="nk"> &lt;kohsuke&gt;</span> I think the part I really care about is that ICLA and CCLA are independent. Your employer having CCLA in place doesn't automatically mean you don't need ICLA
+<a name="l-36"></a><span class="tm">18:12:09</span><span class="nk"> &lt;hare_brain&gt;</span> That's correct.
+<a name="l-37"></a><span class="tm">18:12:11</span><span class="nk"> &lt;ndeloof&gt;</span> right
+<a name="l-38"></a><span class="tm">18:12:16</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I'll add it to this readme markdown
+<a name="l-39"></a><span class="tm">18:12:38</span><span class="nk"> &lt;hare_brain&gt;</span> Something along the lines of...
+<a name="l-40"></a><span class="tm">18:12:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to mail sticker batches to abayer and rtyler</span>
+<a name="l-41"></a><span class="tm">18:13:45</span><span class="nk"> &lt;kohsuke&gt;</span> And rtyler already posted http://jenkins-ci.org/content/announcing-jenkins-cia
+<a name="l-42"></a><span class="tm">18:14:01</span><span class="nk"> &lt;hare_brain&gt;</span> "If you will be contributing IP of your employer to the project, you need to file a CCLA. If you will be contributing your own IP, you need to file an ICLA. Depending on where you work, your employer may own IP you develop on your personal time. Please verify with your employer to make sure you sign the correct form."
+<a name="l-43"></a><span class="tm">18:14:22</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-44"></a><span class="tm">18:14:38</span><span class="nk"> &lt;kohsuke&gt;</span> I'll use that verbatim
+<a name="l-45"></a><span class="tm">18:14:49</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's it for the recap of actions
+<a name="l-46"></a><span class="tm">18:15:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Move plugin CI jobs to jenkins.ci.cloudbees.com</span>
+<a name="l-47"></a><span class="tm">18:15:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ndeloof:</span> that's yours
+<a name="l-48"></a><span class="tm">18:15:47</span><span class="nk"> &lt;ndeloof&gt;</span> jieryn asked for a FOSS account on cloudbees as an alternative to ci.jenkins-ci.org
+<a name="l-49"></a><span class="tm">18:15:50</span><span class="nk"> &lt;ndeloof&gt;</span> https://jenkins.ci.cloudbees.com/
+<a name="l-50"></a><span class="tm">18:16:08</span><span class="nk"> &lt;ndeloof&gt;</span> I've configured some jobs to mimic JoJ
+<a name="l-51"></a><span class="tm">18:16:26</span><span class="nk"> &lt;ndeloof&gt;</span> it uses templates plugin (from cloudbees)
+<a name="l-52"></a><span class="tm">18:16:28</span><span class="nk"> &lt;kohsuke&gt;</span> ah, nice. it's templated
+<a name="l-53"></a><span class="tm">18:16:37</span><span class="nk"> &lt;ndeloof&gt;</span> so that plugin author only have to provide plugin ID
+<a name="l-54"></a><span class="tm">18:17:03</span><span class="nk"> &lt;ndeloof&gt;</span> ie : create a new job with type "plugin" and provide "git" -&gt; full maven job to poll github/jenkinsci/git-plugin
+<a name="l-55"></a><span class="tm">18:17:07</span><span class="nk"> &lt;kohsuke&gt;</span> and it's also hooke up to github hook trigger
+<a name="l-56"></a><span class="tm">18:17:27</span><span class="nk"> &lt;ndeloof&gt;</span> right, the template can be upgraded to include some new common config
+<a name="l-57"></a><span class="tm">18:17:31</span><span class="nk"> &lt;ndeloof&gt;</span> and all jobs get updated
+<a name="l-58"></a><span class="tm">18:17:43</span><span class="nk"> &lt;kohsuke&gt;</span> How do we add people to this instance?
+<a name="l-59"></a><span class="tm">18:17:45</span><span class="nk"> &lt;ndeloof&gt;</span> same for libraries : provide repo ID + branch to monitor
+<a name="l-60"></a><span class="tm">18:17:55</span><span class="nk"> &lt;kohsuke&gt;</span> Or maybe we'll just set them up from ircbot?
+<a name="l-61"></a><span class="tm">18:18:07</span><span class="nk"> &lt;ndeloof&gt;</span> that's my plan
+<a name="l-62"></a><span class="tm">18:18:16</span><span class="nk"> &lt;ndeloof&gt;</span> instance is publicly visible read-only
+<a name="l-63"></a><span class="tm">18:18:20</span><span class="nk"> &lt;kohsuke&gt;</span> perhaps we can have a backend bot that auto-create them from *-plugin in github?
+<a name="l-64"></a><span class="tm">18:18:40</span><span class="nk"> &lt;ndeloof&gt;</span> we can give access for those who have a cloudbees account (it's free, it don't hurt)
+<a name="l-65"></a><span class="tm">18:18:53</span><span class="nk"> &lt;ndeloof&gt;</span> nice idea
+<a name="l-66"></a><span class="tm">18:19:05</span><span class="nk"> &lt;ndeloof&gt;</span> I'll first look at including this on irc bot
+<a name="l-67"></a><span class="tm">18:19:21</span><span class="nk"> &lt;ndeloof&gt;</span> when automation will be ok, we could make it even simpler
+<a name="l-68"></a><span class="tm">18:19:22</span><span class="nk"> &lt;kohsuke&gt;</span> thanks
+<a name="l-69"></a><span class="tm">18:19:35</span><span class="nk"> &lt;ndeloof&gt;</span> only one issue,
+<a name="l-70"></a><span class="tm">18:19:57</span><span class="nk"> &lt;ndeloof&gt;</span> plugin have to follow the *-plugin convention
+<a name="l-71"></a><span class="tm">18:20:19</span><span class="nk"> &lt;ndeloof&gt;</span> https://github.com/jenkinsci/seleniumhtmlreport don't
+<a name="l-72"></a><span class="tm">18:20:26</span><span class="nk"> &lt;ndeloof&gt;</span> (the only one)
+<a name="l-73"></a><span class="tm">18:20:46</span><span class="nk"> &lt;ndeloof&gt;</span> I also will look at a template for ruby-based plugins
+<a name="l-74"></a><span class="tm">18:21:06</span><span class="nk"> &lt;ndeloof&gt;</span> (so that rtyler also gets notification mail)
+<a name="l-75"></a><span class="tm">18:21:13</span><span class="nk"> &lt;kohsuke&gt;</span> thanks
+<a name="l-76"></a><span class="tm">18:21:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> anything you'd like to see before we offload plugin builds over to this?
+<a name="l-77"></a><span class="tm">18:21:55</span><span class="nk"> &lt;rtyler&gt;</span> hehe
+<a name="l-78"></a><span class="tm">18:22:13</span><span class="nk"> &lt;ndeloof&gt;</span> I've sent a mail to Marco Machmer to rename his repo, to conform to *-plugin convention
+<a name="l-79"></a><span class="tm">18:22:13</span><span class="nk"> &lt;kohsuke&gt;</span> AFAICT it's already on per with ci.jenkins-ci.org plugin builds
+<a name="l-80"></a><span class="tm">18:22:16</span><span class="nk"> &lt;ndeloof&gt;</span> no answer yet
+<a name="l-81"></a><span class="tm">18:22:46</span><span class="nk"> &lt;kohsuke&gt;</span> if you don't hear from him we can just do it.
+<a name="l-82"></a><span class="tm">18:23:11</span><span class="nk"> &lt;ndeloof&gt;</span> I also created jobs for core
+<a name="l-83"></a><span class="tm">18:23:27</span><span class="nk"> &lt;ndeloof&gt;</span> we can use template as well if we want to monitor new branches
+<a name="l-84"></a><span class="tm">18:23:33</span><span class="nk"> &lt;ndeloof&gt;</span> (as UI work for example)
+<a name="l-85"></a><span class="tm">18:23:57</span><span class="nk"> &lt;ndeloof&gt;</span> by chance, DEV@Cloud takes ~ same time to build as JoJ
+<a name="l-86"></a><span class="tm">18:24:06</span><span class="nk"> &lt;ndeloof&gt;</span> was not sure before trying ;)
+<a name="l-87"></a><span class="tm">18:24:18</span><span class="nk"> &lt;kohsuke&gt;</span> let's see if it can tolerate -Dconcurrency=2
+<a name="l-88"></a><span class="tm">18:24:30</span><span class="nk"> &lt;ndeloof&gt;</span> good point, will try that
+<a name="l-89"></a><span class="tm">18:24:35</span><span class="nk"> &lt;kohsuke&gt;</span> just scheduled one
+<a name="l-90"></a><span class="tm">18:24:53</span><span class="nk"> &lt;kohsuke&gt;</span> I have this plugin that lets us do pull request scout testing
+<a name="l-91"></a><span class="tm">18:25:04</span><span class="nk"> &lt;kohsuke&gt;</span> I wonder if we can deploy it here? Is it hard to do one off plugin deployments?
+<a name="l-92"></a><span class="tm">18:25:12</span><span class="nk"> &lt;ndeloof&gt;</span> so the proposal as a first step is to move plugin builds to cloudbees and create the required automation for new plugins -&gt; jobs
+<a name="l-93"></a><span class="tm">18:25:50</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-94"></a><span class="tm">18:26:07</span><span class="nk"> &lt;ndeloof&gt;</span> I don't think it would be an issue, will test it. Which plugin is it ?
+<a name="l-95"></a><span class="tm">18:26:20</span><span class="nk"> &lt;kohsuke&gt;</span> I'll talk to you offline. It's not OSS.
+<a name="l-96"></a><span class="tm">18:26:28</span><span class="nk"> &lt;asteve&gt;</span> i just locked myself out of jenkins while trying to create a dev group that could read; how can i return my permissions?
+<a name="l-97"></a><span class="tm">18:26:29</span><span class="nk"> &lt;ndeloof&gt;</span> ;P
+<a name="l-98"></a><span class="tm">18:26:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">asteve:</span> let's get to it after the project meeting that's currently in session
+<a name="l-99"></a><span class="tm">18:26:49</span><span class="nk"> &lt;microm&gt;</span> how do I run a shell script as a post-build action?
+<a name="l-100"></a><span class="tm">18:26:58</span><span class="nk"> &lt;jorgenpt&gt;</span> <span class="hi">ndeloof:</span> What are the limits of this instance? Are we worried we'll at some point overload it?
+<a name="l-101"></a><span class="tm">18:27:06</span><span class="nk"> &lt;jorgenpt&gt;</span> <span class="hi">ndeloof:</span> There are, what, 400 plugins?
+<a name="l-102"></a><span class="tm">18:27:28</span><span class="nk"> &lt;rtyler&gt;</span> closer to 500
+<a name="l-103"></a><span class="tm">18:27:29</span><span class="nk"> &lt;ndeloof&gt;</span> this is a FOSS "special" account
+<a name="l-104"></a><span class="tm">18:27:37</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-105"></a><span class="tm">18:27:40</span><span class="nk"> &lt;ndeloof&gt;</span> you won't see the pricing on cloudbees doc :)
+<a name="l-106"></a><span class="tm">18:27:51</span><span class="nk"> &lt;ndeloof&gt;</span> the build limit is amazon datacenter size
+<a name="l-107"></a><span class="tm">18:28:00</span><span class="nk"> &lt;jorgenpt&gt;</span> Does that mean that it's up to cloudbees' discretion when they no longer want to throw resources at us?
+<a name="l-108"></a><span class="tm">18:28:42</span><span class="nk"> &lt;kohsuke&gt;</span> I guess so. But that's true for most of what we get for free.
+<a name="l-109"></a><span class="tm">18:28:43</span><span class="nk"> &lt;ndeloof&gt;</span> strictly speaking, you're right
+<a name="l-110"></a><span class="tm">18:29:14</span><span class="nk"> &lt;ndeloof&gt;</span> anyway, from all jobs you can pick-up the config.xml (form URL) and build a new CI on another infra in few hours if needed
+<a name="l-111"></a><span class="tm">18:29:26</span><span class="nk"> &lt;jorgenpt&gt;</span> Okay, I thought most the resources we had for free were given certain (known) bounds. :)
+<a name="l-112"></a><span class="tm">18:29:35</span><span class="nk"> &lt;jorgenpt&gt;</span> Easier to plan when you know what kind of ceiling is in place.
+<a name="l-113"></a><span class="tm">18:30:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> for the saucelabs account, john gave me some good "guidelines" for how much to use and when ;)
+<a name="l-114"></a><span class="tm">18:30:17</span><span class="nk"> &lt;rtyler&gt;</span> perhaps CB could/should do something similar ;)
+<a name="l-115"></a><span class="tm">18:30:23</span><span class="nk"> &lt;ndeloof&gt;</span> I can ask
+<a name="l-116"></a><span class="tm">18:30:48</span><span class="nk"> &lt;ndeloof&gt;</span> I don't think I'll get a better response that just "go, go go"
+<a name="l-117"></a><span class="tm">18:30:52</span><span class="nk"> &lt;jorgenpt&gt;</span> But great on CB for providing this resource, this is really nice. :)
+<a name="l-118"></a><span class="tm">18:31:10</span><span class="nk"> &lt;kohsuke&gt;</span> https://jenkins.ci.cloudbees.com/builds says there's something wrong with seleniumhtmlreport
+<a name="l-119"></a><span class="tm">18:31:23</span><span class="nk"> &lt;kohsuke&gt;</span> executed excessively freuqnetly
+<a name="l-120"></a><span class="tm">18:31:41</span><span class="nk"> &lt;ndeloof&gt;</span> oh yes, I didn't disabled it
+<a name="l-121"></a><span class="tm">18:32:01</span><span class="nk"> &lt;ndeloof&gt;</span> it's trying to poll seleniumhtmlreport-plugin repo that doesn't exist
+<a name="l-122"></a><span class="tm">18:32:18</span><span class="nk"> &lt;kohsuke&gt;</span> ah
+<a name="l-123"></a><span class="tm">18:32:25</span><span class="nk"> &lt;ndeloof&gt;</span> I have to enable the github hook
+<a name="l-124"></a><span class="tm">18:32:33</span><span class="nk"> &lt;ndeloof&gt;</span> "polliong must die", don't you think ;)
+<a name="l-125"></a><span class="tm">18:32:40</span><span class="nk"> &lt;kohsuke&gt;</span> exactly
+<a name="l-126"></a><span class="tm">18:32:49</span><span class="nk"> &lt;kohsuke&gt;</span> Looks like you have it enabled to me, though
+<a name="l-127"></a><span class="tm">18:33:27</span><span class="nk"> &lt;ndeloof&gt;</span> need jenkins-admin credentials on https://jenkins.ci.cloudbees.com/configure to create the hook
+<a name="l-128"></a><span class="tm">18:33:47</span><span class="nk"> &lt;ndeloof&gt;</span> I configured my credentials, but I'm not admin on github/jenkinsci so can't register hooks
+<a name="l-129"></a><span class="tm">18:33:54</span><span class="nk"> &lt;kohsuke&gt;</span> OK, let's take those details after the meeting then
+<a name="l-130"></a><span class="tm">18:33:58</span><span class="nk"> &lt;ndeloof&gt;</span> right
+<a name="l-131"></a><span class="tm">18:34:06</span><span class="nk"> &lt;kohsuke&gt;</span> You should use jenkins-admin GitHub user we use for this stuff
+<a name="l-132"></a><span class="tm">18:34:21</span><span class="nk"> &lt;ndeloof&gt;</span> indeed
+<a name="l-133"></a><span class="tm">18:34:28</span><span class="nk"> &lt;kohsuke&gt;</span> Anything that needs to be done before shelving plugin jobs on ci.jenkins-ci.org?
+<a name="l-134"></a><span class="tm">18:34:40</span><span class="nk"> &lt;kohsuke&gt;</span> I want to get ack from abayer, too
+<a name="l-135"></a><span class="tm">18:34:59</span><span class="nk"> &lt;Diverious&gt;</span> hey all
+<a name="l-136"></a><span class="tm">18:35:05</span><span class="nk"> &lt;ndeloof&gt;</span> I can manage job creation on-demand until we get an bot automation
+<a name="l-137"></a><span class="tm">18:35:22</span><span class="nk"> &lt;ndeloof&gt;</span> and just have to enable the adequate plugins to have irc notification, etc
+<a name="l-138"></a><span class="tm">18:35:25</span><span class="nk"> &lt;Diverious&gt;</span> I have been having an issue with Jenkins for a while now and can't seem to scratch the surface on how to fix it
+<a name="l-139"></a><span class="tm">18:35:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ndeloof:</span> and we should add a bunch of us as users so that we can all do it, too
+<a name="l-140"></a><span class="tm">18:35:30</span><span class="nk"> &lt;Diverious&gt;</span> I get this error
+<a name="l-141"></a><span class="tm">18:35:31</span><span class="nk"> &lt;Diverious&gt;</span> SubversionRepositoryStatus doNotifyCommit, WARNING: No subversion jobs found…. I can't figure out how to fix this… because I obviously have subversion jobs - basically trying to do a post hook commit
+<a name="l-142"></a><span class="tm">18:35:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Diverious:</span> let's hold off on that until the current project meeting in session is over.
+<a name="l-143"></a><span class="tm">18:35:51</span><span class="nk"> &lt;kohsuke&gt;</span> And let's move on to the next topic and abayer can ack later
+<a name="l-144"></a><span class="tm">18:35:54</span><span class="nk"> &lt;Diverious&gt;</span> oh sorry
+<a name="l-145"></a><span class="tm">18:36:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">ask for FOSS JProfiler licenses</span>
+<a name="l-146"></a><span class="tm">18:36:09</span><span class="nk"> &lt;ndeloof&gt;</span> right, just have to send me the email you used to create a cloudbees account,
+<a name="l-147"></a><span class="tm">18:36:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://www.ej-technologies.com/buy/jprofiler/openSource</span>
+<a name="l-148"></a><span class="tm">18:36:47</span><span class="nk"> &lt;kohsuke&gt;</span> We do have YourKit Java Profiler OSS license
+<a name="l-149"></a><span class="tm">18:36:58</span><span class="nk"> &lt;ndeloof&gt;</span> right,
+<a name="l-150"></a><span class="tm">18:37:07</span><span class="nk"> &lt;kohsuke&gt;</span> But sure, why not, let's get all the freebies!
+<a name="l-151"></a><span class="tm">18:37:09</span><span class="nk"> &lt;ndeloof&gt;</span> just noticed codehaus offered both
+<a name="l-152"></a><span class="tm">18:37:22</span><span class="nk"> &lt;ndeloof&gt;</span> maybe some of us are used with JProfiler (seems to be a nice tool as well)
+<a name="l-153"></a><span class="tm">18:38:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ndeloof:</span> would you like to fill this in and get it going?
+<a name="l-154"></a><span class="tm">18:38:16</span><span class="nk"> &lt;kohsuke&gt;</span> looks like it's just a matter of filing a request
+<a name="l-155"></a><span class="tm">18:38:40</span><span class="nk"> &lt;kohsuke&gt;</span> And I think we can consider this blessed unless someone has an issue with this
+<a name="l-156"></a><span class="tm">18:39:00</span><span class="nk"> &lt;kohsuke&gt;</span> or if you want me to do it, I can do it, too
+<a name="l-157"></a><span class="tm">18:39:01</span><span class="nk"> &lt;ndeloof&gt;</span> I think they also ask for sponsor logo
+<a name="l-158"></a><span class="tm">18:39:25</span><span class="nk"> &lt;kohsuke&gt;</span> We've been putting them in https://wiki.jenkins-ci.org/display/JENKINS/Building+Jenkins
+<a name="l-159"></a><span class="tm">18:39:49</span><span class="nk"> &lt;kohsuke&gt;</span> I think it satisfies their requirements
+<a name="l-160"></a><span class="tm">18:39:55</span><span class="nk"> &lt;ndeloof&gt;</span> ok
+<a name="l-161"></a><span class="tm">18:40:02</span><span class="nk"> &lt;kohsuke&gt;</span> argh, nofollow
+<a name="l-162"></a><span class="tm">18:40:08</span><span class="nk"> &lt;ndeloof&gt;</span> I can request free license
+<a name="l-163"></a><span class="tm">18:41:11</span><span class="nk"> &lt;kohsuke&gt;</span> hmm, on Wiki I don't think we have means to disable nofollow link
+<a name="l-164"></a><span class="tm">18:41:27</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I can write a macro or a plugin
+<a name="l-165"></a><span class="tm">18:42:01</span><span class="nk"> &lt;ndeloof&gt;</span> Agreement on this ?
+<a name="l-166"></a><span class="tm">18:42:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write a Confluence macro to have link to JProfiler</span>
+<a name="l-167"></a><span class="tm">18:42:10</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-168"></a><span class="tm">18:42:27 </span><span class="nka">* kohsuke</span> <span class="ac">hopes others will +1 too</span>
+<a name="l-169"></a><span class="tm">18:42:29</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-170"></a><span class="tm">18:43:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll request an OSS license for JProfiler</span>
+<a name="l-171"></a><span class="tm">18:43:12</span><span class="nk"> &lt;ndeloof&gt;</span> <span class="cmd">#action </span><span class="cmdline">ndeloof to ask for JProfiler licenses http://www.ej-technologies.com/buy/jprofiler/openSource</span>
+<a name="l-172"></a><span class="tm">18:43:30</span><span class="nk"> &lt;kohsuke&gt;</span> shall we move on to next topic?
+<a name="l-173"></a><span class="tm">18:43:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Migrate plugins to get rid of glassfish repo</span>
+<a name="l-174"></a><span class="tm">18:43:54</span><span class="nk"> &lt;ndeloof&gt;</span> imod around ?
+<a name="l-175"></a><span class="tm">18:44:01</span><span class="nk"> &lt;kohsuke&gt;</span> And my +1 for this, too
+<a name="l-176"></a><span class="tm">18:44:21</span><span class="nk"> &lt;kohsuke&gt;</span> the only thing I wasn't sure about is how to write a script to do this
+<a name="l-177"></a><span class="tm">18:44:36</span><span class="nk"> &lt;ndeloof&gt;</span> I vonlunteer to do it
+<a name="l-178"></a><span class="tm">18:45:01</span><span class="nk"> &lt;kohsuke&gt;</span> AIU, this basically involves in adding a &lt;repository&gt;/&lt;pluginRepository&gt; entry
+<a name="l-179"></a><span class="tm">18:45:09</span><span class="nk"> &lt;kohsuke&gt;</span> and removing m.g.o-public if there's one already
+<a name="l-180"></a><span class="tm">18:45:24</span><span class="nk"> &lt;kohsuke&gt;</span> you'll do it by hand? There are 400 of those
+<a name="l-181"></a><span class="tm">18:45:31</span><span class="nk"> &lt;ndeloof&gt;</span> I planned on my TODO list to try repo SCM tool and create a manifest for all jenkins repos
+<a name="l-182"></a><span class="tm">18:45:37</span><span class="nk"> &lt;ndeloof&gt;</span> this is time to do it
+<a name="l-183"></a><span class="tm">18:45:40</span><span class="nk"> &lt;hare_brain&gt;</span> Can't you do that in the parent pom and just bump the version of the parent pom?
+<a name="l-184"></a><span class="tm">18:45:48</span><span class="nk"> &lt;ndeloof&gt;</span> and then some funny scripting
+<a name="l-185"></a><span class="tm">18:46:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> parent POM has already fixed this, but bumping it means you now depend on newer Jenkins version
+<a name="l-186"></a><span class="tm">18:46:02</span><span class="nk"> &lt;ndeloof&gt;</span> this is already set in plugin pom for recent releases
+<a name="l-187"></a><span class="tm">18:46:15</span><span class="nk"> &lt;hare_brain&gt;</span> Ah, fair enough.
+<a name="l-188"></a><span class="tm">18:46:16</span><span class="nk"> &lt;ndeloof&gt;</span> but many plugin use old jenkins/plugin pom as parent
+<a name="l-189"></a><span class="tm">18:46:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ndeloof:</span>  OK, great to hear that you got an idea to automate this
+<a name="l-190"></a><span class="tm">18:46:51</span><span class="nk"> &lt;kohsuke&gt;</span> I saw a number of people already who tried to build a plugin and failed, so I'd love to see this resolved.
+<a name="l-191"></a><span class="tm">18:47:01</span><span class="nk"> &lt;ndeloof&gt;</span> please note : on https://jenkins.ci.cloudbees.com I used a custom settings.xml to mirror m.g.o-public on repo.jenkins-ci.org
+<a name="l-192"></a><span class="tm">18:47:19</span><span class="nk"> &lt;kohsuke&gt;</span> I think aheritier was also advocating for this, if I remember correctly.
+<a name="l-193"></a><span class="tm">18:47:25</span><span class="nk"> &lt;ndeloof&gt;</span> indeed
+<a name="l-194"></a><span class="tm">18:48:08</span><span class="nk"> &lt;kohsuke&gt;</span> Unfortunately today I don't think we have too many people here, so I suggest ndeloof to write an e-mail to the dev list about this and get a few +1s before starting this.
+<a name="l-195"></a><span class="tm">18:48:19</span><span class="nk"> &lt;kohsuke&gt;</span> But here's my +1
+<a name="l-196"></a><span class="tm">18:48:31</span><span class="nk"> &lt;ndeloof&gt;</span> ok
+<a name="l-197"></a><span class="tm">18:49:17</span><span class="nk"> &lt;kohsuke&gt;</span> So that brings me to the last topic, next time, and today there's actually something I'd like to propose for that
+<a name="l-198"></a><span class="tm">18:49:23</span><span class="nk"> &lt;kohsuke&gt;</span> Can we move on from this topic?
+<a name="l-199"></a><span class="tm">18:49:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-200"></a><span class="tm">18:50:15</span><span class="nk"> &lt;kohsuke&gt;</span> We touched on this briefly the last time, about time zone being Asia unfriendly in the context of JUC Tokyo related stuff
+<a name="l-201"></a><span class="tm">18:50:32</span><span class="nk"> &lt;kohsuke&gt;</span> So I asked those folks in Tokyo when they can make it
+<a name="l-202"></a><span class="tm">18:50:42</span><span class="nk"> &lt;kohsuke&gt;</span> and I was asked to report back with ...
+<a name="l-203"></a><span class="tm">18:51:17</span><span class="nk"> &lt;kohsuke&gt;</span> Friday night Pacific Time, Saturday noon-ish Tokyo time
+<a name="l-204"></a><span class="tm">18:51:36</span><span class="nk"> &lt;rtyler&gt;</span> I'm lame, so that would probably work for me :P
+<a name="l-205"></a><span class="tm">18:51:53</span><span class="nk"> &lt;kohsuke&gt;</span> This is just one off. I'm not suggesting that we move it permanently to a new time
+<a name="l-206"></a><span class="tm">18:52:43</span><span class="nk"> &lt;kohsuke&gt;</span> The 2nd alternative for them is some other DoW, but noon-1pm Tokyo time
+<a name="l-207"></a><span class="tm">18:53:02</span><span class="nk"> &lt;rtyler&gt;</span> a monday or tuesday night would work for me
+<a name="l-208"></a><span class="tm">18:53:20</span><span class="nk"> &lt;kohsuke&gt;</span> ... the reason being that their company won't allow this kind of stuff on their work time.
+<a name="l-209"></a><span class="tm">18:53:44</span><span class="nk"> &lt;kohsuke&gt;</span> But noon-1pm is a lunch break, so it can be made to work. For some.
+<a name="l-210"></a><span class="tm">18:54:02</span><span class="nk"> &lt;ndeloof&gt;</span> 5am on my time, probably will not be online (until my baby wake me up)
+<a name="l-211"></a><span class="tm">18:54:04</span><span class="nk"> &lt;kohsuke&gt;</span> Both time slot is totally unfriendly for Europe
+<a name="l-212"></a><span class="tm">18:54:16</span><span class="nk"> &lt;rtyler&gt;</span> if that's a significant hurdle, why not make sure it's saturday or sunday for them
+<a name="l-213"></a><span class="tm">18:54:33</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, so that's why I said Friday night PT is the 1st choice
+<a name="l-214"></a><span class="tm">18:54:45</span><span class="nk"> &lt;rtyler&gt;</span> I'm okay with that
+<a name="l-215"></a><span class="tm">18:54:58</span><span class="nk"> &lt;hare_brain&gt;</span> What time does that map to in the Pacific TZ? 8? 9?
+<a name="l-216"></a><span class="tm">18:54:59</span><span class="nk"> &lt;kohsuke&gt;</span> I can do either, so I want to get the sense from others
+<a name="l-217"></a><span class="tm">18:55:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> we could just use the 21st Amendment wifi and have a drink-up too ;)
+<a name="l-218"></a><span class="tm">18:55:14</span><span class="nk"> &lt;kohsuke&gt;</span> If this is Friday night we can be somewhat flexible
+<a name="l-219"></a><span class="tm">18:55:36</span><span class="nk"> &lt;kohsuke&gt;</span> It could be 5-10pm range in PT
+<a name="l-220"></a><span class="tm">18:55:56</span><span class="nk"> &lt;kohsuke&gt;</span> I suspect they'd like us do it earlier so that we don't land in the middle of Saturday
+<a name="l-221"></a><span class="tm">18:55:58</span><span class="nk"> &lt;hare_brain&gt;</span> 9 works better than 8, for me personally. But on the whole, Friday night is fine for me.
+<a name="l-222"></a><span class="tm">18:56:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> that's awesome
+<a name="l-223"></a><span class="tm">18:56:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> ping
+<a name="l-224"></a><span class="tm">18:56:09</span><span class="nk"> &lt;rtyler&gt;</span> after 7pm for me preferably, what with dinner and commute
+<a name="l-225"></a><span class="tm">18:56:23</span><span class="nk"> &lt;rtyler&gt;</span> I suspect most others have the same kind of "requirements" :)
+<a name="l-226"></a><span class="tm">18:56:38</span><span class="nk"> &lt;abayer&gt;</span> Urm…Friday's not great for me in general, but I can try to make 9pm.
+<a name="l-227"></a><span class="tm">18:56:52</span><span class="nk"> &lt;rtyler&gt;</span> game night?
+<a name="l-228"></a><span class="tm">18:56:53</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, OK, let's do 9pm for this once then
+<a name="l-229"></a><span class="tm">18:57:31</span><span class="nk"> &lt;hare_brain&gt;</span> Two weeks from now?
+<a name="l-230"></a><span class="tm">18:58:05</span><span class="nk"> &lt;kohsuke&gt;</span> That's 20th but  I don't know where I am that time
+<a name="l-231"></a><span class="tm">18:58:13</span><span class="nk"> &lt;kohsuke&gt;</span> could be over Colorado or somewhere
+<a name="l-232"></a><span class="tm">18:58:26</span><span class="nk"> &lt;hare_brain&gt;</span> Different Friday then?
+<a name="l-233"></a><span class="tm">18:58:26</span><span class="nk"> &lt;kohsuke&gt;</span> Would 13th or 27th work?
+<a name="l-234"></a><span class="tm">18:58:49</span><span class="nk"> &lt;hare_brain&gt;</span> Checking
+<a name="l-235"></a><span class="tm">19:00:08</span><span class="nk"> &lt;hare_brain&gt;</span> Bah. My calendar keeper went idle.
+<a name="l-236"></a><span class="tm">19:00:13</span><span class="nk"> &lt;hare_brain&gt;</span> I think the 13th is fine.
+<a name="l-237"></a><span class="tm">19:00:44</span><span class="nk"> &lt;kohsuke&gt;</span> Great.
+<a name="l-238"></a><span class="tm">19:01:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> abayer: ?
+<a name="l-239"></a><span class="tm">19:01:13</span><span class="nk"> &lt;abayer&gt;</span> Tentative yes.
+<a name="l-240"></a><span class="tm">19:01:36</span><span class="nk"> &lt;kohsuke&gt;</span> OK, then let's shoot for that.
+<a name="l-241"></a><span class="tm">19:01:44</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks for being accomodating
+<a name="l-242"></a><span class="tm">19:01:53</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-243"></a><span class="tm">19:02:20</span><span class="nk"> &lt;rtyler&gt;</span> I'm down for whatever
+<a name="l-244"></a><span class="tm">19:02:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting is 13th Friday 9pm PST / 14th Sat 1pm Japan Time / 6am Sat Paris Time</span>
+<a name="l-245"></a><span class="tm">19:02:33</span><span class="nk"> &lt;kohsuke&gt;</span> and that's it
+<a name="l-246"></a><span class="tm">19:02:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app221.us.archive.org';v.server_ms=162;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-09-17-18.00.log.html","20200505194532","https://web.archive.org/","web","/_static/",
+	      "1588707932");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:46</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-4"></a><span class="tm">18:00:59</span><span class="nk"> &lt;kohsuke&gt;</span> Lot to cover
+<a name="l-5"></a><span class="tm">18:01:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Travel grant for JUC Tokyo 2015</span>
+<a name="l-6"></a><span class="tm">18:01:33</span><span class="nk"> &lt;kohsuke&gt;</span> So the user group over there is organizing the 2nd JUC Tokyo
+<a name="l-7"></a><span class="tm">18:02:01</span><span class="nk"> &lt;kohsuke&gt;</span> This one is unique JUC compared to other JUCs, in that it's all volunteer based
+<a name="l-8"></a><span class="tm">18:02:20</span><span class="nk"> &lt;kohsuke&gt;</span> In fact the plan is not to take any sponsors this year
+<a name="l-9"></a><span class="tm">18:03:04</span><span class="nk"> &lt;kohsuke&gt;</span> The last time they (or we, since I'm personally involved) got sponsors and spend $4K bringing 2 people from abroad
+<a name="l-10"></a><span class="tm">18:03:22</span><span class="nk"> &lt;kohsuke&gt;</span> This time they've got $2K left over from other activities to cover one person,
+<a name="l-11"></a><span class="tm">18:03:43</span><span class="nk"> &lt;kohsuke&gt;</span> ... but I wonder if we can match that with another $2K from the main project budget to fly another person
+<a name="l-12"></a><span class="tm">18:04:25</span><span class="nk"> &lt;kohsuke&gt;</span> The project currently has $14K+ in the bank, so we could certainly afford it
+<a name="l-13"></a><span class="tm">18:04:33</span><span class="nk"> &lt;kohsuke&gt;</span> and IMO money sitting in the bank does no good
+<a name="l-14"></a><span class="tm">18:04:39</span><span class="nk"> &lt;danielbeck&gt;</span> what else would project money be used for usually?
+<a name="l-15"></a><span class="tm">18:04:57</span><span class="nk"> &lt;kohsuke&gt;</span> the operational cost --- SSL certs, servers, stickers to give away
+<a name="l-16"></a><span class="tm">18:05:23</span><span class="nk"> &lt;kohsuke&gt;</span> Those are the important ones, and that costs $1K-$3K / yr, IIRC
+<a name="l-17"></a><span class="tm">18:05:35</span><span class="nk"> &lt;kohsuke&gt;</span> stickers are the most expensive ones
+<a name="l-18"></a><span class="tm">18:06:31</span><span class="nk"> &lt;danielbeck&gt;</span> how well does the wiki sponsorship work?
+<a name="l-19"></a><span class="tm">18:06:47</span><span class="nk"> &lt;danielbeck&gt;</span> (asking just to get an idea how large of an expense this would be)
+<a name="l-20"></a><span class="tm">18:06:48</span><span class="nk"> &lt;kohsuke&gt;</span> The last time the conversation of travel grant came up in absence of specific event, people felt that we need to see some concrete proposal on the table to be able to judge, so here we are.
+<a name="l-21"></a><span class="tm">18:07:13</span><span class="nk"> &lt;kohsuke&gt;</span> We continue to get unsteady stream of small donations
+<a name="l-22"></a><span class="tm">18:07:20</span><span class="nk"> &lt;kohsuke&gt;</span> Let me check recent one
+<a name="l-23"></a><span class="tm">18:07:39</span><span class="nk"> &lt;kohsuke&gt;</span> Sep so far, $20
+<a name="l-24"></a><span class="tm">18:07:45</span><span class="nk"> &lt;kohsuke&gt;</span> Aug is $3200
+<a name="l-25"></a><span class="tm">18:07:54</span><span class="nk"> &lt;kohsuke&gt;</span> Jul, Jun, $0
+<a name="l-26"></a><span class="tm">18:08:13</span><span class="nk"> &lt;kohsuke&gt;</span> That Aug figure is because one donation of $3K --- I should write a thank you letter
+<a name="l-27"></a><span class="tm">18:08:27</span><span class="nk"> &lt;kohsuke&gt;</span> The "steady" part of the stream in this year is the new patron program
+<a name="l-28"></a><span class="tm">18:08:37</span><span class="nk"> &lt;kohsuke&gt;</span> Consistent $2250 per quarter
+<a name="l-29"></a><span class="tm">18:09:08</span><span class="nk"> &lt;kohsuke&gt;</span> hare_brain, rtyler, any thoughts?
+<a name="l-30"></a><span class="tm">18:09:34</span><span class="nk"> &lt;hare_brain&gt;</span> Sorry, I lost track of time. Wasn’t paying attention at all.
+<a name="l-31"></a><span class="tm">18:10:03</span><span class="nk"> &lt;kohsuke&gt;</span> travel grant for JUC in Tokyo to bring one person from somewhere in the world to speak over there. $2000.
+<a name="l-32"></a><span class="tm">18:11:10</span><span class="nk"> &lt;hare_brain&gt;</span> Are there candidates for the travel grant?
+<a name="l-33"></a><span class="tm">18:11:29</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, there are a few conversations in private
+<a name="l-34"></a><span class="tm">18:11:59</span><span class="nk"> &lt;kohsuke&gt;</span> No one committed yet partly due to schedule, partly due to this
+<a name="l-35"></a><span class="tm">18:13:20</span><span class="nk"> &lt;hare_brain&gt;</span> What’s the ROI for the community on a travel grant?
+<a name="l-36"></a><span class="tm">18:14:01</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's partly to prop up the user base over there
+<a name="l-37"></a><span class="tm">18:14:20</span><span class="nk"> &lt;kohsuke&gt;</span> Bigger user base, more adoption, etc. To grow the community there.
+<a name="l-38"></a><span class="tm">18:14:39</span><span class="nk"> &lt;kohsuke&gt;</span> It's also partly to connect people involved in the project
+<a name="l-39"></a><span class="tm">18:15:34</span><span class="nk"> &lt;hare_brain&gt;</span> Can you give some examples of the types of contributions the user base over there has made to Jenkins?
+<a name="l-40"></a><span class="tm">18:16:00</span><span class="nk"> &lt;kohsuke&gt;</span> ssogabe on various parts of the core bug fixes
+<a name="l-41"></a><span class="tm">18:16:17</span><span class="nk"> &lt;kohsuke&gt;</span> then ohtake for the bootstrap integration work, though it didn't get merged
+<a name="l-42"></a><span class="tm">18:16:55</span><span class="nk"> &lt;kohsuke&gt;</span> Then there's masanobuimai who did the angry Jenkins and other logo work
+<a name="l-43"></a><span class="tm">18:17:15</span><span class="nk"> &lt;kohsuke&gt;</span> Then the rest is all sorts of misc plugins
+<a name="l-44"></a><span class="tm">18:17:59</span><span class="nk"> &lt;kohsuke&gt;</span> It's actually a sizable community, except that it tends to be visible
+<a name="l-45"></a><span class="tm">18:18:16</span><span class="nk"> &lt;kohsuke&gt;</span> The last JUC had 1000 people registered and 700 people came, which still made it the biggest JUC
+<a name="l-46"></a><span class="tm">18:18:17</span><span class="nk"> &lt;hare_brain&gt;</span> visible or invisible?
+<a name="l-47"></a><span class="tm">18:18:23</span><span class="nk"> &lt;kohsuke&gt;</span> sorry, invisible.
+<a name="l-48"></a><span class="tm">18:19:04</span><span class="nk"> &lt;hare_brain&gt;</span> :)
+<a name="l-49"></a><span class="tm">18:19:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">Offtopic:</span> Are there any plans on other JUC15 conferences (dates, venues, etc.)?
+<a name="l-50"></a><span class="tm">18:19:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> I'm sure there will be, but none has any detailed plans yet
+<a name="l-51"></a><span class="tm">18:19:51</span><span class="nk"> &lt;hare_brain&gt;</span> Would you say that the Japanese Jenkins community is fairly separated from the rest of us?
+<a name="l-52"></a><span class="tm">18:20:09</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, I think so.
+<a name="l-53"></a><span class="tm">18:20:25</span><span class="nk"> &lt;kohsuke&gt;</span> It's partly due to the language, and partly due to the time zone.
+<a name="l-54"></a><span class="tm">18:20:47</span><span class="nk"> &lt;kohsuke&gt;</span> rtyler and abayer was there the last time, so they can tell us if they are around
+<a name="l-55"></a><span class="tm">18:21:28</span><span class="nk"> &lt;hare_brain&gt;</span> Do you feel it’s important to try to get them to join/be more involved the main community?
+<a name="l-56"></a><span class="tm">18:22:27</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, but these things often take a specific person (or a company) to act as a bridge, and we just don't have that one person
+<a name="l-57"></a><span class="tm">18:23:07</span><span class="nk"> &lt;hare_brain&gt;</span> Where I’m going with this line of questioning, is if someone going over there on a travel grant helps towards building that bridge.
+<a name="l-58"></a><span class="tm">18:24:44</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think one travel will do it, but I think hooking people up with others would help.
+<a name="l-59"></a><span class="tm">18:25:05</span><span class="nk"> &lt;kohsuke&gt;</span> On that point I'd love to hear from abayer and rtyler if the visit helped them
+<a name="l-60"></a><span class="tm">18:25:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Remote communications could be useful as well. Currently, all rpject meetings and webinars do not fit East Asian timezones
+<a name="l-61"></a><span class="tm">18:25:26</span><span class="nk"> &lt;kohsuke&gt;</span> (We also did the other way around --- ohtake came to FOSDEM in Brussels)
+<a name="l-62"></a><span class="tm">18:26:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> yes, but there's no time that works for everyone.
+<a name="l-63"></a><span class="tm">18:26:33</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">oleg-nenashev:</span> Which region of the world would you like to exclude in the future?
+<a name="l-64"></a><span class="tm">18:27:09</span><span class="nk"> &lt;kohsuke&gt;</span> And when I asked them whether the time is the main obstacle, most of them felt fixing that alone would do it
+<a name="l-65"></a><span class="tm">18:27:20</span><span class="nk"> &lt;kohsuke&gt;</span> sorry, would NOT do it
+<a name="l-66"></a><span class="tm">18:27:46</span><span class="nk"> &lt;hare_brain&gt;</span> I don’t have a problem the concept of a travel grant. I just want to make sure it’s money well spent.
+<a name="l-67"></a><span class="tm">18:28:38</span><span class="nk"> &lt;kohsuke&gt;</span> My general feeling is that there's only so many ways we can spend the money, and I think this would be one of them.
+<a name="l-68"></a><span class="tm">18:29:27</span><span class="nk"> &lt;kohsuke&gt;</span> And it's hard to measure ROI on these things
+<a name="l-69"></a><span class="tm">18:30:13</span><span class="nk"> &lt;hare_brain&gt;</span> I’d like to generalize the discussion above this specific instance.
+<a name="l-70"></a><span class="tm">18:30:37</span><span class="nk"> &lt;hare_brain&gt;</span> If you are proposing that we should budget X dollars for travel grants every year, that’s a good generalization.
+<a name="l-71"></a><span class="tm">18:31:02</span><span class="nk"> &lt;hare_brain&gt;</span> It just feels these requests are rather ad hoc.
+<a name="l-72"></a><span class="tm">18:32:00</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I don't want this topic to take up the whole time, so maybe I'll start a thread and ask abayer, rtyler, ohtake, etc to share their experience
+<a name="l-73"></a><span class="tm">18:32:39</span><span class="nk"> &lt;kohsuke&gt;</span> We are doing this for the first time, so I think it being ad hoc is inevitable
+<a name="l-74"></a><span class="tm">18:33:14</span><span class="nk"> &lt;kohsuke&gt;</span> But if it makes more sense to budget some allotment upfront, I'm all for it
+<a name="l-75"></a><span class="tm">18:33:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Cease support for native Solaris packages</span>
+<a name="l-76"></a><span class="tm">18:33:56</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="hi">Right:</span> it’s not the first time it’s come up. So rather than discuss each request, I’d like to just have the discussion about what’s a good amount of money to set aside each year for travel grants (if any), and then if a request comes in, we can just see if there’s budget left for each request.
+<a name="l-77"></a><span class="tm">18:34:45</span><span class="nk"> &lt;kohsuke&gt;</span> would that favor the event earlier in the year?
+<a name="l-78"></a><span class="tm">18:35:38</span><span class="nk"> &lt;kohsuke&gt;</span> rtyler doesn't seem to be around, so let's talk about other things first
+<a name="l-79"></a><span class="tm">18:35:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Improvements to JENKINS project in JIRA</span>
+<a name="l-80"></a><span class="tm">18:35:45</span><span class="nk"> &lt;hare_brain&gt;</span> Break up the budget by quarter to avoid that
+<a name="l-81"></a><span class="tm">18:36:23</span><span class="nk"> &lt;danielbeck&gt;</span> I'm proposing a few changes to the Jira project that would make working with it easier.
+<a name="l-82"></a><span class="tm">18:36:53</span><span class="nk"> &lt;danielbeck&gt;</span> Due to some miscommunication, some were already implemented: Hiding Due Date, Affects Version, and Fix Version fields
+<a name="l-83"></a><span class="tm">18:37:10</span><span class="nk"> &lt;danielbeck&gt;</span> These can be reverted at any time though.
+<a name="l-84"></a><span class="tm">18:37:12</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think that's a problem
+<a name="l-85"></a><span class="tm">18:37:26</span><span class="nk"> &lt;kohsuke&gt;</span> I don't know how to make those changes but I assume you do?
+<a name="l-86"></a><span class="tm">18:37:41</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler basically said all were possible
+<a name="l-87"></a><span class="tm">18:37:55</span><span class="nk"> &lt;danielbeck&gt;</span> But he's waiting for a decision on them because some are a bit more effort
+<a name="l-88"></a><span class="tm">18:38:05</span><span class="nk"> &lt;danielbeck&gt;</span> So, still unimplemented are:
+<a name="l-89"></a><span class="tm">18:38:07</span><span class="nk"> &lt;kohsuke&gt;</span> TIL rtyler is a JIRA expert
+<a name="l-90"></a><span class="tm">18:38:51</span><span class="nk"> &lt;kohsuke&gt;</span> It all looks good to me. So my +1
+<a name="l-91"></a><span class="tm">18:39:03</span><span class="nk"> &lt;danielbeck&gt;</span> Set default priority to Minor -- subjectively, this is a better default as it seems to be true more often, plus it may reduce the number of Critical/Blocker issues just because someone wants to step a level up
+<a name="l-92"></a><span class="tm">18:39:10</span><span class="nk"> &lt;danielbeck&gt;</span> Remove Patch, because Github
+<a name="l-93"></a><span class="tm">18:39:28</span><span class="nk"> &lt;danielbeck&gt;</span> Making closed issues editable would allow fixing things like labels without clicking a dozen times
+<a name="l-94"></a><span class="tm">18:39:42</span><span class="nk"> &lt;ogondza&gt;</span> editable closed issues: +1
+<a name="l-95"></a><span class="tm">18:40:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> do you care one way or the other?
+<a name="l-96"></a><span class="tm">18:40:50</span><span class="nk"> &lt;danielbeck&gt;</span> Does anyone have concerns about any of these?
+<a name="l-97"></a><span class="tm">18:41:07</span><span class="nk"> &lt;autojack&gt;</span> crap in a hat. I didn't put the JUC SF date in my calendar, so I bought tickets to go to Australia over that time.
+<a name="l-98"></a><span class="tm">18:41:13</span><span class="nk"> &lt;autojack&gt;</span> and I already have a JUC ticket. rar.
+<a name="l-99"></a><span class="tm">18:41:21</span><span class="nk"> &lt;hare_brain&gt;</span> The only thing I have reservations about is the default priority change.
+<a name="l-100"></a><span class="tm">18:41:24</span><span class="nk"> &lt;autojack&gt;</span> plus I was really looking forward to the conf!
+<a name="l-101"></a><span class="tm">18:41:28</span><span class="nk"> &lt;jglick&gt;</span> Making closed issues editable would be great.
+<a name="l-102"></a><span class="tm">18:41:52</span><span class="nk"> &lt;jglick&gt;</span> And +1 on default priority of Minor.
+<a name="l-103"></a><span class="tm">18:41:58</span><span class="nk"> &lt;hare_brain&gt;</span> We made the same change recently, and now the problem is that critical issues stop showing up on people’s dashboards because filers don’t realize the default priority is different.
+<a name="l-104"></a><span class="tm">18:42:20</span><span class="nk"> &lt;hare_brain&gt;</span> Is there anyway to leave priority with no default?
+<a name="l-105"></a><span class="tm">18:42:43</span><span class="nk"> &lt;jglick&gt;</span> (That would be better still.)
+<a name="l-106"></a><span class="tm">18:42:57</span><span class="nk"> &lt;kohsuke&gt;</span> I guess that would be by adding new priority that is "undecided"?
+<a name="l-107"></a><span class="tm">18:43:06</span><span class="nk"> &lt;hare_brain&gt;</span> That would work.
+<a name="l-108"></a><span class="tm">18:43:38</span><span class="nk"> &lt;danielbeck&gt;</span> wouldn't that have the same problem?
+<a name="l-109"></a><span class="tm">18:44:06</span><span class="nk"> &lt;danielbeck&gt;</span> Why would minor issues be hidden? Is the default Dashboard "Major and up"?
+<a name="l-110"></a><span class="tm">18:44:53</span><span class="nk"> &lt;hare_brain&gt;</span> It does, but it’s easier to search for those, and it’s then possible to distinguish between “really minor” and “minor because someone didn’t set it”
+<a name="l-111"></a><span class="tm">18:44:56</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">kohsuke:</span> that does not sound like it would help. Would want Priority to be a mandatory field w/o which you could not submit.
+<a name="l-112"></a><span class="tm">18:45:10</span><span class="nk"> &lt;hare_brain&gt;</span> jglick +1 to that. That’s even better.
+<a name="l-113"></a><span class="tm">18:45:59</span><span class="nk"> &lt;kohsuke&gt;</span> I don't know if that's doable
+<a name="l-114"></a><span class="tm">18:46:05</span><span class="nk"> &lt;kohsuke&gt;</span> Someone with more JIRA-fu needed
+<a name="l-115"></a><span class="tm">18:47:15</span><span class="nk"> &lt;danielbeck&gt;</span> just tested on my Jira, seems if no explicit default is set, Major is the default in the form
+<a name="l-116"></a><span class="tm">18:47:39</span><span class="nk"> &lt;kohsuke&gt;</span> https://jira.atlassian.com/browse/JRA-13048
+<a name="l-117"></a><span class="tm">18:47:46</span><span class="nk"> &lt;kohsuke&gt;</span> Still an RFE in the upstream
+<a name="l-118"></a><span class="tm">18:48:12</span><span class="nk"> &lt;danielbeck&gt;</span> Comment has a solution involving a modified workflow
+<a name="l-119"></a><span class="tm">18:48:49</span><span class="nk"> &lt;danielbeck&gt;</span> Basically, reject any issue with the default 'Unspecified' priority
+<a name="l-120"></a><span class="tm">18:49:12</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so I guess I wasn't too far off, it turns out
+<a name="l-121"></a><span class="tm">18:50:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">instead of changing the default priority to minor, we'll try forcing the user to select it</span>
+<a name="l-122"></a><span class="tm">18:50:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">other proposals are blessed</span>
+<a name="l-123"></a><span class="tm">18:50:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Can we improve the Jenkins release process?</span>
+<a name="l-124"></a><span class="tm">18:51:18</span><span class="nk"> &lt;danielbeck&gt;</span> Over the last year, six RCs have been released, and nobody seems to have noticed.
+<a name="l-125"></a><span class="tm">18:51:22</span><span class="nk"> &lt;danielbeck&gt;</span> The year before, 14 RCs
+<a name="l-126"></a><span class="tm">18:51:30</span><span class="nk"> &lt;danielbeck&gt;</span> http://mirrors.jenkins-ci.org/war-rc/
+<a name="l-127"></a><span class="tm">18:51:53</span><span class="nk"> &lt;kohsuke&gt;</span> Right, it's been inconsistently done
+<a name="l-128"></a><span class="tm">18:52:16</span><span class="nk"> &lt;danielbeck&gt;</span> The downside is that any fix takes ~1.5 weeks until released unless we patch the rc branch
+<a name="l-129"></a><span class="tm">18:53:06</span><span class="nk"> &lt;kohsuke&gt;</span> Oh, so you want to get rid of the RC completely?
+<a name="l-130"></a><span class="tm">18:53:10</span><span class="nk"> &lt;danielbeck&gt;</span> I have no concrete proposals here, but it seems this is something that could be improved
+<a name="l-131"></a><span class="tm">18:53:44</span><span class="nk"> &lt;ogondza&gt;</span> IIRC jglick suggested the same thing in the past
+<a name="l-132"></a><span class="tm">18:53:48</span><span class="nk"> &lt;jglick&gt;</span> Yes.
+<a name="l-133"></a><span class="tm">18:54:07</span><span class="nk"> &lt;kohsuke&gt;</span> I want to fix it in the other way --- issue RC more consistently, as part of it is to run https://ci.jenkins-ci.org/ on RC
+<a name="l-134"></a><span class="tm">18:55:31</span><span class="nk"> &lt;ogondza&gt;</span> Do we have some feedback from RC branch adopters?
+<a name="l-135"></a><span class="tm">18:55:33</span><span class="nk"> &lt;jglick&gt;</span> Would it not suffice to discourage people from updating to a new weekly until a few days after its release when no showstopper regressions have been identified?
+<a name="l-136"></a><span class="tm">18:55:55</span><span class="nk"> &lt;danielbeck&gt;</span> who's going to identify them?
+<a name="l-137"></a><span class="tm">18:56:15</span><span class="nk"> &lt;jglick&gt;</span> Who identifies showstopper issues in RCs?
+<a name="l-138"></a><span class="tm">18:56:20</span><span class="nk"> &lt;OEP&gt;</span> So, Jenkins pretty aggressively manages my config.xml (making it world readable). I want to lock it down so my local slaves can't read that file. Is there a way to do this?
+<a name="l-139"></a><span class="tm">18:56:31</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">OEP:</span> meeting in progress, please ask later
+<a name="l-140"></a><span class="tm">18:56:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> we use ci.jenkins-ci.org
+<a name="l-141"></a><span class="tm">18:57:06</span><span class="nk"> &lt;danielbeck&gt;</span> so you'll try to deploy more regularly to JonJ?
+<a name="l-142"></a><span class="tm">18:57:21</span><span class="nk"> &lt;jglick&gt;</span> Why not just deploy snapshots every night?
+<a name="l-143"></a><span class="tm">18:57:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> As I remember, rtyler vetoed such approach after regular outages of the service
+<a name="l-144"></a><span class="tm">18:57:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> That's true
+<a name="l-145"></a><span class="tm">18:57:47</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">jglick:</span> Because some jobs take forever (infra-statistics)
+<a name="l-146"></a><span class="tm">18:57:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> I feel like a part of the point is to run it "for a while"
+<a name="l-147"></a><span class="tm">18:58:13</span><span class="nk"> &lt;ScottHebertErics&gt;</span> I currently run a couple of select ATH tests when a new RC comes out.
+<a name="l-148"></a><span class="tm">18:58:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> but I think if we fix that one bug that's causing CPU 100% problem, I think he's OK
+<a name="l-149"></a><span class="tm">18:58:32</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">ScottHebertErics:</span> Weekly RC or LTS RC?
+<a name="l-150"></a><span class="tm">18:58:47</span><span class="nk"> &lt;ScottHebertErics&gt;</span> sorry. LTS RC.
+<a name="l-151"></a><span class="tm">18:59:00</span><span class="nk"> &lt;jglick&gt;</span> We are discussing weekly RCs.
+<a name="l-152"></a><span class="tm">18:59:21</span><span class="nk"> &lt;ScottHebertErics&gt;</span> sorry about that
+<a name="l-153"></a><span class="tm">18:59:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Do we have enough resources to run a "latest and greatest" mirror pof ci.jenkins-ci.org?
+<a name="l-154"></a><span class="tm">19:00:15</span><span class="nk"> &lt;jglick&gt;</span> If they are actually contributing something tangible to stability, fine. My experience has mostly been that people notice regressions after the weekly has been released, and then we just waste a week waiting for changes to filter through the rc branch, which also confuses everyone who comes across it.
+<a name="l-155"></a><span class="tm">19:00:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Probably, a mirror server with a reference one would be a best solution for the troubleshooting
+<a name="l-156"></a><span class="tm">19:00:49</span><span class="nk"> &lt;danielbeck&gt;</span> most of it is infra, cannot really do that in parallel
+<a name="l-157"></a><span class="tm">19:01:07</span><span class="nk"> &lt;danielbeck&gt;</span> unless setting up mirror everything
+<a name="l-158"></a><span class="tm">19:01:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> sorry for the delay
+<a name="l-159"></a><span class="tm">19:01:27</span><span class="nk"> &lt;kohsuke&gt;</span> np
+<a name="l-160"></a><span class="tm">19:01:28</span><span class="nk"> &lt;rtyler&gt;</span> got pulled into a meeting
+<a name="l-161"></a><span class="tm">19:02:06</span><span class="nk"> &lt;danielbeck&gt;</span> Move on to rtyler's topic?
+<a name="l-162"></a><span class="tm">19:02:16</span><span class="nk"> &lt;danielbeck&gt;</span> I doubt we'll find a solution to RC process now
+<a name="l-163"></a><span class="tm">19:02:21</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-164"></a><span class="tm">19:02:21 </span><span class="nka">* rtyler</span> <span class="ac">prepares his cannon</span>
+<a name="l-165"></a><span class="tm">19:02:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">kill solaris packages</span>
+<a name="l-166"></a><span class="tm">19:02:34</span><span class="nk"> &lt;rtyler&gt;</span> ALRIGHTY!
+<a name="l-167"></a><span class="tm">19:02:49</span><span class="nk"> &lt;rtyler&gt;</span> so as some of you know we've been upgrading and modernizing some of the project infrastructure
+<a name="l-168"></a><span class="tm">19:03:00</span><span class="nk"> &lt;rtyler&gt;</span> most of that work is here: https://github.com/jenkins-infra
+<a name="l-169"></a><span class="tm">19:03:31</span><span class="nk"> &lt;rtyler&gt;</span> the Solaris packages in particular present a frustrating problem
+<a name="l-170"></a><span class="tm">19:03:43</span><span class="nk"> &lt;danielbeck&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/2014+Jenkins+Infrastructure+Roadmap#2014JenkinsInfrastructureRoadmap-MigrationtoamodernPuppetinfrastructure ?
+<a name="l-171"></a><span class="tm">19:03:54</span><span class="nk"> &lt;rtyler&gt;</span> yeah
+<a name="l-172"></a><span class="tm">19:04:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">INFRA-20</span>
+<a name="l-173"></a><span class="tm">19:04:07</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-20:Port the IPS module over to jenkins-infra (Open) https://issues.jenkins-ci.org/browse/INFRA-20
+<a name="l-174"></a><span class="tm">19:04:17</span><span class="nk"> &lt;rtyler&gt;</span> Solaris packages require a specialized package repository server
+<a name="l-175"></a><span class="tm">19:04:35</span><span class="nk"> &lt;rtyler&gt;</span> which is not maintained for Linux, and will require an inordinate amount of infrastructure work to continue to support
+<a name="l-176"></a><span class="tm">19:04:46</span><span class="nk"> &lt;rtyler&gt;</span> INFRA-20 is blocking INFRA-21
+<a name="l-177"></a><span class="tm">19:04:47</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-21:Deploy puppet agent onto lettuce (Open) https://issues.jenkins-ci.org/browse/INFRA-21
+<a name="l-178"></a><span class="tm">19:05:07</span><span class="nk"> &lt;rtyler&gt;</span> what I would like are one of two things:
+<a name="l-179"></a><span class="tm">19:06:07</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I accept the defeat. We can kill it to unblock infra, and when I managed to run IPS depotd in Docker I'll send in a pull request to resurrect it
+<a name="l-180"></a><span class="tm">19:06:08</span><span class="nk"> &lt;rtyler&gt;</span> rats, danielbeck I can't find that ticket you added all those links to
+<a name="l-181"></a><span class="tm">19:06:17</span><span class="nk"> &lt;danielbeck&gt;</span> JENKINS-11729 JENKINS-13905 JENKINS-12197 JENKINS-15148
+<a name="l-182"></a><span class="tm">19:06:25</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-11729:Cannot install Jenkins on a fresh copy of Solaris 11 (Open) https://issues.jenkins-ci.org/browse/JENKINS-11729
+<a name="l-183"></a><span class="tm">19:06:29</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-13905:install IPS jenkins package failed (Reopened) https://issues.jenkins-ci.org/browse/JENKINS-13905
+<a name="l-184"></a><span class="tm">19:06:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I don't think that's the important thing to do in this meeting
+<a name="l-185"></a><span class="tm">19:06:32</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-12197:Security hole when using IPS distribution on Solaris (Open) https://issues.jenkins-ci.org/browse/JENKINS-12197
+<a name="l-186"></a><span class="tm">19:06:38</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-15148:OpenIndiana IPS package has permissions conflict with oi_151a6 (Open) https://issues.jenkins-ci.org/browse/JENKINS-15148
+<a name="l-187"></a><span class="tm">19:07:05</span><span class="nk"> &lt;rtyler&gt;</span> I actually think we should determine how to evaluate cost vs. benefit of operating these native packages for lesser-used-platforms
+<a name="l-188"></a><span class="tm">19:07:30</span><span class="nk"> &lt;rtyler&gt;</span> then if solaris meets some criteria that we' apply across the board, then kill it with fire
+<a name="l-189"></a><span class="tm">19:07:45</span><span class="nk"> &lt;rtyler&gt;</span> I don't know enough about the solaris user base to rightfully say "it's not worth it"
+<a name="l-190"></a><span class="tm">19:08:20</span><span class="nk"> &lt;jglick&gt;</span> I think the only commonly uses platforms are Linux and Windows Server.
+<a name="l-191"></a><span class="tm">19:08:23</span><span class="nk"> &lt;rtyler&gt;</span> it's different than the *BSD ports or gentoo recipe too, since we're hosting binaries
+<a name="l-192"></a><span class="tm">19:08:24</span><span class="nk"> &lt;jglick&gt;</span> [used]
+<a name="l-193"></a><span class="tm">19:08:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Solaris and OpenIndiana are not very popular now. Probably, the support of their repos could handed over to interested persons (if available)
+<a name="l-194"></a><span class="tm">19:09:00</span><span class="nk"> &lt;kohsuke&gt;</span> http://ips.jenkins-ci.org/ips-stable/en/stats.shtml says in the past 2 weeks no one has installed anything from this repo
+<a name="l-195"></a><span class="tm">19:09:01</span><span class="nk"> &lt;danielbeck&gt;</span> 43.6k Linux masters, 33.4 Windows, 6.6k OS X, 925 SunOS, 285 AIX, 370 various
+<a name="l-196"></a><span class="tm">19:09:01</span><span class="nk"> &lt;jglick&gt;</span> (By Linux I mean CentOS/RHEL and Debian/Ubuntu mainly.)
+<a name="l-197"></a><span class="tm">19:09:43</span><span class="nk"> &lt;jglick&gt;</span> That many people run on OS X? I wonder if they use the app package.
+<a name="l-198"></a><span class="tm">19:09:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> perhaps we could vote to suspend IPS for now, and then I can take an action to write a proposal for "package hosting criteria?"
+<a name="l-199"></a><span class="tm">19:09:52</span><span class="nk"> &lt;jglick&gt;</span> Or if this is people installing on a laptop.
+<a name="l-200"></a><span class="tm">19:09:59</span><span class="nk"> &lt;rtyler&gt;</span> this would also mean we could remove IPS packages from the release process too
+<a name="l-201"></a><span class="tm">19:10:31</span><span class="nk"> &lt;kohsuke&gt;</span> I have no objection to suspend IPS for now
+<a name="l-202"></a><span class="tm">19:10:34</span><span class="nk"> &lt;gazarsgo&gt;</span> i'm trying to put jenkins behind https://github.com/bitly/google_auth_proxy/ but i am getting weird authentication errors for Unexpected authentication type: org.acegisecurity.providers.UsernamePasswordAuthenticationToken ...
+<a name="l-203"></a><span class="tm">19:10:36</span><span class="nk"> &lt;jenkins-builds&gt;</span> Starting build #3688 for job jenkins_main_trunk (previous build: SUCCESS)
+<a name="l-204"></a><span class="tm">19:10:39</span><span class="nk"> &lt;gazarsgo&gt;</span> how can i disable authentication there ?
+<a name="l-205"></a><span class="tm">19:10:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">gazarsgo:</span> give us a bit, we're still in a project meeting
+<a name="l-206"></a><span class="tm">19:11:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to suspend service to the IPS repository for now</span>
+<a name="l-207"></a><span class="tm">19:11:19</span><span class="nk"> &lt;kohsuke&gt;</span> ... and if you'd want to clarify the criteria for us to accept future package hosting, that's great
+<a name="l-208"></a><span class="tm">19:11:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> should you take an action to remove it from the release process? since I'll take IPS off lettuce asap
+<a name="l-209"></a><span class="tm">19:11:35</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, will do.
+<a name="l-210"></a><span class="tm">19:11:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to propose criteria for hosting native packages on jenkins-infra</span>
+<a name="l-211"></a><span class="tm">19:11:59</span><span class="nk"> &lt;rtyler&gt;</span> I'll try to get that second one done before next meeting
+<a name="l-212"></a><span class="tm">19:12:05</span><span class="nk"> &lt;danielbeck&gt;</span> also post notice to users list?
+<a name="l-213"></a><span class="tm">19:12:05</span><span class="nk"> &lt;kohsuke&gt;</span> thanks
+<a name="l-214"></a><span class="tm">19:12:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to notify users@ of IPS termination</span>
+<a name="l-215"></a><span class="tm">19:12:25</span><span class="nk"> &lt;danielbeck&gt;</span> change jenkins-ci.org as well
+<a name="l-216"></a><span class="tm">19:12:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to change jenkins-ci.org as well</span>
+<a name="l-217"></a><span class="tm">19:12:35</span><span class="nk"> &lt;rtyler&gt;</span> xD
+<a name="l-218"></a><span class="tm">19:12:47 </span><span class="nka">* kohsuke</span> <span class="ac">sobs in the corner</span>
+<a name="l-219"></a><span class="tm">19:12:51</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-220"></a><span class="tm">19:13:03</span><span class="nk"> &lt;rtyler&gt;</span> I think that covers it from my side, did we finish all the other agenda items?
+<a name="l-221"></a><span class="tm">19:13:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-222"></a><span class="tm">19:13:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting will be in Oct 1st</span>
+<a name="l-223"></a><span class="tm">19:13:27</span><span class="nk"> &lt;rtyler&gt;</span> two weeks from today is smack in the
+<a name="l-224"></a><span class="tm">19:13:31</span><span class="nk"> &lt;rtyler&gt;</span> middle of JavaOne
+<a name="l-225"></a><span class="tm">19:13:31</span><span class="nk"> &lt;kohsuke&gt;</span> JavaOne week
+<a name="l-226"></a><span class="tm">19:13:35</span><span class="nk"> &lt;rtyler&gt;</span> perhaps three weeks then?
+<a name="l-227"></a><span class="tm">19:13:38</span><span class="nk"> &lt;rtyler&gt;</span> Oct 8th?
+<a name="l-228"></a><span class="tm">19:13:51</span><span class="nk"> &lt;kohsuke&gt;</span> Nah, I think it's OK
+<a name="l-229"></a><span class="tm">19:14:01 </span><span class="nka">* rtyler</span> <span class="ac">will be at JavaOne</span>
+<a name="l-230"></a><span class="tm">19:14:05</span><span class="nk"> &lt;kohsuke&gt;</span> It messes up the calendar to change it
+<a name="l-231"></a><span class="tm">19:14:08</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-232"></a><span class="tm">19:14:10</span><span class="nk"> &lt;kohsuke&gt;</span> O RLY?
+<a name="l-233"></a><span class="tm">19:14:13</span><span class="nk"> &lt;rtyler&gt;</span> YA RLY
+<a name="l-234"></a><span class="tm">19:14:24</span><span class="nk"> &lt;rtyler&gt;</span> &lt;-- Mr. Big Shot
+<a name="l-235"></a><span class="tm">19:14:45</span><span class="nk"> &lt;kohsuke&gt;</span> No worries. They've got WiFi. So you can still join
+<a name="l-236"></a><span class="tm">19:14:53</span><span class="nk"> &lt;kohsuke&gt;</span> I bet you'll need some distraction from talks
+<a name="l-237"></a><span class="tm">19:15:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 19:45:32 May 05, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 16:00:56 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 93.129
+  exclusion.robots: 0.141
+  exclusion.robots.policy: 0.131
+  RedisCDXSource: 24.464
+  esindex: 0.018
+  LoadShardBlock: 36.339 (3)
+  PetaboxLoader3.datanode: 38.185 (4)
+  CDXLines.iter: 25.85 (3)
+  load_resource: 49.583
+  PetaboxLoader3.resolve: 29.572
+-->

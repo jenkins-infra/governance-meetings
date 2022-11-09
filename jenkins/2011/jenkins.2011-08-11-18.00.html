@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 18:00:56 UTC
+(<a href="jenkins.2011-08-11-18.00.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li><b class="TOPIC">Plugin deprecations https://wiki.jenkins-ci.org/display/JENKINS/Proposed+Plugin+Deprecation</b> <span class="details">(<a href='jenkins.2011-08-11-18.00.log.html#l-10'>kohsuke</a>, 18:02:31)</span>
+<ol type="a">
+  <li><span class="INFO">Ok, this one's my baby. We've got a bunch of
+    plugins that do more or less the same thing, and that's causing
+    confusion, duplication of effort, etc.</span> <span
+    class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-12'>abayer</a>,
+    18:03:06)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">I propose we comb
+    the plugin list to find possible duplications and when possible,
+    deprecate older plugins in favor of newer ones providing the same
+    functionality and possibly more.</span> <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-13'>abayer</a>,
+    18:03:45)</span></li>
+  <li><span class="INFO">e.g., the ones that prompted this - envfile and
+    setenv have all their behavior incorporated into envinject.</span>
+    <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-15'>abayer</a>,
+    18:04:16)</span></li>
+  <li><span class="INFO">IIUC the migration implementation in envinject
+    plugin is quite transparent and also backward compatible</span>
+    <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-28'>kohsuke</a>,
+    18:07:32)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED"></span> <span
+    class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-36'>rtyler</a>,
+    18:09:06)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer to
+    write up his proposal for deprecated plugin behavior in the update
+    center on the wiki</span> <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-62'>abayer</a>,
+    18:14:29)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Review
+    deprecation implementation ideas next meeting?</span> <span
+    class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-71'>abayer</a>,
+    18:16:28)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">Plugin
+    deprecation is good. Implementation ideas are also good. Write 'em
+    on the wiki, review 'em next week.</span> <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-79'>abayer</a>,
+    18:17:33)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Jenkins User Conference http://jenkins-ci.org/content/jenkins-user-conference</b> <span class="details">(<a href='jenkins.2011-08-11-18.00.log.html#l-88'>kohsuke</a>, 18:19:48)</span>
+<ol type="a">
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">If we have a bit
+    of time, I'd love to hear what kind of talks people want to
+    hear</span> <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-97'>kohsuke</a>,
+    18:20:43)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">olamy_ as owner on jenkinsci on github question</b> <span class="details">(<a href='jenkins.2011-08-11-18.00.log.html#l-125'>kohsuke</a>, 18:27:15)</span>
+<ol type="a">
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">olamy_ should be
+    added as an owner.</span> <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-126'>abayer</a>,
+    18:27:28)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED"></span> <span
+    class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-129'>rtyler</a>,
+    18:27:39)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">olamy's an
+    owner....now!</span> <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-166'>abayer</a>,
+    18:32:08)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Trademark Registration Status</b> <span class="details">(<a href='jenkins.2011-08-11-18.00.log.html#l-169'>kohsuke</a>, 18:33:11)</span>
+<ol type="a">
+  <li><span class="INFO">so the ball started rolling between SPI and
+    us</span> <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-170'>kohsuke</a>,
+    18:33:28)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Kohsuke wanted to discuss this (JENKINS-9488 - align topbar colors): https://github.com/jenkinsci/jenkins/pull/179</b> <span class="details">(<a href='jenkins.2011-08-11-18.00.log.html#l-179'>kohsuke</a>, 18:35:23)</span>
+<ol type="a">
+  <li><span class="INFO">so there's a pending request to change the
+    color of the top bar of Jenkins UI</span> <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-181'>kohsuke</a>,
+    18:35:45)</span></li>
+  <li><span class="INFO">one point I'd like to make is that the current
+    color came from the same palette that's used for all the other
+    icons</span> <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-186'>kohsuke</a>,
+    18:36:41)</span></li>
+  <li><span class="INFO">screenshot:
+    http://postimage.org/image/2u9iq9v0k/</span> <span
+    class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-211'>kohsuke</a>,
+    18:44:02)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">: When is it time to release a new LTS release?</b> <span class="details">(<a href='jenkins.2011-08-11-18.00.log.html#l-229'>kohsuke</a>, 18:47:05)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">Kohsuke to
+    run his script to identify tickets that are (1) marked as critical
+    and (2) reported fixed in the trunk</span> <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-257'>kohsuke</a>,
+    18:53:03)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">aiming
+    1.409.2 in 3-4 weeks, and then move to rebumping to 1.42x after
+    that.</span> <span class="details">(<a
+    href='jenkins.2011-08-11-18.00.log.html#l-288'>kohsuke</a>,
+    19:02:24)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2011-08-11-18.00.log.html#l-289'>kohsuke</a>, 19:02:41)</span>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 19:04:52 UTC
+(<a href="jenkins.2011-08-11-18.00.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>abayer to write up his proposal for deprecated plugin behavior in the update center on the wiki</li>
+  <li>Kohsuke to run his script to identify tickets that are (1) marked as critical and (2) reported fixed in the trunk</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> abayer <ol>
+    <li>abayer to write up his proposal for deprecated plugin behavior in the update center on the wiki</li>
+  </ol></li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>kohsuke (103)</li>
+  <li>abayer (50)</li>
+  <li>rtyler (38)</li>
+  <li>aheritier (29)</li>
+  <li>kutzi (15)</li>
+  <li>bap2000 (15)</li>
+  <li>jieryn (14)</li>
+  <li>olamy (8)</li>
+  <li>vjuranek (8)</li>
+  <li>myusuf3 (5)</li>
+  <li>jenkins-admin (3)</li>
+  <li>sjakubowski (3)</li>
+  <li>olamy_ (3)</li>
+  <li>harpreet (3)</li>
+  <li>robobutler (2)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

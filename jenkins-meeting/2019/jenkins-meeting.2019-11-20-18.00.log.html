@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app228.us.archive.org';v.server_ms=232;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-11-20-18.00.log.html","20211027213537","https://web.archive.org/","web","/_static/",
+	      "1635370537");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:56</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Is anyone e;lse around?
+<a name="l-4"></a><span class="tm">18:01:56 </span><span class="nka">* markewaite</span> <span class="ac">is here</span>
+<a name="l-5"></a><span class="tm">18:02:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> okay
+<a name="l-6"></a><span class="tm">18:02:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">ogondza_:</span>  ?
+<a name="l-7"></a><span class="tm">18:02:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-8"></a><span class="tm">18:02:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/2hPMwmZDZFg</span>
+<a name="l-9"></a><span class="tm">18:02:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Current consensus looks to be 2.204
+<a name="l-10"></a><span class="tm">18:03:19</span><span class="nk"> &lt;markewaite&gt;</span> JENKINS-60199 certainly blocks 2.205 and is not in 2.204
+<a name="l-11"></a><span class="tm">18:03:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> One of the issues is with https://groups.google.com/forum/#!topic/jenkinsci-dev/O_g1kk39TBQ which suggests a serious regression in JCasC in Jenkins 2.199+ . It might be a reason to consider 2.198
+<a name="l-12"></a><span class="tm">18:04:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I have not investigated it fully yet, but it is a good chance of dumpsterfire if it gets into LTS
+<a name="l-13"></a><span class="tm">18:05:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I doubt we can discuss more without Oliver on the call
+<a name="l-14"></a><span class="tm">18:05:30</span><span class="nk"> &lt;markewaite&gt;</span> I had not read that description before. I agree that looks risky.  The report says that they upgraded to 2.199, are we confident 2.198 does not have same behavior?
+<a name="l-15"></a><span class="tm">18:05:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">timja:</span> FYI https://groups.google.com/forum/#!topic/jenkinsci-dev/O_g1kk39TBQ might be an issue
+<a name="l-16"></a><span class="tm">18:06:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">markewaite:</span> I am confident it does not. https://issues.jenkins-ci.org/browse/JENKINS-58993 is a root cause
+<a name="l-17"></a><span class="tm">18:06:12</span><span class="nk"> &lt;markewaite&gt;</span> Also OK if we host the conversation in e-mail so that we include Oliver
+<a name="l-18"></a><span class="tm">18:06:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It is definitely in email
+<a name="l-19"></a><span class="tm">18:07:05</span><span class="nk"> &lt;markewaite&gt;</span> <span class="hi">oleg-nenashev:</span> since 2.198 does not have that issue, that leads to your suggestion that 1.198 is likely best choice.  Thanks for clarity
+<a name="l-20"></a><span class="tm">18:07:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It removes a number of improvements from the LTS. But really, it is a call for the release officer
+<a name="l-21"></a><span class="tm">18:08:12</span><span class="nk"> &lt;rtyler&gt;</span> um hi
+<a name="l-22"></a><span class="tm">18:08:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> um hey
+<a name="l-23"></a><span class="tm">18:08:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, moving on?
+<a name="l-24"></a><span class="tm">18:08:25</span><span class="nk"> &lt;markewaite&gt;</span> Agreed. We can bring the issues to Oliver by e-mail and assure he's aware that 2.198 looks like the preferred LTS
+<a name="l-25"></a><span class="tm">18:08:32</span><span class="nk"> &lt;markewaite&gt;</span> moving on is OK with me
+<a name="l-26"></a><span class="tm">18:08:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">2.198 and 2.204 need further discussin in the mailing list</span>
+<a name="l-27"></a><span class="tm">18:09:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Event updates</span>
+<a name="l-28"></a><span class="tm">18:09:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">We will have a Jenkins stand at FOSDEM, yey! https://fosdem.org/2020/news/2019-11-19-accepted-stands/</span>
+<a name="l-29"></a><span class="tm">18:09:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Kudos to olblak for handling the application
+<a name="l-30"></a><span class="tm">18:10:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Hacktoberfest is over</span>
+<a name="l-31"></a><span class="tm">18:10:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Hacktoberfest top-level stats are in https://groups.google.com/forum/#!topic/jenkinsci-dev/k5KICbRDoz4</span>
+<a name="l-32"></a><span class="tm">18:10:42</span><span class="nk"> &lt;markewaite&gt;</span> Kudos to oleg-nenashev for the excellent results from Hacktoberfest!
+<a name="l-33"></a><span class="tm">18:10:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">TL;DR:</span> 124 first-timer contributors in one month
+<a name="l-34"></a><span class="tm">18:11:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And 915 unique contributors over a month. It is a history record according to devstats
+<a name="l-35"></a><span class="tm">18:11:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://devstats.cd.foundation/ for those who are interested in devstats</span>
+<a name="l-36"></a><span class="tm">18:11:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Oh, Jenkins world
+<a name="l-37"></a><span class="tm">18:12:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Don't miss the contributor summit on Dec 03.</span>
+<a name="l-38"></a><span class="tm">18:12:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> kinda
+<a name="l-39"></a><span class="tm">18:12:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I doubt it makes sense to spend too much time on the events, everything is in the devlist
+<a name="l-40"></a><span class="tm">18:13:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> moving on unless there are questions
+<a name="l-41"></a><span class="tm">18:13:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark usage request: Jenkins Master Class</span>
+<a name="l-42"></a><span class="tm">18:13:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/Cq_NQwyLD5s</span>
+<a name="l-43"></a><span class="tm">18:14:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Parker is not in the channel so far
+<a name="l-44"></a><span class="tm">18:14:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I asked him to join, but he had issues with logging in to IRC
+<a name="l-45"></a><span class="tm">18:15:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So far we have 2 +1s in the mailing list, no other final votes IIUC
+<a name="l-46"></a><span class="tm">18:15:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> rtyler and Parker had a conversation, but I am not sure what is the outcome
+<a name="l-47"></a><span class="tm">18:15:34</span><span class="nk"> &lt;rtyler&gt;</span> the suggestive call to action that Parker describes I think is fine
+<a name="l-48"></a><span class="tm">18:16:17</span><span class="nk"> &lt;rtyler&gt;</span> generally speaking we shouldn't have things called "Jenkins" that aren't about Jenkins, which it sounds like this is. Including a call action for some product is fine and has been done with just about every Jenkins related event error
+<a name="l-49"></a><span class="tm">18:17:17</span><span class="nk"> &lt;markewaite&gt;</span> I'm acting as cut/paste transmitter to share this with Parker while he wrestles with login issues.
+<a name="l-50"></a><span class="tm">18:17:33</span><span class="nk"> &lt;markewaite&gt;</span> Any specific questions that need to be asked of Parker ?
+<a name="l-51"></a><span class="tm">18:17:39</span><span class="nk"> &lt;rtyler&gt;</span> login issues? http://webchat.freenode.net/ is easy o_O
+<a name="l-52"></a><span class="tm">18:17:50 </span><span class="nka">* oleg-nenashev</span> <span class="ac">shrugs</span>
+<a name="l-53"></a><span class="tm">18:18:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I do not have questions from my side
+<a name="l-54"></a><span class="tm">18:18:09</span><span class="nk"> &lt;rtyler&gt;</span> anyways, I don't think there is any problem with this request as stated, the misttype that Parker made on the maijling list referring to "Jenkins distribution" absolutely should _not_ happen in the class content :)
+<a name="l-55"></a><span class="tm">18:18:15 </span><span class="nka">* markewaite</span> <span class="ac">feels sheepish at the number of times he's struggled with IRC</span>
+<a name="l-56"></a><span class="tm">18:19:10</span><span class="nk"> &lt;rtyler&gt;</span> I'm +1 with the usual stipulations around properly identifying the mark and not confusing it with commercial products
+<a name="l-57"></a><span class="tm">18:19:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> https://www.irccloud.com/pastebin/qamgkf3E/
+<a name="l-58"></a><span class="tm">18:19:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Our current approach is that the requester must ensure the correctness of the trademark usage, including the requester's materials and 3rd parties
+<a name="l-59"></a><span class="tm">18:19:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> sorry for pastebin
+<a name="l-60"></a><span class="tm">18:20:00</span><span class="nk"> &lt;rtyler&gt;</span> heh, I was wondering why that was there, but yes, those are "the usual" :)
+<a name="l-61"></a><span class="tm">18:20:02</span><span class="nk"> &lt;rtyler&gt;</span> thanks oleg-nenashev
+<a name="l-62"></a><span class="tm">18:20:52</span><span class="nk"> &lt;markewaite&gt;</span> I'm +1
+<a name="l-63"></a><span class="tm">18:21:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> so yeah, CloudBees would be responsible to ensure "Jenkins Master Class" trademark is used properly
+<a name="l-64"></a><span class="tm">18:21:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any other comments/questions/concerns?
+<a name="l-65"></a><span class="tm">18:21:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> With rtyler's +1 we have 3x +1s and one abstain (from me)
+<a name="l-66"></a><span class="tm">18:22:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 30 sec timeout
+<a name="l-67"></a><span class="tm">18:22:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> erm timeout
+<a name="l-68"></a><span class="tm">18:22:50</span><span class="nk"> &lt;ParkerCB&gt;</span> Hi all, sorry for the delay. Note to self - write down your IRC password :facepalm:
+<a name="l-69"></a><span class="tm">18:23:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the "Jenkins Master Class" trademark request is approved, with the usual stipulations around properly identifying the mark and not confusing it with commercial products</span>
+<a name="l-70"></a><span class="tm">18:23:27</span><span class="nk"> &lt;ParkerCB&gt;</span> markewaite was keeping me up to date via Slack
+<a name="l-71"></a><span class="tm">18:23:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> would you be able to update the Wiki page? We have not moved trademarks to jenkins.io yet
+<a name="l-72"></a><span class="tm">18:24:05</span><span class="nk"> &lt;rtyler&gt;</span> yes
+<a name="l-73"></a><span class="tm">18:24:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage</span>
+<a name="l-74"></a><span class="tm">18:24:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to update the Approved Trademark Usage list</span>
+<a name="l-75"></a><span class="tm">18:24:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks rtyler and ParkerCB !
+<a name="l-76"></a><span class="tm">18:24:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> moving on
+<a name="l-77"></a><span class="tm">18:24:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Budget request: Hacktoberfest swag</span>
+<a name="l-78"></a><span class="tm">18:25:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/k5KICbRDoz4</span>
+<a name="l-79"></a><span class="tm">18:25:15</span><span class="nk"> &lt;ParkerCB&gt;</span> Yes, thanks a bunch!
+<a name="l-80"></a><span class="tm">18:25:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So I ask for 500USD or 1000 USD budget for swag for top first-timer contributors
+<a name="l-81"></a><span class="tm">18:26:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am not sure where we exactly stand w.r.t the treasury, maybe rtyler has numbers
+<a name="l-82"></a><span class="tm">18:27:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And I am a bit concerned about spending too much taking the infrastructure sponsorship topics, but I doubt 500USD would make a difference there
+<a name="l-83"></a><span class="tm">18:28:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> From the current budget, we have 3500 USD reserved for Community Bridge + ~8k USD reserved as GSoC funds according to JEP-8
+<a name="l-84"></a><span class="tm">18:29:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> votes/comments/questions ?
+<a name="l-85"></a><span class="tm">18:29:27</span><span class="nk"> &lt;markewaite&gt;</span> I really like the swag idea to encourage the contributors and think 500 USD (and even 1000 USD) is well worth it
+<a name="l-86"></a><span class="tm">18:30:42</span><span class="nk"> &lt;rtyler&gt;</span> yes to swag
+<a name="l-87"></a><span class="tm">18:30:51</span><span class="nk"> &lt;ParkerCB&gt;</span> ^agreed. A good incentive to encourage new contributors and promotes the Jenkins community as a "team" at the same time
+<a name="l-88"></a><span class="tm">18:31:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any preference between 500 or 1000 USD?
+<a name="l-89"></a><span class="tm">18:31:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I can do both
+<a name="l-90"></a><span class="tm">18:31:48</span><span class="nk"> &lt;markewaite&gt;</span> My preference is 500 USD because I'm financially very conservative, but will 500 USD be enough?
+<a name="l-91"></a><span class="tm">18:32:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> For around 20 contributors, maybe a bit more
+<a name="l-92"></a><span class="tm">18:32:25</span><span class="nk"> &lt;rtyler&gt;</span> I would recommend we agree on 1000 just to have some wiggle room because I'm sure not everybody here knows the price of stickers, shipping and t-shirts :)
+<a name="l-93"></a><span class="tm">18:32:29</span><span class="nk"> &lt;rtyler&gt;</span> if we come under, that's great
+<a name="l-94"></a><span class="tm">18:32:36</span><span class="nk"> &lt;markewaite&gt;</span> Then let's go with 1000 USD to provide capacity
+<a name="l-95"></a><span class="tm">18:32:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 obviously
+<a name="l-96"></a><span class="tm">18:32:45</span><span class="nk"> &lt;ParkerCB&gt;</span> $500 would be ~$25 per person for 20 contributors
+<a name="l-97"></a><span class="tm">18:32:50</span><span class="nk"> &lt;markewaite&gt;</span> +1
+<a name="l-98"></a><span class="tm">18:32:51</span><span class="nk"> &lt;ParkerCB&gt;</span> which depending on the swag, could work
+<a name="l-99"></a><span class="tm">18:32:56</span><span class="nk"> &lt;markewaite&gt;</span> +1 for 1000 USD
+<a name="l-100"></a><span class="tm">18:32:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I do not plan T-shirts BTW
+<a name="l-101"></a><span class="tm">18:33:12</span><span class="nk"> &lt;rtyler&gt;</span> ok
+<a name="l-102"></a><span class="tm">18:33:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Is anyone against?
+<a name="l-103"></a><span class="tm">18:33:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 30 sec timeout
+<a name="l-104"></a><span class="tm">18:33:34</span><span class="nk"> &lt;ParkerCB&gt;</span> nope, +1 for 1000
+<a name="l-105"></a><span class="tm">18:33:35</span><span class="nk"> &lt;rtyler&gt;</span> I'm still in favor of a little extra budget capacity, I trust you all to make the prudent decisions on what we can send to new contributors
+<a name="l-106"></a><span class="tm">18:33:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> will do my best
+<a name="l-107"></a><span class="tm">18:34:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">1000USD Swag budget is confirmed for Hacktoberfest 2019</span>
+<a name="l-108"></a><span class="tm">18:34:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Approving Browser Support Policy update</span>
+<a name="l-109"></a><span class="tm">18:34:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/TV_pLEah9B4</span>
+<a name="l-110"></a><span class="tm">18:34:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Pending PR: https://github.com/jenkins-infra/jenkins.io/pull/2659</span>
+<a name="l-111"></a><span class="tm">18:34:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> aka "Does anyone still use IE 8 here?"
+<a name="l-112"></a><span class="tm">18:35:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It has a pretty strong consensus in the dev list, just bringing it up here for extra sign-off / Q&amp;A
+<a name="l-113"></a><span class="tm">18:36:36</span><span class="nk"> &lt;rtyler&gt;</span> I don't have any input and don't think it's necessary for a sign-off per se
+<a name="l-114"></a><span class="tm">18:36:46</span><span class="nk"> &lt;rtyler&gt;</span> those doin' the work get to call the shots on what we can support IMHO
+<a name="l-115"></a><span class="tm">18:37:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Is anyone agains?
+<a name="l-116"></a><span class="tm">18:38:02</span><span class="nk"> &lt;markewaite&gt;</span> No opposition from me. +1 for the update
+<a name="l-117"></a><span class="tm">18:38:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We can just rubber-stamp this thread and the OS X one to save time
+<a name="l-118"></a><span class="tm">18:38:26</span><span class="nk"> &lt;rtyler&gt;</span> drop old browsers and bad platforms! :D
+<a name="l-119"></a><span class="tm">18:38:47</span><span class="nk"> &lt;markewaite&gt;</span> +1 on dropping the native installer for OS X as well
+<a name="l-120"></a><span class="tm">18:39:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 from me for both
+<a name="l-121"></a><span class="tm">18:39:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I also have a long-standing action item in Platform SIG to document the Windows support policy
+<a name="l-122"></a><span class="tm">18:40:09</span><span class="nk"> &lt;ParkerCB&gt;</span> No opinion from me on this one, not knowledgeable enough
+<a name="l-123"></a><span class="tm">18:40:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Dropping 32bit and XP would be a huge relief if I ever have to touch WinP again
+<a name="l-124"></a><span class="tm">18:41:25</span><span class="nk"> &lt;markewaite&gt;</span> Also agree that we should drop 32 bit Windows support.  Untested code and not likely to be tested by active participants
+<a name="l-125"></a><span class="tm">18:41:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> OK, let's conclude it then
+<a name="l-126"></a><span class="tm">18:42:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Approved the browser support policy change as it documented in https://github.com/jenkins-infra/jenkins.io/pull/2659/commits/08c747ce909d2bdae6dd6ea91c73584e987ab5c5</span>
+<a name="l-127"></a><span class="tm">18:42:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Approved the OS X packaging deprecation</span>
+<a name="l-128"></a><span class="tm">18:43:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to follow-up on both topics</span>
+<a name="l-129"></a><span class="tm">18:43:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> That's it
+<a name="l-130"></a><span class="tm">18:43:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> any other topics to cover today?
+<a name="l-131"></a><span class="tm">18:44:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 30 sec timeout
+<a name="l-132"></a><span class="tm">18:44:09</span><span class="nk"> &lt;markewaite&gt;</span> LTS selection will happen in e-mail thread?
+<a name="l-133"></a><span class="tm">18:44:30</span><span class="nk"> &lt;markewaite&gt;</span> Ultimate decision by the release officer?
+<a name="l-134"></a><span class="tm">18:44:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">markewaite:</span> yes
+<a name="l-135"></a><span class="tm">18:45:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 21:35:37 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:03:16 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 142.292
+  exclusion.robots: 0.114
+  exclusion.robots.policy: 0.104
+  RedisCDXSource: 6.65
+  esindex: 0.01
+  LoadShardBlock: 113.51 (3)
+  PetaboxLoader3.datanode: 97.83 (4)
+  CDXLines.iter: 18.197 (3)
+  load_resource: 79.375
+  PetaboxLoader3.resolve: 46.583
+-->

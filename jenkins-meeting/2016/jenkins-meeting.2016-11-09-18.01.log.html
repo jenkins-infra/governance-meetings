@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app202.us.archive.org';v.server_ms=357;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-11-09-18.01.log.html","20211020075256","https://web.archive.org/","web","/_static/",
+	      "1634716376");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:26</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke danielbeck hare_brain</span>
+<a name="l-4"></a><span class="tm">18:01:32</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:01:51</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm, https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda is empty
+<a name="l-6"></a><span class="tm">18:01:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-7"></a><span class="tm">18:02:02</span><span class="nk"> &lt;rtyler&gt;</span> yep, so we'll do the usual real quick
+<a name="l-8"></a><span class="tm">18:02:07</span><span class="nk"> &lt;kohsuke&gt;</span> sounds good
+<a name="l-9"></a><span class="tm">18:02:15</span><span class="nk"> &lt;rtyler&gt;</span> the only action was the release 2.19.2
+<a name="l-10"></a><span class="tm">18:02:16</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-10-26-18.00.html</span>
+<a name="l-11"></a><span class="tm">18:02:18</span><span class="nk"> &lt;rtyler&gt;</span> which happened yeah?
+<a name="l-12"></a><span class="tm">18:02:24</span><span class="nk"> &lt;danielbeck&gt;</span> yep
+<a name="l-13"></a><span class="tm">18:02:31</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-14"></a><span class="tm">18:02:37</span><span class="nk"> &lt;rtyler&gt;</span> moving on then :D
+<a name="l-15"></a><span class="tm">18:02:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-16"></a><span class="tm">18:03:05</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza isn't around
+<a name="l-17"></a><span class="tm">18:03:13</span><span class="nk"> &lt;rtyler&gt;</span> ruh roh
+<a name="l-18"></a><span class="tm">18:04:08</span><span class="nk"> &lt;rtyler&gt;</span> well..
+<a name="l-19"></a><span class="tm">18:04:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> do you know anything about where we are?
+<a name="l-20"></a><span class="tm">18:04:21</span><span class="nk"> &lt;rtyler&gt;</span> backporting started for .3 didn't it?
+<a name="l-21"></a><span class="tm">18:04:31</span><span class="nk"> &lt;danielbeck&gt;</span> fairly active at https://groups.google.com/d/msg/jenkinsci-dev/Ejm1LrMf4h0/Hhz9HDwnAgAJ
+<a name="l-22"></a><span class="tm">18:05:11</span><span class="nk"> &lt;danielbeck&gt;</span> Seems there's one outstanding backport which will be included with https://github.com/jenkinsci/jenkins/pull/2627 as followup
+<a name="l-23"></a><span class="tm">18:05:20</span><span class="nk"> &lt;jglick&gt;</span> Active discussion about the B.O. I18N backport last I saw.
+<a name="l-24"></a><span class="tm">18:05:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> you around?
+<a name="l-25"></a><span class="tm">18:05:38</span><span class="nk"> &lt;jglick&gt;</span> right
+<a name="l-26"></a><span class="tm">18:06:37</span><span class="nk"> &lt;jglick&gt;</span> I suppose the status is “wrapping up”?
+<a name="l-27"></a><span class="tm">18:06:41</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-28"></a><span class="tm">18:07:00</span><span class="nk"> &lt;rtyler&gt;</span> if there's nothing that needs to be discussed here as far as the LTS for 2.19.3 is concerned, then that's no big deal IMO
+<a name="l-29"></a><span class="tm">18:07:05</span><span class="nk"> &lt;danielbeck&gt;</span> right
+<a name="l-30"></a><span class="tm">18:07:32</span><span class="nk"> &lt;rtyler&gt;</span> anything else on this topic?
+<a name="l-31"></a><span class="tm">18:07:39</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to send another UTC reminder to the dev list</span>
+<a name="l-32"></a><span class="tm">18:07:53</span><span class="nk"> &lt;danielbeck&gt;</span> (it's not like ogondza to miss a meeting)
+<a name="l-33"></a><span class="tm">18:07:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Sorry, was offline
+<a name="l-34"></a><span class="tm">18:08:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> are there any issues around the LTS that you want to raise while we're on the topic?
+<a name="l-35"></a><span class="tm">18:08:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> i think the RC is more or less ready. Yesterday we integrated the most of the stuff
+<a name="l-36"></a><span class="tm">18:08:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The only left issue is BlueOcean localization patch
+<a name="l-37"></a><span class="tm">18:09:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> looking for the thread
+<a name="l-38"></a><span class="tm">18:09:24</span><span class="nk"> &lt;kohsuke&gt;</span> I think we should move on
+<a name="l-39"></a><span class="tm">18:09:30</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev we linked that above already
+<a name="l-40"></a><span class="tm">18:09:41</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev so if that's all, we're up to date
+<a name="l-41"></a><span class="tm">18:09:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nice
+<a name="l-42"></a><span class="tm">18:09:48</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-43"></a><span class="tm">18:09:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> JENKINS-35845 is pending, other stuff is integrated
+<a name="l-44"></a><span class="tm">18:10:14</span><span class="nk"> &lt;rtyler&gt;</span> I'm going to throw a heads-up topic in real quick
+<a name="l-45"></a><span class="tm">18:10:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Maybe off-topic, but we need remoting-3.1 release for the next LTS
+<a name="l-46"></a><span class="tm">18:10:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> already done
+<a name="l-47"></a><span class="tm">18:10:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ty
+<a name="l-48"></a><span class="tm">18:10:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Some release archives served via Azure blob storage</span>
+<a name="l-49"></a><span class="tm">18:10:49</span><span class="nk"> &lt;rtyler&gt;</span> this is just a heads-up for posterity to be honest
+<a name="l-50"></a><span class="tm">18:11:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">right no we're seving HTTPs downloads for pkg.jenkins.io for debian/opensuse/redhat repositories via Azure blob storage</span>
+<a name="l-51"></a><span class="tm">18:11:30</span><span class="nk"> &lt;jglick&gt;</span> So long as there are backups elsewhere, sounds fine.
+<a name="l-52"></a><span class="tm">18:11:33</span><span class="nk"> &lt;rtyler&gt;</span> we're not fronting any more traffic via Azure right now just because I don't have enough data on whether it's been successful thus far or not
+<a name="l-53"></a><span class="tm">18:11:45</span><span class="nk"> &lt;danielbeck&gt;</span> what defines success?
+<a name="l-54"></a><span class="tm">18:12:00</span><span class="nk"> &lt;rtyler&gt;</span> lack of complaints :P
+<a name="l-55"></a><span class="tm">18:12:13</span><span class="nk"> &lt;rtyler&gt;</span> well, also there are Azure metrics which show less than 100^ deliverability success rates
+<a name="l-56"></a><span class="tm">18:12:27</span><span class="nk"> &lt;rtyler&gt;</span> I have a support call with Microsoft tomorrow to ask more about what that metric means
+<a name="l-57"></a><span class="tm">18:12:46</span><span class="nk"> &lt;rtyler&gt;</span> if they're just tracking clients' connection resets, then that's not a concern
+<a name="l-58"></a><span class="tm">18:13:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jglick:</span> Azure blob storage is geographically redundant
+<a name="l-59"></a><span class="tm">18:13:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> I'm also using this experiment to get an idea of whether my cost models are correct
+<a name="l-60"></a><span class="tm">18:14:30</span><span class="nk"> &lt;rtyler&gt;</span> but please keep an eye out for IRC, mailing list, or twitter traffic which might suggest end-users are seeing anything other than stellar experiences with these downloads
+<a name="l-61"></a><span class="tm">18:14:48</span><span class="nk"> &lt;rtyler&gt;</span> any questions befoer moving on?
+<a name="l-62"></a><span class="tm">18:14:55</span><span class="nk"> &lt;danielbeck&gt;</span> no
+<a name="l-63"></a><span class="tm">18:15:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-64"></a><span class="tm">18:15:43</span><span class="nk"> &lt;rtyler&gt;</span> Nov 23rd is  the week of thanksgiving in the US
+<a name="l-65"></a><span class="tm">18:15:55</span><span class="nk"> &lt;rtyler&gt;</span> not a big deal, but there might be a fair bit of vacations floating around then
+<a name="l-66"></a><span class="tm">18:16:00</span><span class="nk"> &lt;rtyler&gt;</span> any qualms with that day?
+<a name="l-67"></a><span class="tm">18:16:11</span><span class="nk"> &lt;danielbeck&gt;</span> not from me but we could ask on the dev list
+<a name="l-68"></a><span class="tm">18:16:30 </span><span class="nka">* oleg-nenashev</span> <span class="ac">is out on 23rd</span>
+<a name="l-69"></a><span class="tm">18:16:33</span><span class="nk"> &lt;rtyler&gt;</span> considering t he agenda for the past two meetings, I don't think we should skip
+<a name="l-70"></a><span class="tm">18:16:39</span><span class="nk"> &lt;danielbeck&gt;</span> FWIW 23rd is LTS baseline selection
+<a name="l-71"></a><span class="tm">18:16:42</span><span class="nk"> &lt;rtyler&gt;</span> it'll likely be quick
+<a name="l-72"></a><span class="tm">18:16:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes, we need it
+<a name="l-73"></a><span class="tm">18:16:53</span><span class="nk"> &lt;danielbeck&gt;</span> LTS baseline selection!
+<a name="l-74"></a><span class="tm">18:16:55</span><span class="nk"> &lt;kohsuke&gt;</span> Let's stick to the schedule
+<a name="l-75"></a><span class="tm">18:17:09</span><span class="nk"> &lt;rtyler&gt;</span> okay
+<a name="l-76"></a><span class="tm">18:17:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting Nov 23rd</span>
+<a name="l-77"></a><span class="tm">18:17:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 07:52:56 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:42:45 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 202.329
+  exclusion.robots: 0.084
+  exclusion.robots.policy: 0.076
+  cdx.remote: 0.067
+  esindex: 0.008
+  LoadShardBlock: 134.773 (3)
+  PetaboxLoader3.datanode: 89.357 (4)
+  CDXLines.iter: 16.269 (3)
+  load_resource: 147.54
+  PetaboxLoader3.resolve: 79.005
+-->

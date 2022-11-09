@@ -1,0 +1,252 @@
+19:01:42 <kohsuke> #startmeeting
+19:01:42 <robobutler> Let the Jenkins meeting commence!
+19:01:47 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:02:00 <kohsuke> #topic FOSDEM planning
+19:02:54 <kohsuke> I haven't caught up on the flyer thread but will there be one this year?
+19:03:03 <fredg02> yes
+19:03:20 <kohsuke> I guess I need to bring more stickers
+19:03:27 <fredg02> they are printed and ready to be handed out
+19:03:50 <fredg02> will there be any bobble heads?
+19:03:52 <kohsuke> #info and I've convinced alyssa to donate left-over JUC T-shirts so that we can sell them at FOSDEM
+19:04:01 <fredg02> nice!
+19:04:19 <kohsuke> I believe there's about one box worth of it. two dozens or so
+19:04:30 <kohsuke> Does anyone know how much we should charge for those?
+19:04:48 <fredg02> t-shirts?
+19:04:54 <kohsuke> Yes
+19:05:27 <fredg02> something between 10-20 euros should be reasonable, I think
+19:06:23 <kohsuke> OK, maybe we'll start with 20 and see how it goes
+19:06:32 <kohsuke> We just need to get rid of them all by the time FOSDEM ends :-)
+19:06:46 <fredg02> that should be no problem ;)
+19:07:02 <kohsuke> wrt bobble head, I'm not sure if I have enough room in luggage to bring them with me
+19:07:09 <kohsuke> I wonder if rtyler can take some with him?
+19:07:42 <kohsuke> I have another CloudBees guy visiting us in the office this week, so I'll check with him to see if he can carry some and then ship it to Brussels
+19:08:11 <fredg02> at least one for decorating the stand would be nice
+19:08:28 <kohsuke> OK, that should be doable
+19:08:45 <fredg02> is anyone else of the FOSDEM crew around today?
+19:09:09 <kohsuke> There's orrc
+19:09:46 <fredg02> but he's very quiet ;)
+19:10:04 <kohsuke> rsandell and ndeloof aren't here
+19:10:08 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/FOSDEM
+19:10:17 <kohsuke> All right, I'll just capture what we can in that page
+19:10:31 <stephenc> hey!
+19:11:13 <fredg02> I guess we can also do some preparation at the hackathon on friday?
+19:11:39 <kohsuke> Yes, are you planning to come? http://www.meetup.com/jenkinsmeetup/events/149899162/
+19:11:49 <kohsuke> stephenc: are you coming to FOSDEM after all?
+19:11:56 <stephenc> @kohsuke.... that's still up in the air
+19:12:00 <kohsuke> Like I said, I'd encourage that
+19:12:03 <stephenc> I may do the friday only
+19:12:13 <stephenc> I don't think I'd be let do Fri+Sat
+19:12:25 <stephenc> there's an 8pm flight back
+19:12:48 <stephenc> so that would give me 10:20am-5:00pm
+19:12:49 <fredg02> yes, I just haven't singed up on the meetup page
+19:13:03 <stephenc> @kohsuke friday is in our offices, yes?
+19:13:08 <kohsuke> Last year we tried to schedule who mans the stand when without much success: https://wiki.jenkins-ci.org/display/JENKINS/FOSDEM+2013
+19:13:12 <kohsuke> stephenc: yes
+19:13:15 <jaapio> hi, i'm looking for a good tutorial to start with a jenkins plugin.
+19:13:32 <kohsuke> jaapio: https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial
+19:13:34 <stephenc> @kohsuke, this is something we can take off-line on friday perhaps
+19:13:41 <fredg02> +1
+19:13:43 <kohsuke> OK
+19:13:44 <stephenc> rather than littering the meeting minutes
+19:14:00 <kohsuke> Shall we move on to the next topic?
+19:14:03 <stephenc> +1
+19:14:28 <kohsuke> #topic LTS.next planning
+19:14:40 <jaapio> kohsuke: I found that one. But it doesn't tell me how te register an action
+19:14:47 <stephenc> I like the idea of setting the date first
+19:14:50 <ogondza> https://groups.google.com/forum/#!topic/jenkinsci-dev/19SF7nG63zo
+19:15:15 <stephenc> does mean that we'd be releasing on/near the date and not necessarily giving a commitment to same level of quality
+19:15:44 <stephenc> IOW does fixed date mean we are choosing to vary quality and hold time fixed or is there some other trade-off
+19:16:11 <ogondza> stephenc, not necessarily
+19:16:32 <ogondza> I believe we will be able to sustain the same quality level
+19:16:45 <kohsuke> My understanding is that we've automated enough LTS testing in selenium-tests that it's actually almost continuously ready
+19:16:56 <stephenc> OK, so...
+19:17:12 <stephenc> @kohsuke, did you watch the 7 deadly sins of automated testing talk
+19:17:16 <kohsuke> And the variance comes in the form of taking what changes we can take in a given train --- some backporting might have to slip to the next train
+19:17:30 <kohsuke> I read the text of the post
+19:17:57 <stephenc> ok... I think the audio delivery was more compelling
+19:18:12 <kohsuke> I'm a big fan of the train model --- I think it sets the clearer expectation and works better when the bandwidth of communication is limited.
+19:18:39 <kohsuke> Let me pull in jglick
+19:18:47 <stephenc> ok... so the difference here is that we reduce the scope of backports if we are short on time
+19:19:08 <stephenc> I've told jglick to login
+19:19:29 <kohsuke> He's next to me now
+19:19:33 <kohsuke> So I'm going to proxy him
+19:19:41 <stephenc> ha... over by the window I see
+19:19:56 <kohsuke> jglick says he's generally in favor of anything like train model
+19:20:12 <ogondza> stephenc, some of recent lts releases was delivered within a month and the number of backports was not affected
+19:20:17 <stephenc> I like the train model... I just want to know what we are compromising on to deliver fixed dates
+19:20:26 <kohsuke> jglick says people are always asking for the next LTS date and right now we have no answers
+19:20:51 <stephenc> jglick: can you go give harpreet a slap... waving at the camera is distracting
+19:21:21 <kohsuke> jglick is speaking too fast so I've asked him to go online on his own :-(
+19:22:02 <kohsuke> Looking back, I think releaseing double-dot releases in a predictable schedule seems doable, but I think we had some trouble picking up the new base version in a timely fashion
+19:22:47 <kohsuke> So that's my only concern, but my +1 for trying it out
+19:23:25 <kohsuke> I assume it'd be like (a) rebase every 3 months and (b) double-dot releases every one month?
+19:23:41 <jglick> I would love to see something like a predictable 3-month LTS cycle: month 0 we have 1.xxx.1 LTS, month 1 we have 1.xxx.2, month 2 we have 1.xxx.3, month 3 we have 1.yyy.1, and so on.
+19:24:08 <kohsuke> ogondza: is that basically what you are planning?
+19:24:10 <ogondza> sounds good to me
+19:24:22 <stephenc> +1 from me
+19:24:25 <kohsuke> is 1 week enough for RC?
+19:24:35 <kohsuke> Do we want 2?
+19:24:46 <jglick> How many people actually test the RCs?
+19:24:54 <ogondza> for me definitely. I failed to encourage other people to join me
+19:25:23 <kohsuke> mwaite has helped some in the past: https://wiki.jenkins-ci.org/display/JENKINS/LTS+1.509.x+RC+Testing
+19:25:46 <ogondza> kohsuke, have not seen him around for some time
+19:25:47 <kohsuke> and in the scalability summit there was more interest from users in helping these efforts in general
+19:26:10 <kohsuke> maybe predictable schedule might encourage those users to sync their acceptance testing with our release schedules
+19:26:23 <ogondza> jglick, recently me and kohsuke (according the wiki)
+19:26:41 <kohsuke> For example Y! people said they'd be willing to run their load tests and tell us the results
+19:26:53 <kohsuke> it would have been nice to have rsandell
+19:27:07 <ogondza> kohsuke, that is what I hope for, plus i'll announce rc testing on dev list
+19:27:49 <kohsuke> What if we start with 2 weeks RC?
+19:28:18 <ogondza> kohsuke, I should be able to do backporting
+19:28:23 <kohsuke> So that the initial announcement of this change could say that a part of the motivation is to make it easier for broader audience to sync their acceptance testing with LTS?
+19:28:25 <jglick> Would the “soak” time restrictions remain the same as now?
+19:29:06 <kohsuke> I don't see needs to change it, FWIW
+19:29:41 <jglick> It would be good to work backward from the expected LTS release date to the RC date, to the weekly release date of the last soak time, to the rc branch creation time from trunk, so you can say that a given date is the last time you can commit to trunk and expect your change to be in the upcoming LTS line.
+19:29:48 <jglick> This is really opaque right now.
+19:30:18 <kohsuke> Let's see
+19:30:20 <jglick> For example, I did a bunch of new features including APIs in 1.548. Will these be in the next LTS? It is hard to know today, because the cutoff point is picked retroactively.
+19:30:52 <kohsuke> But that'd remain the same, no? We'd really only know which base version to pick until much after it was released
+19:31:21 <jglick> Depends on whether we pick base versions on ad hoc basis, or preselect the base version just based on date: the latest satisfying the soak requirement.
+19:31:47 <kohsuke> Hmm, that's a big change
+19:31:57 <ogondza> i prefer to pick the most stable one (as we always did)
+19:32:24 <jglick> OK, it just means there is no predictability about when a given change actually appears in LTS.
+19:32:32 <jglick> Maybe that is the tradeoff we want.
+19:33:28 <kohsuke> It feels like beefing up the QA effort into the main line release is the pre-requisite for us to be able to mechanically pick the LTS base version
+19:34:05 <ogondza> I am afraid that knowing what will be the next lts before it is released can motivate people push changes to those releases in a hurry degrading their quality
+19:34:15 <kohsuke> True
+19:34:29 <kohsuke> OK, so let's keep the current approach on that front
+19:34:30 <jglick> Always a risk with train model.
+19:35:05 <jglick> So any resolutions from this?
+19:35:12 <kohsuke> So T+0 we pick a new base version
+19:35:31 <kohsuke> T+2 weeks RC and T+4 weeks 1.xxx.1 release?
+19:35:40 <ogondza> kohsuke, +1
+19:35:56 <kohsuke> T+6 weeks RC 1.xxx.2 RC and T+8 weeks 1.xxx.2 release?
+19:36:09 <jglick> month != 4 weeks
+19:36:15 <jglick> ~4.5
+19:36:15 <javabot> jglick, what does that even *mean*?
+19:36:51 <kohsuke> Because main line releases run weekly cycles, I find it easier to keep track of cycles in weeks
+19:36:51 <jglick> Since our LTS schedules have traditionally been given in months, it does not make sense to talk about weeks.
+19:37:04 <jglick> Then maybe we should pick an LTS cycle length in weeks?
+19:37:10 <jglick> 13
+19:37:44 <kohsuke> +1. I think it's easier for me
+19:38:16 <jglick> So thinking by week mod 13, call 1.xxx.1 release week 0, 1.xxx.2 week 4, 1.xxx.3 week 9, something like this.
+19:38:17 <hare_brain> +1 for weeks
+19:38:33 <kohsuke> I realize in the above timeline, 1.xxx.1 only have 2 weeks for backporting while others have 4 weeks for backporting. Is that a problem?
+19:38:55 <jglick> Backporting does not really take long does it?
+19:39:08 <kohsuke> ogondza: ?
+19:39:09 <ogondza> no
+19:39:42 <kohsuke> OK, so that model is OK.
+19:40:13 <jglick> Maybe 0/5/10 is a clearer release schedule (13 is the next LTS .1).
+19:40:31 <jglick> Sometime around 9 you are picking the baseline for the next LTS.
+19:41:08 <kohsuke> OK
+19:41:35 <kohsuke> If the cycle is 12 weeks it'd match better with the project meeting
+19:41:43 <kohsuke> And we'd take december off :-)
+19:42:07 <jglick> Right, so just leave the last ~4 weeks of a year as dead time.
+19:42:25 <jglick> Good point about synchronization with project meeting.
+19:42:46 <kohsuke> week 0/4/8 is the release date and 12 is the next LTS .1
+19:42:56 <jglick> Right.
+19:43:11 <kohsuke> following your math that means week 8 is the "pick the baseline for next LTS"
+19:43:18 <jglick> Rght.
+19:43:31 <kohsuke> ogondza, does that work with you?
+19:43:41 <ogondza> it does
+19:44:23 <kohsuke> ogondza:  Would you be able to update https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line accordingly?
+19:44:33 <kohsuke> I think we have consensus
+19:44:36 <ogondza> sure
+19:44:56 <kohsuke> #agreed we'll try train model with 4 week LTS release cycle and 12 week LTS rebase cycle.
+19:45:01 <kohsuke> #action ogondza to update the Wiki page
+19:45:20 <kohsuke> can we move on to the next topic?
+19:45:48 <kohsuke> #topic "Patron of Jenkins" proposal
+19:45:56 <kohsuke> #info https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=71435396
+19:46:18 <kohsuke> I hope abayer are in here on this one
+19:46:31 <abayer> I am here.
+19:46:40 <kohsuke> So this is the continuation of the ad discussion from the last meeting
+19:47:31 <kohsuke> Because a part of the feedback is that we wanted to call it a kind of sponsorship
+19:47:44 <kohsuke> In this proposal I'm calling it "Patron of Jenkins"
+19:48:18 <kohsuke> it just comes in at a higher price point --- $750
+19:48:44 <kohsuke> Also, in the last meeting the idea was to put the sponsor message on the landing page
+19:48:57 <kohsuke> but after looking at the page impressions, Wiki seems like a better place to do it
+19:49:08 <kohsuke> ... since we'd only have to show the message once in 7 page hits
+19:49:38 <kohsuke> the required donation level is computed based on the price Eclipse charges for their ad --- 400K hits for $2K
+19:49:50 <kohsuke> the proposal creates 4 slots to ensure diversity
+19:50:28 <kohsuke> any thoughts on this?
+19:52:03 <kohsuke> FWIW, that amounts to $12K per year
+19:52:16 <kohsuke> That's a lot of money in my dictionary
+19:53:04 <kohsuke> Any thoughts on this from anyone in the community?
+19:53:18 <kohsuke> It this a good/fair/bad model to fund the project?
+19:53:36 <abayer> kohsuke: Seems reasonable to me.
+19:53:44 <LisaWells_> I'll vote +1  ;)
+19:53:56 <kohsuke> hare_brain: any thoughts? are you still there?
+19:54:10 <fredg02> As long as its not too obtrusive, I'm +1
+19:54:11 <hare_brain> Sorry, release day here.
+19:54:22 <hare_brain> Let me catch up real quick
+19:55:22 <fredg02> where would that money go? servers, hosting, etc?
+19:55:47 <kohsuke> Currently servers aren't really costing us any money because most are in OSUOSL and others are donated
+19:55:58 <kohsuke> There's some ongoing charge for SSL certificates and domain name
+19:56:09 <fredg02> bandwidth?
+19:56:09 <hare_brain> 4 slots on https://wiki.jenkins-ci.org/display/JENKINS/Home for sponsors?
+19:56:15 <kohsuke> The other expense of the project has been swags for give aways
+19:56:20 <kohsuke> hare_brain: 4 slots across the entire Wiki
+19:56:32 <hare_brain> Ah, so global header/footer type of thing?
+19:56:36 <kohsuke> but only once in 7 page hits
+19:56:38 <LisaWells_> could also use for scholarships/travel costs for speakers at JUC, etc
+19:56:54 <kohsuke> Yes, header like the one in codehaus: http://groovy.codehaus.org/Roadmap
+19:57:00 <kohsuke> not the wide banner like we've used for JUC
+19:58:05 <fredg02> how about buying out cloudbee's template plug-in so it can be finally open-sourced? :P
+19:58:15 <abayer> hahahaha
+19:58:38 <fredg02> I'd accept a lot of banners in the wiki for that!
+19:58:47 <kohsuke> err...
+19:59:09 <fredg02> sorry, off-topic
+19:59:29 <hare_brain> So when you say "slots" you mean be able to display four sponsorships in the region on the page? Or do you mean display four sponships, where each one could have a different position on the page
+19:59:47 <kohsuke> OK, I guess that wasn't very clear
+19:59:53 <hare_brain> So in the codehaus example, where they have one ad, there would be four?
+20:00:01 <kohsuke> The intention was to only have one box for one message
+20:00:14 <hare_brain> Ah, and then rotate through up to 4 sponsors in that box.
+20:00:17 <kohsuke> Yes
+20:00:52 <kohsuke> One way to think of it is that we are dividing the entire wiki page hits to 4*7=28, and using 1 for each slot, and leaving 24 for no patron messages
+20:01:50 <hare_brain> I'm less concerned with the number of times a sponsor/patron message shows up. I was thinking about positioning of the message on a page.
+20:01:53 <kohsuke> So I hope it satisfies fredg02's "not too obtrusive" criteria
+20:02:27 <hare_brain> I think one box at the top that N number of sponsors get rotated into on every wiki page is reasonable.
+20:02:35 <fredg02> it's always the same spot and does not change the layout, right?
+20:02:43 <kohsuke> We didn't give it much thought --- I was like "let's just copy what codehaus does"
+20:03:06 <hare_brain> I just wanted to make sure we weren't talking about multiple boxes on the page, because then you get into one box being more valuable than another.
+20:03:07 <kohsuke> fredg02: yes, that's the idea
+20:03:24 <kohsuke> hare_brain: no, only one box at a time
+20:03:28 <fredg02> ok
+20:03:58 <hare_brain> And no glitzy rollovers, popups, etc. is still part of the criteria?
+20:04:23 <abayer> I will personally sponsor the most disruptive ad anyone can come up with!
+20:04:27 <abayer> (not really)
+20:04:37 <LisaWells_> just text in a box with a small logo - no animation
+20:04:42 <kohsuke> Yes, the title, the URL, the text, and a logo
+20:04:43 <larrys> too bad the <blink/> tag does not work on most browsers...
+20:05:42 <xmj> larrys: can always use oldschool marquees
+20:06:06 <fredg02> will oracle be allowed to create a h..... ad? ;)
+20:06:38 <kohsuke> The proposal has "the message must be relevant to Jenkins" in the hope of controlling the content
+20:07:09 <hare_brain> So there is controlling the type of content, and then controlling the look of the content.
+20:07:16 <hare_brain> Any concerns about the latter?
+20:07:22 <fredg02> who's doing the approval?
+20:07:27 <larrys> And not something like "Convert your Jenkins project to Bamboo" ad from Atlassian...
+20:07:51 <kohsuke> We can put "subject to the approval of the project meeting"
+20:07:56 <LisaWells_> should maybe change criteria to "relevant to and supportive of Jenkins"?
+20:08:12 <LisaWells_> +1 to sponsor subject to approval by community
+20:08:23 <kohsuke> hare_brain: the intent was to restrict the look of the content to the same text ad you see in codehaus wiki
+20:08:23 <hare_brain> So a sponsor would have to potentially wait two weeks for an approval, then X amount of time to get it programmed in?
+20:08:38 <LisaWells_> i don't think they'll much care
+20:08:51 <hare_brain> I am probably overthinking the whole thing. :)
+20:09:10 <hare_brain> +1 for the proposal.
+20:09:22 <kohsuke> thanks
+20:09:26 <fredg02> +1
+20:09:39 <kohsuke> abayer: ?
+20:09:44 <larrys> +1 for the proposal too.
+20:09:52 * kohsuke wants abayer's +1
+20:10:15 <LisaWells_> these slots only churn once/quarter so will have lead time for the next quarter's sponsors
+20:10:42 <kohsuke> I guess abayer isn't around
+20:10:53 <kohsuke> #action kohsuke to get abayer's binding +1 recorded
+20:10:53 <abayer> Hey, I said it sounded good. I'm +1. =)
+20:10:55 <LisaWells_> we should probably add a limit on # characters or lines in the text
+20:10:57 <kohsuke> oh good
+20:11:10 <kohsuke> I think the size of the box creates the limit
+20:11:14 <kohsuke> I'll hard code that in, too
+20:11:36 <kohsuke> #topic next meeting
+20:11:55 <kohsuke> #info The next meeting will be in Feb 5th
+20:12:11 <kohsuke> see you then (or at FOSDEM)!
+20:12:14 <kohsuke> #endmeeting

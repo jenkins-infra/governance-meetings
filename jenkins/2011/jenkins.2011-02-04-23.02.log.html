@@ -1,0 +1,665 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">23:02:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">23:02:36</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">23:02:40</span><span class="nk"> &lt;kohsuke&gt;</span> Tada!
+<a name="l-4"></a><span class="tm">23:02:42</span><span class="nk"> &lt;abayer&gt;</span> Ah, there we go.
+<a name="l-5"></a><span class="tm">23:03:04</span><span class="nk"> &lt;kohsuke&gt;</span> So in what order do we want to do this?
+<a name="l-6"></a><span class="tm">23:03:05</span><span class="nk"> &lt;abayer&gt;</span> So yeah, hi everyone. =) FYI, hare_brain is Dean Yu, the third member of the interim board.
+<a name="l-7"></a><span class="tm">23:03:05</span><span class="nk"> &lt;aheritier&gt;</span> :-)
+<a name="l-8"></a><span class="tm">23:03:15 </span><span class="nka">* hare_brain</span> <span class="ac">waves</span>
+<a name="l-9"></a><span class="tm">23:03:53</span><span class="nk"> &lt;tom_huybrechts&gt;</span> is there an agenda?
+<a name="l-10"></a><span class="tm">23:03:58</span><span class="nk"> &lt;abayer&gt;</span> I've been meaning to write up a wiki page proposal for Jenkins governance structure going forward - if you all would like, I can give a quick summary of what I've got so far.
+<a name="l-11"></a><span class="tm">23:04:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">proposal for Jenkins governance structure</span>
+<a name="l-12"></a><span class="tm">23:04:29</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">tom_huybrechts:</span> Not exactly - first time I've done one of these things, so we're kinda faking it. =)
+<a name="l-13"></a><span class="tm">23:04:43</span><span class="nk"> &lt;tom_huybrechts&gt;</span> <span class="hi">abayer:</span> go for it :)
+<a name="l-14"></a><span class="tm">23:05:07</span><span class="nk"> &lt;kohsuke&gt;</span> (BTW, see http://wiki.debian.org/MeetBot for the use of the bot)
+<a name="l-15"></a><span class="tm">23:05:12</span><span class="nk"> &lt;abayer&gt;</span> So I think we need a more formal way of determining who gets to vote on the governance board, major changes to the project, etc - just having it be "anyone on the mailing lists" makes things, well, crazy.
+<a name="l-16"></a><span class="tm">23:05:57</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> +1
+<a name="l-17"></a><span class="tm">23:06:08</span><span class="nk"> &lt;abayer&gt;</span> At a minimum, I think anyone who has committed to core or any plugins/extras/etc hosted in our Github org should have voting rights, and it makes sense to recognize the efforts of bug reporters, contributors to the wiki, etc as well.
+<a name="l-18"></a><span class="tm">23:06:28</span><span class="nk"> &lt;abayer&gt;</span> Those are three areas where we can definitely track who's done what and relate that to a jenkins-ci.org username.
+<a name="l-19"></a><span class="tm">23:07:15</span><span class="nk"> &lt;kohsuke&gt;</span> In terms of automation, the only thing that's bit hard to automate is figuring out committer from git commit history.
+<a name="l-20"></a><span class="tm">23:07:24</span><span class="nk"> &lt;kohsuke&gt;</span> It's e-mail address, whereas everything else now uses the same ID.
+<a name="l-21"></a><span class="tm">23:07:32</span><span class="nk"> &lt;abayer&gt;</span> I'd say if you've participated (with some definition of how much you have to do to count as participation) since the last election, you're eligible to vote in the next.
+<a name="l-22"></a><span class="tm">23:07:54</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> Ah, true. We can probably relate that to jenkins-ci.org users, though.
+<a name="l-23"></a><span class="tm">23:08:18</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">all:</span> is there any sort of contribution you think I'm missing that we should recognize for voting rights?
+<a name="l-24"></a><span class="tm">23:08:59</span><span class="nk"> &lt;mwalling&gt;</span> that sounds good, it can have a metric applied to it, etc
+<a name="l-25"></a><span class="tm">23:09:11</span><span class="nk"> &lt;rpetti&gt;</span> tech support on the mailing lists and irc, but that's kind of hard to track :/
+<a name="l-26"></a><span class="tm">23:09:11</span><span class="nk"> &lt;mwalling&gt;</span> i cant think of much else that can be measured easilly
+<a name="l-27"></a><span class="tm">23:09:34</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rpetti:</span> yeah. I'm hoping that the wiki/JIRA coverage will catch most of that.
+<a name="l-28"></a><span class="tm">23:09:42</span><span class="nk"> &lt;abayer&gt;</span> rtyler is probably the biggest exception. =)
+<a name="l-29"></a><span class="tm">23:09:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">At a minimum, I think anyone who has committed to core or any plugins/extras/etc hosted in our Github org should have voting rights, and it makes sense to recognize the efforts of bug reporters, contributors to the wiki, etc as well. (from abayer)</span>
+<a name="l-30"></a><span class="tm">23:10:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">tech support on the mailing lists and irc, but that's kind of hard to track :/ (from rpetti)</span>
+<a name="l-31"></a><span class="tm">23:10:23</span><span class="nk"> &lt;abayer&gt;</span> We may need to write a qualifier in there to say that whoever's responsible for maintaining the Twitter feed gets a vote too. The rtyler clause. =)
+<a name="l-32"></a><span class="tm">23:10:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">that sounds good, it can have a metric applied to it, etc (from mwalling)</span>
+<a name="l-33"></a><span class="tm">23:10:51</span><span class="nk"> &lt;abayer&gt;</span> Thanks, kohsuke, for doing the meetbot stuff. =)
+<a name="l-34"></a><span class="tm">23:11:07 </span><span class="nka">* kohsuke</span> <span class="ac">suggests people try #info commands when they say things that should be left in the record</span>
+<a name="l-35"></a><span class="tm">23:11:31</span><span class="nk"> &lt;calavera&gt;</span> <span class="hi">abayer:</span> perhaps twitter/blog/press
+<a name="l-36"></a><span class="tm">23:11:55</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">calavera:</span> yeah, if we can find a way to measure that - I'll definitely think on it as I work on the actual proposal.
+<a name="l-37"></a><span class="tm">23:11:56</span><span class="nk"> &lt;tom_huybrechts&gt;</span> since we're on github now, what about people who fork and send pull request, but don't commit directly? not sure if there are many of those
+<a name="l-38"></a><span class="tm">23:12:19</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">tom_huybrechts:</span> I'm going to count those as contributors for voting purposes - they show up in git log, sooo...
+<a name="l-39"></a><span class="tm">23:12:31</span><span class="nk"> &lt;lacostej&gt;</span> isn't it simpler to maintain a list of authorized people ? that list can be suggested by metrics or social requests, but I doubt it's possible to fully automate that ?? Most communities have the concept of a core developer
+<a name="l-40"></a><span class="tm">23:12:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">since we're on github now, what about people who fork and send pull request, but don't commit directly? not sure if there are many of those (from tom_huybrechts)</span>
+<a name="l-41"></a><span class="tm">23:13:00</span><span class="nk"> &lt;lacostej&gt;</span> (and by developer I mean also contributors - jira etc)
+<a name="l-42"></a><span class="tm">23:13:28</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">(in repsonse to lacostej asking why not just have a hardcoded list) that's a fair point, but with Jenkins, we are consciously trying to have as broad a communitya s possible.</span>
+<a name="l-43"></a><span class="tm">23:13:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">lacostej: in our case maybe those who signed CLA could form the "core committer" group?</span>
+<a name="l-44"></a><span class="tm">23:13:53</span><span class="nk"> &lt;abayer&gt;</span> CLA is, of course, another issue we still need to talk about. =)
+<a name="l-45"></a><span class="tm">23:14:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">I think having some automatability is a must in eligibility determination. I hope that much can be agreed on by all</span>
+<a name="l-46"></a><span class="tm">23:15:07 </span><span class="nka">* mwalling</span> <span class="ac">agrees</span>
+<a name="l-47"></a><span class="tm">23:15:14</span><span class="nk"> &lt;rpetti&gt;</span> +1
+<a name="l-48"></a><span class="tm">23:15:19</span><span class="nk"> &lt;abayer&gt;</span> Indeed.
+<a name="l-49"></a><span class="tm">23:15:35</span><span class="nk"> &lt;mwalling&gt;</span> it has to be something where you can hit "start vote", and something can go out and pull gitlog, jira feeds, etc and come up with authorized users
+<a name="l-50"></a><span class="tm">23:15:51</span><span class="nk"> &lt;mwalling&gt;</span> (and no, i didnt think that was worth #info ing :)
+<a name="l-51"></a><span class="tm">23:15:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">voting eligibility must be automate-able.</span>
+<a name="l-52"></a><span class="tm">23:16:02</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">Like I said, I'm working on the actual proposal - which won't be set in stone in the least. This is definitely helping shape it, though.</span>
+<a name="l-53"></a><span class="tm">23:16:19</span><span class="nk"> &lt;kohsuke&gt;</span> OK, shall we move on to the next topic then?
+<a name="l-54"></a><span class="tm">23:16:36</span><span class="nk"> &lt;abayer&gt;</span> Ok, next up: the logo.
+<a name="l-55"></a><span class="tm">23:16:39</span><span class="nk"> &lt;kohsuke&gt;</span> Wait, what's the action here?
+<a name="l-56"></a><span class="tm">23:16:45</span><span class="nk"> &lt;aheritier&gt;</span> The buttler ?
+<a name="l-57"></a><span class="tm">23:16:48</span><span class="nk"> &lt;kohsuke&gt;</span> should I record AI for abayer to write a proposal?
+<a name="l-58"></a><span class="tm">23:16:52</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> yup.
+<a name="l-59"></a><span class="tm">23:16:57</span><span class="nk"> &lt;abayer&gt;</span> The butler.
+<a name="l-60"></a><span class="tm">23:17:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to write a proposal of the voter eligibility</span>
+<a name="l-61"></a><span class="tm">23:17:03</span><span class="nk"> &lt;abayer&gt;</span> <span class="topic">#topic </span><span class="topicline">The logo</span>
+<a name="l-62"></a><span class="tm">23:17:17</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">abayer:</span> kohsuke needs to #chair abayer
+<a name="l-63"></a><span class="tm">23:17:22</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="cmd">#idea </span><span class="cmdline">why not to have a competition for the logo?</span>
+<a name="l-64"></a><span class="tm">23:17:23</span><span class="nk"> &lt;abayer&gt;</span> Or he can do it. =)
+<a name="l-65"></a><span class="tm">23:17:25</span><span class="nk"> &lt;larrys&gt;</span> As my grandma's maiden name is Jenkins, I think the Jenkins family crest would be nice! (just kidding)
+<a name="l-66"></a><span class="tm">23:17:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">The logo</span>
+<a name="l-67"></a><span class="tm">23:17:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">AhtiK:</span> can you say that again to record it?
+<a name="l-68"></a><span class="tm">23:17:50</span><span class="nk"> &lt;mwalling&gt;</span> yeah, who ever suggessted that site... 99designs?
+<a name="l-69"></a><span class="tm">23:17:57 </span><span class="nka">* rpetti</span> <span class="ac">&lt;-</span>
+<a name="l-70"></a><span class="tm">23:17:57</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="cmd">#idea </span><span class="cmdline">why not to have a competition for the logo?</span>
+<a name="l-71"></a><span class="tm">23:18:06</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">Ok, so the current logo is, in fact, Microsoft clipart. Turns out that we're probably not using it in a way that actually fits their terms of use. So we should, y'know, change it. =)</span>
+<a name="l-72"></a><span class="tm">23:18:13</span><span class="nk"> &lt;abayer&gt;</span> +1 on a competition for the logo.
+<a name="l-73"></a><span class="tm">23:18:25</span><span class="nk"> &lt;calavera&gt;</span> +1
+<a name="l-74"></a><span class="tm">23:18:27</span><span class="nk"> &lt;olamy&gt;</span> +1
+<a name="l-75"></a><span class="tm">23:18:35</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">I'd still like a butler-themed logo - that's an integral part of the project's identity, I think.</span>
+<a name="l-76"></a><span class="tm">23:18:38</span><span class="nk"> &lt;mwalling&gt;</span> http://blog.stackoverflow.com/2008/04/logo-design-contest/
+<a name="l-77"></a><span class="tm">23:18:58</span><span class="nk"> &lt;aheritier&gt;</span> <span class="cmd">#idea </span><span class="cmdline">A logo contest but with some guidelines ?</span>
+<a name="l-78"></a><span class="tm">23:18:59</span><span class="nk"> &lt;abayer&gt;</span> Do we want to go to 99designs right away or see what the community comes up with first?
+<a name="l-79"></a><span class="tm">23:19:00</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://en.wikipedia.org/wiki/Jenkins lists several interpretations for Jenkins as a name (for logo inspiration).</span>
+<a name="l-80"></a><span class="tm">23:19:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">at least one person contacted me offline that he might be able to pitch in his designer resource</span>
+<a name="l-81"></a><span class="tm">23:19:07</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">aheritier:</span> +1
+<a name="l-82"></a><span class="tm">23:19:17</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> +1! Actual designers!
+<a name="l-83"></a><span class="tm">23:19:24</span><span class="nk"> &lt;kohsuke&gt;</span> so it might be also possible to get some ideas from within the community
+<a name="l-84"></a><span class="tm">23:19:30</span><span class="nk"> &lt;larrys&gt;</span> You mean I have to put away MSPaint?
+<a name="l-85"></a><span class="tm">23:19:33</span><span class="nk"> &lt;abayer&gt;</span> heheheh
+<a name="l-86"></a><span class="tm">23:19:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#link </span><span class="cmdline">http://blog.stackoverflow.com/2008/04/logo-design-contest/ (from mwalling)</span>
+<a name="l-87"></a><span class="tm">23:19:55</span><span class="nk"> &lt;taco&gt;</span> English butler theme required?
+<a name="l-88"></a><span class="tm">23:20:03</span><span class="nk"> &lt;calavera&gt;</span> redis and rubycommiters.org contests where moved by the community and worked pretty well
+<a name="l-89"></a><span class="tm">23:20:03</span><span class="nk"> &lt;abayer&gt;</span> I think so.
+<a name="l-90"></a><span class="tm">23:20:04</span><span class="nk"> &lt;rpetti&gt;</span> I would say poll the community, and if nothing comes of it, hit up 99designs or some other third party
+<a name="l-91"></a><span class="tm">23:20:18</span><span class="nk"> &lt;hare_brain&gt;</span> Avoid something that winds up looking like the aborted new Gap logo
+<a name="l-92"></a><span class="tm">23:20:21</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">I would say poll the community, and if nothing comes of it, hit up 99designs or some other third party (from rpetti)</span>
+<a name="l-93"></a><span class="tm">23:20:22</span><span class="nk"> &lt;larrys&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Multiple contests, one for the theme… and then the actual artwork?</span>
+<a name="l-94"></a><span class="tm">23:20:32</span><span class="nk"> &lt;mwalling&gt;</span> ugh 99 designs is expensive
+<a name="l-95"></a><span class="tm">23:20:34</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">larrys:</span> I dunno. I like the butler theme.
+<a name="l-96"></a><span class="tm">23:20:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I've used 99designs once and liked it</span>
+<a name="l-97"></a><span class="tm">23:20:46</span><span class="nk"> &lt;mwalling&gt;</span> <span class="cmd">#link </span><span class="cmdline">http://99designs.com/help/how-much-does-running-a-design-contest-cost 99 designs rate sheet</span>
+<a name="l-98"></a><span class="tm">23:20:47</span><span class="nk"> &lt;aheritier&gt;</span> We propose a rework of CSS too ?
+<a name="l-99"></a><span class="tm">23:20:58</span><span class="nk"> &lt;abayer&gt;</span> That'd probably be needed, yeah.
+<a name="l-100"></a><span class="tm">23:21:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">one reason for keeping the butler theme is to emphasize the continuity.</span>
+<a name="l-101"></a><span class="tm">23:21:29</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-102"></a><span class="tm">23:21:38</span><span class="nk"> &lt;mwalling&gt;</span> +1
+<a name="l-103"></a><span class="tm">23:21:40</span><span class="nk"> &lt;aheritier&gt;</span> Thus a poll for a new logo and then another for design guidelines (colors, CSS, ...)
+<a name="l-104"></a><span class="tm">23:21:40</span><span class="nk"> &lt;AhtiK&gt;</span> +1
+<a name="l-105"></a><span class="tm">23:21:42</span><span class="nk"> &lt;larrys&gt;</span> Or we could have switched to a maid ;) j/k
+<a name="l-106"></a><span class="tm">23:21:54</span><span class="nk"> &lt;rpetti&gt;</span> lol!
+<a name="l-107"></a><span class="tm">23:21:59</span><span class="nk"> &lt;larrys&gt;</span> but then some works might have not liked the overtones of the french maid logo
+<a name="l-108"></a><span class="tm">23:22:16</span><span class="nk"> &lt;larrys&gt;</span> (Sorry, with rtyler not around, I feel it necessary to add some sarcasm)
+<a name="l-109"></a><span class="tm">23:22:24</span><span class="nk"> &lt;abayer&gt;</span> Ok, so how about this as the action - we'll send an email out to the groups explaining why we need to change logos, and calling for logo ideas/designs from the community.
+<a name="l-110"></a><span class="tm">23:22:24</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">larrys:</span> :-)
+<a name="l-111"></a><span class="tm">23:22:33</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">abayer:</span> +1
+<a name="l-112"></a><span class="tm">23:22:34</span><span class="nk"> &lt;rpetti&gt;</span> +1
+<a name="l-113"></a><span class="tm">23:22:35</span><span class="nk"> &lt;taco&gt;</span> We're theming it with a train in house - build engine.
+<a name="l-114"></a><span class="tm">23:22:41</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> +1
+<a name="l-115"></a><span class="tm">23:22:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">we'll send an email out to the groups explaining why we need to change logos, and calling for logo ideas/designs from the community.</span>
+<a name="l-116"></a><span class="tm">23:22:50</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="hi">abayer:</span> giving ~2 weeks to act?
+<a name="l-117"></a><span class="tm">23:23:02</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">AhtiK:</span> Sounds good.
+<a name="l-118"></a><span class="tm">23:23:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">2 weeks would be a good time frame for this (from AhtiK)</span>
+<a name="l-119"></a><span class="tm">23:23:28</span><span class="nk"> &lt;abayer&gt;</span> We ready to move to the next topic?
+<a name="l-120"></a><span class="tm">23:23:35</span><span class="nk"> &lt;kohsuke&gt;</span> I think so
+<a name="l-121"></a><span class="tm">23:23:44</span><span class="nk"> &lt;larrys&gt;</span> (I know the pros will know this), but we should find some guidelines for the logo, we don't want a heavily raster image for scale/printing, etc...
+<a name="l-122"></a><span class="tm">23:23:46</span><span class="nk"> &lt;abayer&gt;</span> (sorry to rush, just want to make sure we cover everything without making people stay up *too* late. =) )
+<a name="l-123"></a><span class="tm">23:23:59</span><span class="nk"> &lt;olamy&gt;</span> abayer thanks :-)
+<a name="l-124"></a><span class="tm">23:24:07</span><span class="nk"> &lt;hare_brain&gt;</span> Wait
+<a name="l-125"></a><span class="tm">23:24:10</span><span class="nk"> &lt;abayer&gt;</span> Waiting. =)
+<a name="l-126"></a><span class="tm">23:24:21</span><span class="nk"> &lt;kohsuke&gt;</span> make sure to discuss that at the end of the meeting --- the time zone of the next meeting
+<a name="l-127"></a><span class="tm">23:24:23</span><span class="nk"> &lt;hare_brain&gt;</span> Was there a consensus on staying with the butler theme or is that up for a vote too?
+<a name="l-128"></a><span class="tm">23:24:32</span><span class="nk"> &lt;hare_brain&gt;</span> (For the record)
+<a name="l-129"></a><span class="tm">23:24:35</span><span class="nk"> &lt;abayer&gt;</span> I think there was a consensus.
+<a name="l-130"></a><span class="tm">23:24:35</span><span class="nk"> &lt;larrys&gt;</span> I think the butler logo would win anyway if we did a poll.
+<a name="l-131"></a><span class="tm">23:24:47</span><span class="nk"> &lt;larrys&gt;</span> er theme
+<a name="l-132"></a><span class="tm">23:24:58</span><span class="nk"> &lt;rpetti&gt;</span> that's part of the reason we went with "Jenkins"
+<a name="l-133"></a><span class="tm">23:25:13</span><span class="nk"> &lt;abayer&gt;</span> But in the email, we'll say that the suggested theme is butler, but we're not violently averse to other ideas for logos if they're really really awesome, maybe?
+<a name="l-134"></a><span class="tm">23:25:25</span><span class="nk"> &lt;larrys&gt;</span> like sharks with lasers?
+<a name="l-135"></a><span class="tm">23:25:30</span><span class="nk"> &lt;hare_brain&gt;</span> LOL
+<a name="l-136"></a><span class="tm">23:25:31</span><span class="nk"> &lt;abayer&gt;</span> No.
+<a name="l-137"></a><span class="tm">23:25:34</span><span class="nk"> &lt;abayer&gt;</span> Cats with lasers.
+<a name="l-138"></a><span class="tm">23:25:36</span><span class="nk"> &lt;rpetti&gt;</span> Leeroy Jenkins? &gt;_&gt;
+<a name="l-139"></a><span class="tm">23:25:36</span><span class="nk"> &lt;abayer&gt;</span> Duh.
+<a name="l-140"></a><span class="tm">23:25:39</span><span class="nk"> &lt;bap2000&gt;</span> :-D
+<a name="l-141"></a><span class="tm">23:25:40</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="cmd">#info </span><span class="cmdline">while designing a new logo it would be nice if it has less details than current one. It's hard to scale it to 16x16 while keeping the integrity.</span>
+<a name="l-142"></a><span class="tm">23:25:44</span><span class="nk"> &lt;mwalling&gt;</span> damnit leeroy
+<a name="l-143"></a><span class="tm">23:25:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">there was good consensus to the butler theme, but we are not violently averse to other ideas for logos if they're really really awesome</span>
+<a name="l-144"></a><span class="tm">23:25:56</span><span class="nk"> &lt;larrys&gt;</span> lol
+<a name="l-145"></a><span class="tm">23:25:57</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">AhtiK:</span> I'm with you - I like minimalist design.
+<a name="l-146"></a><span class="tm">23:25:59</span><span class="nk"> &lt;rpetti&gt;</span> <span class="cmd">#info </span><span class="cmdline">SVG might be preferable.</span>
+<a name="l-147"></a><span class="tm">23:26:15</span><span class="nk"> &lt;kohsuke&gt;</span> I think vector graphics version is mandatory
+<a name="l-148"></a><span class="tm">23:26:41</span><span class="nk"> &lt;larrys&gt;</span> +1
+<a name="l-149"></a><span class="tm">23:26:46</span><span class="nk"> &lt;tom_huybrechts&gt;</span> vector graphics don't always scale down nicely
+<a name="l-150"></a><span class="tm">23:26:58</span><span class="nk"> &lt;abayer&gt;</span> Ok, I don't know near enough about graphic design etc to know what the technical requirements for the logo image should be - would someone (or group of someones) be willing to step up and figure that out, and then get back to us?
+<a name="l-151"></a><span class="tm">23:27:04</span><span class="nk"> &lt;larrys&gt;</span> If we have someone with some skill/training, they will know what to do :)
+<a name="l-152"></a><span class="tm">23:27:04 </span><span class="nka">* rtyler</span> <span class="ac">shows up</span>
+<a name="l-153"></a><span class="tm">23:27:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">in 99 designs they'll always just give you a vector graphics version</span>
+<a name="l-154"></a><span class="tm">23:27:26</span><span class="nk"> &lt;larrys&gt;</span> *passes sarcasm microphone to rtyler*
+<a name="l-155"></a><span class="tm">23:27:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> glad you figured out robobutler :)
+<a name="l-156"></a><span class="tm">23:28:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">I think once we decide on logo, we can then ask for the community to try a good 16x16 version</span>
+<a name="l-157"></a><span class="tm">23:28:11 </span><span class="nka">* kohsuke</span> <span class="ac">is pretending that he figured it out</span>
+<a name="l-158"></a><span class="tm">23:28:16</span><span class="nk"> &lt;abayer&gt;</span> Good 'nuff.
+<a name="l-159"></a><span class="tm">23:28:31</span><span class="nk"> &lt;abayer&gt;</span> I know some graphic design nerds - I'll bug 'em for advice on the tech stuff.
+<a name="l-160"></a><span class="tm">23:28:33</span><span class="nk"> &lt;rtyler&gt;</span> I would imagine creating the smaller version would be easier than the larger one :)
+<a name="l-161"></a><span class="tm">23:28:36</span><span class="nk"> &lt;abayer&gt;</span> Next topic?
+<a name="l-162"></a><span class="tm">23:28:54</span><span class="nk"> &lt;tom_huybrechts&gt;</span> next topic
+<a name="l-163"></a><span class="tm">23:28:58</span><span class="nk"> &lt;abayer&gt;</span> Okiedokie.
+<a name="l-164"></a><span class="tm">23:29:03</span><span class="nk"> &lt;abayer&gt;</span> Trademark registration.
+<a name="l-165"></a><span class="tm">23:29:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark registration</span>
+<a name="l-166"></a><span class="tm">23:29:16</span><span class="nk"> &lt;larrys&gt;</span> ™
+<a name="l-167"></a><span class="tm">23:30:07</span><span class="nk"> &lt;aheritier&gt;</span> What do we register ?
+<a name="l-168"></a><span class="tm">23:30:12</span><span class="nk"> &lt;aheritier&gt;</span> JenhkinsCI ?
+<a name="l-169"></a><span class="tm">23:30:19</span><span class="nk"> &lt;aheritier&gt;</span> JenkinsCI
+<a name="l-170"></a><span class="tm">23:30:26</span><span class="nk"> &lt;zaphX&gt;</span> So first of all, THANK YOU so very much for Jenkins, it's a fantastic piece of software
+<a name="l-171"></a><span class="tm">23:30:33</span><span class="nk"> &lt;aheritier&gt;</span> or Jenkins ?
+<a name="l-172"></a><span class="tm">23:30:51</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">So we need to register trademarks (EU+US, I'd say) for Jenkins. That's not cheap. CloudBees has offered to help pay for this, but I'm honestly not sure whether that's something we want right now. It's important to make it clear to everyone that Jenkins is not a CloudBees project - it's a community project, independent of any company.</span>
+<a name="l-173"></a><span class="tm">23:31:06</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">aheritier:</span> That's a good question too.
+<a name="l-174"></a><span class="tm">23:31:28</span><span class="nk"> &lt;mindless&gt;</span> how expensive?  I'd put in $10 ;-)
+<a name="l-175"></a><span class="tm">23:31:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Just to make sure, the registration will be still under my name, as we planned and said early on.</span>
+<a name="l-176"></a><span class="tm">23:31:36</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> Do we have some independent founds ?
+<a name="l-177"></a><span class="tm">23:31:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">... to be transfered to the custodian when we move under there.</span>
+<a name="l-178"></a><span class="tm">23:31:51</span><span class="nk"> &lt;abayer&gt;</span> I'd really like everyone's thoughts as to whether we're comfortable with CloudBees doing the actual registration - we don't as of now have a way of taking in donations, etc.
+<a name="l-179"></a><span class="tm">23:31:53</span><span class="nk"> &lt;uzilan&gt;</span> maybe we could ask oracle to help with some money :)
+<a name="l-180"></a><span class="tm">23:31:56</span><span class="nk"> &lt;hare_brain&gt;</span> It's called "Kohsuke's checking account."
+<a name="l-181"></a><span class="tm">23:32:01</span><span class="nk"> &lt;abayer&gt;</span> And mine.
+<a name="l-182"></a><span class="tm">23:32:09</span><span class="nk"> &lt;rtyler&gt;</span> and mine
+<a name="l-183"></a><span class="tm">23:32:09</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-184"></a><span class="tm">23:32:22</span><span class="nk"> &lt;emanuelez&gt;</span> <span class="cmd">#idea </span><span class="cmdline">how about setting up a donation for the trademark registration?</span>
+<a name="l-185"></a><span class="tm">23:32:30</span><span class="nk"> &lt;rtyler&gt;</span> I like that idea
+<a name="l-186"></a><span class="tm">23:32:35</span><span class="nk"> &lt;abayer&gt;</span> And I'm comfortable spending the money - but if the community's sense is that it's ok for CloudBees to do the registration, hey, it saves me money. =)
+<a name="l-187"></a><span class="tm">23:32:36</span><span class="nk"> &lt;rtyler&gt;</span> I wonder if the OSUOSL could help at all with that?
+<a name="l-188"></a><span class="tm">23:32:37</span><span class="nk"> &lt;larrys&gt;</span> Or just a general donation thing...
+<a name="l-189"></a><span class="tm">23:32:44</span><span class="nk"> &lt;aheritier&gt;</span> @emanuelez : Not just for that. For everything
+<a name="l-190"></a><span class="tm">23:32:47</span><span class="nk"> &lt;mwalling&gt;</span> SPI does money handling/donation processing for other projects (drupal, debian, etc)
+<a name="l-191"></a><span class="tm">23:32:48</span><span class="nk"> &lt;olamy&gt;</span> abayer np for me it can be considered as a donation from CloudBees
+<a name="l-192"></a><span class="tm">23:32:59 </span><span class="nka">* kohsuke</span> <span class="ac">suggests people to use #info and #idea liberally</span>
+<a name="l-193"></a><span class="tm">23:33:01</span><span class="nk"> &lt;larrys&gt;</span> I just know that paypal has burned a few OSS projects in the past (TortoiseSVN being one)
+<a name="l-194"></a><span class="tm">23:33:01</span><span class="nk"> &lt;emanuelez&gt;</span> <span class="hi">aheritier:</span> indeed
+<a name="l-195"></a><span class="tm">23:33:07</span><span class="nk"> &lt;mwalling&gt;</span> <span class="cmd">#info </span><span class="cmdline">SPI does money handling/donation processing for other projects (drupal, debian, etc)</span>
+<a name="l-196"></a><span class="tm">23:33:10</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">Having a way to take donations is a key goal - we just don't ahve that yet.</span>
+<a name="l-197"></a><span class="tm">23:33:22</span><span class="nk"> &lt;mwalling&gt;</span> but i have no problem with cloudbees doing it either
+<a name="l-198"></a><span class="tm">23:33:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler</span>
+<a name="l-199"></a><span class="tm">23:33:27</span><span class="nk"> &lt;rtyler&gt;</span> drats
+<a name="l-200"></a><span class="tm">23:33:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler</span>
+<a name="l-201"></a><span class="tm">23:33:30</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: kohsuke rtyler
+<a name="l-202"></a><span class="tm">23:33:38</span><span class="nk"> &lt;aheritier&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Which trademark do we register ? Jenkins vs JenkinsCI vs ...</span>
+<a name="l-203"></a><span class="tm">23:33:38</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="cmd">#idea </span><span class="cmdline">I wanted to keep for post-formal Q&amp;A but now seems a good place: Now that Oracle is probably not going to continue its support for Jenkins, should there be a more endorsed form of donation? Is there going to be an organization who could even receive some financial help from the community to support Jenkins? Is there a need for such help?</span>
+<a name="l-204"></a><span class="tm">23:33:41</span><span class="nk"> &lt;mindless&gt;</span> donations are good, but if cloudbees name isn't on the trademark paperwork, seems ok if they want to donate an above average share
+<a name="l-205"></a><span class="tm">23:33:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain abayer</span>
+<a name="l-206"></a><span class="tm">23:33:50</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-207"></a><span class="tm">23:33:55</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">AhtiK:</span> That's a goal, yeah.
+<a name="l-208"></a><span class="tm">23:34:31</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">The plan is to be under the wing of a formal foundation, be it SFC or elsewhere, which would be able to take donations, own trademarks/copyrights/hardware assets, pay bills, etc.</span>
+<a name="l-209"></a><span class="tm">23:34:41</span><span class="nk"> &lt;aheritier&gt;</span> We are agreed to create a donation mechanism and to accept Cloudbees donations ?
+<a name="l-210"></a><span class="tm">23:34:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">mindless:</span> my bigger concern with CloudBees is FUD regarding their relationship with the project
+<a name="l-211"></a><span class="tm">23:34:49</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">But that's not in place now, and we need to get the registration done ASAP.</span>
+<a name="l-212"></a><span class="tm">23:35:05</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> +1 - it's not CloudBees I'm concerned about, it's spin and public perception.
+<a name="l-213"></a><span class="tm">23:35:13</span><span class="nk"> &lt;aheritier&gt;</span> We are talking about how many $ ?
+<a name="l-214"></a><span class="tm">23:35:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> $10 I believe
+<a name="l-215"></a><span class="tm">23:35:21</span><span class="nk"> &lt;rtyler&gt;</span> :D
+<a name="l-216"></a><span class="tm">23:35:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> can you #info the pricing on TM registrations?
+<a name="l-217"></a><span class="tm">23:35:31</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> Seriously ?
+<a name="l-218"></a><span class="tm">23:35:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> no :)
+<a name="l-219"></a><span class="tm">23:35:39</span><span class="nk"> &lt;taco&gt;</span> How much are we talking?  $275-$375 is the first hits on google.
+<a name="l-220"></a><span class="tm">23:35:39</span><span class="nk"> &lt;aheritier&gt;</span> ok :-)
+<a name="l-221"></a><span class="tm">23:35:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">taco:</span> US TM registration?
+<a name="l-222"></a><span class="tm">23:35:56</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">At least a couple thousand $, probably.</span>
+<a name="l-223"></a><span class="tm">23:35:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">so the cheap-cheap online registration service for trademark on US + EU is like $1K</span>
+<a name="l-224"></a><span class="tm">23:36:00</span><span class="nk"> &lt;mwalling&gt;</span> http://www.uspto.gov/inventors/trademarks.jsp#heading-5 USPTO trademark costs, 275 to 375
+<a name="l-225"></a><span class="tm">23:36:12</span><span class="nk"> &lt;taco&gt;</span> \w me nods.
+<a name="l-226"></a><span class="tm">23:36:19</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">mwalling:</span> we gotta pay lawyers etc too. +)
+<a name="l-227"></a><span class="tm">23:36:32</span><span class="nk"> &lt;aheritier&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://www.uspto.gov/inventors/trademarks.jsp#heading-5 USPTO trademark costs, 275 to 375 (by mwalling )</span>
+<a name="l-228"></a><span class="tm">23:36:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">my understanding is that if you use a real lawyer, it's one order of magnitude more</span>
+<a name="l-229"></a><span class="tm">23:36:48</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">aheritier:</span> having http: at the begining of the line auto #links it
+<a name="l-230"></a><span class="tm">23:36:59</span><span class="nk"> &lt;larrys&gt;</span> there are some online legal services, I won't mention their names, but I hear them on the radio all the time...
+<a name="l-231"></a><span class="tm">23:37:02</span><span class="nk"> &lt;mwalling&gt;</span> what about DIY with something like legalzoom
+<a name="l-232"></a><span class="tm">23:37:07</span><span class="nk"> &lt;mwalling&gt;</span> larrys++
+<a name="l-233"></a><span class="tm">23:37:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke/abayer:</span> I think we can #agree on allowing donations from CloudBees et. all once we have a formal donation mechanism
+<a name="l-234"></a><span class="tm">23:37:15</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">mwalling:</span> didn't see that. cool
+<a name="l-235"></a><span class="tm">23:37:20</span><span class="nk"> &lt;rtyler&gt;</span> (per aheritier point earlier)
+<a name="l-236"></a><span class="tm">23:37:24</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> +1
+<a name="l-237"></a><span class="tm">23:37:38</span><span class="nk"> &lt;abayer&gt;</span> That's something I was going to touch on shortly.
+<a name="l-238"></a><span class="tm">23:37:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">on allowing CloudBees et. all to donate to the Jenkins project once we have a formal donation mechanism in place</span>
+<a name="l-239"></a><span class="tm">23:37:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">so sounds like the main question is how to do donations now?</span>
+<a name="l-240"></a><span class="tm">23:38:13</span><span class="nk"> &lt;abayer&gt;</span> Honestly, if we're ok with the $1k registration service, I'll pay it.
+<a name="l-241"></a><span class="tm">23:38:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#save</span><span class="cmdline"></span>
+<a name="l-242"></a><span class="tm">23:38:44</span><span class="nk"> &lt;larrys&gt;</span> there are "sponsor" levels some places do like some JUG's and Apache
+<a name="l-243"></a><span class="tm">23:38:45</span><span class="nk"> &lt;aheritier&gt;</span> abayer : If you can/want +1
+<a name="l-244"></a><span class="tm">23:38:47</span><span class="nk"> &lt;AhtiK&gt;</span> yes, jenkins frontpage needs a "Donate" button so people can show their love :)
+<a name="l-245"></a><span class="tm">23:38:47</span><span class="nk"> &lt;abayer&gt;</span> I want to make sure we get the ball rolling on registration ASAP.
+<a name="l-246"></a><span class="tm">23:38:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer and kohsuke to pin down the exact costs on trademark registration</span>
+<a name="l-247"></a><span class="tm">23:39:01</span><span class="nk"> &lt;abayer&gt;</span> In parallel with figuring out how to take donations, etc.
+<a name="l-248"></a><span class="tm">23:39:03</span><span class="nk"> &lt;mwalling&gt;</span> can SFC start taking money now?
+<a name="l-249"></a><span class="tm">23:39:15</span><span class="nk"> &lt;kohsuke&gt;</span> not until they accept us
+<a name="l-250"></a><span class="tm">23:39:15</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">mwalling:</span> SFC is another matter that I want to talk about next.
+<a name="l-251"></a><span class="tm">23:39:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to research means of accepting donations as soon as possible to cover infrastructure, trademark and other costs</span>
+<a name="l-252"></a><span class="tm">23:39:55</span><span class="nk"> &lt;emanuelez&gt;</span> <span class="hi">abayer:</span> what does SFC stand for?
+<a name="l-253"></a><span class="tm">23:39:59</span><span class="nk"> &lt;rtyler&gt;</span> for those *JUST* getting here: http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-02-04-23.02.html
+<a name="l-254"></a><span class="tm">23:40:04</span><span class="nk"> &lt;rtyler&gt;</span> those are the meeting notes thus far
+<a name="l-255"></a><span class="tm">23:40:09</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">emanuelez:</span> http://sfconservancy.org/
+<a name="l-256"></a><span class="tm">23:40:10</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">Someone (kohsuke)? to figure out the difference between the $1k and $10k registrations in terms of what we'd actually get. =)</span>
+<a name="l-257"></a><span class="tm">23:40:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">pelegri:</span> ^^
+<a name="l-258"></a><span class="tm">23:40:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> I'll take it
+<a name="l-259"></a><span class="tm">23:40:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to figure out the difference between $1k and 1$10k registrations for TM, and what the project would receive for each</span>
+<a name="l-260"></a><span class="tm">23:41:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#save</span><span class="cmdline"></span>
+<a name="l-261"></a><span class="tm">23:41:18</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Ok, I think the resolution for now is that we're willing to take donations from CloudBees, but if we can find a way to make this work without having to have CloudBees do the actual registration, we're better off. So more research is needed.</span>
+<a name="l-262"></a><span class="tm">23:41:24</span><span class="nk"> &lt;abayer&gt;</span> That sound right to everyone?
+<a name="l-263"></a><span class="tm">23:41:28</span><span class="nk"> &lt;olamy&gt;</span> +1
+<a name="l-264"></a><span class="tm">23:41:30</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-265"></a><span class="tm">23:41:34</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> +1
+<a name="l-266"></a><span class="tm">23:41:37</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-267"></a><span class="tm">23:41:44</span><span class="nk"> &lt;abayer&gt;</span> Anything else on the ™ registration specifically for now?
+<a name="l-268"></a><span class="tm">23:41:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> was the "mark" decided on?
+<a name="l-269"></a><span class="tm">23:41:58</span><span class="nk"> &lt;tom_huybrechts&gt;</span> <span class="cmd">#info </span><span class="cmdline">900€ for EU community trademark, see http://oami.europa.eu/ows/rw/pages/CTM/feesPayment/feesPayment.en.do</span>
+<a name="l-270"></a><span class="tm">23:42:22</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's "Jenkins"
+<a name="l-271"></a><span class="tm">23:42:24</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer, kohsuke, hare_brain: figure out  what exactly we're going to register. =)</span>
+<a name="l-272"></a><span class="tm">23:42:42</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's something we can try to agree on now.
+<a name="l-273"></a><span class="tm">23:42:50</span><span class="nk"> &lt;kohsuke&gt;</span> I thought it's just "Jenkins"
+<a name="l-274"></a><span class="tm">23:42:52</span><span class="nk"> &lt;rtyler&gt;</span> I can get behind that
+<a name="l-275"></a><span class="tm">23:42:59</span><span class="nk"> &lt;larrys&gt;</span> If it's just "Jenkins" it can apply to "Jenkins CI" as well, (Like apache doesn't like you using their TM's in part of another thing)
+<a name="l-276"></a><span class="tm">23:43:05</span><span class="nk"> &lt;abayer&gt;</span> ah, really?
+<a name="l-277"></a><span class="tm">23:43:07</span><span class="nk"> &lt;abayer&gt;</span> Then Jenkins it is.
+<a name="l-278"></a><span class="tm">23:43:09</span><span class="nk"> &lt;rtyler&gt;</span> that's a good point
+<a name="l-279"></a><span class="tm">23:43:14</span><span class="nk"> &lt;rtyler&gt;</span> might be part of the difference in pricing
+<a name="l-280"></a><span class="tm">23:43:21</span><span class="nk"> &lt;abayer&gt;</span> Everyone on board with "Jenkins" as the mark?
+<a name="l-281"></a><span class="tm">23:43:25</span><span class="nk"> &lt;tom_huybrechts&gt;</span> +1
+<a name="l-282"></a><span class="tm">23:43:26</span><span class="nk"> &lt;larrys&gt;</span> IANAL, but you should do a bit more research on it...
+<a name="l-283"></a><span class="tm">23:43:27</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-284"></a><span class="tm">23:43:27</span><span class="nk"> &lt;AhtiK&gt;</span> +1
+<a name="l-285"></a><span class="tm">23:43:28</span><span class="nk"> &lt;uzilan&gt;</span> +1
+<a name="l-286"></a><span class="tm">23:43:32</span><span class="nk"> &lt;bap2000&gt;</span> yep
+<a name="l-287"></a><span class="tm">23:43:32</span><span class="nk"> &lt;emanuelez&gt;</span> +1
+<a name="l-288"></a><span class="tm">23:43:34</span><span class="nk"> &lt;larrys&gt;</span> but just Jenkins is fine enough with me
+<a name="l-289"></a><span class="tm">23:43:42</span><span class="nk"> &lt;abayer&gt;</span> Alright.
+<a name="l-290"></a><span class="tm">23:43:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the trademark will be just "Jenkins". Not "Jenkins CI", no logo.</span>
+<a name="l-291"></a><span class="tm">23:44:04</span><span class="nk"> &lt;abayer&gt;</span> Ready for next topic?
+<a name="l-292"></a><span class="tm">23:44:04</span><span class="nk"> &lt;AhtiK&gt;</span> and just text, no logo trademark.
+<a name="l-293"></a><span class="tm">23:44:07</span><span class="nk"> &lt;aheritier&gt;</span> +1 for Jenkins if we don't have a conflict with something else
+<a name="l-294"></a><span class="tm">23:44:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> let's do it
+<a name="l-295"></a><span class="tm">23:44:25</span><span class="nk"> &lt;abayer&gt;</span> <span class="topic">#topic </span><span class="topicline">Umbrella foundation</span>
+<a name="l-296"></a><span class="tm">23:44:29</span><span class="nk"> &lt;pelegri&gt;</span> Where is the agenda for the meeting?
+<a name="l-297"></a><span class="tm">23:44:36</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">pelegri:</span> We're faking it. =)
+<a name="l-298"></a><span class="tm">23:44:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">pelegri:</span> I don't believe we have anything posted :)
+<a name="l-299"></a><span class="tm">23:45:09</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">So as we've mentioned, we've been hoping to get Jenkins into SFC (the Software Freedom Conservancy) as a legal umbrella.</span>
+<a name="l-300"></a><span class="tm">23:45:10</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">pelegri:</span> but abayer fakes it well :-)
+<a name="l-301"></a><span class="tm">23:45:25</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">that'd give us an entity to hold trademarks/copyrights, take donations, pay bills, etc.</span>
+<a name="l-302"></a><span class="tm">23:45:35</span><span class="nk"> &lt;aheritier&gt;</span> +1
+<a name="l-303"></a><span class="tm">23:45:37</span><span class="nk"> &lt;uzilan&gt;</span> <span class="cmd">#idea </span><span class="cmdline">next time, please post the agenda</span>
+<a name="l-304"></a><span class="tm">23:45:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> I think you should also #info some of their concerns with them
+<a name="l-305"></a><span class="tm">23:45:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to prepare meeting agenda ahead of time for the next meeting</span>
+<a name="l-306"></a><span class="tm">23:46:03</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">But it's not a sure thing we'll be able to use SFC. They're a little worried about messing with Oracle, they're a little overloaded with projects already, etc.</span>
+<a name="l-307"></a><span class="tm">23:46:22</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">So I think we need to look into alternatives as well.</span>
+<a name="l-308"></a><span class="tm">23:46:42</span><span class="nk"> &lt;larrys&gt;</span> Why not the ASF? They like pissing off Oracle… (I'm half kidding, since there is a lot more things that the ASF would cost us as well)
+<a name="l-309"></a><span class="tm">23:46:48</span><span class="nk"> &lt;uzilan&gt;</span> <span class="cmd">#idea </span><span class="cmdline">apache?</span>
+<a name="l-310"></a><span class="tm">23:47:12</span><span class="nk"> &lt;rtyler&gt;</span> the issue(s) with ASF are finding some flexibility in their rules to allow Jenkins' unique ecosystem to thrive
+<a name="l-311"></a><span class="tm">23:47:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Just to make sure, SFC is still something we are pursuing. I still like the SFC model best.</span>
+<a name="l-312"></a><span class="tm">23:47:30</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">ASF is a pipe dream of mine here - admittedly influenced by olamy, aheritier and the swarm of Apache committers/members I work with. =) But from waht I know, the problem is that we can't get copyright reassignment of the existing code to Apache, nor can we relicense.</span>
+<a name="l-313"></a><span class="tm">23:47:47</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">Since Oracle owns (or co-owns) the copyright on the code.</span>
+<a name="l-314"></a><span class="tm">23:47:56</span><span class="nk"> &lt;olamy&gt;</span> and some libs are GPL here
+<a name="l-315"></a><span class="tm">23:47:57</span><span class="nk"> &lt;larrys&gt;</span> Yeah, the current model is not very ASFish, but we would get a LOT of bang out of it, with legal, trademarks, infrstructure, etc… its just the model that some don't like
+<a name="l-316"></a><span class="tm">23:48:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">larrys:</span> we actually already share some infrastructure through the OSUOSL with ASF :D
+<a name="l-317"></a><span class="tm">23:48:19</span><span class="nk"> &lt;aheritier&gt;</span> I agree, I'm not sure the model matches with ASF
+<a name="l-318"></a><span class="tm">23:48:34</span><span class="nk"> &lt;abayer&gt;</span> I'm less concerned about the process restrictions - from the chats I've had, it's pretty likely we'd be able to bend some rules, so long as everything was made clear from the beginning.
+<a name="l-319"></a><span class="tm">23:48:51</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> yes
+<a name="l-320"></a><span class="tm">23:48:53</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">I think it's worth at least talking with Apache as to whether there's any chance we can pair up.</span>
+<a name="l-321"></a><span class="tm">23:48:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Out of curiosity, how hard is it to set up an entity on our own?</span>
+<a name="l-322"></a><span class="tm">23:49:11</span><span class="nk"> &lt;kohsuke&gt;</span> Or I guess more proper question is, how expensive would that be?
+<a name="l-323"></a><span class="tm">23:49:14</span><span class="nk"> &lt;abayer&gt;</span> Does talking with Apache sound reasonable to people?
+<a name="l-324"></a><span class="tm">23:49:25</span><span class="nk"> &lt;abayer&gt;</span> Just want to have community blessing before I go bug Doug Cutting. =)
+<a name="l-325"></a><span class="tm">23:49:27</span><span class="nk"> &lt;rtyler&gt;</span> my concern with a Jenkins Foundation is how much time it would mean of yours or abayer's taken away from coding
+<a name="l-326"></a><span class="tm">23:49:35</span><span class="nk"> &lt;abayer&gt;</span> I'm −1 on starting our own entity.
+<a name="l-327"></a><span class="tm">23:49:38</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">kohsuke:</span> if there wasn't the liability of Oracle, i dont think it would be that bad
+<a name="l-328"></a><span class="tm">23:49:48</span><span class="nk"> &lt;abayer&gt;</span> IANAL, I don't want to be a lawyer, etc.
+<a name="l-329"></a><span class="tm">23:49:54</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">rtyler:</span> they'd sloff it onto you :P
+<a name="l-330"></a><span class="tm">23:49:56</span><span class="nk"> &lt;rtyler&gt;</span> I don't think we could afford one either
+<a name="l-331"></a><span class="tm">23:49:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">mwalling:</span> probably :)
+<a name="l-332"></a><span class="tm">23:50:06</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="hi">abayer:</span> are there any existing precedents where ASF has a non-ASL-licensed project under it's umbrella?
+<a name="l-333"></a><span class="tm">23:50:14</span><span class="nk"> &lt;mwalling&gt;</span> http://www.spi-inc.org/ SPI is the umbrella that covers Debian, Drupal, Gallery, OOo, OpenWrt, PostgreSQL, etc, to throw in a third option
+<a name="l-334"></a><span class="tm">23:50:19</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">AhtiK:</span> It's not clear.
+<a name="l-335"></a><span class="tm">23:50:21</span><span class="nk"> &lt;aheritier&gt;</span> +0 for our own entity because of the cost (time and money) to setup and keep it alive
+<a name="l-336"></a><span class="tm">23:50:23</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">mwalling:</span> Does that cover legal stuff?
+<a name="l-337"></a><span class="tm">23:50:35</span><span class="nk"> &lt;kohsuke&gt;</span> SPI looks interesting
+<a name="l-338"></a><span class="tm">23:50:44</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">abayer:</span> SPI? what do you mean?
+<a name="l-339"></a><span class="tm">23:50:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#link </span><span class="cmdline">http://www.spi-inc.org/ An alternative to the SFC</span>
+<a name="l-340"></a><span class="tm">23:50:48</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">AhtiK:</span> no it's not possible
+<a name="l-341"></a><span class="tm">23:50:58</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">AhtiK:</span> AFAIK
+<a name="l-342"></a><span class="tm">23:50:58</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">rtyler:</span> rtfm, starting a line with http:// auto #links
+<a name="l-343"></a><span class="tm">23:51:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">mwalling:</span> WHATEVS xD
+<a name="l-344"></a><span class="tm">23:51:14</span><span class="nk"> &lt;uzilan&gt;</span> does joining apache means jenkins has to take the apache license?
+<a name="l-345"></a><span class="tm">23:51:16</span><span class="nk"> &lt;rpetti&gt;</span> +1 apache
+<a name="l-346"></a><span class="tm">23:51:17</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">mwalling:</span> We need something that can own the trademark, be the recipient of CLAs, etc.
+<a name="l-347"></a><span class="tm">23:51:26</span><span class="nk"> &lt;larrys&gt;</span> <span class="hi">uzilan:</span> yes.
+<a name="l-348"></a><span class="tm">23:51:30</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">uzilan:</span> yes
+<a name="l-349"></a><span class="tm">23:51:32</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">abayer:</span> yeah they can do that
+<a name="l-350"></a><span class="tm">23:51:44</span><span class="nk"> &lt;olamy&gt;</span> why not only for core ?
+<a name="l-351"></a><span class="tm">23:51:44</span><span class="nk"> &lt;aheritier&gt;</span> others ideas ?
+<a name="l-352"></a><span class="tm">23:51:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the purposes for an umbrella organization are: recipient of CLAs, legal representation, donation accepting, etc</span>
+<a name="l-353"></a><span class="tm">23:51:51</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">abayer:</span> they seem to be similar to SFC, just with a more bland website
+<a name="l-354"></a><span class="tm">23:51:53</span><span class="nk"> &lt;abayer&gt;</span> uzilan et al: These are the things I want to at least talk to Apache about, to see what give there is, etc. I'm not proposing we move yet, just that I talk to them.
+<a name="l-355"></a><span class="tm">23:51:54</span><span class="nk"> &lt;rtyler&gt;</span> FSF?
+<a name="l-356"></a><span class="tm">23:52:00</span><span class="nk"> &lt;pelegri&gt;</span> how can we do Apache?  We would need to redo all the code that KK did while a Sun/Oracle person
+<a name="l-357"></a><span class="tm">23:52:04</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">rtyler:</span> relicense under GPL? wut?
+<a name="l-358"></a><span class="tm">23:52:14</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">olamy:</span> I think core+directly related is what we're talking about.
+<a name="l-359"></a><span class="tm">23:52:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">mwalling:</span> I forgot my &lt;/tongue-in-cheek&gt;
+<a name="l-360"></a><span class="tm">23:52:19</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">olamy:</span> I agree we could have core at ASF and plugins outside
+<a name="l-361"></a><span class="tm">23:52:21</span><span class="nk"> &lt;larrys&gt;</span> I think only what is bundled with the release has to be Apache… stuff in contrib in subversion is not bundled with the distro, and had gpl code in there
+<a name="l-362"></a><span class="tm">23:52:52</span><span class="nk"> &lt;olamy&gt;</span> apache-extras is maybe a possible place too  ?
+<a name="l-363"></a><span class="tm">23:52:58</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">pelegri:</span> I've been told there might be some loopholes - a possible "associated with Apache" case. It may well be a non-starter - I just want to know it's ok for me to look into.
+<a name="l-364"></a><span class="tm">23:53:02</span><span class="nk"> &lt;larrys&gt;</span> Oh, I forgot about apache-extras
+<a name="l-365"></a><span class="tm">23:53:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to dig more into what sort of leeway the ASF might be able to grant the Jenkins project</span>
+<a name="l-366"></a><span class="tm">23:53:28</span><span class="nk"> &lt;rtyler&gt;</span> and by dig
+<a name="l-367"></a><span class="tm">23:53:32</span><span class="nk"> &lt;rtyler&gt;</span> I mean harrass cutting :P
+<a name="l-368"></a><span class="tm">23:53:33</span><span class="nk"> &lt;aheritier&gt;</span> There is a list of compatible licenses for dependencies for ASL projects
+<a name="l-369"></a><span class="tm">23:53:42</span><span class="nk"> &lt;mwalling&gt;</span> <span class="cmd">#link </span><span class="cmdline">http://www.mail-archive.com/spi-general@lists.spi-inc.org/msg01126.html a google hit for "SPI vs SFC", seems to be semi useful</span>
+<a name="l-370"></a><span class="tm">23:53:45</span><span class="nk"> &lt;abayer&gt;</span> I'll email Doug and get back to y'all on this.
+<a name="l-371"></a><span class="tm">23:53:59</span><span class="nk"> &lt;abayer&gt;</span> Any other suggestions besides SPI and Apache?
+<a name="l-372"></a><span class="tm">23:54:00</span><span class="nk"> &lt;aheritier&gt;</span> apache-extras is only for apache related stuffs
+<a name="l-373"></a><span class="tm">23:54:08</span><span class="nk"> &lt;pelegri&gt;</span> There is a new Apache group something at Google code, but I don't see how really works out because ASF has always insistet in pretty strong contribution rules
+<a name="l-374"></a><span class="tm">23:54:10</span><span class="nk"> &lt;abayer&gt;</span> Because FSF is, well, not an option.
+<a name="l-375"></a><span class="tm">23:54:11</span><span class="nk"> &lt;aheritier&gt;</span> It could hosts plugins if core is inside ASF
+<a name="l-376"></a><span class="tm">23:54:37</span><span class="nk"> &lt;AhtiK&gt;</span> http://www.spi-inc.org/projects/associated-project-howto/
+<a name="l-377"></a><span class="tm">23:54:42</span><span class="nk"> &lt;larrys&gt;</span> You could also use codehaus to host plugins...
+<a name="l-378"></a><span class="tm">23:54:49</span><span class="nk"> &lt;larrys&gt;</span> (ala mojo project)
+<a name="l-379"></a><span class="tm">23:54:55</span><span class="nk"> &lt;kohsuke&gt;</span> I like Apache, but I'm still concerned about the difference in the way we operate.
+<a name="l-380"></a><span class="tm">23:55:00</span><span class="nk"> &lt;abayer&gt;</span> Well, if anyone comes across any other possible legal homes, please drop a line to the groups.
+<a name="l-381"></a><span class="tm">23:55:15</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-382"></a><span class="tm">23:55:23</span><span class="nk"> &lt;uzilan&gt;</span> how about codehaus?
+<a name="l-383"></a><span class="tm">23:55:45</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think they provide the kind of service that SFC or SPI does
+<a name="l-384"></a><span class="tm">23:55:54</span><span class="nk"> &lt;mwalling&gt;</span> is codehaus an entitiy or jsut a hosting platform?
+<a name="l-385"></a><span class="tm">23:55:54</span><span class="nk"> &lt;kohsuke&gt;</span> AIU, it's strictly a project hosting infrastructure.
+<a name="l-386"></a><span class="tm">23:55:57</span><span class="nk"> &lt;lacostej&gt;</span> <span class="hi">uzilan:</span> codehaus just a hosting platform
+<a name="l-387"></a><span class="tm">23:55:58</span><span class="nk"> &lt;larrys&gt;</span> Codehaus is more like SF in my opinion...
+<a name="l-388"></a><span class="tm">23:55:59</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="hi">uzilan:</span> isn't codehaus just a hposting site not a real organization to be the legal umbrella?
+<a name="l-389"></a><span class="tm">23:56:05</span><span class="nk"> &lt;larrys&gt;</span> (sourceforge)
+<a name="l-390"></a><span class="tm">23:56:08</span><span class="nk"> &lt;abayer&gt;</span> Yeah.
+<a name="l-391"></a><span class="tm">23:56:12</span><span class="nk"> &lt;mwalling&gt;</span> well, i guess we answered that with majority
+<a name="l-392"></a><span class="tm">23:56:25</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Codehaus is just a hosting platform. Or so I hear. From everyone.</span>
+<a name="l-393"></a><span class="tm">23:56:48</span><span class="nk"> &lt;uzilan&gt;</span> lol ok sorry
+<a name="l-394"></a><span class="tm">23:56:51</span><span class="nk"> &lt;abayer&gt;</span> Ok. Next topic, if we're all ready.
+<a name="l-395"></a><span class="tm">23:56:55</span><span class="nk"> &lt;rtyler&gt;</span> can we agree that we really don't want to start a Jenkins Foundation?
+<a name="l-396"></a><span class="tm">23:56:57</span><span class="nk"> &lt;mindless&gt;</span> +1 SPI  (having worked on gallery)
+<a name="l-397"></a><span class="tm">23:57:10</span><span class="nk"> &lt;bap2000&gt;</span> +1
+<a name="l-398"></a><span class="tm">23:57:13</span><span class="nk"> &lt;emanuelez&gt;</span> <span class="hi">rtyler:</span> +1
+<a name="l-399"></a><span class="tm">23:57:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> It come lower in our priority, but do we want to eliminate that?
+<a name="l-400"></a><span class="tm">23:57:27</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="cmd">#info </span><span class="cmdline">kohsuke also raised an interesting question before regarding how much it would cost to set up the org itself. non-profit. but maybe even more than the cost itself it's the effort and time it takes to manage.... could be too much time to waste on paperwork.</span>
+<a name="l-401"></a><span class="tm">23:57:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> how about we agree it's a last resort option?
+<a name="l-402"></a><span class="tm">23:57:48</span><span class="nk"> &lt;kohsuke&gt;</span> That works for me
+<a name="l-403"></a><span class="tm">23:57:53</span><span class="nk"> &lt;pelegri&gt;</span> <span class="hi">rtyler:</span> +1
+<a name="l-404"></a><span class="tm">23:57:54</span><span class="nk"> &lt;abayer&gt;</span> That's acceptable to me.
+<a name="l-405"></a><span class="tm">23:58:03</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> +0 (I don't want to eliminate but at last option)
+<a name="l-406"></a><span class="tm">23:58:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Setting up our own Jenkins Foundation is a last resort option provided other alternatives don't work out</span>
+<a name="l-407"></a><span class="tm">23:58:07</span><span class="nk"> &lt;larrys&gt;</span> You could always ask the perl foundation people how much effort/time/cost was involved for them...
+<a name="l-408"></a><span class="tm">23:58:09</span><span class="nk"> &lt;tom_huybrechts&gt;</span> related to OSS foundations: SFLC might be of help: 'SFLC assists its clients in registering and defending their trademarks.'
+<a name="l-409"></a><span class="tm">23:58:15</span><span class="nk"> &lt;lacostej&gt;</span> <span class="hi">rtyler:</span> +1 (decide as later as possible)
+<a name="l-410"></a><span class="tm">23:58:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> before moving on to next topic, time check
+<a name="l-411"></a><span class="tm">23:58:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#save</span><span class="cmdline"></span>
+<a name="l-412"></a><span class="tm">23:58:43</span><span class="nk"> &lt;kohsuke&gt;</span> we are almost at the hour, and I want to make sure we talk about the next meeting logistics
+<a name="l-413"></a><span class="tm">23:58:54</span><span class="nk"> &lt;abayer&gt;</span> I think we need to hit the CLA topic real quick.
+<a name="l-414"></a><span class="tm">23:59:02</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-415"></a><span class="tm">23:59:02</span><span class="nk"> &lt;rtyler&gt;</span> CLA, next meeting, then schools out?
+<a name="l-416"></a><span class="tm">23:59:06</span><span class="nk"> &lt;pelegri&gt;</span> Have you covered how to spread out the word that Jenkins is the replacement for Hudson?
+<a name="l-417"></a><span class="tm">23:59:21</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="hi">pelegri:</span> Super Bowl ad
+<a name="l-418"></a><span class="tm">23:59:23</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">pelegri:</span> I think that's already happening. =)
+<a name="l-419"></a><span class="tm">23:59:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> start the CLAtalk
+<a name="l-420"></a><span class="tm">23:59:32</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="hi">pelegri:</span> community has voted that it is not a replacement, it's a rename :)
+<a name="l-421"></a><span class="tm">23:59:39</span><span class="nk"> &lt;cquinn1&gt;</span> The Java Posse talked about it :)
+<a name="l-422"></a><span class="tm">23:59:39</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">hare_brain:</span> with the jenkins girls
+<a name="l-423"></a><span class="tm">23:59:40</span><span class="nk"> &lt;kohsuke&gt;</span> But he's right that we can do more of that.
+<a name="l-424"></a><span class="tm">23:59:47</span><span class="nk"> &lt;abayer&gt;</span> <span class="topic">#topic </span><span class="topicline">The CLA - what's needed now?</span>
+<a name="l-425"></a><span class="tm">00:00:03</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">So previously, changes to core required submitting a CLA to Oracle.</span>
+<a name="l-426"></a><span class="tm">00:00:08</span><span class="nk"> &lt;aheritier&gt;</span> Current #hudson is a fork of #jenkins ...
+<a name="l-427"></a><span class="tm">00:00:13</span><span class="nk"> &lt;emanuelez&gt;</span> another acronym i'm not familiar with
+<a name="l-428"></a><span class="tm">00:00:16</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">aheritier:</span> "rename"
+<a name="l-429"></a><span class="tm">00:00:22</span><span class="nk"> &lt;larrys&gt;</span> <span class="hi">pelegri:</span> I've retagged a few stockoverflow questions to have jenkins in it ;)
+<a name="l-430"></a><span class="tm">00:00:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">emanuelez:</span> Contributor License Agreement
+<a name="l-431"></a><span class="tm">00:00:33</span><span class="nk"> &lt;emanuelez&gt;</span> <span class="hi">rtyler:</span> thanks
+<a name="l-432"></a><span class="tm">00:00:34</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">Obviously, that doesn't apply any more (and I, in fact, am going to be revoking my Oracle CLA). So what are the rules for contributing to core now?</span>
+<a name="l-433"></a><span class="tm">00:00:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info  </span><span class="cmdline">CLA -&gt; Contributor License Agreement</span>
+<a name="l-434"></a><span class="tm">00:00:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Current one is http://oss.oracle.com/oca.pdf</span>
+<a name="l-435"></a><span class="tm">00:01:13</span><span class="nk"> &lt;aheritier&gt;</span> Could we have something lile CLA and CCLA "a la" Apache ?
+<a name="l-436"></a><span class="tm">00:01:15</span><span class="nk"> &lt;kohsuke&gt;</span> Again, the issue is the interim one --- what to do until we find our final home, be it SFC, SPI, etc.
+<a name="l-437"></a><span class="tm">00:01:24</span><span class="nk"> &lt;calavera&gt;</span> ASF has its own CLA
+<a name="l-438"></a><span class="tm">00:01:25</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">kohsuke:</span> yes
+<a name="l-439"></a><span class="tm">00:01:36</span><span class="nk"> &lt;AhtiK&gt;</span> Is it clear that oracle is not interested in transferring their CLAs to jenkins? So existing codebase will not be covered by CLAs in the context of Jenkins community.
+<a name="l-440"></a><span class="tm">00:01:46</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">So in the interim, do we keep using the existing CLA?</span>
+<a name="l-441"></a><span class="tm">00:01:56</span><span class="nk"> &lt;pelegri&gt;</span> But what name goes in there?
+<a name="l-442"></a><span class="tm">00:02:04</span><span class="nk"> &lt;rtyler&gt;</span> I don't like the idea of Oracle owning jenkins contributions
+<a name="l-443"></a><span class="tm">00:02:08</span><span class="nk"> &lt;rtyler&gt;</span> the free IP ride should be over IMHO
+<a name="l-444"></a><span class="tm">00:02:16</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> :( agree with rtyler
+<a name="l-445"></a><span class="tm">00:02:17</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">AhtiK:</span> Frankly, I don't want my contributions to Jenkins to be CLA'd to Oracle, giving them rights to my code in re: relicensing, etc.
+<a name="l-446"></a><span class="tm">00:02:37</span><span class="nk"> &lt;larrys&gt;</span> <span class="hi">abayer:</span> you should put that on a dev faq on the wiki… ;)
+<a name="l-447"></a><span class="tm">00:02:49</span><span class="nk"> &lt;abayer&gt;</span> But if we don't require it, how do we ensure good provenance on the code for now?
+<a name="l-448"></a><span class="tm">00:02:51</span><span class="nk"> &lt;larrys&gt;</span> Under the section "Screwing with Oracle" (or a better name will do, of course) ;)
+<a name="l-449"></a><span class="tm">00:02:56</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="hi">abayer:</span> I was more interested in contributions made until now, the existing codebase. for new code there's definitely a need for a new CLA recipient.
+<a name="l-450"></a><span class="tm">00:03:15</span><span class="nk"> &lt;pelegri&gt;</span> What about tracking every single contributor from  now on, and telling everybody what the shape of the SCA will be.
+<a name="l-451"></a><span class="tm">00:03:18</span><span class="nk"> &lt;aheritier&gt;</span> Thus what can we do in the meantime ?
+<a name="l-452"></a><span class="tm">00:03:18</span><span class="nk"> &lt;mwalling&gt;</span> can we assign copyright until we have an entity to assign to?
+<a name="l-453"></a><span class="tm">00:03:26</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">mwalling:</span> Nope.
+<a name="l-454"></a><span class="tm">00:03:56</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">pelegri:</span> That makes sense to me, I think. In an absolute worst case, we should be able to remove someone's commits if they don't end up signing the eventual CLA.
+<a name="l-455"></a><span class="tm">00:03:59</span><span class="nk"> &lt;pelegri&gt;</span> DOnt need to assign copyright.  Just track who is contributing.  Then ask again for them to assign / share copyright when there is a real entity.
+<a name="l-456"></a><span class="tm">00:04:07</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="hi">abayer:</span> can't we just have the CLA that assigns it it Kohsuke as a private citizen so he can transfer it later like with the trademark?
+<a name="l-457"></a><span class="tm">00:04:26</span><span class="nk"> &lt;pelegri&gt;</span> Biggest risk is you need to recode the code.  realistically, biggest risk is KK, due to volume'
+<a name="l-458"></a><span class="tm">00:04:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> is it clear how much we all trust you :P
+<a name="l-459"></a><span class="tm">00:04:33</span><span class="nk"> &lt;mwalling&gt;</span> my suggestion then would be an email from all the devs expressing intent to sign the JCA (jenkins contributers agreement)
+<a name="l-460"></a><span class="tm">00:04:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> I'm humbled.
+<a name="l-461"></a><span class="tm">00:04:55</span><span class="nk"> &lt;mwalling&gt;</span> where "all the devs" == people who have signed the OCA, because they already aggreed to those terms, so the JCA wont be that much worse
+<a name="l-462"></a><span class="tm">00:05:05</span><span class="nk"> &lt;bap2000&gt;</span> isn't the issue that we need to prove that the committer had the right to commit rather that protecting the committed code from being re-used?
+<a name="l-463"></a><span class="tm">00:05:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Core contributors signing an "intent to sign a CLA for Jenkins" once an umbrella organization is found to assign to</span>
+<a name="l-464"></a><span class="tm">00:05:16</span><span class="nk"> &lt;abayer&gt;</span> I'd tend to be +1 to mwalling - if we can't trust each other to stick to their word, we've got other problems. =)
+<a name="l-465"></a><span class="tm">00:05:33</span><span class="nk"> &lt;aheritier&gt;</span> I think I already saw that the attribution to someone
+<a name="l-466"></a><span class="tm">00:05:48</span><span class="nk"> &lt;mwalling&gt;</span> i mean, i've never signed the SCA or the OCA, so i obviously cant say that i'd sign the JCA
+<a name="l-467"></a><span class="tm">00:06:07</span><span class="nk"> &lt;calavera&gt;</span> for the record, if we need a CLA model http://www.apache.org/licenses/icla.txt
+<a name="l-468"></a><span class="tm">00:06:10</span><span class="nk"> &lt;mwalling&gt;</span> (and getting ?CA signed with $employeer is fun as it is)
+<a name="l-469"></a><span class="tm">00:06:12</span><span class="nk"> &lt;pelegri&gt;</span> There is an issue of people contribuing IP they don't own.  That is covered by a section in the SCA.  I guess we could separate that and make people sign that portion.
+<a name="l-470"></a><span class="tm">00:06:13</span><span class="nk"> &lt;AhtiK&gt;</span> "intent to sign" is not binding imho, so not legally forcing. you can't ask contributor for an intent to assign it to "anyone we choose later".
+<a name="l-471"></a><span class="tm">00:06:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">that reminds me that we need to know where the difference between a patch vs a change</span>
+<a name="l-472"></a><span class="tm">00:06:41</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">AhtiK:</span> no, definitly not binding, but you can always roll back their commits
+<a name="l-473"></a><span class="tm">00:07:01</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think it takes a CLA to accept someone's one line change, right?
+<a name="l-474"></a><span class="tm">00:07:07</span><span class="nk"> &lt;kohsuke&gt;</span> Where is the boundary?
+<a name="l-475"></a><span class="tm">00:07:08</span><span class="nk"> &lt;abayer&gt;</span> Ok, AhtiK's persuaded me. Can we do a CLA to an individual?
+<a name="l-476"></a><span class="tm">00:07:33</span><span class="nk"> &lt;pelegri&gt;</span> Sun treated all patches as covered by the SCA - there was a "simplified" version of the SCA in Wiki and Bugtraq
+<a name="l-477"></a><span class="tm">00:07:42</span><span class="nk"> &lt;larrys&gt;</span> I dunno, but I've had various apache projects take my patches just fine, it was when I submitted a script a script to Subversion did I get asked to sign a CLA
+<a name="l-478"></a><span class="tm">00:07:43</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> As I see it, if we didn't require a CLA for patch submissions to JIRA, we shouldn't require one for pull requests - but this is something we do need to formalize.
+<a name="l-479"></a><span class="tm">00:07:45</span><span class="nk"> &lt;pelegri&gt;</span> so, by posting the patch submission, you signed the SCA
+<a name="l-480"></a><span class="tm">00:07:47</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">kohsuke:</span> technically, through the letter of my employeer's stuff, they own the fact that i know the for ( : ) {} syntax in java.... sooooooo
+<a name="l-481"></a><span class="tm">00:07:49</span><span class="nk"> &lt;rtyler&gt;</span> will developers then need to resign a CLA once the umbrella org is found
+<a name="l-482"></a><span class="tm">00:07:52</span><span class="nk"> &lt;bap2000&gt;</span> <span class="hi">pelegri:</span> yep that sounds right. I want the project's codebase to be "known good" I'm not worried about my code being re-used
+<a name="l-483"></a><span class="tm">00:07:58</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> I think so, yeah.
+<a name="l-484"></a><span class="tm">00:08:01</span><span class="nk"> &lt;larrys&gt;</span> (of course, that was before they were ASF, but had lots of ASF people running the project)
+<a name="l-485"></a><span class="tm">00:08:16</span><span class="nk"> &lt;abayer&gt;</span> Which is a pain, but meh.
+<a name="l-486"></a><span class="tm">00:08:39</span><span class="nk"> &lt;atmos&gt;</span> is there an easy way to truncate all old builds from the ui/api without nuking/recreating the job ?
+<a name="l-487"></a><span class="tm">00:08:56</span><span class="nk"> &lt;abayer&gt;</span> Ok, kohsuke. are you willing to be the recipient of an interim CLA, with your rights/ownership being transferred to the legal entity once we actually have one?
+<a name="l-488"></a><span class="tm">00:09:09</span><span class="nk"> &lt;pelegri&gt;</span> History background: one of the main reasons why there was an SCA was because Sun had to change the license for a project with many contrbutors and it was a mess.
+<a name="l-489"></a><span class="tm">00:09:17</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">abayer:</span> that tickles my spidy sense
+<a name="l-490"></a><span class="tm">00:09:32</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">mwalling:</span> Best of a bad set of alternatives?
+<a name="l-491"></a><span class="tm">00:09:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">pelegri:</span> for important bits, prefix your statement with #info so it'll be called out in the meeting minutes :)
+<a name="l-492"></a><span class="tm">00:09:40</span><span class="nk"> &lt;pelegri&gt;</span> ah, thanks.
+<a name="l-493"></a><span class="tm">00:09:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> I'd be happy to if it works for people. I'm just not sure if it flies well in the eyes of many.
+<a name="l-494"></a><span class="tm">00:09:54</span><span class="nk"> &lt;pelegri&gt;</span> <span class="cmd">#info </span><span class="cmdline">History background: one of the main reasons why there was an SCA was because Sun had to change the license for a project with many contrbutors and it was a mess.</span>
+<a name="l-495"></a><span class="tm">00:10:20</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="cmd">#info </span><span class="cmdline">Eclipse.org projects need to get CLA signed only for contributions that are bigger than X lines (sry, have forgotten what the X was).</span>
+<a name="l-496"></a><span class="tm">00:10:20</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">Ok, how many core devs do we have in here at the moment?</span>
+<a name="l-497"></a><span class="tm">00:10:25</span><span class="nk"> &lt;pelegri&gt;</span> What about we split the SCA into the part that asserts the contributor owns the IP, and require everybody to do that (1)
+<a name="l-498"></a><span class="tm">00:10:40</span><span class="nk"> &lt;taco&gt;</span> <span class="hi">atmos:</span> Config the job, Discard Old Builds set to retain 1, build once.  You can also remove them from the file system of the server.
+<a name="l-499"></a><span class="tm">00:10:45</span><span class="nk"> &lt;pelegri&gt;</span> and (2) the actual assignment, which we just leave as informal intent to follow the final SCA
+<a name="l-500"></a><span class="tm">00:10:49</span><span class="nk"> &lt;rtyler&gt;</span> abayer, kohsuke, tom_huybrechts, aheritier, jieryn-w ?
+<a name="l-501"></a><span class="tm">00:10:58</span><span class="nk"> &lt;abayer&gt;</span> mindless. =)
+<a name="l-502"></a><span class="tm">00:11:00</span><span class="nk"> &lt;larrys&gt;</span> <span class="hi">abayer:</span> I've done a few core patches, nothing major, just a few plugins, and plan on more… just not had time...
+<a name="l-503"></a><span class="tm">00:11:00</span><span class="nk"> &lt;rtyler&gt;</span> I can't keep plugin devs differentiated from core deves
+<a name="l-504"></a><span class="tm">00:11:02</span><span class="nk"> &lt;mwalling&gt;</span> <span class="cmd">#info </span><span class="cmdline">my opinion is to ride it out until we're entitized, then get people to sign CLAs. no CLA, signifigant patches rolled back, grumbling, etc.</span>
+<a name="l-505"></a><span class="tm">00:11:22</span><span class="nk"> &lt;emanuelez&gt;</span> falling asleep on the keyboard here :( see you!
+<a name="l-506"></a><span class="tm">00:11:25</span><span class="nk"> &lt;mwalling&gt;</span> <span class="cmd">#info </span><span class="cmdline">i also think CLAs should cover plugins under github/jenkinsci/</span>
+<a name="l-507"></a><span class="tm">00:11:39</span><span class="nk"> &lt;mindless&gt;</span> ?
+<a name="l-508"></a><span class="tm">00:11:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> are there significant downsides other than Sonatype FUD regarding keeping things "wild west" for now?
+<a name="l-509"></a><span class="tm">00:11:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">emanuelez:</span> night :)
+<a name="l-510"></a><span class="tm">00:12:11</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">in practice, I think I personally trust the fairly limited number of contributors to core to not screw us over in the (hopefully!) short time until we have a real CLA, etc.</span>
+<a name="l-511"></a><span class="tm">00:12:26</span><span class="nk"> &lt;kohsuke&gt;</span> At least we should try to make people aware that we expect them to sign JCA of some sort
+<a name="l-512"></a><span class="tm">00:12:27</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">abayer:</span> +1
+<a name="l-513"></a><span class="tm">00:12:37</span><span class="nk"> &lt;pelegri&gt;</span> <span class="hi">kohsuke:</span> +1
+<a name="l-514"></a><span class="tm">00:12:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> what would a "short time" be, reasonably?
+<a name="l-515"></a><span class="tm">00:12:50</span><span class="nk"> &lt;kohsuke&gt;</span> We can save unnecessary trouble down the road and there's no real downside.
+<a name="l-516"></a><span class="tm">00:12:50</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> I don't know.
+<a name="l-517"></a><span class="tm">00:12:56</span><span class="nk"> &lt;rtyler&gt;</span> since we don't have an umbrella org locked down just yet
+<a name="l-518"></a><span class="tm">00:13:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#idea </span><span class="cmdline">JCA -&gt; Jenkins Contributor Agreement</span>
+<a name="l-519"></a><span class="tm">00:13:39</span><span class="nk"> &lt;mwalling&gt;</span> if there is more of this to come, do we want to table this, do meeting logistics, then come back to it?
+<a name="l-520"></a><span class="tm">00:13:41</span><span class="nk"> &lt;rtyler&gt;</span> er, that was supposed to be #info
+<a name="l-521"></a><span class="tm">00:13:47</span><span class="nk"> &lt;pelegri&gt;</span> <span class="cmd">#info </span><span class="cmdline">there are two risks (of not SCA): One is code is not of the contributor (and illegal).  Two is we can't change the copryight / license later.</span>
+<a name="l-522"></a><span class="tm">00:13:49</span><span class="nk"> &lt;atmos&gt;</span> what's the purpose of contributor agreements ?
+<a name="l-523"></a><span class="tm">00:13:59</span><span class="nk"> &lt;pelegri&gt;</span> I think the biggest risk is the first.
+<a name="l-524"></a><span class="tm">00:14:08</span><span class="nk"> &lt;pelegri&gt;</span> And to adress that does not need copyright assignment.
+<a name="l-525"></a><span class="tm">00:14:31</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">We don't have a formal CLA until we have a legal entity, etc. We ask all core devs to acknowledge that they'll need to sign a CLA when we *do* hae an entity. We probably don't add any more core devs until there's a formal CLA process. Pull requests can still be taken, so long as they're not huge.</span>
+<a name="l-526"></a><span class="tm">00:14:38</span><span class="nk"> &lt;aheritier&gt;</span> CAn we ask help to someone with skills about all of that to create the good document ?
+<a name="l-527"></a><span class="tm">00:14:51</span><span class="nk"> &lt;aheritier&gt;</span> And to see if we can temporarily assign copyrights to K ?
+<a name="l-528"></a><span class="tm">00:14:53</span><span class="nk"> &lt;rtyler&gt;</span> I can #agree on that abayer
+<a name="l-529"></a><span class="tm">00:14:57</span><span class="nk"> &lt;aheritier&gt;</span> s/K/KK
+<a name="l-530"></a><span class="tm">00:15:06</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">abayer:</span> +1
+<a name="l-531"></a><span class="tm">00:15:07</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke, abayer, hare_brain to get a draft CLA ready before we meet next.</span>
+<a name="l-532"></a><span class="tm">00:15:09</span><span class="nk"> &lt;lacostej&gt;</span> <span class="hi">rtyler:</span> s/Jenkins/Joint/ ?
+<a name="l-533"></a><span class="tm">00:15:41</span><span class="nk"> &lt;pelegri&gt;</span> -1 on assigning it to KK.  Just for optics, you know I trust him
+<a name="l-534"></a><span class="tm">00:15:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">lacostej:</span> I believe we're using it as Jenkins Contributor Agreement
+<a name="l-535"></a><span class="tm">00:16:00</span><span class="nk"> &lt;aheritier&gt;</span> And what about existing OCA ?
+<a name="l-536"></a><span class="tm">00:16:01</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="hi">abayer:</span> +1. rtyler: +1(-1KK now).
+<a name="l-537"></a><span class="tm">00:16:20</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">an addendum - we also don't do any massive changes to core functionality until the formal CLA is in place, in case of a worst case scenario of someone going back on it and not signing, etc.</span>
+<a name="l-538"></a><span class="tm">00:16:21</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="hi">aheritier:</span> there is none for jenkins afaik.
+<a name="l-539"></a><span class="tm">00:16:37</span><span class="nk"> &lt;rtyler&gt;</span> I think it'd be better for the project not to put so much onto Kohsuke, and go with abayer's proposal in the interim
+<a name="l-540"></a><span class="tm">00:16:48</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">aheritier:</span> It's not applicable to Jenkins, since we're not associated with Oracle.
+<a name="l-541"></a><span class="tm">00:17:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#save</span><span class="cmdline"></span>
+<a name="l-542"></a><span class="tm">00:17:32</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">aheritier:</span> are you ok with my proposal for now?
+<a name="l-543"></a><span class="tm">00:17:40</span><span class="nk"> &lt;aheritier&gt;</span> <span class="cmd">#action </span><span class="cmdline">: update http://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code</span>
+<a name="l-544"></a><span class="tm">00:17:42</span><span class="nk"> &lt;abayer&gt;</span> (I wanna let all you Euros sleep!) =)
+<a name="l-545"></a><span class="tm">00:17:58</span><span class="nk"> &lt;onlyteo&gt;</span> lol
+<a name="l-546"></a><span class="tm">00:18:02</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> I agree. +1
+<a name="l-547"></a><span class="tm">00:18:13</span><span class="nk"> &lt;abayer&gt;</span> Great.
+<a name="l-548"></a><span class="tm">00:18:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">No massive core changes until CLA is set up</span>
+<a name="l-549"></a><span class="tm">00:18:24</span><span class="nk"> &lt;rtyler&gt;</span> next!
+<a name="l-550"></a><span class="tm">00:18:26</span><span class="nk"> &lt;uzilan&gt;</span> +1 (AM)
+<a name="l-551"></a><span class="tm">00:18:37</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to get statements from all core devs on their intent to sign eventual CLA.</span>
+<a name="l-552"></a><span class="tm">00:18:50</span><span class="nk"> &lt;kohsuke&gt;</span> time zone of the next meeting!
+<a name="l-553"></a><span class="tm">00:18:52</span><span class="nk"> &lt;abayer&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting logistics</span>
+<a name="l-554"></a><span class="tm">00:19:08</span><span class="nk"> &lt;kohsuke&gt;</span> So where are we from, mostly?
+<a name="l-555"></a><span class="tm">00:19:08</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="cmd">#info </span><span class="cmdline">Just to have some background when to ask for CLA - for example, Eclipse requires signing agreement for contributions with more than 250 lines. More details http://www.eclipse.org/legal/EclipseLegalProcessPoster.pdf</span>
+<a name="l-556"></a><span class="tm">00:19:12</span><span class="nk"> &lt;abayer&gt;</span> So - while we'
+<a name="l-557"></a><span class="tm">00:19:15</span><span class="nk"> &lt;AhtiK&gt;</span> sry, missed the topic .s
+<a name="l-558"></a><span class="tm">00:19:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Schedule meeting for earlier than 11:00 PM for our european users</span>
+<a name="l-559"></a><span class="tm">00:19:30</span><span class="nk"> &lt;kohsuke&gt;</span> What about people from Asia? Are there any?
+<a name="l-560"></a><span class="tm">00:19:36</span><span class="nk"> &lt;kohsuke&gt;</span> I thought ssogabe is here
+<a name="l-561"></a><span class="tm">00:19:38</span><span class="nk"> &lt;abayer&gt;</span> ve got people from Asia, I think finding a compromise between PST and CET is the way to go.
+<a name="l-562"></a><span class="tm">00:19:41</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah he is.
+<a name="l-563"></a><span class="tm">00:19:59</span><span class="nk"> &lt;larrys&gt;</span> <span class="hi">kohsuke:</span> you know where I'm from (and you still have not posted that picture/blog from the UJUG meeting) ;)
+<a name="l-564"></a><span class="tm">00:19:59</span><span class="nk"> &lt;aheritier&gt;</span> Do we have an idea about how many people involved per TZ ?
+<a name="l-565"></a><span class="tm">00:20:01</span><span class="nk"> &lt;AhtiK&gt;</span> is the meeting weekly?
+<a name="l-566"></a><span class="tm">00:20:03</span><span class="nk"> &lt;vtintillier&gt;</span> it was even midnght here in france :-(
+<a name="l-567"></a><span class="tm">00:20:16</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">vtintillier:</span> :-)
+<a name="l-568"></a><span class="tm">00:20:19</span><span class="nk"> &lt;tom_huybrechts&gt;</span> at least one hour earlier would be nice
+<a name="l-569"></a><span class="tm">00:20:36</span><span class="nk"> &lt;rtyler&gt;</span> I think a little earlier, and not on a friday :)
+<a name="l-570"></a><span class="tm">00:20:42</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">I'd like to meet weekly for the time being - we've got a lot of stuff to iron out, etc.</span>
+<a name="l-571"></a><span class="tm">00:20:51</span><span class="nk"> &lt;abayer&gt;</span> +1 to not Friday. =)
+<a name="l-572"></a><span class="tm">00:20:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">No more friday meetings</span>
+<a name="l-573"></a><span class="tm">00:21:02</span><span class="nk"> &lt;onlyteo&gt;</span> +1
+<a name="l-574"></a><span class="tm">00:21:05</span><span class="nk"> &lt;ssogabe&gt;</span> +1
+<a name="l-575"></a><span class="tm">00:21:11</span><span class="nk"> &lt;bap2000&gt;</span> +1
+<a name="l-576"></a><span class="tm">00:21:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Weekly meetings until further notice, and some more things are ironed out</span>
+<a name="l-577"></a><span class="tm">00:21:16</span><span class="nk"> &lt;hare_brain&gt;</span> I had suggested Friday because it's easier to take the time away from my day job.
+<a name="l-578"></a><span class="tm">00:21:21 </span><span class="nka">* aheritier</span> <span class="ac">midnight is fine as long as there is Nip Tuck on the FR TV :-)</span>
+<a name="l-579"></a><span class="tm">00:21:23</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">How would 11am PST (8pm CET) on Wednesdays work for people?</span>
+<a name="l-580"></a><span class="tm">00:21:24</span><span class="nk"> &lt;rtyler&gt;</span> hah
+<a name="l-581"></a><span class="tm">00:21:28</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">hare_brain:</span> =)
+<a name="l-582"></a><span class="tm">00:21:37</span><span class="nk"> &lt;rtyler&gt;</span> I can do 11am on a wed
+<a name="l-583"></a><span class="tm">00:21:39</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">abayer:</span> +1
+<a name="l-584"></a><span class="tm">00:21:40</span><span class="nk"> &lt;bap2000&gt;</span> what's that in GMT?
+<a name="l-585"></a><span class="tm">00:21:41</span><span class="nk"> &lt;mindless&gt;</span> -1
+<a name="l-586"></a><span class="tm">00:21:46</span><span class="nk"> &lt;abayer&gt;</span> 7pm GMT.
+<a name="l-587"></a><span class="tm">00:21:55</span><span class="nk"> &lt;bap2000&gt;</span> nice
+<a name="l-588"></a><span class="tm">00:21:59</span><span class="nk"> &lt;hare_brain&gt;</span> 11amPST is generally OK with me.
+<a name="l-589"></a><span class="tm">00:22:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">mindless:</span> too busy with le goog?
+<a name="l-590"></a><span class="tm">00:22:03</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">mindless:</span> Is the problem day or time?
+<a name="l-591"></a><span class="tm">00:22:28</span><span class="nk"> &lt;mindless&gt;</span> time
+<a name="l-592"></a><span class="tm">00:22:28</span><span class="nk"> &lt;abayer&gt;</span> I'll be honest - I proposed Wednesday 'cos I work from home that day and so I'm less distracted by drivebys. =)
+<a name="l-593"></a><span class="tm">00:22:29</span><span class="nk"> &lt;uzilan&gt;</span> later would be better
+<a name="l-594"></a><span class="tm">00:22:49</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">abayer:</span> It could be good if kids are going to sleep on time :-)
+<a name="l-595"></a><span class="tm">00:23:17</span><span class="nk"> &lt;abayer&gt;</span> Ok…maybe we should try one time for the next meeting, see how it works, adjust as needed?
+<a name="l-596"></a><span class="tm">00:23:25</span><span class="nk"> &lt;aheritier&gt;</span> 12am PST (9pm CET) thus it is during the lunch for west coast
+<a name="l-597"></a><span class="tm">00:23:26</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah
+<a name="l-598"></a><span class="tm">00:23:28</span><span class="nk"> &lt;rtyler&gt;</span> we should keep in mind, that it's going to be largely impossible to get everybody at the best time
+<a name="l-599"></a><span class="tm">00:23:37</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> +1
+<a name="l-600"></a><span class="tm">00:23:40</span><span class="nk"> &lt;rtyler&gt;</span> we can mitigate this by having good meeting agendas posted, and sticking to them
+<a name="l-601"></a><span class="tm">00:23:43</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> indeed.
+<a name="l-602"></a><span class="tm">00:23:45</span><span class="nk"> &lt;aheritier&gt;</span> we could alternate
+<a name="l-603"></a><span class="tm">00:23:56</span><span class="nk"> &lt;AhtiK&gt;</span> http://www.timeanddate.com/worldclock/meetingtime.html?month=2&amp;day=9&amp;year=2011&amp;p1=195&amp;p2=224&amp;p3=57&amp;p4=-1
+<a name="l-604"></a><span class="tm">00:23:58</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to work with abayer, kohsuke and hare_brain on agenda for next week's meeting.</span>
+<a name="l-605"></a><span class="tm">00:24:14</span><span class="nk"> &lt;larrys&gt;</span> And never underestimate what can be communicated/decided via email list as well.
+<a name="l-606"></a><span class="tm">00:24:14</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="hi">aheritier:</span> 12am PST is midnight for the west coast. :)
+<a name="l-607"></a><span class="tm">00:24:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to post a meeting agenda and accouncement at least a good 24 hours ahead of time to the blog</span>
+<a name="l-608"></a><span class="tm">00:24:31</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">hachi:</span> yes sorry :-)
+<a name="l-609"></a><span class="tm">00:24:37</span><span class="nk"> &lt;bap2000&gt;</span> yep, try earlier I'm too "tired and emotional" to contribute
+<a name="l-610"></a><span class="tm">00:24:42</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Next Wednesday, 11am PST (8pm CET, 7pm GMT, 2pm EST), for next meeting and then revisit scheduling depending on how that works.</span>
+<a name="l-611"></a><span class="tm">00:24:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Ensure meetings are primarily things that need discussion over IRC, and cannot be resolved over the mailing lists</span>
+<a name="l-612"></a><span class="tm">00:25:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> I'm down with that proposal
+<a name="l-613"></a><span class="tm">00:25:15</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> +1
+<a name="l-614"></a><span class="tm">00:25:16</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-615"></a><span class="tm">00:25:17</span><span class="nk"> &lt;abayer&gt;</span> I don't entirely agree on that, rtyler - we could theoretically decide most of this on the mailing list, it's just a lot *faster* here. =)
+<a name="l-616"></a><span class="tm">00:25:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">The interim board is all in the PST timezone</span>
+<a name="l-617"></a><span class="tm">00:25:33</span><span class="nk"> &lt;rtyler&gt;</span> fair point
+<a name="l-618"></a><span class="tm">00:25:49</span><span class="nk"> &lt;rtyler&gt;</span> I just don't want to leave out aheritier when he has to go tuck kids in bed :P
+<a name="l-619"></a><span class="tm">00:25:51</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Next meeting, Wednesday Feb 9, 11am PST etc.</span>
+<a name="l-620"></a><span class="tm">00:25:55</span><span class="nk"> &lt;larrys&gt;</span> <span class="cmd">#idea </span><span class="cmdline">so use the mailing list to lock down agenda of topics</span>
+<a name="l-621"></a><span class="tm">00:25:57</span><span class="nk"> &lt;hare_brain&gt;</span> It's not so much the resolution as the timeliness
+<a name="l-622"></a><span class="tm">00:26:03</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> :-D
+<a name="l-623"></a><span class="tm">00:26:06</span><span class="nk"> &lt;uzilan&gt;</span> maybe we should have the agenda on some wiki page and allow some suggestions?
+<a name="l-624"></a><span class="tm">00:26:19</span><span class="nk"> &lt;fredg02&gt;</span> <span class="hi">uzilian:</span> +1
+<a name="l-625"></a><span class="tm">00:26:24</span><span class="nk"> &lt;larrys&gt;</span> or wiki, or some people use Jira for that at my job...
+<a name="l-626"></a><span class="tm">00:26:25</span><span class="nk"> &lt;mwalling&gt;</span> <span class="cmd">#idea </span><span class="cmdline">use the wiki for the agenda planning</span>
+<a name="l-627"></a><span class="tm">00:26:29</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">uzilan:</span> +1 - I think that's rtyler's plan. We're just making him the sucker wrangling it all together. =)
+<a name="l-628"></a><span class="tm">00:26:36</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-629"></a><span class="tm">00:26:38</span><span class="nk"> &lt;aheritier&gt;</span> <span class="cmd">#idea </span><span class="cmdline">: Open a google agenda to share it with everybody</span>
+<a name="l-630"></a><span class="tm">00:27:03</span><span class="nk"> &lt;aheritier&gt;</span> or another ical agenda we can import
+<a name="l-631"></a><span class="tm">00:27:14</span><span class="nk"> &lt;AhtiK&gt;</span> <span class="cmd">#idea </span><span class="cmdline">proposing to allow additions to agenda from the community and just have the agenda fixed before the start. optionally Q&amp;A/open mic in the end.</span>
+<a name="l-632"></a><span class="tm">00:27:15</span><span class="nk"> &lt;abayer&gt;</span> Ok, I'm calling an end to the meeting - it's late for a lot of you, and I have to go drive in traffic to meet friends at a restaurant in SF. =)
+<a name="l-633"></a><span class="tm">00:27:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to post meeting notes and an overview to the blog in the next 24 hours</span>
+<a name="l-634"></a><span class="tm">00:27:34</span><span class="nk"> &lt;kohsuke&gt;</span> I think this was useful.
+<a name="l-635"></a><span class="tm">00:27:38</span><span class="nk"> &lt;abayer&gt;</span> Quite!
+<a name="l-636"></a><span class="tm">00:27:39</span><span class="nk"> &lt;kohsuke&gt;</span> I hope it was to you all
+<a name="l-637"></a><span class="tm">00:27:44</span><span class="nk"> &lt;aheritier&gt;</span> yes
+<a name="l-638"></a><span class="tm">00:27:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app219.us.archive.org';v.server_ms=251;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-02-27-18.01.log.html","20211027214503","https://web.archive.org/","web","/_static/",
+	      "1635371103");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:10</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler</span>
+<a name="l-4"></a><span class="tm">18:01:22</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:01:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">action recap</span>
+<a name="l-6"></a><span class="tm">18:02:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to release 2.150.3</span>
+<a name="l-7"></a><span class="tm">18:02:47</span><span class="nk"> &lt;kohsuke&gt;</span> I need to finish off the broken repo update part
+<a name="l-8"></a><span class="tm">18:02:57</span><span class="nk"> &lt;kohsuke&gt;</span> Duh
+<a name="l-9"></a><span class="tm">18:02:59</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks
+<a name="l-10"></a><span class="tm">18:03:01</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-11"></a><span class="tm">18:03:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ty
+<a name="l-12"></a><span class="tm">18:03:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I was googling the command
+<a name="l-13"></a><span class="tm">18:03:15</span><span class="nk"> &lt;kohsuke&gt;</span> ogondza to update calendar with 2.164 based releases
+<a name="l-14"></a><span class="tm">18:03:23</span><span class="nk"> &lt;ogondza&gt;</span> done that
+<a name="l-15"></a><span class="tm">18:03:28</span><span class="nk"> &lt;kohsuke&gt;</span> tracymiranda to ask outreachy about impact of move to CDF
+<a name="l-16"></a><span class="tm">18:03:57</span><span class="nk"> &lt;kohsuke&gt;</span> Not sure if she's around
+<a name="l-17"></a><span class="tm">18:04:12</span><span class="nk"> &lt;kohsuke&gt;</span> Let's just carry forward for now
+<a name="l-18"></a><span class="tm">18:04:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">tracymiranda to ask outreachy about impact of move to CDF</span>
+<a name="l-19"></a><span class="tm">18:04:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Hmm
+<a name="l-20"></a><span class="tm">18:04:34</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we move on to the next topic?
+<a name="l-21"></a><span class="tm">18:04:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Does it mean that we do not vote for budget approvals today?
+<a name="l-22"></a><span class="tm">18:04:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> IIRC it was critical for Outreachy
+<a name="l-23"></a><span class="tm">18:05:18</span><span class="nk"> &lt;rtyler&gt;</span> yeah, I don't recall the timeline on that off the top of my head
+<a name="l-24"></a><span class="tm">18:05:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> or maybe the next meeting is also fine
+<a name="l-25"></a><span class="tm">18:05:49</span><span class="nk"> &lt;kohsuke&gt;</span> Let's keep moving, I can ping tracy in the mean time
+<a name="l-26"></a><span class="tm">18:05:50</span><span class="nk"> &lt;rtyler&gt;</span> march 5th is the last date to sign up
+<a name="l-27"></a><span class="tm">18:05:52</span><span class="nk"> &lt;tracymiranda&gt;</span> hi
+<a name="l-28"></a><span class="tm">18:05:56</span><span class="nk"> &lt;tracymiranda&gt;</span> sorry just joined
+<a name="l-29"></a><span class="tm">18:06:04</span><span class="nk"> &lt;tracymiranda&gt;</span> yes heard back from outreachy and it is fine
+<a name="l-30"></a><span class="tm">18:06:09</span><span class="nk"> &lt;tracymiranda&gt;</span> they can be flexible on invoice
+<a name="l-31"></a><span class="tm">18:06:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> does it mean that we can vote next time?
+<a name="l-32"></a><span class="tm">18:06:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> after March 5th.
+<a name="l-33"></a><span class="tm">18:06:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> likely these are separate questions
+<a name="l-34"></a><span class="tm">18:08:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">tracymiranda:</span> thoughts on timeline?
+<a name="l-35"></a><span class="tm">18:09:10</span><span class="nk"> &lt;tracymiranda&gt;</span> yeah I think we need a vote today
+<a name="l-36"></a><span class="tm">18:09:19</span><span class="nk"> &lt;tracymiranda&gt;</span> march 12 is last day to confirm if we join
+<a name="l-37"></a><span class="tm">18:09:37</span><span class="nk"> &lt;tracymiranda&gt;</span> the sooner we join we can get projects listed
+<a name="l-38"></a><span class="tm">18:09:58</span><span class="nk"> &lt;kohsuke&gt;</span> OK. Let's add that to the agenda items
+<a name="l-39"></a><span class="tm">18:10:13</span><span class="nk"> &lt;rtyler&gt;</span> my understanding of the conversation on the mailing list and the last meeting was that nobody objected to another outreachy intern, it was more a question of mentorship capacity
+<a name="l-40"></a><span class="tm">18:10:22</span><span class="nk"> &lt;rtyler&gt;</span> but awyways, you're running the show here kohsuke
+<a name="l-41"></a><span class="tm">18:10:24</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-42"></a><span class="tm">18:10:35 </span><span class="nka">* rtyler</span> <span class="ac">might haveto get off the bus in the next 5 minutes</span>
+<a name="l-43"></a><span class="tm">18:10:41</span><span class="nk"> &lt;tracymiranda&gt;</span> to tylers question, matt sicker would like to continue...
+<a name="l-44"></a><span class="tm">18:10:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> CDF before we have issues with the bus factor ?
+<a name="l-45"></a><span class="tm">18:11:10</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-46"></a><span class="tm">18:11:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">outreachy status and vote</span>
+<a name="l-47"></a><span class="tm">18:11:31 </span><span class="nka">* kohsuke</span> <span class="ac">makes the formality match the reality</span>
+<a name="l-48"></a><span class="tm">18:12:08</span><span class="nk"> &lt;tracymiranda&gt;</span> thanks
+<a name="l-49"></a><span class="tm">18:12:29</span><span class="nk"> &lt;rtyler&gt;</span> I am in favor of budgeting an outreachy intern this summer
+<a name="l-50"></a><span class="tm">18:12:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am +0.1, because budgeting was not  requested in the mailing list before the meeting
+<a name="l-51"></a><span class="tm">18:12:34</span><span class="nk"> &lt;tracymiranda&gt;</span> +1
+<a name="l-52"></a><span class="tm">18:13:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I may have missed the request tho. Let's try to make sure that all budgeting topics are discussed in advanced in public
+<a name="l-53"></a><span class="tm">18:14:49</span><span class="nk"> &lt;kohsuke&gt;</span> I just caught up with the context. I'm very happy to get the funding blessed but indeed the mentor bandwidth problem needs a solution separately.
+<a name="l-54"></a><span class="tm">18:15:15</span><span class="nk"> &lt;kohsuke&gt;</span> Is Matt double-booked with GSoC?
+<a name="l-55"></a><span class="tm">18:15:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nope
+<a name="l-56"></a><span class="tm">18:15:36</span><span class="nk"> &lt;kohsuke&gt;</span> So I guess we have one mentor secured minimally
+<a name="l-57"></a><span class="tm">18:16:10</span><span class="nk"> &lt;tracymiranda&gt;</span> yes, I propose based on that to move forward with suggesting we fund 1 spot
+<a name="l-58"></a><span class="tm">18:16:24</span><span class="nk"> &lt;tracymiranda&gt;</span> but oleg is correct I did not pre-seed this in mailing list...
+<a name="l-59"></a><span class="tm">18:17:04</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, that would have been nicer, but I think we can still vote and approve the budget
+<a name="l-60"></a><span class="tm">18:17:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> This is a yellow flag for me, not a blocker in this particular case
+<a name="l-61"></a><span class="tm">18:17:14</span><span class="nk"> &lt;kohsuke&gt;</span> Given the deadline and all
+<a name="l-62"></a><span class="tm">18:17:30</span><span class="nk"> &lt;kohsuke&gt;</span> Here's my +1
+<a name="l-63"></a><span class="tm">18:17:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> If we do Outreachy in summer, weill we still have funds for 2020 Winter?
+<a name="l-64"></a><span class="tm">18:18:11</span><span class="nk"> &lt;rtyler&gt;</span> yes
+<a name="l-65"></a><span class="tm">18:18:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Then should be okay
+<a name="l-66"></a><span class="tm">18:18:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I believe that the budgets and spendings will change by magnitude in CDF
+<a name="l-67"></a><span class="tm">18:19:04</span><span class="nk"> &lt;kohsuke&gt;</span> The amount is 5000 USD for 1 spot?
+<a name="l-68"></a><span class="tm">18:19:04</span><span class="nk"> &lt;tracymiranda&gt;</span> yes
+<a name="l-69"></a><span class="tm">18:19:15</span><span class="nk"> &lt;kohsuke&gt;</span> I vaguely recalled it was less than that
+<a name="l-70"></a><span class="tm">18:19:49</span><span class="nk"> &lt;tracymiranda&gt;</span> actually is 6500
+<a name="l-71"></a><span class="tm">18:20:19</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-72"></a><span class="tm">18:20:28</span><span class="nk"> &lt;kohsuke&gt;</span> Any objections, other thoughts before we conclude this vote?
+<a name="l-73"></a><span class="tm">18:20:47</span><span class="nk"> &lt;kohsuke&gt;</span> Going ...
+<a name="l-74"></a><span class="tm">18:20:57</span><span class="nk"> &lt;kohsuke&gt;</span> Going twice ...
+<a name="l-75"></a><span class="tm">18:21:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">6500 USD expenditure for 1 spot for 2019 summer round of Outreachy participation</span>
+<a name="l-76"></a><span class="tm">18:21:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-77"></a><span class="tm">18:21:39</span><span class="nk"> &lt;tracymiranda&gt;</span> hooray
+<a name="l-78"></a><span class="tm">18:22:01</span><span class="nk"> &lt;rtyler&gt;</span> time to get off the bus, A+ for CDF, toodles
+<a name="l-79"></a><span class="tm">18:22:10</span><span class="nk"> &lt;ogondza&gt;</span> there are no backports suggested as we choose pretty recent baseline
+<a name="l-80"></a><span class="tm">18:22:51</span><span class="nk"> &lt;ogondza&gt;</span> I doubt there is anything unussual that would not be discussed as a part of java 11 readiness
+<a name="l-81"></a><span class="tm">18:23:16</span><span class="nk"> &lt;kohsuke&gt;</span> INFRA-2016 that was blocking 2.150.3 is solved so I need to finish that up
+<a name="l-82"></a><span class="tm">18:23:16</span><span class="nk"> &lt;ogondza&gt;</span> unless there are objections, I will push an rc tomorrow morning (UTC)
+<a name="l-83"></a><span class="tm">18:23:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 from me
+<a name="l-84"></a><span class="tm">18:23:31</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> before the rc?
+<a name="l-85"></a><span class="tm">18:23:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I built the stable branch today, looks fine
+<a name="l-86"></a><span class="tm">18:24:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> I'm sorry if I confused you. I started a release of 2.150.3 on Feb 13th that didn't finish due to INFRA-2016
+<a name="l-87"></a><span class="tm">18:24:52</span><span class="nk"> &lt;kohsuke&gt;</span> AFAIK I still need to conclude it
+<a name="l-88"></a><span class="tm">18:25:00</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> I got that. thanks for doing that
+<a name="l-89"></a><span class="tm">18:25:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we also had glitches with Native package releases in .3
+<a name="l-90"></a><span class="tm">18:25:15</span><span class="nk"> &lt;kohsuke&gt;</span> I think you are talking about 2.164.1
+<a name="l-91"></a><span class="tm">18:25:32</span><span class="nk"> &lt;ogondza&gt;</span> I am wondering if there are any timing constrains relevent to .1
+<a name="l-92"></a><span class="tm">18:25:38</span><span class="nk"> &lt;ogondza&gt;</span> i presume there are none
+<a name="l-93"></a><span class="tm">18:26:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we might have a limited bandwidth in the Java 11 support team on the week of Mar 13
+<a name="l-94"></a><span class="tm">18:27:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But I believe we will be able to do initial triage for Blocker/Critical issues if something goes wrong
+<a name="l-95"></a><span class="tm">18:28:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But having RC tomorrow would be an advantage for us. More testing
+<a name="l-96"></a><span class="tm">18:28:24</span><span class="nk"> &lt;ogondza&gt;</span> is there anything else on RC alone?
+<a name="l-97"></a><span class="tm">18:28:54</span><span class="nk"> &lt;ogondza&gt;</span> or we can move on?
+<a name="l-98"></a><span class="tm">18:29:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 🚢 🇮🇹
+<a name="l-99"></a><span class="tm">18:29:07</span><span class="nk"> &lt;kohsuke&gt;</span> Not sure how to read that one
+<a name="l-100"></a><span class="tm">18:29:15</span><span class="nk"> &lt;kohsuke&gt;</span> I guess it's a sign to move on?
+<a name="l-101"></a><span class="tm">18:29:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Java 11 readiness check</span>
+<a name="l-102"></a><span class="tm">18:29:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> hmm, okay
+<a name="l-103"></a><span class="tm">18:30:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So we have been testing 2.164 with Java 11 and Java 8, looks good so far
+<a name="l-104"></a><span class="tm">18:30:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ATH is fine (thanks to ogondza  and Ramon), PCT is also fine (kudos to batmat )
+<a name="l-105"></a><span class="tm">18:31:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There is a plan to run more tests, but I believe we can go forward with Java 11 GA in 2.164.1
+<a name="l-106"></a><span class="tm">18:32:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> https://issues.jenkins-ci.org/browse/JENKINS-55202 is one of the outstanding issues we have, but it has a low installation number
+<a name="l-107"></a><span class="tm">18:32:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So... any objections if we announce Java 11 GA in 2.164.1 ?
+<a name="l-108"></a><span class="tm">18:33:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Documentation is also in place,  https://github.com/jenkins-infra/jenkins.io/pull/2097
+<a name="l-109"></a><span class="tm">18:33:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ^ esp. ogondza danielbe_ batmat markewaite
+<a name="l-110"></a><span class="tm">18:34:07</span><span class="nk"> &lt;kohsuke&gt;</span> Why don't we announce Java 11 GA on a mainline release?
+<a name="l-111"></a><span class="tm">18:34:24</span><span class="nk"> &lt;ogondza&gt;</span> I can use a review of javadoc update to render java 11 generated report: https://github.com/jenkinsci/javadoc-plugin/pull/10
+<a name="l-112"></a><span class="tm">18:34:49</span><span class="nk"> &lt;ogondza&gt;</span> otherwise, this is great and we should scream we are ready
+<a name="l-113"></a><span class="tm">18:35:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> We are finishing some investigations, but generally we needto sign it off in Platform SIG
+<a name="l-114"></a><span class="tm">18:35:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> which *may* happen tomorrow
+<a name="l-115"></a><span class="tm">18:35:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Announcement blogpost draft: https://github.com/jenkins-infra/jenkins.io/pull/2101
+<a name="l-116"></a><span class="tm">18:35:52</span><span class="nk"> &lt;kohsuke&gt;</span> The point is, it feels a little odd that a new "feature" is first announced on a LTS release
+<a name="l-117"></a><span class="tm">18:36:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We did preview availability for Weekly before
+<a name="l-118"></a><span class="tm">18:37:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes we could delay the GA announcement till .2 if we want to have a bigger gap between Weekly and GA announcements
+<a name="l-119"></a><span class="tm">18:37:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">ogondza:</span> Is javadoc release needed before the GA announcement?
+<a name="l-120"></a><span class="tm">18:37:58</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> low prio but yes
+<a name="l-121"></a><span class="tm">18:38:15</span><span class="nk"> &lt;kohsuke&gt;</span> I'm still not sure if I'm getting my point across. I'm not asking for more delay or a bigger gap. If 2.164 is ready for Java 11, why don't we announce Java 11 GA with 2.164, which would naturally signal that 2.164.1 is Java 11 ready, too
+<a name="l-122"></a><span class="tm">18:39:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> we have not fully completed testing by 2.164
+<a name="l-123"></a><span class="tm">18:39:28</span><span class="nk"> &lt;kohsuke&gt;</span> But by the time you announce GA with 2.164.1, presumably we will, right?
+<a name="l-124"></a><span class="tm">18:39:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">ogondza:</span> thanks. I marked the issue correctly. It was not marked in JIRA/GitHub, so we did not scrub it as a Java 11 Support Team
+<a name="l-125"></a><span class="tm">18:40:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> &gt; But by the time you announce GA with 2.164.1, presumably we will, right?
+<a name="l-126"></a><span class="tm">18:40:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I think so. otherwise we should not do announcements
+<a name="l-127"></a><span class="tm">18:40:24 </span><span class="nka">* rtyler</span> <span class="ac">is now back, from the office</span>
+<a name="l-128"></a><span class="tm">18:41:01</span><span class="nk"> &lt;kohsuke&gt;</span> Right, so my question is, whenever we announce Java 11 GA, why are we doing that with 2.164.1 instead of 2.164?
+<a name="l-129"></a><span class="tm">18:41:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span>  the announcement will be for both Weekly and LTS , I believe
+<a name="l-130"></a><span class="tm">18:41:51</span><span class="nk"> &lt;ogondza&gt;</span> I gues we do that for .1 and whatever weekly at that time
+<a name="l-131"></a><span class="tm">18:42:10</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-132"></a><span class="tm">18:42:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We will just announce Java 11 support post-factum. 2.164 was a silent launch
+<a name="l-133"></a><span class="tm">18:42:29</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, exactly &gt; oleg-nenashev
+<a name="l-134"></a><span class="tm">18:42:43</span><span class="nk"> &lt;ogondza&gt;</span> though I agree it would make more sense to go for weakly first, though I like the platform SIG getting confident about that first
+<a name="l-135"></a><span class="tm">18:43:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I think we can discuss it tomorrow at the SIG meeting
+<a name="l-136"></a><span class="tm">18:43:22</span><span class="nk"> &lt;ogondza&gt;</span> yep
+<a name="l-137"></a><span class="tm">18:43:27</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else on this?
+<a name="l-138"></a><span class="tm">18:43:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We did not have the sign-off discussion there yet
+<a name="l-139"></a><span class="tm">18:43:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Not from me
+<a name="l-140"></a><span class="tm">18:43:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC update</span>
+<a name="l-141"></a><span class="tm">18:44:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Jenkins project is accepted to GSoC 2019</span>
+<a name="l-142"></a><span class="tm">18:44:34</span><span class="nk"> &lt;kohsuke&gt;</span> Congrats!
+<a name="l-143"></a><span class="tm">18:44:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So yeah, it is a quick update. Everything is ready to roll on the website and in the process
+<a name="l-144"></a><span class="tm">18:45:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have 27 project ideas and around 30 mentors
+<a name="l-145"></a><span class="tm">18:45:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">We are still looking for new project ideas. If you are interested to be a mentor or to propose a project, please apply by March 11th</span>
+<a name="l-146"></a><span class="tm">18:46:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> More communications to come this week
+<a name="l-147"></a><span class="tm">18:46:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any questions?
+<a name="l-148"></a><span class="tm">18:46:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I will try to send a detailed email to the dev list tomorrow
+<a name="l-149"></a><span class="tm">18:47:22</span><span class="nk"> &lt;kohsuke&gt;</span> It'd be nice to be able to pool mentors across different efforts
+<a name="l-150"></a><span class="tm">18:47:46</span><span class="nk"> &lt;kohsuke&gt;</span> We can conceive more programs, such as one of our own, beyond GSoC and Outreachy
+<a name="l-151"></a><span class="tm">18:48:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Would you be interested to run it? ;)
+<a name="l-152"></a><span class="tm">18:48:17</span><span class="nk"> &lt;kohsuke&gt;</span> It's a little bit like how there's Ambassadors program and then (ideally/hopefully) different channels to engage them
+<a name="l-153"></a><span class="tm">18:48:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We definitely could do something in the Winter timeframe
+<a name="l-154"></a><span class="tm">18:48:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> no, I'm just shooting crazy ideas to see if it hatches in somebody's minds
+<a name="l-155"></a><span class="tm">18:49:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> That\s not a crazy idea
+<a name="l-156"></a><span class="tm">18:49:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> just a matter of capacity
+<a name="l-157"></a><span class="tm">18:49:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We could do that
+<a name="l-158"></a><span class="tm">18:49:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And we will likely apply to Google Code-In this year
+<a name="l-159"></a><span class="tm">18:49:58</span><span class="nk"> &lt;kohsuke&gt;</span> Anything more on this?
+<a name="l-160"></a><span class="tm">18:50:03</span><span class="nk"> &lt;kohsuke&gt;</span> That's good to hear, oleg
+<a name="l-161"></a><span class="tm">18:50:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We had a discussion with tracymiranda about a shared pool for this year
+<a name="l-162"></a><span class="tm">18:50:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Generally GSoC mentors are welcome to cross-post their project ideas in Outreachy
+<a name="l-163"></a><span class="tm">18:50:48</span><span class="nk"> &lt;tracymiranda&gt;</span> yeah, this would be great
+<a name="l-164"></a><span class="tm">18:51:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">CDF move update</span>
+<a name="l-165"></a><span class="tm">18:52:04</span><span class="nk"> &lt;kohsuke&gt;</span> So the comment period ended last Friday
+<a name="l-166"></a><span class="tm">18:52:26</span><span class="nk"> &lt;kohsuke&gt;</span> And we didn't get any input beyond what's already in public
+<a name="l-167"></a><span class="tm">18:52:59</span><span class="nk"> &lt;kohsuke&gt;</span> So as the things stand at the moment, there still is a significant consensus among a small number of people who care about this.
+<a name="l-168"></a><span class="tm">18:53:36</span><span class="nk"> &lt;kohsuke&gt;</span> rtyler and I will meet later today and I expect us to issue a statement to finalize the move very soon
+<a name="l-169"></a><span class="tm">18:53:57</span><span class="nk"> &lt;kohsuke&gt;</span> Any addiition, rtyler? Any questions, anyone?
+<a name="l-170"></a><span class="tm">18:54:14</span><span class="nk"> &lt;rtyler&gt;</span> nothing for me to add that I haven't already :)
+<a name="l-171"></a><span class="tm">18:54:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I may have missed the last feedback ping :(
+<a name="l-172"></a><span class="tm">18:55:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But anyway, I am +1 about CDF. The referenced docs look good for me
+<a name="l-173"></a><span class="tm">18:55:14</span><span class="nk"> &lt;kohsuke&gt;</span> OK, good
+<a name="l-174"></a><span class="tm">18:55:22</span><span class="nk"> &lt;kohsuke&gt;</span> You got me worried for a moment
+<a name="l-175"></a><span class="tm">18:55:27</span><span class="nk"> &lt;rtyler&gt;</span> oblig party parrot
+<a name="l-176"></a><span class="tm">18:55:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-177"></a><span class="tm">18:55:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> What are the further steps? Does the Board proceed? Or do we have a formal vote in the co,,unity?
+<a name="l-178"></a><span class="tm">18:56:27</span><span class="nk"> &lt;kohsuke&gt;</span> The next step is the announcement and the execution. The comment period was meant to replace a vote.
+<a name="l-179"></a><span class="tm">18:56:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> okay
+<a name="l-180"></a><span class="tm">18:57:45</span><span class="nk"> &lt;kohsuke&gt;</span> I believe I shared my plan with you off list, then I also laid that out in the announcement of the comment period.
+<a name="l-181"></a><span class="tm">18:58:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yeah. I am fine with that
+<a name="l-182"></a><span class="tm">18:58:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-183"></a><span class="tm">18:58:46</span><span class="nk"> &lt;kohsuke&gt;</span> next meeting is 3/13 the usual time
+<a name="l-184"></a><span class="tm">18:59:00</span><span class="nk"> &lt;rtyler&gt;</span> woopwoop
+<a name="l-185"></a><span class="tm">18:59:03</span><span class="nk"> &lt;kohsuke&gt;</span> Not that it matters, but that's my father's birthday
+<a name="l-186"></a><span class="tm">18:59:28</span><span class="nk"> &lt;kohsuke&gt;</span> And some of us will be live from half moon bay with more CDF updates to share
+<a name="l-187"></a><span class="tm">18:59:45</span><span class="nk"> &lt;rtyler&gt;</span> that's going to be a busy week!
+<a name="l-188"></a><span class="tm">18:59:48</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks everyone, see you soon somewhere in the world
+<a name="l-189"></a><span class="tm">18:59:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 21:45:03 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:01:43 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 128.883
+  exclusion.robots: 0.13
+  exclusion.robots.policy: 0.12
+  cdx.remote: 0.086
+  esindex: 0.011
+  LoadShardBlock: 52.461 (3)
+  PetaboxLoader3.datanode: 52.554 (4)
+  CDXLines.iter: 23.583 (3)
+  load_resource: 105.504
+  PetaboxLoader3.resolve: 59.239
+-->

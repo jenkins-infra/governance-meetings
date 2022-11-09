@@ -1,0 +1,248 @@
+18:00:42 <kohsuke> #startmeeting
+18:00:42 <robobutler> Let the Jenkins meeting commence!
+18:00:51 <kohsuke> #chairs hare_brain rtyler abayer
+18:01:01 <kohsuke> #chair hare_brain rtyler
+18:01:01 <robobutler> Current chairs: hare_brain kohsuke rtyler
+18:01:08 <kohsuke> #chair abayer
+18:01:08 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:01:23 <tonylampada> Hi guys
+18:01:30 <kohsuke> hi there
+18:01:31 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:01:54 <kohsuke> #info https://issues.jenkins-ci.org/browse/MEETING
+18:02:11 <kohsuke> #topic recap of actions
+18:02:30 <kohsuke> #action (argh) kohsuke to post about our draft voting process proposal
+18:02:48 <kohsuke> wrt MEETING-4, I think I got your draft, tonylampada
+18:03:04 <kohsuke> I'll upload it and check with rtyler
+18:03:40 <kohsuke> it was MEETING-6, rather
+18:03:44 <tonylampada> ok, I think I forgot to add the links on it. I'll update the gist today ok?
+18:03:51 <kohsuke> thanks
+18:04:15 <kohsuke> #topic discussion about future funding plan/source
+18:04:36 <tonylampada> I'll post a comment to the jira ticket when it's ok
+18:04:48 <tonylampada> also, I have a new version of the freedomsponsors plugin
+18:05:01 <tonylampada> that will hide the link for closed/resolved issues
+18:05:25 <tonylampada> https://github.com/freedomsponsors/freedomsponsors-jira-plugin/downloads
+18:05:46 <kohsuke> #action kohsuke to upload new version of freedomsponsors JIRA plugin
+18:06:00 <kohsuke> Back to the future funding plan...
+18:06:43 <kohsuke> #info http://www.spi-inc.org/meetings/minutes/2012/2012-08-09/ says our current cash reserve is $7348
+18:07:19 <kohsuke> and we did our last fund-raiser around last year this time
+18:07:56 <LisaWells> would JUC be a good place to kick off fund-raising?
+18:08:20 <kohsuke> Good idea. I'll mention that in the slides
+18:09:19 <kohsuke> Looking at the records, to be more precise, it started around Sep 15th, and when orrc did a Wikipedia mockup of me begging for money on ci.jenkins-ci.org around December it really took off
+18:09:45 <kohsuke> And I think we announced the success and thank you around 2012 Jan
+18:10:26 <kohsuke> The run rate of the project has been pretty small
+18:10:58 <kohsuke> With most server/bandwidth cost handled by free hosting by OSUOSL and our mirrors
+18:11:21 <kohsuke> The only thing we really need is occasional certificates, domain registrations, and promotion materials (stickers and T-shirts)
+18:12:20 <kohsuke> so if that's how we keep it, we can survive with what already have.
+18:12:27 <kohsuke> ... for years
+18:12:52 * kohsuke pokes hare_brain and rtyler
+18:13:53 <kohsuke> now, there's some interest in spending money for travel grants, which led to the question of how frequent the fundraising should be for it to be not too annoying
+18:14:02 <tonylampada> > "when orrc did a Wikipedia mockup of me begging for money" (can we still see that? - just curious)
+18:14:40 <kohsuke> tonylampada: I think it's gone :-)
+18:14:47 <kohsuke> ... unless it's in the internet archive
+18:15:08 <tonylampada> bummer :-)
+18:15:09 <nanonyme> kohsuke, how about some feature-for-money project? :) ie instead of just voting that a feature is important, people could say that they're willing to pay N dollars if this gets done :)
+18:15:50 <tonylampada> erm...
+18:15:52 <kohsuke> nanonyme:  tonylampada had just that, except the money goes to the person who fixes it
+18:15:52 <imod> isn't this what freedomsponsors is for already?
+18:15:54 <tonylampada> :-)
+18:15:58 <tonylampada> yup
+18:16:22 <nanonyme> oh, neat :)
+18:16:23 <kohsuke> We do have this small thank-you gift of a "friend of Jenkins" plugin
+18:16:35 <kohsuke> we send it out to those who donated >$25
+18:16:41 <tonylampada> nanonyme: please see http://www.freedomsponsors.org//
+18:16:46 <orrc> tombevers: http://i.imgur.com/3voWb.png
+18:16:51 <orrc> tonylampada, even: http://i.imgur.com/3voWb.png
+18:17:16 <dapak> what's the "friend of Jenkins" plugin do
+18:17:35 <kohsuke> dapak: it shows an appreciation note on your footer
+18:17:48 <dapak> o'rly
+18:18:31 <kohsuke> I don't have any strong preference, but I thought it'd be nice if we can make our money last for one more year
+18:19:02 <kohsuke> And that's still about $4000/yr budget
+18:19:22 <LisaWells> do you think companies might bid to get an 'expert for a day' or a speaker?
+18:19:55 <kohsuke> our sticker ran rate is about $1000/year, and T-shirts so far is about $300/yr, so enough to spend $1K-$2K on other things
+18:20:34 <kohsuke> LisaWells: speaking on which, there's also the possibility of selling ad space on our websites
+18:20:40 <orrc> if the SPI could do provide infrastructure recurring monthly/annual subscriptions, that might be nice for people/companies
+18:20:58 <LisaWells> ad space would be great
+18:21:12 <kohsuke> orrc: I can ask them but I'm pretty sure they don't have any
+18:21:28 <b2jrock> Second the recurring subscriptions.
+18:21:41 <orrc> seems like something that would benefit all their projects -- their current donation UI very nice in any case
+18:21:54 <lov> orrc: that is an excellent picture.
+18:22:02 <kohsuke> #action kohsuke to write a feedback to SPI that it'd be nice to have recurring donation subscription, and European payment handler
+18:22:09 <orrc> which reminds me.. I should follow up on the possibility for easier EU subscriptions
+18:22:11 <orrc> ah :)
+18:22:34 <kohsuke> I forgot the exact nature of the problem but it didn't take payments in euro or something, right?
+18:23:09 <kohsuke> And yes, I also got the feedback that some people were nervous that the UI didn't really look authentic
+18:23:33 <orrc> kohsuke: yeah. I donated in dollars. but I found an organisation that's partnered with SPI in Europe. I'll email them again to see if we can set up a link
+18:23:43 <kohsuke> Thanks
+18:24:23 <kohsuke> I should probably move on to the next topic
+18:24:37 <kohsuke> Can't really record any agreement without hare_brain and abayer
+18:24:52 <kohsuke> #topic Add more hackers to the SECURITY project
+18:24:54 <hare_brain> I'm sorry, I'm sitting in new hire orientation
+18:25:28 <kohsuke> hare_brain: thanks for ack. I figured something like that is going on
+18:25:51 <kohsuke> #info there's a separate SECURTY project in JIRA that handles security vulnerabilities
+18:26:17 <kohsuke> Issues filed there are protected so that only the submitter can see it
+18:26:39 <kohsuke> For the longest time I was the only one who were able to see it, and we recently added jorgenpt and jglick
+18:27:14 <kohsuke> I think it's good to have multiple people, so long as it's not open to the public, so to speak.
+18:27:30 <jglick> Are all patched vulnerabilities in fact filed there?
+18:27:43 <kohsuke> Yes
+18:28:52 <kohsuke> I'm not sure if we need any process for adding people, so I think we can just start by asking if there are more people willing to work on those inbound security tickets
+18:29:06 <kohsuke> I'm not sure if rtyler had any other thoughts
+18:29:11 <kohsuke> or jorgenpt for that matter
+18:29:21 <kohsuke> but clearly they aren't here today :-(
+18:29:46 <kohsuke> anyone else with any thoughts on this?
+18:30:07 <imod> I think this makes sense!
+18:30:38 <kinow> kohsuke: few hours ago rtyler mentioned that he wouldn't be able to attend the meeting, but he said something about this topic
+18:30:46 <kohsuke> Oh OK
+18:31:25 <kohsuke> all right, he did mention a process
+18:31:45 <hare_brain> I would say that we MUST have a CLA on file for anyone with access to the security project in JIRA
+18:31:47 <kohsuke> "what I wanted to get out of my line item, was a process to pull in more people into the SECURITY project to help triage and solve security issues"
+18:32:19 <kohsuke> hare_brain: Yeah, that's reasonable
+18:32:44 <kohsuke> I think having some bar here is indeed useful
+18:32:54 <kohsuke> and CLA comes with their contact info, which helps establish trust
+18:33:06 <hare_brain> Yeah, security issues are not something you want to hand off to just anyone.
+18:33:40 <kohsuke> I think I'll start with soliciting volunteers with this criteria
+18:33:41 <hare_brain> So I guess I don't have suggestions for how to recruit people, but opinions on how to make sure that people who volunteer are qualified to help with these
+18:34:05 <hare_brain> Definitely code reviews are important here.
+18:34:11 <kohsuke> I suspect there won't to be too many to call for a formal process
+18:34:19 <hare_brain> Well, it's GitHub, so a pull request is a code review
+18:34:21 <kohsuke> There's a bigger question of how to handle security releases, yes
+18:34:47 <jeremy_carroll> Anybody aware of a plugin, or quick method to integrate the GitHub Status API with my Jenkins-CI Project?
+18:34:47 <kohsuke> There's really no easy way in OSS to discuss anything behind closed door
+18:35:03 <hare_brain> A different IRC channel?
+18:35:13 <jglick> Pull requests are probably inappropriate for these—publicize the vulnerability too early.
+18:35:22 <kohsuke> jglick: right
+18:35:28 <hare_brain> jglick good point
+18:35:44 <kohsuke> I know setting up invite-only mailing list is pretty easy
+18:35:47 <hare_brain> Emailed patch requests then
+18:35:57 <hare_brain> Not requests
+18:36:01 <hare_brain> Just the patches
+18:36:03 <kohsuke> I also suspect for rtyler or somebody with enough IRC-fu, setting up a closed IRC channel isn't too hard either
+18:36:05 <jglick> git-format-patch I guess.
+18:36:11 <hare_brain> jglick: yeah
+18:36:54 <hare_brain> kohsuke, to date, what's been the source of security issues? Do you find them?
+18:37:01 <kohsuke> OK, so let's start with mailing list
+18:37:07 <kohsuke> I do find some
+18:37:17 <kohsuke> But many comes from users
+18:37:21 <jglick> IRC might not work if you have only a small number of people and you want to make sure all of them see all relevant traffic despite timezone differences and so on.
+18:37:23 <kohsuke> via the SECURITY project
+18:37:37 <kohsuke> jglick: yes
+18:37:42 <jglick> Is there a notification alias for the JIRA project?
+18:37:55 <kohsuke> I think we need to set a separate one for the SECURITY project
+18:38:04 <kohsuke> and a mailing list would be convenient for that purpose too
+18:38:09 <jglick> That is what I meant. Notifications on JENKINS are overwhelming.
+18:38:49 <jglick> Preferably JIRA could be configured to just mail links, no content, so you would need to log in to see details.
+18:38:58 <kohsuke> #action kohsuke to set up a private jenkinsci-security@googlegroups.com
+18:39:19 <kohsuke> #agreed we'll require CLA in place for someone to join this list
+18:40:11 <kohsuke> #action kohsuke to call for volunteers for this list to see if how many would be willing or if we need any more process
+18:40:29 <kohsuke> jglick: if you are interested in tinkering with JIRA, you are welcome!
+18:40:36 <jglick> BTW there are FreedomSponsors.org links in the SECURITY project which would ideally be suppressed.
+18:40:50 <kohsuke> I'll check if I can tweak the content of the e-mail
+18:41:11 <kohsuke> jglick: that'd be tonylampada. I think he has an issue tracker that keeps RFEs for his JIRA plugin
+18:41:35 <jglick> Right, fine for JENKINS but hope no one clicks this in SECURITY.
+18:41:37 <kohsuke> OK, I think that's good for this topic for now
+18:41:50 <kohsuke> #topic Review survey questions for JUC San Francisco
+18:41:56 <kohsuke> Let me find the draft link
+18:42:21 <LisaWells> http://wiki.cloudbees.com/bin/view/Jenkins+Enterprise/2012+Jenkins+Survey+Draft
+18:42:39 <kohsuke> ah thank you
+18:43:04 <kohsuke> I guess the question was if there's anything else we'd want to learn from our users
+18:43:21 <kohsuke> #action kohsuke to add getServletConfig().getServletContext().getServerInfo() to the usage statistics
+18:43:37 <kohsuke> I wonder our statistician imod has any thoughts on this
+18:43:57 <imod> I think this will be a nice new graph :)
+18:43:57 <LisaWells> I liked the suggestion to add "How do you like to get Jenkins support?" and also a free text comment field
+18:44:24 <kohsuke> Yes, free text comment field
+18:44:29 <kohsuke> Oh
+18:44:41 <tonylampada> jglick: there are a few ways to handle this problem. I'll post an issue to (https://github.com/freedomsponsors/freedomsponsors-jira-plugin/issues) describing a few ideas
+18:45:02 <kohsuke> On a similar line of thoughts, I wonder if we can ask for people to say something nice that we can quote on our websites?
+18:45:09 <jglick> tonylampada: OK. Low priority.
+18:45:31 <imod> I wonder If we can get more info about what people are using jenkins for - other then just building stuff
+18:45:31 <kohsuke> You know those lines "I trimmed off 15kg thanks to this new diet program!" - Joe Chin, San Jose
+18:45:49 <LisaWells> could add a text section "What do you like best about Jenkins? And can we quote you?"
+18:45:52 <hare_brain> User testimonials
+18:46:06 <kohsuke> Yes, testimonials is the word
+18:46:08 <imod> yeah these are nice
+18:46:28 <hare_brain> One thing I would suggest is some information about HOW the data from the survey will be used.
+18:46:36 <LisaWells> hard to do full testimonial in survey, but could ask "would you be interested in doing a user testimonial?" and then could contact afterwards
+18:46:59 <kohsuke> LisaWells: that works for me
+18:47:20 <kohsuke> hare_brain: privacy statement of a sort
+18:48:01 <hare_brain> Sort of, but not just that. It's not just about where information about me is going, but what I'm going to get out of the project by giving you this information.
+18:48:08 <hare_brain> i.e., prioritization of features
+18:48:10 <LisaWells> privacy for the data or users? supplying your details is optional
+18:48:15 <hare_brain> Changes to documentation
+18:48:28 <LisaWells> right now, anyone who completes the survey gets the results
+18:48:40 <hare_brain> I don't even necessarily care about the results.
+18:48:53 <hare_brain> It's, what's going to change for the better about the project based on the feedback I supply?
+18:49:20 <kohsuke> hare_brain: I'm not sure what we can commit to, but it sure makes sense to say "we'd like your feedback to prioritize our efforts"
+18:49:30 <hare_brain> If the information is just going to get aggregated and redistributed, but nothing is going to change, I'd want to know that.
+18:49:33 <kohsuke> the challenge obviously is that this being OSS, we can't actually say anyone will work on those
+18:49:59 <hare_brain> Right. So just be clearer about what the collected data will be used for.
+18:50:12 <kohsuke> OK
+18:50:23 <hare_brain> Again, if it's just aggregated and re-distributed to people who give their email address, set that expectation.
+18:50:42 <hare_brain> If it's really going to get fed back to try to prioritize something, set that expectation.
+18:50:58 <LisaWells> it's up to the community what to do with the results
+18:51:22 <kohsuke> So something like "We'd like your feedback so that the project can prioritize efforts, even though being  OSS project , we can't really promise you that it'll happen. And you will get the result."
+18:51:54 <kohsuke> We can also point out that we did listen to the  last survey result
+18:52:03 <kohsuke> People said "UI improvements!" and it did actually happen
+18:52:25 <kohsuke> I guess I'll add that in the http://jenkins-ci.org/ post for the survey
+18:52:43 <kohsuke> I want to talk about the idea of the project meeting in JUC
+18:52:45 <nanonyme> Really? I always thought Jenkins had superior UI compared to other CI systems to begin with
+18:52:50 <kohsuke> can we move to that topic?
+18:52:54 <kohsuke> nanonyme: thanks!
+18:53:09 <kohsuke> #topic project meeting in JUC
+18:53:20 <pedahzur> This page: https://groups.google.com/forum/?fromgroups=#!topic/jenkinsci-users/r3HhqbJO3Es talks about a "slave-setup" page. But I'm not seeing that in the Manage Jenkins page.  What am I missing?
+18:53:23 <tonylampada> nanonyme: I agree :-)
+18:53:44 <hare_brain> Sorry, I had one more thing on the last topic. I got pulled into a side conversation
+18:53:45 <kohsuke> Alyssa who's handling event organization said she's OK with hijacking the panel discussion with the project meeting
+18:53:46 <hare_brain> Also, a question about the role of the respondent in their org (dev, release, qa)
+18:54:40 <hare_brain> I mean, add a question about the respondent's role to the survey
+18:54:41 <kohsuke> My only real concern is 1) logistics, 2) if we can line up enough things to talk about for an hour
+18:54:47 <kohsuke> hare_brain: yes, I got it
+18:54:57 <kohsuke> Or more importantly, I think LisaWells got it
+18:55:02 <hare_brain> Thanks
+18:55:04 <LisaWells> @hare_brain: we had that Q last year and cut it purely to keep the length down. figured it might not change much. shall i add it back in?
+18:55:36 <jorgenpt> kohsuke: We can talk about this after the meeting - sorry I missed most of it - but are there any guidelines on how to handle committing things in the SEC JIRA? If we just tag them with [SEC-XX], won't "malicious" people be able to pick up on that before we ship a new release? How do we inform people of important sec fixes? (cc [reed])
+18:55:36 <hare_brain> LisaWells I think understanding the perspective of the answers is important, so yes.
+18:55:55 <LisaWells> I'll add it back then. Thanks for the suggestion
+18:56:17 <hare_brain> Back to the current topic, if we do project meeting at 6pm PT, what's that translate to in other time zones?
+18:56:19 <kohsuke> on logistics side, I think I can set up live UStream broadcast
+18:56:37 <hare_brain> Or, we can have someone transcribe into the IRC channel
+18:57:07 <hare_brain> We probably want to have a log of the actions and agreements recorded. Might we well use existing techniques for that
+18:57:50 <kohsuke> If we want to have a cross over between real world and virtual world, I wonder if transcribing to IRC can keep it up
+18:58:29 <kohsuke> #info time zone around the world for 6pm PDT: http://www.timeanddate.com/worldclock/fixedtime.html?msg=Jenkins+Governance+Meeting&iso=20120918T18&p1=224&ah=1&sort=1
+18:58:48 <kohsuke> Europe is out
+18:59:03 <kohsuke> Asia is better: Tokyo 11am
+18:59:49 <kohsuke> if we are to do this from JUC (that's Sunday 6pm PDT), anyone here would be willing to attend virtually?
+19:00:01 <hare_brain> Yeah, that was my next question. :)
+19:00:44 <hare_brain> The silence is deafening
+19:00:46 <kohsuke> I can project the IRC screen on the room and then broadcast the room
+19:00:55 <tonylampada> anyone knows what time would that be in Brazil?
+19:01:03 <kohsuke> see the link above
+19:01:05 <kinow> tonylampada: I'm looking at that now
+19:01:09 <hare_brain> 11pm
+19:01:47 <tonylampada> I might, can't make any promess though :-)
+19:02:01 <kohsuke> If we tweaks the topics so that it's oriented more for users, I think we might be able to attract some US attendees
+19:02:12 <kinow> I will try to attend it too :-)
+19:02:14 <kohsuke> We probably need that anyway for it to make sense in JUC
+19:02:18 <hare_brain> Agreed
+19:02:54 <hare_brain> We could probably form an agenda around some of the questions in the survey and talk about them live?
+19:03:07 <hare_brain> i.e., pain points, priorities
+19:03:14 <kohsuke> Yes, if that's OK with LisaWells, I'd love to steal some agenda from there
+19:03:17 <LisaWells> broadcasting the room might bring in additional attendees
+19:03:32 <LisaWells> nice to put faces with names and see the actual community
+19:03:50 <LisaWells> and yes, by all means, steal survey Qs/agenda items
+19:04:15 <kohsuke> #action kohsuke to make a post to call for agenda item for the JUC live project meeting with ideas stolen from the survey
+19:04:40 <kohsuke> hare_brain: you'll be there, right?
+19:04:44 <hare_brain> Yes.
+19:04:46 <kohsuke> I know rtyler is
+19:04:50 <kohsuke> abayer I need to check
+19:05:04 <kohsuke> Good, so we'll have a quorum
+19:05:24 <kohsuke> I realize that we are running late. I think that's it for today.
+19:05:33 <hare_brain> Project funding would be an interesting topic to talk about live.
+19:05:38 <kohsuke> ah yes
+19:05:49 <kohsuke> #topic next meeting time
+19:06:01 <hare_brain> Haha I think we just talked about that. :)
+19:06:03 <kohsuke> So the next one would be in JUC, Sep 30th 6pm PST
+19:06:20 <hare_brain> And then back to the regular schedule online after
+19:06:21 <kohsuke> the one after that ... I guess we'll do that in JUC
+19:06:28 <kohsuke> yeah
+19:06:32 <hare_brain> +1
+19:06:48 <kohsuke> all right, in that case unless anyone wants to add anything we are done for the day
+19:06:55 <kohsuke> #endmeeting

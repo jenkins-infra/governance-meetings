@@ -1,0 +1,214 @@
+18:00:14 <kohsuke> #startmeeting
+18:00:14 <robobutler> Let the Jenkins meeting commence!
+18:00:22 <kohsuke> #info https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+18:00:46 <kohsuke> danielbeck sent me his regret so I'm running this today. It's been a while!
+18:00:54 <kohsuke> #topic Recap last meeting actions
+18:01:03 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-11-07-18.00.html
+18:01:05 <oleg-nenashev> kohsuke: thanks for doing it
+18:01:05 <kohsuke> Let's see
+18:01:31 <kohsuke> two actions for Daniel I don't know much about
+18:01:42 <kohsuke> My part of the action is done and I believe we now have WeChat account!!
+18:01:44 <oleg-nenashev> 3rd one was about the LTS RC
+18:02:04 <kohsuke> I have a wechat account myself, so I should subscribe to that and see what it's like
+18:02:11 <oleg-nenashev> Yes, WeChat links were also added to jenkins.io
+18:02:13 <kohsuke> hats off to Rick for pushing this ball
+18:02:26 <kohsuke> With that, I think we can move on to the next topic...
+18:02:34 <kohsuke> #topic LTS status check
+18:02:50 <ogondza> right, Daniel saved the day last time
+18:03:05 <ogondza> we are ready for 2.15.1
+18:03:18 <oleg-nenashev> +1
+18:03:21 <ogondza> the problematic firefox fix was reverted
+18:03:32 <ogondza> I have just mailed the details to the dev list
+18:03:34 <oleg-nenashev> I tested it a bit... with Java11 . Works well anyway
+18:03:43 <ogondza> splendid
+18:03:49 <bitwiseman> Yay!
+18:04:00 <kohsuke> Wait, 2.150.1 works with Java 11!?
+18:04:05 <ogondza> unless there are objections, I will push the RC tomorrow UTC morning
+18:04:11 <oleg-nenashev> kohsuke: Yes
+18:04:22 <kohsuke> That is... wow...
+18:04:28 <oleg-nenashev> I will do a short update later :)
+18:04:54 <kohsuke> I feel like there should be some celebration of this effort
+18:05:03 <kohsuke> "this effort" meaning Java 11 support
+18:05:04 <ogondza> that is great, does it change anything for the LTS cycle? announcements, etc?
+18:05:12 <oleg-nenashev> Not yet
+18:05:25 <oleg-nenashev> I think we won't be announcing it till the next LTS baseline
+18:05:26 <ogondza> alright, we can move on in that case
+18:05:35 <ogondza> oh, ok
+18:05:38 <oleg-nenashev> TBD
+18:05:43 <kohsuke> ogondza: move on to the next topic, you mean?
+18:05:49 <ogondza> yep
+18:05:55 <kohsuke> Alright, let's do it
+18:05:59 <kohsuke> #topic GSoC update
+18:06:06 <oleg-nenashev> OK, that's me
+18:06:16 <oleg-nenashev> #info GSoC 2019 was announced. https://developers.google.com/open-source/gsoc/timeline
+18:06:52 <oleg-nenashev> #info We want to participate, and we are looking for mentors and project ideas. https://jenkins.io/projects/gsoc/proposing-project-ideas/
+18:07:18 <kohsuke> It almost feels like one just finished and the next one starts right off!
+18:07:19 <oleg-nenashev> All the guidelines are under progress, but we have many things figured out already
+18:07:32 <oleg-nenashev> GSoC never ends for org admins :)
+18:07:49 <kohsuke> I see that now
+18:08:12 <oleg-nenashev> This year we have 4 org admins so far. Shout out to Martin d'Anjou, Jeff Pearce and Lloyd Chang who joined the effort this year
+18:08:27 <oleg-nenashev> One slot is vacant so far, so let us know if you are interested
+18:08:36 <kohsuke> And you, oleg-nenashev, for your tireless effort
+18:08:37 <oleg-nenashev> But, we need project ideas
+18:08:42 <oleg-nenashev> thanks!
+18:09:15 <oleg-nenashev> #info Weekly meetings will happen at 2PM UTC on wednesdays. Starting from today, here are meeting notes: https://docs.google.com/document/d/1FARi55vDjsdzi6Nj9ZB9e1wh2dU8nyWK6mq_cge0ceg/edit?usp=sharing
+18:09:28 <kohsuke> Do you feel like you will get enough project ideas? Or are you looking for more ways to get project ideas?
+18:09:57 <oleg-nenashev> kohsuke: We will be working a lot with SIGs and subprojects this year to get more project ideas and mentors
+18:10:18 <kohsuke> OK
+18:10:18 <oleg-nenashev> Our main takeaway from the previous year is to have more GSoC activities on the SIG level
+18:10:37 <oleg-nenashev> We already have ~10 project ideas, but I want to double it at least
+18:11:02 <oleg-nenashev> contributor summits at DW-JW were really helpful
+18:11:17 <oleg-nenashev> So, any questions so far?
+18:11:22 <kohsuke> I was just wondering maybe there are ways to solicit "moon shot" projects from users
+18:11:41 <oleg-nenashev> Yes, we will try to help to polish them
+18:11:42 <kohsuke> Maybe not exactly "moon shot" because something that's out of the box and developers are blinded to
+18:11:53 <kohsuke> anyway
+18:12:02 <kohsuke> Just my 2 cents
+18:12:18 <kohsuke> s/because/but/
+18:12:19 <oleg-nenashev> whatever idea about code, bring it on :) We will help to refactor it to a GSoC project idea
+18:12:40 <kohsuke> Anything else?
+18:12:51 <oleg-nenashev> Also, there may be Google Season of Documentation this year. Stay tuned
+18:13:01 <bitwiseman> Yeeeessss.
+18:13:02 <oleg-nenashev> nothing else from me
+18:13:09 <kohsuke> GSoC, GSoD, ...
+18:13:27 <oleg-nenashev> Also GCI and Outreachy
+18:13:30 <kohsuke> All right, moving on..
+18:13:37 <oleg-nenashev> Next year is going to be busy :)
+18:13:43 <kohsuke> #topic Platform SIG update
+18:13:59 <oleg-nenashev> OK, that's me again
+18:14:19 <oleg-nenashev> #info #info https://jenkins.io/sigs/platform/
+18:14:55 <oleg-nenashev> #info we have 3 ongoing projects now: Java 11, Windows installers revamp, and Multi-architecture Docker packaging
+18:15:12 <oleg-nenashev> #info Status updates from Monday: https://docs.google.com/document/d/1FARi55vDjsdzi6Nj9ZB9e1wh2dU8nyWK6mq_cge0ceg/edit?usp=sharing
+18:15:43 <oleg-nenashev> Windows Installers and Chocolatey distribution got great progress, thanks Slide-O-Mix !
+18:16:28 * kohsuke learns Windows now have a package manager
+18:16:42 <oleg-nenashev> Same with Docker packaging, a lot of codebase has been integrated. So me may get Arm and s390 official images soon. Thanks to durgadas and jmreicha
+18:16:51 <ogondza> kohsuke: several
+18:16:59 <oleg-nenashev> too many actually
+18:17:04 <kohsuke> I think I've used one of them back then
+18:17:28 <oleg-nenashev> #info: https://chocolatey.org/packages/jenkins
+18:17:44 <oleg-nenashev> We still want to have it a part of the official distribution
+18:17:56 <oleg-nenashev> And we need help with the Jenkins Infra team.
+18:18:31 <oleg-nenashev> Actually, all 3 projects in Platform SIG would benefit from some kind of transparancy for what happens on Trusted CI
+18:18:36 <oleg-nenashev> CC olblak ^
+18:19:26 <kohsuke> oleg-nenashev: so the idea is that you want to those builds to be on trusted.ci.jenkins.io?
+18:19:49 <oleg-nenashev> We have issues with updating the flows now, and it already caused issues. It would be great if we could find a way to somehow get read-only access there OR if we have a way to build a dev environment which would duplicate it
+18:19:49 <kohsuke> I guess Chocolatey build
+18:20:12 <kohsuke> trusted build is for ones that involve signing keys
+18:20:30 <oleg-nenashev> kohsuke: Chocolatey could be outside, but we need to automate/synchonize releases to make it official
+18:20:31 <kohsuke> Are we trying to get Chocolatey package signed?
+18:20:35 <oleg-nenashev> nope
+18:21:02 <kohsuke> ah, you know releases still happen on my computer today, and there's ongoing project to move it
+18:21:04 <oleg-nenashev> Trusted CI is the only instance which hosts credentials. For Chocolatey we could work it around by webhooks tho
+18:21:21 <oleg-nenashev> kohsuke: Docker releases happen on trusted.ci
+18:21:34 <kohsuke> So maybe what you want is to integrate Chocolatey in jenkinsci/packaging?
+18:21:35 <kohsuke> oh ok
+18:21:44 <oleg-nenashev> And hence Java 11 and multi-architecture JARs
+18:22:02 <oleg-nenashev> So, I will probably reach out to olblak  and rtyler to discuss options
+18:22:08 <kohsuke> sounds good
+18:22:23 <oleg-nenashev> #action oleg_nenashev to explore options to get Platform SIG access to trusted ci
+18:22:33 <oleg-nenashev> Last but not lease, Java 11...
+18:23:14 <oleg-nenashev> #info Java 11 status slides from the Platform SIG meeting: https://docs.google.com/presentation/d/1lw4unaFhsQk7a8HzhxhgTK4X2X2ocv_W_VW7aoH2WkM/edit?usp=sharing
+18:23:38 <oleg-nenashev> writing summary
+18:24:16 <oleg-nenashev> #info TL;DR: All  critical Jenkins  core patches were upstreamed, JEP-211 is ready to be accepted. We are waiting for the last feedback: https://github.com/jenkinsci/jep/tree/master/jep/211
+18:24:36 <oleg-nenashev> And yes, Java 11 works on Jenkins 2.150.x, yey
+18:24:51 <oleg-nenashev> But we still have some blockers to resolve before announcing
+18:25:06 <oleg-nenashev> 1. Pipeline: Support patches need to be released somehow
+18:25:29 <oleg-nenashev> 2. Test tools and test automation. We have JTH ready, good progress with PCT
+18:26:09 <oleg-nenashev> ATH is still TODO, but ogondza did some progress on it at the DW-JW Nice hackfest. We will have some follow-ups this week, I hope
+18:26:38 <oleg-nenashev> So, if everything goes well, we will be able to announce preview availability in December
+18:27:06 <oleg-nenashev> And then, we have some follow-up things to do (like getting JAXB patches over the fence)
+18:27:13 <kohsuke> Like I said, I think this one calls for a celebration
+18:27:36 <kohsuke> If it's coming in Dec, I'm already picturing Santa Jenkins with "11" :-)
+18:27:57 <kohsuke> Heck, I'd pay for T-shirts and send them to people you think we should thank
+18:27:59 <oleg-nenashev> Something to consider for sure :)
+18:28:28 <oleg-nenashev> We are working with alyssat_ and tracymiranda to get the events aligned
+18:28:28 <kohsuke> Also a good opportunity to highlight participation from Oracle folks
+18:28:39 <kohsuke> OK, sounds like you are way ahead of the game
+18:28:48 <ogondza> w.r.t.12 EA testing, Last time I checked (Java 9) there was an early adopter program to highlight the offort as KK said
+18:29:05 <oleg-nenashev> we are a part of it
+18:29:09 <kohsuke> That's great. Let me know if I can help -- I just don't want this to be a dry one line changelog entry
+18:29:18 <ogondza> oh, good, good
+18:29:20 <oleg-nenashev> #info https://wiki.openjdk.java.net/display/quality/Quality+Outreach
+18:29:35 <oleg-nenashev> It won't be a changelog entry for sure
+18:29:52 <oleg-nenashev> Maybe we can even run a FOSDEM launch party for LTS, let's see
+18:30:08 <oleg-nenashev> So far we are trying to get the test automation in place
+18:30:18 <oleg-nenashev> We know that there are regressions in some places
+18:30:29 <oleg-nenashev> So there will be maintenance & Co
+18:30:39 <kohsuke> There always are
+18:30:43 <oleg-nenashev> yup
+18:30:55 <oleg-nenashev> Surprise, Maven Integration Plugin works well
+18:30:55 <tracymiranda> by FOSDEM will be time for Java 12 ;)
+18:31:08 <oleg-nenashev> let's see
+18:31:14 <bitwiseman> Java upgrades _and_ GSOC never end
+18:31:20 <oleg-nenashev> Quality Outreach pings us for reports periodically
+18:31:35 <oleg-nenashev> And it's something we need to keep in pmind
+18:31:42 <oleg-nenashev> Java 11 is a priority tho
+18:32:01 <oleg-nenashev> #info https://jenkins.io/blog/2018/06/17/running-jenkins-with-java10-11/ if you want to try it out
+18:32:10 <oleg-nenashev> Needs a new post, I'd guess
+18:32:31 <oleg-nenashev> So... any questions? :) Or do we just celebrate in advance
+18:32:32 <kohsuke> Yes :-)
+18:32:57 <kohsuke> Alright, I guess then moving on ...
+18:33:03 <kohsuke> #topic Outreachy update
+18:33:25 <tracymiranda> So happy to announce we have 2 Outreachy interns confirmed!
+18:33:31 <bitwiseman> Woot!
+18:33:32 <tracymiranda> Latha Sekar and David Olorundare
+18:33:38 <oleg-nenashev> congrats!
+18:34:02 <tracymiranda> We had 2 very strong candidates both for audit logging
+18:34:21 <tracymiranda> And had to sign up some co-mentors so outreachy were happy we could bear the load
+18:34:46 <tracymiranda> So many thanks to Matt Sicker, Liam Newman, Mark Waite and Daniel Beck for taking on the mentoring  & co mentoring
+18:34:51 <kohsuke> Looks like this is their info: https://www.outreachy.org/alums/
+18:35:09 <tracymiranda> Jenkins community is sponsoring one internship, the other is being funded from Outreachy general fund
+18:35:33 <tracymiranda> An invoice will be forthcoming later in December
+18:35:59 <tracymiranda> So far it is all working out beautifully, better than I could have hoped!
+18:37:14 <tracymiranda> Coding begins 4th Dec
+18:37:25 <tracymiranda> Well internship begins then
+18:37:34 <tracymiranda> That's the update
+18:37:41 <kohsuke> great
+18:38:15 <oleg-nenashev> thumbs up
+18:38:24 <kohsuke> I suggest you consider a blog post introducing those two people
+18:38:41 <tracymiranda> good idea!
+18:38:46 <kohsuke> It looks like we haven't talked about Outreachy on jenkins.io
+18:38:59 <oleg-nenashev> we did actually
+18:39:07 <kohsuke> OK, that's great.
+18:39:35 <oleg-nenashev> there is an open AI on tracymiranda and me to discuss how we arrange all these activities
+18:39:36 <tracymiranda> will be good to do a nice introduction post, esp so folks in the community get to know them
+18:39:57 <kohsuke> With GSoC and Outreachy we can point out how we are better at working with new people, and if folks are interested in learning/joining, they don't necessarily have to wait for a program
+18:40:27 <oleg-nenashev> Are they working in the core part?
+18:40:39 <oleg-nenashev> blog post would be great
+18:40:53 <oleg-nenashev> Would be nice if we could also map it to a SIG somehow
+18:41:08 <oleg-nenashev> so that there is a number of involved stakeholders
+18:42:22 <oleg-nenashev> Maybe just Security SIG? especially if Daniel is open to run public events for security hardening and management topics
+18:43:31 * oleg-nenashev apologies for an offtopic
+18:43:43 <bitwiseman> Maybe and Advocacy SIG.
+18:43:53 <kohsuke> I wonder if GSoC SIG should morph into the onboarding/outreach SIG
+18:44:09 <oleg-nenashev> we were discussing it in summer
+18:44:19 <tracymiranda> yeah, have it include Outreachy, hacktoberfest, etc
+18:44:31 <kohsuke> IIUC oleg-nenashev  your picture is that these new people need some cocoon and a "place" to be productive
+18:44:33 <oleg-nenashev> I am +1 for that, but other org admins were against at this point
+18:45:08 <oleg-nenashev> kohsuke: Not exactly a cocoon. But a place where community bonding happens
+18:45:10 <bitwiseman> I'm +1.
+18:45:17 <oleg-nenashev> So it's not just them and mentors
+18:45:41 <oleg-nenashev> Personally I am fine with Outreach SIG
+18:46:00 <oleg-nenashev> see my "Community Development SIG" proposal somewhere in the mailing lists
+18:46:07 <kohsuke> Right, I don't mean cocoon as the wall to shut off others, it's the home base for new people
+18:46:32 <oleg-nenashev> yep, it would be nice if we could start it
+18:46:34 <bitwiseman> Let's pick up the topic again on the ML or gitter.
+18:46:37 <tracymiranda> I'd like to understand objections for org admins
+18:46:50 <kohsuke> Anyway, sounds like you've already thought and talked about it, so I'm happy to let it sit and cook for a while
+18:47:07 <kohsuke> +1 to what bitwiseman said
+18:47:34 <oleg-nenashev> tracymiranda: bandwidth. GSoC requires a lot of time on its own and they cannot participate much in other activities
+18:47:45 <oleg-nenashev> But we can have an umbrella SIG
+18:48:09 <oleg-nenashev> E.g. JCasC is formally a part of Cloud Native SIG, but it runs on its own with some overlaps
+18:48:16 <tracymiranda> ok, good to know.
+18:48:18 <oleg-nenashev> So I do not think it's impossible
+18:48:33 <oleg-nenashev> Let's take it to the ML again
+18:48:59 <oleg-nenashev> #action oleg_nenashev to restart the discussion of the Outreach / Community Development SIG
+18:49:23 <oleg-nenashev> thanks for bringing it up kohsuke  and tracymiranda !
+18:49:26 <kohsuke> all right, anything else?
+18:49:44 <kohsuke> #topic next meeting time
+18:50:05 <kohsuke> #info next meeting is Dec 5th the usual time
+18:50:26 <tracymiranda> great, thanks all!
+18:50:31 <kohsuke> Thanks everyone, see you then. Have a happy Thanksgiving
+18:50:46 <oleg-nenashev> Or happy Hacksgiving ;)
+18:50:49 <kohsuke> Or enjoy your work if you don't observe that!
+18:50:56 <kohsuke> #endmeeting

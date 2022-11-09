@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:03:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:03:15</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:03:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">agenda https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-October31thMeeting</span>
+<a name="l-4"></a><span class="tm">18:03:35</span><span class="nk"> &lt;rtyler&gt;</span> chair me!
+<a name="l-5"></a><span class="tm">18:03:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler hare_brain abayer</span>
+<a name="l-6"></a><span class="tm">18:03:45</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-7"></a><span class="tm">18:03:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's items</span>
+<a name="l-8"></a><span class="tm">18:04:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/secure/IssueNavigator.jspa?reset=true&amp;jqlQuery=project+%3D+MEETING+AND+status+%3D+Open+ORDER+BY+priority+DESC&amp;mode=hide</span>
+<a name="l-9"></a><span class="tm">18:04:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> this is pretty much all you :P
+<a name="l-10"></a><span class="tm">18:04:17</span><span class="nk"> &lt;kohsuke&gt;</span> Yes sir
+<a name="l-11"></a><span class="tm">18:04:33</span><span class="nk"> &lt;kohsuke&gt;</span> I'm afraid no progress to report
+<a name="l-12"></a><span class="tm">18:04:36</span><span class="nk"> &lt;rtyler&gt;</span> and that link isn't useful, whatever it's supposed to be :P
+<a name="l-13"></a><span class="tm">18:04:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> survey banner was added across the board
+<a name="l-14"></a><span class="tm">18:04:54</span><span class="nk"> &lt;kohsuke&gt;</span> It's supposed to show all the open issues in the 'MEETING' project
+<a name="l-15"></a><span class="tm">18:05:02</span><span class="nk"> &lt;rtyler&gt;</span> jenkinsci-cert?
+<a name="l-16"></a><span class="tm">18:05:28</span><span class="nk"> &lt;rtyler&gt;</span> I forget what that is
+<a name="l-17"></a><span class="tm">18:05:31</span><span class="nk"> &lt;kohsuke&gt;</span> Ouch, yes, let me at least add that
+<a name="l-18"></a><span class="tm">18:05:43</span><span class="nk"> &lt;LeLutin&gt;</span> gah, I tried configuring ldap login but failed.. and now I can't login anymore. how can I change config.xml to set it back to internal users ?
+<a name="l-19"></a><span class="tm">18:05:46</span><span class="nk"> &lt;kohsuke&gt;</span> I need to add people to the group and set the context
+<a name="l-20"></a><span class="tm">18:06:19 </span><span class="nka">* kohsuke</span> <span class="ac">files a ticket for this</span>
+<a name="l-21"></a><span class="tm">18:06:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">LeLutin:</span> hold that thought for a bit, we're holding a project meeting right now
+<a name="l-22"></a><span class="tm">18:06:24</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">LeLutin:</span> we're in the middle of a meeting, but this shoudl help: https://wiki.jenkins-ci.org/display/JENKINS/Disable+security
+<a name="l-23"></a><span class="tm">18:07:15</span><span class="nk"> &lt;kohsuke&gt;</span> created https://issues.jenkins-ci.org/browse/MEETING-7
+<a name="l-24"></a><span class="tm">18:07:16</span><span class="nk"> &lt;LeLutin&gt;</span> rtyler, orrc: oh ok. thanks for your time. I'll have a look at that page
+<a name="l-25"></a><span class="tm">18:07:39</span><span class="nk"> &lt;kohsuke&gt;</span> Let's move on to the next topic
+<a name="l-26"></a><span class="tm">18:07:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Take over "Jenkins users and developers" group at meetup.com</span>
+<a name="l-27"></a><span class="tm">18:08:15</span><span class="nk"> &lt;kohsuke&gt;</span> The context is that we have occasionally used http://www.meetup.com/jenkinsmeetup/ in the past to organize meet-ups all around the world
+<a name="l-28"></a><span class="tm">18:08:23</span><span class="nk"> &lt;kohsuke&gt;</span> but the cost of this came out of abayer's pocket
+<a name="l-29"></a><span class="tm">18:08:31</span><span class="nk"> &lt;kohsuke&gt;</span> and that's expiring now
+<a name="l-30"></a><span class="tm">18:08:49</span><span class="nk"> &lt;kohsuke&gt;</span> so two options is to either have the project take it over (for the cost of $150/year)
+<a name="l-31"></a><span class="tm">18:08:59</span><span class="nk"> &lt;kohsuke&gt;</span> ... or let it lapse and use other free services
+<a name="l-32"></a><span class="tm">18:09:13</span><span class="nk"> &lt;rtyler&gt;</span> looking back over the recent events that have been organized through it, and considering the goal of community organized events, I think we should foot the bill
+<a name="l-33"></a><span class="tm">18:09:18</span><span class="nk"> &lt;kohsuke&gt;</span> LisaWells or Heidi suggested that we can try eventbrite
+<a name="l-34"></a><span class="tm">18:09:27</span><span class="nk"> &lt;rtyler&gt;</span> meetup.com is, at least in the US, the most common way to organize these things
+<a name="l-35"></a><span class="tm">18:10:10</span><span class="nk"> &lt;rtyler&gt;</span> do you know of any user-meetups/events driven through eventbirte?
+<a name="l-36"></a><span class="tm">18:10:17</span><span class="nk"> &lt;rtyler&gt;</span> I've only seen it for company-driven things
+<a name="l-37"></a><span class="tm">18:10:28</span><span class="nk"> &lt;kohsuke&gt;</span> Not really, but they said it does let us keep track of RSVPs against a certain capacity
+<a name="l-38"></a><span class="tm">18:11:01</span><span class="nk"> &lt;kohsuke&gt;</span> ... which is the main thing we get out of meetup.com today, I think
+<a name="l-39"></a><span class="tm">18:11:05</span><span class="nk"> &lt;rtyler&gt;</span> I'm not sure how open it is compared to meetup, which has the meetup "feed" comments, etc
+<a name="l-40"></a><span class="tm">18:11:16</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think eventbrite has any of those
+<a name="l-41"></a><span class="tm">18:11:36</span><span class="nk"> &lt;rtyler&gt;</span> in the grand scheme of things, I personally don't think $150 nets out to enough to worry about it
+<a name="l-42"></a><span class="tm">18:11:54</span><span class="nk"> &lt;rtyler&gt;</span> the one downside AFAIK of eventbrite is that RSVPs aren't listed
+<a name="l-43"></a><span class="tm">18:11:55</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, I think it's OK for us to spend $150
+<a name="l-44"></a><span class="tm">18:12:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> any thoughts on this?
+<a name="l-45"></a><span class="tm">18:12:24</span><span class="nk"> &lt;hare_brain&gt;</span> +1 for continuing to use meetup.com
+<a name="l-46"></a><span class="tm">18:12:52</span><span class="nk"> &lt;kohsuke&gt;</span> OK, let's do that then
+<a name="l-47"></a><span class="tm">18:12:56</span><span class="nk"> &lt;rtyler&gt;</span> I'll take it
+<a name="l-48"></a><span class="tm">18:13:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to renew the meetup.com group thingie</span>
+<a name="l-49"></a><span class="tm">18:13:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">project will take over the meetup.com group</span>
+<a name="l-50"></a><span class="tm">18:13:49</span><span class="nk"> &lt;kohsuke&gt;</span> moving on to the next topic...
+<a name="l-51"></a><span class="tm">18:14:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">sticker budget for SCALE11x and FOSDEM</span>
+<a name="l-52"></a><span class="tm">18:14:14</span><span class="nk"> &lt;rtyler&gt;</span> This was my agenda item
+<a name="l-53"></a><span class="tm">18:14:22</span><span class="nk"> &lt;rtyler&gt;</span> we don't need to spend much time on it
+<a name="l-54"></a><span class="tm">18:14:25</span><span class="nk"> &lt;rtyler&gt;</span> I just wanted to check:
+<a name="l-55"></a><span class="tm">18:14:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I have enough stickers on hand right now --- I believe I ordered this batch just a few months ago</span>
+<a name="l-56"></a><span class="tm">18:14:35</span><span class="nk"> &lt;rtyler&gt;</span> how many stickers did we bring to FOSDEM last year
+<a name="l-57"></a><span class="tm">18:14:42</span><span class="nk"> &lt;kohsuke&gt;</span> by enough I mean at least 1000 and probably 1500+
+<a name="l-58"></a><span class="tm">18:15:02</span><span class="nk"> &lt;kohsuke&gt;</span> last year in FOSDEM I believe I brought 250-300 and used them all
+<a name="l-59"></a><span class="tm">18:15:14</span><span class="nk"> &lt;rtyler&gt;</span> I think we should plan to have at least 400 for FOSDEM
+<a name="l-60"></a><span class="tm">18:15:19</span><span class="nk"> &lt;kohsuke&gt;</span> SCALE was little less
+<a name="l-61"></a><span class="tm">18:15:31</span><span class="nk"> &lt;rtyler&gt;</span> then it sounds like we'll get by with our current sticker allotment :)
+<a name="l-62"></a><span class="tm">18:15:36</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-63"></a><span class="tm">18:15:40</span><span class="nk"> &lt;kohsuke&gt;</span> But that reminds me
+<a name="l-64"></a><span class="tm">18:15:45</span><span class="nk"> &lt;kohsuke&gt;</span> We should get a better flyer
+<a name="l-65"></a><span class="tm">18:15:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">we have ~1000-1500 stickers currently</span>
+<a name="l-66"></a><span class="tm">18:16:03</span><span class="nk"> &lt;rtyler&gt;</span> anybody know designers? :P
+<a name="l-67"></a><span class="tm">18:16:20</span><span class="nk"> &lt;kohsuke&gt;</span> I'll check with LisaWells if she can do it or whoever she normally uses it can do it for us
+<a name="l-68"></a><span class="tm">18:16:31</span><span class="nk"> &lt;jorgenpt&gt;</span> <span class="hi">rtyler:</span> There are a bunch sitting right near the iOS team ;D
+<a name="l-69"></a><span class="tm">18:16:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jorgenpt:</span> did you forget some?
+<a name="l-70"></a><span class="tm">18:16:50</span><span class="nk"> &lt;jorgenpt&gt;</span> <span class="hi">rtyler:</span> I mean designers.
+<a name="l-71"></a><span class="tm">18:16:55</span><span class="nk"> &lt;rtyler&gt;</span> oh
+<a name="l-72"></a><span class="tm">18:16:59</span><span class="nk"> &lt;rtyler&gt;</span> they're not mine to bother
+<a name="l-73"></a><span class="tm">18:17:02</span><span class="nk"> &lt;jorgenpt&gt;</span> Trololo.
+<a name="l-74"></a><span class="tm">18:17:05</span><span class="nk"> &lt;kohsuke&gt;</span> I think the primary thing we need an input from here is the content
+<a name="l-75"></a><span class="tm">18:17:26</span><span class="nk"> &lt;rtyler&gt;</span> agreed, let's take this to the mailing list perhaps and discuss with a broader audience
+<a name="l-76"></a><span class="tm">18:17:33</span><span class="nk"> &lt;rtyler&gt;</span> perhaps the survey results can help guide this?
+<a name="l-77"></a><span class="tm">18:17:41</span><span class="nk"> &lt;kohsuke&gt;</span> for example, I don't think the graph that showed installation count was effective --- it had no labels neither on X/Y axes
+<a name="l-78"></a><span class="tm">18:17:53 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-79"></a><span class="tm">18:18:03</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, possibly
+<a name="l-80"></a><span class="tm">18:18:05</span><span class="nk"> &lt;rtyler&gt;</span> next topic?
+<a name="l-81"></a><span class="tm">18:18:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write an e-mail soliciting feedback for flyer</span>
+<a name="l-82"></a><span class="tm">18:18:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> can you check your designers or are they "not yours to bother"?
+<a name="l-83"></a><span class="tm">18:18:54</span><span class="nk"> &lt;rtyler&gt;</span> they're not mine to bother
+<a name="l-84"></a><span class="tm">18:19:01</span><span class="nk"> &lt;kohsuke&gt;</span> ok
+<a name="l-85"></a><span class="tm">18:19:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Accepting donations in Europe</span>
+<a name="l-86"></a><span class="tm">18:19:08</span><span class="nk"> &lt;rtyler&gt;</span> I can probably ask if they have time, but they're Lookout specific :)
+<a name="l-87"></a><span class="tm">18:19:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> your time to shine buddy
+<a name="l-88"></a><span class="tm">18:19:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> Oh then please ask. The worst thing that can happen is "no"
+<a name="l-89"></a><span class="tm">18:20:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I'm not comfortable asking, they have zero overlap with the Jenkins project
+<a name="l-90"></a><span class="tm">18:20:08</span><span class="nk"> &lt;kohsuke&gt;</span> all right. no problem.
+<a name="l-91"></a><span class="tm">18:20:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> so who's "Euro-friends-of-SPI"?
+<a name="l-92"></a><span class="tm">18:21:48</span><span class="nk"> &lt;orrc&gt;</span> http://www.ffis.de/Verein/spi-en.html
+<a name="l-93"></a><span class="tm">18:22:06</span><span class="nk"> &lt;orrc&gt;</span> sorry, was busy for a sec
+<a name="l-94"></a><span class="tm">18:22:07</span><span class="nk"> &lt;rtyler&gt;</span> this site is definitely located in the EU
+<a name="l-95"></a><span class="tm">18:22:10 </span><span class="nka">* rtyler</span> <span class="ac">waits patiently</span>
+<a name="l-96"></a><span class="tm">18:22:18</span><span class="nk"> &lt;kohsuke&gt;</span> "associated projects of SPI which are more or less automatically also associated to ffis e.V"
+<a name="l-97"></a><span class="tm">18:22:25</span><span class="nk"> &lt;orrc&gt;</span> so, I emailed these guys and asked about that there sentence
+<a name="l-98"></a><span class="tm">18:22:44</span><span class="nk"> &lt;orrc&gt;</span> they want a "formal letter" emailed to their board asking for association and handling of donations
+<a name="l-99"></a><span class="tm">18:22:54</span><span class="nk"> &lt;orrc&gt;</span> "Apart from that we'd need a project liaison who may authorise reimbursement requests or receipts for ffis to pay on behalf of the project"
+<a name="l-100"></a><span class="tm">18:23:09</span><span class="nk"> &lt;orrc&gt;</span> "We can offer you a view to the Jenkins part of the bank account once an connection is established."
+<a name="l-101"></a><span class="tm">18:23:13</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I guess that'd be the interim board
+<a name="l-102"></a><span class="tm">18:23:29</span><span class="nk"> &lt;orrc&gt;</span> but that was basically it.. i.e. it seems possible and straightforward
+<a name="l-103"></a><span class="tm">18:23:36</span><span class="nk"> &lt;rtyler&gt;</span> yeah, this looks promising
+<a name="l-104"></a><span class="tm">18:23:41</span><span class="nk"> &lt;kohsuke&gt;</span> And I can write that e-mail.
+<a name="l-105"></a><span class="tm">18:24:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> thanks for bringing this up again, and I agree, we should try to nail this down before fosdem
+<a name="l-106"></a><span class="tm">18:24:56</span><span class="nk"> &lt;orrc&gt;</span> ok. I'll send kohsuke the details
+<a name="l-107"></a><span class="tm">18:25:00</span><span class="nk"> &lt;kohsuke&gt;</span> So this is primarily a German entity?
+<a name="l-108"></a><span class="tm">18:25:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">orrc to send kohsuke more details on the ffis</span>
+<a name="l-109"></a><span class="tm">18:25:45</span><span class="nk"> &lt;kohsuke&gt;</span> I know I'm getting tangential here, but personally, I'd love to get orrc on the board and have him interact with them!
+<a name="l-110"></a><span class="tm">18:26:09</span><span class="nk"> &lt;kohsuke&gt;</span> I wonder if this is something I need to inform SPI about?
+<a name="l-111"></a><span class="tm">18:26:09</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">kohsuke:</span> yup. basically the "Association for the Advancement of Free Software and Information"
+<a name="l-112"></a><span class="tm">18:26:31</span><span class="nk"> &lt;kohsuke&gt;</span> ... that we are also dating with others
+<a name="l-113"></a><span class="tm">18:26:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to send a heads-up to SPI about this just so they know</span>
+<a name="l-114"></a><span class="tm">18:27:54</span><span class="nk"> &lt;kohsuke&gt;</span> I guess that's it for the day
+<a name="l-115"></a><span class="tm">18:28:24</span><span class="nk"> &lt;kohsuke&gt;</span> If vjuranek is here we can briefly sync up about LTS status
+<a name="l-116"></a><span class="tm">18:28:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-117"></a><span class="tm">18:28:56</span><span class="nk"> &lt;kohsuke&gt;</span> Nov 14th, same time?
+<a name="l-118"></a><span class="tm">18:28:59</span><span class="nk"> &lt;kohsuke&gt;</span> (that's the usual time)
+<a name="l-119"></a><span class="tm">18:29:01</span><span class="nk"> &lt;rtyler&gt;</span> that works for me
+<a name="l-120"></a><span class="tm">18:29:01</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-121"></a><span class="tm">18:29:10</span><span class="nk"> &lt;rtyler&gt;</span> I think after that it gets spotty until 2013 :P
+<a name="l-122"></a><span class="tm">18:29:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">beware of daylight saving time change</span>
+<a name="l-123"></a><span class="tm">18:29:29</span><span class="nk"> &lt;rtyler&gt;</span> OH NOES
+<a name="l-124"></a><span class="tm">18:29:38</span><span class="nk"> &lt;hare_brain&gt;</span> Oh yeah. Is that happening between now and then?
+<a name="l-125"></a><span class="tm">18:29:44</span><span class="nk"> &lt;kohsuke&gt;</span> Yes. Nov 4th
+<a name="l-126"></a><span class="tm">18:29:49</span><span class="nk"> &lt;rtyler&gt;</span> 14th
+<a name="l-127"></a><span class="tm">18:29:51</span><span class="nk"> &lt;rtyler&gt;</span> oh, right
+<a name="l-128"></a><span class="tm">18:29:53</span><span class="nk"> &lt;rtyler&gt;</span> the switch
+<a name="l-129"></a><span class="tm">18:30:08</span><span class="nk"> &lt;orrc&gt;</span> or last week, if you're in Europe!
+<a name="l-130"></a><span class="tm">18:30:10</span><span class="nk"> &lt;hare_brain&gt;</span> Oh this weekend. I had no idea.
+<a name="l-131"></a><span class="tm">18:30:27</span><span class="nk"> &lt;kohsuke&gt;</span> so please double check the posted meeting time. I believe it'll be one hour later than usual for the rest of the world
+<a name="l-132"></a><span class="tm">18:30:40</span><span class="nk"> &lt;kohsuke&gt;</span> or if you are in Europe, this one was the odd ball
+<a name="l-133"></a><span class="tm">18:30:40</span><span class="nk"> &lt;kohsuke&gt;</span> anyway
+<a name="l-134"></a><span class="tm">18:30:50</span><span class="nk"> &lt;kohsuke&gt;</span> thanks everyone
+<a name="l-135"></a><span class="tm">18:30:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

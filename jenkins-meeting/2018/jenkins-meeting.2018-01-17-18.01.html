@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app227.us.archive.org';v.server_ms=249;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-01-17-18.01.html","20211027220746","https://web.archive.org/","web","/_static/",
+	      "1635372466");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins-meeting Meeting</h1>
+<span class="details">
+Meeting started by rtyler at 18:01:28 UTC
+(<a href="jenkins-meeting.2018-01-17-18.01.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li><b class="TOPIC">Last meeting items</b> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-4">rtyler</a>, 18:01:33)</span>
+<br></li>
+<li><b class="TOPIC">LTS status check</b> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-7">rtyler</a>, 18:02:15)</span>
+<ol type="a">
+  <li><span class="INFO">https://groups.google.com/forum/#!topic/jenkinsci-dev/Nnkr_2Kfz7E</span>
+    <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-12">oleg-nenashev</a>,
+    18:03:23)</span></li>
+  <li><span class="INFO">agenda is here btw
+    https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-January17thmeeting</span>
+    <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-40">rtyler</a>,
+    18:07:13)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">JEP-200 status update / Q&amp;A</b> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-41">rtyler</a>, 18:07:24)</span>
+<ol type="a">
+  <li><span class="INFO">we landed JEP-200 in 2.102</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-43">oleg-nenashev</a>,
+    18:07:45)</span></li>
+  <li><span class="INFO">It caused regressions, as expected:
+    https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+fix+for+JEP-200</span>
+    <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-44">oleg-nenashev</a>,
+    18:07:59)</span></li>
+  <li><span class="INFO">https://github.com/jenkinsci/jep/tree/master/jep/200</span>
+    <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-48">rtyler</a>,
+    18:08:41)</span></li>
+  <li><span class="INFO">JEP-200 ETA in LTS is March 14 according to the
+    current plans (if it gets accepted to LTS)</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-52">oleg-nenashev</a>,
+    18:10:05)</span></li>
+  <li><span class="INFO">JEP-200 is switching of XStream/Remoting class
+    filters from blacklist to whitelist</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-54">oleg-nenashev</a>,
+    18:11:20)</span></li>
+  <li><span class="INFO">So, if a class is not in a plugin/core/module,
+    it will be rejected if not whitelisted. Common examples: Java
+    internal classes, 3rd-party libraries (Guava &amp; Co)</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-55">oleg-nenashev</a>,
+    18:12:11)</span></li>
+  <li><a href="https://web.archive.org/web/20211027220746/https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/jenkins/security/whitelisted-classes.txt">https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/jenkins/security/whitelisted-classes.txt</a>
+    got updated since 2.102. It could close some regressions in plugins
+    not reported yet <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-57">oleg-nenashev</a>,
+    18:13:17)</span></li>
+  <li><span class="INFO">Developer guidelines:
+    https://jenkins.io/blog/2018/01/13/jep-200/#for-plugin-developers</span>
+    <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-86">oleg-nenashev</a>,
+    18:20:44)</span></li>
+  <li><span class="INFO">JEP-200 includes a "warranty period". A team is
+    investigating all reported issues and trying to fix them if
+    possible. So far the "team" is oleg-nenashev and jglick</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-91">oleg-nenashev</a>,
+    18:21:44)</span></li>
+  <li><a href="https://web.archive.org/web/20211027220746/https://github.com/jenkinsci/ghprb-plugin/pull/616">https://github.com/jenkinsci/ghprb-plugin/pull/616</a>
+    <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-94">oleg-nenashev</a>,
+    18:22:10)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">oleg-nenashev
+    to send a post-mortem doc once the dust settles</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-96">oleg-nenashev</a>,
+    18:22:39)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">GSoC 2018: Discussion - Do we want to kick-it off</b> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-101">rtyler</a>, 18:23:44)</span>
+<ol type="a">
+  <li><span class="INFO">GSoC is the Google Summer of Code
+    program</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-104">rtyler</a>,
+    18:24:58)</span></li>
+  <li><span class="INFO">Call formentors:
+    https://jenkins.io/blog/2018/01/06/gsoc2018-call-for-mentors/</span>
+    <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-106">oleg-nenashev</a>,
+    18:25:17)</span></li>
+  <li><span class="INFO">:
+    https://docs.google.com/document/d/1q2p_XZEdbkcVDMpEPTtjPS15i2Oq3CQgH_geJjPhofY/edit#heading=h.iu2aqxlb7caw</span>
+    <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-109">oleg-nenashev</a>,
+    18:26:40)</span></li>
+  <li><span class="INFO">Application deadline: January 23</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-119">oleg-nenashev</a>,
+    18:29:31)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Request for mark usage, "JUC Paris" by JFrog</b> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-140">rtyler</a>, 18:33:44)</span>
+<ol type="a">
+  <li><span class="INFO">our trademark guidelines can be found here:
+    https://jenkins.io/project/governance/#trademark</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-154">rtyler</a>,
+    18:34:58)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">Trademark
+    sublicense granted to JFrog, Inc. for "Jenkins User Conference
+    Paris" and "Jenkins User Conference Israel"</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-189">rtyler</a>,
+    18:43:12)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    update the approved trademark usage wiki page</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-190">rtyler</a>,
+    18:43:21)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">alyssat_ to
+    help JFrog understand our trademark guidelines :)</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-200">rtyler</a>,
+    18:44:33)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">FOSDEM planning update</b> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-213">rtyler</a>, 18:45:58)</span>
+<ol type="a">
+  <li><span class="INFO">https://wiki.jenkins.io/display/JENKINS/FOSDEM+2018</span>
+    <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-215">alyssat_</a>,
+    18:46:06)</span></li>
+  <li><span class="INFO">please RSVP to the FOSDEM related events as
+    soon as possible: https://www.meetup.com/jenkinsmeetup/</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-233">rtyler</a>,
+    18:51:37)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">oleg-nenashev
+    to add Demos section to the Wiki page</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-240">oleg-nenashev</a>,
+    18:53:41)</span></li>
+  <li><span class="INFO">Jenkins contributors at FOSDEM, please bring
+    and wear your squad t-shirts :P</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-245">rtyler</a>,
+    18:54:55)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">oleg-nenashev
+    and markewaite to bring as much T-shorts as he can</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-261">oleg-nenashev</a>,
+    18:57:04)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Next meeting</b> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-269">rtyler</a>, 18:57:47)</span>
+<ol type="a">
+  <li><span class="INFO">the next meeting will be at 18:00 UTC ON
+    January 31st</span> <span class="details">(<a href="jenkins-meeting.2018-01-17-18.01.log.html#l-271">rtyler</a>,
+    18:58:08)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 18:58:20 UTC
+(<a href="jenkins-meeting.2018-01-17-18.01.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>oleg-nenashev to send a post-mortem doc once the dust settles</li>
+  <li>rtyler to update the approved trademark usage wiki page</li>
+  <li>alyssat_ to help JFrog understand our trademark guidelines :)</li>
+  <li>oleg-nenashev to add Demos section to the Wiki page</li>
+  <li>oleg-nenashev and markewaite to bring as much T-shorts as he can</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> alyssat_ <ol>
+    <li>alyssat_ to help JFrog understand our trademark guidelines :)</li>
+  </ol></li>
+  <li> markewaite <ol>
+    <li>oleg-nenashev and markewaite to bring as much T-shorts as he can</li>
+  </ol></li>
+  <li> oleg-nenashev <ol>
+    <li>oleg-nenashev to send a post-mortem doc once the dust settles</li>
+    <li>oleg-nenashev to add Demos section to the Wiki page</li>
+    <li>oleg-nenashev and markewaite to bring as much T-shorts as he can</li>
+  </ol></li>
+  <li> rtyler <ol>
+    <li>rtyler to update the approved trademark usage wiki page</li>
+  </ol></li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>rtyler (94)</li>
+  <li>oleg-nenashev (83)</li>
+  <li>alyssat_ (38)</li>
+  <li>KatrinJFrog (29)</li>
+  <li>samrocketman (14)</li>
+  <li>markewaite (6)</li>
+  <li>ogondza (5)</li>
+  <li>andresrc (1)</li>
+  <li>robobutler (1)</li>
+  <li>jglick (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="https://web.archive.org/web/20211027220746/http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:07:46 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:04:44 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 148.719
+  exclusion.robots: 0.086
+  exclusion.robots.policy: 0.079
+  RedisCDXSource: 13.664
+  esindex: 0.01
+  LoadShardBlock: 116.856 (3)
+  PetaboxLoader3.datanode: 119.222 (4)
+  CDXLines.iter: 15.64 (3)
+  load_resource: 95.194
+  PetaboxLoader3.resolve: 29.558
+-->

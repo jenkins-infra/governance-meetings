@@ -1,0 +1,211 @@
+18:00:25 <rtyler> #startmeeting
+18:00:25 <robobutler> Let the Jenkins meeting commence!
+18:00:33 <rtyler> #topic Last meeting actions
+18:00:43 <rtyler> #chair danielbeck kohsuke
+18:00:43 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:56 <rtyler> last meeting notes can be found here http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-10-25-17.59.html
+18:01:11 <danielbeck> and we got an RC
+18:01:11 <rtyler> looks like ogondza pushing the RC was the only actual action, which obviously happened :)
+18:01:49 <oleg-nenashev> yey
+18:02:32 <rtyler> I don't think we've got any other older actions to discuss here
+18:02:41 <danielbeck> agree
+18:03:03 <rtyler> #topic LTS status check
+18:03:09 <danielbeck> It's out
+18:03:12 <danielbeck> ~6 hours or so ago
+18:03:17 <rtyler> IT
+18:03:21 <danielbeck> everyone should be updating their instance
+18:03:41 <oleg-nenashev> I did. Worked like a charm
+18:03:42 <rtyler> #info 2.73.3 was a security oriented release which went out this morning
+18:04:21 <rtyler> this is the last in the 2.73 line yeah?
+18:04:25 <danielbeck> yes
+18:04:37 <danielbeck> unless something goes _really_ wrong
+18:04:40 <rtyler> heh
+18:04:52 <rtyler> is it next time around we choose the next baseline?
+18:04:57 <danielbeck> today
+18:05:01 <danielbeck> bumped your topic
+18:05:03 <rtyler> oh right, there it is
+18:05:21 <rtyler> so I don't think there are any other things to discuss on the current LTS  correct?
+18:05:26 <danielbeck> yes
+18:05:29 <rtyler> other than "yay" it's out
+18:05:40 <danielbeck> as usual in security fixes, we're early
+18:06:09 <rtyler> "yay"
+18:06:35 <rtyler> I'd like to pause for a minute or two to see if ogondza pops online before our next topic
+18:07:05 <danielbeck> I'm blaming DST :-/
+18:07:34 <rtyler> timezones are hard amirite
+18:07:49 <olblak> indeed
+18:07:56 <oleg-nenashev> Well, IIRC danielbeck notified people a while ago to remind that the meetings are in UTC
+18:08:19 <danielbeck> don't get me started about last week when the US hadn't changed over… everything was off by one hour
+18:08:38 <oleg-nenashev> do not remind about that...
+18:08:41 <rtyler> just set all your clocks to UTC :)
+18:09:09 <oleg-nenashev> Russia has fixed UTC+3 now. Probably the best law I have ever seen
+18:09:20 <rtyler> hah
+18:09:28 <rtyler> alright, let's keep going
+18:09:38 <rtyler> #topic LTS baseline selection
+18:09:44 <rtyler> danielbeck: I'll let you drive this topic
+18:09:53 <danielbeck> #info http://jenkins-ci.org/changelog
+18:10:09 <danielbeck> so, obviously, whatever we choose will get today's fixes backported
+18:10:34 <jglick> I have already taken the liberty of adding `lts-candidate` to a bunch of stuff in 2.86 onwards.
+18:10:50 <oleg-nenashev> 2.87+ are green. And 2.88/2.89 have nothing much excepting  Security fix
+18:10:55 <danielbeck> 2.86+ suffer from JENKINS-47593 (which is why 2.86 feedback is so bad), otherwise any release looks good
+18:11:14 <rtyler> 2.88 looks pretty good to me
+18:11:24 <rtyler> but hell, why not just 2.89
+18:11:26 * rtyler ducks
+18:11:30 <oleg-nenashev> yes.
+18:11:37 <oleg-nenashev> 2.88 is this Sunday
+18:11:42 <jglick> What is our usual policy? two-week soak?
+18:11:43 <danielbeck> 2.88 makes no sense, as 2.89 is just that + security
+18:11:59 <danielbeck> jglick for specific fixes. no firm rules on baseline
+18:12:03 <oleg-nenashev> 2.87 or 2.89 IMHO
+18:12:16 <oleg-nenashev> 2.88 has almost nothing inside
+18:12:21 <danielbeck> TBH I like 2.87
+18:12:28 <rtyler> I'm in favor of anything 2.87+
+18:12:30 * rtyler shrugs
+18:12:39 <oleg-nenashev> I am fine with that
+18:13:06 <oleg-nenashev> So, vote for 2.87? +1
+18:13:15 <rtyler> summoning markewaite, I think he's done some testing on 2.87 lately
+18:13:39 <jglick> 2.87 is a little weird in that we would be backporting the security fixes from 2.89, and I marked JENKINS-45977 for backport, so then the only things not there would be Russian localization (likely very safe) and a new sidebar link.
+18:14:04 <bitwiseman> (Hello all This meeting is at 11 on my calendar right now. :| )
+18:14:41 <danielbeck> bitwiseman welcome to the time zone chaos fan club
+18:15:06 <danielbeck> let's look at the differences
+18:15:37 <danielbeck> the whole point of this is to stay conservative and not invite unproven changes
+18:15:39 <danielbeck> https://github.com/jenkinsci/jenkins/compare/jenkins-2.87...jenkins-2.88
+18:16:14 <danielbeck> really barely anything in there
+18:16:35 <danielbeck> so we could well go with 2.89
+18:16:57 <oleg-nenashev> We will have 2 weeks till RC in the worst case
+18:17:16 <oleg-nenashev> Assuming we discover a critical issue in NewView impl, heh
+18:17:27 <danielbeck> right, and honestly the riskiest change is SECURITY-499, which would be a problem either way
+18:17:33 <rtyler> markewaite: have you happened to do much testing with recent cores like 2.87 or later?
+18:17:53 <markewaite> rtyler: none, all my testing was with the LTS RC
+18:17:58 <jglick> Backporting the 2.89 advisory on top of 2.87 seems riskier than anything that went into 2.88, really.
+18:18:16 <andresrc> :+1 to jglick comment
+18:18:27 <jglick> The main risk in 2.87 (vs. 2.86) seems to be the Stapler/Servlet changes.
+18:18:44 <danielbeck> rtyler wants 2.87
+18:18:46 <jglick> Much of the rest I already marked `lts-candidate` anyway.
+18:18:47 <danielbeck> unclear why
+18:19:30 <danielbeck> jglick shouldn't we have seen problems in stapler by now?
+18:19:34 <oleg-nenashev> Stapler didn't blow up this time from what I see
+18:19:39 <rtyler> I said 2.87+
+18:19:40 <jglick> danielbeck: probably
+18:19:59 <jglick> FWIW I have no problem with 2.89.
+18:20:05 <danielbeck> rtyler right, but we were discussing 2.86/2.87
+18:20:09 <rtyler> there were a number of issues reported against 2.86 which is why I don't consider it viable
+18:20:32 <danielbeck> rtyler those are all present in newer releases, except the java.sun.com one
+18:20:42 <danielbeck> 5×JENKINS-47593 2×JENKINS-47393 < these are 2.86 and up
+18:20:50 <danielbeck> but the fix will need to be in the ec2-plugin anyway
+18:21:00 <jglick> Exactly.
+18:21:14 <danielbeck> so there's little point in going with an older core for this -- not a core regression per se
+18:21:29 <rtyler> ah
+18:22:31 <danielbeck> one of 2 modes in ec2 plugin uses CommandLauncher, which now needs script approval in 2.86+; and the plugin cannot handle that
+18:23:07 <rtyler> oh hey, there's ogondza
+18:23:26 <ogondza> at last
+18:23:30 <danielbeck> \o/
+18:23:30 <bitwiseman> Are the security fixes from 2.89 going to have to be back ported to the LTS?
+18:23:32 <jglick> Something we would want fixed for weekly users even if LTS were 2.85-, so I see little point in holding up LTS for that.
+18:23:41 <ogondza> bitwiseman: yes
+18:23:50 <danielbeck> jglick +1
+18:23:51 <jglick> (unless 2.89 itself is chosen)
+18:24:02 <ogondza> it is unlikely we would go with 2.85-, though
+18:24:02 <danielbeck> bitwiseman of course we'd backport 2.89 fixes
+18:24:21 <bitwiseman> So, if we're discussing 2.87, is there anything in 2.88 that we would not take?
+18:24:36 <danielbeck> well, the Russian
+18:24:43 <danielbeck> and the sidebar link
+18:24:54 <danielbeck> which is why we were considering 2.89
+18:24:59 <danielbeck> less backporting work
+18:25:08 <danielbeck> nothing really risky in 2.88
+18:25:19 <oleg-nenashev> famous last words (c)
+18:25:28 <oleg-nenashev> But seriously, I agree in this case
+18:25:37 <bitwiseman> right. I'm just saying if there's nothing risky in 2.88, then a vote for 2.87 is a vote for 2.89
+18:25:44 <danielbeck> basically
+18:26:40 <jglick> Let me just put in a +1 for 2.89 then. YOLO
+18:27:39 <oleg-nenashev> +1, why not
+18:27:47 <danielbeck> +1 we'll need to be somewhat more vigilant about newly reported issues in the next two weeks, but otherwise should be fine
+18:27:50 <ogondza> yes, let's go with 2.89
+18:27:52 <oleg-nenashev> +1 for anything in 2.87...2.89
+18:28:21 <markewaite> +1 for 2.89
+18:28:23 <andresrc> +1 for 2.89
+18:28:30 <danielbeck> WHAT COULD POSSIBLY GO WRONG
+18:29:09 <rtyler> that's the spirit
+18:29:15 <ogondza> #agreed next LTS will be based on 2.89
+18:29:32 <ogondza> #action ogondza will initiate the new LTS line
+18:30:30 <rtyler> welp
+18:30:34 <rtyler> *drumroll*
+18:30:37 <rtyler> shall we move on?
+18:30:50 <ogondza> moving on
+18:31:03 <rtyler> #topic Jenkins Enhancement Proposals
+18:31:29 <rtyler> #info https://github.com/jenkinsci/jep/tree/jep-1/jep/1
+18:31:46 <rtyler> JEP-1 contains a tremendous amount of work and discussion, so thanks everybody for participating in the process
+18:32:03 <rtyler> #info the pull request to master for JEP-1 is : https://github.com/jenkinsci/jep/pull/12
+18:33:09 <rtyler> the goal of this agenda item is to finalize agreement on this structure so we can start moving forward with it
+18:33:20 <rtyler> which jglick and ndeloof have already done :P
+18:33:21 <jglick> though if https://github.com/jenkinsci/jep/pull/29 were merged then it would already be in `master` :-)
+18:33:22 <rtyler> *claps*
+18:34:11 <oleg-nenashev> Is there a plan to approve the JEP process? Or **only** the structure?
+18:34:30 <rtyler> oleg-nenashev: I don't understand the distinction between those two
+18:34:52 <oleg-nenashev> 1) JEP becomes a formally approved process
+18:35:30 <oleg-nenashev> 2) We approve structure of JEP and give green light to starting drafts, but we still reserve to make changes according to the experience in drafts
+18:35:50 <rtyler> #1  is what we're doing here, but that doesn't mean #2 doesn't happen at any point in the future
+18:35:55 <rtyler> this should never ever be set in stone
+18:35:58 <danielbeck> I think changes to format can be done while we're using it
+18:36:15 <danielbeck> if we notice something doesn't work, revisit the process
+18:36:21 <oleg-nenashev> yep
+18:36:45 <oleg-nenashev> Then I just misread "agreement on this structure" as "agreement on JEP structure"
+18:36:51 <oleg-nenashev> thanks for the clarification
+18:36:55 <bitwiseman> agreed.  The process and the format/structure of the documents can change over time.
+18:37:31 <rtyler> #info kohsuke's absentee ballot vote for +1 https://groups.google.com/d/msg/jenkinsci-dev/5Lmd8GYt40w/tE7FTF-kCAAJ
+18:37:56 <jglick> FWIW, my +1 on JEP-1
+18:38:09 <rtyler> I'm obviously +1, and very excited that jglick and ndeloof have already started kicking the tires
+18:38:14 <danielbeck> +1 as well
+18:38:25 <danielbeck> can't wait to apply this
+18:39:05 <markewaite> +1 on JEP-1 for me
+18:39:15 <oleg-nenashev> I am +1. I have some reservations, but we need to go forward to enable major contributions. Whatever works.
+18:39:44 <oleg-nenashev> All my major concerns have been addressed, thanks to bitwiseman, kohsuke and rtyler
+18:40:25 <andresrc> +1
+18:41:00 <oleg-nenashev> orrc ogondza Slide-O-Mix: WDYT?
+18:41:11 <rtyler> #info michaelneale (of blueocean fame) sent his absentee ballot too https://groups.google.com/d/msg/jenkinsci-dev/5Lmd8GYt40w/hlwfZqkYBQAJ
+18:41:23 <rtyler> of +1 if that wasn't clear
+18:41:28 <danielbeck> as a reminder to the lurkers, today is your best chance to still stop this ;-)
+18:42:04 <ogondza> kudos for the tremendous effort behind all this. Here is my +1
+18:42:04 <oleg-nenashev> The Jenkins board is onboard, right?
+18:42:25 <olblak> +1
+18:42:25 <rtyler> I haven't heard from hare_brain in ages, so 2/3 are :P
+18:42:36 <oleg-nenashev> I have heard nothing from Dean as well. 2/3 are fine for me
+18:44:15 * danielbeck looks at the clock
+18:44:20 <oleg-nenashev> Probably it's a time to start countdown
+18:44:20 <rtyler> heh
+18:44:48 <bitwiseman> Do I have a vote? Do I even need to say +1.
+18:44:54 <rtyler> haha
+18:45:00 <danielbeck> we should have told abayer, he likes to be contrarian
+18:45:02 <oleg-nenashev> Everybody has a vote
+18:45:16 <oleg-nenashev> I will ping him
+18:45:22 * rtyler facepalms
+18:46:04 <rtyler> I'll give abayer a minute to wake up
+18:46:36 <rtyler> he's been vaguing following a process like this for declarative pipeline changes in pipeline-model-definition-plugin so I strongly doubt that he'd be a contrarian here :)
+18:46:51 <rtyler> but he would have to resist the subconscious urge :P
+18:47:19 <rtyler> alright, last call!
+18:47:50 <rtyler> I really do want to thank everybody who participated in the process of drafting JEP-1
+18:48:05 <oleg-nenashev> yeah, thanks all!
+18:48:26 <rtyler> I know it was messy at times, and even a bit heated at others, but community building is at times messy :)
+18:48:49 <andresrc> +1000
+18:48:51 <rtyler> I am really looking forward to some of the big improvements we can develop with JEP as a tool in our community toolbox
+18:49:36 <rtyler> #agreed Jenkins Enhancement Proposals as a process (defined in JEP-1) for improving Jenkins
+18:49:50 <danielbeck> I pinned the repo
+18:50:17 <rtyler> #action bitwiseman to merge the JEP-1 pull request and update the draft status appropriately to Final
+18:50:37 <rtyler> thanks danielbeck
+18:50:41 <bitwiseman> rtyler - it will be Active not final.
+18:50:46 <rtyler> or whatever
+18:51:32 <rtyler> because it's process, right
+18:51:38 * rtyler has a mushy brain
+18:51:41 <bitwiseman> yes.
+18:51:52 <bitwiseman> and there's still a bit to be done.  I'll move it to accepted.
+18:52:05 <autojack> erf, didn't realize we moved to 10am.
+18:52:07 <oleg-nenashev> shipit
+18:52:09 <rtyler> heh
+18:52:20 <rtyler> autojack: we didn't move, the US moved
+18:52:25 <rtyler> the meeting time hasn't changed :)
+18:52:49 <rtyler> #topic Next meeting
+18:53:29 <rtyler> as we come up on the holidays, I expect we're going to start skipping a meeting here or there, but looks like Nov 22nd is still a workday in the US :)
+18:53:58 <rtyler> #info Nov 22nd, 18:00 UTC
+18:54:07 <rtyler> anything else before we call it a day?
+18:54:42 <rtyler> going once...
+18:54:53 <rtyler> going twice.....
+18:55:04 <rtyler> #endmeeting

@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app218.us.archive.org';v.server_ms=642;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-09-26-18.02.log.html","20211027233045","https://web.archive.org/","web","/_static/",
+	      "1635377445");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:02:38</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:02:38</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:41</span><span class="nk"> &lt;danielbeck&gt;</span> hi everyone!
+<a name="l-4"></a><span class="tm">18:02:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> o/
+<a name="l-5"></a><span class="tm">18:02:45</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler kohsuke</span>
+<a name="l-6"></a><span class="tm">18:02:45</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-7"></a><span class="tm">18:03:00</span><span class="nk"> &lt;danielbeck&gt;</span> apparently we don't have an agenda
+<a name="l-8"></a><span class="tm">18:03:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I also added Hacktoberfest to the agenda, but I messed up the dates
+<a name="l-9"></a><span class="tm">18:03:08</span><span class="nk"> &lt;danielbeck&gt;</span> ah, ok
+<a name="l-10"></a><span class="tm">18:03:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> + LTS check
+<a name="l-11"></a><span class="tm">18:03:14</span><span class="nk"> &lt;danielbeck&gt;</span> let's go through the usual ones, and then that
+<a name="l-12"></a><span class="tm">18:03:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> sure
+<a name="l-13"></a><span class="tm">18:03:19</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">last meeting's actions</span>
+<a name="l-14"></a><span class="tm">18:03:38</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-09-12-18.00.html</span>
+<a name="l-15"></a><span class="tm">18:03:40</span><span class="nk"> &lt;ogondza&gt;</span> the .1 got out. thanks KK
+<a name="l-16"></a><span class="tm">18:03:42</span><span class="nk"> &lt;rtyler&gt;</span> woop
+<a name="l-17"></a><span class="tm">18:03:44</span><span class="nk"> &lt;danielbeck&gt;</span> yup
+<a name="l-18"></a><span class="tm">18:03:51</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-19"></a><span class="tm">18:03:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yeah. so far so good
+<a name="l-20"></a><span class="tm">18:03:54</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza \o/
+<a name="l-21"></a><span class="tm">18:04:10</span><span class="nk"> &lt;ogondza&gt;</span> the backports are out, have to recheck the results
+<a name="l-22"></a><span class="tm">18:04:19</span><span class="nk"> &lt;ogondza&gt;</span> there is a question though
+<a name="l-23"></a><span class="tm">18:04:29</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.138.2-fixed</span>
+<a name="l-24"></a><span class="tm">18:04:32</span><span class="nk"> &lt;ogondza&gt;</span> https://issues.jenkins-ci.org/browse/JENKINS-53768 adds public api
+<a name="l-25"></a><span class="tm">18:04:46</span><span class="nk"> &lt;ogondza&gt;</span> which is sort of the point of inclusion
+<a name="l-26"></a><span class="tm">18:05:02</span><span class="nk"> &lt;ogondza&gt;</span> I lean towards having it in but is sort of unusual
+<a name="l-27"></a><span class="tm">18:05:14 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-28"></a><span class="tm">18:05:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ehhm, unusual for sure
+<a name="l-29"></a><span class="tm">18:05:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Should we restrict it at least?
+<a name="l-30"></a><span class="tm">18:05:50</span><span class="nk"> &lt;ogondza&gt;</span> that was my question, restrict or add unrestricted
+<a name="l-31"></a><span class="tm">18:05:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> or revert
+<a name="l-32"></a><span class="tm">18:06:02</span><span class="nk"> &lt;rtyler&gt;</span> for whatever my opinoin is worth, I'm in favor of it, helps us answer good questions for removing code, etc
+<a name="l-33"></a><span class="tm">18:06:11</span><span class="nk"> &lt;danielbeck&gt;</span> having it in as an early backport seems safe to me given how standalone it is
+<a name="l-34"></a><span class="tm">18:06:20</span><span class="nk"> &lt;danielbeck&gt;</span> easy to pull out in case of trouble
+<a name="l-35"></a><span class="tm">18:06:22</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> well , that is an option...\
+<a name="l-36"></a><span class="tm">18:06:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I do not mind if we keep it
+<a name="l-37"></a><span class="tm">18:06:42</span><span class="nk"> &lt;danielbeck&gt;</span> restricting would make it much less useful if we expect plugins to pick it up
+<a name="l-38"></a><span class="tm">18:06:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> assuming that APIs are restricted
+<a name="l-39"></a><span class="tm">18:06:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Note that it also introduces new UIs
+<a name="l-40"></a><span class="tm">18:07:01</span><span class="nk"> &lt;danielbeck&gt;</span> well, extends an existing one
+<a name="l-41"></a><span class="tm">18:07:11</span><span class="nk"> &lt;danielbeck&gt;</span> the help on anon usage stats existed before
+<a name="l-42"></a><span class="tm">18:07:30</span><span class="nk"> &lt;ogondza&gt;</span> there is no problem of adding UI
+<a name="l-43"></a><span class="tm">18:07:42</span><span class="nk"> &lt;danielbeck&gt;</span> for the basic extension point, plugins will need to be written against the earliest core that has this
+<a name="l-44"></a><span class="tm">18:08:04</span><span class="nk"> &lt;ogondza&gt;</span> the API worries me
+<a name="l-45"></a><span class="tm">18:08:31</span><span class="nk"> &lt;danielbeck&gt;</span> because of the usual weekly incompatibility problem? or something else?
+<a name="l-46"></a><span class="tm">18:08:34 </span><span class="nka">* batmat</span> <span class="ac">thinks about @Beta ?</span>
+<a name="l-47"></a><span class="tm">18:08:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Beta may be OK
+<a name="l-48"></a><span class="tm">18:08:54</span><span class="nk"> &lt;danielbeck&gt;</span> oooh, beta might be good
+<a name="l-49"></a><span class="tm">18:08:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> though it's also unusual
+<a name="l-50"></a><span class="tm">18:09:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Note that we had crappy errors with Beta extension points in JCasC
+<a name="l-51"></a><span class="tm">18:09:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would not do so without testing
+<a name="l-52"></a><span class="tm">18:09:26</span><span class="nk"> &lt;ogondza&gt;</span> Note that there wold be something wrong with the API but reverting/restricting in .3 would be pain
+<a name="l-53"></a><span class="tm">18:10:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> @Restricted(NoExternalUse) IMO
+<a name="l-54"></a><span class="tm">18:10:22</span><span class="nk"> &lt;danielbeck&gt;</span> makes it much less useful though for plugins :|
+<a name="l-55"></a><span class="tm">18:10:37</span><span class="nk"> &lt;ogondza&gt;</span> but that will force plugin authors use newer core preventing it to be used in this LTS line, no?
+<a name="l-56"></a><span class="tm">18:10:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> For a while
+<a name="l-57"></a><span class="tm">18:10:46</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza yes.
+<a name="l-58"></a><span class="tm">18:10:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> That's how Jenkins always worked
+<a name="l-59"></a><span class="tm">18:11:28</span><span class="nk"> &lt;ogondza&gt;</span> yes, but I understood the wole point of this is the new API so I do not see much different between skippping and restricting
+<a name="l-60"></a><span class="tm">18:11:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We could add more complex Version compatibility logic than just "greater than" to plugins, but it's way out of the scope right now
+<a name="l-61"></a><span class="tm">18:11:49</span><span class="nk"> &lt;danielbeck&gt;</span> we might get by by going crazy reflection in core to collect data from there, rather than plugins
+<a name="l-62"></a><span class="tm">18:11:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Restricted API still allows using it in the core
+<a name="l-63"></a><span class="tm">18:12:17</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza well, the core implementation is already useful
+<a name="l-64"></a><span class="tm">18:12:27</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza and having that propagated to LTS early is important already
+<a name="l-65"></a><span class="tm">18:13:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> For quick adoption in plugins generally you need something better than Core API
+<a name="l-66"></a><span class="tm">18:13:10</span><span class="nk"> &lt;ogondza&gt;</span> oh,there is one, right
+<a name="l-67"></a><span class="tm">18:13:24</span><span class="nk"> &lt;danielbeck&gt;</span> we're at several k data submissions already :)
+<a name="l-68"></a><span class="tm">18:13:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Depending on latest LTS is not an option for many plugin maintainers
+<a name="l-69"></a><span class="tm">18:14:18</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> suggesting unrestricted backport?
+<a name="l-70"></a><span class="tm">18:14:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am -1 for non-restricted/Beta API, and +0.5 for Restricted
+<a name="l-71"></a><span class="tm">18:14:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Un
+<a name="l-72"></a><span class="tm">18:15:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> unrestricted backport will blow up in our face
+<a name="l-73"></a><span class="tm">18:15:32</span><span class="nk"> &lt;ogondza&gt;</span> with the core impl, I am in favor of restricted backport
+<a name="l-74"></a><span class="tm">18:15:36</span><span class="nk"> &lt;danielbeck&gt;</span> I think we can get by with having it restricted. Would be great not to, but I understand the concerns.
+<a name="l-75"></a><span class="tm">18:16:03</span><span class="nk"> &lt;danielbeck&gt;</span> Would like to understand the problem with beta though
+<a name="l-76"></a><span class="tm">18:16:21 </span><span class="nka">* oleg-nenashev</span> <span class="ac">writing</span>
+<a name="l-77"></a><span class="tm">18:17:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So the problem with Beta is that you will still permit the plugin to be installed e.g. on 2.139 which has no extension points
+<a name="l-78"></a><span class="tm">18:17:54</span><span class="nk"> &lt;danielbeck&gt;</span> the API is such that Extension(optional = true) is all you need for it to not blow up
+<a name="l-79"></a><span class="tm">18:18:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Then, mvn hpi:run does not run well for pre-2.121.x. Should not be a problem for 1.238, but have not tested
+<a name="l-80"></a><span class="tm">18:18:11</span><span class="nk"> &lt;danielbeck&gt;</span> it's not a new method on existing types or whatever
+<a name="l-81"></a><span class="tm">18:18:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe
+<a name="l-82"></a><span class="tm">18:19:09</span><span class="nk"> &lt;ogondza&gt;</span> well, new LTS line is just 10 weeks away
+<a name="l-83"></a><span class="tm">18:19:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I have never tried optional Extensions for core things. Sounds a bit strange, but it likely works
+<a name="l-84"></a><span class="tm">18:19:15</span><span class="nk"> &lt;danielbeck&gt;</span> Seems both ogondza and oleg-nenashev are in favor of restricting, so that works for me. Any further opinions?
+<a name="l-85"></a><span class="tm">18:19:26</span><span class="nk"> &lt;ogondza&gt;</span> +1
+<a name="l-86"></a><span class="tm">18:19:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +0.5
+<a name="l-87"></a><span class="tm">18:19:51</span><span class="nk"> &lt;danielbeck&gt;</span> which is the parent pom I need to ignore @Restricted again? :-P
+<a name="l-88"></a><span class="tm">18:20:04</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">restrict backported telemetry extension point</span>
+<a name="l-89"></a><span class="tm">18:20:07</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agree </span><span class="cmdline">restrict backported telemetry extension point</span>
+<a name="l-90"></a><span class="tm">18:20:10</span><span class="nk"> &lt;danielbeck&gt;</span> (just in case)
+<a name="l-91"></a><span class="tm">18:20:27</span><span class="nk"> &lt;danielbeck&gt;</span> I think that was it for the LTS?
+<a name="l-92"></a><span class="tm">18:20:37</span><span class="nk"> &lt;ogondza&gt;</span> it was, thanks
+<a name="l-93"></a><span class="tm">18:20:44</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-94"></a><span class="tm">18:20:47</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Participating in Hacktoberfest</span>
+<a name="l-95"></a><span class="tm">18:20:48</span><span class="nk"> &lt;ogondza&gt;</span> will to my homework tommoworw morning
+<a name="l-96"></a><span class="tm">18:20:57</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev you're up :)
+<a name="l-97"></a><span class="tm">18:21:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/YYG1CyvcbgE</span>
+<a name="l-98"></a><span class="tm">18:21:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Soo... do we want to participate this year?
+<a name="l-99"></a><span class="tm">18:21:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Last year we had ~20 unique contributors, ~15 of them were newcomers in Jenkins</span>
+<a name="l-100"></a><span class="tm">18:22:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Not that many
+<a name="l-101"></a><span class="tm">18:22:17</span><span class="nk"> &lt;danielbeck&gt;</span> what's the effort to result ratio? Do we consider it worth it?
+<a name="l-102"></a><span class="tm">18:22:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But this year we have an opportunity to promote it at Jenkins meetups &amp; Co
+<a name="l-103"></a><span class="tm">18:22:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> Hacktoberfest costs almost nothing excepting review capacity
+<a name="l-104"></a><span class="tm">18:22:50</span><span class="nk"> &lt;danielbeck&gt;</span> Most I remember is the mess around the 'new view' PRs to core, but I'm told that's only a really minor part of it
+<a name="l-105"></a><span class="tm">18:23:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, that was unfortunate
+<a name="l-106"></a><span class="tm">18:23:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I believe it should not have been marked as newbie friendly
+<a name="l-107"></a><span class="tm">18:23:32</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev do you expect to be able to properly handle reviews? How was contributors' experience with unmaintained plugins?
+<a name="l-108"></a><span class="tm">18:23:56</span><span class="nk"> &lt;danielbeck&gt;</span> how many committed reviewers do you expect to need before we can properly support this?
+<a name="l-109"></a><span class="tm">18:24:04</span><span class="nk"> &lt;rtyler&gt;</span> there's an event at GitHub in SF next Monday which I'm hoping to get to, it's a Hacktoberfest kickoff
+<a name="l-110"></a><span class="tm">18:24:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I remove newbie-friendly labels in non-maintained plugins
+<a name="l-111"></a><span class="tm">18:24:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, somebody may still take it
+<a name="l-112"></a><span class="tm">18:24:29</span><span class="nk"> &lt;rtyler&gt;</span> if all we need is newbie-friendly labeled task, then I can go through the Evergreen stuff, I know olblak already covered INFRA
+<a name="l-113"></a><span class="tm">18:24:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I can do some additions in JENKINS
+<a name="l-114"></a><span class="tm">18:24:49</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler ideally some followthrough that PRs aren't stuck in limbo forever
+<a name="l-115"></a><span class="tm">18:25:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we have some tasks after Google Code-In preps
+<a name="l-116"></a><span class="tm">18:25:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But yes, some review capacity will be really helpful
+<a name="l-117"></a><span class="tm">18:25:26</span><span class="nk"> &lt;rtyler&gt;</span> well, Evergreen and Infra PRs are moving expediently through :)
+<a name="l-118"></a><span class="tm">18:25:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Last year it was mostly me and Mark IIRC
+<a name="l-119"></a><span class="tm">18:25:39</span><span class="nk"> &lt;rtyler&gt;</span> don't know what to say about the rest of y'all slackers :P
+<a name="l-120"></a><span class="tm">18:26:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I believe it worth trying
+<a name="l-121"></a><span class="tm">18:26:06</span><span class="nk"> &lt;danielbeck&gt;</span> can we get JCasC or Jenkins X to sign up for this? might be useful to have some interesting projects involved?
+<a name="l-122"></a><span class="tm">18:26:07</span><span class="nk"> &lt;rtyler&gt;</span> agreed
+<a name="l-123"></a><span class="tm">18:26:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We can limit the list of components
+<a name="l-124"></a><span class="tm">18:26:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Consider JCasC as signed up, I am on it
+<a name="l-125"></a><span class="tm">18:26:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I wasn't aware from your email of much work?
+<a name="l-126"></a><span class="tm">18:26:45</span><span class="nk"> &lt;rtyler&gt;</span> I mean, nothing organizationally super special we /need/ to do in order to participate
+<a name="l-127"></a><span class="tm">18:26:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we don't
+<a name="l-128"></a><span class="tm">18:27:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have everything more-or-less set up from 2017
+<a name="l-129"></a><span class="tm">18:27:17</span><span class="nk"> &lt;danielbeck&gt;</span> FWIW my concern is mostly around making sure it's not a shitty experience for participants
+<a name="l-130"></a><span class="tm">18:27:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> that should be your concern 24/7 :)
+<a name="l-131"></a><span class="tm">18:27:43</span><span class="nk"> &lt;rtyler&gt;</span> reminds me of bitwiseman's ignite talk at the contributor summit :)
+<a name="l-132"></a><span class="tm">18:27:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> @jenkinsci/hacktoberfet mentions are the problem, but we fallback to Gitter channel this time
+<a name="l-133"></a><span class="tm">18:27:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Jenkinci/hacktoberfest
+<a name="l-134"></a><span class="tm">18:27:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> so that People can ping there
+<a name="l-135"></a><span class="tm">18:28:08</span><span class="nk"> &lt;rtyler&gt;</span> the jenkinsci/jenkins gitter channel is good enough for me tbh
+<a name="l-136"></a><span class="tm">18:28:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> maybe
+<a name="l-137"></a><span class="tm">18:28:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It just has some traffic so we may miss pings
+<a name="l-138"></a><span class="tm">18:29:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But whatever, the infra overhead is just a blogpost (mostly copy-paster) + some guidelines
+<a name="l-139"></a><span class="tm">18:29:12</span><span class="nk"> &lt;bitwiseman&gt;</span> channels are easy to make on Gitter.
+<a name="l-140"></a><span class="tm">18:29:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes
+<a name="l-141"></a><span class="tm">18:29:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe some swag for Top contributors
+<a name="l-142"></a><span class="tm">18:29:48</span><span class="nk"> &lt;rtyler&gt;</span> I'm experiencing channel fatigue, so please keep that in mind for others like me who are in elveenty billion channels already
+<a name="l-143"></a><span class="tm">18:29:55</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler Sure, but If we get people to show up it will be an unusual influx of newbies to potentially have to guide through getting their contribution in shape. 1 or 2 at a time is easer than 10-20.
+<a name="l-144"></a><span class="tm">18:30:21</span><span class="nk"> &lt;danielbeck&gt;</span> so I'd like to make sure experienced contributors are ready to handle this.
+<a name="l-145"></a><span class="tm">18:30:39</span><span class="nk"> &lt;rtyler&gt;</span> based on my experience with hacktoberfest, it's less total newbies like code-in or GSoC per se
+<a name="l-146"></a><span class="tm">18:31:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I do not mind if we get newbie buzz in jenkinsci/jenkins
+<a name="l-147"></a><span class="tm">18:31:32 </span><span class="nka">* rtyler</span> <span class="ac">has participated in hacktoberfest in the past :)</span>
+<a name="l-148"></a><span class="tm">18:32:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">2017 announcement: https://jenkins.io/blog/2017/10/06/hacktoberfest/</span>
+<a name="l-149"></a><span class="tm">18:32:20</span><span class="nk"> &lt;rtyler&gt;</span> anyways, oleg-nenashev was there anything specific you were looking to accomplish here?
+<a name="l-150"></a><span class="tm">18:32:28</span><span class="nk"> &lt;rtyler&gt;</span> or just get th e idea more thoroughly socialized?
+<a name="l-151"></a><span class="tm">18:32:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Socialization + ensuring there is no -1 votes
+<a name="l-152"></a><span class="tm">18:33:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I understand that it may cause some extra load on maintainers, so checking it just in case
+<a name="l-153"></a><span class="tm">18:33:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> If nobody is against, I am ready to proceed
+<a name="l-154"></a><span class="tm">18:33:32</span><span class="nk"> &lt;danielbeck&gt;</span> IMO a great idea, so preemptive +1
+<a name="l-155"></a><span class="tm">18:33:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> WDYT after the discussion?
+<a name="l-156"></a><span class="tm">18:33:42</span><span class="nk"> &lt;danielbeck&gt;</span> go for it, was never the question
+<a name="l-157"></a><span class="tm">18:33:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> race condition
+<a name="l-158"></a><span class="tm">18:34:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also, anybody is around in Nice on Oct 22?
+<a name="l-159"></a><span class="tm">18:34:19</span><span class="nk"> &lt;danielbeck&gt;</span> haven't booked yet
+<a name="l-160"></a><span class="tm">18:34:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> If yes, I can try to organize a mini-hackfest there
+<a name="l-161"></a><span class="tm">18:34:56</span><span class="nk"> &lt;rtyler&gt;</span> I won't be there, iI'll be there in spirit though
+<a name="l-162"></a><span class="tm">18:34:57</span><span class="nk"> &lt;danielbeck&gt;</span> probably best planned elsewhere
+<a name="l-163"></a><span class="tm">18:35:01</span><span class="nk"> &lt;rtyler&gt;</span> as a spooky ghost
+<a name="l-164"></a><span class="tm">18:35:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes, elsewhere
+<a name="l-165"></a><span class="tm">18:35:27</span><span class="nk"> &lt;danielbeck&gt;</span> so I think you're good to go on Hacktoberfest
+<a name="l-166"></a><span class="tm">18:35:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Sonoma County Hackhergarten would do the job as well ;)
+<a name="l-167"></a><span class="tm">18:35:30</span><span class="nk"> &lt;danielbeck&gt;</span> anything else?
+<a name="l-168"></a><span class="tm">18:35:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> not from me
+<a name="l-169"></a><span class="tm">18:35:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I believe it's +1
+<a name="l-170"></a><span class="tm">18:36:04 </span><span class="nka">* rtyler</span> <span class="ac">claps</span>
+<a name="l-171"></a><span class="tm">18:36:20</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-172"></a><span class="tm">18:36:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action: </span><span class="cmdline">oleg_nenashevto stage the Hacktoberfest announcement so that we run it when Hacktoberfest is announced</span>
+<a name="l-173"></a><span class="tm">18:36:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I'll ping you if I'm able to go to the event next Monday
+<a name="l-174"></a><span class="tm">18:36:59</span><span class="nk"> &lt;rtyler&gt;</span> in which case, I would want to help get that blog published the morning of the 1st
+<a name="l-175"></a><span class="tm">18:37:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks!
+<a name="l-176"></a><span class="tm">18:37:27</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-177"></a><span class="tm">18:37:29</span><span class="nk"> &lt;danielbeck&gt;</span> for real now :)
+<a name="l-178"></a><span class="tm">18:37:33</span><span class="nk"> &lt;danielbeck&gt;</span> next meeting would be October 10
+<a name="l-179"></a><span class="tm">18:37:46</span><span class="nk"> &lt;danielbeck&gt;</span> now we're well into DST change I think
+<a name="l-180"></a><span class="tm">18:37:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We are in UTC now
+<a name="l-181"></a><span class="tm">18:38:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> so it should be better
+<a name="l-182"></a><span class="tm">18:38:05</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-183"></a><span class="tm">18:38:12</span><span class="nk"> &lt;danielbeck&gt;</span> well, yes, which means it's no longer 8pm but 7pm or whatever
+<a name="l-184"></a><span class="tm">18:38:30</span><span class="nk"> &lt;danielbeck&gt;</span> so make sure you know what local time corresponds to 6pm UTC
+<a name="l-185"></a><span class="tm">18:38:41</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:30:45 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:07:06 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 452.401
+  exclusion.robots: 0.112
+  exclusion.robots.policy: 0.104
+  cdx.remote: 0.083
+  esindex: 0.012
+  LoadShardBlock: 73.07 (3)
+  PetaboxLoader3.datanode: 68.293 (4)
+  CDXLines.iter: 22.516 (3)
+  load_resource: 175.454
+  PetaboxLoader3.resolve: 145.691
+-->

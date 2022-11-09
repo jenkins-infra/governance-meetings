@@ -1,0 +1,296 @@
+18:00:06 <rtyler> #startmeeting
+18:00:06 <robobutler> Let the Jenkins meeting commence!
+18:00:10 <rtyler> #chairs danielbeck hare_brain kohsuke rtyler
+18:00:19 <rtyler> every time
+18:00:23 <rtyler> #chair danielbeck hare_brain kohsuke rtyler
+18:00:23 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:00:24 <kohsuke> Yay
+18:00:48 <rtyler> #info agenda https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-June22meeting
+18:00:53 <rtyler> #topic last meeting actions
+18:01:01 <hare_brain> I'm in the middle of a production firedrill so not really paying attention here today.
+18:01:05 <rtyler> rgr
+18:01:12 <kohsuke> good luck!
+18:01:26 <rtyler> ogondza likely isn't going to be here either, but he mentioned on the mailing list that the RC for the next LTS should be ready to go
+18:01:31 <rtyler> see the dev list for more info there
+18:01:46 <rtyler> danielbeck has prepared the new patron messages for approval, we'll get to that later
+18:02:10 <rtyler> and batmat and I did discuss some usage statistics/census concerns that danielbeck had last meeting, which we'll also revisit later
+18:02:16 <rtyler> that's it for our outstanding action items though
+18:02:29 <rtyler> #topic LTS status check
+18:02:39 <kohsuke> I guess we just did that
+18:02:49 <rtyler> I was going to add some things
+18:03:05 <rtyler> #info JENKINS-35641 and JENKINS-34923 were not backported according to oliver, he wishes for them to have more soak-time
+18:03:27 <rtyler> #info at ogondza's next available time, he intends to cut the first new LTS RC
+18:03:33 <oleg-nenashev> The LTS backports LGTM
+18:03:37 <rtyler> any questions or other discussion items we have here?
+18:04:17 <kohsuke> nope
+18:04:22 * rtyler waits patiently
+18:04:33 <rtyler> #topic GSoC status check
+18:04:36 <rtyler> oleg-nenashev: all yours
+18:04:58 <oleg-nenashev> #info Tomorrow we have mid-term presentations by students: https://jenkins.io/blog/2016/06/21/gsoc-midterm-presentations-ann/
+18:05:24 <oleg-nenashev> #info: 4 projects will be presented. We have 2 meetings on June 23 and June 24
+18:05:52 <oleg-nenashev> No other major updates right now
+18:06:06 <kohsuke> Is it fair to say you are looking for people there to send more love to students?
+18:06:35 <rtyler> what does that even mean
+18:06:43 <oleg-nenashev> #info Mid-term evaluation deadline is June 27. And yes, we are looking for more participants from the developer community
+18:06:46 <kohsuke> encouragement, praise, appreciation, etc
+18:07:24 <rtyler> oleg-nenashev: anything else?
+18:07:31 <oleg-nenashev> no from my side
+18:07:37 <rtyler> alrighty
+18:07:39 <oleg-nenashev> Are there any other updates?
+18:08:31 <oleg-nenashev> 3
+18:08:32 <oleg-nenashev> 2
+18:08:34 <oleg-nenashev> 1
+18:08:36 <oleg-nenashev> 0
+18:08:41 <rtyler> #topic Security officer update
+18:09:00 <rtyler> danielbeck: isn't really here to give much of an update, but I asked him earlier, outside of the security advisory from earlier this week there's nothing to report
+18:09:15 <rtyler> #topic Events officer update
+18:09:19 <rtyler> alyssat: you're up
+18:09:38 <alyssat> 1)	Jenkins World planning is in full swing. Agenda has been posted
+18:09:48 <alyssat> #info Jenkins World Agenda: https://www.cloudbees.com/juc/agenda
+18:10:04 <alyssat> 2)	There are currently 135 registrations.
+18:10:18 <alyssat> 3)	We are also planning a Contributor Hackathon for Sept 16 & 17
+18:10:34 <alyssat> 4)	At the conference there will be Ask the Experts booth – I have about 14 folks to man this booth. Not all will be at the booth at the same time, of course. But if anyone wants to connect w/ the attendees and provide Jenkins support to attendees, pls let me know.
+18:10:35 <oleg-nenashev> nice
+18:11:01 <oleg-nenashev> Will we have more space at the booth this time?
+18:11:05 <alyssat> 5) a contributor/JAM leader appreciation evening is also being planned for Sept 13
+18:11:22 <oleg-nenashev> JUC London was really crowded on breaks
+18:11:41 <alyssat> JUC Israel is currently sold out
+18:12:09 * kohsuke tests lag
+18:12:19 <alyssat> JAM activities is going well. JAM Paris was created this morning
+18:12:44 <alyssat> I think those are the high lights
+18:12:54 <oleg-nenashev> JAM Belarus has been created yesterday
+18:13:06 <alyssat> sweet
+18:13:11 <rtyler> alyssat: see oleg-nenashev's question?
+18:13:30 <oleg-nenashev> Outside the common org. Maybe alyssat wants to negotiate with KostyaSha on it
+18:13:47 <alyssat> ah! yes! we'll have a much bigger space this time
+18:13:52 <oleg-nenashev> yey
+18:14:48 <alyssat> oleg-nenashev: what did you want me to negotiate w/ KostyaSha about? was it JAM Belarus?
+18:14:57 <oleg-nenashev> yep
+18:15:00 <rtyler> #info There will be a Contributor Summit at Jenkins World on tuesday the 13th
+18:15:18 <rtyler> that will follow a similar pattern to the previous Contributor Summits we have had at FOSDEM, etc
+18:15:27 <alyssat> oleg-nenashev: we can chat more off line
+18:15:40 <rtyler> any other events things to discuss/update?
+18:15:41 <oleg-nenashev> agreed
+18:15:50 <oleg-nenashev> I have another minor update. Jenkins community has been in http://2016.secr.ru/lang/en/ - one of the biggest software conferences in Russia.
+18:16:04 <rtyler> neet
+18:16:11 <oleg-nenashev> #action: oleg-nenashev to follow-up on SECR in the mailing list
+18:16:28 <oleg-nenashev> * has been invited to participate
+18:16:34 <oleg-nenashev> Sorry for confusion
+18:17:07 <rtyler> alyssat: that it?
+18:17:17 <alyssat> we should get the meetup page for the Contributor Summit up shortly
+18:17:26 <oleg-nenashev> cool
+18:17:27 * rtyler nods
+18:17:28 <alyssat> this it
+18:17:32 <oleg-nenashev> And for hackaton?
+18:17:52 <kohsuke> that one is not ready yet
+18:17:56 <rtyler> I think we'll need to manage that outside of meetup.com to be honest
+18:18:04 <oleg-nenashev> okay, makes sense
+18:18:07 <alyssat> the hackathon is for those who attended the fosdem summit
+18:18:18 <rtyler> since CloudBees was going to fund some lodging and foodstuffs, the inaccurate RSVP counts for meetup can be a problem
+18:18:29 <rtyler> but still much to be decided there
+18:18:48 <rtyler> moving on
+18:18:51 <rtyler> #topic Release officer update
+18:18:59 <rtyler> ogondza is not here, so no updates here
+18:19:02 <rtyler> #topic Infra status update
+18:19:15 * rtyler pulls out his spiral notebook
+18:19:24 <rtyler> #infra JIRA has been upgraded to JIRA 7
+18:19:25 <rtyler> er
+18:19:31 <rtyler> #info JIRA has been upgraded to JIRA7
+18:19:45 <rtyler> this makes all our softwares more agile, or something :)
+18:19:52 <kohsuke> much fall out from that
+18:20:01 <rtyler> an unintended side-effect of this was that the SOAP API was nuked in JIRA7
+18:20:02 <oleg-nenashev> Requires some fixes
+18:20:11 <rtyler> and I wasn't previously aware of how much relied on that SOAP API
+18:20:18 <rtyler> which had been deprecated in JIRA 5 iirc
+18:20:20 * rtyler sighs
+18:20:33 * oleg-nenashev is working on IRC bot fixes
+18:20:41 <rtyler> \o/
+18:20:51 <kohsuke> I've updated lib-jira-api so hopefully it'd be useful
+18:21:11 <kohsuke> It took me a while to assemble the right dependencies. Atlassian's own documentation is outdated.
+18:21:18 <rtyler> I'm not sure what's depending on that, but from what  Ican tell the services that interact with JIRA are:
+18:21:21 <rtyler> accounts app
+18:21:21 <rtyler> ircbot
+18:21:23 <oleg-nenashev> abayer also fixed some stuff on this front
+18:21:26 <rtyler> some release process
+18:21:30 <rtyler> I thnk that might be it
+18:21:34 <kohsuke> #info https://github.com/jenkinsci/lib-jira-api
+18:21:43 <rtyler> OH, the SCM linker bot thing, which runs on a kohsuke machine somewhere
+18:21:48 <oleg-nenashev> #info https://github.com/jenkins-infra/ircbot/pull/29
+18:21:49 <danielbeck> is the account app fixed? The account sync thing?
+18:21:52 <rtyler> there's an old SPoF ticket somewhere in the backlog associated with that
+18:21:55 <rtyler> danielbeck: yes
+18:22:13 <oleg-nenashev> We have a problem with JIRA Scraper
+18:22:20 <kohsuke> OK, thanks for that heads up rtyler
+18:22:24 <kohsuke> I'll fix that one
+18:22:27 <oleg-nenashev> It also uses some old Atlassian libs
+18:22:33 <kohsuke> What's JIRA scraper?
+18:22:49 <oleg-nenashev> #info https://github.com/jenkinsci/lib-jira-scraper
+18:22:58 <kohsuke> ah
+18:23:02 <oleg-nenashev> REST Client for particular JIRA commands
+18:23:28 <oleg-nenashev> The libs beneath are not compatible with modern atlassian libs. Reworking it in IRCBot
+18:23:31 <rtyler> suffice it to say, there's still some legacy messiness which the JIRA7 upgrade uncovered, which is still being fixed
+18:23:38 * rtyler continues with his update
+18:23:49 <rtyler> #info we have Azure
+18:23:56 <oleg-nenashev> \o/
+18:24:01 <kohsuke> (with all that said, congrats to update of JIRA)
+18:24:12 <rtyler> since the last meeting the actual credentials/API tokens for the Jenkins project have been 'delivered' which means we can start spinning up infrastructure on azure
+18:24:23 <danielbeck> \o/
+18:24:27 <rtyler> my working document for migration is here: https://wiki.jenkins-ci.org/display/infra/Azure+Migration+Project+Plan
+18:24:40 <rtyler> I haven't had the time to work on it for the past week or two unfortunately
+18:24:43 <danielbeck> #info https://wiki.jenkins-ci.org/display/JENKINS/Azure+Migration+Project+Plan
+18:24:48 <danielbeck> (infra wiki is restricted)
+18:24:49 <rtyler> er, whoops
+18:24:54 <rtyler> that page was moved anyways
+18:25:00 <rtyler> stupid autocomplete in my browser :)
+18:25:23 <oleg-nenashev> Do we have an EPIC for this plan?
+18:25:32 <oleg-nenashev> maybe too early
+18:25:34 <rtyler> no
+18:25:38 <rtyler> I think it's probably too early really
+18:25:52 * oleg-nenashev agrees
+18:25:52 <rtyler> I have some basics of /what/ needs to be done, not quite scoped out enough on /how/
+18:26:15 <rtyler> the first 'thing' that azure is likely going to resolve thouhg, is this ticket about windows agents for ci.jenkins.io https://issues.jenkins-ci.org/browse/INFRA-606
+18:26:29 <oleg-nenashev> No wonder
+18:26:43 <rtyler> because hey why not :)
+18:26:47 <oleg-nenashev> Good start with this document in any case. thumbs up
+18:27:11 <rtyler> if there are any volunteers who want to start researching terraform (https://terraform.io) and azure integration with me, I would appreciate any help
+18:27:23 <rtyler> that's about it for my update, any questions before we move on?
+18:27:46 * batmat is pondering that
+18:27:59 <kohsuke> terraform is bit painful to be used by a team due to lack of state sharing
+18:28:19 <kohsuke> ... unless we also use their state sharing service (atlas?)
+18:28:37 <rtyler> define state sharing
+18:28:48 <kohsuke> I can take this off-meeting with you
+18:28:49 <rtyler> also, are you volunteering to help research the viability here
+18:28:59 <rtyler> or just throwing opinions out there?: P
+18:29:11 <kohsuke> I'm sharing my experience of using it
+18:29:50 <rtyler> the high level requirement is that resources (load balancers, machines, databases, etc) will need to be managed more explicitly then they are now if we're to be successful on Azure
+18:30:07 <rtyler> terraform is one potential possibility there, as is "out of the box" Azure Resource Manager templates
+18:30:40 <rtyler> (i'm sure there are other lolzy options too)
+18:30:58 <rtyler> but anyways, plenty to be discussed in #jenkins-infra or the mailing lists on this front
+18:31:08 * rtyler continues through the agenda
+18:31:30 <rtyler> #topic Licensing and unrestricted access of Usage Statistics (aka "census data")
+18:31:39 <rtyler> we discussed this last meeting, but unfortunately batmat wasn't here
+18:32:01 <rtyler> and there were some additional questions by danielbeck which needed to be answered before we move forward
+18:32:27 <rtyler> batmat: I hope you're awake now! :)
+18:32:50 <danielbeck> #info http://lists.jenkins-ci.org/pipermail/jenkins-infra/2016-June/000770.html and the thread preceding it
+18:32:51 <batmat> I was awake last time too! just not in front of the computer :)
+18:33:05 <rtyler> heh
+18:33:25 <batmat> to sum up, all this originally comes from JENKINS-26466
+18:33:34 <danielbeck> https://issues.jenkins-ci.org/browse/JENKINS-26466
+18:33:40 <batmat> hence trying to extract things from the core, here node_monitors
+18:33:47 <rtyler> I unforrunately haven't had a chance to respond to your email here batmat, i'm still believing that we have a semaphore here where only one side can go
+18:34:27 <batmat> cf. an older thread abt it, where jglick (among more people) both encouraged going forward with it, and advised abt that design
+18:35:11 <kohsuke> Extension point to allow arbitrary plugins to submit arbitrary data looks risky
+18:35:11 <batmat> well, I guess I'm not gonna revamp what's the in email above... Already explained I guess. Prolly simpler to answer possible questions here?
+18:35:15 <batmat> if there ar
+18:35:18 <batmat> *are
+18:35:47 <batmat> kohsuke: well, as I say, some plugin *already* do. Just outside that channel
+18:35:57 <rtyler> frankly, any form of uncontrolled usage statistics reporting presents potential issues for infrastructure where that data is being reported
+18:36:10 <rtyler> in addition to the data security questions
+18:36:25 <batmat> obviously
+18:36:25 <rtyler> batmat: I'm less concerned with plugins reporting data to wherever they want outside of projcet infra
+18:36:50 <rtyler> that doesn't have the potential to corrupt usage stats or explode our disk usage requirements
+18:36:57 <batmat> Well, I'm not that attached to JENKINS-32485
+18:36:59 <danielbeck> FWIW we're already well into "can browsers actually handle it?" URL length with existing usage stats
+18:37:09 <batmat> it was just a way to decouple things for 26466
+18:37:09 <rtyler> heh
+18:37:16 <danielbeck> So we may need to look into a different submission mechanism sooner than later
+18:37:33 <rtyler> so here's what I think can move us forward
+18:37:38 <danielbeck> (For reference, it's a GET request with a giant query string)
+18:37:46 <batmat> Because extension points are the standard to inverse control in Jenkins...
+18:38:12 <rtyler> the original agenda item, as I had proposed it was to both license the data and remove access controls
+18:38:48 <rtyler> it's clear to me that it's time to revisit the design and implementation of usage statistics reporting, but I'm not sure I want to tie these two things together
+18:39:15 <danielbeck> what about "only one side can go"?
+18:39:21 <rtyler> I think batmat's changes are in the right direction there, but without the corresponding design changes on stats submission, and infra requirements, that work (IMHO) cannot be successfully merged
+18:40:05 <rtyler> danielbeck: that's where I'm getting to ;)
+18:40:14 <danielbeck> k
+18:41:17 <rtyler> my proposal is that we license census data under the Open Database license (http://opendatacommons.org/licenses/odbl/1.0/) and based on the census data being reported by Jenkins instances right now, remove access control for census data, subject to revisions on handling the newer goals/requirements for usage stats submission by batmat
+18:41:49 <rtyler> (for example, we could just create a separate 'channel' for these "untrusted" usage stats, and restrict access there at a future date)
+18:43:38 <kohsuke> FTR I still think it's a bad idea to allow plugins to report arbitrary data to usage stats. We can't stop plugins from doing that through other means but we shouldn't endorse that.
+18:43:56 <kohsuke> The node_monitor split into plugin can be solved without opening it up to everyone
+18:44:23 <kohsuke> And I'm +1 on licensing census data & remove access control
+18:44:28 <rtyler> that aspect of the discussion is why I'm trying to separate these two a bit
+18:44:48 <danielbeck> kohsuke At least by going that way we can encourage plugins to respect the usage stats opt-out. Which at least one currently doesnt'.
+18:44:50 <rtyler> I wish to tackle the data we have, not the data we may have :p
+18:45:22 <danielbeck> My concern is that this will result in an insurmountable obstacle to implementing extensible usage stats and we then don't get it
+18:46:10 <rtyler> I am already a fairly insurmountable obstacle to extensible usage stats submission :p
+18:46:13 <danielbeck> if we're open to, once other concerns there have been addressed, again revoke access to stats data to pave the way, that would be fine
+18:46:31 <kohsuke> Are there other use cases for "extensible usage stats"?
+18:46:36 <rtyler> I'm open to restricting *other* data sets
+18:46:49 <rtyler> danielbeck: my hope is that we can start thinking about this as layered datasets
+18:46:53 <rtyler> instead of a single big bucket of data
+18:47:10 <batmat> kohsuke: WDYM? other use cases?
+18:47:21 <rtyler> this perceived conflict is really only an issue if we cannot stratify our usage stats datasets
+18:47:40 <batmat> kohsuke: some plugins are already reporting stats outside that channel, so there are definitely use case for user stats
+18:47:43 <kohsuke> batmat: I understood yours well, which is a desire to split node monitors into a plugin
+18:48:21 <batmat> kohsuke: as danielbeck said too, this would also help respect the opt-in/opt-out choice, and streamline all
+18:48:29 <kohsuke> I've also come across one plugin in that past that uses Google analytics to track who's using it, and I thought that was problematic. That's what I think of when I think of "extensible usage stats"
+18:49:10 <kohsuke> Anyway, I think I'm getting off topic
+18:49:30 <batmat> kohsuke: maybe it's still the same one, but there's definitely at least one doing that now. Anyway, I'm not that much all for it
+18:49:32 <kohsuke> I think rtyler is trying to narrow this down to the current usage stats data set to make a progress
+18:49:41 * rtyler nods
+18:49:52 <rtyler> I live in the present ;)
+18:49:54 <batmat> I agree we need to think about the whole to accept different data on the collection side
+18:50:40 <rtyler> batmat: so are you okay with my proposal on licensing and access control on our existing dataset, and the action item to evaluate new datasets differently as necessary?
+18:52:01 <rtyler> anybody else care about this? :P
+18:52:02 <batmat> not sure I get what that means globally, but I think yeah. I think I'm gonna close that PR for now, since I've been working on it for too long and it's best to just forget about it until we decide we want to tackle that subject. And try maybe to attack JENKINS-26466 another way.
+18:52:41 <batmat> copy/pasta was one way... But we chose to try and avoid it :)
+18:52:41 <rtyler> batmat: I would want to be involved in any future design discussions about usage stats that would be reported into project infra
+18:52:51 <rtyler> danielbeck: your thoughts?
+18:53:35 <danielbeck> still not sure it's worth it to open up stats
+18:53:52 <rtyler> well then let's turn this off
+18:54:01 <danielbeck> haven't seen one concrete use of it (besides Payal's project I suppose)
+18:54:17 <rtyler> domi's original stats.jenkins-ci.org work was based on census data access
+18:54:21 * batmat would then like to have opinions on how to decouple the current cycles in the code for JENKINS-26466 ;)
+18:54:35 <rtyler> we cannot expect to see interesting hacks or visualizations on the data otherwise
+18:54:36 <kohsuke> vivekp's extension point & implementation analysis is another, right?
+18:54:43 * rtyler nods
+18:55:07 <kohsuke> And if anything I thought the motivation was it's easier to open it up than lock it down & access control
+18:55:08 <danielbeck> haven't seen any results from that. It's not on stats.j.o
+18:55:24 <rtyler> kohsuke: correct
+18:55:34 <rtyler> also, closed stats is antithetical to what we should be doing imho
+18:55:45 <kohsuke> so to me the question is "is it worth closing down stats"
+18:55:56 <danielbeck> they're already closed.
+18:56:20 <kohsuke> somewhat half-heartedly
+18:56:43 * rtyler looks at the time
+18:56:51 <kohsuke> is your concern that there might be undesirable data leak?
+18:56:52 <danielbeck> and since I haven't seen a single use of the stats from anyone who isn't a contributor to Jenkins and would have got personal access by asking us, I wonder what the point is
+18:57:15 <rtyler> the easiest access control is no access control
+18:57:51 <danielbeck> which raises the bar for stats extensibility for no tangible benefit
+18:58:05 <rtyler> well, I give up for today
+18:58:07 <danielbeck> so if I'm the only critical one, so be it
+18:58:08 <kohsuke> rtyler: I think we need to have further discussions on this
+18:58:13 <rtyler> if we're going to shut down stats, then everybody can lose access
+18:58:28 <danielbeck> I don't think this needs to be unanimous, so you can probably go ahead.
+18:58:32 <rtyler> or somebody can propose an actual non-stupid access control policy that isn't just a "gotta-know-somebody-to-get-it"
+18:58:47 <rtyler> I just don't understand your objections
+18:59:24 <kohsuke> let's get to patron message approval and we can talk more about this outside the meeting
+18:59:37 <kohsuke> I don't think there's urgency on deciding this today
+18:59:39 <batmat> rtyler: maybe one way to go forward /a bit?/ abt it is to ask plugins devs?
+18:59:53 <rtyler> #topic Approval of new Q3 patron messages
+19:00:11 <batmat> that would make it for today, and next time we might have some feedback abt devs expectations abt it
+19:00:15 <danielbeck> Q3 is upon us, and we have some minor message updates from the patrons
+19:00:16 * batmat is done on that
+19:00:18 <danielbeck> #info https://github.com/jenkinsci/patron/pull/12#issuecomment-227803082
+19:00:44 <danielbeck> The first commit was already approved two weeks ago, now we have changes for the CloudBees and JFrog messages
+19:00:54 <rtyler> the messages look fine to me
+19:00:56 <danielbeck> https://github.com/jenkinsci/patron/pull/12/commits/876d31c50f186082ad41210bee55e8ecdd45d8b1 and https://github.com/jenkinsci/patron/pull/12/commits/5ac2ffb196892dcac8c8d884c42df00e15e66fc1
+19:01:11 <danielbeck> The tester links are up to date with these changes, so you can click the links in the newest comment
+19:01:46 <alyssat> in the last approval process for JFrog we had issues w/ "The Only..." this can be removed
+19:02:01 <kohsuke> LGTM
+19:02:43 <danielbeck> anyone concerned about one or both of these message updates?
+19:02:53 <kohsuke> "Free 30 day trial" does feel more advertisement-ish than other typical patron messages, but that's already approved in the previous meeting
+19:03:10 * rtyler shrugs
+19:03:32 * rtyler looks around for concerns
+19:04:03 <kohsuke> going going ..
+19:04:17 <kohsuke> gone!
+19:04:23 <danielbeck> #agreed Patron message changes are approved
+19:04:25 <rtyler> HEH
+19:04:29 <rtyler> er, nocaps
+19:04:34 <rtyler> #topic next meeting
+19:04:41 <rtyler> July 6th looks like our next scheduled meeting
+19:04:49 <rtyler> any issues with that?
+19:05:01 * batmat is OK
+19:05:02 <kohsuke> see you then!
+19:05:05 <alyssat> works for me
+19:05:09 <rtyler> #info July 6 next meeting
+19:05:11 <rtyler> #endmeeting

@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:02:09</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:02:09</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:13</span><span class="nk"> &lt;kohsuke_&gt;</span> oh I guess it is
+<a name="l-4"></a><span class="tm">18:02:23</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler abayer  hare_brain</span>
+<a name="l-5"></a><span class="tm">18:02:23</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke_ rtyler
+<a name="l-6"></a><span class="tm">18:02:46</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">1.554.1 status</span>
+<a name="l-7"></a><span class="tm">18:02:57</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">ogondza:</span> ?
+<a name="l-8"></a><span class="tm">18:03:18</span><span class="nk"> &lt;ogondza&gt;</span> hi, I believe we are ready
+<a name="l-9"></a><span class="tm">18:03:26 </span><span class="nka">* rtyler</span> <span class="ac">awakens</span>
+<a name="l-10"></a><span class="tm">18:03:28</span><span class="nk"> &lt;kohsuke_&gt;</span> OK, thanks, I'll just spin the release then
+<a name="l-11"></a><span class="tm">18:03:50</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">jglick:</span> anything to add?
+<a name="l-12"></a><span class="tm">18:03:52</span><span class="nk"> &lt;ogondza&gt;</span> as reported on ML, automated and manual tests confirms
+<a name="l-13"></a><span class="tm">18:04:02</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">1.554.1 is good to go</span>
+<a name="l-14"></a><span class="tm">18:04:17</span><span class="nk"> &lt;kohsuke_&gt;</span> This week I'm hacking infra with rtyler and has been away from emails
+<a name="l-15"></a><span class="tm">18:04:19</span><span class="nk"> &lt;jglick&gt;</span> Nothing to add, sounds good.
+<a name="l-16"></a><span class="tm">18:04:33</span><span class="nk"> &lt;kohsuke_&gt;</span> OK, then moving on
+<a name="l-17"></a><span class="tm">18:04:50</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins joining the software patent non-aggression community</span>
+<a name="l-18"></a><span class="tm">18:05:11</span><span class="nk"> &lt;kohsuke_&gt;</span> So I was contacted by someone from http://www.openinventionnetwork.com/
+<a name="l-19"></a><span class="tm">18:05:35</span><span class="nk"> &lt;kohsuke_&gt;</span> and he wants the Jenkins project to "sign" http://www.openinventionnetwork.com/pat_license_agreement.php
+<a name="l-20"></a><span class="tm">18:06:36</span><span class="nk"> &lt;hare_brain&gt;</span> I don’t know what he means by that.
+<a name="l-21"></a><span class="tm">18:06:43</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> It's a .com not a .org?
+<a name="l-22"></a><span class="tm">18:07:03</span><span class="nk"> &lt;kohsuke_&gt;</span> The idea, IIUC, is that "I pledge that I do not sue other open-source and Linux communities"
+<a name="l-23"></a><span class="tm">18:07:04</span><span class="nk"> &lt;abayer&gt;</span> Yeah, that creeps me out.
+<a name="l-24"></a><span class="tm">18:07:08</span><span class="nk"> &lt;hare_brain&gt;</span> It’s an “intellectual property company"
+<a name="l-25"></a><span class="tm">18:07:14</span><span class="nk"> &lt;rtyler&gt;</span> I'm not sure what we get from this
+<a name="l-26"></a><span class="tm">18:07:14</span><span class="nk"> &lt;hare_brain&gt;</span> Patent troll?
+<a name="l-27"></a><span class="tm">18:07:16</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> that sounds horrible
+<a name="l-28"></a><span class="tm">18:07:24</span><span class="nk"> &lt;rtyler&gt;</span> we also don't have patents
+<a name="l-29"></a><span class="tm">18:07:25</span><span class="nk"> &lt;rtyler&gt;</span> &lt;_&lt;
+<a name="l-30"></a><span class="tm">18:07:40</span><span class="nk"> &lt;rtyler&gt;</span> unless abayer has patented his surly disposition on behalf of the jenkins project
+<a name="l-31"></a><span class="tm">18:07:50</span><span class="nk"> &lt;abayer&gt;</span> Looks from http://www.openinventionnetwork.com/about_faq.php like it's supposed to be a kind of inverse patent troll for Linux-related patents, but...yeah.
+<a name="l-32"></a><span class="tm">18:07:52</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> no, that's a copyright
+<a name="l-33"></a><span class="tm">18:08:04</span><span class="nk"> &lt;xmj&gt;</span> IANAL but that'd prevent you from countersuing someone that sues you yet engages in opensource stuff, no?
+<a name="l-34"></a><span class="tm">18:08:25</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Does Jenkins have access to a lawyer to look it over?
+<a name="l-35"></a><span class="tm">18:08:34</span><span class="nk"> &lt;rtyler&gt;</span> not really
+<a name="l-36"></a><span class="tm">18:08:34</span><span class="nk"> &lt;kohsuke_&gt;</span> Apparently this is not legally binding
+<a name="l-37"></a><span class="tm">18:08:41</span><span class="nk"> &lt;rtyler&gt;</span> there's no open source projects in here
+<a name="l-38"></a><span class="tm">18:08:44</span><span class="nk"> &lt;rtyler&gt;</span> so I don't know what we get
+<a name="l-39"></a><span class="tm">18:08:51</span><span class="nk"> &lt;rtyler&gt;</span> other than lending somebody our name
+<a name="l-40"></a><span class="tm">18:09:01</span><span class="nk"> &lt;kohsuke_&gt;</span> After all I don't really have any signing power on behalf of any organizations, including SPI, which CLA assigns some rights to
+<a name="l-41"></a><span class="tm">18:09:26</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I think it's pretty clear that Jenkins likes open source, so what does this gain the project?
+<a name="l-42"></a><span class="tm">18:09:53</span><span class="nk"> &lt;rtyler&gt;</span> I pinky swear that our loose collection of bandits won't sue anybody
+<a name="l-43"></a><span class="tm">18:10:02</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> :)
+<a name="l-44"></a><span class="tm">18:11:36</span><span class="nk"> &lt;hare_brain&gt;</span> I also don’t know what this means to companies that have signed our CCLA.
+<a name="l-45"></a><span class="tm">18:11:55 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-46"></a><span class="tm">18:12:21</span><span class="nk"> &lt;kohsuke_&gt;</span> All right, it looks like we are going to punt on this
+<a name="l-47"></a><span class="tm">18:12:31</span><span class="nk"> &lt;rtyler&gt;</span> I vote we say "cool story bro, but we don't have the resources to validate what this is or whether we can/should get involved"
+<a name="l-48"></a><span class="tm">18:12:49</span><span class="nk"> &lt;hare_brain&gt;</span> Nice.
+<a name="l-49"></a><span class="tm">18:12:58</span><span class="nk"> &lt;kohsuke_&gt;</span> All right, that works for me
+<a name="l-50"></a><span class="tm">18:13:02</span><span class="nk"> &lt;kohsuke_&gt;</span> Moving on...
+<a name="l-51"></a><span class="tm">18:13:16</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">Permanently switch to acceptance-tests for LTS testing</span>
+<a name="l-52"></a><span class="tm">18:13:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke_:</span> repo link plz
+<a name="l-53"></a><span class="tm">18:13:35</span><span class="nk"> &lt;ogondza&gt;</span> I suggest we completely abandon selenium tests
+<a name="l-54"></a><span class="tm">18:13:47</span><span class="nk"> &lt;ogondza&gt;</span> in favor of acceptance tests
+<a name="l-55"></a><span class="tm">18:13:53</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/acceptance-test-harness</span>
+<a name="l-56"></a><span class="tm">18:14:08</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.ci.cloudbees.com/job/core/job/acceptance-test-harness-stable/</span>
+<a name="l-57"></a><span class="tm">18:14:12</span><span class="nk"> &lt;rtyler&gt;</span> if we're running the acceptance-test harness in an automated fashion then it's a hands-down winner IMO
+<a name="l-58"></a><span class="tm">18:14:21</span><span class="nk"> &lt;rtyler&gt;</span> we never got the Selenium work far enough along to run consistently
+<a name="l-59"></a><span class="tm">18:14:40</span><span class="nk"> &lt;kohsuke_&gt;</span> I think we are good to switch
+<a name="l-60"></a><span class="tm">18:14:57</span><span class="nk"> &lt;ogondza&gt;</span> perfect
+<a name="l-61"></a><span class="tm">18:15:07</span><span class="nk"> &lt;kohsuke_&gt;</span> I don't know what you've done to stablize tests
+<a name="l-62"></a><span class="tm">18:15:44</span><span class="nk"> &lt;kohsuke_&gt;</span> I see # of tests doubled recently. What has changed?
+<a name="l-63"></a><span class="tm">18:15:56</span><span class="nk"> &lt;ogondza&gt;</span> https://jenkins.ci.cloudbees.com/job/core/job/acceptance-test-harness-stable/ was pretty stable.
+<a name="l-64"></a><span class="tm">18:16:24</span><span class="nk"> &lt;ogondza&gt;</span> oh, we forgot to run cucumber as it produced a lot of failures
+<a name="l-65"></a><span class="tm">18:16:36</span><span class="nk"> &lt;ogondza&gt;</span> when steps was not implemented
+<a name="l-66"></a><span class="tm">18:16:49</span><span class="nk"> &lt;kohsuke_&gt;</span> Oh I see
+<a name="l-67"></a><span class="tm">18:17:27</span><span class="nk"> &lt;kohsuke_&gt;</span> All right, let's update README.md on both repos appropriately
+<a name="l-68"></a><span class="tm">18:17:37</span><span class="nk"> &lt;ogondza&gt;</span> ill do it
+<a name="l-69"></a><span class="tm">18:17:52</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we've declared porting from selenium-tests to acceptance-test-harness complete, and the latter is the officially blessed one now</span>
+<a name="l-70"></a><span class="tm">18:18:03</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to update READMD.md on both repos</span>
+<a name="l-71"></a><span class="tm">18:18:06</span><span class="nk"> &lt;rtyler&gt;</span> nuke selenium-tests from orbit
+<a name="l-72"></a><span class="tm">18:18:38</span><span class="nk"> &lt;kohsuke_&gt;</span> No, we should keep the repo for archival purposes
+<a name="l-73"></a><span class="tm">18:19:01</span><span class="nk"> &lt;kohsuke_&gt;</span> OK, anything else?
+<a name="l-74"></a><span class="tm">18:19:15</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-75"></a><span class="tm">18:19:20</span><span class="nk"> &lt;LisaWells&gt;</span> wait...
+<a name="l-76"></a><span class="tm">18:19:21</span><span class="nk"> &lt;LisaWells&gt;</span> JUC?
+<a name="l-77"></a><span class="tm">18:19:22</span><span class="nk"> &lt;kohsuke_&gt;</span> oh
+<a name="l-78"></a><span class="tm">18:19:30</span><span class="nk"> &lt;LisaWells&gt;</span> didn't know if you meant anything else on that topic
+<a name="l-79"></a><span class="tm">18:19:42</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">JUC</span>
+<a name="l-80"></a><span class="tm">18:19:55</span><span class="nk"> &lt;Alyssa&gt;</span> Just a quick update on JUC
+<a name="l-81"></a><span class="tm">18:20:11</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">LisaWells:</span> Alyssa : want to provide any status updates?
+<a name="l-82"></a><span class="tm">18:20:22</span><span class="nk"> &lt;Alyssa&gt;</span> Agendas for both JUC US East (Boston) &amp; JUC Europe (Berlin) are now available. Pls help promote  http://www.cloudbees.com/jenkins/juc-2014/boston   http://www.cloudbees.com/jenkins/juc-2014/berlin
+<a name="l-83"></a><span class="tm">18:20:59</span><span class="nk"> &lt;Alyssa&gt;</span> Current registration counts are as follows JUC US East (Boston) 145 / JUC Europe (Berlin) 94 / JUC Israel 36
+<a name="l-84"></a><span class="tm">18:21:11</span><span class="nk"> &lt;LisaWells&gt;</span> picking up fast! much more than 2 weeks ago
+<a name="l-85"></a><span class="tm">18:21:14</span><span class="nk"> &lt;kohsuke_&gt;</span> What would "panel discussion" do?
+<a name="l-86"></a><span class="tm">18:21:28</span><span class="nk"> &lt;kohsuke_&gt;</span> Do we need to come up with some themes/topics to get that going?
+<a name="l-87"></a><span class="tm">18:21:42</span><span class="nk"> &lt;Alyssa&gt;</span> that's due to our aggressive promo plan
+<a name="l-88"></a><span class="tm">18:21:58</span><span class="nk"> &lt;LisaWells&gt;</span> <span class="hi">Kohsuke:</span> are you suggesting we add panel discussion?
+<a name="l-89"></a><span class="tm">18:22:18</span><span class="nk"> &lt;Alyssa&gt;</span> 'panel disc' i was thinking Q&amp;A but am happy to take suggestions
+<a name="l-90"></a><span class="tm">18:22:46</span><span class="nk"> &lt;rtyler&gt;</span> at FOSDEM we had a somewhat ad-hoc (read: poorly organized) BoF at the end of the day, that turned into a half discussion half Q&amp;A
+<a name="l-91"></a><span class="tm">18:22:53</span><span class="nk"> &lt;Alyssa&gt;</span> we didn't have a panel discussion last time and i think someone mentioned we should have it..that's why it's there
+<a name="l-92"></a><span class="tm">18:23:06</span><span class="nk"> &lt;LisaWells&gt;</span> we've had several requests for BOFs
+<a name="l-93"></a><span class="tm">18:23:08</span><span class="nk"> &lt;kohsuke_&gt;</span> I saw "panel discussion" in the agenda, and the only panel discussion that we've done in the past is in San Francisco a few years ago
+<a name="l-94"></a><span class="tm">18:23:20</span><span class="nk"> &lt;hare_brain&gt;</span> Well, there’s panel discussion and there’s Q&amp;A session. Those are slightly different beasts.
+<a name="l-95"></a><span class="tm">18:23:29</span><span class="nk"> &lt;rtyler&gt;</span> Q&amp;A requires somebody with a mic
+<a name="l-96"></a><span class="tm">18:23:35</span><span class="nk"> &lt;rtyler&gt;</span> panel requires a moderator and a train of topics
+<a name="l-97"></a><span class="tm">18:23:46</span><span class="nk"> &lt;LisaWells&gt;</span> what about half-half?
+<a name="l-98"></a><span class="tm">18:24:31 </span><span class="nka">* rtyler</span> <span class="ac">shrugs</span>
+<a name="l-99"></a><span class="tm">18:24:40</span><span class="nk"> &lt;rtyler&gt;</span> all I'm saying is you guys should figure it out :p
+<a name="l-100"></a><span class="tm">18:24:56</span><span class="nk"> &lt;kohsuke_&gt;</span> We'd also need to know who'd be there so that we can ask them to be on the stage
+<a name="l-101"></a><span class="tm">18:25:30</span><span class="nk"> &lt;LisaWells&gt;</span> we can look at the attendee list and see who we want to invite?
+<a name="l-102"></a><span class="tm">18:25:56</span><span class="nk"> &lt;kohsuke_&gt;</span> yeah, that'd work
+<a name="l-103"></a><span class="tm">18:26:25</span><span class="nk"> &lt;Alyssa&gt;</span> or get the speakers as we've done in the past as well
+<a name="l-104"></a><span class="tm">18:26:49</span><span class="nk"> &lt;Alyssa&gt;</span> we can work this offline.
+<a name="l-105"></a><span class="tm">18:26:58</span><span class="nk"> &lt;Daemoen&gt;</span> lo all
+<a name="l-106"></a><span class="tm">18:27:15</span><span class="nk"> &lt;LisaWells&gt;</span> other updates?
+<a name="l-107"></a><span class="tm">18:27:22</span><span class="nk"> &lt;Alyssa&gt;</span> yes
+<a name="l-108"></a><span class="tm">18:27:37</span><span class="nk"> &lt;Alyssa&gt;</span> CloudBees has  been tweeting free ticket for tweeting #jenkinsconf  "Win a free ticket to the 2014 Jenkins User Conference! Use hashtag #jenkinsconf to help spread the word. We are picking a winner by May 3"
+<a name="l-109"></a><span class="tm">18:28:00</span><span class="nk"> &lt;Alyssa&gt;</span> wanted to throw this out there to the community as well
+<a name="l-110"></a><span class="tm">18:28:06</span><span class="nk"> &lt;hare_brain&gt;</span> I think you need to be clearer about *which* JUC you’re giving free tickets to. :)
+<a name="l-111"></a><span class="tm">18:28:18</span><span class="nk"> &lt;LisaWells&gt;</span> i think they can choose
+<a name="l-112"></a><span class="tm">18:28:21</span><span class="nk"> &lt;LisaWells&gt;</span> but good point!
+<a name="l-113"></a><span class="tm">18:28:22</span><span class="nk"> &lt;Alyssa&gt;</span> Boston and Berlin at the moment
+<a name="l-114"></a><span class="tm">18:28:46</span><span class="nk"> &lt;hare_brain&gt;</span> So it’s a free ticket to *a* 2014 JUC.
+<a name="l-115"></a><span class="tm">18:28:52</span><span class="nk"> &lt;LisaWells&gt;</span> y
+<a name="l-116"></a><span class="tm">18:29:17</span><span class="nk"> &lt;hare_brain&gt;</span> Because to me, the one in the Bay Area is *the* JUC. ;)
+<a name="l-117"></a><span class="tm">18:29:29</span><span class="nk"> &lt;LisaWells&gt;</span> :)
+<a name="l-118"></a><span class="tm">18:29:42</span><span class="nk"> &lt;Alyssa&gt;</span> last item. CloudBees is advertising on the Eclipse site. They have budgeted $2000 to run ads from  5/1-5/31.
+<a name="l-119"></a><span class="tm">18:30:23</span><span class="nk"> &lt;Daemoen&gt;</span> we're running jenkins 1.561 on CentOS 6, and having some issues with a bug
+<a name="l-120"></a><span class="tm">18:30:29</span><span class="nk"> &lt;Alyssa&gt;</span> that's it for me
+<a name="l-121"></a><span class="tm">18:30:36</span><span class="nk"> &lt;Daemoen&gt;</span> appears we are seeing the "supposed to be resolved" legacy Add build step bug
+<a name="l-122"></a><span class="tm">18:30:40</span><span class="nk"> &lt;LisaWells&gt;</span> on the sponsor side, things are lining up
+<a name="l-123"></a><span class="tm">18:30:56</span><span class="nk"> &lt;LisaWells&gt;</span> to date we have...
+<a name="l-124"></a><span class="tm">18:31:19</span><span class="nk"> &lt;LisaWells&gt;</span> Boston Gold - JFrog, XebiaLabs, BDS, Midvision; Silver - Choose Digital
+<a name="l-125"></a><span class="tm">18:31:36</span><span class="nk"> &lt;LisaWells&gt;</span> Berlin GOld: codecentric AG (pending), Midvision, Zend, Ravello (pending) and Silver - XebiaLabs
+<a name="l-126"></a><span class="tm">18:31:44</span><span class="nk"> &lt;LisaWells&gt;</span> not sure about Israel yet - waiting for word on that
+<a name="l-127"></a><span class="tm">18:31:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">Daemoen:</span> hold on a second, we're still in the middle of a project meeting
+<a name="l-128"></a><span class="tm">18:32:03</span><span class="nk"> &lt;Daemoen&gt;</span> sorryjust noticed that, my apologies
+<a name="l-129"></a><span class="tm">18:32:06</span><span class="nk"> &lt;LisaWells&gt;</span> Bay Area Gold - JFrog, XebiaLabs, Black Diamond, Zend; Silver - Choose Digital and Sauce Labs
+<a name="l-130"></a><span class="tm">18:32:26</span><span class="nk"> &lt;LisaWells&gt;</span> so a pretty good showing so far. please help show appreciation to them so they sponsor more next year
+<a name="l-131"></a><span class="tm">18:32:34</span><span class="nk"> &lt;LisaWells&gt;</span> we also have a new community sponsorship level
+<a name="l-132"></a><span class="tm">18:32:48</span><span class="nk"> &lt;LisaWells&gt;</span> it is available for JUGs, Meetups, and other organizations who want to promote JUC
+<a name="l-133"></a><span class="tm">18:33:13</span><span class="nk"> &lt;LisaWells&gt;</span> basically help promote by sending an email to your members and get a 20% discount code
+<a name="l-134"></a><span class="tm">18:33:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">LisaWells:</span> have you guys created a good blog post for that?
+<a name="l-135"></a><span class="tm">18:33:31</span><span class="nk"> &lt;LisaWells&gt;</span> can also do a blog post, put the JUC banner on website, etc
+<a name="l-136"></a><span class="tm">18:33:33</span><span class="nk"> &lt;kohsuke_&gt;</span> Sounds like it should be a blog post
+<a name="l-137"></a><span class="tm">18:33:35</span><span class="nk"> &lt;LisaWells&gt;</span> not yet, it just happened
+<a name="l-138"></a><span class="tm">18:33:38</span><span class="nk"> &lt;rtyler&gt;</span> zomg jinx!
+<a name="l-139"></a><span class="tm">18:33:38</span><span class="nk"> &lt;LisaWells&gt;</span> does!
+<a name="l-140"></a><span class="tm">18:33:42</span><span class="nk"> &lt;LisaWells&gt;</span> will do
+<a name="l-141"></a><span class="tm">18:34:06</span><span class="nk"> &lt;LisaWells&gt;</span> JUG Berlin is already signed up to make the offer to their 2700 member list
+<a name="l-142"></a><span class="tm">18:34:45</span><span class="nk"> &lt;LisaWells&gt;</span> if you know anyone who runs a group who may be interested, please send 'em my way or Alyssa's
+<a name="l-143"></a><span class="tm">18:35:13</span><span class="nk"> &lt;kohsuke_&gt;</span> All right, anything else?
+<a name="l-144"></a><span class="tm">18:35:18</span><span class="nk"> &lt;LisaWells&gt;</span> that's it on the sponsor side. but i have one more topic
+<a name="l-145"></a><span class="tm">18:35:35</span><span class="nk"> &lt;rtyler&gt;</span> jeeeez
+<a name="l-146"></a><span class="tm">18:35:41</span><span class="nk"> &lt;LisaWells&gt;</span> next Jenkins newsletter - I'm hoping to get one out by mid-June if possible. if you have submissions or topic ideas, please send?
+<a name="l-147"></a><span class="tm">18:35:59</span><span class="nk"> &lt;LisaWells&gt;</span> sorry @rtyler:
+<a name="l-148"></a><span class="tm">18:36:08</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-149"></a><span class="tm">18:36:12</span><span class="nk"> &lt;LisaWells&gt;</span> ;)
+<a name="l-150"></a><span class="tm">18:36:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">LisaWells:</span> you might want to look at how the FreeBSD project runs their quarterly newsletter
+<a name="l-151"></a><span class="tm">18:36:29</span><span class="nk"> &lt;LisaWells&gt;</span> will do, thanks
+<a name="l-152"></a><span class="tm">18:36:34</span><span class="nk"> &lt;kohsuke_&gt;</span> I'm sure we have something to write up about the infra work?
+<a name="l-153"></a><span class="tm">18:36:38</span><span class="nk"> &lt;rtyler&gt;</span> they do a great job of pulling together topics from different slics of the community
+<a name="l-154"></a><span class="tm">18:36:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke_:</span> definitely
+<a name="l-155"></a><span class="tm">18:37:14</span><span class="nk"> &lt;kohsuke_&gt;</span> Are we ready to wrap up?
+<a name="l-156"></a><span class="tm">18:37:15</span><span class="nk"> &lt;LisaWells&gt;</span> I'll check it out. ping me if you want to submit - lisa@cloudbees.com
+<a name="l-157"></a><span class="tm">18:37:16</span><span class="nk"> &lt;rtyler&gt;</span> I think we have the sections of: events, core, plugins, infra
+<a name="l-158"></a><span class="tm">18:37:33 </span><span class="nka">* rtyler</span> <span class="ac">shuts up so we can end the meeting</span>
+<a name="l-159"></a><span class="tm">18:37:37</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-160"></a><span class="tm">18:38:01</span><span class="nk"> &lt;kohsuke_&gt;</span> May 14th
+<a name="l-161"></a><span class="tm">18:38:01</span><span class="nk"> &lt;rtyler&gt;</span> 14!
+<a name="l-162"></a><span class="tm">18:38:06</span><span class="nk"> &lt;kohsuke_&gt;</span> OMG it's almost May
+<a name="l-163"></a><span class="tm">18:38:16</span><span class="nk"> &lt;rtyler&gt;</span> it's literally tomorrow
+<a name="l-164"></a><span class="tm">18:38:19</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting will be May 14th 11am PT</span>
+<a name="l-165"></a><span class="tm">18:38:29 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-166"></a><span class="tm">18:38:32</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

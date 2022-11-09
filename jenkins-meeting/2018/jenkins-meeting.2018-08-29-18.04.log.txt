@@ -1,0 +1,148 @@
+18:04:42 <rtyler> #startmeeting
+18:04:42 <robobutler> Let the Jenkins meeting commence!
+18:04:50 <jglick> present
+18:04:51 <rtyler> #chair danielbeck kohsuke
+18:04:51 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:04:58 <rtyler> #topic Recap last meeting actions
+18:05:16 <rtyler> #info http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-08-15-18.00.html
+18:05:40 <danielbeck> rodrigc's adoption proposal is ongoing, with a draft JEP
+18:05:42 <rtyler> I believe that ogondza tackled the LTS backporting with regards to JNA?
+18:05:48 * rtyler claps
+18:05:52 <danielbeck> rtyler yes
+18:06:17 <danielbeck> #info https://groups.google.com/d/msg/jenkinsci-dev/Snz_mdXsq6s/VXtisasyDgAJ
+18:06:29 <danielbeck> #info https://groups.google.com/d/msg/jenkinsci-dev/zrBUwcuhqBY/T_fd0DG9DwAJ
+18:07:47 <danielbeck> not sure I have a reference for oleg-nenashev 's retrospective announcement
+18:07:48 <rtyler> oleg-nenashev: I don't recall if you scheduled a public retrospective or not
+18:08:04 <rtyler> either way, let's move on with the agenda https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+18:08:17 <rtyler> #topic LTS status check
+18:08:32 <danielbeck> no backports, weekly user feedback seems reasonable
+18:09:20 <rtyler> guess ogondza isn't around hm
+18:09:52 <danielbeck> rtyler RC was posted last week already since he isn't around this week
+18:10:04 <danielbeck> (first info link above)
+18:10:10 <rtyler> ah
+18:10:12 <rtyler> moving on then?
+18:10:18 <markewaite> my testing with 2.138 for the last week has found no surprises
+18:10:25 <danielbeck> rtyler +1
+18:10:45 <rtyler> oleg-nenashev: I hope you're her :)
+18:10:48 <rtyler> your topics are next
+18:10:52 <rtyler> #topic GSoC Summer of Code: Results
+18:11:26 <oleg-nenashev> 1 sec
+18:12:09 <oleg-nenashev> ok
+18:12:18 <oleg-nenashev> Retrospective is WiP
+18:13:03 <oleg-nenashev> #info: GSoC is over, yey. 2 projects passed, 1 was failed by mentors at the final evaluation. All projects bring value to the community and move critical stories forward
+18:13:21 <oleg-nenashev> ... independently of the final result
+18:13:40 <oleg-nenashev> #action oleg_nenashev to submit a summary blogpost this week
+18:14:01 <rtyler> wunderbar
+18:14:14 <alyssat_> congrats
+18:14:36 <oleg-nenashev> #info: Join the GSoC SIG mailing list if you want to attend retrospective or share feedback: https://groups.google.com/forum/#!forum/jenkinsci-gsoc-all-public
+18:14:50 <oleg-nenashev> We will have a public meeting next week
+18:15:47 <oleg-nenashev> #info You can also meet Pham Vu Tuan at DevOps World | Jenkins World in US (Remoting over Kafka). He will be presenting at the Cloud Native SIG meeting there
+18:17:34 <oleg-nenashev> #info Martin and me will also summarize GSoC at the Contributor summit + lightning talk in the Community Theater
+18:17:48 <oleg-nenashev> OK, that's it. Stay tuned for the blogpost
+18:18:04 <oleg-nenashev> any questions?
+18:18:19 <rtyler> not from me
+18:18:49 <danielbeck> lgtm
+18:19:02 <oleg-nenashev> Just heads up, I am looking for GSoC Org Admins for the next year. If somebody is interested, let me know
+18:19:55 <oleg-nenashev> so, next topic?
+18:19:59 <rtyler> thanks oleg-nenashev
+18:20:07 <rtyler> #topic Cloud Native SIG update
+18:20:26 <oleg-nenashev> Maybe we could convert such SIG status updates to a recorded HoA call
+18:21:32 <oleg-nenashev> #info Cloud Native SIG had two meetings this month: https://jenkins.io/sigs/cloud-native/#meetings
+18:22:23 <oleg-nenashev> #info Man focus - Pluggable Storage stories, esp. External Logging and Configuration Storage. A number of JEPs were submitted and reviewed during the calls: JEP-206, 207, 210, 212, and 213
+18:22:31 <oleg-nenashev> More JEPs to come soon
+18:23:07 <oleg-nenashev> Right now I am working on the SIG landing page cleanup so that it reflects the current status
+18:23:34 <oleg-nenashev> There is also a plan to submit an Info JEP so that we summarize Pluggable Storage stories in general
+18:23:47 <oleg-nenashev> Most likely - towards the contributor summit
+18:24:06 <oleg-nenashev> 2018 is so 2016 if you participated there :)
+18:24:19 <rtyler> huh?
+18:24:22 <danielbeck> hah
+18:24:31 <danielbeck> rtyler we discussed pluggable storage previously
+18:25:12 <oleg-nenashev> At JW 2016 we had a session about Pluggable Storage, and there is still a lot we take from there in terms of priorities & approaches
+18:25:17 <rtyler> ah
+18:26:08 <oleg-nenashev> #info Next Confirmed Cloud Native SIG meeting - Sep 17, Contributor Summit. Drop your agenda items here: https://docs.google.com/document/d/1Hw1mpXSpH8BAe2YK5SrCfFuHQLRf__KnjDBK_SbhGls/edit
+18:26:46 <jglick> I suppose we could omit these updates from #jenkins-meeting in favor of SIG-specific channels in Gitter?
+18:26:58 <oleg-nenashev> Maybe
+18:27:20 <oleg-nenashev> I believe it should be a Dev List message or a blogpost
+18:27:22 <rtyler> let's not try to prematurely optimize this right now please
+18:27:33 <oleg-nenashev> I just follow the JEP-4 advice & do the update
+18:27:57 <rtyler> anything the Cloud Native SIG needs from the rest of us?
+18:27:58 <oleg-nenashev> But yeah, any feedback will be appreciated :)
+18:29:02 <oleg-nenashev> rtyler: Not so far AFAICT, we are working closely with alyssat_  and tracymiranda to get it running,  so we are good
+18:29:23 <rtyler> oki
+18:29:32 <rtyler> #info Platform SIG update
+18:29:40 <oleg-nenashev> Okay...
+18:29:56 <oleg-nenashev> #info https://jenkins.io/sigs/platform/
+18:31:09 <oleg-nenashev> #info Over last month we had 3 meetings. Topics: Java 10+ support planning,  Windows 64but packaging, OpenJ9 discussion (JOM) and, today, Multi-architecture Docker Images planning
+18:31:26 <oleg-nenashev> So far so good, we have action items and progress on all topics
+18:32:15 <oleg-nenashev> #info Also, Jenkins project is now a part of Quality Outreach:  https://wiki.openjdk.java.net/display/quality/Quality+Outreach
+18:32:47 <oleg-nenashev> We still need to figure out what we do there, but we have started some helpful communications
+18:33:00 <rtyler> neat
+18:33:07 <oleg-nenashev> Same with Eclipse OpenJ9, tracymiranda got them onboard
+18:34:15 <oleg-nenashev> #info: Regarding the Platform side, we are working on Chocolatey Packaging (Slide-O-Mix), and Docker images for Arm and ppc
+18:34:42 <oleg-nenashev> And I need help with that SIG a bit...
+18:35:03 <rtyler> somebody else to drive it more?
+18:35:19 <oleg-nenashev> rtyler olblak : I need you to accept my SIG invitations so that I make you admins  according to JEP-4
+18:35:33 <oleg-nenashev> Of course, more contributions will be welcome
+18:35:53 <oleg-nenashev> But generally I am a happy panda. The SIG is pretty active now
+18:36:06 <oleg-nenashev> Many folks help a lot with it
+18:37:06 * rtyler claps
+18:37:30 <danielbeck> yep, sounds great
+18:37:33 <oleg-nenashev> Generally I am going to drive Platform SIG in short term though my plan is to also get Embedded/HW SIGs running
+18:38:03 <oleg-nenashev> I already can start a youtube broadcast with closed eyes tho :)
+18:38:32 <oleg-nenashev> Next thing is to stop forgetting about sharing screen and managing presenters
+18:39:00 <oleg-nenashev> Any questions?
+18:39:34 <danielbeck> is there an easy way to increase visibility into these SIGs? moving off the dev list didn't help that.
+18:39:53 <danielbeck> not for today, but perhaps to be considered.
+18:40:03 <oleg-nenashev> I will make sure to repost updates and major threads in Dev list
+18:40:16 <oleg-nenashev> We also need help with HoA
+18:40:36 <oleg-nenashev> We have a 10-person CAP now, and we hit it at SIG meetings even now
+18:40:52 <oleg-nenashev> tracymiranda was going to take a look at Zoom IIRC
+18:41:45 <rtyler> next topic?
+18:41:55 <danielbeck> +1
+18:42:01 <oleg-nenashev> if nobody can help with HoA, yes
+18:42:02 <rtyler> #topic Jenkins Ambassador applicants
+18:42:07 <alyssat_> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/Tp0Q1QAHP2k
+18:42:36 <rtyler> danielbeck: mind taking over, I need to step away real quick
+18:42:39 <alyssat_> As mentioned in the thread, we received 2 new Ambassador applications. I'd like to open it up for discussion here and see if there's any concerns with naming these folks ambassadors.
+18:42:58 <danielbeck> #info https://wiki.jenkins.io/display/JENKINS/Jenkins+Ambassador
+18:43:05 <danielbeck> wait, no, that's really old
+18:43:12 * rtyler steps away
+18:43:12 <danielbeck> alyssat_ what's the reference on ambassadors?
+18:43:13 <alyssat_> :)
+18:43:30 <alyssat_> The 2 new applicants
+18:43:42 <danielbeck> alyssat_ to clarify, the entire program
+18:44:06 <danielbeck> #info https://github.com/jenkinsci/jep/tree/master/jep/5
+18:44:08 <danielbeck> there it is
+18:44:48 <alyssat_> are there any concerns with awarding them ambassadorship based on their contributions in the Chinese community?
+18:45:02 <markewaite> +1 No concerns from me
+18:45:15 <oleg-nenashev> +1
+18:45:22 <oleg-nenashev> works for me
+18:45:45 <danielbeck> Is Tao Lei an organizer of the Beijing JAM?
+18:45:58 <alyssat_> he's one of them
+18:45:59 <oleg-nenashev> Though it would be nice if there are GitHub or Jenkins JIRA IDs attached to the thread next time
+18:46:56 <danielbeck> alyssat_ did you confirm that Xuefeng Shi satisfies our criteria?
+18:47:10 <alyssat_> oleg-nenashev I can include applicants GitHub Jenkins JIRA IDs if they're on there
+18:47:15 <danielbeck> Since the application is fairly short, lacking references
+18:47:39 <alyssat_> yes, I've personally been involved w/ him and others on many of their events planning
+18:47:49 <alyssat_> for Jenkins events
+18:47:52 <danielbeck> great
+18:47:55 <oleg-nenashev> I believe Jenkins LDAP ID should be a must for applications
+18:48:24 <danielbeck> why?
+18:48:32 <oleg-nenashev> Project affiliation
+18:48:34 <alyssat_> I know the Chinese are restricted on my many tools..not sure if that's one it
+18:49:23 <danielbeck> oleg-nenashev I disagree. But this discussion should take place elsewhere.
+18:49:56 <danielbeck> okay, so both applicants seem to satisfy our criteria, and got upvotes
+18:50:00 <danielbeck> no downvotes so far
+18:50:22 <oleg-nenashev> JEP-5 does not define affiliation requirements, so OK
+18:50:36 <danielbeck> alyssat_ now you have the feedback to decide :)
+18:51:02 <alyssat_> feedback noted. thank you
+18:51:05 <danielbeck> I don't think we need to record agreement, as the JEP does not require a project meeting vote.
+18:51:33 <alyssat_> sounds good
+18:51:43 <danielbeck> shall we move on?
+18:51:54 <alyssat_> yup. thanks
+18:51:59 <danielbeck> #topic next meeting
+18:52:16 <danielbeck> September 12
+18:52:38 <rtyler> ye
+18:52:47 <danielbeck> Remember that the meeting time is in UTC, and we're coming up to end of DST in the next few months
+18:53:04 <danielbeck> (or potentially beginning if you're upside down)
+18:53:25 <danielbeck> #endmeeting

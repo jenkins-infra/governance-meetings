@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app212.us.archive.org';v.server_ms=2375;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-05-25-18.01.log.html","20211027215437","https://web.archive.org/","web","/_static/",
+	      "1635371677");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:54</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">danielbeck hare_brain kohsuke rtyler</span>
+<a name="l-4"></a><span class="tm">18:02:05</span><span class="nk"> &lt;rtyler&gt;</span> I always mess that up
+<a name="l-5"></a><span class="tm">18:02:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck hare_brain kohsuke rtyler</span>
+<a name="l-6"></a><span class="tm">18:02:09</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-7"></a><span class="tm">18:02:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting actions</span>
+<a name="l-8"></a><span class="tm">18:02:53</span><span class="nk"> &lt;rtyler&gt;</span> it looks like oleg-nenashev's done all his big GSoC stuff, right?
+<a name="l-9"></a><span class="tm">18:03:03</span><span class="nk"> &lt;rtyler&gt;</span> and kohsuke published 1.651.2
+<a name="l-10"></a><span class="tm">18:03:16</span><span class="nk"> &lt;rtyler&gt;</span> any other actions sitting around that we need to address really quick?
+<a name="l-11"></a><span class="tm">18:03:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Not all the stuff, but I'm working on it
+<a name="l-12"></a><span class="tm">18:04:46 </span><span class="nka">* rtyler</span> <span class="ac">pauses for anything else before next topic</span>
+<a name="l-13"></a><span class="tm">18:05:12</span><span class="nk"> &lt;rtyler&gt;</span> alrighty then
+<a name="l-14"></a><span class="tm">18:05:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-15"></a><span class="tm">18:05:37</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza ?
+<a name="l-16"></a><span class="tm">18:05:43</span><span class="nk"> &lt;ogondza&gt;</span> all backports are done
+<a name="l-17"></a><span class="tm">18:05:55</span><span class="nk"> &lt;ogondza&gt;</span> waiting for ATH to complete before I cut the RC
+<a name="l-18"></a><span class="tm">18:06:09</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/issues/?jql=labels+%3D+1.651.3-fixed and https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%201.651.3-rejected</span>
+<a name="l-19"></a><span class="tm">18:06:28</span><span class="nk"> &lt;rtyler&gt;</span> while not this LTS, but for the enxt one, was a decision made on how to handle https://issues.jenkins-ci.org/browse/JENKINS-34751 in time for the next LTS cycle?
+<a name="l-20"></a><span class="tm">18:06:29</span><span class="nk"> &lt;ogondza&gt;</span> thanks, rejected a couple of things that are 2.0 specific
+<a name="l-21"></a><span class="tm">18:06:31</span><span class="nk"> &lt;rtyler&gt;</span> (this is the groovy thing)
+<a name="l-22"></a><span class="tm">18:07:08</span><span class="nk"> &lt;danielbeck&gt;</span> daspilker opened https://github.com/jenkinsci/jenkins/pull/2369
+<a name="l-23"></a><span class="tm">18:07:24</span><span class="nk"> &lt;danielbeck&gt;</span> whether this is safe enough to go into 2.x.1 LTS is up to ogondza
+<a name="l-24"></a><span class="tm">18:07:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We select the baseline on the next meeting, right?
+<a name="l-25"></a><span class="tm">18:07:49</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> right
+<a name="l-26"></a><span class="tm">18:08:14</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> rtyler: I will have to look at that in more detail
+<a name="l-27"></a><span class="tm">18:08:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Current 2.5 and 2.6 community ratings are good
+<a name="l-28"></a><span class="tm">18:08:31</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev Let's table that until next time.
+<a name="l-29"></a><span class="tm">18:08:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> righto, I just wanted to bring it up to make sure any real-time questions/answers could be handled
+<a name="l-30"></a><span class="tm">18:08:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep, I have no plans to advertise the baseline now
+<a name="l-31"></a><span class="tm">18:09:00</span><span class="nk"> &lt;rtyler&gt;</span> but it sounds like there's nothing to do for the current LTS, and awe can move on?
+<a name="l-32"></a><span class="tm">18:09:12</span><span class="nk"> &lt;danielbeck&gt;</span> Well, the RC needs to go out
+<a name="l-33"></a><span class="tm">18:09:22</span><span class="nk"> &lt;rtyler&gt;</span> that is something that ogondza can drive IIRC
+<a name="l-34"></a><span class="tm">18:09:23</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza can you do that without KK? I forget the state of things…
+<a name="l-35"></a><span class="tm">18:09:23</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">push the RC</span>
+<a name="l-36"></a><span class="tm">18:09:24</span><span class="nk"> &lt;rtyler&gt;</span> right?
+<a name="l-37"></a><span class="tm">18:09:38</span><span class="nk"> &lt;ogondza&gt;</span> I can
+<a name="l-38"></a><span class="tm">18:09:41</span><span class="nk"> &lt;rtyler&gt;</span> I remember setting up access for that kind of thing on mirrors.jenkins.io :)
+<a name="l-39"></a><span class="tm">18:09:56</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-40"></a><span class="tm">18:10:04</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> I guess you will hear from me again
+<a name="l-41"></a><span class="tm">18:10:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> so we're unblocked on pushing the RC, any other items to discuss for this topic before I move on?
+<a name="l-42"></a><span class="tm">18:10:22</span><span class="nk"> &lt;ogondza&gt;</span> not from me
+<a name="l-43"></a><span class="tm">18:10:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC status check</span>
+<a name="l-44"></a><span class="tm">18:10:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> the floor is ours
+<a name="l-45"></a><span class="tm">18:10:43</span><span class="nk"> &lt;rtyler&gt;</span> yours*
+<a name="l-46"></a><span class="tm">18:11:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 1) The coding phase has been started. Students work on the projects on the full-time basis
+<a name="l-47"></a><span class="tm">18:11:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2) We have communicated all the community stuff
+<a name="l-48"></a><span class="tm">18:11:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 3) Good progress on Mid-Term evaluations and Jenkins World
+<a name="l-49"></a><span class="tm">18:11:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 4) Scheduled weekly and public GSoC office hours - 6PM UTC every Thursday
+<a name="l-50"></a><span class="tm">18:11:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to get another office hours scheduled for APAC/Europe</span>
+<a name="l-51"></a><span class="tm">18:11:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to publish an overview blog post</span>
+<a name="l-52"></a><span class="tm">18:11:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 5) GSoC students bwcame more active in the community. We have 2 blogposts now (alexsomai and Samat_)
+<a name="l-53"></a><span class="tm">18:11:52</span><span class="nk"> &lt;rtyler&gt;</span> we already had one blog post from alexsomai https://jenkins.io/blog/2016/05/23/external-workspace-manager-plugin/
+<a name="l-54"></a><span class="tm">18:11:56</span><span class="nk"> &lt;rtyler&gt;</span> with another one coming
+<a name="l-55"></a><span class="tm">18:12:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> do you want me to put the GSoC office hours on the google jenkins event calendar?
+<a name="l-56"></a><span class="tm">18:12:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> I have a TODO to create an INFRA ticket for it
+<a name="l-57"></a><span class="tm">18:13:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> As well as for weekly meetings for projects. At least in EWM we have such meeting
+<a name="l-58"></a><span class="tm">18:13:07</span><span class="nk"> &lt;schristou&gt;</span> +1 to that rtyler
+<a name="l-59"></a><span class="tm">18:13:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> this would be just on the httpS://jenkins-ci.org/hangout right?
+<a name="l-60"></a><span class="tm">18:13:33</span><span class="nk"> &lt;rtyler&gt;</span> I can copy this event into the calendar right now
+<a name="l-61"></a><span class="tm">18:13:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> yes
+<a name="l-62"></a><span class="tm">18:14:05</span><span class="nk"> &lt;rtyler&gt;</span> alright, that's done :)
+<a name="l-63"></a><span class="tm">18:14:10</span><span class="nk"> &lt;rtyler&gt;</span> any other GSoC updates?
+<a name="l-64"></a><span class="tm">18:14:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Technically we do not have so much slots there, so maybe we will migrate later
+<a name="l-65"></a><span class="tm">18:14:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> alexsomai Samat_: Any updates from you?
+<a name="l-66"></a><span class="tm">18:14:38</span><span class="nk"> &lt;Samat_&gt;</span> Not really
+<a name="l-67"></a><span class="tm">18:14:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also payalpriyadarshi
+<a name="l-68"></a><span class="tm">18:14:48</span><span class="nk"> &lt;Samat_&gt;</span> I started working on Popup
+<a name="l-69"></a><span class="tm">18:14:49</span><span class="nk"> &lt;alexsomai&gt;</span> <span class="hi">oleg-nenashev:</span> I've started working on the EWM plugin
+<a name="l-70"></a><span class="tm">18:15:01</span><span class="nk"> &lt;payalpriyadarshi&gt;</span> yes
+<a name="l-71"></a><span class="tm">18:15:07</span><span class="nk"> &lt;Samat_&gt;</span> For me, everything goes fine so far
+<a name="l-72"></a><span class="tm">18:15:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nice
+<a name="l-73"></a><span class="tm">18:15:23</span><span class="nk"> &lt;payalpriyadarshi&gt;</span> Had meeting with Vivek regarding census data, where he gave me access and explained all the workaround on BigQuery platform.
+<a name="l-74"></a><span class="tm">18:15:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any other actions required from jenkins-infra or other teams?
+<a name="l-75"></a><span class="tm">18:16:03</span><span class="nk"> &lt;mda14_&gt;</span> <span class="hi">alexsomai:</span> I tried the pull request on EWM and it worked well. Nicely done.
+<a name="l-76"></a><span class="tm">18:16:03</span><span class="nk"> &lt;payalpriyadarshi&gt;</span> I was thinking of directly querying the census data using bigQuery APIs. Currently I am working on that, probably would take 1 more day to complete.
+<a name="l-77"></a><span class="tm">18:16:03</span><span class="nk"> &lt;batmat&gt;</span> already asked the question on jenkins-infra ML about that:
+<a name="l-78"></a><span class="tm">18:16:08</span><span class="nk"> &lt;batmat&gt;</span> why not not -dev ML ?
+<a name="l-79"></a><span class="tm">18:16:19</span><span class="nk"> &lt;batmat&gt;</span> usage stats danielbeck kohsuke
+<a name="l-80"></a><span class="tm">18:16:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> asked about what?
+<a name="l-81"></a><span class="tm">18:16:33</span><span class="nk"> &lt;alexsomai&gt;</span> <span class="hi">mda14_:</span> thank you, I'll show you a mini demo tomorrow and we'll discuss further details
+<a name="l-82"></a><span class="tm">18:16:50</span><span class="nk"> &lt;batmat&gt;</span> payalpriyadarshi's questions on her project, asked on -infra and not -dev
+<a name="l-83"></a><span class="tm">18:17:00</span><span class="nk"> &lt;batmat&gt;</span> when stats prolly interests all devs
+<a name="l-84"></a><span class="tm">18:17:09</span><span class="nk"> &lt;batmat&gt;</span> -s
+<a name="l-85"></a><span class="tm">18:17:14</span><span class="nk"> &lt;danielbeck&gt;</span> good point, can probably be forwarded to the dev list
+<a name="l-86"></a><span class="tm">18:17:23</span><span class="nk"> &lt;danielbeck&gt;</span> and then continued there
+<a name="l-87"></a><span class="tm">18:17:34</span><span class="nk"> &lt;batmat&gt;</span> yup, would seem more sensible
+<a name="l-88"></a><span class="tm">18:17:35</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler WDYT?
+<a name="l-89"></a><span class="tm">18:17:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> maybe
+<a name="l-90"></a><span class="tm">18:17:51</span><span class="nk"> &lt;rtyler&gt;</span> I think that's fair, but I do not want to encourage people to discuss infra work/requirements on the dev list; I cannot keep up with that list and everything else
+<a name="l-91"></a><span class="tm">18:17:55</span><span class="nk"> &lt;batmat&gt;</span> and also, would make the feedback more probable
+<a name="l-92"></a><span class="tm">18:17:58</span><span class="nk"> &lt;rtyler&gt;</span> so long as students are mindful of the audience, that's fine
+<a name="l-93"></a><span class="tm">18:18:07</span><span class="nk"> &lt;danielbeck&gt;</span> Should we continue this in #jenkins-community?
+<a name="l-94"></a><span class="tm">18:18:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-95"></a><span class="tm">18:18:15</span><span class="nk"> &lt;rtyler&gt;</span> sure
+<a name="l-96"></a><span class="tm">18:18:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> any other updates on this topic?
+<a name="l-97"></a><span class="tm">18:18:25</span><span class="nk"> &lt;batmat&gt;</span> yup
+<a name="l-98"></a><span class="tm">18:18:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> No updates from me
+<a name="l-99"></a><span class="tm">18:18:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">payalpriyadarshi:</span> please join #jenkins-community and we can continue some of this discussion after the meeting
+<a name="l-100"></a><span class="tm">18:18:43</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-101"></a><span class="tm">18:18:54</span><span class="nk"> &lt;payalpriyadarshi&gt;</span> sure, thanks
+<a name="l-102"></a><span class="tm">18:18:58</span><span class="nk"> &lt;rtyler&gt;</span> June 6th, looks fine to me
+<a name="l-103"></a><span class="tm">18:19:04</span><span class="nk"> &lt;danielbeck&gt;</span> huh?
+<a name="l-104"></a><span class="tm">18:19:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe events update? CC alyssat
+<a name="l-105"></a><span class="tm">18:19:16</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler June 8!
+<a name="l-106"></a><span class="tm">18:19:25</span><span class="nk"> &lt;rtyler&gt;</span> oh, misread
+<a name="l-107"></a><span class="tm">18:19:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> not on the agenda, we did that last time
+<a name="l-108"></a><span class="tm">18:19:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> okay
+<a name="l-109"></a><span class="tm">18:19:40</span><span class="nk"> &lt;rtyler&gt;</span> June 8th rather
+<a name="l-110"></a><span class="tm">18:19:40</span><span class="nk"> &lt;alyssat&gt;</span> :o)
+<a name="l-111"></a><span class="tm">18:19:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> June 8 works well
+<a name="l-112"></a><span class="tm">18:19:54</span><span class="nk"> &lt;rtyler&gt;</span> I don't see any major holidays or issues with that
+<a name="l-113"></a><span class="tm">18:20:02</span><span class="nk"> &lt;rtyler&gt;</span> all done?
+<a name="l-114"></a><span class="tm">18:20:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep
+<a name="l-115"></a><span class="tm">18:20:27</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler thanks for driving!
+<a name="l-116"></a><span class="tm">18:20:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 21:54:37 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:40:55 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 1395.141
+  exclusion.robots: 0.121
+  exclusion.robots.policy: 0.11
+  cdx.remote: 0.082
+  esindex: 0.011
+  LoadShardBlock: 218.124 (3)
+  PetaboxLoader3.datanode: 1032.11 (4)
+  CDXLines.iter: 15.971 (3)
+  load_resource: 968.863
+  PetaboxLoader3.resolve: 64.297
+-->

@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 19:00:58 UTC
+(<a href="jenkins.2011-11-09-19.00.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li><b class="TOPIC">recap of actions</b> <span class="details">(<a href='jenkins.2011-11-09-19.00.log.html#l-6'>kohsuke</a>, 19:01:26)</span>
+<ol type="a">
+  <li><span class="INFO">today's meeting agenda:
+    https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Nov9thMeeting</span>
+    <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-7'>rtyler</a>,
+    19:01:33)</span></li>
+  <li><span class="INFO">last meeting's actions:
+    http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-10-26-18.04.html</span>
+    <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-8'>rtyler</a>,
+    19:01:46)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">State of the Jenkins development environment</b> <span class="details">(<a href='jenkins.2011-11-09-19.00.log.html#l-21'>kohsuke</a>, 19:03:27)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">Kohsuke to
+    remove NodeProvisionerTest</span> <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-63'>kohsuke</a>,
+    19:13:27)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kutzi imod
+    and Majost to report the failing tests</span> <span
+    class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-65'>kohsuke</a>,
+    19:14:09)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">add jieryn to infra admin</b> <span class="details">(<a href='jenkins.2011-11-09-19.00.log.html#l-85'>kohsuke</a>, 19:19:12)</span>
+<ol type="a">
+  <li><span class="INFO">Reference to prior conversation
+    http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-05-24-16.09.log.html#l-292</span>
+    <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-86'>hare_brain</a>,
+    19:19:17)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">jieryn to be
+    added to users-core module</span> <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-99'>rtyler</a>,
+    19:21:52)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Appprove CloudBees request for the "Jenkins Enterprise from CloudBees" use request as per Governance Document</b> <span class="details">(<a href='jenkins.2011-11-09-19.00.log.html#l-103'>kohsuke</a>, 19:22:30)</span>
+<ol type="a">
+  <li><a
+    href="https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Trademark">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Trademark</a>
+    <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-116'>jieryn</a>,
+    19:24:20)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    set up jenkinsci-board@googlegroups.com</span> <span
+    class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-150'>kohsuke</a>,
+    19:32:38)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    double check SPI doesn't need to approve this separately</span>
+    <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-156'>kohsuke</a>,
+    19:33:42)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">board
+    approves "Jenkins Enterprise from CloudBees" as a use of mark with
+    kohsuke abstained</span> <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-158'>kohsuke</a>,
+    19:34:21)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">LTS discussion</b> <span class="details">(<a href='jenkins.2011-11-09-19.00.log.html#l-168'>kohsuke</a>, 19:36:16)</span>
+<br></li>
+<li><b class="TOPIC">LTS: what else to backport?</b> <span class="details">(<a href='jenkins.2011-11-09-19.00.log.html#l-214'>kohsuke</a>, 19:45:11)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    respin another RC to pick up SECURITY-17</span> <span
+    class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-250'>kohsuke</a>,
+    19:52:00)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">vjuranek to
+    create a Wiki page for 1.424.x testing</span> <span
+    class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-251'>kohsuke</a>,
+    19:52:21)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">we'll try to
+    get LTS released in 2 weeks</span> <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-252'>kohsuke</a>,
+    19:52:36)</span></li>
+  <li><a
+    href="https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line">https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line</a>
+    <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-271'>kohsuke</a>,
+    19:57:25)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2011-11-09-19.00.log.html#l-274'>kohsuke</a>, 19:57:57)</span>
+<ol type="a">
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">next one is
+    Nov 30th 19:00 UTC</span> <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-296'>kohsuke</a>,
+    20:00:58)</span></li>
+  <li><span
+    class="INFO">http://www.timeanddate.com/worldclock/fixedtime.html?msg=Jenkins+Governance+Meeting&amp;iso=20111123T11&amp;p1=224&amp;ah=1&amp;sort=1</span>
+    <span class="details">(<a
+    href='jenkins.2011-11-09-19.00.log.html#l-298'>hare_brain</a>,
+    20:01:19)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 20:01:49 UTC
+(<a href="jenkins.2011-11-09-19.00.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>Kohsuke to remove NodeProvisionerTest</li>
+  <li>kutzi imod and Majost to report the failing tests</li>
+  <li>kohsuke to set up jenkinsci-board@googlegroups.com</li>
+  <li>kohsuke to double check SPI doesn't need to approve this separately</li>
+  <li>kohsuke to respin another RC to pick up SECURITY-17</li>
+  <li>vjuranek to create a Wiki page for 1.424.x testing</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> imod <ol>
+    <li>kutzi imod and Majost to report the failing tests</li>
+  </ol></li>
+  <li> kohsuke <ol>
+    <li>kohsuke to set up jenkinsci-board@googlegroups.com</li>
+    <li>kohsuke to double check SPI doesn't need to approve this separately</li>
+    <li>kohsuke to respin another RC to pick up SECURITY-17</li>
+  </ol></li>
+  <li> kutzi <ol>
+    <li>kutzi imod and Majost to report the failing tests</li>
+  </ol></li>
+  <li> Majost <ol>
+    <li>kutzi imod and Majost to report the failing tests</li>
+  </ol></li>
+  <li> vjuranek <ol>
+    <li>vjuranek to create a Wiki page for 1.424.x testing</li>
+  </ol></li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>kohsuke (97)</li>
+  <li>rtyler (59)</li>
+  <li>Majost (51)</li>
+  <li>hare_brain (36)</li>
+  <li>kutzi (23)</li>
+  <li>vjuranek (12)</li>
+  <li>jieryn (9)</li>
+  <li>jenkins-admin (4)</li>
+  <li>imod (4)</li>
+  <li>q0rban (2)</li>
+  <li>robobutler (2)</li>
+  <li>hair_brain (1)</li>
+  <li>bap2000 (1)</li>
+  <li>abayer (0)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

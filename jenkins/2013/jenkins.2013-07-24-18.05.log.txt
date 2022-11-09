@@ -1,0 +1,56 @@
+18:05:46 <kohsuke> #startmeeting
+18:05:46 <robobutler> Let the Jenkins meeting commence!
+18:05:46 * rtyler heads back to work
+18:05:54 <kohsuke> #chair rtyler abayer hare_brain
+18:05:54 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:06:06 <kohsuke> #topic Next LTS plan and start lifting Java 6 dependency
+18:06:16 <kohsuke> is vjuranek around?
+18:06:23 <vjuranek> kohsuke: yes
+18:06:30 <kohsuke> YUS!
+18:07:11 <kohsuke> jglick told me that it's about 3 months since picking 1.509
+18:07:35 <kohsuke> and if we are still aiming for the cadence we need to start thinking about next LTS plan
+18:07:45 <vjuranek> yes, I was looking for new major jenkins branch, but usr ratting for recent jenkins releases are not very good
+18:07:52 <kohsuke> Yes
+18:08:29 <kohsuke> The other thing I thought was that 1.509 was a relatively new release back then and so that'd be an argument to stay on it for a little longer
+18:08:34 <vjuranek> lask one which look good is 1.518 ... I;m not sure if it's not too close to 1.509
+18:08:58 <vjuranek> so are you ok with another minor release of 1.509?
+18:09:11 <kohsuke> Yes
+18:09:20 <vjuranek> ok, so let's do it:-)
+18:09:26 <kohsuke> A relevant thing to this is: http://maven.40175.n5.nabble.com/VOTE-All-new-non-patch-releases-of-Maven-Core-after-30th-Sep-2013-to-require-Java-6-td5764610.html
+18:09:52 <kohsuke> jglick, stephenc, and I were whining about how we still have to support a version of Java that EOLed 5 years ago
+18:10:28 <ericNdfw> Not to barge in, but we just tried to upgrade (last week) from 1.480.3 to 1.509.2 and ended up having to roll back - still trying to debug what all was wrong.
+18:10:43 <ericNdfw> so I'm all for getting any issues in 1.509 shored up
+18:11:01 <vjuranek> I need to go through this treah, I missed it
+18:11:04 <kohsuke> and we came up with an idea that maybe if we can reach several OSS projects that still have to support Java5, and put some stake on the ground and move on to Java6, that might help
+18:11:24 <kohsuke> In our case, the mainline release had recently moved on to Java6, but current LTS still supports 1.5
+18:11:44 <kohsuke> And even in the mainline release we still have animal-sniffer watching out for the actual use of Java6 APIs
+18:12:49 <hare_brain> Do the anonymous usage stats collect Java version?
+18:12:50 <kohsuke> So I thought perhaps we could join this bandwagon by saying "Next major LTS rebump after Sep 30th 2013 WILL require Java6"
+18:13:27 <kohsuke> and that "mainline after Sep 30th 2013 will start relying on Java6 JRE features" (by lifting animal-sniffer to 6)
+18:13:31 <vjuranek> hare_brain: IIRC yes
+18:13:42 <kohsuke> hare_brain: Yes, I think imod looked at it
+18:13:46 <kohsuke> Let me dig it up
+18:13:58 <kohsuke> It was very small in numbers
+18:14:28 <hare_brain> Small in which direction? (Java 5 small or Java 6 small?)
+18:14:34 <kohsuke> Java5 is small
+18:14:36 <vjuranek> ok, I have no problem to require java6
+18:15:00 <vjuranek> IIRC java5 is problem only on AIX machines
+18:15:31 <vjuranek> (or upgrade to java6 is problem on AIX machine)
+18:15:51 <kohsuke> Since 1.520 we ship with 1.6 class files, and I think we haven't heard an uproar against it since then
+18:15:57 <kohsuke> That was Jun 25th
+18:16:13 <kohsuke> There was one ticket with I think 3 or 4 votes when I looked at it
+18:17:24 <hare_brain> I have no data to prove that this is actually the case, but consider that the type of person/org that runs mainline *might be* more likely to be on Java 6 than the type of person/org that runs LTS.
+18:17:33 <kohsuke> On a related note, does anyone know other projects that still depend on Java5 who might be inerested in joining this coalition?
+18:17:34 <hare_brain> Having said that, I agree it's time to move on.
+18:18:08 <potstickr> Howdy. I'm new to Jenkins. I have manually defined a job. Have a config.xml. Can I put that config.xml in a github repo, and have a jenkins server fetch it and create a job from it? How?
+18:18:24 <kohsuke> hare_brain: yes, we'll need to watch out for another uproar when LTS starts requiring 1.6
+18:19:30 <kohsuke> Anyway, so the relevant to LTS here is that this would also favor for sticking with 1.509 a bit more
+18:19:50 <kohsuke> And then during the summer hopefully we'll have the next baseline that people are happy about.
+18:20:13 <kohsuke> That's it from me
+18:20:24 <kohsuke> ... unless other people have stuff to talk about
+18:20:42 <kohsuke> #topic next meeting
+18:20:55 <kohsuke> it'd be Aug 7th
+18:21:00 <kohsuke> same time
+18:21:01 <vjuranek> +1
+18:21:14 <hare_brain> +1
+18:21:28 <kohsuke> #endmeeting

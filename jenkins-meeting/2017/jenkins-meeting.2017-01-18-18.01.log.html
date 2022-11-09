@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app215.us.archive.org';v.server_ms=670;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-01-18-18.01.log.html","20210115143618","https://web.archive.org/","web","/_static/",
+	      "1610721378");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:40</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:40</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:48</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler_ kohsuke hare_brain</span>
+<a name="l-4"></a><span class="tm">18:01:48</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler_
+<a name="l-5"></a><span class="tm">18:02:08</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">agenda:</span> https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Jan18meeting
+<a name="l-6"></a><span class="tm">18:02:08</span><span class="nk"> &lt;kohsuke&gt;</span> Hi
+<a name="l-7"></a><span class="tm">18:02:25</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-8"></a><span class="tm">18:02:32</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-01-04-18.00.html</span>
+<a name="l-9"></a><span class="tm">18:02:37</span><span class="nk"> &lt;danielbeck&gt;</span> no actions
+<a name="l-10"></a><span class="tm">18:02:39</span><span class="nk"> &lt;danielbeck&gt;</span> that was quick
+<a name="l-11"></a><span class="tm">18:02:47</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-12"></a><span class="tm">18:02:54</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza you have the floor
+<a name="l-13"></a><span class="tm">18:03:10</span><span class="nk"> &lt;ogondza&gt;</span> backporting is done
+<a name="l-14"></a><span class="tm">18:03:22</span><span class="nk"> &lt;ogondza&gt;</span> I will push the RC tomorrow morning
+<a name="l-15"></a><span class="tm">18:03:36</span><span class="nk"> &lt;danielbeck&gt;</span> great
+<a name="l-16"></a><span class="tm">18:03:43</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> did you wanted the spelling fixes backported?
+<a name="l-17"></a><span class="tm">18:04:03</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza no, that was just whether a large scale PR like that would make backports difficult
+<a name="l-18"></a><span class="tm">18:04:04</span><span class="nk"> &lt;ogondza&gt;</span> we can do changelog at any time
+<a name="l-19"></a><span class="tm">18:04:22</span><span class="nk"> &lt;ogondza&gt;</span> I do not expect that
+<a name="l-20"></a><span class="tm">18:04:41</span><span class="nk"> &lt;ogondza&gt;</span> that is it from me
+<a name="l-21"></a><span class="tm">18:04:42</span><span class="nk"> &lt;danielbeck&gt;</span> (for context: I requested ogondza 's review on https://github.com/jenkinsci/jenkins/pull/2718 )
+<a name="l-22"></a><span class="tm">18:04:47</span><span class="nk"> &lt;danielbeck&gt;</span> thanks!
+<a name="l-23"></a><span class="tm">18:04:55</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Review GSoC project application status'</span>
+<a name="l-24"></a><span class="tm">18:05:07</span><span class="nk"> &lt;danielbeck&gt;</span> no user name
+<a name="l-25"></a><span class="tm">18:05:11</span><span class="nk"> &lt;danielbeck&gt;</span> so not sure who put this
+<a name="l-26"></a><span class="tm">18:05:22</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler_ did
+<a name="l-27"></a><span class="tm">18:05:32</span><span class="nk"> &lt;danielbeck&gt;</span> but he's not around I think
+<a name="l-28"></a><span class="tm">18:05:39</span><span class="nk"> &lt;danielbeck&gt;</span> anyone else know what needs to be done here?
+<a name="l-29"></a><span class="tm">18:06:02</span><span class="nk"> &lt;danielbeck&gt;</span> apparently not
+<a name="l-30"></a><span class="tm">18:06:13</span><span class="nk"> &lt;danielbeck&gt;</span> moving on…
+<a name="l-31"></a><span class="tm">18:06:14</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's tyler topic
+<a name="l-32"></a><span class="tm">18:06:24</span><span class="nk"> &lt;danielbeck&gt;</span> right, but no details and no rtyler_
+<a name="l-33"></a><span class="tm">18:06:55</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Bug Triage Team Idea</span>
+<a name="l-34"></a><span class="tm">18:07:01</span><span class="nk"> &lt;danielbeck&gt;</span> Slide-O-Mix this is yours
+<a name="l-35"></a><span class="tm">18:07:16</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Yup, so I have been looking at the issue tracker, there are ~6000 issues with no assignee
+<a name="l-36"></a><span class="tm">18:07:29</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> which means they probably will never get any traction, even a "not a bug" type look
+<a name="l-37"></a><span class="tm">18:07:50</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> My proposal would be to recruit a team of people to triage all the unassigned issues and assign them based on component
+<a name="l-38"></a><span class="tm">18:08:14</span><span class="nk"> &lt;danielbeck&gt;</span> I can batch assign issues based on component but that doesn't help anyone
+<a name="l-39"></a><span class="tm">18:08:20</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Second level triage would be to try and replicate the issue, if feasible and update
+<a name="l-40"></a><span class="tm">18:08:38</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Agreed, I think eyes on the issues is key here
+<a name="l-41"></a><span class="tm">18:08:39</span><span class="nk"> &lt;danielbeck&gt;</span> FWIW I review incoming core(ish) issues but that's all I have time for
+<a name="l-42"></a><span class="tm">18:08:53</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> which is why I would like to recruit people :)
+<a name="l-43"></a><span class="tm">18:09:03</span><span class="nk"> &lt;danielbeck&gt;</span> I'd be happy to participate in something like that but it needs to be more limited in scope
+<a name="l-44"></a><span class="tm">18:09:12</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> What do you have in mind?
+<a name="l-45"></a><span class="tm">18:10:08</span><span class="nk"> &lt;danielbeck&gt;</span> start with core + selected plugins (5000+ installs perhaps). Work by component. Close old issues. Close requests for help. Close unclear issues. Try to investigate the rest. Something like that.
+<a name="l-46"></a><span class="tm">18:10:09</span><span class="nk"> &lt;jglick&gt;</span> FWIW I was trying to triage https://issues.jenkins-ci.org/issues/?jql=resolution%20%3D%20Unresolved%20and%20component%20%3D%20pipeline%20order%20by%20issuekey%20ASC for a while and I just ran out of time to do it regularly.
+<a name="l-47"></a><span class="tm">18:10:25</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">danielbeck:</span> I agree with that
+<a name="l-48"></a><span class="tm">18:10:34</span><span class="nk"> &lt;danielbeck&gt;</span> jglick shouldn't have written a plugin that's popular then ;-)
+<a name="l-49"></a><span class="tm">18:10:43</span><span class="nk"> &lt;jglick&gt;</span> BTW issues with an assignee have not necessarily been triaged.
+<a name="l-50"></a><span class="tm">18:10:44</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I'll write up a full proposal and post to the developers list
+<a name="l-51"></a><span class="tm">18:10:55</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">jglick:</span> it's true, but the ones without are more low hanging
+<a name="l-52"></a><span class="tm">18:10:55</span><span class="nk"> &lt;jglick&gt;</span> May just be a default assignee for the component.
+<a name="l-53"></a><span class="tm">18:11:06</span><span class="nk"> &lt;danielbeck&gt;</span> Slide-O-Mix or perhaps just plugins that we recommend in the wizard. So people with the "default experience" are covered
+<a name="l-54"></a><span class="tm">18:11:21</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">danielbeck:</span> yeah, I was about to say the same thing
+<a name="l-55"></a><span class="tm">18:11:24</span><span class="nk"> &lt;kohsuke&gt;</span> +1 for more emphasis on default plugins
+<a name="l-56"></a><span class="tm">18:11:27</span><span class="nk"> &lt;jglick&gt;</span> Some JIRA workflows let you have a `New` status distinct from `Open`.
+<a name="l-57"></a><span class="tm">18:11:35</span><span class="nk"> &lt;danielbeck&gt;</span> Slide-O-Mix I'm +1 for doing something here, but unclear whether it's a "team" team, or just a group of volunteers
+<a name="l-58"></a><span class="tm">18:12:00</span><span class="nk"> &lt;danielbeck&gt;</span> jglick that's something we could add as well
+<a name="l-59"></a><span class="tm">18:12:13</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">danielbeck:</span> well, the case where it may be something for a team would be giving these people more "power" to close out issues without the component lead's go ahead
+<a name="l-60"></a><span class="tm">18:12:36</span><span class="nk"> &lt;danielbeck&gt;</span> clearly you haven't looked at what I've been doing :-)
+<a name="l-61"></a><span class="tm">18:12:48</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> No, I haven't
+<a name="l-62"></a><span class="tm">18:12:59</span><span class="nk"> &lt;danielbeck&gt;</span> It's reversible so closing issues isn't a big deal
+<a name="l-63"></a><span class="tm">18:13:02</span><span class="nk"> &lt;kohsuke&gt;</span> Right, I think a bit of formality will help empower people
+<a name="l-64"></a><span class="tm">18:13:07</span><span class="nk"> &lt;danielbeck&gt;</span> most users realize this and just reopen
+<a name="l-65"></a><span class="tm">18:13:14</span><span class="nk"> &lt;kohsuke&gt;</span> danielbeck won't need it because of his credibility
+<a name="l-66"></a><span class="tm">18:13:27</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Some component leads may not like it
+<a name="l-67"></a><span class="tm">18:13:32</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> exactly
+<a name="l-68"></a><span class="tm">18:13:33</span><span class="nk"> &lt;kohsuke&gt;</span> But others can benefit from that
+<a name="l-69"></a><span class="tm">18:13:42</span><span class="nk"> &lt;danielbeck&gt;</span> makes sense
+<a name="l-70"></a><span class="tm">18:13:58</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I guess it depends on who volunteers, if its people who have the credibility, maybe we don't need any special "team"
+<a name="l-71"></a><span class="tm">18:14:21</span><span class="nk"> &lt;kohsuke&gt;</span> If we have such eager plugin maintainers that we'd be fighting over who will touch tickets first, that sounds like a great problem to have :-)
+<a name="l-72"></a><span class="tm">18:14:40</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Indeed!
+<a name="l-73"></a><span class="tm">18:15:00</span><span class="nk"> &lt;kohsuke&gt;</span> But more seriously, if indeed such a situation arises I'm sure pretty quickly the team will learn to handle it accordingly
+<a name="l-74"></a><span class="tm">18:15:06</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> We would want to determine where to start as well...do we want to start with JENKINS-22 (which is still open) or start with more recent stuff
+<a name="l-75"></a><span class="tm">18:15:20</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> hmmm
+<a name="l-76"></a><span class="tm">18:15:27</span><span class="nk"> &lt;danielbeck&gt;</span> Slide-O-Mix I'm looking forward to your thread
+<a name="l-77"></a><span class="tm">18:15:27</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> whoops, wrong window on the hmm
+<a name="l-78"></a><span class="tm">18:15:36</span><span class="nk"> &lt;danielbeck&gt;</span> I've done a lot of this in the past several years
+<a name="l-79"></a><span class="tm">18:15:38</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> ok, I'll submit a proposal, I just wanted to determine if people were interested
+<a name="l-80"></a><span class="tm">18:15:40</span><span class="nk"> &lt;danielbeck&gt;</span> so I have some experience
+<a name="l-81"></a><span class="tm">18:15:43</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1
+<a name="l-82"></a><span class="tm">18:15:58</span><span class="nk"> &lt;danielbeck&gt;</span> Slide-O-Mix We won't know without asking
+<a name="l-83"></a><span class="tm">18:16:25</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> ok, that's it from me
+<a name="l-84"></a><span class="tm">18:16:26</span><span class="nk"> &lt;danielbeck&gt;</span> Slide-O-Mix so, you're going to send your email to the dev list and we'll continue there?
+<a name="l-85"></a><span class="tm">18:16:30</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> yes
+<a name="l-86"></a><span class="tm">18:16:43</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">Slide-O-Mix to send email on bug triage team to the dev list</span>
+<a name="l-87"></a><span class="tm">18:16:52</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">JDK8 baseline upgrade news</span>
+<a name="l-88"></a><span class="tm">18:16:56</span><span class="nk"> &lt;danielbeck&gt;</span> batmat
+<a name="l-89"></a><span class="tm">18:17:33</span><span class="nk"> &lt;danielbeck&gt;</span> seems he isn't around
+<a name="l-90"></a><span class="tm">18:17:56</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">Jenkins core now builds on Windows and is green \o/ (err, blue): https://github.com/jenkinsci/jenkins/pull/2698</span>
+<a name="l-91"></a><span class="tm">18:18:05</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">PR for the public announcement is up for review: https://github.com/jenkins-infra/jenkins.io/pull/545</span>
+<a name="l-92"></a><span class="tm">18:18:14</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> someone responded that there are failures that aren't causing the build to go to unstable
+<a name="l-93"></a><span class="tm">18:18:24</span><span class="nk"> &lt;jglick&gt;</span> IIUC it is only blue by accident, actually failing.
+<a name="l-94"></a><span class="tm">18:18:27</span><span class="nk"> &lt;danielbeck&gt;</span> Slide-O-Mix right, a JUnit bug possibly
+<a name="l-95"></a><span class="tm">18:18:39</span><span class="nk"> &lt;danielbeck&gt;</span> but isn't that "just" Windows?
+<a name="l-96"></a><span class="tm">18:18:42</span><span class="nk"> &lt;danielbeck&gt;</span> Unrelated to JDK 8?
+<a name="l-97"></a><span class="tm">18:18:52</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> No, there were some failures on Linux too I believe
+<a name="l-98"></a><span class="tm">18:19:03</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> It's only the build on ci.jenkins.io I believe
+<a name="l-99"></a><span class="tm">18:19:14</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> which uses the Jenkinsfile
+<a name="l-100"></a><span class="tm">18:19:19</span><span class="nk"> &lt;teilo&gt;</span> yup that was me...  the windows build has lots of test failures but the pipeline/junit ignores them
+<a name="l-101"></a><span class="tm">18:19:23</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I can reproduce it locally
+<a name="l-102"></a><span class="tm">18:19:52</span><span class="nk"> &lt;danielbeck&gt;</span> ugh
+<a name="l-103"></a><span class="tm">18:20:12</span><span class="nk"> &lt;danielbeck&gt;</span> okay, so there's some work here left to address before we can go with -target 8
+<a name="l-104"></a><span class="tm">18:20:14</span><span class="nk"> &lt;jglick&gt;</span> Well let us take it out of the meeting. Slide-O-Mix if you can reproduce, please add comments to a JIRA issue which I will give you a link to in a moment.
+<a name="l-105"></a><span class="tm">18:20:21</span><span class="nk"> &lt;danielbeck&gt;</span> +1
+<a name="l-106"></a><span class="tm">18:20:22</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Ok, will do
+<a name="l-107"></a><span class="tm">18:20:25</span><span class="nk"> &lt;jglick&gt;</span> Anyway I think none of this has anything to do with Java 8.
+<a name="l-108"></a><span class="tm">18:20:36</span><span class="nk"> &lt;danielbeck&gt;</span> can we move on?
+<a name="l-109"></a><span class="tm">18:20:40</span><span class="nk"> &lt;teilo&gt;</span> there's an issue raised - JENKINS-41134
+<a name="l-110"></a><span class="tm">18:21:02</span><span class="nk"> &lt;teilo&gt;</span> jglick it does.. windows builds with tests passing was a blocker for jdk8
+<a name="l-111"></a><span class="tm">18:21:26</span><span class="nk"> &lt;jglick&gt;</span> I assume the failures are unrelated.
+<a name="l-112"></a><span class="tm">18:21:34</span><span class="nk"> &lt;jglick&gt;</span> Anyway I think we can move on…
+<a name="l-113"></a><span class="tm">18:21:36</span><span class="nk"> &lt;teilo&gt;</span> yes - but...
+<a name="l-114"></a><span class="tm">18:21:40</span><span class="nk"> &lt;teilo&gt;</span> (move on)
+<a name="l-115"></a><span class="tm">18:21:46</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">FOSDEM planning update</span>
+<a name="l-116"></a><span class="tm">18:21:50</span><span class="nk"> &lt;danielbeck&gt;</span> alyssat this is yours
+<a name="l-117"></a><span class="tm">18:21:53</span><span class="nk"> &lt;alyssat&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/FOSDEM+2017</span>
+<a name="l-118"></a><span class="tm">18:22:06</span><span class="nk"> &lt;alyssat&gt;</span> Planning for FOSDEM has been documented and updated on the wiki page. What's new this years is Declarative Pipeline which abayer has a speaking session and will be showcasing it at the stand. For those working the stand pls see abayer at the stand for a quick briefing.
+<a name="l-119"></a><span class="tm">18:22:30</span><span class="nk"> &lt;alyssat&gt;</span> Also, those who can help lend a hand - Oliver Vernin will be doing the setup for the stand. Pls see the specifics on the wiki page under HELP for where/when to meet .
+<a name="l-120"></a><span class="tm">18:23:38</span><span class="nk"> &lt;alyssat&gt;</span> Additionally, the pre and post FOSDEM events has also been updated on the meetup pages (see wiki page for links).  All details has been nailed down (on the meetup pages). I will be adding a hackathon agenda as soon.
+<a name="l-121"></a><span class="tm">18:24:28</span><span class="nk"> &lt;alyssat&gt;</span> Just wanted to give that quick update. Does anyone have questions?
+<a name="l-122"></a><span class="tm">18:24:36</span><span class="nk"> &lt;danielbeck&gt;</span> did we really want to announce the hackathon on meetup?
+<a name="l-123"></a><span class="tm">18:25:05</span><span class="nk"> &lt;danielbeck&gt;</span> won't we have problems with random people showing up?
+<a name="l-124"></a><span class="tm">18:25:13</span><span class="nk"> &lt;alyssat&gt;</span> we did a similar announcement last year for the contributor summit which worked out fine
+<a name="l-125"></a><span class="tm">18:25:25</span><span class="nk"> &lt;danielbeck&gt;</span> ah okay
+<a name="l-126"></a><span class="tm">18:25:43</span><span class="nk"> &lt;alyssat&gt;</span> i think the word "Contributor" scares people away
+<a name="l-127"></a><span class="tm">18:25:50</span><span class="nk"> &lt;alyssat&gt;</span> 😀
+<a name="l-128"></a><span class="tm">18:26:06</span><span class="nk"> &lt;danielbeck&gt;</span> Also "Audience: 20-30 serious Jenkins users who are willing to roll up their sleeves" :-)
+<a name="l-129"></a><span class="tm">18:26:38</span><span class="nk"> &lt;alyssat&gt;</span> yup..to get some work done
+<a name="l-130"></a><span class="tm">18:26:58</span><span class="nk"> &lt;danielbeck&gt;</span> looks good
+<a name="l-131"></a><span class="tm">18:27:15</span><span class="nk"> &lt;danielbeck&gt;</span> Other questions for alyssat ?
+<a name="l-132"></a><span class="tm">18:27:37</span><span class="nk"> &lt;kohsuke&gt;</span> Looking forward to seeing you all!
+<a name="l-133"></a><span class="tm">18:27:59</span><span class="nk"> &lt;danielbeck&gt;</span> Looks like we're done for today
+<a name="l-134"></a><span class="tm">18:28:05</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-135"></a><span class="tm">18:28:19</span><span class="nk"> &lt;danielbeck&gt;</span> Feb 1st, just before FOSDEM
+<a name="l-136"></a><span class="tm">18:28:27</span><span class="nk"> &lt;danielbeck&gt;</span> same time, same channel
+<a name="l-137"></a><span class="tm">18:28:42</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 14:36:18 Jan 15, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:06:52 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 541.087
+  exclusion.robots: 0.08
+  exclusion.robots.policy: 0.073
+  cdx.remote: 0.054
+  esindex: 0.007
+  LoadShardBlock: 150.893 (3)
+  PetaboxLoader3.datanode: 109.227 (4)
+  CDXLines.iter: 15.099 (3)
+  load_resource: 120.469
+  PetaboxLoader3.resolve: 86.627
+-->

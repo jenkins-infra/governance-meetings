@@ -1,0 +1,135 @@
+18:00:56 <oleg-nenashev> #startmeeting
+18:00:56 <robobutler> Let the Jenkins meeting commence!
+18:01:09 <oleg-nenashev> Is anyone e;lse around?
+18:01:56 * markewaite is here
+18:02:04 <oleg-nenashev> okay
+18:02:09 <oleg-nenashev> ogondza_:  ?
+18:02:21 <oleg-nenashev> #topic LTS status check
+18:02:32 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/2hPMwmZDZFg
+18:02:48 <oleg-nenashev> Current consensus looks to be 2.204
+18:03:19 <markewaite> JENKINS-60199 certainly blocks 2.205 and is not in 2.204
+18:03:36 <oleg-nenashev> One of the issues is with https://groups.google.com/forum/#!topic/jenkinsci-dev/O_g1kk39TBQ which suggests a serious regression in JCasC in Jenkins 2.199+ . It might be a reason to consider 2.198
+18:04:08 <oleg-nenashev> I have not investigated it fully yet, but it is a good chance of dumpsterfire if it gets into LTS
+18:05:12 <oleg-nenashev> I doubt we can discuss more without Oliver on the call
+18:05:30 <markewaite> I had not read that description before. I agree that looks risky.  The report says that they upgraded to 2.199, are we confident 2.198 does not have same behavior?
+18:05:36 <oleg-nenashev> timja: FYI https://groups.google.com/forum/#!topic/jenkinsci-dev/O_g1kk39TBQ might be an issue
+18:06:04 <oleg-nenashev> markewaite: I am confident it does not. https://issues.jenkins-ci.org/browse/JENKINS-58993 is a root cause
+18:06:12 <markewaite> Also OK if we host the conversation in e-mail so that we include Oliver
+18:06:49 <oleg-nenashev> It is definitely in email
+18:07:05 <markewaite> oleg-nenashev: since 2.198 does not have that issue, that leads to your suggestion that 1.198 is likely best choice.  Thanks for clarity
+18:07:47 <oleg-nenashev> It removes a number of improvements from the LTS. But really, it is a call for the release officer
+18:08:12 <rtyler> um hi
+18:08:18 <oleg-nenashev> um hey
+18:08:22 <oleg-nenashev> So, moving on?
+18:08:25 <markewaite> Agreed. We can bring the issues to Oliver by e-mail and assure he's aware that 2.198 looks like the preferred LTS
+18:08:32 <markewaite> moving on is OK with me
+18:08:57 <oleg-nenashev> #agreed 2.198 and 2.204 need further discussin in the mailing list
+18:09:09 <oleg-nenashev> #topic Event updates
+18:09:35 <oleg-nenashev> #info We will have a Jenkins stand at FOSDEM, yey! https://fosdem.org/2020/news/2019-11-19-accepted-stands/
+18:09:46 <oleg-nenashev> Kudos to olblak for handling the application
+18:10:11 <oleg-nenashev> #info Hacktoberfest is over
+18:10:30 <oleg-nenashev> #info Hacktoberfest top-level stats are in https://groups.google.com/forum/#!topic/jenkinsci-dev/k5KICbRDoz4
+18:10:42 <markewaite> Kudos to oleg-nenashev for the excellent results from Hacktoberfest!
+18:10:45 <oleg-nenashev> TL;DR: 124 first-timer contributors in one month
+18:11:21 <oleg-nenashev> And 915 unique contributors over a month. It is a history record according to devstats
+18:11:47 <oleg-nenashev> #info https://devstats.cd.foundation/ for those who are interested in devstats
+18:11:58 <oleg-nenashev> Oh, Jenkins world
+18:12:18 <oleg-nenashev> #info Don't miss the contributor summit on Dec 03.
+18:12:25 <oleg-nenashev> kinda
+18:12:45 <oleg-nenashev> I doubt it makes sense to spend too much time on the events, everything is in the devlist
+18:13:03 <oleg-nenashev> moving on unless there are questions
+18:13:28 <oleg-nenashev> #topic Trademark usage request: Jenkins Master Class
+18:13:48 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/Cq_NQwyLD5s
+18:14:09 <oleg-nenashev> Parker is not in the channel so far
+18:14:32 <oleg-nenashev> I asked him to join, but he had issues with logging in to IRC
+18:15:07 <oleg-nenashev> So far we have 2 +1s in the mailing list, no other final votes IIUC
+18:15:34 <oleg-nenashev> rtyler and Parker had a conversation, but I am not sure what is the outcome
+18:15:34 <rtyler> the suggestive call to action that Parker describes I think is fine
+18:16:17 <rtyler> generally speaking we shouldn't have things called "Jenkins" that aren't about Jenkins, which it sounds like this is. Including a call action for some product is fine and has been done with just about every Jenkins related event error
+18:17:17 <markewaite> I'm acting as cut/paste transmitter to share this with Parker while he wrestles with login issues.
+18:17:33 <markewaite> Any specific questions that need to be asked of Parker ?
+18:17:39 <rtyler> login issues? http://webchat.freenode.net/ is easy o_O
+18:17:50 * oleg-nenashev shrugs
+18:18:06 <oleg-nenashev> I do not have questions from my side
+18:18:09 <rtyler> anyways, I don't think there is any problem with this request as stated, the misttype that Parker made on the maijling list referring to "Jenkins distribution" absolutely should _not_ happen in the class content :)
+18:18:15 * markewaite feels sheepish at the number of times he's struggled with IRC
+18:19:10 <rtyler> I'm +1 with the usual stipulations around properly identifying the mark and not confusing it with commercial products
+18:19:24 <oleg-nenashev> https://www.irccloud.com/pastebin/qamgkf3E/
+18:19:34 <oleg-nenashev> Our current approach is that the requester must ensure the correctness of the trademark usage, including the requester's materials and 3rd parties
+18:19:40 <oleg-nenashev> sorry for pastebin
+18:20:00 <rtyler> heh, I was wondering why that was there, but yes, those are "the usual" :)
+18:20:02 <rtyler> thanks oleg-nenashev
+18:20:52 <markewaite> I'm +1
+18:21:01 <oleg-nenashev> so yeah, CloudBees would be responsible to ensure "Jenkins Master Class" trademark is used properly
+18:21:17 <oleg-nenashev> Any other comments/questions/concerns?
+18:21:40 <oleg-nenashev> With rtyler's +1 we have 3x +1s and one abstain (from me)
+18:22:02 <oleg-nenashev> 30 sec timeout
+18:22:44 <oleg-nenashev> erm timeout
+18:22:50 <ParkerCB> Hi all, sorry for the delay. Note to self - write down your IRC password :facepalm:
+18:23:12 <oleg-nenashev> #agreed the "Jenkins Master Class" trademark request is approved, with the usual stipulations around properly identifying the mark and not confusing it with commercial products
+18:23:27 <ParkerCB> markewaite was keeping me up to date via Slack
+18:23:39 <oleg-nenashev> rtyler: would you be able to update the Wiki page? We have not moved trademarks to jenkins.io yet
+18:24:05 <rtyler> yes
+18:24:07 <oleg-nenashev> #info https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage
+18:24:34 <oleg-nenashev> #action rtyler to update the Approved Trademark Usage list
+18:24:40 <oleg-nenashev> thanks rtyler and ParkerCB !
+18:24:43 <oleg-nenashev> moving on
+18:24:54 <oleg-nenashev> #topic Budget request: Hacktoberfest swag
+18:25:11 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/k5KICbRDoz4
+18:25:15 <ParkerCB> Yes, thanks a bunch!
+18:25:40 <oleg-nenashev> So I ask for 500USD or 1000 USD budget for swag for top first-timer contributors
+18:26:50 <oleg-nenashev> I am not sure where we exactly stand w.r.t the treasury, maybe rtyler has numbers
+18:27:33 <oleg-nenashev> And I am a bit concerned about spending too much taking the infrastructure sponsorship topics, but I doubt 500USD would make a difference there
+18:28:36 <oleg-nenashev> From the current budget, we have 3500 USD reserved for Community Bridge + ~8k USD reserved as GSoC funds according to JEP-8
+18:29:08 <oleg-nenashev> votes/comments/questions ?
+18:29:27 <markewaite> I really like the swag idea to encourage the contributors and think 500 USD (and even 1000 USD) is well worth it
+18:30:42 <rtyler> yes to swag
+18:30:51 <ParkerCB> ^agreed. A good incentive to encourage new contributors and promotes the Jenkins community as a "team" at the same time
+18:31:23 <oleg-nenashev> Any preference between 500 or 1000 USD?
+18:31:42 <oleg-nenashev> I can do both
+18:31:48 <markewaite> My preference is 500 USD because I'm financially very conservative, but will 500 USD be enough?
+18:32:15 <oleg-nenashev> For around 20 contributors, maybe a bit more
+18:32:25 <rtyler> I would recommend we agree on 1000 just to have some wiggle room because I'm sure not everybody here knows the price of stickers, shipping and t-shirts :)
+18:32:29 <rtyler> if we come under, that's great
+18:32:36 <markewaite> Then let's go with 1000 USD to provide capacity
+18:32:43 <oleg-nenashev> +1 obviously
+18:32:45 <ParkerCB> $500 would be ~$25 per person for 20 contributors
+18:32:50 <markewaite> +1
+18:32:51 <ParkerCB> which depending on the swag, could work
+18:32:56 <markewaite> +1 for 1000 USD
+18:32:56 <oleg-nenashev> I do not plan T-shirts BTW
+18:33:12 <rtyler> ok
+18:33:19 <oleg-nenashev> Is anyone against?
+18:33:32 <oleg-nenashev> 30 sec timeout
+18:33:34 <ParkerCB> nope, +1 for 1000
+18:33:35 <rtyler> I'm still in favor of a little extra budget capacity, I trust you all to make the prudent decisions on what we can send to new contributors
+18:33:51 <oleg-nenashev> will do my best
+18:34:12 <oleg-nenashev> #agreed 1000USD Swag budget is confirmed for Hacktoberfest 2019
+18:34:24 <oleg-nenashev> #topic Approving Browser Support Policy update
+18:34:33 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/TV_pLEah9B4
+18:34:44 <oleg-nenashev> #info Pending PR: https://github.com/jenkins-infra/jenkins.io/pull/2659
+18:34:59 <oleg-nenashev> aka "Does anyone still use IE 8 here?"
+18:35:52 <oleg-nenashev> It has a pretty strong consensus in the dev list, just bringing it up here for extra sign-off / Q&A
+18:36:36 <rtyler> I don't have any input and don't think it's necessary for a sign-off per se
+18:36:46 <rtyler> those doin' the work get to call the shots on what we can support IMHO
+18:37:31 <oleg-nenashev> Is anyone agains?
+18:38:02 <markewaite> No opposition from me. +1 for the update
+18:38:07 <oleg-nenashev> We can just rubber-stamp this thread and the OS X one to save time
+18:38:26 <rtyler> drop old browsers and bad platforms! :D
+18:38:47 <markewaite> +1 on dropping the native installer for OS X as well
+18:39:04 <oleg-nenashev> +1 from me for both
+18:39:39 <oleg-nenashev> I also have a long-standing action item in Platform SIG to document the Windows support policy
+18:40:09 <ParkerCB> No opinion from me on this one, not knowledgeable enough
+18:40:18 <oleg-nenashev> Dropping 32bit and XP would be a huge relief if I ever have to touch WinP again
+18:41:25 <markewaite> Also agree that we should drop 32 bit Windows support.  Untested code and not likely to be tested by active participants
+18:41:48 <oleg-nenashev> OK, let's conclude it then
+18:42:30 <oleg-nenashev> #agreed Approved the browser support policy change as it documented in https://github.com/jenkins-infra/jenkins.io/pull/2659/commits/08c747ce909d2bdae6dd6ea91c73584e987ab5c5
+18:42:57 <oleg-nenashev> #agreed Approved the OS X packaging deprecation
+18:43:21 <oleg-nenashev> #action oleg_nenashev to follow-up on both topics
+18:43:26 <oleg-nenashev> That's it
+18:43:32 <oleg-nenashev> any other topics to cover today?
+18:44:05 <oleg-nenashev> 30 sec timeout
+18:44:09 <markewaite> LTS selection will happen in e-mail thread?
+18:44:30 <markewaite> Ultimate decision by the release officer?
+18:44:45 <oleg-nenashev> markewaite: yes
+18:45:51 <oleg-nenashev> #endmeeting

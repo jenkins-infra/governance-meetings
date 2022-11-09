@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app200.us.archive.org';v.server_ms=717;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-03-14-18.00.log.html","20211027233532","https://web.archive.org/","web","/_static/",
+	      "1635377732");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:08</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck kohsuke</span>
+<a name="l-4"></a><span class="tm">18:00:19</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-6"></a><span class="tm">18:00:31</span><span class="nk"> &lt;rtyler&gt;</span> http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-02-28-18.02.html
+<a name="l-7"></a><span class="tm">18:00:45</span><span class="nk"> &lt;rtyler&gt;</span> danielbeck and oleg-nenashev are the only ones with an action from last time around
+<a name="l-8"></a><span class="tm">18:01:35 </span><span class="nka">* rtyler</span> <span class="ac">waits for our friends in the .eu to wake up</span>
+<a name="l-9"></a><span class="tm">18:01:36</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-10"></a><span class="tm">18:01:42</span><span class="nk"> &lt;bitwiseman&gt;</span> hello
+<a name="l-11"></a><span class="tm">18:01:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://www.youtube.com/watch?v=Vfnc9t1RuYA - screencast about JEP-200, kudos to bitwiseman and jglick</span>
+<a name="l-12"></a><span class="tm">18:02:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Youtube always chooses Chuck Norris for the landing image
+<a name="l-13"></a><span class="tm">18:02:41</span><span class="nk"> &lt;rtyler&gt;</span> o_O
+<a name="l-14"></a><span class="tm">18:03:21</span><span class="nk"> &lt;rtyler&gt;</span> anything else on this oleg-nenashev ?
+<a name="l-15"></a><span class="tm">18:03:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">2.107.1 upgrade guide is in place: https://jenkins.io/doc/upgrade-guide/2.107/#upgrading-to-jenkins-lts-2-107-1 (danielbeck's action item)</span>
+<a name="l-16"></a><span class="tm">18:03:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> that's it from me
+<a name="l-17"></a><span class="tm">18:04:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> would appreciate reviews of https://github.com/jenkins-infra/jenkins.io/pull/1448 though
+<a name="l-18"></a><span class="tm">18:05:22</span><span class="nk"> &lt;rtyler&gt;</span> okay, I don't think there are any other last meeting actions we need to cover
+<a name="l-19"></a><span class="tm">18:05:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> are you with us this fine afternoon?
+<a name="l-20"></a><span class="tm">18:05:37</span><span class="nk"> &lt;ogondza&gt;</span> rtyler, sure
+<a name="l-21"></a><span class="tm">18:05:45</span><span class="nk"> &lt;rtyler&gt;</span> wunderbar
+<a name="l-22"></a><span class="tm">18:05:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-23"></a><span class="tm">18:05:54</span><span class="nk"> &lt;rtyler&gt;</span> the floor is yours ogondza
+<a name="l-24"></a><span class="tm">18:06:20</span><span class="nk"> &lt;ogondza&gt;</span> most of the testing was done internally
+<a name="l-25"></a><span class="tm">18:06:31</span><span class="nk"> &lt;ogondza&gt;</span> public ci is getting less and less stable
+<a name="l-26"></a><span class="tm">18:06:43</span><span class="nk"> &lt;rtyler&gt;</span> this is ci.jenkins.io?
+<a name="l-27"></a><span class="tm">18:07:02</span><span class="nk"> &lt;ogondza&gt;</span> rtyler, there is not LTS test there yet
+<a name="l-28"></a><span class="tm">18:07:15</span><span class="nk"> &lt;ogondza&gt;</span> jenkins.ci.cloudbees.com
+<a name="l-29"></a><span class="tm">18:07:31</span><span class="nk"> &lt;rtyler&gt;</span> oh, well that's not surprising to me then :P
+<a name="l-30"></a><span class="tm">18:07:36</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">ogondza:</span> is that public?
+<a name="l-31"></a><span class="tm">18:07:40</span><span class="nk"> &lt;ogondza&gt;</span> No notable regressions reported
+<a name="l-32"></a><span class="tm">18:07:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> do you have any tickets floating around INFRA for moving that workload over to ci.jenkins.io
+<a name="l-33"></a><span class="tm">18:07:55</span><span class="nk"> &lt;ogondza&gt;</span> rtyler, not that ci.jenkins.io would be any more stable for ATH :P
+<a name="l-34"></a><span class="tm">18:07:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">bitwiseman:</span> yes, that's an old DEV@Cloud instance that CloudBees provisioned for us once upon a time
+<a name="l-35"></a><span class="tm">18:08:10</span><span class="nk"> &lt;bitwiseman&gt;</span> 0_o
+<a name="l-36"></a><span class="tm">18:08:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> raul just did a tremendous amount of work to make sure that we can get at least the smoke suite stable and running for PRs
+<a name="l-37"></a><span class="tm">18:08:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> I guess my point is, what can I do to help you forget jenkins.ci.cloudbees.com forever and ever :)
+<a name="l-38"></a><span class="tm">18:08:54</span><span class="nk"> &lt;bitwiseman&gt;</span> (into the mists of time)
+<a name="l-39"></a><span class="tm">18:09:00</span><span class="nk"> &lt;ogondza&gt;</span> rtyler, lets track this and have a look offline
+<a name="l-40"></a><span class="tm">18:09:07</span><span class="nk"> &lt;rtyler&gt;</span> okie doke
+<a name="l-41"></a><span class="tm">18:09:21</span><span class="nk"> &lt;ogondza&gt;</span> aside from that, I guess we are ok to go
+<a name="l-42"></a><span class="tm">18:09:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to follow up with ogondza about migrating LTS testing into ci.jenkins.io</span>
+<a name="l-43"></a><span class="tm">18:09:53</span><span class="nk"> &lt;ogondza&gt;</span> the serialization fix James requested was not integrated into .1 as it was not merged in time
+<a name="l-44"></a><span class="tm">18:09:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have some unresolved regressions, but the upgrade guidelines include the "Known issues" section, to be extended
+<a name="l-45"></a><span class="tm">18:09:56</span><span class="nk"> &lt;rtyler&gt;</span> for my own remembering what's this LTS baseline again?
+<a name="l-46"></a><span class="tm">18:10:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.107.x
+<a name="l-47"></a><span class="tm">18:10:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">2.107.1 is ready to go from ogondza's perspective</span>
+<a name="l-48"></a><span class="tm">18:10:41</span><span class="nk"> &lt;ogondza&gt;</span> kohsuke, can you please cut the release?
+<a name="l-49"></a><span class="tm">18:11:00</span><span class="nk"> &lt;rtyler&gt;</span> he's unfortunately in a meeting conflict right now (I am in the same office and can hear him through the wall)
+<a name="l-50"></a><span class="tm">18:11:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to cut the 2.107.1 release</span>
+<a name="l-51"></a><span class="tm">18:11:16</span><span class="nk"> &lt;ogondza&gt;</span> that should do it, thanks
+<a name="l-52"></a><span class="tm">18:11:35</span><span class="nk"> &lt;rtyler&gt;</span> anything else we should cover on this topic ogondza?
+<a name="l-53"></a><span class="tm">18:11:44</span><span class="nk"> &lt;ogondza&gt;</span> rtyler, nothing I know of
+<a name="l-54"></a><span class="tm">18:12:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> who typically writes the upgrade guidelines, danielbeck?
+<a name="l-55"></a><span class="tm">18:12:08</span><span class="nk"> &lt;ogondza&gt;</span> yes
+<a name="l-56"></a><span class="tm">18:12:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes
+<a name="l-57"></a><span class="tm">18:12:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> can I ask you to sync with danielbeck to make sure the upgrade guidelines for 2.107.1 includes the known issues for changes which didn't make the train?
+<a name="l-58"></a><span class="tm">18:13:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Yes, we will update the page
+<a name="l-59"></a><span class="tm">18:13:28</span><span class="nk"> &lt;rtyler&gt;</span> okie doke, thakns
+<a name="l-60"></a><span class="tm">18:13:57</span><span class="nk"> &lt;rtyler&gt;</span> moving on then
+<a name="l-61"></a><span class="tm">18:14:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark sublicensing request "CloudBees Jenkins Metrics"</span>
+<a name="l-62"></a><span class="tm">18:14:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">context for the request https://groups.google.com/forum/#!msg/jenkinsci-dev/7m9bz6KkVv4/gd8qhk6cAQAJ</span>
+<a name="l-63"></a><span class="tm">18:14:47</span><span class="nk"> &lt;rtyler&gt;</span> at a high level, a feature/product thingie that cloudbees does used to be called CloudBees Jenkins Analytics
+<a name="l-64"></a><span class="tm">18:14:59</span><span class="nk"> &lt;rtyler&gt;</span> they're now wishing to rename/change the product and call it "CloudBees Jenkins Metrics"
+<a name="l-65"></a><span class="tm">18:16:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">previously accepted sublicense requests can be found here: https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage</span>
+<a name="l-66"></a><span class="tm">18:16:34</span><span class="nk"> &lt;rtyler&gt;</span> any questions, thoughts, opinions?
+<a name="l-67"></a><span class="tm">18:17:14</span><span class="nk"> &lt;bitwiseman&gt;</span> There was general agreement on that email thread.
+<a name="l-68"></a><span class="tm">18:17:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> My comments are in the mailing list. I see no serious obstacles for such requests
+<a name="l-69"></a><span class="tm">18:18:37 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-70"></a><span class="tm">18:18:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There was a concern about overlap with the existing Metrics Plugin, but the plugin maintainer is fine + the requester is going to work on disambiguation. No other major concerns in the list
+<a name="l-71"></a><span class="tm">18:19:29 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-72"></a><span class="tm">18:19:50</span><span class="nk"> &lt;rtyler&gt;</span> this all feels fairly rote and boring to me, so let me ask this differently
+<a name="l-73"></a><span class="tm">18:19:54</span><span class="nk"> &lt;rtyler&gt;</span> are there any objections?
+<a name="l-74"></a><span class="tm">18:20:36 </span><span class="nka">* rtyler</span> <span class="ac">will give it a couple minutes just to be sure</span>
+<a name="l-75"></a><span class="tm">18:22:13</span><span class="nk"> &lt;ogondza&gt;</span> +1 here
+<a name="l-76"></a><span class="tm">18:22:45</span><span class="nk"> &lt;rtyler&gt;</span> +1 from me as well
+<a name="l-77"></a><span class="tm">18:23:16 </span><span class="nka">* rtyler</span> <span class="ac">yawns loudly</span>
+<a name="l-78"></a><span class="tm">18:24:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">CloudBees is expected to follow and enforce the appropriate trademark attribution policies for sublicenses https://jenkins.io/project/governance/#trademark-attribution</span>
+<a name="l-79"></a><span class="tm">18:24:16</span><span class="nk"> &lt;rtyler&gt;</span> (same with everybody else)
+<a name="l-80"></a><span class="tm">18:24:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yup
+<a name="l-81"></a><span class="tm">18:24:43</span><span class="nk"> &lt;rtyler&gt;</span> considering the general agreement on the thread, and lack of disagreement/concerns here..
+<a name="l-82"></a><span class="tm">18:25:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">CloudBees granted a trademark sublicense for "CloudBees Jenkins Metrics"</span>
+<a name="l-83"></a><span class="tm">18:25:11 </span><span class="nka">* rtyler</span> <span class="ac">can never remember if it's agreed or agree</span>
+<a name="l-84"></a><span class="tm">18:25:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-85"></a><span class="tm">18:25:30 </span><span class="nka">* rtyler</span> <span class="ac">consults the calendar</span>
+<a name="l-86"></a><span class="tm">18:25:48</span><span class="nk"> &lt;rtyler&gt;</span> Looks like March 28th is the next scheduled meeting
+<a name="l-87"></a><span class="tm">18:25:53</span><span class="nk"> &lt;rtyler&gt;</span> which will still be scheduled at 18:00 UTC
+<a name="l-88"></a><span class="tm">18:26:03</span><span class="nk"> &lt;rtyler&gt;</span> I don't know if europe messes with their clocks before then or not
+<a name="l-89"></a><span class="tm">18:26:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting March 28th at 18:00 UTC</span>
+<a name="l-90"></a><span class="tm">18:26:20</span><span class="nk"> &lt;rtyler&gt;</span> anything else before we wrap?
+<a name="l-91"></a><span class="tm">18:26:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:35:32 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:05:18 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 616.749
+  exclusion.robots: 0.145
+  exclusion.robots.policy: 0.134
+  cdx.remote: 0.096
+  esindex: 0.012
+  LoadShardBlock: 86.636 (3)
+  PetaboxLoader3.datanode: 71.99 (4)
+  CDXLines.iter: 21.347 (3)
+  load_resource: 91.354
+  PetaboxLoader3.resolve: 61.905
+-->

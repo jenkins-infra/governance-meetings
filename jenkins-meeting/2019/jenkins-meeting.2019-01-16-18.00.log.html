@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app215.us.archive.org';v.server_ms=7013;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-01-16-18.00.log.html","20211027223549","https://web.archive.org/","web","/_static/",
+	      "1635374149");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:22</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck rtyler</span>
+<a name="l-4"></a><span class="tm">18:00:34</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">18:01:07</span><span class="nk"> &lt;kohsuke&gt;</span> Lots to go through today, huh
+<a name="l-7"></a><span class="tm">18:01:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting actions</span>
+<a name="l-8"></a><span class="tm">18:02:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-01-02-18.06.html</span>
+<a name="l-9"></a><span class="tm">18:02:14</span><span class="nk"> &lt;kohsuke&gt;</span> I guess not much of an action
+<a name="l-10"></a><span class="tm">18:02:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-11"></a><span class="tm">18:02:56</span><span class="nk"> &lt;kohsuke&gt;</span> who's here?
+<a name="l-12"></a><span class="tm">18:03:21</span><span class="nk"> &lt;kohsuke&gt;</span> ogondza is not here
+<a name="l-13"></a><span class="tm">18:03:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> o/
+<a name="l-14"></a><span class="tm">18:03:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I have no idea what is going in LTS tho
+<a name="l-15"></a><span class="tm">18:04:11</span><span class="nk"> &lt;kohsuke&gt;</span> all right
+<a name="l-16"></a><span class="tm">18:04:16</span><span class="nk"> &lt;kohsuke&gt;</span> I guess we need to skip this
+<a name="l-17"></a><span class="tm">18:04:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Platform SIG status report - Java 11 and more</span>
+<a name="l-18"></a><span class="tm">18:04:34</span><span class="nk"> &lt;kohsuke&gt;</span> markewaite?
+<a name="l-19"></a><span class="tm">18:04:36</span><span class="nk"> &lt;markewaite&gt;</span> The platform SIG will meet Thursday to review the current state of Java 11, Windows installers, and multi-platform Docker images.  Java 11 support and development is continuing.  There are still some blockers open which prevent general availability of Jenkins weekly with JDK 11.
+<a name="l-20"></a><span class="tm">18:05:00</span><span class="nk"> &lt;markewaite&gt;</span> Good progress has been made.  @batmat and I are leading the platform SIG and progressing
+<a name="l-21"></a><span class="tm">18:05:22</span><span class="nk"> &lt;kohsuke&gt;</span> oh that's cool
+<a name="l-22"></a><span class="tm">18:05:28</span><span class="nk"> &lt;kohsuke&gt;</span> Congrats
+<a name="l-23"></a><span class="tm">18:05:40</span><span class="nk"> &lt;markewaite&gt;</span> I'm a little nervous that we don't have enough test time yet, but there is good progress on many fronts.
+<a name="l-24"></a><span class="tm">18:05:48</span><span class="nk"> &lt;markewaite&gt;</span> end of status report...
+<a name="l-25"></a><span class="tm">18:06:07</span><span class="nk"> &lt;kohsuke&gt;</span> Moving on...
+<a name="l-26"></a><span class="tm">18:06:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC status report</span>
+<a name="l-27"></a><span class="tm">18:06:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Hi all
+<a name="l-28"></a><span class="tm">18:06:30</span><span class="nk"> &lt;batmat&gt;</span> o/
+<a name="l-29"></a><span class="tm">18:06:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So... We will be applying to GSoC this year
+<a name="l-30"></a><span class="tm">18:07:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Jenkins Project will apply to GSoC 2019. https://groups.google.com/forum/#!topic/jenkinsci-dev/dS_NluO4RW0</span>
+<a name="l-31"></a><span class="tm">18:07:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Cool stats. We already have 20 project ideas and 23 mentors. More than in 2016 and 2018 all together
+<a name="l-32"></a><span class="tm">18:07:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And it's counting
+<a name="l-33"></a><span class="tm">18:07:41</span><span class="nk"> &lt;batmat&gt;</span> :clap:
+<a name="l-34"></a><span class="tm">18:07:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> All documentation is updated
+<a name="l-35"></a><span class="tm">18:08:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Application draft: https://jenkins.io/projects/gsoc/2019/application/</span>
+<a name="l-36"></a><span class="tm">18:08:48</span><span class="nk"> &lt;kohsuke&gt;</span> I see that the pool of mentors are expanding and they are bringing the project idea. Nice
+<a name="l-37"></a><span class="tm">18:08:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> As discussed at the today's meeting, the application draft will be slightly reworked to reflect all sub-projects
+<a name="l-38"></a><span class="tm">18:08:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yeah
+<a name="l-39"></a><span class="tm">18:09:04</span><span class="nk"> &lt;kohsuke&gt;</span> There's something to be said about repeating and sticking...
+<a name="l-40"></a><span class="tm">18:09:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And we cooperate a lot with SIGs and sub-projects to get project ideas and stakeholders for projects
+<a name="l-41"></a><span class="tm">18:09:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> In some cases it works really well
+<a name="l-42"></a><span class="tm">18:09:47</span><span class="nk"> &lt;kohsuke&gt;</span> "repeating until sticking" is what I meant
+<a name="l-43"></a><span class="tm">18:09:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> exactly
+<a name="l-44"></a><span class="tm">18:10:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I hope we will hit the 30 projects target this year
+<a name="l-45"></a><span class="tm">18:10:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And we want to make projects more diverse in terms of the technologies
+<a name="l-46"></a><span class="tm">18:10:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Project ideas: https://jenkins.io/projects/gsoc/2019/project-ideas/</span>
+<a name="l-47"></a><span class="tm">18:11:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We are looking for few particular project ideas, especially around Jenkins X and Python
+<a name="l-48"></a><span class="tm">18:11:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Both of them get interest from students, but we have not been able to secure project ideas so far
+<a name="l-49"></a><span class="tm">18:12:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Does anyone have any project ideas or any questions? :)
+<a name="l-50"></a><span class="tm">18:12:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We are also interested in Jenkins INFRA projects
+<a name="l-51"></a><span class="tm">18:12:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ^ olblak rtyler
+<a name="l-52"></a><span class="tm">18:13:12</span><span class="nk"> &lt;kohsuke&gt;</span> I suspect Jenkins X folks aren't watching here nor the dev list. Maybe you can reach out to James Rowlings about where to "advertise" GSoC+Jenkins X to reach their audience
+<a name="l-53"></a><span class="tm">18:13:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Be sure we used all known channels
+<a name="l-54"></a><span class="tm">18:13:39</span><span class="nk"> &lt;kohsuke&gt;</span> OK, well then. I think you already have a big list
+<a name="l-55"></a><span class="tm">18:13:54</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we move on?
+<a name="l-56"></a><span class="tm">18:14:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We ping them almost every week at Slack and meetings, so I keep hope
+<a name="l-57"></a><span class="tm">18:14:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Nothing else from me
+<a name="l-58"></a><span class="tm">18:14:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Status report: Advocacy and Outreach SIG</span>
+<a name="l-59"></a><span class="tm">18:14:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/84vjWz_Ho1k</span>
+<a name="l-60"></a><span class="tm">18:14:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">bitwiseman:</span> would you like to drive it?
+<a name="l-61"></a><span class="tm">18:15:06</span><span class="nk"> &lt;bitwiseman&gt;</span> sure.
+<a name="l-62"></a><span class="tm">18:15:39</span><span class="nk"> &lt;bitwiseman&gt;</span> one sec.
+<a name="l-63"></a><span class="tm">18:16:27</span><span class="nk"> &lt;bitwiseman&gt;</span> had to find the agenda tab again .
+<a name="l-64"></a><span class="tm">18:17:16</span><span class="nk"> &lt;bitwiseman&gt;</span> Okay, the advocacy and outreach sig has been created.
+<a name="l-65"></a><span class="tm">18:18:00</span><span class="nk"> &lt;bitwiseman&gt;</span> The thread you pointed to covers discussion so far and there is a PR up add a sig page.
+<a name="l-66"></a><span class="tm">18:19:07</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkins-infra/jenkins.io/pull/2034</span>
+<a name="l-67"></a><span class="tm">18:19:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, I believe we will officially publish the SIG this week
+<a name="l-68"></a><span class="tm">18:19:46</span><span class="nk"> &lt;rtylerish&gt;</span> sorry for the delay o/
+<a name="l-69"></a><span class="tm">18:20:13</span><span class="nk"> &lt;bitwiseman&gt;</span> We'll discuss on gitter when to hold the first meeting.
+<a name="l-70"></a><span class="tm">18:20:57</span><span class="nk"> &lt;bitwiseman&gt;</span> Marky has volunteered to co-lead. Yay!
+<a name="l-71"></a><span class="tm">18:20:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And it should become a central place for Advocacy/Evangelism and community outreach topics. We already have few discussions and related patches on jenkins.io (like getting communication channels explicit everywhere we can)
+<a name="l-72"></a><span class="tm">18:21:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Full scope is TBD. But, if you are interested in propmoting and expanding the Jenkins community, you may want to join this SIG
+<a name="l-73"></a><span class="tm">18:22:55</span><span class="nk"> &lt;kohsuke&gt;</span> I got distracted a little, anything more about this?
+<a name="l-74"></a><span class="tm">18:24:05</span><span class="nk"> &lt;bitwiseman&gt;</span> having a clearer gitter channel name is already paying off in lower static.
+<a name="l-75"></a><span class="tm">18:24:18</span><span class="nk"> &lt;bitwiseman&gt;</span> :)
+<a name="l-76"></a><span class="tm">18:24:20</span><span class="nk"> &lt;bitwiseman&gt;</span> That's it's from me.
+<a name="l-77"></a><span class="tm">18:24:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> for sure
+<a name="l-78"></a><span class="tm">18:24:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I had a question to alyssat_ , but I am not sure she is around
+<a name="l-79"></a><span class="tm">18:25:30</span><span class="nk"> &lt;tracymiranda&gt;</span> is this a swag question :-)
+<a name="l-80"></a><span class="tm">18:25:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nope
+<a name="l-81"></a><span class="tm">18:25:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Jenkins Ambassadors one. I will follow-up in email
+<a name="l-82"></a><span class="tm">18:25:49</span><span class="nk"> &lt;kohsuke&gt;</span> In the mean time we shall move on then
+<a name="l-83"></a><span class="tm">18:25:51</span><span class="nk"> &lt;alyssat_&gt;</span> hello. i'm here
+<a name="l-84"></a><span class="tm">18:25:56</span><span class="nk"> &lt;kohsuke&gt;</span> ... or not
+<a name="l-85"></a><span class="tm">18:26:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">alyssat_:</span> So... It would be great Jenkins Ambassadors to be an active part of the Advocacy/Outreach SIG
+<a name="l-86"></a><span class="tm">18:26:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Unfortunately, I do not have contacts of all ambassadors
+<a name="l-87"></a><span class="tm">18:27:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It would be great to reach out to them and invite them to join
+<a name="l-88"></a><span class="tm">18:27:03</span><span class="nk"> &lt;alyssat_&gt;</span> I can help provide that info to you
+<a name="l-89"></a><span class="tm">18:27:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Would be great, I will follow-up in email
+<a name="l-90"></a><span class="tm">18:27:30</span><span class="nk"> &lt;alyssat_&gt;</span> sounds good
+<a name="l-91"></a><span class="tm">18:27:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks!
+<a name="l-92"></a><span class="tm">18:27:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nothing else from me
+<a name="l-93"></a><span class="tm">18:28:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Update: Hardware&amp;EDA and Embedded SIGs</span>
+<a name="l-94"></a><span class="tm">18:28:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Okay
+<a name="l-95"></a><span class="tm">18:28:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/a69DXm6qQms</span>
+<a name="l-96"></a><span class="tm">18:28:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, this is actually an Advocacy&amp;Outreach topic again
+<a name="l-97"></a><span class="tm">18:28:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would like to experiment with creating **user-focused** special interest groups
+<a name="l-98"></a><span class="tm">18:29:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And, since we had a lot of discussions about Embedded and HW&amp;EDA topics, I decided to go forward and to get them created
+<a name="l-99"></a><span class="tm">18:29:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> This update is a heads-up that it is happening
+<a name="l-100"></a><span class="tm">18:29:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> If anybody is interested to join, please let me know
+<a name="l-101"></a><span class="tm">18:30:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also, I am interested in creating C/C++ SIG which would be also a user-focusing SIG
+<a name="l-102"></a><span class="tm">18:30:44</span><span class="nk"> &lt;kohsuke&gt;</span> I think this is all great, I just want to remind you that your one day is still 24hrs like the rest of us...
+<a name="l-103"></a><span class="tm">18:30:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> As many Jenkins contributors know, my Java still looks like C sometimes :P
+<a name="l-104"></a><span class="tm">18:31:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span>  I am not doing it alone, and currently I reconsider what would be my priorities in the Jenkins community. https://groups.google.com/forum/#!topic/jenkinsci-dev/uc6NsMoCFQI
+<a name="l-105"></a><span class="tm">18:32:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I cannot really do maintenance of components nowadays, but facilitating SIGs does not require long timeslots. So I decided to try it
+<a name="l-106"></a><span class="tm">18:32:41</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-107"></a><span class="tm">18:33:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, be sure it is not a commitment on the top of other commitments. Interested to do more community work
+<a name="l-108"></a><span class="tm">18:33:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> so yeah, that's it from me
+<a name="l-109"></a><span class="tm">18:34:20</span><span class="nk"> &lt;kohsuke&gt;</span> All right, then
+<a name="l-110"></a><span class="tm">18:34:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Request for Rick to be listed as Jenkins press contact for China</span>
+<a name="l-111"></a><span class="tm">18:35:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There is no Jenkins Dev ML thread for that
+<a name="l-112"></a><span class="tm">18:35:51</span><span class="nk"> &lt;rtylerish&gt;</span> I think that's a reasonable idea
+<a name="l-113"></a><span class="tm">18:35:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Just to provide some context, Rick has reached out to me today, and then tracymiranda and bitwiseman joined the discussion (Advocacy and Outreach SIG)
+<a name="l-114"></a><span class="tm">18:36:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I totally support the idea as well
+<a name="l-115"></a><span class="tm">18:36:15</span><span class="nk"> &lt;kohsuke&gt;</span> I think it makes sense that we have reps in that region who understands the language
+<a name="l-116"></a><span class="tm">18:36:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes
+<a name="l-117"></a><span class="tm">18:36:44</span><span class="nk"> &lt;kohsuke&gt;</span> What that tells me is that we need to build more bridge with him -- I don't know him anywhere near the same level I know others listed in press contacts
+<a name="l-118"></a><span class="tm">18:36:49</span><span class="nk"> &lt;rtylerish&gt;</span> my only request would be for Rick to send updates to the dev list or something like that
+<a name="l-119"></a><span class="tm">18:37:00</span><span class="nk"> &lt;rtylerish&gt;</span> to raise the awareness of press stuff in China for Jenkins
+<a name="l-120"></a><span class="tm">18:37:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We already have few Jenkins Ambassadors, but AFAIK they are not active much in the community channels now
+<a name="l-121"></a><span class="tm">18:37:26</span><span class="nk"> &lt;kohsuke&gt;</span> How well is Rick connected to those folks?
+<a name="l-122"></a><span class="tm">18:37:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Rick is already a leder of the Chinese Localization SIG BYW
+<a name="l-123"></a><span class="tm">18:37:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> *BTW
+<a name="l-124"></a><span class="tm">18:37:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Rick definitely has contacts of them
+<a name="l-125"></a><span class="tm">18:38:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But I am not sure how they coordinate the efforts nowadays
+<a name="l-126"></a><span class="tm">18:38:30</span><span class="nk"> &lt;kohsuke&gt;</span> Right, OK
+<a name="l-127"></a><span class="tm">18:38:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Rick is active in the community every day, so I am +1 for the request
+<a name="l-128"></a><span class="tm">18:39:05</span><span class="nk"> &lt;rtylerish&gt;</span> +1
+<a name="l-129"></a><span class="tm">18:39:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> If Jenkins Ambassadors want to be press contacts, we can have multiple ones in the region. So it's a bit orthogonal
+<a name="l-130"></a><span class="tm">18:40:02</span><span class="nk"> &lt;tracymiranda&gt;</span> +1
+<a name="l-131"></a><span class="tm">18:40:17</span><span class="nk"> &lt;tracymiranda&gt;</span> should we ask Rick to mail dev-lists still?
+<a name="l-132"></a><span class="tm">18:40:46</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, I'll write to him
+<a name="l-133"></a><span class="tm">18:40:53</span><span class="nk"> &lt;tracymiranda&gt;</span> ok thanks
+<a name="l-134"></a><span class="tm">18:40:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I asked him to mail the SIG ML on the morning. But dev list works as well
+<a name="l-135"></a><span class="tm">18:41:38</span><span class="nk"> &lt;kohsuke&gt;</span> So that he understands where that request is coming. It's not so much where the email goes matter IMO. I think the root of rtyler's request and mine are the same
+<a name="l-136"></a><span class="tm">18:42:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yeah, public trace. Which is totally reasonable
+<a name="l-137"></a><span class="tm">18:42:37</span><span class="nk"> &lt;kohsuke&gt;</span> Oh, and I missed to ask the obvious -- he's willing to be listed as press contact, right?
+<a name="l-138"></a><span class="tm">18:43:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yup
+<a name="l-139"></a><span class="tm">18:43:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">rick to be listed as a Chinese press contact in https://jenkins.io/press/</span>
+<a name="l-140"></a><span class="tm">18:43:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/press/#press-contacts</span>
+<a name="l-141"></a><span class="tm">18:43:38</span><span class="nk"> &lt;rtylerish&gt;</span> yey
+<a name="l-142"></a><span class="tm">18:44:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write to rick asking that we work toward better visibility and more bridges</span>
+<a name="l-143"></a><span class="tm">18:44:18</span><span class="nk"> &lt;kohsuke&gt;</span> It's great to see those new leaders grow
+<a name="l-144"></a><span class="tm">18:44:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yup
+<a name="l-145"></a><span class="tm">18:44:36</span><span class="nk"> &lt;kohsuke&gt;</span> Lots going on in China in particular for the past few years
+<a name="l-146"></a><span class="tm">18:44:53</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else on this?
+<a name="l-147"></a><span class="tm">18:44:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Rick also coordinates some technical projects (e.g. Gitlab Multi-Branch project idea in GSoC)
+<a name="l-148"></a><span class="tm">18:45:05</span><span class="nk"> &lt;kohsuke&gt;</span> Or anything else for that matter?
+<a name="l-149"></a><span class="tm">18:45:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-150"></a><span class="tm">18:45:41</span><span class="nk"> &lt;kohsuke&gt;</span> Jan 30th same time
+<a name="l-151"></a><span class="tm">18:45:47</span><span class="nk"> &lt;kohsuke&gt;</span> ... which is almost FOSDEM
+<a name="l-152"></a><span class="tm">18:45:58</span><span class="nk"> &lt;rtylerish&gt;</span> dun dun dunnnn
+<a name="l-153"></a><span class="tm">18:46:02</span><span class="nk"> &lt;rtylerish&gt;</span> thanks for running the meeting today kohsuke
+<a name="l-154"></a><span class="tm">18:46:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">If you haven't checked out, look at alyssat_ 's FOSDEM email for events around FOSDEM that are getting organized</span>
+<a name="l-155"></a><span class="tm">18:46:53</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's the end of this
+<a name="l-156"></a><span class="tm">18:46:55</span><span class="nk"> &lt;kohsuke&gt;</span> Bye all
+<a name="l-157"></a><span class="tm">18:47:00</span><span class="nk"> &lt;tracymiranda&gt;</span> bye
+<a name="l-158"></a><span class="tm">18:47:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:35:49 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:01:31 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 6266.176
+  exclusion.robots: 0.082
+  exclusion.robots.policy: 0.075
+  cdx.remote: 0.092
+  esindex: 0.008
+  LoadShardBlock: 1570.348 (3)
+  PetaboxLoader3.datanode: 1331.792 (4)
+  CDXLines.iter: 15.257 (3)
+  load_resource: 733.493
+  PetaboxLoader3.resolve: 661.523
+-->

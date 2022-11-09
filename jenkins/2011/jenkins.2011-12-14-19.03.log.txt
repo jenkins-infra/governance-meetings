@@ -1,0 +1,181 @@
+19:03:54 <kohsuke> #startmeeting
+19:03:54 <robobutler> Let the Jenkins meeting commence!
+19:03:55 <Syd> sure
+19:03:56 <joeljohnson> sure
+19:04:04 <kohsuke> #chairs abayer rtyler
+19:04:06 <rtyler> #info agenda https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Dec14thMeeting
+19:04:12 <kohsuke> #chair abayer rtyler
+19:04:12 <robobutler> Current chairs: abayer kohsuke rtyler
+19:04:19 <kohsuke> I need auto-completion
+19:04:42 <kohsuke> #topic recap of actions
+19:04:49 <kohsuke> #info see http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-11-30-19.01.html
+19:05:03 <rtyler> I'll start since abayer is asleep
+19:05:13 <rtyler> beg-fest blog post went up thanks to kohsuke, worked out well
+19:05:20 <rtyler> scale10x blog post went out
+19:05:24 <rtyler> FOSDEM stand applied for
+19:05:28 <rtyler> no blogpost on FOSDEM yet
+19:05:45 <rtyler> scale@lists.jenkins-ci.org created to help coordate scale10x plans
+19:06:04 <rtyler> I've started working on a standard Jenkins project LibreOffice Impress template, but infrastructure has taken up far more of my time ;)
+19:06:18 <jorgenpt> Is there any public tracking of how much in donations has been received?
+19:06:25 <kohsuke> Yes, let me report that
+19:06:55 <kohsuke> #info we are currently at $10046
+19:06:58 <rtyler> O_O
+19:07:02 <jorgenpt> \o/
+19:07:05 <orrc> woah, awesome
+19:07:15 <imod> nice!
+19:07:17 <orrc> your personal appeal really worked ;)
+19:07:21 <rtyler> heh
+19:07:42 <abayer> Sorry, fiddling with stuff. =)
+19:07:47 <kohsuke> #info I think that joke did work, and credit goes to orrc
+19:08:27 <kohsuke> I think I was meaning to write a post to thank everyone for successful conclusion of this fund-raising drive.
+19:08:34 <jenkinsci_builds> Project jenkins_main_trunk build #1,362: SUCCESS in 27 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/1362/
+19:08:34 <jenkinsci_builds> * imod: [FIXED JENKINS-10915] fix french translation
+19:08:35 <jenkinsci_builds> * imod: [FIXED JENKINS-7926] Add time execution of the build on build detail page
+19:08:37 <kohsuke> and update the Wiki page for the donor list.
+19:08:47 <rtyler> did people opt in to be public with their donations?
+19:08:49 <jorgenpt> When is it done?
+19:09:08 <kohsuke> rtyler: yes, e-mail goes out to everyone who donated, asking if they want to be anonymous or credited to the name of their choosing
+19:09:39 <abayer> kohsuke: woo, got stapler annotations working in a weird way.
+19:09:43 <kohsuke> #action kohsuke to write a blog post concluding the fund-raising drive and update the Wiki page
+19:10:05 <abayer> Gonna clean up and push my work in progress somewhere as I continue to vaguely pay attention here. =)
+19:10:12 <kohsuke> abayer: what's the current status of GitHub private repo for CLA?
+19:10:20 <abayer> No update. Will ping again.
+19:10:45 <kohsuke> I think we should start collecting CLAs regardless
+19:10:59 <kohsuke> For a while it can live in our inboxes, and for some people this can take some time anyway.
+19:11:13 <kohsuke> #action abayer to ping github again for a possible private repo
+19:12:17 <kohsuke> Let's see other actions of mine...
+19:12:33 <kohsuke> CI dinner at SCALE. I don't think I've done that
+19:12:48 <kohsuke> I probably need to be briefed by rtyler for what SCALE schedule looks like
+19:12:54 <rtyler> heh
+19:13:00 <kohsuke> #action kohsuke to ponder a CI Dinner or something along those lines for SCALE
+19:13:53 <kohsuke> Talking to additional people about FOSDEM --- I think I've thrown them in when rtyler was sending the original e-mail
+19:13:58 <kohsuke> so I consider that done
+19:14:19 <kohsuke> #info wrt Jenkins CIA, I've asked cowboyd if FrontSide can do another awesome logo
+19:14:35 <kohsuke> #action kohsuke to ping cowboyd about CIA logo
+19:14:38 <cowboyd> we're working on it :)
+19:14:40 <cowboyd> seriously.
+19:14:46 <kohsuke> oh, you are here!
+19:14:48 <kohsuke> thanks
+19:15:00 <kohsuke> really appreciated
+19:15:16 <kohsuke> I think that's it for the actions
+19:15:25 <rtyler> aye
+19:15:26 <kohsuke> #topic infra update
+19:15:39 <rtyler> oh jeez, where to start on this
+19:15:52 <rtyler> alright
+19:16:13 <kohsuke> pager duty & nagios
+19:16:23 <rtyler> #info The downtime mentioned last meeting went by smoothly
+19:16:43 <rtyler> #action rtyler to harrass Contegix some more about getting our backups going properly
+19:17:06 <rtyler> #info Still working with Contegix on spinning off the account
+19:17:29 <rtyler> last weekend I set up nagios finally
+19:17:40 <rtyler> #info Nagios can now be found at http://nagios.jenkins-ci.org/nagios3/
+19:17:43 <kohsuke> yay!
+19:17:50 <rtyler> #info Anonymous read-only access with the login: jenkins/jenkins
+19:18:11 <rtyler> #info We are also now using our gratis PagerDuty account, and I've placed some folks in an on-call rotation
+19:18:40 <rtyler> There is still a lot of work left to to get more things managed by puppet, namely the machine cucumber and then JIRA and Confluence
+19:18:48 <rtyler> but we're rolling on that again :)
+19:19:09 <rtyler> #topic Add aheritier to the users-core puppet group
+19:19:18 <rtyler> I added this one
+19:19:28 <rtyler> so aheritier isn't here, which sucks
+19:19:39 <kohsuke> if you are OK with it, I'm OK.
+19:19:56 <kohsuke> I do wish we have some folks from Asia
+19:19:57 <rtyler> like jieryn, I've never met him before
+19:20:18 <rtyler> but he's been around the project long enough, and does a lot of work with puppet and the likes for managing the eXo platform
+19:20:38 <rtyler> I also think it's silly to have somebody be on-call but have no access to fix things ;)
+19:20:46 <abayer> =)
+19:20:49 <abayer> Makes sense to me.
+19:21:17 <rtyler> #action rtyler needs to flesh out the infra wiki with more contingency plans for some more "common" outages
+19:21:26 <rtyler> abayer: do I have a +1 from a second board member?
+19:21:31 <abayer> +1
+19:22:09 <rtyler> #agreed aheritier to be added to the users-core module
+19:22:18 <rtyler> #action rtyler add aheritier to the users-core module
+19:22:31 <rtyler> that's really the end of our scheduled agenda :P
+19:22:43 <rtyler> anything else, or should we close up shop and go on xmas vavcation? :D
+19:22:43 <kohsuke> I think that's good
+19:22:52 <nmeister> Any able to help with a hudson question?
+19:22:55 <vjuranek> two quick questions...
+19:23:04 <rtyler> nmeister: hold on a moment, still in our project meeting
+19:23:05 <rtyler> vjuranek: shoot
+19:23:11 <vjuranek> is there any target date for LTS 1.424.2?
+19:23:19 <rtyler> #topic Unscheduled items
+19:23:36 <rtyler> #info vjuranek asked about a target date for LTS 1.424.2
+19:23:39 <kohsuke> I didn't think about it
+19:23:57 <kohsuke> Do you have any preference?
+19:24:06 <vjuranek> I did backport of JENKINS-9349 and pull/316 - originally asked to be in 1.424.1, so not sure how urgent it is...
+19:24:08 <jenkins-admin> JENKINS-9349:Viewing large console logs with timestamper plugin cause Jenkins to crash (Resolved) http://jenkins-ci.org/issue/9349
+19:24:15 <nmeister> ah, k.
+19:24:50 <vjuranek> I would prefere in early January...i.e. did some tests over Chritstams and release after new year...ok?
+19:25:10 <kohsuke> Sure.
+19:25:32 <imod> I think we talked about getting this one in too: https://github.com/jenkinsci/jenkins/pull/316
+19:25:41 <kohsuke> I'll do another pass on backport candidates
+19:25:55 <vjuranek> imod: already backported
+19:25:56 <kohsuke> imod: see above. vjuranek said he's already merged it
+19:26:13 <imod> damn - sorry, missed it
+19:26:19 <imod> thanks!
+19:26:42 <rtyler> #info Plan for 1.424.2 is to release it sometime in early January
+19:26:46 <kohsuke> So first RC in a week, soak over the end of the year, and shoot for release in next month about this time?
+19:27:00 <vjuranek> yes
+19:27:16 <rtyler> #action kohsuke to create a new LTS RC in about a week
+19:27:18 <kohsuke> #agreed first RC in a week, soak over the end of the year, and shoot for release in next month about this time
+19:27:29 <abayer> yay.
+19:27:39 <kohsuke> vjuranek:  what was your second question?
+19:27:43 <vjuranek> and second one: does anybody coordinate "standard jenkins presentations"?
+19:27:55 <abayer> No, but that'd be handy.
+19:28:05 <rtyler> vjuranek: I have been working on a template for that, I think we might need a couple standard presos
+19:28:13 <rtyler> one for Java-fanboys, and one for the rest of us ;)
+19:28:16 <kohsuke> Yes, we are supposed to be planning the Jenkins CIA program that includes that
+19:28:20 <abayer> I know we have bits  and pieces floating around - it'd make sense to aggregate available presentations on the wiki, as well as having boilerplate presos.
+19:28:37 <kohsuke> should it be a dev list thread?
+19:28:45 <rtyler> users list IMHO
+19:28:46 <kohsuke> imod has already had some thoughts
+19:28:58 <imod> just some starting points...
+19:29:14 <vjuranek> I'm going to preprepare presenation for one conferecence over the christmass, so I'll probably contribute
+19:29:25 <kohsuke> Let's move it to the users list since people seem to be interested
+19:29:47 <kohsuke> If it's only easier to collaborate on slides.
+19:30:02 <kohsuke> I mean, it'd be nice if it's easier to collaborate ...
+19:30:06 <imod> if something from the CIA program comes up, I would tai fit to FOSDEM
+19:30:06 <kohsuke> those stuff just don't merge very well
+19:30:30 <abayer> Hmmm...
+19:30:43 <imod> can we at least agree on the officelibre?
+19:30:46 <vjuranek> if the srouce code is in tex/latex/beamer then yes;-)
+19:30:53 * rtyler vomits
+19:30:56 <abayer> We could do the  "slides" in markdown - you can do Markdown->PDF, and PDF->pptish, right?
+19:31:01 * rtyler vomits some more
+19:31:08 <abayer> =P
+19:31:08 <rtyler> text heavy slides suck
+19:31:19 <abayer> Guess it's latex time, then. =)
+19:31:26 <imod> :)
+19:31:27 <rtyler> imod: since you and I are going to be doing a lot here, I think LibreOffice will be what we'll be using ;)
+19:31:43 <imod> ok
+19:31:46 <kohsuke> sure
+19:31:50 <kohsuke> or what about google docs?
+19:31:58 <mc1arke> surely jenkins could automate slide production ;)
+19:32:04 <imod> never used until now...
+19:32:11 <rtyler> kohsuke: not a great choice, requires a connection and a google account
+19:32:15 <kohsuke> me neither. Just throwing it out there.
+19:32:16 <rtyler> also makes crappy presentations
+19:32:18 <rtyler> :P
+19:32:20 <orrc> Google Docs lets you export to PPT or PDF, but not ODP or anything
+19:32:44 <imod> I think it should be something people can reuse later too
+19:32:51 <rtyler> I think we might as well kill the meeting here then, we can bikeshed about presos off the record ;)
+19:33:00 <kohsuke> yeah
+19:33:05 <imod> +1
+19:33:14 <kohsuke> #topic next meeting time
+19:33:28 <kohsuke> Jan 4th?
+19:33:29 <rtyler> we discussed this last time
+19:33:33 <rtyler> too early
+19:33:34 <kohsuke> oh
+19:33:58 <rtyler> http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-11-30-19.01.log.html
+19:34:01 <rtyler> we had talked about the 14th
+19:34:09 <rtyler> oh wait
+19:34:10 <rtyler> derp
+19:34:11 <kohsuke> Right
+19:34:12 <rtyler> misread that
+19:34:18 <rtyler> 11th
+19:34:30 <kohsuke> Jan 11th, same time.
+19:34:38 <rtyler> works for me
+19:34:59 <kohsuke> OK, I think that's it for the day
+19:35:12 <kohsuke> Thanks everyone, and let the bikeshedding begin...
+19:35:13 <myusuf3_> hey guys
+19:35:21 <jorgenpt> RED!
+19:35:21 <abayer> kohsuke: https://github.com/abayer/associated-files-plugin
+19:35:25 <kohsuke> #endmeeting

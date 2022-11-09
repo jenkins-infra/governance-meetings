@@ -1,0 +1,296 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins: March 2nd Governance Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins: March 2nd Governance Meeting</h1>
+<span class="details">
+Meeting started by rtyler at 19:02:11 UTC
+(<a href="jenkins.2011-03-02-19.02.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li><b class="TOPIC">Discuss what updates should be made to Copyright on source code</b> <span class="details">(<a href='jenkins.2011-03-02-19.02.log.html#l-3'>rtyler</a>, 19:02:27)</span>
+<ol type="a">
+  <li><a
+    href="http://meetbot.debian.net/Manual.html">http://meetbot.debian.net/Manual.html</a>
+    <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-5'>rtyler</a>,
+    19:02:42)</span></li>
+  <li><span class="INFO">First of all, agendas will be up at
+    http://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+    - feel free to add items to future agendas.</span> <span
+    class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-6'>abayer</a>,
+    19:02:53)</span></li>
+  <li><span
+    class="INFO">http://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code
+    is our current info.</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-10'>abayer</a>,
+    19:04:26)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Provide a link
+    the the Apache CLA on the Copyright wiki so people can see where
+    we're going</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-23'>hare_brain</a>,
+    19:06:48)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">hare_brain to
+    update the copyright wiki entry with the above. =)</span> <span
+    class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-27'>abayer</a>,
+    19:07:20)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">should we say we
+    highly recommend adding &lt;license&gt; in POM?</span> <span
+    class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-54'>kohsuke2</a>,
+    19:13:04)</span></li>
+  <li><a
+    href="https://github.com/hudson/hudson/commit/1fade2d2567831c1c7e6d0ef602903e424fbf44a#diff-10">https://github.com/hudson/hudson/commit/1fade2d2567831c1c7e6d0ef602903e424fbf44a#diff-10</a>
+    <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-73'>fcamblor</a>,
+    19:17:00)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">the stable-branch/endorsed-release discussion</b> <span class="details">(<a href='jenkins.2011-03-02-19.02.log.html#l-81'>rtyler</a>, 19:18:05)</span>
+<ol type="a">
+  <li><span class="INFO">The model behind "older but stable" was that I
+    picked a bit old but stable-looking release in retrospect</span>
+    <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-102'>kohsuke2</a>,
+    19:21:42)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Every X weeks,
+    the core devs vote as to whether to promote a release from a few
+    weeks earlier to be the new "stable" release.</span> <span
+    class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-105'>abayer</a>,
+    19:22:11)</span></li>
+  <li><span class="INFO">so sounds like a consensus is around
+    voting/blessing a release as stable, then produce patch releases
+    only with important bug fixes</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-173'>kohsuke2</a>,
+    19:32:34)</span></li>
+  <li><span class="INFO">we are also mindful that we aren't entirely
+    sure how much work this entails</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-178'>kohsuke2</a>,
+    19:33:17)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Every…3? months,
+    community/devs bless a 2+ month old release as the "known quantity"
+    release. Until the next "known quantity" release, it'll be possible
+    for absolutely critical bug fixes to core to be backported and a new
+    version of the known quantity re-released.</span> <span
+    class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-179'>abayer</a>,
+    19:33:40)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">we'll start
+    with 3 month cycle for stable release and see how that goes</span>
+    <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-199'>kohsuke2</a>,
+    19:36:26)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">A thread on
+    the mailing list to talk about what work will be done to get the
+    stable release stuff in place (update center changes, qualification
+    process, etc)</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-207'>abayer</a>,
+    19:37:34)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">changelog entries
+    that are marked "major bug" as candidates for backporting?</span>
+    <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-215'>hare_brain</a>,
+    19:38:20)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">I think the
+    stable release line would be good release train to tie in the
+    "community acceptance test" effort</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-224'>kohsuke2</a>,
+    19:39:59)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">aheritier
+    working on proposal for actually splitting JENKINS JIRA into
+    core/infra/plugins.</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-235'>abayer</a>,
+    19:42:54)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Update on the long-term governance plans / progress on umbrella organisation</b> <span class="details">(<a href='jenkins.2011-03-02-19.02.log.html#l-257'>kohsuke2</a>, 19:46:30)</span>
+<br></li>
+<li><b class="TOPIC">Update on the long-term governance plans</b> <span class="details">(<a href='jenkins.2011-03-02-19.02.log.html#l-258'>kohsuke2</a>, 19:46:39)</span>
+<ol type="a">
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">abayer sucks,
+    and has been busy</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-261'>rtyler</a>,
+    19:47:20)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">progress on umbrella organisation</b> <span class="details">(<a href='jenkins.2011-03-02-19.02.log.html#l-269'>kohsuke2</a>, 19:48:34)</span>
+<ol type="a">
+  <li><span class="INFO">we've applied to SFC, and we are still not
+    hearing back</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-274'>kohsuke2</a>,
+    19:49:04)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    ping SFC on our current status</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-275'>kohsuke2</a>,
+    19:49:14)</span></li>
+  <li><a href="http://www.spi-inc.org/">http://www.spi-inc.org/</a>
+    <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-278'>kohsuke2</a>,
+    19:49:57)</span></li>
+  <li><a href="http://sfconservancy.org/">http://sfconservancy.org/</a>
+    <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-283'>kohsuke2</a>,
+    19:50:58)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">updates on logo contest</b> <span class="details">(<a href='jenkins.2011-03-02-19.02.log.html#l-291'>kohsuke2</a>, 19:52:59)</span>
+<ol type="a">
+  <li><span class="INFO">I extended the logo submission deadline through
+    friday, 'cos I got a bunch over the weekend and into Monday.</span>
+    <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-294'>abayer</a>,
+    19:53:27)</span></li>
+  <li><span class="INFO">this weekend, I'll be putting up a post on
+    jenkins-ci.org with all the entries, and a poll for everyone to vote
+    for their favorite.</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-295'>abayer</a>,
+    19:53:56)</span></li>
+  <li><span class="INFO">99designs start from $300 and we don't have to
+    pay if we don't pick it</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-313'>kohsuke2</a>,
+    19:56:11)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Trademark!</b> <span class="details">(<a href='jenkins.2011-03-02-19.02.log.html#l-317'>abayer</a>, 19:56:28)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke and
+    abayer to talk tonight about trademark stuff and get the ball
+    rolling.</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-337'>abayer</a>,
+    20:01:32)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Next meeting.</b> <span class="details">(<a href='jenkins.2011-03-02-19.02.log.html#l-341'>abayer</a>, 20:01:49)</span>
+<ol type="a">
+  <li><span class="INFO">Let's go bi-weekly - next meeting in two weeks,
+    Wed, March 16th</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-343'>abayer</a>,
+    20:02:04)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Tentative agenda
+    items: JIRA split proposal discussion, update on trademark.</span>
+    <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-351'>abayer</a>,
+    20:03:15)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">March 16th
+    1pm PST / 10pm CET / 9pm GMT</span> <span class="details">(<a
+    href='jenkins.2011-03-02-19.02.log.html#l-368'>kohsuke2</a>,
+    20:06:37)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 20:07:17 UTC
+(<a href="jenkins.2011-03-02-19.02.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>hare_brain to update the copyright wiki entry with the above. =)</li>
+  <li>A thread on the mailing list to talk about what work will be done to get the stable release stuff in place (update center changes, qualification process, etc)</li>
+  <li>aheritier working on proposal for actually splitting JENKINS JIRA into core/infra/plugins.</li>
+  <li>kohsuke to ping SFC on our current status</li>
+  <li>kohsuke and abayer to talk tonight about trademark stuff and get the ball rolling.</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> abayer <ol>
+    <li>kohsuke and abayer to talk tonight about trademark stuff and get the ball rolling.</li>
+  </ol></li>
+  <li> aheritier <ol>
+    <li>aheritier working on proposal for actually splitting JENKINS JIRA into core/infra/plugins.</li>
+  </ol></li>
+  <li> hare_brain <ol>
+    <li>hare_brain to update the copyright wiki entry with the above. =)</li>
+  </ol></li>
+  <li><b>UNASSIGNED</b><ol>
+    <li>A thread on the mailing list to talk about what work will be done to get the stable release stuff in place (update center changes, qualification process, etc)</li>
+    <li>kohsuke to ping SFC on our current status</li>
+  </ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>kohsuke2 (110)</li>
+  <li>abayer (85)</li>
+  <li>aheritier (44)</li>
+  <li>hare_brain (42)</li>
+  <li>Squee-D (36)</li>
+  <li>rtyler (22)</li>
+  <li>jieryn-w (11)</li>
+  <li>eric_n_dfw (8)</li>
+  <li>robobutler (4)</li>
+  <li>redsolo (3)</li>
+  <li>fcamblor (3)</li>
+  <li>kutzi (3)</li>
+  <li>makeusabrew (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

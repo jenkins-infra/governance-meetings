@@ -1,0 +1,272 @@
+18:01:28 <rtyler> #startmeeting
+18:01:28 <robobutler> Let the Jenkins meeting commence!
+18:01:30 <rtyler> wheee
+18:01:33 <rtyler> #topic Last meeting items
+18:01:45 <rtyler> now, we didn't exactly have a last meeting because there wasn't much to do
+18:02:01 <rtyler> so let's blaze through this
+18:02:15 <rtyler> #topic LTS status check
+18:02:39 <rtyler> I don't see ogondza around, perhaps you have an idea of what's going on here jglick / oleg-nenashev?
+18:02:47 <oleg-nenashev> nope
+18:02:54 <oleg-nenashev> checking
+18:03:02 * rtyler hasn't been following LTS lately
+18:03:23 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/Nnkr_2Kfz7E
+18:03:31 <KatrinJFrog> Hello everyone :-)
+18:03:40 <KatrinJFrog> Katrin from JFrog saying Hi
+18:03:40 <oleg-nenashev> hi
+18:03:58 <oleg-nenashev> ogondza is here now
+18:04:06 <rtyler> ogondza: right on cue :)
+18:04:34 <ogondza> sorry,  Istill m ytopic is still on
+18:04:41 <rtyler> ogondza: indeed
+18:04:46 <ogondza> the testing looks good
+18:04:55 <ogondza> no complains reported as well
+18:05:16 <rtyler> which release would this be again?
+18:05:19 <ogondza> I would say we are good for 2.89.3
+18:05:22 <rtyler> aha
+18:05:31 <rtyler> when do we discuss the next baseline?
+18:05:32 <oleg-nenashev> I was running the RC for a while before JEP-200, looks good
+18:05:42 <oleg-nenashev> rtyler: in 4 weeks IIUC
+18:05:47 <samrocketman> Is this LTS release for JEP-200?
+18:05:52 <rtyler> markewaite: have you had any opportunities to bang on the RC?
+18:06:01 <rtyler> samrocketman: negative
+18:06:15 <oleg-nenashev> samrocketman: JEP-200 LTS ETA is March 14
+18:06:15 <samrocketman> Ok good, bc I still need to test it with my plugins.
+18:06:29 <samrocketman> Thanks oleg-nenashev rtyler
+18:06:32 <oleg-nenashev> yeah, I was going to ping you about ghprb ;)
+18:06:45 <samrocketman> I comaintain ghprb
+18:07:04 <rtyler> shall we move on to the next topic then?
+18:07:09 <oleg-nenashev> Seems so
+18:07:12 <andresrc> +1
+18:07:12 <samrocketman> I'll loop them in out of band.
+18:07:13 <rtyler> #info agenda is here btw https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-January17thmeeting
+18:07:24 <rtyler> #topic JEP-200 status update / Q&A
+18:07:28 <oleg-nenashev> Okay
+18:07:45 <oleg-nenashev> #info we landed JEP-200 in 2.102
+18:07:59 <oleg-nenashev> #info It caused regressions, as expected: https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+fix+for+JEP-200
+18:08:03 <ogondza> #agreed kohsuke will push 2.89.3
+18:08:26 <rtyler> ogondza: sorry, I should have waited before moving on
+18:08:34 <oleg-nenashev> So far everything is contained more or less, kudos to jglick, Slide-O-Mix, rsandell and many other folks
+18:08:41 <rtyler> #info https://github.com/jenkinsci/jep/tree/master/jep/200
+18:09:16 <oleg-nenashev> But it's still a kind of crash-landing, so I am happy to answer questions and to note feedback if any
+18:09:32 <oleg-nenashev> Otherwise I would like to discuss out-of-order release
+18:09:51 <markewaite> rtyler: sorry I missed the earlier question on LTS RC.  My testing of the RC was all good.  Switched to RC shortly after it was announced, ran until Friday when I installed JEP-200 pre-release
+18:10:05 <oleg-nenashev> #info JEP-200 ETA in LTS is March 14 according to the current plans (if it gets accepted to LTS)
+18:10:30 <rtyler> oleg-nenashev: will you also please #info a one-line explaination of what JEP-200 is
+18:11:20 <oleg-nenashev> #info JEP-200 is switching of XStream/Remoting class filters from blacklist to whitelist
+18:12:11 <oleg-nenashev> #info So, if a class is not in a plugin/core/module, it will be rejected if not whitelisted. Common examples: Java internal classes, 3rd-party libraries (Guava & Co)
+18:12:34 <rtyler> since there don't seem to be any questions thus far, what do you mean by out-of-order release?
+18:13:17 <oleg-nenashev> https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/jenkins/security/whitelisted-classes.txt got updated since 2.102. It could close some regressions in plugins not reported yet
+18:14:03 <oleg-nenashev> This core whitelist was also our last resort for cases when we were unable to update plugins quickly before 2.102
+18:14:14 <markewaite> oleg-nenashev: I've not seen a large outcry asking for an out-of-order release.  Have you seen many requests to include the updated whitelist in a new release?
+18:14:35 <rtyler> I don't understand what "out-of-order" even means in the context of weekly releases
+18:14:47 <oleg-nenashev> means "not on sunday" :)
+18:14:59 <rtyler> why is that worth the tiem and effort at all?
+18:15:14 <oleg-nenashev> "It could close some regressions in plugins not reported yet"
+18:15:47 <oleg-nenashev> E.g.  "java.util.Collections$UnmodifiableMap" was not whitelisted so any plugin serializing it will fail with 2.102 🤷
+18:15:49 <rtyler> some unknown list of possible issues, a few days ahead of a regularly scheduled weekly release?
+18:16:34 <oleg-nenashev> Since nobody asks for out-of-order && jglick is silent,, I feel there is no strict need to do it so far
+18:16:50 <rtyler> if this were potentially affecting an LTS, I would be more agreeable on the subject, but to me this seems like unnecessary release churn
+18:17:23 <rtyler> oleg-nenashev: you could perhaps ask kohsuke to release a little early since he might be on an international flight sunday :P
+18:17:29 <oleg-nenashev> Okay, so no weekly then. Once thing we definitely need is a release of GHPRB by samrocketman. It's getting hot
+18:17:30 <samrocketman> I have a JEP-200 question but I can wait until after the meet to ask.
+18:17:52 <rtyler> "getting hot" heh
+18:18:09 <oleg-nenashev> #agreed We are NOT going to spin out-of-order weekly release for JEP-200
+18:18:25 <rtyler> samrocketman: might as well ask, if it's requiring more discussion later we can punt to #jenkins post-meeting
+18:18:31 <oleg-nenashev> Well, it's probably the worst community rating in the core ever
+18:18:49 <oleg-nenashev> Or not
+18:19:04 <rtyler> we've had weekly releases before that failed to even boot
+18:19:09 * rtyler chuckles
+18:19:22 <rtyler> but let's not have a "worst ever" competition :)
+18:19:32 <oleg-nenashev> We have several open issues, the most hot ones are GHPRB and Artifactory from what I see
+18:19:40 <samrocketman> Ok, so while I maintain plugins (e.g. merge PRs and release to repo.jenkins-ci.org); I'm not entirely comfortable _developing_.  I can do little patches here and there.  However, I'm not sure what needs to be done for fixing plugins for JEP-200.  Example: https://github.com/jenkinsci/ghprb-plugin/issues/618
+18:19:53 <oleg-nenashev> We also wait for several reviews/releases by maintainers
+18:20:01 <samrocketman> Question: How do I go about surfacing this or asking for help from other people for a fix?
+18:20:15 <samrocketman> I've noted in a comment things I've seen discussed ere.
+18:20:17 <rtyler> oleg-nenashev: I thought there were some developer guidelines around JEP-200 somewhere
+18:20:20 <samrocketman> s/ere/here/
+18:20:44 <oleg-nenashev> #info Developer guidelines: https://jenkins.io/blog/2018/01/13/jep-200/#for-plugin-developers
+18:20:59 <rtyler> great, thanks
+18:21:11 <rtyler> samrocketman: further questions about that, let's punt to #jenkins after the meeting
+18:21:18 <samrocketman> Okay, sounds good.
+18:21:20 <rtyler> any other questions/concerns about JEP-200 before we move on?
+18:21:44 <oleg-nenashev> #info JEP-200 includes a "warranty period". A team is investigating all reported issues and trying to fix them if possible. So far the "team" is oleg-nenashev and jglick
+18:21:57 <oleg-nenashev> samrocketman: E.g. https://jenkins.io/blog/2018/01/13/jep-200/#for-plugin-developers for ghprb
+18:22:03 <oleg-nenashev> crap
+18:22:10 <oleg-nenashev> https://github.com/jenkinsci/ghprb-plugin/pull/616
+18:22:25 <samrocketman> I've noted that link in the GHPRB GitHub issue links for later review by my comaintainer and I.
+18:22:39 <oleg-nenashev> #action oleg-nenashev to send a post-mortem doc once the dust settles
+18:23:01 <samrocketman> I notice jglick has proposed a PR so I'll prioritize its review.
+18:23:01 <oleg-nenashev> I think it's important for developers and especially weekly users
+18:23:31 <oleg-nenashev> Nothing else from me
+18:23:42 <rtyler> you're not off the hook just yet :)
+18:23:44 <rtyler> #topic GSoC 2018: Discussion - Do we want to kick-it off
+18:23:50 <oleg-nenashev> Okay
+18:24:32 <oleg-nenashev> So this year we consider participating in GSoC
+18:24:58 <rtyler> #info GSoC is the Google Summer of Code program
+18:25:08 <oleg-nenashev> It's undetermined what "we" means in the sentence above, and that's why I added it to the agenda
+18:25:17 <oleg-nenashev> #info Call formentors: https://jenkins.io/blog/2018/01/06/gsoc2018-call-for-mentors/
+18:26:00 <oleg-nenashev> I have started pinging people in mid December about GSoC Mentorship and project ideas
+18:26:28 <oleg-nenashev> The interest from active contributors and plugin maintainers is limited at best, but we got some proposals
+18:26:40 <oleg-nenashev> #info: https://docs.google.com/document/d/1q2p_XZEdbkcVDMpEPTtjPS15i2Oq3CQgH_geJjPhofY/edit#heading=h.iu2aqxlb7caw
+18:26:56 <rtyler> oleg-nenashev: do you have any co-organizers signed up to help run the program, if we are an accepted project?
+18:27:20 <samrocketman> oleg-nenashev: I commented in that PR I'll prioritize review and release ASAP.  Thanks!
+18:27:55 <oleg-nenashev> rtyler: I am sure I will find few co-organizers if we get accepted. It's not a problem at the current stage since we have the most of documents ready (from the prev years)
+18:28:19 <oleg-nenashev> The problem is that in the current state we will unlikely get accepted
+18:28:23 <rtyler> oleg-nenashev: I will not have bandwidth to participate in any form this year, so I don't want anybody to have the expectation that I can help back stuff up
+18:28:40 <oleg-nenashev> I know
+18:28:47 <oleg-nenashev> And no complains at all
+18:28:49 <rtyler> heh
+18:29:06 <rtyler> based on the work you've done thus far, I don't see a *downside* to applying
+18:29:31 <oleg-nenashev> #info Application deadline: January 23
+18:29:47 <oleg-nenashev> So we won't be able to reiterate it at FOSDEM like in 2016/17
+18:30:17 <oleg-nenashev> Just in case, does ANYBODY else consider participating as mentor? :)
+18:30:59 <oleg-nenashev> Applying this year should not hit us much if we fail again
+18:31:11 <jglick> Sorry, just remembered the meeting was in progress. Nothing more to add from my side. I do not see a pressing need for an out-of-order release; all problems are fixable by (planned or actual) plugin updates.
+18:31:25 <oleg-nenashev> ty jglick
+18:31:34 <oleg-nenashev> GSoC 5...
+18:31:39 <oleg-nenashev> 4
+18:31:41 <oleg-nenashev> 3
+18:31:47 <oleg-nenashev> 2
+18:31:48 <markewaite> I'm willing to consider being a mentor, if the mentoring could be limited to two plugins
+18:31:56 <oleg-nenashev> It could
+18:32:05 <markewaite> Add me to the list
+18:32:13 <oleg-nenashev> Mentors generally propose their project ideas
+18:32:32 <markewaite> will do.  Hadn't proposed idea yet.  Will put that in tomorrow.
+18:32:34 <oleg-nenashev> markewaite: So you can just drop your project idea in https://docs.google.com/document/d/1q2p_XZEdbkcVDMpEPTtjPS15i2Oq3CQgH_geJjPhofY/edit
+18:32:38 <oleg-nenashev> thanks!
+18:32:55 <oleg-nenashev> At least I do not feel alone now :D
+18:33:08 <rtyler> oleg-nenashev: anything else to discuss regarding GSoC at this point?
+18:33:14 <oleg-nenashev> I think "no"
+18:33:28 <oleg-nenashev> #agreed oleg-nenashev to prepare the docs and to apply to GSoC 2018
+18:33:44 <rtyler> #topic Request for mark usage, "JUC Paris" by JFrog
+18:33:50 <rtyler> KatrinJFrog: hi
+18:33:58 <KatrinJFrog> Hello everyone :-)
+18:34:02 <rtyler> this agenda item actually surprised me when I saw it
+18:34:03 <alyssat_> hi Katrin
+18:34:07 <alyssat_> welcome
+18:34:07 <rtyler> there's been a JUC Paris before I though
+18:34:22 <KatrinJFrog> yes, but last year it was called JCD
+18:34:27 <oleg-nenashev> Yes, but it was before the Trademark Approval process
+18:34:30 <rtyler> ah
+18:34:41 <alyssat_> JUC Paris in the past did not go Trademark approval process
+18:34:42 <rtyler> we're much more responsible these days :P
+18:34:47 <KatrinJFrog> In order to have consistency and brand/community recognition, I would like to ask for the right to use the name Jenkins User Conference for both events please.
+18:34:54 <alyssat_> we try to be ;)
+18:34:58 <rtyler> #info our trademark guidelines can be found here: https://jenkins.io/project/governance/#trademark
+18:35:20 <rtyler> KatrinJFrog: I don't know what you mean by "both" events, the agenda item refers to a Jenkins User Conference Paris
+18:35:21 <oleg-nenashev> I see no problem with JUC Paris
+18:35:43 <oleg-nenashev> I would have comments about JCD taking my prev year experience, but JUC is fine
+18:35:45 <KatrinJFrog> We are running JUC Israel as well
+18:35:58 <KatrinJFrog> JUC Paris should be June 28th and JUC Israel July 3rd
+18:36:05 <rtyler> KatrinJFrog: are you requesting sublicense for both events in this meeting?
+18:36:14 <KatrinJFrog> Kohsuke confirmed his attendance for both events already
+18:36:26 <KatrinJFrog> and it would be great to have the same naming this year
+18:36:48 <rtyler> KatrinJFrog: the Jenkins project is a bit larger than just kohsuke these days ;)
+18:36:57 <rtyler> KatrinJFrog: can you explain what the events are about a little bit
+18:37:01 <KatrinJFrog> well, the JUC Israel event is already running for 7 years
+18:37:04 * oleg-nenashev would be happy to see a "How we fixed JEP-200 in Artifactory Plugin" talk this year
+18:37:29 <KatrinJFrog> let's organise that! ;-)
+18:37:50 <oleg-nenashev> heh
+18:38:49 <oleg-nenashev> alyssat_: CloudBees has no interest in handling JUC Paris anymore, right? If yes, there is no conflict between past events and this approval request
+18:38:54 <KatrinJFrog> the event is bring the community together, we focus on non-commercial talks
+18:39:25 <alyssat_> oleg-nenashev: there's no issue from CloudBees on this front
+18:39:33 <oleg-nenashev> then +1
+18:39:37 <KatrinJFrog> so, what was agreed on is that JFrog is allowed t organise together with Cloudbees as sponsor the communuty events
+18:40:07 <alyssat_> +1 from me as well
+18:40:10 <KatrinJFrog> we always include your marketing in the decisions of course
+18:40:16 <rtyler> I am +1 on a sublicense for Jenkins User Conference Paris and Jenkins User Conference Israel for JFrog, Inc.
+18:40:33 <alyssat_> woot woot!
+18:40:35 <KatrinJFrog> fantastic!
+18:40:40 <KatrinJFrog> thank you guys!!
+18:40:44 <rtyler> KatrinJFrog: we're not there yet
+18:40:53 <KatrinJFrog> that will make the communication and promo much easier
+18:40:54 <rtyler> any other concerns/questions?
+18:40:59 <KatrinJFrog> oh sorry
+18:41:08 <alyssat_> no concerns from me
+18:41:15 <KatrinJFrog> too enthusiastic ;-)
+18:41:30 <KatrinJFrog> we started the planning about the event, i am getting in the mood
+18:42:24 <rtyler> I suppose trademark sublicenses are so perfunctory at this point that everybody but oleg-nenashev and I, tunes out
+18:42:37 <alyssat_> LOL!
+18:43:12 <rtyler> #agreed Trademark sublicense granted to JFrog, Inc. for "Jenkins User Conference Paris" and "Jenkins User Conference Israel"
+18:43:21 <rtyler> #action rtyler to update the approved trademark usage wiki page
+18:43:36 <KatrinJFrog> awesome :-) thank you everyone!
+18:43:46 <rtyler> KatrinJFrog: this requires that JFrog, Inc. follow our trademark usage and attribution guidelines: https://jenkins.io/project/governance/#trademark
+18:43:52 <rtyler> that's not optional
+18:43:52 <alyssat_> thanks Katrin for joining us
+18:44:03 <KatrinJFrog> yes, noted, np of course
+18:44:14 <rtyler> KatrinJFrog: you are responsible for ensuring that your marketing team and others within JFrog are using the trademark correctly
+18:44:15 <KatrinJFrog> i will involve Alyssa and the team in all
+18:44:17 <alyssat_> i'll work w/ Katrin on trademark usage, as usual
+18:44:21 <rtyler> okay great
+18:44:33 <rtyler> #action alyssat_ to help JFrog understand our trademark guidelines :)
+18:44:33 <KatrinJFrog> sure!
+18:44:57 <rtyler> KatrinJFrog: please also contact aheritier who is one of our contributors, who also organizes DevoxxFr: https://twitter.com/aheritier/status/953676315802198016
+18:45:18 <rtyler> he may have some great talks from speakers who were not able to fit into the DevoxxFr schedule
+18:45:31 <KatrinJFrog> oh, yes, good idea, thanks
+18:45:31 <rtyler> shall we move on?
+18:45:35 <KatrinJFrog> we know Arnaud well
+18:45:39 <KatrinJFrog> thanks all for having me and thanks for the license
+18:45:48 <KatrinJFrog> have a good remaining dayévening!
+18:45:51 <KatrinJFrog> bye
+18:45:55 <oleg-nenashev> KatrinJFrog: If there are restrictions by language and employer this year, I kindly ask to mention it in CFP this time
+18:45:56 <alyssat_> by
+18:45:57 <alyssat_> bye
+18:45:58 <rtyler> #topic FOSDEM planning update
+18:46:03 <rtyler> you're up alyssat_
+18:46:06 <alyssat_> #info https://wiki.jenkins.io/display/JENKINS/FOSDEM+2018
+18:46:18 <alyssat_> Planning is in high gear as we are about 2 wks away from the actual event.
+18:46:33 <alyssat_> We are still finalizing the agenda for Monday (5 Feb). I will be updating the meetup page this wk or next wk as we nail down the agenda.
+18:47:00 <alyssat_> If you haven't RSVP'd and are planning to attend FOSDEM and Jenkins events pls RSVP so we can get as accurate head count as possible for planning purposes.
+18:47:28 <rtyler> alyssat_: can you go over the specific events we have planned on the meetup page?
+18:47:43 <alyssat_> yup.
+18:48:22 <alyssat_> so on Friday we've reserved a meeting room at BeCentral for contributors to come hang out, work together. no agenda really
+18:48:55 <alyssat_> then in the evening is the beer gathering (just like previous yrs)
+18:49:20 <alyssat_> FOSDEM is on Sat and Sun.
+18:49:52 <alyssat_> on Monday we are planning a hackfest..all day..the agenda for that is forth coming.
+18:50:09 <rtyler> Saturday I'm running the Testing and Automation devroom \o/
+18:50:15 <rtyler> because I'm an idiot
+18:50:19 <rtyler> but you all knew that
+18:50:20 <alyssat_> Monday's hackfest will take place at BeCentral as well
+18:50:53 <rtyler> w00t, do you need anything from this group for these events?
+18:51:07 <rtyler> \/win3
+18:51:08 <alyssat_> just RSVP if you haven't
+18:51:09 <rtyler> derp
+18:51:37 <rtyler> #info please RSVP to the FOSDEM related events as soon as possible: https://www.meetup.com/jenkinsmeetup/
+18:51:53 <oleg-nenashev> Any plans regarding demos at FOSDEM table?
+18:52:40 <alyssat_> good question. that's on my todo list but right now no specific plan.
+18:52:52 <alyssat_> do you have a demo you'd like to show?
+18:53:10 <rtyler> perhaps you all can coordinate something outside of the meeting for that
+18:53:16 <rtyler> alyssat_: what table materials will we have?
+18:53:39 <alyssat_> we will have post card on Pipeline and JAMs.
+18:53:41 <oleg-nenashev> #action oleg-nenashev to add Demos section to the Wiki page
+18:53:47 <rtyler> and/or are there things contributors should bring, besides their smiling faces and laptops
+18:53:59 <alyssat_> and post card for Jenkins World
+18:54:29 <alyssat_> wear your Jenkins t-shirt
+18:54:54 <alyssat_> there'll be lots of Jenkins stickers
+18:54:55 <rtyler> #info Jenkins contributors at FOSDEM, please bring and wear your squad t-shirts :P
+18:55:03 <alyssat_> we're selling t-shirts and caps
+18:55:18 <oleg-nenashev> Only 50 T-shorts?
+18:55:33 <oleg-nenashev> They will last for 2 hrs at max, I'd guess
+18:55:40 <alyssat_> i can only take that much w me
+18:55:52 <rtyler> that's fine, thanks alyssat_ :)
+18:55:53 <alyssat_> and we don't have space at the exhibit space
+18:55:59 * rtyler needs to get a new cap
+18:56:05 <rtyler> a friend at Microsoft stole mine
+18:56:10 <oleg-nenashev> I can bring T-shorts from my stock if it helps (and if you approve that)
+18:56:26 <alyssat_> sure.
+18:56:34 <rtyler> alyssat_: anything else to update?
+18:56:43 <alyssat_> not on FOSDEM
+18:56:43 <markewaite> I can bring T-shirts as well, if that helps (in luggage)
+18:56:54 <alyssat_> but can i plug about Jenkins World CFP?
+18:57:03 <rtyler> alyssat_: this is not the time/place for that
+18:57:04 <oleg-nenashev> #action oleg-nenashev and markewaite to bring as much T-shorts as he can
+18:57:06 <rtyler> the blog is however
+18:57:07 <oleg-nenashev> *they
+18:57:16 <rtyler> please bring t-shirts instead of t-shorts
+18:57:24 <oleg-nenashev> ...
+18:57:24 <alyssat_> rtyler: ok
+18:57:31 * oleg-nenashev facepalms
+18:57:43 <rtyler> thanks alyssat_
+18:57:47 <rtyler> #topic Next meeting
+18:57:48 <alyssat_> markewaite: thank you for the offer
+18:58:08 <rtyler> #info the next meeting will be at 18:00 UTC ON January 31st
+18:58:20 <rtyler> #endmeeting

@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app226.us.archive.org';v.server_ms=166;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-03-04-19.00.log.html","20200505003541","https://web.archive.org/","web","/_static/",
+	      "1588638941");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:00:07</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:00:07</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:00:17</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler hare_brain</span>
+<a name="l-4"></a><span class="tm">19:00:17</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: hare_brain kohsuke_ rtyler
+<a name="l-5"></a><span class="tm">19:00:32</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS RC status check</span>
+<a name="l-6"></a><span class="tm">19:00:50</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke_:</span> ready for RC
+<a name="l-7"></a><span class="tm">19:01:08</span><span class="nk"> &lt;kohsuke_&gt;</span> I failed once again to push 1.596.1 in time, so my hats off to you ogondza
+<a name="l-8"></a><span class="tm">19:01:26</span><span class="nk"> &lt;ogondza&gt;</span> no problem
+<a name="l-9"></a><span class="tm">19:01:46</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-10"></a><span class="tm">19:02:12</span><span class="nk"> &lt;kohsuke_&gt;</span> And let's see what those are
+<a name="l-11"></a><span class="tm">19:02:34</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-02-18-19.01.html</span>
+<a name="l-12"></a><span class="tm">19:02:57</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, to board
+<a name="l-13"></a><span class="tm">19:03:01</span><span class="nk"> &lt;kohsuke_&gt;</span> So it's basically mine
+<a name="l-14"></a><span class="tm">19:04:04</span><span class="nk"> &lt;kohsuke_&gt;</span> I was hoping to find one more person aside from rtyler and run a confidence vote
+<a name="l-15"></a><span class="tm">19:04:23</span><span class="nk"> &lt;kohsuke_&gt;</span> ... to increase the board to 5 people and let us remove "interim"
+<a name="l-16"></a><span class="tm">19:04:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> what about jglick?
+<a name="l-17"></a><span class="tm">19:04:46</span><span class="nk"> &lt;hare_brain&gt;</span> Too much CloudBees representation.
+<a name="l-18"></a><span class="tm">19:04:48</span><span class="nk"> &lt;kohsuke_&gt;</span> but during the podcast recording abayer wanted to just hand over his seat to rtyler
+<a name="l-19"></a><span class="tm">19:04:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> He's committer #2 btw
+<a name="l-20"></a><span class="tm">19:05:08</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke_, what about somebody from RH ogondza ?
+<a name="l-21"></a><span class="tm">19:05:49</span><span class="nk"> &lt;kohsuke_&gt;</span> So I think I have more herding to do
+<a name="l-22"></a><span class="tm">19:06:05</span><span class="nk"> &lt;ogondza&gt;</span> I do not object, though I have limited understanding that board responsibilities are
+<a name="l-23"></a><span class="tm">19:06:17</span><span class="nk"> &lt;ogondza&gt;</span> *what
+<a name="l-24"></a><span class="tm">19:06:39</span><span class="nk"> &lt;KostyaSha&gt;</span> ogondza, i don't know at all and don't know how it should help to jenkins as project
+<a name="l-25"></a><span class="tm">19:06:41</span><span class="nk"> &lt;kohsuke_&gt;</span> And what I thought was 20mins recording run like 90mins, and I failed to talk about the nominations
+<a name="l-26"></a><span class="tm">19:06:59</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler can work on infra now without any titles
+<a name="l-27"></a><span class="tm">19:07:07</span><span class="nk"> &lt;kohsuke_&gt;</span> yes
+<a name="l-28"></a><span class="tm">19:07:20</span><span class="nk"> &lt;kohsuke_&gt;</span> So that's the current status of my action
+<a name="l-29"></a><span class="tm">19:07:33</span><span class="nk"> &lt;kohsuke_&gt;</span> The other AI is to update wolfs. I'll do that.
+<a name="l-30"></a><span class="tm">19:07:58</span><span class="nk"> &lt;kohsuke_&gt;</span> Can we move on to the next topic?
+<a name="l-31"></a><span class="tm">19:08:09</span><span class="nk"> &lt;KostyaSha&gt;</span> +
+<a name="l-32"></a><span class="tm">19:08:17</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">"Patron of Jenkins"</span>
+<a name="l-33"></a><span class="tm">19:08:49</span><span class="nk"> &lt;KostyaSha&gt;</span> orrc, ?
+<a name="l-34"></a><span class="tm">19:09:07</span><span class="nk"> &lt;kohsuke_&gt;</span> So indeed looks like there's no patron for 2015 Q1,
+<a name="l-35"></a><span class="tm">19:09:13</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/patron/blob/gh-pages/messages.xml</span>
+<a name="l-36"></a><span class="tm">19:09:19</span><span class="nk"> &lt;kohsuke_&gt;</span> (scroll to the bottom)
+<a name="l-37"></a><span class="tm">19:10:06</span><span class="nk"> &lt;kohsuke_&gt;</span> but I think it's just a lapse of the hand off. lisa who used to do it handed it over to christina
+<a name="l-38"></a><span class="tm">19:10:37</span><span class="nk"> &lt;orrc&gt;</span> maybe we just need to add a contact point to the patron wiki page
+<a name="l-39"></a><span class="tm">19:10:52</span><span class="nk"> &lt;kohsuke_&gt;</span> There's a ML for that
+<a name="l-40"></a><span class="tm">19:11:50</span><span class="nk"> &lt;kohsuke_&gt;</span> So I'll circle back with her to put this back in order
+<a name="l-41"></a><span class="tm">19:12:02</span><span class="nk"> &lt;kohsuke_&gt;</span> And separate from that, there's a review of this program as a whole
+<a name="l-42"></a><span class="tm">19:12:16</span><span class="nk"> &lt;kohsuke_&gt;</span> That is, how does people feel about this? Is this something we can continue?
+<a name="l-43"></a><span class="tm">19:12:39</span><span class="nk"> &lt;KostyaSha&gt;</span> i will be interested only on whether jenkins has budget for working
+<a name="l-44"></a><span class="tm">19:12:42</span><span class="nk"> &lt;orrc&gt;</span> I think it's fine. has there been any feedback from patrons?
+<a name="l-45"></a><span class="tm">19:12:48</span><span class="nk"> &lt;KostyaSha&gt;</span> or should we cal for donates massively
+<a name="l-46"></a><span class="tm">19:12:55</span><span class="nk"> &lt;kohsuke_&gt;</span> It brings in about $2000+ / quarter, which is sizable money
+<a name="l-47"></a><span class="tm">19:13:35</span><span class="nk"> &lt;hare_brain&gt;</span> I agree with orrc. It’s not about whether to continue it, but whether if people who have signed up are getting value out of it.
+<a name="l-48"></a><span class="tm">19:13:49</span><span class="nk"> &lt;kohsuke_&gt;</span> I know one patron (CB) is happy, but I don't know about other patrons
+<a name="l-49"></a><span class="tm">19:13:59</span><span class="nk"> &lt;KostyaSha&gt;</span> :D
+<a name="l-50"></a><span class="tm">19:14:18</span><span class="nk"> &lt;kohsuke_&gt;</span> Xebia seems to continue doing this, so I think they are happy enough
+<a name="l-51"></a><span class="tm">19:14:20</span><span class="nk"> &lt;ogondza&gt;</span> i proposed this to my manager to give some money to Jenkins project, his question was what can a company that does not make money on Jenkins can get becoming a patron
+<a name="l-52"></a><span class="tm">19:14:31</span><span class="nk"> &lt;ogondza&gt;</span> the point is, there are lot more users than sellers
+<a name="l-53"></a><span class="tm">19:14:47</span><span class="nk"> &lt;ogondza&gt;</span> it is worth to attract those
+<a name="l-54"></a><span class="tm">19:14:56</span><span class="nk"> &lt;KostyaSha&gt;</span> ogondza, provide him comparison to TeamCity costs
+<a name="l-55"></a><span class="tm">19:15:38</span><span class="nk"> &lt;orrc&gt;</span> so, I'd be happy with it continuing. users and (a few) patrons seem happy. I don't think we ever promoted the program on the blog? maybe that would help fill up the slots
+<a name="l-56"></a><span class="tm">19:15:43</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">ogondza:</span> I think we can put a thank you message to RH to recognize their contributions
+<a name="l-57"></a><span class="tm">19:16:07</span><span class="nk"> &lt;KostyaSha&gt;</span> is LTS covered only by RH?
+<a name="l-58"></a><span class="tm">19:16:18</span><span class="nk"> &lt;KostyaSha&gt;</span> i mean release/testing
+<a name="l-59"></a><span class="tm">19:16:32</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">give away an open patron slot to show value to the target patron?</span>
+<a name="l-60"></a><span class="tm">19:16:36</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">ogondza:</span> if you can think of something that's more attractive to redhat, I'd love to know
+<a name="l-61"></a><span class="tm">19:16:55</span><span class="nk"> &lt;hare_brain&gt;</span> That would require some analytics on their end to demonstrate an uptick in traffic.
+<a name="l-62"></a><span class="tm">19:17:04</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">KostyaSha:</span> I do not follow, I think the add space price might be too high if you are not setting Jenkins based product
+<a name="l-63"></a><span class="tm">19:17:26</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke_:</span> I will ask cross BUs and let upstream know
+<a name="l-64"></a><span class="tm">19:17:59</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to blog about patron program in the hope to attract more patrons</span>
+<a name="l-65"></a><span class="tm">19:18:14</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to ping christina to get the program back in order for Q2</span>
+<a name="l-66"></a><span class="tm">19:18:27</span><span class="nk"> &lt;kohsuke_&gt;</span> should we move on?
+<a name="l-67"></a><span class="tm">19:18:40</span><span class="nk"> &lt;ogondza&gt;</span> y
+<a name="l-68"></a><span class="tm">19:18:46</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">workflow specific mailing list</span>
+<a name="l-69"></a><span class="tm">19:19:28</span><span class="nk"> &lt;kohsuke_&gt;</span> Is that really necessary?
+<a name="l-70"></a><span class="tm">19:19:46</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">jglick:</span> any thoughts?
+<a name="l-71"></a><span class="tm">19:19:50</span><span class="nk"> &lt;hare_brain&gt;</span> I was noticing that the traffic on the users mailing list has been heaving on this topic.
+<a name="l-72"></a><span class="tm">19:19:54</span><span class="nk"> &lt;hare_brain&gt;</span> That’s why I brought it up.
+<a name="l-73"></a><span class="tm">19:20:10</span><span class="nk"> &lt;hare_brain&gt;</span> On certain days, it tends to drown out other messages.
+<a name="l-74"></a><span class="tm">19:20:11</span><span class="nk"> &lt;jglick&gt;</span> I am not opposed, if you think there is enough traffic to warrant it.
+<a name="l-75"></a><span class="tm">19:20:22</span><span class="nk"> &lt;KostyaSha&gt;</span> i think devel maillist is enough
+<a name="l-76"></a><span class="tm">19:20:27</span><span class="nk"> &lt;jglick&gt;</span> The “certain days” are when I get around to reading it.
+<a name="l-77"></a><span class="tm">19:20:28</span><span class="nk"> &lt;jglick&gt;</span> :-)
+<a name="l-78"></a><span class="tm">19:20:37</span><span class="nk"> &lt;KostyaSha&gt;</span> workflow broke enough in core so other devs should follow changes
+<a name="l-79"></a><span class="tm">19:20:46</span><span class="nk"> &lt;KostyaSha&gt;</span> and see discussions
+<a name="l-80"></a><span class="tm">19:20:47</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">hare_brain:</span> I think it's the day jglick binge-replied workflow messages
+<a name="l-81"></a><span class="tm">19:20:51</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">KostyaSha:</span> well this is about user view, not jenkinsci-dev topics.
+<a name="l-82"></a><span class="tm">19:20:52</span><span class="nk"> &lt;hare_brain&gt;</span> This is about a dedicated mailing list for users.
+<a name="l-83"></a><span class="tm">19:21:00</span><span class="nk"> &lt;hare_brain&gt;</span> I think devel should stay together.
+<a name="l-84"></a><span class="tm">19:21:01</span><span class="nk"> &lt;KostyaSha&gt;</span> for user we have user maillist
+<a name="l-85"></a><span class="tm">19:21:28</span><span class="nk"> &lt;jglick&gt;</span> I doubt it is enough volume to merit its own list.
+<a name="l-86"></a><span class="tm">19:21:54</span><span class="nk"> &lt;hare_brain&gt;</span> Looking back, I see that you had binge replies last Wednesday and Thursday.
+<a name="l-87"></a><span class="tm">19:22:00</span><span class="nk"> &lt;hare_brain&gt;</span> Which is when I happened to notice.
+<a name="l-88"></a><span class="tm">19:22:04</span><span class="nk"> &lt;jglick&gt;</span> Yup.
+<a name="l-89"></a><span class="tm">19:22:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> -1 for the new mailing list. workflow is being integrated everywhere, so there should be a smooth migration at some point
+<a name="l-90"></a><span class="tm">19:22:29</span><span class="nk"> &lt;kohsuke_&gt;</span> I feel it's easier for people if we stick to one users list
+<a name="l-91"></a><span class="tm">19:22:42</span><span class="nk"> &lt;orrc&gt;</span> yup
+<a name="l-92"></a><span class="tm">19:22:49</span><span class="nk"> &lt;jglick&gt;</span> I guess -0 from me. More convenient in some ways to have a separate list, but this can be taken too far.
+<a name="l-93"></a><span class="tm">19:23:30</span><span class="nk"> &lt;KostyaSha&gt;</span> and after 1-2y such maillist will die as usual
+<a name="l-94"></a><span class="tm">19:23:32</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">hare_brain:</span> do you feel strongly one way or the other?
+<a name="l-95"></a><span class="tm">19:23:49</span><span class="nk"> &lt;hare_brain&gt;</span> No, I don’t.
+<a name="l-96"></a><span class="tm">19:24:08</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll stick to one users list. No workflow specific list, at least for now</span>
+<a name="l-97"></a><span class="tm">19:24:17</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">new release process</span>
+<a name="l-98"></a><span class="tm">19:24:45</span><span class="nk"> &lt;kohsuke_&gt;</span> So basically I'm trying not to become an obstacle here
+<a name="l-99"></a><span class="tm">19:25:02</span><span class="nk"> &lt;kohsuke_&gt;</span> jglick and danielbeck didn't like the current 'rc' branch practice
+<a name="l-100"></a><span class="tm">19:25:20</span><span class="nk"> &lt;kohsuke_&gt;</span> So we'll be ditching that, and switch back to doing release from the master branch
+<a name="l-101"></a><span class="tm">19:25:49</span><span class="nk"> &lt;jglick&gt;</span> Well it was not just ditching the rc branch but finding a decent replacement for hotfixes of serious regressions.
+<a name="l-102"></a><span class="tm">19:26:09</span><span class="nk"> &lt;jglick&gt;</span> That is what commits into rc are supposed to be for today, it just does not work well from a Git standpoint.
+<a name="l-103"></a><span class="tm">19:26:22</span><span class="nk"> &lt;jglick&gt;</span> And we have to wait days for those fixes to be delivered.
+<a name="l-104"></a><span class="tm">19:26:56</span><span class="nk"> &lt;KostyaSha&gt;</span> i think branch + X.Y-Z , where Z can be suitable for hotfixing
+<a name="l-105"></a><span class="tm">19:27:02</span><span class="nk"> &lt;kohsuke_&gt;</span> for the record out of cycle releases for hot fixes have been done number of times, and I'm all for it
+<a name="l-106"></a><span class="tm">19:27:36</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke_ why not use 1.600-1 for hotfix to not overlap with lts?
+<a name="l-107"></a><span class="tm">19:27:38</span><span class="nk"> &lt;jglick&gt;</span> Yeah, if 1.678 or whatever is released and found to have some major regression, I would like to publish 1.678-1 or whatever, that day if possible.
+<a name="l-108"></a><span class="tm">19:28:01</span><span class="nk"> &lt;hare_brain&gt;</span> Why not just go to 1.679?
+<a name="l-109"></a><span class="tm">19:28:04</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">KostyaSha:</span> I think that is what he just said.
+<a name="l-110"></a><span class="tm">19:28:10</span><span class="nk"> &lt;kohsuke_&gt;</span> introducing three digit version scheme needs more backend work
+<a name="l-111"></a><span class="tm">19:28:14</span><span class="nk"> &lt;KostyaSha&gt;</span> hare_brain, because people working on master, master can have many commits
+<a name="l-112"></a><span class="tm">19:28:21</span><span class="nk"> &lt;kohsuke_&gt;</span> Doing 1.679 would be easier
+<a name="l-113"></a><span class="tm">19:28:38</span><span class="nk"> &lt;KostyaSha&gt;</span> and will end to other issues
+<a name="l-114"></a><span class="tm">19:28:42</span><span class="nk"> &lt;jglick&gt;</span> Yes, though it breaks the mental model of one release per week, and does not indicate in any way that this was a hotfix.
+<a name="l-115"></a><span class="tm">19:29:13</span><span class="nk"> &lt;hare_brain&gt;</span> Does master really have work in progress? Is there any checking right now that the RC isn’t picking up any such work?
+<a name="l-116"></a><span class="tm">19:29:55</span><span class="nk"> &lt;jglick&gt;</span> master should not have works in progress.
+<a name="l-117"></a><span class="tm">19:30:07</span><span class="nk"> &lt;hare_brain&gt;</span> Right.
+<a name="l-118"></a><span class="tm">19:30:21</span><span class="nk"> &lt;kohsuke_&gt;</span> No formal check beyond the automated tests, but when release is regular it creates expectation among developers that you shall not have WiP in master over the weekend
+<a name="l-119"></a><span class="tm">19:30:25</span><span class="nk"> &lt;jglick&gt;</span> But there are plenty of changes that could well introduce unrelated regressions. I want to be able to do a release that contains just the one-line change I know fixes the reported issue.
+<a name="l-120"></a><span class="tm">19:30:41</span><span class="nk"> &lt;KostyaSha&gt;</span> but not released commits from master are tested during next commits development
+<a name="l-121"></a><span class="tm">19:30:51</span><span class="nk"> &lt;KostyaSha&gt;</span> jglick, +1
+<a name="l-122"></a><span class="tm">19:31:01</span><span class="nk"> &lt;KostyaSha&gt;</span> because even such fix can be not final fix
+<a name="l-123"></a><span class="tm">19:31:06</span><span class="nk"> &lt;jglick&gt;</span> Well, sort of tested, but not very thoroughly. Obviously they introduce regressions.
+<a name="l-124"></a><span class="tm">19:31:15</span><span class="nk"> &lt;KostyaSha&gt;</span> and then we will need -2 to sort out final fix of initial issue
+<a name="l-125"></a><span class="tm">19:31:16</span><span class="nk"> &lt;jglick&gt;</span> (or we would not be having this discussion)
+<a name="l-126"></a><span class="tm">19:31:35</span><span class="nk"> &lt;hare_brain&gt;</span> So release from master, then create hot fix branch to cherry pick changes into when necessary?
+<a name="l-127"></a><span class="tm">19:31:45</span><span class="nk"> &lt;jglick&gt;</span> That was my hope.
+<a name="l-128"></a><span class="tm">19:31:48</span><span class="nk"> &lt;KostyaSha&gt;</span> having additional commits will add more complexity for issue resolution
+<a name="l-129"></a><span class="tm">19:31:54</span><span class="nk"> &lt;KostyaSha&gt;</span> hare_brain, +1
+<a name="l-130"></a><span class="tm">19:32:04</span><span class="nk"> &lt;jglick&gt;</span> Today we cherry pick to rc.
+<a name="l-131"></a><span class="tm">19:32:05</span><span class="nk"> &lt;jglick&gt;</span> Then wait several days.
+<a name="l-132"></a><span class="tm">19:32:06</span><span class="nk"> &lt;kohsuke_&gt;</span> I've done that kind of "let's just add one commit" kind of release in long time ago, which involves creating a new temporary branch and doing a release from there
+<a name="l-133"></a><span class="tm">19:32:06</span><span class="nk"> &lt;KostyaSha&gt;</span> hare_brain, not from master, from 1.600
+<a name="l-134"></a><span class="tm">19:32:18</span><span class="nk"> &lt;KostyaSha&gt;</span> stop, i confused
+<a name="l-135"></a><span class="tm">19:32:23</span><span class="nk"> &lt;jglick&gt;</span> And hope that the merge back to master does not produce weird botched merges (which seems to happen more often than not).
+<a name="l-136"></a><span class="tm">19:32:28</span><span class="nk"> &lt;kohsuke_&gt;</span> It messes up changelog script, but otherwise it works
+<a name="l-137"></a><span class="tm">19:32:52</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke_, this is how all projects do, changelog is just problem of automation
+<a name="l-138"></a><span class="tm">19:33:07</span><span class="nk"> &lt;jglick&gt;</span> changelog.html gets messed up today, cannot be any worse.
+<a name="l-139"></a><span class="tm">19:33:30</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">KostyaSha:</span> I dunno. The big company I used to work, there was always a release branch
+<a name="l-140"></a><span class="tm">19:34:01</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke_ for regular releases yes, for hotfix only new branches to fix exact issue
+<a name="l-141"></a><span class="tm">19:34:49</span><span class="nk"> &lt;kohsuke_&gt;</span> Are we good with 1.679 as opposed to 1.678-1?
+<a name="l-142"></a><span class="tm">19:34:57</span><span class="nk"> &lt;kohsuke_&gt;</span> I really want to avoid 1.678-1
+<a name="l-143"></a><span class="tm">19:35:03</span><span class="nk"> &lt;jglick&gt;</span> Right, I imagined a new hotfix branch would be created on demand based off the weekly release tag: git checkout -b hotfix-1.678 jenkins-1.678 &amp;&amp; mvn -DnewVersion=1.678-1-SNAPSHOT versions:set
+<a name="l-144"></a><span class="tm">19:35:30</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">kohsuke:</span> 1.679 does not work for me, b/c then you are picking up unrelated changes in master, which can have their own regressions.
+<a name="l-145"></a><span class="tm">19:35:50</span><span class="nk"> &lt;jglick&gt;</span> Sounds like there is not consensus here, should be taken to the dev list I guess.
+<a name="l-146"></a><span class="tm">19:35:56</span><span class="nk"> &lt;hare_brain&gt;</span> Why does using 1.679 mean you pick up unrelated changes?
+<a name="l-147"></a><span class="tm">19:36:06</span><span class="nk"> &lt;danielbeck&gt;</span> sorry I'm late
+<a name="l-148"></a><span class="tm">19:36:08</span><span class="nk"> &lt;kohsuke_&gt;</span> No, we are still  branching off from the 1.678 release tag.
+<a name="l-149"></a><span class="tm">19:36:13</span><span class="nk"> &lt;hare_brain&gt;</span> You just bump the version in master to 1.680 when you “burn” 1.679"
+<a name="l-150"></a><span class="tm">19:36:23</span><span class="nk"> &lt;jglick&gt;</span> I see.
+<a name="l-151"></a><span class="tm">19:36:28</span><span class="nk"> &lt;kohsuke_&gt;</span> IOW, git checkout -b hotfix-1.678 jenkins-1.678 &amp;&amp; mvn -DnewVersion=1.679-SNAPSHOT versions:set
+<a name="l-152"></a><span class="tm">19:36:50</span><span class="nk"> &lt;jglick&gt;</span> And then git checkout master &amp;&amp; mvn -DnewVersion=1.680-SNAPSHOT versions:set
+<a name="l-153"></a><span class="tm">19:36:59</span><span class="nk"> &lt;kohsuke_&gt;</span> and then when you merge it back to the master the master gets 1.680-SNAPSHOT
+<a name="l-154"></a><span class="tm">19:37:14</span><span class="nk"> &lt;jglick&gt;</span> And again if a second hotfix is needed, master goes to 1.681, etc.
+<a name="l-155"></a><span class="tm">19:37:22</span><span class="nk"> &lt;hare_brain&gt;</span> Yaeh
+<a name="l-156"></a><span class="tm">19:37:29</span><span class="nk"> &lt;jglick&gt;</span> Why would you merge anything back to master?
+<a name="l-157"></a><span class="tm">19:37:30</span><span class="nk"> &lt;kohsuke_&gt;</span> ... or if you are anxious to set the master to the right maven version you can run version:set again
+<a name="l-158"></a><span class="tm">19:37:40</span><span class="nk"> &lt;jglick&gt;</span> This is just a cherry-pick of something already done in master.
+<a name="l-159"></a><span class="tm">19:38:11</span><span class="nk"> &lt;KostyaSha&gt;</span> i usually draw pictures with flows for such discussions :)
+<a name="l-160"></a><span class="tm">19:38:14</span><span class="nk"> &lt;jglick&gt;</span> I see no need to merge.
+<a name="l-161"></a><span class="tm">19:38:55</span><span class="nk"> &lt;kohsuke_&gt;</span> I find it more peaceful to have one release tag reachable from another release tag
+<a name="l-162"></a><span class="tm">19:38:59</span><span class="nk"> &lt;jglick&gt;</span> IOW, the fix is done in master (as a PR, whatever), then after some conferring among core devs, a hotfix branch is set up, the relevant changes cherry-picked and a release cut.
+<a name="l-163"></a><span class="tm">19:39:12</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke_ you current approach probably ok for general releases, were you have merges/versions etc. For hotfix we need branch without merging back to fix exact issue
+<a name="l-164"></a><span class="tm">19:39:26</span><span class="nk"> &lt;jglick&gt;</span> Well the merge back to master is one of the error-prone parts of the current rc scheme that I wanted to get rid of.
+<a name="l-165"></a><span class="tm">19:39:30</span><span class="nk"> &lt;KostyaSha&gt;</span> *your
+<a name="l-166"></a><span class="tm">19:39:56</span><span class="nk"> &lt;KostyaSha&gt;</span> btw, cloudbees also automerging something to master?
+<a name="l-167"></a><span class="tm">19:40:51</span><span class="nk"> &lt;jglick&gt;</span> Huh?
+<a name="l-168"></a><span class="tm">19:41:02</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Isn't this going off topic?
+<a name="l-169"></a><span class="tm">19:41:29</span><span class="nk"> &lt;kohsuke_&gt;</span> The merge commit back from hotfix to master will be largely celemonial, so while I don't understand why people strongly about it, but I'm OK to give up that one too
+<a name="l-170"></a><span class="tm">19:41:31</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, maybe
+<a name="l-171"></a><span class="tm">19:41:54</span><span class="nk"> &lt;jglick&gt;</span> Yeah it is supposed to be ceremonial, but at least when you do it, the result is very often wrong.
+<a name="l-172"></a><span class="tm">19:42:00</span><span class="nk"> &lt;hare_brain&gt;</span> LOL
+<a name="l-173"></a><span class="tm">19:42:10</span><span class="nk"> &lt;kohsuke_&gt;</span> The error prone part of the rc scheme is going away, and we are not arguing that.
+<a name="l-174"></a><span class="tm">19:42:11</span><span class="nk"> &lt;jglick&gt;</span> Something weird goes on, I guess w.r.t. conflicts in changelog.html.
+<a name="l-175"></a><span class="tm">19:42:29</span><span class="nk"> &lt;danielbeck&gt;</span> changelog should just work like github pages IMO
+<a name="l-176"></a><span class="tm">19:42:42</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">danielbeck:</span> how so?
+<a name="l-177"></a><span class="tm">19:42:50</span><span class="nk"> &lt;jglick&gt;</span> You mean like github.io?
+<a name="l-178"></a><span class="tm">19:42:51</span><span class="nk"> &lt;KostyaSha&gt;</span> separate place for tracking changelog
+<a name="l-179"></a><span class="tm">19:42:53</span><span class="nk"> &lt;danielbeck&gt;</span> separate branch with nothing else
+<a name="l-180"></a><span class="tm">19:43:03</span><span class="nk"> &lt;KostyaSha&gt;</span> or even repo, instead of branch
+<a name="l-181"></a><span class="tm">19:43:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Or just a separate repo
+<a name="l-182"></a><span class="tm">19:43:06</span><span class="nk"> &lt;jglick&gt;</span> Agreed, it does not work to keep it in the main branch.
+<a name="l-183"></a><span class="tm">19:43:17</span><span class="nk"> &lt;danielbeck&gt;</span> PRs don't edit changelog in our process
+<a name="l-184"></a><span class="tm">19:43:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ... which can be attached via a submodule
+<a name="l-185"></a><span class="tm">19:43:21</span><span class="nk"> &lt;KostyaSha&gt;</span> or this can be generated from jira with correct project setup
+<a name="l-186"></a><span class="tm">19:43:35</span><span class="nk"> &lt;KostyaSha&gt;</span> oleg-nenashev, nooo not submodules
+<a name="l-187"></a><span class="tm">19:43:43</span><span class="nk"> &lt;jglick&gt;</span> PRs *could* edit changelog.html but then they will usually be merge conflicts.
+<a name="l-188"></a><span class="tm">19:43:58</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Too error prone, plus issues usually have crappy titles
+<a name="l-189"></a><span class="tm">19:44:17</span><span class="nk"> &lt;danielbeck&gt;</span> jglick Or wrong release given how long they stick around
+<a name="l-190"></a><span class="tm">19:44:20</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, plus CB fixes without jira ids
+<a name="l-191"></a><span class="tm">19:44:25</span><span class="nk"> &lt;kohsuke_&gt;</span> All right, let's just agree to stop the rc branching practice
+<a name="l-192"></a><span class="tm">19:44:35</span><span class="nk"> &lt;jglick&gt;</span> FWIW my original proposal was for the changelog to be autogenerated from Git history. Anyway this is diverging.
+<a name="l-193"></a><span class="tm">19:44:53</span><span class="nk"> &lt;jglick&gt;</span> kohsuke_ so will you write up a concrete proposal for its replacement?
+<a name="l-194"></a><span class="tm">19:44:55</span><span class="nk"> &lt;kohsuke_&gt;</span> and when the next hot fix comes we can fight out the details of that branching practice
+<a name="l-195"></a><span class="tm">19:45:15</span><span class="nk"> &lt;kohsuke_&gt;</span> and I declare changelog automation to be a whole separate conversation
+<a name="l-196"></a><span class="tm">19:45:28</span><span class="nk"> &lt;danielbeck&gt;</span> one minor issue though
+<a name="l-197"></a><span class="tm">19:45:29</span><span class="nk"> &lt;jglick&gt;</span> I think we need something determined in advance, b/c when the hot fix is needed there will not be much time, and you might not even be available.
+<a name="l-198"></a><span class="tm">19:46:02</span><span class="nk"> &lt;danielbeck&gt;</span> how often are changes done in master that break things, but discovered by devs within 1-2 days to fix them? How affected will the new release process be?
+<a name="l-199"></a><span class="tm">19:46:33</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">danielbeck:</span> well usually I do the breaking and you do the discovering :-)
+<a name="l-200"></a><span class="tm">19:46:51</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> rarely, I would say
+<a name="l-201"></a><span class="tm">19:47:15</span><span class="nk"> &lt;KostyaSha&gt;</span> jglick, he should have part of your salary :D
+<a name="l-202"></a><span class="tm">19:47:43</span><span class="nk"> &lt;kohsuke_&gt;</span> So proposal is: "mainline release comes directly off the master branch in the same cadence. In case of a hot fix release, we'll create a temporary branch right at the point of 1.N, cherry-pick, and release 1.${N+1} from there"
+<a name="l-203"></a><span class="tm">19:47:48</span><span class="nk"> &lt;zirpu&gt;</span> https://issues.jenkins-ci.org/browse/JENKINS-27246  anyone have a fresh jenkins instance that they can test this bug on ?  i'd like to know if i'm just insane somehow.
+<a name="l-204"></a><span class="tm">19:47:49</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-27246:adding ssh credentials for jenkins to use generates an "Oops" page. (Open) https://issues.jenkins-ci.org/browse/JENKINS-27246
+<a name="l-205"></a><span class="tm">19:48:07</span><span class="nk"> &lt;danielbeck&gt;</span> zirpu Please wait a bit, meeting in progress
+<a name="l-206"></a><span class="tm">19:48:14</span><span class="nk"> &lt;zirpu&gt;</span> oops. sorry.
+<a name="l-207"></a><span class="tm">19:48:28</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke_ looks good. If it doesn't work out we can modify it.
+<a name="l-208"></a><span class="tm">19:48:34</span><span class="nk"> &lt;kohsuke_&gt;</span> yeah
+<a name="l-209"></a><span class="tm">19:48:47</span><span class="nk"> &lt;jglick&gt;</span> kohsuke_ +1
+<a name="l-210"></a><span class="tm">19:49:03</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">mainline release comes directly off the master branch in the same cadence. In case of a hot fix release, we'll create a temporary branch right at the point of 1.N, cherry-pick, and release 1.${N+1} from there</span>
+<a name="l-211"></a><span class="tm">19:49:08</span><span class="nk"> &lt;KostyaSha&gt;</span> will it be possible to release withou kk?
+<a name="l-212"></a><span class="tm">19:49:22</span><span class="nk"> &lt;jglick&gt;</span> That is a very good question.
+<a name="l-213"></a><span class="tm">19:49:25</span><span class="nk"> &lt;kohsuke_&gt;</span> We are slowing getting there as a part of SPoF elimination
+<a name="l-214"></a><span class="tm">19:49:30</span><span class="nk"> &lt;KostyaSha&gt;</span> if not then make zero sense
+<a name="l-215"></a><span class="tm">19:49:41</span><span class="nk"> &lt;danielbeck&gt;</span> kk told me I can break into his basement if a release is needed :-)
+<a name="l-216"></a><span class="tm">19:49:42</span><span class="nk"> &lt;kohsuke_&gt;</span> I wouldn't say "zero sense"
+<a name="l-217"></a><span class="tm">19:49:46</span><span class="nk"> &lt;danielbeck&gt;</span> at least that's what I heard
+<a name="l-218"></a><span class="tm">19:49:56</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">danielbeck:</span> no, you made that up, sir
+<a name="l-219"></a><span class="tm">19:50:05</span><span class="nk"> &lt;kohsuke_&gt;</span> and I don't have basement!
+<a name="l-220"></a><span class="tm">19:50:24</span><span class="nk"> &lt;jglick&gt;</span> Well compared to the current state, at least the hotfix branch can be prepared and kohsuke_ asked to run a release on that day, rather than waiting until the next Wed or whatever it is.
+<a name="l-221"></a><span class="tm">19:51:04</span><span class="nk"> &lt;jglick&gt;</span> But yes the automation needs to be built.
+<a name="l-222"></a><span class="tm">19:51:49</span><span class="nk"> &lt;zkay11&gt;</span> Anyone willing to help me troubleshoot some issues with the jenkins-mesos plugin? I'm just trying to deploy it, but doing so by first deploying a jenkins-master in a docker container to marathon.
+<a name="l-223"></a><span class="tm">19:52:01</span><span class="nk"> &lt;KostyaSha&gt;</span> zkay11, meeting, ask later
+<a name="l-224"></a><span class="tm">19:52:44</span><span class="nk"> &lt;KostyaSha&gt;</span> gentoo for example creating separate channel for meetings
+<a name="l-225"></a><span class="tm">19:52:45</span><span class="nk"> &lt;kohsuke_&gt;</span> To me, the ultimate power of my lead role came from the fact that I eventually controlled what gets released. So I hope people understand this is a big change for me.
+<a name="l-226"></a><span class="tm">19:52:57</span><span class="nk"> &lt;danielbeck&gt;</span> one issue at a time
+<a name="l-227"></a><span class="tm">19:52:59</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">Governance Document Updates</span>
+<a name="l-228"></a><span class="tm">19:53:23</span><span class="nk"> &lt;kohsuke_&gt;</span> First, trademark
+<a name="l-229"></a><span class="tm">19:53:38</span><span class="nk"> &lt;kohsuke_&gt;</span> And yes, we finally have a mark, but it came with some fineprints
+<a name="l-230"></a><span class="tm">19:53:56</span><span class="nk"> &lt;kohsuke_&gt;</span> Apparently there are multiple classes of trademark and we were only awarded with the weaker one
+<a name="l-231"></a><span class="tm">19:54:44</span><span class="nk"> &lt;kohsuke_&gt;</span> I'll forward the email, and if anyone is willing to understand the difference, you have my support
+<a name="l-232"></a><span class="tm">19:55:32</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to forward the trademark registration email from SFC</span>
+<a name="l-233"></a><span class="tm">19:55:55</span><span class="nk"> &lt;kohsuke_&gt;</span> Agreed that we should have more information about the board
+<a name="l-234"></a><span class="tm">19:56:17</span><span class="nk"> &lt;kohsuke_&gt;</span> I guess we should have a separate Wiki page that lists the current members
+<a name="l-235"></a><span class="tm">19:56:28</span><span class="nk"> &lt;KostyaSha&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Boards
+<a name="l-236"></a><span class="tm">19:56:52</span><span class="nk"> &lt;KostyaSha&gt;</span> add here or split page to multiple
+<a name="l-237"></a><span class="tm">19:56:58</span><span class="nk"> &lt;danielbeck&gt;</span> for some of the real roles it would be helpful to know who is what
+<a name="l-238"></a><span class="tm">19:57:03</span><span class="nk"> &lt;kohsuke_&gt;</span> I think a specific rev of the governance document is blessed, so putting it in another document simplifies updating
+<a name="l-239"></a><span class="tm">19:57:09</span><span class="nk"> &lt;danielbeck&gt;</span> "real" roles as in, not just plugin dev or user
+<a name="l-240"></a><span class="tm">19:57:42</span><span class="nk"> &lt;kohsuke_&gt;</span> I don't want to get into real vs not, but I think it's fair to call out individual names of the board
+<a name="l-241"></a><span class="tm">19:58:29</span><span class="nk"> &lt;danielbeck&gt;</span> by that I just meant those that are actually enumerable
+<a name="l-242"></a><span class="tm">19:58:35</span><span class="nk"> &lt;danielbeck&gt;</span> infra may be helpful as well
+<a name="l-243"></a><span class="tm">19:58:39</span><span class="nk"> &lt;kohsuke_&gt;</span> wrt "release process", I don't think that document should say anything about nitty gritty branching details
+<a name="l-244"></a><span class="tm">19:59:52</span><span class="nk"> &lt;kohsuke_&gt;</span> So it should just say this meeting decides the details of the release process and leave it at that
+<a name="l-245"></a><span class="tm">20:00:16</span><span class="nk"> &lt;orrc&gt;</span> sure
+<a name="l-246"></a><span class="tm">20:00:33</span><span class="nk"> &lt;kohsuke_&gt;</span> ... which probably means we need the mainline version of https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line
+<a name="l-247"></a><span class="tm">20:01:53</span><span class="nk"> &lt;kohsuke_&gt;</span> I have hard stop at noon so I really need to wrap this up, but would orrc be interested in taking a shot at updating the doc?
+<a name="l-248"></a><span class="tm">20:02:08</span><span class="nk"> &lt;orrc&gt;</span> yeah, I just realised it's not protected; I thought it was
+<a name="l-249"></a><span class="tm">20:02:23</span><span class="nk"> &lt;orrc&gt;</span> so yeah, I can fix up a bunch of stuff
+<a name="l-250"></a><span class="tm">20:02:35</span><span class="nk"> &lt;kohsuke_&gt;</span> I think the updates are mainly cosmetic and I don't think anything suggested there is controversial
+<a name="l-251"></a><span class="tm">20:02:45</span><span class="nk"> &lt;orrc&gt;</span> indeed
+<a name="l-252"></a><span class="tm">20:03:27</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">KostyaSha:</span> I'm afraid we'll have to move your topic to the next meeting
+<a name="l-253"></a><span class="tm">20:03:35</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-254"></a><span class="tm">20:04:06</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting is March 18th same time</span>
+<a name="l-255"></a><span class="tm">20:04:16</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke_ ok, wasted 2h :D i will be glad to be unblocked with github-api issue also, waiting it fulltime
+<a name="l-256"></a><span class="tm">20:04:44</span><span class="nk"> &lt;kohsuke_&gt;</span> I have no idea when DST starts kicking in, but I hope it won't affect the next one
+<a name="l-257"></a><span class="tm">20:04:49</span><span class="nk"> &lt;hare_brain&gt;</span> 8th
+<a name="l-258"></a><span class="tm">20:04:53</span><span class="nk"> &lt;hare_brain&gt;</span> This weekend
+<a name="l-259"></a><span class="tm">20:04:54</span><span class="nk"> &lt;KostyaSha&gt;</span> ouch, logging of meeting not end
+<a name="l-260"></a><span class="tm">20:05:08</span><span class="nk"> &lt;kohsuke_&gt;</span> oh, so the next one IS affected by DST
+<a name="l-261"></a><span class="tm">20:05:13</span><span class="nk"> &lt;hare_brain&gt;</span> Yes.
+<a name="l-262"></a><span class="tm">20:05:22</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#info </span><span class="cmdline">beware of DST change</span>
+<a name="l-263"></a><span class="tm">20:05:26</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 00:35:41 May 05, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:53:39 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 79.044
+  exclusion.robots: 0.082
+  exclusion.robots.policy: 0.075
+  RedisCDXSource: 0.533
+  esindex: 0.009
+  LoadShardBlock: 57.622 (3)
+  PetaboxLoader3.datanode: 41.776 (4)
+  CDXLines.iter: 17.585 (3)
+  load_resource: 72.622
+  PetaboxLoader3.resolve: 61.524
+-->

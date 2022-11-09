@@ -1,0 +1,387 @@
+19:01:28 <danielbeck> #startmeeting
+19:01:28 <robobutler> Let the Jenkins meeting commence!
+19:01:39 <danielbeck> #chair rtyler ogondza
+19:01:39 <robobutler> Current chairs: danielbeck ogondza rtyler
+19:02:08 <danielbeck> #topic Recap last meeting's actions
+19:02:22 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2015/jenkins-meeting.2015-12-09-19.01.html
+19:02:40 <danielbeck> rtyler you had some actions?
+19:02:51 <rtyler> aye aye, lemme go through those
+19:03:10 <rtyler> so the Board Election Process page is finalized and linked from the Governance Document
+19:03:21 <rtyler> #info Governance document https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document
+19:03:36 <KostyaSha> no announcement on main channel?
+19:03:39 <rtyler> #info Board election process https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process
+19:04:23 <rtyler> my other primary action item was to incorporate some of orrc's feedback into the code of conduct page
+19:04:30 <rtyler> #info Code of Conduct https://wiki.jenkins-ci.org/display/JENKINS/Code+of+Conduct
+19:04:31 <danielbeck> to be discussed later today?
+19:04:33 <rtyler> which I took care of this morning
+19:04:35 <rtyler> yes
+19:04:52 <rtyler> that's it, I didn't bother extending this meeting time because the agenda didn't fill up as much as I expected
+19:05:05 <danielbeck> Also FYI https://issues.jenkins-ci.org/browse/HOSTING/?selectedTab=com.atlassian.jira.jira-projects-plugin:summary-panel looks like we're off to a pretty good start with handling hosting requests in JIRA
+19:05:13 <danielbeck> (you need to be logged in to see this)
+19:05:21 <oleg-nenashev> the documents LGTM. BTW makes sense to move them to static site for the better permission management
+19:05:46 <danielbeck> #topic LTS status check - discuss baseline change
+19:05:55 <danielbeck> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/K06ny0sozWM
+19:05:59 <rtyler> I'm assuming ogondza created the LTS branch then :)
+19:06:15 <ogondza> I have created the agreed branch
+19:06:30 <ogondza> and reapplied the backports on 1.642 as well
+19:06:31 <oleg-nenashev> *2 branches
+19:06:48 <ogondza> so we can make the decision today
+19:07:19 <ogondza> the builds are still running, though it would make zero sense to pick the one with fewer ATH failures anyway
+19:07:38 <ogondza> https://jenkins.ci.cloudbees.com/job/core/job/acceptance-test-harness-stable-1.642/1/console
+19:07:38 <batmat> https://github.com/jenkinsci/jenkins/tree/stable-1.636 but not found for 1.642?
+19:07:42 <ogondza> https://jenkins.ci.cloudbees.com/job/core/job/acceptance-test-harness-stable/549/console
+19:08:00 <ogondza> batmat: https://github.com/olivergondza/jenkins/commits/stable-1.642
+19:08:14 <ogondza> did not wanted to pollute jenkinsci repo ...
+19:08:15 <batmat> ogondza: right, still validating I get it.
+19:08:34 <danielbeck> Better to wait until we've determine dhow to proceed
+19:09:08 <oleg-nenashev> So 1.642 vs. 1.636. Both now comply with LTS policy if I understand correctly
+19:09:18 <ogondza> well, the advantage for 1.641 is wo do not have to rebackport security fixes
+19:09:33 <ogondza> *for 1.641+
+19:09:44 <danielbeck> 1.636 was chosen at a time when all later releases had regressions
+19:10:01 <danielbeck> so it didn't look that great, and 1.641 wasn't out yet.
+19:10:31 <danielbeck> Since we skipped the Dec 23 meeting, 1.64x has been out for a while and looks very good
+19:11:23 <oleg-nenashev> JENKINS-32118 is the only bug in community ratings, but seems it has been caused by SECURITY
+19:11:25 <danielbeck> IMO 1.64x looks strong enough. And even after RC we still have ~1 week to find and react to major issues
+19:12:07 <danielbeck> Yes, I got a request to allow configuring the Content Security Policy on the UI
+19:12:22 <danielbeck> which seems like a good idea
+19:12:42 <danielbeck> but otherwise no major issues that I know of have been reported so far
+19:12:42 <oleg-nenashev> "I told you so" :)
+19:13:32 <oleg-nenashev> I think even 1.642 is safe enough according to diffs
+19:13:37 <oleg-nenashev> *1.643
+19:14:13 <danielbeck> depending on how good the cloud fix is, but it looks pretty straightforward
+19:14:42 <danielbeck> but even 1.642 would be a huge leap over 1.636.
+19:14:43 <KostyaSha> cloud fix is pretty simple and seems listener wasn't used in plugins
+19:14:56 <KostyaSha> + for 1.642
+19:15:53 <ogondza> note that we are entering week #3 in the cycle, I am -1 on picking last release
+19:16:04 <batmat> https://github.com/jenkinsci/jenkins/compare/jenkins-1.642...jenkinsci:jenkins-1.643 FWIW
+19:16:09 <batmat> +1 for 1.642
+19:16:18 <KostyaSha> ogondza, skip cycle?
+19:16:21 <jglick> ogondza: https://github.com/olivergondza/jenkins/commit/18fbb590cbee95c0edd08882f59965a893f5b27c huh? (empty)
+19:16:56 <oleg-nenashev> Maybe it has been integrated by other change
+19:17:06 <jglick> ogondza: it was already in 1.639
+19:17:09 <oleg-nenashev> I'm +1 on 1.642
+19:17:39 <ogondza> jglick: yes, it uses 2.9 already
+19:18:07 <danielbeck> anyone -1 on moving to 1.642?
+19:18:14 <ogondza> no idea why cherry-pick skipped some commits entirely and backported some empty
+19:18:14 * rtyler is fine with it
+19:18:53 <ogondza> In that case, 1.642.1 will have _no_ changes compared to 1.642
+19:19:39 <danielbeck> not sure this is a bad thing
+19:19:41 <KostyaSha> ogondza, magic! %)
+19:19:58 <jglick> 1.642 seems fine to me.
+19:20:00 <oleg-nenashev> less backports == less work
+19:20:34 <ogondza> It definitely makes sense to highlight the release of exceptional quality to the users, so +1 on 1.642
+19:21:19 <danielbeck> #agreed let's move the LTS baseline to 1.642
+19:21:43 <danielbeck> #action ogondza to prepare the branch and inform KK that we need an RC
+19:21:50 <ogondza> when can we expect kohsuke to post the rc?
+19:22:01 <jglick> He is on vacation this week.
+19:22:05 <danielbeck> he's still on vacation this week, so I think weekend/early next wk
+19:22:51 <ogondza> alright, lets move on
+19:22:56 <danielbeck> #topic Q1 Patron messages approval
+19:23:02 <danielbeck> #info https://github.com/jenkinsci/patron/pull/8
+19:23:30 <danielbeck> New addition is JFrog, who haven't provided the logo for the message yet, but I think we can still vote on in
+19:23:37 <danielbeck> the others keep the messages from Q4
+19:23:47 <oleg-nenashev> I'm -1 on JFrogs message
+19:23:47 <danielbeck> first quarter without a filler message, by the way!
+19:24:19 <orrc> \o/
+19:24:42 <orrc> all images are https:// and messages seem fine to me, so I'm happy :)
+19:24:58 <rtyler> I don't see the problem with JFrog's message oleg-nenashev, care to elaborate?
+19:25:18 <oleg-nenashev> "The only enterprise-ready ...." is their personal opinion. What would other vendors say?
+19:25:19 <KostyaSha> "  <caption>Go from JenkinsCI to Enterprise CD with XebiaLabs</caption>" seriously?
+19:25:46 <danielbeck> KostyaSha This one has been agreed on months ago, let's stick to the new addition
+19:25:49 <batmat> +1 with oleg-nenashev and it's now factually wrong. Nexus also supports Docker now...
+19:26:00 <oleg-nenashev> And DockerHub...
+19:26:10 <orrc> ah, but are they enterprise-ready?
+19:26:15 <danielbeck> batmat So your +1 is a -1 for the message?
+19:26:24 <rtyler> heh
+19:26:39 <rtyler> Enterprise-ready is totally subjective, but I see your point oleg-nenashev
+19:27:17 <batmat> danielbeck: right, was unclear. Little -1 on the message. I /think/ JFrog should rephrase a bit less offensively.
+19:27:32 <orrc> they meet the existing guidelines for messages, and we can't really go pinning down the accuracies of marketing-written slogans
+19:27:48 <orrc> what if xebialabs *doesn't* help me make sense of my test results?!
+19:27:51 <rtyler> orrc: can you #info the current guidelines
+19:28:00 <danielbeck> especially if it's something not well defined like 'enterprise-ready'
+19:28:00 <alyssat> would it work if we ask them to remove 'Only'?
+19:28:15 <danielbeck> #info https://wiki.jenkins-ci.org/display/JENKINS/Patron+of+Jenkins+program "Format of the patron message" paragraph 2 is the guidelines
+19:28:27 <batmat> Yeah alyssat I think this would be more acceptable.
+19:28:36 <oleg-nenashev> +1
+19:28:56 <orrc> danielbeck: thanks
+19:28:58 <batmat> (if /acceptable/ is the right word, which I doubt)
+19:29:11 <danielbeck> So "The Enterprise-ready Docker Repo for Jenkins" is fine with everyone here?
+19:29:29 <alyssat> +1
+19:29:32 <oleg-nenashev> +0.95
+19:29:34 <danielbeck> or are there other concerns about this message other than the "Only"?
+19:29:40 <KostyaSha> +0.5
+19:29:44 <rtyler> IMO that's fine danielbeck
+19:30:03 <batmat> danielbeck: OK apart from that.
+19:30:54 <danielbeck> #agreed Q1 patron messages are approved, JFrog needs to have 'Only' removed from title
+19:31:02 <alyssat> i'm on it
+19:31:11 <danielbeck> thanks alyssat
+19:31:20 <oleg-nenashev> 3,5 of 4 patron messages address Docker. It's a bit imbalanced, but it's OK from the sponsor perspective
+19:31:34 <danielbeck> oleg-nenashev 1 of 1 solution page on the site is about Docker :-)
+19:31:42 <danielbeck> #topic Review/adopt a Code of Conduct
+19:31:45 <oleg-nenashev> alyssat danielbeck: Do we need to discuss Xebia message?
+19:31:51 <oleg-nenashev> *to revisit
+19:31:54 <danielbeck> #topic Q1 Patron messages approval
+19:32:01 <orrc> can we maybe quickly agree to modify the guidelines to include "...and should not make claims unreasonable or known to be false, e.g. 'FooBar is *the best* Thing ever'"?
+19:32:03 <rtyler> heh
+19:32:10 <alyssat> they are using the same message as previous quarter
+19:32:18 <danielbeck> oleg-nenashev So we already approved that one
+19:32:42 * rtyler thinks we should move on
+19:32:43 <danielbeck> I mean we can discuss what we don't like about it, but going back and telling them they need to change it... not a good idea IMO
+19:32:51 <orrc> yup
+19:32:54 <oleg-nenashev> agreed
+19:33:04 <danielbeck> we can schedule this topic for next meeting, or discuss new reqs on the dev list
+19:33:10 <orrc> ok
+19:33:12 <danielbeck> to be adopted for the next message change
+19:33:14 <oleg-nenashev> Just a topic for discussion when they submit it again
+19:33:18 <danielbeck> OK with everyone?
+19:33:25 * rtyler nods
+19:33:27 <batmat> +1. The is matching the general comm style of JFrog.
+19:33:42 <danielbeck> oleg-nenashev Well, we should have something to point to before they write their message
+19:33:54 <danielbeck> Not just "Yeah we don't like it for reasons we didn't tell you beforehand"
+19:34:06 <oleg-nenashev> danielbeck: agreed
+19:34:07 <danielbeck> but let's move on and discuss this later
+19:34:12 <danielbeck> #topic Review/adopt a Code of Conduct
+19:34:14 <rtyler> #info Code of Conduct document here https://wiki.jenkins-ci.org/display/JENKINS/Code+of+Conduct
+19:34:26 <rtyler> #info the only differences to the document from last meeting https://wiki.jenkins-ci.org/pages/diffpagesbyversion.action?pageId=84705386&selectedPageVersions=15&selectedPageVersions=13
+19:34:51 <rtyler> orrc had some feedback I incorporated from last meeting
+19:35:36 <rtyler> please take a look at the links above
+19:35:49 * rtyler is satisfied with it as it is now
+19:35:56 <batmat> +1 to that diff.
+19:35:59 <oleg-nenashev> rtyler: Please add Jenkins World to the conferences list
+19:36:28 <rtyler> oleg-nenashev: that list is not going to be a running list of all conferences
+19:36:31 <rtyler> those are just examples
+19:36:57 <oleg-nenashev> So the main conference is not a good example, huh? :)
+19:37:12 <oleg-nenashev> +1 for the diff BTW
+19:37:13 <danielbeck> So we're fine with one Jenkins contributor harassing, insulting, or doxing another contributor at a Jenkins related event just because they didn't adopt this CoC?
+19:37:46 <teilo> danielbeck: yes
+19:38:10 <oleg-nenashev> I doubt
+19:38:15 <danielbeck> How is this compatible to "This code of conduct applies both within project spaces and in public spaces when an individual is representing the project or its community."?
+19:38:16 <teilo> as that event is outside of jenkins' control
+19:38:34 <batmat> danielbeck: that's not we're fine. But we discussed we can't do something about it.
+19:38:37 <rtyler> danielbeck: I'm not fine with it but I don't think that's incongruent with what is in the document
+19:38:55 <rtyler> I should also mention that this document is by no means set in stone
+19:39:05 <rtyler> we will, guaranteed, have to update this in the future
+19:39:20 <batmat> or do you want to state something like /if/ there're known contributors in those meeting participating in the issues, they will be subject to blablabla?
+19:39:30 <oleg-nenashev> Jenkins board can always review exceptional cases
+19:40:26 <teilo> just because a meeting is about Jenkins does not make it part of the community.
+19:40:45 <rtyler> danielbeck: depending on the context and details, your hypothetical example may or may not be seen as "representing the proejct or its community"
+19:40:46 <teilo> there is freedom of speech and you do not have to be a member of that non jenkins community
+19:41:32 * teilo worries this is getting to much like communism
+19:41:35 <danielbeck> rtyler Right, a drunken bar fight is unlikely to be relevant
+19:41:45 <rtyler> heh
+19:41:47 * KostyaSha nice idea
+19:42:09 * orrc wonders what danielbeck has planned for the FOSDEM beer event
+19:42:12 <rtyler> haha
+19:42:18 <danielbeck> :-)
+19:42:20 * KostyaSha need get to fosdem!
+19:42:24 <danielbeck> In the interest of getting somewhere, I'm fine with the current version
+19:42:52 <orrc> yup +1
+19:42:55 <rtyler> from last meeting, board hare_brain and kohsuke were comfortable with the Code of Conduct as well
+19:42:57 <teilo> +1
+19:42:59 <rtyler> I'm prettys ure both are on vacation
+19:43:02 * rtyler facepalms
+19:43:02 <oleg-nenashev> KostyaSha: You still have several minutes to apply to the Travel grant ;)
+19:43:20 <KostyaSha> rtyler, how that correlates with fact that board is not reelected?
+19:43:23 <oleg-nenashev> +1 for the CoC
+19:43:55 <rtyler> #agreed the current version (v15) of the Code of Conduct document is approved
+19:44:16 <danielbeck> rtyler pending further board approval?
+19:44:32 <rtyler> #action rtyler to work to duplicate the CoC under jenkins-ci.org/conduct similar to golang.org/conduct
+19:44:43 <KostyaSha> -1 for getting approvals from current board, +1 to do approval only after board will be re-elected
+19:45:11 <orrc> the gov doc says that the community decides, and the board can intervene if there are disagreements, or something like that
+19:45:22 <rtyler> danielbeck: it's not changed materially since the last meeting when they both agreed to it
+19:45:26 <orrc> so I think we've approved the document, and the board have approved it anyway (modulo minor diffs)
+19:45:40 <danielbeck> good
+19:45:46 <rtyler> they both knew we'd discuss it again in this meeting, weenies taking time off
+19:45:56 * rtyler wishes he could vacation
+19:46:17 <rtyler> shall we move on to the next topic?
+19:46:24 <rtyler> abayer: you better be awake!
+19:46:26 <danielbeck> #topic Discuss requiring pull requests for all non-release-process changes to core/master
+19:46:28 <KostyaSha> just to clarify, 5 persons approved rules for 1k devs? https://github.com/orgs/jenkinsci/people
+19:47:04 <rtyler> KostyaSha: just to clarify, this topic has been discussed at various meetings over three months
+19:47:13 <danielbeck> KostyaSha The meeting is open to everyone, as is any discussion on the mailing list. They choose to not participate.
+19:47:17 <batmat> KostyaSha: were you -1 on the content?
+19:47:42 <danielbeck> #topic Review/adopt a Code of Conduct
+19:47:44 <batmat> you only wrote above you were -1 on waiting board approval IIUC, which is not the same?
+19:47:46 <rtyler> KostyaSha: also just to clarify, this was discussed on the dev list
+19:48:33 <rtyler> (there are 3500 people on the dev list fwiw)
+19:49:04 <KostyaSha> ok
+19:49:19 <orrc> #info for the current topic: https://groups.google.com/d/topic/jenkinsci-dev/d64UIypbzh0/discussion
+19:49:39 <orrc> abayer appears not to be awake
+19:49:43 <danielbeck> #topic Discuss requiring pull requests for all non-release-process changes to core/master
+19:49:52 <danielbeck> #info https://groups.google.com/d/topic/jenkinsci-dev/d64UIypbzh0/discussion
+19:50:12 <batmat> orrc: now your link :)
+19:50:15 * rtyler opens up discussion
+19:50:29 <abayer> Sorry, back.
+19:50:47 <rtyler> I think PRs only into core is a good idea
+19:50:54 <orrc> +1 on the topic from me, basically :)
+19:51:08 <abayer> As do I. =)
+19:51:11 <KostyaSha> rtyler, yes, i mean only core as topic start
+19:51:21 <danielbeck> rtyler modulo release stuff (I won't PR changelog.html!) and possibly Javadoc?
+19:51:28 <rtyler> #info GitHub allows enforcing this via a concept called Protected Branches https://help.github.com/articles/defining-the-mergeability-of-pull-requests/
+19:51:36 <teilo> what about changelogs?
+19:51:37 <batmat> +1 for PR only for core (apart obviously for releases as was already discussed as an exception)
+19:51:44 <KostyaSha> danielbeck, well, jglick's javadoc got review, so PR is welcome also
+19:52:02 <rtyler> teilo: why would those be exempted?
+19:52:09 <danielbeck> teilo Fixing the changelog is too minor for a PR requirement IMO
+19:52:14 <teilo> they are trivial changes.
+19:52:22 <KostyaSha> rtyler, changelog update causes delays in current super weird release process
+19:52:29 <jglick> Also I expect that release scripts would be broken by a mechanical rule.
+19:52:57 <teilo> we also have PRs languishing...
+19:53:17 <teilo> so is a PR followed by an immediate merge OK :-)
+19:53:25 <danielbeck> teilo Be the change you want to see in the world :-)
+19:54:01 <danielbeck> teilo We need to clarify what it means to have a PR -- something like wait 12 hrs, or 2 hrs if you have someone else give thumbs up, or something like that.
+19:54:15 <danielbeck> immediate merge is pretty pointless
+19:54:30 <orrc> well, it does at least send out notifications to watchers
+19:54:35 <rtyler> PRs languishing is not a valid reason not to do PRs IMHO
+19:54:46 <danielbeck> orrc jenkinsci-commits. Problem solved.
+19:55:22 <teilo> right - so the current propsal does not say anything about trivial commits or timelines, so given that I am -1 on it
+19:55:29 <rtyler> danielbeck: with master being a protected branch, a PR with failing tests wouldn't be mergable anyways
+19:55:48 <teilo> although I am generally in favour of PRs.
+19:55:51 <batmat> btw, it may be the occasion to think about a @reviewbyjenkinsdev bot equivalent?
+19:56:07 <KostyaSha> teilo, what is trivial commit?
+19:56:19 <teilo> changelog, fixing logging typo
+19:56:26 <batmat> teilo: +1 with KostyaSha do you have an example of a trivial commit?
+19:56:38 <danielbeck> batmat This topic is unclear enough without adding that to the discussion now
+19:56:45 <KostyaSha> KKK's trivial is not trivial for me for example
+19:56:47 <teilo> adding @since to code that is merged
+19:57:00 <rtyler> teilo: IMHO the triviality is so subjective that I do not think it is deserves a by-pass of a proper CI setup
+19:57:04 <batmat> danielbeck: sorry, I couldn't resist. I'll keep it for later.
+19:57:05 <teilo> so by trivial - something that does not effect the running code?
+19:57:48 <KostyaSha> teilo, even for trivial javadoc you produced good question in PR :)
+19:57:50 <rtyler> setting aside guidelines for who merges PRs and when, the only difference between submitting a PR and committing to master is a CI gate
+19:57:53 <danielbeck> KostyaSha Anything that needs to be documented somewhere is by definition not trivial (if you refer to the System property commit recently)
+19:58:04 <danielbeck> (IMO)
+19:58:07 <batmat> teilo: even apparently trivial typo fix can actually be subject to mistakes.
+19:58:07 <teilo> PR != CI gate
+19:58:25 <danielbeck> #info https://help.github.com/articles/about-protected-branches/
+19:58:29 <teilo> so now we are not only discussiong PR but also CR gate
+19:58:34 <teilo> jenkins has too many shit tests
+19:58:38 <teilo> :-)
+19:58:42 <rtyler> danielbeck: deja vu
+19:58:43 <rtyler> :D
+19:58:50 <KostyaSha> i don't think that protected branches would work
+19:58:55 <teilo> I have to love that for a CI system :)
+19:58:56 <KostyaSha> they doesn't work for repo owners afaik
+19:59:11 <KostyaSha> at least magnyan bypassed all protected configuration in docker-plugin
+19:59:20 <KostyaSha> and did direct commits :)
+19:59:22 <danielbeck> KostyaSha Well, it'll slow down PRs until they've been verified by the PR builder. Of course anyone with commit access can still commit directly
+19:59:37 <danielbeck> So it's not a 100% mechanical solution but it gets us somewhere
+19:59:47 <rtyler> KostyaSha: so is the meat of your proposal then only to ensure that some other person other than the commit author hits the merge button?
+19:59:50 <teilo> also - To successfully merge a pull request into a base branch that has required status checks enabled, the pull request's head branch must be up-to-date with the base branch.
+19:59:58 <teilo> this is a bit no for me.
+20:00:11 <teilo> you will be constantly merging in PRs to pick up other merged PRs.
+20:00:23 <teilo> which will make the PR un-reviewable
+20:00:31 <orrc> protected branches for master would be good, but just for the force push and deletion protection; not the status checks for merges
+20:00:31 <danielbeck> ugh that sounds terrible
+20:00:36 <KostyaSha> rtyler, my proposal was to get more eyes on change and exclude uncorrelated changes i.e. 1 person fixing all configuration options and KK adding one more
+20:01:02 <rtyler> teilo: where are you reading that?
+20:01:09 <teilo> https://help.github.com/articles/about-protected-branches/
+20:01:10 <rtyler> KostyaSha: okay, that's still a bit subjective
+20:01:13 <danielbeck> rtyler In the info box at the bottom
+20:01:20 <KostyaSha> i'm not an expert of weird release process so can't say anything about release related commits
+20:01:21 <rtyler> ah, I see it now
+20:01:50 <teilo> so if that is the case I am -1 on protected branches
+20:01:58 <rtyler> teilo: I read that more as requiring a rebase to merge
+20:02:13 <danielbeck> rtyler which is terrible enough
+20:02:13 <rtyler> is core moving so fast that that would be problematic?
+20:02:31 <oleg-nenashev> тщзк
+20:02:34 <oleg-nenashev> nope
+20:02:38 <teilo> well how long does a PR take to build and how many commits can we then make per day!
+20:02:55 <KostyaSha> protected branches are nice, but imho they wouldn't work with current release process. Protected branches could be other topic for discussion (c) ;)
+20:02:55 * oleg-nenashev never checks the language setup
+20:03:09 <rtyler> without a fast-forward the results of a CI status check are fundamentally invalid (I'm happy to discuss later since that is a key point many miss from git merging)
+20:03:21 <batmat> teilo: would you agree at least on the "always PR policy for core", and leave the 'protected branch' feature for later discussion?
+20:03:23 <danielbeck> it looks to me like we need to flesh this out some more on the dev list, as we're not clear on the basics of this proposal
+20:03:26 <orrc> ok, so ignoring the protected branch stuff, which is a separate discussion: PRs should be done for all code commits; Javadoc and non-code changes like the changelog are encouraged to use PRs, but must not
+20:03:44 <danielbeck> orrc s/must not/don't have to be
+20:03:53 <rtyler> danielbeck: I agree that it should be fleshed out more, it doesn't sound like there's a concrete enough process proposal here to actually discusss
+20:04:07 <rtyler> which has turned this into a more ambiguous discussion than is productive IMO
+20:04:19 <teilo> orrc +1 with DB's changes
+20:04:30 <orrc> I think it's fairly clear; just the unrelated protected branch stuff made it unclear
+20:04:47 <teilo> 45minute build - so a max of 32 commits / day
+20:04:49 <orrc> danielbeck: yeah, that's the meaning of the sentence, but I formulated it weirdly
+20:04:53 <rtyler> just making a PR and then merging it yourself is counter to what KostyaSha was originally proposing
+20:05:02 <danielbeck> Do we have a champion for this topic to build a complete proposal for the dev list? abayer? orrc?
+20:05:16 <abayer> I nominate orrc!
+20:05:24 <rtyler> lulz
+20:05:33 <orrc> it wasn't my topic, but I can do write words
+20:05:40 <abayer> =)
+20:05:41 <rtyler> KostyaSha can also write words :)
+20:05:42 <orrc> er, except in that sentence there
+20:05:58 <danielbeck> Just looking for something complete we can look at and take apart sentence by sentence ;-)
+20:06:00 <KostyaSha> i'm trying update Publisher to support workflow in parallel, sorry
+20:06:30 * orrc looks at the time
+20:06:33 <rtyler> but I don't really care who writes words
+20:06:39 <danielbeck> orrc That's why ;-)
+20:06:41 <rtyler> one of you decide to write words
+20:06:43 <rtyler> let's move on
+20:06:46 <orrc> somebody #info me
+20:06:48 <rtyler> figure it out amongst yourselves
+20:06:55 <orrc> or #action or whatever it is
+20:06:58 <danielbeck> #action orrc to draft a proposal on the PR requirement
+20:06:58 <rtyler> larrys' topic
+20:07:12 <KostyaSha> orrc, thx
+20:07:13 <larrys> Which I'm in the middle of fending off a bit of spam, but can take a break :)
+20:07:15 <rtyler> #topic Spam problems on wiki and possible solutions
+20:07:27 <larrys> I think there are a few things we could do to help
+20:07:29 <rtyler> larrys: did you have some possible solutions listed somewhere?
+20:07:32 <larrys> Limit 1 account per email
+20:07:40 <KostyaSha> rtyler, invite system! :D
+20:07:45 <larrys> (We had one user create 50 accounts)
+20:07:47 <orrc> yeah, first thing: thanks a lot to larrys for the efforts!
+20:07:52 <danielbeck> larrys KK?
+20:07:58 <orrc> hehe
+20:08:12 <danielbeck> kktest1 through kktest50? :-)
+20:08:14 <rtyler> #info rtyler formally recognizes larrys for his valor in the Great Spam Wars
+20:08:21 * rtyler slaps danielbeck with a trout
+20:08:26 <larrys> We also need a confluence upgrade, so we could use this plugin (we can get it for free) https://marketplace.atlassian.com/plugins/com.comalatech.workflow/server/overview
+20:08:47 <KostyaSha> larrys, old topic (2 years), they can't update confluence
+20:08:51 <larrys> so then new pages require approval (we could couple this with kohsuke's idea of only letting users that have had an account for a week or so edit the wiki)
+20:09:08 <rtyler> we can, we lose certain things as a result
+20:09:17 <danielbeck> larrys IOW they will just break existing content instead?
+20:09:28 <rtyler> #info confluence upgrade is tracked https://issues.jenkins-ci.org/browse/INFRA-325
+20:09:36 <larrys> danielbeck: Edit/add pages...
+20:09:48 <rtyler> I don't think there's any reason not to restrict one emaijl to one account
+20:09:49 <oleg-nenashev> Or just move to GitHub? :)
+20:09:54 <larrys> However, I have issues with confluence access being a baked process, since they will start to attack JIRA
+20:09:59 <KostyaSha> my idea was to inject somehow verification based on spamassasin... but i have no time for implementation
+20:10:16 <larrys> KostyaSha: We hook into stopforumspam.com
+20:10:23 <rtyler> let's be clear, Google groups is getting hit by some of the same spam as of late
+20:10:31 <rtyler> not even Google is fool-proof with spam protections
+20:10:40 * rtyler grumbles
+20:11:01 <rtyler> we're not going to have a 100% solution, but we should strive to make it difficult enough to where spammers bother somebody else :P
+20:11:06 <larrys> I'm not sure how to balance the low bar of entry for legit users, and raising it for nefarious people.
+20:11:07 <rtyler> instead of larrys
+20:11:14 <larrys> <=- Single threaded. :)
+20:11:17 <rtyler> heh
+20:11:17 <danielbeck> rtyler Do we know what'll break as a result of the update? Something like, all generated pages?
+20:11:40 <larrys> They did move away from the wiki markup, but they still accept it for API calls into the page to render it/convert it.
+20:11:44 <rtyler> danielbeck: it's 100% WYSIWYG editor in the newer versions of confluence, that's the biggest suck-point to me :(
+20:11:55 <rtyler> but not insurmountable
+20:12:01 <larrys> Their WYSIWYG editor did get a lot better in newer versions...
+20:12:17 <danielbeck> rtyler It has a solid WYSIWYG now though, so it should be tolerable
+20:12:23 <rtyler> heh
+20:12:30 <danielbeck> rtyler Just move the stuff you want to edit into the static site ;-)
+20:12:36 <rtyler> is there any objection to one email == one account on jenkins-ci.org/account?
+20:12:40 <orrc> +1 to that
+20:12:46 <danielbeck> rtyler for new accounts only?
+20:12:48 <larrys> +111111 ;)
+20:12:55 <rtyler> it would affect signup right now
+20:12:57 <rtyler> so yes danielbeck
+20:13:04 <danielbeck> +1
+20:13:15 <oleg-nenashev> +1
+20:13:20 <rtyler> we'll have to come up with a better proposal if we want to back-port the process to existing accounts :)
+20:13:24 <danielbeck> (KK has too many accounts, locking out his bot stuff would probably break things left and right)
+20:13:35 <rtyler> #agreed account app to restricting signup to one email == one account
+20:13:49 <rtyler> danielbeck: yeah, there's an infra ticket way back in the backog for dealing with that :(
+20:13:52 <larrys> We can do a LDAP query to find others that fall into this category... and access it
+20:13:52 <rtyler> ENOTIME
+20:14:07 <larrys> assess that is
+20:14:26 <danielbeck> more spam fighting will need to wait for next week
+20:14:36 <danielbeck> #topic next meeting
+20:14:43 <teilo> KK can use mailbox addressing
+20:14:45 <larrys> Some of the conversation has been happening in the infra channel for interested parties.
+20:14:48 <teilo> so easy to solve
+20:14:54 <rtyler> two weeks from now is fine for me
+20:14:56 <danielbeck> Jan 20, same time same channel
+20:15:13 <danielbeck> #endmeeting

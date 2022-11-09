@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 18:01:26 UTC
+(<a href="jenkins.2012-04-04-18.01.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li>
+<ol type="a">
+  <li><span
+    class="INFO">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+    <span class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-5'>kohsuke</a>,
+    18:02:06)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Recap last meeting action items</b> <span class="details">(<a href='jenkins.2012-04-04-18.01.log.html#l-6'>kohsuke</a>, 18:02:19)</span>
+<ol type="a">
+  <li><span
+    class="INFO">http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-03-21-18.00.html</span>
+    <span class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-7'>kohsuke</a>,
+    18:02:32)</span></li>
+  <li><span class="INFO">the most of the information for filing CLA is
+    in here: https://github.com/jenkinsci/infra-cla/</span> <span
+    class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-14'>kohsuke</a>,
+    18:04:25)</span></li>
+  <li><span class="INFO">The only error prone part is that Google Groups
+    apparently have some size restriction about attachments</span> <span
+    class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-17'>kohsuke</a>,
+    18:05:11)</span></li>
+  <li><span class="INFO">Another alternative is to submit your encrypted
+    CLA as pull request as fredg did:
+    https://github.com/jenkinsci/infra-cla/pull/1</span> <span
+    class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-19'>kohsuke</a>,
+    18:05:53)</span></li>
+  <li><span class="INFO">Also, I believe we'd like to collect ICLA even
+    when your employer signs CCLA</span> <span class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-21'>kohsuke</a>,
+    18:06:57)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    mail sticker batches to abayer and rtyler</span> <span
+    class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-40'>kohsuke</a>,
+    18:12:51)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Move plugin CI jobs to jenkins.ci.cloudbees.com</b> <span class="details">(<a href='jenkins.2012-04-04-18.01.log.html#l-46'>kohsuke</a>, 18:15:05)</span>
+<ol type="a">
+  <li><a
+    href="https://jenkins.ci.cloudbees.com/">https://jenkins.ci.cloudbees.com/</a>
+    <span class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-49'>ndeloof</a>,
+    18:15:50)</span></li>
+  <li><a
+    href="https://github.com/jenkinsci/seleniumhtmlreport">https://github.com/jenkinsci/seleniumhtmlreport</a>
+    don't <span class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-71'>ndeloof</a>,
+    18:20:19)</span></li>
+  <li><a
+    href="https://jenkins.ci.cloudbees.com/builds">https://jenkins.ci.cloudbees.com/builds</a>
+    says there's something wrong with seleniumhtmlreport <span
+    class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-118'>kohsuke</a>,
+    18:31:10)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">ask for FOSS JProfiler licenses </b> <span class="details">(<a href='jenkins.2012-04-04-18.01.log.html#l-145'>kohsuke</a>, 18:36:05)</span>
+<ol type="a">
+  <li><span
+    class="INFO">http://www.ej-technologies.com/buy/jprofiler/openSource</span>
+    <span class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-147'>kohsuke</a>,
+    18:36:25)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    write a Confluence macro to have link to JProfiler</span> <span
+    class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-166'>kohsuke</a>,
+    18:42:09)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">we'll request
+    an OSS license for JProfiler</span> <span class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-170'>kohsuke</a>,
+    18:43:09)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">ndeloof to
+    ask for JProfiler licenses
+    http://www.ej-technologies.com/buy/jprofiler/openSource</span> <span
+    class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-171'>ndeloof</a>,
+    18:43:12)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Migrate plugins to get rid of glassfish repo</b> <span class="details">(<a href='jenkins.2012-04-04-18.01.log.html#l-173'>kohsuke</a>, 18:43:43)</span>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2012-04-04-18.01.log.html#l-199'>kohsuke</a>, 18:49:38)</span>
+<ol type="a">
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">next meeting
+    is 13th Friday 9pm PST / 14th Sat 1pm Japan Time / 6am Sat Paris
+    Time</span> <span class="details">(<a
+    href='jenkins.2012-04-04-18.01.log.html#l-244'>kohsuke</a>,
+    19:02:23)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 19:02:44 UTC
+(<a href="jenkins.2012-04-04-18.01.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>kohsuke to mail sticker batches to abayer and rtyler</li>
+  <li>kohsuke to write a Confluence macro to have link to JProfiler</li>
+  <li>ndeloof to ask for JProfiler licenses http://www.ej-technologies.com/buy/jprofiler/openSource</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> abayer <ol>
+    <li>kohsuke to mail sticker batches to abayer and rtyler</li>
+  </ol></li>
+  <li> kohsuke <ol>
+    <li>kohsuke to mail sticker batches to abayer and rtyler</li>
+    <li>kohsuke to write a Confluence macro to have link to JProfiler</li>
+  </ol></li>
+  <li> ndeloof <ol>
+    <li>ndeloof to ask for JProfiler licenses http://www.ej-technologies.com/buy/jprofiler/openSource</li>
+  </ol></li>
+  <li> rtyler <ol>
+    <li>kohsuke to mail sticker batches to abayer and rtyler</li>
+  </ol></li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>kohsuke (118)</li>
+  <li>ndeloof (76)</li>
+  <li>hare_brain (19)</li>
+  <li>rtyler (14)</li>
+  <li>jorgenpt (6)</li>
+  <li>Diverious (5)</li>
+  <li>abayer (4)</li>
+  <li>robobutler (2)</li>
+  <li>asteve (1)</li>
+  <li>microm (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

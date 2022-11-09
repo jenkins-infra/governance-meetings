@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:13:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:13:36</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:13:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">hare_brain abayer rtyler</span>
+<a name="l-4"></a><span class="tm">19:13:55</span><span class="nk"> &lt;vulwork&gt;</span> <span class="hi">mclarke:</span> I'll check right now, I'll be quiet for the meeting
+<a name="l-5"></a><span class="tm">19:13:59 </span><span class="nka">* vulwork</span> <span class="ac">shuts up</span>
+<a name="l-6"></a><span class="tm">19:14:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-7"></a><span class="tm">19:14:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span>  Did people meet in Feb 20th?
+<a name="l-8"></a><span class="tm">19:14:44</span><span class="nk"> &lt;kohsuke&gt;</span> I was travelling, and my apologies for not sending in my regrets sooner
+<a name="l-9"></a><span class="tm">19:15:00</span><span class="nk"> &lt;kohsuke&gt;</span> ok looks like we didn't
+<a name="l-10"></a><span class="tm">19:15:02</span><span class="nk"> &lt;hare_brain&gt;</span> I was actually sick that day so I was offline the entire time
+<a name="l-11"></a><span class="tm">19:15:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> are you here?
+<a name="l-12"></a><span class="tm">19:15:32</span><span class="nk"> &lt;kohsuke&gt;</span> I know jglick is around
+<a name="l-13"></a><span class="tm">19:15:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Change LTS backport procedure</span>
+<a name="l-14"></a><span class="tm">19:15:43</span><span class="nk"> &lt;vjuranek&gt;</span> on Feb 20th it wasn't
+<a name="l-15"></a><span class="tm">19:15:49</span><span class="nk"> &lt;jglick&gt;</span> yes here
+<a name="l-16"></a><span class="tm">19:16:21</span><span class="nk"> &lt;kohsuke&gt;</span> I think the basic idea as I understand it is to stop using priority and switch to a label
+<a name="l-17"></a><span class="tm">19:16:30</span><span class="nk"> &lt;vjuranek&gt;</span> yes
+<a name="l-18"></a><span class="tm">19:16:56</span><span class="nk"> &lt;jglick&gt;</span> Were we using priority before?
+<a name="l-19"></a><span class="tm">19:17:04</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, roughly
+<a name="l-20"></a><span class="tm">19:17:11</span><span class="nk"> &lt;jglick&gt;</span> But how roughly?
+<a name="l-21"></a><span class="tm">19:17:35</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">jglick:</span> I search for blockeers and critical bug + asked on dev list and backport what other proposed
+<a name="l-22"></a><span class="tm">19:17:56</span><span class="nk"> &lt;kohsuke&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line doesn't actually say
+<a name="l-23"></a><span class="tm">19:18:13</span><span class="nk"> &lt;jglick&gt;</span> Priority is pretty subjective however.
+<a name="l-24"></a><span class="tm">19:18:23</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-25"></a><span class="tm">19:18:41</span><span class="nk"> &lt;kohsuke&gt;</span> I'm good with using a label
+<a name="l-26"></a><span class="tm">19:18:52</span><span class="nk"> &lt;jglick&gt;</span> I have been marking things 1.480.4-candidate that I think are easily backported and important enough to bother—really causing damage the way they are.
+<a name="l-27"></a><span class="tm">19:19:08</span><span class="nk"> &lt;kohsuke&gt;</span> My only question is if "lts-candidate/lts-fixed/lts-rejected" works better instead of "$VERSION-candidate"
+<a name="l-28"></a><span class="tm">19:19:18</span><span class="nk"> &lt;hare_brain&gt;</span> I was about to suggest the same
+<a name="l-29"></a><span class="tm">19:19:24</span><span class="nk"> &lt;hare_brain&gt;</span> Keep the labels version independent.
+<a name="l-30"></a><span class="tm">19:19:25</span><span class="nk"> &lt;jglick&gt;</span> (But with the expectation that any item can be argued over.)
+<a name="l-31"></a><span class="tm">19:19:50</span><span class="nk"> &lt;jglick&gt;</span> For fixed bugs having the version number in there is handy.
+<a name="l-32"></a><span class="tm">19:20:13</span><span class="nk"> &lt;hare_brain&gt;</span> I thought there was a field to record a fixed in version?
+<a name="l-33"></a><span class="tm">19:20:15</span><span class="nk"> &lt;vjuranek&gt;</span> yes, that would make the search more easy IMHO
+<a name="l-34"></a><span class="tm">19:20:23</span><span class="nk"> &lt;jglick&gt;</span> Even for rejected bugs, since there might be a reason it was rejected for one that does not apply to another release.
+<a name="l-35"></a><span class="tm">19:20:32</span><span class="nk"> &lt;kpfleming&gt;</span> there should be such a field, but it can't hold more than one version
+<a name="l-36"></a><span class="tm">19:20:46</span><span class="nk"> &lt;mc1arke&gt;</span> there's an item later in the agenda about adding version numbers of releases in Jira
+<a name="l-37"></a><span class="tm">19:20:59</span><span class="nk"> &lt;jglick&gt;</span> That would be nice!
+<a name="l-38"></a><span class="tm">19:21:00</span><span class="nk"> &lt;kohsuke&gt;</span> determining which release contains a given commit feels like a separate service?
+<a name="l-39"></a><span class="tm">19:21:13</span><span class="nk"> &lt;kpfleming&gt;</span> that's something git can do easily
+<a name="l-40"></a><span class="tm">19:21:19</span><span class="nk"> &lt;kohsuke&gt;</span> (I've been meaning to write a little webapp that does just that: git tag --contains=$COMMIT
+<a name="l-41"></a><span class="tm">19:21:20</span><span class="nk"> &lt;jglick&gt;</span> Fine for it to be a separate service so long as that service actually exists.
+<a name="l-42"></a><span class="tm">19:21:24</span><span class="nk"> &lt;hare_brain&gt;</span> Hang on, we're going off topic a little bit.
+<a name="l-43"></a><span class="tm">19:21:44</span><span class="nk"> &lt;jglick&gt;</span> tag --contains works OK for master releases but problematic for backports.
+<a name="l-44"></a><span class="tm">19:22:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I'll take this little app stuff off for now and discuss about it later outside the meeting
+<a name="l-45"></a><span class="tm">19:22:29</span><span class="nk"> &lt;kohsuke&gt;</span> I guess your point is let's get back to labels
+<a name="l-46"></a><span class="tm">19:22:33</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">(OT:</span> Versions field seems to support multiple selections.)
+<a name="l-47"></a><span class="tm">19:22:51</span><span class="nk"> &lt;kpfleming&gt;</span> oh, good
+<a name="l-48"></a><span class="tm">19:22:52</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, I believe modern JIRA versions support multiple versions
+<a name="l-49"></a><span class="tm">19:23:10</span><span class="nk"> &lt;kohsuke&gt;</span> multiple values in the "fixed version" field, that is
+<a name="l-50"></a><span class="tm">19:23:16</span><span class="nk"> &lt;jglick&gt;</span> The reason 1.480.4-candidate is more informative than lts-candidate is that the latter is meaningless for something fixed in 1.503 when 1.520 (e.g.) is the next LTS base.
+<a name="l-51"></a><span class="tm">19:24:03</span><span class="nk"> &lt;jglick&gt;</span> My thinking was to keep the specific version in the label since it is easy to automatically migrate some or all candidates to another.
+<a name="l-52"></a><span class="tm">19:24:15</span><span class="nk"> &lt;kpfleming&gt;</span> would that label be changed once the backport was either accepted or rejected?
+<a name="l-53"></a><span class="tm">19:24:56</span><span class="nk"> &lt;jglick&gt;</span> So if accepted, then changed to 1.480.4-fixed; if rejected, to 1.480.4-rejected, but later you could change to 1.480.5-candidate, 1.520.1-candidate, etc.
+<a name="l-54"></a><span class="tm">19:24:58</span><span class="nk"> &lt;vjuranek&gt;</span> IMHO we should add new label or even better add fixed version fieald
+<a name="l-55"></a><span class="tm">19:25:18</span><span class="nk"> &lt;kohsuke&gt;</span> if we expect users to put the *-candidate label, isn't it easier to have them do lts-candidate rather than ask them to look up the expected next version number?
+<a name="l-56"></a><span class="tm">19:25:35</span><span class="nk"> &lt;jglick&gt;</span> I was not expecting the filer to add the label in general.
+<a name="l-57"></a><span class="tm">19:25:41</span><span class="nk"> &lt;hare_brain&gt;</span> Agree with kohsuke. I think we need to be clear about how we want these workflows to work.
+<a name="l-58"></a><span class="tm">19:25:43</span><span class="nk"> &lt;jglick&gt;</span> Something to be managed by committers.
+<a name="l-59"></a><span class="tm">19:25:47</span><span class="nk"> &lt;mc1arke&gt;</span> surely it's the devs making the change
+<a name="l-60"></a><span class="tm">19:25:59</span><span class="nk"> &lt;kohsuke&gt;</span> if it's already in the baseline don't we just need to remove the label or mark them as rejected?
+<a name="l-61"></a><span class="tm">19:26:48</span><span class="nk"> &lt;hare_brain&gt;</span> It sounds like different people have different ideas about how is applying the label.
+<a name="l-62"></a><span class="tm">19:26:50</span><span class="nk"> &lt;jglick&gt;</span> Typically, though some issues need multiple rounds of fixes. (Thinking of Windows JNA.)
+<a name="l-63"></a><span class="tm">19:26:51</span><span class="nk"> &lt;hare_brain&gt;</span> who
+<a name="l-64"></a><span class="tm">19:27:33</span><span class="nk"> &lt;hare_brain&gt;</span> I never thought I'd say "It sounds like we need a program manager."
+<a name="l-65"></a><span class="tm">19:27:45</span><span class="nk"> &lt;jglick&gt;</span> No strong feeling about choice of label name, so long as we have _something_.
+<a name="l-66"></a><span class="tm">19:27:45</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-67"></a><span class="tm">19:28:30</span><span class="nk"> &lt;kohsuke&gt;</span> If that is the case, I propose we use lts-candidate, 1.480.3-fixed, and 1.480.3-rejected
+<a name="l-68"></a><span class="tm">19:28:40</span><span class="nk"> &lt;vjuranek&gt;</span> yup, I also have no strong opinion what is better
+<a name="l-69"></a><span class="tm">19:28:57</span><span class="nk"> &lt;vjuranek&gt;</span> on problem with this schme
+<a name="l-70"></a><span class="tm">19:29:03</span><span class="nk"> &lt;vjuranek&gt;</span> s/on/no/
+<a name="l-71"></a><span class="tm">19:29:20</span><span class="nk"> &lt;jglick&gt;</span> Seems OK to me.
+<a name="l-72"></a><span class="tm">19:29:35</span><span class="nk"> &lt;kohsuke&gt;</span> (and I'm sure we can revisit this if someone starts to feel strongly)
+<a name="l-73"></a><span class="tm">19:29:40</span><span class="nk"> &lt;jglick&gt;</span> How do you do a bulk update in JIRA BTW?
+<a name="l-74"></a><span class="tm">19:29:50</span><span class="nk"> &lt;jglick&gt;</span> labels in ("1.480.4-candidate") has 16 hits currently.
+<a name="l-75"></a><span class="tm">19:30:11</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">jglick:</span> I guess jira api and some script should work
+<a name="l-76"></a><span class="tm">19:30:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">change LTS backporting procedure to use labels. People will add 'lts-candidate', and devs will mark them as either $VER-rejected or $VER-fixed</span>
+<a name="l-77"></a><span class="tm">19:30:18</span><span class="nk"> &lt;jglick&gt;</span> Never mind, saw Bulk Change menu item.
+<a name="l-78"></a><span class="tm">19:30:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to update LTS document</span>
+<a name="l-79"></a><span class="tm">19:30:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">jglick to bulk update existing tickets with $V-candidate convention</span>
+<a name="l-80"></a><span class="tm">19:30:49</span><span class="nk"> &lt;hare_brain&gt;</span> Who is "devs" in your statement kohsuke?
+<a name="l-81"></a><span class="tm">19:30:58</span><span class="nk"> &lt;kohsuke&gt;</span> people doing backporting
+<a name="l-82"></a><span class="tm">19:31:07</span><span class="nk"> &lt;kohsuke&gt;</span> jglick, vjuranek, me, etc
+<a name="l-83"></a><span class="tm">19:31:30</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">btw:</span> everything should be backported or we are supposed to do some selection?
+<a name="l-84"></a><span class="tm">19:31:38</span><span class="nk"> &lt;hare_brain&gt;</span> So user proposes that a ticket be backported to LTS by labeling with lts-candidate
+<a name="l-85"></a><span class="tm">19:31:46</span><span class="nk"> &lt;hare_brain&gt;</span> Backporters can search for this label
+<a name="l-86"></a><span class="tm">19:32:03</span><span class="nk"> &lt;hare_brain&gt;</span> They do the backport, and label with $VER-fixed to communicate to the user what LTS version(s) it's going to be in
+<a name="l-87"></a><span class="tm">19:32:19</span><span class="nk"> &lt;hare_brain&gt;</span> Or they mark with $VER-rejected to tell the proposer that this ticket will not be backported?
+<a name="l-88"></a><span class="tm">19:32:21</span><span class="nk"> &lt;jglick&gt;</span> Definitely we do some selection. Fix is easy and safe to backport, confident that the fix works, problem is important enough to justify risk, etc.
+<a name="l-89"></a><span class="tm">19:32:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> that's my understanding
+<a name="l-90"></a><span class="tm">19:32:53</span><span class="nk"> &lt;kohsuke&gt;</span> shall we move on to the next topic?
+<a name="l-91"></a><span class="tm">19:32:55</span><span class="nk"> &lt;jglick&gt;</span> BTW JIRA is too dumb to rename a label, it seems.
+<a name="l-92"></a><span class="tm">19:32:57</span><span class="nk"> &lt;hare_brain&gt;</span> That's fine with me. I just wanted to make sure eveyrone is on the same page
+<a name="l-93"></a><span class="tm">19:33:18</span><span class="nk"> &lt;vjuranek&gt;</span> ok (next topics)
+<a name="l-94"></a><span class="tm">19:33:33</span><span class="nk"> &lt;jglick&gt;</span> (ditto)
+<a name="l-95"></a><span class="tm">19:33:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Notification of issues included in a release and Use of release numbers in JIRA</span>
+<a name="l-96"></a><span class="tm">19:33:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">mc1arke:</span> this is yours
+<a name="l-97"></a><span class="tm">19:33:57</span><span class="nk"> &lt;mc1arke&gt;</span> that was my topic I believe
+<a name="l-98"></a><span class="tm">19:33:57</span><span class="nk"> &lt;kohsuke&gt;</span> But I think it's basically what we started talking about, right?
+<a name="l-99"></a><span class="tm">19:34:02</span><span class="nk"> &lt;mc1arke&gt;</span> yes
+<a name="l-100"></a><span class="tm">19:34:35</span><span class="nk"> &lt;mc1arke&gt;</span> jglick had a post to the mailing list a few weeks back about updating issues with comments as a release is made so a user knows what version an issue was fixed in
+<a name="l-101"></a><span class="tm">19:34:52</span><span class="nk"> &lt;kohsuke&gt;</span> I think the right approach is for me to write a little program that computes the release that contains the commit and reflects that to the ticket
+<a name="l-102"></a><span class="tm">19:35:07</span><span class="nk"> &lt;mc1arke&gt;</span> I've got jenkins-issues listening on here and #jenkins-commits for such messages
+<a name="l-103"></a><span class="tm">19:35:13</span><span class="nk"> &lt;mc1arke&gt;</span> <span class="hi">jenkins-issues:</span> status
+<a name="l-104"></a><span class="tm">19:35:14</span><span class="nk"> &lt;jenkins-issues&gt;</span> I am listening for commits but am not commenting on issues
+<a name="l-105"></a><span class="tm">19:35:16</span><span class="nk"> &lt;kohsuke&gt;</span> Because of our RC cycles and some out-of-cycle emergency fixes, we don't even know when the fix gets delivered
+<a name="l-106"></a><span class="tm">19:35:21</span><span class="nk"> &lt;jglick&gt;</span> Should this be in a comment, or should it actually set the Fixed Version field?
+<a name="l-107"></a><span class="tm">19:35:27</span><span class="nk"> &lt;kohsuke&gt;</span> oh wow, look, new bot!
+<a name="l-108"></a><span class="tm">19:35:28</span><span class="nk"> &lt;mc1arke&gt;</span> both
+<a name="l-109"></a><span class="tm">19:35:29</span><span class="nk"> &lt;kpfleming_&gt;</span> but you'd store that information in the 'fix version' field, not a comment, right?
+<a name="l-110"></a><span class="tm">19:36:06</span><span class="nk"> &lt;kohsuke&gt;</span> I'm fine either way
+<a name="l-111"></a><span class="tm">19:36:13</span><span class="nk"> &lt;mc1arke&gt;</span> still some work needed tbh, but I wanted views on whether it was worth getting the bot to add version numbers to Jira and then set versions on defects
+<a name="l-112"></a><span class="tm">19:36:17</span><span class="nk"> &lt;larrys&gt;</span> Side effect is people can then put down affects version(s) for what version(s) a bug was found or affecting...
+<a name="l-113"></a><span class="tm">19:36:36</span><span class="nk"> &lt;kpfleming_&gt;</span> putting it in fixed versions makes it much more easily searchable
+<a name="l-114"></a><span class="tm">19:36:51</span><span class="nk"> &lt;jglick&gt;</span> The trouble is that versions will be the union of core &amp; all plugins.
+<a name="l-115"></a><span class="tm">19:37:02</span><span class="nk"> &lt;jglick&gt;</span> Because we use Component rather than product.
+<a name="l-116"></a><span class="tm">19:37:06</span><span class="nk"> &lt;jglick&gt;</span> IIUC.
+<a name="l-117"></a><span class="tm">19:37:19</span><span class="nk"> &lt;kpfleming_&gt;</span> JIRA supports component-level versioning, although it's a bit complex to use
+<a name="l-118"></a><span class="tm">19:37:24</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe we can create a new free-text field?
+<a name="l-119"></a><span class="tm">19:37:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kpfleming_:</span> oh that's good news
+<a name="l-120"></a><span class="tm">19:37:47</span><span class="nk"> &lt;mc1arke&gt;</span> is it worth me doing a bit more digging into what Jira will let us do?
+<a name="l-121"></a><span class="tm">19:38:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">mc1arke:</span> yeah, that'd be awesome
+<a name="l-122"></a><span class="tm">19:38:05</span><span class="nk"> &lt;mc1arke&gt;</span> my bot uses the REST API to update defects, and Github's API to check for changes
+<a name="l-123"></a><span class="tm">19:38:14</span><span class="nk"> &lt;jglick&gt;</span> Yes please (digging).
+<a name="l-124"></a><span class="tm">19:38:21</span><span class="nk"> &lt;kohsuke&gt;</span> and this jenkins-issues bot --- you wrote this, right?
+<a name="l-125"></a><span class="tm">19:38:26</span><span class="nk"> &lt;mc1arke&gt;</span> yes
+<a name="l-126"></a><span class="tm">19:38:32</span><span class="nk"> &lt;kohsuke&gt;</span> Where is the source code?
+<a name="l-127"></a><span class="tm">19:38:37</span><span class="nk"> &lt;jglick&gt;</span> (BTW my AI now complete.)
+<a name="l-128"></a><span class="tm">19:38:38</span><span class="nk"> &lt;mc1arke&gt;</span> my github account
+<a name="l-129"></a><span class="tm">19:38:38</span><span class="nk"> &lt;kpfleming_&gt;</span> also, if the only top-level project in that JIRA instance is JENKINS... it seems like everything could be moved up one level (components become their own projects), although that would be pretty major
+<a name="l-130"></a><span class="tm">19:39:06</span><span class="nk"> &lt;jglick&gt;</span> Right is there a reason we did not set things up this way to begin with?
+<a name="l-131"></a><span class="tm">19:39:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/mc1arke/JenkinsReleaseIssueBot</span>
+<a name="l-132"></a><span class="tm">19:39:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> just the byproduct of the java.net IssueZilla import process, I think
+<a name="l-133"></a><span class="tm">19:39:44</span><span class="nk"> &lt;kohsuke&gt;</span> Or whatever reasons there were, those are lost in the history
+<a name="l-134"></a><span class="tm">19:39:45</span><span class="nk"> &lt;jglick&gt;</span> Good grief.
+<a name="l-135"></a><span class="tm">19:39:50</span><span class="nk"> &lt;mc1arke&gt;</span> the bot uses a snapshot of the github-api - I'm waiting for you to review a pull request on it Kohsuke
+<a name="l-136"></a><span class="tm">19:40:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">mc1arke:</span>  I'm just going to add you as a committer
+<a name="l-137"></a><span class="tm">19:40:11</span><span class="nk"> &lt;larrys&gt;</span> I think there was some concern about the number of projects in JIRA since we have what, 600ish plugins?
+<a name="l-138"></a><span class="tm">19:41:24</span><span class="nk"> &lt;kohsuke&gt;</span> In practice no one has enough cycles to fight with JIRA and spend time doing large migration
+<a name="l-139"></a><span class="tm">19:41:33</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">OT:</span> the Component system is a PIA from the standpoint of email notifications. Get 100 messages from JIRA, mostly about plugins I have never heard of and do not care about.
+<a name="l-140"></a><span class="tm">19:41:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">mc1arke:</span> can you tell us bit more about your bot?
+<a name="l-141"></a><span class="tm">19:41:56</span><span class="nk"> &lt;jglick&gt;</span> (With no indication in the subject header or elsewhere what the component is.)
+<a name="l-142"></a><span class="tm">19:42:00</span><span class="nk"> &lt;mc1arke&gt;</span> sure
+<a name="l-143"></a><span class="tm">19:42:12</span><span class="nk"> &lt;kohsuke&gt;</span> It looks like you are going to solve this problem
+<a name="l-144"></a><span class="tm">19:42:37</span><span class="nk"> &lt;kohsuke&gt;</span> But the approach is probably very different from what I mentioned earlier
+<a name="l-145"></a><span class="tm">19:43:02</span><span class="nk"> &lt;mc1arke&gt;</span> it listens for commit messages on #jenkins-commits and parses out the components name and version, uses the github api to pull out all commits, parses them for change messages and then uses the Jira REST API to update the issues
+<a name="l-146"></a><span class="tm">19:43:06</span><span class="nk"> &lt;kpfleming_&gt;</span> <span class="hi">jglick:</span> iirc, the jira email template can be modified to include component information in a header in the message
+<a name="l-147"></a><span class="tm">19:43:35</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">(OT:</span> that would be very nice!)
+<a name="l-148"></a><span class="tm">19:43:39</span><span class="nk"> &lt;mc1arke&gt;</span> it still needs some work around working out the last release version for finding commits from,
+<a name="l-149"></a><span class="tm">19:43:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">mc1arke:</span> so it basically looks at &lt;version&gt; in POM and remove -SNAPSHOT
+<a name="l-150"></a><span class="tm">19:45:20</span><span class="nk"> &lt;kohsuke&gt;</span> All right, so I guess the action at this point is for mc1arke to make more progress on what he started, and we'll help him if he needs to get more info from JIRA?
+<a name="l-151"></a><span class="tm">19:45:39</span><span class="nk"> &lt;mc1arke&gt;</span> it doesn't check the pom - it's listening for the maven 'prepare release message' in a commit notification, although this isn't very stable so I'll probably change it
+<a name="l-152"></a><span class="tm">19:45:53</span><span class="nk"> &lt;kohsuke&gt;</span> oh I see
+<a name="l-153"></a><span class="tm">19:46:38</span><span class="nk"> &lt;mc1arke&gt;</span> it works across plugins and core
+<a name="l-154"></a><span class="tm">19:46:40</span><span class="nk"> &lt;kohsuke&gt;</span> I'll talk to you about what I thought I'd do, in case if any of those would be an useful building block
+<a name="l-155"></a><span class="tm">19:46:54</span><span class="nk"> &lt;mc1arke&gt;</span> sure, happy to discuss it after the meeting
+<a name="l-156"></a><span class="tm">19:47:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kpfleming_:</span> and you seem to know a lot about JIRA --- any interest in helping us babysit our JIRA?
+<a name="l-157"></a><span class="tm">19:47:17</span><span class="nk"> &lt;kohsuke&gt;</span> I'm a lousy admin
+<a name="l-158"></a><span class="tm">19:47:39</span><span class="nk"> &lt;kohsuke&gt;</span> OK, moving on...
+<a name="l-159"></a><span class="tm">19:47:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Next LTS rebump?</span>
+<a name="l-160"></a><span class="tm">19:47:49</span><span class="nk"> &lt;kpfleming_&gt;</span> i used it heavily when i ran the asterisk project, and learned a lot about it, but my new job keeps me pretty busy... i can certainly help with answering directed questions and sharing experience though
+<a name="l-161"></a><span class="tm">19:48:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kpfleming_:</span> thanks
+<a name="l-162"></a><span class="tm">19:48:18</span><span class="nk"> &lt;larrys&gt;</span> I can answer JIRA questions too, since I'm the jira admin at my $WORK
+<a name="l-163"></a><span class="tm">19:48:18</span><span class="nk"> &lt;kohsuke&gt;</span> So the time frame wise I think it's about time we start thinking about next LTS
+<a name="l-164"></a><span class="tm">19:48:20</span><span class="nk"> &lt;kpfleming_&gt;</span> for asterisk, at least, making good use of JIRA and admin of it was a solid part-time job
+<a name="l-165"></a><span class="tm">19:48:33</span><span class="nk"> &lt;vjuranek&gt;</span> yes, any proposals? I was thinking about 1.501 or 1.502
+<a name="l-166"></a><span class="tm">19:48:40</span><span class="nk"> &lt;kohsuke&gt;</span> but jglick was saying we need to clean up the fall out from lazy loading before we do that
+<a name="l-167"></a><span class="tm">19:48:45</span><span class="nk"> &lt;jglick&gt;</span> Yup.
+<a name="l-168"></a><span class="tm">19:49:01</span><span class="nk"> &lt;kpfleming_&gt;</span> 1.503 would be good for me, as it contains an API change that the next significant ec2-plugin release will depend on
+<a name="l-169"></a><span class="tm">19:49:02</span><span class="nk"> &lt;jglick&gt;</span> And one of the fixed just went it to, what was it?, 1.505.
+<a name="l-170"></a><span class="tm">19:49:12</span><span class="nk"> &lt;jglick&gt;</span> (…fixes… I meant)
+<a name="l-171"></a><span class="tm">19:49:38</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-8754 related issues.
+<a name="l-172"></a><span class="tm">19:49:41</span><span class="nk"> &lt;jenkins-admin&gt;</span> <span class="hi">JENKINS-8754:ROADMAP:</span> Improve Start-up Time (Closed) http://jenkins-ci.org/issue/8754
+<a name="l-173"></a><span class="tm">19:50:13</span><span class="nk"> &lt;kohsuke&gt;</span> I'm fine either way --- now that I'm not traveling for a few months, JENKINS-8754 fall out is high on my priority list
+<a name="l-174"></a><span class="tm">19:50:20</span><span class="nk"> &lt;jglick&gt;</span> No real idea how much is really fixed now (usually hard to reproduce); JENKINS-16089 still open though.
+<a name="l-175"></a><span class="tm">19:50:24</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-16089:Standard view columns interact force builds to be eagerly loaded (Open) http://jenkins-ci.org/issue/16089
+<a name="l-176"></a><span class="tm">19:50:49</span><span class="nk"> &lt;jglick&gt;</span> Which justinsb was working on.
+<a name="l-177"></a><span class="tm">19:51:00</span><span class="nk"> &lt;kohsuke&gt;</span> But I'm also fine with doing LTS as the train model
+<a name="l-178"></a><span class="tm">19:51:20</span><span class="nk"> &lt;kohsuke&gt;</span> I find the train model easier in OSS
+<a name="l-179"></a><span class="tm">19:52:14</span><span class="nk"> &lt;jglick&gt;</span> So any outstanding 8754-related fixes just become lts-candidate as usual?
+<a name="l-180"></a><span class="tm">19:52:38</span><span class="nk"> &lt;jglick&gt;</span> (Here is a case where distinguishing 1.480.4-candidate from e.g. 1.505.1-candidate would be useful BTW.)
+<a name="l-181"></a><span class="tm">19:52:39</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I shall sweep lazy loading issues before the next meeting, and one way or the other we'll come up the next LTS baseline then?
+<a name="l-182"></a><span class="tm">19:53:28</span><span class="nk"> &lt;vjuranek&gt;</span> sounds reasonable
+<a name="l-183"></a><span class="tm">19:53:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll sweep lazy loading issues before the next meeting, and one way or the other we'll come up the next LTS baseline</span>
+<a name="l-184"></a><span class="tm">19:54:00</span><span class="nk"> &lt;jglick&gt;</span> Seems reasonable to me too. I agree that we should not just wait indefinitely—other stuff gets broken in trunk in the meantime.
+<a name="l-185"></a><span class="tm">19:54:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-186"></a><span class="tm">19:54:59</span><span class="nk"> &lt;kohsuke&gt;</span> It'll be 3/20, same time
+<a name="l-187"></a><span class="tm">19:55:12</span><span class="nk"> &lt;vjuranek&gt;</span> fine for me
+<a name="l-188"></a><span class="tm">19:55:29</span><span class="nk"> &lt;kpfleming_&gt;</span> see you all t hen
+<a name="l-189"></a><span class="tm">19:55:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the next meeting will be 3/20 11 pacific time</span>
+<a name="l-190"></a><span class="tm">19:55:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

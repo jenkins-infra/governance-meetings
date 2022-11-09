@@ -1,0 +1,215 @@
+18:00:13 <danielbeck> #startmeeting
+18:00:13 <robobutler> Let the Jenkins meeting commence!
+18:00:29 <danielbeck> #chair kohsuke rtyler
+18:00:29 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:42 <danielbeck> a packed agenda today: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:00:51 <danielbeck> #topic Recap last meeting's actions
+18:00:56 <danielbeck> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-09-28-18.00.html
+18:01:25 <danielbeck> I did record the trademark usage at https://wiki.jenkins-ci.org/display/JENKINS/Approved+Trademark+Usage
+18:01:35 <danielbeck> oleg-nenashev batmat kohsuke how about you?
+18:02:14 <oleg-nenashev> Still at the meeting
+18:02:22 <batmat> danielbeck: done, the reminder to mentors... Ahem
+18:02:29 <batmat> 45 sec ago
+18:02:36 <danielbeck> :-)
+18:02:41 <danielbeck> kohsuke did release 2.19.1
+18:02:51 <danielbeck> oleg-nenashev want me to skip your items today?
+18:03:12 <oleg-nenashev> nope, I'll be available within a couple of meetings
+18:03:32 <ogondza> I hate those days
+18:03:40 <danielbeck> let's skip oleg-nenashev's recap from last time, and move on to…
+18:03:47 <danielbeck> #topic LTS status check
+18:03:50 <danielbeck> ogondza \o/
+18:03:55 <kohsuke> I'm here
+18:04:01 <kohsuke> Sorry it took a bit
+18:04:10 <ogondza> I am ready for rc
+18:04:26 <ogondza> unless someone feels strongly for lts candidates added in last minute
+18:04:36 <ogondza> https://issues.jenkins-ci.org/issues/?filter=12146
+18:04:40 <danielbeck> ogondza I actually have one :(
+18:04:59 <danielbeck> ogondza https://issues.jenkins-ci.org/browse/JENKINS-18114
+18:05:11 <ogondza> that seems important enough
+18:05:12 <danielbeck> it's only in 2.24, but you included executable-war as well
+18:05:31 <danielbeck> they really work best in combination
+18:05:58 <oleg-nenashev> makes sense to port it
+18:06:19 <ogondza> danielbeck: wdym by rarely work?
+18:06:59 <danielbeck> ogondza _really_
+18:07:17 <danielbeck> ogondza you backported fixes related to CLI by updating executable-war, but without this one, it will still not work out of the bo
+18:07:18 <danielbeck> x
+18:07:18 <ogondza> oh, that makes lot more sense :)
+18:07:21 <danielbeck> I think
+18:07:55 <danielbeck> also, it's a pretty safe change
+18:07:56 <ogondza> ok, i will add JENKINS-18114 and push rc tomorrow morning
+18:08:28 <danielbeck> #action ogondza to include JENKINS-18114 and push RC
+18:08:42 <danielbeck> anything else for RC?
+18:08:51 <ogondza> none from me
+18:08:52 <oleg-nenashev> no from me
+18:08:55 <danielbeck> #topic Bumping Jenkins core to Remoting 3
+18:08:59 <danielbeck> oleg-nenashev your turn
+18:09:01 <oleg-nenashev> #info Remoting 3 offers a new JNLP4 protocol (Adds Java NIO compared to JNLP3 + stability fixes)
+18:09:12 <oleg-nenashev> #info Remoting 3 is formally incompatible: Java 6 support drop from slaves, also JnlpServerHandshake rework: https://github.com/jenkinsci/jenkins/pull/2492
+18:09:26 <oleg-nenashev> #info stephenc checked known OSS and closed-source implementations, no real compatibility issues
+18:09:50 <kohsuke> We don't normally discuss technical changes in this forum, is this one different?
+18:09:52 <danielbeck> TBH I really don't understand why this is a project meeting topic without (?) thread on the dev list…
+18:10:01 <oleg-nenashev> So I would like to discuss if we could merge it into one of incoming Jenkins 2.x  releases
+18:10:41 <oleg-nenashev> kohsuke danielbeck: Well, we DO discuss technical changes. Got a request for such discussion in jenkinsci-ru chat
+18:11:01 <oleg-nenashev> Unfortunately that guy have not joined this meeting (not KostyaSha)
+18:11:18 <kohsuke> What was his/her concern?
+18:11:46 <oleg-nenashev> 1) Java 7 bump
+18:11:46 <oleg-nenashev> 2) Compatibility loss
+18:12:04 <kohsuke> But we already rqeuires Java7
+18:12:18 <oleg-nenashev> I think Concern #2 is actually addressed by the research by stephenc
+18:12:27 <oleg-nenashev> kohsuke: Not for agents AFAIK
+18:12:38 <jglick> Sure we do.
+18:12:44 <jglick> Agents load the same classes as master does.
+18:12:45 <danielbeck> as soon as they get sent a class they break
+18:12:52 <jglick> And core & plugins define classes with `-target 7`.
+18:13:05 <oleg-nenashev> @info https://jenkins.io/blog/2015/04/06/good-bye-java6/
+18:13:10 <oleg-nenashev> #info https://jenkins.io/blog/2015/04/06/good-bye-java6/
+18:13:17 <oleg-nenashev> Well, it's not explicit
+18:13:29 <oleg-nenashev> One can make the slaves work on Java 6
+18:13:40 <oleg-nenashev> But I agree that generally we drop the support
+18:13:42 <danielbeck> Could we move this topic to the dev list and move on? Or what do you expect to get from this discussion?
+18:13:42 <kohsuke> Anyway, my suggestion is that we agree here that this change can proceed like any other changes
+18:13:59 <jglick> During the provisional period you could. But not now.
+18:14:06 <kohsuke> PR reviews and if a dev list thread is warranted, have that as well.
+18:14:26 * jglick agrees
+18:14:37 <danielbeck> oleg-nenashev opposed to moving this to the dev list?
+18:14:44 <oleg-nenashev> danielbeck: I expect us to agree if we can proceed in general (no SLA blockers).
+18:15:05 <kohsuke> I appreciate the extra due diligence about the compatibility implication - I think that work makes this change the same level as other "regular" changes
+18:15:07 <oleg-nenashev> danielbeck: Nope, I agree with it since nobody sees blockers here
+18:15:29 <oleg-nenashev> #action: oleg-nenashev to follow-up in the ML
+18:15:29 <batmat> +1 for that, and even more. We should at some point just enforce the agent uses the same JVM version at the master it's connected to.
+18:15:43 <kohsuke> #agreed remoting3 integration can proceed like any other technical changes, no further blessing from this meeting needed
+18:15:50 <danielbeck> +1
+18:15:54 <oleg-nenashev> +1
+18:16:08 <danielbeck> #topic Out-of-order Jenkins Weekly release in order to get better soak testing for 2.19.3
+18:16:10 <oleg-nenashev> Thanks, we cone move on IMHO
+18:16:40 <danielbeck> oleg-nenashev this one is also yours
+18:17:15 <kohsuke> Producing more weekly releases is easy but we've only done it in the past for emergency bug fixes
+18:17:19 <kohsuke> What's the motivation here?
+18:17:21 <oleg-nenashev> We have some changes, which may require extra soaking before backporing into .3
+18:17:34 <oleg-nenashev> kohsuke: No emergency fix in general
+18:18:13 <danielbeck> wouldn't that add at most 4 days to soaking, half of which is weekend?
+18:18:20 <jglick> So, you are trying to get some more guinea pigs before putting something in an LTS? Should that not tell you that it is not a suitable LTS candidate to begin with?
+18:18:59 <oleg-nenashev> jglick: Isn't what we use Weekly's for? :)
+18:19:10 <oleg-nenashev> danielbeck: Yes, maybe it's not that relevant
+18:19:13 <danielbeck> #chair hare_brain
+18:19:13 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:19:44 <danielbeck> oleg-nenashev do you have a specific change and release date for an extra weekly in mind?
+18:19:51 <danielbeck> It's still unclear to me what this is about
+18:20:25 <oleg-nenashev> danielbeck: remoting .2 patch, fixes for JS loading, JENKINS-38814
+18:20:37 <oleg-nenashev> But yeah, 4 days is actually not that relevant
+18:20:43 <kohsuke> Maybe another way to ask this question is how important is it for you to get those changes in
+18:21:02 <kohsuke> IIRC we have in the past pushed some changes into LTS that doesn't technically speaking meet the bar
+18:21:22 <danielbeck> the next LTS backporting window closes in 4 weeks, which is more than necessary to soak (for 3.5 weeks once in 2.26)
+18:21:28 <oleg-nenashev> By now we can meet the bar
+18:21:47 <oleg-nenashev> So I think I should not created this discussion item
+18:22:13 <danielbeck> oleg-nenashev to clarify, you're dropping this topic?
+18:22:19 <kohsuke> spinning more release is not a problem, the sense that we are trying to expedite some issues is
+18:22:35 <oleg-nenashev> yep, expedite by several days
+18:22:40 <oleg-nenashev> So likely no sense
+18:23:00 <oleg-nenashev> #decision: No out-of-order release
+18:23:10 <danielbeck> okay, let's move on…
+18:23:11 <kohsuke> danielbeck: moving on
+18:23:14 <danielbeck> #topic IntelliJ license handling
+18:23:38 <danielbeck> This was last discussed earlier this year, and batmat said he'd look into managing the licenses for the project
+18:24:03 <danielbeck> unfortunately, since then he's no longer eligible to do this due to restrictions on commercial applications
+18:24:41 <danielbeck> so if anyone else wants to take over, let us know
+18:24:54 * oleg-nenashev is fine with NetBeans
+18:24:56 <kohsuke> FWIW community version works just fine
+18:25:00 <danielbeck> otherwise, there will be no IntelliJ IDEA licenses for the project in the foreseeable future
+18:25:39 <danielbeck> #info https://www.jetbrains.com/buy/opensource/?product=idea
+18:26:03 <danielbeck> that's it from me unless someone wants to step forward :)
+18:26:16 <kohsuke> #info if anyone wants to lead the application to the OSS license of IntelliJ, s/he needs to step up
+18:26:20 <kohsuke> let's move on
+18:26:23 <danielbeck> #topic Moving Governance Meetings to UTC
+18:26:27 <danielbeck> oleg-nenashev this is yours
+18:26:50 <oleg-nenashev> Reason: Incoming TZ changes in US and European countries
+18:26:59 <oleg-nenashev> It usually causes a mess in meetings
+18:27:18 <oleg-nenashev> Since the Jenkins community is distributed, I propose to switch to UTC
+18:27:28 <danielbeck> yeah, having to remember when the US changes DST (in addition to my own country) is really annoying
+18:27:32 <oleg-nenashev> Then everybody will have to deal with his own TZ only
+18:27:56 <kohsuke> On more practical matter, how do you create a recurring meeting on a calendar that's locked to a specific time zone?
+18:28:02 * batmat basically don't care since he's subscribed to the agenda and this is adjusted automatically
+18:28:23 <oleg-nenashev> kohsuke: Jenkins account just needs to have a UTC timezone (AFAIK it is)
+18:29:14 <oleg-nenashev> Well, you will still have to handle all overlaps with company meetings
+18:29:17 <danielbeck> kohsuke Does the 'time zone' link in Google calendar when editing the event not work?
+18:29:36 <oleg-nenashev> batmat: ^
+18:29:41 <kohsuke> oh I guess I didn't know that
+18:30:17 <oleg-nenashev> So should we just vote them? IIRC danielbeck was proposing to move it to ML as well
+18:30:41 <danielbeck> oleg-nenashev well, would be good to not exclude those who usually attend but not today
+18:31:11 <danielbeck> but we can vote and if this passes inform the dev list, if there are complaints we can always reconsider
+18:31:20 <batmat> oleg-nenashev: well, what's for sure is that I'm always notified at the right time on my phone agenda. So either someone updates it manually, or it's automatically localized
+18:31:25 <oleg-nenashev> +1 for voting
+18:31:57 <batmat> But I'm all +1 if this can make it simpler for anyone else
+18:32:14 <oleg-nenashev> +1 as a topicstarter
+18:32:19 <alyssat> +1
+18:32:32 <kohsuke> I'm -0. Aside from a few weeks in a year where it moves around to European, this does keep the meeting at the same time for most people in US & Europe
+18:33:36 <kohsuke> IIUC, the majority of attendees  live in areas that have DST.
+18:33:39 <oleg-nenashev> Well, there are countries without TZ whitches OR with TZ switches on other date
+18:33:52 <oleg-nenashev> The latter case is especially fun
+18:34:01 <danielbeck> oleg-nenashev that's the few weeks KK mentioned
+18:34:20 <danielbeck> between US DST and EU DST it changes time, then returns to normal
+18:35:04 <oleg-nenashev> danielbeck: So are you -1?
+18:35:17 <danielbeck> no, I'm +1 at least as experiment
+18:35:19 <kohsuke> We also have iCal feed for those of us who use some calendar
+18:35:32 <oleg-nenashev> So I think we have an agreement
+18:35:36 <batmat> For me, I think there's one, or two meetings max that are shifted. Then it realigns
+18:36:03 <kohsuke> So what's the new time?
+18:36:12 <oleg-nenashev> Same as now, but UTC?
+18:36:27 <batmat> 18:00 UTC is the typical time
+18:36:42 <danielbeck> +1
+18:37:10 <oleg-nenashev> #agreed Governance meetings will be held in UTC from now (6 PM UTC)
+18:37:26 <batmat> OMG, please not AM/PM
+18:37:31 <batmat> this is wasting efforts :)
+18:38:00 <oleg-nenashev> batmat: What's wrong with 12:00AM ? :D
+18:38:22 <oleg-nenashev> Move on?
+18:38:49 <danielbeck> #topic Plugin site deployment to Jenkins project infra
+18:38:51 <batmat> Yeah, especially that one Oleg :)
+18:39:06 <batmat> or 12:30 as some dare
+18:39:25 <oleg-nenashev> danielbeck: What is the context?
+18:39:32 <danielbeck> A few weeks back I asked for feedback to the plugin site
+18:39:35 <oleg-nenashev> Is it a Javadoc site or something else?
+18:39:44 <oleg-nenashev> Oh, plugin site
+18:39:50 <batmat> Or do you mean the effort of Gus & Michael
+18:39:55 <danielbeck> yes, that one
+18:40:02 * batmat nods
+18:40:14 <danielbeck> the the replacement for https://wiki.jenkins-ci.org/display/JENKINS/Plugins
+18:40:20 <batmat> \o/
+18:40:21 <oleg-nenashev> #info: https://groups.google.com/forum/#!searchin/jenkinsci-dev/Plugin$20site%7Csort:date/jenkinsci-dev/CCaGirnMSt8/BhwU5TehAQAJ
+18:40:26 <danielbeck> oleg-nenashev thanks
+18:40:38 <danielbeck> The effort has been nearing completion
+18:40:41 <oleg-nenashev> #info Prototype: http://cloudbees-plugin-site-staging.s3-website-us-east-1.amazonaws.com/
+18:40:50 <danielbeck> Gus and Michael have incorporated much of the feedback we got
+18:41:19 <danielbeck> a few comments were basically proposing a complete overhaul, so those didn't make it in
+18:41:32 <danielbeck> and the site is now in a state that we can consider finished
+18:41:46 <kohsuke> I think we gave enough heads up to the community, including Jenkins World keynote!
+18:42:13 <kohsuke> How is the infra team sign-off?
+18:42:14 <oleg-nenashev> I'm still not happy about missing fixed search links (e.g. "all plugins mentioning Pipeline in the name"). But it's rather an improvement
+18:42:41 <danielbeck> … and this is FYI that this is going to happen pretty soon, basically the next time rtyler has time to puppetize things
+18:42:49 <batmat> I don't remember what's the take on that of robobutler
+18:42:52 <batmat> oops
+18:42:57 <oleg-nenashev> aha
+18:42:57 <batmat> rtyler: I mean ^^^ :)
+18:43:09 * batmat haz otocomplession
+18:43:18 <oleg-nenashev> So I'm +1 regarding deploying it
+18:43:50 <kohsuke> +1, same here
+18:44:28 <danielbeck> If all goes well, we'll have a plugin site on jenkins.io by the weekend \o/
+18:44:50 <danielbeck> that's it from me on this topic, just a heads up
+18:45:10 <kohsuke> #info If all goes well, we'll have a plugin site on jenkins.io by the weekend \o/
+18:45:17 <danielbeck> :D
+18:45:23 <batmat> +1.
+18:45:28 <danielbeck> #topic Allowing interface implementations as Extension points in Jenkins
+18:45:34 <danielbeck> oleg-nenashev another one of yours
+18:46:19 <oleg-nenashev> #info: https://github.com/jenkinsci/jenkins/pull/2566
+18:46:28 <oleg-nenashev> Kinda "on behalf of ndeloof"
+18:46:44 <danielbeck> oleg-nenashev it appears the discussion has progressed since you proposed this topic, changing everything
+18:46:52 <danielbeck> so we can probably just skip this topic
+18:46:56 <oleg-nenashev> agreed
+18:47:24 <oleg-nenashev> #agreed: Skip this topic for now
+18:47:28 <danielbeck> #topic next meeting
+18:47:38 <danielbeck> Oct 26
+18:47:41 <danielbeck> 18:00 UTC
+18:47:43 <danielbeck> !!!
+18:48:05 <oleg-nenashev> yey
+18:48:13 <danielbeck> #action kohsuke or danielbeck to fix the event's time zone to match
+18:48:29 <danielbeck> so that batmat shows up on time :)
+18:48:48 <danielbeck> #endmeeting

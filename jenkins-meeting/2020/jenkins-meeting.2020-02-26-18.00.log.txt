@@ -1,0 +1,80 @@
+18:00:28 <oleg-nenashev> #startmeeting
+18:00:28 <robobutler> Let the Jenkins meeting commence!
+18:00:32 * Slide-O-Mix waves
+18:00:37 <oleg-nenashev> anyone around? :_
+18:00:45 <Slide-O-Mix> I am
+18:01:03 <oleg-nenashev> #info agenda https://docs.google.com/document/d/11Nr8QpqYgBiZjORplL_3Zkwys2qK1vEvK-NYyYa4rzg/edit#heading=h.vylsknw2s91m
+18:01:23 <oleg-nenashev> I believe we do not have any action items from the previous meeting
+18:01:41 <oleg-nenashev> #topic LTS Baseline selection updates
+18:01:52 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/VRxRCP_IKhQ
+18:02:27 <oleg-nenashev> #info 2.222 looks to be a winner, final decision is yet to be made by Oliver Gondza (Jenkins Release officer)
+18:02:30 <markewaite> I am here
+18:02:42 <oleg-nenashev> any comments about the LTS?
+18:02:58 <Slide-O-Mix> So, the main decision is going to be on the mailing list with a ratification from this meeting, or just Oliver?
+18:03:06 <markewaite> My testing of 2.222 supports it as a good candidate for LTS
+18:03:37 <oleg-nenashev> Kudos to mcirioli timja and many other contributors who delivered JEP-223/224 changes for it (and many other ones)
+18:03:50 <oleg-nenashev> Slide-O-Mix: Just Oliver, I believe
+18:04:11 <oleg-nenashev> We can do a vote, but I see no reason while there is a consensus
+18:04:12 <markewaite> As of now, 3 rollbacks with 50 reports of "No major issues". The one issue report is unclear what concern is being raised
+18:04:24 <Slide-O-Mix> Sounds good to me
+18:04:48 <markewaite> https://jenkins.io/changelog/#v2.222 is the changelog status link
+18:04:58 <oleg-nenashev> #info https://jenkins.io/changelog/#v2.222
+18:05:07 <oleg-nenashev> So, moving on?
+18:05:22 <Slide-O-Mix> +1
+18:05:43 <oleg-nenashev> #topic Terms of service document for IBM Z (s390x) use as ci.jenkins.io agents
+18:05:45 <markewaite> +1
+18:06:13 <oleg-nenashev> I believe it is rather LinuxOne agreement, right? It is not only about s390x AFAICT
+18:06:13 <Slide-O-Mix> Do we have a lawyer anywhere than can review the doc from a legal standpoint to make sure there is nothing we are missing?
+18:06:29 <oleg-nenashev> We could ask CDF/LinuxFoundation
+18:06:58 <oleg-nenashev> ETA for the response is unclear tho
+18:07:16 <Slide-O-Mix> yeah, based on past experience
+18:07:18 <markewaite> The agreement is titled "LinuxOne" but as described by Jim Crowley, it applies to s390x only, not to ppc64le. They have provided ppc64le separately without a signed agreement
+18:08:28 <markewaite> I don't see significant benefit to asking CDF/LF legal. IBM's legal team has no doubt reviewed in depth when creating it and other projects have signed to use their services. Risk seems quite low to me (but I am not a lawyer)
+18:08:51 <Slide-O-Mix> I'm just always afraid there is something I am missing, though I agree that the risk is low
+18:09:21 <oleg-nenashev> Basically all the risks are on olblak
+18:09:41 <oleg-nenashev> Could we ask the Jenkins IRC Bot sign it? :)
+18:09:52 <markewaite> :)
+18:09:58 <Slide-O-Mix> Wut? ;-)
+18:10:24 <oleg-nenashev> Speaking seriously, I am fine with the agreement as long as olblak or other Jenkins official sign that && they are fine with that
+18:10:47 <Slide-O-Mix> I agree
+18:11:17 <oleg-nenashev> So, what should we approve markewaite ?
+18:11:33 <markewaite> I agree that olblak is first choice to sign. If he's unwilling, I'd be willing to sign as part of my role in the Platform SIG.
+18:11:35 <Slide-O-Mix> I think we approve that olblak can sign it without needing a board member
+18:11:50 <Slide-O-Mix> or, in lieu of a board member
+18:12:39 <oleg-nenashev> +1 for olblak as an Infra officer
+18:12:44 <markewaite> I agree with slide.  Governance approves that olblak can sign without requiring consultation with CDF legal and without requiring a board member to also sign.
+18:13:25 <oleg-nenashev> we can get all board members to sign it if we want to explicitly share the responsibility
+18:13:42 <oleg-nenashev> but imho it is an overkill
+18:13:49 <rtyler> I don't think it matters so long as there are no external impacts of the agreement
+18:13:50 <markewaite> I don't think it is worth that extra effort nor does it significantly change the risk
+18:14:06 <rtyler> for example, previous agreements I have signed have included terms that were around marketing and exclusivity
+18:14:34 <rtyler> if it's just "terms and conditions to use some machines" and the terms are isolated to simply the use of those machines, then yeah, I agree with Slide-O-Mix and markewaite
+18:16:11 <markewaite> As far as I can tell, it is terms and conditions to use some machines. Includes the usual trademark requirement that use of the machines does not grant us rights to use IBM trademarks in promotion or publication without written consent.
+18:16:54 <rtyler> yeah, then I think that's fine for olblak to sign off on as an officer
+18:17:17 <markewaite> #info document is at https://drive.google.com/drive/folders/1-Ci-zoUGIagyNLbqpgtzLQGPJXesX6VJ
+18:18:18 <oleg-nenashev> Let's vote in 5 min so that anyone can read it
+18:19:25 <Slide-O-Mix> I've read it, +1 from me
+18:19:33 <markewaite> I've read it, +1 from me
+18:20:01 <oleg-nenashev> +1
+18:21:16 <rtyler> scanned, looks fine
+18:23:11 <oleg-nenashev> #agreed that's fine for olblak to sign the contract as an Infra officer
+18:23:15 <oleg-nenashev> thanks all
+18:23:29 <oleg-nenashev> #topic Depublishing the Jenkins Design Language 2 resource
+18:23:46 <Slide-O-Mix> I think this is an easy +1
+18:23:54 <oleg-nenashev> So... We just had some of contributors confused this week
+18:24:28 <oleg-nenashev> I would like to kill it taking the current Blue Ocean state and the ongoing UX revamp which does NOT use JDL
+18:24:49 * rtyler shrugs
+18:25:08 <markewaite> +1 from me and agree with the reasons.  JDL 2.0 is not likely to release in its current state
+18:26:29 <oleg-nenashev> anyone against?
+18:26:55 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/bEriiXYZ0lw
+18:26:58 * rtyler shrugs
+18:27:12 <oleg-nenashev> +5 in total then
+18:27:23 <oleg-nenashev> #agreed R.I.P JDL 2.x
+18:27:34 <oleg-nenashev> #action oleg_nenashev to implement the decion
+18:27:40 <oleg-nenashev> typos...
+18:27:46 <oleg-nenashev> Any other topics for today?
+18:28:32 <oleg-nenashev> 1min timeout
+18:28:44 <oleg-nenashev> #topic next meeting
+18:29:22 <oleg-nenashev> #info Next meeting will be held on  Mar 11, 6 PM UTC. usual time
+18:29:26 <oleg-nenashev> Thanks all
+18:29:30 <oleg-nenashev> #endmeeting

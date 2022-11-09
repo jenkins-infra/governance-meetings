@@ -1,0 +1,169 @@
+19:00:50 <kohsuke> #startmeeting
+19:00:50 <robobutler> Let the Jenkins meeting commence!
+19:00:51 <hare_brain> Time
+19:01:00 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:01:21 <kohsuke> #topic recap of actions
+19:01:25 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-01-11-19.00.html
+19:02:03 <kohsuke> totally forgot to contact Atlassian
+19:02:41 <kohsuke> and the next was about my getting +1 from hare_brain for spending $500 for stickers and $500 for Jenkins CIA T-shirts
+19:02:53 <kohsuke> ... which of course I didn't :-(, but now hare_brain is here
+19:02:57 <hare_brain> +1
+19:02:59 <hare_brain> :)
+19:03:01 <kohsuke> thank you
+19:03:21 <hare_brain> How many stickers and t-shirts does that work out to, out of curiosity?
+19:03:39 <kohsuke> $info I've ordered 2000 for about $450 or so, I believe
+19:03:50 <jieryn> think you need #
+19:04:16 <kohsuke> $480+tax for 2000 to be exact
+19:04:44 <kohsuke> #info for reference, in SCALE10x we've had 250 and we used all of them
+19:05:07 <kohsuke> T-shirts I haven't figured out exactly how to order them
+19:05:23 <kohsuke> The idea is to have them shipped to "CIA agents", so ordering it one by one is easier
+19:05:35 <kohsuke> ... as it can go directly from the shop to people
+19:05:42 <kohsuke> but that won't have any volume discount
+19:05:47 <hare_brain> Right
+19:06:05 <kohsuke> I'm also not too crazy about starting a mailing business...
+19:06:10 <hare_brain> :)
+19:06:22 <hare_brain> Write a plugin to do it for you.
+19:06:48 <hare_brain> If someone can control a bot to play Angry Birds, how much more difficult is it to mail a shirt? ;)
+19:06:54 <kohsuke> #info for reference, http://www.cafepress.com/jenkinsci has about $30 a piece
+19:07:02 <kohsuke> intriguing idea...
+19:07:12 <ndeloof> jenkins-admin create tshirt-plugin on github for Kohsuke
+19:07:13 <jieryn> did someone ask cafepress if they offer discount to non-profit ?
+19:07:27 <kohsuke> jieryn: good point. Did you just volunteer :-) ?
+19:07:32 <jieryn> sue
+19:07:34 <jieryn> suRe
+19:07:36 <kohsuke> ndeloof: missing ":"
+19:07:47 <ndeloof> :P
+19:08:00 <ndeloof> this one was intentional
+19:08:12 <kohsuke> oh, I didn't actually read it
+19:08:14 <hare_brain> So $500 gives you a budget for 15 or 16 t-shirts.
+19:08:24 <kohsuke> Yeah.
+19:08:56 <hare_brain> #action jieryn to follow ask cafepress if they discount for non-profits.
+19:09:02 <jieryn> probably less, since we expect the cia agents to be across the world
+19:09:08 <jieryn> shipping outside US will cost more
+19:09:22 <kohsuke> I guess we need a place in Europe to print T-shirts then
+19:09:23 <hare_brain> Ah, yes, I wasn't factoring in shipping costs into that amount.
+19:09:42 <kohsuke> Any of us from Europe who can think of one?
+19:09:46 <ndeloof> I can
+19:09:49 <oldelvet> http://www.cafepress.co.uk/jenkinsci
+19:10:00 <kohsuke> well that was easy!
+19:10:18 <oldelvet> indeed :-)
+19:10:20 <ndeloof> ok, oldelvet win
+19:10:53 <kohsuke> #info shipping information here: http://www.cafepress.com/cp/info/help/index.aspx?page=shipping.aspx
+19:11:48 <kohsuke> I think I just need to get the first one going for cowboyd
+19:12:01 <kohsuke> He won't need the stock slides, I believe, so it's just really matter of sending him stuff
+19:12:13 <kohsuke> OK, enough about that for now.
+19:12:14 <oldelvet> Germany http://www.cafepress.de/jenkinsci and Australia too http://www.cafepress.com.au/jenkinsci
+19:12:23 <kohsuke> abayer: rtyler: ping
+19:12:40 <kohsuke> fredg02:  and ping, too. about the recap of actions
+19:12:44 <abayer> kohsuke: Sorry, distracted. And still haven't talked to github.
+19:13:13 <fredg02> sorry, lots of stuff to do. but puppet is on my short list
+19:13:23 <cklein> hi all, i am currently trying to remote debug existing jenkins plugins, which fails due to the debug information being removed at compile time.
+19:13:23 <cklein> this was not the case with earlier versions of the maven-hpi-plugin, afaik
+19:13:23 <cklein> how can i configure the hpi plugin to not remove the debugging information? TIA
+19:13:23 <kohsuke> I think we'll just start with an ssh-accessible repository on jenkins-ci.org
+19:13:38 <kohsuke> cklein: we are in a project meeting, so let's hold it until the end of it
+19:13:42 <cklein> ups, sry
+19:13:44 <abayer> kohsuke: Yeah, I think that's good for now regardless.
+19:14:14 <kohsuke> #agreed so as not to make GitHub private repo on a critical path, we'll start by having CLAs on ssh-accessible repository on jenkins-ci.org
+19:14:35 <kohsuke> I assume rtyler is busy on hacking clojure
+19:14:43 <kohsuke> next topic?
+19:14:52 <kohsuke> #topic IRC status update
+19:14:54 <jieryn> want irc update ?
+19:14:59 <francis4> kohsuke: would you mind making francisu a committer on the ec2-plugin repo?
+19:14:59 <kohsuke> all yours
+19:15:14 <jieryn> ok ! so it took about 11 months, but the fine and understaffed folks at freenode have approved our group registration charter
+19:15:19 <kohsuke> francis4: not at all, but let's do it after the meeting
+19:15:20 <jieryn> this is a bit different than having a registered channel
+19:15:34 <jieryn> https://wiki.jenkins-ci.org/display/JENKINS/IRC+Channel
+19:15:42 <jieryn> one of the benefits is that we can give people irc cloaks
+19:15:51 <francis4> (sorry for interrupting the meeting, I just figured out what this was)
+19:15:58 <jieryn> so i'm asking if we want to exploit that ability, and if so, what kind of convention do we want?
+19:16:21 <jieryn> (fyi, irc cloaks will protect the hostname of irc connection from /whois)
+19:16:31 <jieryn> for a lot of other foss groups, it is also status ..
+19:16:55 <kohsuke> jieryn:  I'm fine with your naming scheme, but I'm also fine with getting rid of the distinction between contributor/developer
+19:17:18 <jieryn> aye - i wasn't sure if you thought a designation was in order for those with cla on file
+19:17:20 <kohsuke> That lets us make it a part of the bot when it gives the voice access
+19:17:39 <kohsuke> ah
+19:17:43 <jieryn> freenode could use a lesson from jenkins w/r/t automation - most everything is manual
+19:17:49 * rtyler wakes up and joins in
+19:17:49 <jieryn> at best we could automate something to send an email
+19:19:06 <jieryn> so jenkins/contributor/$user or jenkins/developer/$user ? i have no opinion, so.. whatever anyone has an opinion on we'll go with.. :)
+19:19:11 <kohsuke> Let's start with a simple jenkins/developer/username and when our automation catches up with CLA, we can revisit the naming scheme if CLA distinction is needed?
+19:19:14 <jieryn> kk
+19:19:20 <jieryn> no problem at all
+19:19:39 <kohsuke> #agreed Let's start with a simple jenkins/developer/username and when our automation catches up with CLA, we can revisit the naming scheme if CLA distinction is needed.
+19:20:06 <kohsuke> rtyler: want to give a quick report from SCALE 10x?
+19:20:26 <rtyler> I don't have a tremendous amount of time, I was planning to write something for the site tonight
+19:20:33 <kohsuke> OK. That's fine
+19:20:33 <rtyler> "it went well" :)
+19:20:34 <jieryn> we were there
+19:20:41 <jieryn> rep-ra-zent
+19:20:59 <kohsuke> Next topic?
+19:21:10 <ndeloof> lesson-learned to prepare fosdem ?
+19:21:29 <rtyler> ndeloof: we're bringing more stickers, so yes :)
+19:21:39 <jieryn> start the leaflet process > 24h in advance :)
+19:21:45 <kohsuke> and probably more flyer, too
+19:21:54 <rtyler> yes, I will be making more
+19:22:24 <kohsuke> #topic Consider using cloudbees FOSS
+19:22:32 <kohsuke> And no, I'm not pulling strings behind this
+19:22:40 <jieryn> no, he isn't
+19:22:53 <jieryn> i was just curious how we felt about exploiting some of CB's services for FOSS projects - http://www.cloudbees.com/foss/
+19:22:58 <cowboyd> kohsuke: jorgenpt: https://github.com/cowboyd/jenkins-plugin-runtime/compare/4c3ec89e2576374b244f253da4f1f3a76fc9e961...master
+19:23:20 <jieryn> i know a few of our best devs are employed there, but i don't think it is a conflict
+19:23:22 <cowboyd> This should address the foundation for pull/2
+19:23:38 <kohsuke> cowboyd: thanks. will come to this after the meeting
+19:24:02 <cowboyd> oh crap, didn't realize that this was going on. please redact this from the notes :)
+19:24:05 <abayer> jieryn: IMO, the fact that kohsuke, ndeloof et al work there is in fact a reason *to* use it, since that makes it easier for us to get help if we need it. =)
+19:24:12 <jieryn> maybe sink some LTS there ? maybe some long running UI stuff that rtyler started in on with selenium ?
+19:24:49 <kohsuke> Because some of what we run on ci.jenkins-ci.org requires local system access, we can't completely shut them down
+19:24:53 <jieryn> keep doing things the way we are with JonJ, but if we can get those free resources to do more expensive testing ...
+19:25:07 <abayer> Yeah, especially if we can try to hit up Sauce for some free time with their tools as well.
+19:25:37 <rtyler> wouldn't using CB for some be a bit more confuzing where stuff will live?
+19:25:54 <kohsuke> but DEV@cloud does allow us to open it up for plugin developers, too.
+19:25:56 <jieryn> i just mean to use it for more expensive testing
+19:26:05 <aheritier> couldn't we keep the master and use CB agents ? no interest ?
+19:26:24 <kohsuke> aheritier: that feature is being worked on but doesn't exist quite yet
+19:26:25 <jieryn> there's that too, i'm not familiar enough with their offering, can we have cb agents on their cloud which connect to our master ?
+19:26:29 <jieryn> k
+19:26:45 <kohsuke> the other direction is being worked on, too.
+19:26:54 <kohsuke> hosted master + bring your own slaves
+19:27:04 <aheritier> kohsuke: But I asked it for a long time :-) (and the other way too ...)
+19:27:16 <aheritier> ok
+19:27:20 <jieryn> ok - so maybe we let this one bake a bit
+19:27:44 <hare_brain> Maybe some use cases around *how* we would use this?
+19:28:04 <kohsuke> It sounds like the current leading candidate is Selenium based UI testing
+19:28:13 <jieryn> create a new profile id=selenium, enable that profile when building on cb
+19:28:37 <jieryn> and maybe just @nightly cron
+19:28:46 <ndeloof> could also run intensive jobs like plugin compatibility matrix
+19:29:14 <jieryn> i like that idea too
+19:29:36 <ndeloof> #info cloudbees foss subscription require project to have a "build on cloudbees" logo on website
+19:29:57 <ndeloof> would this harm the community ?
+19:30:05 <jorgenpt> cowboyd: Nice~
+19:30:10 <jieryn> i thought we had a rackspace sticker somewhere too
+19:30:24 <rtyler> we have simple logos
+19:30:34 <rtyler> that's a /little/ different than "Built on CloudBees" IMO
+19:31:09 <jieryn> maybe they'd compromise to the standard stickers we give to corporate supporters?
+19:31:26 <jieryn> although i can not even find that page at present
+19:31:26 <ndeloof> The foss rules are lazy, I thing a logo on sponsor widget is ok
+19:31:31 <rtyler> heh
+19:31:33 <ndeloof> http://jenkins-ci.org/content/about-jenkins-ci
+19:32:11 <jieryn> cool
+19:32:13 <ndeloof> I can't speak for sacha, but for sure jenkins project could have a "special" foss account with relaxed rules ;)
+19:32:48 <jieryn> shiny, so will you take his temperature about that kind of thing ?
+19:33:30 * kohsuke is abstaining from the conversation for conflict of interest
+19:33:48 <hare_brain> Who would be the "you" in the list of requirements?
+19:33:57 <hare_brain> The first item is a one off.
+19:34:07 <jieryn> i was speaking to ndeloof, sorry
+19:34:18 <hare_brain> The second would probably be rtyler, on @jenkinsci, I assume
+19:34:24 <hare_brain> I am less certain about the last two.
+19:35:16 <ndeloof> #action ndeloof to confirm cloudbees foss requirements for sponsor logo
+19:35:24 <jieryn> thx
+19:35:33 <kohsuke> I think the last two "you" are for the project as a whole, and I think we already do them
+19:36:10 * rtyler disappears into work
+19:36:12 <kohsuke> OK, are we good for the time being?
+19:36:22 <kohsuke> Looks like that way
+19:36:42 <kohsuke> #topic next meeting
+19:37:19 <kohsuke> Feb 8th, the same time?
+19:37:49 <hare_brain> Works for me.
+19:38:05 <kohsuke> #agreed Feb 8th 19:00 UTC
+19:38:12 <kohsuke> #endmeeting

@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app214.us.archive.org';v.server_ms=567;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-03-25-18.00.log.html","20211027225948","https://web.archive.org/","web","/_static/",
+	      "1635375588");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:56</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Agenda: https://docs.google.com/document/d/11Nr8QpqYgBiZjORplL_3Zkwys2qK1vEvK-NYyYa4rzg/edit#heading=h.vylsknw2s91m</span>
+<a name="l-4"></a><span class="tm">18:01:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 3 topics so far, please feel free to add more to the bottom
+<a name="l-5"></a><span class="tm">18:01:57</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> :thumbsup
+<a name="l-6"></a><span class="tm">18:02:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">And make sure to upgrade your Jenkins instances to 2.222.1!</span>
+<a name="l-7"></a><span class="tm">18:02:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Approval request: Posting the WIP roadmap on jenkins.io</span>
+<a name="l-8"></a><span class="tm">18:02:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">dev list thread: https://groups.google.com/forum/#!msg/jenkinsci-dev/Ez7nZxlxSWk/TQp_LwNmAwAJ</span>
+<a name="l-9"></a><span class="tm">18:02:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">JEP draft google doc: https://docs.google.com/document/d/1-pM-G41VUJiuE21VDCwy1Fg3Q-tRL29b2oHy282zFec/edit?usp=sharing</span>
+<a name="l-10"></a><span class="tm">18:03:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So I would like to get an approval to post the roadmap with work-in-progress disclaimers
+<a name="l-11"></a><span class="tm">18:03:53</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I think that sounds great
+<a name="l-12"></a><span class="tm">18:03:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Before that, JEP will be formally filed in https://github.com/jenkinsci/jep/, likely as JEP-14
+<a name="l-13"></a><span class="tm">18:04:04</span><span class="nk"> &lt;markewaite&gt;</span> +1 from me
+<a name="l-14"></a><span class="tm">18:04:07</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Thanks for putting that together, it's looking great
+<a name="l-15"></a><span class="tm">18:04:09</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1
+<a name="l-16"></a><span class="tm">18:04:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Anyone else in the chat?
+<a name="l-17"></a><span class="tm">18:04:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">drulli:</span>  o/
+<a name="l-18"></a><span class="tm">18:05:01</span><span class="nk"> &lt;drulli&gt;</span> yes, too late?
+<a name="l-19"></a><span class="tm">18:05:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Are you fine with publishing the roadmap draft?
+<a name="l-20"></a><span class="tm">18:05:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Not too late
+<a name="l-21"></a><span class="tm">18:05:23</span><span class="nk"> &lt;drulli&gt;</span> Yes, I'm fine with it…
+<a name="l-22"></a><span class="tm">18:05:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Do you have access to the chat history, or should I repost it?
+<a name="l-23"></a><span class="tm">18:06:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to file a JEP for the roadmap draft</span>
+<a name="l-24"></a><span class="tm">18:07:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to add disclaimers to the Roadmap PoC</span>
+<a name="l-25"></a><span class="tm">18:07:35</span><span class="nk"> &lt;drulli&gt;</span> No, it is there… I also followed the ml discussions...
+<a name="l-26"></a><span class="tm">18:07:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkins-infra/jenkins.io/pull/2957</span>
+<a name="l-27"></a><span class="tm">18:07:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Then let's move on
+<a name="l-28"></a><span class="tm">18:08:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">We approved publishing of a draft roadmap with explicit work-in-progress status</span>
+<a name="l-29"></a><span class="tm">18:08:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Thanks all
+<a name="l-30"></a><span class="tm">18:08:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Approval request: Administrative access to the Jenkins LinkedIn account for Oleg Nenashev</span>
+<a name="l-31"></a><span class="tm">18:08:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/s7PDjEXzGjE</span>
+<a name="l-32"></a><span class="tm">18:09:13</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1 from me
+<a name="l-33"></a><span class="tm">18:09:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> FTR I have no idea who owns the account now, but LinkedIn support can help
+<a name="l-34"></a><span class="tm">18:09:25</span><span class="nk"> &lt;drulli&gt;</span> +1 from me as well
+<a name="l-35"></a><span class="tm">18:09:35</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Though I would like to understand what the plan is for using LinkedIn for the Jenkins Project
+<a name="l-36"></a><span class="tm">18:09:41</span><span class="nk"> &lt;markewaite&gt;</span> +1 from me
+<a name="l-37"></a><span class="tm">18:09:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also, 5 +1s in the mailing list, including markewaite
+<a name="l-38"></a><span class="tm">18:10:16</span><span class="nk"> &lt;markewaite&gt;</span> I've been amazed at the LinkedIn responses since I posted that I'm Jenkins Documentation Officer and a member of the Jenkins project. Who knew....
+<a name="l-39"></a><span class="tm">18:10:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">Slide-O-Mix:</span> good point, I will take an action item for that and present it tomorrow at Advocacy&amp;Outreach SIG. Or would you prefer a mailing list first?
+<a name="l-40"></a><span class="tm">18:10:57</span><span class="nk"> &lt;markewaite&gt;</span> 
+<a name="l-41"></a><span class="tm">18:11:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, LinkedIn still brings a lot of visibility
+<a name="l-42"></a><span class="tm">18:11:03</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">oleg-nenashev:</span> I am not able to join that meeting, but if the minutes are posted to the mailing list or something in the same email chain, that would be fine
+<a name="l-43"></a><span class="tm">18:11:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">Slide-O-Mix:</span> Ack, will do!
+<a name="l-44"></a><span class="tm">18:11:16</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> thanks
+<a name="l-45"></a><span class="tm">18:11:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Permission request for oleg_nenashev is approved</span>
+<a name="l-46"></a><span class="tm">18:11:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to follow-up and to get permissions somehow</span>
+<a name="l-47"></a><span class="tm">18:11:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Looks promising
+<a name="l-48"></a><span class="tm">18:12:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark usage request: Jenkins RU and Дженкинс РУ (Oleg Nenashev)</span>
+<a name="l-49"></a><span class="tm">18:12:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Sorry for keeping all you busy with my topics today
+<a name="l-50"></a><span class="tm">18:12:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/yq_FrEf9d28</span>
+<a name="l-51"></a><span class="tm">18:12:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2 approvals in the mailing list
+<a name="l-52"></a><span class="tm">18:13:29</span><span class="nk"> &lt;drulli&gt;</span> +1 from me
+<a name="l-53"></a><span class="tm">18:13:38</span><span class="nk"> &lt;markewaite&gt;</span> +1 from me.  Jenkins RU usage is a good use of the trademark
+<a name="l-54"></a><span class="tm">18:13:43</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1 from me
+<a name="l-55"></a><span class="tm">18:13:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There is one major difference from previous approvals: there is no legal entity behind the request
+<a name="l-56"></a><span class="tm">18:13:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So we will need to rework the table
+<a name="l-57"></a><span class="tm">18:14:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage</span>
+<a name="l-58"></a><span class="tm">18:14:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But we need to move it to another location anyway, so whatever
+<a name="l-59"></a><span class="tm">18:14:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any concerns?
+<a name="l-60"></a><span class="tm">18:14:55</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> No, looks good
+<a name="l-61"></a><span class="tm">18:15:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the trademark usage request is approved: Jenkins RU and Дженкинс РУ</span>
+<a name="l-62"></a><span class="tm">18:16:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to migrate the Trademark approvals page to GitHub</span>
+<a name="l-63"></a><span class="tm">18:16:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to add the entries to the list</span>
+<a name="l-64"></a><span class="tm">18:16:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-65"></a><span class="tm">18:16:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> As usual?
+<a name="l-66"></a><span class="tm">18:16:36</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Yup
+<a name="l-67"></a><span class="tm">18:16:48</span><span class="nk"> &lt;drulli&gt;</span> yes
+<a name="l-68"></a><span class="tm">18:17:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next meeting will happen on April 8, 6PM UTC</span>
+<a name="l-69"></a><span class="tm">18:17:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Stay safe all!
+<a name="l-70"></a><span class="tm">18:17:12</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1
+<a name="l-71"></a><span class="tm">18:17:15</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> You too!
+<a name="l-72"></a><span class="tm">18:17:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any other topics to discuss?
+<a name="l-73"></a><span class="tm">18:17:19</span><span class="nk"> &lt;markewaite&gt;</span> +1
+<a name="l-74"></a><span class="tm">18:17:26</span><span class="nk"> &lt;markewaite&gt;</span> None from me
+<a name="l-75"></a><span class="tm">18:17:30</span><span class="nk"> &lt;drulli&gt;</span> no
+<a name="l-76"></a><span class="tm">18:17:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> OK, then that's it. Thanks to all participants!
+<a name="l-77"></a><span class="tm">18:17:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:59:48 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 14:59:51 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 445.594
+  exclusion.robots: 0.14
+  exclusion.robots.policy: 0.131
+  cdx.remote: 0.085
+  esindex: 0.011
+  LoadShardBlock: 292.899 (3)
+  PetaboxLoader3.datanode: 173.263 (4)
+  CDXLines.iter: 18.618 (3)
+  PetaboxLoader3.resolve: 209.996 (2)
+  load_resource: 110.461
+-->

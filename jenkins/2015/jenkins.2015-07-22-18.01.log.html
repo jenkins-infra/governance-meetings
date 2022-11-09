@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app209.us.archive.org';v.server_ms=208;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-07-22-18.01.log.html","20200504091024","https://web.archive.org/","web","/_static/",
+	      "1588583424");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:12</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:23</span><span class="nk"> &lt;kohsuke&gt;</span> ... though I realize we haven't posted the entry up in the agenda doc
+<a name="l-4"></a><span class="tm">18:01:28</span><span class="nk"> &lt;kohsuke&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-5"></a><span class="tm">18:02:34</span><span class="nk"> &lt;kohsuke&gt;</span> if ogondza is around, I wonder if LTS release is good to go?
+<a name="l-6"></a><span class="tm">18:02:42</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> it is
+<a name="l-7"></a><span class="tm">18:02:56</span><span class="nk"> &lt;kohsuke&gt;</span> cool
+<a name="l-8"></a><span class="tm">18:03:00</span><span class="nk"> &lt;ogondza&gt;</span> btw, I nticed the buts on rc page was not updated
+<a name="l-9"></a><span class="tm">18:03:04</span><span class="nk"> &lt;ogondza&gt;</span> can I help?
+<a name="l-10"></a><span class="tm">18:03:09</span><span class="nk"> &lt;kohsuke&gt;</span> buts?
+<a name="l-11"></a><span class="tm">18:03:15</span><span class="nk"> &lt;ogondza&gt;</span> bits, sorry
+<a name="l-12"></a><span class="tm">18:03:22</span><span class="nk"> &lt;kohsuke&gt;</span> oh
+<a name="l-13"></a><span class="tm">18:03:23</span><span class="nk"> &lt;ogondza&gt;</span> https://jenkins-ci.org/stable-rc
+<a name="l-14"></a><span class="tm">18:03:38</span><span class="nk"> &lt;ogondza&gt;</span> the text is wrong, and so is the content
+<a name="l-15"></a><span class="tm">18:03:46</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe UCv3 change broke something
+<a name="l-16"></a><span class="tm">18:04:02</span><span class="nk"> &lt;kohsuke&gt;</span> Let me check
+<a name="l-17"></a><span class="tm">18:05:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> anything else to discuss?
+<a name="l-18"></a><span class="tm">18:05:11</span><span class="nk"> &lt;rtyler&gt;</span> right, it's game time
+<a name="l-19"></a><span class="tm">18:05:24</span><span class="nk"> &lt;danielbeck&gt;</span> not from me
+<a name="l-20"></a><span class="tm">18:05:38</span><span class="nk"> &lt;danielbeck&gt;</span> oh, wait
+<a name="l-21"></a><span class="tm">18:06:04</span><span class="nk"> &lt;danielbeck&gt;</span> We're restarting the Patron program
+<a name="l-22"></a><span class="tm">18:06:21</span><span class="nk"> &lt;danielbeck&gt;</span> more of an announcement than a discussion though, and there'll be a post to the dev list.
+<a name="l-23"></a><span class="tm">18:06:28</span><span class="nk"> &lt;rtyler&gt;</span> sounds good to me
+<a name="l-24"></a><span class="tm">18:06:46</span><span class="nk"> &lt;rtyler&gt;</span> can I ask an unrelated question while we have folks here kohsuke?
+<a name="l-25"></a><span class="tm">18:06:51</span><span class="nk"> &lt;kohsuke&gt;</span> yes
+<a name="l-26"></a><span class="tm">18:06:56</span><span class="nk"> &lt;rtyler&gt;</span> https://www.cloudbees.com/press/cloudbees-and-jenkins-community-announce-integration-kubernetes
+<a name="l-27"></a><span class="tm">18:07:06</span><span class="nk"> &lt;rtyler&gt;</span> I'm curious what the guidelines are for "Jenkins community" announcing anything :P
+<a name="l-28"></a><span class="tm">18:07:33</span><span class="nk"> &lt;rtyler&gt;</span> I noticed that and it struck me as an odd announcement
+<a name="l-29"></a><span class="tm">18:07:34</span><span class="nk"> &lt;kohsuke&gt;</span> yes, that's good point
+<a name="l-30"></a><span class="tm">18:07:40</span><span class="nk"> &lt;rtyler&gt;</span> I didn't realize we had anything to do with CB's kubernetes work
+<a name="l-31"></a><span class="tm">18:07:57</span><span class="nk"> &lt;kohsuke&gt;</span> the effort was really meant to be done through the dev list and the community
+<a name="l-32"></a><span class="tm">18:08:22</span><span class="nk"> &lt;rtyler&gt;</span> if it was, then forget I said anything, I might have missed the work
+<a name="l-33"></a><span class="tm">18:08:25</span><span class="nk"> &lt;kohsuke&gt;</span> there was some co-development between some engineers from Google and some engineers from CB and it all happened through OSS jenkinsci repos
+<a name="l-34"></a><span class="tm">18:08:29</span><span class="nk"> &lt;SeaOrifice&gt;</span> Hi all, is is possible to override the jobdsl for Workflow project so that i can use CpsScmFlowDefinition which allows us to apply scm block and scriptpath ?
+<a name="l-35"></a><span class="tm">18:08:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">SeaOrifice:</span> give us a sec, we're in a meeting
+<a name="l-36"></a><span class="tm">18:08:44</span><span class="nk"> &lt;rtyler&gt;</span> (project meeting)
+<a name="l-37"></a><span class="tm">18:08:49</span><span class="nk"> &lt;kohsuke&gt;</span> But we failed to make proper noise out of it --- dev list thread, blog post etc.
+<a name="l-38"></a><span class="tm">18:08:54</span><span class="nk"> &lt;SeaOrifice&gt;</span> ok
+<a name="l-39"></a><span class="tm">18:08:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> ah, okay, no biggie then
+<a name="l-40"></a><span class="tm">18:09:16</span><span class="nk"> &lt;rtyler&gt;</span> I wasn't aware there was cross-corporate collab happening via jenkins OSS
+<a name="l-41"></a><span class="tm">18:09:56</span><span class="nk"> &lt;kohsuke&gt;</span> I do think it makes sense to have some blessing from the project for a press release that says "Jenkins community" announcing something.
+<a name="l-42"></a><span class="tm">18:10:33</span><span class="nk"> &lt;rtyler&gt;</span> I'm generally pretty relaxed in that regard, if there's links to some oSS repos and a jenkins-ci.org blog post from a community member, then that's gravy to me
+<a name="l-43"></a><span class="tm">18:10:54</span><span class="nk"> &lt;rtyler&gt;</span> anyways, just something I wanted to make sure I understood, seemed like a good venue to ask
+<a name="l-44"></a><span class="tm">18:11:06</span><span class="nk"> &lt;kohsuke&gt;</span> OK, we really want to do this better, so next time around it'll be better.
+<a name="l-45"></a><span class="tm">18:11:12</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-46"></a><span class="tm">18:11:25</span><span class="nk"> &lt;rtyler&gt;</span> there's not really anything on the agenda otherwise?
+<a name="l-47"></a><span class="tm">18:11:29</span><span class="nk"> &lt;kohsuke&gt;</span> I was at OSCON yesterday waving the Jenkins flag in Kubernetes event
+<a name="l-48"></a><span class="tm">18:11:36</span><span class="nk"> &lt;kohsuke&gt;</span> Correct, let's close it
+<a name="l-49"></a><span class="tm">18:11:38</span><span class="nk"> &lt;rtyler&gt;</span> the SPoFs are starting to fall in infra land
+<a name="l-50"></a><span class="tm">18:11:40</span><span class="nk"> &lt;rtyler&gt;</span> wooooot
+<a name="l-51"></a><span class="tm">18:12:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-52"></a><span class="tm">18:12:23</span><span class="nk"> &lt;kohsuke&gt;</span> August 5th, same time
+<a name="l-53"></a><span class="tm">18:13:07</span><span class="nk"> &lt;rtyler&gt;</span> I won't be ble to make that one unfortunately
+<a name="l-54"></a><span class="tm">18:13:08</span><span class="nk"> &lt;hare_brain&gt;</span> I'll be on vacation. But it's not like I've been adding value to these meetings lately.
+<a name="l-55"></a><span class="tm">18:13:15</span><span class="nk"> &lt;rtyler&gt;</span> I will be actually vacationing in .de :)
+<a name="l-56"></a><span class="tm">18:13:31</span><span class="nk"> &lt;rtyler&gt;</span> could we do the next wed
+<a name="l-57"></a><span class="tm">18:13:33</span><span class="nk"> &lt;hare_brain&gt;</span> .ca for me
+<a name="l-58"></a><span class="tm">18:13:40</span><span class="nk"> &lt;rtyler&gt;</span> and I'll add an infra status report/update to the agenda
+<a name="l-59"></a><span class="tm">18:13:48</span><span class="nk"> &lt;rtyler&gt;</span> motivate the squashing of some of these remaining tickets
+<a name="l-60"></a><span class="tm">18:14:51</span><span class="nk"> &lt;jet&gt;</span> Anyone have recent success getting the S3 plugin working with Jenkins? I'm getting a NullPointerException no matter what configuration changes I try.
+<a name="l-61"></a><span class="tm">18:15:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> filed INFRA-339 for this
+<a name="l-62"></a><span class="tm">18:15:47</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-339:https://jenkins-ci.org/stable-rc is stale (Open) https://issues.jenkins-ci.org/browse/INFRA-339
+<a name="l-63"></a><span class="tm">18:16:39</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> thanks
+<a name="l-64"></a><span class="tm">18:17:43</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> whatcha think?
+<a name="l-65"></a><span class="tm">18:18:06</span><span class="nk"> &lt;kohsuke&gt;</span> what do I think about what?
+<a name="l-66"></a><span class="tm">18:18:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 09:10:24 May 04, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:55:15 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 104.798
+  exclusion.robots: 0.183
+  exclusion.robots.policy: 0.171
+  cdx.remote: 0.106
+  esindex: 0.014
+  LoadShardBlock: 45.862 (3)
+  PetaboxLoader3.datanode: 52.746 (4)
+  CDXLines.iter: 23.132 (3)
+  load_resource: 96.001
+  PetaboxLoader3.resolve: 34.678
+-->

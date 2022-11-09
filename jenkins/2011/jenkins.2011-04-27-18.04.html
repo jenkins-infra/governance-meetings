@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 18:04:40 UTC
+(<a href="jenkins.2011-04-27-18.04.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li><b class="TOPIC">fcamblor to report the progress/status on plugin compat tester</b> <span class="details">(<a href='jenkins.2011-04-27-18.04.log.html#l-5'>kohsuke</a>, 18:05:13)</span>
+<ol type="a">
+  <li><span class="INFO">Current plugin compat tester report is
+    available here :
+    http://ci.jenkins-ci.org/job/plugin-compat-tester/ws/reports/PluginCompatReport.xml</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-9'>fcamblor</a>,
+    18:06:16)</span></li>
+  <li><span class="INFO">plugin compat tester goal is to test latest
+    plugin version (available in update center) against some different
+    core (jenkins + hudson)</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-13'>fcamblor</a>,
+    18:07:54)</span></li>
+  <li><span class="INFO">it's probably worth mentioning that Oracle is
+    working on a similar mechanism for testing compatibility with
+    Hudson</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-20'>rpetti</a>,
+    18:09:20)</span></li>
+  <li><span class="INFO">If we are talking about making reports visible
+    somewhere in jenkins-ci.org, yes, it's just a bit of backend work,
+    but quite doable.</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-27'>kohsuke</a>,
+    18:11:30)</span></li>
+  <li><span class="INFO">plugin compat tester macro algorithm is
+    available here :
+    https://wiki.jenkins-ci.org/display/JENKINS/Plugin+Compatibility+Tester</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-28'>fcamblor</a>,
+    18:12:17)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">You could use the
+    SSH plugin to copy stuff to your website</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-30'>alzamabar</a>,
+    18:12:37)</span></li>
+  <li><span class="INFO">ci.jenkins-ci.org and jenkins-ci.org are the
+    same machine, so the "publishing reports" in that part is
+    easy</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-37'>kohsuke</a>,
+    18:14:41)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Add discovery of
+    usage of deprecated APIs to report.</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-38'>hare_brain</a>,
+    18:14:42)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">we should have a
+    bug tracker component for this</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-40'>kohsuke</a>,
+    18:15:05)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">The test job
+    should file bugs against the plugins when they fail with new
+    versions of core</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-47'>hare_brain</a>,
+    18:16:28)</span></li>
+  <li><span class="INFO">4 statuses for each cells : internal error,
+    compilation failure, test failure, success</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-51'>fcamblor</a>,
+    18:17:12)</span></li>
+  <li><span class="INFO">First ball deals with compilation, second with
+    tests</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-54'>fcamblor</a>,
+    18:17:43)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Create a
+    subscription list of maintainers on jenkins-ci.org and have the
+    failing job sent an email to distribution list.</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-56'>alzamabar</a>,
+    18:17:56)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">I'll have
+    jenkins-admin create an issue tracker after this meeting, and people
+    who posted ideas can file RFEs.</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-64'>kohsuke</a>,
+    18:19:19)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">announce meeting
+    as 2 PM CEST instead of CET ;)</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-70'>kutzi</a>,
+    18:20:19)</span></li>
+  <li><span class="INFO">the current report is
+    http://ci.jenkins-ci.org/job/plugin-compat-tester/ws/reports/PluginCompatReport.xml</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-72'>kohsuke</a>,
+    18:20:58)</span></li>
+  <li><span class="INFO">The 3rd icon is there to identify some problems
+    (warning) in the pom .. like bad scm url or user-locked github
+    urls</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-73'>fcamblor</a>,
+    18:20:59)</span></li>
+  <li><span class="INFO">If you want to contribute, don't
+    hesitate</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-80'>fcamblor</a>,
+    18:23:04)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">we'll fix
+    some loose ends and check on false positives, then publish this
+    report to a broader audience.</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-99'>kohsuke</a>,
+    18:27:04)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">trademark registration status</b> <span class="details">(<a href='jenkins.2011-04-27-18.04.log.html#l-103'>kohsuke</a>, 18:28:05)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">Kohsuke to
+    actually start talking to lawyers to file the trademark</span> <span
+    class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-107'>kohsuke</a>,
+    18:28:46)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Infra updates from rtyler</b> <span class="details">(<a href='jenkins.2011-04-27-18.04.log.html#l-112'>kohsuke</a>, 18:30:13)</span>
+<ol type="a">
+  <li><span class="INFO">The two donated machines have arrived at the
+    OSUOSL in Corvallis</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-118'>rtyler</a>,
+    18:31:30)</span></li>
+  <li><span class="INFO">The larger (3U) machine has been racked</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-120'>rtyler</a>,
+    18:31:42)</span></li>
+  <li><span class="INFO">The smaller (2U) machine is missing some
+    racking hardware, which I'll be purchasing as soon as the chaps at
+    the OSUOSL tell me what's needed</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-121'>rtyler</a>,
+    18:32:02)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    work with the OSUOSL to get the new machines initialized</span>
+    <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-123'>rtyler</a>,
+    18:32:59)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler needs
+    to investigate mirrorbrain failures</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-134'>rtyler</a>,
+    18:35:13)</span></li>
+  <li><span class="INFO">and speaking of JIRA/Confluence, the hotspot
+    compilation adjustments in VM greatly improved the stability of
+    those services</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-136'>kohsuke</a>,
+    18:35:29)</span></li>
+  <li><span class="INFO">we also have offers on the table for two
+    additional european mirrors</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-139'>rtyler</a>,
+    18:36:12)</span></li>
+  <li><span class="INFO">once mirrorbrain is properly geo-redirecting
+    again, we'll bring those online</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-141'>rtyler</a>,
+    18:36:39)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2011-04-27-18.04.log.html#l-148'>kohsuke</a>, 18:37:47)</span>
+<ol type="a">
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">next meeting
+    is 5/11 6pm GMT</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-162'>kohsuke</a>,
+    18:40:01)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED"></span> <span
+    class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-163'>rtyler</a>,
+    18:40:06)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">Kohsuke to
+    stop using CET and say CEST</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-164'>kohsuke</a>,
+    18:40:13)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    bring cookies to the next meeting</span> <span class="details">(<a
+    href='jenkins.2011-04-27-18.04.log.html#l-167'>rtyler</a>,
+    18:40:31)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 18:41:37 UTC
+(<a href="jenkins.2011-04-27-18.04.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>I'll have jenkins-admin create an issue tracker after this meeting, and people who posted ideas can file RFEs.</li>
+  <li>Kohsuke to actually start talking to lawyers to file the trademark</li>
+  <li>rtyler to work with the OSUOSL to get the new machines initialized</li>
+  <li>rtyler needs to investigate mirrorbrain failures</li>
+  <li>Kohsuke to stop using CET and say CEST</li>
+  <li>kohsuke to bring cookies to the next meeting</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> kohsuke <ol>
+    <li>kohsuke to bring cookies to the next meeting</li>
+  </ol></li>
+  <li> rtyler <ol>
+    <li>rtyler to work with the OSUOSL to get the new machines initialized</li>
+    <li>rtyler needs to investigate mirrorbrain failures</li>
+  </ol></li>
+  <li><b>UNASSIGNED</b><ol>
+    <li>I'll have jenkins-admin create an issue tracker after this meeting, and people who posted ideas can file RFEs.</li>
+    <li>Kohsuke to actually start talking to lawyers to file the trademark</li>
+    <li>Kohsuke to stop using CET and say CEST</li>
+  </ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>kohsuke (65)</li>
+  <li>fcamblor (44)</li>
+  <li>rtyler (27)</li>
+  <li>kutzi (7)</li>
+  <li>orrc (6)</li>
+  <li>rpetti (6)</li>
+  <li>bap2000 (4)</li>
+  <li>peepsalot (3)</li>
+  <li>redsolo (3)</li>
+  <li>alzamabar (3)</li>
+  <li>hare_brain (3)</li>
+  <li>robobutler (2)</li>
+  <li>drulli (1)</li>
+  <li>abayer (0)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

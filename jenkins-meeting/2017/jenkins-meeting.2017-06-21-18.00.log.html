@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app227.us.archive.org';v.server_ms=226;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-06-21-18.00.log.html","20210115144310","https://web.archive.org/","web","/_static/",
+	      "1610721790");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:28</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:28</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:38</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke rtyler</span>
+<a name="l-4"></a><span class="tm">18:00:38</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:44</span><span class="nk"> &lt;danielbeck&gt;</span> hi everyone!
+<a name="l-6"></a><span class="tm">18:00:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> o/
+<a name="l-7"></a><span class="tm">18:01:18</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">last meeting's actions</span>
+<a name="l-8"></a><span class="tm">18:01:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Have we moved agenda outside https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda ?
+<a name="l-9"></a><span class="tm">18:01:45</span><span class="nk"> &lt;danielbeck&gt;</span> I posted upgrade guide and changelog for 2.60.1, still a PR, but otherwise ready
+<a name="l-10"></a><span class="tm">18:02:00</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev did rtyler grant you LDAP admin?
+<a name="l-11"></a><span class="tm">18:02:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nope
+<a name="l-12"></a><span class="tm">18:02:12</span><span class="nk"> &lt;danielbeck&gt;</span> bad rtyler
+<a name="l-13"></a><span class="tm">18:02:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> but I didn't ping about it, bad me
+<a name="l-14"></a><span class="tm">18:02:49</span><span class="nk"> &lt;danielbeck&gt;</span> doesn't look like he's around anyway, so let's move on
+<a name="l-15"></a><span class="tm">18:02:59</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-16"></a><span class="tm">18:03:13</span><span class="nk"> &lt;danielbeck&gt;</span> FTR, https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda looks weirdly empty, so I'm going by the usual topics
+<a name="l-17"></a><span class="tm">18:03:25</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza you're up
+<a name="l-18"></a><span class="tm">18:03:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">alyssat_:</span> I would like to ask about the JAMbassador thread later if you are around
+<a name="l-19"></a><span class="tm">18:03:41</span><span class="nk"> &lt;ogondza&gt;</span> sorry, I am
+<a name="l-20"></a><span class="tm">18:03:53</span><span class="nk"> &lt;ogondza&gt;</span> the only backport causes some havoc
+<a name="l-21"></a><span class="tm">18:04:13</span><span class="nk"> &lt;ogondza&gt;</span> as long as I understood we will suggest users to update ssh-slaves to .20
+<a name="l-22"></a><span class="tm">18:04:13</span><span class="nk"> &lt;danielbeck&gt;</span> oh?
+<a name="l-23"></a><span class="tm">18:04:32</span><span class="nk"> &lt;danielbeck&gt;</span> yes, that's repeatedly in the changelog PR
+<a name="l-24"></a><span class="tm">18:04:43</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="hi">oleg-nenashev:</span> sorry I haven't done anything w/ the Ambassador thread. I've been under water with JW activities
+<a name="l-25"></a><span class="tm">18:04:45</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> thanks for doing that
+<a name="l-26"></a><span class="tm">18:04:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">alyssat_:</span> ack, np
+<a name="l-27"></a><span class="tm">18:05:06</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkins-infra/jenkins.io/pull/939 (with screenshots of changelog and upgrade guide)</span>
+<a name="l-28"></a><span class="tm">18:05:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> this amendment looks good to me
+<a name="l-29"></a><span class="tm">18:05:43</span><span class="nk"> &lt;ogondza&gt;</span> are we ok to release as it is? (the update to new lts is safe only if updated with plugins)
+<a name="l-30"></a><span class="tm">18:06:03</span><span class="nk"> &lt;ogondza&gt;</span> i do not feel strongly
+<a name="l-31"></a><span class="tm">18:06:08</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza I think this is a reasonable approach to take
+<a name="l-32"></a><span class="tm">18:06:41</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza is there another option?
+<a name="l-33"></a><span class="tm">18:06:51</span><span class="nk"> &lt;ogondza&gt;</span> I am not hearing any objections so let's do it
+<a name="l-34"></a><span class="tm">18:06:52</span><span class="nk"> &lt;danielbeck&gt;</span> It's not like we're prepared to roll back all the SSH changes
+<a name="l-35"></a><span class="tm">18:07:34</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to release 2.60.1</span>
+<a name="l-36"></a><span class="tm">18:07:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Anyway, Java 8 will cause some negative feedback
+<a name="l-37"></a><span class="tm">18:07:43</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev rtfm
+<a name="l-38"></a><span class="tm">18:07:46</span><span class="nk"> &lt;danielbeck&gt;</span> :-)
+<a name="l-39"></a><span class="tm">18:08:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> TFM is fine for me
+<a name="l-40"></a><span class="tm">18:08:07</span><span class="nk"> &lt;jglick&gt;</span> actually for https://wiki.jenkins.io/display/JENKINS/SSH+Slaves+Plugin you sort of need 1.20 but whatever
+<a name="l-41"></a><span class="tm">18:08:21</span><span class="nk"> &lt;danielbeck&gt;</span> jglick WDYM?
+<a name="l-42"></a><span class="tm">18:08:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But I do not expect everybody to read it. I've already closed a dozen of JIRA tickets for weeklys
+<a name="l-43"></a><span class="tm">18:08:48</span><span class="nk"> &lt;jglick&gt;</span> well 1.15 sort of needs 1.18 IIUC, and that introduced regressions solved in 1.19 &amp; 1.20
+<a name="l-44"></a><span class="tm">18:09:08</span><span class="nk"> &lt;jglick&gt;</span> anyway 1.20 is what you will get if you go to update, so does not matter what we say in changelog
+<a name="l-45"></a><span class="tm">18:09:11</span><span class="nk"> &lt;danielbeck&gt;</span> jglick what's "1.15"?
+<a name="l-46"></a><span class="tm">18:09:26</span><span class="nk"> &lt;jglick&gt;</span> `ssh-slaves` 1.15
+<a name="l-47"></a><span class="tm">18:09:47</span><span class="nk"> &lt;danielbeck&gt;</span> jglick ah, the yellow note -- more details in the upgrade guide, which says 1.17 needed for Java 8, but 1.20 recommended anyway due to trilead
+<a name="l-48"></a><span class="tm">18:09:56</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">re:</span> https://github.com/jenkins-infra/jenkins.io/pull/939/files#diff-ba0338ee2c1c6ece3254c750f5394d2aR353
+<a name="l-49"></a><span class="tm">18:10:11</span><span class="nk"> &lt;jglick&gt;</span> fine
+<a name="l-50"></a><span class="tm">18:10:12</span><span class="nk"> &lt;danielbeck&gt;</span> jglick https://github.com/jenkins-infra/jenkins.io/pull/939/files#diff-57e1817c2b21d3dd0a9822dcb0a614acR24
+<a name="l-51"></a><span class="tm">18:10:29</span><span class="nk"> &lt;danielbeck&gt;</span> https://github.com/jenkins-infra/jenkins.io/pull/939/files#diff-57e1817c2b21d3dd0a9822dcb0a614acR42
+<a name="l-52"></a><span class="tm">18:10:30</span><span class="nk"> &lt;jglick&gt;</span> yes
+<a name="l-53"></a><span class="tm">18:10:42</span><span class="nk"> &lt;jglick&gt;</span> sorry for distraction
+<a name="l-54"></a><span class="tm">18:10:43</span><span class="nk"> &lt;ogondza&gt;</span> BTW, I noticed core declares 1.15 where bundled versions used to be. That i snow unused, right?
+<a name="l-55"></a><span class="tm">18:11:05</span><span class="nk"> &lt;ogondza&gt;</span> https://github.com/jenkinsci/jenkins/blob/master/war/pom.xml#L289
+<a name="l-56"></a><span class="tm">18:11:10</span><span class="nk"> &lt;ogondza&gt;</span> i swhat I am talking about
+<a name="l-57"></a><span class="tm">18:11:16</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza it was never a detached plugin so should be obsolete as it would never be auto installed
+<a name="l-58"></a><span class="tm">18:11:53</span><span class="nk"> &lt;jglick&gt;</span> it will force an update if you are running 1.14- IIUC
+<a name="l-59"></a><span class="tm">18:12:22</span><span class="nk"> &lt;ogondza&gt;</span> I am wondering it makes sense updating for 2.60.1 but it seems it does not
+<a name="l-60"></a><span class="tm">18:12:39</span><span class="nk"> &lt;danielbeck&gt;</span> jglick isn't that only if you're older than the detached version, which doesn't apply here?
+<a name="l-61"></a><span class="tm">18:12:56</span><span class="nk"> &lt;danielbeck&gt;</span> IIRC we discussed this a while back when stephenc had a PR that looked related but wasn't.
+<a name="l-62"></a><span class="tm">18:12:56</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">danielbeck:</span> maybe, I can never remember the rules. Not even sure why it is listed here at all.
+<a name="l-63"></a><span class="tm">18:13:20</span><span class="nk"> &lt;danielbeck&gt;</span> jglick because it used to be bundled so it's in the default setup. Hence me saying it's obsolete since it wasn't detached.
+<a name="l-64"></a><span class="tm">18:13:27</span><span class="nk"> &lt;ogondza&gt;</span> ack
+<a name="l-65"></a><span class="tm">18:13:39</span><span class="nk"> &lt;jglick&gt;</span> So mention of it should simply be deleted from the POM.
+<a name="l-66"></a><span class="tm">18:13:54</span><span class="nk"> &lt;danielbeck&gt;</span> probably, after investigating how this currently works
+<a name="l-67"></a><span class="tm">18:14:03</span><span class="nk"> &lt;jglick&gt;</span> a side topic anyway
+<a name="l-68"></a><span class="tm">18:14:11</span><span class="nk"> &lt;danielbeck&gt;</span> I don't think any changes here are important enough for a late change and we should just go ahead with what we have
+<a name="l-69"></a><span class="tm">18:14:19</span><span class="nk"> &lt;jglick&gt;</span> +1
+<a name="l-70"></a><span class="tm">18:14:27</span><span class="nk"> &lt;danielbeck&gt;</span> any further opinions?
+<a name="l-71"></a><span class="tm">18:14:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-72"></a><span class="tm">18:15:01</span><span class="nk"> &lt;ogondza&gt;</span> not from me
+<a name="l-73"></a><span class="tm">18:15:12</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll release 2.60.1 as is</span>
+<a name="l-74"></a><span class="tm">18:15:19</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to release 2.60.1</span>
+<a name="l-75"></a><span class="tm">18:15:28</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to finish up changelog and merge that</span>
+<a name="l-76"></a><span class="tm">18:15:52</span><span class="nk"> &lt;danielbeck&gt;</span> I think that's it for this release
+<a name="l-77"></a><span class="tm">18:16:09</span><span class="nk"> &lt;danielbeck&gt;</span> and this meeting, barring any further last-minute topics?
+<a name="l-78"></a><span class="tm">18:16:35</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-79"></a><span class="tm">18:16:50</span><span class="nk"> &lt;danielbeck&gt;</span> July 5 according to my calendar
+<a name="l-80"></a><span class="tm">18:17:09</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 14:43:10 Jan 15, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:10:44 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 90.935
+  exclusion.robots: 0.107
+  exclusion.robots.policy: 0.1
+  RedisCDXSource: 8.895
+  esindex: 0.01
+  LoadShardBlock: 60.303 (3)
+  PetaboxLoader3.datanode: 93.451 (4)
+  CDXLines.iter: 18.66 (3)
+  load_resource: 128.392
+  PetaboxLoader3.resolve: 67.969
+-->

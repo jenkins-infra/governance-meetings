@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app222.us.archive.org';v.server_ms=290;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-11-21-18.00.log.html","20211027221458","https://web.archive.org/","web","/_static/",
+	      "1635372898");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:14</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-4"></a><span class="tm">18:00:46</span><span class="nk"> &lt;kohsuke&gt;</span> danielbeck sent me his regret so I'm running this today. It's been a while!
+<a name="l-5"></a><span class="tm">18:00:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting actions</span>
+<a name="l-6"></a><span class="tm">18:01:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-11-07-18.00.html</span>
+<a name="l-7"></a><span class="tm">18:01:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> thanks for doing it
+<a name="l-8"></a><span class="tm">18:01:05</span><span class="nk"> &lt;kohsuke&gt;</span> Let's see
+<a name="l-9"></a><span class="tm">18:01:31</span><span class="nk"> &lt;kohsuke&gt;</span> two actions for Daniel I don't know much about
+<a name="l-10"></a><span class="tm">18:01:42</span><span class="nk"> &lt;kohsuke&gt;</span> My part of the action is done and I believe we now have WeChat account!!
+<a name="l-11"></a><span class="tm">18:01:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 3rd one was about the LTS RC
+<a name="l-12"></a><span class="tm">18:02:04</span><span class="nk"> &lt;kohsuke&gt;</span> I have a wechat account myself, so I should subscribe to that and see what it's like
+<a name="l-13"></a><span class="tm">18:02:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, WeChat links were also added to jenkins.io
+<a name="l-14"></a><span class="tm">18:02:13</span><span class="nk"> &lt;kohsuke&gt;</span> hats off to Rick for pushing this ball
+<a name="l-15"></a><span class="tm">18:02:26</span><span class="nk"> &lt;kohsuke&gt;</span> With that, I think we can move on to the next topic...
+<a name="l-16"></a><span class="tm">18:02:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-17"></a><span class="tm">18:02:50</span><span class="nk"> &lt;ogondza&gt;</span> right, Daniel saved the day last time
+<a name="l-18"></a><span class="tm">18:03:05</span><span class="nk"> &lt;ogondza&gt;</span> we are ready for 2.15.1
+<a name="l-19"></a><span class="tm">18:03:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-20"></a><span class="tm">18:03:21</span><span class="nk"> &lt;ogondza&gt;</span> the problematic firefox fix was reverted
+<a name="l-21"></a><span class="tm">18:03:32</span><span class="nk"> &lt;ogondza&gt;</span> I have just mailed the details to the dev list
+<a name="l-22"></a><span class="tm">18:03:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I tested it a bit... with Java11 . Works well anyway
+<a name="l-23"></a><span class="tm">18:03:43</span><span class="nk"> &lt;ogondza&gt;</span> splendid
+<a name="l-24"></a><span class="tm">18:03:49</span><span class="nk"> &lt;bitwiseman&gt;</span> Yay!
+<a name="l-25"></a><span class="tm">18:04:00</span><span class="nk"> &lt;kohsuke&gt;</span> Wait, 2.150.1 works with Java 11!?
+<a name="l-26"></a><span class="tm">18:04:05</span><span class="nk"> &lt;ogondza&gt;</span> unless there are objections, I will push the RC tomorrow UTC morning
+<a name="l-27"></a><span class="tm">18:04:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Yes
+<a name="l-28"></a><span class="tm">18:04:22</span><span class="nk"> &lt;kohsuke&gt;</span> That is... wow...
+<a name="l-29"></a><span class="tm">18:04:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I will do a short update later :)
+<a name="l-30"></a><span class="tm">18:04:54</span><span class="nk"> &lt;kohsuke&gt;</span> I feel like there should be some celebration of this effort
+<a name="l-31"></a><span class="tm">18:05:03</span><span class="nk"> &lt;kohsuke&gt;</span> "this effort" meaning Java 11 support
+<a name="l-32"></a><span class="tm">18:05:04</span><span class="nk"> &lt;ogondza&gt;</span> that is great, does it change anything for the LTS cycle? announcements, etc?
+<a name="l-33"></a><span class="tm">18:05:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Not yet
+<a name="l-34"></a><span class="tm">18:05:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I think we won't be announcing it till the next LTS baseline
+<a name="l-35"></a><span class="tm">18:05:26</span><span class="nk"> &lt;ogondza&gt;</span> alright, we can move on in that case
+<a name="l-36"></a><span class="tm">18:05:35</span><span class="nk"> &lt;ogondza&gt;</span> oh, ok
+<a name="l-37"></a><span class="tm">18:05:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> TBD
+<a name="l-38"></a><span class="tm">18:05:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> move on to the next topic, you mean?
+<a name="l-39"></a><span class="tm">18:05:49</span><span class="nk"> &lt;ogondza&gt;</span> yep
+<a name="l-40"></a><span class="tm">18:05:55</span><span class="nk"> &lt;kohsuke&gt;</span> Alright, let's do it
+<a name="l-41"></a><span class="tm">18:05:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC update</span>
+<a name="l-42"></a><span class="tm">18:06:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> OK, that's me
+<a name="l-43"></a><span class="tm">18:06:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">GSoC 2019 was announced. https://developers.google.com/open-source/gsoc/timeline</span>
+<a name="l-44"></a><span class="tm">18:06:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">We want to participate, and we are looking for mentors and project ideas. https://jenkins.io/projects/gsoc/proposing-project-ideas/</span>
+<a name="l-45"></a><span class="tm">18:07:18</span><span class="nk"> &lt;kohsuke&gt;</span> It almost feels like one just finished and the next one starts right off!
+<a name="l-46"></a><span class="tm">18:07:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> All the guidelines are under progress, but we have many things figured out already
+<a name="l-47"></a><span class="tm">18:07:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> GSoC never ends for org admins :)
+<a name="l-48"></a><span class="tm">18:07:49</span><span class="nk"> &lt;kohsuke&gt;</span> I see that now
+<a name="l-49"></a><span class="tm">18:08:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> This year we have 4 org admins so far. Shout out to Martin d'Anjou, Jeff Pearce and Lloyd Chang who joined the effort this year
+<a name="l-50"></a><span class="tm">18:08:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> One slot is vacant so far, so let us know if you are interested
+<a name="l-51"></a><span class="tm">18:08:36</span><span class="nk"> &lt;kohsuke&gt;</span> And you, oleg-nenashev, for your tireless effort
+<a name="l-52"></a><span class="tm">18:08:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But, we need project ideas
+<a name="l-53"></a><span class="tm">18:08:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks!
+<a name="l-54"></a><span class="tm">18:09:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Weekly meetings will happen at 2PM UTC on wednesdays. Starting from today, here are meeting notes: https://docs.google.com/document/d/1FARi55vDjsdzi6Nj9ZB9e1wh2dU8nyWK6mq_cge0ceg/edit?usp=sharing</span>
+<a name="l-55"></a><span class="tm">18:09:28</span><span class="nk"> &lt;kohsuke&gt;</span> Do you feel like you will get enough project ideas? Or are you looking for more ways to get project ideas?
+<a name="l-56"></a><span class="tm">18:09:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> We will be working a lot with SIGs and subprojects this year to get more project ideas and mentors
+<a name="l-57"></a><span class="tm">18:10:18</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-58"></a><span class="tm">18:10:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Our main takeaway from the previous year is to have more GSoC activities on the SIG level
+<a name="l-59"></a><span class="tm">18:10:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We already have ~10 project ideas, but I want to double it at least
+<a name="l-60"></a><span class="tm">18:11:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> contributor summits at DW-JW were really helpful
+<a name="l-61"></a><span class="tm">18:11:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, any questions so far?
+<a name="l-62"></a><span class="tm">18:11:22</span><span class="nk"> &lt;kohsuke&gt;</span> I was just wondering maybe there are ways to solicit "moon shot" projects from users
+<a name="l-63"></a><span class="tm">18:11:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, we will try to help to polish them
+<a name="l-64"></a><span class="tm">18:11:42</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe not exactly "moon shot" because something that's out of the box and developers are blinded to
+<a name="l-65"></a><span class="tm">18:11:53</span><span class="nk"> &lt;kohsuke&gt;</span> anyway
+<a name="l-66"></a><span class="tm">18:12:02</span><span class="nk"> &lt;kohsuke&gt;</span> Just my 2 cents
+<a name="l-67"></a><span class="tm">18:12:18</span><span class="nk"> &lt;kohsuke&gt;</span> s/because/but/
+<a name="l-68"></a><span class="tm">18:12:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> whatever idea about code, bring it on :) We will help to refactor it to a GSoC project idea
+<a name="l-69"></a><span class="tm">18:12:40</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else?
+<a name="l-70"></a><span class="tm">18:12:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also, there may be Google Season of Documentation this year. Stay tuned
+<a name="l-71"></a><span class="tm">18:13:01</span><span class="nk"> &lt;bitwiseman&gt;</span> Yeeeessss.
+<a name="l-72"></a><span class="tm">18:13:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nothing else from me
+<a name="l-73"></a><span class="tm">18:13:09</span><span class="nk"> &lt;kohsuke&gt;</span> GSoC, GSoD, ...
+<a name="l-74"></a><span class="tm">18:13:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also GCI and Outreachy
+<a name="l-75"></a><span class="tm">18:13:30</span><span class="nk"> &lt;kohsuke&gt;</span> All right, moving on..
+<a name="l-76"></a><span class="tm">18:13:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Next year is going to be busy :)
+<a name="l-77"></a><span class="tm">18:13:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Platform SIG update</span>
+<a name="l-78"></a><span class="tm">18:13:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> OK, that's me again
+<a name="l-79"></a><span class="tm">18:14:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">#info https://jenkins.io/sigs/platform/</span>
+<a name="l-80"></a><span class="tm">18:14:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">we have 3 ongoing projects now: Java 11, Windows installers revamp, and Multi-architecture Docker packaging</span>
+<a name="l-81"></a><span class="tm">18:15:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Status updates from Monday: https://docs.google.com/document/d/1FARi55vDjsdzi6Nj9ZB9e1wh2dU8nyWK6mq_cge0ceg/edit?usp=sharing</span>
+<a name="l-82"></a><span class="tm">18:15:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Windows Installers and Chocolatey distribution got great progress, thanks Slide-O-Mix !
+<a name="l-83"></a><span class="tm">18:16:28 </span><span class="nka">* kohsuke</span> <span class="ac">learns Windows now have a package manager</span>
+<a name="l-84"></a><span class="tm">18:16:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Same with Docker packaging, a lot of codebase has been integrated. So me may get Arm and s390 official images soon. Thanks to durgadas and jmreicha
+<a name="l-85"></a><span class="tm">18:16:51</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> several
+<a name="l-86"></a><span class="tm">18:16:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> too many actually
+<a name="l-87"></a><span class="tm">18:17:04</span><span class="nk"> &lt;kohsuke&gt;</span> I think I've used one of them back then
+<a name="l-88"></a><span class="tm">18:17:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">https://chocolatey.org/packages/jenkins</span>
+<a name="l-89"></a><span class="tm">18:17:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We still want to have it a part of the official distribution
+<a name="l-90"></a><span class="tm">18:17:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And we need help with the Jenkins Infra team.
+<a name="l-91"></a><span class="tm">18:18:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Actually, all 3 projects in Platform SIG would benefit from some kind of transparancy for what happens on Trusted CI
+<a name="l-92"></a><span class="tm">18:18:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> CC olblak ^
+<a name="l-93"></a><span class="tm">18:19:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> so the idea is that you want to those builds to be on trusted.ci.jenkins.io?
+<a name="l-94"></a><span class="tm">18:19:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have issues with updating the flows now, and it already caused issues. It would be great if we could find a way to somehow get read-only access there OR if we have a way to build a dev environment which would duplicate it
+<a name="l-95"></a><span class="tm">18:19:49</span><span class="nk"> &lt;kohsuke&gt;</span> I guess Chocolatey build
+<a name="l-96"></a><span class="tm">18:20:12</span><span class="nk"> &lt;kohsuke&gt;</span> trusted build is for ones that involve signing keys
+<a name="l-97"></a><span class="tm">18:20:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Chocolatey could be outside, but we need to automate/synchonize releases to make it official
+<a name="l-98"></a><span class="tm">18:20:31</span><span class="nk"> &lt;kohsuke&gt;</span> Are we trying to get Chocolatey package signed?
+<a name="l-99"></a><span class="tm">18:20:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nope
+<a name="l-100"></a><span class="tm">18:21:02</span><span class="nk"> &lt;kohsuke&gt;</span> ah, you know releases still happen on my computer today, and there's ongoing project to move it
+<a name="l-101"></a><span class="tm">18:21:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Trusted CI is the only instance which hosts credentials. For Chocolatey we could work it around by webhooks tho
+<a name="l-102"></a><span class="tm">18:21:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Docker releases happen on trusted.ci
+<a name="l-103"></a><span class="tm">18:21:34</span><span class="nk"> &lt;kohsuke&gt;</span> So maybe what you want is to integrate Chocolatey in jenkinsci/packaging?
+<a name="l-104"></a><span class="tm">18:21:35</span><span class="nk"> &lt;kohsuke&gt;</span> oh ok
+<a name="l-105"></a><span class="tm">18:21:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And hence Java 11 and multi-architecture JARs
+<a name="l-106"></a><span class="tm">18:22:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, I will probably reach out to olblak  and rtyler to discuss options
+<a name="l-107"></a><span class="tm">18:22:08</span><span class="nk"> &lt;kohsuke&gt;</span> sounds good
+<a name="l-108"></a><span class="tm">18:22:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to explore options to get Platform SIG access to trusted ci</span>
+<a name="l-109"></a><span class="tm">18:22:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Last but not lease, Java 11...
+<a name="l-110"></a><span class="tm">18:23:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Java 11 status slides from the Platform SIG meeting: https://docs.google.com/presentation/d/1lw4unaFhsQk7a8HzhxhgTK4X2X2ocv_W_VW7aoH2WkM/edit?usp=sharing</span>
+<a name="l-111"></a><span class="tm">18:23:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> writing summary
+<a name="l-112"></a><span class="tm">18:24:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">TL;DR: All  critical Jenkins  core patches were upstreamed, JEP-211 is ready to be accepted. We are waiting for the last feedback: https://github.com/jenkinsci/jep/tree/master/jep/211</span>
+<a name="l-113"></a><span class="tm">18:24:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And yes, Java 11 works on Jenkins 2.150.x, yey
+<a name="l-114"></a><span class="tm">18:24:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But we still have some blockers to resolve before announcing
+<a name="l-115"></a><span class="tm">18:25:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 1. Pipeline: Support patches need to be released somehow
+<a name="l-116"></a><span class="tm">18:25:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2. Test tools and test automation. We have JTH ready, good progress with PCT
+<a name="l-117"></a><span class="tm">18:26:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ATH is still TODO, but ogondza did some progress on it at the DW-JW Nice hackfest. We will have some follow-ups this week, I hope
+<a name="l-118"></a><span class="tm">18:26:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, if everything goes well, we will be able to announce preview availability in December
+<a name="l-119"></a><span class="tm">18:27:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And then, we have some follow-up things to do (like getting JAXB patches over the fence)
+<a name="l-120"></a><span class="tm">18:27:13</span><span class="nk"> &lt;kohsuke&gt;</span> Like I said, I think this one calls for a celebration
+<a name="l-121"></a><span class="tm">18:27:36</span><span class="nk"> &lt;kohsuke&gt;</span> If it's coming in Dec, I'm already picturing Santa Jenkins with "11" :-)
+<a name="l-122"></a><span class="tm">18:27:57</span><span class="nk"> &lt;kohsuke&gt;</span> Heck, I'd pay for T-shirts and send them to people you think we should thank
+<a name="l-123"></a><span class="tm">18:27:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Something to consider for sure :)
+<a name="l-124"></a><span class="tm">18:28:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We are working with alyssat_ and tracymiranda to get the events aligned
+<a name="l-125"></a><span class="tm">18:28:28</span><span class="nk"> &lt;kohsuke&gt;</span> Also a good opportunity to highlight participation from Oracle folks
+<a name="l-126"></a><span class="tm">18:28:39</span><span class="nk"> &lt;kohsuke&gt;</span> OK, sounds like you are way ahead of the game
+<a name="l-127"></a><span class="tm">18:28:48</span><span class="nk"> &lt;ogondza&gt;</span> w.r.t.12 EA testing, Last time I checked (Java 9) there was an early adopter program to highlight the offort as KK said
+<a name="l-128"></a><span class="tm">18:29:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we are a part of it
+<a name="l-129"></a><span class="tm">18:29:09</span><span class="nk"> &lt;kohsuke&gt;</span> That's great. Let me know if I can help -- I just don't want this to be a dry one line changelog entry
+<a name="l-130"></a><span class="tm">18:29:18</span><span class="nk"> &lt;ogondza&gt;</span> oh, good, good
+<a name="l-131"></a><span class="tm">18:29:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.openjdk.java.net/display/quality/Quality+Outreach</span>
+<a name="l-132"></a><span class="tm">18:29:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It won't be a changelog entry for sure
+<a name="l-133"></a><span class="tm">18:29:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe we can even run a FOSDEM launch party for LTS, let's see
+<a name="l-134"></a><span class="tm">18:30:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So far we are trying to get the test automation in place
+<a name="l-135"></a><span class="tm">18:30:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We know that there are regressions in some places
+<a name="l-136"></a><span class="tm">18:30:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So there will be maintenance &amp; Co
+<a name="l-137"></a><span class="tm">18:30:39</span><span class="nk"> &lt;kohsuke&gt;</span> There always are
+<a name="l-138"></a><span class="tm">18:30:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yup
+<a name="l-139"></a><span class="tm">18:30:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Surprise, Maven Integration Plugin works well
+<a name="l-140"></a><span class="tm">18:30:55</span><span class="nk"> &lt;tracymiranda&gt;</span> by FOSDEM will be time for Java 12 ;)
+<a name="l-141"></a><span class="tm">18:31:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> let's see
+<a name="l-142"></a><span class="tm">18:31:14</span><span class="nk"> &lt;bitwiseman&gt;</span> Java upgrades _and_ GSOC never end
+<a name="l-143"></a><span class="tm">18:31:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Quality Outreach pings us for reports periodically
+<a name="l-144"></a><span class="tm">18:31:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And it's something we need to keep in pmind
+<a name="l-145"></a><span class="tm">18:31:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Java 11 is a priority tho
+<a name="l-146"></a><span class="tm">18:32:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/blog/2018/06/17/running-jenkins-with-java10-11/ if you want to try it out</span>
+<a name="l-147"></a><span class="tm">18:32:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Needs a new post, I'd guess
+<a name="l-148"></a><span class="tm">18:32:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So... any questions? :) Or do we just celebrate in advance
+<a name="l-149"></a><span class="tm">18:32:32</span><span class="nk"> &lt;kohsuke&gt;</span> Yes :-)
+<a name="l-150"></a><span class="tm">18:32:57</span><span class="nk"> &lt;kohsuke&gt;</span> Alright, I guess then moving on ...
+<a name="l-151"></a><span class="tm">18:33:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Outreachy update</span>
+<a name="l-152"></a><span class="tm">18:33:25</span><span class="nk"> &lt;tracymiranda&gt;</span> So happy to announce we have 2 Outreachy interns confirmed!
+<a name="l-153"></a><span class="tm">18:33:31</span><span class="nk"> &lt;bitwiseman&gt;</span> Woot!
+<a name="l-154"></a><span class="tm">18:33:32</span><span class="nk"> &lt;tracymiranda&gt;</span> Latha Sekar and David Olorundare
+<a name="l-155"></a><span class="tm">18:33:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> congrats!
+<a name="l-156"></a><span class="tm">18:34:02</span><span class="nk"> &lt;tracymiranda&gt;</span> We had 2 very strong candidates both for audit logging
+<a name="l-157"></a><span class="tm">18:34:21</span><span class="nk"> &lt;tracymiranda&gt;</span> And had to sign up some co-mentors so outreachy were happy we could bear the load
+<a name="l-158"></a><span class="tm">18:34:46</span><span class="nk"> &lt;tracymiranda&gt;</span> So many thanks to Matt Sicker, Liam Newman, Mark Waite and Daniel Beck for taking on the mentoring  &amp; co mentoring
+<a name="l-159"></a><span class="tm">18:34:51</span><span class="nk"> &lt;kohsuke&gt;</span> Looks like this is their info: https://www.outreachy.org/alums/
+<a name="l-160"></a><span class="tm">18:35:09</span><span class="nk"> &lt;tracymiranda&gt;</span> Jenkins community is sponsoring one internship, the other is being funded from Outreachy general fund
+<a name="l-161"></a><span class="tm">18:35:33</span><span class="nk"> &lt;tracymiranda&gt;</span> An invoice will be forthcoming later in December
+<a name="l-162"></a><span class="tm">18:35:59</span><span class="nk"> &lt;tracymiranda&gt;</span> So far it is all working out beautifully, better than I could have hoped!
+<a name="l-163"></a><span class="tm">18:37:14</span><span class="nk"> &lt;tracymiranda&gt;</span> Coding begins 4th Dec
+<a name="l-164"></a><span class="tm">18:37:25</span><span class="nk"> &lt;tracymiranda&gt;</span> Well internship begins then
+<a name="l-165"></a><span class="tm">18:37:34</span><span class="nk"> &lt;tracymiranda&gt;</span> That's the update
+<a name="l-166"></a><span class="tm">18:37:41</span><span class="nk"> &lt;kohsuke&gt;</span> great
+<a name="l-167"></a><span class="tm">18:38:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thumbs up
+<a name="l-168"></a><span class="tm">18:38:24</span><span class="nk"> &lt;kohsuke&gt;</span> I suggest you consider a blog post introducing those two people
+<a name="l-169"></a><span class="tm">18:38:41</span><span class="nk"> &lt;tracymiranda&gt;</span> good idea!
+<a name="l-170"></a><span class="tm">18:38:46</span><span class="nk"> &lt;kohsuke&gt;</span> It looks like we haven't talked about Outreachy on jenkins.io
+<a name="l-171"></a><span class="tm">18:38:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we did actually
+<a name="l-172"></a><span class="tm">18:39:07</span><span class="nk"> &lt;kohsuke&gt;</span> OK, that's great.
+<a name="l-173"></a><span class="tm">18:39:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> there is an open AI on tracymiranda and me to discuss how we arrange all these activities
+<a name="l-174"></a><span class="tm">18:39:36</span><span class="nk"> &lt;tracymiranda&gt;</span> will be good to do a nice introduction post, esp so folks in the community get to know them
+<a name="l-175"></a><span class="tm">18:39:57</span><span class="nk"> &lt;kohsuke&gt;</span> With GSoC and Outreachy we can point out how we are better at working with new people, and if folks are interested in learning/joining, they don't necessarily have to wait for a program
+<a name="l-176"></a><span class="tm">18:40:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Are they working in the core part?
+<a name="l-177"></a><span class="tm">18:40:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> blog post would be great
+<a name="l-178"></a><span class="tm">18:40:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Would be nice if we could also map it to a SIG somehow
+<a name="l-179"></a><span class="tm">18:41:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> so that there is a number of involved stakeholders
+<a name="l-180"></a><span class="tm">18:42:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe just Security SIG? especially if Daniel is open to run public events for security hardening and management topics
+<a name="l-181"></a><span class="tm">18:43:31 </span><span class="nka">* oleg-nenashev</span> <span class="ac">apologies for an offtopic</span>
+<a name="l-182"></a><span class="tm">18:43:43</span><span class="nk"> &lt;bitwiseman&gt;</span> Maybe and Advocacy SIG.
+<a name="l-183"></a><span class="tm">18:43:53</span><span class="nk"> &lt;kohsuke&gt;</span> I wonder if GSoC SIG should morph into the onboarding/outreach SIG
+<a name="l-184"></a><span class="tm">18:44:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we were discussing it in summer
+<a name="l-185"></a><span class="tm">18:44:19</span><span class="nk"> &lt;tracymiranda&gt;</span> yeah, have it include Outreachy, hacktoberfest, etc
+<a name="l-186"></a><span class="tm">18:44:31</span><span class="nk"> &lt;kohsuke&gt;</span> IIUC oleg-nenashev  your picture is that these new people need some cocoon and a "place" to be productive
+<a name="l-187"></a><span class="tm">18:44:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am +1 for that, but other org admins were against at this point
+<a name="l-188"></a><span class="tm">18:45:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Not exactly a cocoon. But a place where community bonding happens
+<a name="l-189"></a><span class="tm">18:45:10</span><span class="nk"> &lt;bitwiseman&gt;</span> I'm +1.
+<a name="l-190"></a><span class="tm">18:45:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So it's not just them and mentors
+<a name="l-191"></a><span class="tm">18:45:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Personally I am fine with Outreach SIG
+<a name="l-192"></a><span class="tm">18:46:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> see my "Community Development SIG" proposal somewhere in the mailing lists
+<a name="l-193"></a><span class="tm">18:46:07</span><span class="nk"> &lt;kohsuke&gt;</span> Right, I don't mean cocoon as the wall to shut off others, it's the home base for new people
+<a name="l-194"></a><span class="tm">18:46:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep, it would be nice if we could start it
+<a name="l-195"></a><span class="tm">18:46:34</span><span class="nk"> &lt;bitwiseman&gt;</span> Let's pick up the topic again on the ML or gitter.
+<a name="l-196"></a><span class="tm">18:46:37</span><span class="nk"> &lt;tracymiranda&gt;</span> I'd like to understand objections for org admins
+<a name="l-197"></a><span class="tm">18:46:50</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway, sounds like you've already thought and talked about it, so I'm happy to let it sit and cook for a while
+<a name="l-198"></a><span class="tm">18:47:07</span><span class="nk"> &lt;kohsuke&gt;</span> +1 to what bitwiseman said
+<a name="l-199"></a><span class="tm">18:47:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">tracymiranda:</span> bandwidth. GSoC requires a lot of time on its own and they cannot participate much in other activities
+<a name="l-200"></a><span class="tm">18:47:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But we can have an umbrella SIG
+<a name="l-201"></a><span class="tm">18:48:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> E.g. JCasC is formally a part of Cloud Native SIG, but it runs on its own with some overlaps
+<a name="l-202"></a><span class="tm">18:48:16</span><span class="nk"> &lt;tracymiranda&gt;</span> ok, good to know.
+<a name="l-203"></a><span class="tm">18:48:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So I do not think it's impossible
+<a name="l-204"></a><span class="tm">18:48:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Let's take it to the ML again
+<a name="l-205"></a><span class="tm">18:48:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to restart the discussion of the Outreach / Community Development SIG</span>
+<a name="l-206"></a><span class="tm">18:49:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks for bringing it up kohsuke  and tracymiranda !
+<a name="l-207"></a><span class="tm">18:49:26</span><span class="nk"> &lt;kohsuke&gt;</span> all right, anything else?
+<a name="l-208"></a><span class="tm">18:49:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-209"></a><span class="tm">18:50:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting is Dec 5th the usual time</span>
+<a name="l-210"></a><span class="tm">18:50:26</span><span class="nk"> &lt;tracymiranda&gt;</span> great, thanks all!
+<a name="l-211"></a><span class="tm">18:50:31</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks everyone, see you then. Have a happy Thanksgiving
+<a name="l-212"></a><span class="tm">18:50:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Or happy Hacksgiving ;)
+<a name="l-213"></a><span class="tm">18:50:49</span><span class="nk"> &lt;kohsuke&gt;</span> Or enjoy your work if you don't observe that!
+<a name="l-214"></a><span class="tm">18:50:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:14:58 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:07:48 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 172.324
+  exclusion.robots: 0.134
+  exclusion.robots.policy: 0.121
+  RedisCDXSource: 3.521
+  esindex: 0.012
+  LoadShardBlock: 145.376 (3)
+  PetaboxLoader3.datanode: 183.488 (4)
+  CDXLines.iter: 19.361 (3)
+  load_resource: 100.428
+  PetaboxLoader3.resolve: 50.68
+-->

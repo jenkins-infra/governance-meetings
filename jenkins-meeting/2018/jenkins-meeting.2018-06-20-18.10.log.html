@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app228.us.archive.org';v.server_ms=184;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-06-20-18.10.log.html","20211027231937","https://web.archive.org/","web","/_static/",
+	      "1635376777");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:10:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:10:39</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:10:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thumbs up
+<a name="l-4"></a><span class="tm">18:10:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler  danielbeck</span>
+<a name="l-5"></a><span class="tm">18:10:57</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:11:02</span><span class="nk"> &lt;kohsuke&gt;</span> not that they are here, but hey
+<a name="l-7"></a><span class="tm">18:11:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-8"></a><span class="tm">18:11:18</span><span class="nk"> &lt;ewel&gt;</span> I don’t know how it works but I guess my topic is he only one in the agenda?
+<a name="l-9"></a><span class="tm">18:11:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ewel:</span> I suspect so given the attendance, but I'll go through the motion for the rest of the agenda
+<a name="l-10"></a><span class="tm">18:11:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nope
+<a name="l-11"></a><span class="tm">18:11:37</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-12"></a><span class="tm">18:11:43</span><span class="nk"> &lt;ewel&gt;</span> Sure
+<a name="l-13"></a><span class="tm">18:12:01</span><span class="nk"> &lt;kohsuke&gt;</span> Let's see, where are the action items...
+<a name="l-14"></a><span class="tm">18:12:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Emm... I have submitted the agenda patches
+<a name="l-15"></a><span class="tm">18:12:26</span><span class="nk"> &lt;ogondza&gt;</span> http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-06-06-18.00.html
+<a name="l-16"></a><span class="tm">18:12:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Catnfluence ate my update again :)
+<a name="l-17"></a><span class="tm">18:12:42</span><span class="nk"> &lt;ogondza&gt;</span> 1-3 are done
+<a name="l-18"></a><span class="tm">18:13:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> the rest of AI seems to be yours
+<a name="l-19"></a><span class="tm">18:13:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> My action items are done
+<a name="l-20"></a><span class="tm">18:13:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We had GSoC demos, still need to blogpost them
+<a name="l-21"></a><span class="tm">18:13:37</span><span class="nk"> &lt;kohsuke&gt;</span> Yay, all action items done from the last week, that's unusual!
+<a name="l-22"></a><span class="tm">18:13:43</span><span class="nk"> &lt;kohsuke&gt;</span> Then let's move on...
+<a name="l-23"></a><span class="tm">18:13:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-24"></a><span class="tm">18:14:09</span><span class="nk"> &lt;ogondza&gt;</span> I have announced backporting done earlier today
+<a name="l-25"></a><span class="tm">18:14:22</span><span class="nk"> &lt;ogondza&gt;</span> some things postponed, lot fixed added
+<a name="l-26"></a><span class="tm">18:14:47</span><span class="nk"> &lt;ogondza&gt;</span> I will push the RC in ~14 hours unless I hear I should not
+<a name="l-27"></a><span class="tm">18:14:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> some rejected. My only concern is a fix for JNLP Launcher compatibility
+<a name="l-28"></a><span class="tm">18:15:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Unfortunately we do not have ndeloof here, but we have ewel at the meeting
+<a name="l-29"></a><span class="tm">18:15:47</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> are you confident in backporting both the parts? IIRC the fixup was too new at the beginning of the window
+<a name="l-30"></a><span class="tm">18:15:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/browse/JENKINS-51603</span>
+<a name="l-31"></a><span class="tm">18:16:28</span><span class="nk"> &lt;ogondza&gt;</span> I see the amendment is formerly soaked by now...
+<a name="l-32"></a><span class="tm">18:16:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">ogondza:</span> I am not comfortable about the second part at all
+<a name="l-33"></a><span class="tm">18:16:41</span><span class="nk"> &lt;ewel&gt;</span> I can’t really comment on that, I’m actually on vacation and walking now :| sorry, I thought it will be only about the use of Jenkins name :(
+<a name="l-34"></a><span class="tm">18:16:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But https://github.com/jenkinsci/jenkins/pull/3463 seems to be safe enough - no API changes
+<a name="l-35"></a><span class="tm">18:17:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I can live without it though
+<a name="l-36"></a><span class="tm">18:17:23</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> I see it is flagged as minor so as long as that is adequate so suggest to wait for 03
+<a name="l-37"></a><span class="tm">18:17:28</span><span class="nk"> &lt;ogondza&gt;</span> .3, I mean
+<a name="l-38"></a><span class="tm">18:17:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I doubt there will be so many people doing 2.60.x =&gt; 2.121.x migration with JCasC
+<a name="l-39"></a><span class="tm">18:17:51</span><span class="nk"> &lt;ogondza&gt;</span> yeah, .3 it is
+<a name="l-40"></a><span class="tm">18:17:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ok
+<a name="l-41"></a><span class="tm">18:18:05</span><span class="nk"> &lt;ogondza&gt;</span> anyway, that is all from me
+<a name="l-42"></a><span class="tm">18:18:39</span><span class="nk"> &lt;kohsuke&gt;</span> OK, shall we move on?
+<a name="l-43"></a><span class="tm">18:18:53</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to push the RC</span>
+<a name="l-44"></a><span class="tm">18:18:58</span><span class="nk"> &lt;ogondza&gt;</span> yes, now we can
+<a name="l-45"></a><span class="tm">18:19:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark Sublicensing Request: Day of Jenkins [as code]</span>
+<a name="l-46"></a><span class="tm">18:19:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/bmd6ooZZ7wI</span>
+<a name="l-47"></a><span class="tm">18:19:28</span><span class="nk"> &lt;kohsuke&gt;</span> There are a bunch of +1s in that thread
+<a name="l-48"></a><span class="tm">18:19:42</span><span class="nk"> &lt;kohsuke&gt;</span> And here's my +1 as well
+<a name="l-49"></a><span class="tm">18:20:08</span><span class="nk"> &lt;kohsuke&gt;</span> Anything more to add ewel?
+<a name="l-50"></a><span class="tm">18:20:23</span><span class="nk"> &lt;ewel&gt;</span> If there is a need to convince anyone?
+<a name="l-51"></a><span class="tm">18:20:40</span><span class="nk"> &lt;ewel&gt;</span> We just want to highlight it will be focused on “as code”
+<a name="l-52"></a><span class="tm">18:20:49</span><span class="nk"> &lt;ogondza&gt;</span> +1 from me, too
+<a name="l-53"></a><span class="tm">18:20:49</span><span class="nk"> &lt;ewel&gt;</span> Thought it’s a good idea
+<a name="l-54"></a><span class="tm">18:20:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, does anybody has any concerns?
+<a name="l-55"></a><span class="tm">18:21:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 from me
+<a name="l-56"></a><span class="tm">18:21:08</span><span class="nk"> &lt;kohsuke&gt;</span> Going once ...
+<a name="l-57"></a><span class="tm">18:21:24</span><span class="nk"> &lt;kohsuke&gt;</span> Going twice...
+<a name="l-58"></a><span class="tm">18:21:39</span><span class="nk"> &lt;kohsuke&gt;</span> Given that it's been approved in the past I think it's a no brainer
+<a name="l-59"></a><span class="tm">18:21:43</span><span class="nk"> &lt;kohsuke&gt;</span> GONE!
+<a name="l-60"></a><span class="tm">18:21:48</span><span class="nk"> &lt;ewel&gt;</span> Thanks!
+<a name="l-61"></a><span class="tm">18:21:55</span><span class="nk"> &lt;ewel&gt;</span> Hope to see some of you there :)
+<a name="l-62"></a><span class="tm">18:22:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> When do you start CFP?
+<a name="l-63"></a><span class="tm">18:22:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">trademark sublicense request approved for "Day of Jenkins [as code ]"</span>
+<a name="l-64"></a><span class="tm">18:22:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ewel:</span> looking forward to the event
+<a name="l-65"></a><span class="tm">18:22:42</span><span class="nk"> &lt;ewel&gt;</span> I’ll let Jasmine to start communicating details in a minute
+<a name="l-66"></a><span class="tm">18:22:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> We also need an action for somebody to update Trademark Wiki Page
+<a name="l-67"></a><span class="tm">18:23:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage</span>
+<a name="l-68"></a><span class="tm">18:23:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> ack
+<a name="l-69"></a><span class="tm">18:23:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It's restricted, not sure who has permissions nowadays
+<a name="l-70"></a><span class="tm">18:23:33</span><span class="nk"> &lt;kohsuke&gt;</span> Why don't we let you do GSoC update and I'll get to it while you are doing that
+<a name="l-71"></a><span class="tm">18:23:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> fine with me
+<a name="l-72"></a><span class="tm">18:23:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC status check</span>
+<a name="l-73"></a><span class="tm">18:24:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">So, we have 3 GSoC projects. All students passed the first evaluation</span>
+<a name="l-74"></a><span class="tm">18:24:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also, all of them created blogposts about their projects
+<a name="l-75"></a><span class="tm">18:25:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/blog/2018/06/13/code-coverage-api-plugin/</span>
+<a name="l-76"></a><span class="tm">18:25:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/blog/2018/06/15/simple-pull-request-plugin/</span>
+<a name="l-77"></a><span class="tm">18:25:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/blog/2018/06/18/remoting-over-message-bus/</span>
+<a name="l-78"></a><span class="tm">18:25:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Next steps are just coding
+<a name="l-79"></a><span class="tm">18:25:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">If you want to see demos, see the blogposts. They have links to the recording we had last Thursday</span>
+<a name="l-80"></a><span class="tm">18:26:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Next phase presentations will be a Jenkins Online Meetup
+<a name="l-81"></a><span class="tm">18:26:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So... this is an update. Any questions? :)
+<a name="l-82"></a><span class="tm">18:27:12</span><span class="nk"> &lt;kohsuke&gt;</span> I popped into the meeting earlier in Hangout and it looks like something good is cooking, so :thumbup:
+<a name="l-83"></a><span class="tm">18:27:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to sync-up with the Jenkins Board about budgets for JW sponsorships, etc.</span>
+<a name="l-84"></a><span class="tm">18:27:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> work in progress
+<a name="l-85"></a><span class="tm">18:28:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But yeah, all projects achieved really good results
+<a name="l-86"></a><span class="tm">18:28:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> If there is no questions, we can move on
+<a name="l-87"></a><span class="tm">18:28:33</span><span class="nk"> &lt;kohsuke&gt;</span> All right
+<a name="l-88"></a><span class="tm">18:28:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Update: Jenkins &amp; Java 10 Online Hackathon</span>
+<a name="l-89"></a><span class="tm">18:29:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Not sure how many people we have here
+<a name="l-90"></a><span class="tm">18:29:50</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah we can't skip
+<a name="l-91"></a><span class="tm">18:29:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">So, we have got Jenkins Pipeline running. So all crucial Jenkins bits seem to work well now. There is ongoing work on tooling. https://jenkins.io/blog/2018/06/19/jenkins-java10-hackathon-day2/</span>
+<a name="l-92"></a><span class="tm">18:30:09</span><span class="nk"> &lt;kohsuke&gt;</span> I mean we "can"
+<a name="l-93"></a><span class="tm">18:30:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yup
+<a name="l-94"></a><span class="tm">18:30:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">if anybody wants to try Jenkins on Java 10/11, see https://jenkins.io/blog/2018/06/17/running-jenkins-with-java10-11/</span>
+<a name="l-95"></a><span class="tm">18:30:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I'd guess that's it
+<a name="l-96"></a><span class="tm">18:31:00</span><span class="nk"> &lt;kohsuke&gt;</span> All right
+<a name="l-97"></a><span class="tm">18:31:07</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else?
+<a name="l-98"></a><span class="tm">18:31:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Next meeting time?
+<a name="l-99"></a><span class="tm">18:31:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have July 4th in 2 weeks
+<a name="l-100"></a><span class="tm">18:31:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-101"></a><span class="tm">18:31:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">July 4th, happy independence day!</span>
+<a name="l-102"></a><span class="tm">18:31:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:19:37 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:06:19 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 73.694
+  exclusion.robots: 0.222
+  exclusion.robots.policy: 0.207
+  RedisCDXSource: 1.481
+  esindex: 0.012
+  LoadShardBlock: 48.241 (3)
+  PetaboxLoader3.datanode: 75.296 (4)
+  CDXLines.iter: 19.925 (3)
+  load_resource: 100.188
+  PetaboxLoader3.resolve: 49.409
+-->

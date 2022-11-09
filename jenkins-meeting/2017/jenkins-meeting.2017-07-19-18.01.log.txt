@@ -1,0 +1,154 @@
+18:01:03 <rtyler> #startmeeting
+18:01:03 <robobutler> Let the Jenkins meeting commence!
+18:01:11 <rtyler> #chair danielbeck kohsuke hare_brain
+18:01:11 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:01:15 <oleg-nenashev> hi all
+18:01:19 <rtyler> #topic Last meeting actions
+18:01:23 <kohsuke> hello
+18:01:35 <rtyler> there really weren't any, just ogondza pushing the LTS RC
+18:01:41 <rtyler> which I'm pretty sure I saw that he did
+18:01:53 <rtyler> of course my days blur together a bit
+18:02:14 * rtyler taps foot
+18:02:16 <rtyler> alright moving on
+18:02:24 <rtyler> #topic LTS status check
+18:02:32 <rtyler> without ogondza, not sure what we can really discuss here
+18:02:57 <oleg-nenashev> dunno
+18:03:16 <kohsuke> we can all just close eyes and meditate for 15 secs for world peace
+18:03:24 <oleg-nenashev> I tested it a bit, does not qualify as RC testing though
+18:03:59 <oleg-nenashev> Not sure if we can release without +1 from Oliver
+18:04:23 <oleg-nenashev> Is anybody waiting for the release?
+18:04:49 <rtyler> while we're meditating, i'll brb
+18:06:00 <oleg-nenashev> Asked my colleagues just in case
+18:06:34 <oleg-nenashev> ogondza: o/
+18:06:51 <ogondza> sorry, have we started already?
+18:06:53 <oleg-nenashev> We're actually at the "LTS Status check" topic
+18:07:00 <ogondza> sorry, stale connection
+18:07:00 <oleg-nenashev> So the floor is yours
+18:07:19 <ogondza> the testing looks good
+18:07:26 <ogondza> I have heard no complains
+18:07:38 <oleg-nenashev> I have discovered no issues on my test instance
+18:07:44 <ogondza> oleg-nenashev: cool
+18:07:53 <oleg-nenashev> ship it?
+18:08:00 <ogondza> in that case, I thing we are ready to, well, ship it
+18:08:13 <ogondza> think, I mean
+18:08:32 <ogondza> BTW, we have a pail of new tests contributed by students and no new ATH failures
+18:08:41 <ogondza> ATH tests
+18:09:01 <kohsuke> Yay
+18:09:05 <kohsuke> So a release is good to go, right?
+18:09:07 <ogondza> #action kohsuke, please release 2.60.2
+18:09:14 <ogondza> yes, sir
+18:09:15 <kohsuke> aye aye captain
+18:09:27 <rtyler> yey
+18:09:27 <kohsuke> Then let's move on...
+18:09:41 <rtyler> #topic Deprecate "jenkins" official docker image (that we don't control) and "jenkinsci/*" and start deploying our own stuff under "jenkins/*"
+18:09:50 <rtyler> this is ndeloof's topic, want to introduce it ndeloof ?
+18:09:55 <ndeloof> right
+18:10:01 <ndeloof> so we have "jenkins" official image
+18:10:06 <ndeloof> we don't control this
+18:10:17 <rtyler> #info http://hub.docker.com/_/jenkins
+18:10:20 <ndeloof> need a manual validation (PR) on docker's repository
+18:10:32 <oleg-nenashev> +1 for doing it
+18:10:43 <ndeloof> so, can't guarantee LTS release delay in case of 0-day security issue (worst scenario)
+18:10:56 <ndeloof> docker used to be reactive, anyway we don't like this, do we ?
+18:11:10 <rtyler> that situation isn't a hypothetical
+18:11:16 <oleg-nenashev> yeah
+18:11:17 <kohsuke> Does this require some  release process updates? IOW, docker image creation should be a part of the release process just like deb,rpm,etc, right?
+18:11:20 <ndeloof> we also publish under jenkinsci/* various images, including weekly and LTS
+18:11:24 <rtyler> it has happened with every major core security release over the 6-9 months that I havfef watched
+18:11:34 <rtyler> kohsuke: it already is
+18:11:39 <kohsuke> oh ok
+18:11:42 <kohsuke> great
+18:11:50 <rtyler> kohsuke: but the "official" docker image MUST have a manual pull request to a repository owned by Docker, Inc.
+18:11:56 <ndeloof> yes indeed
+18:11:57 <kohsuke> Yes, that part I know
+18:12:02 <oleg-nenashev> I think we need to just get rid of the Docker's one. They can set an alias
+18:12:06 <ndeloof> so we publish under jenkinsci/* registry
+18:12:18 <ndeloof> they can't. I've asked for it
+18:12:27 <ndeloof> they plan to implement this "some time"
+18:12:34 <rtyler> heh
+18:12:47 <ndeloof> about official image we can DEPRECATE it
+18:12:51 <ndeloof> elastic did as well
+18:13:03 <kohsuke> Is the docker hub access problem for the infra team solved?
+18:13:08 <ndeloof> but as part of this dicussion, I also suggest we move to "jenkins" registry
+18:13:20 <ndeloof> just like we moved from jenkins-ci.org to jenkins.io
+18:13:27 <rtyler> ndeloof: there is no way we can automatically redirect users from jenkinsci/jenkins to jenkins/jenkins is there?
+18:13:33 <ndeloof> we can move from jenkinsci/* to jenkins/*
+18:13:50 <ndeloof> no there's no official way
+18:14:01 <ndeloof> they have a prototype for it they plan to experiment on "some" images
+18:14:09 <ndeloof> I can ask we become such beta testers
+18:14:10 <rtyler> "some time" :P
+18:14:15 <rtyler> I don't want to be a beta tester
+18:14:26 <rtyler> this is a critical core distribution path
+18:14:31 <ndeloof> we can publish on both for some time
+18:14:36 * rtyler nods
+18:14:40 <ndeloof> we probably should do the same for official one
+18:14:44 <oleg-nenashev> Works for me
+18:14:51 <ndeloof> and include a deprecation message, both in description and entrypoint script
+18:15:00 <oleg-nenashev> I will also create jenkins/agent-base and jenkins/jnlp-agent then
+18:15:11 <kohsuke> Do we own the 'jenkins' org in Docker Hub?
+18:15:13 <rtyler> ndeloof: I think we should publish to both, we can start to advertise the jenkins/jenkins on jenkins.io and then when Docker fixes "rename" or "move" we can get rid of jenkinsci/jenkins
+18:15:15 <ndeloof> they already exists. Those are automated builds
+18:15:30 <ndeloof> we own it
+18:15:37 <ndeloof> at least I do, jenkinsadmin, rtyler
+18:15:51 <ndeloof> it was reserved, I've asked for it
+18:16:10 <rtyler> I have access to both, yes
+18:16:53 <ndeloof> I've setup automated builds for slaves/ssh-slaves and jnlp-slaves docker images from github
+18:17:05 <rtyler> my primary requirement is that users accessing/relying on jenkinsci/jenkins don't have their updates disrupted, so for me, we wouldn't be able to shutdown jenkinsci/jenkins until Docker Hub supports a "rename" or "redirect" type feature
+18:17:28 <rtyler> (one key user for jenkinsci/jenkins is ci.jenkins.io :))
+18:17:32 <ndeloof> this issue already exists for people using official image. There's tons of them
+18:17:47 <rtyler> but I also agree we should update the README with a "Deprecation" notice, but continue supporting it "best effort"
+18:18:04 <ndeloof> we can push on both, this is just about scripting
+18:18:10 <ndeloof> I also suggest we sign our images
+18:18:32 <rtyler> that's a separate issue
+18:18:40 <rtyler> let's focus on the topic at hand
+18:18:43 <ndeloof> ok
+18:18:50 <rtyler> are there any objections to making a deprecation notice on the "jenkins" official image?
+18:19:19 * rtyler starts his stop watch
+18:20:03 <kohsuke> no
+18:20:07 <rtyler> going once
+18:20:10 <oleg-nenashev> fine for me
+18:20:19 <ndeloof> for info : https://github.com/docker-library/docs/pull/948
+18:20:29 <rtyler> #agreed no objections to noting the "jenkins" official image as deprecated
+18:20:45 <ndeloof> they just ask we push 2.60.x and document no further update will be released here
+18:21:03 <rtyler> honestly, I don't think that's good enough, I think we should still keep it updated for some time
+18:21:09 <rtyler> we'll need to write a blog post about this too
+18:21:32 <rtyler> #action rtyler to work with ndeloof on communicating the deprecation of the "jenkins" image
+18:21:38 <ndeloof> I suggest we also include a warning notice in the entrypoint script
+18:21:53 <ndeloof> but let's discuss this later
+18:21:56 * rtyler nods
+18:22:20 <rtyler> are there any objections to double-publishing key images to jenkinsci/ and jenkins/ ?
+18:23:07 <rtyler> beep boop beep boop
+18:23:19 <kohsuke> no
+18:23:36 <ndeloof> maybe we should push a "ci.org" image to "jenkins" registry, just for the joke ?
+18:23:37 <oleg-nenashev> +1
+18:23:38 <rtyler> ndeloof: would you be okay with raising this topic again in 6 months and perhaps Docker Hub will support "moves" or "redirects" at that point and we could then deprecate jenkinsci
+18:23:43 <rtyler> ?
+18:23:52 <ndeloof> works for me
+18:23:56 <oleg-nenashev> +1 was for double-pushing
+18:24:00 <ndeloof> I'll ask them for schedule
+18:24:05 <ndeloof> at least I know who to ask now
+18:24:09 <rtyler> #agreed we will start double-publishing key images for jenkinsci/ and jenkins/ orgs on dockerhub
+18:24:30 <oleg-nenashev> rtyler ndeloof: Can I get access to jenkins org to setup Agent images?
+18:24:31 <rtyler> #action ndeloof to raise the topic of moving/deprecating the jenkinsci org on DockerHub in 6 months or so
+18:24:44 <rtyler> oleg-nenashev: i'll handle that after the meeting :)
+18:24:50 <oleg-nenashev> ty
+18:24:59 <ndeloof> they're already setup
+18:25:03 <ndeloof> as automated builds
+18:25:07 <rtyler> ndeloof: do you think this is enough house-keeping on our docker images for today? or are there other aspects we should discuss?
+18:25:12 <ndeloof> https://hub.docker.com/r/jenkins/jnlp-slave/
+18:25:20 <ndeloof> https://hub.docker.com/r/jenkins/ssh-slave/
+18:25:23 <oleg-nenashev> ndeloof: "slave" must die
+18:25:37 <ndeloof> ok. Then let's rename
+18:25:38 <rtyler> #action rtyler to map all ther existing jenkinsci users over to the jenkins org
+18:25:44 <oleg-nenashev> So I want to change them and deprecate  the old ones
+18:25:56 <rtyler> anything else for this topic today ndeloof?
+18:26:02 <ndeloof> looks good to me
+18:26:10 <rtyler> we can continue to discuss the things we need to do afterward in #jenkins
+18:26:22 <rtyler> great, thanks for bringing this topic up ndeloof
+18:26:23 <ndeloof> right
+18:26:41 <rtyler> that looks like it for today, so...
+18:26:43 <rtyler> #topic Next meeting
+18:26:51 <ndeloof> have to leave for dinner with wife's familly, thanks folks
+18:27:06 <rtyler> my calendar says August 2nd I don't think there are any major holidays then
+18:27:30 <rtyler> #info Next meeting August 2nd, 18:00 UTC
+18:27:32 <rtyler> #endmeeting

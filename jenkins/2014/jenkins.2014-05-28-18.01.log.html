@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app220.us.archive.org';v.server_ms=520;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-05-28-18.01.log.html","20200508070708","https://web.archive.org/","web","/_static/",
+	      "1588921628");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:10</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-4"></a><span class="tm">18:02:10</span><span class="nk"> &lt;lisa_&gt;</span> Can we add JUC as a standing item to agenda till after JUC?
+<a name="l-5"></a><span class="tm">18:02:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">3D model of Mr.Jenkins</span>
+<a name="l-6"></a><span class="tm">18:02:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">lisa_:</span> sure, my apologies not putting up agenda until late
+<a name="l-7"></a><span class="tm">18:02:38</span><span class="nk"> &lt;kohsuke&gt;</span> but feel free to add on
+<a name="l-8"></a><span class="tm">18:02:39</span><span class="nk"> &lt;kohsuke&gt;</span> one
+<a name="l-9"></a><span class="tm">18:03:53</span><span class="nk"> &lt;kohsuke&gt;</span> CloudBees have produced a bobble-head of Mr.Jenkins as a give away, and it has been very popular
+<a name="l-10"></a><span class="tm">18:04:30</span><span class="nk"> &lt;lisa_&gt;</span> <span class="hi">kohsuke:</span> added JUC to agenda, thanks!
+<a name="l-11"></a><span class="tm">18:04:41</span><span class="nk"> &lt;kohsuke&gt;</span> And someone suggested me that we should have a 3D model of Mr.Jenkins
+<a name="l-12"></a><span class="tm">18:04:55</span><span class="nk"> &lt;kohsuke&gt;</span> ... so that people can print those, or make some additional derivative works
+<a name="l-13"></a><span class="tm">18:05:21</span><span class="nk"> &lt;kohsuke&gt;</span> ... and I could even conceivably assemble that as a LEGO model
+<a name="l-14"></a><span class="tm">18:05:36</span><span class="nk"> &lt;kohsuke&gt;</span> So I started talking to a designer in Japan
+<a name="l-15"></a><span class="tm">18:05:37</span><span class="nk"> &lt;kohsuke&gt;</span> http://www.fast-d.com/search/engineers/2798?locale=en#.U4YkzHWx1FQ
+<a name="l-16"></a><span class="tm">18:06:15</span><span class="nk"> &lt;kohsuke&gt;</span> and got the work under way for about $300
+<a name="l-17"></a><span class="tm">18:06:44</span><span class="nk"> &lt;kohsuke&gt;</span> As per the license of the original logo, the resulting data will be in CC-BY-SA
+<a name="l-18"></a><span class="tm">18:07:01</span><span class="nk"> &lt;kohsuke&gt;</span> Now, my question is, is this a legitimate use of the project money?
+<a name="l-19"></a><span class="tm">18:07:39</span><span class="nk"> &lt;kohsuke&gt;</span> Failing that, I also thought about perhaps this could be my first kickstarter project
+<a name="l-20"></a><span class="tm">18:08:11</span><span class="nk"> &lt;happytux&gt;</span> hi
+<a name="l-21"></a><span class="tm">18:08:16</span><span class="nk"> &lt;happytux&gt;</span> So one pushes a feature branch to the ci repository, the ci builds it, tests it and when everything passes, it is merged with master?
+<a name="l-22"></a><span class="tm">18:08:18</span><span class="nk"> &lt;happytux&gt;</span> Does Jenkins directly support git merging?
+<a name="l-23"></a><span class="tm">18:08:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">happytux:</span> we are in the project meeting, so let's hold off questions until that wraps up (https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda)
+<a name="l-24"></a><span class="tm">18:08:53</span><span class="nk"> &lt;kohsuke&gt;</span> Any thoughts on this, any one?
+<a name="l-25"></a><span class="tm">18:08:58</span><span class="nk"> &lt;hare_brain&gt;</span> This is a weird kohsuke. :)
+<a name="l-26"></a><span class="tm">18:09:04</span><span class="nk"> &lt;hare_brain&gt;</span> weird request
+<a name="l-27"></a><span class="tm">18:09:42</span><span class="nk"> &lt;hare_brain&gt;</span> On the one hand, it’s fun and harmless. On the other hand, I’m trying to think how this actually benefits the project.
+<a name="l-28"></a><span class="tm">18:09:57</span><span class="nk"> &lt;programmerq&gt;</span> I would totally throw renders of the 3d model into presentations
+<a name="l-29"></a><span class="tm">18:10:35</span><span class="nk"> &lt;hare_brain&gt;</span> What’s the actual deliverable?
+<a name="l-30"></a><span class="tm">18:10:54</span><span class="nk"> &lt;kohsuke&gt;</span> I've seen various derivative works of 2D logo, so I guess my admittedly weak argument is enabling derivative work
+<a name="l-31"></a><span class="tm">18:11:11</span><span class="nk"> &lt;kohsuke&gt;</span> So the actual deliverable is the OBJ/STL file (shape data) and texture file for color printing
+<a name="l-32"></a><span class="tm">18:11:20</span><span class="nk"> &lt;lisa_&gt;</span> then if anyone wants to print them, they can easily get a 3D Jenkins, right? that's kind of fun
+<a name="l-33"></a><span class="tm">18:11:58</span><span class="nk"> &lt;programmerq&gt;</span> (speaking as a community member only) I'd think something like this would benefit the project just as much as stickers/tshirts/mugs/etc
+<a name="l-34"></a><span class="tm">18:12:50</span><span class="nk"> &lt;kohsuke&gt;</span> see, there's at least one fan!
+<a name="l-35"></a><span class="tm">18:13:01</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="hi">programmerq:</span> I think this is a little bit different. Those are physical things that get handed out. This is more like a binary distribution.
+<a name="l-36"></a><span class="tm">18:13:10</span><span class="nk"> &lt;programmerq&gt;</span> <span class="hi">hare_brain:</span> at first, yes
+<a name="l-37"></a><span class="tm">18:14:11</span><span class="nk"> &lt;programmerq&gt;</span> if you're familiar with zazzle/cafepress, you can upload your design, others order it, and some of the end customers' money goes back to the original designer. I'm pretty sure I've seen that business model, but for 3d printed objects.
+<a name="l-38"></a><span class="tm">18:14:18 </span><span class="nka">* programmerq</span> <span class="ac">shrugs</span>
+<a name="l-39"></a><span class="tm">18:15:03</span><span class="nk"> &lt;programmerq&gt;</span> I have been using jenkins as part of my job for the last *several* projects I've worked on across 3 different companies. I would totally pay for a 3d printed mr jenkins to stick on a shelf.
+<a name="l-40"></a><span class="tm">18:15:58</span><span class="nk"> &lt;kohsuke&gt;</span> All right, sounds like I should raise money separately for this to be on the safe side
+<a name="l-41"></a><span class="tm">18:16:24</span><span class="nk"> &lt;kohsuke&gt;</span> I expected a push back like that from hare_brain
+<a name="l-42"></a><span class="tm">18:16:35</span><span class="nk"> &lt;hare_brain&gt;</span> Ha.
+<a name="l-43"></a><span class="tm">18:16:54</span><span class="nk"> &lt;hare_brain&gt;</span> I’m not *against* it per se. I just don’t have any experience to map this to.
+<a name="l-44"></a><span class="tm">18:17:05</span><span class="nk"> &lt;hare_brain&gt;</span> I’m still thinking my way through it.
+<a name="l-45"></a><span class="tm">18:17:15</span><span class="nk"> &lt;kohsuke&gt;</span> But nonetheless I wanted to try it on you to see how you react
+<a name="l-46"></a><span class="tm">18:17:35</span><span class="nk"> &lt;hare_brain&gt;</span> You successfully threw me for a loop. :)
+<a name="l-47"></a><span class="tm">18:17:57</span><span class="nk"> &lt;lisa_&gt;</span> given that there is now revenue from ads... $300 isn't that much to give people the tools to create something that will create enthusiasm about Jenkins
+<a name="l-48"></a><span class="tm">18:18:06</span><span class="nk"> &lt;danielbeck&gt;</span> Maybe email the lists to determine user interest?
+<a name="l-49"></a><span class="tm">18:18:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> that's a good idea
+<a name="l-50"></a><span class="tm">18:19:13</span><span class="nk"> &lt;kohsuke&gt;</span> OK, enough about this topic.
+<a name="l-51"></a><span class="tm">18:19:20</span><span class="nk"> &lt;hare_brain&gt;</span> Lisa_, it’s not the amount I’m concerned about. I’m thinking about it from the perspective of, what does the project get for it’s money? programmerq’s idea
+<a name="l-52"></a><span class="tm">18:19:46</span><span class="nk"> &lt;hare_brain&gt;</span> that we can upload the model to cafepress to sell more physical toys is interesting.
+<a name="l-53"></a><span class="tm">18:19:49</span><span class="nk"> &lt;lisa_&gt;</span> <span class="hi">hare_brain:</span> i think it's like stickers - it just requires one more step (someone to produce it)
+<a name="l-54"></a><span class="tm">18:20:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write to the users list to sense the level of interest</span>
+<a name="l-55"></a><span class="tm">18:20:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">1.554.2 status check</span>
+<a name="l-56"></a><span class="tm">18:21:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> I saw your email that it's good to go
+<a name="l-57"></a><span class="tm">18:21:30</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> yes
+<a name="l-58"></a><span class="tm">18:21:37</span><span class="nk"> &lt;kohsuke&gt;</span> So I think we will just proceed as planned and ship it today
+<a name="l-59"></a><span class="tm">18:21:47</span><span class="nk"> &lt;kohsuke&gt;</span> I'm really happy that the train model appears to be working
+<a name="l-60"></a><span class="tm">18:21:52</span><span class="nk"> &lt;ogondza&gt;</span> ATH is not as stable as I wish, though
+<a name="l-61"></a><span class="tm">18:22:03</span><span class="nk"> &lt;ogondza&gt;</span> but working on it
+<a name="l-62"></a><span class="tm">18:22:24</span><span class="nk"> &lt;kohsuke&gt;</span> I noticed that -stable seems to have more regressions than the mainline
+<a name="l-63"></a><span class="tm">18:22:51</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> we got a lot of new manual testers, hope it is a trend
+<a name="l-64"></a><span class="tm">18:23:03</span><span class="nk"> &lt;kohsuke&gt;</span> nice
+<a name="l-65"></a><span class="tm">18:23:12</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's helping that our schedule is predictable and people can plan ahead
+<a name="l-66"></a><span class="tm">18:23:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">1.554.2 release is a GO</span>
+<a name="l-67"></a><span class="tm">18:23:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">JUC</span>
+<a name="l-68"></a><span class="tm">18:24:21</span><span class="nk"> &lt;lisa_&gt;</span> Not sure if Alyssa_ is here?
+<a name="l-69"></a><span class="tm">18:24:31</span><span class="nk"> &lt;kohsuke&gt;</span> doesn't look like it
+<a name="l-70"></a><span class="tm">18:24:54</span><span class="nk"> &lt;lisa_&gt;</span> The US East Conference (Boston) is almost full - about 290 out of 300 registered
+<a name="l-71"></a><span class="tm">18:25:03</span><span class="nk"> &lt;lisa_&gt;</span> looks like we may release more tickets though
+<a name="l-72"></a><span class="tm">18:25:24</span><span class="nk"> &lt;kohsuke&gt;</span> Sounds like this would be worth a blog post of its own
+<a name="l-73"></a><span class="tm">18:25:34</span><span class="nk"> &lt;lisa_&gt;</span> The European conference in Berlin has 260 registrants already. so attendance is looking really good
+<a name="l-74"></a><span class="tm">18:26:15</span><span class="nk"> &lt;kohsuke&gt;</span> Marco Miller who is lately involved in the acceptance test harness is coming to JUC Boston
+<a name="l-75"></a><span class="tm">18:26:25</span><span class="nk"> &lt;lisa_&gt;</span> there's also a Continuous Delivery Summit featuring Jenkins in NYC the day after JUC Boston (June 19) and one the day before Berlin (Jun 24)
+<a name="l-76"></a><span class="tm">18:26:40</span><span class="nk"> &lt;lisa_&gt;</span> @kohsuke is speaking
+<a name="l-77"></a><span class="tm">18:26:41</span><span class="nk"> &lt;lisa_&gt;</span> http://www.eventbrite.com/e/how-to-accelerate-innovation-with-continuous-delivery-berlin-tickets-11576524697?mkt_tok=3RkMMJWWfF9wsRokv6jPZKXonjHpfsX%2F6eokWrHr08Yy0EZ5VunJEUWy24QERdQ%2FcOedCQkZHblFnVwASa2lV7oNr6QP
+<a name="l-78"></a><span class="tm">18:26:55</span><span class="nk"> &lt;kohsuke&gt;</span> Just a random thought, but I wonder if we can do a small impromptu get together right after JUC
+<a name="l-79"></a><span class="tm">18:26:57</span><span class="nk"> &lt;lisa_&gt;</span> http://www.eventbrite.com/e/how-to-accelerate-innovation-with-continuous-delivery-new-york-tickets-11576484577
+<a name="l-80"></a><span class="tm">18:27:14</span><span class="nk"> &lt;lisa_&gt;</span> like dinner or something?
+<a name="l-81"></a><span class="tm">18:27:17</span><span class="nk"> &lt;kohsuke&gt;</span> I should check with them first
+<a name="l-82"></a><span class="tm">18:27:34</span><span class="nk"> &lt;kohsuke&gt;</span> I need to check I have enough time after JUC before I head to the airport
+<a name="l-83"></a><span class="tm">18:27:43</span><span class="nk"> &lt;lisa_&gt;</span> that could be an issue ;)
+<a name="l-84"></a><span class="tm">18:27:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">lisa_:</span> but yeah, if there's time, like a dinner or something
+<a name="l-85"></a><span class="tm">18:28:25</span><span class="nk"> &lt;lisa_&gt;</span> I wanted to thank our new sponsors too - Assembla for Boston and XebiaLabs for upgrading to Gold in Berlin.
+<a name="l-86"></a><span class="tm">18:28:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">lisa_:</span> Berlin's capacity is set to 300 too, right?
+<a name="l-87"></a><span class="tm">18:28:50</span><span class="nk"> &lt;lisa_&gt;</span> and then we have three Community sponsors - Berlin JUG, Lightweight JUG Munich, and Polish JUG. so excellent community support
+<a name="l-88"></a><span class="tm">18:28:58</span><span class="nk"> &lt;kohsuke&gt;</span> indeed
+<a name="l-89"></a><span class="tm">18:29:33</span><span class="nk"> &lt;lisa_&gt;</span> yes, 300. alyssa_: do we have the option to find more space n Berlin?
+<a name="l-90"></a><span class="tm">18:29:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to do a blog post on "thanks, we are almost filled up" post</span>
+<a name="l-91"></a><span class="tm">18:30:02</span><span class="nk"> &lt;lisa_&gt;</span> <span class="hi">kohsuke:</span> check with me, i've already started one :)
+<a name="l-92"></a><span class="tm">18:30:03</span><span class="nk"> &lt;alyssa_&gt;</span> <span class="hi">kohsuke_:</span> I've increased capacity to 400
+<a name="l-93"></a><span class="tm">18:30:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">lisa_:</span> great, thanks
+<a name="l-94"></a><span class="tm">18:30:19</span><span class="nk"> &lt;lisa_&gt;</span> for Berlin too?
+<a name="l-95"></a><span class="tm">18:30:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">alyssa_:</span> oh well, in that case the post would have to be "we are filling up so we added more seats" post
+<a name="l-96"></a><span class="tm">18:31:06</span><span class="nk"> &lt;alyssa_&gt;</span> we can add more space for Berlin as well
+<a name="l-97"></a><span class="tm">18:31:31</span><span class="nk"> &lt;alyssa_&gt;</span> <span class="hi">kohsuke_:</span> it's a good problem to have :o)
+<a name="l-98"></a><span class="tm">18:31:38</span><span class="nk"> &lt;kohsuke&gt;</span> yes
+<a name="l-99"></a><span class="tm">18:32:11</span><span class="nk"> &lt;lisa_&gt;</span> any questions or thoughts on JUC?
+<a name="l-100"></a><span class="tm">18:32:28</span><span class="nk"> &lt;kohsuke&gt;</span> So a bunch of us will be in Berlin in the night before, right?
+<a name="l-101"></a><span class="tm">18:32:37</span><span class="nk"> &lt;kohsuke&gt;</span> I wonder if it's worth trying to organize a dinner
+<a name="l-102"></a><span class="tm">18:32:44</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> +1 - I was hoping for that. =)
+<a name="l-103"></a><span class="tm">18:32:46</span><span class="nk"> &lt;kohsuke&gt;</span> maybe the dinner of the JUC day or the day before
+<a name="l-104"></a><span class="tm">18:32:54</span><span class="nk"> &lt;lisa_&gt;</span> great idea
+<a name="l-105"></a><span class="tm">18:32:55</span><span class="nk"> &lt;kohsuke&gt;</span> I think we do that in San Francisco all the time
+<a name="l-106"></a><span class="tm">18:33:06</span><span class="nk"> &lt;alyssa_&gt;</span> day after would be better IMO
+<a name="l-107"></a><span class="tm">18:33:17</span><span class="nk"> &lt;kohsuke&gt;</span> ... except people sign up and then disappear, which makes reservation arrangement tricky
+<a name="l-108"></a><span class="tm">18:33:20</span><span class="nk"> &lt;alyssa_&gt;</span> sorry, meant to say after JUC
+<a name="l-109"></a><span class="tm">18:33:34</span><span class="nk"> &lt;kohsuke&gt;</span> Right, I think you feel more relaxed that  way, right? :-)
+<a name="l-110"></a><span class="tm">18:33:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> does that work?
+<a name="l-111"></a><span class="tm">18:33:48</span><span class="nk"> &lt;alyssa_&gt;</span> i thought you setting up the meetup page for dinner like you did for SF worked well
+<a name="l-112"></a><span class="tm">18:34:03</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> Yup, I've already blocked off Tuesday and Wednesday nights just in case. =)
+<a name="l-113"></a><span class="tm">18:34:13</span><span class="nk"> &lt;kohsuke&gt;</span> I could really use someone local picking a venue for us
+<a name="l-114"></a><span class="tm">18:34:33</span><span class="nk"> &lt;kohsuke&gt;</span> Let's see, who lives in Berlin...
+<a name="l-115"></a><span class="tm">18:34:53</span><span class="nk"> &lt;alyssa_&gt;</span> i can ask my contact in Berlin too
+<a name="l-116"></a><span class="tm">18:35:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> have you been there before?
+<a name="l-117"></a><span class="tm">18:35:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">alyssa_:</span> yeah, that'd be great
+<a name="l-118"></a><span class="tm">18:35:13</span><span class="nk"> &lt;abayer&gt;</span> Yup, but I don't know restaurants.
+<a name="l-119"></a><span class="tm">18:35:25</span><span class="nk"> &lt;kohsuke&gt;</span> It probably should be nearby the event venue
+<a name="l-120"></a><span class="tm">18:35:27</span><span class="nk"> &lt;alyssa_&gt;</span> <span class="hi">kohsuke_:</span> will do
+<a name="l-121"></a><span class="tm">18:36:40</span><span class="nk"> &lt;kohsuke&gt;</span> tweeted
+<a name="l-122"></a><span class="tm">18:36:51</span><span class="nk"> &lt;kohsuke&gt;</span> Are we done on this topic?
+<a name="l-123"></a><span class="tm">18:37:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-124"></a><span class="tm">18:37:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the next meeting would be June 11th</span>
+<a name="l-125"></a><span class="tm">18:37:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">For the first time I have seen &gt;300 attendants in the room</span>
+<a name="l-126"></a><span class="tm">18:37:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 07:07:08 May 08, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:59:43 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 211.808
+  exclusion.robots: 0.105
+  exclusion.robots.policy: 0.098
+  RedisCDXSource: 0.621
+  esindex: 0.007
+  LoadShardBlock: 185.081 (3)
+  PetaboxLoader3.datanode: 62.782 (4)
+  CDXLines.iter: 20.547 (3)
+  PetaboxLoader3.resolve: 391.106 (3)
+  load_resource: 299.088
+-->

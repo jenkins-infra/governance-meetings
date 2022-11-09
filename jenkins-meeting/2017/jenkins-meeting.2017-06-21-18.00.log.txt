@@ -1,0 +1,80 @@
+18:00:28 <danielbeck> #startmeeting
+18:00:28 <robobutler> Let the Jenkins meeting commence!
+18:00:38 <danielbeck> #chair kohsuke rtyler
+18:00:38 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:44 <danielbeck> hi everyone!
+18:00:47 <oleg-nenashev> o/
+18:01:18 <danielbeck> #topic last meeting's actions
+18:01:32 <oleg-nenashev> Have we moved agenda outside https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda ?
+18:01:45 <danielbeck> I posted upgrade guide and changelog for 2.60.1, still a PR, but otherwise ready
+18:02:00 <danielbeck> oleg-nenashev did rtyler grant you LDAP admin?
+18:02:05 <oleg-nenashev> nope
+18:02:12 <danielbeck> bad rtyler
+18:02:21 <oleg-nenashev> but I didn't ping about it, bad me
+18:02:49 <danielbeck> doesn't look like he's around anyway, so let's move on
+18:02:59 <danielbeck> #topic LTS status check
+18:03:13 <danielbeck> FTR, https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda looks weirdly empty, so I'm going by the usual topics
+18:03:25 <danielbeck> ogondza you're up
+18:03:30 <oleg-nenashev> alyssat_: I would like to ask about the JAMbassador thread later if you are around
+18:03:41 <ogondza> sorry, I am
+18:03:53 <ogondza> the only backport causes some havoc
+18:04:13 <ogondza> as long as I understood we will suggest users to update ssh-slaves to .20
+18:04:13 <danielbeck> oh?
+18:04:32 <danielbeck> yes, that's repeatedly in the changelog PR
+18:04:43 <alyssat_> oleg-nenashev: sorry I haven't done anything w/ the Ambassador thread. I've been under water with JW activities
+18:04:45 <ogondza> danielbeck: thanks for doing that
+18:04:59 <oleg-nenashev> alyssat_: ack, np
+18:05:06 <danielbeck> #info https://github.com/jenkins-infra/jenkins.io/pull/939 (with screenshots of changelog and upgrade guide)
+18:05:38 <oleg-nenashev> this amendment looks good to me
+18:05:43 <ogondza> are we ok to release as it is? (the update to new lts is safe only if updated with plugins)
+18:06:03 <ogondza> i do not feel strongly
+18:06:08 <danielbeck> ogondza I think this is a reasonable approach to take
+18:06:41 <danielbeck> ogondza is there another option?
+18:06:51 <ogondza> I am not hearing any objections so let's do it
+18:06:52 <danielbeck> It's not like we're prepared to roll back all the SSH changes
+18:07:34 <ogondza> #action kohsuke to release 2.60.1
+18:07:35 <oleg-nenashev> Anyway, Java 8 will cause some negative feedback
+18:07:43 <danielbeck> oleg-nenashev rtfm
+18:07:46 <danielbeck> :-)
+18:08:05 <oleg-nenashev> TFM is fine for me
+18:08:07 <jglick> actually for https://wiki.jenkins.io/display/JENKINS/SSH+Slaves+Plugin you sort of need 1.20 but whatever
+18:08:21 <danielbeck> jglick WDYM?
+18:08:46 <oleg-nenashev> But I do not expect everybody to read it. I've already closed a dozen of JIRA tickets for weeklys
+18:08:48 <jglick> well 1.15 sort of needs 1.18 IIUC, and that introduced regressions solved in 1.19 & 1.20
+18:09:08 <jglick> anyway 1.20 is what you will get if you go to update, so does not matter what we say in changelog
+18:09:11 <danielbeck> jglick what's "1.15"?
+18:09:26 <jglick> `ssh-slaves` 1.15
+18:09:47 <danielbeck> jglick ah, the yellow note -- more details in the upgrade guide, which says 1.17 needed for Java 8, but 1.20 recommended anyway due to trilead
+18:09:56 <jglick> re: https://github.com/jenkins-infra/jenkins.io/pull/939/files#diff-ba0338ee2c1c6ece3254c750f5394d2aR353
+18:10:11 <jglick> fine
+18:10:12 <danielbeck> jglick https://github.com/jenkins-infra/jenkins.io/pull/939/files#diff-57e1817c2b21d3dd0a9822dcb0a614acR24
+18:10:29 <danielbeck> https://github.com/jenkins-infra/jenkins.io/pull/939/files#diff-57e1817c2b21d3dd0a9822dcb0a614acR42
+18:10:30 <jglick> yes
+18:10:42 <jglick> sorry for distraction
+18:10:43 <ogondza> BTW, I noticed core declares 1.15 where bundled versions used to be. That i snow unused, right?
+18:11:05 <ogondza> https://github.com/jenkinsci/jenkins/blob/master/war/pom.xml#L289
+18:11:10 <ogondza> i swhat I am talking about
+18:11:16 <danielbeck> ogondza it was never a detached plugin so should be obsolete as it would never be auto installed
+18:11:53 <jglick> it will force an update if you are running 1.14- IIUC
+18:12:22 <ogondza> I am wondering it makes sense updating for 2.60.1 but it seems it does not
+18:12:39 <danielbeck> jglick isn't that only if you're older than the detached version, which doesn't apply here?
+18:12:56 <danielbeck> IIRC we discussed this a while back when stephenc had a PR that looked related but wasn't.
+18:12:56 <jglick> danielbeck: maybe, I can never remember the rules. Not even sure why it is listed here at all.
+18:13:20 <danielbeck> jglick because it used to be bundled so it's in the default setup. Hence me saying it's obsolete since it wasn't detached.
+18:13:27 <ogondza> ack
+18:13:39 <jglick> So mention of it should simply be deleted from the POM.
+18:13:54 <danielbeck> probably, after investigating how this currently works
+18:14:03 <jglick> a side topic anyway
+18:14:11 <danielbeck> I don't think any changes here are important enough for a late change and we should just go ahead with what we have
+18:14:19 <jglick> +1
+18:14:27 <danielbeck> any further opinions?
+18:14:51 <oleg-nenashev> +1
+18:15:01 <ogondza> not from me
+18:15:12 <danielbeck> #agreed we'll release 2.60.1 as is
+18:15:19 <danielbeck> #action kohsuke to release 2.60.1
+18:15:28 <danielbeck> #action danielbeck to finish up changelog and merge that
+18:15:52 <danielbeck> I think that's it for this release
+18:16:09 <danielbeck> and this meeting, barring any further last-minute topics?
+18:16:35 <danielbeck> #topic next meeting
+18:16:50 <danielbeck> July 5 according to my calendar
+18:17:09 <danielbeck> #endmeeting

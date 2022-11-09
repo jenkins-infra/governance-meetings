@@ -1,0 +1,325 @@
+21:02:15 <hare_brain> #startmeeting
+21:02:15 <robobutler> Let the Jenkins meeting commence!
+21:02:21 <robobutler> kohsuke: Error: Can't start another meeting, one is in progress.
+21:02:27 <kohsuke> oh
+21:02:29 <gmcdonald> oops
+21:02:32 <kohsuke> #endmeeting
+21:02:33 <hare_brain> #chair kohsuke abayer hare_brain rtyler
+21:02:33 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+21:02:35 <hare_brain> LOL
+21:02:43 <robobutler> kohsuke: Error: Can't start another meeting, one is in progress.
+21:02:52 <kohsuke> Ah, wait got it. Sorry.
+21:02:53 <hare_brain> kohsuke, I started it.
+21:03:15 <kohsuke> So the first topic was the JIRA split discussion, but
+21:03:33 <kohsuke> aheritier has sent in his regret, so we'll skip that one for now
+21:03:48 <kohsuke> #topic trademark registration status
+21:04:25 <kohsuke> The current status is that ...
+21:05:21 <kohsuke> I believe the interim board is willing to accept the offer from CloudBees to fund the registration, in the interest of getting it going quickly
+21:05:29 <abayer> I am, yes.
+21:05:33 <kohsuke> ... contingent on getting a paper in place that the trademark will *NOT* be owned by CB
+21:05:38 <abayer> Yup.
+21:05:39 <hare_brain> Yes
+21:05:59 <kohsuke> And I believe abayer had a conversation with Sacha, CB CEO, and that this is not a problem
+21:06:03 <abayer> Ahyup.
+21:06:13 <kohsuke> #action so the action is for me to finally get the ball rolling
+21:06:34 <kohsuke> And the process itself should be fairly straight-forward.
+21:06:53 <kohsuke> So I apologize for a slow progress, but a progress is being made
+21:07:03 <kohsuke> Darn, I forgot to use the #info tag
+21:07:07 <kohsuke> Anyway.
+21:07:22 <kohsuke> Any questions about this topic?
+21:07:26 <kohsuke> Or shall we move on?
+21:08:05 <kohsuke> #info the interim board is willing to accept the offer from CloudBees to fund the registration, in the interest of getting it going quickly contingent on getting a paper in place that the trademark will *NOT* be owned by CB
+21:08:09 <kohsuke> That should do for the minutes
+21:08:13 <kohsuke> OK, next topic...
+21:08:22 <kohsuke> #topic SFC response / umbrella org
+21:08:42 <kohsuke> #info So I pinged SFC again, and they said they are still reviewing applications.
+21:08:49 <kohsuke> I believe it's not just ours but others' as well
+21:09:01 <kohsuke> #info In the mean time, I pinged SPI as well
+21:09:18 <kohsuke> http://www.spi-inc.org
+21:09:31 <kohsuke> And got a favorable first set of replies
+21:09:38 <abayer> #info Also, Kohsuke and I had an informal sitdown with Doug Cutting of ASF last week.
+21:09:43 <kohsuke> Yes.
+21:10:03 <kohsuke> And Doug said ASF would be very happy to have us
+21:10:32 <kohsuke> #info so the good news is that we have some orgs that are willing to take us
+21:11:03 <kohsuke> So the question is, how should we proceed?
+21:11:18 <abayer> I think we should investigate all our options thoroughly.
+21:11:38 <abayer> I personally lean towards ASF, but not to the exclusion of other options by any means.
+21:12:02 <kohsuke> #idea So I guess we should explore SPI bit further, too, then
+21:12:08 <abayer> +1
+21:12:19 <abayer> I think we should aim at making an educated decision as to which way to go by end of April.
+21:12:34 <abayer> SFC said they'd get something back to us by then, I believe.
+21:12:37 <kohsuke> I think we should also write down our conversation with Doug, the points raised, etc
+21:12:45 <abayer> AGreed.
+21:13:00 <kohsuke> Aiming to build the similar write up for SPI might be a good way to drive this
+21:13:00 <hare_brain> Yes, I'm interested in seeing what he had to say.
+21:13:17 <kohsuke> And SFC, too.
+21:13:32 <kohsuke> OK, that's clearer
+21:14:00 <kohsuke> I think those are the only organizations that we are considering, right?
+21:14:08 <abayer> I don't know of any other real options.
+21:14:24 <olamy> do you know others ?
+21:14:27 <_W_> one other option is to go alone, though I see the benefits of an umbrella
+21:14:32 <hare_brain> Something to think about is these foundations each stand for something, and seem to expect their projects to be representative of those principles.
+21:14:46 <kohsuke> Oh, I think you had a suggestion of the Dojo foundation
+21:14:49 <hare_brain> So the question to us is, what does Jenkins stand for, and how well does that mesh with each of these?
+21:15:15 <abayer> _W_: Yeah, I admit to strongly wanting to get under an umbrella - I'd really like to get the legal support, infrastructure etc without having to run them ourselves.
+21:15:25 * _W_ nods
+21:15:30 <hare_brain> Regarding Dojo, only because I stumbled across in when I was researching something else. I don't really know anything about them.
+21:15:40 <kohsuke> hare_brain: I think in case of Apache I understands that they have certain principles
+21:15:57 <kohsuke> I suspect it's less true for SFC and SPI
+21:16:18 <kohsuke> But I agree with later part of "what does Jenkins stand for, and how well does that mesh with each of these?"
+21:16:20 <hare_brain> I can't tell if they're interested in accepting any project, or if they're only interested in projects related to Javascript tools.
+21:16:48 <magnayn> You can get infrastructure support from many places (e.g: Codehaus)
+21:18:02 <kohsuke> I think some kind of legal entity is needed for us to hold assets on behalf of the project
+21:18:08 <olamy> magnayn the infra stuff is not the most important IMHO : trademark legal stuff is more important
+21:18:18 <abayer> Yes.
+21:18:18 <kohsuke> olamy: +1
+21:18:32 <abayer> I really don't want to have to deal with registering a nonprofit myself, etc. =)
+21:18:42 <olamy> ack
+21:18:55 <magnayn> ack - but if infra is an issue it doesn't have to drive the decision
+21:19:10 <kohsuke> Yes
+21:19:14 <olamy> sure
+21:19:16 <abayer> magnayn: Very true. It's more of a nice bonus.
+21:19:33 <kohsuke> Although being a guy involved in that infra work, it sure is a nice bonus
+21:20:24 <phyto> re an earlier conversation an org that gives you some infra might help the remote testing effort
+21:20:44 <olamy> but moving to asf infra will means moving some infra stuff (git etc ...)
+21:20:53 <kohsuke> I should add that to the topic --- rtyler isn't here but we can report about some of our recent progress in getting hardware
+21:21:21 <magnayn> olamy: away from github? ugh..
+21:21:25 <kohsuke> Do people think it'd be worth sending a quick email to the Dojo foundation to find out if they take projects outside JavaScript/HTML stuff?
+21:21:44 <kohsuke> On one hand, I feel like we have enough choices already,
+21:21:58 <gmcdonald> kohsuke: as an apache committer already, you should know how it works
+21:22:02 <kohsuke> but OTOH, it does seem to do the kind of things we want and doesn't do kind of things we don't want
+21:22:55 <kohsuke> gmcdonald: Yes, I think there are many Apache committers here, many more active than I am, that we have good sense of what Apache Jenkins would mean
+21:23:12 <hare_brain> #info http://dojofoundation.org/about/hundredpoint
+21:23:16 <kohsuke> #action I think abayer and I take an action to write down what we discussed with Doug Cutting as the starting point
+21:23:28 <olamy> +1
+21:23:46 <gmcdonald> kohsuke: does jenkins.apache.org appeal , becuase at ASF thats all the branding you will get
+21:24:16 <kohsuke> I think there are various appeals and there are some concerns
+21:24:19 <gmcdonald> everything is to be ASL v2.0 licensed and ASF as a foundation own copyright
+21:24:49 <kohsuke> gmcdonald: why don't we let abayer and I create a Wiki page first because it answers many of the questions you are raising
+21:25:20 <gmcdonald> as an infra committer at ASF I know you would be looked after well
+21:25:20 <kohsuke> We've discussed those aspects in the past meetings, and I think having a page would help focusing the conversation
+21:25:36 <gmcdonald> kohsuke: sure, thanks
+21:26:33 <kohsuke> Now, where is my agenda page...
+21:26:48 <hare_brain> CLA
+21:26:57 <kohsuke> #topic CLA
+21:27:06 <hare_brain> Which sort of dovetails into the foundation discussion anyway.
+21:27:10 <_W_> indeed
+21:27:13 <kohsuke> True
+21:27:49 <kohsuke> And I still haven't caught up on that thread yet
+21:27:51 <_W_> first question, just since I'm not 100% on this; are there parts of the intellectual property in the core that is not owned by people now involved in Jenkins?
+21:28:04 <kohsuke> Yes.
+21:28:20 <kohsuke> For example, Oracle owns copyright on a considerable portion of the source code.
+21:28:44 <abayer> In fact, they own at least shared copyright on everything in core up until not too long ago.
+21:28:57 <hare_brain> And that actually might make it hard to change the license.
+21:29:07 * _W_ nods
+21:29:23 <magnayn> given they're not so friendly..
+21:29:25 <_W_> changing the license, getting copyright assignments, seems to be a moot point because of this
+21:29:28 <prusswan> it's currently MIT right?
+21:29:31 <abayer> According to Doug Cutting, it's not a problem for going to Apache - the old code would remain as is, with new changes made under the new license.
+21:29:43 <hare_brain> OK. Good to know.
+21:29:50 <_W_> abayer, did he ok that from a legal standpoint?
+21:29:52 <abayer> So yeah, going somewhere that would require full copyright reassignment wouldn't be an option.
+21:29:55 <_W_> derivative work status etc?
+21:29:57 <kohsuke> #info So yeah, there's no conversation of changing the license for the existing code
+21:30:10 <abayer> _W_: He said that was Apache policy.
+21:30:10 <kohsuke> We just can't do it.
+21:30:13 <olamy> so those code need to have double licenses when we change it ?
+21:30:27 <_W_> abayer, that probably means their lawyers have looked at it, indeed
+21:30:30 <abayer> Yeah.
+21:30:40 <_W_> olamy, if the project goes apache, at least
+21:30:57 <olamy> I mean now
+21:31:09 <magnayn> therefore if (c) cannot be assigned, future CA is moot too..
+21:31:23 <abayer> Right now, you should just make sure your changes have attribution.
+21:31:29 <abayer> magnayn: ? Not sure how that would be?
+21:32:12 <magnayn> put another way - what benefit can be gained by the *partial* copyright being assigned to one entity ?
+21:32:21 <magnayn> SInce relicensing is therefore not possible
+21:32:28 <abayer> The CA would be applying to all new code.
+21:32:36 <magnayn> But how does that help ?
+21:32:48 <_W_> also, what would be the point of *requiring* CA - if some code is OK not being assigned, why can't more such code be added?
+21:33:22 <abayer> Ok, I'm not an expert on the CA stuff by a long shot. I just know that a good number of companies require that open source projects have them before letting their employees contribute. That's the only reason I care.
+21:33:26 <_W_> (independent of whatever demands Apache has, of course)
+21:33:31 <kohsuke> IANAL, but the model we are trying to get to is that all the code are covered by some CLA.
+21:33:35 <magnayn> ISTM the only benefit of CA is ability to easily relicense. But that's not possible becuse of the (c) owned by Oracle
+21:33:37 <_W_> abayer, do you have any more details on that?
+21:33:45 <_W_> abayer, e.g. demand that *all* code myst be assigned?
+21:33:50 <_W_> because Jenkins will always fail that
+21:33:52 <magnayn> kohsuke: yes, but _why ?
+21:34:09 <kohsuke> so that people contributing code can't turn around and sue us or users
+21:34:18 <kohsuke> #info http://www.oss-watch.ac.uk/resources/cla.xml
+21:34:20 <magnayn> But a CLA can't help with that
+21:34:31 <kohsuke> For example in Apache CLA, it does
+21:34:41 <_W_> The way I perceive it is that CLAs are a response to the very murky ownership of IP in most open source projects - I think that can be avoided with Jenkins without a CLA
+21:34:42 <abayer> _W_: I just know what my CEO told me. =)
+21:34:55 <_W_> abayer, so he was ambiguous on that point then
+21:34:58 <lifeless> abayer: surely we could have an optional one
+21:35:05 <abayer> He didn't cover that one, no.
+21:35:07 <magnayn> _W_:  yes, if the CLA applies CA...
+21:35:14 * rtyler wakes up
+21:35:30 <magnayn> E.g: Linux does neither CA nor CLAs... doesn't seem to be holding it up
+21:35:57 <hare_brain> Linux has Linux Foundation handling all the legal work.
+21:36:00 <lifeless> kohsuke: that osswatch article is factually incorrect
+21:36:27 <lifeless> kohsuke: this is a really tricky subject
+21:36:35 <kohsuke> magnayn: yeah, that Linux kernel approach is a mystery to me. Why their lawyer thinks it's OK while other lawyers don't approve of it
+21:36:51 <kohsuke> I want them in the same cage and watch what they say
+21:36:53 <_W_> from that link "The purpose of a CLA is to ensure that the guardian of a project's outputs has the necessary ownership or grants of rights over all contributions to allow them to distribute under the chosen licence"
+21:37:04 <_W_> which is not applicable to Jenkins for previously mentioned reasons
+21:37:13 <magnayn> And it's not true anyway
+21:37:18 <lifeless> indeed
+21:37:39 <lifeless> its usef if doing license changes / dual licensing / open core
+21:37:44 <magnayn> I can sign a piece of paper that gives you the rights to my Neighbour's house... doesn't mean it's legal
+21:37:54 <lifeless> it *used* to be argued that you needed one copyright owner to win court cases
+21:38:23 <lifeless> but since the frence VLC lawsuit that *users* brought held up the GPL without any copyright owners involvement, that argument is shown flawed
+21:38:53 <prusswan> owner of the entire software, or a part of it?
+21:38:53 <kohsuke> lifeless: you work for Canonical, right? What does Canonical do for its open-source projects?
+21:39:14 <lifeless> kohsuke: we require a CLA + CA, and this is a huge bone of contention
+21:39:18 * mwhudson is _really_ tempted to say "cause annoying flamewars"
+21:39:20 <rtyler> requires copyright assignment to Canonical, lulz
+21:39:34 * mwhudson works there too
+21:39:37 <abayer> My question for those who oppose having a CLA is what should I do, then, when my employer blocks me from contributing to projects without a CLA? (caveat - I do have a waiver right now for Jenkins, but that's with the assumption that Jenkins will end up with a CLA)
+21:39:40 <lifeless> kohsuke: *personally* I think we lose a substantial number of contributors because of this
+21:39:58 <magnayn> abayer: sign an optional CLA
+21:40:01 <_W_> abayer, talk with your employer and find out *what exactly*  is required
+21:40:03 <kohsuke> lifeless: yeah copyright assignment is hard to sell
+21:40:07 <_W_> since what you have is ambiguous
+21:40:46 <_W_> abayer, as I said in the mailing list, while I am opposed to requiring a CLA, I have no objections to letting people sign one and contribute under it - even encouraging people to do so - if that is what it takes to placate lawyers
+21:41:32 <_W_> abayer, but from what you say, you can't contribute to Jenkins anyway, since you aren't likely to get a CLA from Oracle
+21:41:46 <magnayn> FWIW, I'm not even opposed to signing a CLA. I'm just against pointless paperwork, and I think it's better to not put up barriers to contribution
+21:42:14 <magnayn> Fringe benefit : If jenkins has no CLA, Jenkins can take contribs to Hudson core, but not vice-versa... :-)
+21:42:20 <abayer> I still don't know what you mean, _W_ - I don't understand how Oracle's ownership of copyright on older code has an impact on my right to contribute.
+21:42:40 <_W_> abayer, if your employer requires that all the code in the project is under CLA
+21:42:54 <abayer> I'm pretty sure it's my contributions that are in question, not all code.
+21:43:06 <kohsuke> I'm under the impression that users would prefer a project having CLA. Is that generally not the case?
+21:43:17 <_W_> then I don't see why a CLA can't just be offered as an option for people like you abayer, while not requiring it for everyone
+21:43:23 <abayer> Since Cloudera (my employer) technically owns my output, they want protection, etc.
+21:43:24 <magnayn> I doubt users care..
+21:43:40 <hare_brain> Depends on the user.
+21:43:52 <lifeless> abayer: what I don't understand - CLA's are generally only signed by the contributor, not countersigned.
+21:43:57 <hare_brain> If a user is a company, they probably care.
+21:43:59 <lifeless> abayer: so they offer -no- protection to the contributor
+21:44:17 <magnayn> they cannot offer protection to the contributor anyway
+21:44:22 <_W_> as a _user_ I don't care - who owns it matters not at all, as long as I feel confident the license is valid
+21:44:32 <lifeless> magnayn: they can if they are a contract, with consideration etc etc
+21:44:52 <abayer> This is part of why I really want an umbrella org - no offense to anyone here, but I don't think any of us are lawyers, especially not corporate ones. I don't know what the legal considerations are, I just know what I've been told I need to do.
+21:44:54 <_W_> (which with a big project like Jenkins I would feel very confident about)
+21:45:46 <kohsuke> abayer: I'm on the same basis --- I hate paperwork overhead as much as anyone else, but I'm not quite ready to dismiss CLA as "needless" when so many lawyers seem to be saying that you should have one
+21:45:52 <_W_> as a contributor, I have long ago considered whether I am willing to sign any such agreement, and have come down on a solid "no" - reasons for not contributing to JAXB and Hudson under Oracle
+21:46:16 <_W_> kohsuke, it is possible to take a more empirical approach
+21:46:16 <magnayn> lifeless: ok, but there'd have to be stipulated compensation (e.g If I infringed an MPEG2 patent...)
+21:46:33 <_W_> since none of us are lawyers, we can emulate those that have lawyers - and those that do don't uniformly go for CLA
+21:46:33 <kohsuke> _W_: OK, so in your case us requiring a CLA would be a deal breaker for you, whereas for magnayn, it's something he can live with.
+21:46:46 <abayer> I want it to be as easy as possible for people to contribute, and I want to have as large a pool of possible contributes as we can, but I think it's improtant to remember that many of us aren't able to make decisions on the CLA thing due to our employers.
+21:47:04 <lifeless> magnayn: thats not the sort of the a cla could help a contributor with - but what it could is if the *project* violated a patent, then the contributors that *didn't* add the violation could be insulated
+21:47:10 <magnayn> abayer: That's only an argument for an optional CLA though
+21:47:25 <lifeless> magnayn: you'd need a entity with pockets etc through
+21:47:54 <abayer> And I also think it's important to remember that when I say I'm for having a CLA (and if optional's all we need, hey, that's fine with me - but I don't know if that's the case), I'm not saying I agree with CLAs, etc.
+21:47:54 <magnayn> lifeless: agreed. Which is why it's always the customers who get sued, not the developers (SCO, Linux)
+21:47:54 <lifeless> kohsuke: FWIW Canonical has no issue signing CLA's and CA for its staff (assuming sane CLA's) for open source projects
+21:48:55 <kohsuke> lifeless: good. So far I haven't come across many developers who aren't willing (or unable) to sign Apache-style CLA
+21:49:19 <kohsuke> So I was under the assumption that our impact on the possible contributor base is small, even if the paperwork overhead is annoying
+21:49:35 <magnayn> kohsuke: It's mostly because the Apache CLA is not countersigned, and therefore legally worthless..
+21:49:42 <lifeless> kohsuke: I think its hard to assess that
+21:49:50 <lifeless> kohsuke: as a for instance
+21:49:53 <abayer> the gist I'm getting here is that an optional CLA would be preferable, so now we need to determine if that can satisfy the needs/requirements of those parties that require/want CLAs.
+21:49:58 <_W_> I do have a compromise I would likely agree to contribute under as well - me writing public domain code, and others (who have signed a CLA) integrating it to the core, much like any other third party dependency
+21:50:35 <lifeless> kohsuke: I would probably have waited until I had most or all of my changes done a year+ago rather than contributing them back - because getting a CLA signed is an interrupt to legal - its several hundred dollars of staff time all told
+21:50:42 <rtyler> abayer: that sounds like an #action item
+21:50:55 <lifeless> kohsuke: so there is a natural reaction to not do it until there is a clear ongoing stream of patches
+21:51:12 <kohsuke> lifeless: right, I see your point
+21:51:13 <gmcdonald> _W_: that happens all the time, for patches etc that woould be fine, for big code contributions probably not so
+21:51:45 <_W_> I do believe Jenkins uses third party libraries without a CLA already?
+21:51:50 <magnayn> gmcdonald: yeah, I've always wondered how that'd stand up given in how few lines one can infringe a patent...
+21:51:54 <_W_> ("big" ones even)
+21:51:59 <kohsuke> Time check ... do we want to move on to cover two more topics we've added?
+21:52:03 <gmcdonald> _W_: at ASF for instance, attaching a patch to a Jira issue and 'tick the grant ASF use' box is all that is needed
+21:52:07 <kohsuke> I don't think this topic will wrap up any time soon
+21:52:23 <kohsuke> Or is this more important than others?
+21:52:40 <hare_brain> I have a hard stop at 3, and I don't think this will wrap by then, so...
+21:52:47 <gmcdonald> kohsuke: it will decide if you go to asf or not
+21:53:05 <gmcdonald> kohsuke: as you know ALL committers require a iCLA
+21:53:21 <kohsuke> Yes, this is quite related to the umbrella org, like hare_brain said early on
+21:53:24 <gmcdonald> if not ,then they stay as 'contributors'
+21:53:37 <kohsuke> OK, let's do other topics quickly
+21:54:03 <kohsuke> #action (02:49:33 PM) abayer: the gist I'm getting here is that an optional CLA would be preferable, so now we need to determine if that can satisfy the needs/requirements of those parties that require/want CLAs.
+21:54:19 <kohsuke> I'll do a research on my side as well
+21:54:22 <kohsuke> #topic logo contest
+21:54:27 <kohsuke> abayer: status update?
+21:54:32 <kohsuke> oh
+21:54:38 <kohsuke> hmm
+21:54:44 <kohsuke> Let's do infra hardware first then
+21:54:48 <kohsuke> #topic infra hardware
+21:55:05 <kohsuke> rtyler: can you quickly share the status of the new machines we are getting?
+21:55:29 <kohsuke> AIU, we are getting two more boxes on OSUOSL for the project
+21:55:49 <kohsuke> And we got another server VM from Rackspace
+21:55:51 <abayer> …sorry, new office network is barfy.
+21:56:22 <kohsuke> We currently run both JIRA and Confluence on the same box, and ...
+21:56:33 <kohsuke> it's really running out of memory, causing instability
+21:57:00 <kohsuke> So we are planning to move one of the services to a new machine to solve the situation
+21:57:17 <rtyler> kohsuke: yes indeedy
+21:57:20 <kohsuke> I hoped rtyler would have some time line about when the new machines would come online, but I guess he's busy
+21:57:20 <olamy> nice
+21:57:21 <kohsuke> Oh
+21:57:27 <rtyler> alright then
+21:57:31 <rtyler> pay attention children
+21:57:42 <rtyler> our current infrastructure includes:
+21:57:53 <rtyler> * cucumber (jenkins-ci.org) colocated at Contegix
+21:58:10 <rtyler> * eggplant ([wiki/issues].jenkins-ci.org) a VM hosted with OSUOSL
+21:58:24 <rtyler> * spinach (?) a yet to be utilized VM at Rackspace
+21:58:33 <kohsuke> yah, it's spinach
+21:58:42 <olamy> rtyler could you put a infra.txt text file in github with some details ?
+21:58:45 <abayer> …fyi, spinach is a build slave on ci.jenkins-ci.org.
+21:58:58 <rtyler> I have a quote on shipping costs for two additional machines donated from a company that's decommissioning them in Chicago
+21:59:27 <rtyler> we will (tentatively) be receiving a 2U and a 3U machine, both beefy boxes
+21:59:47 <gmcdonald> (being the ASF info dude here) At ASF all that would be hosted for you, externally hosted infra would have to move (but not right away)
+21:59:47 <rtyler> both machines are multiple cores with *lots* of disk space
+22:00:17 <rtyler> gmcdonald: ASF already has hardware at the OSUOSL, so we wouldn't be too far away ;)
+22:00:25 <gmcdonald> yep :)
+22:00:54 <rtyler> In general, I'd assume that the additional hardware won't be at the OSUOSL for at least another week
+22:01:20 <hare_brain> I need to drop. Carry on.
+22:01:28 <rtyler> #action rtyler to work with kohsuke to move the wiki to a beefier machine
+22:02:00 <kohsuke> I wonder if it's useful to have some small informal money pool to pay for those expenses
+22:02:11 <rtyler> #action rtyler to schedule shipping the two additional machines (cabbage and lettuce) to the OSUOSL
+22:02:24 <gmcdonald> great machine names btw
+22:02:28 <rtyler> kohsuke: I was just going to steal money from abayer's pockets
+22:02:34 <abayer> Always a safe bet.
+22:02:38 <kohsuke> It sure is nice to do that via an umbrella org, but it's taking time, and I think for the time being, the amount is small enough that one of us can be trusted enough, I think.
+22:02:58 <rtyler> I have to negotiate with the data center where those two machines will be shipped from
+22:03:10 <rtyler> the current prices they're quoting me to package the machines up is *outrageous*
+22:03:32 <rtyler> worst comes to worst, I'll find some sucker in Chicago to go pick the machines up, and ship them for us ;)
+22:03:33 * kohsuke wonders if any of us are in Chicago that can help :-)
+22:03:42 <rtyler> right
+22:03:46 <kohsuke> OK
+22:04:06 <rtyler> anywhoo, I just got the quote this morning at 6am, so I haven't had a lot of time to work with it yet ;)
+22:04:40 <kohsuke> I guess we are moving Wiki to either cabbage or lettuce, right?
+22:04:43 <rtyler> #action rtyler to publicly thank Rackspace and OSUOSL for putting up with all our crap
+22:04:49 <kohsuke> +1
+22:04:56 <ccutrer> my sister lives in chicago, but I doubt she could be suckered into it
+22:05:02 <rtyler> kohsuke: that's my longer-term plan, we might need to move wiki. sooner rather than later
+22:05:11 <ccutrer> worth a try, if necessary, though
+22:05:18 <rtyler> #agreed Rackspace and the OSUOSL are nice folks, and we <3 them
+22:05:26 * rtyler loves cluttering up the meeting notes
+22:05:26 <kohsuke> rtyler: If Wiki won't move soon, maybe we can beg OSUOSL one more time for a bit more memory, temporarily?
+22:05:38 <kohsuke> I think another half a gig would make a real difference
+22:05:52 <rtyler> #action kohsuke to contact the OSUOSL about increasing eggplant's RAM allotment until more hardware arrives in Oregon
+22:06:02 <kohsuke> Good
+22:06:11 <rtyler> anything else I can offer from the infra side of things? :)
+22:06:30 <kohsuke> I think we are good
+22:06:41 <kohsuke> And we are overrunning time, so ...
+22:06:43 <rtyler> good my phone is rinning :)
+22:06:48 <kohsuke> #topic next governance meeting time
+22:06:58 <kohsuke> I think another one in two weeks?
+22:07:07 <abayer> Yeah, probably back to 11am Pacific.
+22:07:40 <kohsuke> So that's 18:00 GMT
+22:07:53 <kohsuke> Any objections?
+22:07:56 <abayer> When does Europe go to daylight savings?
+22:08:10 <kohsuke> (I thought only US is crazy enough to do that)
+22:08:12 <magnayn> 27 march for UK
+22:08:27 <kutzi> same in Germany I think
+22:08:34 <_W_> yeah it's EU standardized
+22:08:42 <abayer> Alright, then let's make sure to mark the time of the meeting in GMT and *DT. =)
+22:08:50 <kohsuke> Yes
+22:09:01 <kohsuke> 18 GMT it is
+22:09:16 <kohsuke> #agreed the next meeting is March 30th 18 GMT
+22:09:38 <kohsuke> With that, shall we call it a wrap?
+22:09:56 <kohsuke> I take the silence as consent...
+22:10:14 <kohsuke> Thanks everyone for coming. See you in two weeks.
+22:10:18 <kohsuke> #endmeeting

@@ -1,0 +1,255 @@
+18:00:18 <danielbe_> #startmeeting
+18:00:18 <robobutler> Let the Jenkins meeting commence!
+18:00:25 <danielbe_> #chair rtyler kohsuke
+18:00:25 <robobutler> Current chairs: danielbe_ kohsuke rtyler
+18:00:29 <oleg-nenashev> o/
+18:00:37 <danielbe_> #topic Recap last meeting's actions
+18:00:45 <danielbe_> that was a month ago
+18:00:49 <danielbe_> #info meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-06-20-18.10.html
+18:01:04 <danielbe_> well, LTS went out today, so we probably had an rc :)
+18:01:06 <ogondza> the RC was out
+18:01:14 <danielbe_> and I think the other is a topic for today? oleg-nenashev ?
+18:01:24 <danielbe_> yes, the last in the list it seems like
+18:01:31 <oleg-nenashev> Yeah
+18:01:38 <oleg-nenashev> GSoC budgeting?
+18:01:38 <danielbe_> let's get to the real topics then
+18:01:40 <tracymiranda> hi
+18:01:42 <danielbe_> #topic LTS status check
+18:01:47 <danielbe_> Well, the LTS is out
+18:01:52 <rtyler> \o/
+18:01:57 <danielbe_> https://jenkins.io/changelog-stable/#v2.121.2
+18:02:01 <danielbe_> you _really_ want to update
+18:02:04 <oleg-nenashev> works fine on my instances
+18:02:09 <ogondza> backporting starts tomorrow...
+18:02:12 <danielbe_> https://jenkins.io/security/advisory/2018-07-18/
+18:02:18 <danielbe_> ogondza great
+18:02:31 <danielbe_> anything else on LTS?
+18:02:35 <ogondza> nope
+18:02:42 <oleg-nenashev> not from me
+18:02:52 <danielbe_> #topic Vote for mass adding Jenkinsfiles
+18:03:00 <danielbe_> #info https://groups.google.com/d/topic/jenkinsci-dev/6f_wKvfpESk/discussion
+18:03:03 <danielbe_> ogondza this is yours
+18:03:21 <ogondza> Slide, Jesse and Oleg gave their +1 in ML
+18:03:38 * kohsuke comes in a little late
+18:03:52 <ogondza> Are there any question or objections to adding those Jenkinsfiles to plugins?
+18:04:00 <danielbe_> I'm ±0 on this -- it should do no harm, but if a plugin is _that_ abandoned do we really want it built?
+18:04:17 <oleg-nenashev> Yes
+18:04:20 <rtyler> ogondza: I say go for it, I look forward to getting more alerts from ci.jenkins.io /o\
+18:04:26 <oleg-nenashev> It would help committers... maybe
+18:04:40 <ogondza> right, the fact it is used is what matters to me
+18:04:42 <oleg-nenashev> Still, the main problem is with Adoption process
+18:05:01 <oleg-nenashev> we really need to introduce a timeout (5 years without changes, lol?)
+18:05:27 <kohsuke> Adoption process question aside, +1 for the question at hand
+18:05:37 <ogondza> any -1s?
+18:06:09 <ogondza> if there are none, I will implement the change latter this week...
+18:06:37 <oleg-nenashev> Do you need permissions for that?
+18:06:43 <ogondza> thank you everyone
+18:07:06 <ogondza> oleg-nenashev: I can grant it to myself. Is there any better way except the dialog with jenkins-admin?
+18:07:14 <danielbe_> ogondza FWIW I'd be happy to click on all the merge buttons you put in front of me
+18:07:29 <danielbe_> #agreed let's mass apply Jenkinsfiles to repos as discussed on the dev list
+18:07:35 <danielbe_> #action ogondza to apply Jenkinsfiles
+18:07:38 <rtyler> \o/
+18:07:39 <oleg-nenashev> yes, Jenkins GitHub admins do not need to get permissions
+18:07:57 <ogondza> danielbe_: that would be extra sweet. Or making me and org admin if that makes sense...
+18:08:04 <danielbe_> I think we can discuss implementation separately
+18:08:19 <ogondza> yeah, will reach out to you. Thanks!
+18:08:21 <oleg-nenashev> +1 for making ogondza org admin. IMHO it's well deserved
+18:08:32 <rtyler> I'm also fine with that
+18:08:32 <ogondza> not sure about that...
+18:08:34 <rtyler> I trust ogondza :)
+18:08:42 <oleg-nenashev> + we would benefit from some extra bandwidth :)
+18:08:50 <danielbe_> also a topic for elsewhere :P
+18:08:53 <danielbe_> #topic Growing community via a stronger Twitter presence
+18:09:02 <danielbe_> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/gqR_ee5grtM
+18:09:06 <danielbe_> tracymiranda that's yours
+18:09:10 <tracymiranda> thanks
+18:09:18 <tracymiranda> thanks for all feedback on mailing list
+18:09:21 * oleg-nenashev wonders whether it should be JEPped
+18:09:25 <tracymiranda> I will put together a JEP
+18:09:32 <oleg-nenashev> yey
+18:09:33 <rtyler> \o/
+18:09:36 <tracymiranda> @rtyler will you be BDFL?
+18:09:40 <tracymiranda> delegate
+18:09:43 <rtyler> I would presume to be, hyes
+18:09:47 <tracymiranda> great
+18:09:53 <danielbe_> so glad to see this happening
+18:10:09 <tracymiranda> note the scope of JEP will be around individuals getting onto twitter
+18:10:16 <tracymiranda> not sure about fixing up the automation...
+18:10:26 <oleg-nenashev> Generally we could add Twitter bot to ChatOps
+18:10:30 <rtyler> the automation would need some different stuff if you wanted to include tagging
+18:10:36 <oleg-nenashev> at least for retweets
+18:10:50 <rtyler> tracymiranda: I think focus on the people first is a good prioritization
+18:11:23 <tracymiranda> yes so policies for tweets, what folks need to do to be trusted
+18:11:39 <tracymiranda> also maybe a setup for sharing analytics in a public forum e.g. regular meeting
+18:12:00 <danielbe_> does twitter have support for account sharing? or is that done as a hack without 2FA for anyone etc?
+18:12:17 <oleg-nenashev> afaik no support
+18:12:34 <rtyler> TweetDeck does, which is how most orgs doo it
+18:12:36 <tracymiranda> for eclipse fdn accounts folks were given tweetdeck access
+18:12:44 <tracymiranda> so you can tweet, follow people and reply
+18:12:47 <oleg-nenashev> There are whatever crappy Marketing services for it on the top of multiple social media things
+18:12:53 <danielbe_> ah ok
+18:13:00 <tracymiranda> but not see analytics or change core things (e.g.profile)
+18:13:02 <rtyler> TweetDeck is a twitter property
+18:13:35 <danielbe_> so discusison of security of the twitter account would be useful
+18:13:41 <danielbe_> as part of the JEP
+18:13:49 <tracymiranda> should scope of this jep be @jenkinsci only or more accounts?
+18:14:03 <bitwiseman> Are there more acconts?
+18:14:06 <danielbe_> jenkins_release is automated anyway. are there others?
+18:14:12 <oleg-nenashev> Jenkins Releases
+18:14:12 <rtyler> @jenkinsxio
+18:14:17 <rtyler> or whatever
+18:14:19 <tracymiranda> @jenkins_plugins or similar
+18:14:21 <oleg-nenashev> Also JAM accounts
+18:14:29 <oleg-nenashev> But they rather out of the scope
+18:14:30 <rtyler> JAM accounts are only run by organizers
+18:14:37 <oleg-nenashev> jenkinsconf maybe
+18:14:55 <oleg-nenashev> Is it a community thing at all tho?
+18:14:59 <bitwiseman> So, we don't have master list anywhere
+18:14:59 <alyssat_> rtyler is correct about JAM accounts
+18:15:09 <kohsuke> Can we put Jenkins facebook account under the same policies?
+18:15:11 <alyssat_> jenkinsconf account is managed by CloudBees
+18:15:35 <kohsuke> or whatever it's called by Facebook -- Facebook Page, maybe
+18:15:44 <rtyler> kohsuke: can that be punted to another discuhssion
+18:15:45 <danielbe_> we have a facebook account?
+18:15:55 <rtyler> that's not even nearly managed/maintained presently right now as Twitter
+18:15:58 <rtyler> and never really has
+18:16:03 <danielbe_> rtyler +1
+18:16:04 <rtyler> scope creep *hiss*
+18:16:16 <kohsuke> Okay. It's autoposting from blogs atm
+18:16:27 <danielbe_> tracymiranda I think the path forward with the JEP is clear, anything else you wanted to discuss?
+18:16:30 <tracymiranda> hehe, any linked in pages I should know about
+18:16:44 <tracymiranda> no nothing else
+18:16:56 <rtyler> let's get twitter sorted, then we can tackle all the other social shenanigans :P
+18:17:03 <danielbe_> linkedin? can't tell whether that's a joke or real :-/
+18:17:06 * rtyler wonders if we have any property in Second Life
+18:17:09 <danielbe_> alright, moving on
+18:17:15 <danielbe_> #topic Jenkins Ambassader applicants
+18:17:17 <kohsuke> https://www.linkedin.com/company/jenkins-project/
+18:17:18 <oleg-nenashev> Malcolm Groves does all the Facebook job well
+18:17:26 <oleg-nenashev> And he is not the bot :)
+18:17:30 <danielbe_> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/Tp0Q1QAHP2k
+18:17:42 <danielbe_> bitwiseman and alyssat_ this is yours?
+18:17:47 <alyssat_> yep
+18:18:01 <alyssat_> We've received 8 applications for the ambassador program #info https://docs.google.com/document/d/1bL8YJpW45ByXQnfPEd0iJc-KBGoexhxgT-IcP0b2FZM/edit?usp=sharing.
+18:18:31 <alyssat_> All 8 applicants appear highly qualified to me. I would like to request that we move forward and award these applicants the title of Jenkins Ambassadors
+18:18:55 <rtyler> as I mentioned on the dev list, I wholeheartedly agree with this inaugural class
+18:19:05 <alyssat_> awesome!
+18:19:11 <bitwiseman> Looks great to meet. +1
+18:19:16 <oleg-nenashev> works for me
+18:19:36 <oleg-nenashev> We probably need an announcement blog + invitation to apply for others
+18:19:40 <kohsuke> Great list indeed
+18:19:57 <alyssat_> +1 for forth coming blog(s)
+18:20:52 <danielbe_> this list looks great
+18:21:11 <bitwiseman> Along with that, in the next couple weeks we can move JEP-4 to "Active".
+18:21:17 <danielbe_> anyone against moving forward here?
+18:21:35 <alyssat_> If there aren't any -1 i'll move forward with next steps of announcing these applicants Ambassadors
+18:21:43 <tracymiranda> great
+18:21:49 <rtyler> go go gadget ambassadors
+18:21:58 <alyssat_> woot woot..thank you all
+18:22:10 <danielbe_> #agreed Ambassador program is moving forward with candidates
+18:22:25 <danielbe_> next topic?
+18:22:35 <oleg-nenashev> yup
+18:22:36 <rtyler> let's do it
+18:22:41 <danielbe_> #topic GSoC status update and travel grants budget request
+18:22:44 <danielbe_> oleg-nenashev yours
+18:22:51 <danielbe_> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/zS1jzYRoF08
+18:22:56 <oleg-nenashev> So, before I go panhandling...
+18:23:10 <rtyler> heh
+18:23:12 <oleg-nenashev> #info: All 3 students have passed the Phase 2 evaluation
+18:23:32 <oleg-nenashev> #info https://www.meetup.com/Jenkins-online-meetup/events/252500125/ if you have missed it
+18:24:08 <oleg-nenashev> #info Next stop is final evaluation in 3 weeks, but we have started doing org things like travel grants for students
+18:24:21 <oleg-nenashev> #info Travel grant request
+18:24:30 <oleg-nenashev> Oops
+18:24:33 <oleg-nenashev> #info: https://groups.google.com/forum/#!topic/jenkinsci-dev/zS1jzYRoF08
+18:24:52 * tracymiranda thinks this is a great investment
+18:24:58 <oleg-nenashev> Sooo, we would like to sponsor our students
+18:25:11 <oleg-nenashev> I have tried to list benefits to the community in the email
+18:25:16 <rtyler> I'm in support of this, the budget is definitely there for this kind of thing in SPI
+18:25:26 <danielbe_> it's not even SPI budget IIUC
+18:25:35 <tracymiranda> it is split?
+18:25:48 <oleg-nenashev> GSoC money are in SPI
+18:25:53 <danielbe_> ah, ok
+18:25:55 <tracymiranda> ok
+18:26:00 <rtyler> oleg-nenashev: just so we're clear, the students understand that we would need to re-imburse them
+18:26:03 <danielbe_> but specific GSoC budget we have enough of
+18:26:03 <oleg-nenashev> So they are part of the overall budget presented by rtyler
+18:26:08 <rtyler> we cannot purchase tickets or anything
+18:26:12 <oleg-nenashev> yes
+18:26:17 <rtyler> ok, sounds good
+18:26:29 <tracymiranda> so will we cover 100% of travel expenses?
+18:26:37 <tracymiranda> we i.e. jenkins spi
+18:26:46 <oleg-nenashev> #info: JEP draft for GSoC budget and reimbursements: https://github.com/jenkinsci/jep/pull/144
+18:26:56 <oleg-nenashev> Students are aware of that
+18:27:15 <oleg-nenashev> tracymiranda: our problem is that we cannot offer 100% coverage only with GSoC budget
+18:27:33 <tracymiranda> yes so does board approve the rest?
+18:27:35 <oleg-nenashev> we would need up to 2k USD in addition to what we have
+18:27:40 <tracymiranda> isn't that part of the ask here?
+18:27:58 <oleg-nenashev> I have sent a request to the board, had a discussion with kohsuke
+18:28:16 <oleg-nenashev> His opinion is that it is rather for Governance meeting IIUC
+18:28:28 <oleg-nenashev> Waiting for the formal Jenkins Board response tho
+18:28:42 <oleg-nenashev> FYI rtyler harebrain ^
+18:28:52 <kohsuke> So just to make sure everyone is on the same page, because it took me a while to grok this,
+18:28:53 <rtyler> we have ample funds to use here, 2k is probalby less than the attempts we've made in years past for FOSDEM travel grants combined :P
+18:29:26 <kohsuke> There's about $4K that Google has paid for in GSoCs over years to Jenkins that we haven't used
+18:29:44 <oleg-nenashev> it's 2k USD + GSoC money, so it's rather about 5-6k USD tops
+18:29:58 <kohsuke> ... which is already held in SPI mixed with the rest of "general Jenkins coffer" that's totalling about $25K
+18:30:05 <oleg-nenashev> GSoC budget calculations are also in the email
+18:30:28 <rtyler> heh, I don't think this is actually that complicated
+18:30:38 <kohsuke> The fist ask, which I thought was no brainer, that this $4K Google paid for GSoC be used for GSoC
+18:30:50 <rtyler> GSoC brings in 2200 more into our account, and we need a total of ~4400 for these travel grants
+18:31:00 <kohsuke> ... by the discretion of the leader of GSoC in Jenkins, which is oleg-nenashev
+18:31:15 <oleg-nenashev> I propose to split vote to two parts. (1) Does Governance meeting approve using GSoC budget from 2016? (2) Are we open do go beyond (does not need to ne decided now)?
+18:31:23 <kohsuke> The second ask, is that we spend another $2K or so from the general coffer for GSoC students
+18:31:36 <oleg-nenashev> exactly kohsuke
+18:32:02 <oleg-nenashev> So, any -1s regarding (1) ?
+18:32:10 <kohsuke> +1, oleg-nenashev
+18:32:12 <oleg-nenashev> Does Governance meeting approve using GSoC budget from 2016?
+18:32:17 <oleg-nenashev> +1
+18:32:18 <danielbe_> the newest treasurer report is Dec 2017 with 33.5k in the bank, what happened since I don't know. But between GitHub and Azure giving us free stuff, I doubt we have lots of expenses?
+18:32:29 <rtyler> +1 to all of this, just ship it ;)
+18:32:35 <danielbe_> (1) +1 (2) +2
+18:32:49 <tracymiranda> can i vote? +1 anyway
+18:32:54 <rtyler> danielbe_: iwe do not, security gifts and some github costs are what we spend money on
+18:32:56 <kohsuke> Does GitHub give us free stuff?
+18:32:57 <oleg-nenashev> everybody can vote
+18:33:01 <alyssat_> +1
+18:33:10 <rtyler> kohsuke: jenkinsci-cert is gratis, jenkins-infra is not
+18:33:11 <danielbe_> kohsuke jenkinsci-cert is 100% off forever
+18:33:20 <tracymiranda> cool
+18:33:25 <danielbe_> which is at 1500 USD per year or so right now
+18:34:09 <kohsuke> nice, I didn't know
+18:34:10 <oleg-nenashev> less than stickers, yeah? :)
+18:34:10 <oleg-nenashev> Okay, any other votes?
+18:34:10 <oleg-nenashev> Counting 5
+18:34:15 <oleg-nenashev> 4
+18:34:18 <oleg-nenashev> 3
+18:34:23 <oleg-nenashev> 2
+18:34:25 <oleg-nenashev> 1
+18:34:27 <danielbe_> #agreed We finance GSoC travel for the students from GSoC + general funds
+18:34:39 <tracymiranda> thanks for sorting this oleg
+18:34:53 <oleg-nenashev> #action oleg_nenashev to proceed with the budget things and GSoC logistics
+18:34:58 <danielbe_> \o/
+18:34:59 <oleg-nenashev> tracymiranda: happy to do that
+18:35:23 <danielbe_> #topic next meeting
+18:35:30 <oleg-nenashev> Does anybody want to be a GSoC budget BDFL delegate?
+18:35:35 * oleg-nenashev is too slow
+18:35:52 <danielbe_> #topic GSoC status update and travel grants budget request
+18:35:57 <danielbe_> we can go back
+18:36:31 <oleg-nenashev> let's see. I'd guess it should be kohsuke or rtyler  since they represent the board (and SPI)
+18:36:40 <kohsuke> this needs JEP beyond what we decided?
+18:36:46 <oleg-nenashev> yep
+18:36:50 <kohsuke> OK
+18:37:05 <oleg-nenashev> Common things like "we reimburse only economy class"
+18:37:28 <kohsuke> Then I'll see it and figure out the delegate
+18:37:32 <oleg-nenashev> + transparency requirements
+18:37:38 <oleg-nenashev> thanks kohsuke!
+18:37:52 <danielbe_> #topic next meeting
+18:38:04 <danielbe_> August 1
+18:38:11 <danielbe_> any public holidays I'm missing again?
+18:38:33 <oleg-nenashev> Switzerland
+18:38:37 <rtyler> isn't August 1st when the entire country of france goes on holiday?
+18:39:09 <oleg-nenashev> aug 1 should be fine
+18:39:15 <kohsuke> Let's stick to Aug 1, it's always holiday somewhere
+18:39:25 <rtyler> heh
+18:39:30 <danielbe_> ok then, Aug 1 it is
+18:39:34 <danielbe_> #endmeeting

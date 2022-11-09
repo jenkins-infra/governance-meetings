@@ -1,0 +1,415 @@
+19:00:18 <rtyler> #startmeeting
+19:00:18 <robobutler> Let the Jenkins meeting commence!
+19:00:24 <rtyler> #chair hare_brain kohsuke danielbeck
+19:00:24 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+19:00:40 <rtyler> #topic Recap last meeting's actions
+19:00:52 <rtyler> oleg-nenashev: I see an item to incorporate some feedback about press contacts
+19:00:56 <rtyler> I can't remember if we did that or not
+19:01:01 <rtyler> Feb 3rd seems so long ago :P
+19:01:26 <oleg-nenashev> you should not drink so much beer at conferences :P
+19:02:25 <kohsuke> Hmm, 1.642.2 RC
+19:02:43 <rtyler> #info last meeting actions http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-02-03-19.00.html
+19:02:46 <rtyler> wake up people
+19:02:59 <rtyler> there's an ogondza and kohsuke item I see here
+19:03:05 <kohsuke> oh good, that one is done
+19:03:28 <rtyler> oleg-nenashev: and your items?
+19:04:08 <rtyler> okay, I'll answer for him
+19:04:13 <kohsuke> Sounds like you guys were having GSoC conversation in #jenkins-community
+19:04:22 <rtyler> the GSoC application draft was just sent to the mailing lists
+19:04:24 <oleg-nenashev> Jenkins CIA is tombstoned
+19:04:33 <rtyler> as a member of the board I put some initial feedback into it already
+19:04:42 <rtyler> we have a deadline of this friday so if you have feedback, get it in fast
+19:05:06 <kohsuke> and that draft application is where?
+19:05:11 <oleg-nenashev> Yeah, GSoC application is in the ready-for-review state. We have two days to review and submit it
+19:05:11 <rtyler> read your email plz
+19:05:19 <rtyler> we got lots to get to today
+19:05:22 <rtyler> #topic LTS status check
+19:05:25 <rtyler> ogondza: the floor is yours
+19:05:38 <oleg-nenashev> kohsuke: FYI https://groups.google.com/forum/#!topic/jenkinsci-dev/vTxsCLk1XS0
+19:05:48 <kohsuke> yep, thanks
+19:05:51 <ogondza> as danielbeck suggested we are postponing release by one week
+19:06:05 <ogondza> effectively extending testing window
+19:06:13 <rtyler> #info we're post-poning release by one week
+19:06:21 <kohsuke> my fault
+19:06:33 <rtyler> anything else to cover on this topic ogondza ?
+19:06:39 <danielbeck> and we found an actual problem in the RC and fixed it
+19:06:43 <oleg-nenashev> We've discovered 1 critical issue yesterday, so maybe we need a new RC
+19:06:49 <ogondza> kohsuke: 2016-02-24 is good for you?
+19:06:54 <kohsuke> OK
+19:07:02 <rtyler> are we going to cut a new RC?
+19:07:12 <kohsuke> Yes, that date'll be good
+19:07:25 <rtyler> #info new LTS date is planned for 2016-02-24
+19:07:28 <danielbeck> oleg-nenashev Are you also referring to the GroovyHookScript one?
+19:07:39 <oleg-nenashev> +1 for the new RC. Groovy Hooks are in the bad shape in RC-1
+19:07:44 <oleg-nenashev> danielbeck: yes
+19:07:50 <danielbeck> #info https://issues.jenkins-ci.org/browse/JENKINS-32985
+19:08:20 <danielbeck> TBH this doesn't look like it's severe enough to redo the RC
+19:08:26 <ogondza> Will we move the cycle by one week?
+19:08:33 <ogondza> danielbeck: could not hurt
+19:08:45 <kohsuke> ogondza: we talked about your producing LTS RCs going forward, should we do that starting here? Or I'm happy to produce RC too
+19:08:55 <oleg-nenashev> danielbeck: Depends on the environment. Many people rely on hooks
+19:09:22 <oleg-nenashev> But I have no strong opinion. Now we test the custom core build
+19:09:52 <ogondza> kohsuke: yes, lets discus detail after the meeting (are there any)
+19:09:52 <kohsuke> #action kohsuke to post 1.642.2 RC2
+19:10:00 <kohsuke> ok, then I scratch that
+19:10:07 <danielbeck> ogondza I don't think we should move the schedule
+19:10:19 <danielbeck> it's quite useful to have it match the meeting schedule
+19:10:20 <ogondza> #action ogondza to push the rc
+19:10:43 <rtyler> do we have enough covered for this topic in the meeting to where follow-ups can happen immediately after?
+19:11:24 <kohsuke> +1 on danielbeck that we should stick to the same cycle as this meeting
+19:11:30 <kohsuke> if that's not contested, then we can move on, I think
+19:11:41 <ogondza> lets move on
+19:11:53 <rtyler> #topic Jenkins Certification updaet and trademark approval request
+19:11:58 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Certification
+19:12:13 <rtyler> so let me first apologize on behalf of CloudBees for epicly dropping the ball on this
+19:12:31 <rtyler> the last meeting CloudBees shared updates on this was mid-last year, which is not okay
+19:13:05 <rtyler> in the last meeting about this there were a number of loose ends and questions which I have tried and answer in the above wiki page
+19:13:50 <rtyler> this includes questions from ogondza, orrc and KostyaSha
+19:14:56 <rtyler> additionally for a number of reasons we were not able to get a non-CloudBees affiliated member of the community involved the with certification advisory board, so I would like to ask for anybody interested in that to ping me at my work email (tyler@cloudbees.com)
+19:15:25 <rtyler> #info Certification Advisory Board details: https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Certification#JenkinsCertification-AdvisoryBoard
+19:15:53 <batmat> Nitpicking: shouldn't, like for Jenkins the app itself, it be named something like *CloudBees* Jenkins Certification?
+19:16:16 <rtyler> that's not nitpicking that touches on one of the things we've dropped the ball on :)
+19:16:39 <batmat> :)
+19:16:43 <oleg-nenashev> And the program is already announced, right?
+19:16:45 <rtyler> so before I jump to that, one of the major themes of questions originally was around financing of this operation
+19:16:58 <rtyler> it's safe to safe that CloudBees is definitely not making money on this :P
+19:17:01 <rtyler> safe to say*
+19:17:20 <rtyler> I've tried to detail what I'm able to detail around the financing of this in the document, no Jenkins project funds are being used here
+19:17:43 <rtyler> oleg-nenashev: yes, the program is already announced, which is part of the previously mentioned ball dropping :P
+19:18:22 <oleg-nenashev> OK, I have to abstain from this discussion in any case
+19:18:30 <rtyler> batmat: so CloudBees Jenkins implies a specific "distribution" of Jenkins that CloudBees releases
+19:18:47 <rtyler> so CloudBees has developed a "CloudBees Jenkins Certification" program *and* a "Jenkins Certification" program
+19:19:00 <batmat> rtyler: yeah, so more like Jenkins *CloudBees* Certification :)
+19:19:01 <rtyler> the Jenkins Certification program is oriented 100% around the Jenkins open source project
+19:19:44 <rtyler> it is this program we're discussing here, and what CloudBees really needs (in my personal opinion) an non-CloudBees affiliated member of the community on the certification advisory board
+19:19:48 <rtyler> SO
+19:19:51 <rtyler> lots of updates AMIRITE
+19:20:01 <batmat> rtyler: yes, I've read that. Just saying that that wording may imply this is the officially blessed/only one for the Jenkins community project, when some other (hypothetic, granted) companies could do the same
+19:20:36 <rtyler> to my knowedge, to date, no other companies have invested in creating such a program
+19:20:37 <kohsuke> The intent has been to make this program belong to the  community --- I think such certification has more values to those who take them and to this community.
+19:21:13 <KostyaSha> please define what is community
+19:23:33 * rtyler things of non-snarky ways to answer that
+19:23:36 <batmat> rtyler: sure, hence my /hypothetic/
+19:24:31 <rtyler> KostyaSha: is your question not really answered in the introduction of the wiki page I linked above?
+19:24:47 <rtyler> at least as far as the intended audience and purpose of the certification program
+19:26:01 <rtyler> so the second part of this topic is the trademark sublicense request, which was mistakenly not requested previously
+19:27:21 <rtyler> #info the two derivative marks CloudBees is seeking to use are: "Jenkins Certification" to refer to the Jenkins open source related certification program, and "Certified Jenkins Engineer" to be used to reference practitioners who successfully complete the open-source related exam
+19:28:29 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Trademark
+19:30:33 <KostyaSha> Are questions available somewhere? Some examples
+19:30:40 <autojack> so the topic on the table is approval for CloudBees to use these marks?
+19:30:50 <orrc> KostyaSha: there's a study guide on the CB page with some samples
+19:31:10 <rtyler> orrc: I actually don't have a link handy for that
+19:31:13 <rtyler> autojack: yes
+19:31:13 <KostyaSha> orrc, i thought non CB part was already done and now request is only about CB
+19:31:38 <KostyaSha> orrc, will be glad to see non CB cert questions to get idea what is this about
+19:32:25 <autojack> +1 for the sublicense.
+19:32:31 <alyssat> the study guide is https://www.cloudbees.com/sites/default/files/cje_study_guide_final.pdf
+19:32:47 <alyssat> the FAQ is https://www.cloudbees.com/jenkins-certification
+19:32:50 <oleg-nenashev> allyssat: It's CJE, not open-source
+19:32:53 <KostyaSha> alyssat, as foss member i'm not using any CB* staff
+19:33:33 <oleg-nenashev> ahh, CJE = Certified Jenkins Engineer
+19:33:35 <heidig__> CJE = Certified Jenkins Engineer
+19:33:45 <rtyler> we gotta stop using all these silly acronyms :P
+19:33:52 <alyssat> kostyaSha: that's what currently avail.
+19:33:57 <KostyaSha> So if the question about sub-licensing for "$company jenkins certificaiton" i would be glad to see firstly plain "jenkins certification". Either there will be possible 2 orthogonal licenses.
+19:33:59 <heidig__> rtyler +1
+19:34:29 <rtyler> KostyaSha: same here :P
+19:36:01 <KostyaSha> Jenkins Engineer? is it also approved mark?
+19:36:09 <kohsuke> KostyaSha: I'd rather see those efforts join hands together if somebody else wants to do it
+19:36:53 <danielbeck> KostyaSha See rtyler's #info above, it's one of the requested marks
+19:37:16 <KostyaSha> danielbeck, oops
+19:37:22 <kohsuke> ... which is why the program proposal emphasizes the community oversights (aka "advisory board")
+19:37:52 <KostyaSha> is it possible to approve everything CB wants, but without enforcing everything to Jenkins itself?
+19:38:10 <rtyler> KostyaSha: what do you mean? enforcing everything to Jenkins?
+19:38:15 <kohsuke> And it's hard to see how anyone else wants to develop a competing certification
+19:38:22 <rtyler> heh
+19:38:35 <KostyaSha> imho there is no project resources (non-CB) for making jenkins cert programs etc.
+19:38:52 <rtyler> developing certification examples is a great way to take a big pile of money and turn it into a small pile of money
+19:39:08 <rtyler> KostyaSha: right, and that's not great but fine from my perspective
+19:39:24 <rtyler> I really would like to see some more people express interest and commit time to help review the questions via the advisory board
+19:40:02 * KostyaSha can't imagine possible questions at all
+19:40:17 * autojack is interested and willing to commit time to etc etc etc
+19:40:33 <rtyler> KostyaSha: given your experience level, I wouldn't imagine the questions would be terribly difficult for ou
+19:40:35 <autojack> I've been out of the Jenkins loop for a couple of months but this sounds like something I could do.
+19:40:42 <autojack> so there's that.
+19:41:04 <kohsuke> going forward I believe the main effort will be around revisiting problematic/stale questions and adding new ones
+19:41:32 <orrc> some of this feels a bit odd. community members should donate their time to help develop a proprietary set of questions, to help CloudBees charge $250 for certification :)
+19:41:33 <rtyler> not to derail signing autojack up for more work, but any more comments on the "Jenkins Certification" and "Certified Jenkins Engineer" marks?
+19:41:51 <KostyaSha> rtyler, from my exp i want say that there is messy core (i.e. crazy matrix job with unclear flyweights logic) and plugins written by devs that may change in any time.
+19:42:04 <kohsuke> FWIW I took the test and I was impressed at the quality
+19:42:14 <KostyaSha> i.e. CB may keep all features/plugins/bundle and exam/cert for it, but foss...
+19:42:59 <batmat> I think I could help too. Though looking at the list, there's some plugins I actually never used.
+19:43:13 <rtyler> orrc: I think that's a good point we can address
+19:44:12 * rtyler ponders
+19:44:19 <kohsuke> orrc: as described in the costs/revenues it's very unlikely that we'll ever turn profits, but would it help if we commit to transfer any "profits" to SPI?
+19:44:24 <KostyaSha> why not just make coursera course?
+19:44:26 <orrc> a lot of this is based on good faith, e.g. making sure that the questions aren't stupid / easy, so that the community can "protect the good name of Jenkins"
+19:44:42 <KostyaSha> people may then get 'coursera jenkins cert' for example
+19:44:42 <orrc> but then CloudBees is also incentivised to make sure it's a decent program
+19:45:06 <orrc> it's hard to argue against the whole thing, but it feels slightly and unhelpfully intangibly odd :)
+19:45:15 <rtyler> heh
+19:45:47 <batmat> +1 orrc nicely worded :)
+19:45:55 <danielbeck> kohsuke What was your alpha test score again?
+19:46:07 <batmat> danielbeck: he didn't pass ;)
+19:46:27 * batmat lols
+19:46:27 <rtyler> hah
+19:46:36 <kohsuke> danielbeck: not as good as it should have been
+19:46:43 <rtyler> we're getting offtopic here
+19:46:50 <rtyler> we can all give kohsuke grief about his test scores later :)
+19:47:03 <danielbeck> trying to address concerns of it being too easy
+19:47:16 <orrc> so I think it's ok. but the advisory board member(s?) should be a bit clearer; how big is the board? do community members have any power, e.g. to veto questions?
+19:47:36 <rtyler> orrc: agreed, I'll follow up on that and put more definition into it
+19:47:55 <autojack> is there any other question on the table besides approving the trademark stuff?
+19:48:03 <autojack> it sounded like no, in which case as I said, +1.
+19:48:05 <rtyler> autojack: no, just updates on the program
+19:48:08 <autojack> ok.
+19:48:36 <orrc> kohsuke: I'm surprised that it may never make a profit, but I remember having the feeling last time that it seemed reasonable that the community should benefit from its name being used like this
+19:48:57 <orrc> but as the page explains, that may well be in intangible ways. which I do kinda believe in :)
+19:49:10 <autojack> yeah, I agree about the intangibles.
+19:49:16 <autojack> actually they are probably reasonably tangible.
+19:49:36 <autojack> hey, layoffs hitting my team as we speak, can I get a discount on certification?? :P
+19:49:40 <orrc> I had a lot of [citation needed] in my head reading that page
+19:50:02 <rtyler> #action rtyler to put more clear definition into the size and scope of the certification advisory board
+19:50:27 <rtyler> #action rtyler to add more tangible benefits for the Jenkins project to the certification page
+19:50:41 <heidig__> autojack - it's $50 right now, during the beta program. Still room in some cities to take the exam
+19:51:02 <orrc> rtyler: super. I'm also ok on a trademark sublicence. not sure if we've mentioned before that these are non-exclusive, but in this case it would certainly be good
+19:51:30 <rtyler> I'm somewhat biased, but I agree on the terms that orrc suggest
+19:51:55 <rtyler> #action rtyler to harass kohsuke on what kind of revenue or other benefits we can bring back into the Jenkins project from certification
+19:52:11 <rtyler> any other thoughts on the trademark sublicensing here?
+19:52:23 <orrc> especially from non-CloudBees employees
+19:52:25 <rtyler> I realize I've taken a boatload of time from this meeting on the subject, but IMO it was needed
+19:52:29 * rtyler pokes ogondza
+19:52:46 <rtyler> hare_brain: any thoughts to share?
+19:52:48 <oleg-nenashev> yes this is a must-have discussion
+19:52:55 * oleg-nenashev abstains in any case
+19:53:38 <hare_brain> Others have been doing a great job in asking pertinent questions. I have nothing to add.
+19:53:57 <rtyler> hare_brain: non-CB thoughts on the sublicensing request?
+19:53:58 <batmat> hare_brain: your opinion would help I guess :)
+19:54:30 * orrc misses being able to poke the entire channel, like in Slack
+19:54:38 <orrc> (and emoji reactions, of course)
+19:55:00 <batmat> I'm personally globally OK, though my only slight discomfort is the one I expressed at the beginning.
+19:55:06 * rtyler nods
+19:55:19 <hare_brain> @rtyler: I don't have any issues with the sub-license request, aside from the intangibles others have talked about.
+19:55:53 <rtyler> sooooo, yes? :P
+19:56:48 <orrc> :(
+19:57:17 <autojack> hey, my +1 should be enough for anything.
+19:57:20 <hare_brain> No objections.
+19:57:41 <batmat> hare_brain: so this is a +0 ? :)
+19:57:44 <rtyler> okay; with my cloudbees hat on I'm committing to getting my action items done on this topic prior to next meeting
+19:57:51 <hare_brain> LOL.
+19:57:55 <hare_brain> ! -1
+19:58:00 <rtyler> can we move on to my next big topic?
+19:58:04 * rtyler looks at the clock
+19:58:05 * batmat likes Apache's voting way
+19:58:09 <autojack> please do.
+19:58:13 <autojack> I'm getting hungry.
+19:58:25 <rtyler> #topic New team lead positions: Events and Release
+19:58:34 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Proposal+-+Project+sub-teams
+19:58:38 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Team+Leads
+19:58:57 <rtyler> first let's talk about the Events team lead, responsibilities have been defined here: https://wiki.jenkins-ci.org/display/JENKINS/Team+Leads#TeamLeads-Events
+19:59:33 <rtyler> my goal is to create this position and open the call for candidates to help run and coordinate the ever increasing Events responsibilities we have on our plates
+19:59:36 <autojack> still references the now-deprecated CIA.
+19:59:43 <rtyler> yeah, gotta remove that
+19:59:53 <rtyler> since we deadened CIA, I thought this would be a good time to bring this up
+20:00:12 <rtyler> autojack: removed
+20:00:14 <autojack> k
+20:00:37 <autojack> I'm reading this and thinking, with a smile, don't we already have alyssat? :D
+20:00:48 <rtyler> and similar to Security Officer, some amount of additional access would be delegated to the Events officer to help perform these duties
+20:01:18 <autojack> it sounds like a solid idea.
+20:01:30 <rtyler> are there any objections to this position?
+20:01:40 <oleg-nenashev> +1
+20:01:41 <autojack> I think it would have to be someone who is both dedicated and unusually well-organized.
+20:01:58 <batmat> +1
+20:02:34 <rtyler> if there are no objections, I'll jump to the other one
+20:02:40 <kohsuke> I think this is an important role that would help facilitate communication with people outside
+20:02:44 <autojack> I almost think it would work best with >1 person in the role.
+20:02:45 <rtyler> #action rtyler to send call for candidates out for Events team lead
+20:02:56 <rtyler> autojack: are you volunteering for this too? :)
+20:03:02 <rtyler> so the Release team lead
+20:03:11 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Team+Leads#TeamLeads-Release
+20:03:26 <alyssat> I'm volunteering :o)
+20:03:39 <batmat> alyssat: for the Release team lead?
+20:03:39 <batmat> :)
+20:03:44 <oleg-nenashev> alyssat lol
+20:03:48 <rtyler> with my infra hat on, my primary goal here is have somebody trusted to manage releases and keys, typically a job that only kohsuke has done
+20:04:02 <alyssat> batman: of course not..events lead :o)
+20:04:23 <kohsuke> yes, for me, this is primarily to open up the access to the release keys in a controlled way
+20:04:23 <rtyler> with regards to LTS, as is mentioned in the responsibilities above, this person would either be responsible for performing relaeses directly, or coordinating with a documented release manager for a release line(s)
+20:05:13 <oleg-nenashev> rtyler kohsuke: Does it involve release automation on CI?
+20:05:14 <KostyaSha> maybe project will finally has project keys instead kohsuke's keys
+20:05:22 <rtyler> KostyaSha: *yesssssssssss*
+20:05:25 <autojack> +1 to this idea as well. I'm on board with anything that reduces the project's SPOF.
+20:05:26 <danielbeck> KostyaSha Work in progress by abayer
+20:05:27 <rtyler> oleg-nenashev: yes
+20:05:38 <KostyaSha> in 2016 /o/ in automation project (party)
+20:05:42 <rtyler> \o/
+20:05:51 <rtyler> are there any objections to me opening a call for candidates for this position?
+20:06:16 <oleg-nenashev> rtyler: Is there an overlap with LTS team?
+20:06:24 <oleg-nenashev> Maybe a single lead is enough
+20:06:30 * batmat thinks alyssat will call me batmat forever :)
+20:06:40 <ogondza> as I understand this some/one of the release team members will be the LTS guy
+20:06:41 * batmat batman*
+20:06:49 <rtyler> ogondza: correct
+20:06:52 <KostyaSha> oleg-nenashev, they should help each other :)
+20:07:12 <alyssat> batmat: gotta love auto correction :o)
+20:07:18 <kohsuke> I think we can record agreement and move on
+20:07:20 <autojack> no objections.
+20:07:30 <oleg-nenashev> i'm +1 on the role in any case
+20:07:32 <batmat> +1
+20:07:34 <rtyler> alright, batmat I need to shuffle one more time-sensitive topic up ahead of yours
+20:07:45 <rtyler> #topic Google Summer of Code 2016 application process
+20:07:55 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/vTxsCLk1XS0
+20:08:04 <oleg-nenashev> #info https://docs.google.com/document/d/1dv9UXyT_FPukJXrBYauIKvxrZeEU6BT7v90LSQX36MU/edit#
+20:08:07 <rtyler> this should mostly be just an update, so we can get through it real quick
+20:08:16 <oleg-nenashev> #info https://wiki.jenkins-ci.org/display/JENKINS/Google+Summer+Of+Code+2016
+20:08:24 <rtyler> #info the project application deadline is this friday (Feb 19th)
+20:08:33 <oleg-nenashev> See the ML for details
+20:08:56 <oleg-nenashev> As a summary, we're almost ready to apply
+20:09:01 <KostyaSha> danielbeck, https://groups.google.com/d/msg/jenkinsci-dev/6NXjjQq5VgQ/ahPIPIBd3OAJ :D
+20:09:09 <oleg-nenashev> So we just need reviews of the application docs
+20:09:25 <rtyler> please please please get your comments in on the application document oleg-nenashev prepared within the next 24 hours ish
+20:09:33 <kohsuke> IIRC, we need to have mentors ready
+20:09:38 <rtyler> kohsuke: we do
+20:09:50 <kohsuke> Do we have a mental tally of who?
+20:09:58 <oleg-nenashev> We need MOAR mentors, but we have a startup pack
+20:10:11 <oleg-nenashev> kohsuke: see Wiki
+20:10:22 <rtyler> oleg-nenashev: is drulli not participating/
+20:10:31 <kohsuke> Wow
+20:10:41 <kohsuke> I am impressed
+20:10:42 <oleg-nenashev> kohsuke: there are also 3 almost-ready mentors, but I'm waiting for their final agreement
+20:10:53 <rtyler> cool, can we move onto the last topic oleg-nenashev ?
+20:11:14 <oleg-nenashev> rtyler drulli finaly decided to skip this year. Continuous baby delivery
+20:11:18 <rtyler> hah
+20:11:27 <rtyler> that's a waterfall project if I've ever seen one
+20:11:38 <oleg-nenashev> Yes, we can go forward if there is no comments/proposals
+20:11:39 <orrc> was there any feedback or lessons learned from the 2009 rejection?
+20:11:49 <orrc> (I guess that's off-topic)
+20:11:51 <rtyler> orrc: not that I'm aware of
+20:11:58 <rtyler> #topic clarify that plugins available through the update center are required to have their source code canonical repository hosted under the Jenkinsci GitHub organization
+20:12:03 <kohsuke> this program proposal is much more rich than the last round
+20:12:15 <oleg-nenashev> orrc: I've read the ML regarding this topic && review competitor programs
+20:12:17 <kohsuke> and it was also tied up between Google/Sun disputes on some IP
+20:12:28 <rtyler> batmat: you're on :)
+20:12:29 <orrc> ouch, ok
+20:12:38 <oleg-nenashev> Now we're in much better shape, I hope
+20:12:49 <kohsuke> Yes, I think so. Fingers crossed
+20:13:43 <kohsuke> Going back to the topic at hand...
+20:13:49 <rtyler> batmat: one of the things I had thought of last week was perhaps defaulting the parent pom to release into the experimental update center by default, which would satisfy nigel's concerns, and then make the jenkinsci org requirement for inclusion in latest/stable update centers
+20:14:13 <rtyler> now, I had this idea with very little idea of how this would actually work
+20:14:16 * rtyler doesn't maven good
+20:14:38 <batmat> rtyler: actually, experimental is by version pattern only
+20:14:43 <rtyler> ORLY
+20:14:49 * rtyler facepalms
+20:14:52 <orrc> yup
+20:14:54 <KostyaSha> why facepalm?
+20:15:07 <danielbeck> makes the suggestion not work
+20:15:11 <orrc> and there's no way of knowing, when generating the UC, where the plugin is hosted
+20:15:16 <batmat> rtyler: but the idea is great, if it was feasible this way :)
+20:15:17 <orrc> (though it is a good idea)
+20:15:17 <kohsuke> With a bit of automation we could certainly do what you are suggesting
+20:15:21 <rtyler> KostyaSha: the update center generation is a /little/ ugly with various hacks like that in it :P
+20:15:27 <KostyaSha> jenkins plugins distribution is facepalm ;)
+20:15:43 <rtyler> I don't want kohsuke to throw anything at me, so..no comment :)
+20:16:04 <batmat> rtyler: one clean(er) solution would to redefine the distributionManagement tag so that there's many repos
+20:16:29 <KostyaSha> batmat, that would add mess to already existing plugins/configs
+20:16:42 <batmat> anyway, I fear we may be slightly offtopic.
+20:16:58 <kohsuke> I forgot exactly how I did it, but we can know what repository contains what plugin and their versions
+20:17:08 <orrc> so long as there's no check made when uploading to the repository, then that isn't really enforcable
+20:17:09 <rtyler> batmat: bring us back ontopic :)
+20:17:24 <batmat> As stated by abayer kohsuke and many others, the fact that plugin source code has always been assumed to be under the hudson/jenkins infra has always been assumed
+20:17:34 <batmat> the thing is, legacy.
+20:17:48 <abayer> It's been assumed but not required, yeah.
+20:18:05 <KostyaSha> or i may say that it optional
+20:18:10 <KostyaSha> either host either not
+20:18:26 <batmat> having had to look up a plugin source code after a user's question on #jenkins some time ago, I really feel this should be required at some point
+20:18:42 <batmat> since there's apart from that really not a lot of enforcement
+20:18:50 <abayer> Based on the defaults, I'd say hosting outside of jenkinsci org has been optional, rather than hosting inside of jenkinsci org being optional - you *can* opt out, but you have to specifically do so.
+20:18:51 <batmat> so, IMO would sound quite reasonnable
+20:18:52 <rtyler> the adopt-a-plugin thing makes me feel this should be a requirement
+20:19:02 <rtyler> so folks can pick up on plugins that have been left behind
+20:19:06 <batmat> rtyler: exactly
+20:19:40 <KostyaSha> rtyler, in such cases they are forked
+20:19:54 <KostyaSha> so there is no problem
+20:20:07 <rtyler> KostyaSha: that assumes that the source code was ever available
+20:20:10 <danielbeck> KostyaSha from non public source code?
+20:20:30 <kohsuke> one of the nigel's concern was that we might set additional bar to the entry into the jenkinsci org.
+20:20:39 <KostyaSha> danielbeck, let's check, topic is about hosting under jenkinsci not about public/unpublic?
+20:20:44 <batmat> with that bunch of plugins we have, unmaintained plugins arise almost every other day. And having to dig around to find the associated source code seems really a waste of time.
+20:20:45 <rtyler> so there are some open source projects, nibalizer from openstack was in here earlier, that host their plugins in their own open source infrastructure
+20:20:47 <kohsuke> Maybe re-affirming that such bar shouldn't be arbitrary might help
+20:21:11 <abayer> Re-affirming wouldn't hurt regardless. =)
+20:21:30 <rtyler> KostyaSha: we don't have private repos under jenkinsci fwiw
+20:22:16 <rtyler> I'm curious if we have proprietary plugins in our update center, and if so, do we wish to continue distributing them
+20:22:19 <KostyaSha> rtyler, danielbeck mean sources: 1) under jenkinsci (public) 2) under user/company accounts(public) 3) unavailable at all
+20:22:21 <batmat> We basically generally fork repo under a week, discussions/roundtrips included
+20:22:24 <danielbeck> KostyaSha anywhere else is essentially non-public as the author can decide to delete the repo.
+20:22:42 <rtyler> this proposal would definitely affect those developers
+20:22:50 <KostyaSha> danielbeck, sources will exist in jars
+20:22:53 <orrc> rtyler: there may be one or two floating around; we've certainly removed a couple in the past year
+20:23:10 <batmat> so saying this is a limiting requirement is IMO a bit excessive. It's IMO actually excessively simple to host a new plugin under the jenkinsci org...
+20:23:36 <orrc> KostyaSha: someone published a plugin, which *explicitly* excluded the sources
+20:23:44 <batmat> rtyler: about proprietary plugins, I'm pretty sure this was already clarified as forbidden
+20:23:50 <rtyler> danielbeck: do you have guidelines floating around for HOSTING requests? I don't want forking to be blocked by a single persons subjective opinion on the merit of a fork
+20:23:55 <rtyler> batmat: okie doke
+20:24:06 <KostyaSha> orrc, then you can request sources according to license?
+20:25:01 <batmat> #info "The Jenkins project does not host closed-source plugins" https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins
+20:25:04 <KostyaSha> of course closed source is bad :)
+20:25:10 <rtyler> batmat: excellent
+20:25:12 <rtyler> thanks
+20:25:20 <abayer> I could buy into the idea of an "external origin" update center that you'd end up in if your repo wasn't under jenkinsci.
+20:25:33 <abayer> As long as we integrated that "external origin" UC into the default UI somehow.
+20:25:45 <oleg-nenashev> Or just a metadata with a switch in advanced options
+20:25:51 <KostyaSha> abayer, could you provide tooling for this? Pinnin repos, priorities, etc?
+20:25:52 <oleg-nenashev> It should be more simple
+20:26:04 <abayer> KostyaSha: Pinning repos?
+20:26:07 <KostyaSha> i.e. i would like to use GH releases
+20:26:11 <batmat> abayer: IIRC jglick explained a fortnight ago that actually internals already support in standard multiple UC
+20:26:15 <batmat> just this isn't exposed
+20:26:21 <orrc> abayer: Jenkins supports multiple UCs. just expose this in the UI, and let others run their own
+20:26:27 <KostyaSha> abayer, see OpenSuse dependency management (imho the best dep solving algos)
+20:26:39 <abayer> I'd say that a plugin ID would only show up in one of "external" or "primary" update centers - newest version wins.
+20:26:45 <abayer> Just spitballing here. =)
+20:26:55 <orrc> I wouldn't like to have UCs not controlled by Jenkins / hosted by others in the default Jenkins install
+20:26:56 <KostyaSha> abayer, that's standard mistake :)
+20:26:56 <rtyler> zypper in github-plugin
+20:26:58 <orrc> abayer: yeah
+20:26:59 <rtyler> \o/
+20:27:06 <jglick> batmat: a little trickier than that since you do actually need some code to manage signing certificates
+20:27:08 <batmat> KostyaSha: the one who proposes every combinatorial to support should commit to work on it
+20:27:31 <kohsuke> For me, forcing people into this one community is a part of the explicit design to encourage co-maintainerships and etc
+20:27:34 <KostyaSha> jglick, right, certs is issue. And later ratings and other metadata staff
+20:27:44 <abayer> We'd still "support" and generate the external update center, it'd still only contain plugins in our Maven repo, it'd just be plugins with source outside of jenkinsci org.
+20:27:48 <kohsuke> I don't want to end up with lots of micro update centers running everywhere
+20:27:59 <abayer> a la experimental.
+20:28:20 <abayer> (except with a better user experience that doesn't require manually adding it to get it in the in-Jenkins plugin manager)
+20:28:43 <orrc> yeah, seems reasonable
+20:28:46 <KostyaSha> kohsuke, UC should die, you may create repo sources in plugin manager. That how all linux distros leaving for 20 years
+20:28:53 <orrc> ci.jenkins-ci.org groans at the additional work ;)
+20:28:54 <abayer> OH GOD no.
+20:28:57 <rtyler> as we're running up on 90 minutes, could I ask you abayer and batmat to put together a concrete proposal on what we would move forward with here based on this feedback?
+20:29:02 <abayer> Sure thing.
+20:29:10 <KostyaSha> kohsuke, i.e. central + gh source for some plugin + gh source for other plugin
+20:29:12 <kohsuke> I need to read nigel's concern more carefully, but I think our current proposal is sensible
+20:29:32 <batmat> +1. Gonna be difficult to extract some seemingly beginning of consensus here, but anyway we can try
+20:30:02 <rtyler> #action batmat and abayer to try to extract a coherent proposal based on today's IRC discussions and prior mailing list thread comments
+20:30:03 <abayer> fwiw, I'd even say that we only generate the "split" update centers for Jenkins releases after we've added proper integration of the split update centers in the UI, so that older versions still see what they see now.
+20:30:08 <kohsuke> nigel has been a great member of the community with lots of popular plugins under the belt, so I want him happy
+20:30:21 <kohsuke> that's the challenge, I guess.
+20:30:26 <KostyaSha> lol
+20:30:55 <rtyler> can we button up this topic until we get a big beautiful proposal written out? :)
+20:30:59 <abayer> batmat: Let's start emailing on this.
+20:31:06 <batmat> +1 KostyaSha
+20:31:09 <batmat> oups
+20:31:13 <batmat> +1 kohsuke
+20:31:15 <kohsuke> rtyler: yeah let's wrap up
+20:31:20 <rtyler> #topic next meeting
+20:31:23 <batmat> abayer: right
+20:31:42 <rtyler> by my calendar, March 2nd is our next scheduled meeting
+20:32:14 <orrc> oh right, leap year
+20:32:17 <rtyler> I don't think there are any major national holidays scheduled that day
+20:32:27 <rtyler> same time same place?
+20:32:34 <kohsuke> as always
+20:32:42 <batmat> a pleasure
+20:32:51 <rtyler> thanks everybody for participating
+20:32:57 <kohsuke> #info next meeting is March 2nd, same time
+20:33:02 <rtyler> #endmeeting

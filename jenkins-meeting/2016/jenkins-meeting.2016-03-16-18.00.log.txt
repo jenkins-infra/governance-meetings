@@ -1,0 +1,270 @@
+18:00:18 <kohsuke> #startmeeting
+18:00:18 <robobutler> Let the Jenkins meeting commence!
+18:00:28 <rtyler> \o/
+18:00:32 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:00:37 <kohsuke> #topic last meeting's action
+18:00:59 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-03-02-19.00.html
+18:01:14 <kohsuke> 1.642.2 is done
+18:01:37 <kohsuke> and action item #3 is also done: https://issues.jenkins-ci.org/secure/RapidBoard.jspa?rapidView=66
+18:01:47 <rtyler> I dropped the ball on getting a candidacy timeline in place :(
+18:01:52 <rtyler> I need to file a ticket for myself to remember
+18:01:58 <kohsuke> action #4 is also done. hrm means "his royal majesty"
+18:02:08 <rtyler> haha
+18:02:09 <kohsuke> and pw is Patrick Wolf his name
+18:02:34 <kohsuke> alyssat: anything to report on vJAM group on meetup.com?
+18:03:12 <kohsuke> I don't see it in there
+18:03:32 <rtyler> I know she tried to get a Jenkins Online Meetup started
+18:03:41 <kohsuke> danielbeck: oleg-nenashev: do you guys know anything?
+18:03:55 <danielbeck> it exists
+18:04:04 <danielbeck> virtual is evil, online is not, apparently.
+18:04:29 <danielbeck> http://www.meetup.com/Jenkins-online-meetup/
+18:04:57 <rtyler> oh
+18:05:04 <rtyler> alyssat: say something again
+18:05:12 <rtyler> kohsuke: when we start meetings we have to un-moderate the channel
+18:05:13 <kohsuke> Oh
+18:05:33 <kohsuke> I can never remember those IRC commands
+18:05:48 <alyssat> vJAM is now live and active
+18:05:48 <ogondza> thats better
+18:06:21 <kohsuke> Great. Moving on...
+18:06:29 <kohsuke> #topic LTS status check
+18:06:33 <ogondza> kohsuke: I noticed you have restarted the release job after I did, was there something wrong?
+18:06:43 <ogondza> with .2 i mean
+18:06:59 <kohsuke> ogondza: .2 RC? or you mean the actual release?
+18:07:15 <ogondza> the RC
+18:07:31 <kohsuke> Hmm, I don't remember that
+18:07:54 <kohsuke> Maybe that was me trying to push the release tag retroactively?
+18:07:55 <ogondza> ok, I guess that is all good
+18:08:06 <kohsuke> Whatever I did or I didn't do, I'm sorry if it caused trouble
+18:08:07 <ogondza> anyway, all testing I done on .3 is green
+18:08:13 <kohsuke> Yay
+18:08:27 <ogondza> kohsuke: just checking
+18:08:37 <kohsuke> danielbeck: no security advisory is planned on this one, so we are good to release, right?
+18:08:44 <danielbeck> yep
+18:08:46 <kohsuke> #agreed 1.652.3 is a go
+18:09:05 <kohsuke> #action kohsuke to start 1.652.3 release asap
+18:09:10 <kohsuke> #topic Next LTS base selection
+18:09:30 <rtyler> 2.0 w00!
+18:09:32 <rtyler> right?
+18:09:42 <rtyler> bueller?
+18:09:44 <rtyler> xD
+18:09:48 <kohsuke> #info https://jenkins-ci.org/changelog/
+18:10:19 <danielbeck> we actually have no negative feedback over the last few weeks on the changelog.
+18:10:27 <kohsuke> I noticed that. That's amzing
+18:10:47 <rtyler> maybe the rating app is broken
+18:10:51 * rtyler chuckles
+18:10:55 <ogondza> 1.650 will absorb all security fixes
+18:11:28 <kohsuke> Yeah, seems like a good good starting point
+18:11:31 <danielbeck> rtyler There's one where they link to the issue that was fixed in the release
+18:12:19 <kohsuke> danielbeck: do you have any thoughts on the new base version?
+18:12:56 <danielbeck> kohsuke Should be fine.
+18:13:30 <kohsuke> anyone else?
+18:13:47 <teilo> I would go much higher than 1.650
+18:14:07 <teilo> 1.651 minimum for better supportability
+18:14:48 <teilo> and if the changelog is correct an those are the only changes I see no reason why not 1.652 or 1.653 (even though that has not been out for 2 weeks)
+18:15:21 <danielbeck> 1.653 is incomplete and has new remoting
+18:15:24 <danielbeck> I'd rather not use that one
+18:15:27 <jglick> JENKINS-33467 in 1.653 causes a regression in a couple of plugins but the fault is in the plugins and the fix is trivial.
+18:15:50 <kohsuke> It's just too new
+18:15:55 <danielbeck> 1.652 seems good
+18:16:06 <ogondza> I am ok with 651
+18:16:06 <danielbeck> https://github.com/jenkinsci/jenkins/compare/jenkins-1.650...jenkins-1.652
+18:17:13 <kohsuke> there's some stapler changes that had someone reporting an issue there, too
+18:17:30 <jglick> I would be happy to have `WorkspaceList.tempDir` but it could also wait for a 2.0 baseline.
+18:17:51 <ogondza> kohsuke means https://github.com/jenkinsci/jenkins/commit/0d0d2a9c133abee1cfd81397c84767638c5a3432 I guess
+18:18:19 <kohsuke> I meant https://github.com/jenkinsci/jenkins/commit/1e804fdf2746e224d175d2de764111aa22860a25#comments
+18:18:28 <jglick> JENKINS-25440 I will mark lts-candidate anyway.
+18:18:30 <kohsuke> oh
+18:18:32 <kohsuke> sorry
+18:18:35 <kohsuke> ogondza is right
+18:19:22 <danielbeck> 651 then?
+18:19:56 <ogondza> +1
+18:20:28 <kohsuke> that stapler regression is reported against 1.651, but I'm fine with 1.651 if you guys don't see it as a problem
+18:20:58 <kohsuke> #agreed next LTS baseline is 1.651
+18:21:02 <kohsuke> Moving on ...
+18:21:03 <jglick> kohsuke: https://github.com/jenkinsci/jenkins/commit/0d0d2a9c133abee1cfd81397c84767638c5a3432 is in 1.652
+18:21:22 <danielbeck> Both 1.651 and 1.652 have stapler updates I see
+18:21:41 <kohsuke> jglick in that case then 1.651 is good
+18:21:43 <jglick> danielbeck: but the reporter said he bisected
+18:21:48 <danielbeck> right
+18:21:53 <danielbeck> Okay, 651 it is
+18:21:56 <kohsuke> #topic Seek trademark usage approval for "Jenkins Days"
+18:22:25 <kohsuke> I think it was several months ago, in the project meeting I went over https://wiki.jenkins-ci.org/display/JENKINS/Proposal+-+Revisiting+JUC+in+2016
+18:22:52 <jglick> 1.652 actually has better ratings. But whatever.
+18:22:56 <kohsuke> ... which had the plan for "Jenkins World" and "CloudBees - Jenkins Summit"
+18:23:01 <jglick> Sampling error probably.
+18:23:39 <kohsuke> I should have found the exact minutes, but I believe this was generally well accepted
+18:24:05 <kohsuke> We then formally requested the mark approval for "Jenkins World"
+18:24:09 <danielbeck> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-02-03-19.00.html
+18:25:01 <kohsuke> And now I'm here to get the approval for the smaller brother, which was originally called "CloudBees - Jenkins Summit" but its name has chanegd to "Jenkins Day"
+18:25:21 <kohsuke> Sorry "Jenkins Days"
+18:25:30 <rtyler> what's the smaller brother actually entail?
+18:25:37 <kohsuke> The content hasn't changed
+18:25:51 <kohsuke> alyssat can correct me if I'm wrong, but my understanding is that ...
+18:25:57 <danielbeck> rtyler KK's wiki link, scroll down
+18:26:06 <kohsuke> it's a road show that takes some of the contents from Jenkins World
+18:27:00 <alyssat> http://www.devopsconnect.com/cddallas16/
+18:27:07 <alyssat> that's a sample of one city
+18:27:28 <alyssat> pretty much same content but going to diff cities
+18:27:55 * rtyler reads up
+18:28:06 <alyssat> content consist of OSS, CB Jenkins Enterprise, and Devops
+18:28:30 <kohsuke> Like Jenkins world, those content were segregated into different tracks
+18:28:51 <alyssat> correct
+18:29:07 <rtyler> alyssat: is "Jenkins Days" supposed to be used for an umbrella naming of everything together? or just the Jenkins aspect of it?
+18:30:32 <alyssat> rtyler: i think this is to replace CD Summit & Jenkins Days as a whole. There's too many 'Summits' out there
+18:31:05 <rtyler> as far as this document is concerned https://wiki.jenkins-ci.org/display/JENKINS/Proposal+-+Revisiting+JUC+in+2016 there is no mention of "CD Summit"
+18:31:12 <oleg-nenashev> alyssat kohsuke: From what I see the sample is not a free event. I suppose this is same for Jenkins Days, right?
+18:31:30 <kohsuke> I think so
+18:31:45 <oleg-nenashev> Not a problem at all IMHO
+18:31:48 <alyssat> oleg-nenashev: correct
+18:32:15 <orrc> so "Jenkins Days", plural, is a single-day event :)
+18:32:24 <rtyler> hah
+18:32:43 <alyssat> it's a 2 days event..thus 'Jenkins Days'
+18:33:04 <alyssat> in multiple cities
+18:33:28 <orrc> alyssat: not according to that schedule, or the wiki page. but I was just kidding
+18:33:50 <rtyler> alyssat: is there a better description on the wiki or elsewhere of what this would entail
+18:34:34 <alyssat> rtyler: i don't think so. I can get the wiki page updated w/ better description
+18:35:39 <rtyler> I think a clear description of what this event would entail should be written up before we can move forward on this topic
+18:36:05 <alyssat> rtyler: ok. i'll do that
+18:38:35 <kohsuke> All right,
+18:39:18 <kohsuke> I think we are moving on
+18:39:26 <rtyler> alyssat: we can follow up on this next meeting
+18:39:36 <rtyler> I'll be around if you need help hammering out the definition on the wiki
+18:39:43 <kohsuke> #action need more clarity on Jenkins Days since that appear to have changed since the early round
+18:40:05 <kohsuke> #topc infrastructure status update
+18:40:10 <rtyler> so close
+18:40:11 <kohsuke> #topic infrastructure status update
+18:40:15 * rtyler cheers
+18:40:28 <kohsuke> rtyler: yours
+18:40:35 <rtyler> alright, so I wanted to get into the habit of regularly making these kinds of updates
+18:41:00 <rtyler> with the 2.0 fervor there's not a tremendous amount of movement happening here
+18:41:03 <rtyler> however
+18:41:16 <rtyler> abayer has secured a Mac build machinie we can add to ci.jenkins-ci.org (https://issues.jenkins-ci.org/browse/INFRA-601)
+18:41:19 <rtyler> woohooo
+18:41:32 <kohsuke> IIUC he got that "donated" from a mac hosting company
+18:41:33 <rtyler> teilo has requested a windows machine or machines we can add to the cluster as well
+18:41:37 <oleg-nenashev> rtyler: are we on track with the site kick-off? Do we shift it as well due to the 2.0 delay?
+18:41:58 * oleg-nenashev talks about the website
+18:42:00 <rtyler> I'm waiting for teilo's credit card information so I can provision AWS or Azure Windows machines xD
+18:42:12 <rtyler> oleg-nenashev: i'll address that after my updates are finished
+18:42:41 <rtyler> #info Jenkins prjoect infra can be found here: https://github.com/jenkins-infra or in #jenkins-infra
+18:42:45 * rtyler spells good
+18:42:54 <rtyler> the big projects that are on deck for the infra are:
+18:43:03 <rtyler> cutting over to jenkins.io once we're ready (WEBSITE-51)
+18:43:15 <rtyler> spinning up new build infra (as mentioned previously)
+18:43:31 <oleg-nenashev> #proposal: send "team updates" in advance to mailing lists or post them on the wiki
+18:43:46 <rtyler> working with tscherler to get his prototyped plugin site incorporated into the infra
+18:44:00 <rtyler> oleg-nenashev: you're killin' me here
+18:44:27 <rtyler> are there any question on current affairs/status of infrastructure I can answer?
+18:44:38 <oleg-nenashev> rtyler: Sorry for disturbing. You're doing great job by making such updates. 👍
+18:44:52 <rtyler> heh, to answer oleg-nenashev's question about the website, we're on track to cut over to jenkins.io sometime next week
+18:45:00 <kohsuke> rtyler: any call to action?
+18:45:02 <rtyler> this wouldn't change issues.jenkins-ci.org or wiki.jenkins-ci.org
+18:45:17 <danielbeck> no?
+18:45:17 <rtyler> primarily this would affect just jenkins-ci.org (the site) moving over
+18:45:39 <oleg-nenashev> do we redirect from jenkins-ci.org? Or just add a new alias?
+18:45:46 <danielbeck> rtyler What's the state of the spam currently?
+18:45:46 <rtyler> we can move to issues.jenkins.io "later", but the cost of doing so is generating new certs for things
+18:45:56 <rtyler> danielbeck: spam is largely in check thanks to larrys work
+18:46:12 <rtyler> larrys: I don't know fi there are any follow ups you wish to share?
+18:46:42 <larrys> The wiki is under check with a servlet filter
+18:46:42 <rtyler> oleg-nenashev: jenkins-ci.org will redirect over to jenkins.io
+18:46:45 <larrys> and seems to be working good
+18:47:15 <rtyler> #info the initial domain plan is to just migrate jenkins-ci.org to jenkins.io, other sub-domains will follow at a later point
+18:47:18 <larrys> I have not had a chance to make the plugin work with JIRA, there are some issues, and not sure of spam problem there (if it is huge). I've seen a few issues as spam
+18:47:27 <larrys> but not as big as wiki pages
+18:47:44 <rtyler> #info if you see JIRA spam, please let #jenkins-infra know
+18:48:00 <rtyler> any more infra questions before we move on?
+18:48:01 <kohsuke> We have  other status updates, so I suggest we wrap this up
+18:48:15 <kohsuke> #topic event status update from alyssat
+18:48:29 <alyssat> There's currently lots of activities in the events area. I have 3 high level event updates.
+18:48:44 <alyssat> Event update #1: wrt big community events we are working on Jenkins World (Sept 13-15). We're thinking of doing the contributor hackathon weekend of Sept 10-11 and then a summit (similar to the summit held at Fosdem) on Sept 13, topic is TBD. The call for papers for Jenkins World is open until May 1
+18:48:45 <alyssat> https://jenkins-cfp.herokuapp.com/events/jenkins-world-2016. Right now we have about 18 submissions. If anyone would like to be part of selection committee pls lemme know. We are working on the committee webpage, once it's up current selection members will be linked from jenkinsworld.com
+18:49:19 <rtyler> #info if you're interested in helping select talks for jenkins world, contact atong@cloudbees.com
+18:49:30 <rtyler> #info if you're interested in submitting a talk for jenkins world https://jenkins-cfp.herokuapp.com/events/jenkins-world-2016.
+18:49:44 <kohsuke> that hackathon weekend is the idea that came out of FOSDEM contributor event
+18:49:59 <rtyler> which I've still not posted the meeting notes/updates from >_<
+18:50:01 * rtyler fails
+18:50:16 <kohsuke> ... to have time to work on things we've discussed during the earlier contributor summit
+18:50:23 <rtyler> alyssat: what else ya got?
+18:50:38 <alyssat> Event update #2: Jenkins User Conference Israel is slated for July 3, 1 day event. KK will be there. The CFP is open until April 24.  https://jenkins-cfp.herokuapp.com/events/jenkins-user-conference-israel
+18:51:02 <kohsuke> This is like 6th or something annual event now
+18:51:02 <alyssat> Event update #3: JAMs - http://www.meetup.com/pro/jenkins/ We are currently at 27 JAMs and +2450 members and of course the vJAM is at 168 members. My ask - if you go out and talk to people - if they are a Jenkins fan and into community efforts perhaps encourage them to start a JAM in their area if there isn't already one.
+18:51:30 <kohsuke> Wow, 27!
+18:51:43 <alyssat> yes. the last JUC IL had 700 attendees
+18:51:58 <rtyler> the Los Angeles JAM started because we met some folks at SCaLE and talked to them about JAMs
+18:52:02 <alyssat> JAM - we went from 5 to 27 from Oct to now
+18:52:09 <rtyler> looking forward to that community growing, lots of Jenkins users in socal
+18:52:23 <alyssat> rtyler: yes! and that's exactly what we are hoping others to do
+18:52:31 <oleg-nenashev> right :)
+18:52:34 <kohsuke> Any questions, comments?
+18:52:34 <rtyler> #info details around Jenkins Area Meetups: https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Area+Meetup
+18:53:02 <alyssat> and huge thanks to oleg-nenashev for being such a huge supporter
+18:53:14 <kohsuke> Otherwise moving on to the security updates...
+18:53:18 <rtyler> I believe it's danielbeck's time to shine :D
+18:53:22 <danielbeck> \o/
+18:53:27 <kohsuke> #topic Security status update by danielbeck
+18:53:39 <danielbeck> This is quick. Nothing interesting to report.
+18:53:45 <danielbeck> .3 wasn't a security update
+18:53:51 <danielbeck> .1 is not expected to become one
+18:54:06 <rtyler> are there outstanding security related tickets/features for 2.0?
+18:54:06 <danielbeck> Right now the major security topic is that we've opened up Jira to plugin maintainers
+18:54:16 <danielbeck> so they can access SECURITY issues in their plugins
+18:54:24 <danielbeck> and we've already got feedback on that
+18:54:26 <rtyler> danielbeck: did you already make that change in JIRA?
+18:54:37 <danielbeck> rtyler Yep, two days ago
+18:54:42 * rtyler cheers
+18:54:50 <rtyler> danielbeck: did you send anything out to the dev list?
+18:54:54 <danielbeck> yes, I did
+18:54:57 <rtyler> I might have missed it among the gsoc traffic
+18:55:06 <oleg-nenashev> we still need a kind of policy, but it's a huge step forward
+18:55:09 <danielbeck> probably, that a busy list right now.
+18:55:27 <danielbeck> And the other big topic is "secure by default" for Jenkins 2.0
+18:55:36 <danielbeck> alpha 3 basically contains this already
+18:56:01 <danielbeck> there are a few followup issues that may still make it into 2.0, but the big issue -- locking down an instance by default -- is resolved.
+18:56:11 * rtyler cheers louder
+18:56:18 <danielbeck> So check out alpha 3 and try to break into it ;-)
+18:56:19 <kohsuke> I sent my feedback on it to the users list an hour or so back
+18:56:24 <oleg-nenashev> danielbeck: Is it too late to propose other security hardening? CSRF, s2m, etc.?
+18:56:37 <danielbeck> oleg-nenashev CSRF and s2m are enabled by default
+18:56:47 <danielbeck> or at least they should be
+18:56:52 <oleg-nenashev> oh, cool
+18:57:02 <rtyler> s2m?
+18:57:08 <danielbeck> slave to master security
+18:57:17 <danielbeck> http://jenkins-ci.org/security-144
+18:57:28 <rtyler> ah
+18:57:52 <kohsuke> Let's wrap up & do a quick 2.0 update, too
+18:57:59 <danielbeck> We still have the SSHD open, and the UDP/DNS broadcast, but that's WIP
+18:58:09 <rtyler> danielbeck: got tickets to reference?
+18:58:26 <danielbeck> not without taking the rest of the meeting time. It's labeled 2.0
+18:58:44 <rtyler> okie
+18:58:52 <rtyler> kohsuke: let's go to a 2.0 update
+18:58:55 <kohsuke> #topic 2.0 status update
+18:59:03 <kohsuke> we are kinda already talking about that
+18:59:09 <kohsuke> 2 important updates, I think
+18:59:20 <kohsuke> one is the date slippage that's already sent in email
+18:59:36 <kohsuke> the other is the JIRA board: https://issues.jenkins-ci.org/secure/RapidBoard.jspa?rapidView=66
+19:00:03 <kohsuke> alpha-4 today, beta next Wed, RC a week after, then GA a week after is the current plan
+19:00:19 <kohsuke> No more new features beyond what's already in flight
+19:00:29 <kohsuke> We are in the lock down mode
+19:00:59 <kohsuke> orrc: some of the tickets in that board are yours, and I don't know if those are on track
+19:01:14 <rtyler> he mentioned in a PR that he's not got a lot of time this week
+19:01:21 <danielbeck> in time for today
+19:01:26 <rtyler> one of those terminology tickets could be easily picked up by somebody else
+19:01:40 <kohsuke> I was hoping that the call to action on those tickets would drive some interest
+19:02:08 <kohsuke> All right, I think we are done
+19:02:15 <kohsuke> Anything to add danielbeck ?
+19:02:38 <kohsuke> #topic next meeting
+19:02:41 <danielbeck> Seems fine. We'll keep the dev list updated.
+19:02:48 <oleg-nenashev> @GSoC mentors: we are having meetings tomorrow and on Sunday
+19:03:12 <kohsuke> Oh, Sunday might be problematic
+19:03:23 <kohsuke> anyway, let's close this meeting and we can go back to #jenkins-community
+19:03:30 <kohsuke> #info next meeting is March 30th
+19:03:36 <kohsuke> Is Europe in DST by then?
+19:03:46 <rtyler> I believe so
+19:03:48 <danielbeck> yeah
+19:03:50 <oleg-nenashev> depends on the country
+19:03:53 <batmat> yes
+19:03:57 <kohsuke> #info watch out for the time zone adjustment once again due to day light saving time
+19:04:15 * kohsuke shakes my head in dismay, as a guy from a country without DST
+19:04:19 <oleg-nenashev> I would definitely vote for moving to UTC
+19:04:19 <kohsuke> #endmeeting

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app220.us.archive.org';v.server_ms=767;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-10-29-18.00.log.html","20200505194727","https://web.archive.org/","web","/_static/",
+	      "1588708047");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:47</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:47</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:12</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">really just wanted to check the LTS status</span>
+<a name="l-4"></a><span class="tm">18:02:04</span><span class="nk"> &lt;kohsuke_&gt;</span> OK, so there's one regression reported from James
+<a name="l-5"></a><span class="tm">18:02:31</span><span class="nk"> &lt;danielbeck&gt;</span> the test graph?
+<a name="l-6"></a><span class="tm">18:02:42</span><span class="nk"> &lt;danielbeck&gt;</span> JENKINS-25340?
+<a name="l-7"></a><span class="tm">18:02:44</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-25340:lost trend history after skipping build (Reopened) https://issues.jenkins-ci.org/browse/JENKINS-25340
+<a name="l-8"></a><span class="tm">18:05:52</span><span class="nk"> &lt;kohsuke_&gt;</span> Yes, JENKINS-25340
+<a name="l-9"></a><span class="tm">18:05:54</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-25340:lost trend history after skipping build (Reopened) https://issues.jenkins-ci.org/browse/JENKINS-25340
+<a name="l-10"></a><span class="tm">18:06:08</span><span class="nk"> &lt;danielbeck&gt;</span> in 1.580.1 that's already in junit plugin, so shouldn't matter
+<a name="l-11"></a><span class="tm">18:06:25</span><span class="nk"> &lt;danielbeck&gt;</span> it's a regular change that went into 1.576 as JENKINS-23945
+<a name="l-12"></a><span class="tm">18:06:26</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-23945:Test result trend breaks lazy-loading (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-23945
+<a name="l-13"></a><span class="tm">18:06:44</span><span class="nk"> &lt;kohsuke_&gt;</span> Right, yes, I agree with jglick
+<a name="l-14"></a><span class="tm">18:07:33</span><span class="nk"> &lt;jglick&gt;</span> Agree about what?
+<a name="l-15"></a><span class="tm">18:08:01</span><span class="nk"> &lt;danielbeck&gt;</span> "No plans to fix until core provides a safer way of looking for builds by number."?
+<a name="l-16"></a><span class="tm">18:08:24</span><span class="nk"> &lt;jglick&gt;</span> Or that we do not care about it in the context of LTS because it is in a plugin?
+<a name="l-17"></a><span class="tm">18:08:25</span><span class="nk"> &lt;kohsuke_&gt;</span> That the fix is in the plugin, so it shouldn't block the release
+<a name="l-18"></a><span class="tm">18:09:12</span><span class="nk"> &lt;danielbeck&gt;</span> agreed
+<a name="l-19"></a><span class="tm">18:09:26</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">ogondza:</span> actually, I see that the email was sent yesterday that we started RC testing
+<a name="l-20"></a><span class="tm">18:09:37</span><span class="nk"> &lt;kohsuke_&gt;</span> I guess it means we are slipping 2 weeks?
+<a name="l-21"></a><span class="tm">18:10:20</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> I have enough time to do my part anyway. Do not think it is necessary
+<a name="l-22"></a><span class="tm">18:10:58</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke you emailed the dev list on the 19th, do you think anyone's waiting for ogondza to announce start of testing?
+<a name="l-23"></a><span class="tm">18:11:17</span><span class="nk"> &lt;kohsuke_&gt;</span> OK, sounds like I'm hearing we can ship today as planned?
+<a name="l-24"></a><span class="tm">18:11:39</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> yeah sorry, forgot to send it on time
+<a name="l-25"></a><span class="tm">18:12:25</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> I believe so, also in ATH looks good aside of JENKINS-25264
+<a name="l-26"></a><span class="tm">18:12:27</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-25264:Scriptler add script fails with java.io.IOException: failed to update git repo (Open) https://issues.jenkins-ci.org/browse/JENKINS-25264
+<a name="l-27"></a><span class="tm">18:13:02</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">1.580.1 release today</span>
+<a name="l-28"></a><span class="tm">18:13:15</span><span class="nk"> &lt;kohsuke_&gt;</span> I got some work to do in that case!
+<a name="l-29"></a><span class="tm">18:13:40</span><span class="nk"> &lt;kohsuke_&gt;</span> That's all I wanted to cover today
+<a name="l-30"></a><span class="tm">18:13:44</span><span class="nk"> &lt;kohsuke_&gt;</span> Should we just wrap this up?
+<a name="l-31"></a><span class="tm">18:14:52</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-32"></a><span class="tm">18:15:11</span><span class="nk"> &lt;jglick&gt;</span> There was (another) discussion about the usefulness of weekly RCs.
+<a name="l-33"></a><span class="tm">18:15:33</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#info </span><span class="cmdline">Nov 12th, same time (pegged to US time zone, so watch out for the change in your local time zone)</span>
+<a name="l-34"></a><span class="tm">18:16:10</span><span class="nk"> &lt;kohsuke_&gt;</span> I'm doing this from a meeting, so I don't have bandwidth today to do it
+<a name="l-35"></a><span class="tm">18:16:28</span><span class="nk"> &lt;danielbeck&gt;</span> I'll plan that for the next governance meeting
+<a name="l-36"></a><span class="tm">18:16:59</span><span class="nk"> &lt;danielbeck&gt;</span> well, add a line to the agenda page :-)
+<a name="l-37"></a><span class="tm">18:17:09</span><span class="nk"> &lt;kohsuke_&gt;</span> Thanks
+<a name="l-38"></a><span class="tm">18:17:11</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 19:47:27 May 05, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 16:01:31 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 80.986
+  exclusion.robots: 0.125
+  exclusion.robots.policy: 0.115
+  RedisCDXSource: 0.997
+  esindex: 0.008
+  LoadShardBlock: 59.314 (3)
+  PetaboxLoader3.datanode: 81.523 (4)
+  CDXLines.iter: 17.134 (3)
+  load_resource: 678.034
+  PetaboxLoader3.resolve: 650.21
+-->

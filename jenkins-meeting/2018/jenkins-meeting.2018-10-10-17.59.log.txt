@@ -1,0 +1,173 @@
+17:59:52 <rtyler> #startmeeting
+17:59:52 <robobutler> Let the Jenkins meeting commence!
+17:59:58 <rtyler> #chair danielbe_ kohsuke
+17:59:58 <robobutler> Current chairs: danielbe_ kohsuke rtyler
+18:00:06 <rtyler> let's get this party started
+18:00:10 <rtyler> #topic Last meeting actions
+18:00:35 <rtyler> http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-09-26-18.02.html
+18:00:50 <rtyler> looks like the only one was for oleg-nenashev who did in fact post a Hacktoberfest blog post!
+18:00:59 <rtyler> https://jenkins.io/blog/2018/10/01/hacktoberfest/
+18:01:00 <oleg-nenashev> I believe so
+18:01:17 <rtyler> I know so!
+18:01:33 <oleg-nenashev> We're going to GSoC mentor summit this week
+18:01:37 <rtyler> by the way, our agenda is https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-October10
+18:01:44 <kohsuke> I’m here for my agenda item but I’m in a car so if I look at this tiny screen too much I will get car sick :-)
+18:01:49 <oleg-nenashev> Updates will be posted at the SIG meeting on Oct 17 (TBA)
+18:02:08 <rtyler> it's too bad irc doesn't support a good party parrot animation to help kohsuke :D
+18:02:22 <rtyler> oleg-nenashev: I was going to move on, any other hacktoberfest things to squeeze in?
+18:02:37 <rtyler> ogondza: I hope you're also still with us  :)
+18:02:43 <ogondza> yep
+18:02:46 <rtyler> wunderbar
+18:02:52 <oleg-nenashev> Hacktoberfest is going.... good?
+18:03:05 <oleg-nenashev> Really, hard to estimate this year - no labeling in GiThub
+18:03:17 <oleg-nenashev> But there is some traffic and Q&A
+18:04:32 <rtyler> moving on
+18:04:36 <rtyler> #topic LTS status check
+18:04:40 <rtyler> ogondza: all yours buddy
+18:04:54 <ogondza> testing went well
+18:05:03 <danielbe_> it's out
+18:05:10 <ogondza> thanks, Daniel
+18:05:14 <danielbe_> you all should update:
+18:05:14 <danielbe_> https://jenkins.io/security/advisory/2018-10-10/
+18:05:36 <ogondza> ATH being ported to selenium 3, hopefully .3 will be tested with both so we can switch to maintained version
+18:05:48 <danielbe_> nice
+18:06:02 <ogondza> backporting starts tomorrow, as always
+18:06:40 <ogondza> and that would be it
+18:07:37 <ogondza> moving on?
+18:07:45 <rtyler> if you say so :D
+18:07:47 <danielbe_> +1
+18:07:55 <rtyler> tracymiranda: you better be awake too :)
+18:08:03 <rtyler> #topic Participating in Outreachy
+18:08:05 * tracymiranda wakes up
+18:08:40 <tracymiranda> hey all, so Jenkins has been accepted as an outreachy org for this winter round
+18:08:47 <tracymiranda> subject to funding and projects
+18:09:26 <tracymiranda> so first I would like to ask for a vote of funding one intern at a cost of $6500
+18:09:42 <tracymiranda> actually any questions first
+18:10:27 <rtyler> how are interns matched to projects?
+18:11:07 <kohsuke> What will this intern do?
+18:11:09 <tracymiranda> we need to submit 2-3 project proposals. Interested interns must make 2-3 pull requests in area of interest then apply to be selected for that project.
+18:11:51 <tracymiranda> I am gathering project proposals and mentors here https://docs.google.com/document/d/1EJuqP3rDO831kOmsSGhNwyjKEvbvjqD6hsmNIczHVE8/edit
+18:12:04 <tracymiranda> projects can be more than code, so for example a pipeline documentation project
+18:12:42 * rtyler nods
+18:12:51 <tracymiranda> if we have >1 of the projects applied for outreachy has a surplus fund so they may be able to help us fund >1 project
+18:13:12 <tracymiranda> projects are live now so the sooner we can get ours listed the better
+18:13:27 <tracymiranda> I am aiming for end this week/early next Monday
+18:14:04 <rtyler> kohsuke: does that help answer your question?
+18:14:10 <tracymiranda> Also propose a mentor briefing for next Monday 8am PT/5pm CEST on specifics of mentoring esp w.r.t impostor syndrome, etc
+18:14:11 <kohsuke> I think it is a good and noble way to turn the fund into a good use. But it sounds like whether we get the most of it depends on our bandwidth to mentor.
+18:14:25 <kohsuke> Yes it does answer my question.
+18:14:41 <kohsuke> I’m +1
+18:14:52 <tracymiranda> yes, like gsoc mentors need to be aware of time commitments
+18:15:31 <tracymiranda> ok are we ready to vote? or other comments?
+18:16:28 <kohsuke> I think we are ready
+18:17:19 <rtyler> I'm hoping that perhaps kohsuke can turn some knobs at his employer to help with mentor capacity ;)
+18:19:24 <kohsuke> Im happy to try but we shouldn’t assume that.
+18:20:28 * rtyler nods
+18:20:57 <danielbe_> so, voting conditional on having enough mentor capacity beforehand? how would that work?
+18:21:07 <rtyler> I don't think we need to make anything conditional
+18:21:25 <rtyler> tracymiranda: I would propose we plan to have at least 6500 present for a single intern, does that seem like a reasonable outcome for this topic?
+18:21:39 <tracymiranda> yes
+18:22:11 <rtyler> #info proposed plan to earmark 6500 USD from the budget with SPI for a single outreachy intern this winter
+18:22:21 <rtyler> I am an emphatic +1 :)
+18:22:27 <tracymiranda> thanks +1
+18:22:27 <danielbe_> rtyler could you clarify the 'at least'?
+18:23:05 <rtyler> danielbe_: we don't need to cross the bridge of more funds unless we find ourselves later with more interns and projects possible, the #info is what I think we should concern ourselves with now
+18:23:14 <danielbe_> works for me
+18:23:26 <danielbe_> +1 for #info
+18:23:38 <kohsuke> +1 as indicated earlier
+18:23:55 <alyssat_> +1 for me
+18:25:43 <rtyler> in the email thread abayer mentioned a strong +1
+18:25:48 <rtyler> as did markewaite
+18:25:55 <rtyler> and batmat
+18:27:08 <rtyler> any other thoughts or concern?
+18:28:13 <danielbe_> rtyler could we get a money update?
+18:28:21 <danielbe_> last I checked (which was a while ago) SPI was months behind
+18:28:44 <rtyler> the SPI is all at a board meeting in NYC this week, so I doubt we'd get anything real time
+18:28:44 <danielbe_> or I'm looking in the wrong place
+18:28:50 <rtyler> last we checked it was something lik $33k
+18:28:53 <rtyler> IIRC
+18:29:03 <rtyler> I believe that was before the completion of GSoC too
+18:29:35 <danielbe_> it's the 2017/12 draft report
+18:29:40 <danielbe_> ok, thanks
+18:30:03 <rtyler> ample funds not being used to advance the project like they should IMO :)
+18:30:57 * rtyler waits around for more crickets
+18:31:17 <danielbe_> do we expect to run out of cloud dollars any time soon? Or is this venturing too far off topic? :)
+18:31:43 <rtyler> many more moons until we run out of cloud dollars
+18:31:51 <tracymiranda> lol cloud dollars
+18:32:20 <danielbe_> nice, thanks!
+18:32:42 <oleg-nenashev> We should just implement the Jenkinscoin project by that time
+18:32:45 <rtyler> if there are no other comments or questions, I think it is safe to say that this is approved....
+18:33:00 <oleg-nenashev> belated +1
+18:33:05 <Slide-O-Mix> +1
+18:33:10 <danielbe_> time for some hashtagging agreed
+18:33:13 <rtyler> alright, let's move on
+18:33:18 * tracymiranda cheers!
+18:33:20 <rtyler> #agreed
+18:33:33 <rtyler> #topic Trademark sublicensing request
+18:33:38 <rtyler> see https://groups.google.com/d/topic/jenkinsci-dev/VysVavIJCnc/discussion
+18:33:45 <kohsuke> Finally
+18:34:06 <rtyler> "TechMatrix Jenkins Platform Package for $X" is reasonable to me
+18:34:20 <kohsuke> I have a few plus ones on that thread. Any questions?
+18:34:42 <danielbe_> We did not approve the same wildcard for CloudBees Jenkins X, what's different?
+18:34:56 <danielbe_> (IIRC)
+18:35:27 <rtyler> I recall suggesting we do that so that CloudBees would stop pestering us for every single product derivative name they came up with
+18:35:48 <rtyler> fortunately the powers that be have stopped slapping "CloudBees Jenkins" in front of everything :P
+18:36:22 <kohsuke> This one does feel narrower than CloudBees Jenkins $X
+18:36:29 <rtyler> much
+18:36:39 <danielbe_> right, "… for [technology or similar]"
+18:37:21 <kohsuke> (I’m not trying to argue for or against CJX here)
+18:37:38 <danielbe_> Can we approve TJPP and that will apply to any "TJPP for whatever"
+18:37:39 <danielbe_> ?
+18:37:49 <rtyler> I don't see why not
+18:37:53 <danielbe_> I think that's the request, doh
+18:38:07 <rtyler> :)
+18:39:17 <rtyler> I'm +1 on the trademark sublicense request for "TechMatrix Jenkins Platform Package for $X"
+18:39:33 <danielbe_> uh
+18:39:39 <tracymiranda> +1
+18:39:42 <danielbe_> the request is for TJPP only
+18:40:01 <danielbe_> with the assumption any "…for x" will be fine
+18:40:49 <danielbe_> So are we voting on "TechMatrix Jenkins Platform Package" or "TechMatrix Jenkins Platform Package for $anyX" ?
+18:41:06 <kohsuke> I was trying to make it explicit that TJPP for $X is fine without leaving any ambiguity about whether “for $X” part can be assumed/implied.
+18:41:06 <rtyler> kohsuke: your call, my suggestion would be the latter
+18:41:37 <rtyler> IMHO we can and should grant a sublicense on both here today
+18:41:45 <kohsuke> So i would rather get that wildcard part explicitly left in the decision
+18:42:41 <danielbe_> Just both explicitly?
+18:42:46 <danielbe_> then there's no ambiguity
+18:42:53 <rtyler> aye
+18:42:56 <danielbe_> or is anyone not happy with allowing both variants?
+18:43:02 <kohsuke> Whether we feel that’s redundant or not is less important IMO. I also assume this doesn’t change how you vote danielbe_
+18:43:06 <danielbe_> or want separate votes?
+18:43:24 <danielbe_> it changes how to approval might be viewed in the future
+18:43:28 <danielbe_> s/to/this
+18:45:03 <kohsuke> I suggest we do one vote. I am not sensing anyone having a problem with this.
+18:45:11 <danielbe_> IMO just combined vote for explicitly both "TechMatrix Jenkins Platform Package" and "TechMatrix Jenkins Platform Package for […]"
+18:45:24 <kohsuke> That will also save me from car sickness
+18:45:40 <rtyler> I kinda wanna see if we can make kohsuke puke in the car
+18:45:57 <rtyler> danielbe_: combined vote makes sense to me :)
+18:46:57 <rtyler> either way, I'm +1 for this combo
+18:46:58 <kohsuke> I have such lovely caring coworkers around me.
+18:47:26 <danielbe_> +1 explicitly for both "TechMatrix Jenkins Platform Package" and "TechMatrix Jenkins Platform Package for […]"
+18:47:37 <tracymiranda> +1 for both
+18:47:50 <kohsuke> And my +1
+18:49:33 <kohsuke> Anyone else? If this is making you uncomfortable you should speak up, too
+18:51:09 <rtyler> not all of us are experiencing motion sickness kohsuke xD
+18:51:33 <rtyler> going once...
+18:51:46 <rtyler> going twice...
+18:52:09 <rtyler> welp, alright then
+18:52:48 <rtyler> #agreed Sublicense request granted for TechMatrix Jenkins Platform Package and TechMatrix Jenkins Platform Package for $X
+18:52:57 <rtyler> #action kohsuke to update the Approved Trademark Usage wiki page
+18:53:03 <kohsuke> Thanks
+18:53:24 <rtyler> #action kohsuke to communicate with TechMatrix the trademark sublicense attribution requirements documented on jenkins.io/project/governance
+18:53:52 <rtyler> I don't believe there are any other agenda items today
+18:53:54 <rtyler> #topic Next meeting
+18:54:18 <rtyler> my calendar indicates that the next meeting will be during DevOps World Jenkins World Nice
+18:54:32 <rtyler> ogondza_: do we need to meet on Oct 24 to discuss any LTS type thingies?
+18:56:01 <rtyler> perhaps danielbe_ can shed some light on that too
+18:56:45 <rtyler> did everybody fall asleep on me?
+18:56:51 <danielbe_> LTS status should be feasible via email
+18:57:05 <danielbe_> unless something really unusual comes up
+18:57:09 <rtyler> so shall we just skip the next meeting and go straight to the one in november?
+18:57:35 <danielbe_> should be fine IMO
+18:58:04 <rtyler> unless somebody else hollers, I'm going to assume everybody else fell asleep
+18:58:28 <rtyler> #info next meeting will be on November 7th due to DevOps World Jenkins World Nice
+18:58:31 <rtyler> #endmeeting

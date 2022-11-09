@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app28.us.archive.org';v.server_ms=7895;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-11-22-18.00.log.html","20210115150852","https://web.archive.org/","web","/_static/",
+	      "1610723332");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:13</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:17</span><span class="nk"> &lt;rtyler&gt;</span> w00p
+<a name="l-4"></a><span class="tm">18:00:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck kohsuke</span>
+<a name="l-5"></a><span class="tm">18:00:24</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:00:44</span><span class="nk"> &lt;rtyler&gt;</span> let's play the game of "who in the US remembered that the meeting is right now"
+<a name="l-7"></a><span class="tm">18:00:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-8"></a><span class="tm">18:01:02</span><span class="nk"> &lt;autojack&gt;</span> me!
+<a name="l-9"></a><span class="tm">18:01:27</span><span class="nk"> &lt;rtyler&gt;</span> I believe ogondza initiated the new LTS line?
+<a name="l-10"></a><span class="tm">18:01:40</span><span class="nk"> &lt;rtyler&gt;</span> and bitwiseman, who is on vacation this week, did in fact merge JEP-1
+<a name="l-11"></a><span class="tm">18:01:43</span><span class="nk"> &lt;rtyler&gt;</span> http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-11-08-18.00.html
+<a name="l-12"></a><span class="tm">18:01:46</span><span class="nk"> &lt;rtyler&gt;</span> (for context)
+<a name="l-13"></a><span class="tm">18:02:38</span><span class="nk"> &lt;rtyler&gt;</span> looks like JEP-1 wasn't updated to final, which I'lll submit a PR for real quick while I wait for americans to wake up
+<a name="l-14"></a><span class="tm">18:03:11</span><span class="nk"> &lt;ogondza&gt;</span> sure, I did
+<a name="l-15"></a><span class="tm">18:03:25</span><span class="nk"> &lt;rtyler&gt;</span> wunderbar, I also just saw your LTS email, so let's go to that topic now :)
+<a name="l-16"></a><span class="tm">18:03:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status update</span>
+<a name="l-17"></a><span class="tm">18:03:55</span><span class="nk"> &lt;ogondza&gt;</span> right, the backporting is done except for the single candidate that is not soaked yet
+<a name="l-18"></a><span class="tm">18:04:15 </span><span class="nka">* rtyler</span> <span class="ac">digs up a link to the mailing list post</span>
+<a name="l-19"></a><span class="tm">18:04:19</span><span class="nk"> &lt;ogondza&gt;</span> unless there are objections, I will push LTS tomorrow morning
+<a name="l-20"></a><span class="tm">18:04:31</span><span class="nk"> &lt;rtyler&gt;</span> https://groups.google.com/d/msgid/jenkinsci-dev/17f851b7-eaa6-57e8-c79c-38aab80fcf6d%40gmail.com
+<a name="l-21"></a><span class="tm">18:04:35</span><span class="nk"> &lt;andresrc&gt;</span> +1, any additional backport expected?
+<a name="l-22"></a><span class="tm">18:04:48</span><span class="nk"> &lt;ogondza&gt;</span> none, it is done AFAICT
+<a name="l-23"></a><span class="tm">18:04:53</span><span class="nk"> &lt;andresrc&gt;</span> thanks!
+<a name="l-24"></a><span class="tm">18:05:24</span><span class="nk"> &lt;rtyler&gt;</span> are there other topics to discuss, or shall we make this quick and get to our final, also LTS related, topic :)
+<a name="l-25"></a><span class="tm">18:05:34</span><span class="nk"> &lt;ogondza&gt;</span> go for it
+<a name="l-26"></a><span class="tm">18:05:44</span><span class="nk"> &lt;rtyler&gt;</span> fwiw danielbeck is out today because he's not feeling well
+<a name="l-27"></a><span class="tm">18:06:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Planned release schedule for holiday season</span>
+<a name="l-28"></a><span class="tm">18:06:22</span><span class="nk"> &lt;rtyler&gt;</span> https://groups.google.com/d/msgid/jenkinsci-dev/CAM9%3DZ%2B7uLsF%3DMGZMOpHJqydqRp1U7D1-gs_2zaVXWHzv5ifrkQ%40mail.gmail.com
+<a name="l-29"></a><span class="tm">18:06:36</span><span class="nk"> &lt;rtyler&gt;</span> would you mind explaining this topic a bit andresrc? :)
+<a name="l-30"></a><span class="tm">18:06:47</span><span class="nk"> &lt;rtyler&gt;</span> briefly, for the slackers who aren't keeping up wit hemail :)
+<a name="l-31"></a><span class="tm">18:07:06</span><span class="nk"> &lt;andresrc&gt;</span> sure, basically it's a proposal to have a two week break for LTS releases during the holiday season
+<a name="l-32"></a><span class="tm">18:07:33</span><span class="nk"> &lt;andresrc&gt;</span> as in previous years
+<a name="l-33"></a><span class="tm">18:07:46</span><span class="nk"> &lt;andresrc&gt;</span> the proposal would be, according to feedback
+<a name="l-34"></a><span class="tm">18:07:59</span><span class="nk"> &lt;andresrc&gt;</span> to extends the backporting period for 2.89.2 for two weeks
+<a name="l-35"></a><span class="tm">18:08:00</span><span class="nk"> &lt;rtyler&gt;</span> kohsuke's absentee +1 to andresrc' proposal just landed on the mailing list (he just stepped out for another meeting)
+<a name="l-36"></a><span class="tm">18:08:17</span><span class="nk"> &lt;andresrc&gt;</span> so RC would be on Jan 3rd and 2.89.2 on Jan 17th
+<a name="l-37"></a><span class="tm">18:08:31</span><span class="nk"> &lt;andresrc&gt;</span> no changes in weeklies
+<a name="l-38"></a><span class="tm">18:09:36</span><span class="nk"> &lt;rtyler&gt;</span> honestly, I don't have a preference so long as the people making the bits happen are happy with this proposal :)
+<a name="l-39"></a><span class="tm">18:11:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> welcome back :)
+<a name="l-40"></a><span class="tm">18:12:16</span><span class="nk"> &lt;ogondza&gt;</span> good to be back.
+<a name="l-41"></a><span class="tm">18:12:21</span><span class="nk"> &lt;andresrc&gt;</span> I did not see any objection on the list either
+<a name="l-42"></a><span class="tm">18:12:29</span><span class="nk"> &lt;ogondza&gt;</span> IIRC this is in line with what I proposed in ML
+<a name="l-43"></a><span class="tm">18:12:37</span><span class="nk"> &lt;rtyler&gt;</span> any comments or concerns from the peanut gallerY? :)
+<a name="l-44"></a><span class="tm">18:13:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> sorry for missing the party
+<a name="l-45"></a><span class="tm">18:13:09</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to fill calendar with LTS release dates as agreed</span>
+<a name="l-46"></a><span class="tm">18:13:19</span><span class="nk"> &lt;autojack&gt;</span> no objections.
+<a name="l-47"></a><span class="tm">18:13:41</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">RC would be on Jan 3rd and 2.89.2 on Jan 17th</span>
+<a name="l-48"></a><span class="tm">18:14:03</span><span class="nk"> &lt;rtyler&gt;</span> okie doke! that's a wrap folks
+<a name="l-49"></a><span class="tm">18:14:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-50"></a><span class="tm">18:14:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting will be Dec 6th at 18:00 UTC</span>
+<a name="l-51"></a><span class="tm">18:14:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 15:08:52 Jan 15, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:13:02 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 7509.649
+  exclusion.robots: 0.138
+  exclusion.robots.policy: 0.128
+  cdx.remote: 0.1
+  esindex: 0.013
+  LoadShardBlock: 1095.518 (3)
+  PetaboxLoader3.resolve: 263.395 (4)
+  PetaboxLoader3.datanode: 1161.887 (4)
+  CDXLines.iter: 17.726 (3)
+  load_resource: 378.001
+-->

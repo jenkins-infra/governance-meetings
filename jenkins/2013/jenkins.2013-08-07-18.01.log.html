@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:03</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler hare_brain abayer</span>
+<a name="l-4"></a><span class="tm">18:01:13</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:01:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">18:01:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">backporting</span>
+<a name="l-7"></a><span class="tm">18:01:50</span><span class="nk"> &lt;kohsuke&gt;</span> I have the entire dev thread unread :-(
+<a name="l-8"></a><span class="tm">18:02:23</span><span class="nk"> &lt;kohsuke&gt;</span> but Maven 3.1 change seems like a highly desirable feature
+<a name="l-9"></a><span class="tm">18:02:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> ^^
+<a name="l-10"></a><span class="tm">18:02:52</span><span class="nk"> &lt;jglick&gt;</span> a bit dangerous but certainly desirable
+<a name="l-11"></a><span class="tm">18:03:19</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah
+<a name="l-12"></a><span class="tm">18:03:34</span><span class="nk"> &lt;kohsuke&gt;</span> In a way, the audience of LTS shouldn't be the kind of people who jump on to the latest Maven release
+<a name="l-13"></a><span class="tm">18:04:24</span><span class="nk"> &lt;kohsuke&gt;</span> 12 votes https://issues.jenkins-ci.org/browse/JENKINS-15935
+<a name="l-14"></a><span class="tm">18:04:27</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-15935:Can't build using maven 3.1.0 (Resolved) http://jenkins-ci.org/issue/15935
+<a name="l-15"></a><span class="tm">18:05:06</span><span class="nk"> &lt;jglick&gt;</span> True, no one is forcing them to run 3.1.0.
+<a name="l-16"></a><span class="tm">18:05:07</span><span class="nk"> &lt;vjuranek&gt;</span> I backported it in my git branch, but I wasn't completely sure it it should be included as it's more like feature request + I don't have enough time to check if it's backported properly (but tests pass)
+<a name="l-17"></a><span class="tm">18:05:50</span><span class="nk"> &lt;kohsuke&gt;</span> Until I've heard that you've already done the work, I was inclined to say push this out to 1.509.4 or the next LTS
+<a name="l-18"></a><span class="tm">18:05:52</span><span class="nk"> &lt;jglick&gt;</span> If we do not backport it, IMHO we at least need to clearly *report* that 3.1.0 is unsupported.
+<a name="l-19"></a><span class="tm">18:06:04</span><span class="nk"> &lt;jglick&gt;</span> Because currently you just get a nasty NCDFE.
+<a name="l-20"></a><span class="tm">18:06:34</span><span class="nk"> &lt;jglick&gt;</span> Which from a user perspective was completely unexpected.
+<a name="l-21"></a><span class="tm">18:07:37</span><span class="nk"> &lt;kohsuke&gt;</span> I don't feel too strongly one way or the other, but if it's up to me, skipping would be my call
+<a name="l-22"></a><span class="tm">18:07:57</span><span class="nk"> &lt;jglick&gt;</span> Then I suggest a small fix to the process factory to detect 3.1.0 on the remote side and abort with a clean message.
+<a name="l-23"></a><span class="tm">18:08:15</span><span class="nk"> &lt;jglick&gt;</span> Did something similar recently for JDK 5.
+<a name="l-24"></a><span class="tm">18:08:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> ?
+<a name="l-25"></a><span class="tm">18:08:58 </span><span class="nka">* vjuranek</span> <span class="ac">thinks</span>
+<a name="l-26"></a><span class="tm">18:09:36</span><span class="nk"> &lt;vjuranek&gt;</span> given my time constrains, I would either backport it (already done) or leave it as it is
+<a name="l-27"></a><span class="tm">18:10:01</span><span class="nk"> &lt;kohsuke&gt;</span> Googling "NoClassDefFoundError: org/apache/maven/cli/MavenLoggerManager" would bring JENKINS-15935 at the top, so anyone worth a dime would be able to pinpoint the cause
+<a name="l-28"></a><span class="tm">18:10:03</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-15935:Can't build using maven 3.1.0 (Resolved) http://jenkins-ci.org/issue/15935
+<a name="l-29"></a><span class="tm">18:10:05</span><span class="nk"> &lt;vjuranek&gt;</span> or no problem to iclude this small fix if somene implements it:-)
+<a name="l-30"></a><span class="tm">18:11:25</span><span class="nk"> &lt;vjuranek&gt;</span> as for backporting, I have no storng preference as well (one of the reasons I bring it to the meeting)
+<a name="l-31"></a><span class="tm">18:11:33</span><span class="nk"> &lt;kohsuke&gt;</span> Is it fair to summarize this as "JENKINS-15935 will miss 1.509.3. If anyone wants to make the failure mode nicer, he is welcome.
+<a name="l-32"></a><span class="tm">18:11:35</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-15935:Can't build using maven 3.1.0 (Resolved) http://jenkins-ci.org/issue/15935
+<a name="l-33"></a><span class="tm">18:12:28</span><span class="nk"> &lt;jglick&gt;</span> MavenVersionCallable.call() can check ≥ 3.1.0 and throw IOException, perhaps
+<a name="l-34"></a><span class="tm">18:12:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">JENKINS-15935 will miss the 1.509.3 train. If anyone wants to make the failure mode nicer (by detecting and reporting Maven 3.1), please feel welcome</span>
+<a name="l-35"></a><span class="tm">18:12:45</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-15935:Can't build using maven 3.1.0 (Resolved) http://jenkins-ci.org/issue/15935
+<a name="l-36"></a><span class="tm">18:13:05</span><span class="nk"> &lt;kohsuke&gt;</span> I think jglick is volunteering for the latter part
+<a name="l-37"></a><span class="tm">18:13:12</span><span class="nk"> &lt;jglick&gt;</span> I guess so!
+<a name="l-38"></a><span class="tm">18:13:16</span><span class="nk"> &lt;vjuranek&gt;</span> sound good to me (and backport is eventually prepared for 1.509.4)
+<a name="l-39"></a><span class="tm">18:13:51</span><span class="nk"> &lt;kohsuke&gt;</span> Might be worth improving Maven tests to run the tests with different Maven versions
+<a name="l-40"></a><span class="tm">18:13:57</span><span class="nk"> &lt;kohsuke&gt;</span> I think right now it only uses one version
+<a name="l-41"></a><span class="tm">18:14:07</span><span class="nk"> &lt;jglick&gt;</span> No, they run on 2.2.1, 3.0, 3.1
+<a name="l-42"></a><span class="tm">18:14:19</span><span class="nk"> &lt;kohsuke&gt;</span> oh ok.
+<a name="l-43"></a><span class="tm">18:14:25</span><span class="nk"> &lt;kohsuke&gt;</span> I love the problems that are already solved by other people
+<a name="l-44"></a><span class="tm">18:14:36</span><span class="nk"> &lt;jglick&gt;</span> Especially when the other person is olamy.
+<a name="l-45"></a><span class="tm">18:14:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Schedule Credentials:1.6, SSH Credentials 1.0, SSH Slaves 1.0 for integration in 1.509.4 if there is one</span>
+<a name="l-46"></a><span class="tm">18:15:08</span><span class="nk"> &lt;jglick&gt;</span> Why?
+<a name="l-47"></a><span class="tm">18:15:19</span><span class="nk"> &lt;kohsuke&gt;</span> stephenc said I should defend this proposition on behalf of him but he didn't tell me why this is important
+<a name="l-48"></a><span class="tm">18:15:36</span><span class="nk"> &lt;vjuranek&gt;</span> :-)
+<a name="l-49"></a><span class="tm">18:16:10</span><span class="nk"> &lt;jglick&gt;</span> Unless we are generally updating all bundled plugins I see no reason why these should be special.
+<a name="l-50"></a><span class="tm">18:16:18</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah
+<a name="l-51"></a><span class="tm">18:16:39</span><span class="nk"> &lt;kohsuke&gt;</span> Well, the proposal is for the next LTS, so I'm going to sync up with him again as to why he thinks this is important
+<a name="l-52"></a><span class="tm">18:17:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to post a blog about his [NOTICE] post and call for the need for updating all at once</span>
+<a name="l-53"></a><span class="tm">18:17:35</span><span class="nk"> &lt;kohsuke&gt;</span> I hope this post doesn't mean those plugins have broken compatibility...
+<a name="l-54"></a><span class="tm">18:17:45</span><span class="nk"> &lt;jglick&gt;</span> I think they did. Ideally the Jenkins plugin metadata could express that.
+<a name="l-55"></a><span class="tm">18:17:53</span><span class="nk"> &lt;kohsuke&gt;</span> it can
+<a name="l-56"></a><span class="tm">18:18:33</span><span class="nk"> &lt;kohsuke&gt;</span> In my reading of his post I don't think any of them is compatibility breaking
+<a name="l-57"></a><span class="tm">18:18:44</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ssh-credentials:</span> &lt;compatibleSinceVersion&gt;1.0&lt;/compatibleSinceVersion&gt;
+<a name="l-58"></a><span class="tm">18:18:45</span><span class="nk"> &lt;kohsuke&gt;</span> It's just that the upgrade is one way (SSH credentials)
+<a name="l-59"></a><span class="tm">18:18:51</span><span class="nk"> &lt;kohsuke&gt;</span> oh ok
+<a name="l-60"></a><span class="tm">18:18:55</span><span class="nk"> &lt;kohsuke&gt;</span> oh boy
+<a name="l-61"></a><span class="tm">18:19:25</span><span class="nk"> &lt;jglick&gt;</span> Not sure whether he meant only that the upgrade is one way, or whether something explodes if you only upgrade one of them.
+<a name="l-62"></a><span class="tm">18:19:48</span><span class="nk"> &lt;kohsuke&gt;</span> it'd be good to check the code
+<a name="l-63"></a><span class="tm">18:20:05 </span><span class="nka">* kohsuke</span> <span class="ac">brings touches the bytecode compatibility transformer on his hip</span>
+<a name="l-64"></a><span class="tm">18:20:27</span><span class="nk"> &lt;kohsuke&gt;</span> I'll check with stephenc to find out
+<a name="l-65"></a><span class="tm">18:20:42</span><span class="nk"> &lt;jglick&gt;</span> I.e. ssh-credentials 1.0 + ssh-slaves 0.x = ?
+<a name="l-66"></a><span class="tm">18:21:02</span><span class="nk"> &lt;kohsuke&gt;</span> oh looks like we already have an aswer in the dev list
+<a name="l-67"></a><span class="tm">18:21:09</span><span class="nk"> &lt;kohsuke&gt;</span> it does blow up: http://pastebin.com/F5e9rTVX
+<a name="l-68"></a><span class="tm">18:21:19</span><span class="nk"> &lt;jglick&gt;</span> I think that means that your SSH slaves will not find any credentials.
+<a name="l-69"></a><span class="tm">18:22:02</span><span class="nk"> &lt;jglick&gt;</span> The pastebin snippet I think meant that Plugin Manager allowed him to upgrade ssh-slaves 1.0 while ssh-credentials was 0.x, which is a bug incore.
+<a name="l-70"></a><span class="tm">18:22:23</span><span class="nk"> &lt;jglick&gt;</span> (The kind of issue OSGi would catch.)
+<a name="l-71"></a><span class="tm">18:22:39</span><span class="nk"> &lt;kohsuke&gt;</span> OK, that's fixable
+<a name="l-72"></a><span class="tm">18:23:06</span><span class="nk"> &lt;kohsuke&gt;</span> let me file that
+<a name="l-73"></a><span class="tm">18:23:28</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I have already done that: https://issues.jenkins-ci.org/browse/JENKINS-18608
+<a name="l-74"></a><span class="tm">18:23:30</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-18608:When updating a plugin, check versions of dependencies (Open) http://jenkins-ci.org/issue/18608
+<a name="l-75"></a><span class="tm">18:23:50</span><span class="nk"> &lt;jglick&gt;</span> If you upgrade just ssh-credentials, existing credentials will get converted, so the old slave launcher will never find them.
+<a name="l-76"></a><span class="tm">18:24:07</span><span class="nk"> &lt;jglick&gt;</span> I.e. they would not appear in the list of credentials to pick.
+<a name="l-77"></a><span class="tm">18:24:25</span><span class="nk"> &lt;jglick&gt;</span> Probably easily resolved by upgrading ssh-slaves too.
+<a name="l-78"></a><span class="tm">18:25:01</span><span class="nk"> &lt;kohsuke&gt;</span> "Breaks" header would have been useful like the one you find in *.deb
+<a name="l-79"></a><span class="tm">18:25:32</span><span class="nk"> &lt;kohsuke&gt;</span> oh well
+<a name="l-80"></a><span class="tm">18:25:50</span><span class="nk"> &lt;kohsuke&gt;</span> Let's close the meeting
+<a name="l-81"></a><span class="tm">18:26:06</span><span class="nk"> &lt;jglick&gt;</span> What about backporting the Stapler fix?
+<a name="l-82"></a><span class="tm">18:26:11</span><span class="nk"> &lt;jglick&gt;</span> Did that get taken care of?
+<a name="l-83"></a><span class="tm">18:26:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to circle back on stephenc to find out why these plugins should be in 1.409.4</span>
+<a name="l-84"></a><span class="tm">18:26:28</span><span class="nk"> &lt;kohsuke&gt;</span> I guess now I see his argument --- it's because it has to be updated all at once
+<a name="l-85"></a><span class="tm">18:26:39</span><span class="nk"> &lt;kohsuke&gt;</span> saves troubles if we do it for users
+<a name="l-86"></a><span class="tm">18:26:50</span><span class="nk"> &lt;kohsuke&gt;</span> stapler fix?
+<a name="l-87"></a><span class="tm">18:26:58</span><span class="nk"> &lt;jglick&gt;</span> https://github.com/stapler/stapler/commit/fb1fa99985058151732a73c1a071383dbd20e116
+<a name="l-88"></a><span class="tm">18:26:58</span><span class="nk"> &lt;ogondza&gt;</span> https://groups.google.com/forum/#!msg/jenkinsci-dev/QoXu9XJ5zbs/Qyg5tcPXFKQJ
+<a name="l-89"></a><span class="tm">18:27:26</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-18776
+<a name="l-90"></a><span class="tm">18:27:28</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-18776:@QueryParameter with @RelativePath broken (Resolved) http://jenkins-ci.org/issue/18776
+<a name="l-91"></a><span class="tm">18:27:55</span><span class="nk"> &lt;stephenc_&gt;</span> Hey! The topic I am after
+<a name="l-92"></a><span class="tm">18:27:59</span><span class="nk"> &lt;kohsuke&gt;</span> I think in the past I've been liberal about updating stapler/winstone/etc versions in LTS
+<a name="l-93"></a><span class="tm">18:28:02</span><span class="nk"> &lt;jglick&gt;</span> Backporting the fix in jenkinsci/jenkins means pulling in months’ worth of over changes.
+<a name="l-94"></a><span class="tm">18:28:15</span><span class="nk"> &lt;jglick&gt;</span> Including at least one known serious regression.
+<a name="l-95"></a><span class="tm">18:28:32</span><span class="nk"> &lt;stephenc_&gt;</span> You guys move off my agenda item already?
+<a name="l-96"></a><span class="tm">18:28:48</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-18641
+<a name="l-97"></a><span class="tm">18:28:50</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-18641:People View does Not Populate (makeStaplerProxy) (Reopened) http://jenkins-ci.org/issue/18641
+<a name="l-98"></a><span class="tm">18:29:06</span><span class="nk"> &lt;kohsuke&gt;</span> let's take care of the stapler fix first and we can come back to credential plugins
+<a name="l-99"></a><span class="tm">18:29:12</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">stephenc_:</span> yes but could circle back to it if need be
+<a name="l-100"></a><span class="tm">18:29:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">backporting stapler fix</span>
+<a name="l-101"></a><span class="tm">18:29:47</span><span class="nk"> &lt;stephenc_&gt;</span> I just care if I have a "go" in principle
+<a name="l-102"></a><span class="tm">18:30:01</span><span class="nk"> &lt;kohsuke&gt;</span> I can check what else went in between 1.207 to 1.214 but I tend to prefer picking existing releases
+<a name="l-103"></a><span class="tm">18:30:11</span><span class="nk"> &lt;kohsuke&gt;</span> as opposed to have 1.207.1
+<a name="l-104"></a><span class="tm">18:30:26</span><span class="nk"> &lt;jglick&gt;</span> Then can we get JENKINS-18641 fixed in 1.215 or whatever?
+<a name="l-105"></a><span class="tm">18:30:28</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-18641:People View does Not Populate (makeStaplerProxy) (Reopened) http://jenkins-ci.org/issue/18641
+<a name="l-106"></a><span class="tm">18:30:36</span><span class="nk"> &lt;kohsuke&gt;</span> In my mind if whatever stapler release passes the soak time rule I'm good
+<a name="l-107"></a><span class="tm">18:30:48</span><span class="nk"> &lt;jglick&gt;</span> Either by reverting the original change, or adjusting it somehow.
+<a name="l-108"></a><span class="tm">18:31:05</span><span class="nk"> &lt;kohsuke&gt;</span> that went in after 1.207?
+<a name="l-109"></a><span class="tm">18:31:21</span><span class="nk"> &lt;kohsuke&gt;</span> is that why ogondza is asking for 1.207.1?
+<a name="l-110"></a><span class="tm">18:31:28</span><span class="nk"> &lt;ogondza&gt;</span> yes
+<a name="l-111"></a><span class="tm">18:31:29</span><span class="nk"> &lt;kohsuke&gt;</span> (if so, I'd be happy to create that, too)
+<a name="l-112"></a><span class="tm">18:31:45</span><span class="nk"> &lt;jglick&gt;</span> See thread: “RE: JENKINS-18641: Changes to Stapler's JavaScript proxy will break plugins depending on it”
+<a name="l-113"></a><span class="tm">18:31:47</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-18641:People View does Not Populate (makeStaplerProxy) (Reopened) http://jenkins-ci.org/issue/18641
+<a name="l-114"></a><span class="tm">18:32:15</span><span class="nk"> &lt;ogondza&gt;</span> the 2 commits are backported already. tests passes
+<a name="l-115"></a><span class="tm">18:32:45</span><span class="nk"> &lt;kohsuke&gt;</span> oh ok, then sounds like the least I can do is to do 1.207.1
+<a name="l-116"></a><span class="tm">18:32:47</span><span class="nk"> &lt;jglick&gt;</span> rsandell thinks there might be a simple fix for JENKINS-18641 (which would be in core, so no need to change Stapler version)
+<a name="l-117"></a><span class="tm">18:32:49</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-18641:People View does Not Populate (makeStaplerProxy) (Reopened) http://jenkins-ci.org/issue/18641
+<a name="l-118"></a><span class="tm">18:33:27</span><span class="nk"> &lt;kohsuke&gt;</span> and just for the record I believe anyone can release stapler
+<a name="l-119"></a><span class="tm">18:33:29</span><span class="nk"> &lt;kohsuke&gt;</span> at least that's my intent
+<a name="l-120"></a><span class="tm">18:33:31</span><span class="nk"> &lt;jglick&gt;</span> If that in fact works (have not yet tried it myself), would we rather go that way?
+<a name="l-121"></a><span class="tm">18:33:46</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">(kohsuke:</span> distribution to gh-pages was the issue IIRC)
+<a name="l-122"></a><span class="tm">18:34:22</span><span class="nk"> &lt;kohsuke&gt;</span> "If that [simple 18641 fix] in fact works (have not yet tried it myself), would we rather go that [releasing 1.215] way?" ?
+<a name="l-123"></a><span class="tm">18:34:30</span><span class="nk"> &lt;jglick&gt;</span> right
+<a name="l-124"></a><span class="tm">18:34:48</span><span class="nk"> &lt;jglick&gt;</span> i.e. +&lt;st:adjunct assumes="org.kohsuke.stapler.framework.prototype.prototype" includes="org.kohsuke.stapler.json2"/&gt;
+<a name="l-125"></a><span class="tm">18:34:50</span><span class="nk"> &lt;kohsuke&gt;</span> Then it sounds like I should be working on this ASAP
+<a name="l-126"></a><span class="tm">18:35:04</span><span class="nk"> &lt;stephenc_&gt;</span> :-)
+<a name="l-127"></a><span class="tm">18:35:26</span><span class="nk"> &lt;kohsuke&gt;</span> So here's what I'll do.
+<a name="l-128"></a><span class="tm">18:35:39</span><span class="nk"> &lt;kohsuke&gt;</span> I'll release 1.207.1 sine ogondza did all the hard work
+<a name="l-129"></a><span class="tm">18:35:49</span><span class="nk"> &lt;kohsuke&gt;</span> And I'll work on JENKINS-18641
+<a name="l-130"></a><span class="tm">18:35:50</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">kohsuke:</span> if you are checking it, you can use cloudbees-template as a test case.
+<a name="l-131"></a><span class="tm">18:35:51</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-18641:People View does Not Populate (makeStaplerProxy) (Reopened) http://jenkins-ci.org/issue/18641
+<a name="l-132"></a><span class="tm">18:36:14</span><span class="nk"> &lt;kohsuke&gt;</span> if that fix comes up in time and we are happy, we'd propose bundling 1.215
+<a name="l-133"></a><span class="tm">18:36:39</span><span class="nk"> &lt;kohsuke&gt;</span> but 1.509.3 can always fall back to 1.207.1
+<a name="l-134"></a><span class="tm">18:36:47</span><span class="nk"> &lt;jglick&gt;</span> 1.216 actually.
+<a name="l-135"></a><span class="tm">18:36:53</span><span class="nk"> &lt;jglick&gt;</span> Or not, 1.217.
+<a name="l-136"></a><span class="tm">18:36:56</span><span class="nk"> &lt;kohsuke&gt;</span> whatever
+<a name="l-137"></a><span class="tm">18:37:11</span><span class="nk"> &lt;kohsuke&gt;</span> stapler+18641 fix
+<a name="l-138"></a><span class="tm">18:37:33</span><span class="nk"> &lt;jglick&gt;</span> Or sorry no, 1.215, since the proposed fix is in core.
+<a name="l-139"></a><span class="tm">18:37:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span>  Is that satisfiable?
+<a name="l-140"></a><span class="tm">18:38:04</span><span class="nk"> &lt;ogondza&gt;</span> sure
+<a name="l-141"></a><span class="tm">18:38:08</span><span class="nk"> &lt;jglick&gt;</span> I.e. stable branch already specifies 1.215; we just need to check if reverting the existing workaround in core, and adding the proposed workaround in core, solves the originally reported issue as well as those in plugins.
+<a name="l-142"></a><span class="tm">18:38:29</span><span class="nk"> &lt;jglick&gt;</span> Or 1.214 I mean is in stable.
+<a name="l-143"></a><span class="tm">18:38:40</span><span class="nk"> &lt;jglick&gt;</span> Sorry for confusion.
+<a name="l-144"></a><span class="tm">18:38:42</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-145"></a><span class="tm">18:39:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">SSH credentials</span>
+<a name="l-146"></a><span class="tm">18:39:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">stephenc:</span>  ^^
+<a name="l-147"></a><span class="tm">18:39:42</span><span class="nk"> &lt;kohsuke&gt;</span> I think we lost him
+<a name="l-148"></a><span class="tm">18:39:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-149"></a><span class="tm">18:40:04</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">_stephenc:</span> ?
+<a name="l-150"></a><span class="tm">18:40:11</span><span class="nk"> &lt;jglick&gt;</span> nope, gone
+<a name="l-151"></a><span class="tm">18:40:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meetin would be in Aug 21st</span>
+<a name="l-152"></a><span class="tm">18:40:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

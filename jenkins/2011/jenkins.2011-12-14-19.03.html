@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 19:03:54 UTC
+(<a href="jenkins.2011-12-14-19.03.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li>
+<ol type="a">
+  <li><span class="INFO">agenda
+    https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Dec14thMeeting</span>
+    <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-6'>rtyler</a>,
+    19:04:06)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">recap of actions</b> <span class="details">(<a href='jenkins.2011-12-14-19.03.log.html#l-10'>kohsuke</a>, 19:04:42)</span>
+<ol type="a">
+  <li><span class="INFO">see
+    http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-11-30-19.01.html</span>
+    <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-11'>kohsuke</a>,
+    19:04:49)</span></li>
+  <li><span class="INFO">we are currently at $10046</span> <span
+    class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-21'>kohsuke</a>,
+    19:06:55)</span></li>
+  <li><span class="INFO">I think that joke did work, and credit goes to
+    orrc</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-29'>kohsuke</a>,
+    19:07:47)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    write a blog post concluding the fund-raising drive and update the
+    Wiki page</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-39'>kohsuke</a>,
+    19:09:43)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer to
+    ping github again for a possible private repo</span> <span
+    class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-45'>kohsuke</a>,
+    19:11:13)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    ponder a CI Dinner or something along those lines for SCALE</span>
+    <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-50'>kohsuke</a>,
+    19:13:00)</span></li>
+  <li><span class="INFO">wrt Jenkins CIA, I've asked cowboyd if
+    FrontSide can do another awesome logo</span> <span
+    class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-53'>kohsuke</a>,
+    19:14:19)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    ping cowboyd about CIA logo</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-54'>kohsuke</a>,
+    19:14:35)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">infra update</b> <span class="details">(<a href='jenkins.2011-12-14-19.03.log.html#l-62'>kohsuke</a>, 19:15:26)</span>
+<ol type="a">
+  <li><span class="INFO">The downtime mentioned last meeting went by
+    smoothly</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-66'>rtyler</a>,
+    19:16:23)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    harrass Contegix some more about getting our backups going
+    properly</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-67'>rtyler</a>,
+    19:16:43)</span></li>
+  <li><span class="INFO">Still working with Contegix on spinning off the
+    account</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-68'>rtyler</a>,
+    19:17:06)</span></li>
+  <li><span class="INFO">Nagios can now be found at
+    http://nagios.jenkins-ci.org/nagios3/</span> <span
+    class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-70'>rtyler</a>,
+    19:17:40)</span></li>
+  <li><span class="INFO">Anonymous read-only access with the login:
+    jenkins/jenkins</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-72'>rtyler</a>,
+    19:17:50)</span></li>
+  <li><span class="INFO">We are also now using our gratis PagerDuty
+    account, and I've placed some folks in an on-call rotation</span>
+    <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-73'>rtyler</a>,
+    19:18:11)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Add aheritier to the users-core puppet group</b> <span class="details">(<a href='jenkins.2011-12-14-19.03.log.html#l-76'>rtyler</a>, 19:19:09)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler needs
+    to flesh out the infra wiki with more contingency plans for some
+    more "common" outages</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-86'>rtyler</a>,
+    19:21:17)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">aheritier to
+    be added to the users-core module</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-89'>rtyler</a>,
+    19:22:09)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler add
+    aheritier to the users-core module</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-90'>rtyler</a>,
+    19:22:18)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Unscheduled items</b> <span class="details">(<a href='jenkins.2011-12-14-19.03.log.html#l-99'>rtyler</a>, 19:23:19)</span>
+<ol type="a">
+  <li><span class="INFO">vjuranek asked about a target date for LTS
+    1.424.2</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-100'>rtyler</a>,
+    19:23:36)</span></li>
+  <li><span class="INFO">Plan for 1.424.2 is to release it sometime in
+    early January</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-114'>rtyler</a>,
+    19:26:42)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    create a new LTS RC in about a week</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-117'>rtyler</a>,
+    19:27:16)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">first RC in a
+    week, soak over the end of the year, and shoot for release in next
+    month about this time</span> <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-118'>kohsuke</a>,
+    19:27:18)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2011-12-14-19.03.log.html#l-162'>kohsuke</a>, 19:33:14)</span>
+<ol type="a">
+  <li><a
+    href="http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-11-30-19.01.log.html">http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-11-30-19.01.log.html</a>
+    <span class="details">(<a
+    href='jenkins.2011-12-14-19.03.log.html#l-167'>rtyler</a>,
+    19:33:58)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 19:35:25 UTC
+(<a href="jenkins.2011-12-14-19.03.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>kohsuke to write a blog post concluding the fund-raising drive and update the Wiki page</li>
+  <li>abayer to ping github again for a possible private repo</li>
+  <li>kohsuke to ponder a CI Dinner or something along those lines for SCALE</li>
+  <li>kohsuke to ping cowboyd about CIA logo</li>
+  <li>rtyler to harrass Contegix some more about getting our backups going properly</li>
+  <li>rtyler needs to flesh out the infra wiki with more contingency plans for some more "common" outages</li>
+  <li>rtyler add aheritier to the users-core module</li>
+  <li>kohsuke to create a new LTS RC in about a week</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> abayer <ol>
+    <li>abayer to ping github again for a possible private repo</li>
+  </ol></li>
+  <li> cowboyd <ol>
+    <li>kohsuke to ping cowboyd about CIA logo</li>
+  </ol></li>
+  <li> kohsuke <ol>
+    <li>kohsuke to write a blog post concluding the fund-raising drive and update the Wiki page</li>
+    <li>kohsuke to ponder a CI Dinner or something along those lines for SCALE</li>
+    <li>kohsuke to ping cowboyd about CIA logo</li>
+    <li>kohsuke to create a new LTS RC in about a week</li>
+  </ol></li>
+  <li> rtyler <ol>
+    <li>rtyler to harrass Contegix some more about getting our backups going properly</li>
+    <li>rtyler needs to flesh out the infra wiki with more contingency plans for some more "common" outages</li>
+    <li>rtyler add aheritier to the users-core module</li>
+  </ol></li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>rtyler (62)</li>
+  <li>kohsuke (62)</li>
+  <li>abayer (15)</li>
+  <li>imod (12)</li>
+  <li>vjuranek (9)</li>
+  <li>jorgenpt (4)</li>
+  <li>jenkinsci_builds (3)</li>
+  <li>orrc (3)</li>
+  <li>cowboyd (2)</li>
+  <li>robobutler (2)</li>
+  <li>nmeister (2)</li>
+  <li>jenkins-admin (1)</li>
+  <li>Syd (1)</li>
+  <li>myusuf3_ (1)</li>
+  <li>mc1arke (1)</li>
+  <li>joeljohnson (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

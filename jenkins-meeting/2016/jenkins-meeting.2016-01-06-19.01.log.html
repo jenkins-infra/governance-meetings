@@ -1,0 +1,447 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app219.us.archive.org';v.server_ms=502;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-01-06-19.01.log.html","20211020065028","https://web.archive.org/","web","/_static/",
+	      "1634712628");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:01:28</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:01:28</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:01:39</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler ogondza</span>
+<a name="l-4"></a><span class="tm">19:01:39</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck ogondza rtyler
+<a name="l-5"></a><span class="tm">19:02:08</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-6"></a><span class="tm">19:02:22</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2015/jenkins-meeting.2015-12-09-19.01.html</span>
+<a name="l-7"></a><span class="tm">19:02:40</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler you had some actions?
+<a name="l-8"></a><span class="tm">19:02:51</span><span class="nk"> &lt;rtyler&gt;</span> aye aye, lemme go through those
+<a name="l-9"></a><span class="tm">19:03:10</span><span class="nk"> &lt;rtyler&gt;</span> so the Board Election Process page is finalized and linked from the Governance Document
+<a name="l-10"></a><span class="tm">19:03:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Governance document https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document</span>
+<a name="l-11"></a><span class="tm">19:03:36</span><span class="nk"> &lt;KostyaSha&gt;</span> no announcement on main channel?
+<a name="l-12"></a><span class="tm">19:03:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Board election process https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process</span>
+<a name="l-13"></a><span class="tm">19:04:23</span><span class="nk"> &lt;rtyler&gt;</span> my other primary action item was to incorporate some of orrc's feedback into the code of conduct page
+<a name="l-14"></a><span class="tm">19:04:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Code of Conduct https://wiki.jenkins-ci.org/display/JENKINS/Code+of+Conduct</span>
+<a name="l-15"></a><span class="tm">19:04:31</span><span class="nk"> &lt;danielbeck&gt;</span> to be discussed later today?
+<a name="l-16"></a><span class="tm">19:04:33</span><span class="nk"> &lt;rtyler&gt;</span> which I took care of this morning
+<a name="l-17"></a><span class="tm">19:04:35</span><span class="nk"> &lt;rtyler&gt;</span> yes
+<a name="l-18"></a><span class="tm">19:04:52</span><span class="nk"> &lt;rtyler&gt;</span> that's it, I didn't bother extending this meeting time because the agenda didn't fill up as much as I expected
+<a name="l-19"></a><span class="tm">19:05:05</span><span class="nk"> &lt;danielbeck&gt;</span> Also FYI https://issues.jenkins-ci.org/browse/HOSTING/?selectedTab=com.atlassian.jira.jira-projects-plugin:summary-panel looks like we're off to a pretty good start with handling hosting requests in JIRA
+<a name="l-20"></a><span class="tm">19:05:13</span><span class="nk"> &lt;danielbeck&gt;</span> (you need to be logged in to see this)
+<a name="l-21"></a><span class="tm">19:05:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> the documents LGTM. BTW makes sense to move them to static site for the better permission management
+<a name="l-22"></a><span class="tm">19:05:46</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check - discuss baseline change</span>
+<a name="l-23"></a><span class="tm">19:05:55</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/K06ny0sozWM</span>
+<a name="l-24"></a><span class="tm">19:05:59</span><span class="nk"> &lt;rtyler&gt;</span> I'm assuming ogondza created the LTS branch then :)
+<a name="l-25"></a><span class="tm">19:06:15</span><span class="nk"> &lt;ogondza&gt;</span> I have created the agreed branch
+<a name="l-26"></a><span class="tm">19:06:30</span><span class="nk"> &lt;ogondza&gt;</span> and reapplied the backports on 1.642 as well
+<a name="l-27"></a><span class="tm">19:06:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> *2 branches
+<a name="l-28"></a><span class="tm">19:06:48</span><span class="nk"> &lt;ogondza&gt;</span> so we can make the decision today
+<a name="l-29"></a><span class="tm">19:07:19</span><span class="nk"> &lt;ogondza&gt;</span> the builds are still running, though it would make zero sense to pick the one with fewer ATH failures anyway
+<a name="l-30"></a><span class="tm">19:07:38</span><span class="nk"> &lt;ogondza&gt;</span> https://jenkins.ci.cloudbees.com/job/core/job/acceptance-test-harness-stable-1.642/1/console
+<a name="l-31"></a><span class="tm">19:07:38</span><span class="nk"> &lt;batmat&gt;</span> https://github.com/jenkinsci/jenkins/tree/stable-1.636 but not found for 1.642?
+<a name="l-32"></a><span class="tm">19:07:42</span><span class="nk"> &lt;ogondza&gt;</span> https://jenkins.ci.cloudbees.com/job/core/job/acceptance-test-harness-stable/549/console
+<a name="l-33"></a><span class="tm">19:08:00</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">batmat:</span> https://github.com/olivergondza/jenkins/commits/stable-1.642
+<a name="l-34"></a><span class="tm">19:08:14</span><span class="nk"> &lt;ogondza&gt;</span> did not wanted to pollute jenkinsci repo ...
+<a name="l-35"></a><span class="tm">19:08:15</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">ogondza:</span> right, still validating I get it.
+<a name="l-36"></a><span class="tm">19:08:34</span><span class="nk"> &lt;danielbeck&gt;</span> Better to wait until we've determine dhow to proceed
+<a name="l-37"></a><span class="tm">19:09:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So 1.642 vs. 1.636. Both now comply with LTS policy if I understand correctly
+<a name="l-38"></a><span class="tm">19:09:18</span><span class="nk"> &lt;ogondza&gt;</span> well, the advantage for 1.641 is wo do not have to rebackport security fixes
+<a name="l-39"></a><span class="tm">19:09:33</span><span class="nk"> &lt;ogondza&gt;</span> *for 1.641+
+<a name="l-40"></a><span class="tm">19:09:44</span><span class="nk"> &lt;danielbeck&gt;</span> 1.636 was chosen at a time when all later releases had regressions
+<a name="l-41"></a><span class="tm">19:10:01</span><span class="nk"> &lt;danielbeck&gt;</span> so it didn't look that great, and 1.641 wasn't out yet.
+<a name="l-42"></a><span class="tm">19:10:31</span><span class="nk"> &lt;danielbeck&gt;</span> Since we skipped the Dec 23 meeting, 1.64x has been out for a while and looks very good
+<a name="l-43"></a><span class="tm">19:11:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> JENKINS-32118 is the only bug in community ratings, but seems it has been caused by SECURITY
+<a name="l-44"></a><span class="tm">19:11:25</span><span class="nk"> &lt;danielbeck&gt;</span> IMO 1.64x looks strong enough. And even after RC we still have ~1 week to find and react to major issues
+<a name="l-45"></a><span class="tm">19:12:07</span><span class="nk"> &lt;danielbeck&gt;</span> Yes, I got a request to allow configuring the Content Security Policy on the UI
+<a name="l-46"></a><span class="tm">19:12:22</span><span class="nk"> &lt;danielbeck&gt;</span> which seems like a good idea
+<a name="l-47"></a><span class="tm">19:12:42</span><span class="nk"> &lt;danielbeck&gt;</span> but otherwise no major issues that I know of have been reported so far
+<a name="l-48"></a><span class="tm">19:12:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> "I told you so" :)
+<a name="l-49"></a><span class="tm">19:13:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I think even 1.642 is safe enough according to diffs
+<a name="l-50"></a><span class="tm">19:13:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> *1.643
+<a name="l-51"></a><span class="tm">19:14:13</span><span class="nk"> &lt;danielbeck&gt;</span> depending on how good the cloud fix is, but it looks pretty straightforward
+<a name="l-52"></a><span class="tm">19:14:42</span><span class="nk"> &lt;danielbeck&gt;</span> but even 1.642 would be a huge leap over 1.636.
+<a name="l-53"></a><span class="tm">19:14:43</span><span class="nk"> &lt;KostyaSha&gt;</span> cloud fix is pretty simple and seems listener wasn't used in plugins
+<a name="l-54"></a><span class="tm">19:14:56</span><span class="nk"> &lt;KostyaSha&gt;</span> + for 1.642
+<a name="l-55"></a><span class="tm">19:15:53</span><span class="nk"> &lt;ogondza&gt;</span> note that we are entering week #3 in the cycle, I am -1 on picking last release
+<a name="l-56"></a><span class="tm">19:16:04</span><span class="nk"> &lt;batmat&gt;</span> https://github.com/jenkinsci/jenkins/compare/jenkins-1.642...jenkinsci:jenkins-1.643 FWIW
+<a name="l-57"></a><span class="tm">19:16:09</span><span class="nk"> &lt;batmat&gt;</span> +1 for 1.642
+<a name="l-58"></a><span class="tm">19:16:18</span><span class="nk"> &lt;KostyaSha&gt;</span> ogondza, skip cycle?
+<a name="l-59"></a><span class="tm">19:16:21</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> https://github.com/olivergondza/jenkins/commit/18fbb590cbee95c0edd08882f59965a893f5b27c huh? (empty)
+<a name="l-60"></a><span class="tm">19:16:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe it has been integrated by other change
+<a name="l-61"></a><span class="tm">19:17:06</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> it was already in 1.639
+<a name="l-62"></a><span class="tm">19:17:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I'm +1 on 1.642
+<a name="l-63"></a><span class="tm">19:17:39</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">jglick:</span> yes, it uses 2.9 already
+<a name="l-64"></a><span class="tm">19:18:07</span><span class="nk"> &lt;danielbeck&gt;</span> anyone -1 on moving to 1.642?
+<a name="l-65"></a><span class="tm">19:18:14</span><span class="nk"> &lt;ogondza&gt;</span> no idea why cherry-pick skipped some commits entirely and backported some empty
+<a name="l-66"></a><span class="tm">19:18:14 </span><span class="nka">* rtyler</span> <span class="ac">is fine with it</span>
+<a name="l-67"></a><span class="tm">19:18:53</span><span class="nk"> &lt;ogondza&gt;</span> In that case, 1.642.1 will have _no_ changes compared to 1.642
+<a name="l-68"></a><span class="tm">19:19:39</span><span class="nk"> &lt;danielbeck&gt;</span> not sure this is a bad thing
+<a name="l-69"></a><span class="tm">19:19:41</span><span class="nk"> &lt;KostyaSha&gt;</span> ogondza, magic! %)
+<a name="l-70"></a><span class="tm">19:19:58</span><span class="nk"> &lt;jglick&gt;</span> 1.642 seems fine to me.
+<a name="l-71"></a><span class="tm">19:20:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> less backports == less work
+<a name="l-72"></a><span class="tm">19:20:34</span><span class="nk"> &lt;ogondza&gt;</span> It definitely makes sense to highlight the release of exceptional quality to the users, so +1 on 1.642
+<a name="l-73"></a><span class="tm">19:21:19</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">let's move the LTS baseline to 1.642</span>
+<a name="l-74"></a><span class="tm">19:21:43</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to prepare the branch and inform KK that we need an RC</span>
+<a name="l-75"></a><span class="tm">19:21:50</span><span class="nk"> &lt;ogondza&gt;</span> when can we expect kohsuke to post the rc?
+<a name="l-76"></a><span class="tm">19:22:01</span><span class="nk"> &lt;jglick&gt;</span> He is on vacation this week.
+<a name="l-77"></a><span class="tm">19:22:05</span><span class="nk"> &lt;danielbeck&gt;</span> he's still on vacation this week, so I think weekend/early next wk
+<a name="l-78"></a><span class="tm">19:22:51</span><span class="nk"> &lt;ogondza&gt;</span> alright, lets move on
+<a name="l-79"></a><span class="tm">19:22:56</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Q1 Patron messages approval</span>
+<a name="l-80"></a><span class="tm">19:23:02</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/patron/pull/8</span>
+<a name="l-81"></a><span class="tm">19:23:30</span><span class="nk"> &lt;danielbeck&gt;</span> New addition is JFrog, who haven't provided the logo for the message yet, but I think we can still vote on in
+<a name="l-82"></a><span class="tm">19:23:37</span><span class="nk"> &lt;danielbeck&gt;</span> the others keep the messages from Q4
+<a name="l-83"></a><span class="tm">19:23:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I'm -1 on JFrogs message
+<a name="l-84"></a><span class="tm">19:23:47</span><span class="nk"> &lt;danielbeck&gt;</span> first quarter without a filler message, by the way!
+<a name="l-85"></a><span class="tm">19:24:19</span><span class="nk"> &lt;orrc&gt;</span> \o/
+<a name="l-86"></a><span class="tm">19:24:42</span><span class="nk"> &lt;orrc&gt;</span> all images are https:// and messages seem fine to me, so I'm happy :)
+<a name="l-87"></a><span class="tm">19:24:58</span><span class="nk"> &lt;rtyler&gt;</span> I don't see the problem with JFrog's message oleg-nenashev, care to elaborate?
+<a name="l-88"></a><span class="tm">19:25:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> "The only enterprise-ready ...." is their personal opinion. What would other vendors say?
+<a name="l-89"></a><span class="tm">19:25:19</span><span class="nk"> &lt;KostyaSha&gt;</span> "  &lt;caption&gt;Go from JenkinsCI to Enterprise CD with XebiaLabs&lt;/caption&gt;" seriously?
+<a name="l-90"></a><span class="tm">19:25:46</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha This one has been agreed on months ago, let's stick to the new addition
+<a name="l-91"></a><span class="tm">19:25:49</span><span class="nk"> &lt;batmat&gt;</span> +1 with oleg-nenashev and it's now factually wrong. Nexus also supports Docker now...
+<a name="l-92"></a><span class="tm">19:26:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And DockerHub...
+<a name="l-93"></a><span class="tm">19:26:10</span><span class="nk"> &lt;orrc&gt;</span> ah, but are they enterprise-ready?
+<a name="l-94"></a><span class="tm">19:26:15</span><span class="nk"> &lt;danielbeck&gt;</span> batmat So your +1 is a -1 for the message?
+<a name="l-95"></a><span class="tm">19:26:24</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-96"></a><span class="tm">19:26:39</span><span class="nk"> &lt;rtyler&gt;</span> Enterprise-ready is totally subjective, but I see your point oleg-nenashev
+<a name="l-97"></a><span class="tm">19:27:17</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">danielbeck:</span> right, was unclear. Little -1 on the message. I /think/ JFrog should rephrase a bit less offensively.
+<a name="l-98"></a><span class="tm">19:27:32</span><span class="nk"> &lt;orrc&gt;</span> they meet the existing guidelines for messages, and we can't really go pinning down the accuracies of marketing-written slogans
+<a name="l-99"></a><span class="tm">19:27:48</span><span class="nk"> &lt;orrc&gt;</span> what if xebialabs *doesn't* help me make sense of my test results?!
+<a name="l-100"></a><span class="tm">19:27:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> can you #info the current guidelines
+<a name="l-101"></a><span class="tm">19:28:00</span><span class="nk"> &lt;danielbeck&gt;</span> especially if it's something not well defined like 'enterprise-ready'
+<a name="l-102"></a><span class="tm">19:28:00</span><span class="nk"> &lt;alyssat&gt;</span> would it work if we ask them to remove 'Only'?
+<a name="l-103"></a><span class="tm">19:28:15</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Patron+of+Jenkins+program "Format of the patron message" paragraph 2 is the guidelines</span>
+<a name="l-104"></a><span class="tm">19:28:27</span><span class="nk"> &lt;batmat&gt;</span> Yeah alyssat I think this would be more acceptable.
+<a name="l-105"></a><span class="tm">19:28:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-106"></a><span class="tm">19:28:56</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> thanks
+<a name="l-107"></a><span class="tm">19:28:58</span><span class="nk"> &lt;batmat&gt;</span> (if /acceptable/ is the right word, which I doubt)
+<a name="l-108"></a><span class="tm">19:29:11</span><span class="nk"> &lt;danielbeck&gt;</span> So "The Enterprise-ready Docker Repo for Jenkins" is fine with everyone here?
+<a name="l-109"></a><span class="tm">19:29:29</span><span class="nk"> &lt;alyssat&gt;</span> +1
+<a name="l-110"></a><span class="tm">19:29:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +0.95
+<a name="l-111"></a><span class="tm">19:29:34</span><span class="nk"> &lt;danielbeck&gt;</span> or are there other concerns about this message other than the "Only"?
+<a name="l-112"></a><span class="tm">19:29:40</span><span class="nk"> &lt;KostyaSha&gt;</span> +0.5
+<a name="l-113"></a><span class="tm">19:29:44</span><span class="nk"> &lt;rtyler&gt;</span> IMO that's fine danielbeck
+<a name="l-114"></a><span class="tm">19:30:03</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">danielbeck:</span> OK apart from that.
+<a name="l-115"></a><span class="tm">19:30:54</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Q1 patron messages are approved, JFrog needs to have 'Only' removed from title</span>
+<a name="l-116"></a><span class="tm">19:31:02</span><span class="nk"> &lt;alyssat&gt;</span> i'm on it
+<a name="l-117"></a><span class="tm">19:31:11</span><span class="nk"> &lt;danielbeck&gt;</span> thanks alyssat
+<a name="l-118"></a><span class="tm">19:31:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 3,5 of 4 patron messages address Docker. It's a bit imbalanced, but it's OK from the sponsor perspective
+<a name="l-119"></a><span class="tm">19:31:34</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev 1 of 1 solution page on the site is about Docker :-)
+<a name="l-120"></a><span class="tm">19:31:42</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Review/adopt a Code of Conduct</span>
+<a name="l-121"></a><span class="tm">19:31:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> alyssat danielbeck: Do we need to discuss Xebia message?
+<a name="l-122"></a><span class="tm">19:31:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> *to revisit
+<a name="l-123"></a><span class="tm">19:31:54</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Q1 Patron messages approval</span>
+<a name="l-124"></a><span class="tm">19:32:01</span><span class="nk"> &lt;orrc&gt;</span> can we maybe quickly agree to modify the guidelines to include "...and should not make claims unreasonable or known to be false, e.g. 'FooBar is *the best* Thing ever'"?
+<a name="l-125"></a><span class="tm">19:32:03</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-126"></a><span class="tm">19:32:10</span><span class="nk"> &lt;alyssat&gt;</span> they are using the same message as previous quarter
+<a name="l-127"></a><span class="tm">19:32:18</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev So we already approved that one
+<a name="l-128"></a><span class="tm">19:32:42 </span><span class="nka">* rtyler</span> <span class="ac">thinks we should move on</span>
+<a name="l-129"></a><span class="tm">19:32:43</span><span class="nk"> &lt;danielbeck&gt;</span> I mean we can discuss what we don't like about it, but going back and telling them they need to change it... not a good idea IMO
+<a name="l-130"></a><span class="tm">19:32:51</span><span class="nk"> &lt;orrc&gt;</span> yup
+<a name="l-131"></a><span class="tm">19:32:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> agreed
+<a name="l-132"></a><span class="tm">19:33:04</span><span class="nk"> &lt;danielbeck&gt;</span> we can schedule this topic for next meeting, or discuss new reqs on the dev list
+<a name="l-133"></a><span class="tm">19:33:10</span><span class="nk"> &lt;orrc&gt;</span> ok
+<a name="l-134"></a><span class="tm">19:33:12</span><span class="nk"> &lt;danielbeck&gt;</span> to be adopted for the next message change
+<a name="l-135"></a><span class="tm">19:33:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Just a topic for discussion when they submit it again
+<a name="l-136"></a><span class="tm">19:33:18</span><span class="nk"> &lt;danielbeck&gt;</span> OK with everyone?
+<a name="l-137"></a><span class="tm">19:33:25 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-138"></a><span class="tm">19:33:27</span><span class="nk"> &lt;batmat&gt;</span> +1. The is matching the general comm style of JFrog.
+<a name="l-139"></a><span class="tm">19:33:42</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev Well, we should have something to point to before they write their message
+<a name="l-140"></a><span class="tm">19:33:54</span><span class="nk"> &lt;danielbeck&gt;</span> Not just "Yeah we don't like it for reasons we didn't tell you beforehand"
+<a name="l-141"></a><span class="tm">19:34:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> agreed
+<a name="l-142"></a><span class="tm">19:34:07</span><span class="nk"> &lt;danielbeck&gt;</span> but let's move on and discuss this later
+<a name="l-143"></a><span class="tm">19:34:12</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Review/adopt a Code of Conduct</span>
+<a name="l-144"></a><span class="tm">19:34:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Code of Conduct document here https://wiki.jenkins-ci.org/display/JENKINS/Code+of+Conduct</span>
+<a name="l-145"></a><span class="tm">19:34:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the only differences to the document from last meeting https://wiki.jenkins-ci.org/pages/diffpagesbyversion.action?pageId=84705386&amp;selectedPageVersions=15&amp;selectedPageVersions=13</span>
+<a name="l-146"></a><span class="tm">19:34:51</span><span class="nk"> &lt;rtyler&gt;</span> orrc had some feedback I incorporated from last meeting
+<a name="l-147"></a><span class="tm">19:35:36</span><span class="nk"> &lt;rtyler&gt;</span> please take a look at the links above
+<a name="l-148"></a><span class="tm">19:35:49 </span><span class="nka">* rtyler</span> <span class="ac">is satisfied with it as it is now</span>
+<a name="l-149"></a><span class="tm">19:35:56</span><span class="nk"> &lt;batmat&gt;</span> +1 to that diff.
+<a name="l-150"></a><span class="tm">19:35:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Please add Jenkins World to the conferences list
+<a name="l-151"></a><span class="tm">19:36:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> that list is not going to be a running list of all conferences
+<a name="l-152"></a><span class="tm">19:36:31</span><span class="nk"> &lt;rtyler&gt;</span> those are just examples
+<a name="l-153"></a><span class="tm">19:36:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So the main conference is not a good example, huh? :)
+<a name="l-154"></a><span class="tm">19:37:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for the diff BTW
+<a name="l-155"></a><span class="tm">19:37:13</span><span class="nk"> &lt;danielbeck&gt;</span> So we're fine with one Jenkins contributor harassing, insulting, or doxing another contributor at a Jenkins related event just because they didn't adopt this CoC?
+<a name="l-156"></a><span class="tm">19:37:46</span><span class="nk"> &lt;teilo&gt;</span> <span class="hi">danielbeck:</span> yes
+<a name="l-157"></a><span class="tm">19:38:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I doubt
+<a name="l-158"></a><span class="tm">19:38:15</span><span class="nk"> &lt;danielbeck&gt;</span> How is this compatible to "This code of conduct applies both within project spaces and in public spaces when an individual is representing the project or its community."?
+<a name="l-159"></a><span class="tm">19:38:16</span><span class="nk"> &lt;teilo&gt;</span> as that event is outside of jenkins' control
+<a name="l-160"></a><span class="tm">19:38:34</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">danielbeck:</span> that's not we're fine. But we discussed we can't do something about it.
+<a name="l-161"></a><span class="tm">19:38:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> I'm not fine with it but I don't think that's incongruent with what is in the document
+<a name="l-162"></a><span class="tm">19:38:55</span><span class="nk"> &lt;rtyler&gt;</span> I should also mention that this document is by no means set in stone
+<a name="l-163"></a><span class="tm">19:39:05</span><span class="nk"> &lt;rtyler&gt;</span> we will, guaranteed, have to update this in the future
+<a name="l-164"></a><span class="tm">19:39:20</span><span class="nk"> &lt;batmat&gt;</span> or do you want to state something like /if/ there're known contributors in those meeting participating in the issues, they will be subject to blablabla?
+<a name="l-165"></a><span class="tm">19:39:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Jenkins board can always review exceptional cases
+<a name="l-166"></a><span class="tm">19:40:26</span><span class="nk"> &lt;teilo&gt;</span> just because a meeting is about Jenkins does not make it part of the community.
+<a name="l-167"></a><span class="tm">19:40:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> depending on the context and details, your hypothetical example may or may not be seen as "representing the proejct or its community"
+<a name="l-168"></a><span class="tm">19:40:46</span><span class="nk"> &lt;teilo&gt;</span> there is freedom of speech and you do not have to be a member of that non jenkins community
+<a name="l-169"></a><span class="tm">19:41:32 </span><span class="nka">* teilo</span> <span class="ac">worries this is getting to much like communism</span>
+<a name="l-170"></a><span class="tm">19:41:35</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler Right, a drunken bar fight is unlikely to be relevant
+<a name="l-171"></a><span class="tm">19:41:45</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-172"></a><span class="tm">19:41:47 </span><span class="nka">* KostyaSha</span> <span class="ac">nice idea</span>
+<a name="l-173"></a><span class="tm">19:42:09 </span><span class="nka">* orrc</span> <span class="ac">wonders what danielbeck has planned for the FOSDEM beer event</span>
+<a name="l-174"></a><span class="tm">19:42:12</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-175"></a><span class="tm">19:42:18</span><span class="nk"> &lt;danielbeck&gt;</span> :-)
+<a name="l-176"></a><span class="tm">19:42:20 </span><span class="nka">* KostyaSha</span> <span class="ac">need get to fosdem!</span>
+<a name="l-177"></a><span class="tm">19:42:24</span><span class="nk"> &lt;danielbeck&gt;</span> In the interest of getting somewhere, I'm fine with the current version
+<a name="l-178"></a><span class="tm">19:42:52</span><span class="nk"> &lt;orrc&gt;</span> yup +1
+<a name="l-179"></a><span class="tm">19:42:55</span><span class="nk"> &lt;rtyler&gt;</span> from last meeting, board hare_brain and kohsuke were comfortable with the Code of Conduct as well
+<a name="l-180"></a><span class="tm">19:42:57</span><span class="nk"> &lt;teilo&gt;</span> +1
+<a name="l-181"></a><span class="tm">19:42:59</span><span class="nk"> &lt;rtyler&gt;</span> I'm prettys ure both are on vacation
+<a name="l-182"></a><span class="tm">19:43:02 </span><span class="nka">* rtyler</span> <span class="ac">facepalms</span>
+<a name="l-183"></a><span class="tm">19:43:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">KostyaSha:</span> You still have several minutes to apply to the Travel grant ;)
+<a name="l-184"></a><span class="tm">19:43:20</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, how that correlates with fact that board is not reelected?
+<a name="l-185"></a><span class="tm">19:43:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for the CoC
+<a name="l-186"></a><span class="tm">19:43:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the current version (v15) of the Code of Conduct document is approved</span>
+<a name="l-187"></a><span class="tm">19:44:16</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler pending further board approval?
+<a name="l-188"></a><span class="tm">19:44:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to work to duplicate the CoC under jenkins-ci.org/conduct similar to golang.org/conduct</span>
+<a name="l-189"></a><span class="tm">19:44:43</span><span class="nk"> &lt;KostyaSha&gt;</span> -1 for getting approvals from current board, +1 to do approval only after board will be re-elected
+<a name="l-190"></a><span class="tm">19:45:11</span><span class="nk"> &lt;orrc&gt;</span> the gov doc says that the community decides, and the board can intervene if there are disagreements, or something like that
+<a name="l-191"></a><span class="tm">19:45:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> it's not changed materially since the last meeting when they both agreed to it
+<a name="l-192"></a><span class="tm">19:45:26</span><span class="nk"> &lt;orrc&gt;</span> so I think we've approved the document, and the board have approved it anyway (modulo minor diffs)
+<a name="l-193"></a><span class="tm">19:45:40</span><span class="nk"> &lt;danielbeck&gt;</span> good
+<a name="l-194"></a><span class="tm">19:45:46</span><span class="nk"> &lt;rtyler&gt;</span> they both knew we'd discuss it again in this meeting, weenies taking time off
+<a name="l-195"></a><span class="tm">19:45:56 </span><span class="nka">* rtyler</span> <span class="ac">wishes he could vacation</span>
+<a name="l-196"></a><span class="tm">19:46:17</span><span class="nk"> &lt;rtyler&gt;</span> shall we move on to the next topic?
+<a name="l-197"></a><span class="tm">19:46:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> you better be awake!
+<a name="l-198"></a><span class="tm">19:46:26</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Discuss requiring pull requests for all non-release-process changes to core/master</span>
+<a name="l-199"></a><span class="tm">19:46:28</span><span class="nk"> &lt;KostyaSha&gt;</span> just to clarify, 5 persons approved rules for 1k devs? https://github.com/orgs/jenkinsci/people
+<a name="l-200"></a><span class="tm">19:47:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KostyaSha:</span> just to clarify, this topic has been discussed at various meetings over three months
+<a name="l-201"></a><span class="tm">19:47:13</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha The meeting is open to everyone, as is any discussion on the mailing list. They choose to not participate.
+<a name="l-202"></a><span class="tm">19:47:17</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">KostyaSha:</span> were you -1 on the content?
+<a name="l-203"></a><span class="tm">19:47:42</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Review/adopt a Code of Conduct</span>
+<a name="l-204"></a><span class="tm">19:47:44</span><span class="nk"> &lt;batmat&gt;</span> you only wrote above you were -1 on waiting board approval IIUC, which is not the same?
+<a name="l-205"></a><span class="tm">19:47:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KostyaSha:</span> also just to clarify, this was discussed on the dev list
+<a name="l-206"></a><span class="tm">19:48:33</span><span class="nk"> &lt;rtyler&gt;</span> (there are 3500 people on the dev list fwiw)
+<a name="l-207"></a><span class="tm">19:49:04</span><span class="nk"> &lt;KostyaSha&gt;</span> ok
+<a name="l-208"></a><span class="tm">19:49:19</span><span class="nk"> &lt;orrc&gt;</span> <span class="cmd">#info </span><span class="cmdline">for the current topic: https://groups.google.com/d/topic/jenkinsci-dev/d64UIypbzh0/discussion</span>
+<a name="l-209"></a><span class="tm">19:49:39</span><span class="nk"> &lt;orrc&gt;</span> abayer appears not to be awake
+<a name="l-210"></a><span class="tm">19:49:43</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Discuss requiring pull requests for all non-release-process changes to core/master</span>
+<a name="l-211"></a><span class="tm">19:49:52</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/topic/jenkinsci-dev/d64UIypbzh0/discussion</span>
+<a name="l-212"></a><span class="tm">19:50:12</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">orrc:</span> now your link :)
+<a name="l-213"></a><span class="tm">19:50:15 </span><span class="nka">* rtyler</span> <span class="ac">opens up discussion</span>
+<a name="l-214"></a><span class="tm">19:50:29</span><span class="nk"> &lt;abayer&gt;</span> Sorry, back.
+<a name="l-215"></a><span class="tm">19:50:47</span><span class="nk"> &lt;rtyler&gt;</span> I think PRs only into core is a good idea
+<a name="l-216"></a><span class="tm">19:50:54</span><span class="nk"> &lt;orrc&gt;</span> +1 on the topic from me, basically :)
+<a name="l-217"></a><span class="tm">19:51:08</span><span class="nk"> &lt;abayer&gt;</span> As do I. =)
+<a name="l-218"></a><span class="tm">19:51:11</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, yes, i mean only core as topic start
+<a name="l-219"></a><span class="tm">19:51:21</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler modulo release stuff (I won't PR changelog.html!) and possibly Javadoc?
+<a name="l-220"></a><span class="tm">19:51:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">GitHub allows enforcing this via a concept called Protected Branches https://help.github.com/articles/defining-the-mergeability-of-pull-requests/</span>
+<a name="l-221"></a><span class="tm">19:51:36</span><span class="nk"> &lt;teilo&gt;</span> what about changelogs?
+<a name="l-222"></a><span class="tm">19:51:37</span><span class="nk"> &lt;batmat&gt;</span> +1 for PR only for core (apart obviously for releases as was already discussed as an exception)
+<a name="l-223"></a><span class="tm">19:51:44</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, well, jglick's javadoc got review, so PR is welcome also
+<a name="l-224"></a><span class="tm">19:52:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">teilo:</span> why would those be exempted?
+<a name="l-225"></a><span class="tm">19:52:09</span><span class="nk"> &lt;danielbeck&gt;</span> teilo Fixing the changelog is too minor for a PR requirement IMO
+<a name="l-226"></a><span class="tm">19:52:14</span><span class="nk"> &lt;teilo&gt;</span> they are trivial changes.
+<a name="l-227"></a><span class="tm">19:52:22</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, changelog update causes delays in current super weird release process
+<a name="l-228"></a><span class="tm">19:52:29</span><span class="nk"> &lt;jglick&gt;</span> Also I expect that release scripts would be broken by a mechanical rule.
+<a name="l-229"></a><span class="tm">19:52:57</span><span class="nk"> &lt;teilo&gt;</span> we also have PRs languishing...
+<a name="l-230"></a><span class="tm">19:53:17</span><span class="nk"> &lt;teilo&gt;</span> so is a PR followed by an immediate merge OK :-)
+<a name="l-231"></a><span class="tm">19:53:25</span><span class="nk"> &lt;danielbeck&gt;</span> teilo Be the change you want to see in the world :-)
+<a name="l-232"></a><span class="tm">19:54:01</span><span class="nk"> &lt;danielbeck&gt;</span> teilo We need to clarify what it means to have a PR -- something like wait 12 hrs, or 2 hrs if you have someone else give thumbs up, or something like that.
+<a name="l-233"></a><span class="tm">19:54:15</span><span class="nk"> &lt;danielbeck&gt;</span> immediate merge is pretty pointless
+<a name="l-234"></a><span class="tm">19:54:30</span><span class="nk"> &lt;orrc&gt;</span> well, it does at least send out notifications to watchers
+<a name="l-235"></a><span class="tm">19:54:35</span><span class="nk"> &lt;rtyler&gt;</span> PRs languishing is not a valid reason not to do PRs IMHO
+<a name="l-236"></a><span class="tm">19:54:46</span><span class="nk"> &lt;danielbeck&gt;</span> orrc jenkinsci-commits. Problem solved.
+<a name="l-237"></a><span class="tm">19:55:22</span><span class="nk"> &lt;teilo&gt;</span> right - so the current propsal does not say anything about trivial commits or timelines, so given that I am -1 on it
+<a name="l-238"></a><span class="tm">19:55:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> with master being a protected branch, a PR with failing tests wouldn't be mergable anyways
+<a name="l-239"></a><span class="tm">19:55:48</span><span class="nk"> &lt;teilo&gt;</span> although I am generally in favour of PRs.
+<a name="l-240"></a><span class="tm">19:55:51</span><span class="nk"> &lt;batmat&gt;</span> btw, it may be the occasion to think about a @reviewbyjenkinsdev bot equivalent?
+<a name="l-241"></a><span class="tm">19:56:07</span><span class="nk"> &lt;KostyaSha&gt;</span> teilo, what is trivial commit?
+<a name="l-242"></a><span class="tm">19:56:19</span><span class="nk"> &lt;teilo&gt;</span> changelog, fixing logging typo
+<a name="l-243"></a><span class="tm">19:56:26</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">teilo:</span> +1 with KostyaSha do you have an example of a trivial commit?
+<a name="l-244"></a><span class="tm">19:56:38</span><span class="nk"> &lt;danielbeck&gt;</span> batmat This topic is unclear enough without adding that to the discussion now
+<a name="l-245"></a><span class="tm">19:56:45</span><span class="nk"> &lt;KostyaSha&gt;</span> KKK's trivial is not trivial for me for example
+<a name="l-246"></a><span class="tm">19:56:47</span><span class="nk"> &lt;teilo&gt;</span> adding @since to code that is merged
+<a name="l-247"></a><span class="tm">19:57:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">teilo:</span> IMHO the triviality is so subjective that I do not think it is deserves a by-pass of a proper CI setup
+<a name="l-248"></a><span class="tm">19:57:04</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">danielbeck:</span> sorry, I couldn't resist. I'll keep it for later.
+<a name="l-249"></a><span class="tm">19:57:05</span><span class="nk"> &lt;teilo&gt;</span> so by trivial - something that does not effect the running code?
+<a name="l-250"></a><span class="tm">19:57:48</span><span class="nk"> &lt;KostyaSha&gt;</span> teilo, even for trivial javadoc you produced good question in PR :)
+<a name="l-251"></a><span class="tm">19:57:50</span><span class="nk"> &lt;rtyler&gt;</span> setting aside guidelines for who merges PRs and when, the only difference between submitting a PR and committing to master is a CI gate
+<a name="l-252"></a><span class="tm">19:57:53</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Anything that needs to be documented somewhere is by definition not trivial (if you refer to the System property commit recently)
+<a name="l-253"></a><span class="tm">19:58:04</span><span class="nk"> &lt;danielbeck&gt;</span> (IMO)
+<a name="l-254"></a><span class="tm">19:58:07</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">teilo:</span> even apparently trivial typo fix can actually be subject to mistakes.
+<a name="l-255"></a><span class="tm">19:58:07</span><span class="nk"> &lt;teilo&gt;</span> PR != CI gate
+<a name="l-256"></a><span class="tm">19:58:25</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://help.github.com/articles/about-protected-branches/</span>
+<a name="l-257"></a><span class="tm">19:58:29</span><span class="nk"> &lt;teilo&gt;</span> so now we are not only discussiong PR but also CR gate
+<a name="l-258"></a><span class="tm">19:58:34</span><span class="nk"> &lt;teilo&gt;</span> jenkins has too many shit tests
+<a name="l-259"></a><span class="tm">19:58:38</span><span class="nk"> &lt;teilo&gt;</span> :-)
+<a name="l-260"></a><span class="tm">19:58:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> deja vu
+<a name="l-261"></a><span class="tm">19:58:43</span><span class="nk"> &lt;rtyler&gt;</span> :D
+<a name="l-262"></a><span class="tm">19:58:50</span><span class="nk"> &lt;KostyaSha&gt;</span> i don't think that protected branches would work
+<a name="l-263"></a><span class="tm">19:58:55</span><span class="nk"> &lt;teilo&gt;</span> I have to love that for a CI system :)
+<a name="l-264"></a><span class="tm">19:58:56</span><span class="nk"> &lt;KostyaSha&gt;</span> they doesn't work for repo owners afaik
+<a name="l-265"></a><span class="tm">19:59:11</span><span class="nk"> &lt;KostyaSha&gt;</span> at least magnyan bypassed all protected configuration in docker-plugin
+<a name="l-266"></a><span class="tm">19:59:20</span><span class="nk"> &lt;KostyaSha&gt;</span> and did direct commits :)
+<a name="l-267"></a><span class="tm">19:59:22</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Well, it'll slow down PRs until they've been verified by the PR builder. Of course anyone with commit access can still commit directly
+<a name="l-268"></a><span class="tm">19:59:37</span><span class="nk"> &lt;danielbeck&gt;</span> So it's not a 100% mechanical solution but it gets us somewhere
+<a name="l-269"></a><span class="tm">19:59:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KostyaSha:</span> so is the meat of your proposal then only to ensure that some other person other than the commit author hits the merge button?
+<a name="l-270"></a><span class="tm">19:59:50</span><span class="nk"> &lt;teilo&gt;</span> also - To successfully merge a pull request into a base branch that has required status checks enabled, the pull request's head branch must be up-to-date with the base branch.
+<a name="l-271"></a><span class="tm">19:59:58</span><span class="nk"> &lt;teilo&gt;</span> this is a bit no for me.
+<a name="l-272"></a><span class="tm">20:00:11</span><span class="nk"> &lt;teilo&gt;</span> you will be constantly merging in PRs to pick up other merged PRs.
+<a name="l-273"></a><span class="tm">20:00:23</span><span class="nk"> &lt;teilo&gt;</span> which will make the PR un-reviewable
+<a name="l-274"></a><span class="tm">20:00:31</span><span class="nk"> &lt;orrc&gt;</span> protected branches for master would be good, but just for the force push and deletion protection; not the status checks for merges
+<a name="l-275"></a><span class="tm">20:00:31</span><span class="nk"> &lt;danielbeck&gt;</span> ugh that sounds terrible
+<a name="l-276"></a><span class="tm">20:00:36</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, my proposal was to get more eyes on change and exclude uncorrelated changes i.e. 1 person fixing all configuration options and KK adding one more
+<a name="l-277"></a><span class="tm">20:01:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">teilo:</span> where are you reading that?
+<a name="l-278"></a><span class="tm">20:01:09</span><span class="nk"> &lt;teilo&gt;</span> https://help.github.com/articles/about-protected-branches/
+<a name="l-279"></a><span class="tm">20:01:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KostyaSha:</span> okay, that's still a bit subjective
+<a name="l-280"></a><span class="tm">20:01:13</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler In the info box at the bottom
+<a name="l-281"></a><span class="tm">20:01:20</span><span class="nk"> &lt;KostyaSha&gt;</span> i'm not an expert of weird release process so can't say anything about release related commits
+<a name="l-282"></a><span class="tm">20:01:21</span><span class="nk"> &lt;rtyler&gt;</span> ah, I see it now
+<a name="l-283"></a><span class="tm">20:01:50</span><span class="nk"> &lt;teilo&gt;</span> so if that is the case I am -1 on protected branches
+<a name="l-284"></a><span class="tm">20:01:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">teilo:</span> I read that more as requiring a rebase to merge
+<a name="l-285"></a><span class="tm">20:02:13</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler which is terrible enough
+<a name="l-286"></a><span class="tm">20:02:13</span><span class="nk"> &lt;rtyler&gt;</span> is core moving so fast that that would be problematic?
+<a name="l-287"></a><span class="tm">20:02:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> тщзк
+<a name="l-288"></a><span class="tm">20:02:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nope
+<a name="l-289"></a><span class="tm">20:02:38</span><span class="nk"> &lt;teilo&gt;</span> well how long does a PR take to build and how many commits can we then make per day!
+<a name="l-290"></a><span class="tm">20:02:55</span><span class="nk"> &lt;KostyaSha&gt;</span> protected branches are nice, but imho they wouldn't work with current release process. Protected branches could be other topic for discussion (c) ;)
+<a name="l-291"></a><span class="tm">20:02:55 </span><span class="nka">* oleg-nenashev</span> <span class="ac">never checks the language setup</span>
+<a name="l-292"></a><span class="tm">20:03:09</span><span class="nk"> &lt;rtyler&gt;</span> without a fast-forward the results of a CI status check are fundamentally invalid (I'm happy to discuss later since that is a key point many miss from git merging)
+<a name="l-293"></a><span class="tm">20:03:21</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">teilo:</span> would you agree at least on the "always PR policy for core", and leave the 'protected branch' feature for later discussion?
+<a name="l-294"></a><span class="tm">20:03:23</span><span class="nk"> &lt;danielbeck&gt;</span> it looks to me like we need to flesh this out some more on the dev list, as we're not clear on the basics of this proposal
+<a name="l-295"></a><span class="tm">20:03:26</span><span class="nk"> &lt;orrc&gt;</span> ok, so ignoring the protected branch stuff, which is a separate discussion: PRs should be done for all code commits; Javadoc and non-code changes like the changelog are encouraged to use PRs, but must not
+<a name="l-296"></a><span class="tm">20:03:44</span><span class="nk"> &lt;danielbeck&gt;</span> orrc s/must not/don't have to be
+<a name="l-297"></a><span class="tm">20:03:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> I agree that it should be fleshed out more, it doesn't sound like there's a concrete enough process proposal here to actually discusss
+<a name="l-298"></a><span class="tm">20:04:07</span><span class="nk"> &lt;rtyler&gt;</span> which has turned this into a more ambiguous discussion than is productive IMO
+<a name="l-299"></a><span class="tm">20:04:19</span><span class="nk"> &lt;teilo&gt;</span> orrc +1 with DB's changes
+<a name="l-300"></a><span class="tm">20:04:30</span><span class="nk"> &lt;orrc&gt;</span> I think it's fairly clear; just the unrelated protected branch stuff made it unclear
+<a name="l-301"></a><span class="tm">20:04:47</span><span class="nk"> &lt;teilo&gt;</span> 45minute build - so a max of 32 commits / day
+<a name="l-302"></a><span class="tm">20:04:49</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> yeah, that's the meaning of the sentence, but I formulated it weirdly
+<a name="l-303"></a><span class="tm">20:04:53</span><span class="nk"> &lt;rtyler&gt;</span> just making a PR and then merging it yourself is counter to what KostyaSha was originally proposing
+<a name="l-304"></a><span class="tm">20:05:02</span><span class="nk"> &lt;danielbeck&gt;</span> Do we have a champion for this topic to build a complete proposal for the dev list? abayer? orrc?
+<a name="l-305"></a><span class="tm">20:05:16</span><span class="nk"> &lt;abayer&gt;</span> I nominate orrc!
+<a name="l-306"></a><span class="tm">20:05:24</span><span class="nk"> &lt;rtyler&gt;</span> lulz
+<a name="l-307"></a><span class="tm">20:05:33</span><span class="nk"> &lt;orrc&gt;</span> it wasn't my topic, but I can do write words
+<a name="l-308"></a><span class="tm">20:05:40</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-309"></a><span class="tm">20:05:41</span><span class="nk"> &lt;rtyler&gt;</span> KostyaSha can also write words :)
+<a name="l-310"></a><span class="tm">20:05:42</span><span class="nk"> &lt;orrc&gt;</span> er, except in that sentence there
+<a name="l-311"></a><span class="tm">20:05:58</span><span class="nk"> &lt;danielbeck&gt;</span> Just looking for something complete we can look at and take apart sentence by sentence ;-)
+<a name="l-312"></a><span class="tm">20:06:00</span><span class="nk"> &lt;KostyaSha&gt;</span> i'm trying update Publisher to support workflow in parallel, sorry
+<a name="l-313"></a><span class="tm">20:06:30 </span><span class="nka">* orrc</span> <span class="ac">looks at the time</span>
+<a name="l-314"></a><span class="tm">20:06:33</span><span class="nk"> &lt;rtyler&gt;</span> but I don't really care who writes words
+<a name="l-315"></a><span class="tm">20:06:39</span><span class="nk"> &lt;danielbeck&gt;</span> orrc That's why ;-)
+<a name="l-316"></a><span class="tm">20:06:41</span><span class="nk"> &lt;rtyler&gt;</span> one of you decide to write words
+<a name="l-317"></a><span class="tm">20:06:43</span><span class="nk"> &lt;rtyler&gt;</span> let's move on
+<a name="l-318"></a><span class="tm">20:06:46</span><span class="nk"> &lt;orrc&gt;</span> somebody #info me
+<a name="l-319"></a><span class="tm">20:06:48</span><span class="nk"> &lt;rtyler&gt;</span> figure it out amongst yourselves
+<a name="l-320"></a><span class="tm">20:06:55</span><span class="nk"> &lt;orrc&gt;</span> or #action or whatever it is
+<a name="l-321"></a><span class="tm">20:06:58</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">orrc to draft a proposal on the PR requirement</span>
+<a name="l-322"></a><span class="tm">20:06:58</span><span class="nk"> &lt;rtyler&gt;</span> larrys' topic
+<a name="l-323"></a><span class="tm">20:07:12</span><span class="nk"> &lt;KostyaSha&gt;</span> orrc, thx
+<a name="l-324"></a><span class="tm">20:07:13</span><span class="nk"> &lt;larrys&gt;</span> Which I'm in the middle of fending off a bit of spam, but can take a break :)
+<a name="l-325"></a><span class="tm">20:07:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Spam problems on wiki and possible solutions</span>
+<a name="l-326"></a><span class="tm">20:07:27</span><span class="nk"> &lt;larrys&gt;</span> I think there are a few things we could do to help
+<a name="l-327"></a><span class="tm">20:07:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">larrys:</span> did you have some possible solutions listed somewhere?
+<a name="l-328"></a><span class="tm">20:07:32</span><span class="nk"> &lt;larrys&gt;</span> Limit 1 account per email
+<a name="l-329"></a><span class="tm">20:07:40</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, invite system! :D
+<a name="l-330"></a><span class="tm">20:07:45</span><span class="nk"> &lt;larrys&gt;</span> (We had one user create 50 accounts)
+<a name="l-331"></a><span class="tm">20:07:47</span><span class="nk"> &lt;orrc&gt;</span> yeah, first thing: thanks a lot to larrys for the efforts!
+<a name="l-332"></a><span class="tm">20:07:52</span><span class="nk"> &lt;danielbeck&gt;</span> larrys KK?
+<a name="l-333"></a><span class="tm">20:07:58</span><span class="nk"> &lt;orrc&gt;</span> hehe
+<a name="l-334"></a><span class="tm">20:08:12</span><span class="nk"> &lt;danielbeck&gt;</span> kktest1 through kktest50? :-)
+<a name="l-335"></a><span class="tm">20:08:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">rtyler formally recognizes larrys for his valor in the Great Spam Wars</span>
+<a name="l-336"></a><span class="tm">20:08:21 </span><span class="nka">* rtyler</span> <span class="ac">slaps danielbeck with a trout</span>
+<a name="l-337"></a><span class="tm">20:08:26</span><span class="nk"> &lt;larrys&gt;</span> We also need a confluence upgrade, so we could use this plugin (we can get it for free) https://marketplace.atlassian.com/plugins/com.comalatech.workflow/server/overview
+<a name="l-338"></a><span class="tm">20:08:47</span><span class="nk"> &lt;KostyaSha&gt;</span> larrys, old topic (2 years), they can't update confluence
+<a name="l-339"></a><span class="tm">20:08:51</span><span class="nk"> &lt;larrys&gt;</span> so then new pages require approval (we could couple this with kohsuke's idea of only letting users that have had an account for a week or so edit the wiki)
+<a name="l-340"></a><span class="tm">20:09:08</span><span class="nk"> &lt;rtyler&gt;</span> we can, we lose certain things as a result
+<a name="l-341"></a><span class="tm">20:09:17</span><span class="nk"> &lt;danielbeck&gt;</span> larrys IOW they will just break existing content instead?
+<a name="l-342"></a><span class="tm">20:09:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">confluence upgrade is tracked https://issues.jenkins-ci.org/browse/INFRA-325</span>
+<a name="l-343"></a><span class="tm">20:09:36</span><span class="nk"> &lt;larrys&gt;</span> <span class="hi">danielbeck:</span> Edit/add pages...
+<a name="l-344"></a><span class="tm">20:09:48</span><span class="nk"> &lt;rtyler&gt;</span> I don't think there's any reason not to restrict one emaijl to one account
+<a name="l-345"></a><span class="tm">20:09:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Or just move to GitHub? :)
+<a name="l-346"></a><span class="tm">20:09:54</span><span class="nk"> &lt;larrys&gt;</span> However, I have issues with confluence access being a baked process, since they will start to attack JIRA
+<a name="l-347"></a><span class="tm">20:09:59</span><span class="nk"> &lt;KostyaSha&gt;</span> my idea was to inject somehow verification based on spamassasin... but i have no time for implementation
+<a name="l-348"></a><span class="tm">20:10:16</span><span class="nk"> &lt;larrys&gt;</span> <span class="hi">KostyaSha:</span> We hook into stopforumspam.com
+<a name="l-349"></a><span class="tm">20:10:23</span><span class="nk"> &lt;rtyler&gt;</span> let's be clear, Google groups is getting hit by some of the same spam as of late
+<a name="l-350"></a><span class="tm">20:10:31</span><span class="nk"> &lt;rtyler&gt;</span> not even Google is fool-proof with spam protections
+<a name="l-351"></a><span class="tm">20:10:40 </span><span class="nka">* rtyler</span> <span class="ac">grumbles</span>
+<a name="l-352"></a><span class="tm">20:11:01</span><span class="nk"> &lt;rtyler&gt;</span> we're not going to have a 100% solution, but we should strive to make it difficult enough to where spammers bother somebody else :P
+<a name="l-353"></a><span class="tm">20:11:06</span><span class="nk"> &lt;larrys&gt;</span> I'm not sure how to balance the low bar of entry for legit users, and raising it for nefarious people.
+<a name="l-354"></a><span class="tm">20:11:07</span><span class="nk"> &lt;rtyler&gt;</span> instead of larrys
+<a name="l-355"></a><span class="tm">20:11:14</span><span class="nk"> &lt;larrys&gt;</span> &lt;=- Single threaded. :)
+<a name="l-356"></a><span class="tm">20:11:17</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-357"></a><span class="tm">20:11:17</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler Do we know what'll break as a result of the update? Something like, all generated pages?
+<a name="l-358"></a><span class="tm">20:11:40</span><span class="nk"> &lt;larrys&gt;</span> They did move away from the wiki markup, but they still accept it for API calls into the page to render it/convert it.
+<a name="l-359"></a><span class="tm">20:11:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> it's 100% WYSIWYG editor in the newer versions of confluence, that's the biggest suck-point to me :(
+<a name="l-360"></a><span class="tm">20:11:55</span><span class="nk"> &lt;rtyler&gt;</span> but not insurmountable
+<a name="l-361"></a><span class="tm">20:12:01</span><span class="nk"> &lt;larrys&gt;</span> Their WYSIWYG editor did get a lot better in newer versions...
+<a name="l-362"></a><span class="tm">20:12:17</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler It has a solid WYSIWYG now though, so it should be tolerable
+<a name="l-363"></a><span class="tm">20:12:23</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-364"></a><span class="tm">20:12:30</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler Just move the stuff you want to edit into the static site ;-)
+<a name="l-365"></a><span class="tm">20:12:36</span><span class="nk"> &lt;rtyler&gt;</span> is there any objection to one email == one account on jenkins-ci.org/account?
+<a name="l-366"></a><span class="tm">20:12:40</span><span class="nk"> &lt;orrc&gt;</span> +1 to that
+<a name="l-367"></a><span class="tm">20:12:46</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler for new accounts only?
+<a name="l-368"></a><span class="tm">20:12:48</span><span class="nk"> &lt;larrys&gt;</span> +111111 ;)
+<a name="l-369"></a><span class="tm">20:12:55</span><span class="nk"> &lt;rtyler&gt;</span> it would affect signup right now
+<a name="l-370"></a><span class="tm">20:12:57</span><span class="nk"> &lt;rtyler&gt;</span> so yes danielbeck
+<a name="l-371"></a><span class="tm">20:13:04</span><span class="nk"> &lt;danielbeck&gt;</span> +1
+<a name="l-372"></a><span class="tm">20:13:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-373"></a><span class="tm">20:13:20</span><span class="nk"> &lt;rtyler&gt;</span> we'll have to come up with a better proposal if we want to back-port the process to existing accounts :)
+<a name="l-374"></a><span class="tm">20:13:24</span><span class="nk"> &lt;danielbeck&gt;</span> (KK has too many accounts, locking out his bot stuff would probably break things left and right)
+<a name="l-375"></a><span class="tm">20:13:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">account app to restricting signup to one email == one account</span>
+<a name="l-376"></a><span class="tm">20:13:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> yeah, there's an infra ticket way back in the backog for dealing with that :(
+<a name="l-377"></a><span class="tm">20:13:52</span><span class="nk"> &lt;larrys&gt;</span> We can do a LDAP query to find others that fall into this category... and access it
+<a name="l-378"></a><span class="tm">20:13:52</span><span class="nk"> &lt;rtyler&gt;</span> ENOTIME
+<a name="l-379"></a><span class="tm">20:14:07</span><span class="nk"> &lt;larrys&gt;</span> assess that is
+<a name="l-380"></a><span class="tm">20:14:26</span><span class="nk"> &lt;danielbeck&gt;</span> more spam fighting will need to wait for next week
+<a name="l-381"></a><span class="tm">20:14:36</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-382"></a><span class="tm">20:14:43</span><span class="nk"> &lt;teilo&gt;</span> KK can use mailbox addressing
+<a name="l-383"></a><span class="tm">20:14:45</span><span class="nk"> &lt;larrys&gt;</span> Some of the conversation has been happening in the infra channel for interested parties.
+<a name="l-384"></a><span class="tm">20:14:48</span><span class="nk"> &lt;teilo&gt;</span> so easy to solve
+<a name="l-385"></a><span class="tm">20:14:54</span><span class="nk"> &lt;rtyler&gt;</span> two weeks from now is fine for me
+<a name="l-386"></a><span class="tm">20:14:56</span><span class="nk"> &lt;danielbeck&gt;</span> Jan 20, same time same channel
+<a name="l-387"></a><span class="tm">20:15:13</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 06:50:28 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:26:26 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 100.002
+  exclusion.robots: 0.079
+  exclusion.robots.policy: 0.073
+  cdx.remote: 0.057
+  esindex: 0.008
+  LoadShardBlock: 47.786 (3)
+  PetaboxLoader3.datanode: 75.354 (4)
+  CDXLines.iter: 15.889 (3)
+  load_resource: 383.328
+  PetaboxLoader3.resolve: 208.174
+-->

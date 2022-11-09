@@ -1,0 +1,170 @@
+18:00:30 <rtyler> #startmeeting
+18:00:30 <robobutler> Let the Jenkins meeting commence!
+18:00:51 <rtyler> #chairs kohsuke hare_brain danielbeck rtyler
+18:00:58 * rtyler always messes that up
+18:01:01 <rtyler> #chair kohsuke hare_brain danielbeck rtyler
+18:01:01 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:01:08 <rtyler> #topic Recap last meeting's actions
+18:01:28 <rtyler> speaking for danielbeck and myself, we have not figured out a good time to schedule a 2.0 retrospective yet
+18:01:31 <Arsyed04> Jenkins UI is better but still feels old
+18:01:35 <rtyler> I'll have to carry trhat item forward
+18:01:54 <rtyler> Arsyed04: please stay on topic for the project meeting, the agenda can be found here: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-May11meeting
+18:02:20 <rtyler> danielbeck: you and kohsuke reached out to Payal for GSoC bonding I hope/
+18:02:42 <danielbeck> rtyler Yes, ongoing conversation which included the need for raw stats data access
+18:02:51 <oleg-nenashev> There was an email from Daniel
+18:03:03 <oleg-nenashev> Other students have been also communicated
+18:03:13 <rtyler> okay, then I think ogondza's item will be covered in the LTS status check
+18:03:18 <KostyaSha> i want raw stats data access :)
+18:03:30 <rtyler> #topic LTS status check
+18:03:32 <rtyler> ogondza: all yours
+18:03:46 <ogondza> my testing looks good, no problems reported
+18:04:06 <ogondza> #action kohsuke to push 1.561.2
+18:04:08 <danielbeck> Releases are currently being pushed out
+18:04:17 <rtyler> how long is this LTS window for 651 open?
+18:04:20 <rtyler> I forget
+18:04:23 <ogondza> danielbeck: oh, thanks
+18:04:25 <danielbeck> one more in four weeks
+18:04:30 <rtyler> ah
+18:04:36 <danielbeck> Jun 8 we release .3, and choose the next baseline
+18:04:45 <rtyler> \o/
+18:04:57 <rtyler> anything else to discuss regarding LTS?
+18:05:07 <oleg-nenashev> May 25 is a desired deadline for bugfixes
+18:05:17 <ogondza> I am done
+18:05:32 <danielbeck> LTS is a security release, so expect a fun advisory later today
+18:05:39 <oleg-nenashev> danielbeck: Any plans regarding SECURITY fixes in .3?
+18:06:00 <danielbeck> oleg-nenashev No comment.
+18:06:16 <rtyler> #topic GSoC status check
+18:06:18 <danielbeck> (As we don't announce those more than a week in advance publicly)
+18:06:31 <rtyler> oleg-nenashev: whatcha got
+18:06:34 <oleg-nenashev> Not so much updates.
+18:06:35 <oleg-nenashev> Community bonding is in progress, all students were communicated at least.
+18:06:35 <oleg-nenashev> The previous mentor office hours didn't work well due to holidays/Friday, the plan is to use next Jenkins Office Hours slot.
+18:06:35 <oleg-nenashev> My other action items mostly hang, sorry.
+18:06:35 <oleg-nenashev> #action oleg_nenashev to finish the blog post ASAP
+18:06:35 <oleg-nenashev> #action oleg_nenashev to contact mentors and schedule new office hours to the next week
+18:06:36 <oleg-nenashev> #action oleg_nenashev to schedule office hours with students before the hacking period starts (next week)
+18:06:36 <oleg-nenashev> #action oleg_nenashev to make a proposal regarding swags
+18:06:37 <oleg-nenashev> #action oleg_nenashev to contact alyssat regarding lightning talks for student projects at Jenkins World
+18:06:39 <rtyler> jesus
+18:06:41 <danielbeck> LOL
+18:06:59 * oleg-nenashev types quickly today :D
+18:07:02 <rtyler> heh
+18:07:04 <batmat> :)
+18:07:11 <rtyler> oleg-nenashev: what blog post is needed?
+18:07:20 <rtyler> s/needed/expected/
+18:07:30 <oleg-nenashev> rtyler: Just a summary blogpost about accepted projects
+18:07:36 <danielbeck> So… I'd have expected rtyler and me to use the next OH slot for the 2.0 retrospective, I see now we have some competition for that?
+18:07:54 <rtyler> ah
+18:08:07 <danielbeck> rtyler Or what were your plans there?
+18:08:13 <alyssat> oleg-nenashev: yes, pls let me know how much time you need for JW so I can plan out the agenda
+18:08:15 <oleg-nenashev> danielbeck: We can schedule 1 hour earlier if batmat and rtyler are fine with it
+18:08:16 <rtyler> danielbeck: I will likely be in a different timezone next week, so it's not like I would be able to do it then anyways
+18:08:27 <danielbeck> oh, okay
+18:08:37 <rtyler> next week is going to be a huge ball of stress and meetings for me :)
+18:08:40 <oleg-nenashev> alyssat: Up to 5 lightning talks. Maybe 1 hour or 1:30
+18:08:54 <rtyler> lightning talks are generally 20minutes or less at most conferences
+18:09:00 <rtyler> 15 is a good size imo
+18:09:04 <batmat> 7PM UTC+2 for me is not possible
+18:09:05 <rtyler> anyways
+18:09:30 <oleg-nenashev> Yes, The target is 15 minutes
+18:09:30 <rtyler> #info Mentors that have projects which depend on infrastructure resources, please make sure your students have JIRA accounts and either file INFRA tickets or watch existing ones
+18:09:44 <rtyler> if I don't know which tickets are necessary for GSoC students, they won't get prioritized
+18:09:56 <alyssat> oleg-nenashev: ok. i'll plan accordingly. can they make due w/ 10 min lightning talk? we have A LOT of sessions
+18:10:28 <alyssat> nvm didn't see previous text. 15 min it is
+18:10:49 <oleg-nenashev> alyssat: let's discuss it offline. Maybe 4th track is also an option if there is a room. Maybe 10 minutes will work as well
+18:11:01 <alyssat> ok
+18:11:21 <oleg-nenashev> 4th track == demo room or whatever. But better to have them in agenda
+18:11:39 <oleg-nenashev> Speakers: Students or Mentors depending on availability
+18:12:12 <oleg-nenashev> Are we done with the topic?
+18:12:12 <rtyler> anything other GSoC related items to cover?
+18:12:19 <rtyler> you're the boss, you tell me :)
+18:12:23 <alyssat> we do have space avail on Sept 13 if that's an option to do something the day before the actual conf
+18:13:04 <oleg-nenashev> Let's go to the next topic. We will discuss it in #jenkins-community
+18:13:09 <rtyler> okie doke
+18:13:14 <rtyler> #topic Infrastructure status update
+18:13:15 <oleg-nenashev> But I vote for the main days
+18:13:31 <rtyler> this topic is mine, I wanted to give a general update on what's shaking in the infra space :)
+18:14:01 <rtyler> #info a few weeks ago we proactively migrated lots of infrastructure: https://jenkins.io/blog/2016/04/22/possible-infra-compromise/
+18:14:19 <rtyler> all of the "tier 1" services to my knowledge are up and running properly
+18:14:34 <rtyler> in the process of migrating services I discovered a lot of old cobwebs and technical debt
+18:14:48 <rtyler> so some periodic jobs are not running right now which previously ran in ci.jenkins-ci.org
+18:15:03 <teilo> rtyler: is there a list of what theis tier n services are?
+18:15:25 <rtyler> many of those periodic jobs required some level of privileged access to resources, so we haven't restored them until we determine what the right home for them is
+18:15:38 <rtyler> teilo: past what is in the puppet repository, not really
+18:15:49 <rtyler> teilo: basically, if it is puppetized, that means I care about it :P
+18:16:01 <rtyler> if it is not puppetized that generally means it is technical debt as far as I am concerned
+18:16:18 <rtyler> the INFRA project has some tickets ranked towards the top which capture jobs that need to be restored
+18:16:36 <rtyler> the highest priority one right now is around stats generation https://issues.jenkins-ci.org/browse/INFRA-559
+18:17:02 <rtyler> as always, #jenkins-infra is a great place to ask and answer questions :)
+18:17:27 <rtyler> we';re a couple of tickets away from decommissioning our oldest machine in the datacenter though, so that's exciting for me
+18:17:35 <danielbeck> #info the comments to INFRA-559 are pretty entertaining
+18:17:41 <rtyler> the last physical asset which my personal credit card is linked to \o/
+18:17:46 <rtyler> heh
+18:18:15 <rtyler> okay, that's part of what I wanted to talk about
+18:18:22 <danielbeck> (And show the mess that rtyler has to wade through right now, giving an idea why it's taking so "long")
+18:19:00 <rtyler> danielbeck: the unfortunate nature of understaffed/underfunded infra initiatives is that things can grow....let us say "organically" over time :)
+18:19:32 <rtyler> #info the infrastructure sponsorship that I mentioned a few weeks ago is still being negotiated right now
+18:19:41 <rtyler> I am hoping to have some public updates on that this month
+18:19:48 <orrc> \o/
+18:19:52 <danielbeck> \o/
+18:20:26 <rtyler> for better or worse, the infrastructure migration we made related to that potential compromise, means we can much more easily migrate services now
+18:20:29 <rtyler> so, yey
+18:20:42 <rtyler> are there any question or concerns about our infrastructure initiatives that are going on right now?
+18:21:12 <danielbeck> rtyler Any way for people to help? Or is this pretty much your show?
+18:21:20 <rtyler> #info GSoC students and mentors that depend on infra work, please make those priorities known in the INFRA project in JIRA
+18:22:02 <rtyler> I think if somebody wants to incoroprate release.rss generation into the jenkins.io build process, that would take care of this https://issues.jenkins-ci.org/browse/INFRA-663
+18:22:06 <rtyler> and requires no privileged access
+18:22:28 <rtyler> unfortunately almost all the "high priority" tasks require intimate knowledge and infra access right now
+18:22:47 <rtyler> which limits the helper pool to danielbeck, orrc, kohsuke, abayer and myself I believe
+18:23:18 <rtyler> danielbeck: I think what I'll do is go through and label tickets as "newcomer" or something like that, to make it much more easy to find tickets to help with
+18:23:58 <rtyler> any other questions before I move on to another topic?
+18:24:18 <batmat> fine by me, thanks for that work
+18:24:36 <rtyler> #topic Security status update
+18:25:18 <danielbeck> The security update 1.651.2/2.3 is currently being released. It fixes several vulnerabilities in Jenkins.
+18:25:43 <danielbeck> I've not yet made use of my new super powers to add members to CERT, so no updates there.
+18:26:19 <rtyler> danielbeck: we should expect binaries to hit mirrors soon and a blog post today right?
+18:26:24 <rtyler> (and advisory)
+18:26:45 <danielbeck> rtyler Yes. Everything is prepared. I think within the next six or so hours.
+18:26:57 <rtyler> wunderbar
+18:27:14 <danielbeck> Efforts to involve plugin maintainers in fixing security issues, something we started a while back, are still ongoing. We had a release of two plugin security fixes a month ago, one of which was done by a maintainer who's not in CERT but coordinated with me to do this.
+18:28:26 <danielbeck> To any plugin maintainers, please coordinate releases of security fixes with me. With advisories etc. we can make sure that users learn more reliably about those fixes.
+18:28:50 <rtyler> we have the permissions set for assigning SECURITY tickets to plugin maintainers now right?
+18:29:14 <danielbeck> Yes -- so maintainers of plugins with reported vulnerabilities have access to those in our JIRA
+18:29:34 <rtyler> so please use SECURITY for filing plugin security reports :)
+18:29:48 <danielbeck> and we're going to improve how we're doing reviews of fixes etc. soon, to make the entire process work better.
+18:30:36 <danielbeck> Yes -- if in doubt, file in SECURITY. If it's not a vulnerability, it can always be moved out. But this is basically the one area where complete openness isn't a good idea
+18:30:45 <danielbeck> That's all I have for today.
+18:31:00 <rtyler> alyssat: you ready to give an events update?
+18:31:06 <alyssat> yup
+18:31:19 <rtyler> #topic Events status update
+18:31:26 <alyssat> Just a brief update of where we are w JAMs-
+18:31:50 <alyssat> there are currently over 4500 members and 31 meetup groups around the globe
+18:32:00 <rtyler> O_O
+18:32:22 <alyssat> a couple of new comers include Singapore, India (2), and Hamburg
+18:32:23 <rtyler> now if I could get just 1% of those people to become new contributors...
+18:32:47 <orrc> ah, 1177 of those are from the global Jenkins meetup :)
+18:33:31 <alyssat> I am working closely w/ each organizer to help them set up their meetings and other meetup needs
+18:33:38 <danielbeck> Do we know how many events with how many attendees per time period?
+18:34:11 <alyssat> danielbeck: I have access to that info but not off the top of my head
+18:34:30 <danielbeck> alyssat next meeting then. Would be interesting to know.
+18:34:35 <alyssat> the goal now is to keep activities going
+18:34:50 <alyssat> danielbeck sure thing
+18:35:32 <alyssat> rtyler should we cover vJAM?
+18:35:37 <rtyler> meetup.com does have "group member vs. RSVP" metrics
+18:35:43 <rtyler> but an RSVP doesn't mean a person actually showed up
+18:36:09 <alyssat> correct - there's no way to know how many showed up unless we ask the organizer
+18:36:09 <rtyler> #info the first Online JAM was hosted, the video and some Q&A has been posted here: https://jenkins.io/blog/2016/05/10/jenkins-20-vjam/
+18:36:23 <rtyler> I don't think there's anything we need to discuss here about the Online JAM
+18:36:49 <rtyler> #info the #jenkins-community channel is a great place to discuss upcoming events and other community organization activities
+18:36:51 <alyssat> only that it was a huge success and well received by attendees
+18:37:05 <rtyler> sure
+18:37:07 <rtyler> :)
+18:37:48 <rtyler> any other event related bits to cover? this is our last item for the day
+18:38:03 <alyssat> that's it for me
+18:38:39 <rtyler> #topic Next meeting
+18:38:55 <rtyler> My calendar shows May 25th as the next timeslot, any issues with that?
+18:39:15 <danielbeck> no
+18:39:16 <alyssat> nope
+18:39:22 <rtyler> kohsuke will likely not be able to join us, since he will be in another country at a conference at that time
+18:39:28 <rtyler> #info next meeting may 25th
+18:39:30 <rtyler> #endmeeting

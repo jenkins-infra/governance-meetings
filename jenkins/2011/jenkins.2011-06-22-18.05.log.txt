@@ -1,0 +1,120 @@
+18:05:28 <kohsuke> #startmeeting
+18:05:28 <robobutler> Let the Jenkins meeting commence!
+18:05:35 <hare_brain> abayer: Jealous
+18:05:51 <jieryn> no joy bap2000 .. new descriptor http://pastebin.com/X9Zm00y5 .... setShowJobConfig() is never invoked, ... neither is configure()
+18:05:54 <hare_brain> (But we probably won't notice the difference from usual. ;)
+18:06:08 <kohsuke> I once again failed to advertise this in advance.
+18:06:24 <abayer> =P
+18:06:25 <kohsuke> I wonder if Google calendar or something else can send in a reminder for me
+18:06:27 <abayer> kohsuke: trademark? =)
+18:06:36 <kohsuke> Yes sir, no sir.
+18:06:45 <abayer> heheheh
+18:06:58 <kohsuke> I did mention it to Sacha, but I promised to write him an e-mail and CC you and I haven't done that
+18:07:01 <kohsuke> I really do it now.
+18:07:22 <kohsuke> #action Kohsuke to really really get the trademark registration going
+18:07:29 <fredg02> the meetings should be entered in the official Event Calendar!
+18:07:37 <abayer> Did you get sent a nexus pro key for dealing with Maven Central?
+18:07:52 <kohsuke> #info I believe I have the Nexus pro key in my inbox
+18:08:01 <kohsuke> #info still looking for a volunteer to take the work to the completion
+18:08:16 <kohsuke> Are you volunteering?
+18:08:20 <abayer> olamy and aheritier expressed interest as well. =)
+18:08:32 <kohsuke> Great
+18:09:14 <kohsuke> I'll CC the key to them and see if either of them could take it up
+18:09:34 <abayer> Fantastic! Getting core into Maven Central will be a very good thing.
+18:09:57 <kohsuke> Yes, it'd be good to get that back.
+18:10:20 <kohsuke> #action Kohsuke to write to olamy and aheritier to see if either one can volunteer for restoring Maven central sync
+18:10:56 <kohsuke> Do we want to go through the topics in the order?
+18:11:17 <kohsuke> abayer: want to talk about the commit message formatting?
+18:11:36 <abayer> Mind if I defer that  'til next time? I'm really not all here right now. =)
+18:11:44 <kohsuke> Works for me.
+18:12:00 <kohsuke> And kutzi isn't here
+18:12:45 <hare_brain> Sounds like it's going to be a short meeting... :)
+18:12:54 <abayer> =)
+18:12:58 <kohsuke> My apologies for failing to advertise this in time
+18:13:14 <aheritier> I'm here
+18:13:26 <vjuranek> what about LTS? Any comment to my proposal?
+18:13:54 <kohsuke> vjuranek: I've been meaning to get to it
+18:14:15 <kohsuke> But I was swamped with preparations for a conference
+18:14:45 <aheritier> ok, I'll help for the rsync to central
+18:14:50 <abayer> hooray! =)
+18:15:06 <jieryn> thank you, aheritier
+18:17:05 <kohsuke> #info the LTS proposal from vjuranek is at http://jenkins.361315.n4.nabble.com/RFC-LTS-outlines-and-rules-td3605302.html
+18:18:19 <kohsuke> Shall we spend some time talking about it?
+18:18:40 <aheritier_> I see that some points are related to the ability to manage versions in Jira (ping rtyler)
+18:19:34 <aheritier_> Otherwise I think these are good practices but not all of them we'll be easy to automate/control
+18:19:34 <kohsuke> Historically it's been hard to commit to the target release for a given issue.
+18:20:04 <aheritier> I agree
+18:20:23 <kohsuke> Instead it was more of a train model.
+18:20:32 <vjuranek> agree that it could be difficult... the proposal it rather "nice to have":-)
+18:20:45 <kohsuke> And in 1.409.1, the fixes to it mainly came from the fixes we already had in the trunk.
+18:20:46 <aheritier> it's easy to say on which version it will be solved when it is committed, but to say it before ...
+18:21:16 <aheritier> For LTS it will always a set of fixes already in master versions
+18:23:26 <kohsuke> But aside from some of "nice to have" being hard to do, it all makes sense.
+18:23:32 <vjuranek> at least it would be nice to have some rules which fixes should be backpoted... not to backport randomly some fixes
+18:23:58 <bap2000> As I understand, the LTS should only get major/critical fixes, so does it need a 1 month minor release schedule?
+18:24:39 <kohsuke> Note that I believe JIRA marks all the issues as major by default.
+18:25:10 <kohsuke> bap2000: to me, the idea is that we need some soak time before releasing it.
+18:25:31 <kohsuke> So I was originally thinking about the train model.
+18:25:49 <aheritier> yes by default they are major and I don't think that many people change the level
+18:26:12 <hare_brain> I always thought that default was weird. Can it be changed?
+18:26:13 <kohsuke> But I think the current thinking seems to be more like "release N days after fixes are backported"
+18:26:16 <vjuranek> yes, in JIRA default is "major"...and therefore there are a lot of major issues
+18:27:12 <kohsuke> So LTS isn't a train model, but more like "after N days of inactivity and no regression report"
+18:27:14 <bap2000> I think that core developers can assess and update the severity of issues
+18:27:58 <kohsuke> #idea shall we use blocker for that? If some of us think the bug is important enough, push it up to the blocker status?
+18:28:15 <kohsuke> And similarly, downgrade from blocker if needed.
+18:28:27 <hare_brain> +1
+18:28:30 <aheritier> +1
+18:28:34 <kohsuke> IIUC, the point of vjuranek is to use some automated tracking mechanism for changes we want to back port.
+18:28:52 <kohsuke> I think it makes sense, and I think this is simple enough to get started.
+18:28:59 <jieryn> if we had labels in jira, which i think we wanted for other reasons, we could just tag them as LTS
+18:29:00 <vjuranek> kohsuke: well, I put some times as you discuss it on the last meeting, but in fact I like idea to put it first into release and "battle-tested"  it
+18:29:39 <kohsuke> Right, I think we should still stick to the backporting model.
+18:29:55 <hare_brain> Agreed.
+18:30:13 <kohsuke> I understand your proposal to use JIRA severity to collectively remember which ones we wanted to backport.
+18:30:34 <kohsuke> precisely because there's going to be a delay till the fix gets battle-tested.
+18:31:09 <kohsuke> jieryn: label could work, too, but I think with severity we can expect angry users to help us triage.
+18:31:26 <kohsuke> labels are harder and only usable for those of us who know the convention.
+18:31:41 <vjuranek> kohsuke: yes, that's the simplest scenario, but can be more comlicated - e.g. check JIRA for blockers and major issues && git log for fixes which are already in the release
+18:31:57 <jieryn> ok, that's a good point
+18:31:59 <jieryn> +1 sev
+18:32:10 <kohsuke> vjuranek: Yes, we can and should eventually automate those.
+18:32:15 <fredg02> will there be a separate changelog for the LTS releases?
+18:32:33 <kohsuke> ... like list up fixes to  blocker tickets in the master branch that's not in the stable branch.
+18:32:42 <kohsuke> Those are back-porting candidates. Completely scriptable.
+18:33:02 <kohsuke> I think I like that.
+18:33:49 <kohsuke> #idea I think vjuranek should capture his write up with this and put it to Wiki
+18:33:55 <hare_brain> closed blocker tickets in the master and not in stable.
+18:34:06 <kohsuke> Yes
+18:34:09 <vjuranek> kohsuke: ok
+18:34:35 <kohsuke> I was supposed to do a separate scripted daemon to update the ticket with the version that the fix is released in.
+18:34:42 <hare_brain> I think there've been a couple of bug fixes that took a couple of commits, which happened to spread across weekly releases.
+18:34:57 <hare_brain> So we just need to make sure a fix is in its final form before backporting.
+18:35:04 <kohsuke> I think that can work both for master and stable, so people can see what releases the fix is in.
+18:35:38 <kohsuke> hare_brain: good point. I think so far we aren't thinking about automating backporting, so it should be easy to do.
+18:36:04 <kohsuke> (although come to think of it, automated backporting where we can would be kind of nice...)
+18:36:22 <kohsuke> but one step at a time.
+18:36:30 <hare_brain> Hmm. I think I need to find some time to draw a diagram to illustrate some cases for myself. I think better in pictures. I'll share those if I can find time to create them.
+18:36:40 <kohsuke> thanks
+18:37:16 <kohsuke> OK, anything else on this topic for now?
+18:37:42 <kohsuke> I guess not.
+18:37:55 <kohsuke> And before we adjourn, ...
+18:38:07 <kohsuke> #info I'm chasing two possibilities for companies to host office hours
+18:38:12 <kohsuke> Hopefully one of them will work out
+18:38:26 <kohsuke> Will let this forum know if it works out.
+18:38:34 <aheritier> cool
+18:38:43 <kohsuke> And next meeting time? two weeks from now?
+18:39:11 <hare_brain> That's July 6?
+18:39:13 <aheritier> ok for me
+18:39:17 <kohsuke> Yes
+18:39:25 <hare_brain> +1
+18:39:35 <abayer> I'll be missing it due to being at a Jenkins meetup in London. But that's ok. =)
+18:39:44 <vjuranek> not sure if I'll be able to attend, but we can discuss LTS on dev list
+18:40:14 <kohsuke> OK. So 2 weeks from now same time.
+18:40:35 <kohsuke> #agreed the next meeting is 2 weeks from now, same time.
+18:40:46 <kohsuke> Anything else?
+18:41:06 <kohsuke> If not, as always, thank you very much for coming
+18:41:12 <aheritier> thx
+18:41:16 <jieryn> nice
+18:41:19 <kohsuke> And oh, we need to get CLAs started...
+18:41:24 <kohsuke> #endmeeting

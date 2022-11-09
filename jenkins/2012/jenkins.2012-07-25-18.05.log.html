@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:05:28</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:05:28</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:05:33</span><span class="nk"> &lt;abayer&gt;</span> …that'll do.
+<a name="l-4"></a><span class="tm">18:05:37</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer hare_brain</span>
+<a name="l-5"></a><span class="tm">18:05:37</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain
+<a name="l-6"></a><span class="tm">18:06:00</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">kohsuke is in Tokyo, so this will be quick</span>
+<a name="l-7"></a><span class="tm">18:06:10</span><span class="nk"> &lt;tonylampada&gt;</span> That's nice hare_brain, thank you
+<a name="l-8"></a><span class="tm">18:06:29</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="topic">#topic </span><span class="topicline">Commercial use of the name "Jenkins". Do we need to take any actions?</span>
+<a name="l-9"></a><span class="tm">18:06:38</span><span class="nk"> &lt;hare_brain&gt;</span> Let's defer this one, since Kohsuke is not here.
+<a name="l-10"></a><span class="tm">18:06:43</span><span class="nk"> &lt;abayer&gt;</span> Indeed.
+<a name="l-11"></a><span class="tm">18:06:52</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="topic">#topic </span><span class="topicline">Installing the FreedomSponsors JIRA plugin - when it's finished development</span>
+<a name="l-12"></a><span class="tm">18:07:01</span><span class="nk"> &lt;hare_brain&gt;</span> OK tonylampada, the floor is yours
+<a name="l-13"></a><span class="tm">18:07:13</span><span class="nk"> &lt;tonylampada&gt;</span> Thanks :-)
+<a name="l-14"></a><span class="tm">18:07:56</span><span class="nk"> &lt;tonylampada&gt;</span> So, Hi, I'm Tony Lampada, I'm a software engineer, and I use Jenkins for 3+ years now
+<a name="l-15"></a><span class="tm">18:08:31</span><span class="nk"> &lt;tonylampada&gt;</span> Me and my associate, Arthur Casals, are working  on a project called FreedomSponsors,
+<a name="l-16"></a><span class="tm">18:08:37</span><span class="nk"> &lt;tonylampada&gt;</span> (Arthur, are you here?)
+<a name="l-17"></a><span class="tm">18:08:49</span><span class="nk"> &lt;tonylampada&gt;</span> So...
+<a name="l-18"></a><span class="tm">18:08:55</span><span class="nk"> &lt;tonylampada&gt;</span> Brief explanation about FreedomSponsors:
+<a name="l-19"></a><span class="tm">18:08:57</span><span class="nk"> &lt;acasals&gt;</span> Barely, but yes - hi
+<a name="l-20"></a><span class="tm">18:09:07</span><span class="nk"> &lt;tonylampada&gt;</span> FS is a crowdfunding platform for open source projects. Specifically, open source project's issues.
+<a name="l-21"></a><span class="tm">18:09:17</span><span class="nk"> &lt;tonylampada&gt;</span> It lets anyone place small money bounties for open issues that they are interested, like I did here --&gt; http://www.freedomsponsors.org/core/issue/11/make-openid-work-with-google-apps-accounts
+<a name="l-22"></a><span class="tm">18:09:31</span><span class="nk"> &lt;tonylampada&gt;</span> The so called "sponsors" will only be asked to pay their offer after the issue is resolved.
+<a name="l-23"></a><span class="tm">18:09:41</span><span class="nk"> &lt;tonylampada&gt;</span> If they're happy with the solution, they pay it directly to the developer.
+<a name="l-24"></a><span class="tm">18:09:49</span><span class="nk"> &lt;tonylampada&gt;</span> That's the short story. The long story is here --&gt; http://www.freedomsponsors.org/core/about/
+<a name="l-25"></a><span class="tm">18:09:56</span><span class="nk"> &lt;wild_oscar&gt;</span> <span class="hi">tonylampada:</span> interesting. I had an argument with the developers of darktable the other day regarding this
+<a name="l-26"></a><span class="tm">18:10:04</span><span class="nk"> &lt;tonylampada&gt;</span> We started this project as a way of stimulating the growth of open-source projects by
+<a name="l-27"></a><span class="tm">18:10:15</span><span class="nk"> &lt;tonylampada&gt;</span> (i) getting more people involved (both users and developers) and
+<a name="l-28"></a><span class="tm">18:10:21</span><span class="nk"> &lt;tonylampada&gt;</span> (ii) delivering extra help (issue solving and funding).
+<a name="l-29"></a><span class="tm">18:10:31</span><span class="nk"> &lt;tonylampada&gt;</span> We believe we can promote and increase open-source colaboration by users and developers at the same time;
+<a name="l-30"></a><span class="tm">18:10:39</span><span class="nk"> &lt;tonylampada&gt;</span> Our next step is to create a Jira plugin (already in development) to be used as an integration tool;
+<a name="l-31"></a><span class="tm">18:10:50</span><span class="nk"> &lt;tonylampada&gt;</span> It will add a "Sponsor issue" to the issue screen, that will open an iframe pointing to FS, as described here --&gt; http://www.freedomsponsors.org/core/issue/12/jira-plugin-to-link-from-tickets-to-freedomsponsors
+<a name="l-32"></a><span class="tm">18:10:57</span><span class="nk"> &lt;wild_oscar&gt;</span> would be interesting if it were associated with stackoverflow
+<a name="l-33"></a><span class="tm">18:10:58</span><span class="nk"> &lt;tonylampada&gt;</span> We are hoping that Jenkins will accept to be the first to use it. :-)
+<a name="l-34"></a><span class="tm">18:11:08</span><span class="nk"> &lt;abayer&gt;</span> Definitely interesting.
+<a name="l-35"></a><span class="tm">18:11:35</span><span class="nk"> &lt;tonylampada&gt;</span> (that's the end of the FS presentation text we had prepared) :-)
+<a name="l-36"></a><span class="tm">18:11:57</span><span class="nk"> &lt;lov&gt;</span> that sounds pretty neat
+<a name="l-37"></a><span class="tm">18:12:08</span><span class="nk"> &lt;seanh-corona&gt;</span> is the join plugin the recommended way to manage more than one build and collect all the artifacts in one place? or is there a better way to manage a multijob type setup?
+<a name="l-38"></a><span class="tm">18:12:18</span><span class="nk"> &lt;tonylampada&gt;</span> Thanks :-)
+<a name="l-39"></a><span class="tm">18:12:20</span><span class="nk"> &lt;abayer&gt;</span> Well, I don't think we can commit to anything without Kohsuke here, but I don't see a problem with the idea.
+<a name="l-40"></a><span class="tm">18:12:28</span><span class="nk"> &lt;jieryn&gt;</span> seems like FS should just link to the jenkins jira, not the other way around
+<a name="l-41"></a><span class="tm">18:12:38</span><span class="nk"> &lt;hare_brain&gt;</span> seanh-corona, we're in the middle of a project meeting. This one should be quick, so please hold your question for a little bit longer.
+<a name="l-42"></a><span class="tm">18:12:51</span><span class="nk"> &lt;seanh-corona&gt;</span> <span class="hi">hare_brain:</span>  sorry, didn't realize
+<a name="l-43"></a><span class="tm">18:13:19</span><span class="nk"> &lt;tonylampada&gt;</span> jieryn, it already works that way. The plugin would make the connection "bidirectional"
+<a name="l-44"></a><span class="tm">18:13:23</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">The FreedomSponsors proposal is to have Jenkins JIRA embed the "Sponsor this ticket" badge.</span>
+<a name="l-45"></a><span class="tm">18:13:24</span><span class="nk"> &lt;jieryn&gt;</span> have FS attach a label like 'bounty' or something
+<a name="l-46"></a><span class="tm">18:13:35</span><span class="nk"> &lt;jieryn&gt;</span> why does it need to be bidirectional?
+<a name="l-47"></a><span class="tm">18:13:52</span><span class="nk"> &lt;jieryn&gt;</span> i dunno, we just have a lot of problems with jira already, and adding more plugins .. :)
+<a name="l-48"></a><span class="tm">18:13:53</span><span class="nk"> &lt;tonylampada&gt;</span> Please take a look at this FS ticket:
+<a name="l-49"></a><span class="tm">18:14:07</span><span class="nk"> &lt;tonylampada&gt;</span> --&gt;  http://www.freedomsponsors.org/core/issue/11/make-openid-work-with-google-apps-accounts
+<a name="l-50"></a><span class="tm">18:14:17</span><span class="nk"> &lt;jieryn&gt;</span> yah, i already read that
+<a name="l-51"></a><span class="tm">18:14:24</span><span class="nk"> &lt;tonylampada&gt;</span> It has a "View original issue" link that points to Jenkins JIRA
+<a name="l-52"></a><span class="tm">18:14:50</span><span class="nk"> &lt;jieryn&gt;</span> i'm saying, from FS, i tell it to scan my issues, or i plugin in an existing issue #
+<a name="l-53"></a><span class="tm">18:14:57</span><span class="nk"> &lt;jieryn&gt;</span> then it can add a comment saying there is a new bug bounty
+<a name="l-54"></a><span class="tm">18:15:36</span><span class="nk"> &lt;hare_brain&gt;</span> So a question of what's the optimal workflow for sponsoring a bounty.
+<a name="l-55"></a><span class="tm">18:16:06</span><span class="nk"> &lt;jieryn&gt;</span> aesthetically and architecturally, i don't think i have anything better than neutral opinion about making jenkins jira be the launch zone for a FS bounty
+<a name="l-56"></a><span class="tm">18:16:06</span><span class="nk"> &lt;hare_brain&gt;</span> As a Jenkins user, I would be more likely to interact with our JIRA than go to the FS site, which I may or may not have heard of.
+<a name="l-57"></a><span class="tm">18:16:23</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-58"></a><span class="tm">18:16:26</span><span class="nk"> &lt;lov&gt;</span> ^^
+<a name="l-59"></a><span class="tm">18:16:35</span><span class="nk"> &lt;abayer&gt;</span> But JIRA stability is a real concern.
+<a name="l-60"></a><span class="tm">18:16:40</span><span class="nk"> &lt;tonylampada&gt;</span> Yes. jieryn, that sounds like an improvement to the current workflow, and the new workflow that will be in place when the plugin is installed
+<a name="l-61"></a><span class="tm">18:16:49</span><span class="nk"> &lt;abayer&gt;</span> How responsive would you guys be able to be if there were problems?
+<a name="l-62"></a><span class="tm">18:17:50</span><span class="nk"> &lt;tonylampada&gt;</span> Probably would be able to address problems in less than 24h
+<a name="l-63"></a><span class="tm">18:18:35</span><span class="nk"> &lt;tonylampada&gt;</span> <span class="hi">@hare_brain:</span> That's what I think too.
+<a name="l-64"></a><span class="tm">18:18:38</span><span class="nk"> &lt;jieryn&gt;</span> i think a demo would be great, maybe a month long pilot or something.. then re-eval ? i dunno
+<a name="l-65"></a><span class="tm">18:19:00</span><span class="nk"> &lt;jieryn&gt;</span> getting $ for work seems nice :)
+<a name="l-66"></a><span class="tm">18:19:08</span><span class="nk"> &lt;zyltoid&gt;</span> no ways
+<a name="l-67"></a><span class="tm">18:19:11</span><span class="nk"> &lt;abayer&gt;</span> Yeah - a demo at the next meeting would be great. rtyler and kohsuke do most of the JIRA admin, so they're the ones who'd really need to be comfortable adding it.
+<a name="l-68"></a><span class="tm">18:19:29</span><span class="nk"> &lt;tonylampada&gt;</span> Sure thing jieryn, we'll have a demo up shortly
+<a name="l-69"></a><span class="tm">18:20:11</span><span class="nk"> &lt;tonylampada&gt;</span> should this be adde as an "# action" ? :-)
+<a name="l-70"></a><span class="tm">18:20:41</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#action </span><span class="cmdline">tonylampada to demo FreedomSponsors at the next project meeting, when kohsuke and rytler are present</span>
+<a name="l-71"></a><span class="tm">18:20:42</span><span class="nk"> &lt;jieryn&gt;</span> yep
+<a name="l-72"></a><span class="tm">18:21:01</span><span class="nk"> &lt;tonylampada&gt;</span> So that's in two weeks, right?
+<a name="l-73"></a><span class="tm">18:21:30</span><span class="nk"> &lt;tonylampada&gt;</span> (That will be time enough to finish it)
+<a name="l-74"></a><span class="tm">18:21:40</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">After demo, run as a pilot for a month (or so), and then re-evaluate based on stability of JIRA, possibly people supplying bounties</span>
+<a name="l-75"></a><span class="tm">18:21:56</span><span class="nk"> &lt;jieryn&gt;</span> cool
+<a name="l-76"></a><span class="tm">18:22:18</span><span class="nk"> &lt;hare_brain&gt;</span> OK, tonylampada, is that all?
+<a name="l-77"></a><span class="tm">18:22:25</span><span class="nk"> &lt;tonylampada&gt;</span> sounds good
+<a name="l-78"></a><span class="tm">18:22:31</span><span class="nk"> &lt;tonylampada&gt;</span> yes, that is all!
+<a name="l-79"></a><span class="tm">18:22:36</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting time</span>
+<a name="l-80"></a><span class="tm">18:22:54</span><span class="nk"> &lt;abayer&gt;</span> Two weeks from now as always, yes?
+<a name="l-81"></a><span class="tm">18:23:03</span><span class="nk"> &lt;hare_brain&gt;</span> According to the schedule, the next meeting would be on August 8th
+<a name="l-82"></a><span class="tm">18:23:07</span><span class="nk"> &lt;tonylampada&gt;</span> meanwhile, please feel free to take a look at the FS website, and you have any other questions or suggestions, just let me know
+<a name="l-83"></a><span class="tm">18:23:45</span><span class="nk"> &lt;tonylampada&gt;</span> (You can use FS feedback form or send me an email directly on tonylampada at gmail dot com)
+<a name="l-84"></a><span class="tm">18:24:03</span><span class="nk"> &lt;hare_brain&gt;</span> I'm going to be on vacation that week, but as long as kohsuke and rtyler are present for their input about the freedomsponsors proposal, there's no reason to change the date to work around my schedule.
+<a name="l-85"></a><span class="tm">18:24:12</span><span class="nk"> &lt;abayer&gt;</span> I believe they will be, yeah.
+<a name="l-86"></a><span class="tm">18:24:45</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Next meeting to be on August 8, 2012 at 1100 PDT</span>
+<a name="l-87"></a><span class="tm">18:24:59</span><span class="nk"> &lt;tonylampada&gt;</span> I'll be here
+<a name="l-88"></a><span class="tm">18:25:20</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">1100PDT == 1800 UTC</span>
+<a name="l-89"></a><span class="tm">18:25:58</span><span class="nk"> &lt;hare_brain&gt;</span> Unless anyone has anything else they want to bring up, we can wrap this one up
+<a name="l-90"></a><span class="tm">18:26:15</span><span class="nk"> &lt;tonylampada&gt;</span> All right folks. Thanks everyone. Can't wait to have the plugin ready for show.
+<a name="l-91"></a><span class="tm">18:26:42</span><span class="nk"> &lt;hare_brain&gt;</span> OK, seems like that's it.
+<a name="l-92"></a><span class="tm">18:26:44</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

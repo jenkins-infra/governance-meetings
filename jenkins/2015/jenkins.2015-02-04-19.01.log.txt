@@ -1,0 +1,142 @@
+19:01:47 <kohsuke> #startmeeting
+19:01:47 <robobutler> Let the Jenkins meeting commence!
+19:01:54 <kohsuke> #chair rtyler abayer hare_brain
+19:01:54 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+19:02:13 <hgilmore> I wanted to get closure on Jenkins at 100K Celebration. I posted my action item and some other ideas on the Google Group: https://groups.google.com/forum/?utm_source=digest&utm_medium=email/#!topic/jenkinsci-users/_6YfPztJ924
+19:02:34 <kohsuke> And I'd like to check on the LTS RC status
+19:02:50 <kohsuke> #topic Jenkins at 100K
+19:03:04 <kohsuke> #info https://groups.google.com/forum/?utm_source=digest&utm_medium=email/#%21topic/jenkinsci-users/_6YfPztJ924
+19:03:44 <kohsuke> So I think the key thing I wanted to get the sense of other people is ...
+19:03:59 <hgilmore> I am proposing a date of Feb 24 as the "official" day - pending Kohsuke confirming that we actually reached 100K
+19:04:02 <kohsuke> that it's OK for us to spend $150 or so for give-aways
+19:04:26 <kohsuke> hgilmore: yep, and it did come in http://stats.jenkins-ci.org/jenkins-stats/svg/total-jenkins.svg
+19:04:36 <kohsuke> As of the end of 2015 Jan, we are 102,992
+19:04:50 <kohsuke> So we did actually pass 100K. Hooray
+19:05:09 <hgilmore> Wahooo!! Great!
+19:06:16 <kohsuke> The gist of the proposal is (1) call for a blog roll from people, (2) several prize to give-away for that,
+19:06:55 <kohsuke> (3) we'll have some round table conversations somewhere in San Francisco with rtyler, abayer, hare_brain and whoever else could join
+19:07:23 <kohsuke> (4) record that and publish that, then (5) go chase after some existing podcasts to see if they can let us talk 5 mins and point to this.
+19:08:49 <kohsuke> hgilmore has some additional interests in creating more images that we can use for various purposes
+19:09:00 <kohsuke> Any thoughts from anyone else?
+19:09:52 <hgilmore> I am offering to get some images created, to be shared amongst us and that we can have some fun with on social media. All in celebration of Jenkins
+19:10:22 <kohsuke> All right, looks like nobody is here today :-(
+19:10:33 <kohsuke> Perhaps my failing to set up the agenda upfront is a part of the problem
+19:11:21 <oleg-nenashev> Were there any particular topics? // I've missed first 10 minutes Ж(
+19:11:58 <kohsuke> oleg-nenashev: backlog is here http://echelog.com/logs/browse/jenkins/1423004400
+19:11:59 <javabot> http://echelog.com/logs/browse/jenkins/1423004400: jenkins IRC logs [February 4 - 2015]
+19:12:07 <kohsuke> basically we are going over https://groups.google.com/forum/?utm_source=digest&utm_medium=email/#%21topic/jenkinsci-users/_6YfPztJ924
+19:12:11 <kohsuke> oh javabot, it's still here!?
+19:12:24 <oleg-nenashev> ty.
+19:12:27 <kohsuke> I need to learn how to ban it
+19:12:32 <oleg-nenashev> jenkins-admin: version
+19:12:32 <jenkins-admin> My version is build40 4c470e52de957ab7f14f61eff70c5d9df0a8577f (20150103_113200)
+19:12:33 <jenkins-admin> Build URL: http://ci.jenkins-ci.org/job/infra_ircbot/40/
+19:12:34 <javabot> http://ci.jenkins-ci.org/job/infra_ircbot/40/: infra_ircbot #40 [Jenkins]
+19:12:45 <oleg-nenashev> jenkins-admin: kick javabot
+19:12:45 <jenkins-admin> Kicked userjavabot
+19:12:57 <kohsuke> I learned how to kick him out, but it comes back
+19:13:13 <kohsuke> anyway
+19:13:28 <oleg-nenashev> Seems it should be blacklisted
+19:15:17 <kohsuke> oleg-nenashev: back to the topic, the gist of the plan is we do a blog roll, give out some prizes ($150 or so total, so needs approval to budget that cost), and we'll record some hopefully interesting enough one-time podcast
+19:16:08 <oleg-nenashev> kohsuke: Regarding the bot: /mode #mychat +b javabot[@m027-124.nv.iinet.net.au]
+19:16:13 <hare_brain> By “somewhere in San Francisco,” do you mean in the city, or were you thinking somewhere in the area?
+19:16:41 <ogondza> +1 for the proposal #1 on https://groups.google.com/d/msg/jenkinsci-users/_6YfPztJ924/G2rknTGr4gsJ
+19:17:01 <kohsuke> hare_brain: my plan was to find an evening that works for all of us, find a place in the city, and pick you up at your office and drive up to get that done
+19:17:01 <xender> Hi. I have atypical problem - I want a single job invocation to report multiple statuses.
+19:17:30 <kohsuke> failing that, I'll ask abayer and rtyler to be in one room, me and hare_brain in another room, and Google Hangout on Air to invite others.
+19:17:59 <xender> To be more specific: I invoke a shell script from a job. That shell script does several sub-jobs and I want to have nice status indication of each in Jenkins
+19:18:13 <kohsuke> xender: we are in the project meeting time, so let's hold off questions until after that
+19:18:40 <xender> No separate channel for devs for that? :P Okay, I'll wait
+19:19:05 <kohsuke> hare_brain: would either of this be a problem to you?
+19:19:40 <hare_brain> I just need some advanced notice to coordinate with the family that I’ll be gone for that evening.
+19:20:01 <kohsuke> Yes, and I have AI to use some tool to find a date that works for 4 of us
+19:20:17 <kohsuke> (hoping there's a website that lets people enter which day works and which day doesn't)
+19:20:38 <kohsuke> ogondza: thanks for the +1
+19:20:57 <kohsuke> Any other +1 / -1, etc?
+19:21:09 <oleg-nenashev> +1
+19:22:37 <hgilmore> OK - so just two questions, since there haven't been a lot of comments on Jenkins at 100K
+19:22:39 <kohsuke> xender: btw your thoughts would be just as welcome
+19:23:08 <hgilmore> Is there any reason I should *not* follow up on my ideas/suggestions? I am willing to do them, but I need to know so I can get started.
+19:23:32 <hgilmore> And, are we all OK with a date of Feb 24 as the "official" day?
+19:24:08 <xender> kohsuke: Sorry, I just joined the channel. And I'm not an experienced user, so I don't know if I can be any help?
+19:24:18 <kohsuke> I think we've socialized the idea enough and we have enough +1s to consider this blessed
+19:24:45 <hgilmore> OK - thank you to all who have spoken up.
+19:25:00 <kohsuke> Let me record that as such
+19:25:12 <hgilmore> This will be fun and we will celebrate a huge milestone for us and our favorite Butler!
+19:25:26 <kohsuke> #agreed  https://groups.google.com/d/msg/jenkinsci-users/_6YfPztJ924/G2rknTGr4gsJ is considered blessed
+19:25:37 <kohsuke> Oh and the date
+19:26:16 <kohsuke> What needs to happen before that date?
+19:26:22 <kohsuke> Is that the blog submission deadline?
+19:26:50 <kohsuke> Or is that when we post the "Yay! 100K" news that include the announcement to start the blog fest?
+19:26:57 <hgilmore> (1) People can start blogging and talking up the date
+19:27:15 <hgilmore> (2) I will share images of the Butler/100K themes that we can all circulate
+19:28:18 <hgilmore> (3) On the day - depending on what you, hare_brain, rtyler and abayer work out, you will do the Hangout or post a recording celebrating/talking about Jenkins
+19:28:48 <hgilmore> We can also issue a press release (which I neglected to include in the Google Groups note) announcing the milestones for Jenkins
+19:29:11 <hgilmore> Would it be helpful if I post a summary in the Google Groups?
+19:29:25 <kohsuke> OK, so I'm still confused as to what needs to happen before that date and what's supposed to happen on that date
+19:29:41 <kohsuke> I guess (1) and (2) happen before the flag day, (3) and (4) happens on the flag day?
+19:29:53 <hgilmore> Before the date, the community should promote the blogfest and people shoudl be bogging and announcing Jenkins 100K day for 2/24
+19:30:37 <hgilmore> On the day, we can all use a special Twitter badge on our profiles, you guys either do a live recording or post a pre-recorded session, we issue a press release announcing the milestones
+19:30:48 <hgilmore> Yes
+19:31:02 <hgilmore> You are corrct
+19:31:04 <hgilmore> correct
+19:31:39 <kohsuke> OK, I'm looking at the calendar and I'm feeling 2/24 is bit tight
+19:31:42 <hgilmore> I will pull together a summary schedule/outline with dates
+19:32:01 <abayer> fwiw, I'm out of town from 3/4 through 3/15.
+19:32:14 <kohsuke> Could we get like one more week? Or maybe the hangout can happen post Feb 24?
+19:32:15 <hgilmore> Do you have a preferred date? I was pushing it towards the end of the month for the same reason.
+19:32:37 <hgilmore> What is your preference?
+19:32:42 <kohsuke> abayer: do you really mean March or you mean Feb?
+19:32:45 <abayer> March.
+19:32:47 <hgilmore> I think the hangout could happen post=Feb 24
+19:33:39 <hgilmore> It doesn't necessarily need to be pegged to the date
+19:34:05 <hgilmore> But it woudl be nice to have the date as close to the milestone being reached as we can pull off
+19:34:27 <kohsuke> hgilmore: so it'd be OK if on the flag day we don't have the winners and the post is like "we'll do a celebration hangout on such and such date so please come join us?"
+19:34:31 <hare_brain> If it doesn’t happen within a week of 2/24, abayer’s schedule would push it out two more weeks past that.
+19:35:00 <kohsuke> hare_brain: abayer: I guess then I want to make it happen in the week of 2/16 or 2/23
+19:35:03 <abayer> Sorry, got a niece due in early March so I'm back in Boston then. =)
+19:35:04 <hgilmore> Yes, we can make that work.
+19:35:17 <kohsuke> OK, then Feb 24 it is
+19:35:45 <hgilmore> What is the concern for the 24th, since it sounds like things get complicated after that, scheduling-wise.
+19:35:58 <hgilmore> Jsut pulling together the hangout?
+19:36:30 <CptRageToaster> where is it?
+19:36:40 <kohsuke> I'm away the week of Feb 9, and I'm away 21-23.
+19:36:49 <CptRageToaster> city/area-wise?
+19:37:07 <hgilmore> What if it was the 26?
+19:37:08 <kohsuke> CptRageToaster: most likely in San Francisco for meat bodies and Hang out for everyone else remote
+19:37:19 <hgilmore> Again, just trying to keep it close to the  milestone achievement date
+19:37:19 <kohsuke> I mean Google Hangout
+19:37:27 <hare_brain> 2/24 should be OK.
+19:37:29 <hare_brain> for me
+19:37:41 <abayer> Yeah, anytime before 3/4 is good for me.
+19:38:03 <kohsuke> Feb 26 would give me some buffer if that's OK
+19:38:11 <abayer> Fine by me.
+19:38:25 <kohsuke> and we try to get the session going before to allow for post-production and blog post preparation
+19:38:26 <hgilmore> That totally works. How about hare_brain, abayer?
+19:39:04 <hgilmore> OK - Feb 26, then?
+19:39:07 <hare_brain> Unfortunately, 2/26 is bad for me.
+19:39:19 <abayer> hahaha we are tough to schedule.
+19:39:43 <hgilmore> 25th - split the difference? :)
+19:39:43 <hare_brain> We’re a bunch of managers. :P
+19:39:44 <kohsuke> hare_brain: it doesn't mean we do anything on Feb 26. The recording will be done some time prior to that
+19:39:51 <hare_brain> Oh!
+19:39:57 <hare_brain> I thought we were talking about doing the recording on the 26th.
+19:40:01 <kohsuke> I'm sorry, I meant "it doesn't mean YOU do anything on Feb 26"
+19:40:21 <kohsuke> we'll do that sometime before that, somewhere between 2/16-2/24
+19:40:48 <kohsuke> then I'll take the recording and hgilmore and I will prepare posts/splashes/press releases what not
+19:40:53 <kohsuke> and it all hits public 2/26
+19:40:57 <hgilmore> +1
+19:41:47 <kohsuke> All right, I think we are good here
+19:42:19 <kohsuke> #topic LTS RC status
+19:42:30 <kohsuke> #action Kohsuke to put LTS schedules in the calendar
+19:42:33 <hgilmore> OK - so will proceed as proposed. The date is the 26th. @kohsuke we can work together on whatever support you need for the recording
+19:42:39 <ogondza> kohsuke: we are ready
+19:42:40 <kohsuke> hgilmore: yes
+19:42:46 <hgilmore> Thank you
+19:42:49 <kohsuke> ogondza: yay
+19:42:58 <kohsuke> all right, that was easy
+19:43:52 <kohsuke> #topic next meeting
+19:44:07 <kohsuke> #info The next meeting will be Feb 18th same time
+19:44:21 <kohsuke> And Jenkins User Conference call for paper is out now: http://jenkins-ci.org/content/2015-jenkins-user-conferences-call-papers
+19:45:03 <kohsuke> Looks like we'll have US east coast, London, Israel and the US west coast
+19:45:29 <kohsuke> #endmeeting

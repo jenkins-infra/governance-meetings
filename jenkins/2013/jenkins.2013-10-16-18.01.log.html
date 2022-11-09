@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:01</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-4"></a><span class="tm">18:01:37</span><span class="nk"> &lt;kohsuke&gt;</span> actually, nothing listed there, but I believe we wanted to talk about the base point for the next LTS
+<a name="l-5"></a><span class="tm">18:02:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ping:</span> jglick ogondza
+<a name="l-6"></a><span class="tm">18:02:47</span><span class="nk"> &lt;ogondza&gt;</span> community ratings suggest 1.531
+<a name="l-7"></a><span class="tm">18:03:36</span><span class="nk"> &lt;kohsuke&gt;</span> Not sure why it went down in 1.532
+<a name="l-8"></a><span class="tm">18:03:58</span><span class="nk"> &lt;kohsuke&gt;</span> but yeah, 1.531 does seem like the best one
+<a name="l-9"></a><span class="tm">18:04:01</span><span class="nk"> &lt;ogondza&gt;</span> Is it soaked enough?
+<a name="l-10"></a><span class="tm">18:04:53</span><span class="nk"> &lt;kohsuke&gt;</span> It could be longer, but then when I look at score given to earlier ones ...
+<a name="l-11"></a><span class="tm">18:05:51</span><span class="nk"> &lt;kohsuke&gt;</span> 1.532  should be better
+<a name="l-12"></a><span class="tm">18:05:52</span><span class="nk"> &lt;hare_brain&gt;</span> If we go with 1.531, it looks like https://issues.jenkins-ci.org/browse/JENKINS-19418 should be backported.
+<a name="l-13"></a><span class="tm">18:05:57</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19418:Random HTTP 404 when viewing build details (Resolved) http://jenkins-ci.org/issue/19418
+<a name="l-14"></a><span class="tm">18:06:00</span><span class="nk"> &lt;hare_brain&gt;</span> Or start with 1.532.
+<a name="l-15"></a><span class="tm">18:06:02</span><span class="nk"> &lt;jglick&gt;</span> OTP
+<a name="l-16"></a><span class="tm">18:06:19</span><span class="nk"> &lt;kohsuke&gt;</span> yeah, 19418 is a major one
+<a name="l-17"></a><span class="tm">18:06:28</span><span class="nk"> &lt;imod&gt;</span> yeah, I think so too 19418 needs to be in
+<a name="l-18"></a><span class="tm">18:06:32</span><span class="nk"> &lt;kohsuke&gt;</span> and I'm pretty sure we want JENKINS-19473, which we also want
+<a name="l-19"></a><span class="tm">18:06:37</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19473:failed to archive slave artifacts. Unexpected end of ZLIB input stream (Resolved) http://jenkins-ci.org/issue/19473
+<a name="l-20"></a><span class="tm">18:06:45</span><span class="nk"> &lt;kohsuke&gt;</span> I mean "which is also in 1.532"
+<a name="l-21"></a><span class="tm">18:07:47</span><span class="nk"> &lt;kohsuke&gt;</span> I see, 1.532 broke JENKINS-19752
+<a name="l-22"></a><span class="tm">18:07:49</span><span class="nk"> &lt;imod&gt;</span> when looking at the diff between these two, I think it we could use the later - its probably not used by so many user - but still
+<a name="l-23"></a><span class="tm">18:07:50</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19752:Download build artifacts as zip generates a corrupted file (Resolved) http://jenkins-ci.org/issue/19752
+<a name="l-24"></a><span class="tm">18:08:59</span><span class="nk"> &lt;jglick&gt;</span> Would be a pity not to have JENKINS-17236 but oh well.
+<a name="l-25"></a><span class="tm">18:09:02</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17236:Pluggable artifact transfer &amp; storage (Resolved) http://jenkins-ci.org/issue/17236
+<a name="l-26"></a><span class="tm">18:09:21</span><span class="nk"> &lt;kohsuke&gt;</span> if we go with 1.532, we'd get that
+<a name="l-27"></a><span class="tm">18:09:34</span><span class="nk"> &lt;hare_brain&gt;</span> Stability, not features. :)
+<a name="l-28"></a><span class="tm">18:09:39</span><span class="nk"> &lt;hare_brain&gt;</span> Anything using that extension point yet?
+<a name="l-29"></a><span class="tm">18:09:40</span><span class="nk"> &lt;kohsuke&gt;</span> OTOH that did seem to result in some regressions
+<a name="l-30"></a><span class="tm">18:09:52</span><span class="nk"> &lt;jglick&gt;</span> Yes there were a couple regressions, fixed now AFAIK.
+<a name="l-31"></a><span class="tm">18:09:59</span><span class="nk"> &lt;jglick&gt;</span> But yes LTS is for stability.
+<a name="l-32"></a><span class="tm">18:10:20</span><span class="nk"> &lt;imod&gt;</span> well, then we maybe wait for another two three weeks
+<a name="l-33"></a><span class="tm">18:10:44</span><span class="nk"> &lt;kohsuke&gt;</span> All in all, I think we should still go with 1.532
+<a name="l-34"></a><span class="tm">18:11:07</span><span class="nk"> &lt;kohsuke&gt;</span> JENKINS-17236 might have been destabilizing a bit, but jglick thinks it's all fixed now, and 1.532 contains two major bug fixes
+<a name="l-35"></a><span class="tm">18:11:11</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17236:Pluggable artifact transfer &amp; storage (Resolved) http://jenkins-ci.org/issue/17236
+<a name="l-36"></a><span class="tm">18:11:29</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">JENKINS-19473:</span> there is actually a better fix in trunk
+<a name="l-37"></a><span class="tm">18:11:32</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19473:failed to archive slave artifacts. Unexpected end of ZLIB input stream (Resolved) http://jenkins-ci.org/issue/19473
+<a name="l-38"></a><span class="tm">18:11:39</span><span class="nk"> &lt;jglick&gt;</span> (not in changelog, but using newer jzlib)
+<a name="l-39"></a><span class="tm">18:12:07</span><span class="nk"> &lt;hare_brain&gt;</span> Is it more work to backport fixes caused by JENKINS-17236 into 1.532 based LTS, or to start from 1.531 and backport the major  bug fixes from 1.532?
+<a name="l-40"></a><span class="tm">18:12:07</span><span class="nk"> &lt;jglick&gt;</span> Anyway both are fixed in 1.509.4 so certainly we would backport them even if we went with 1.531-.
+<a name="l-41"></a><span class="tm">18:12:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I'd think it's about the same
+<a name="l-42"></a><span class="tm">18:13:31</span><span class="nk"> &lt;jglick&gt;</span> Agreed, both should be pretty easy.
+<a name="l-43"></a><span class="tm">18:14:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> do you have any preferences?
+<a name="l-44"></a><span class="tm">18:14:23</span><span class="nk"> &lt;ogondza&gt;</span> 1.532 works for me
+<a name="l-45"></a><span class="tm">18:14:37</span><span class="nk"> &lt;imod&gt;</span> sounds good to me +1
+<a name="l-46"></a><span class="tm">18:14:46</span><span class="nk"> &lt;ogondza&gt;</span> besides I have a feature there as well
+<a name="l-47"></a><span class="tm">18:15:00</span><span class="nk"> &lt;jglick&gt;</span> kohsuke BTW JENKINS-18629 reopened in case you missed that.
+<a name="l-48"></a><span class="tm">18:15:04</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-18629:Jenkins fails to save configuration when using Invoke Gradle script in Conditional Step (single). (Reopened) http://jenkins-ci.org/issue/18629
+<a name="l-49"></a><span class="tm">18:15:34</span><span class="nk"> &lt;kohsuke&gt;</span> :-(
+<a name="l-50"></a><span class="tm">18:15:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the next LTS base would be 1.532</span>
+<a name="l-51"></a><span class="tm">18:16:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to recreate the stable branch</span>
+<a name="l-52"></a><span class="tm">18:16:42</span><span class="nk"> &lt;kohsuke&gt;</span> Unless anyone else has anything else...
+<a name="l-53"></a><span class="tm">18:16:50</span><span class="nk"> &lt;kohsuke&gt;</span> I'm going back to prepare for JUC
+<a name="l-54"></a><span class="tm">18:17:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-55"></a><span class="tm">18:17:21</span><span class="nk"> &lt;hare_brain&gt;</span> Anything about the JUC that needs to be discussed today?
+<a name="l-56"></a><span class="tm">18:17:46</span><span class="nk"> &lt;kohsuke&gt;</span> It looks like alyssa is going to prepare the name tag attachment
+<a name="l-57"></a><span class="tm">18:17:57</span><span class="nk"> &lt;kohsuke&gt;</span> hopefully that'd be useful
+<a name="l-58"></a><span class="tm">18:18:14</span><span class="nk"> &lt;hare_brain&gt;</span> Cool
+<a name="l-59"></a><span class="tm">18:18:22</span><span class="nk"> &lt;kohsuke&gt;</span> the "meet the community" project that autojack and I were trying to put together didn't gather enough participants
+<a name="l-60"></a><span class="tm">18:18:38</span><span class="nk"> &lt;kohsuke&gt;</span> So that one is not going to happen. Will try again the next year.
+<a name="l-61"></a><span class="tm">18:18:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I've been told that tickets sold out, which is good</span>
+<a name="l-62"></a><span class="tm">18:19:19</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's the quick update. I think we are all set
+<a name="l-63"></a><span class="tm">18:19:35</span><span class="nk"> &lt;kohsuke&gt;</span> Next meeting would be Nov 30th
+<a name="l-64"></a><span class="tm">18:19:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

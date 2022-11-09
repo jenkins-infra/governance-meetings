@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app221.us.archive.org';v.server_ms=248;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-03-29-18.02.log.html","20210509130316","https://web.archive.org/","web","/_static/",
+	      "1620565396");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:02:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:02:32</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke danielbeck hare_brain</span>
+<a name="l-4"></a><span class="tm">18:02:48</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:03:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> my wifi is going on slow motion right now, can you run?
+<a name="l-6"></a><span class="tm">18:03:21</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah
+<a name="l-7"></a><span class="tm">18:03:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-8"></a><span class="tm">18:03:34</span><span class="nk"> &lt;kohsuke&gt;</span> Let's see
+<a name="l-9"></a><span class="tm">18:03:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-03-15-18.00.html</span>
+<a name="l-10"></a><span class="tm">18:04:15</span><span class="nk"> &lt;rtyler&gt;</span> hare_brain won't be joining us, he's got a meeting conflict fwiw
+<a name="l-11"></a><span class="tm">18:04:19</span><span class="nk"> &lt;danielbeck&gt;</span> I added the approved trademarks
+<a name="l-12"></a><span class="tm">18:04:20</span><span class="nk"> &lt;kohsuke&gt;</span> There's a bunch of sublicense related actions for danielbeck  and allengeer
+<a name="l-13"></a><span class="tm">18:04:25</span><span class="nk"> &lt;rtyler&gt;</span> I added some clear trademark attribution guidelines to the site: https://jenkins.io/project/governance/#trademark
+<a name="l-14"></a><span class="tm">18:04:26</span><span class="nk"> &lt;kohsuke&gt;</span> oops, not allengeer but alyssa
+<a name="l-15"></a><span class="tm">18:04:48</span><span class="nk"> &lt;rtyler&gt;</span> pretty much copy and pasted linux foundation's which we defer to
+<a name="l-16"></a><span class="tm">18:04:49</span><span class="nk"> &lt;allengeer&gt;</span> lol im like why is kohsuke talking about me :)
+<a name="l-17"></a><span class="tm">18:04:52</span><span class="nk"> &lt;rtyler&gt;</span> (they can hire lawyers)
+<a name="l-18"></a><span class="tm">18:05:00</span><span class="nk"> &lt;alyssat_&gt;</span> my AIs are complete
+<a name="l-19"></a><span class="tm">18:05:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">allengeer:</span> my bad!
+<a name="l-20"></a><span class="tm">18:05:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">allengeer:</span> omg you're in trouble xD
+<a name="l-21"></a><span class="tm">18:05:24</span><span class="nk"> &lt;danielbeck&gt;</span> my AIs are too
+<a name="l-22"></a><span class="tm">18:05:47</span><span class="nk"> &lt;rtyler&gt;</span> lars added the necessary attribution on the day of jenkins site iirc
+<a name="l-23"></a><span class="tm">18:05:51</span><span class="nk"> &lt;kohsuke&gt;</span> larkruzz is not here, so I guess we should check code conf site quickly
+<a name="l-24"></a><span class="tm">18:05:52</span><span class="nk"> &lt;rtyler&gt;</span> I'm pretty sure I saw that yesterday
+<a name="l-25"></a><span class="tm">18:05:54</span><span class="nk"> &lt;kohsuke&gt;</span> OK, great
+<a name="l-26"></a><span class="tm">18:06:08</span><span class="nk"> &lt;kohsuke&gt;</span> And alyssat_ is here
+<a name="l-27"></a><span class="tm">18:06:16</span><span class="nk"> &lt;alyssat_&gt;</span> i'm here.
+<a name="l-28"></a><span class="tm">18:06:27</span><span class="nk"> &lt;kohsuke&gt;</span> we were going through actions you took 2 weeks ago
+<a name="l-29"></a><span class="tm">18:06:30</span><span class="nk"> &lt;kohsuke&gt;</span> See http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-03-15-18.00.html
+<a name="l-30"></a><span class="tm">18:06:50</span><span class="nk"> &lt;rtyler&gt;</span> I'm pretty sure that's what alyssat_ was referring to earlier kohsuke
+<a name="l-31"></a><span class="tm">18:06:50</span><span class="nk"> &lt;alyssat_&gt;</span> my AIs are complete. Attributions has been added to proper events pages as well as CB pages
+<a name="l-32"></a><span class="tm">18:07:01</span><span class="nk"> &lt;kohsuke&gt;</span> oh
+<a name="l-33"></a><span class="tm">18:07:12</span><span class="nk"> &lt;kohsuke&gt;</span> sorry, in my IRC client today you two have the same color
+<a name="l-34"></a><span class="tm">18:07:22</span><span class="nk"> &lt;kohsuke&gt;</span> I got that confused with your AIs, rtyler
+<a name="l-35"></a><span class="tm">18:07:35</span><span class="nk"> &lt;kohsuke&gt;</span> Now that it's cleared, I think we are good on this
+<a name="l-36"></a><span class="tm">18:07:35</span><span class="nk"> &lt;rtyler&gt;</span> are we blue?
+<a name="l-37"></a><span class="tm">18:07:42</span><span class="nk"> &lt;kohsuke&gt;</span> You two are teal
+<a name="l-38"></a><span class="tm">18:07:43</span><span class="nk"> &lt;rtyler&gt;</span> perhaps n azure color
+<a name="l-39"></a><span class="tm">18:07:47</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-40"></a><span class="tm">18:07:53</span><span class="nk"> &lt;rtyler&gt;</span> I think that's all the actions from last time
+<a name="l-41"></a><span class="tm">18:07:56</span><span class="nk"> &lt;alyssat_&gt;</span> i'm dark blue
+<a name="l-42"></a><span class="tm">18:08:01</span><span class="nk"> &lt;kohsuke&gt;</span> emerald green, my favorite color for my favorite people
+<a name="l-43"></a><span class="tm">18:08:07</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-44"></a><span class="tm">18:08:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS Status check</span>
+<a name="l-45"></a><span class="tm">18:08:23</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza
+<a name="l-46"></a><span class="tm">18:08:37</span><span class="nk"> &lt;ogondza&gt;</span> no problem during testing, we are ready to go
+<a name="l-47"></a><span class="tm">18:08:49</span><span class="nk"> &lt;danielbeck&gt;</span> great
+<a name="l-48"></a><span class="tm">18:08:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to run a release</span>
+<a name="l-49"></a><span class="tm">18:08:57</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to write the upgrade guide</span>
+<a name="l-50"></a><span class="tm">18:08:59</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> are you ok with https://github.com/jenkins-infra/jenkins.io/pull/764 ?
+<a name="l-51"></a><span class="tm">18:09:17</span><span class="nk"> &lt;rtyler&gt;</span> this is 2.46.1 yeah?
+<a name="l-52"></a><span class="tm">18:09:18</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza oleg-nenashev That's best discussed elsewhere
+<a name="l-53"></a><span class="tm">18:09:33</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> yes
+<a name="l-54"></a><span class="tm">18:09:40</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to merge the update center PR for the new baseline once Artifactory index has 2.46.1</span>
+<a name="l-55"></a><span class="tm">18:09:52</span><span class="nk"> &lt;rtyler&gt;</span> kdanithat PR would be a prerequisite to kohsuke running a release though wouldn't it?
+<a name="l-56"></a><span class="tm">18:09:55</span><span class="nk"> &lt;rtyler&gt;</span> omg lag
+<a name="l-57"></a><span class="tm">18:10:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> ^
+<a name="l-58"></a><span class="tm">18:10:15</span><span class="nk"> &lt;kohsuke&gt;</span> who's kdanithat?
+<a name="l-59"></a><span class="tm">18:10:15</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler I don't understand the question
+<a name="l-60"></a><span class="tm">18:10:33</span><span class="nk"> &lt;kohsuke&gt;</span> oh, it must be "k, daniel, that PR would be ..."
+<a name="l-61"></a><span class="tm">18:10:38</span><span class="nk"> &lt;rtyler&gt;</span> indeed
+<a name="l-62"></a><span class="tm">18:10:46</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler which PR? changelog?
+<a name="l-63"></a><span class="tm">18:10:46</span><span class="nk"> &lt;rtyler&gt;</span> that jenkins.io pull request is the changelog isn't it
+<a name="l-64"></a><span class="tm">18:10:57</span><span class="nk"> &lt;rtyler&gt;</span> souldn't that be ready to merge before kohsuke runs the release process?
+<a name="l-65"></a><span class="tm">18:11:14</span><span class="nk"> &lt;danielbeck&gt;</span> we have an hour or four, it's fine
+<a name="l-66"></a><span class="tm">18:11:19</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think it's a pre-req, yeah
+<a name="l-67"></a><span class="tm">18:11:20</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-68"></a><span class="tm">18:11:25</span><span class="nk"> &lt;danielbeck&gt;</span> Artifactory is acting up lately wrt indexing
+<a name="l-69"></a><span class="tm">18:11:30</span><span class="nk"> &lt;ogondza&gt;</span> there is no techincal reason I know off
+<a name="l-70"></a><span class="tm">18:11:36</span><span class="nk"> &lt;rtyler&gt;</span> as a user it sucks to have new bits without knowing what they are :)
+<a name="l-71"></a><span class="tm">18:11:44</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler don't install them thren
+<a name="l-72"></a><span class="tm">18:11:49</span><span class="nk"> &lt;danielbeck&gt;</span> s/thren/sthen
+<a name="l-73"></a><span class="tm">18:11:53</span><span class="nk"> &lt;rtyler&gt;</span> o_o
+<a name="l-74"></a><span class="tm">18:11:55</span><span class="nk"> &lt;danielbeck&gt;</span> s/sthen/then
+<a name="l-75"></a><span class="tm">18:11:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> let me try this differently
+<a name="l-76"></a><span class="tm">18:12:06</span><span class="nk"> &lt;kohsuke&gt;</span> I assume danielbeck is saying this PR will get sorted out by the time release arrives
+<a name="l-77"></a><span class="tm">18:12:10</span><span class="nk"> &lt;danielbeck&gt;</span> yes
+<a name="l-78"></a><span class="tm">18:12:14</span><span class="nk"> &lt;rtyler&gt;</span> people ask @jenkinsci and jump into #jenkins whenever the changelog doesn't exist for the latest listed release
+<a name="l-79"></a><span class="tm">18:12:17</span><span class="nk"> &lt;rtyler&gt;</span> I would like to avoid that
+<a name="l-80"></a><span class="tm">18:12:35</span><span class="nk"> &lt;danielbeck&gt;</span> I'll take care of it
+<a name="l-81"></a><span class="tm">18:12:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> heh, basically we're counting on you not releasing until later tonight I presume? :P
+<a name="l-82"></a><span class="tm">18:12:45</span><span class="nk"> &lt;rtyler&gt;</span> "after work" work
+<a name="l-83"></a><span class="tm">18:12:46</span><span class="nk"> &lt;rtyler&gt;</span> :D
+<a name="l-84"></a><span class="tm">18:13:03</span><span class="nk"> &lt;kohsuke&gt;</span> Well, there might a bit of that, but we are counting on the time the release process itself takes, plus Artifactory indexing delay
+<a name="l-85"></a><span class="tm">18:13:23</span><span class="nk"> &lt;kohsuke&gt;</span> I think we are all happy now, let's move on
+<a name="l-86"></a><span class="tm">18:13:38</span><span class="nk"> &lt;ogondza&gt;</span> sure
+<a name="l-87"></a><span class="tm">18:13:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Sublicense request, on behalf of JFrog, "Jenkins Community Day" event in Paris</span>
+<a name="l-88"></a><span class="tm">18:13:55</span><span class="nk"> &lt;alyssat_&gt;</span> JFrog is planning to host a Jenkins 1 day event w/ 4-6 sessions in Paris on July 11. They are requesting for approval to use the name "Jenkins Community Day". They hope to get 250-300 attendees. Entry price is $50, this is mainly to make sure those who RSVP actually do attend and also to cover food &amp; drinks since we all know how expensive everything is in
+<a name="l-89"></a><span class="tm">18:13:55</span><span class="nk"> &lt;alyssat_&gt;</span> Paris.
+<a name="l-90"></a><span class="tm">18:14:18</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-91"></a><span class="tm">18:14:23</span><span class="nk"> &lt;rtyler&gt;</span> quiche for everybody!
+<a name="l-92"></a><span class="tm">18:14:34</span><span class="nk"> &lt;kohsuke&gt;</span> Between this and the last meeting, IMO it's great that more companies are organizing different events
+<a name="l-93"></a><span class="tm">18:14:35</span><span class="nk"> &lt;alyssat_&gt;</span> and croissants :)
+<a name="l-94"></a><span class="tm">18:14:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> are you here asking on behalf of JFrog?
+<a name="l-95"></a><span class="tm">18:14:53</span><span class="nk"> &lt;alyssat_&gt;</span> yes. I am here on behalf of JFrog
+<a name="l-96"></a><span class="tm">18:14:53</span><span class="nk"> &lt;allengeer&gt;</span> and french fries
+<a name="l-97"></a><span class="tm">18:14:59 </span><span class="nka">* batmat</span> <span class="ac">switches from screen to screen and wondered a few seconds if that was the right one, reading French :)</span>
+<a name="l-98"></a><span class="tm">18:15:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">allengeer:</span> frites!
+<a name="l-99"></a><span class="tm">18:15:17</span><span class="nk"> &lt;allengeer&gt;</span> oui oui! ou est mon frites!
+<a name="l-100"></a><span class="tm">18:15:22</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-101"></a><span class="tm">18:15:23</span><span class="nk"> &lt;batmat&gt;</span> *sont
+<a name="l-102"></a><span class="tm">18:15:40</span><span class="nk"> &lt;batmat&gt;</span> "où sont mes frites" would be better
+<a name="l-103"></a><span class="tm">18:15:41</span><span class="nk"> &lt;rtyler&gt;</span> I'm comfortable with this request, the usual trademark attribution requirements apply of course
+<a name="l-104"></a><span class="tm">18:15:56</span><span class="nk"> &lt;batmat&gt;</span> "où sont mes frites, bordel" would be even frenchier...
+<a name="l-105"></a><span class="tm">18:16:02</span><span class="nk"> &lt;kohsuke&gt;</span> Anyone who feels otherwise?
+<a name="l-106"></a><span class="tm">18:16:06</span><span class="nk"> &lt;alyssat_&gt;</span> yes. I will work with them to make sure proper attribution is included on the webpage
+<a name="l-107"></a><span class="tm">18:16:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> future interactions like this I hope we can encourage companies like jfrog to actually participate in this meeting similar to praqma last time around
+<a name="l-108"></a><span class="tm">18:16:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> stay on topic or I'll have to kick you into the sein
+<a name="l-109"></a><span class="tm">18:16:19</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-110"></a><span class="tm">18:16:35</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="hi">rtyler:</span> will do
+<a name="l-111"></a><span class="tm">18:16:35</span><span class="nk"> &lt;batmat&gt;</span> +1 for JGrenouille
+<a name="l-112"></a><span class="tm">18:16:49</span><span class="nk"> &lt;kohsuke&gt;</span> All right, moving on...
+<a name="l-113"></a><span class="tm">18:16:55</span><span class="nk"> &lt;rtyler&gt;</span> record it plz
+<a name="l-114"></a><span class="tm">18:17:02</span><span class="nk"> &lt;alyssat_&gt;</span> thank you
+<a name="l-115"></a><span class="tm">18:17:19</span><span class="nk"> &lt;danielbeck&gt;</span> Who's asking? JFrog Ltd?
+<a name="l-116"></a><span class="tm">18:17:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">"Jenkins Community Day" sublicense request is granted. The usual attribution apply</span>
+<a name="l-117"></a><span class="tm">18:17:42</span><span class="nk"> &lt;kohsuke&gt;</span> I don't know if it's Ltd or Inc or 株式会社
+<a name="l-118"></a><span class="tm">18:17:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> see danielbeck's question
+<a name="l-119"></a><span class="tm">18:17:59</span><span class="nk"> &lt;alyssat_&gt;</span> i'm looking this up
+<a name="l-120"></a><span class="tm">18:18:05</span><span class="nk"> &lt;alyssat_&gt;</span> I just know them as JFrog
+<a name="l-121"></a><span class="tm">18:18:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> perhaps alyssat_ can update the approved trademark page :)
+<a name="l-122"></a><span class="tm">18:18:15</span><span class="nk"> &lt;alyssat_&gt;</span> https://www.jfrog.com/Artifactory/?km_source=google+ppc&amp;km_medium=cpc&amp;km_term=35774400220&amp;km_campaign=682253752&amp;km_keyword=jfrog&amp;km_adid=152106653455&amp;aw_campaignid=682253752&amp;aw_adgroupid=35774400220&amp;aw_device=c&amp;aw_keyword=jfrog&amp;aw_matchtype=e&amp;gclid=CLDomsGp_NICFQJsfgodkMUJcw
+<a name="l-123"></a><span class="tm">18:18:30</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">alyssat_ to update approved trademark usage wiki page</span>
+<a name="l-124"></a><span class="tm">18:18:39</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke that's fine, now I don't care anymore ;-)
+<a name="l-125"></a><span class="tm">18:18:40</span><span class="nk"> &lt;alyssat_&gt;</span> ok
+<a name="l-126"></a><span class="tm">18:18:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> /now/ I think we can go to the next topic xD
+<a name="l-127"></a><span class="tm">18:18:48</span><span class="nk"> &lt;batmat&gt;</span> <span class="cmd">#action </span><span class="cmdline">alyssat_ to remove her tail</span>
+<a name="l-128"></a><span class="tm">18:18:52</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-129"></a><span class="tm">18:19:08</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="hi">batmat:</span>  huh?
+<a name="l-130"></a><span class="tm">18:19:10 </span><span class="nka">* rtyler</span> <span class="ac">thinks batmat may have had too much wine this evening</span>
+<a name="l-131"></a><span class="tm">18:19:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Java 8 baseline bump heads up</span>
+<a name="l-132"></a><span class="tm">18:19:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">a quick advertisement about a proposed Jenkins localization drive : https://groups.google.com/d/msg/jenkinsci-docs/pBn13p7FRH0/wUBgInrPBgAJ</span>
+<a name="l-133"></a><span class="tm">18:19:35</span><span class="nk"> &lt;kohsuke&gt;</span> oops
+<a name="l-134"></a><span class="tm">18:19:43</span><span class="nk"> &lt;kohsuke&gt;</span> you have more topic now
+<a name="l-135"></a><span class="tm">18:20:02</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-136"></a><span class="tm">18:20:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">batmat:</span> this is yours
+<a name="l-137"></a><span class="tm">18:20:10</span><span class="nk"> &lt;batmat&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/blog/2017/01/17/Jenkins-is-upgrading-to-Java-8/</span>
+<a name="l-138"></a><span class="tm">18:20:56</span><span class="nk"> &lt;batmat&gt;</span> so, reminder, the /plan/ was to bump in April, so we're almost there. I've started looking into a PR for this, but this seems a bit more complicated than anticipated.
+<a name="l-139"></a><span class="tm">18:20:57</span><span class="nk"> &lt;rtyler&gt;</span> is everything moving along smoothly batmat?
+<a name="l-140"></a><span class="tm">18:21:01</span><span class="nk"> &lt;batmat&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/jenkins/pull/2802</span>
+<a name="l-141"></a><span class="tm">18:21:06</span><span class="nk"> &lt;rtyler&gt;</span> any help you need from others?
+<a name="l-142"></a><span class="tm">18:21:13</span><span class="nk"> &lt;batmat&gt;</span> I suspect that kohsuke could help in ^
+<a name="l-143"></a><span class="tm">18:21:27</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-144"></a><span class="tm">18:21:42</span><span class="nk"> &lt;batmat&gt;</span> at least, give guidance. This seems to fail in one subtool, the bridge injector
+<a name="l-145"></a><span class="tm">18:21:45</span><span class="nk"> &lt;jglick&gt;</span> I offered some hints.
+<a name="l-146"></a><span class="tm">18:21:56</span><span class="nk"> &lt;kohsuke&gt;</span> I guess the fix needed in bridge method injector
+<a name="l-147"></a><span class="tm">18:21:57</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">jglick:</span> yup, saw it just before, thanks
+<a name="l-148"></a><span class="tm">18:22:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> one thing to keep in mind, we have a LOT of plugins using the buildPlugin global variable in their Jenkinsfiles now, and some are pinning to Java 7
+<a name="l-149"></a><span class="tm">18:22:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> if you feel like sending emails, you could ping some of those folks and let them know that the end is nigh
+<a name="l-150"></a><span class="tm">18:22:45</span><span class="nk"> &lt;danielbeck&gt;</span> batmat unless the core dependency is updates, shouldn't matter
+<a name="l-151"></a><span class="tm">18:22:49</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler ^
+<a name="l-152"></a><span class="tm">18:23:05</span><span class="nk"> &lt;rtyler&gt;</span> ok
+<a name="l-153"></a><span class="tm">18:23:10</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> not sure I get what you mean. Anyway, I suppose this can be handled on ML or IRC, outside the gov meeting
+<a name="l-154"></a><span class="tm">18:23:14</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler or do you think plugins won't work?
+<a name="l-155"></a><span class="tm">18:23:34</span><span class="nk"> &lt;rtyler&gt;</span> I'm worried that plugins are explicitly avoiding testing on JDK8 for some reason that might cause breakages for users
+<a name="l-156"></a><span class="tm">18:23:42</span><span class="nk"> &lt;rtyler&gt;</span> it could be just laziness
+<a name="l-157"></a><span class="tm">18:23:56</span><span class="nk"> &lt;batmat&gt;</span> anyway, it was mostly a heads up as stated, so I'm done. Just a FYI/reminder
+<a name="l-158"></a><span class="tm">18:23:56</span><span class="nk"> &lt;rtyler&gt;</span> but there are "key" plugins which are suggested in the installation process
+<a name="l-159"></a><span class="tm">18:23:59</span><span class="nk"> &lt;jglick&gt;</span> Or if they know the plugin does not build on 8 then there may be something consistently broken. Anyway, that is their problem.
+<a name="l-160"></a><span class="tm">18:24:06</span><span class="nk"> &lt;rtyler&gt;</span> I just want us to make sure those are kosher
+<a name="l-161"></a><span class="tm">18:24:18</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">rtyler:</span> if there are any recommended plugins which do this, either remove the pin, or drop them from the list (IMO)
+<a name="l-162"></a><span class="tm">18:24:19</span><span class="nk"> &lt;batmat&gt;</span> if the PR gets mergeable soonish, then the /plan/ to have the next LTS baseline on Java 8 could still be true
+<a name="l-163"></a><span class="tm">18:24:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jglick:</span> I agree with that, I just wanted to raise it as sometihng that batmat might be able to drive resolution on
+<a name="l-164"></a><span class="tm">18:24:54</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> ack
+<a name="l-165"></a><span class="tm">18:25:08</span><span class="nk"> &lt;kohsuke&gt;</span> OK, sounds  like the critical path is to get the jenkins.war with Java8 class files, then to do some tests
+<a name="l-166"></a><span class="tm">18:25:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">batmat:</span> I'll do my part in fixing bridge method injector
+<a name="l-167"></a><span class="tm">18:25:39</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> would be great, thanks
+<a name="l-168"></a><span class="tm">18:25:43</span><span class="nk"> &lt;kohsuke&gt;</span> My initial thinking is that jglick is right that it's just a metter of upgrading ASM
+<a name="l-169"></a><span class="tm">18:25:54</span><span class="nk"> &lt;kohsuke&gt;</span> Anything more on this?
+<a name="l-170"></a><span class="tm">18:26:09</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> I tried it, but it's possible I missed a step.
+<a name="l-171"></a><span class="tm">18:26:16</span><span class="nk"> &lt;batmat&gt;</span> nope, done from me.
+<a name="l-172"></a><span class="tm">18:26:16</span><span class="nk"> &lt;kohsuke&gt;</span> I'll see what I find
+<a name="l-173"></a><span class="tm">18:26:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">a quick advertisement about a proposed Jenkins localization drive</span>
+<a name="l-174"></a><span class="tm">18:27:01</span><span class="nk"> &lt;kohsuke&gt;</span> hope y'all find  https://groups.google.com/d/msg/jenkinsci-docs/pBn13p7FRH0/wUBgInrPBgAJ interesting
+<a name="l-175"></a><span class="tm">18:27:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> would you or whomever is championing this write a blog post?
+<a name="l-176"></a><span class="tm">18:27:39</span><span class="nk"> &lt;kohsuke&gt;</span> Sure, danielbeck, you or me?
+<a name="l-177"></a><span class="tm">18:27:45</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler we're not there yet IMO
+<a name="l-178"></a><span class="tm">18:27:48</span><span class="nk"> &lt;rtyler&gt;</span> okay
+<a name="l-179"></a><span class="tm">18:27:58</span><span class="nk"> &lt;kohsuke&gt;</span> I assume the post is about "hey WDYT, anyone willing to participate?"
+<a name="l-180"></a><span class="tm">18:28:25</span><span class="nk"> &lt;rtyler&gt;</span> whwnever the initiative is "there" please don't hesitate to use jenkins.io as a mechanism for getting the word out
+<a name="l-181"></a><span class="tm">18:28:37</span><span class="nk"> &lt;kohsuke&gt;</span> Will do
+<a name="l-182"></a><span class="tm">18:28:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-183"></a><span class="tm">18:29:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next meeting will be April 12th the same time. Thank god time zone change is over!</span>
+<a name="l-184"></a><span class="tm">18:29:30</span><span class="nk"> &lt;kohsuke&gt;</span> See you in 2 weeks
+<a name="l-185"></a><span class="tm">18:29:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 13:03:16 May 09, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:08:37 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 169.51
+  exclusion.robots: 0.121
+  exclusion.robots.policy: 0.109
+  RedisCDXSource: 0.702
+  esindex: 0.01
+  LoadShardBlock: 139.941 (3)
+  PetaboxLoader3.resolve: 129.783 (3)
+  PetaboxLoader3.datanode: 51.252 (4)
+  CDXLines.iter: 24.146 (3)
+  load_resource: 61.132
+-->

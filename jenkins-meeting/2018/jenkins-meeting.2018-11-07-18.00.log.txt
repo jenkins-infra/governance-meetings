@@ -1,0 +1,144 @@
+18:00:13 <danielbeck> #startmeeting
+18:00:13 <robobutler> Let the Jenkins meeting commence!
+18:00:15 <danielbeck> hi everyone!
+18:00:21 <bitwiseman> Hello!
+18:00:24 <danielbeck> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:00:26 <oleg-nenashev> o/
+18:00:35 <danielbeck> #topic Recap last meeting actions
+18:00:42 <danielbeck> it's been a while…
+18:00:45 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-10-10-17.59.html
+18:00:58 <danielbeck> two items for kohsuke from last time. are you around?
+18:01:11 <kohsuke> Yes
+18:01:20 <kohsuke> Let me check
+18:01:35 <kohsuke> Right, I've communicated the approved trademark to TechMatrix
+18:01:35 <danielbeck> #chair kohsuke
+18:01:36 <robobutler> Current chairs: danielbeck kohsuke
+18:01:41 <kohsuke> I'll update the Wiki right now
+18:01:56 <danielbeck> ok
+18:02:12 <danielbeck> #topic LTS status check
+18:02:28 <danielbeck> doesn't look like ogondza is around
+18:02:48 <danielbeck> has anyone heard from him?
+18:03:05 <oleg-nenashev> Nope - since Nice
+18:03:13 <oleg-nenashev> Maybe he is still traveling
+18:03:40 <danielbeck> FWIW I got an email from ltypkova that their testing looks good, but nothing from ogondza
+18:04:13 <danielbeck> let's move on for now, and ask Oliver for an update if he doesn't show towards the end. it's the first meeting after DST change after all
+18:04:36 <oleg-nenashev> how do we select LTS without him?
+18:04:46 <danielbeck> by consensus? :)
+18:05:15 <oleg-nenashev> cannot offer anything better
+18:05:24 <danielbeck> can always reconsider if someone brings up a major blocker, including Oliver
+18:05:41 <danielbeck> #topic LTS next baseline selection
+18:05:44 <danielbeck> speaking of which
+18:06:10 <danielbeck> given how empty it is, I propose 2.150
+18:06:19 <oleg-nenashev> #info: https://jenkins.io/changelog/
+18:06:30 <oleg-nenashev> All recent releases contain bad statuses
+18:06:31 <bitwiseman> Pleasant number as well.
+18:06:41 <danielbeck> only potential problem is that we introduced some client side problems in some browsers in 2.148
+18:06:54 <oleg-nenashev> I have not been tracking the weekly releases, so no opinion from me
+18:07:20 <danielbeck> The fix that addressed the Firefox event issue in that release likely caused https://issues.jenkins-ci.org/browse/JENKINS-54333 https://issues.jenkins-ci.org/browse/JENKINS-54261
+18:07:28 <jglick> JENKINS-54233 was reported but I have no idea if it could be related. I cannot reproduce.
+18:07:29 <danielbeck> neither of which we want in an LTS release
+18:08:36 <jglick> Well. Easily reverted if confirmed.
+18:08:40 <danielbeck> that said, JENKINS-53462 would be trivial to back out in the backporting period
+18:09:00 <danielbeck> https://github.com/jenkinsci/jenkins/pull/3689/files
+18:09:48 <danielbeck> I would rather like the telemetry improvements in 2.149, so rather than 2.147 + a bunch of backports I propose 2.150 with potentially JENKINS-53462 reverted if we don't find a better fix.
+18:10:10 <jglick> Seems reasonable.
+18:11:37 <danielbeck> any further opinions?
+18:12:05 <bitwiseman> +1
+18:13:19 <danielbeck> #agreed choose 2.150 as next LTS baseline, but back out JENKINS-53462 unless we find a better fix due to regressions it seems to have caused.
+18:13:32 <danielbeck> #action danielbeck to email dev list and ogondza with the above
+18:13:50 <danielbeck> #topic Trademark sublicensing request
+18:14:12 <danielbeck> so I'm not sure what's going on here
+18:14:18 <oleg-nenashev> Rick is off, so I will handle it on behalf of him as discussed in Gitter
+18:14:26 <danielbeck> oleg-nenashev thanks
+18:14:55 <oleg-nenashev> #info: https://groups.google.com/forum/#!topic/jenkinsci-dev/UveOvVO-gwQ
+18:15:12 <oleg-nenashev> So, this is a second incarnation of the WeChat discussions
+18:15:25 <oleg-nenashev> Rick wants to create a WeChat channel for Jenkins
+18:15:44 <oleg-nenashev> And the request from WeChat is to provide a trademark usage approval
+18:16:20 <oleg-nenashev> So we need approval from the Governance Meeting, and then an approval letter from one of the Jenkins Board members. CC rtyler kohsuke
+18:16:57 <danielbeck> But it's not the organization account that would require a business or other entity to back it, but the "subscription account", right?
+18:17:04 <kohsuke> I guess I chimed in on that thread but didn't follow up
+18:17:26 <oleg-nenashev> Yes, it will be a personal account IIUYC
+18:17:34 <oleg-nenashev> Trademark request still applies
+18:17:46 <kohsuke> My comment was that this shouldn't be a trademark sublicensing, but since it's on the agenda, I guess I didn't convince others?
+18:17:58 <kohsuke> Let me check how people responded...
+18:18:45 <danielbeck> looks to me like this is a "on behalf of the Jenkins project" kind of situation
+18:19:11 <danielbeck> so no trademark sublicense, except that WeChat requires permission be granted.
+18:19:16 <danielbeck> "WeChat platform said I need submit the permission of Jenkins trademark."
+18:19:27 <oleg-nenashev> Some conversation is also is in the community gitter
+18:19:37 <danielbeck> IOW, not a sublicense, but we still need to explicitly allow it?
+18:20:07 <oleg-nenashev> I believe Trademark Usage Approval is exactly  what WeChat looks for
+18:20:49 <oleg-nenashev> So I would stick to the request and vote for "Jenkins WeChat Account" for starters
+18:20:55 <bitwiseman> What part of the discussion was on Gitter?  What was explained there?
+18:21:00 <kohsuke> As Daniel said, this is a situation in which Rick is acting on behalf of the Jenkins project, AIU
+18:21:40 <oleg-nenashev> yup
+18:21:43 <danielbeck> right, per the specific wiki page it's not strictly sublicensing, just 'approved usage', and we certainly approve, so ¯\_(ツ)_/¯
+18:21:44 <kohsuke> So I guess what WeChat is asking is verifying that he's acting on that capacity
+18:22:19 <kohsuke> So I agree with Daniel that this is not a sublicensing situation
+18:22:21 <oleg-nenashev> Trademark Usage Approval is not necessarily sublicencing
+18:23:03 <oleg-nenashev> At least this is how https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage is not only about sublicenses
+18:23:07 <kohsuke> What do you mean "Trademark Usage Approval is not necessarily sublicencing"?
+18:23:25 <danielbeck> I mean, since they need a separate letter anyway, we can decide that Rick is allowed to register this, and that KK write the letter…?
+18:23:39 <danielbeck> no need to get stuck at how we record this on the wiki
+18:23:53 <kohsuke> Yeah
+18:24:00 <oleg-nenashev> https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage approves usage of trademark. that's it. It is not a sublicense referred above. But I also agree with danielbeck
+18:24:07 <kohsuke> So WeChat needs a signed letter?
+18:24:25 <kohsuke> I see that in Rick's response
+18:25:02 <kohsuke> I also echo Olivier's point that the account be tied to list.jenkins-ci.org address
+18:25:13 <kohsuke> IIUC, that's how the community ensures it has ultimate control, right?
+18:25:36 <kohsuke> Oh, then Rick clarifies
+18:25:56 <oleg-nenashev> I believe we just start from the approval letter
+18:26:02 <kohsuke> OK
+18:26:31 <kohsuke> #action kohsuke to write a signed letter clarifying that Rick is acting as an agent of the rightful Jenkins trademark owner to create a WeChat account
+18:26:35 <kohsuke> ... or something like that
+18:26:46 <danielbeck> LGTM
+18:27:02 <oleg-nenashev> +1
+18:27:12 <danielbeck> + individual subscription account IIUC
+18:27:32 <kohsuke> And in case this isn't obvious enough, I think we all support his effort to have the Jenkins project operate the "official" Jenkins wechat account
+18:27:45 <oleg-nenashev> That's for sure
+18:27:51 <danielbeck> agreed
+18:28:01 <oleg-nenashev> It would be great to have announcement on jenkins.io or whatever
+18:28:05 <oleg-nenashev> once it is in place
+18:28:08 <tracymiranda> +1
+18:28:12 <danielbeck> are we all good with these next steps, or anyone around who would like to -1?
+18:28:19 <kohsuke> So don't let "no trademark approval" be confused with the disapproval of the effort itself. It's more technical "that's for a different purpose, we don't need it" kinda thing
+18:28:50 <oleg-nenashev> I do not understand why we cannot just approve it TBH
+18:28:55 <oleg-nenashev> but up to you
+18:29:05 <kohsuke> I said everything I wanted to say, we can move on while I write the letter
+18:29:14 <bitwiseman> +1
+18:29:56 <danielbeck> oleg-nenashev Are you asking for "#agreed Rick can register the WeChat individual subscription account on behalf of the Jenkins project" or WDYM?
+18:30:45 <oleg-nenashev> I would prefer to explictly put it on the Trademark Approval Page so that Rick can refer it if needed
+18:31:36 <danielbeck> needs major reformatting since there's no Company involved,and no separate mark. Let's postpone this until they want more than KK's letter.
+18:32:06 <kohsuke> +1 with danielbeck
+18:32:12 <oleg-nenashev> up to you
+18:32:27 <oleg-nenashev> I was just following the "And It's better to record this in wiki." from Rick
+18:32:44 <danielbeck> Well, we record it in the meeting minutes, seems close enough :)
+18:32:54 <danielbeck> can always add it later if required
+18:33:19 <danielbeck> shall we move on?
+18:33:27 <kohsuke> Let's move on
+18:33:35 <danielbeck> #topic Outreachy update
+18:33:43 <danielbeck> tracymiranda this is yours
+18:33:46 <tracymiranda> thx
+18:34:02 <tracymiranda> We are coming up to the close of the application period for outreachy
+18:34:24 <tracymiranda> So far we had about 9 folks find their way to the gitter chat. Majority were interested in audit logs project
+18:34:58 <tracymiranda> Of that we appear to have 3 people who submitted applications which they could do after submitting a PR
+18:35:15 <tracymiranda> 2 applications for audit logs, 1 for docs project
+18:35:30 <tracymiranda> We need to make selections by deadline of Nov 12th
+18:36:03 <tracymiranda> So I will be meeting with the outreachy mentors bitwiseman and mattsicker to see who qualifies, etc
+18:36:18 <tracymiranda> That's the update
+18:36:42 <danielbeck> thanks. what's the next update? The selection on the 12th?
+18:37:08 <tracymiranda> yes, once selected, we hear back if we were first choice then all gets announced on 12th
+18:37:36 <tracymiranda> if we decide to accept >1 we need to find out if outreachy fund will cover it or not
+18:37:52 <tracymiranda> then soon after that the internship starts in earnest
+18:39:06 <danielbeck> ok, sounds good
+18:39:52 <danielbeck> let's move on then
+18:40:04 <danielbeck> since ogondza hasn't shown up, we're still a bit in the air with the current LTS release
+18:40:09 <danielbeck> #topic LTS status check
+18:41:11 <danielbeck> As I wrote previously, I got confirmation from Lucie that their testing looked good, but no further context. To make sure we're not blocked, I would propose we wait another day for ogondza to tell us it's not ready, otherwise we release tomorrow. WDYT?
+18:41:37 <oleg-nenashev> +1
+18:42:15 <bitwiseman> +1
+18:43:55 <danielbeck> #agreed let's contact ogondza and ask whether we need to postpone. if not, or no response within 24 hrs, we release 2.138.3
+18:44:04 <danielbeck> #action danielbeck to email ogondza
+18:44:14 <danielbeck> #topic next meeting
+18:44:30 <danielbeck> that would be Nov 21st
+18:44:44 <danielbeck> same earlier time, same channel
+18:44:49 <danielbeck> #endmeeting

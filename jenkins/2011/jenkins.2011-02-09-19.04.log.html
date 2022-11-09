@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:04:03</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:04:03</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:04:18</span><span class="nk"> &lt;abayer&gt;</span> Ok, we don't have a real agenda again. Sorry. We suck.
+<a name="l-4"></a><span class="tm">19:04:38</span><span class="nk"> &lt;mwalling&gt;</span> <span class="cmd">#info </span><span class="cmdline">we should really have an agenda :)</span>
+<a name="l-5"></a><span class="tm">19:04:46 </span><span class="nka">* mwalling</span> <span class="ac">runs</span>
+<a name="l-6"></a><span class="tm">19:04:49</span><span class="nk"> &lt;abayer&gt;</span> The only thing I really have to talk about here is the JIRA discussion on the mailing list.
+<a name="l-7"></a><span class="tm">19:04:53</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">mwalling:</span> No, you're right.
+<a name="l-8"></a><span class="tm">19:05:05</span><span class="nk"> &lt;abayer&gt;</span> <span class="topic">#topic </span><span class="topicline">JIRA - project reorganization and bug triage?</span>
+<a name="l-9"></a><span class="tm">19:05:42</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">So a while back, I pushed the idea of separating plugins from core in JIRA, so that we could actually use fix versions on core at the very least. This never got done, because I, well, never did it.</span>
+<a name="l-10"></a><span class="tm">19:05:59</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">The subject has come up again on the mailing list and seems to have a lot of support.</span>
+<a name="l-11"></a><span class="tm">19:06:13</span><span class="nk"> &lt;mwalling&gt;</span> i support that idea, contingent on jenkins-admin being able to support it
+<a name="l-12"></a><span class="tm">19:06:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> when you say separating, you mean into separate projects right?
+<a name="l-13"></a><span class="tm">19:06:34</span><span class="nk"> &lt;abayer&gt;</span> Yes.
+<a name="l-14"></a><span class="tm">19:06:38</span><span class="nk"> &lt;jieryn-w&gt;</span> core / plugins / infra   ?
+<a name="l-15"></a><span class="tm">19:06:46</span><span class="nk"> &lt;jieryn-w&gt;</span> or 1:1 plugin:jira proj  ?
+<a name="l-16"></a><span class="tm">19:06:46</span><span class="nk"> &lt;abayer&gt;</span> Something like that, yeah.
+<a name="l-17"></a><span class="tm">19:06:53</span><span class="nk"> &lt;abayer&gt;</span> Nooooo, that's insane and hard to pull off.
+<a name="l-18"></a><span class="tm">19:07:17</span><span class="nk"> &lt;rtyler&gt;</span> oh, I thought you mean "jabber plugin project" in JIRA
+<a name="l-19"></a><span class="tm">19:07:41</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">For starters, I think we're only talking about one project for Jenkins core, one project for Jenkins plugins, one project for Jenkins infrastructure. Eventually, a separate project for some individual plugins may make sense, but that's a *lot* of work to get going right off the bat.</span>
+<a name="l-20"></a><span class="tm">19:07:55</span><span class="nk"> &lt;jieryn-w&gt;</span> i think ideally we would have 1 for 1, but as stated, it'd be sadistic to make volunteers support that kind of infrastructure headache
+<a name="l-21"></a><span class="tm">19:08:17</span><span class="nk"> &lt;mwalling&gt;</span> can jira programaticly create projects?
+<a name="l-22"></a><span class="tm">19:08:20</span><span class="nk"> &lt;tom_huybrechts&gt;</span> how hard  is it to create a project in jira ? (just asking, have no idea)
+<a name="l-23"></a><span class="tm">19:08:39</span><span class="nk"> &lt;abayer&gt;</span> Yeah. We're going to need help getting core/plugins split (given my limited time right now due to actual work) - maintaining versions, etc for 300 projects would be a little hellish.
+<a name="l-24"></a><span class="tm">19:09:09</span><span class="nk"> &lt;jieryn-w&gt;</span> i think this is a good start, let's do this in phases
+<a name="l-25"></a><span class="tm">19:09:27</span><span class="nk"> &lt;rtyler&gt;</span> what if there's a concept of promotiong
+<a name="l-26"></a><span class="tm">19:09:27</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">tom_huybrechts:</span> Not very, but with a lot of projects, you clutter the UI, you have to either give admin access to each plugin developer so that they can create new versions or have the admins do that by hand, etc...
+<a name="l-27"></a><span class="tm">19:09:49</span><span class="nk"> &lt;rtyler&gt;</span> by default all plugins are components in the "plugins" project, if there's enough activity/demand, they can be promoted out
+<a name="l-28"></a><span class="tm">19:09:54</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> I kind of tend to think we should first split to core/plugin/infra, and then see hwo that works out.
+<a name="l-29"></a><span class="tm">19:10:05</span><span class="nk"> &lt;rtyler&gt;</span> some plugins receive very little attention, others receive boatloads
+<a name="l-30"></a><span class="tm">19:10:07</span><span class="nk"> &lt;abayer&gt;</span> And then see if we want to start promoting plugins, etc.
+<a name="l-31"></a><span class="tm">19:10:09</span><span class="nk"> &lt;redsolo&gt;</span> FYI, there is a CLI for jira that allows to automate the project creation
+<a name="l-32"></a><span class="tm">19:10:51</span><span class="nk"> &lt;tom_huybrechts&gt;</span> if we could do it just for those plugins developers that ask, and then delegate project admininstration to him...
+<a name="l-33"></a><span class="tm">19:10:59</span><span class="nk"> &lt;redsolo&gt;</span> but im happy to have one separate for core itself as well, as core is the one that needs a version nr
+<a name="l-34"></a><span class="tm">19:11:25</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Split into three projects to start (core, plugins, infra), see how that goes, and then review after a couple months to see if we want to start moving on plugins getting their own projects, etc.</span>
+<a name="l-35"></a><span class="tm">19:11:39</span><span class="nk"> &lt;rtyler&gt;</span> sounds good to me
+<a name="l-36"></a><span class="tm">19:11:43</span><span class="nk"> &lt;larrys&gt;</span> And don't forget SECURITY
+<a name="l-37"></a><span class="tm">19:11:52</span><span class="nk"> &lt;larrys&gt;</span> for sensitive reports.
+<a name="l-38"></a><span class="tm">19:11:58</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">larrys:</span> Good point. that one won't go away.
+<a name="l-39"></a><span class="tm">19:12:09</span><span class="nk"> &lt;jieryn-w&gt;</span> the other aspect to jira discussion is the resolved-&gt;closed debate
+<a name="l-40"></a><span class="tm">19:12:13</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">addendum - SECURITY project remains as is.</span>
+<a name="l-41"></a><span class="tm">19:12:33</span><span class="nk"> &lt;abayer&gt;</span> Does anyone have a problem with the three-way split to start proposal?
+<a name="l-42"></a><span class="tm">19:12:49</span><span class="nk"> &lt;abayer&gt;</span> Ok then.
+<a name="l-43"></a><span class="tm">19:13:15</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Three-way split of JENKINS into core/plugins/infra, to be coordinated with volunteer help 'cos we have limited time. =)</span>
+<a name="l-44"></a><span class="tm">19:13:25</span><span class="nk"> &lt;abayer&gt;</span> Now, yes, resolved-&gt;closed.
+<a name="l-45"></a><span class="tm">19:13:58</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">We have a verified status in JIRA. This is there basically just because java.net's Issuezilla setup had it, and so when I did the migration, I added verified so that we didn't have to mess with bug status.</span>
+<a name="l-46"></a><span class="tm">19:14:30</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">Verified is not really useful, and is in fact kind of confusing.</span>
+<a name="l-47"></a><span class="tm">19:14:49</span><span class="nk"> &lt;redsolo&gt;</span> Im for removing it, as verified = Closed in my eye... otherwise its yt another bug status that issues will stay in
+<a name="l-48"></a><span class="tm">19:14:50</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">That just makes the question of how to determine when a bug goes from resolved to closed even hairier.</span>
+<a name="l-49"></a><span class="tm">19:15:09</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">redsolo:</span> I tend to agree. It's superfluous for our workflow.
+<a name="l-50"></a><span class="tm">19:15:34</span><span class="nk"> &lt;jieryn-w&gt;</span> agree
+<a name="l-51"></a><span class="tm">19:15:40</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Move all bugs in Verified -&gt; Closed (automated process to do this) and nuke the Verified status.</span>
+<a name="l-52"></a><span class="tm">19:15:51</span><span class="nk"> &lt;mwalling&gt;</span> ,1
+<a name="l-53"></a><span class="tm">19:15:53 </span><span class="nka">* rtyler</span> <span class="ac">digs it</span>
+<a name="l-54"></a><span class="tm">19:15:54</span><span class="nk"> &lt;abayer&gt;</span> Any opposition?
+<a name="l-55"></a><span class="tm">19:16:03</span><span class="nk"> &lt;mwalling&gt;</span> ok, that was a +... stupid putty
+<a name="l-56"></a><span class="tm">19:16:15</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Kill Verified.</span>
+<a name="l-57"></a><span class="tm">19:16:21</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to kill verified.</span>
+<a name="l-58"></a><span class="tm">19:16:42</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer specifically to kill verified by next Monday.</span>
+<a name="l-59"></a><span class="tm">19:16:50</span><span class="nk"> &lt;abayer&gt;</span> (I need to put in deadlines on actions or I won't get around to them)
+<a name="l-60"></a><span class="tm">19:17:02</span><span class="nk"> &lt;banoss&gt;</span> night night
+<a name="l-61"></a><span class="tm">19:17:15</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-62"></a><span class="tm">19:17:15</span><span class="nk"> &lt;jieryn-w&gt;</span> ok, still need to address 'resolved' status
+<a name="l-63"></a><span class="tm">19:17:21</span><span class="nk"> &lt;abayer&gt;</span> indeed.
+<a name="l-64"></a><span class="tm">19:17:22</span><span class="nk"> &lt;jieryn-w&gt;</span> verified only has 26 jira in it
+<a name="l-65"></a><span class="tm">19:17:34</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">There's ambiguity as to how/when a bug goes from resolved-&gt;verified.</span>
+<a name="l-66"></a><span class="tm">19:17:41</span><span class="nk"> &lt;wolfs&gt;</span> What should/is be the actual workflow?
+<a name="l-67"></a><span class="tm">19:17:41</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">I am dumb.</span>
+<a name="l-68"></a><span class="tm">19:17:47</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">resolved-&gt;closed, info not idea.</span>
+<a name="l-69"></a><span class="tm">19:17:56</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">wolfs:</span> That's the question, I think.
+<a name="l-70"></a><span class="tm">19:18:15</span><span class="nk"> &lt;wolfs&gt;</span> Should there be a review step in Jira?
+<a name="l-71"></a><span class="tm">19:18:35</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">wolfs:</span> code review or end-user review?
+<a name="l-72"></a><span class="tm">19:18:46</span><span class="nk"> &lt;wolfs&gt;</span> Code Review I'd say
+<a name="l-73"></a><span class="tm">19:18:56</span><span class="nk"> &lt;abayer&gt;</span> Code review we want to get in place - that's a big TODO.
+<a name="l-74"></a><span class="tm">19:19:04</span><span class="nk"> &lt;jieryn-w&gt;</span> if kk ships code to address a jira, but the problem still happens - then it technically is a new problem because there's new code which is triggering it
+<a name="l-75"></a><span class="tm">19:19:07</span><span class="nk"> &lt;jieryn-w&gt;</span> so i think that warrants a new jira
+<a name="l-76"></a><span class="tm">19:19:08</span><span class="nk"> &lt;abayer&gt;</span> But that'd just be for core.
+<a name="l-77"></a><span class="tm">19:19:29</span><span class="nk"> &lt;jieryn-w&gt;</span> or at least, re-open old one ;; but once code is shipped to address it, and dev believes it should be fixed, then go to closed state
+<a name="l-78"></a><span class="tm">19:19:31</span><span class="nk"> &lt;mwalling&gt;</span> sounds like the has_patch trac flag that django uses
+<a name="l-79"></a><span class="tm">19:19:41</span><span class="nk"> &lt;larrys&gt;</span> We got into a situation where we worked on changing our internal jira structure, and we quickly evolved into a huge massively complex workflow that became too clerical since it had steps that did not apply to everything… We started using the Labels plugin to mark other things on the issues...
+<a name="l-80"></a><span class="tm">19:19:42</span><span class="nk"> &lt;redsolo&gt;</span> I think that is done before an issue is resolved
+<a name="l-81"></a><span class="tm">19:19:43</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">jieryn-w:</span> +1 on re-open rather than new issue.
+<a name="l-82"></a><span class="tm">19:20:13 </span><span class="nka">* jieryn-w</span> <span class="ac">nods</span>
+<a name="l-83"></a><span class="tm">19:20:24</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">A fairly simple workflow: when the developer fixes the bug (so far as they know), state goes to resolved. When the reporter verifies the bug is fixed, state goes to closed.</span>
+<a name="l-84"></a><span class="tm">19:20:29</span><span class="nk"> &lt;redsolo&gt;</span> <span class="hi">abayer:</span> agree, dont want to spam the JIRA and it easier to see the history in the issue (code commits, etc)
+<a name="l-85"></a><span class="tm">19:20:54</span><span class="nk"> &lt;jieryn-w&gt;</span> i think that is the ideal way, abayer, but not going to be practical
+<a name="l-86"></a><span class="tm">19:20:54</span><span class="nk"> &lt;mwalling&gt;</span> and if hte reporter goes AWOL?
+<a name="l-87"></a><span class="tm">19:20:58</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">If the reporter finds the bug is still there, state-&gt;reopen.</span>
+<a name="l-88"></a><span class="tm">19:21:03</span><span class="nk"> &lt;jieryn-w&gt;</span> we'll end up with boat loads of 'resolved', as we do now
+<a name="l-89"></a><span class="tm">19:21:15</span><span class="nk"> &lt;wolfs&gt;</span> <span class="hi">jieryn-w:</span> +1
+<a name="l-90"></a><span class="tm">19:21:38</span><span class="nk"> &lt;abayer&gt;</span> So what's your suggestion? I honestly don't know. =)
+<a name="l-91"></a><span class="tm">19:21:44</span><span class="nk"> &lt;jieryn-w&gt;</span> be optimistic towards the dev that if they think they fixed it, they probably did
+<a name="l-92"></a><span class="tm">19:21:50</span><span class="nk"> &lt;larrys&gt;</span> Our problem was we over engineered it way too early, and it became worse than the default
+<a name="l-93"></a><span class="tm">19:21:59</span><span class="nk"> &lt;redsolo&gt;</span> perhaps someone other than issue resolved can close it if it can be verified to be fixed
+<a name="l-94"></a><span class="tm">19:22:13</span><span class="nk"> &lt;aheritier&gt;</span> abayer : the original jira wkf is designed like you described open-&gt;(developer)-&gt;resolve-&gt;(reporter)-&gt;close
+<a name="l-95"></a><span class="tm">19:22:14</span><span class="nk"> &lt;tom_huybrechts&gt;</span> we use fixed='fix committed' and resolved='fix released', then user can verify which is the closed state
+<a name="l-96"></a><span class="tm">19:22:20 </span><span class="nka">* aheritier</span> <span class="ac">is eating in //, not easy to discuss</span>
+<a name="l-97"></a><span class="tm">19:22:26</span><span class="nk"> &lt;abayer&gt;</span> Maybe when code gets checked in, -&gt;resolved, when the code ships, -&gt;closed, if reviewer or others sees bug is still there, -&gt;reopen?
+<a name="l-98"></a><span class="tm">19:22:29</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">aheritier:</span> =)
+<a name="l-99"></a><span class="tm">19:22:31</span><span class="nk"> &lt;jieryn-w&gt;</span> so the work flow is the dev assigns problem to themself, commits code to fix it, uses a [CLOSES JIRA-####]
+<a name="l-100"></a><span class="tm">19:22:34</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">abayer:</span> +1 on that
+<a name="l-101"></a><span class="tm">19:22:34</span><span class="nk"> &lt;redsolo&gt;</span> <span class="hi">larrys:</span> JIRAs biggest problem, is that its 100% configurable, but that is also the beauty of it
+<a name="l-102"></a><span class="tm">19:22:44</span><span class="nk"> &lt;jieryn-w&gt;</span> <span class="hi">abayer:</span> that would be best
+<a name="l-103"></a><span class="tm">19:22:57</span><span class="nk"> &lt;jieryn-w&gt;</span> if the problem persists, original reporter re-opens
+<a name="l-104"></a><span class="tm">19:23:06</span><span class="nk"> &lt;redsolo&gt;</span> <span class="hi">abayer:</span> I like it. in between the reporter can close it if they are using a snapshot version
+<a name="l-105"></a><span class="tm">19:23:10</span><span class="nk"> &lt;abayer&gt;</span> That'd help with plugins that don't have fix versions too - makes it easier to see when a fix has actually gone out the door and is available via the update center.
+<a name="l-106"></a><span class="tm">19:23:20</span><span class="nk"> &lt;larrys&gt;</span> <span class="hi">redsolo:</span> Yup. Don't get me started on unneeded extra custom fields, especially ones that vary from issue type to issue type.
+<a name="l-107"></a><span class="tm">19:23:38 </span><span class="nka">* redsolo</span> <span class="ac">shrugs</span>
+<a name="l-108"></a><span class="tm">19:23:39</span><span class="nk"> &lt;freddy33&gt;</span> I don't think you can reopen closed issue?
+<a name="l-109"></a><span class="tm">19:23:48</span><span class="nk"> &lt;redsolo&gt;</span> yes I think you can
+<a name="l-110"></a><span class="tm">19:23:51</span><span class="nk"> &lt;aheritier&gt;</span> an intersting thing thing we could add in issues is a checkbox that the assigned can set to tell if it added a testcase to validate the fix
+<a name="l-111"></a><span class="tm">19:23:59</span><span class="nk"> &lt;larrys&gt;</span> <span class="hi">freddy33:</span> It depends on security configuration, which can be changed in the workflow.
+<a name="l-112"></a><span class="tm">19:24:06</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">When developer pushes code to fix the bug, state goes to resolved. When the code gets released, state goes to closed. If the bug persists, the state goes back to reopened.</span>
+<a name="l-113"></a><span class="tm">19:24:09</span><span class="nk"> &lt;hare_brain&gt;</span> If changelog entries have JIRA #'s associated, can we add automation to the release process to automatically move them from resolved to closed?
+<a name="l-114"></a><span class="tm">19:24:23</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to make sure our JIRA setup allows reopening closed bugs.</span>
+<a name="l-115"></a><span class="tm">19:24:40</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">hare_brain:</span> I should have mentioned that - that's implicit in my proposal. =)
+<a name="l-116"></a><span class="tm">19:25:09</span><span class="nk"> &lt;redsolo&gt;</span> <span class="hi">abayer:</span> it allows reopening issues today
+<a name="l-117"></a><span class="tm">19:25:34</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">addendum - [FIXED JENKINS-XYZ] in commit message will switch the state on build in ci.jenkins-ci.org to resolved, and will switch the state to closed on plugin release - will require tweaks to hpi plugin, but should be doable.</span>
+<a name="l-118"></a><span class="tm">19:25:57</span><span class="nk"> &lt;hare_brain&gt;</span> Why not for the core as well?
+<a name="l-119"></a><span class="tm">19:26:38</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">hare_brain:</span> Core wouldn't require changes to the hpi plugin - we could just add that to the changelog-related stuff.
+<a name="l-120"></a><span class="tm">19:27:16</span><span class="nk"> &lt;abayer&gt;</span> When it comes to automation, I'm more worried about making sure the plugin release process doesn't require additional steps than the core release process.
+<a name="l-121"></a><span class="tm">19:27:18</span><span class="nk"> &lt;mwalling&gt;</span> <span class="cmd">#idea </span><span class="cmdline">allow the [FIXED ... regex to also match [FIXES</span>
+<a name="l-122"></a><span class="tm">19:27:26</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-123"></a><span class="tm">19:28:27</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to modify the ci.jenkins-ci.org JIRA integration to look for [FIXES …] or [FIXED …].</span>
+<a name="l-124"></a><span class="tm">19:28:39</span><span class="nk"> &lt;hare_brain&gt;</span> It sounded like you were proposing automatically moving resolve-&gt;closed for plugin releases only. It should be done for core as well. Obviously different tooling involved.
+<a name="l-125"></a><span class="tm">19:28:48</span><span class="nk"> &lt;hare_brain&gt;</span> [FIX ...] ?
+<a name="l-126"></a><span class="tm">19:29:05</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">addendum - or [FIX …] But that's it!</span>
+<a name="l-127"></a><span class="tm">19:29:08</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-128"></a><span class="tm">19:29:09</span><span class="nk"> &lt;hare_brain&gt;</span> Localizations? ;)
+<a name="l-129"></a><span class="tm">19:29:16</span><span class="nk"> &lt;larrys&gt;</span> NIEN
+<a name="l-130"></a><span class="tm">19:29:21</span><span class="nk"> &lt;hare_brain&gt;</span> jk!
+<a name="l-131"></a><span class="tm">19:29:36</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">(clarification - auto resolved-&gt;closed to happen on core release as well)</span>
+<a name="l-132"></a><span class="tm">19:29:39</span><span class="nk"> &lt;abayer&gt;</span> Ok!
+<a name="l-133"></a><span class="tm">19:29:53</span><span class="nk"> &lt;abayer&gt;</span> So - are we all on board with that workflow?
+<a name="l-134"></a><span class="tm">19:30:19</span><span class="nk"> &lt;redsolo&gt;</span> yes, its a good start
+<a name="l-135"></a><span class="tm">19:31:11</span><span class="nk"> &lt;redsolo&gt;</span> There are currently 4345 resolved issues
+<a name="l-136"></a><span class="tm">19:32:06</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">The above idea on JIRA workflow going forward.</span>
+<a name="l-137"></a><span class="tm">19:32:14</span><span class="nk"> &lt;redsolo&gt;</span> 3161 ones were resolved for more than a year ago
+<a name="l-138"></a><span class="tm">19:32:31</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Mark all bugs in resolved state that entered resolved state at least 6 months ago as closed?</span>
+<a name="l-139"></a><span class="tm">19:32:38</span><span class="nk"> &lt;wolfs&gt;</span> +1
+<a name="l-140"></a><span class="tm">19:32:56</span><span class="nk"> &lt;aheritier&gt;</span> +1
+<a name="l-141"></a><span class="tm">19:33:01</span><span class="nk"> &lt;jieryn-w&gt;</span> +1
+<a name="l-142"></a><span class="tm">19:33:05</span><span class="nk"> &lt;mwalling&gt;</span> +1
+<a name="l-143"></a><span class="tm">19:33:08</span><span class="nk"> &lt;redsolo&gt;</span> or at least hasnt been updated for 6 months... ppl may discuss on the issue even after it has been closed
+<a name="l-144"></a><span class="tm">19:33:16</span><span class="nk"> &lt;redsolo&gt;</span> resolved that is
+<a name="l-145"></a><span class="tm">19:33:22</span><span class="nk"> &lt;fabrice31&gt;</span> +1
+<a name="l-146"></a><span class="tm">19:33:26</span><span class="nk"> &lt;kutzi&gt;</span> +1
+<a name="l-147"></a><span class="tm">19:33:33</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">redsolo:</span> I don't think closing the issue blocks comments.
+<a name="l-148"></a><span class="tm">19:33:43</span><span class="nk"> &lt;redsolo&gt;</span> true
+<a name="l-149"></a><span class="tm">19:33:55</span><span class="nk"> &lt;redsolo&gt;</span> +1
+<a name="l-150"></a><span class="tm">19:33:57</span><span class="nk"> &lt;aheritier&gt;</span> If someone think an issue isn't resolved he should reopen it
+<a name="l-151"></a><span class="tm">19:33:59</span><span class="nk"> &lt;fabrice31&gt;</span> closed ticket can be reopened ;)
+<a name="l-152"></a><span class="tm">19:34:09</span><span class="nk"> &lt;aheritier&gt;</span> no it doesn't block thus no problem
+<a name="l-153"></a><span class="tm">19:34:15</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">That thing I just said - closing all &gt;6 months resolved bugs.</span>
+<a name="l-154"></a><span class="tm">19:34:28</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to close all bugs resolved &gt;6 months ago.</span>
+<a name="l-155"></a><span class="tm">19:35:07</span><span class="nk"> &lt;abayer&gt;</span> And in a few months we'll revisit the open bugs.
+<a name="l-156"></a><span class="tm">19:35:40</span><span class="nk"> &lt;abayer&gt;</span> (resolved bugs - i.e., the ones from the last 6 months)
+<a name="l-157"></a><span class="tm">19:36:47</span><span class="nk"> &lt;redsolo&gt;</span> good thing is that you can resolve 1000 issues in bulk
+<a name="l-158"></a><span class="tm">19:36:47</span><span class="nk"> &lt;hsoj&gt;</span> fix my bug tia
+<a name="l-159"></a><span class="tm">19:37:04</span><span class="nk"> &lt;abayer&gt;</span> Alright, so that's the JIRA stuff. =)
+<a name="l-160"></a><span class="tm">19:37:23</span><span class="nk"> &lt;abayer&gt;</span> Anyone have anything else they'd like to discuss?
+<a name="l-161"></a><span class="tm">19:37:40</span><span class="nk"> &lt;jieryn-w&gt;</span> will we have another one of these in a week?
+<a name="l-162"></a><span class="tm">19:37:45</span><span class="nk"> &lt;tom_huybrechts&gt;</span> <span class="cmd">#idea </span><span class="cmdline">post these meetings on the website calendar</span>
+<a name="l-163"></a><span class="tm">19:38:06</span><span class="nk"> &lt;abayer&gt;</span> (sorry, work distracting me)
+<a name="l-164"></a><span class="tm">19:38:17</span><span class="nk"> &lt;redsolo&gt;</span> <span class="cmd">#idea </span><span class="cmdline">and a preliminary agenda attached to it</span>
+<a name="l-165"></a><span class="tm">19:38:41</span><span class="nk"> &lt;fabrice31&gt;</span> will there be a control to avoid duplicate issues ?
+<a name="l-166"></a><span class="tm">19:38:43</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">We just dropped the ball on the agenda again. =)</span>
+<a name="l-167"></a><span class="tm">19:38:45</span><span class="nk"> &lt;wolfs&gt;</span> What about putting the agenda on confluence to make it editable?
+<a name="l-168"></a><span class="tm">19:38:54</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to do better on agenda.</span>
+<a name="l-169"></a><span class="tm">19:40:01</span><span class="nk"> &lt;redsolo&gt;</span> <span class="hi">fabrice31:</span> there was someone mention a tool that could find duplicates... that sounded interesting
+<a name="l-170"></a><span class="tm">19:40:03</span><span class="nk"> &lt;mwalling&gt;</span> yeah, either confluence or something like google moderator... post agenda items to that
+<a name="l-171"></a><span class="tm">19:40:21</span><span class="nk"> &lt;abayer&gt;</span> Aaaand rtyler's AFK.
+<a name="l-172"></a><span class="tm">19:40:36</span><span class="nk"> &lt;larrys&gt;</span> since he's afk, assign all items to him them.
+<a name="l-173"></a><span class="tm">19:40:40</span><span class="nk"> &lt;abayer&gt;</span> hoorah!
+<a name="l-174"></a><span class="tm">19:40:47</span><span class="nk"> &lt;fabrice31&gt;</span> ok, thanks !
+<a name="l-175"></a><span class="tm">19:41:53</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Next meeting, 11am PST (7pm GMT, 8pm CET) next Wednesday (Feb 16)?</span>
+<a name="l-176"></a><span class="tm">19:42:02</span><span class="nk"> &lt;abayer&gt;</span> Does this time work for everyone?
+<a name="l-177"></a><span class="tm">19:42:06</span><span class="nk"> &lt;mwalling&gt;</span> +1
+<a name="l-178"></a><span class="tm">19:42:12</span><span class="nk"> &lt;hare_brain&gt;</span> One of the things we need to figure out amongst ourselves is what's in the scope of "governance." IMO, the JIRA discussion belongs to the community, and the governance board would only have stepped in if there was no consensus. Part of getting an agenda out is fixing the scope, so that our day jobs don't interfere.
+<a name="l-179"></a><span class="tm">19:42:19</span><span class="nk"> &lt;abayer&gt;</span> Oh, yeah, that too.
+<a name="l-180"></a><span class="tm">19:42:41</span><span class="nk"> &lt;abayer&gt;</span> I'm admittedly faking this as I go.
+<a name="l-181"></a><span class="tm">19:42:47</span><span class="nk"> &lt;hare_brain&gt;</span> So if there's no governance agenda, no meeting.
+<a name="l-182"></a><span class="tm">19:42:56</span><span class="nk"> &lt;hare_brain&gt;</span> At least, related to that topic.
+<a name="l-183"></a><span class="tm">19:43:07</span><span class="nk"> &lt;mwalling&gt;</span> hell, agenda items could be JIRA issues
+<a name="l-184"></a><span class="tm">19:43:18</span><span class="nk"> &lt;hare_brain&gt;</span> It seems like people like having a set time to meet in real time to discuss things like JIRA workflow.
+<a name="l-185"></a><span class="tm">19:43:20</span><span class="nk"> &lt;mwalling&gt;</span> -&gt; closed after meetings with resolutions
+<a name="l-186"></a><span class="tm">19:43:25</span><span class="nk"> &lt;larrys&gt;</span> they use jira issues at my job to group together for agenda items
+<a name="l-187"></a><span class="tm">19:43:36</span><span class="nk"> &lt;abayer&gt;</span> (sorry, AFK a few minutes to deal with a work thing)
+<a name="l-188"></a><span class="tm">19:44:22</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain</span>
+<a name="l-189"></a><span class="tm">19:44:22</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain
+<a name="l-190"></a><span class="tm">19:44:44</span><span class="nk"> &lt;redsolo&gt;</span> <span class="hi">fabrice31:</span> its named http://www.suggestimate.com/. dont know if it will give out a list of duplicated issues
+<a name="l-191"></a><span class="tm">19:46:39</span><span class="nk"> &lt;hare_brain&gt;</span> Are we done?
+<a name="l-192"></a><span class="tm">19:47:09</span><span class="nk"> &lt;tom_huybrechts&gt;</span> looks that way
+<a name="l-193"></a><span class="tm">19:47:34</span><span class="nk"> &lt;mwalling&gt;</span> motiuon to adjourn!
+<a name="l-194"></a><span class="tm">19:47:48</span><span class="nk"> &lt;jieryn-w&gt;</span> +1
+<a name="l-195"></a><span class="tm">19:47:51</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

@@ -1,0 +1,246 @@
+18:01:26 <kohsuke> #startmeeting
+18:01:26 <robobutler> Let the Jenkins meeting commence!
+18:01:36 <kohsuke> #chair hare_brain abayer rtyler
+18:01:36 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:02:06 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:02:19 <kohsuke> #topic Recap last meeting action items
+18:02:32 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-03-21-18.00.html
+18:02:49 <kohsuke> abayer: hare_brain: I still need your PGP public key
+18:03:02 <kohsuke> You have one, right?
+18:03:14 <abayer> Somewhere. Will find it.
+18:03:41 <kohsuke> Please, please, pretty please.
+18:03:51 <ndeloof> can you please recap the process to send iCLA ?
+18:03:59 <kohsuke> Yes
+18:04:25 <kohsuke> #info the most of the information for filing CLA is in here: https://github.com/jenkinsci/infra-cla/
+18:04:31 <hare_brain> I actually don't have one. I need to create one for myself.
+18:04:39 <hare_brain> (But dealing with some company drama today.)
+18:05:11 <kohsuke> #info The only error prone part is that Google Groups apparently have some size restriction about attachments
+18:05:21 <kohsuke> I got a number of reports from people who said their submissions were rejected
+18:05:53 <kohsuke> #info Another alternative is to submit your encrypted CLA as pull request as fredg did: https://github.com/jenkinsci/infra-cla/pull/1
+18:06:24 <ndeloof> geeks at work ;)
+18:06:57 <kohsuke> #info Also, I believe we'd like to collect ICLA even when your employer signs CCLA
+18:07:14 <kohsuke> I'm looking at ndeloof stephenc rcampbell and rtyler
+18:07:37 <kohsuke> and jorgenpt
+18:07:43 <ndeloof> I have it on my desktop, just have to prepare a pull-request
+18:07:53 <hare_brain> Why?
+18:08:03 <hare_brain> That could be confusing
+18:08:51 <kohsuke> OK, I'm happy to stand corrected, but I thought we won't know if the contribution comes from someone's company time or someone's personal time?
+18:09:29 <ndeloof> not sure about legals, for French folks everything you do even on spare time MAY be claimed by your company
+18:09:58 <hare_brain> Yeah, for folks where it can be distinguished like that, it's fine, but I don't think it can be a blanket policy.
+18:10:50 <ndeloof> I'd like to ensure we get CCLA for contributors, prior to ICLA, if possible
+18:10:54 <kohsuke> OK, so I guess we'll say something like "if you'd be contributing your own intellectual property as an individual, you should file ICLA, regardless of whether you'll be also contributing IP of your employer as an employee"
+18:11:06 <kohsuke> Is that accurate?
+18:11:25 <hare_brain> Yes, I think that's right.
+18:11:50 <ndeloof> I'm fine with that, as I'm not a lawyer ;)
+18:11:57 <kohsuke> I think the part I really care about is that ICLA and CCLA are independent. Your employer having CCLA in place doesn't automatically mean you don't need ICLA
+18:12:09 <hare_brain> That's correct.
+18:12:11 <ndeloof> right
+18:12:16 <kohsuke> OK, I'll add it to this readme markdown
+18:12:38 <hare_brain> Something along the lines of...
+18:12:51 <kohsuke> #action kohsuke to mail sticker batches to abayer and rtyler
+18:13:45 <kohsuke> And rtyler already posted http://jenkins-ci.org/content/announcing-jenkins-cia
+18:14:01 <hare_brain> "If you will be contributing IP of your employer to the project, you need to file a CCLA. If you will be contributing your own IP, you need to file an ICLA. Depending on where you work, your employer may own IP you develop on your personal time. Please verify with your employer to make sure you sign the correct form."
+18:14:22 <kohsuke> OK
+18:14:38 <kohsuke> I'll use that verbatim
+18:14:49 <kohsuke> I think that's it for the recap of actions
+18:15:05 <kohsuke> #topic Move plugin CI jobs to jenkins.ci.cloudbees.com
+18:15:39 <kohsuke> ndeloof: that's yours
+18:15:47 <ndeloof> jieryn asked for a FOSS account on cloudbees as an alternative to ci.jenkins-ci.org
+18:15:50 <ndeloof> https://jenkins.ci.cloudbees.com/
+18:16:08 <ndeloof> I've configured some jobs to mimic JoJ
+18:16:26 <ndeloof> it uses templates plugin (from cloudbees)
+18:16:28 <kohsuke> ah, nice. it's templated
+18:16:37 <ndeloof> so that plugin author only have to provide plugin ID
+18:17:03 <ndeloof> ie : create a new job with type "plugin" and provide "git" -> full maven job to poll github/jenkinsci/git-plugin
+18:17:07 <kohsuke> and it's also hooke up to github hook trigger
+18:17:27 <ndeloof> right, the template can be upgraded to include some new common config
+18:17:31 <ndeloof> and all jobs get updated
+18:17:43 <kohsuke> How do we add people to this instance?
+18:17:45 <ndeloof> same for libraries : provide repo ID + branch to monitor
+18:17:55 <kohsuke> Or maybe we'll just set them up from ircbot?
+18:18:07 <ndeloof> that's my plan
+18:18:16 <ndeloof> instance is publicly visible read-only
+18:18:20 <kohsuke> perhaps we can have a backend bot that auto-create them from *-plugin in github?
+18:18:40 <ndeloof> we can give access for those who have a cloudbees account (it's free, it don't hurt)
+18:18:53 <ndeloof> nice idea
+18:19:05 <ndeloof> I'll first look at including this on irc bot
+18:19:21 <ndeloof> when automation will be ok, we could make it even simpler
+18:19:22 <kohsuke> thanks
+18:19:35 <ndeloof> only one issue,
+18:19:57 <ndeloof> plugin have to follow the *-plugin convention
+18:20:19 <ndeloof> https://github.com/jenkinsci/seleniumhtmlreport don't
+18:20:26 <ndeloof> (the only one)
+18:20:46 <ndeloof> I also will look at a template for ruby-based plugins
+18:21:06 <ndeloof> (so that rtyler also gets notification mail)
+18:21:13 <kohsuke> thanks
+18:21:53 <kohsuke> abayer: anything you'd like to see before we offload plugin builds over to this?
+18:21:55 <rtyler> hehe
+18:22:13 <ndeloof> I've sent a mail to Marco Machmer to rename his repo, to conform to *-plugin convention
+18:22:13 <kohsuke> AFAICT it's already on per with ci.jenkins-ci.org plugin builds
+18:22:16 <ndeloof> no answer yet
+18:22:46 <kohsuke> if you don't hear from him we can just do it.
+18:23:11 <ndeloof> I also created jobs for core
+18:23:27 <ndeloof> we can use template as well if we want to monitor new branches
+18:23:33 <ndeloof> (as UI work for example)
+18:23:57 <ndeloof> by chance, DEV@Cloud takes ~ same time to build as JoJ
+18:24:06 <ndeloof> was not sure before trying ;)
+18:24:18 <kohsuke> let's see if it can tolerate -Dconcurrency=2
+18:24:30 <ndeloof> good point, will try that
+18:24:35 <kohsuke> just scheduled one
+18:24:53 <kohsuke> I have this plugin that lets us do pull request scout testing
+18:25:04 <kohsuke> I wonder if we can deploy it here? Is it hard to do one off plugin deployments?
+18:25:12 <ndeloof> so the proposal as a first step is to move plugin builds to cloudbees and create the required automation for new plugins -> jobs
+18:25:50 <kohsuke> +1
+18:26:07 <ndeloof> I don't think it would be an issue, will test it. Which plugin is it ?
+18:26:20 <kohsuke> I'll talk to you offline. It's not OSS.
+18:26:28 <asteve> i just locked myself out of jenkins while trying to create a dev group that could read; how can i return my permissions?
+18:26:29 <ndeloof> ;P
+18:26:48 <kohsuke> asteve: let's get to it after the project meeting that's currently in session
+18:26:49 <microm> how do I run a shell script as a post-build action?
+18:26:58 <jorgenpt> ndeloof: What are the limits of this instance? Are we worried we'll at some point overload it?
+18:27:06 <jorgenpt> ndeloof: There are, what, 400 plugins?
+18:27:28 <rtyler> closer to 500
+18:27:29 <ndeloof> this is a FOSS "special" account
+18:27:37 <rtyler> heh
+18:27:40 <ndeloof> you won't see the pricing on cloudbees doc :)
+18:27:51 <ndeloof> the build limit is amazon datacenter size
+18:28:00 <jorgenpt> Does that mean that it's up to cloudbees' discretion when they no longer want to throw resources at us?
+18:28:42 <kohsuke> I guess so. But that's true for most of what we get for free.
+18:28:43 <ndeloof> strictly speaking, you're right
+18:29:14 <ndeloof> anyway, from all jobs you can pick-up the config.xml (form URL) and build a new CI on another infra in few hours if needed
+18:29:26 <jorgenpt> Okay, I thought most the resources we had for free were given certain (known) bounds. :)
+18:29:35 <jorgenpt> Easier to plan when you know what kind of ceiling is in place.
+18:30:10 <rtyler> kohsuke: for the saucelabs account, john gave me some good "guidelines" for how much to use and when ;)
+18:30:17 <rtyler> perhaps CB could/should do something similar ;)
+18:30:23 <ndeloof> I can ask
+18:30:48 <ndeloof> I don't think I'll get a better response that just "go, go go"
+18:30:52 <jorgenpt> But great on CB for providing this resource, this is really nice. :)
+18:31:10 <kohsuke> https://jenkins.ci.cloudbees.com/builds says there's something wrong with seleniumhtmlreport
+18:31:23 <kohsuke> executed excessively freuqnetly
+18:31:41 <ndeloof> oh yes, I didn't disabled it
+18:32:01 <ndeloof> it's trying to poll seleniumhtmlreport-plugin repo that doesn't exist
+18:32:18 <kohsuke> ah
+18:32:25 <ndeloof> I have to enable the github hook
+18:32:33 <ndeloof> "polliong must die", don't you think ;)
+18:32:40 <kohsuke> exactly
+18:32:49 <kohsuke> Looks like you have it enabled to me, though
+18:33:27 <ndeloof> need jenkins-admin credentials on https://jenkins.ci.cloudbees.com/configure to create the hook
+18:33:47 <ndeloof> I configured my credentials, but I'm not admin on github/jenkinsci so can't register hooks
+18:33:54 <kohsuke> OK, let's take those details after the meeting then
+18:33:58 <ndeloof> right
+18:34:06 <kohsuke> You should use jenkins-admin GitHub user we use for this stuff
+18:34:21 <ndeloof> indeed
+18:34:28 <kohsuke> Anything that needs to be done before shelving plugin jobs on ci.jenkins-ci.org?
+18:34:40 <kohsuke> I want to get ack from abayer, too
+18:34:59 <Diverious> hey all
+18:35:05 <ndeloof> I can manage job creation on-demand until we get an bot automation
+18:35:22 <ndeloof> and just have to enable the adequate plugins to have irc notification, etc
+18:35:25 <Diverious> I have been having an issue with Jenkins for a while now and can't seem to scratch the surface on how to fix it
+18:35:26 <kohsuke> ndeloof: and we should add a bunch of us as users so that we can all do it, too
+18:35:30 <Diverious> I get this error
+18:35:31 <Diverious> SubversionRepositoryStatus doNotifyCommit, WARNING: No subversion jobs found…. I can't figure out how to fix this… because I obviously have subversion jobs - basically trying to do a post hook commit
+18:35:42 <kohsuke> Diverious: let's hold off on that until the current project meeting in session is over.
+18:35:51 <kohsuke> And let's move on to the next topic and abayer can ack later
+18:35:54 <Diverious> oh sorry
+18:36:05 <kohsuke> #topic ask for FOSS JProfiler licenses
+18:36:09 <ndeloof> right, just have to send me the email you used to create a cloudbees account,
+18:36:25 <kohsuke> #info http://www.ej-technologies.com/buy/jprofiler/openSource
+18:36:47 <kohsuke> We do have YourKit Java Profiler OSS license
+18:36:58 <ndeloof> right,
+18:37:07 <kohsuke> But sure, why not, let's get all the freebies!
+18:37:09 <ndeloof> just noticed codehaus offered both
+18:37:22 <ndeloof> maybe some of us are used with JProfiler (seems to be a nice tool as well)
+18:38:05 <kohsuke> ndeloof: would you like to fill this in and get it going?
+18:38:16 <kohsuke> looks like it's just a matter of filing a request
+18:38:40 <kohsuke> And I think we can consider this blessed unless someone has an issue with this
+18:39:00 <kohsuke> or if you want me to do it, I can do it, too
+18:39:01 <ndeloof> I think they also ask for sponsor logo
+18:39:25 <kohsuke> We've been putting them in https://wiki.jenkins-ci.org/display/JENKINS/Building+Jenkins
+18:39:49 <kohsuke> I think it satisfies their requirements
+18:39:55 <ndeloof> ok
+18:40:02 <kohsuke> argh, nofollow
+18:40:08 <ndeloof> I can request free license
+18:41:11 <kohsuke> hmm, on Wiki I don't think we have means to disable nofollow link
+18:41:27 <kohsuke> I guess I can write a macro or a plugin
+18:42:01 <ndeloof> Agreement on this ?
+18:42:09 <kohsuke> #action kohsuke to write a Confluence macro to have link to JProfiler
+18:42:10 <kohsuke> +1
+18:42:27 * kohsuke hopes others will +1 too
+18:42:29 <hare_brain> +1
+18:43:09 <kohsuke> #agreed we'll request an OSS license for JProfiler
+18:43:12 <ndeloof> #action ndeloof to ask for JProfiler licenses http://www.ej-technologies.com/buy/jprofiler/openSource
+18:43:30 <kohsuke> shall we move on to next topic?
+18:43:43 <kohsuke> #topic Migrate plugins to get rid of glassfish repo
+18:43:54 <ndeloof> imod around ?
+18:44:01 <kohsuke> And my +1 for this, too
+18:44:21 <kohsuke> the only thing I wasn't sure about is how to write a script to do this
+18:44:36 <ndeloof> I vonlunteer to do it
+18:45:01 <kohsuke> AIU, this basically involves in adding a <repository>/<pluginRepository> entry
+18:45:09 <kohsuke> and removing m.g.o-public if there's one already
+18:45:24 <kohsuke> you'll do it by hand? There are 400 of those
+18:45:31 <ndeloof> I planned on my TODO list to try repo SCM tool and create a manifest for all jenkins repos
+18:45:37 <ndeloof> this is time to do it
+18:45:40 <hare_brain> Can't you do that in the parent pom and just bump the version of the parent pom?
+18:45:48 <ndeloof> and then some funny scripting
+18:46:01 <kohsuke> hare_brain: parent POM has already fixed this, but bumping it means you now depend on newer Jenkins version
+18:46:02 <ndeloof> this is already set in plugin pom for recent releases
+18:46:15 <hare_brain> Ah, fair enough.
+18:46:16 <ndeloof> but many plugin use old jenkins/plugin pom as parent
+18:46:28 <kohsuke> ndeloof:  OK, great to hear that you got an idea to automate this
+18:46:51 <kohsuke> I saw a number of people already who tried to build a plugin and failed, so I'd love to see this resolved.
+18:47:01 <ndeloof> please note : on https://jenkins.ci.cloudbees.com I used a custom settings.xml to mirror m.g.o-public on repo.jenkins-ci.org
+18:47:19 <kohsuke> I think aheritier was also advocating for this, if I remember correctly.
+18:47:25 <ndeloof> indeed
+18:48:08 <kohsuke> Unfortunately today I don't think we have too many people here, so I suggest ndeloof to write an e-mail to the dev list about this and get a few +1s before starting this.
+18:48:19 <kohsuke> But here's my +1
+18:48:31 <ndeloof> ok
+18:49:17 <kohsuke> So that brings me to the last topic, next time, and today there's actually something I'd like to propose for that
+18:49:23 <kohsuke> Can we move on from this topic?
+18:49:38 <kohsuke> #topic next meeting time
+18:50:15 <kohsuke> We touched on this briefly the last time, about time zone being Asia unfriendly in the context of JUC Tokyo related stuff
+18:50:32 <kohsuke> So I asked those folks in Tokyo when they can make it
+18:50:42 <kohsuke> and I was asked to report back with ...
+18:51:17 <kohsuke> Friday night Pacific Time, Saturday noon-ish Tokyo time
+18:51:36 <rtyler> I'm lame, so that would probably work for me :P
+18:51:53 <kohsuke> This is just one off. I'm not suggesting that we move it permanently to a new time
+18:52:43 <kohsuke> The 2nd alternative for them is some other DoW, but noon-1pm Tokyo time
+18:53:02 <rtyler> a monday or tuesday night would work for me
+18:53:20 <kohsuke> ... the reason being that their company won't allow this kind of stuff on their work time.
+18:53:44 <kohsuke> But noon-1pm is a lunch break, so it can be made to work. For some.
+18:54:02 <ndeloof> 5am on my time, probably will not be online (until my baby wake me up)
+18:54:04 <kohsuke> Both time slot is totally unfriendly for Europe
+18:54:16 <rtyler> if that's a significant hurdle, why not make sure it's saturday or sunday for them
+18:54:33 <kohsuke> Yeah, so that's why I said Friday night PT is the 1st choice
+18:54:45 <rtyler> I'm okay with that
+18:54:58 <hare_brain> What time does that map to in the Pacific TZ? 8? 9?
+18:54:59 <kohsuke> I can do either, so I want to get the sense from others
+18:55:00 <rtyler> kohsuke: we could just use the 21st Amendment wifi and have a drink-up too ;)
+18:55:14 <kohsuke> If this is Friday night we can be somewhat flexible
+18:55:36 <kohsuke> It could be 5-10pm range in PT
+18:55:56 <kohsuke> I suspect they'd like us do it earlier so that we don't land in the middle of Saturday
+18:55:58 <hare_brain> 9 works better than 8, for me personally. But on the whole, Friday night is fine for me.
+18:56:00 <kohsuke> rtyler: that's awesome
+18:56:07 <kohsuke> abayer: ping
+18:56:09 <rtyler> after 7pm for me preferably, what with dinner and commute
+18:56:23 <rtyler> I suspect most others have the same kind of "requirements" :)
+18:56:38 <abayer> Urm…Friday's not great for me in general, but I can try to make 9pm.
+18:56:52 <rtyler> game night?
+18:56:53 <kohsuke> Yeah, OK, let's do 9pm for this once then
+18:57:31 <hare_brain> Two weeks from now?
+18:58:05 <kohsuke> That's 20th but  I don't know where I am that time
+18:58:13 <kohsuke> could be over Colorado or somewhere
+18:58:26 <hare_brain> Different Friday then?
+18:58:26 <kohsuke> Would 13th or 27th work?
+18:58:49 <hare_brain> Checking
+19:00:08 <hare_brain> Bah. My calendar keeper went idle.
+19:00:13 <hare_brain> I think the 13th is fine.
+19:00:44 <kohsuke> Great.
+19:01:05 <kohsuke> rtyler: abayer: ?
+19:01:13 <abayer> Tentative yes.
+19:01:36 <kohsuke> OK, then let's shoot for that.
+19:01:44 <kohsuke> Thanks for being accomodating
+19:01:53 <abayer> =)
+19:02:20 <rtyler> I'm down for whatever
+19:02:23 <kohsuke> #agreed next meeting is 13th Friday 9pm PST / 14th Sat 1pm Japan Time / 6am Sat Paris Time
+19:02:33 <kohsuke> and that's it
+19:02:44 <kohsuke> #endmeeting

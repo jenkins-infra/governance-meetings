@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:39</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain rtyler</span>
+<a name="l-4"></a><span class="tm">18:00:50</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:01:09</span><span class="nk"> &lt;hare_brain&gt;</span> Ha, I was wondering if you'd be here.
+<a name="l-6"></a><span class="tm">18:01:43</span><span class="nk"> &lt;kohsuke&gt;</span> I'm attending this from a European time zone today
+<a name="l-7"></a><span class="tm">18:01:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS 1.509.2</span>
+<a name="l-8"></a><span class="tm">18:01:56</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah, I figured. I don't even know what time it is where you are. :)
+<a name="l-9"></a><span class="tm">18:02:17</span><span class="nk"> &lt;rpetti&gt;</span> 7pm?
+<a name="l-10"></a><span class="tm">18:02:22</span><span class="nk"> &lt;kohsuke&gt;</span> 8pm here
+<a name="l-11"></a><span class="tm">18:03:04 </span><span class="nka">* kohsuke</span> <span class="ac">goes to see the backlog for 1.509.2 discussion</span>
+<a name="l-12"></a><span class="tm">18:03:19</span><span class="nk"> &lt;vjuranek&gt;</span> so, we intented to release LTS 1.509.X more often, as we expect more bugfixes
+<a name="l-13"></a><span class="tm">18:03:36</span><span class="nk"> &lt;vjuranek&gt;</span> and there was already a request for 1.509.2: http://groups.google.com/group/jenkinsci-dev/browse_thread/thread/a6020dcf937162f3#
+<a name="l-14"></a><span class="tm">18:03:57</span><span class="nk"> &lt;vjuranek&gt;</span> I backported all resolved lts-candidates today
+<a name="l-15"></a><span class="tm">18:04:04</span><span class="nk"> &lt;kohsuke&gt;</span> ah, that's quick
+<a name="l-16"></a><span class="tm">18:04:15</span><span class="nk"> &lt;vjuranek&gt;</span> just testing it
+<a name="l-17"></a><span class="tm">18:04:28</span><span class="nk"> &lt;vjuranek&gt;</span> so can we release 1.509.2 in week or two?
+<a name="l-18"></a><span class="tm">18:04:43</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, sure
+<a name="l-19"></a><span class="tm">18:04:48</span><span class="nk"> &lt;vjuranek&gt;</span> there were couple of issue fixed:
+<a name="l-20"></a><span class="tm">18:04:55</span><span class="nk"> &lt;vjuranek&gt;</span> I backported fixes for
+<a name="l-21"></a><span class="tm">18:04:57</span><span class="nk"> &lt;vjuranek&gt;</span> JENKINS-17402 - Failed to instantiate class hudson.plugins.copyartifact.CopyArtifact
+<a name="l-22"></a><span class="tm">18:04:59</span><span class="nk"> &lt;vjuranek&gt;</span> JENKINS-17508 - The 'Discard Old Builds' advanced option - removal of only artifacts - does not work for me after 1.503.
+<a name="l-23"></a><span class="tm">18:05:00</span><span class="nk"> &lt;vjuranek&gt;</span> JENKINS-17681 - LastSuccessful and LastStable symlinks are invalid under Windows
+<a name="l-24"></a><span class="tm">18:05:02</span><span class="nk"> &lt;vjuranek&gt;</span> JENKINS-17715 - Display Name is not shown
+<a name="l-25"></a><span class="tm">18:05:03</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17402:Failed to instantiate class hudson.plugins.copyartifact.CopyArtifact (Resolved) http://jenkins-ci.org/issue/17402
+<a name="l-26"></a><span class="tm">18:05:03</span><span class="nk"> &lt;vjuranek&gt;</span> JENKINS-17721 - StringIndexOutOfBoundsException in PackageResult.findCorrespondingResult
+<a name="l-27"></a><span class="tm">18:05:05</span><span class="nk"> &lt;vjuranek&gt;</span> JENKINS-17724 - /about no longer shows third-party licenses
+<a name="l-28"></a><span class="tm">18:05:06</span><span class="nk"> &lt;vjuranek&gt;</span> JENKINS-17728 - NPE from MatrixConfiguration.newBuild
+<a name="l-29"></a><span class="tm">18:05:08</span><span class="nk"> &lt;vjuranek&gt;</span> JENKINS-17775 - IllegalStateException from MavenProject.getParent can break MavenFingerprinter.recordParents
+<a name="l-30"></a><span class="tm">18:05:09</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17508:The 'Discard Old Builds' advanced option - removal of only artifacts - does not work for me after 1.503. (Resolved) http://jenkins-ci.org/issue/17508
+<a name="l-31"></a><span class="tm">18:05:13</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17681:LastSuccessful and LastStable symlinks are invalid under Windows (Resolved) http://jenkins-ci.org/issue/17681
+<a name="l-32"></a><span class="tm">18:05:18</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17715:Display Name is not shown (Resolved) http://jenkins-ci.org/issue/17715
+<a name="l-33"></a><span class="tm">18:05:23</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17721:StringIndexOutOfBoundsException in PackageResult.findCorrespondingResult (Resolved) http://jenkins-ci.org/issue/17721
+<a name="l-34"></a><span class="tm">18:05:27</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17724:/about no longer shows third-party licenses (Resolved) http://jenkins-ci.org/issue/17724
+<a name="l-35"></a><span class="tm">18:05:35</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17728:NPE from MatrixConfiguration.newBuild (Resolved) http://jenkins-ci.org/issue/17728
+<a name="l-36"></a><span class="tm">18:05:42</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17775:IllegalStateException from MavenProject.getParent can break MavenFingerprinter.recordParents (Resolved) http://jenkins-ci.org/issue/17775
+<a name="l-37"></a><span class="tm">18:06:17</span><span class="nk"> &lt;vjuranek&gt;</span> so, maybe we can skip usual procudure to ask on dev list for more candidates and eventually release 1.509.3 in 2 or 3 after 1.509.2 ?
+<a name="l-38"></a><span class="tm">18:07:14</span><span class="nk"> &lt;kohsuke&gt;</span> I think the only thing I'm concerned about is whether those bug fixes are soaked enough.
+<a name="l-39"></a><span class="tm">18:08:01</span><span class="nk"> &lt;kohsuke&gt;</span> But if they are, I think it's good that we are delivering bug fixes to LTS
+<a name="l-40"></a><span class="tm">18:08:42</span><span class="nk"> &lt;vjuranek&gt;</span> some of them are, some of them not, but I guess we wanted to do some kind of exception in case 1.509.x as more problems were expected and we want to fix it fast
+<a name="l-41"></a><span class="tm">18:09:21</span><span class="nk"> &lt;kohsuke&gt;</span> Yes. But some of the bugs you just cited doesn't seem like the fallout from lazy loading stuff?
+<a name="l-42"></a><span class="tm">18:10:13</span><span class="nk"> &lt;kohsuke&gt;</span> (and I thought 1.509.x problems were mainly around lazy loading related)
+<a name="l-43"></a><span class="tm">18:10:28</span><span class="nk"> &lt;vjuranek&gt;</span> no, I was about to backport all candidates, but not problem to backport just those which are 2 or more weeks old
+<a name="l-44"></a><span class="tm">18:11:21</span><span class="nk"> &lt;vjuranek&gt;</span> so, if I backport only fixes 2 weeks old, you are fine with 1.509.2, right?
+<a name="l-45"></a><span class="tm">18:11:32</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-46"></a><span class="tm">18:11:40</span><span class="nk"> &lt;vjuranek&gt;</span> ok, will do so
+<a name="l-47"></a><span class="tm">18:12:21</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we shoot for 1 week or 2 weeks?
+<a name="l-48"></a><span class="tm">18:13:25</span><span class="nk"> &lt;kohsuke&gt;</span> If you don't have a strong preference, let's shoot for 2 weeks
+<a name="l-49"></a><span class="tm">18:13:25</span><span class="nk"> &lt;vjuranek&gt;</span> well, I guess I can do the backports today or tomorow, so maybe 1 week is enough
+<a name="l-50"></a><span class="tm">18:13:37</span><span class="nk"> &lt;vjuranek&gt;</span> but no stong preference
+<a name="l-51"></a><span class="tm">18:13:43</span><span class="nk"> &lt;kohsuke&gt;</span> OK. I'll be away until Saturday
+<a name="l-52"></a><span class="tm">18:14:07</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's good to announce 1.509.2 RC and ask people to try it out
+<a name="l-53"></a><span class="tm">18:14:08</span><span class="nk"> &lt;vjuranek&gt;</span> so let's go with 2 week and if it's sooner, everybody will be happy:-)
+<a name="l-54"></a><span class="tm">18:14:18</span><span class="nk"> &lt;kohsuke&gt;</span> Sounds good
+<a name="l-55"></a><span class="tm">18:14:37</span><span class="nk"> &lt;kohsuke&gt;</span> I'll mention this to jglick
+<a name="l-56"></a><span class="tm">18:14:50</span><span class="nk"> &lt;vjuranek&gt;</span> great
+<a name="l-57"></a><span class="tm">18:15:11</span><span class="nk"> &lt;kohsuke&gt;</span> Thank you for being on top of this, vjuranek
+<a name="l-58"></a><span class="tm">18:15:24</span><span class="nk"> &lt;vjuranek&gt;</span> you are welcome
+<a name="l-59"></a><span class="tm">18:15:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Aiming 5/29 for 1.509.2 with some additional backports (but only with soaked ones)</span>
+<a name="l-60"></a><span class="tm">18:16:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to stage 1.509.2 RC by Monday</span>
+<a name="l-61"></a><span class="tm">18:16:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">recap of the previous meetings</span>
+<a name="l-62"></a><span class="tm">18:17:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke really needs to implement the election addition to https://jenkins-ci.org/account/</span>
+<a name="l-63"></a><span class="tm">18:17:25</span><span class="nk"> &lt;kohsuke&gt;</span> anything else?
+<a name="l-64"></a><span class="tm">18:17:56</span><span class="nk"> &lt;kohsuke&gt;</span> I guess not
+<a name="l-65"></a><span class="tm">18:18:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-66"></a><span class="tm">18:18:25</span><span class="nk"> &lt;kohsuke&gt;</span> Our regular cadence put it to 5/29 same time
+<a name="l-67"></a><span class="tm">18:18:34</span><span class="nk"> &lt;hare_brain&gt;</span> Yep
+<a name="l-68"></a><span class="tm">18:18:42</span><span class="nk"> &lt;vjuranek&gt;</span> +1
+<a name="l-69"></a><span class="tm">18:18:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

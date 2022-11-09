@@ -1,0 +1,332 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app217.us.archive.org';v.server_ms=9181;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-01-17-18.01.log.html","20211027214800","https://web.archive.org/","web","/_static/",
+	      "1635371280");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:28</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:30</span><span class="nk"> &lt;rtyler&gt;</span> wheee
+<a name="l-4"></a><span class="tm">18:01:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting items</span>
+<a name="l-5"></a><span class="tm">18:01:45</span><span class="nk"> &lt;rtyler&gt;</span> now, we didn't exactly have a last meeting because there wasn't much to do
+<a name="l-6"></a><span class="tm">18:02:01</span><span class="nk"> &lt;rtyler&gt;</span> so let's blaze through this
+<a name="l-7"></a><span class="tm">18:02:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-8"></a><span class="tm">18:02:39</span><span class="nk"> &lt;rtyler&gt;</span> I don't see ogondza around, perhaps you have an idea of what's going on here jglick / oleg-nenashev?
+<a name="l-9"></a><span class="tm">18:02:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nope
+<a name="l-10"></a><span class="tm">18:02:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> checking
+<a name="l-11"></a><span class="tm">18:03:02 </span><span class="nka">* rtyler</span> <span class="ac">hasn't been following LTS lately</span>
+<a name="l-12"></a><span class="tm">18:03:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/Nnkr_2Kfz7E</span>
+<a name="l-13"></a><span class="tm">18:03:31</span><span class="nk"> &lt;KatrinJFrog&gt;</span> Hello everyone :-)
+<a name="l-14"></a><span class="tm">18:03:40</span><span class="nk"> &lt;KatrinJFrog&gt;</span> Katrin from JFrog saying Hi
+<a name="l-15"></a><span class="tm">18:03:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> hi
+<a name="l-16"></a><span class="tm">18:03:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ogondza is here now
+<a name="l-17"></a><span class="tm">18:04:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> right on cue :)
+<a name="l-18"></a><span class="tm">18:04:34</span><span class="nk"> &lt;ogondza&gt;</span> sorry,  Istill m ytopic is still on
+<a name="l-19"></a><span class="tm">18:04:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> indeed
+<a name="l-20"></a><span class="tm">18:04:46</span><span class="nk"> &lt;ogondza&gt;</span> the testing looks good
+<a name="l-21"></a><span class="tm">18:04:55</span><span class="nk"> &lt;ogondza&gt;</span> no complains reported as well
+<a name="l-22"></a><span class="tm">18:05:16</span><span class="nk"> &lt;rtyler&gt;</span> which release would this be again?
+<a name="l-23"></a><span class="tm">18:05:19</span><span class="nk"> &lt;ogondza&gt;</span> I would say we are good for 2.89.3
+<a name="l-24"></a><span class="tm">18:05:22</span><span class="nk"> &lt;rtyler&gt;</span> aha
+<a name="l-25"></a><span class="tm">18:05:31</span><span class="nk"> &lt;rtyler&gt;</span> when do we discuss the next baseline?
+<a name="l-26"></a><span class="tm">18:05:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I was running the RC for a while before JEP-200, looks good
+<a name="l-27"></a><span class="tm">18:05:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> in 4 weeks IIUC
+<a name="l-28"></a><span class="tm">18:05:47</span><span class="nk"> &lt;samrocketman&gt;</span> Is this LTS release for JEP-200?
+<a name="l-29"></a><span class="tm">18:05:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">markewaite:</span> have you had any opportunities to bang on the RC?
+<a name="l-30"></a><span class="tm">18:06:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">samrocketman:</span> negative
+<a name="l-31"></a><span class="tm">18:06:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">samrocketman:</span> JEP-200 LTS ETA is March 14
+<a name="l-32"></a><span class="tm">18:06:15</span><span class="nk"> &lt;samrocketman&gt;</span> Ok good, bc I still need to test it with my plugins.
+<a name="l-33"></a><span class="tm">18:06:29</span><span class="nk"> &lt;samrocketman&gt;</span> Thanks oleg-nenashev rtyler
+<a name="l-34"></a><span class="tm">18:06:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yeah, I was going to ping you about ghprb ;)
+<a name="l-35"></a><span class="tm">18:06:45</span><span class="nk"> &lt;samrocketman&gt;</span> I comaintain ghprb
+<a name="l-36"></a><span class="tm">18:07:04</span><span class="nk"> &lt;rtyler&gt;</span> shall we move on to the next topic then?
+<a name="l-37"></a><span class="tm">18:07:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Seems so
+<a name="l-38"></a><span class="tm">18:07:12</span><span class="nk"> &lt;andresrc&gt;</span> +1
+<a name="l-39"></a><span class="tm">18:07:12</span><span class="nk"> &lt;samrocketman&gt;</span> I'll loop them in out of band.
+<a name="l-40"></a><span class="tm">18:07:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">agenda is here btw https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-January17thmeeting</span>
+<a name="l-41"></a><span class="tm">18:07:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">JEP-200 status update / Q&amp;A</span>
+<a name="l-42"></a><span class="tm">18:07:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Okay
+<a name="l-43"></a><span class="tm">18:07:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">we landed JEP-200 in 2.102</span>
+<a name="l-44"></a><span class="tm">18:07:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">It caused regressions, as expected: https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+fix+for+JEP-200</span>
+<a name="l-45"></a><span class="tm">18:08:03</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">kohsuke will push 2.89.3</span>
+<a name="l-46"></a><span class="tm">18:08:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> sorry, I should have waited before moving on
+<a name="l-47"></a><span class="tm">18:08:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So far everything is contained more or less, kudos to jglick, Slide-O-Mix, rsandell and many other folks
+<a name="l-48"></a><span class="tm">18:08:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/jep/tree/master/jep/200</span>
+<a name="l-49"></a><span class="tm">18:09:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But it's still a kind of crash-landing, so I am happy to answer questions and to note feedback if any
+<a name="l-50"></a><span class="tm">18:09:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Otherwise I would like to discuss out-of-order release
+<a name="l-51"></a><span class="tm">18:09:51</span><span class="nk"> &lt;markewaite&gt;</span> <span class="hi">rtyler:</span> sorry I missed the earlier question on LTS RC.  My testing of the RC was all good.  Switched to RC shortly after it was announced, ran until Friday when I installed JEP-200 pre-release
+<a name="l-52"></a><span class="tm">18:10:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">JEP-200 ETA in LTS is March 14 according to the current plans (if it gets accepted to LTS)</span>
+<a name="l-53"></a><span class="tm">18:10:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> will you also please #info a one-line explaination of what JEP-200 is
+<a name="l-54"></a><span class="tm">18:11:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">JEP-200 is switching of XStream/Remoting class filters from blacklist to whitelist</span>
+<a name="l-55"></a><span class="tm">18:12:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">So, if a class is not in a plugin/core/module, it will be rejected if not whitelisted. Common examples: Java internal classes, 3rd-party libraries (Guava &amp; Co)</span>
+<a name="l-56"></a><span class="tm">18:12:34</span><span class="nk"> &lt;rtyler&gt;</span> since there don't seem to be any questions thus far, what do you mean by out-of-order release?
+<a name="l-57"></a><span class="tm">18:13:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/jenkins/security/whitelisted-classes.txt got updated since 2.102. It could close some regressions in plugins not reported yet
+<a name="l-58"></a><span class="tm">18:14:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> This core whitelist was also our last resort for cases when we were unable to update plugins quickly before 2.102
+<a name="l-59"></a><span class="tm">18:14:14</span><span class="nk"> &lt;markewaite&gt;</span> <span class="hi">oleg-nenashev:</span> I've not seen a large outcry asking for an out-of-order release.  Have you seen many requests to include the updated whitelist in a new release?
+<a name="l-60"></a><span class="tm">18:14:35</span><span class="nk"> &lt;rtyler&gt;</span> I don't understand what "out-of-order" even means in the context of weekly releases
+<a name="l-61"></a><span class="tm">18:14:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> means "not on sunday" :)
+<a name="l-62"></a><span class="tm">18:14:59</span><span class="nk"> &lt;rtyler&gt;</span> why is that worth the tiem and effort at all?
+<a name="l-63"></a><span class="tm">18:15:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> "It could close some regressions in plugins not reported yet"
+<a name="l-64"></a><span class="tm">18:15:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> E.g.  "java.util.Collections$UnmodifiableMap" was not whitelisted so any plugin serializing it will fail with 2.102 🤷
+<a name="l-65"></a><span class="tm">18:15:49</span><span class="nk"> &lt;rtyler&gt;</span> some unknown list of possible issues, a few days ahead of a regularly scheduled weekly release?
+<a name="l-66"></a><span class="tm">18:16:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Since nobody asks for out-of-order &amp;&amp; jglick is silent,, I feel there is no strict need to do it so far
+<a name="l-67"></a><span class="tm">18:16:50</span><span class="nk"> &lt;rtyler&gt;</span> if this were potentially affecting an LTS, I would be more agreeable on the subject, but to me this seems like unnecessary release churn
+<a name="l-68"></a><span class="tm">18:17:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> you could perhaps ask kohsuke to release a little early since he might be on an international flight sunday :P
+<a name="l-69"></a><span class="tm">18:17:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Okay, so no weekly then. Once thing we definitely need is a release of GHPRB by samrocketman. It's getting hot
+<a name="l-70"></a><span class="tm">18:17:30</span><span class="nk"> &lt;samrocketman&gt;</span> I have a JEP-200 question but I can wait until after the meet to ask.
+<a name="l-71"></a><span class="tm">18:17:52</span><span class="nk"> &lt;rtyler&gt;</span> "getting hot" heh
+<a name="l-72"></a><span class="tm">18:18:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">We are NOT going to spin out-of-order weekly release for JEP-200</span>
+<a name="l-73"></a><span class="tm">18:18:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">samrocketman:</span> might as well ask, if it's requiring more discussion later we can punt to #jenkins post-meeting
+<a name="l-74"></a><span class="tm">18:18:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Well, it's probably the worst community rating in the core ever
+<a name="l-75"></a><span class="tm">18:18:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Or not
+<a name="l-76"></a><span class="tm">18:19:04</span><span class="nk"> &lt;rtyler&gt;</span> we've had weekly releases before that failed to even boot
+<a name="l-77"></a><span class="tm">18:19:09 </span><span class="nka">* rtyler</span> <span class="ac">chuckles</span>
+<a name="l-78"></a><span class="tm">18:19:22</span><span class="nk"> &lt;rtyler&gt;</span> but let's not have a "worst ever" competition :)
+<a name="l-79"></a><span class="tm">18:19:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have several open issues, the most hot ones are GHPRB and Artifactory from what I see
+<a name="l-80"></a><span class="tm">18:19:40</span><span class="nk"> &lt;samrocketman&gt;</span> Ok, so while I maintain plugins (e.g. merge PRs and release to repo.jenkins-ci.org); I'm not entirely comfortable _developing_.  I can do little patches here and there.  However, I'm not sure what needs to be done for fixing plugins for JEP-200.  Example: https://github.com/jenkinsci/ghprb-plugin/issues/618
+<a name="l-81"></a><span class="tm">18:19:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We also wait for several reviews/releases by maintainers
+<a name="l-82"></a><span class="tm">18:20:01</span><span class="nk"> &lt;samrocketman&gt;</span> <span class="hi">Question:</span> How do I go about surfacing this or asking for help from other people for a fix?
+<a name="l-83"></a><span class="tm">18:20:15</span><span class="nk"> &lt;samrocketman&gt;</span> I've noted in a comment things I've seen discussed ere.
+<a name="l-84"></a><span class="tm">18:20:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I thought there were some developer guidelines around JEP-200 somewhere
+<a name="l-85"></a><span class="tm">18:20:20</span><span class="nk"> &lt;samrocketman&gt;</span> s/ere/here/
+<a name="l-86"></a><span class="tm">18:20:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Developer guidelines: https://jenkins.io/blog/2018/01/13/jep-200/#for-plugin-developers</span>
+<a name="l-87"></a><span class="tm">18:20:59</span><span class="nk"> &lt;rtyler&gt;</span> great, thanks
+<a name="l-88"></a><span class="tm">18:21:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">samrocketman:</span> further questions about that, let's punt to #jenkins after the meeting
+<a name="l-89"></a><span class="tm">18:21:18</span><span class="nk"> &lt;samrocketman&gt;</span> Okay, sounds good.
+<a name="l-90"></a><span class="tm">18:21:20</span><span class="nk"> &lt;rtyler&gt;</span> any other questions/concerns about JEP-200 before we move on?
+<a name="l-91"></a><span class="tm">18:21:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">JEP-200 includes a "warranty period". A team is investigating all reported issues and trying to fix them if possible. So far the "team" is oleg-nenashev and jglick</span>
+<a name="l-92"></a><span class="tm">18:21:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">samrocketman:</span> E.g. https://jenkins.io/blog/2018/01/13/jep-200/#for-plugin-developers for ghprb
+<a name="l-93"></a><span class="tm">18:22:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> crap
+<a name="l-94"></a><span class="tm">18:22:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> https://github.com/jenkinsci/ghprb-plugin/pull/616
+<a name="l-95"></a><span class="tm">18:22:25</span><span class="nk"> &lt;samrocketman&gt;</span> I've noted that link in the GHPRB GitHub issue links for later review by my comaintainer and I.
+<a name="l-96"></a><span class="tm">18:22:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg-nenashev to send a post-mortem doc once the dust settles</span>
+<a name="l-97"></a><span class="tm">18:23:01</span><span class="nk"> &lt;samrocketman&gt;</span> I notice jglick has proposed a PR so I'll prioritize its review.
+<a name="l-98"></a><span class="tm">18:23:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I think it's important for developers and especially weekly users
+<a name="l-99"></a><span class="tm">18:23:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Nothing else from me
+<a name="l-100"></a><span class="tm">18:23:42</span><span class="nk"> &lt;rtyler&gt;</span> you're not off the hook just yet :)
+<a name="l-101"></a><span class="tm">18:23:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC 2018: Discussion - Do we want to kick-it off</span>
+<a name="l-102"></a><span class="tm">18:23:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Okay
+<a name="l-103"></a><span class="tm">18:24:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So this year we consider participating in GSoC
+<a name="l-104"></a><span class="tm">18:24:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">GSoC is the Google Summer of Code program</span>
+<a name="l-105"></a><span class="tm">18:25:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It's undetermined what "we" means in the sentence above, and that's why I added it to the agenda
+<a name="l-106"></a><span class="tm">18:25:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Call formentors: https://jenkins.io/blog/2018/01/06/gsoc2018-call-for-mentors/</span>
+<a name="l-107"></a><span class="tm">18:26:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I have started pinging people in mid December about GSoC Mentorship and project ideas
+<a name="l-108"></a><span class="tm">18:26:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The interest from active contributors and plugin maintainers is limited at best, but we got some proposals
+<a name="l-109"></a><span class="tm">18:26:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">https://docs.google.com/document/d/1q2p_XZEdbkcVDMpEPTtjPS15i2Oq3CQgH_geJjPhofY/edit#heading=h.iu2aqxlb7caw</span>
+<a name="l-110"></a><span class="tm">18:26:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> do you have any co-organizers signed up to help run the program, if we are an accepted project?
+<a name="l-111"></a><span class="tm">18:27:20</span><span class="nk"> &lt;samrocketman&gt;</span> <span class="hi">oleg-nenashev:</span> I commented in that PR I'll prioritize review and release ASAP.  Thanks!
+<a name="l-112"></a><span class="tm">18:27:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> I am sure I will find few co-organizers if we get accepted. It's not a problem at the current stage since we have the most of documents ready (from the prev years)
+<a name="l-113"></a><span class="tm">18:28:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The problem is that in the current state we will unlikely get accepted
+<a name="l-114"></a><span class="tm">18:28:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I will not have bandwidth to participate in any form this year, so I don't want anybody to have the expectation that I can help back stuff up
+<a name="l-115"></a><span class="tm">18:28:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I know
+<a name="l-116"></a><span class="tm">18:28:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And no complains at all
+<a name="l-117"></a><span class="tm">18:28:49</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-118"></a><span class="tm">18:29:06</span><span class="nk"> &lt;rtyler&gt;</span> based on the work you've done thus far, I don't see a *downside* to applying
+<a name="l-119"></a><span class="tm">18:29:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Application deadline: January 23</span>
+<a name="l-120"></a><span class="tm">18:29:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So we won't be able to reiterate it at FOSDEM like in 2016/17
+<a name="l-121"></a><span class="tm">18:30:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Just in case, does ANYBODY else consider participating as mentor? :)
+<a name="l-122"></a><span class="tm">18:30:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Applying this year should not hit us much if we fail again
+<a name="l-123"></a><span class="tm">18:31:11</span><span class="nk"> &lt;jglick&gt;</span> Sorry, just remembered the meeting was in progress. Nothing more to add from my side. I do not see a pressing need for an out-of-order release; all problems are fixable by (planned or actual) plugin updates.
+<a name="l-124"></a><span class="tm">18:31:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ty jglick
+<a name="l-125"></a><span class="tm">18:31:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> GSoC 5...
+<a name="l-126"></a><span class="tm">18:31:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 4
+<a name="l-127"></a><span class="tm">18:31:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 3
+<a name="l-128"></a><span class="tm">18:31:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2
+<a name="l-129"></a><span class="tm">18:31:48</span><span class="nk"> &lt;markewaite&gt;</span> I'm willing to consider being a mentor, if the mentoring could be limited to two plugins
+<a name="l-130"></a><span class="tm">18:31:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It could
+<a name="l-131"></a><span class="tm">18:32:05</span><span class="nk"> &lt;markewaite&gt;</span> Add me to the list
+<a name="l-132"></a><span class="tm">18:32:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Mentors generally propose their project ideas
+<a name="l-133"></a><span class="tm">18:32:32</span><span class="nk"> &lt;markewaite&gt;</span> will do.  Hadn't proposed idea yet.  Will put that in tomorrow.
+<a name="l-134"></a><span class="tm">18:32:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">markewaite:</span> So you can just drop your project idea in https://docs.google.com/document/d/1q2p_XZEdbkcVDMpEPTtjPS15i2Oq3CQgH_geJjPhofY/edit
+<a name="l-135"></a><span class="tm">18:32:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks!
+<a name="l-136"></a><span class="tm">18:32:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> At least I do not feel alone now :D
+<a name="l-137"></a><span class="tm">18:33:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> anything else to discuss regarding GSoC at this point?
+<a name="l-138"></a><span class="tm">18:33:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I think "no"
+<a name="l-139"></a><span class="tm">18:33:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">oleg-nenashev to prepare the docs and to apply to GSoC 2018</span>
+<a name="l-140"></a><span class="tm">18:33:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Request for mark usage, "JUC Paris" by JFrog</span>
+<a name="l-141"></a><span class="tm">18:33:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KatrinJFrog:</span> hi
+<a name="l-142"></a><span class="tm">18:33:58</span><span class="nk"> &lt;KatrinJFrog&gt;</span> Hello everyone :-)
+<a name="l-143"></a><span class="tm">18:34:02</span><span class="nk"> &lt;rtyler&gt;</span> this agenda item actually surprised me when I saw it
+<a name="l-144"></a><span class="tm">18:34:03</span><span class="nk"> &lt;alyssat_&gt;</span> hi Katrin
+<a name="l-145"></a><span class="tm">18:34:07</span><span class="nk"> &lt;alyssat_&gt;</span> welcome
+<a name="l-146"></a><span class="tm">18:34:07</span><span class="nk"> &lt;rtyler&gt;</span> there's been a JUC Paris before I though
+<a name="l-147"></a><span class="tm">18:34:22</span><span class="nk"> &lt;KatrinJFrog&gt;</span> yes, but last year it was called JCD
+<a name="l-148"></a><span class="tm">18:34:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, but it was before the Trademark Approval process
+<a name="l-149"></a><span class="tm">18:34:30</span><span class="nk"> &lt;rtyler&gt;</span> ah
+<a name="l-150"></a><span class="tm">18:34:41</span><span class="nk"> &lt;alyssat_&gt;</span> JUC Paris in the past did not go Trademark approval process
+<a name="l-151"></a><span class="tm">18:34:42</span><span class="nk"> &lt;rtyler&gt;</span> we're much more responsible these days :P
+<a name="l-152"></a><span class="tm">18:34:47</span><span class="nk"> &lt;KatrinJFrog&gt;</span> In order to have consistency and brand/community recognition, I would like to ask for the right to use the name Jenkins User Conference for both events please.
+<a name="l-153"></a><span class="tm">18:34:54</span><span class="nk"> &lt;alyssat_&gt;</span> we try to be ;)
+<a name="l-154"></a><span class="tm">18:34:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">our trademark guidelines can be found here: https://jenkins.io/project/governance/#trademark</span>
+<a name="l-155"></a><span class="tm">18:35:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KatrinJFrog:</span> I don't know what you mean by "both" events, the agenda item refers to a Jenkins User Conference Paris
+<a name="l-156"></a><span class="tm">18:35:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I see no problem with JUC Paris
+<a name="l-157"></a><span class="tm">18:35:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would have comments about JCD taking my prev year experience, but JUC is fine
+<a name="l-158"></a><span class="tm">18:35:45</span><span class="nk"> &lt;KatrinJFrog&gt;</span> We are running JUC Israel as well
+<a name="l-159"></a><span class="tm">18:35:58</span><span class="nk"> &lt;KatrinJFrog&gt;</span> JUC Paris should be June 28th and JUC Israel July 3rd
+<a name="l-160"></a><span class="tm">18:36:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KatrinJFrog:</span> are you requesting sublicense for both events in this meeting?
+<a name="l-161"></a><span class="tm">18:36:14</span><span class="nk"> &lt;KatrinJFrog&gt;</span> Kohsuke confirmed his attendance for both events already
+<a name="l-162"></a><span class="tm">18:36:26</span><span class="nk"> &lt;KatrinJFrog&gt;</span> and it would be great to have the same naming this year
+<a name="l-163"></a><span class="tm">18:36:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KatrinJFrog:</span> the Jenkins project is a bit larger than just kohsuke these days ;)
+<a name="l-164"></a><span class="tm">18:36:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KatrinJFrog:</span> can you explain what the events are about a little bit
+<a name="l-165"></a><span class="tm">18:37:01</span><span class="nk"> &lt;KatrinJFrog&gt;</span> well, the JUC Israel event is already running for 7 years
+<a name="l-166"></a><span class="tm">18:37:04 </span><span class="nka">* oleg-nenashev</span> <span class="ac">would be happy to see a "How we fixed JEP-200 in Artifactory Plugin" talk this year</span>
+<a name="l-167"></a><span class="tm">18:37:29</span><span class="nk"> &lt;KatrinJFrog&gt;</span> let's organise that! ;-)
+<a name="l-168"></a><span class="tm">18:37:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> heh
+<a name="l-169"></a><span class="tm">18:38:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">alyssat_:</span> CloudBees has no interest in handling JUC Paris anymore, right? If yes, there is no conflict between past events and this approval request
+<a name="l-170"></a><span class="tm">18:38:54</span><span class="nk"> &lt;KatrinJFrog&gt;</span> the event is bring the community together, we focus on non-commercial talks
+<a name="l-171"></a><span class="tm">18:39:25</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="hi">oleg-nenashev:</span> there's no issue from CloudBees on this front
+<a name="l-172"></a><span class="tm">18:39:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> then +1
+<a name="l-173"></a><span class="tm">18:39:37</span><span class="nk"> &lt;KatrinJFrog&gt;</span> so, what was agreed on is that JFrog is allowed t organise together with Cloudbees as sponsor the communuty events
+<a name="l-174"></a><span class="tm">18:40:07</span><span class="nk"> &lt;alyssat_&gt;</span> +1 from me as well
+<a name="l-175"></a><span class="tm">18:40:10</span><span class="nk"> &lt;KatrinJFrog&gt;</span> we always include your marketing in the decisions of course
+<a name="l-176"></a><span class="tm">18:40:16</span><span class="nk"> &lt;rtyler&gt;</span> I am +1 on a sublicense for Jenkins User Conference Paris and Jenkins User Conference Israel for JFrog, Inc.
+<a name="l-177"></a><span class="tm">18:40:33</span><span class="nk"> &lt;alyssat_&gt;</span> woot woot!
+<a name="l-178"></a><span class="tm">18:40:35</span><span class="nk"> &lt;KatrinJFrog&gt;</span> fantastic!
+<a name="l-179"></a><span class="tm">18:40:40</span><span class="nk"> &lt;KatrinJFrog&gt;</span> thank you guys!!
+<a name="l-180"></a><span class="tm">18:40:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KatrinJFrog:</span> we're not there yet
+<a name="l-181"></a><span class="tm">18:40:53</span><span class="nk"> &lt;KatrinJFrog&gt;</span> that will make the communication and promo much easier
+<a name="l-182"></a><span class="tm">18:40:54</span><span class="nk"> &lt;rtyler&gt;</span> any other concerns/questions?
+<a name="l-183"></a><span class="tm">18:40:59</span><span class="nk"> &lt;KatrinJFrog&gt;</span> oh sorry
+<a name="l-184"></a><span class="tm">18:41:08</span><span class="nk"> &lt;alyssat_&gt;</span> no concerns from me
+<a name="l-185"></a><span class="tm">18:41:15</span><span class="nk"> &lt;KatrinJFrog&gt;</span> too enthusiastic ;-)
+<a name="l-186"></a><span class="tm">18:41:30</span><span class="nk"> &lt;KatrinJFrog&gt;</span> we started the planning about the event, i am getting in the mood
+<a name="l-187"></a><span class="tm">18:42:24</span><span class="nk"> &lt;rtyler&gt;</span> I suppose trademark sublicenses are so perfunctory at this point that everybody but oleg-nenashev and I, tunes out
+<a name="l-188"></a><span class="tm">18:42:37</span><span class="nk"> &lt;alyssat_&gt;</span> LOL!
+<a name="l-189"></a><span class="tm">18:43:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Trademark sublicense granted to JFrog, Inc. for "Jenkins User Conference Paris" and "Jenkins User Conference Israel"</span>
+<a name="l-190"></a><span class="tm">18:43:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to update the approved trademark usage wiki page</span>
+<a name="l-191"></a><span class="tm">18:43:36</span><span class="nk"> &lt;KatrinJFrog&gt;</span> awesome :-) thank you everyone!
+<a name="l-192"></a><span class="tm">18:43:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KatrinJFrog:</span> this requires that JFrog, Inc. follow our trademark usage and attribution guidelines: https://jenkins.io/project/governance/#trademark
+<a name="l-193"></a><span class="tm">18:43:52</span><span class="nk"> &lt;rtyler&gt;</span> that's not optional
+<a name="l-194"></a><span class="tm">18:43:52</span><span class="nk"> &lt;alyssat_&gt;</span> thanks Katrin for joining us
+<a name="l-195"></a><span class="tm">18:44:03</span><span class="nk"> &lt;KatrinJFrog&gt;</span> yes, noted, np of course
+<a name="l-196"></a><span class="tm">18:44:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KatrinJFrog:</span> you are responsible for ensuring that your marketing team and others within JFrog are using the trademark correctly
+<a name="l-197"></a><span class="tm">18:44:15</span><span class="nk"> &lt;KatrinJFrog&gt;</span> i will involve Alyssa and the team in all
+<a name="l-198"></a><span class="tm">18:44:17</span><span class="nk"> &lt;alyssat_&gt;</span> i'll work w/ Katrin on trademark usage, as usual
+<a name="l-199"></a><span class="tm">18:44:21</span><span class="nk"> &lt;rtyler&gt;</span> okay great
+<a name="l-200"></a><span class="tm">18:44:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">alyssat_ to help JFrog understand our trademark guidelines :)</span>
+<a name="l-201"></a><span class="tm">18:44:33</span><span class="nk"> &lt;KatrinJFrog&gt;</span> sure!
+<a name="l-202"></a><span class="tm">18:44:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">KatrinJFrog:</span> please also contact aheritier who is one of our contributors, who also organizes DevoxxFr: https://twitter.com/aheritier/status/953676315802198016
+<a name="l-203"></a><span class="tm">18:45:18</span><span class="nk"> &lt;rtyler&gt;</span> he may have some great talks from speakers who were not able to fit into the DevoxxFr schedule
+<a name="l-204"></a><span class="tm">18:45:31</span><span class="nk"> &lt;KatrinJFrog&gt;</span> oh, yes, good idea, thanks
+<a name="l-205"></a><span class="tm">18:45:31</span><span class="nk"> &lt;rtyler&gt;</span> shall we move on?
+<a name="l-206"></a><span class="tm">18:45:35</span><span class="nk"> &lt;KatrinJFrog&gt;</span> we know Arnaud well
+<a name="l-207"></a><span class="tm">18:45:39</span><span class="nk"> &lt;KatrinJFrog&gt;</span> thanks all for having me and thanks for the license
+<a name="l-208"></a><span class="tm">18:45:48</span><span class="nk"> &lt;KatrinJFrog&gt;</span> have a good remaining dayévening!
+<a name="l-209"></a><span class="tm">18:45:51</span><span class="nk"> &lt;KatrinJFrog&gt;</span> bye
+<a name="l-210"></a><span class="tm">18:45:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">KatrinJFrog:</span> If there are restrictions by language and employer this year, I kindly ask to mention it in CFP this time
+<a name="l-211"></a><span class="tm">18:45:56</span><span class="nk"> &lt;alyssat_&gt;</span> by
+<a name="l-212"></a><span class="tm">18:45:57</span><span class="nk"> &lt;alyssat_&gt;</span> bye
+<a name="l-213"></a><span class="tm">18:45:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">FOSDEM planning update</span>
+<a name="l-214"></a><span class="tm">18:46:03</span><span class="nk"> &lt;rtyler&gt;</span> you're up alyssat_
+<a name="l-215"></a><span class="tm">18:46:06</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/FOSDEM+2018</span>
+<a name="l-216"></a><span class="tm">18:46:18</span><span class="nk"> &lt;alyssat_&gt;</span> Planning is in high gear as we are about 2 wks away from the actual event.
+<a name="l-217"></a><span class="tm">18:46:33</span><span class="nk"> &lt;alyssat_&gt;</span> We are still finalizing the agenda for Monday (5 Feb). I will be updating the meetup page this wk or next wk as we nail down the agenda.
+<a name="l-218"></a><span class="tm">18:47:00</span><span class="nk"> &lt;alyssat_&gt;</span> If you haven't RSVP'd and are planning to attend FOSDEM and Jenkins events pls RSVP so we can get as accurate head count as possible for planning purposes.
+<a name="l-219"></a><span class="tm">18:47:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> can you go over the specific events we have planned on the meetup page?
+<a name="l-220"></a><span class="tm">18:47:43</span><span class="nk"> &lt;alyssat_&gt;</span> yup.
+<a name="l-221"></a><span class="tm">18:48:22</span><span class="nk"> &lt;alyssat_&gt;</span> so on Friday we've reserved a meeting room at BeCentral for contributors to come hang out, work together. no agenda really
+<a name="l-222"></a><span class="tm">18:48:55</span><span class="nk"> &lt;alyssat_&gt;</span> then in the evening is the beer gathering (just like previous yrs)
+<a name="l-223"></a><span class="tm">18:49:20</span><span class="nk"> &lt;alyssat_&gt;</span> FOSDEM is on Sat and Sun.
+<a name="l-224"></a><span class="tm">18:49:52</span><span class="nk"> &lt;alyssat_&gt;</span> on Monday we are planning a hackfest..all day..the agenda for that is forth coming.
+<a name="l-225"></a><span class="tm">18:50:09</span><span class="nk"> &lt;rtyler&gt;</span> Saturday I'm running the Testing and Automation devroom \o/
+<a name="l-226"></a><span class="tm">18:50:15</span><span class="nk"> &lt;rtyler&gt;</span> because I'm an idiot
+<a name="l-227"></a><span class="tm">18:50:19</span><span class="nk"> &lt;rtyler&gt;</span> but you all knew that
+<a name="l-228"></a><span class="tm">18:50:20</span><span class="nk"> &lt;alyssat_&gt;</span> Monday's hackfest will take place at BeCentral as well
+<a name="l-229"></a><span class="tm">18:50:53</span><span class="nk"> &lt;rtyler&gt;</span> w00t, do you need anything from this group for these events?
+<a name="l-230"></a><span class="tm">18:51:07</span><span class="nk"> &lt;rtyler&gt;</span> \/win3
+<a name="l-231"></a><span class="tm">18:51:08</span><span class="nk"> &lt;alyssat_&gt;</span> just RSVP if you haven't
+<a name="l-232"></a><span class="tm">18:51:09</span><span class="nk"> &lt;rtyler&gt;</span> derp
+<a name="l-233"></a><span class="tm">18:51:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">please RSVP to the FOSDEM related events as soon as possible: https://www.meetup.com/jenkinsmeetup/</span>
+<a name="l-234"></a><span class="tm">18:51:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any plans regarding demos at FOSDEM table?
+<a name="l-235"></a><span class="tm">18:52:40</span><span class="nk"> &lt;alyssat_&gt;</span> good question. that's on my todo list but right now no specific plan.
+<a name="l-236"></a><span class="tm">18:52:52</span><span class="nk"> &lt;alyssat_&gt;</span> do you have a demo you'd like to show?
+<a name="l-237"></a><span class="tm">18:53:10</span><span class="nk"> &lt;rtyler&gt;</span> perhaps you all can coordinate something outside of the meeting for that
+<a name="l-238"></a><span class="tm">18:53:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> what table materials will we have?
+<a name="l-239"></a><span class="tm">18:53:39</span><span class="nk"> &lt;alyssat_&gt;</span> we will have post card on Pipeline and JAMs.
+<a name="l-240"></a><span class="tm">18:53:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg-nenashev to add Demos section to the Wiki page</span>
+<a name="l-241"></a><span class="tm">18:53:47</span><span class="nk"> &lt;rtyler&gt;</span> and/or are there things contributors should bring, besides their smiling faces and laptops
+<a name="l-242"></a><span class="tm">18:53:59</span><span class="nk"> &lt;alyssat_&gt;</span> and post card for Jenkins World
+<a name="l-243"></a><span class="tm">18:54:29</span><span class="nk"> &lt;alyssat_&gt;</span> wear your Jenkins t-shirt
+<a name="l-244"></a><span class="tm">18:54:54</span><span class="nk"> &lt;alyssat_&gt;</span> there'll be lots of Jenkins stickers
+<a name="l-245"></a><span class="tm">18:54:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Jenkins contributors at FOSDEM, please bring and wear your squad t-shirts :P</span>
+<a name="l-246"></a><span class="tm">18:55:03</span><span class="nk"> &lt;alyssat_&gt;</span> we're selling t-shirts and caps
+<a name="l-247"></a><span class="tm">18:55:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Only 50 T-shorts?
+<a name="l-248"></a><span class="tm">18:55:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> They will last for 2 hrs at max, I'd guess
+<a name="l-249"></a><span class="tm">18:55:40</span><span class="nk"> &lt;alyssat_&gt;</span> i can only take that much w me
+<a name="l-250"></a><span class="tm">18:55:52</span><span class="nk"> &lt;rtyler&gt;</span> that's fine, thanks alyssat_ :)
+<a name="l-251"></a><span class="tm">18:55:53</span><span class="nk"> &lt;alyssat_&gt;</span> and we don't have space at the exhibit space
+<a name="l-252"></a><span class="tm">18:55:59 </span><span class="nka">* rtyler</span> <span class="ac">needs to get a new cap</span>
+<a name="l-253"></a><span class="tm">18:56:05</span><span class="nk"> &lt;rtyler&gt;</span> a friend at Microsoft stole mine
+<a name="l-254"></a><span class="tm">18:56:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I can bring T-shorts from my stock if it helps (and if you approve that)
+<a name="l-255"></a><span class="tm">18:56:26</span><span class="nk"> &lt;alyssat_&gt;</span> sure.
+<a name="l-256"></a><span class="tm">18:56:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> anything else to update?
+<a name="l-257"></a><span class="tm">18:56:43</span><span class="nk"> &lt;alyssat_&gt;</span> not on FOSDEM
+<a name="l-258"></a><span class="tm">18:56:43</span><span class="nk"> &lt;markewaite&gt;</span> I can bring T-shirts as well, if that helps (in luggage)
+<a name="l-259"></a><span class="tm">18:56:54</span><span class="nk"> &lt;alyssat_&gt;</span> but can i plug about Jenkins World CFP?
+<a name="l-260"></a><span class="tm">18:57:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> this is not the time/place for that
+<a name="l-261"></a><span class="tm">18:57:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg-nenashev and markewaite to bring as much T-shorts as he can</span>
+<a name="l-262"></a><span class="tm">18:57:06</span><span class="nk"> &lt;rtyler&gt;</span> the blog is however
+<a name="l-263"></a><span class="tm">18:57:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> *they
+<a name="l-264"></a><span class="tm">18:57:16</span><span class="nk"> &lt;rtyler&gt;</span> please bring t-shirts instead of t-shorts
+<a name="l-265"></a><span class="tm">18:57:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ...
+<a name="l-266"></a><span class="tm">18:57:24</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="hi">rtyler:</span> ok
+<a name="l-267"></a><span class="tm">18:57:31 </span><span class="nka">* oleg-nenashev</span> <span class="ac">facepalms</span>
+<a name="l-268"></a><span class="tm">18:57:43</span><span class="nk"> &lt;rtyler&gt;</span> thanks alyssat_
+<a name="l-269"></a><span class="tm">18:57:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-270"></a><span class="tm">18:57:48</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="hi">markewaite:</span> thank you for the offer
+<a name="l-271"></a><span class="tm">18:58:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the next meeting will be at 18:00 UTC ON January 31st</span>
+<a name="l-272"></a><span class="tm">18:58:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 21:48:00 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:04:54 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 8853.231
+  exclusion.robots: 0.093
+  exclusion.robots.policy: 0.086
+  cdx.remote: 0.069
+  esindex: 0.009
+  LoadShardBlock: 72.531 (3)
+  PetaboxLoader3.datanode: 189.183 (4)
+  CDXLines.iter: 16.489 (3)
+  load_resource: 311.74
+  PetaboxLoader3.resolve: 157.261
+-->

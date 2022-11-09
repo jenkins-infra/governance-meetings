@@ -1,0 +1,221 @@
+19:01:34 <kohsuke_> #startmeeting
+19:01:34 <robobutler> Let the Jenkins meeting commence!
+19:01:55 <kohsuke_> #chair hare_brain  abayer rtyler
+19:01:55 <robobutler> Current chairs: abayer hare_brain kohsuke_ rtyler
+19:02:07 <kohsuke_> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:02:17 <kohsuke_> #topic JUC post-mortem
+19:02:29 <kohsuke_> I feel like it's been a while
+19:02:47 <alyssa_> it sure feels like it
+19:02:48 <hare_brain> It has.
+19:03:05 <kohsuke_> But in this topic alyssa_  and I wanted to go over feedbacks from JUC bay area
+19:03:17 <kohsuke_> and get some thoughts jot down for what to change in this year
+19:03:25 <danielbeck> tfennelly FYI JENKINS-26298 in case you didn't see it
+19:03:27 <jenkins-admin> JENKINS-26298:Console output does not scroll anymore (Open) https://issues.jenkins-ci.org/browse/JENKINS-26298
+19:03:39 <danielbeck> oops, sorry, didn't see the meeting
+19:03:46 <kohsuke_> alyssa_: do you have the hyperlink to the result?
+19:04:15 <tfennelly> danielbeck: I saw that Daniel, thanks... kinda working on a fix (in between other stuff)
+19:04:23 <tfennelly> danielbeck: pain in the ass
+19:04:26 <alyssa_> we didn't get many survey takers but those who provided feedback was valuable for us to make improvements
+19:04:29 <tfennelly> danielbeck: thanks for flagging it to me
+19:04:53 <alyssa_> hold on let me get it
+19:05:42 <alyssa_> https://docs.google.com/a/cloudbees.com/forms/d/1tRerFOUu4tOFG1KjmYENVZuXdLAc6r79Wl-qh36K5Bc/viewanalytics
+19:05:50 <alyssa_> can everyone see this?
+19:06:07 <kohsuke_> Looks like it needs authentication
+19:06:36 <hare_brain> And I seem to have forgotten my password. :/
+19:07:20 <alyssa_> how about this https://docs.google.com/a/cloudbees.com/forms/d/1tRerFOUu4tOFG1KjmYENVZuXdLAc6r79Wl-qh36K5Bc/edit#
+19:08:17 <kohsuke_> I uploaded it to http://kohsuke.org/jucsf-feedback.pdf
+19:09:07 <kohsuke_> Just going through from the top...
+19:09:11 <hare_brain> I can see it from Alyssa’s link.
+19:09:49 <kohsuke_> I only see the form in that link from alyssa_ but not the result page
+19:09:59 <kohsuke_> My PDF should be world readable
+19:10:28 <kohsuke_> "Which talk did you like the most, and why?"
+19:10:46 <kohsuke_> People listing lots of different ones and I'm not sure what the lesson should be here
+19:11:15 <kohsuke_> "Which talk did you not like the most, and why?"
+19:11:55 <alyssa_> perhaps we can give synopsis of the result ?
+19:12:10 <kohsuke_> sure alyssa_ , why don't you take it
+19:12:20 <alyssa_> JUC post-mortem Drunk on the code needs some improvements. People love the idea KK: it’d take too much prep work for Christou to do a proper “training”. Maybe position this more as a chaotic peer-to-peer mentoring activities ala “ask the experts”  Explicitly show the target audience level for talks: advanced, introductory, … Vet speakers on their presentation ability a bit more -> by asking more questions during the sub
+19:13:18 <alyssa_> sorry. this would looked nicer w/ bullet points
+19:13:22 <hare_brain> The other thing I had mentioned to Alyssa during JUC is for those of us that reviewed the talk submissions, we should go over how we ranked the talks, and compare it to how the talks were received.
+19:13:52 <pythys> Hi everyone! After an upgrade of jenkins (I think from 1.515 to 1.595) the builds are significantly slower (double time on everything). Is this normal? Do newer versions require more hardware resources?
+19:14:16 <kohsuke_> Yeah, it's useful to compare how I rated the talk vs how people rated the talk
+19:14:33 <alyssa_> I can make notes on the spreadsheet as well w/ feedback from the survey
+19:15:03 <kohsuke_> Looking at why people didn't like talks, it seems predominantly about the preparation and delivery
+19:15:34 <alyssa_> ok. i will send out reminder email for post mortem review of the sessions from voters
+19:15:36 <kohsuke_> ... as opposed to "this talk wasn't relevant"
+19:16:08 <kohsuke_> Nah, I guess people just didn't go to talks that are irrelevant, so they have no reasons to dislike them
+19:16:14 <hare_brain> Maybe that’s something we should ask on submission forms in the future: How much experience have you had with public speaking?
+19:16:38 <alyssa_> KK do mean perhaps we'd want more experienced speakers?
+19:17:16 <kohsuke_> hare_brain: +1. Checking more on whether they are good speakers,
+19:17:47 <kohsuke_> "What kind of talk did you want to hear that you did not hear?"
+19:17:55 <hare_brain> This might be going too far, but asking for a draft of their presentation before the conference, so we can get a sense of what it’s going to be like?
+19:18:10 <hare_brain> To sort of sanity check that the presentation is what we expected when we reviewed their submission?
+19:18:36 <alyssa_> we did this but the issue was no one has the bandwidth to check
+19:18:36 <kohsuke_> JavaOne certainly does that
+19:19:16 <hare_brain> Yeah, that’s why I said it might be going too far.
+19:19:18 <kohsuke_> I think hare_brain is thinking more about asking that at the time of submission
+19:19:25 <alyssa_> those on the OC does receive a few pptx from speakers prior to event.
+19:19:54 <hare_brain> I didn’t have a particular time in mind, other than “far enough ahead of the conference for the presenter to make changes”
+19:20:07 <hare_brain> Or for the OC to swap talks.
+19:20:09 <alyssa_> we do ask for it during the acceptance process
+19:21:03 <kohsuke_> Shall we move on to the next "What kind of talk did you want to hear that you did not hear?" question?
+19:21:18 <hare_brain> With respect to that, the answers seem to be all over the map.
+19:21:21 <alyssa_> sure
+19:21:30 <kohsuke_> I see more people asking for details and best practices
+19:21:39 <hare_brain> But I think that we can use it to suggest themes for topics for this year’s submissions.
+19:21:57 <kohsuke_> A couple of comments about more basic introductory stuff
+19:22:08 <danielbeck> pythys Meeting ongoing, please wait a bit. Should be finished in half an hour or so.
+19:22:43 <kohsuke_> More comment about plugin dev room
+19:22:47 <pythys> danielbeck: thank you
+19:22:55 <kohsuke_> I think that plugin dev room was a victim of its success
+19:23:18 <kohsuke_> Between that and the success of "ask the experts", I feel like that part of the event could be beefed up
+19:23:22 <alyssa_> from this we will have perhaps 3 levels: Intro, Interm, adv
+19:24:10 <hare_brain> Was there feedback about ask the experts? I didn’t see any.
+19:24:13 <kohsuke_> alyssa_: right, that subject familiarity indicator would be useful
+19:24:33 <kohsuke_> hare_brain: not in this form indeed, but I felt it was very lively
+19:24:48 <alyssa_> i don't think so but we saw how successful that was at the event
+19:25:06 <hare_brain> Do we need more experts next time?
+19:25:49 <kohsuke_> If we can get more, sure
+19:25:58 <kohsuke_> But I liked the earlier part of that where we had a whole room
+19:26:06 <alyssa_> i liked the numbers we had this time but could welcome more :)
+19:26:16 <kohsuke_> There was no "the expert side of the table" vs "the attendd side of the table" distinction
+19:26:37 <kohsuke_> It's more of a room full of good conversations
+19:26:50 <hare_brain> Yeah.
+19:27:07 <kohsuke_> Maybe it was just a matter of having more space
+19:27:18 <alyssa_> I was at AWS and their Ask the Experts was not as crowded as ours :)
+19:27:48 <alyssa_> will def have more space next time
+19:28:06 <hare_brain> I think the key thing I realized about our Ask the Experts was to plan for multiple conversations in parallel. It was really hard for me to hold my conversation, sometimes, because of another conversation close by.
+19:28:22 <autojack> hi, just joining...
+19:28:36 <kohsuke_> would more space help?
+19:28:46 <kohsuke_> I'd think it helps keep distances between two conversations
+19:28:47 <hare_brain> Yes!
+19:28:50 <alyssa_> would spreading out help ?
+19:29:09 <kohsuke_> The reason I keep bringing "plugin dev room" in this same conversation is because I think it shouldn't feel like a teacher-led training and more like the ask-the-experts conversations
+19:29:40 <hare_brain> I think that makes sense.
+19:29:57 <kohsuke_> It could be people bringing out their computers around a round table as a conversation just like we'd bring out papers & pencils
+19:30:16 <kohsuke_> That way Steven wouldn't have to feel like he needs to address the whole audience and keep them hurded
+19:30:23 <hare_brain> Wifi probably needs to be better for that.
+19:30:29 <hare_brain> The hotel wifi *was* awful.
+19:30:37 <kohsuke_> You just can't have a instructor led training with one guy teaching 30 people
+19:30:43 <alyssa_> hare_brain: for sure
+19:31:03 <autojack> on the topic of people wanting to hear more tips and best practices talks... I wonder if could organize and curate that as its own track, and possibly give it one of the bigger/biggest rooms.
+19:31:17 <kohsuke_> Local maven proxy was my suggestion but he didn't time to get that prepared
+19:31:33 <autojack> personally I find those talks, aimed at a general audience, to be more useful to me than the case studies and so on.
+19:31:37 <alyssa_> hare_brain: the hotel had an earful from me wrt wifi. they apologized and didn't charge us a penny for it
+19:32:13 <autojack> conference wifi is hard :/
+19:32:31 <kohsuke_> autojack: yeah, we should call out for best practices specifically and encourage submissions in that space.
+19:32:59 <kohsuke_> Whether we can neatly pack it to one track I'm not too sure, but if the agenda marks such talks as such, then that's a great improvement.
+19:33:14 <autojack> agreed.
+19:33:48 <hare_brain> abayer was a rock star, apparently. ;)
+19:34:22 <kohsuke_> "If we add another day of unconference after JUC, would you come?"
+19:34:31 <alyssa_> abayer was a rock star globally: Boston, Berlin, and SF
+19:34:55 <kohsuke_> Not sure what to take from that one
+19:35:04 <hare_brain> Maybe we can have some sort of “Best of Show” award for the best talk, to incentivize better talks?
+19:35:11 <hare_brain> abayer is not eligible. ;)
+19:35:19 <kohsuke_> Copenhagen people told me that that part of the event is the most polarizing --- some people love it and other people hate it
+19:36:04 <kohsuke_> wrt "best of show" I think alyssa_ would love that as it lets her pimp up JUC more
+19:36:23 <alyssa_> :)
+19:36:41 <alyssa_> but i would need more involvement from the OC :)
+19:36:51 <hare_brain> I have this image of Mr. Jenkins all blinged out.
+19:37:23 * kohsuke_ looks up a dictionary
+19:37:24 <alyssa_> @hare_brain: and a gold tooth too ?
+19:37:31 <hare_brain> That’s right!
+19:38:06 <kohsuke_> You didn't like the ninja & knife outfit, huh
+19:38:22 <hare_brain> Hahaha.
+19:38:26 <kohsuke_> "Privacy vs cost"
+19:38:51 <kohsuke_> ... which seems to be generally saying majority is OK with the sponsor / ticket price balance
+19:38:58 <hare_brain> I think the results from that are good.
+19:39:00 <danielbeck> kohsuke_: Those are also referenced in 'Any other thoughts' with extreme disagreement
+19:39:05 <hare_brain> There were a couple of comments ...
+19:39:09 <autojack> oh, one comment I'd like to throw out. I had a ticket but ended up not being able to make it, so then I was amused and a little annoyed that sponsors spammed the hell out of me, mostly including a comment that it was nice to meet me at JUC SF.
+19:39:10 <danielbeck> item 5 + 6
+19:39:10 <hare_brain> yeah, what danielbeck just said.
+19:39:13 <autojack> heh
+19:39:16 <kohsuke_> danielbeck: indeed, all caps
+19:39:41 <hare_brain> autojack: Yeah. I laughed at all the “nice to meet you” spam too.
+19:40:00 <kohsuke_> I just wonder how other events make the ends meet
+19:40:02 <hare_brain> So I do think that it needs to be more prominent that this will happen.
+19:40:08 <danielbeck> if it was like Berlin with every sponsor emailing me within three days, I can understand some of the hate
+19:40:19 <autojack> I didn't take it too personally, I understand that we need sponsors and they want to talk to potential customers.
+19:40:59 <hare_brain> But I think autojack’s comment about getting spammed when you didn’t even go is an easy thing to deal with at our scale.
+19:41:15 <kohsuke_> A number of people took this very badly, there were several flare ups in Twitter as well, and I got 2 or 3 e-mails from people about this.
+19:41:30 <autojack> well, I actually thought my company refunded my ticket, but then I got all the spam so I presumed not.
+19:41:34 <autojack> I never checked on that.
+19:41:39 <autojack> it would be more funny if that was the case.
+19:41:52 <autojack> (lucky for us I mostly thought it was funny)
+19:41:56 <hare_brain> Well, you registered, so it was probably just the list of registrants that got handed out.
+19:42:04 <autojack> makes sense.
+19:42:51 <kohsuke_> Is badge scanning still an option to be explored?
+19:43:17 <alyssa_> kohsuke_: we will definitely have badge scanning in 2015
+19:44:04 <kohsuke_> I'm hoping that limiting mailing to people who have been scanned would help
+19:44:21 <hare_brain> I also wonder if there’s some sort of windowing that can be done on the after-event marketing emails. It might not be so bad if people weren’t inundated all at once by these companies. It did feel a bit like being mobbed.
+19:45:01 <kohsuke_> Back to PDF, then we have a long list of which talks got good scores...
+19:45:06 <alyssa_> @hare_brain: I could definitely bring this up
+19:45:08 <danielbeck> hare_brain This.
+19:45:46 <abayer> alyssa_: I was AFK, but FYI I was not actually at Boston. =)
+19:45:48 <kohsuke_> Oh I see, so you don't give them all at once to everyone and stagger them?
+19:46:03 <kohsuke_> So it comes in trickles?
+19:46:20 <alyssa_> @abayer: you would have been a rock star there too :)
+19:46:33 <abayer> =)
+19:46:41 <hare_brain> kohsuke_ yeah
+19:46:59 <kohsuke_> alyssa_: that seems like a relatively easy thing to do that would help
+19:47:27 <kohsuke_> ""Hiding in Plain Sight: Unmasking the Jenkins DSL" is getting good attendance and great score, too
+19:48:02 <alyssa_> kohsuke_: sorry specifically what would be easy thing to do?
+19:48:02 <kohsuke_> "How to Train Jenkins?…to Use Your Resources Effectively and Get More Value for Each Buck Spent on Resources" :-(
+19:48:17 <autojack> it seems like we should brainstorm some different ways to add value for sponsors rather than giving them 500 email addresses.
+19:48:34 <kohsuke_> alyssa_: when you hand over the attendee contact information to sponsors, don't do that all at once but spread that over time
+19:49:01 <kohsuke_> autojack: do you have some suggestions?
+19:49:20 <alyssa_> kohsuke_: it would be easy but i think they hound lisa for it like right after the show
+19:49:30 <autojack> kohsuke_: I'm thinking... that's why I said branstorm ;)
+19:49:35 <autojack> hmm
+19:49:53 <kohsuke_> "Workflow in Jenkins" did pretty good score-wise too
+19:50:13 <autojack> I mean, if we think about it from a sponsor point of view, they want to engage with potential leads right?
+19:50:29 <autojack> (or, in my company's case in 2013, recruit people ;)
+19:50:39 <kohsuke_> Yes
+19:51:00 <autojack> so I wonder how else we could let them engage with leads more effectively than just giving them a table.
+19:51:23 <kohsuke_> ogondza: I see your access request. You can see it from http://kohsuke.org/jucsf-feedback.pdf instead
+19:51:23 <autojack> a group of sponsor showcase talks, advertised as such?
+19:51:38 <autojack> interested parties can attend, or not.
+19:51:46 <kohsuke_> There was a lunch time session for that
+19:52:00 <autojack> seems it would be more likely to give the sponsors only the interested attendees.
+19:52:06 <autojack> but they may not see it that way.
+19:52:08 <kohsuke_> And of course higher tier sponsors got their talking slots
+19:52:14 <autojack> nod.
+19:52:28 <kohsuke_> If we can combine that lunch time talk with badge scanning
+19:52:39 <kohsuke_> Maybe that'd make the opportunity more attractive
+19:52:50 <autojack> yeah, although I fear that almost no one would scan their badge.
+19:52:52 <kohsuke_> That is, if they get to contact those who came to their talks...
+19:53:01 <autojack> it almost sounds like SWIPE HERE TO RECEIVE SPAM
+19:53:06 <kohsuke_> :-)
+19:53:13 <alyssa_> that's what we did tho. sponsor lunch time talk and they scanned attendees or took down names
+19:53:15 <autojack> but I guess it's fair, it's opt in.
+19:53:34 <autojack> yeah my apologies for commenting given that I did not actually attend.
+19:53:42 <kohsuke_> How about dedicated exhibit time?
+19:54:13 <kohsuke_> In some other events, those are the time that booths get really busy, and it helps me feel like our presence (as a vendor) was worth it
+19:54:31 <kohsuke_> (just trying to brainstorm here)
+19:54:39 <alyssa_> we had dedicated exhibit time as well..about 1 hr in the afternoon
+19:54:48 <kohsuke_> oh
+19:55:06 <alyssa_> while no session takes place
+19:55:07 <kohsuke_> Clearly you are way ahead of the game
+19:55:09 <autojack> that sounds good if it works. I guess it also depends on what people expect to get out of the conf.
+19:55:14 <autojack> as attendees.
+19:55:23 <autojack> I would probably opt to use that time to read twitter ;)
+19:55:26 <kohsuke_> Things I can think in this five minutes, you've already done them :-)
+19:55:35 <danielbeck> kohsuke_ High praise.
+19:55:53 <autojack> well generally this sounds good, I think we can agree it's something to keep in mind for next year.
+19:56:06 <autojack> it just needs a little bit of tuning probably.
+19:56:15 <alyssa_> +1
+19:56:46 <kohsuke_> I have to stop by noon
+19:57:04 <autojack> I'm surprised people found the location hard to get to on transit, I assumed it was BART accessible.
+19:57:15 <autojack> well, one person said that.
+19:57:16 <kohsuke_> alyssa_: I think you have some other ideas/proposals you wanted to discuss, no?
+19:57:44 <kohsuke_> ... like 1 day vs 2 day, IIRC
+19:57:52 <alyssa_> i need to get the CFP out asap. I'll send out an email to the OC for suggestions on themes and such
+19:58:20 <alyssa_> but the notes rathered here is a good start
+19:58:33 <alyssa_> so pls look out for my email and provide feedback
+19:58:40 <kohsuke_> Great
+19:58:47 <kohsuke_> #topic next meeting
+19:59:03 <alyssa_> that's it for me kohsuke_ ,,mainly the stuff for CFP
+19:59:13 <kohsuke_> #info next meeting would be Jan 21st
+19:59:25 <kohsuke_> I'll be in Tokyo next week.
+19:59:32 <kohsuke_> 750 people registered for JUC there, so I'm excited
+19:59:36 <kohsuke_> #endmeeting

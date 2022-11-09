@@ -1,0 +1,64 @@
+18:01:01 <kohsuke> #startmeeting
+18:01:01 <robobutler> Let the Jenkins meeting commence!
+18:01:11 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:01:37 <kohsuke> actually, nothing listed there, but I believe we wanted to talk about the base point for the next LTS
+18:02:19 <kohsuke> ping: jglick ogondza
+18:02:47 <ogondza> community ratings suggest 1.531
+18:03:36 <kohsuke> Not sure why it went down in 1.532
+18:03:58 <kohsuke> but yeah, 1.531 does seem like the best one
+18:04:01 <ogondza> Is it soaked enough?
+18:04:53 <kohsuke> It could be longer, but then when I look at score given to earlier ones ...
+18:05:51 <kohsuke> 1.532  should be better
+18:05:52 <hare_brain> If we go with 1.531, it looks like https://issues.jenkins-ci.org/browse/JENKINS-19418 should be backported.
+18:05:57 <jenkins-admin> JENKINS-19418:Random HTTP 404 when viewing build details (Resolved) http://jenkins-ci.org/issue/19418
+18:06:00 <hare_brain> Or start with 1.532.
+18:06:02 <jglick> OTP
+18:06:19 <kohsuke> yeah, 19418 is a major one
+18:06:28 <imod> yeah, I think so too 19418 needs to be in
+18:06:32 <kohsuke> and I'm pretty sure we want JENKINS-19473, which we also want
+18:06:37 <jenkins-admin> JENKINS-19473:failed to archive slave artifacts. Unexpected end of ZLIB input stream (Resolved) http://jenkins-ci.org/issue/19473
+18:06:45 <kohsuke> I mean "which is also in 1.532"
+18:07:47 <kohsuke> I see, 1.532 broke JENKINS-19752
+18:07:49 <imod> when looking at the diff between these two, I think it we could use the later - its probably not used by so many user - but still
+18:07:50 <jenkins-admin> JENKINS-19752:Download build artifacts as zip generates a corrupted file (Resolved) http://jenkins-ci.org/issue/19752
+18:08:59 <jglick> Would be a pity not to have JENKINS-17236 but oh well.
+18:09:02 <jenkins-admin> JENKINS-17236:Pluggable artifact transfer & storage (Resolved) http://jenkins-ci.org/issue/17236
+18:09:21 <kohsuke> if we go with 1.532, we'd get that
+18:09:34 <hare_brain> Stability, not features. :)
+18:09:39 <hare_brain> Anything using that extension point yet?
+18:09:40 <kohsuke> OTOH that did seem to result in some regressions
+18:09:52 <jglick> Yes there were a couple regressions, fixed now AFAIK.
+18:09:59 <jglick> But yes LTS is for stability.
+18:10:20 <imod> well, then we maybe wait for another two three weeks
+18:10:44 <kohsuke> All in all, I think we should still go with 1.532
+18:11:07 <kohsuke> JENKINS-17236 might have been destabilizing a bit, but jglick thinks it's all fixed now, and 1.532 contains two major bug fixes
+18:11:11 <jenkins-admin> JENKINS-17236:Pluggable artifact transfer & storage (Resolved) http://jenkins-ci.org/issue/17236
+18:11:29 <jglick> JENKINS-19473: there is actually a better fix in trunk
+18:11:32 <jenkins-admin> JENKINS-19473:failed to archive slave artifacts. Unexpected end of ZLIB input stream (Resolved) http://jenkins-ci.org/issue/19473
+18:11:39 <jglick> (not in changelog, but using newer jzlib)
+18:12:07 <hare_brain> Is it more work to backport fixes caused by JENKINS-17236 into 1.532 based LTS, or to start from 1.531 and backport the major  bug fixes from 1.532?
+18:12:07 <jglick> Anyway both are fixed in 1.509.4 so certainly we would backport them even if we went with 1.531-.
+18:12:57 <kohsuke> hare_brain: I'd think it's about the same
+18:13:31 <jglick> Agreed, both should be pretty easy.
+18:14:06 <kohsuke> ogondza: do you have any preferences?
+18:14:23 <ogondza> 1.532 works for me
+18:14:37 <imod> sounds good to me +1
+18:14:46 <ogondza> besides I have a feature there as well
+18:15:00 <jglick> kohsuke BTW JENKINS-18629 reopened in case you missed that.
+18:15:04 <jenkins-admin> JENKINS-18629:Jenkins fails to save configuration when using Invoke Gradle script in Conditional Step (single). (Reopened) http://jenkins-ci.org/issue/18629
+18:15:34 <kohsuke> :-(
+18:15:36 <kohsuke> #agreed the next LTS base would be 1.532
+18:16:14 <kohsuke> #action kohsuke to recreate the stable branch
+18:16:42 <kohsuke> Unless anyone else has anything else...
+18:16:50 <kohsuke> I'm going back to prepare for JUC
+18:17:03 <kohsuke> #topic next meeting
+18:17:21 <hare_brain> Anything about the JUC that needs to be discussed today?
+18:17:46 <kohsuke> It looks like alyssa is going to prepare the name tag attachment
+18:17:57 <kohsuke> hopefully that'd be useful
+18:18:14 <hare_brain> Cool
+18:18:22 <kohsuke> the "meet the community" project that autojack and I were trying to put together didn't gather enough participants
+18:18:38 <kohsuke> So that one is not going to happen. Will try again the next year.
+18:18:49 <kohsuke> #info I've been told that tickets sold out, which is good
+18:19:19 <kohsuke> I think that's the quick update. I think we are all set
+18:19:35 <kohsuke> Next meeting would be Nov 30th
+18:19:44 <kohsuke> #endmeeting

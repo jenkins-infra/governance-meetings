@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app225.us.archive.org';v.server_ms=210;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-02-04-19.01.log.html","20200505044053","https://web.archive.org/","web","/_static/",
+	      "1588653653");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:01:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:01:47</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:01:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler abayer hare_brain</span>
+<a name="l-4"></a><span class="tm">19:01:54</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">19:02:13</span><span class="nk"> &lt;hgilmore&gt;</span> I wanted to get closure on Jenkins at 100K Celebration. I posted my action item and some other ideas on the Google Group: https://groups.google.com/forum/?utm_source=digest&amp;utm_medium=email/#!topic/jenkinsci-users/_6YfPztJ924
+<a name="l-6"></a><span class="tm">19:02:34</span><span class="nk"> &lt;kohsuke&gt;</span> And I'd like to check on the LTS RC status
+<a name="l-7"></a><span class="tm">19:02:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins at 100K</span>
+<a name="l-8"></a><span class="tm">19:03:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/?utm_source=digest&amp;utm_medium=email/#%21topic/jenkinsci-users/_6YfPztJ924</span>
+<a name="l-9"></a><span class="tm">19:03:44</span><span class="nk"> &lt;kohsuke&gt;</span> So I think the key thing I wanted to get the sense of other people is ...
+<a name="l-10"></a><span class="tm">19:03:59</span><span class="nk"> &lt;hgilmore&gt;</span> I am proposing a date of Feb 24 as the "official" day - pending Kohsuke confirming that we actually reached 100K
+<a name="l-11"></a><span class="tm">19:04:02</span><span class="nk"> &lt;kohsuke&gt;</span> that it's OK for us to spend $150 or so for give-aways
+<a name="l-12"></a><span class="tm">19:04:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hgilmore:</span> yep, and it did come in http://stats.jenkins-ci.org/jenkins-stats/svg/total-jenkins.svg
+<a name="l-13"></a><span class="tm">19:04:36</span><span class="nk"> &lt;kohsuke&gt;</span> As of the end of 2015 Jan, we are 102,992
+<a name="l-14"></a><span class="tm">19:04:50</span><span class="nk"> &lt;kohsuke&gt;</span> So we did actually pass 100K. Hooray
+<a name="l-15"></a><span class="tm">19:05:09</span><span class="nk"> &lt;hgilmore&gt;</span> Wahooo!! Great!
+<a name="l-16"></a><span class="tm">19:06:16</span><span class="nk"> &lt;kohsuke&gt;</span> The gist of the proposal is (1) call for a blog roll from people, (2) several prize to give-away for that,
+<a name="l-17"></a><span class="tm">19:06:55</span><span class="nk"> &lt;kohsuke&gt;</span> (3) we'll have some round table conversations somewhere in San Francisco with rtyler, abayer, hare_brain and whoever else could join
+<a name="l-18"></a><span class="tm">19:07:23</span><span class="nk"> &lt;kohsuke&gt;</span> (4) record that and publish that, then (5) go chase after some existing podcasts to see if they can let us talk 5 mins and point to this.
+<a name="l-19"></a><span class="tm">19:08:49</span><span class="nk"> &lt;kohsuke&gt;</span> hgilmore has some additional interests in creating more images that we can use for various purposes
+<a name="l-20"></a><span class="tm">19:09:00</span><span class="nk"> &lt;kohsuke&gt;</span> Any thoughts from anyone else?
+<a name="l-21"></a><span class="tm">19:09:52</span><span class="nk"> &lt;hgilmore&gt;</span> I am offering to get some images created, to be shared amongst us and that we can have some fun with on social media. All in celebration of Jenkins
+<a name="l-22"></a><span class="tm">19:10:22</span><span class="nk"> &lt;kohsuke&gt;</span> All right, looks like nobody is here today :-(
+<a name="l-23"></a><span class="tm">19:10:33</span><span class="nk"> &lt;kohsuke&gt;</span> Perhaps my failing to set up the agenda upfront is a part of the problem
+<a name="l-24"></a><span class="tm">19:11:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Were there any particular topics? // I've missed first 10 minutes Ж(
+<a name="l-25"></a><span class="tm">19:11:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> backlog is here http://echelog.com/logs/browse/jenkins/1423004400
+<a name="l-26"></a><span class="tm">19:11:59</span><span class="nk"> &lt;javabot&gt;</span> <span class="hi">http://echelog.com/logs/browse/jenkins/1423004400:</span> jenkins IRC logs [February 4 - 2015]
+<a name="l-27"></a><span class="tm">19:12:07</span><span class="nk"> &lt;kohsuke&gt;</span> basically we are going over https://groups.google.com/forum/?utm_source=digest&amp;utm_medium=email/#%21topic/jenkinsci-users/_6YfPztJ924
+<a name="l-28"></a><span class="tm">19:12:11</span><span class="nk"> &lt;kohsuke&gt;</span> oh javabot, it's still here!?
+<a name="l-29"></a><span class="tm">19:12:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ty.
+<a name="l-30"></a><span class="tm">19:12:27</span><span class="nk"> &lt;kohsuke&gt;</span> I need to learn how to ban it
+<a name="l-31"></a><span class="tm">19:12:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">jenkins-admin:</span> version
+<a name="l-32"></a><span class="tm">19:12:32</span><span class="nk"> &lt;jenkins-admin&gt;</span> My version is build40 4c470e52de957ab7f14f61eff70c5d9df0a8577f (20150103_113200)
+<a name="l-33"></a><span class="tm">19:12:33</span><span class="nk"> &lt;jenkins-admin&gt;</span> Build URL: http://ci.jenkins-ci.org/job/infra_ircbot/40/
+<a name="l-34"></a><span class="tm">19:12:34</span><span class="nk"> &lt;javabot&gt;</span> <span class="hi">http://ci.jenkins-ci.org/job/infra_ircbot/40/:</span> infra_ircbot #40 [Jenkins]
+<a name="l-35"></a><span class="tm">19:12:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">jenkins-admin:</span> kick javabot
+<a name="l-36"></a><span class="tm">19:12:45</span><span class="nk"> &lt;jenkins-admin&gt;</span> Kicked userjavabot
+<a name="l-37"></a><span class="tm">19:12:57</span><span class="nk"> &lt;kohsuke&gt;</span> I learned how to kick him out, but it comes back
+<a name="l-38"></a><span class="tm">19:13:13</span><span class="nk"> &lt;kohsuke&gt;</span> anyway
+<a name="l-39"></a><span class="tm">19:13:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Seems it should be blacklisted
+<a name="l-40"></a><span class="tm">19:15:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> back to the topic, the gist of the plan is we do a blog roll, give out some prizes ($150 or so total, so needs approval to budget that cost), and we'll record some hopefully interesting enough one-time podcast
+<a name="l-41"></a><span class="tm">19:16:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Regarding the bot: /mode #mychat +b javabot[@m027-124.nv.iinet.net.au]
+<a name="l-42"></a><span class="tm">19:16:13</span><span class="nk"> &lt;hare_brain&gt;</span> By “somewhere in San Francisco,” do you mean in the city, or were you thinking somewhere in the area?
+<a name="l-43"></a><span class="tm">19:16:41</span><span class="nk"> &lt;ogondza&gt;</span> +1 for the proposal #1 on https://groups.google.com/d/msg/jenkinsci-users/_6YfPztJ924/G2rknTGr4gsJ
+<a name="l-44"></a><span class="tm">19:17:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> my plan was to find an evening that works for all of us, find a place in the city, and pick you up at your office and drive up to get that done
+<a name="l-45"></a><span class="tm">19:17:01</span><span class="nk"> &lt;xender&gt;</span> Hi. I have atypical problem - I want a single job invocation to report multiple statuses.
+<a name="l-46"></a><span class="tm">19:17:30</span><span class="nk"> &lt;kohsuke&gt;</span> failing that, I'll ask abayer and rtyler to be in one room, me and hare_brain in another room, and Google Hangout on Air to invite others.
+<a name="l-47"></a><span class="tm">19:17:59</span><span class="nk"> &lt;xender&gt;</span> To be more specific: I invoke a shell script from a job. That shell script does several sub-jobs and I want to have nice status indication of each in Jenkins
+<a name="l-48"></a><span class="tm">19:18:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">xender:</span> we are in the project meeting time, so let's hold off questions until after that
+<a name="l-49"></a><span class="tm">19:18:40</span><span class="nk"> &lt;xender&gt;</span> No separate channel for devs for that? :P Okay, I'll wait
+<a name="l-50"></a><span class="tm">19:19:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> would either of this be a problem to you?
+<a name="l-51"></a><span class="tm">19:19:40</span><span class="nk"> &lt;hare_brain&gt;</span> I just need some advanced notice to coordinate with the family that I’ll be gone for that evening.
+<a name="l-52"></a><span class="tm">19:20:01</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, and I have AI to use some tool to find a date that works for 4 of us
+<a name="l-53"></a><span class="tm">19:20:17</span><span class="nk"> &lt;kohsuke&gt;</span> (hoping there's a website that lets people enter which day works and which day doesn't)
+<a name="l-54"></a><span class="tm">19:20:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> thanks for the +1
+<a name="l-55"></a><span class="tm">19:20:57</span><span class="nk"> &lt;kohsuke&gt;</span> Any other +1 / -1, etc?
+<a name="l-56"></a><span class="tm">19:21:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-57"></a><span class="tm">19:22:37</span><span class="nk"> &lt;hgilmore&gt;</span> OK - so just two questions, since there haven't been a lot of comments on Jenkins at 100K
+<a name="l-58"></a><span class="tm">19:22:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">xender:</span> btw your thoughts would be just as welcome
+<a name="l-59"></a><span class="tm">19:23:08</span><span class="nk"> &lt;hgilmore&gt;</span> Is there any reason I should *not* follow up on my ideas/suggestions? I am willing to do them, but I need to know so I can get started.
+<a name="l-60"></a><span class="tm">19:23:32</span><span class="nk"> &lt;hgilmore&gt;</span> And, are we all OK with a date of Feb 24 as the "official" day?
+<a name="l-61"></a><span class="tm">19:24:08</span><span class="nk"> &lt;xender&gt;</span> <span class="hi">kohsuke:</span> Sorry, I just joined the channel. And I'm not an experienced user, so I don't know if I can be any help?
+<a name="l-62"></a><span class="tm">19:24:18</span><span class="nk"> &lt;kohsuke&gt;</span> I think we've socialized the idea enough and we have enough +1s to consider this blessed
+<a name="l-63"></a><span class="tm">19:24:45</span><span class="nk"> &lt;hgilmore&gt;</span> OK - thank you to all who have spoken up.
+<a name="l-64"></a><span class="tm">19:25:00</span><span class="nk"> &lt;kohsuke&gt;</span> Let me record that as such
+<a name="l-65"></a><span class="tm">19:25:12</span><span class="nk"> &lt;hgilmore&gt;</span> This will be fun and we will celebrate a huge milestone for us and our favorite Butler!
+<a name="l-66"></a><span class="tm">19:25:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed  </span><span class="cmdline">https://groups.google.com/d/msg/jenkinsci-users/_6YfPztJ924/G2rknTGr4gsJ is considered blessed</span>
+<a name="l-67"></a><span class="tm">19:25:37</span><span class="nk"> &lt;kohsuke&gt;</span> Oh and the date
+<a name="l-68"></a><span class="tm">19:26:16</span><span class="nk"> &lt;kohsuke&gt;</span> What needs to happen before that date?
+<a name="l-69"></a><span class="tm">19:26:22</span><span class="nk"> &lt;kohsuke&gt;</span> Is that the blog submission deadline?
+<a name="l-70"></a><span class="tm">19:26:50</span><span class="nk"> &lt;kohsuke&gt;</span> Or is that when we post the "Yay! 100K" news that include the announcement to start the blog fest?
+<a name="l-71"></a><span class="tm">19:26:57</span><span class="nk"> &lt;hgilmore&gt;</span> (1) People can start blogging and talking up the date
+<a name="l-72"></a><span class="tm">19:27:15</span><span class="nk"> &lt;hgilmore&gt;</span> (2) I will share images of the Butler/100K themes that we can all circulate
+<a name="l-73"></a><span class="tm">19:28:18</span><span class="nk"> &lt;hgilmore&gt;</span> (3) On the day - depending on what you, hare_brain, rtyler and abayer work out, you will do the Hangout or post a recording celebrating/talking about Jenkins
+<a name="l-74"></a><span class="tm">19:28:48</span><span class="nk"> &lt;hgilmore&gt;</span> We can also issue a press release (which I neglected to include in the Google Groups note) announcing the milestones for Jenkins
+<a name="l-75"></a><span class="tm">19:29:11</span><span class="nk"> &lt;hgilmore&gt;</span> Would it be helpful if I post a summary in the Google Groups?
+<a name="l-76"></a><span class="tm">19:29:25</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so I'm still confused as to what needs to happen before that date and what's supposed to happen on that date
+<a name="l-77"></a><span class="tm">19:29:41</span><span class="nk"> &lt;kohsuke&gt;</span> I guess (1) and (2) happen before the flag day, (3) and (4) happens on the flag day?
+<a name="l-78"></a><span class="tm">19:29:53</span><span class="nk"> &lt;hgilmore&gt;</span> Before the date, the community should promote the blogfest and people shoudl be bogging and announcing Jenkins 100K day for 2/24
+<a name="l-79"></a><span class="tm">19:30:37</span><span class="nk"> &lt;hgilmore&gt;</span> On the day, we can all use a special Twitter badge on our profiles, you guys either do a live recording or post a pre-recorded session, we issue a press release announcing the milestones
+<a name="l-80"></a><span class="tm">19:30:48</span><span class="nk"> &lt;hgilmore&gt;</span> Yes
+<a name="l-81"></a><span class="tm">19:31:02</span><span class="nk"> &lt;hgilmore&gt;</span> You are corrct
+<a name="l-82"></a><span class="tm">19:31:04</span><span class="nk"> &lt;hgilmore&gt;</span> correct
+<a name="l-83"></a><span class="tm">19:31:39</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I'm looking at the calendar and I'm feeling 2/24 is bit tight
+<a name="l-84"></a><span class="tm">19:31:42</span><span class="nk"> &lt;hgilmore&gt;</span> I will pull together a summary schedule/outline with dates
+<a name="l-85"></a><span class="tm">19:32:01</span><span class="nk"> &lt;abayer&gt;</span> fwiw, I'm out of town from 3/4 through 3/15.
+<a name="l-86"></a><span class="tm">19:32:14</span><span class="nk"> &lt;kohsuke&gt;</span> Could we get like one more week? Or maybe the hangout can happen post Feb 24?
+<a name="l-87"></a><span class="tm">19:32:15</span><span class="nk"> &lt;hgilmore&gt;</span> Do you have a preferred date? I was pushing it towards the end of the month for the same reason.
+<a name="l-88"></a><span class="tm">19:32:37</span><span class="nk"> &lt;hgilmore&gt;</span> What is your preference?
+<a name="l-89"></a><span class="tm">19:32:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> do you really mean March or you mean Feb?
+<a name="l-90"></a><span class="tm">19:32:45</span><span class="nk"> &lt;abayer&gt;</span> March.
+<a name="l-91"></a><span class="tm">19:32:47</span><span class="nk"> &lt;hgilmore&gt;</span> I think the hangout could happen post=Feb 24
+<a name="l-92"></a><span class="tm">19:33:39</span><span class="nk"> &lt;hgilmore&gt;</span> It doesn't necessarily need to be pegged to the date
+<a name="l-93"></a><span class="tm">19:34:05</span><span class="nk"> &lt;hgilmore&gt;</span> But it woudl be nice to have the date as close to the milestone being reached as we can pull off
+<a name="l-94"></a><span class="tm">19:34:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hgilmore:</span> so it'd be OK if on the flag day we don't have the winners and the post is like "we'll do a celebration hangout on such and such date so please come join us?"
+<a name="l-95"></a><span class="tm">19:34:31</span><span class="nk"> &lt;hare_brain&gt;</span> If it doesn’t happen within a week of 2/24, abayer’s schedule would push it out two more weeks past that.
+<a name="l-96"></a><span class="tm">19:35:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> abayer: I guess then I want to make it happen in the week of 2/16 or 2/23
+<a name="l-97"></a><span class="tm">19:35:03</span><span class="nk"> &lt;abayer&gt;</span> Sorry, got a niece due in early March so I'm back in Boston then. =)
+<a name="l-98"></a><span class="tm">19:35:04</span><span class="nk"> &lt;hgilmore&gt;</span> Yes, we can make that work.
+<a name="l-99"></a><span class="tm">19:35:17</span><span class="nk"> &lt;kohsuke&gt;</span> OK, then Feb 24 it is
+<a name="l-100"></a><span class="tm">19:35:45</span><span class="nk"> &lt;hgilmore&gt;</span> What is the concern for the 24th, since it sounds like things get complicated after that, scheduling-wise.
+<a name="l-101"></a><span class="tm">19:35:58</span><span class="nk"> &lt;hgilmore&gt;</span> Jsut pulling together the hangout?
+<a name="l-102"></a><span class="tm">19:36:30</span><span class="nk"> &lt;CptRageToaster&gt;</span> where is it?
+<a name="l-103"></a><span class="tm">19:36:40</span><span class="nk"> &lt;kohsuke&gt;</span> I'm away the week of Feb 9, and I'm away 21-23.
+<a name="l-104"></a><span class="tm">19:36:49</span><span class="nk"> &lt;CptRageToaster&gt;</span> city/area-wise?
+<a name="l-105"></a><span class="tm">19:37:07</span><span class="nk"> &lt;hgilmore&gt;</span> What if it was the 26?
+<a name="l-106"></a><span class="tm">19:37:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">CptRageToaster:</span> most likely in San Francisco for meat bodies and Hang out for everyone else remote
+<a name="l-107"></a><span class="tm">19:37:19</span><span class="nk"> &lt;hgilmore&gt;</span> Again, just trying to keep it close to the  milestone achievement date
+<a name="l-108"></a><span class="tm">19:37:19</span><span class="nk"> &lt;kohsuke&gt;</span> I mean Google Hangout
+<a name="l-109"></a><span class="tm">19:37:27</span><span class="nk"> &lt;hare_brain&gt;</span> 2/24 should be OK.
+<a name="l-110"></a><span class="tm">19:37:29</span><span class="nk"> &lt;hare_brain&gt;</span> for me
+<a name="l-111"></a><span class="tm">19:37:41</span><span class="nk"> &lt;abayer&gt;</span> Yeah, anytime before 3/4 is good for me.
+<a name="l-112"></a><span class="tm">19:38:03</span><span class="nk"> &lt;kohsuke&gt;</span> Feb 26 would give me some buffer if that's OK
+<a name="l-113"></a><span class="tm">19:38:11</span><span class="nk"> &lt;abayer&gt;</span> Fine by me.
+<a name="l-114"></a><span class="tm">19:38:25</span><span class="nk"> &lt;kohsuke&gt;</span> and we try to get the session going before to allow for post-production and blog post preparation
+<a name="l-115"></a><span class="tm">19:38:26</span><span class="nk"> &lt;hgilmore&gt;</span> That totally works. How about hare_brain, abayer?
+<a name="l-116"></a><span class="tm">19:39:04</span><span class="nk"> &lt;hgilmore&gt;</span> OK - Feb 26, then?
+<a name="l-117"></a><span class="tm">19:39:07</span><span class="nk"> &lt;hare_brain&gt;</span> Unfortunately, 2/26 is bad for me.
+<a name="l-118"></a><span class="tm">19:39:19</span><span class="nk"> &lt;abayer&gt;</span> hahaha we are tough to schedule.
+<a name="l-119"></a><span class="tm">19:39:43</span><span class="nk"> &lt;hgilmore&gt;</span> 25th - split the difference? :)
+<a name="l-120"></a><span class="tm">19:39:43</span><span class="nk"> &lt;hare_brain&gt;</span> We’re a bunch of managers. :P
+<a name="l-121"></a><span class="tm">19:39:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> it doesn't mean we do anything on Feb 26. The recording will be done some time prior to that
+<a name="l-122"></a><span class="tm">19:39:51</span><span class="nk"> &lt;hare_brain&gt;</span> Oh!
+<a name="l-123"></a><span class="tm">19:39:57</span><span class="nk"> &lt;hare_brain&gt;</span> I thought we were talking about doing the recording on the 26th.
+<a name="l-124"></a><span class="tm">19:40:01</span><span class="nk"> &lt;kohsuke&gt;</span> I'm sorry, I meant "it doesn't mean YOU do anything on Feb 26"
+<a name="l-125"></a><span class="tm">19:40:21</span><span class="nk"> &lt;kohsuke&gt;</span> we'll do that sometime before that, somewhere between 2/16-2/24
+<a name="l-126"></a><span class="tm">19:40:48</span><span class="nk"> &lt;kohsuke&gt;</span> then I'll take the recording and hgilmore and I will prepare posts/splashes/press releases what not
+<a name="l-127"></a><span class="tm">19:40:53</span><span class="nk"> &lt;kohsuke&gt;</span> and it all hits public 2/26
+<a name="l-128"></a><span class="tm">19:40:57</span><span class="nk"> &lt;hgilmore&gt;</span> +1
+<a name="l-129"></a><span class="tm">19:41:47</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I think we are good here
+<a name="l-130"></a><span class="tm">19:42:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS RC status</span>
+<a name="l-131"></a><span class="tm">19:42:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">Kohsuke to put LTS schedules in the calendar</span>
+<a name="l-132"></a><span class="tm">19:42:33</span><span class="nk"> &lt;hgilmore&gt;</span> OK - so will proceed as proposed. The date is the 26th. @kohsuke we can work together on whatever support you need for the recording
+<a name="l-133"></a><span class="tm">19:42:39</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> we are ready
+<a name="l-134"></a><span class="tm">19:42:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hgilmore:</span> yes
+<a name="l-135"></a><span class="tm">19:42:46</span><span class="nk"> &lt;hgilmore&gt;</span> Thank you
+<a name="l-136"></a><span class="tm">19:42:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> yay
+<a name="l-137"></a><span class="tm">19:42:58</span><span class="nk"> &lt;kohsuke&gt;</span> all right, that was easy
+<a name="l-138"></a><span class="tm">19:43:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-139"></a><span class="tm">19:44:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">The next meeting will be Feb 18th same time</span>
+<a name="l-140"></a><span class="tm">19:44:21</span><span class="nk"> &lt;kohsuke&gt;</span> And Jenkins User Conference call for paper is out now: http://jenkins-ci.org/content/2015-jenkins-user-conferences-call-papers
+<a name="l-141"></a><span class="tm">19:45:03</span><span class="nk"> &lt;kohsuke&gt;</span> Looks like we'll have US east coast, London, Israel and the US west coast
+<a name="l-142"></a><span class="tm">19:45:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 04:40:53 May 05, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:53:19 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 78.641
+  exclusion.robots: 0.159
+  exclusion.robots.policy: 0.147
+  RedisCDXSource: 0.934
+  esindex: 0.012
+  LoadShardBlock: 52.364 (3)
+  PetaboxLoader3.datanode: 64.305 (4)
+  CDXLines.iter: 20.065 (3)
+  load_resource: 113.218
+  PetaboxLoader3.resolve: 75.803
+-->

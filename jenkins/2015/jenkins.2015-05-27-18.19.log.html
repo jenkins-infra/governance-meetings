@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app223.us.archive.org';v.server_ms=460;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-05-27-18.19.log.html","20200504160534","https://web.archive.org/","web","/_static/",
+	      "1588608334");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:19:31</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:19:31</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:19:40</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Implementing wiki page requirement</span>
+<a name="l-4"></a><span class="tm">18:19:50</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">ogondza jglick</span>
+<a name="l-5"></a><span class="tm">18:19:50</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck jglick ogondza
+<a name="l-6"></a><span class="tm">18:20:39</span><span class="nk"> &lt;ogondza&gt;</span> Lets skip first item
+<a name="l-7"></a><span class="tm">18:20:52</span><span class="nk"> &lt;danielbeck&gt;</span> sorry, let's go by agenda
+<a name="l-8"></a><span class="tm">18:20:57</span><span class="nk"> &lt;ogondza&gt;</span> oh, we already did
+<a name="l-9"></a><span class="tm">18:20:58</span><span class="nk"> &lt;ogondza&gt;</span> nm
+<a name="l-10"></a><span class="tm">18:21:05</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-11"></a><span class="tm">18:21:24</span><span class="nk"> &lt;danielbeck&gt;</span> http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-05-13-18.07.html
+<a name="l-12"></a><span class="tm">18:21:54</span><span class="nk"> &lt;danielbeck&gt;</span> I was unable to work on my actions unfortunately
+<a name="l-13"></a><span class="tm">18:21:58</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler?
+<a name="l-14"></a><span class="tm">18:22:46</span><span class="nk"> &lt;danielbeck&gt;</span> doesn't look like he's here, and the rest of the items are mostly the wiki changes
+<a name="l-15"></a><span class="tm">18:22:58</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS RC status check</span>
+<a name="l-16"></a><span class="tm">18:23:07</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza Do we need kohsuke for this?
+<a name="l-17"></a><span class="tm">18:23:19</span><span class="nk"> &lt;ogondza&gt;</span> I will let him know we are ready
+<a name="l-18"></a><span class="tm">18:23:24</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, have you seen any issues related to publisher statuses?
+<a name="l-19"></a><span class="tm">18:23:24</span><span class="nk"> &lt;orrc&gt;</span> the atlassian admins thing was done by rtyler
+<a name="l-20"></a><span class="tm">18:23:40</span><span class="nk"> &lt;ogondza&gt;</span> we can move on
+<a name="l-21"></a><span class="tm">18:23:41</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, i will try promote lts-candidate then
+<a name="l-22"></a><span class="tm">18:24:15</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Will need to look this up, but it's a little late for 1.509.1
+<a name="l-23"></a><span class="tm">18:24:30</span><span class="nk"> &lt;jglick&gt;</span> 1.609.1 you mean?
+<a name="l-24"></a><span class="tm">18:24:34</span><span class="nk"> &lt;danielbeck&gt;</span> right
+<a name="l-25"></a><span class="tm">18:24:42</span><span class="nk"> &lt;KostyaSha&gt;</span> +-100 versions :)
+<a name="l-26"></a><span class="tm">18:24:50</span><span class="nk"> &lt;jglick&gt;</span> I think we just need to wait for KK to be on the ground and publish it.
+<a name="l-27"></a><span class="tm">18:24:58</span><span class="nk"> &lt;danielbeck&gt;</span> alright, let's move on
+<a name="l-28"></a><span class="tm">18:25:01</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">When to flip the switch on plugins without wiki pages?</span>
+<a name="l-29"></a><span class="tm">18:25:25</span><span class="nk"> &lt;KostyaSha&gt;</span> I have a question, why do you enforce confluence url for "wiki"?
+<a name="l-30"></a><span class="tm">18:25:50</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha I think this was discussed last time, the plugin info sheet at the top
+<a name="l-31"></a><span class="tm">18:26:05</span><span class="nk"> &lt;danielbeck&gt;</span> IIRC
+<a name="l-32"></a><span class="tm">18:26:24</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">orrc:</span> what is complex about koji plugin?  there is unmerged PR with fix. (maintained by a colleague of mine)
+<a name="l-33"></a><span class="tm">18:26:50</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">ogondza:</span> it was renamed twice I think, between koji and koji-plugin
+<a name="l-34"></a><span class="tm">18:27:12</span><span class="nk"> &lt;orrc&gt;</span> so we need to make sure a new version is released and we can deprecate the old one (I think)
+<a name="l-35"></a><span class="tm">18:27:26</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">orrc:</span> is there anything I can do?
+<a name="l-36"></a><span class="tm">18:27:28</span><span class="nk"> &lt;orrc&gt;</span> I wrote the maintainer an email with the details, but didn't hear back yet
+<a name="l-37"></a><span class="tm">18:27:36</span><span class="nk"> &lt;orrc&gt;</span> I can forward the mail to you? :)
+<a name="l-38"></a><span class="tm">18:27:51</span><span class="nk"> &lt;orrc&gt;</span> vtunka, right?
+<a name="l-39"></a><span class="tm">18:27:58</span><span class="nk"> &lt;ogondza&gt;</span> yeah
+<a name="l-40"></a><span class="tm">18:28:01</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/backend-update-center2/pull/20</span>
+<a name="l-41"></a><span class="tm">18:28:04</span><span class="nk"> &lt;orrc&gt;</span> ok, will do
+<a name="l-42"></a><span class="tm">18:28:07</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, why not provide bage image that can be included in any docs?
+<a name="l-43"></a><span class="tm">18:29:05</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha It's always possible to relax the rules later, but we need to start with something. A wiki page that basically contains one paragraph description and a link to Github README/GH pages would be fine IMO and not exactly a big obstacle
+<a name="l-44"></a><span class="tm">18:29:39</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, with not working captcha and constant issues?
+<a name="l-45"></a><span class="tm">18:29:50</span><span class="nk"> &lt;orrc&gt;</span> so the next steps are to make sure the plugins with no wiki page at all don't get removed. I should create a "plugin page missing" page or so, and add wiki overrides
+<a name="l-46"></a><span class="tm">18:30:07</span><span class="nk"> &lt;orrc&gt;</span> a few plugins have already added wiki pages *and* made a release, which is good. a few still need to make a release
+<a name="l-47"></a><span class="tm">18:30:47</span><span class="nk"> &lt;orrc&gt;</span> but the sooner the UC changes are merged, the less time I have to go checking every new plugin update/release is still correct :)
+<a name="l-48"></a><span class="tm">18:31:11</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Apparently some plugin authors were successful in creating wiki pages. It's not like these would need to be updated constantly. And if there's really a persistent problem we can always add an exception. Not a reason to not implement this IMO.
+<a name="l-49"></a><span class="tm">18:31:55</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, you can have this check periodically and notify authors without magically not publishing this plugins. What developer should do with such release them?
+<a name="l-50"></a><span class="tm">18:31:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> was ist los?
+<a name="l-51"></a><span class="tm">18:32:01</span><span class="nk"> &lt;KostyaSha&gt;</span> *then
+<a name="l-52"></a><span class="tm">18:32:04</span><span class="nk"> &lt;orrc&gt;</span> oh er ist wach
+<a name="l-53"></a><span class="tm">18:32:40</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">rtyler:</span> the question was what action items got done from the last meeting
+<a name="l-54"></a><span class="tm">18:32:59</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, you can even automatically create issues for plugins
+<a name="l-55"></a><span class="tm">18:33:06</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">rtyler:</span> that was the atlassian puppet thing and the fastly prototype
+<a name="l-56"></a><span class="tm">18:33:17</span><span class="nk"> &lt;rtyler&gt;</span> I'm on an airplane, so i'll make this short
+<a name="l-57"></a><span class="tm">18:33:31</span><span class="nk"> &lt;rtyler&gt;</span> the atlassian work got done, kohsuke wants more finer grained controls to be put in place
+<a name="l-58"></a><span class="tm">18:33:58</span><span class="nk"> &lt;rtyler&gt;</span> the fastly stuff hasn't come to fruition yet, I erred on the side of the atlassian thing in last week's jenkins time budget :p
+<a name="l-59"></a><span class="tm">18:34:40</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">rtyler:</span> ok, thanks
+<a name="l-60"></a><span class="tm">18:36:52</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> I think we mainly just need to pick a date?
+<a name="l-61"></a><span class="tm">18:37:12</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha If a new plugin is affected, the archetype and wiki pages on hosting plugins explain what's going on. For existing plugins, we have the exceptions list (and will continue using it when there are technical reasons) and a months long grace period after introduction
+<a name="l-62"></a><span class="tm">18:37:28</span><span class="nk"> &lt;danielbeck&gt;</span> orrc I'm fine with June 1st as discussed last week
+<a name="l-63"></a><span class="tm">18:37:59</span><span class="nk"> &lt;orrc&gt;</span> ok. mondays are good for me
+<a name="l-64"></a><span class="tm">18:38:00</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, people are joining jenkinsci for hosting plugins, they doesn't accept any rules, it bad to enforce rules after they did a real work
+<a name="l-65"></a><span class="tm">18:38:31</span><span class="nk"> &lt;KostyaSha&gt;</span> central build system may enforce rules in obvious way and btw help doing releases
+<a name="l-66"></a><span class="tm">18:38:40</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> can you #info or #action that, please -- unless anybody doesn't like June 1st?
+<a name="l-67"></a><span class="tm">18:41:01</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha It's a trivial change to the plugin metadata, provided in the form of a PR. Just needs to be merged within a few months and a release created, and you're done. The benefits outweigh the drawbacks a lot.
+<a name="l-68"></a><span class="tm">18:41:38</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, you shifting your cool idea to headache of 1k plugin developers
+<a name="l-69"></a><span class="tm">18:42:02</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, because any plugin may hit missed urls (like me with docker)
+<a name="l-70"></a><span class="tm">18:42:06</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha It affects about 50, because 95% are doing it right already
+<a name="l-71"></a><span class="tm">18:42:25</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha That's why there's an exceptions list and grace period. We're not aiming to depublish.
+<a name="l-72"></a><span class="tm">18:42:43</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, after you merge your change there will be no exceptions
+<a name="l-73"></a><span class="tm">18:43:17</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha "All current plugin releases which do have a wiki page, but do not list the URL in the POM have been grandfathered in via #14."
+<a name="l-74"></a><span class="tm">18:44:43</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, so no any released plugins will disappear?
+<a name="l-75"></a><span class="tm">18:44:56</span><span class="nk"> &lt;KostyaSha&gt;</span> released in any time, before your changes and after
+<a name="l-76"></a><span class="tm">18:45:53</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha The plan is that in a few months we will review the exceptions list and remove plugins that have no reason to not have a wiki page and &lt;url&gt; pointing to it.
+<a name="l-77"></a><span class="tm">18:46:03</span><span class="nk"> &lt;danielbeck&gt;</span> for now, no plugins will disappear
+<a name="l-78"></a><span class="tm">18:46:20</span><span class="nk"> &lt;danielbeck&gt;</span> Some plugins will get a new wiki link to a page that basically says "This plugin has no wiki page"
+<a name="l-79"></a><span class="tm">18:46:28</span><span class="nk"> &lt;KostyaSha&gt;</span> i don't like part "we will review and remove"
+<a name="l-80"></a><span class="tm">18:47:55</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Again, there's a several months grace period, and we allow for exceptions due to technical reasons (like you mentioned for Docker IIRC).
+<a name="l-81"></a><span class="tm">18:48:17</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, why you (not plugin developers) enforcing your rules to this plugins?
+<a name="l-82"></a><span class="tm">18:48:59</span><span class="nk"> &lt;KostyaSha&gt;</span> again, nobody from joined to jenkinsci developers accepted any rules for publishing plugins
+<a name="l-83"></a><span class="tm">18:49:24</span><span class="nk"> &lt;KostyaSha&gt;</span> "i want host plugin" Ulli: "you are welcome"
+<a name="l-84"></a><span class="tm">18:49:25</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">KostyaSha:</span> chiming in, didn't get your last two sentences
+<a name="l-85"></a><span class="tm">18:49:44</span><span class="nk"> &lt;batmat&gt;</span> three
+<a name="l-86"></a><span class="tm">18:50:36</span><span class="nk"> &lt;danielbeck&gt;</span> To clarify, you want us to add terms of service with a checkbox that needs to be clicked?
+<a name="l-87"></a><span class="tm">18:50:56</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, at least if you want filter out plugin publishing by any rules
+<a name="l-88"></a><span class="tm">18:51:26</span><span class="nk"> &lt;KostyaSha&gt;</span> i'm against hidden magic
+<a name="l-89"></a><span class="tm">18:51:43</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">KostyaSha:</span> well, IMO the Jenkins infra isn't something granted forever, I don't how respecting some rules could hurt
+<a name="l-90"></a><span class="tm">18:52:03</span><span class="nk"> &lt;batmat&gt;</span> don't *see
+<a name="l-91"></a><span class="tm">18:52:29</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha It's documented, has been announced on the dev list, the output of the UC generator has been improved, many plugins got PRs... how is this hidden magic?
+<a name="l-92"></a><span class="tm">18:52:35</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">KostyaSha:</span> https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins#HostingPlugins-CreatingaWikipage
+<a name="l-93"></a><span class="tm">18:53:01</span><span class="nk"> &lt;batmat&gt;</span> +1 danielbeck like discussed last time, this was always required when asking for hosting.
+<a name="l-94"></a><span class="tm">18:53:17</span><span class="nk"> &lt;KostyaSha&gt;</span> batmat, i may fix url, but in case of docker url was missed by technical reason. And in my place can be any person. I found this issue only after release and i don't want "kill" my brain with debugging why it not appeared in UC
+<a name="l-95"></a><span class="tm">18:53:32</span><span class="nk"> &lt;batmat&gt;</span> That's just the forking process was somehow too kind sometimes.
+<a name="l-96"></a><span class="tm">18:54:18</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">KostyaSha:</span> the technical reasons you expressed about being unable to release multimodules with Maven, I suppose
+<a name="l-97"></a><span class="tm">18:54:33</span><span class="nk"> &lt;KostyaSha&gt;</span> https://wiki.jenkins-ci.org/pages/diffpages.action?originalId=79495453&amp;pageId=79495455
+<a name="l-98"></a><span class="tm">18:54:57</span><span class="nk"> &lt;batmat&gt;</span> And I suppose also some committers fork their own new plugins by themselves, which I think shouldn't be done (to get at least peer review)
+<a name="l-99"></a><span class="tm">18:55:37</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins#HostingPlugins-Help\!Mypluginisnotshowingupintheupdatecenter. Step 5 links to the generator, and it'll include output that explicitly says https://github.com/jenkinsci/backend-update-center2/pull/20/files#diff-dc0efec0ef96602ff821f97fbdd82fc3R278
+<a name="l-100"></a><span class="tm">18:56:00</span><span class="nk"> &lt;danielbeck&gt;</span> So it's not like we're trying to hide things
+<a name="l-101"></a><span class="tm">18:56:02</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, i think you know how many questions UC is causing
+<a name="l-102"></a><span class="tm">18:56:26</span><span class="nk"> &lt;danielbeck&gt;</span> We're trying to improve the situation for users without a lot of friction for the developers.
+<a name="l-103"></a><span class="tm">18:56:45</span><span class="nk"> &lt;KostyaSha&gt;</span> instead of providing possibility of doing easy release through some central build system with signing you adding rules
+<a name="l-104"></a><span class="tm">18:56:45</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">KostyaSha:</span> https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=53609042#HostingPlugins-AddingaWikipage
+<a name="l-105"></a><span class="tm">18:57:04</span><span class="nk"> &lt;batmat&gt;</span> I you mean this is new, that version is from 2011
+<a name="l-106"></a><span class="tm">18:57:16</span><span class="nk"> &lt;batmat&gt;</span> And I didn't even check it may be even older
+<a name="l-107"></a><span class="tm">18:57:18</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha We don't have a central build system, and given our resource limitations it's unlikely to show up any time soon.
+<a name="l-108"></a><span class="tm">18:57:32</span><span class="nk"> &lt;danielbeck&gt;</span> Once we have we can always change our approach to this.
+<a name="l-109"></a><span class="tm">18:57:48</span><span class="nk"> &lt;KostyaSha&gt;</span> batmat, looking
+<a name="l-110"></a><span class="tm">18:57:55</span><span class="nk"> &lt;danielbeck&gt;</span> But I'd rather go for "good enough" now instead "perfect" years from now
+<a name="l-111"></a><span class="tm">18:58:58</span><span class="nk"> &lt;danielbeck&gt;</span> So I suggest we implement this on Monday as discussed last week.
+<a name="l-112"></a><span class="tm">18:59:04</span><span class="nk"> &lt;KostyaSha&gt;</span> batmat, ok it exists
+<a name="l-113"></a><span class="tm">18:59:06</span><span class="nk"> &lt;danielbeck&gt;</span> any opinions on that? y/n?
+<a name="l-114"></a><span class="tm">18:59:27</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, then i will prefer to have automatic issue creation and not filtering
+<a name="l-115"></a><span class="tm">18:59:38</span><span class="nk"> &lt;danielbeck&gt;</span> correction, as discussed last time
+<a name="l-116"></a><span class="tm">19:00:02</span><span class="nk"> &lt;batmat&gt;</span> then nothing will ever happen for the really problematic ones
+<a name="l-117"></a><span class="tm">19:01:06</span><span class="nk"> &lt;danielbeck&gt;</span> orrc Do you have time on Monday to react to any possible issues?
+<a name="l-118"></a><span class="tm">19:01:52</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> yeah. though having repo access would be good; the UC is one of those repos not in a team
+<a name="l-119"></a><span class="tm">19:02:28</span><span class="nk"> &lt;KostyaSha&gt;</span> batmat, my idea is simplifying and helping developers to do releases instead of enforcements in current ancient processes
+<a name="l-120"></a><span class="tm">19:02:54</span><span class="nk"> &lt;danielbeck&gt;</span> orrc I expect to be available on Monday anyway so would be able to fix anything that comes up
+<a name="l-121"></a><span class="tm">19:03:24</span><span class="nk"> &lt;batmat&gt;</span> well, the process is currently dead simple IMO, and has always been. How can add a simple tag in a pom.xml and re-release be an issue?
+<a name="l-122"></a><span class="tm">19:03:42</span><span class="nk"> &lt;batmat&gt;</span> I don't get it. That seems to me a reasonable requirement for users
+<a name="l-123"></a><span class="tm">19:03:53</span><span class="nk"> &lt;KostyaSha&gt;</span> batmat, maven-release plugin failed for everybody
+<a name="l-124"></a><span class="tm">19:04:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">jenkins-admin:</span> Create docker-workflow-plugin in the bug database for jglick
+<a name="l-125"></a><span class="tm">19:04:21</span><span class="nk"> &lt;jenkins-admin&gt;</span> Adding a new subcomponent docker-workflow-plugin to the bug tracker, owned by jglick
+<a name="l-126"></a><span class="tm">19:04:22</span><span class="nk"> &lt;jenkins-admin&gt;</span> New component created
+<a name="l-127"></a><span class="tm">19:04:40</span><span class="nk"> &lt;KostyaSha&gt;</span> batmat, and many other issues, building plugins on developers PCs is also from dinosaur times
+<a name="l-128"></a><span class="tm">19:05:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">jenkins-admin:</span> Create docker-traceability-plugin in the bug database for oleg_nenashev
+<a name="l-129"></a><span class="tm">19:05:06</span><span class="nk"> &lt;jenkins-admin&gt;</span> Adding a new subcomponent docker-traceability-plugin to the bug tracker, owned by oleg_nenashev
+<a name="l-130"></a><span class="tm">19:05:07</span><span class="nk"> &lt;jenkins-admin&gt;</span> New component created
+<a name="l-131"></a><span class="tm">19:05:28</span><span class="nk"> &lt;KostyaSha&gt;</span> docker docker docker docker docker for CloudBees CloudBees CloudBees CloudBees
+<a name="l-132"></a><span class="tm">19:05:41</span><span class="nk"> &lt;danielbeck&gt;</span> I'd like to get some more opinions on whether to implement this change on Monday. oleg-nenashev jglick batmat orrc ?
+<a name="l-133"></a><span class="tm">19:05:46</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza?
+<a name="l-134"></a><span class="tm">19:05:46</span><span class="nk"> &lt;orrc&gt;</span> +1
+<a name="l-135"></a><span class="tm">19:06:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> +1
+<a name="l-136"></a><span class="tm">19:07:08</span><span class="nk"> &lt;jglick&gt;</span> Sorry, was not paying attention I am afraid.
+<a name="l-137"></a><span class="tm">19:08:15</span><span class="nk"> &lt;jglick&gt;</span> But if you are proposing to require &lt;url&gt;…wiki…&lt;/url&gt; then yes +1
+<a name="l-138"></a><span class="tm">19:08:34</span><span class="nk"> &lt;danielbeck&gt;</span> jglick requiring Jenkins Wiki &lt;url&gt;s for future plugin releases. orrc prepared it in https://github.com/jenkinsci/backend-update-center2/pulls/20 and we were discussing whether to merge this on Monday
+<a name="l-139"></a><span class="tm">19:08:40</span><span class="nk"> &lt;danielbeck&gt;</span> so yeah basically that
+<a name="l-140"></a><span class="tm">19:09:46</span><span class="nk"> &lt;jglick&gt;</span> https://github.com/jenkinsci/backend-update-center2/pull/20 you mean
+<a name="l-141"></a><span class="tm">19:09:58</span><span class="nk"> &lt;KostyaSha&gt;</span> Could say me any project that blocks releases when wiki/homepage is wrong?
+<a name="l-142"></a><span class="tm">19:10:05</span><span class="nk"> &lt;KostyaSha&gt;</span> *Could you
+<a name="l-143"></a><span class="tm">19:10:19</span><span class="nk"> &lt;ogondza&gt;</span> +1 from me too
+<a name="l-144"></a><span class="tm">19:10:37</span><span class="nk"> &lt;KostyaSha&gt;</span> ogondza, does rhel or redhat declining rpms with bad urls?
+<a name="l-145"></a><span class="tm">19:11:09</span><span class="nk"> &lt;jglick&gt;</span> Definitely Ubuntu has strict criteria for packages.
+<a name="l-146"></a><span class="tm">19:11:39</span><span class="nk"> &lt;jglick&gt;</span> If a maintainer cannot be bothered to have proper metadata for the package, then it is rejected.
+<a name="l-147"></a><span class="tm">19:11:41</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">KostyaSha:</span> I would say fedora has some packaging guidelines, not sure how they are enforced
+<a name="l-148"></a><span class="tm">19:11:42</span><span class="nk"> &lt;KostyaSha&gt;</span> jglick, right, but do you have any real example when their package was not released because of url?
+<a name="l-149"></a><span class="tm">19:11:48</span><span class="nk"> &lt;ogondza&gt;</span> not applicable for RHEL
+<a name="l-150"></a><span class="tm">19:11:54</span><span class="nk"> &lt;KostyaSha&gt;</span> ogondza, i know guidelines of different distros
+<a name="l-151"></a><span class="tm">19:12:27</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">KostyaSha:</span> sonatype rejects maven releases when they do not follow guidelines
+<a name="l-152"></a><span class="tm">19:12:29</span><span class="nk"> &lt;KostyaSha&gt;</span> jglick, nobody checks/blocks because of urls
+<a name="l-153"></a><span class="tm">19:12:52</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">KostyaSha:</span> not to attach sources or javadoc .jar and deploy fails
+<a name="l-154"></a><span class="tm">19:12:53</span><span class="nk"> &lt;jglick&gt;</span> Only an UC admin would know of such examples. And yes Maven Central does reject artifacts that do not meet specific POM criteria.
+<a name="l-155"></a><span class="tm">19:12:56</span><span class="nk"> &lt;KostyaSha&gt;</span> ogondza, cool, can artifact be rejected during uploading to jenkins repo?
+<a name="l-156"></a><span class="tm">19:13:12</span><span class="nk"> &lt;KostyaSha&gt;</span> so i will know that it wouldn't be hosted? RIGHT WHEN I DO RELEASE
+<a name="l-157"></a><span class="tm">19:13:19</span><span class="nk"> &lt;jglick&gt;</span> I do not think we have time to implement a custom Artifactory rule, though it would be nice.
+<a name="l-158"></a><span class="tm">19:13:25</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Actually Artifactory supports this I think. Not sure about hosted Artifactory.
+<a name="l-159"></a><span class="tm">19:13:43</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Great idea, I'll try to look into it
+<a name="l-160"></a><span class="tm">19:13:58</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">KostyaSha:</span> that would be more elegant
+<a name="l-161"></a><span class="tm">19:14:12</span><span class="nk"> &lt;KostyaSha&gt;</span> ogondza, danielbeck this will be more obvious for developer
+<a name="l-162"></a><span class="tm">19:14:39</span><span class="nk"> &lt;KostyaSha&gt;</span> and it will be possible to understand and not after waiting 1day and debugging jenkins jobs
+<a name="l-163"></a><span class="tm">19:14:41</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha I like that. But I still think we should go ahead as discussed previously
+<a name="l-164"></a><span class="tm">19:14:55</span><span class="nk"> &lt;jglick&gt;</span> Agreed, +1 on proceeding as planned.
+<a name="l-165"></a><span class="tm">19:14:58</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">orrc and danielbeck to implement Wiki &lt;url&gt; requirement on Monday June 1</span>
+<a name="l-166"></a><span class="tm">19:15:03</span><span class="nk"> &lt;danielbeck&gt;</span> per majority vote
+<a name="l-167"></a><span class="tm">19:15:18</span><span class="nk"> &lt;KostyaSha&gt;</span> 5 guys voted for 1k plugins, ok
+<a name="l-168"></a><span class="tm">19:16:18</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Can we start to look at fixing the single points of failure?</span>
+<a name="l-169"></a><span class="tm">19:16:34</span><span class="nk"> &lt;danielbeck&gt;</span> orrc We need kohsuke for this one I guess?
+<a name="l-170"></a><span class="tm">19:16:38</span><span class="nk"> &lt;KostyaSha&gt;</span> i think answer - yes, you can :)
+<a name="l-171"></a><span class="tm">19:16:49</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> right
+<a name="l-172"></a><span class="tm">19:17:15</span><span class="nk"> &lt;KostyaSha&gt;</span> we need clone kohsuke :)
+<a name="l-173"></a><span class="tm">19:17:33</span><span class="nk"> &lt;nanonyme&gt;</span> Oh, I assumed this was a software problem, not a human problem :)
+<a name="l-174"></a><span class="tm">19:18:21</span><span class="nk"> &lt;danielbeck&gt;</span> INFRA-75
+<a name="l-175"></a><span class="tm">19:18:23</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-75:Clarify where backend-crawler is running (Open) https://issues.jenkins-ci.org/browse/INFRA-75
+<a name="l-176"></a><span class="tm">19:18:25</span><span class="nk"> &lt;danielbeck&gt;</span> INFRA-225
+<a name="l-177"></a><span class="tm">19:18:27</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-225:Appears backend crawler hasn't run since Oct 2014 (Reopened) https://issues.jenkins-ci.org/browse/INFRA-225
+<a name="l-178"></a><span class="tm">19:19:15</span><span class="nk"> &lt;danielbeck&gt;</span> doesn't make a lot of sense to rehash everything discussed about spof before today I think
+<a name="l-179"></a><span class="tm">19:19:32</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, there is SPOF label
+<a name="l-180"></a><span class="tm">19:19:46</span><span class="nk"> &lt;KostyaSha&gt;</span> or just sort kk assigned issues :D
+<a name="l-181"></a><span class="tm">19:20:03</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Linked from the linked issues *cough*
+<a name="l-182"></a><span class="tm">19:20:11</span><span class="nk"> &lt;danielbeck&gt;</span> so, yeah... let's move on
+<a name="l-183"></a><span class="tm">19:20:32</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-184"></a><span class="tm">19:21:08</span><span class="nk"> &lt;danielbeck&gt;</span> June 10
+<a name="l-185"></a><span class="tm">19:21:33</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 16:05:34 May 04, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:54:39 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 363.588
+  exclusion.robots: 0.126
+  exclusion.robots.policy: 0.113
+  RedisCDXSource: 3.564
+  esindex: 0.01
+  LoadShardBlock: 334.194 (3)
+  PetaboxLoader3.datanode: 332.858 (4)
+  CDXLines.iter: 20.793 (3)
+  load_resource: 78.781
+  PetaboxLoader3.resolve: 70.136
+-->

@@ -1,0 +1,142 @@
+========================
+#jenkins-meeting Meeting
+========================
+
+
+Meeting started by rtyler at 18:01:28 UTC. The full logs are available
+at
+http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-01-17-18.01.log.html
+.
+
+
+
+Meeting summary
+---------------
+* Last meeting items  (rtyler, 18:01:33)
+
+* LTS status check  (rtyler, 18:02:15)
+  * https://groups.google.com/forum/#!topic/jenkinsci-dev/Nnkr_2Kfz7E
+    (oleg-nenashev, 18:03:23)
+  * agenda is here btw
+    https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-January17thmeeting
+    (rtyler, 18:07:13)
+
+* JEP-200 status update / Q&A  (rtyler, 18:07:24)
+  * we landed JEP-200 in 2.102  (oleg-nenashev, 18:07:45)
+  * It caused regressions, as expected:
+    https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+fix+for+JEP-200
+    (oleg-nenashev, 18:07:59)
+  * https://github.com/jenkinsci/jep/tree/master/jep/200  (rtyler,
+    18:08:41)
+  * JEP-200 ETA in LTS is March 14 according to the current plans (if it
+    gets accepted to LTS)  (oleg-nenashev, 18:10:05)
+  * JEP-200 is switching of XStream/Remoting class filters from
+    blacklist to whitelist  (oleg-nenashev, 18:11:20)
+  * So, if a class is not in a plugin/core/module, it will be rejected
+    if not whitelisted. Common examples: Java internal classes,
+    3rd-party libraries (Guava & Co)  (oleg-nenashev, 18:12:11)
+  * LINK:
+    https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/jenkins/security/whitelisted-classes.txt
+    got updated since 2.102. It could close some regressions in plugins
+    not reported yet  (oleg-nenashev, 18:13:17)
+  * Developer guidelines:
+    https://jenkins.io/blog/2018/01/13/jep-200/#for-plugin-developers
+    (oleg-nenashev, 18:20:44)
+  * JEP-200 includes a "warranty period". A team is investigating all
+    reported issues and trying to fix them if possible. So far the
+    "team" is oleg-nenashev and jglick  (oleg-nenashev, 18:21:44)
+  * LINK: https://github.com/jenkinsci/ghprb-plugin/pull/616
+    (oleg-nenashev, 18:22:10)
+  * ACTION: oleg-nenashev to send a post-mortem doc once the dust
+    settles  (oleg-nenashev, 18:22:39)
+
+* GSoC 2018: Discussion - Do we want to kick-it off  (rtyler, 18:23:44)
+  * GSoC is the Google Summer of Code program  (rtyler, 18:24:58)
+  * Call formentors:
+    https://jenkins.io/blog/2018/01/06/gsoc2018-call-for-mentors/
+    (oleg-nenashev, 18:25:17)
+  * :
+    https://docs.google.com/document/d/1q2p_XZEdbkcVDMpEPTtjPS15i2Oq3CQgH_geJjPhofY/edit#heading=h.iu2aqxlb7caw
+    (oleg-nenashev, 18:26:40)
+  * Application deadline: January 23  (oleg-nenashev, 18:29:31)
+
+* Request for mark usage, "JUC Paris" by JFrog  (rtyler, 18:33:44)
+  * our trademark guidelines can be found here:
+    https://jenkins.io/project/governance/#trademark  (rtyler, 18:34:58)
+  * AGREED: Trademark sublicense granted to JFrog, Inc. for "Jenkins
+    User Conference Paris" and "Jenkins User Conference Israel"
+    (rtyler, 18:43:12)
+  * ACTION: rtyler to update the approved trademark usage wiki page
+    (rtyler, 18:43:21)
+  * ACTION: alyssat_ to help JFrog understand our trademark guidelines
+    :)  (rtyler, 18:44:33)
+
+* FOSDEM planning update  (rtyler, 18:45:58)
+  * https://wiki.jenkins.io/display/JENKINS/FOSDEM+2018  (alyssat_,
+    18:46:06)
+  * please RSVP to the FOSDEM related events as soon as possible:
+    https://www.meetup.com/jenkinsmeetup/  (rtyler, 18:51:37)
+  * ACTION: oleg-nenashev to add Demos section to the Wiki page
+    (oleg-nenashev, 18:53:41)
+  * Jenkins contributors at FOSDEM, please bring and wear your squad
+    t-shirts :P  (rtyler, 18:54:55)
+  * ACTION: oleg-nenashev and markewaite to bring as much T-shorts as he
+    can  (oleg-nenashev, 18:57:04)
+
+* Next meeting  (rtyler, 18:57:47)
+  * the next meeting will be at 18:00 UTC ON January 31st  (rtyler,
+    18:58:08)
+
+Meeting ended at 18:58:20 UTC.
+
+
+
+
+Action Items
+------------
+* oleg-nenashev to send a post-mortem doc once the dust settles
+* rtyler to update the approved trademark usage wiki page
+* alyssat_ to help JFrog understand our trademark guidelines :)
+* oleg-nenashev to add Demos section to the Wiki page
+* oleg-nenashev and markewaite to bring as much T-shorts as he can
+
+
+
+
+Action Items, by person
+-----------------------
+* alyssat_
+  * alyssat_ to help JFrog understand our trademark guidelines :)
+* markewaite
+  * oleg-nenashev and markewaite to bring as much T-shorts as he can
+* oleg-nenashev
+  * oleg-nenashev to send a post-mortem doc once the dust settles
+  * oleg-nenashev to add Demos section to the Wiki page
+  * oleg-nenashev and markewaite to bring as much T-shorts as he can
+* rtyler
+  * rtyler to update the approved trademark usage wiki page
+* **UNASSIGNED**
+  * (none)
+
+
+
+
+People Present (lines said)
+---------------------------
+* rtyler (94)
+* oleg-nenashev (83)
+* alyssat_ (38)
+* KatrinJFrog (29)
+* samrocketman (14)
+* markewaite (6)
+* ogondza (5)
+* andresrc (1)
+* robobutler (1)
+* jglick (1)
+
+
+
+
+Generated by `MeetBot`_ 0.1.4
+
+.. _`MeetBot`: http://www.jenkins-ci.org/meetings/

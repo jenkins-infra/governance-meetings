@@ -1,0 +1,185 @@
+18:02:32 <rtyler> #startmeeting
+18:02:32 <robobutler> Let the Jenkins meeting commence!
+18:02:48 <rtyler> #chair kohsuke danielbeck hare_brain
+18:02:48 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:03:10 <rtyler> kohsuke: my wifi is going on slow motion right now, can you run?
+18:03:21 <kohsuke> Yeah
+18:03:31 <kohsuke> #topic Recap last meeting's actions
+18:03:34 <kohsuke> Let's see
+18:03:42 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-03-15-18.00.html
+18:04:15 <rtyler> hare_brain won't be joining us, he's got a meeting conflict fwiw
+18:04:19 <danielbeck> I added the approved trademarks
+18:04:20 <kohsuke> There's a bunch of sublicense related actions for danielbeck  and allengeer
+18:04:25 <rtyler> I added some clear trademark attribution guidelines to the site: https://jenkins.io/project/governance/#trademark
+18:04:26 <kohsuke> oops, not allengeer but alyssa
+18:04:48 <rtyler> pretty much copy and pasted linux foundation's which we defer to
+18:04:49 <allengeer> lol im like why is kohsuke talking about me :)
+18:04:52 <rtyler> (they can hire lawyers)
+18:05:00 <alyssat_> my AIs are complete
+18:05:05 <kohsuke> allengeer: my bad!
+18:05:22 <rtyler> allengeer: omg you're in trouble xD
+18:05:24 <danielbeck> my AIs are too
+18:05:47 <rtyler> lars added the necessary attribution on the day of jenkins site iirc
+18:05:51 <kohsuke> larkruzz is not here, so I guess we should check code conf site quickly
+18:05:52 <rtyler> I'm pretty sure I saw that yesterday
+18:05:54 <kohsuke> OK, great
+18:06:08 <kohsuke> And alyssat_ is here
+18:06:16 <alyssat_> i'm here.
+18:06:27 <kohsuke> we were going through actions you took 2 weeks ago
+18:06:30 <kohsuke> See http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-03-15-18.00.html
+18:06:50 <rtyler> I'm pretty sure that's what alyssat_ was referring to earlier kohsuke
+18:06:50 <alyssat_> my AIs are complete. Attributions has been added to proper events pages as well as CB pages
+18:07:01 <kohsuke> oh
+18:07:12 <kohsuke> sorry, in my IRC client today you two have the same color
+18:07:22 <kohsuke> I got that confused with your AIs, rtyler
+18:07:35 <kohsuke> Now that it's cleared, I think we are good on this
+18:07:35 <rtyler> are we blue?
+18:07:42 <kohsuke> You two are teal
+18:07:43 <rtyler> perhaps n azure color
+18:07:47 <rtyler> heh
+18:07:53 <rtyler> I think that's all the actions from last time
+18:07:56 <alyssat_> i'm dark blue
+18:08:01 <kohsuke> emerald green, my favorite color for my favorite people
+18:08:07 <rtyler> \o/
+18:08:13 <kohsuke> #topic LTS Status check
+18:08:23 <danielbeck> ogondza
+18:08:37 <ogondza> no problem during testing, we are ready to go
+18:08:49 <danielbeck> great
+18:08:50 <kohsuke> #action kohsuke to run a release
+18:08:57 <danielbeck> #action danielbeck to write the upgrade guide
+18:08:59 <ogondza> oleg-nenashev: are you ok with https://github.com/jenkins-infra/jenkins.io/pull/764 ?
+18:09:17 <rtyler> this is 2.46.1 yeah?
+18:09:18 <danielbeck> ogondza oleg-nenashev That's best discussed elsewhere
+18:09:33 <ogondza> rtyler: yes
+18:09:40 <danielbeck> #action danielbeck to merge the update center PR for the new baseline once Artifactory index has 2.46.1
+18:09:52 <rtyler> kdanithat PR would be a prerequisite to kohsuke running a release though wouldn't it?
+18:09:55 <rtyler> omg lag
+18:10:03 <rtyler> danielbeck: ^
+18:10:15 <kohsuke> who's kdanithat?
+18:10:15 <danielbeck> rtyler I don't understand the question
+18:10:33 <kohsuke> oh, it must be "k, daniel, that PR would be ..."
+18:10:38 <rtyler> indeed
+18:10:46 <danielbeck> rtyler which PR? changelog?
+18:10:46 <rtyler> that jenkins.io pull request is the changelog isn't it
+18:10:57 <rtyler> souldn't that be ready to merge before kohsuke runs the release process?
+18:11:14 <danielbeck> we have an hour or four, it's fine
+18:11:19 <kohsuke> I don't think it's a pre-req, yeah
+18:11:20 <rtyler> heh
+18:11:25 <danielbeck> Artifactory is acting up lately wrt indexing
+18:11:30 <ogondza> there is no techincal reason I know off
+18:11:36 <rtyler> as a user it sucks to have new bits without knowing what they are :)
+18:11:44 <danielbeck> rtyler don't install them thren
+18:11:49 <danielbeck> s/thren/sthen
+18:11:53 <rtyler> o_o
+18:11:55 <danielbeck> s/sthen/then
+18:11:59 <rtyler> danielbeck: let me try this differently
+18:12:06 <kohsuke> I assume danielbeck is saying this PR will get sorted out by the time release arrives
+18:12:10 <danielbeck> yes
+18:12:14 <rtyler> people ask @jenkinsci and jump into #jenkins whenever the changelog doesn't exist for the latest listed release
+18:12:17 <rtyler> I would like to avoid that
+18:12:35 <danielbeck> I'll take care of it
+18:12:40 <rtyler> kohsuke: heh, basically we're counting on you not releasing until later tonight I presume? :P
+18:12:45 <rtyler> "after work" work
+18:12:46 <rtyler> :D
+18:13:03 <kohsuke> Well, there might a bit of that, but we are counting on the time the release process itself takes, plus Artifactory indexing delay
+18:13:23 <kohsuke> I think we are all happy now, let's move on
+18:13:38 <ogondza> sure
+18:13:42 <kohsuke> #topic Sublicense request, on behalf of JFrog, "Jenkins Community Day" event in Paris
+18:13:55 <alyssat_> JFrog is planning to host a Jenkins 1 day event w/ 4-6 sessions in Paris on July 11. They are requesting for approval to use the name "Jenkins Community Day". They hope to get 250-300 attendees. Entry price is $50, this is mainly to make sure those who RSVP actually do attend and also to cover food & drinks since we all know how expensive everything is in
+18:13:55 <alyssat_> Paris.
+18:14:18 <rtyler> heh
+18:14:23 <rtyler> quiche for everybody!
+18:14:34 <kohsuke> Between this and the last meeting, IMO it's great that more companies are organizing different events
+18:14:35 <alyssat_> and croissants :)
+18:14:39 <rtyler> alyssat_: are you here asking on behalf of JFrog?
+18:14:53 <alyssat_> yes. I am here on behalf of JFrog
+18:14:53 <allengeer> and french fries
+18:14:59 * batmat switches from screen to screen and wondered a few seconds if that was the right one, reading French :)
+18:15:01 <rtyler> allengeer: frites!
+18:15:17 <allengeer> oui oui! ou est mon frites!
+18:15:22 <rtyler> heh
+18:15:23 <batmat> *sont
+18:15:40 <batmat> "où sont mes frites" would be better
+18:15:41 <rtyler> I'm comfortable with this request, the usual trademark attribution requirements apply of course
+18:15:56 <batmat> "où sont mes frites, bordel" would be even frenchier...
+18:16:02 <kohsuke> Anyone who feels otherwise?
+18:16:06 <alyssat_> yes. I will work with them to make sure proper attribution is included on the webpage
+18:16:07 <rtyler> alyssat_: future interactions like this I hope we can encourage companies like jfrog to actually participate in this meeting similar to praqma last time around
+18:16:17 <rtyler> batmat: stay on topic or I'll have to kick you into the sein
+18:16:19 <rtyler> :)
+18:16:35 <alyssat_> rtyler: will do
+18:16:35 <batmat> +1 for JGrenouille
+18:16:49 <kohsuke> All right, moving on...
+18:16:55 <rtyler> record it plz
+18:17:02 <alyssat_> thank you
+18:17:19 <danielbeck> Who's asking? JFrog Ltd?
+18:17:26 <kohsuke> #agreed "Jenkins Community Day" sublicense request is granted. The usual attribution apply
+18:17:42 <kohsuke> I don't know if it's Ltd or Inc or 株式会社
+18:17:49 <rtyler> alyssat_: see danielbeck's question
+18:17:59 <alyssat_> i'm looking this up
+18:18:05 <alyssat_> I just know them as JFrog
+18:18:05 <rtyler> danielbeck: perhaps alyssat_ can update the approved trademark page :)
+18:18:15 <alyssat_> https://www.jfrog.com/Artifactory/?km_source=google+ppc&km_medium=cpc&km_term=35774400220&km_campaign=682253752&km_keyword=jfrog&km_adid=152106653455&aw_campaignid=682253752&aw_adgroupid=35774400220&aw_device=c&aw_keyword=jfrog&aw_matchtype=e&gclid=CLDomsGp_NICFQJsfgodkMUJcw
+18:18:30 <danielbeck> #action alyssat_ to update approved trademark usage wiki page
+18:18:39 <danielbeck> kohsuke that's fine, now I don't care anymore ;-)
+18:18:40 <alyssat_> ok
+18:18:41 <rtyler> kohsuke: /now/ I think we can go to the next topic xD
+18:18:48 <batmat> #action alyssat_ to remove her tail
+18:18:52 <rtyler> haha
+18:19:08 <alyssat_> batmat:  huh?
+18:19:10 * rtyler thinks batmat may have had too much wine this evening
+18:19:24 <rtyler> #topic Java 8 baseline bump heads up
+18:19:33 <kohsuke> #info a quick advertisement about a proposed Jenkins localization drive : https://groups.google.com/d/msg/jenkinsci-docs/pBn13p7FRH0/wUBgInrPBgAJ
+18:19:35 <kohsuke> oops
+18:19:43 <kohsuke> you have more topic now
+18:20:02 <rtyler> heh
+18:20:09 <kohsuke> batmat: this is yours
+18:20:10 <batmat> #info https://jenkins.io/blog/2017/01/17/Jenkins-is-upgrading-to-Java-8/
+18:20:56 <batmat> so, reminder, the /plan/ was to bump in April, so we're almost there. I've started looking into a PR for this, but this seems a bit more complicated than anticipated.
+18:20:57 <rtyler> is everything moving along smoothly batmat?
+18:21:01 <batmat> #info https://github.com/jenkinsci/jenkins/pull/2802
+18:21:06 <rtyler> any help you need from others?
+18:21:13 <batmat> I suspect that kohsuke could help in ^
+18:21:27 <kohsuke> OK
+18:21:42 <batmat> at least, give guidance. This seems to fail in one subtool, the bridge injector
+18:21:45 <jglick> I offered some hints.
+18:21:56 <kohsuke> I guess the fix needed in bridge method injector
+18:21:57 <batmat> jglick: yup, saw it just before, thanks
+18:22:12 <rtyler> batmat: one thing to keep in mind, we have a LOT of plugins using the buildPlugin global variable in their Jenkinsfiles now, and some are pinning to Java 7
+18:22:28 <rtyler> batmat: if you feel like sending emails, you could ping some of those folks and let them know that the end is nigh
+18:22:45 <danielbeck> batmat unless the core dependency is updates, shouldn't matter
+18:22:49 <danielbeck> rtyler ^
+18:23:05 <rtyler> ok
+18:23:10 <batmat> rtyler: not sure I get what you mean. Anyway, I suppose this can be handled on ML or IRC, outside the gov meeting
+18:23:14 <danielbeck> rtyler or do you think plugins won't work?
+18:23:34 <rtyler> I'm worried that plugins are explicitly avoiding testing on JDK8 for some reason that might cause breakages for users
+18:23:42 <rtyler> it could be just laziness
+18:23:56 <batmat> anyway, it was mostly a heads up as stated, so I'm done. Just a FYI/reminder
+18:23:56 <rtyler> but there are "key" plugins which are suggested in the installation process
+18:23:59 <jglick> Or if they know the plugin does not build on 8 then there may be something consistently broken. Anyway, that is their problem.
+18:24:06 <rtyler> I just want us to make sure those are kosher
+18:24:18 <jglick> rtyler: if there are any recommended plugins which do this, either remove the pin, or drop them from the list (IMO)
+18:24:19 <batmat> if the PR gets mergeable soonish, then the /plan/ to have the next LTS baseline on Java 8 could still be true
+18:24:40 <rtyler> jglick: I agree with that, I just wanted to raise it as sometihng that batmat might be able to drive resolution on
+18:24:54 <batmat> rtyler: ack
+18:25:08 <kohsuke> OK, sounds  like the critical path is to get the jenkins.war with Java8 class files, then to do some tests
+18:25:26 <kohsuke> batmat: I'll do my part in fixing bridge method injector
+18:25:39 <batmat> kohsuke: would be great, thanks
+18:25:43 <kohsuke> My initial thinking is that jglick is right that it's just a metter of upgrading ASM
+18:25:54 <kohsuke> Anything more on this?
+18:26:09 <batmat> kohsuke: I tried it, but it's possible I missed a step.
+18:26:16 <batmat> nope, done from me.
+18:26:16 <kohsuke> I'll see what I find
+18:26:35 <kohsuke> #topic a quick advertisement about a proposed Jenkins localization drive
+18:27:01 <kohsuke> hope y'all find  https://groups.google.com/d/msg/jenkinsci-docs/pBn13p7FRH0/wUBgInrPBgAJ interesting
+18:27:03 <rtyler> kohsuke: would you or whomever is championing this write a blog post?
+18:27:39 <kohsuke> Sure, danielbeck, you or me?
+18:27:45 <danielbeck> rtyler we're not there yet IMO
+18:27:48 <rtyler> okay
+18:27:58 <kohsuke> I assume the post is about "hey WDYT, anyone willing to participate?"
+18:28:25 <rtyler> whwnever the initiative is "there" please don't hesitate to use jenkins.io as a mechanism for getting the word out
+18:28:37 <kohsuke> Will do
+18:28:44 <kohsuke> #topic next meeting time
+18:29:16 <kohsuke> #info Next meeting will be April 12th the same time. Thank god time zone change is over!
+18:29:30 <kohsuke> See you in 2 weeks
+18:29:33 <kohsuke> #endmeeting

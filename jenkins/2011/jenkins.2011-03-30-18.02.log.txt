@@ -1,0 +1,226 @@
+18:02:27 <kohsuke> #startmeeting
+18:02:27 <robobutler> Let the Jenkins meeting commence!
+18:02:38 <kohsuke> #chair abayer
+18:02:38 <robobutler> Current chairs: abayer kohsuke
+18:03:21 <kohsuke> Dean said he is in a similar situation as aheritier, so he won't be able to come today
+18:03:37 <kohsuke> So looking at http://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:03:51 <kohsuke> I guess we'll skip the JIRA stuff
+18:03:56 <kohsuke> #topic logo contest status
+18:04:29 <kohsuke> #info Tyler gave me access to the Google doc that has the results
+18:05:07 <kohsuke> But it still wasn't tallied yet.
+18:05:31 <rtyler> oh crap, meeting
+18:05:34 <kohsuke> I'm not sure if abayer or rtyler would take that AI, or if I should do it.
+18:05:35 * rtyler wakes up
+18:05:51 <rtyler> kohsuke: how do you feel about starting the runoff next monday
+18:06:02 <kohsuke> Sounds good to me.
+18:06:10 <kohsuke> Yes, so the plan was to do a run-off between top two
+18:06:12 <rtyler> if so, I can tally and prepare round two of ULTIMATE ROBO LOGO SHOWDOWN
+18:06:25 <kohsuke> :-)
+18:06:38 <kohsuke> And I'm happy to report that "none of the above" wasn't one of the top two.
+18:06:59 <redsolo> :)
+18:07:21 <kohsuke> #action rtyler to tally the result and get the the run-off going starting next Monday
+18:08:10 <kohsuke> I believe it was #9 and #10 but I could be wrong
+18:08:40 <kohsuke> And looks like we got 1900+ votes
+18:08:55 <kohsuke> OK, I guess that's enough for this topic...
+18:09:17 <kohsuke> #topic Trademark registration status
+18:09:44 <kohsuke> On this, I apologize that I haven't made a progress. I'll get that going ASAP
+18:10:43 <kohsuke> (Just to recap, the plan was to have a paper in place making sure that CB won't own it, then take Sacha's offer to fund the registration process and legal access)
+18:10:54 <kohsuke> So further moving on...
+18:11:05 <kohsuke> #topic SFC response / umbrella org
+18:11:37 <kohsuke> Still haven't heard back from SFC.
+18:12:11 <kohsuke> The last correspondance was to check back in April
+18:12:12 <abayer> …and I still need to write up teh Apache sitdown. Sorry, been really busy with work last few weeks. Should be winding down this week.
+18:12:21 <rtyler> everybody has been
+18:12:32 <rtyler> let's put dean to work :D
+18:12:43 <kohsuke> ... so this meeting is serving as a reminder on AIs which is good.
+18:13:21 <kohsuke> I was wondering if Dean could explore the implications of optional CLAs with his lawers
+18:13:38 <kohsuke> But that's a part of the future topics, I guess.
+18:13:58 <kohsuke> I think it still makes sense for abayer to do the Apache write up, given his access to Doug
+18:14:23 <kohsuke> Anyway, wrt SFC, I think I'll give it a two more weeks before pinging them again
+18:14:44 <rtyler> that sounds reasonable to me
+18:14:55 <kohsuke> And for SPI, I still have an AI to get more conversation going.
+18:15:10 <kohsuke> Thus far it's been positive.
+18:15:46 <kohsuke> Further moving on...
+18:15:56 <kohsuke> #topic CLA discussion continued
+18:16:43 <kohsuke> I believe the last e-mails were around the idea of not making CLA mandatory but optional for only those who want to sign it
+18:17:15 <kohsuke> Personally, I wasn't sure if that serves any purpose, but then Dean seemed more receptive to the idea, so I thought "hey, if that makes lawyers happy, I'm all for it!"
+18:17:50 <kohsuke> I wonder if anyone here has access to lawyers that could give us guidance.
+18:18:15 <kohsuke> Otherwise I think we are starting go circles.
+18:19:02 <kohsuke> (And it looked like Dean had some access to lawyers, so I was hoping he'd discuss that with lawyers.)
+18:19:17 <rtyler> I have no access
+18:19:24 <kohsuke> I guess I'll write to him.
+18:19:56 <kohsuke> #action kohsuke to ask hare_brain to see if he can ask his lawyers about the implications of optional voluntary CLAs.
+18:20:01 <rtyler> heh
+18:20:38 <kohsuke> And unless someone wants to add to this topic, I think we can further move on...
+18:20:57 <kohsuke> #topic Discussion on the way we can strengthen plugins and avoid unnecessary duplication/forks
+18:21:13 <kohsuke> This was added by rseguy
+18:21:13 <rseguy> I'm the one behind this item
+18:21:18 <kohsuke> Yeah
+18:21:27 <kohsuke> So the floor is yours :-)
+18:21:38 <rseguy> I've noticde recently an increase in plugins doing more or less the same thing
+18:21:46 <rseguy> 3 examples:
+18:22:09 <rseguy> clearcase/clearcase-ucm-baseline "vs." pucm (or something like that)
+18:22:21 <rseguy> copy-to-slave vs. copy-data-to-workspace
+18:22:38 <rseguy> last one: backup vs. thin-backup vs. perdiodic-backup
+18:22:47 <rseguy> these are just examples I'm aware of
+18:22:49 <kohsuke> hmm. true.
+18:23:12 <rseguy> for all of them, the only one diff between is always one or two features
+18:23:25 <rseguy> ... that could have been integrated in the "main" plugin
+18:23:49 <rseguy> and now we end up with more plugins for users with less functions
+18:24:30 <docwhat> May I mention that as someone who wants to contribute, finding the source for plugins can also be hard may contribute to multiple plugins.  Adding links in the wiki to the source repos would probably help as well. (I'm unsure if I'm aloud to speak....)
+18:24:34 <rseguy> so I was thinking we could have written some guidelines to help people cooperating on plugins rather than everybody doing a new one on his own
+18:24:58 <kohsuke> docwhat: I thought we fixed that recently in the last month or so. Now the plugin page has a link to the source code
+18:25:27 <kutzi> Yes, looks like they have
+18:25:51 <kutzi> I think the 1st step, is for the plugins to be findable
+18:25:55 <kohsuke> Yeah, +1 on having a Wiki page that talks about how to check out an existing plugin, make modifications, install the modified version on your Jenkins, and push back the changes.
+18:25:58 <rseguy> frankly said, I have no idea on how we can help people cooperating on the same plugins being open, so this might be hard to set up something :-)
+18:26:20 <kutzi> E.g. I cannot find the periodic-backup plugin here http://wiki.jenkins-ci.org/display/JENKINS/Plugins
+18:26:22 <abayer> I think we should do a better job at tagging/labeling the functionality of plugins.
+18:26:37 <Creeture> Update the MarkDown README at the top of github. Would that help?
+18:26:38 <rseguy> an idea: what about also adding keywords to plugins to better find them?
+18:26:42 <kutzi> +1 on better labeling
+18:26:59 <rseguy> +1 too
+18:27:04 <docwhat> Adding "contribute to this plugin" links with information on the plugin pages would be helpful as well.
+18:27:05 <abayer> Perhaps as a community project, we should review all the existing plugins - both wiki page and actual source - and update the wiki page to have better labeling, with more than just the rough categories we have now.
+18:27:16 <abayer> +1 to docwhat's suggestion as well.
+18:27:22 <rseguy> we also need to be sure that plugins have a wiki page
+18:27:34 <docwhat> +1 rseguy's suggestion
+18:27:38 <kohsuke> rseguy: that's something automatable, so I like that
+18:27:58 <bap2000> how about on the "Extending" wiki page we suggest that before starting a plugin, put suggestion out to dev and users mailing list for comment?
+18:28:03 <kutzi> can we do a check for a Wiki page during plugins' releases?
+18:28:17 <docwhat> Would it be possible to leverage the same code that the Plugin Manager uses to generate the list and pages for the wiki?
+18:28:22 <bap2000> ... and on the plugin dev page too
+18:28:46 <kohsuke> kutzi: people also develop in-house plugins, so it's bit tricky to do it at the release time, I think.
+18:29:28 <kohsuke> docwhat: we can generate a separate plugin index page from Wiki if that's useful, but is it?
+18:29:31 <abayer> #idea Crowdsourcing a review of all existing plugins, to understand their capabilities/overlaps/etc.
+18:29:58 <rseguy> +1 on the review
+18:30:01 <docwhat> kohsuke: I'm just thinking that I find the wiki pages via the Plugin Manager....so duplicating that someplace public might be useful.
+18:30:15 <kohsuke> OK.
+18:30:42 <rseguy> I guess many Jenkins instances are not connected to Internet (my case), so I never use the plugin manager...
+18:30:50 <abayer> #action abayer to create a wiki page for tracking which plugins have been reviewed, and directions on what to do for reviewing (tagging/labeling, etc)
+18:31:04 <choas> I've fixed a virtualbox4 problem .. but this results to a new plugin (not sure if it works with virtualbox < 4) .. should it have its own wiki?
+18:31:12 <kohsuke> abayer: so the goal of the crowdsourcing is to identify similar plugins that are candidates for consolidations?
+18:31:17 <rseguy> we also need to emphasize plugins licenses
+18:31:22 <docwhat> rseguy: As a new Jenkins user, I've used Jenkin's itself as the source for lots of information.
+18:31:32 <docwhat> +1 rseguy's suggestion on licenses.
+18:31:49 <kohsuke> #idea add the license information to the banner
+18:32:17 <fcamblor> Hi all :-)
+18:32:21 <mjmac_> anyone run into the problem of a particular matrix combination stubbornly remaining in a "disabled" state even when it's not explicitly excluded by the combination filter?
+18:32:26 <rseguy> it's important, e.g. I wanted to consolidate pucm in clearcase/clearcase-ucm-baseline, but it's GPL, others are MIT...
+18:32:27 <fcamblor> +1 for kohsuke"s idea
+18:32:42 <abayer> kohsuke: And to just get a better sense of "plugin X does thingie Y" so that it's easier for users to find a plugin that fits their needs.
+18:32:42 <mjmac_> oops...  sorry to butt in
+18:33:00 <kohsuke> choas: let's take that to the dev list and I can see if it can be merged together
+18:33:42 * kohsuke goes back to the discussion in this topic to capture ideas in the record...
+18:34:20 <kohsuke> #idea write a Wiki page that focus on "how to modify an existing plugin and get your change integrated"
+18:34:30 <FunkyFis1> as no one seems to point it out: shouldn't someone just ask the three examples why they started a new one?
+18:34:48 <kohsuke> Good idea
+18:34:51 <rseguy> +1
+18:35:04 <kohsuke> #idea ask the three examples why they started a new one. (via FunkyFis1)
+18:35:10 <fcamblor> Speaking about plugin compats, wouldn't it be nice to trigger a report somewhere allowing to track API incompatibilities between current jenkins version and greater tagged plugin version (maybe we could discuss about this in a later governance meeting ..)
+18:35:34 <rseguy> but what if it's just because they wanted their own code and not one from other?
+18:35:42 <rseguy> would you refuse the plugin?
+18:35:53 <kohsuke> I think the goal of asking is just to understand
+18:36:02 <rseguy> ok
+18:36:32 <kohsuke> If someone really wants his own code, I think that's fine. That's called competition.
+18:36:34 <kutzi> rseguy: I think no one is thinking about 'refusing' plugins?
+18:36:45 <fcamblor> I'm thinking about some sort of maven reporting plugin trying to checkout tagged plugin source, try to change parent.GAV attributes in pom.xml on latest jenkins GAV, and try to compile/launch test over current released plugin
+18:36:46 <rseguy> we should not!
+18:36:49 <kohsuke> We just want to encourage them to cooperate.
+18:36:54 <kutzi> sure
+18:36:58 <rseguy> yep
+18:37:14 <kohsuke> fcamblor: want to take an AI for that :-)
+18:37:16 <kohsuke> ?
+18:37:39 <kohsuke> Creeture: you earlier said "Update the MarkDown README at the top of github. Would that help?"  --- which page you are referring to?
+18:37:40 <fcamblor> AI ? :)
+18:37:44 <kohsuke> action item
+18:37:59 <rtyler> also: Artificial Idiot
+18:38:05 * rtyler has strong AI
+18:38:06 <fcamblor> oh ok why not, but I won't be able to have results rapidly :)
+18:38:11 <fcamblor> huhu :)
+18:38:50 <kohsuke> I think it'd be a great addition
+18:38:56 <kohsuke> bulk testing plugins with releases
+18:39:06 <fcamblor> yup
+18:39:13 <kohsuke> #idea what about also adding keywords to plugins to better find them? (via rseguy)
+18:39:19 <redsolo> i would love to see that
+18:39:29 * redsolo means the testing of plugins
+18:39:35 <kutzi> you mean in the POM or where?
+18:39:51 <rtyler> kohsuke: does JIRA support tags for pages?
+18:39:54 <fcamblor> yup in the pom
+18:39:57 <abayer> kohsuke: That's kind of what I meant as part of the review process - tagging/labeling. =) I think it should probably be on the wiki for now, and maybe eventually integerated into the update center.
+18:40:07 <kohsuke> I guess it's to the Wiki pages
+18:40:07 <docwhat> kohsuke: I'd love tags of some kind on Plugins, they are so many right now.  They'd make finding them in the GUI much easier.
+18:40:23 <rseguy> another possible action item: easing the access to source code for those poor guys (me...) with no svn/git access from work, e.g. by bundling a zip when a plugin is released (actually, by putting it more in emphasis compared to today)
+18:41:11 <kohsuke> (people should use the hash-idea tag on their own to keep this in the minutes!)
+18:41:22 <kutzi> Just getting the sources should be possible ober HTTP, isn't it?
+18:41:33 <rseguy> #idea easing the access to source code for those poor guys (me...) with no svn/git access from work, e.g. by bundling a zip when a plugin is released (actually, by putting it more in emphasis compared to today)
+18:41:42 <kohsuke> I can tweak the maven-hpi-plugin to produce the source assembly
+18:41:50 <kohsuke> Seems easy enough and if it helps some, why not?
+18:41:54 <jpederzolli> you can already download a source zip from github right?
+18:42:06 <rtyler> yes
+18:42:27 <rseguy> so just put a link in the wiki :)
+18:43:14 <kutzi> that leaves the plugins still in SVN, but for me it's okay to ignore them
+18:43:20 <rtyler> heh
+18:43:28 <kohsuke> #action Kohsuke to tweak the maven-hpi-plugin to create source assembly during the plugin release
+18:43:30 <kutzi> as github should be the future?
+18:43:41 <docwhat> #idea Help find/organize plugins by generating a list of plugins dynamically from the same info the "Manage Plugin" does in Jenkins and putting it in the wiki or next to the wiki. This could also verify that wiki pages exist and are filled out right.
+18:44:02 <rtyler> magnayn: you're here just in time for some plugin chatter, see /topic
+18:44:33 <rseguy> #idea Add a search engine based on labels for plugins
+18:44:52 <kohsuke> We need some volunteers to tackle those
+18:44:56 <docwhat> #idea Plugin Quickstart Utility -- a simple utility that helps either get an existing plugin or creates a skeleton plugin and verifies environment is ready for development.
+18:45:22 <kohsuke> Hmm, that's interesting. That could be another mojo for maven-hpi-plugin
+18:45:33 <kohsuke> hpi:checkout -Dplugin=XYZ
+18:45:36 <bap2000> is that not hpi:create?
+18:45:40 <fcamblor> #action write some sort of reporting tool allowing compile/test every plugins declared in update-center.json over lastly released jenkins version
+18:45:49 <bap2000> gives the HElloWorld or whatever turns up
+18:46:04 <kohsuke> bap2000: the point is to check out an existing one, not create a new one
+18:46:11 <bap2000> k
+18:46:14 <magnayn> #idea could we have an 'unstable' update-center.json generated from the jenkins CI instance? My impression is people get keen to release very often so some patch/change can become visible for users..
+18:46:32 <rseguy> I like this one
+18:46:34 <fcamblor> kohsuke: I love your hpi:checkout goal, it would be a good start for my  reporting tool :-D
+18:47:04 <kohsuke> true
+18:47:18 <kohsuke> magnayn: I guess for that we need snapshots to be available somewhere
+18:47:41 <kohsuke> But yeah, we have a machinery in place for that.
+18:47:50 <rseguy> what about having some kind of experimental flag in released plugins that?
+18:47:58 <magnayn> yes - I guess either push them to a nexus instance or something, or use the repository plugin to make available
+18:48:25 <kohsuke> I like the repository plugin better. That way plugin devs don't have to push them
+18:49:23 <kohsuke> OK, lots of interesting ideas. Aside from fcamblor any one interested in spending some time on some of this?
+18:49:49 <kohsuke> (and dumping other past ideas)
+18:49:50 <kohsuke> #idea Adding "contribute to this plugin" links with information on the plugin pages would be helpful as well. (via docwhat)
+18:49:53 <rseguy> for doc stuff I can, for tech stuff no, I'm not a maven guy...
+18:49:54 <kohsuke> #idea how about on the "Extending" wiki page we suggest that before starting a plugin, put suggestion out to dev and users mailing list for comment? (via bap2000)
+18:49:57 <kohsuke> #idea Would it be possible to leverage the same code that the Plugin Manager uses to generate the list and pages for the wiki? (via docwhat)
+18:49:58 <magnayn> I was going to look into the above if someone can point me to how the update-json is generated
+18:50:42 <kohsuke> magnayn: it's driven from Nexus index
+18:51:21 <magnayn> is the source available?
+18:51:23 <kohsuke> (which we can generate from a directory very easily, too)
+18:51:31 <kohsuke> The update center generator? Yes.
+18:52:04 <kohsuke> If you can send an e-mail to the dev list, that'd be great --- we can take it from there
+18:52:12 <kohsuke> I can give you pointers
+18:52:23 <magnayn> ok. will do sometime this week
+18:52:27 <kohsuke> thanks
+18:53:06 <kohsuke> rseguy: maybe you can help us with a first stab at a Wiki page that talks about how to contribute to an existing plugin?
+18:53:14 <rseguy> #action write a proposal on how about on the "Extending" wiki page we suggest that before starting a plugin, put suggestion out to dev and users mailing list for comment? (via bap2000)
+18:53:24 <kohsuke> thanks
+18:53:37 <rseguy> #action write a proposal on Adding "contribute to this plugin" links with information on the plugin pages would be helpful as well. (via docwhat)
+18:53:42 <rseguy> yep, I'll do
+18:53:53 <kohsuke> OK, before the time runs out, we need to decide the next meeting coordinate.
+18:53:57 <kohsuke> Would it be OK to leave this topic?
+18:54:08 <rseguy> for me yes
+18:54:12 <kohsuke> #topic When will be the next meeting?
+18:54:24 <rtyler> RIGHT NOW
+18:54:44 <kohsuke> Two weeks from now?
+18:55:02 <rtyler> will two weeks give everybody enough time to make forward progress on some of these action idems?
+18:55:21 <rseguy> ok for mine (doc stuff, easy ;-))
+18:56:00 <kohsuke> Not sure, but I don't know giving more time contributes to the progress.
+18:56:10 <fcamblor> I agree :)
+18:56:36 <fcamblor> Let's define targets and see if things move on :)
+18:57:08 <kohsuke> OK, anyone objects to the same time in two weeks?
+18:57:36 <kohsuke> #agreed next meeting will be in the same time, two weeks from now.
+18:57:46 <rtyler> yay
+18:57:59 <rtyler> kohsuke: sorry I got to the tweeting about the meeting late
+18:58:03 <kohsuke> No worries.
+18:58:09 <kohsuke> With that, I think we adjourn.
+18:58:12 <rtyler> perhaps we should just schedule posts in drupal about it ~12 hours before
+18:58:16 <kohsuke> +1
+18:58:30 <kohsuke> #endmeeting

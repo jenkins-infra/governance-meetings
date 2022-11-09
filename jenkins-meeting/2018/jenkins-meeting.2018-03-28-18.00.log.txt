@@ -1,0 +1,158 @@
+18:00:53 <rtyler> #startmeeting
+18:00:53 <robobutler> Let the Jenkins meeting commence!
+18:00:58 <rtyler> #chair danielbeck kohsuke_
+18:00:58 <robobutler> Current chairs: danielbeck kohsuke_ rtyler
+18:01:07 <rtyler> danielbeck: you running this one or am I again? :)
+18:01:18 <jglick> present
+18:01:22 <danielbeck> rtyler I'm here now
+18:01:25 <oleg-nenashev> o/
+18:01:32 <danielbeck> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:01:41 <danielbeck> #topic Recap last meeting's actions
+18:01:55 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-03-14-18.00.html
+18:02:09 <danielbeck> rtyler ogondza you had an item
+18:02:18 <danielbeck> (2.107.1 is obviously out :-) )
+18:02:21 <batmat> o/
+18:02:28 <ogondza> it it
+18:02:47 <ogondza> I did followed up w.r.t. moving LTS tests to ci.j.io
+18:02:48 * kohsuke_ joins a little late
+18:03:07 <rtyler> ogondza: I've been so swamped I cannot honestly remember what we talked about
+18:03:19 <ogondza> designed, tracked, scheduled for next 2  weeks
+18:03:28 <ogondza> rtyler, not a problem - nothing for you to do
+18:03:41 <oleg-nenashev> yey
+18:03:49 <danielbeck> \o/
+18:04:01 <danielbeck> let's move on then
+18:04:08 <oleg-nenashev> thanks for runATH() by the way, adopted it in my test flows
+18:04:12 <oleg-nenashev> works great
+18:04:21 <rtyler> \o/
+18:04:21 <danielbeck> #topic LTS status check
+18:04:30 <danielbeck> ogondza :)
+18:04:38 <ogondza> last minute backport added couple of hours ago
+18:04:42 <ogondza> tests in progress
+18:04:48 <danielbeck> the java 9 error?
+18:05:03 <oleg-nenashev> and Java 10 :(
+18:05:13 <ogondza> provided nothing blows up, RC will be tomorrow
+18:05:22 <ogondza> JENKINS-49737 is part of it
+18:05:40 <ogondza> that is that last minute backport
+18:05:45 <danielbeck> ok
+18:05:54 <danielbeck> yes, that's the one oleg-nenashev and I were referring to
+18:05:55 <danielbeck> thanks!
+18:06:07 <oleg-nenashev> JEP-200 regression is also ported
+18:06:16 <danielbeck> which one? :P
+18:06:22 <ogondza> when do we start supporting these releases, btw? :P
+18:06:23 <oleg-nenashev> next topic :D
+18:06:25 <rtyler> too soonnnn
+18:07:02 <oleg-nenashev> Java 9+ is a *big* chunk of work, contributions welcome (c)
+18:07:21 <danielbeck> #info https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.107.2-fixed
+18:07:22 <danielbeck> woah
+18:07:23 * batmat +1
+18:07:33 <oleg-nenashev> #info https://issues.jenkins-ci.org/browse/JENKINS-40689
+18:07:37 <ogondza> yeah, spent a week on that a while ago
+18:07:53 <kohsuke_> ogondza: I think we lack the bandwidth and the driver to make Java 9 support happen
+18:08:43 <oleg-nenashev> We will have to do that at some point tho. Sooner or later
+18:08:45 <kohsuke_> I have some thoughts wrt how we should do it, which I discussed offline with people like oleg-nenashev but if you have any thoughts on how to tap into broader contributor community, that'd be greatly appreciated
+18:08:52 <bitwiseman> kohsuke_: Have we measured the set of Java 9 failures.
+18:08:53 <danielbeck> a topic for the dev list perhaps, but not now
+18:09:04 <kohsuke_> danielbeck: sorry
+18:09:16 <bitwiseman> danielbeck: got it.
+18:09:22 <oleg-nenashev> agreed, separate topic
+18:09:22 <ogondza> agreed, sorry for the rant
+18:09:23 <danielbeck> shall we move on from LTS status?
+18:09:32 <ogondza> please
+18:09:36 <danielbeck> #topic JEP-200 update
+18:09:40 <danielbeck> oleg-nenashev this is yours
+18:09:45 <oleg-nenashev> #info: JEP-200 has been released in 2.107.1, announcement: https://jenkins.io/blog/2018/03/15/jep-200-lts/
+18:10:05 <oleg-nenashev> TL;DR: https://usercontent.irccloud-cdn.com/file/NaOCz675/Screen%20Shot%202018-03-28%20at%2011.00.32.png
+18:10:25 <oleg-nenashev> We have got 20 JEP-200 issues since 2.107.1 release
+18:10:27 <rtyler> heh
+18:10:30 <danielbeck> I don't understand why you take a new screenshot of that every day
+18:10:42 <oleg-nenashev> :D
+18:10:44 <danielbeck> :P
+18:10:46 <oleg-nenashev> #info We hit one regression in the core  (JENKINS-50237), backported to 2.107.2 + workaround
+18:11:00 <oleg-nenashev> #info The most of the serious regressions are fixed. The biggest issue is Google OAuth Plugin (JENKINS-50216), >3000 installations
+18:11:20 <oleg-nenashev> We got a response from a maintainer, but we have issues with Google CLA required to submit patches
+18:11:43 <oleg-nenashev> All other plugins are niche or obsolete ones
+18:11:58 <oleg-nenashev> Though we had another round of fixes in Maven/Subversion
+18:12:15 <bitwiseman> D:
+18:12:30 <danielbeck> Maven's still used way too much :(
+18:12:38 <oleg-nenashev> So... Does anybody have any questions? If no, read the blogpost and upgrade ;)
+18:13:08 <oleg-nenashev> #info Community ratings for 2.107.1 LTS is good (similar to previous ones)
+18:13:26 * batmat thinks about JENKINS-46684...
+18:13:31 <oleg-nenashev> So likely we didn't really nuke everybody, waiting for April 01 community stats
+18:13:33 <danielbeck> oleg-nenashev thanks for handling this. I cannot imagine the amount of work. Whenever I see you edit the wiki page and it's a plugin with 62 installs…
+18:13:55 <oleg-nenashev> We had 100 JIRA issues since the release
+18:14:02 <oleg-nenashev> 1.5 per day avg.
+18:14:19 <rtyler> ouch
+18:14:36 <oleg-nenashev> ~70 affected plugins so far. Yeah, some fun
+18:14:53 <danielbeck> oleg-nenashev thanks for the update
+18:14:57 <batmat> wow
+18:14:58 <oleg-nenashev> Thanks to all reviewers and plugin maintainers who help us to keep it contained
+18:14:59 <jglick> Many of the fixes I would have made anyway…
+18:15:09 <kohsuke_> Indeed heroic work from oleg-nenashev. Hats off to him.
+18:15:18 <danielbeck> + jglick
+18:15:22 <oleg-nenashev> Actually also kudos to jglick
+18:15:32 * batmat frantically looks for an hats off emoji
+18:15:33 <kohsuke_> But it also underscores the need to approach this kind of changes differently in the future
+18:15:52 <kohsuke_> Sorry for missing jglick. No disrespect intended
+18:15:59 <oleg-nenashev> Yes, looking forward to see Essentials and related features
+18:16:04 <jglick> depublish early, depublish often?
+18:16:18 <danielbeck> jglick says the guy who re-published a plugin that had been removed :P
+18:16:29 <oleg-nenashev> heh
+18:16:48 <oleg-nenashev> #action all to contribute to Jenkins Essentials
+18:17:04 <rtyler> hah
+18:17:09 <danielbeck> perhaps time to look at how Drupal et al are doing this. Maybe we actually need to move towards semantic versions.
+18:17:34 <oleg-nenashev> Ok, any questions?
+18:17:43 <danielbeck> (looks like I'm derailing my own meeting here, sorry about that)
+18:17:53 <bitwiseman> kohsuke oleg-nenashev : Perhaps we should have a meeting/thread to discuss how to do JEP-200 level changes better
+18:17:56 <bitwiseman> in the future.
+18:18:06 <bitwiseman> At least capture lessons learned.
+18:18:07 <oleg-nenashev> I am going to start a post-mortem
+18:18:23 <oleg-nenashev> But yes, we can do a meeting
+18:18:40 <oleg-nenashev> It's my action item for the next weeks
+18:18:49 <danielbeck> great
+18:18:58 <oleg-nenashev> So far it's not nearly a "post-mortem" :D
+18:19:00 <danielbeck> anything else, or shall we move on?
+18:19:09 <oleg-nenashev> +1
+18:19:13 <kohsuke> bitwiseman: +1
+18:19:19 <bitwiseman> oleg-nenashev: Zombie
+18:19:20 <recena> "semantic versions" +1
+18:19:51 <danielbeck> #topic GSoC update
+18:19:56 <danielbeck> oleg-nenashev also yours
+18:20:00 <oleg-nenashev> ooh
+18:20:09 <oleg-nenashev> #info GSoC Student application period is over. More info about GSoC: https://jenkins.io/projects/gsoc/
+18:20:11 <rtyler> heh
+18:20:14 <rtyler> busy day for oleg-nenashev
+18:20:15 <rtyler> :)
+18:20:23 <oleg-nenashev> #info We got 15 finalized proposals which passed initial filters (eligibility, draft state, etc.)
+18:20:49 <danielbeck> 15?!
+18:20:52 <oleg-nenashev> It's significantly less than in 2016, but there are multiple reasons for that. Both internal and external factors
+18:21:10 <danielbeck> to clarify, are there 15 _good_ proposals?
+18:21:23 <danielbeck> or are there 15 proposals that were successfully submitted?
+18:21:27 <oleg-nenashev> We have been engaged by ~40 students
+18:21:45 <oleg-nenashev> 15 proposals which passed initial filters
+18:21:59 <oleg-nenashev> Number of good proposals... ehm... is less
+18:22:19 <oleg-nenashev> But we definitely have good proposals and mentors for several projects
+18:22:28 <oleg-nenashev> #info GSoC org admins and mentors are reviewing proposals. Final list of student projects will be announced on April 23
+18:22:37 <oleg-nenashev> So yeah, for the next month it will be pretty silent
+18:22:55 <danielbeck> how many slots are we asking for? That's now, right?
+18:22:56 <oleg-nenashev> If you are tired about the GSoC spam in the dev lists, sorry
+18:23:12 <batmat> it's not spam
+18:23:28 <oleg-nenashev> #info Deadline for project slots request is April 8. Number of slots - TBD
+18:24:45 <danielbeck> oleg-nenashev thanks
+18:25:02 <danielbeck> batmat +1 I'd be happy to unsubscribe anyone who complains
+18:25:05 <oleg-nenashev> Anyway, anybody in this chat is welcome to contribute to GSoC in 2019
+18:25:20 <oleg-nenashev> We lack active mentors, and it hammers GSoC activity a lot
+18:25:44 <oleg-nenashev> Obviously, I do not grumble. It is a significant commitment
+18:26:33 <danielbeck> again, thanks for handling this oleg-nenashev, I can't even imagine the time commitment
+18:26:40 <oleg-nenashev> If there are any questions, I am ready to answer
+18:26:54 <recena> Kudos oleg-nenashev
+18:27:00 <oleg-nenashev> danielbeck: Actually not *that* much for GSoC
+18:27:22 <oleg-nenashev> This year I was reusing docs mostly. But communications soak a lot of time
+18:27:33 <oleg-nenashev> Thanks a lot to martinda for sharing the load
+18:27:40 <oleg-nenashev> And to schristou
+18:28:29 <oleg-nenashev> OK, seems that's it
+18:28:37 <danielbeck> thanks oleg-nenashev for the update
+18:28:46 <danielbeck> #topic next meeting
+18:28:59 <danielbeck> April 11, same time same channel
+18:29:03 <rtyler> \o/
+18:29:11 <danielbeck> thanks everyone!
+18:29:14 <danielbeck> #endmeeting

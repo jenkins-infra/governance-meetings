@@ -1,0 +1,382 @@
+19:00:17 <kohsuke> #startmeeting
+19:00:17 <robobutler> Let the Jenkins meeting commence!
+19:00:33 <kohsuke> #chair rtyler hare_brain danielbeck
+19:00:33 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+19:00:40 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:00:56 <kohsuke> #topic recap of the actions from the last week
+19:01:15 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-02-17-19.00.html
+19:02:02 <kohsuke> I think it's mainly rtyler's action but anyone?
+19:02:11 <rtyler> well, the RCs got posted yeah?
+19:02:22 <rtyler> I figured we were going chronologically :P
+19:02:22 <ogondza> rtyler: it did
+19:02:41 <rtyler> alright, so the certification related action items are still in progress I'm going to give more of an update in a later section on those
+19:02:57 <rtyler> the call for participation for the Events Officer went out, I'm behind in sending the announcement out on the person selected
+19:03:00 <rtyler> will do that today
+19:03:04 * rtyler writes in notebook
+19:03:30 <rtyler> then the only other one was on batmat and abayer
+19:03:48 <kohsuke> I think we can move on
+19:03:58 <kohsuke> unless batmat is here
+19:04:07 <kohsuke> #topic LTS status check
+19:04:23 <danielbeck> ogondza
+19:04:30 <ogondza> kohsuke: I have done the backporting and tests looks good
+19:04:45 <ogondza> kohsuke: but the release commits was not pushed
+19:04:54 <kohsuke> grr
+19:04:57 <ogondza> please merge it / rebase my changes as you release
+19:05:33 <ogondza> I was not trying to locate and apply them because IIRC there is one more commit after the tagged one
+19:05:33 <kohsuke> #action kohsuke to push 1.642.2 release commit and ping ogondza so that he can post RC
+19:05:43 <danielbeck> the tag exists https://github.com/jenkinsci/jenkins/commits/jenkins-1.642.2
+19:05:49 <danielbeck> just not in stable-1.642
+19:06:06 <kohsuke> ogondza: I think you figured out the packaging script and access necessary to post LTS RCs, right?
+19:06:15 <batmat> I'm here actually, but we're not done with aba
+19:06:21 <batmat> *abayer
+19:06:32 <ogondza> kohsuke: more or less, I will post it
+19:06:37 <kohsuke> #agreed 1.642.3 RC is good to go
+19:06:44 <kohsuke> Moving on...
+19:06:51 <kohsuke> #topic board election update
+19:06:56 <rtyler> YAY
+19:07:00 <danielbeck> huh?
+19:07:05 <danielbeck> kohsuke reload the page
+19:07:11 <teilo> kohsuke, ogondza - what about the windows bundled JDK?
+19:07:12 <danielbeck> oh, sorry, nevermind
+19:07:21 <kohsuke> phew
+19:07:33 <teilo> kohsuke, I updated this if you used cloudbees infra to build - but otherwise this may regress?
+19:07:36 <rtyler> #info board election logistics are still stalled based on the zero time available to work on it
+19:07:42 <ogondza> teilo: I am not following
+19:07:52 <kohsuke> teilo: no worries, LTS RC is war only for now
+19:08:02 <rtyler> orrc did some initial experimenting with Steve (http://steve.apache.org) but we've not stood it up anywhere in the infrastructure
+19:08:35 <rtyler> I wanted to float an idea for *how* candidates would get introduced and a timeline, if we can wrap the topic up quick cause there's some big stuff later in the meeting
+19:09:12 <rtyler> I was thinkin candidates all submit blog posts introducing themselves on the blog (give two weeks for that), then we post the blog posts all on a monday
+19:09:18 <rtyler> then leave those up for a week
+19:09:25 <rtyler> then open voting, and let voting happen for a week
+19:09:39 <teilo> ogondza: the windows installer just picks the JRE used on the slave used to build the JRE (JENKINS-31583)
+19:09:43 <rtyler> this is just some thinking I've had on /how/ this would actually work (outside of using something like steve)
+19:10:28 <batmat> rtyler: do you mean each candidate would have a post for two weeks up on the blog? Or that they'd have 2 weeks to provide it?
+19:10:35 <batmat> rtyler: seems globally sensible
+19:10:36 <rtyler> two weeks to provide it
+19:11:07 <batmat> rtyler: OK, and then they're published in a batch somehow? In the same post?
+19:11:11 <teilo> 2 weeks from post to vote end seems short
+19:11:26 <rtyler> #info given my current workload and the difficulty in getting all the logistics in place, I think we would reasonably be able to start the election process in April
+19:11:45 <kohsuke> I think 2 weeks is adequate
+19:11:47 <teilo> esp for the duration of the place
+19:11:47 <rtyler> batmat: batched was my thinking, each an hour or two apart on a day
+19:12:03 <danielbeck> Day 0 open posts / Day 14 all candidates provided posts, posts published / Day 21 open voting / Day 28 end voting
+19:12:12 <rtyler> yeah that ^
+19:12:23 <rtyler> teilo: is your concern around the voting part, or the candidacy intro part?
+19:12:24 <kohsuke> "open posts"?
+19:12:35 <rtyler> kohsuke: call for candidacy basically
+19:12:42 <danielbeck> yes that's what I meant
+19:13:13 <teilo> rtyler: basically april is normally easter - so holiday season.  so the length of time someone would see to vote and vote could be entirly lost
+19:13:51 <teilo> rtyler: not that I want this to turn into an american style election campagne!
+19:13:53 <rtyler> do people in some countries take weeks off in april?
+19:14:04 <kohsuke> We need time before that for the board to "review all submissions and compile a final list of candidates" then
+19:14:11 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process
+19:14:29 <danielbeck> rtyler school holidays and public holidays around easter in Germany
+19:14:36 <teilo> rtyler: some countries get holidays :-)
+19:14:36 <rtyler> teilo: I'm pushing to get this started before summer
+19:14:42 <rtyler> teilo: crazytalk!
+19:14:54 <rtyler> I'm comfortable extending the timelines a bit, and prepending some time per kohsuke's point
+19:14:59 <batmat> in France too
+19:15:17 <rtyler> #action rtyler to compile a more exact timeline of the candidacy process for the next meeting
+19:15:25 <rtyler> I think this is some good directional feedback for me
+19:15:27 <rtyler> we can move on
+19:15:30 <alyssat> rtyler: can we have a specific due date(s) so we can stick it on our calendar.
+19:15:34 <kohsuke> Any volunteer on helping logistics?
+19:15:38 <rtyler> alyssat: yes
+19:15:41 <alyssat> i can help
+19:15:41 <rtyler> but of course :)
+19:15:52 <danielbeck> how are dates going to work when we don't have the tools ready?
+19:16:01 <rtyler> danielbeck: deadline driven development!
+19:16:02 <teilo> danielbeck: deadlines :)
+19:16:04 <kohsuke> exactly, hence the call for more help
+19:16:07 <danielbeck> m(
+19:16:26 <kohsuke> I sense that we should move on...
+19:16:29 <rtyler> alyssat can definitely help with the logistics and timlines, not as much with infra
+19:16:35 <rtyler> but yes, let's mosey on along here
+19:16:46 <kohsuke> #topic 2.0 status check
+19:16:53 <kohsuke> YAY
+19:17:04 <rtyler> #info https://jenkins-ci.org/2.0
+19:17:08 <danielbeck> the alpha bits have been posted: https://jenkins-ci.org/blog/2016/02/29/jenkins2-alphas/
+19:17:18 <danielbeck> We're asking for user feedback right now
+19:17:29 <alyssat> rtyler: +111111..no infra
+19:17:50 <rtyler> #info feedback thread on the jenkinsci-users list: https://groups.google.com/d/msg/jenkinsci-users/fEWFVUj0UVY/GbG0ChvkIgAJ
+19:17:55 <danielbeck> We have the initial plugin setup dialog, some config changes, and pipeline in the current builds.
+19:18:04 <kohsuke> For people here, I'd love to have you take a look at Demo instance too: https://github.com/jenkins-inc/meta
+19:18:10 <danielbeck> More changes are coming soon, including my personal favorite, the secure-by-default setup :)
+19:18:13 <rtyler> danielbeck or kohsuke could somebody summarize "what's left"?
+19:18:36 <rtyler> besides responding to user feedback of course ;)
+19:18:52 <kohsuke> #idea we need to have that better tracked in our JIRA
+19:19:10 <kohsuke> Or even just a Wiki page
+19:19:16 <kohsuke> Something we can all see
+19:19:21 <danielbeck> Secure-by-default setup, real plugin selection for the setup dialog, including stage view; some styling changes on the config forms; and possibly (if we manage it) a new create item dialog
+19:19:24 * rtyler coughs https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+2.0
+19:19:44 <rtyler> is the servlet change in there already?
+19:19:52 <danielbeck> Right, we also have the terminology and servlet 3.1 changes in alpha-2
+19:20:00 <kohsuke> #action I'm going to ask Patrick to take on "what's left" page
+19:20:09 <rtyler> kohsuke: nobody knows who Patrick is
+19:20:10 <Slide-O-Mix> what are the install stats for pipeline compared to other plugins that have been chosen for "default" install?
+19:20:14 <orrc> more consistent terminology
+19:20:15 <rtyler> you mean hrmpw
+19:20:25 <danielbeck> Slide-O-Mix https://docs.google.com/spreadsheets/d/1TKziW5oEfX9NYAPrZkz-wXPt5s-zG-znIB5-Jwt3tmw/edit#gid=0
+19:20:50 <danielbeck> This is the doc I'm basing plugin selection on. Right now, the discussion on what to include is ongoing on the dev list
+19:21:15 <kohsuke> Patrick has the title of product manager at CloudBees  and he helps us keep track of those things.
+19:21:15 <danielbeck> #info https://groups.google.com/d/msg/jenkinsci-dev/84dTygm378g/7oct6gbJBwAJ
+19:21:28 <batmat> rtyler: +1 kohsuke already asked who he was
+19:21:36 <batmat> OK, read that.
+19:21:53 <rtyler> Patrick's nick when he's on IRC is 'hrmpw' so please make sure to send him many GIFs :)
+19:22:15 <teilo> danielbeck: what defines what gets a plugin into that list?
+19:22:21 <kohsuke> I need to ask him what that acronym expands to
+19:22:29 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Plugin+Selection+for+the+Setup+Dialog
+19:22:52 <danielbeck> teilo The list is popularity (basically install count * increase over the last year) -- it should be on the dev list thread
+19:22:58 <orrc> teilo: https://groups.google.com/forum/#!msg/jenkinsci-dev/84dTygm378g/7oct6gbJBwAJ
+19:23:05 <batmat> #action kohsuke what does hrmpw mean :-)
+19:23:19 <rtyler> this topic is a status update, if there is additional discussion on the criteria or what's what, I will kindly ask you to join the mailing list discussions in progress already
+19:23:26 <autojack> (FWIW: Easter is in March this year...)
+19:23:37 <autojack> YOU HEATHENS
+19:23:42 <kohsuke> anything more to add before moving on?
+19:24:02 <orrc> is there more concrete UI stuff planned for 2.0? i386 keeps posting colourful pictures, saying that that UI changes are coming soon to jenkins
+19:24:17 <rtyler> orrc: what i386 is working on is definitely longer term than 2.0
+19:24:27 <rtyler> I've been working with him on opening up and framing the work he's been donig
+19:24:27 <teilo> Hmm suprised at the incusion of some plugins vs leaving other plugins out based on that criteria
+19:24:41 <rtyler> orrc: I'm trying to get that stuff introduced this week
+19:24:45 <Slide-O-Mix> teilo: agreed
+19:24:46 <rtyler> he's in .au which is a silly timezone :P
+19:24:48 <kohsuke> I believe Gus is working on some more stuff
+19:24:53 <rtyler> makes things tricky
+19:24:55 <danielbeck> teilo Slide-O-Mix  Please voice your concerns on the dev list.
+19:25:00 <oleg-nenashev> rtyler: Make i386 to present the stuff at Office Hours :P
+19:25:05 <kohsuke> And danielbeck mentioned about "new create item dialog"
+19:25:21 <orrc> rtyler: righto
+19:25:55 <rtyler> orrc: a solid chunk of danielbeck's job and my own is to push people into the public mailing lists from cloudbees :P
+19:25:59 <rtyler> so I've been workin' on him :)
+19:25:59 <kohsuke> I also wondered the new tabs in config pages should be expanded to cover more forms
+19:26:06 <rtyler> so
+19:26:13 <rtyler> are we done with the *status* *update* ?
+19:26:14 <rtyler> :)
+19:26:26 <kohsuke> I'll let danielbeck have the final word
+19:26:48 <orrc> good job on getting binaries out, and communicating, and collecting feedback \o/
+19:27:09 <kohsuke> danielbeck must have stepped aside. Moving on...
+19:27:10 <danielbeck> I have nothing to add. I'm always available for feedback, praise, complaints etc., so if you have concerns, please let me know
+19:27:19 <kohsuke> #topic Certification update from beta exams
+19:27:23 <rtyler> yey
+19:27:52 <rtyler> so many of the action items I took away from last meeting (http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-02-17-19.00.html) I've been working with Francois who runs the certification program at CloudBees
+19:28:20 <rtyler> this includes figuring out a more clearly defined community involvement aspect, which is definitely important IMO
+19:28:36 <rtyler> I do not have specific updates ready to share on that, but I wanted to let everybody know that I'm working on it
+19:28:55 <rtyler> my work email is tyler@cloudbees.com if you have specific questions/concerns too btw
+19:29:09 <rtyler> as far as the beta exams, which happened last week
+19:29:17 <kohsuke> action to come back on this next week?
+19:29:30 <kohsuke> (sorry, keep going)
+19:29:31 <rtyler> kohsuke: I'm not going to have anything by next meeting
+19:29:38 <rtyler> kohsuke: my boss has asked me to focus on 2.0
+19:29:40 <rtyler> :)
+19:30:16 <rtyler> so there were beta exams in 12 cities, "Jenkins Certification" had roughly 200 folks try out the exam that had signed up
+19:30:50 <batmat> Question about that exam: is this considered to have it takable online some day? (I suppose not)
+19:31:14 <rtyler> batmat: from my understanding no, there is an exam proctor involved to make sure the exam scores are legit ;0
+19:31:28 <kohsuke> You actually do it in a room with a presence of a coordinator who ensures that you are not googling your way out
+19:31:43 <rtyler> I don't have scores or any feedback to share yet
+19:32:06 <batmat> rtyler: yeah, sensible. That's also what makes the difference between certifs you have to pass, and the ones you have to just pay.
+19:32:31 * batmat looks directly and Certified Scrum Masters
+19:32:35 <batmat> *at
+19:32:44 * kohsuke hides my certified scrum master certificate
+19:32:46 <rtyler> I have a new volunteer from outside cloudbees to sit on the advisory board kohsuke originally proposed, I don't want to name the individual unless they wish to out themselves
+19:32:59 <rtyler> :D
+19:33:00 <kohsuke> that's a great news
+19:33:02 <orrc> batmat: hey, I passed my CSM exam fair and square
+19:33:13 <rtyler> (he's in here)
+19:33:15 * rtyler coughs
+19:33:19 * autojack outs himself
+19:33:24 <rtyler> OH HEY, there he is
+19:33:38 <autojack> MAKE JENKINS GREAT AGAIN!
+19:33:43 <rtyler> YAY
+19:33:48 <kohsuke> Only Americans will understand that
+19:33:54 <danielbeck> kohsuke Sadly, no.
+19:33:57 <rtyler> kohsuke: oh how I wish that were the case
+19:33:58 <rtyler> anwyays
+19:33:58 <autojack> oh, I'm not sure about that at all.
+19:34:01 <autojack> hehe
+19:34:02 <kohsuke> #info autojack sits on the certification advisory board
+19:34:09 <rtyler> kohsuke: false
+19:34:12 <rtyler> he's volunteered
+19:34:13 <kohsuke> oh
+19:34:24 <rtyler> there's one or two steps between now and that :)
+19:34:32 <rtyler> one is a polygraph test I'm pretty sure
+19:34:45 <kohsuke> #info correction, autojack volunteered to the certification advisory board
+19:34:47 <rtyler> so that's the status update, further questions/concerns, please ping me at tyler@cloudbees.com
+19:34:53 <rtyler> we can move on now kohsuke :)
+19:34:59 <kohsuke> Aye aye boss
+19:35:00 <kohsuke> #topic Conversion of Office Hours to Jenkins Online meetup
+19:35:08 <kohsuke> oleg-nenashev: ^^
+19:35:34 <rtyler> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/LMTCNDv-jgY
+19:35:34 <kohsuke> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/LMTCNDv-jgY
+19:35:40 <rtyler> heh
+19:35:52 <kohsuke> basically everyone is in  favor,  so the rest is just logistics, I think
+19:36:03 <oleg-nenashev> So, it's just about voting
+19:36:21 <rtyler> I think the big change that would have to happen is timing though
+19:36:24 <rtyler> 2 weeks is too short
+19:36:28 <rtyler> monthly would work though
+19:36:33 <batmat> +1 good idea oleg-nenashev
+19:36:34 <oleg-nenashev> Right
+19:36:52 <rtyler> +1 to monthly vJAMs instead of office hours :D
+19:36:58 <batmat> +1 rtyler and nothing prevents indeed to plan more when it happens there're things to talk about
+19:37:04 <alyssat> +1
+19:37:08 <orrc> sounds good. Jenkins project will pay for a Meetup account?
+19:37:11 <oleg-nenashev> We need to setup a talk proposal form, but Meetup allows it
+19:37:13 <rtyler> we already do orrc :)
+19:37:19 <rtyler> www.meetup.com/jenkinsmeetup/
+19:37:30 <rtyler> which technically I pay for, then some years later the SPI reimburses me for :P
+19:37:32 <orrc> ah, you want to reuse that for the virtual JAM
+19:37:39 <rtyler> I'm nto sure if we should use that or not
+19:37:45 <oleg-nenashev> rtyler: I think we have borked the idea of Office Hours a bit
+19:37:49 <danielbeck> Also means no need to spam other meetups about virtual events anymore
+19:37:49 <alyssat> if we put it under the pro account cloudbees can pay for it
+19:37:52 <kohsuke> No, it should be a separate meetup under the same umbrella
+19:37:53 <rtyler> but since this would be a globally available event, I'm fine with it
+19:38:12 <orrc> separate "Jenkins" meetup account would be great, IMO
+19:38:25 <oleg-nenashev> rtyler: We use it for internal stuff, but there is not so much experience sharing. So I propose to decouple this part. Timing - TBD
+19:38:43 <oleg-nenashev> +1 for the separate meetup
+19:38:49 <rtyler> so we have option A) New Virtual JAM meetup group (under JAM umbrella) or B) create events under jenkinsmeetup
+19:38:56 <rtyler> sounds like most are in favor of A
+19:39:11 <oleg-nenashev> +1 for A, -1 for B
+19:39:17 <orrc> eyyyyyyyy
+19:39:20 <alyssat> i vote for A
+19:39:24 <rtyler> heh
+19:39:43 <danielbeck> +1 A
+19:39:57 <kohsuke> Does danielbeck continue to organize the agenda?
+19:40:00 <rtyler> #agreed create a new virtual JAM meetup group
+19:40:06 <kohsuke> Or is this effort going to move under the event team?
+19:40:17 <rtyler> IMO this should go under events, with a JAM organizer
+19:40:19 <rtyler> just like every other JAM
+19:40:26 * oleg-nenashev want to kill the jenkinsmeetup group. Or at least to decouple it to Americas and Europe areas
+19:40:27 <danielbeck> As the focus is more towards users, events team makes more sense
+19:40:49 <kohsuke> but somebody needs to play the role of the vJAM organizer
+19:40:56 <rtyler> not it
+19:41:00 * rtyler hides under his standing desk
+19:41:04 <oleg-nenashev> We need several organizers
+19:41:28 <alyssat> I can be one if Oleg joins w me
+19:41:31 <rtyler> I can do it part time with danielbeck and oleg-nenashev I think, a group for this would be better
+19:41:43 <oleg-nenashev> So let's just let us alyssat to headhunt people :)
+19:41:47 <rtyler> heh
+19:41:48 <orrc> +1, virtual leader for the virtual JAM
+19:41:51 <rtyler> hah
+19:41:55 <batmat> +1
+19:41:56 <oleg-nenashev> Yes, I'm in
+19:41:59 <rtyler> by our powers combined..
+19:42:25 <oleg-nenashev> More organizers == less chances of dropping the ball
+19:42:30 <batmat> May The Force Be... The mass times the acceleration
+19:42:31 <alyssat> agreed
+19:42:46 <rtyler> can we move on?
+19:42:47 <kohsuke> OK, so the JAM lead for vJAM start with danielbeck & oleg-nenashev
+19:42:54 <rtyler> we might finish on time!
+19:42:57 <kohsuke> Not quite
+19:43:13 <kohsuke> We need to pay for WebEx or GTM or some such to actually host a meetup
+19:43:29 <oleg-nenashev> Or find a sponsor...
+19:43:30 <danielbeck> Hangout on Air doesn't cut it?
+19:43:41 <kohsuke> ... which is fine, but somebody needs to figure out that logistics.
+19:44:05 <kohsuke> danielbeck: you can only have up to 15 participants or so, and you told me you had too much  trouble hooking up speakers correctly
+19:44:28 <orrc> AFAIK, that's the limitation for a hangout; not a hangout-on-air, which is streamed live (and after) on YouTube
+19:44:31 <rtyler> hangout-on-air live streams to youtube
+19:44:32 <kohsuke> I think it's better to have a proper conferencing setup so that people can ask questions, etc in placce
+19:44:34 <rtyler> and is automatically archived
+19:44:41 <batmat> FWIW, IIRC the last Docker virtual meetup was held with WebEx indeed
+19:44:46 <oleg-nenashev> But we need HoA to record the sessions
+19:44:53 <rtyler> neither WebEx or GTM don't work well on Linux if at all
+19:45:06 <rtyler> wompwomp
+19:45:22 <oleg-nenashev> rtyler: They should implement it. What's the problem? :D
+19:45:38 <orrc> the vJAM leaders can clear this up before their first meeting
+19:45:40 <kohsuke> All right, sounds like this is going to be the first work for oleg-nenashev and danielbeck to decide as vJAM lead
+19:45:46 * rtyler nods
+19:45:58 <danielbeck> agreed
+19:46:10 <alyssat> i'll get a VJAM page set up
+19:46:11 <rtyler> one size may not fit every meetup either
+19:46:13 <oleg-nenashev> lgtm. Let's go forward
+19:46:15 <kohsuke> #agreed as vJAM lead oleg-nenashev  and danielbeck will figure out how to actually run the meetup virtually, webex/gtm/hangout-on-air
+19:46:34 <kohsuke> #action alyssat will set up vJAM group in meetup.com
+19:46:35 <batmat> just stream bytes to some IRC channel and decode from there?
+19:46:41 * batmat ducks
+19:46:50 * rtyler feeds the ducks
+19:46:56 <danielbeck> Telnet ASCII video!
+19:47:15 <rtyler> next up!
+19:47:16 <kohsuke> #topic Planning of GSoC office hours
+19:47:17 <oleg-nenashev> Let's do meetups at a Minecraft server then
+19:47:35 <kohsuke> #info https://docs.google.com/document/d/1dv9UXyT_FPukJXrBYauIKvxrZeEU6BT7v90LSQX36MU/edit#
+19:47:40 <oleg-nenashev> #info Jenkins has been accepted to GSoC
+19:47:42 <rtyler> oleg-nenashev: gsoc office hours are primarily for who?
+19:47:58 * batmat is thinking as to how we could use a Jenkins instance to handle that. A job that would take questions as param?
+19:47:59 <oleg-nenashev> #info We have committed to perform special office hours
+19:48:16 <oleg-nenashev> rtyler: Sync-up between students and mentors
+19:48:26 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Google+Summer+Of+Code+2016
+19:48:38 <batmat> oleg-nenashev: to be sure, does biweekly mean twice a week, or once every two weeks? (I suppose it's the first)
+19:48:46 <oleg-nenashev> #info We should help students to prepare their applications by March 14th
+19:48:47 <rtyler> oleg-nenashev: will this be occurring prior to the program starting? or only once we have students and mentors paired up and working?
+19:48:56 <rtyler> well, that answers my question!
+19:49:24 <rtyler> oleg-nenashev: as organizers for the project, aren't we involved in reviewing those very applications?
+19:49:30 <kohsuke> Are we responsible for recruiting & finding interested students?
+19:49:46 <oleg-nenashev> rtyler: We already do it. See the mailing list
+19:49:50 <rtyler> kohsuke: only if we want to have students participate :P
+19:50:01 <batmat> kohsuke: no, students candidate. There already have been some on the list, and privately on the gsoc admin list.
+19:50:05 <oleg-nenashev> kohsuke: Any advertisement will be appreciated
+19:50:05 <kohsuke> I guess the idea is that we do a kind of "open house" equivalent so that prospects can show up and get a better feel of what it's going to be like?
+19:50:06 <orrc> #info GSoC students will find Jenkins and its ideas page via the official org page: https://summerofcode.withgoogle.com/organizations/5668199471251456/
+19:50:23 <rtyler> kohsuke: have you not seen the wiki page of ours for GSoc?
+19:50:30 <batmat> kohsuke: but indeed, sure, we can encourage the ones we happen to meet
+19:50:31 <oleg-nenashev> 5 students have already contacted us
+19:50:50 <kohsuke> I'm sorry if I missed it
+19:50:55 <oleg-nenashev> I propose to have a Meeting on Monday with students
+19:50:55 <schristou> Someone was in the other channel asking for more information also
+19:51:05 <orrc> #info overall GSoC timeline: https://developers.google.com/open-source/gsoc/timeline
+19:51:13 <rtyler> oleg-nenashev: my question was largely around the accepting of applications
+19:51:25 <rtyler> oleg-nenashev: aren't organizers involved in selecting which student applications we will take as a project?
+19:51:54 <oleg-nenashev> rtyler: Yes, we make a final decision
+19:52:13 <rtyler> I just want to make sure there's no conflict between helping students write applications and ultimately reviewing them for acceptance
+19:52:26 <rtyler> (for those mentors/organizers)
+19:52:35 <oleg-nenashev> #info https://developers.google.com/open-source/gsoc/timeline
+19:53:11 <oleg-nenashev> rtyler: No conflict. Currently we discuss topics and try to answer their questions
+19:53:26 <orrc> tbh, I'm not sure what needs to be planned here. students are chosen on 22nd April, development starts in summer, mentors and students will talk in private
+19:53:38 <rtyler> oleg-nenashev: ah, no problem
+19:53:42 <orrc> and then there will be a "midterm" public showing at an office hours (or vJAM now)
+19:53:44 <oleg-nenashev> E.g. "What does this project mean?" or whatever
+19:54:09 <rtyler> oleg-nenashev: if we need to organize a public office hours, I think that should be no problem to coordinate
+19:54:12 <batmat> orrc: we're actually encouraging them to take it public, when it comes to content (logistics can/stays private indeed)
+19:54:13 <oleg-nenashev> orrc: Yes. My action item is to publish our plan as a blogpost
+19:54:20 <rtyler> I can work with you on that to make sure it gets scheduled/published via HoA
+19:54:55 <kohsuke> Yeah, we should have an "open hosue" meeting in public and use that to make some noise
+19:55:26 <kohsuke> oleg-nenashev: are the mentors and prospective students OK with that Monday time you are proposing?
+19:55:34 <kohsuke> If they aren't coming it's kind of pointless
+19:55:55 <oleg-nenashev> rtyler: Thanks! We just need to occupy the timeslot on March 9th + probably set up something to Friday/Monday
+19:55:56 <oleg-nenashev> rtyler batmat: Should we take it offline?
+19:56:09 <rtyler> yeah, let's hash this out in #jenkins-community either after this or tomorrow
+19:56:16 <rtyler> looking good though
+19:56:19 <batmat> +1
+19:56:35 <oleg-nenashev> kohsuke: That's the problem. We need to cover [India...US] timezones
+19:56:46 <rtyler> oleg-nenashev: we can probably do two
+19:56:52 <rtyler> I can run one later in the afternoon US time
+19:57:01 <rtyler> that stretches into morning in india IIRC
+19:57:06 <oleg-nenashev> My work is to make mentors come. At least some of them
+19:57:06 <rtyler> (and eastern asia)
+19:57:25 <oleg-nenashev> India/China are fine to me
+19:57:36 <rtyler> okie
+19:57:53 <rtyler> I think we can hash this all out in #jenkins-community though, doesn't seem like there's much more for discussion here?
+19:57:53 <kohsuke> #agreed the conversation about the virtual open house will continue in #jenkins-community
+19:58:06 <kohsuke> #topic next meeting time
+19:58:12 <oleg-nenashev> 2 minutes left :)
+19:58:21 <rtyler> WE CAN DO IT
+19:58:26 <kohsuke> next meeting will be in March 16th the usual time
+19:58:29 <rtyler> March 16th same time same place? :D
+19:58:36 <autojack> same bat-channel
+19:58:38 <kohsuke> #info next meeting will be in March 16th the usual time
+19:58:41 <batmat> cool.
+19:58:47 <oleg-nenashev> When does the next timeshift happen in US?
+19:58:54 <kohsuke> oh
+19:58:56 <rtyler> april or may
+19:58:57 <batmat> and welcome to a GSoC candidate pakhandibaba in this channel :)
+19:59:00 <rtyler> maybe
+19:59:03 <rtyler> I have no idea
+19:59:05 <autojack> March 13.
+19:59:07 <kohsuke> No, it's March 13th
+19:59:13 <rtyler> 13th
+19:59:16 <rtyler> right
+19:59:34 <kohsuke> #info watch out for US DST change. For the rest of the world this meeting will move up by an hour
+19:59:43 <kohsuke> I think that's it
+19:59:43 <rtyler> ONE MINUTE
+19:59:46 <rtyler> kill it quick!
+19:59:51 <batmat> March 26th in France.
+19:59:51 <kohsuke> #endmeeting

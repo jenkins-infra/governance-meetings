@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:04:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:04:40</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:04:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer hare_brain rtyler</span>
+<a name="l-4"></a><span class="tm">18:04:51</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:05:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">fcamblor to report the progress/status on plugin compat tester</span>
+<a name="l-6"></a><span class="tm">18:05:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">fcamblor:</span> it's your show
+<a name="l-7"></a><span class="tm">18:05:34</span><span class="nk"> &lt;fcamblor&gt;</span> :)
+<a name="l-8"></a><span class="tm">18:05:48</span><span class="nk"> &lt;fcamblor&gt;</span> So.. I spammed here a few
+<a name="l-9"></a><span class="tm">18:06:16</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="cmd">#info </span><span class="cmdline">Current plugin compat tester report is available here : http://ci.jenkins-ci.org/job/plugin-compat-tester/ws/reports/PluginCompatReport.xml</span>
+<a name="l-10"></a><span class="tm">18:06:27</span><span class="nk"> &lt;fcamblor&gt;</span> It is a real time report
+<a name="l-11"></a><span class="tm">18:06:59</span><span class="nk"> &lt;fcamblor&gt;</span> (a job is just processing now .... and adding tests results to the report)
+<a name="l-12"></a><span class="tm">18:07:47</span><span class="nk"> &lt;drulli&gt;</span> the report is password protected...
+<a name="l-13"></a><span class="tm">18:07:54</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="cmd">#info </span><span class="cmdline">plugin compat tester goal is to test latest plugin version (available in update center) against some different core (jenkins + hudson)</span>
+<a name="l-14"></a><span class="tm">18:08:16</span><span class="nk"> &lt;rpetti&gt;</span> should we be testing against hudson 2.0.0, rather than 1.395?
+<a name="l-15"></a><span class="tm">18:08:28 </span><span class="nka">* rtyler</span> <span class="ac">roffles</span>
+<a name="l-16"></a><span class="tm">18:08:31</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">rpetti:</span> I will add it next
+<a name="l-17"></a><span class="tm">18:08:33</span><span class="nk"> &lt;kohsuke&gt;</span> I think we'll be publishing the reports somewhere into jenkins-ci.org
+<a name="l-18"></a><span class="tm">18:08:34</span><span class="nk"> &lt;fcamblor&gt;</span> :)
+<a name="l-19"></a><span class="tm">18:09:07</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm, should we really be testing Oracle Hudson?
+<a name="l-20"></a><span class="tm">18:09:20</span><span class="nk"> &lt;rpetti&gt;</span> <span class="cmd">#info </span><span class="cmdline">it's probably worth mentioning that Oracle is working on a similar mechanism for testing compatibility with Hudson</span>
+<a name="l-21"></a><span class="tm">18:09:21</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">kohsuke:</span> yup ... There are some jenkins allowing to publish things aren't there ?
+<a name="l-22"></a><span class="tm">18:10:11</span><span class="nk"> &lt;kohsuke&gt;</span> I'm not sure what you mean by "there are some jenkins allowing to publish things"
+<a name="l-23"></a><span class="tm">18:10:21</span><span class="nk"> &lt;kohsuke&gt;</span> Oh, you mean, publishing to jenkins-ci.org
+<a name="l-24"></a><span class="tm">18:10:27</span><span class="nk"> &lt;fcamblor&gt;</span> ups I forgot "plugin"
+<a name="l-25"></a><span class="tm">18:10:38</span><span class="nk"> &lt;fcamblor&gt;</span> "there are some jenkins plugins allowing to publish things"
+<a name="l-26"></a><span class="tm">18:11:26</span><span class="nk"> &lt;redsolo&gt;</span> <span class="hi">fcamblor:</span> how is the testing done, is it running the plugins unit tests?
+<a name="l-27"></a><span class="tm">18:11:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">If we are talking about making reports visible somewhere in jenkins-ci.org, yes, it's just a bit of backend work, but quite doable.</span>
+<a name="l-28"></a><span class="tm">18:12:17</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="cmd">#info </span><span class="cmdline">plugin compat tester macro algorithm is available here : https://wiki.jenkins-ci.org/display/JENKINS/Plugin+Compatibility+Tester</span>
+<a name="l-29"></a><span class="tm">18:12:28</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">redsolo:</span> yup
+<a name="l-30"></a><span class="tm">18:12:37</span><span class="nk"> &lt;alzamabar&gt;</span> <span class="cmd">#idea </span><span class="cmdline">You could use the SSH plugin to copy stuff to your website</span>
+<a name="l-31"></a><span class="tm">18:12:55</span><span class="nk"> &lt;fcamblor&gt;</span> but since &lt;i don't know which version&gt; some tests are automatically injected by the plugin parent pom
+<a name="l-32"></a><span class="tm">18:13:02</span><span class="nk"> &lt;fcamblor&gt;</span> (InjectedTest)
+<a name="l-33"></a><span class="tm">18:13:45</span><span class="nk"> &lt;kohsuke&gt;</span> We've been doing that for some time now
+<a name="l-34"></a><span class="tm">18:13:57</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">alzamabar:</span> I was thinking about the Publish Over... plugin
+<a name="l-35"></a><span class="tm">18:14:30</span><span class="nk"> &lt;fcamblor&gt;</span> but it is some infra I'm not very aware of :-)
+<a name="l-36"></a><span class="tm">18:14:38</span><span class="nk"> &lt;alzamabar&gt;</span> <span class="hi">fcamblor:</span> Don't know what the Publish Over... plugin is...Hope I'm not wasting your time...
+<a name="l-37"></a><span class="tm">18:14:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">ci.jenkins-ci.org and jenkins-ci.org are the same machine, so the "publishing reports" in that part is easy</span>
+<a name="l-38"></a><span class="tm">18:14:42</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Add discovery of usage of deprecated APIs to report.</span>
+<a name="l-39"></a><span class="tm">18:14:47</span><span class="nk"> &lt;fcamblor&gt;</span> all I can say is the golden things are in the report folder :)
+<a name="l-40"></a><span class="tm">18:15:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">we should have a bug tracker component for this</span>
+<a name="l-41"></a><span class="tm">18:15:25</span><span class="nk"> &lt;bap2000&gt;</span> dont know about the infra, but can help with the Publish over SSH ;-)
+<a name="l-42"></a><span class="tm">18:15:45</span><span class="nk"> &lt;redsolo&gt;</span> <span class="hi">fcamblor:</span> i tried last nights link and the report is password protected, any reason for that?
+<a name="l-43"></a><span class="tm">18:16:00</span><span class="nk"> &lt;bap2000&gt;</span> just use the creds for j-on-j
+<a name="l-44"></a><span class="tm">18:16:07</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">redsolo:</span> no reason apart it is a jenkins job resource
+<a name="l-45"></a><span class="tm">18:16:18</span><span class="nk"> &lt;fcamblor&gt;</span> I you can't access the job, you can't access the resource
+<a name="l-46"></a><span class="tm">18:16:25</span><span class="nk"> &lt;rpetti&gt;</span> It looks like there are a lot of errors related to environment problems.
+<a name="l-47"></a><span class="tm">18:16:28</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">The test job should file bugs against the plugins when they fail with new versions of core</span>
+<a name="l-48"></a><span class="tm">18:16:36</span><span class="nk"> &lt;fcamblor&gt;</span> It will be solved when upload will be made on jenkins-ci.org
+<a name="l-49"></a><span class="tm">18:16:53</span><span class="nk"> &lt;hare_brain&gt;</span> Or some other way of notifying the maintainers that their plugins will stop working.
+<a name="l-50"></a><span class="tm">18:16:53</span><span class="nk"> &lt;rpetti&gt;</span> missing maven dependencies, clone failures etc...
+<a name="l-51"></a><span class="tm">18:17:12</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="cmd">#info </span><span class="cmdline">4 statuses for each cells : internal error, compilation failure, test failure, success</span>
+<a name="l-52"></a><span class="tm">18:17:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rpetti:</span> yeah, I suspect some of those reds are false positives
+<a name="l-53"></a><span class="tm">18:17:41</span><span class="nk"> &lt;bap2000&gt;</span> maybe file bugs once has stabalized a bit
+<a name="l-54"></a><span class="tm">18:17:43</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="cmd">#info </span><span class="cmdline">First ball deals with compilation, second with tests</span>
+<a name="l-55"></a><span class="tm">18:17:50</span><span class="nk"> &lt;fcamblor&gt;</span> +1
+<a name="l-56"></a><span class="tm">18:17:56</span><span class="nk"> &lt;alzamabar&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Create a subscription list of maintainers on jenkins-ci.org and have the failing job sent an email to distribution list.</span>
+<a name="l-57"></a><span class="tm">18:18:00</span><span class="nk"> &lt;fcamblor&gt;</span> I think I have still some work
+<a name="l-58"></a><span class="tm">18:18:22</span><span class="nk"> &lt;fcamblor&gt;</span> There should be very few red/red balls
+<a name="l-59"></a><span class="tm">18:18:26</span><span class="nk"> &lt;rpetti&gt;</span> Looks awesome so far though. :)
+<a name="l-60"></a><span class="tm">18:18:31</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-61"></a><span class="tm">18:18:49</span><span class="nk"> &lt;fcamblor&gt;</span> but I faced some funny things
+<a name="l-62"></a><span class="tm">18:18:58</span><span class="nk"> &lt;fcamblor&gt;</span> like checkouting from old java.net svn repository
+<a name="l-63"></a><span class="tm">18:19:10</span><span class="nk"> &lt;fcamblor&gt;</span> (I had to replace scm urls for example)
+<a name="l-64"></a><span class="tm">18:19:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">I'll have jenkins-admin create an issue tracker after this meeting, and people who posted ideas can file RFEs.</span>
+<a name="l-65"></a><span class="tm">18:19:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">fcamblor:</span> anything else before moving on?
+<a name="l-66"></a><span class="tm">18:20:00</span><span class="nk"> &lt;kutzi&gt;</span> Meeting already started?
+<a name="l-67"></a><span class="tm">18:20:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> yes
+<a name="l-68"></a><span class="tm">18:20:11</span><span class="nk"> &lt;peepsalot&gt;</span> i figured out my svn hook issue, had bad permissions on post-commit hook file.  the hook seems to succeed as far as svn is concerned, but it doesn't cause any of my builds to start in jenkins.  is there more I need to do to?
+<a name="l-69"></a><span class="tm">18:20:12</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">kohsuke:</span> one more info
+<a name="l-70"></a><span class="tm">18:20:19</span><span class="nk"> &lt;kutzi&gt;</span> <span class="cmd">#idea </span><span class="cmdline">announce meeting as 2 PM CEST instead of CET ;)</span>
+<a name="l-71"></a><span class="tm">18:20:42</span><span class="nk"> &lt;orrc&gt;</span> did someone already link to an example report?
+<a name="l-72"></a><span class="tm">18:20:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the current report is http://ci.jenkins-ci.org/job/plugin-compat-tester/ws/reports/PluginCompatReport.xml</span>
+<a name="l-73"></a><span class="tm">18:20:59</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="cmd">#info </span><span class="cmdline">The 3rd icon is there to identify some problems (warning) in the pom .. like bad scm url or user-locked github urls</span>
+<a name="l-74"></a><span class="tm">18:21:19</span><span class="nk"> &lt;kohsuke&gt;</span> It'd be good to be able to see the whole log
+<a name="l-75"></a><span class="tm">18:21:50</span><span class="nk"> &lt;orrc&gt;</span> ah, I imagine most people don't have a login for ci.jenkins, so can't see the report :)
+<a name="l-76"></a><span class="tm">18:22:07</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">kohsuke:</span> yup .. olamy suggested to make a div instead of a title
+<a name="l-77"></a><span class="tm">18:22:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> we'll make this accessible under jenkins-ci.org
+<a name="l-78"></a><span class="tm">18:22:26</span><span class="nk"> &lt;orrc&gt;</span> righto, sounds good
+<a name="l-79"></a><span class="tm">18:22:59</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks for pushing this effort fcamblor
+<a name="l-80"></a><span class="tm">18:23:04</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="cmd">#info </span><span class="cmdline">If you want to contribute, don't hesitate</span>
+<a name="l-81"></a><span class="tm">18:23:07</span><span class="nk"> &lt;fcamblor&gt;</span> :)
+<a name="l-82"></a><span class="tm">18:23:31</span><span class="nk"> &lt;kohsuke&gt;</span> Like rpetti said, it looks very promising
+<a name="l-83"></a><span class="tm">18:23:48</span><span class="nk"> &lt;kohsuke&gt;</span> With that, can we move to the next topic?
+<a name="l-84"></a><span class="tm">18:23:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> the workspaces aren't publicly readable on ci.j?
+<a name="l-85"></a><span class="tm">18:24:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> that's just how it's configured today across the board
+<a name="l-86"></a><span class="tm">18:24:06</span><span class="nk"> &lt;peepsalot&gt;</span> kohsuke, can you help me with a post-commit hook?  i followed the instructions here https://wiki.jenkins-ci.org/display/JENKINS/Subversion+Plugin    and the hook seems to run ok, but jenkins is not automatically starting any build
+<a name="l-87"></a><span class="tm">18:24:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">peepsalot:</span> the IRC meeting is in session, so let's do the usual Q&amp;A stuff after that
+<a name="l-88"></a><span class="tm">18:24:36</span><span class="nk"> &lt;peepsalot&gt;</span> oh, sorry
+<a name="l-89"></a><span class="tm">18:24:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">peepsalot:</span> feel free to join in the meeting though :)
+<a name="l-90"></a><span class="tm">18:25:06</span><span class="nk"> &lt;fcamblor&gt;</span> oh I forgot : there are memory issues on plugin-compat-tester
+<a name="l-91"></a><span class="tm">18:25:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> I can make this workspace world-readable, but I think it's good to clean up some false positives before letting general audience see this
+<a name="l-92"></a><span class="tm">18:25:29</span><span class="nk"> &lt;fcamblor&gt;</span> launching consequently several maven embedder process needs lots of permgen
+<a name="l-93"></a><span class="tm">18:25:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> aye
+<a name="l-94"></a><span class="tm">18:25:42</span><span class="nk"> &lt;fcamblor&gt;</span> we'll try to see workarounds with olamy
+<a name="l-95"></a><span class="tm">18:25:43</span><span class="nk"> &lt;kohsuke&gt;</span> I worry that it's got too many red balls that make people nervous
+<a name="l-96"></a><span class="tm">18:25:43</span><span class="nk"> &lt;bap2000&gt;</span> what about the false negatives!
+<a name="l-97"></a><span class="tm">18:26:01</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">kohsuke:</span> +1
+<a name="l-98"></a><span class="tm">18:26:30</span><span class="nk"> &lt;fcamblor&gt;</span> maybe we should cleanup a bit before communicating around this
+<a name="l-99"></a><span class="tm">18:27:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll fix some loose ends and check on false positives, then publish this report to a broader audience.</span>
+<a name="l-100"></a><span class="tm">18:27:39</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else before moving on?
+<a name="l-101"></a><span class="tm">18:27:50</span><span class="nk"> &lt;fcamblor&gt;</span> for me it's ok
+<a name="l-102"></a><span class="tm">18:27:51</span><span class="nk"> &lt;redsolo&gt;</span> just that its a great work done by fcamblor!
+<a name="l-103"></a><span class="tm">18:28:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">trademark registration status</span>
+<a name="l-104"></a><span class="tm">18:28:14</span><span class="nk"> &lt;fcamblor&gt;</span> thanks redsolo :-)
+<a name="l-105"></a><span class="tm">18:28:23</span><span class="nk"> &lt;kohsuke&gt;</span> I don't have much progress to report, I'm afraid.
+<a name="l-106"></a><span class="tm">18:28:26</span><span class="nk"> &lt;kohsuke&gt;</span> I should get this going
+<a name="l-107"></a><span class="tm">18:28:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">Kohsuke to actually start talking to lawyers to file the trademark</span>
+<a name="l-108"></a><span class="tm">18:28:53</span><span class="nk"> &lt;kohsuke&gt;</span> So my apologies for the lack of progress
+<a name="l-109"></a><span class="tm">18:29:23</span><span class="nk"> &lt;kohsuke&gt;</span> But on a slightly different topic, we've been making more progress with SPI as a unmbrella org
+<a name="l-110"></a><span class="tm">18:29:32</span><span class="nk"> &lt;kohsuke&gt;</span> Hopefully more to report back in the next meeting
+<a name="l-111"></a><span class="tm">18:30:01</span><span class="nk"> &lt;kohsuke&gt;</span> And with that, moving on to the infra updates...
+<a name="l-112"></a><span class="tm">18:30:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Infra updates from rtyler</span>
+<a name="l-113"></a><span class="tm">18:30:59</span><span class="nk"> &lt;rtyler&gt;</span> oh what
+<a name="l-114"></a><span class="tm">18:31:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> I believe this is about the new machine being brought online
+<a name="l-115"></a><span class="tm">18:31:05</span><span class="nk"> &lt;rtyler&gt;</span> damnit
+<a name="l-116"></a><span class="tm">18:31:11</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-117"></a><span class="tm">18:31:13</span><span class="nk"> &lt;rtyler&gt;</span> alright then
+<a name="l-118"></a><span class="tm">18:31:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">The two donated machines have arrived at the OSUOSL in Corvallis</span>
+<a name="l-119"></a><span class="tm">18:31:41</span><span class="nk"> &lt;kohsuke&gt;</span> Yay
+<a name="l-120"></a><span class="tm">18:31:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">The larger (3U) machine has been racked</span>
+<a name="l-121"></a><span class="tm">18:32:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">The smaller (2U) machine is missing some racking hardware, which I'll be purchasing as soon as the chaps at the OSUOSL tell me what's needed</span>
+<a name="l-122"></a><span class="tm">18:32:29</span><span class="nk"> &lt;rtyler&gt;</span> it's not clear from my communications with them how much spare time they have to do some OS imaging on the machines
+<a name="l-123"></a><span class="tm">18:32:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to work with the OSUOSL to get the new machines initialized</span>
+<a name="l-124"></a><span class="tm">18:33:39</span><span class="nk"> &lt;rtyler&gt;</span> I'm not sure how much time in the near future I'll have to set them up, but z00x86 had suggested and offering some help with some chef recipes to ease management of the machines
+<a name="l-125"></a><span class="tm">18:33:56</span><span class="nk"> &lt;kohsuke&gt;</span> Was he the Apache guy?
+<a name="l-126"></a><span class="tm">18:33:59</span><span class="nk"> &lt;kohsuke&gt;</span> Or was that someone else?
+<a name="l-127"></a><span class="tm">18:34:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> right now we need a test JIRA set up for aheritier, but other than that?
+<a name="l-128"></a><span class="tm">18:34:07</span><span class="nk"> &lt;rtyler&gt;</span> he's the guy that donated the boxens :)
+<a name="l-129"></a><span class="tm">18:34:10</span><span class="nk"> &lt;rtyler&gt;</span> CentOS guy
+<a name="l-130"></a><span class="tm">18:34:11</span><span class="nk"> &lt;kohsuke&gt;</span> ah
+<a name="l-131"></a><span class="tm">18:34:37</span><span class="nk"> &lt;kohsuke&gt;</span> Once the new machines come online, we can start setting up the JIRA instance
+<a name="l-132"></a><span class="tm">18:34:40</span><span class="nk"> &lt;rtyler&gt;</span> did we have other immediate plans for that hardware other than perhaps JIRA and Confluence
+<a name="l-133"></a><span class="tm">18:34:53</span><span class="nk"> &lt;kohsuke&gt;</span> No, that's it.
+<a name="l-134"></a><span class="tm">18:35:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler needs to investigate mirrorbrain failures</span>
+<a name="l-135"></a><span class="tm">18:35:24</span><span class="nk"> &lt;rtyler&gt;</span> we're still not seeing *any* proper geographic mirroring
+<a name="l-136"></a><span class="tm">18:35:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">and speaking of JIRA/Confluence, the hotspot compilation adjustments in VM greatly improved the stability of those services</span>
+<a name="l-137"></a><span class="tm">18:35:30</span><span class="nk"> &lt;rtyler&gt;</span> it's really just round robin right now
+<a name="l-138"></a><span class="tm">18:35:53</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-139"></a><span class="tm">18:36:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">we also have offers on the table for two additional european mirrors</span>
+<a name="l-140"></a><span class="tm">18:36:28</span><span class="nk"> &lt;kohsuke&gt;</span> Nice
+<a name="l-141"></a><span class="tm">18:36:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">once mirrorbrain is properly geo-redirecting again, we'll bring those online</span>
+<a name="l-142"></a><span class="tm">18:36:55</span><span class="nk"> &lt;rtyler&gt;</span> I think that's it?
+<a name="l-143"></a><span class="tm">18:36:57</span><span class="nk"> &lt;rtyler&gt;</span> for me at least
+<a name="l-144"></a><span class="tm">18:36:59</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-145"></a><span class="tm">18:37:03</span><span class="nk"> &lt;orrc&gt;</span> I have to say, all the Jenkins sites feel pretty fast and the HTTPS-by-default is awesome. great job
+<a name="l-146"></a><span class="tm">18:37:22</span><span class="nk"> &lt;kohsuke&gt;</span> I've been meaning to improve Wiki performance. I feel it's slower than it should be.
+<a name="l-147"></a><span class="tm">18:37:32</span><span class="nk"> &lt;kohsuke&gt;</span> There's some cache tweaking that I can do.
+<a name="l-148"></a><span class="tm">18:37:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-149"></a><span class="tm">18:37:56</span><span class="nk"> &lt;kutzi&gt;</span> It's still orders of a magnitude better then at java.net time :)
+<a name="l-150"></a><span class="tm">18:38:00</span><span class="nk"> &lt;orrc&gt;</span> cool. anyway, it's currently a definite improvement over ye olde wiki, and much less broken
+<a name="l-151"></a><span class="tm">18:38:14</span><span class="nk"> &lt;kohsuke&gt;</span> thanks!
+<a name="l-152"></a><span class="tm">18:38:28</span><span class="nk"> &lt;kohsuke&gt;</span> I think two weeks from now is 5/11
+<a name="l-153"></a><span class="tm">18:38:40</span><span class="nk"> &lt;kohsuke&gt;</span> Any problem with that?
+<a name="l-154"></a><span class="tm">18:39:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> you mentioned about CEST
+<a name="l-155"></a><span class="tm">18:39:11</span><span class="nk"> &lt;fcamblor&gt;</span> no pb for me
+<a name="l-156"></a><span class="tm">18:39:14</span><span class="nk"> &lt;kohsuke&gt;</span> Is that the same as CET?
+<a name="l-157"></a><span class="tm">18:39:25</span><span class="nk"> &lt;kohsuke&gt;</span> IOW, should I just write 8pm CEST?
+<a name="l-158"></a><span class="tm">18:39:26</span><span class="nk"> &lt;kutzi&gt;</span> yes, the meeting is announced for 8 PM CET, but we have now CEST here
+<a name="l-159"></a><span class="tm">18:39:31</span><span class="nk"> &lt;kutzi&gt;</span> yes
+<a name="l-160"></a><span class="tm">18:39:31</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-161"></a><span class="tm">18:39:53</span><span class="nk"> &lt;kutzi&gt;</span> I thought that would mean 9 PM CEST therefore I missed the beginning
+<a name="l-162"></a><span class="tm">18:40:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting is 5/11 6pm GMT</span>
+<a name="l-163"></a><span class="tm">18:40:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-164"></a><span class="tm">18:40:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">Kohsuke to stop using CET and say CEST</span>
+<a name="l-165"></a><span class="tm">18:40:28</span><span class="nk"> &lt;kohsuke&gt;</span> And with that, I think we are done
+<a name="l-166"></a><span class="tm">18:40:29</span><span class="nk"> &lt;kutzi&gt;</span> thanks
+<a name="l-167"></a><span class="tm">18:40:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to bring cookies to the next meeting</span>
+<a name="l-168"></a><span class="tm">18:40:43</span><span class="nk"> &lt;fcamblor&gt;</span> +1 :D
+<a name="l-169"></a><span class="tm">18:40:44</span><span class="nk"> &lt;rpetti&gt;</span> Are there any plans to migrate off of Jelly?
+<a name="l-170"></a><span class="tm">18:40:49</span><span class="nk"> &lt;fcamblor&gt;</span> and stickers too ;)
+<a name="l-171"></a><span class="tm">18:41:13</span><span class="nk"> &lt;orrc&gt;</span> the next actual meeting is probably in Hamburg, so I'm up for getting cookies ;)
+<a name="l-172"></a><span class="tm">18:41:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rpetti:</span> I've been thinking about bringing in additional frontend
+<a name="l-173"></a><span class="tm">18:41:35</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I should end the meeting first
+<a name="l-174"></a><span class="tm">18:41:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

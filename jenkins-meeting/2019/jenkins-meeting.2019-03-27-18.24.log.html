@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app223.us.archive.org';v.server_ms=262;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-03-27-18.24.log.html","20211027222528","https://web.archive.org/","web","/_static/",
+	      "1635373528");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:24:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:24:33</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:25:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-4"></a><span class="tm">18:25:23</span><span class="nk"> &lt;rtyler&gt;</span> I don't know what meeting actions we had last time
+<a name="l-5"></a><span class="tm">18:25:34</span><span class="nk"> &lt;rtyler&gt;</span> so meh, let's just move through a couple of the perfunctory items
+<a name="l-6"></a><span class="tm">18:25:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status update</span>
+<a name="l-7"></a><span class="tm">18:25:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> here we go :)
+<a name="l-8"></a><span class="tm">18:25:48</span><span class="nk"> &lt;ogondza&gt;</span> right
+<a name="l-9"></a><span class="tm">18:25:55</span><span class="nk"> &lt;ogondza&gt;</span> there are 2 backports in
+<a name="l-10"></a><span class="tm">18:26:07</span><span class="nk"> &lt;ogondza&gt;</span> and those ware all candidates by yesterday
+<a name="l-11"></a><span class="tm">18:26:17</span><span class="nk"> &lt;ogondza&gt;</span> unless something interesting has been nominated since then
+<a name="l-12"></a><span class="tm">18:26:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbe_:</span> are there any LTS things you're concerned about?
+<a name="l-13"></a><span class="tm">18:26:41</span><span class="nk"> &lt;danielbe_&gt;</span> no, branch looks good
+<a name="l-14"></a><span class="tm">18:26:47</span><span class="nk"> &lt;ogondza&gt;</span> this would be all that goes into RC
+<a name="l-15"></a><span class="tm">18:26:58</span><span class="nk"> &lt;rtyler&gt;</span> wunderbar
+<a name="l-16"></a><span class="tm">18:27:00</span><span class="nk"> &lt;ogondza&gt;</span> that I will publish tomorrow morning UTC time
+<a name="l-17"></a><span class="tm">18:27:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-18"></a><span class="tm">18:27:39</span><span class="nk"> &lt;ogondza&gt;</span> ok, moving o nthen
+<a name="l-19"></a><span class="tm">18:27:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> if there aren't any actions/discussions related to GSoC or Java 11, we can just punt and call it a night
+<a name="l-20"></a><span class="tm">18:27:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we did not have so many changes since 2.164.1, but there are definitely some portable ones
+<a name="l-21"></a><span class="tm">18:28:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> rtyler ogondza  One item where I really need help is GSoC
+<a name="l-22"></a><span class="tm">18:28:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> sorry, GSoD
+<a name="l-23"></a><span class="tm">18:28:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Google Summer of Code</span>
+<a name="l-24"></a><span class="tm">18:28:41</span><span class="nk"> &lt;rtyler&gt;</span> alright, let's chat
+<a name="l-25"></a><span class="tm">18:29:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#topig </span><span class="cmdline">Google Season of Docs</span>
+<a name="l-26"></a><span class="tm">18:29:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Google Season of Docs</span>
+<a name="l-27"></a><span class="tm">18:29:17</span><span class="nk"> &lt;rtyler&gt;</span> oh, different
+<a name="l-28"></a><span class="tm">18:29:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-docs/vetnRXECqJk</span>
+<a name="l-29"></a><span class="tm">18:29:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Google Season of Docs</span>
+<a name="l-30"></a><span class="tm">18:29:29</span><span class="nk"> &lt;rtyler&gt;</span> I thought there was a typo
+<a name="l-31"></a><span class="tm">18:29:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> anyway
+<a name="l-32"></a><span class="tm">18:29:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So we have a new program which would be really helpful for Jenkins as a project
+<a name="l-33"></a><span class="tm">18:30:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And I got clarifications that this year we should do it as Jenkins, not as CDF. If we do it at all, of course\
+<a name="l-34"></a><span class="tm">18:30:45</span><span class="nk"> &lt;rtyler&gt;</span> that would be correct
+<a name="l-35"></a><span class="tm">18:31:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The problem is that we need to facilitate the discussion. We need org admins and mentors
+<a name="l-36"></a><span class="tm">18:31:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And I would appreciate some help w.r.t social media
+<a name="l-37"></a><span class="tm">18:31:48</span><span class="nk"> &lt;rtyler&gt;</span> what did you have in mind?
+<a name="l-38"></a><span class="tm">18:31:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We do not have so many Docs contributors unfortunately
+<a name="l-39"></a><span class="tm">18:32:05</span><span class="nk"> &lt;rtyler&gt;</span> twitter hasn't been the best place to reach out to existing contributors fwiw
+<a name="l-40"></a><span class="tm">18:32:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yup
+<a name="l-41"></a><span class="tm">18:33:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Same as the dev list apparently
+<a name="l-42"></a><span class="tm">18:33:28</span><span class="nk"> &lt;rtyler&gt;</span> I'm a bit lost on what the problem here is, it sounds like we're not capable of doing Google Season of Docs at the moment
+<a name="l-43"></a><span class="tm">18:34:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I  am pretty sure I can find several mentors even without SM, but we need to find at least one extra org admin to help Rick
+<a name="l-44"></a><span class="tm">18:35:11</span><span class="nk"> &lt;rtyler&gt;</span> SM?
+<a name="l-45"></a><span class="tm">18:35:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I have thought that markewaite or bitwiseman might be interested, but they are busy with other stuff
+<a name="l-46"></a><span class="tm">18:35:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> SM = social media
+<a name="l-47"></a><span class="tm">18:36:05</span><span class="nk"> &lt;rtyler&gt;</span> if you have some tweets in mind, just send them my way and I can wordsmith and schedule things
+<a name="l-48"></a><span class="tm">18:36:08</span><span class="nk"> &lt;rtyler&gt;</span> not a problem there
+<a name="l-49"></a><span class="tm">18:36:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> rtyler is right. Our default scenario is that we skip GSoD this year
+<a name="l-50"></a><span class="tm">18:36:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to prepare some tweet samples</span>
+<a name="l-51"></a><span class="tm">18:37:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I know CloudBees hired some docs people, I won't mention them by name, but have you brought the topic up with the head of documentation there? It might be in her best interest to help mentor some people to improve Jenkins documentation
+<a name="l-52"></a><span class="tm">18:37:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Probably was not the best topic for the governance meeting tho
+<a name="l-53"></a><span class="tm">18:37:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Yes, I am working on it in parallel
+<a name="l-54"></a><span class="tm">18:37:57</span><span class="nk"> &lt;rtyler&gt;</span> okay cool, that's all I can suggest right now. I definitely don't have the time to participate this year unfortunately
+<a name="l-55"></a><span class="tm">18:38:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> same here
+<a name="l-56"></a><span class="tm">18:38:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I just try to facilitate the things
+<a name="l-57"></a><span class="tm">18:38:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We are at limit of our capacity in GSoC, which starts soon
+<a name="l-58"></a><span class="tm">18:38:53 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-59"></a><span class="tm">18:39:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> gonna be cool tho :)
+<a name="l-60"></a><span class="tm">18:39:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Anyway, thanks for your time rtyler
+<a name="l-61"></a><span class="tm">18:39:20</span><span class="nk"> &lt;rtyler&gt;</span> anything else on the topic or in general we should attempt to discuss?
+<a name="l-62"></a><span class="tm">18:39:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nope, I do not think so
+<a name="l-63"></a><span class="tm">18:39:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:25:28 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:01:49 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 131.084
+  exclusion.robots: 0.091
+  exclusion.robots.policy: 0.082
+  RedisCDXSource: 0.777
+  esindex: 0.009
+  LoadShardBlock: 110.791 (3)
+  PetaboxLoader3.datanode: 131.702 (4)
+  CDXLines.iter: 16.669 (3)
+  load_resource: 125.541
+  PetaboxLoader3.resolve: 68.419
+-->

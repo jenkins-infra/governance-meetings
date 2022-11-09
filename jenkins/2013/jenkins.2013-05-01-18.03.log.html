@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:03:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:03:37</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:03:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler abayer hare_brain</span>
+<a name="l-4"></a><span class="tm">18:03:48</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:03:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">18:04:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">mirroring artifacts to Central</span>
+<a name="l-7"></a><span class="tm">18:04:28</span><span class="nk"> &lt;kohsuke&gt;</span> oh, jglick isn't here
+<a name="l-8"></a><span class="tm">18:05:20</span><span class="nk"> &lt;hare_brain&gt;</span> I have a stupid question related to this topic though. What's the difference between oss.sonatype.org and repository.sonatype.org?
+<a name="l-9"></a><span class="tm">18:05:41</span><span class="nk"> &lt;kohsuke&gt;</span> The main idea was that stephenc wanted us to start syncing more bits to central
+<a name="l-10"></a><span class="tm">18:06:00</span><span class="nk"> &lt;abayer&gt;</span> I'm +1 on syncing to central. It'd be good form.
+<a name="l-11"></a><span class="tm">18:06:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I think repository.sonatype.org is for them to release their own OSS bits
+<a name="l-12"></a><span class="tm">18:06:23</span><span class="nk"> &lt;kohsuke&gt;</span> whereas oss.s.o is their service to the community to let people in the wild sync their bits to central
+<a name="l-13"></a><span class="tm">18:06:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> great
+<a name="l-14"></a><span class="tm">18:07:08</span><span class="nk"> &lt;kohsuke&gt;</span> So what I'm going to do is to start syncing core to central as the first step, I think
+<a name="l-15"></a><span class="tm">18:07:23</span><span class="nk"> &lt;kohsuke&gt;</span> I believe JFrog people told me that they can now do this
+<a name="l-16"></a><span class="tm">18:07:32</span><span class="nk"> &lt;kohsuke&gt;</span> (presumably provided that bits are signed and all)
+<a name="l-17"></a><span class="tm">18:08:04</span><span class="nk"> &lt;kohsuke&gt;</span> And we've volunteered stephenc to write a new plugin parent POM and start pushing that to central in a similar fashion
+<a name="l-18"></a><span class="tm">18:08:19</span><span class="nk"> &lt;kohsuke&gt;</span> ... and at that point plugins can start building without &lt;repository&gt; entry in it, which is good
+<a name="l-19"></a><span class="tm">18:08:36</span><span class="nk"> &lt;kohsuke&gt;</span> I think he has a grander plan, but we'll first see if we get to that point
+<a name="l-20"></a><span class="tm">18:08:41</span><span class="nk"> &lt;abayer&gt;</span> heh
+<a name="l-21"></a><span class="tm">18:09:06</span><span class="nk"> &lt;kohsuke&gt;</span> Getting to that point doesn't involve any changes in the plugin dev's life
+<a name="l-22"></a><span class="tm">18:09:45</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so that's that. Let's move on to the next topic...
+<a name="l-23"></a><span class="tm">18:10:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">1.509.1 status update</span>
+<a name="l-24"></a><span class="tm">18:10:12</span><span class="nk"> &lt;vjuranek&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/LTS+1.509.x+RC+Testing
+<a name="l-25"></a><span class="tm">18:10:33</span><span class="nk"> &lt;vjuranek&gt;</span> testing is done (+ selenium test are passing), so IMHO we can release it
+<a name="l-26"></a><span class="tm">18:10:45</span><span class="nk"> &lt;vjuranek&gt;</span> (and be prepare to release 1.509.2 soon :-)
+<a name="l-27"></a><span class="tm">18:10:58</span><span class="nk"> &lt;kohsuke&gt;</span> There's two WARNs I see.
+<a name="l-28"></a><span class="tm">18:11:03</span><span class="nk"> &lt;kohsuke&gt;</span> Is that a cause of concern?
+<a name="l-29"></a><span class="tm">18:11:40</span><span class="nk"> &lt;kohsuke&gt;</span> I think we fixed JENKINS-17677. So that must be it
+<a name="l-30"></a><span class="tm">18:11:44</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-17677:Digest mismatch in update center for LTS 1.480.3 (Resolved) http://jenkins-ci.org/issue/17677
+<a name="l-31"></a><span class="tm">18:12:10</span><span class="nk"> &lt;vjuranek&gt;</span> these are from mwaite spot on windows, and as I don't test on windows, I cannot provide more details than that
+<a name="l-32"></a><span class="tm">18:12:27</span><span class="nk"> &lt;kohsuke&gt;</span> I think he put that text below the table
+<a name="l-33"></a><span class="tm">18:12:41</span><span class="nk"> &lt;kohsuke&gt;</span> I think we are OK there
+<a name="l-34"></a><span class="tm">18:12:50</span><span class="nk"> &lt;kohsuke&gt;</span> We fixed that on the server side in UC generator
+<a name="l-35"></a><span class="tm">18:12:56</span><span class="nk"> &lt;kohsuke&gt;</span> in any case, I mainly just wanted to make sure vjuranek is happy
+<a name="l-36"></a><span class="tm">18:13:07</span><span class="nk"> &lt;vjuranek&gt;</span> yes, I;m :-)
+<a name="l-37"></a><span class="tm">18:13:15</span><span class="nk"> &lt;kohsuke&gt;</span> I'll spend the rest of today doing releases then
+<a name="l-38"></a><span class="tm">18:14:08</span><span class="nk"> &lt;kohsuke&gt;</span> All right, that's it for today
+<a name="l-39"></a><span class="tm">18:14:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-40"></a><span class="tm">18:14:36</span><span class="nk"> &lt;kohsuke&gt;</span> ... will be May 15th same time
+<a name="l-41"></a><span class="tm">18:14:44</span><span class="nk"> &lt;hare_brain&gt;</span> ok
+<a name="l-42"></a><span class="tm">18:14:52</span><span class="nk"> &lt;vjuranek&gt;</span> +1
+<a name="l-43"></a><span class="tm">18:15:04</span><span class="nk"> &lt;kohsuke&gt;</span> ok, thanks everyone
+<a name="l-44"></a><span class="tm">18:15:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

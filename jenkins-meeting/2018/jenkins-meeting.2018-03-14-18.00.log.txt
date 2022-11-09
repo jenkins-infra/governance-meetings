@@ -1,0 +1,91 @@
+18:00:08 <rtyler> #startmeeting
+18:00:08 <robobutler> Let the Jenkins meeting commence!
+18:00:19 <rtyler> #chair danielbeck kohsuke
+18:00:19 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:26 <rtyler> #topic Last meeting actions
+18:00:31 <rtyler> http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-02-28-18.02.html
+18:00:45 <rtyler> danielbeck and oleg-nenashev are the only ones with an action from last time around
+18:01:35 * rtyler waits for our friends in the .eu to wake up
+18:01:36 <rtyler> :)
+18:01:42 <bitwiseman> hello
+18:01:48 <oleg-nenashev> #info https://www.youtube.com/watch?v=Vfnc9t1RuYA - screencast about JEP-200, kudos to bitwiseman and jglick
+18:02:24 <oleg-nenashev> Youtube always chooses Chuck Norris for the landing image
+18:02:41 <rtyler> o_O
+18:03:21 <rtyler> anything else on this oleg-nenashev ?
+18:03:41 <oleg-nenashev> #info 2.107.1 upgrade guide is in place: https://jenkins.io/doc/upgrade-guide/2.107/#upgrading-to-jenkins-lts-2-107-1 (danielbeck's action item)
+18:03:47 <oleg-nenashev> that's it from me
+18:04:10 <oleg-nenashev> would appreciate reviews of https://github.com/jenkins-infra/jenkins.io/pull/1448 though
+18:05:22 <rtyler> okay, I don't think there are any other last meeting actions we need to cover
+18:05:29 <rtyler> ogondza: are you with us this fine afternoon?
+18:05:37 <ogondza> rtyler, sure
+18:05:45 <rtyler> wunderbar
+18:05:51 <rtyler> #topic LTS status check
+18:05:54 <rtyler> the floor is yours ogondza
+18:06:20 <ogondza> most of the testing was done internally
+18:06:31 <ogondza> public ci is getting less and less stable
+18:06:43 <rtyler> this is ci.jenkins.io?
+18:07:02 <ogondza> rtyler, there is not LTS test there yet
+18:07:15 <ogondza> jenkins.ci.cloudbees.com
+18:07:31 <rtyler> oh, well that's not surprising to me then :P
+18:07:36 <bitwiseman> ogondza: is that public?
+18:07:40 <ogondza> No notable regressions reported
+18:07:44 <rtyler> ogondza: do you have any tickets floating around INFRA for moving that workload over to ci.jenkins.io
+18:07:55 <ogondza> rtyler, not that ci.jenkins.io would be any more stable for ATH :P
+18:07:56 <rtyler> bitwiseman: yes, that's an old DEV@Cloud instance that CloudBees provisioned for us once upon a time
+18:08:10 <bitwiseman> 0_o
+18:08:13 <rtyler> ogondza: raul just did a tremendous amount of work to make sure that we can get at least the smoke suite stable and running for PRs
+18:08:38 <rtyler> ogondza: I guess my point is, what can I do to help you forget jenkins.ci.cloudbees.com forever and ever :)
+18:08:54 <bitwiseman> (into the mists of time)
+18:09:00 <ogondza> rtyler, lets track this and have a look offline
+18:09:07 <rtyler> okie doke
+18:09:21 <ogondza> aside from that, I guess we are ok to go
+18:09:26 <rtyler> #action rtyler to follow up with ogondza about migrating LTS testing into ci.jenkins.io
+18:09:53 <ogondza> the serialization fix James requested was not integrated into .1 as it was not merged in time
+18:09:55 <oleg-nenashev> We have some unresolved regressions, but the upgrade guidelines include the "Known issues" section, to be extended
+18:09:56 <rtyler> for my own remembering what's this LTS baseline again?
+18:10:03 <oleg-nenashev> 2.107.x
+18:10:36 <rtyler> #info 2.107.1 is ready to go from ogondza's perspective
+18:10:41 <ogondza> kohsuke, can you please cut the release?
+18:11:00 <rtyler> he's unfortunately in a meeting conflict right now (I am in the same office and can hear him through the wall)
+18:11:08 <rtyler> #action kohsuke to cut the 2.107.1 release
+18:11:16 <ogondza> that should do it, thanks
+18:11:35 <rtyler> anything else we should cover on this topic ogondza?
+18:11:44 <ogondza> rtyler, nothing I know of
+18:12:02 <rtyler> oleg-nenashev: who typically writes the upgrade guidelines, danielbeck?
+18:12:08 <ogondza> yes
+18:12:09 <oleg-nenashev> yes
+18:12:39 <rtyler> oleg-nenashev: can I ask you to sync with danielbeck to make sure the upgrade guidelines for 2.107.1 includes the known issues for changes which didn't make the train?
+18:13:02 <oleg-nenashev> rtyler: Yes, we will update the page
+18:13:28 <rtyler> okie doke, thakns
+18:13:57 <rtyler> moving on then
+18:14:10 <rtyler> #topic Trademark sublicensing request "CloudBees Jenkins Metrics"
+18:14:21 <rtyler> #info context for the request https://groups.google.com/forum/#!msg/jenkinsci-dev/7m9bz6KkVv4/gd8qhk6cAQAJ
+18:14:47 <rtyler> at a high level, a feature/product thingie that cloudbees does used to be called CloudBees Jenkins Analytics
+18:14:59 <rtyler> they're now wishing to rename/change the product and call it "CloudBees Jenkins Metrics"
+18:16:02 <rtyler> #info previously accepted sublicense requests can be found here: https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage
+18:16:34 <rtyler> any questions, thoughts, opinions?
+18:17:14 <bitwiseman> There was general agreement on that email thread.
+18:17:31 <oleg-nenashev> My comments are in the mailing list. I see no serious obstacles for such requests
+18:18:37 * rtyler nods
+18:18:57 <oleg-nenashev> There was a concern about overlap with the existing Metrics Plugin, but the plugin maintainer is fine + the requester is going to work on disambiguation. No other major concerns in the list
+18:19:29 * rtyler nods
+18:19:50 <rtyler> this all feels fairly rote and boring to me, so let me ask this differently
+18:19:54 <rtyler> are there any objections?
+18:20:36 * rtyler will give it a couple minutes just to be sure
+18:22:13 <ogondza> +1 here
+18:22:45 <rtyler> +1 from me as well
+18:23:16 * rtyler yawns loudly
+18:24:07 <rtyler> #info CloudBees is expected to follow and enforce the appropriate trademark attribution policies for sublicenses https://jenkins.io/project/governance/#trademark-attribution
+18:24:16 <rtyler> (same with everybody else)
+18:24:25 <oleg-nenashev> yup
+18:24:43 <rtyler> considering the general agreement on the thread, and lack of disagreement/concerns here..
+18:25:00 <rtyler> #agreed CloudBees granted a trademark sublicense for "CloudBees Jenkins Metrics"
+18:25:11 * rtyler can never remember if it's agreed or agree
+18:25:25 <rtyler> #topic Next meeting
+18:25:30 * rtyler consults the calendar
+18:25:48 <rtyler> Looks like March 28th is the next scheduled meeting
+18:25:53 <rtyler> which will still be scheduled at 18:00 UTC
+18:26:03 <rtyler> I don't know if europe messes with their clocks before then or not
+18:26:15 <rtyler> #info next meeting March 28th at 18:00 UTC
+18:26:20 <rtyler> anything else before we wrap?
+18:26:46 <rtyler> #endmeeting

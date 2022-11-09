@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app222.us.archive.org';v.server_ms=421;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-07-20-18.00.log.html","20211020074740","https://web.archive.org/","web","/_static/",
+	      "1634716060");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:20</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke hare_brain</span>
+<a name="l-4"></a><span class="tm">18:00:25</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> you ready to go? :)
+<a name="l-6"></a><span class="tm">18:00:38</span><span class="nk"> &lt;kohsuke&gt;</span> yes
+<a name="l-7"></a><span class="tm">18:00:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-8"></a><span class="tm">18:01:04</span><span class="nk"> &lt;rtyler&gt;</span> everything is really on oleg-nenashev's plate it looks like
+<a name="l-9"></a><span class="tm">18:01:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-07-06-18.00.html</span>
+<a name="l-10"></a><span class="tm">18:01:25</span><span class="nk"> &lt;rtyler&gt;</span> but I did see him contact GSoC about dispencing money to our account with SPI
+<a name="l-11"></a><span class="tm">18:02:01</span><span class="nk"> &lt;kohsuke&gt;</span> dispence money as in get paid from Google?
+<a name="l-12"></a><span class="tm">18:02:07</span><span class="nk"> &lt;rtyler&gt;</span> aye
+<a name="l-13"></a><span class="tm">18:02:25</span><span class="nk"> &lt;kohsuke&gt;</span> nice
+<a name="l-14"></a><span class="tm">18:02:48</span><span class="nk"> &lt;rtyler&gt;</span> I think we'll get to the remainder of his previous actions in the GSoC update
+<a name="l-15"></a><span class="tm">18:02:51</span><span class="nk"> &lt;rtyler&gt;</span> so I'll keep going
+<a name="l-16"></a><span class="tm">18:02:56</span><span class="nk"> &lt;kohsuke&gt;</span> sure
+<a name="l-17"></a><span class="tm">18:02:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-18"></a><span class="tm">18:03:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> you're up
+<a name="l-19"></a><span class="tm">18:03:16</span><span class="nk"> &lt;ogondza&gt;</span> I have backported all candidates list time I checked
+<a name="l-20"></a><span class="tm">18:03:24</span><span class="nk"> &lt;rtyler&gt;</span> this would be for 2.7.2?
+<a name="l-21"></a><span class="tm">18:03:25</span><span class="nk"> &lt;ogondza&gt;</span> I will push RC once ATH finishes
+<a name="l-22"></a><span class="tm">18:03:29</span><span class="nk"> &lt;ogondza&gt;</span> jes
+<a name="l-23"></a><span class="tm">18:03:33</span><span class="nk"> &lt;rtyler&gt;</span> \cool
+<a name="l-24"></a><span class="tm">18:03:35</span><span class="nk"> &lt;kohsuke&gt;</span> Yay
+<a name="l-25"></a><span class="tm">18:03:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> any help you need from the rest of us? or is it auto-pilot from here?
+<a name="l-26"></a><span class="tm">18:04:17</span><span class="nk"> &lt;ogondza&gt;</span> I see some more candidates flagged today: https://issues.jenkins-ci.org/issues/?filter=12146
+<a name="l-27"></a><span class="tm">18:04:38</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza push LTS rc 2.7.2</span>
+<a name="l-28"></a><span class="tm">18:04:45</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> I am fine on this one
+<a name="l-29"></a><span class="tm">18:04:58</span><span class="nk"> &lt;rtyler&gt;</span> alrighty then
+<a name="l-30"></a><span class="tm">18:05:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoc status check</span>
+<a name="l-31"></a><span class="tm">18:05:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> your turn
+<a name="l-32"></a><span class="tm">18:05:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ok
+<a name="l-33"></a><span class="tm">18:05:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, everything is in progress
+<a name="l-34"></a><span class="tm">18:05:40</span><span class="nk"> &lt;kohsuke&gt;</span> looking at some of those issues but looks like they are marked for the next LTS
+<a name="l-35"></a><span class="tm">18:06:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">I've contacted Google regarding paypents, we should get everything from SPI</span>
+<a name="l-36"></a><span class="tm">18:06:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">GSoC Mentor Summit candidates: lanwen, oleg-nenashev and rtyler</span>
+<a name="l-37"></a><span class="tm">18:07:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action: </span><span class="cmdline">oleg-nenashev to syncup with rtyler on GSoC mentor summit (he was on vacation)</span>
+<a name="l-38"></a><span class="tm">18:07:29</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-39"></a><span class="tm">18:08:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Other stuff is in progress, final evaluation meetings will be scheduled on the next week</span>
+<a name="l-40"></a><span class="tm">18:08:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> That's all from me
+<a name="l-41"></a><span class="tm">18:08:55</span><span class="nk"> &lt;rtyler&gt;</span> any questions on GSoC progress?
+<a name="l-42"></a><span class="tm">18:09:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat:</span> you awake?
+<a name="l-43"></a><span class="tm">18:09:44</span><span class="nk"> &lt;alyssat&gt;</span> si
+<a name="l-44"></a><span class="tm">18:09:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Obtain permission to post Jenkins World banner on issues.jenkins-ci.org and wiki.jenkins-ci.org</span>
+<a name="l-45"></a><span class="tm">18:09:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat:</span> the floor is yours
+<a name="l-46"></a><span class="tm">18:09:59</span><span class="nk"> &lt;alyssat&gt;</span> I'd like to ask permission to post Jenkins World banner (like the one on jenkins.io homepage) on the wiki and JIRA pages. For the past several years we've been doing this for the Jenkins User Conferences with 2-3 banners in a given year. This year it will be just one banner for Jenkins World, it will be up from now until Sept 15, so the noise level will be
+<a name="l-47"></a><span class="tm">18:09:59</span><span class="nk"> &lt;alyssat&gt;</span> brief and reduced in number.
+<a name="l-48"></a><span class="tm">18:10:56</span><span class="nk"> &lt;rtyler&gt;</span> this is reasonable from my perspective
+<a name="l-49"></a><span class="tm">18:11:14</span><span class="nk"> &lt;kohsuke&gt;</span> +1 as this has been done multiple years
+<a name="l-50"></a><span class="tm">18:12:32</span><span class="nk"> &lt;kohsuke&gt;</span> Anyone else on this?
+<a name="l-51"></a><span class="tm">18:12:42</span><span class="nk"> &lt;kohsuke&gt;</span> If not, shall we move on?
+<a name="l-52"></a><span class="tm">18:13:00</span><span class="nk"> &lt;rtyler&gt;</span> we have time to wait a bit
+<a name="l-53"></a><span class="tm">18:13:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I abstain, but I do not see any issues with the proposed banners
+<a name="l-54"></a><span class="tm">18:13:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The banner on jenkins.io is pretty good
+<a name="l-55"></a><span class="tm">18:13:55</span><span class="nk"> &lt;alyssat&gt;</span> :o)
+<a name="l-56"></a><span class="tm">18:15:11</span><span class="nk"> &lt;jieryn&gt;</span> too many red balls, indicates a lot of failure?
+<a name="l-57"></a><span class="tm">18:15:15</span><span class="nk"> &lt;jieryn&gt;</span> that'd be the only nit
+<a name="l-58"></a><span class="tm">18:15:23</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-59"></a><span class="tm">18:15:39</span><span class="nk"> &lt;jieryn&gt;</span> i presume they were reference to the ball markers for job success
+<a name="l-60"></a><span class="tm">18:16:30</span><span class="nk"> &lt;alyssat&gt;</span> good point. the designer did not consider red ball = failure but we'll take into consideration for future designs
+<a name="l-61"></a><span class="tm">18:16:56 </span><span class="nka">* jieryn</span> <span class="ac">nods</span>
+<a name="l-62"></a><span class="tm">18:17:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jieryn:</span> Mr. Jenkins has been standing in fronto f failing builds in the logo for years :P
+<a name="l-63"></a><span class="tm">18:17:39</span><span class="nk"> &lt;jieryn&gt;</span> :)
+<a name="l-64"></a><span class="tm">18:17:47</span><span class="nk"> &lt;rtyler&gt;</span> any other questions/objections/concerns?
+<a name="l-65"></a><span class="tm">18:17:48</span><span class="nk"> &lt;kohsuke&gt;</span> cowboyd told me that's a rising Sun from the Japanese flag
+<a name="l-66"></a><span class="tm">18:17:53</span><span class="nk"> &lt;jieryn&gt;</span> he could easily be the protector from failure, it can be spun many ways
+<a name="l-67"></a><span class="tm">18:18:32</span><span class="nk"> &lt;rtyler&gt;</span> going once...
+<a name="l-68"></a><span class="tm">18:18:50</span><span class="nk"> &lt;rtyler&gt;</span> going twice...
+<a name="l-69"></a><span class="tm">18:18:53</span><span class="nk"> &lt;orrc&gt;</span> +meh
+<a name="l-70"></a><span class="tm">18:18:55</span><span class="nk"> &lt;orrc&gt;</span> :D
+<a name="l-71"></a><span class="tm">18:18:57</span><span class="nk"> &lt;rtyler&gt;</span> hahaha
+<a name="l-72"></a><span class="tm">18:19:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">some Jenkins World banners on wiki/issues are kosher</span>
+<a name="l-73"></a><span class="tm">18:19:21</span><span class="nk"> &lt;alyssat&gt;</span> yay! thank you
+<a name="l-74"></a><span class="tm">18:19:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to work with alyssat to get proper images squared away in Confluence and JIRA</span>
+<a name="l-75"></a><span class="tm">18:19:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-76"></a><span class="tm">18:19:51</span><span class="nk"> &lt;rtyler&gt;</span> August 3rd is what my calendar shows
+<a name="l-77"></a><span class="tm">18:20:06</span><span class="nk"> &lt;rtyler&gt;</span> I presume that, aside from europe taking august off for vacation, there are no issues with this time?
+<a name="l-78"></a><span class="tm">18:20:24</span><span class="nk"> &lt;alyssat&gt;</span> works for me
+<a name="l-79"></a><span class="tm">18:20:24</span><span class="nk"> &lt;kohsuke&gt;</span> We've always stuck to the same cadence
+<a name="l-80"></a><span class="tm">18:21:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I know, IMHO it's good to make sure there are no major holidays that some of us might not be aware of
+<a name="l-81"></a><span class="tm">18:21:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting august 3rd</span>
+<a name="l-82"></a><span class="tm">18:21:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 07:47:40 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:41:44 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 218.911
+  exclusion.robots: 0.081
+  exclusion.robots.policy: 0.074
+  RedisCDXSource: 0.607
+  esindex: 0.007
+  LoadShardBlock: 198.975 (3)
+  PetaboxLoader3.datanode: 104.382 (4)
+  CDXLines.iter: 16.646 (3)
+  PetaboxLoader3.resolve: 245.09 (2)
+  load_resource: 195.301
+-->

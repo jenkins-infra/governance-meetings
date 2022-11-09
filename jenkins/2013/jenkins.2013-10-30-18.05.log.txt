@@ -1,0 +1,258 @@
+18:05:22 <kohsuke> #startmeeting
+18:05:22 <robobutler> Let the Jenkins meeting commence!
+18:05:36 <jglick> duncanm: (meeting now, later)
+18:05:41 <ddelrio1986> When my job is building I keep getting this: Timeout waiting for prompt
+18:05:48 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:05:48 <ddelrio1986> How can I raise that timeout limit or get rid of it?
+18:06:00 <kohsuke> ddelrio1986: let's come back to that after the meeting
+18:06:06 <kohsuke> #topic LTS status
+18:06:21 <ddelrio1986> kohsuke, huh? What meeting?
+18:06:27 <jglick> vjuranek doing this one?
+18:06:32 <kohsuke> ddelrio1986:  https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:07:06 <ddelrio1986> Oh you guys use this room for the meeting?
+18:07:21 <jglick> ogondza, sorry.
+18:07:36 <kohsuke> ddelrio1986: one hour every two weeks, yes
+18:07:48 <jglick> ogondza says he will be back online Friday.
+18:07:51 <kohsuke> it looks like there has been good amount of backporting
+18:08:11 <jglick> Seven issues so far.
+18:08:16 <jglick> According to https://issues.jenkins-ci.org/secure/IssueNavigator.jspa?reset=true&jqlQuery=labels+%3D+%221.532.1-fixed%22
+18:08:54 <jglick> 37 lts-candidate, though a bunch of these are presumably not 1.532.1 candidates.
+18:09:10 <kohsuke> OK, so we need to chip in and triage them?
+18:09:18 <jglick> I.e. were fixed in 1.510–1.532.
+18:09:27 <kohsuke> yeah
+18:10:20 <jglick> Was there a consensus on whether removal of maven-plugin from main repo should be backported?
+18:10:58 <kohsuke> I actually didn't feel like it's something we need to do
+18:11:02 <kohsuke> It's a pretty major commit
+18:11:09 <jglick> Really?
+18:11:19 <kohsuke> Yeah.
+18:11:21 <jglick> I though it was mostly deletions, and a few POM changes.
+18:11:40 <kohsuke> Moving stuff off from core always makes me nervous
+18:11:50 <kohsuke> between fixing up classloader dependencies and what not
+18:12:04 <jglick> Class loader dependencies? It was already a plugin.
+18:12:05 <kohsuke> oh, actually, that's different
+18:13:00 <kohsuke> OK, well, then I have no argument against it
+18:13:02 <jglick> If we do _not_ backport the removal, and especially if we do then backport plugin fixes, then we would have the odd situation of a 1.532.1 maven-plugin with a subset of fixes in 2.0.
+18:13:32 <jglick> And I think some of the lts-candidate fixes were made after the split.
+18:13:39 <jglick> So they cannot be cherry-picked directly.
+18:13:48 <kohsuke> Maven plugin 2.0 depends on 1.533 in POM
+18:14:13 <kohsuke> I wonder why that is
+18:14:21 <kohsuke> oh now it's 1.532
+18:14:38 <kohsuke> you've fixed that
+18:14:42 <jglick> kohsuke: yeah you made it 1.533 and I changed it to 1.532.
+18:14:48 <jglick> https://github.com/jenkinsci/jenkins/commit/f98070d3e6dabab0817f80f2526f78f61ffa1c83 for reference.
+18:15:14 <kohsuke> all right, let's recommend this split be backported then
+18:15:44 <jglick> Should war/pom.xml#stable also get maven-plugin 2.0?
+18:16:07 <jglick> (Or 2.0-beta-1?)
+18:16:09 <kohsuke> How long it been released
+18:16:19 <kohsuke> Oct 22
+18:16:39 <jglick> 2.0 I guess.
+18:16:58 <kohsuke> Yeah we can bundle 2.0
+18:17:04 <kohsuke> People will see it in UC anyway
+18:17:37 <jglick> 2.0-beta-1 misses e.g. JENKINS-19396 which is important
+18:17:40 <jenkins-admin> JENKINS-19396:Extra logging added to Maven builds makes the build log hard to read - org.apache.maven.cli.event.ExecutionEventLogger (Resolved) http://jenkins-ci.org/issue/19396
+18:17:43 <kohsuke> The only reason it got 2.x is just because of the split. There's no major change
+18:17:52 <kohsuke> And beta in stable releases just feel odd
+18:17:56 <jglick> Agreed.
+18:18:28 <kohsuke> Let me backport the split and I'll let ogondoza roll back if he feels strongly
+18:19:06 <kohsuke> I was hoping to talk about the timeline but we need him for that
+18:19:16 <jglick> Yes.
+18:19:54 <kohsuke> moving on to the next topic
+18:20:07 <jglick> kohsuke: BTW JENKINS-20163 needs to be fixed promptly in core; we would want it in 1.532.1
+18:20:10 <jenkins-admin> JENKINS-20163:java.lang.NoClassDefFoundError: sun/net/www/protocol/jar/JarURLConnection (In Progress) http://jenkins-ci.org/issue/20163
+18:20:30 <jglick> (Should just be a Stapler version bump.)
+18:20:45 <kohsuke> what platform doesn't have JarURLConnetion!?
+18:20:56 <jglick> JBoss and the like block access to sun.** apparently.
+18:21:11 <kohsuke> great, so it brings back file descriptor leaks
+18:21:15 <kohsuke> oh well
+18:21:27 <jglick> kohsuke: I think the fix does not bring back the leaks.
+18:21:36 <jglick> Just avoids casting to the sun.** impl class.
+18:21:53 <jglick> Committed fix to Stapler but did not test it yet.
+18:22:11 <kohsuke> I see what you did, it makes sense
+18:22:11 <jglick> JENKINS-14336 is easy to reproduce so should be simple to confirm that it is not regressed.
+18:22:15 <jenkins-admin> JENKINS-14336:Too many open files upon HTTP listener init or shutdown (Resolved) http://jenkins-ci.org/issue/14336
+18:22:39 <kohsuke> #topic name approval
+18:22:40 <jglick> Theoretically some other JarURLConnection from a non-Sun-derived JRE might not leak, I guess, but no matter.
+18:23:07 <kohsuke> #info So I'm back again to get another trademark usage approval for "Jenkins Multi-master by CloudBees"
+18:23:56 <kohsuke> I'm hoping that this is OK --- we chose this name partly because it follows the same format as the previous approval
+18:24:24 <kohsuke> the argument being it avoids confusion by having "by CloudBees" part
+18:24:51 <kohsuke> hare_brain: any thoughts?
+18:25:04 <hare_brain> I always have to dig through the archives to see what we approved.
+18:25:15 <kohsuke> good question, when was it
+18:25:47 <kohsuke> http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-11-09-19.00.html
+18:26:37 <hare_brain> Agreed.
+18:26:54 <hare_brain> Although the logs from that meeting do indicate we wanted to set up some process around that, that I don't think we did.
+18:27:05 <hare_brain> At the very least, we should have a database of granted/approved requests.
+18:27:18 <kohsuke> I think we do have jenkinsci-boards@googlegroups.com now
+18:27:57 <kohsuke> But we should record approvals indeed
+18:28:23 <kohsuke> #action kohsuke to set up an edit-protected Wiki page the past approvals
+18:28:34 <kohsuke> ... Wiki page that records the past approvals
+18:28:52 <hare_brain> Apparently I said the same thing last year: https://groups.google.com/d/msg/jenkinsci-board/ZpnZbpwMpAM/6V4hsFfhQssJ
+18:29:07 <kohsuke> :-)
+18:30:07 <kohsuke> OK, I'll set this up and write a year-long reply to that thread
+18:30:33 <kohsuke> In the mean time, can we record OK for "Jenkins Multi-master by CloudBees" ?
+18:30:59 <hare_brain> OK
+18:31:04 <kohsuke> I should probably write to abayer
+18:32:29 <kohsuke> Assuming that's a binding +1, I'll check with abayer so that he can record his +1.
+18:33:07 <hare_brain> Assuming he's checking jenkinsci-board@, just do it via the list, so it's archived.
+18:33:13 <kohsuke> OK
+18:33:19 <kohsuke> That's it for me
+18:33:46 <kohsuke> #topic next meeting
+18:34:00 <jglick> BTW we are missing summary links for the past few meetings.
+18:34:28 <kohsuke> my bad. I need to add a user macro
+18:34:36 <kohsuke> I've been too lazy cutting&pasting the timestamp 3 times
+18:34:56 <kohsuke> next meeting is Nov 13th
+18:35:09 <hare_brain> After that, it's Thanksgiving week, so I presume we'll skip.
+18:35:25 <hare_brain> (11/27)
+18:35:26 <kohsuke> actually, that reminds me that Luca was interested in convincing us why we should use his new service GerritForge
+18:35:54 <kohsuke> It's free for open-source public GitHub repos
+18:36:04 <kohsuke> Are we interested ?
+18:36:09 <jglick> did you mean to #topic it?
+18:36:17 <kohsuke> #topic any interest in using GerritForge?
+18:36:26 <kohsuke> #info  Luca is  interested in convincing us why we should use his new service GerritForge
+18:36:26 <kpfleming> from an outsider's point of view, it doesn't seem like tooling is a problem in this project, it's lack of time
+18:36:44 <kohsuke> yes
+18:36:59 <jglick> Agreed, I have been quite happy with GitHub PRs, I just lack time to actually read most of them.
+18:37:03 <autojack> even with a calendar reminder I always miss the first half of this meeting :)
+18:37:33 <kpfleming> personally, i think handling issues and code review on GitHub sucks compared to Gerrit, JIRA/Crucible, or other tools, but they are sufficient
+18:37:38 <kpfleming> s/they are/it is/
+18:38:07 <kohsuke> #info It wasn't GerritForge, it was GerritHub: http://gerrithub.io/
+18:38:30 <kohsuke> kpfleming: if you think Gerrit is superior, feel free to try that out and report back!
+18:38:46 <kohsuke> I think Luca is willing to come here and answer Qs if we want him here
+18:38:50 <rtyler> kohsuke: do you want to look at why Jenkins-on-Jenkins is fucked before I restart it?
+18:39:00 <kohsuke> Yes I do
+18:39:01 <kpfleming> i've used it before, i know it's good, and friends in the OpenStack community think it is excellent
+18:39:11 <kpfleming> but it's more stuff to learn, and more integration to deal with
+18:39:17 <kohsuke> rtyler: I'll get the heap/thread dump then restart
+18:40:16 <autojack> I had a couple of thoughts coming out of JUC, I don't know if anyone wants to hear them in the context of this meeting or not.
+18:40:21 <rtyler> I think it's dead
+18:40:38 <kohsuke> autojack: yeah let's do JUC recap
+18:40:56 <autojack> OK
+18:41:03 <kohsuke> Anything more about GerritHub?
+18:41:19 <kohsuke> #info if people are willing to use it, it's there
+18:41:21 <kohsuke> #topic JUC recap
+18:41:30 <jglick> Still not really seeing the value. UI looks cluttered and awkward compared to GH to me.
+18:42:00 <autojack> shall I start? I just have three thoughts for next year, I think.
+18:42:06 <kohsuke> rtyler: yeah it looks dead
+18:42:13 <kohsuke> rtyler: let's just start it
+18:42:19 <kohsuke> autojack: please do
+18:42:38 <autojack> OK. these all came to me during the course of the day.
+18:43:25 <autojack> first idea is similar to something I saw at puppetconf this year - hack sessions. I have a feeling that a lot of people would like to write a plugin, or code a new feature in core even, but need help from more experienced people to get started.
+18:43:40 <eric_n_dfw> +1 to that
+18:43:48 <autojack> it would be cool to do a thing where people with experience can pair up, or go around the room, and help out other people.
+18:43:59 <rtyler> kohsuke: starting
+18:44:27 <autojack> you'd have to give people rerequisites ahead of time (dev env set up basically), but I think it could be cool. it might be difficult to make it useful in one hour though, and more time than that out of a one day conf could be challenging.
+18:44:43 <kohsuke> autojack: is it basically just a room with tables?
+18:45:00 <autojack> I think you would need to sign up some people to do the mentoring also.
+18:45:07 <kohsuke> In the past hackathon elsewhere we sometimes try a quick crash course
+18:45:38 <autojack> and there is a sub-idea that it could help steer people to project "best practices" vs some insane hack that breaks next time Jenkins is updated.
+18:46:18 <autojack> yeah. I also wanted to talk about having occasional hack days/meetups, but that's for another time.
+18:46:27 <autojack> ok, idea #2 from the conf:
+18:46:38 <kohsuke> feel free to use #idea to record this in the minutes more prominently
+18:47:03 <autojack> #idea for next JUC, plugin/core coding hack session with knowledgable mentors
+18:47:35 <autojack> #idea for next JUC, "how do/can/should I..." Q&A with power users
+18:47:59 <kohsuke> maybe that could be like a panel discussion
+18:48:04 <autojack> the thought being that again many people want to solve x problem with jenkins, and there are >1 ways to do it, but there is probably one "good" way
+18:48:12 <autojack> so it would be good to steer people toward that I think
+18:48:27 <eric_n_dfw> You guys did that at JUC #1 and I liked it as the last event of the day
+18:48:28 <autojack> and out of that also might come some feature ideas or other insight for the core team about what people want
+18:48:35 <hare_brain> +1 to that second idea.
+18:49:04 <eric_n_dfw> 'twas a nice way to wrap things up I mean
+18:49:09 <autojack> I just think so much of the overall jenkins support process is helping people accomplish a task with the right mix of plugins etc.
+18:49:16 <kohsuke> right
+18:49:21 <autojack> and last idea
+18:49:28 <hare_brain> Yes. And that would be popular enough that it shouldn't have a competing session.
+18:50:09 <autojack> #idea for the next JUC, consider grouping talks on functionally similar/identical topics into panel sessions where the speakers can discuss their different solutions with each other
+18:50:18 <autojack> kohsuke said something like this in one of his talks I think
+18:50:26 <hare_brain> BoF sessions
+18:50:36 <autojack> there were one or two topics that were covered in different ways by different speakers.
+18:50:54 <autojack> it would be interesting to hear them talk together about why each others' thing wouldn't have worked for them, or whatever.
+18:51:04 <eric_n_dfw> +1
+18:51:22 <kohsuke> It'd also allow more spot lights on community people
+18:51:24 <jenkins-builds> Starting build #2995 for job jenkins_main_trunk (previous build: ABORTED -- last SUCCESS #2993 1 day 20 hr ago)
+18:51:28 <autojack> nod.
+18:51:39 <autojack> that's it!
+18:51:41 <kpfleming> autojack: ping me at kpfleming@bloomberg.net about future 'hack days', i have some ideas that may be useful
+18:51:47 <autojack> OK
+18:51:55 <eric_n_dfw> FWIW, It's probably already been said, but the track 2 room was too small this year.
+18:51:58 <hare_brain> To generalize a theme out of both #2 and #3, it's to have some sessions that can be more interactive.
+18:52:07 <autojack> yeah
+18:52:16 <kohsuke> The scalability summit was organized more like unconference
+18:52:37 <kohsuke> where people wrote what they want to discuss in post-its and we sorted them out mid-day and started talking on them later
+18:52:40 <hare_brain> With regards to #1, it sounds like lab hours might be useful.
+18:52:54 <kohsuke> Some people thought it'd work in even larger number of people
+18:53:34 <kohsuke> I think one of the challenges in JUC is that # of available speaking slots are limited because of the slots we give away to sponsors
+18:53:53 <hare_brain> I was about to say, the challenge is that it's hard to fit all of this into one day.
+18:53:56 <kohsuke> ... meaning we need to figure out how to run this even cheaper to free up more time for these slots
+18:54:07 <autojack> yeah, my major hesitation about the hack session is the time required for it to be valuable.
+18:54:35 <hare_brain> Third track.
+18:54:44 <eric_n_dfw> or get more silent sponsorship $$$$ :o)
+18:54:47 <autojack> hehe
+18:54:56 <autojack> yeah I didn't realizing that sponsoring was giving me a platform to speak! hah
+18:55:03 <autojack> I missed my chance.
+18:55:04 <autojack> ;)
+18:55:14 <kohsuke> eric_n_dfw: if you know anyone willing to pony up money for conferences please send them on our way
+18:55:39 <kohsuke> I think Alyssa was saying this year we could have gotten one more room if we wanted to
+18:56:13 <kohsuke> So if we have a plan like a "roll up your sleeve hack room", then it'll probably be doable
+18:56:37 <kohsuke> panel session that cuts across two sessions are trickier because it kills one talking slot
+18:57:12 <autojack> nod.
+18:57:25 <hare_brain> Well I would only do that for one panel session at the end of the day. If there are other panel sessions during the day, they would have to compete with another track.
+18:57:53 <hare_brain> But I do think you need to judge by potential audience for each session.
+18:58:18 <kohsuke> Right
+18:58:21 <hare_brain> That would be my feedback about the session scheduling. There were some slots where I was interested in both tracks and had to choose, and other slots where I was interested in neither.
+18:58:44 <hare_brain> I think that also relates to the comments about the 4th floor being too small. It could have been that session should have been in the larger room.
+18:58:46 <autojack> maybe the panel could still be in an hour, you would just need to sort of suggest to the spekaers a different format for the talk they submitted.
+18:58:55 <kohsuke> #info I'm pretty sure alyssa would be more than happy to get help on talk scheduling
+18:59:00 <autojack> yeah
+18:59:09 <hare_brain> I already talked to her about it at the end of the conference. :)
+18:59:11 <autojack> some of these are perennial conference-organizing problems :)
+18:59:22 <autojack> I claim no experience with this, and recognize how complex it must be.
+18:59:44 <kpfleming> Talk scheduling is the #1, #2 and #3 hardest problem of organizing a conference :-)
+18:59:49 <autojack> hehe
+18:59:54 <eric_n_dfw> kohsuke: I wish I knew someone like that myself
+18:59:55 <kohsuke> She still doesn't quite grok this concept that  people will help her just out of good will
+19:00:17 <autojack> haha
+19:00:29 <kohsuke> #action next year, encourage alyssa to get community input on scheduling talks
+19:00:29 <eric_n_dfw> (My prior manager might have been willing to do it, but he's long gone)
+19:01:09 <kohsuke> my understanding is that the cost of the venue is the dominant factor
+19:01:27 <hare_brain> I'm sure
+19:01:32 <kohsuke> so any input in that area would be very, very useful
+19:02:10 <kohsuke> And also, the scalability summit has drawn far more interest than I thought
+19:02:24 <kohsuke> So maybe that's how we start slowing trying out 2-day format
+19:02:25 <autojack> jenkins scalability?
+19:02:28 <hare_brain> Seriously?
+19:02:40 <kohsuke> http://www.meetup.com/jenkinsmeetup/events/126595572/
+19:02:57 <kohsuke> Yeah, we had to turn down people
+19:03:42 <hare_brain> "You must have a Jenkins cluster of X size" to attend. ;)
+19:03:51 <autojack> hehe
+19:03:53 <rsandell> The scalability summit was a success, one of the reasons though was probably that it was a good sized group, at least for the format we chose.
+19:03:53 <kohsuke> No, I mean we'd turn it into a general unconference
+19:04:38 <kohsuke> And shake down somebody like Yahoo! who has enough rooms to host it
+19:04:57 <kohsuke> Netflix said they'd be happy to host it, too
+19:05:30 <autojack> BrightRoll is always happy to host community events, though an all-day thing is probably not in the cards.
+19:05:53 <autojack> we don't have a huge amount of space, but we have one big all-hands meeting area with projectors and whatnot, nicely set up.
+19:06:02 <kpfleming> If you guys are ever interested in hosting events on the east coast, we at Bloomberg would be happy to host you at our facility in Manhattan. We have fabulous meeting spaces.
+19:06:05 <autojack> I was thinking of offering it for a hack session.
+19:06:20 <kohsuke> I think picking up a 2-hour evening meet-up every so often would be great
+19:06:29 <kohsuke> We got that going in San Francisco for a while then it stopped
+19:06:40 <kohsuke> kpfleming: thanks!
+19:06:57 <autojack> we're in SF!
+19:07:10 <hare_brain> I know that Yahoo! has many evening meetups in their cafeteria. I can try to ping colleagues there to find out how to get in on that.
+19:07:21 <autojack> ask me anytime.
+19:07:25 <hare_brain> (I have know idea how that is set up.)
+19:07:27 <hare_brain> no
+19:07:42 <kohsuke> I should check with Alyssa how many people are from the city vs south bay
+19:07:42 <autojack> sounds like we are off the JUC topic.
+19:07:52 <kpfleming> Our SF office is nice as well (on Pier 3), but the meeting space is not setup very well.
+19:08:17 <hare_brain> I think we were riffing off your third idea autojack. :)
+19:08:26 <autojack> hehe
+19:08:43 <autojack> yeah true
+19:09:22 <kohsuke> I'd like to do a meet-up once in the south bay to measure the level of interest
+19:09:27 <kohsuke> ... vs doing it in San Francisco
+19:09:45 <autojack> yeah. I would think there would be a higher concentration of people down there.
+19:10:05 <kohsuke> All right, shall we wrap it up?
+19:10:16 <kohsuke> Anything else anyone?
+19:10:24 <hare_brain> Back to meeting times, if there's nothing else?
+19:10:30 <kohsuke> #topic meeting time
+19:10:48 <kohsuke> #agreed next meeting will be in  Nov 13th
+19:10:56 <kohsuke> US time zone will be back in sync with the rest of the world by then
+19:11:01 <kohsuke> #endmeeting

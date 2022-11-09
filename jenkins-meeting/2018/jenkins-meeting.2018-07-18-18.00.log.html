@@ -1,0 +1,315 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app226.us.archive.org';v.server_ms=195;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-07-18-18.00.log.html","20211027215014","https://web.archive.org/","web","/_static/",
+	      "1635371414");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:18</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:18</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:25</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler kohsuke</span>
+<a name="l-4"></a><span class="tm">18:00:25</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbe_ kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> o/
+<a name="l-6"></a><span class="tm">18:00:37</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-7"></a><span class="tm">18:00:45</span><span class="nk"> &lt;danielbe_&gt;</span> that was a month ago
+<a name="l-8"></a><span class="tm">18:00:49</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#info </span><span class="cmdline">meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-06-20-18.10.html</span>
+<a name="l-9"></a><span class="tm">18:01:04</span><span class="nk"> &lt;danielbe_&gt;</span> well, LTS went out today, so we probably had an rc :)
+<a name="l-10"></a><span class="tm">18:01:06</span><span class="nk"> &lt;ogondza&gt;</span> the RC was out
+<a name="l-11"></a><span class="tm">18:01:14</span><span class="nk"> &lt;danielbe_&gt;</span> and I think the other is a topic for today? oleg-nenashev ?
+<a name="l-12"></a><span class="tm">18:01:24</span><span class="nk"> &lt;danielbe_&gt;</span> yes, the last in the list it seems like
+<a name="l-13"></a><span class="tm">18:01:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yeah
+<a name="l-14"></a><span class="tm">18:01:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> GSoC budgeting?
+<a name="l-15"></a><span class="tm">18:01:38</span><span class="nk"> &lt;danielbe_&gt;</span> let's get to the real topics then
+<a name="l-16"></a><span class="tm">18:01:40</span><span class="nk"> &lt;tracymiranda&gt;</span> hi
+<a name="l-17"></a><span class="tm">18:01:42</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-18"></a><span class="tm">18:01:47</span><span class="nk"> &lt;danielbe_&gt;</span> Well, the LTS is out
+<a name="l-19"></a><span class="tm">18:01:52</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-20"></a><span class="tm">18:01:57</span><span class="nk"> &lt;danielbe_&gt;</span> https://jenkins.io/changelog-stable/#v2.121.2
+<a name="l-21"></a><span class="tm">18:02:01</span><span class="nk"> &lt;danielbe_&gt;</span> you _really_ want to update
+<a name="l-22"></a><span class="tm">18:02:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> works fine on my instances
+<a name="l-23"></a><span class="tm">18:02:09</span><span class="nk"> &lt;ogondza&gt;</span> backporting starts tomorrow...
+<a name="l-24"></a><span class="tm">18:02:12</span><span class="nk"> &lt;danielbe_&gt;</span> https://jenkins.io/security/advisory/2018-07-18/
+<a name="l-25"></a><span class="tm">18:02:18</span><span class="nk"> &lt;danielbe_&gt;</span> ogondza great
+<a name="l-26"></a><span class="tm">18:02:31</span><span class="nk"> &lt;danielbe_&gt;</span> anything else on LTS?
+<a name="l-27"></a><span class="tm">18:02:35</span><span class="nk"> &lt;ogondza&gt;</span> nope
+<a name="l-28"></a><span class="tm">18:02:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> not from me
+<a name="l-29"></a><span class="tm">18:02:52</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="topic">#topic </span><span class="topicline">Vote for mass adding Jenkinsfiles</span>
+<a name="l-30"></a><span class="tm">18:03:00</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/topic/jenkinsci-dev/6f_wKvfpESk/discussion</span>
+<a name="l-31"></a><span class="tm">18:03:03</span><span class="nk"> &lt;danielbe_&gt;</span> ogondza this is yours
+<a name="l-32"></a><span class="tm">18:03:21</span><span class="nk"> &lt;ogondza&gt;</span> Slide, Jesse and Oleg gave their +1 in ML
+<a name="l-33"></a><span class="tm">18:03:38 </span><span class="nka">* kohsuke</span> <span class="ac">comes in a little late</span>
+<a name="l-34"></a><span class="tm">18:03:52</span><span class="nk"> &lt;ogondza&gt;</span> Are there any question or objections to adding those Jenkinsfiles to plugins?
+<a name="l-35"></a><span class="tm">18:04:00</span><span class="nk"> &lt;danielbe_&gt;</span> I'm ±0 on this -- it should do no harm, but if a plugin is _that_ abandoned do we really want it built?
+<a name="l-36"></a><span class="tm">18:04:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes
+<a name="l-37"></a><span class="tm">18:04:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> I say go for it, I look forward to getting more alerts from ci.jenkins.io /o\
+<a name="l-38"></a><span class="tm">18:04:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It would help committers... maybe
+<a name="l-39"></a><span class="tm">18:04:40</span><span class="nk"> &lt;ogondza&gt;</span> right, the fact it is used is what matters to me
+<a name="l-40"></a><span class="tm">18:04:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Still, the main problem is with Adoption process
+<a name="l-41"></a><span class="tm">18:05:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we really need to introduce a timeout (5 years without changes, lol?)
+<a name="l-42"></a><span class="tm">18:05:27</span><span class="nk"> &lt;kohsuke&gt;</span> Adoption process question aside, +1 for the question at hand
+<a name="l-43"></a><span class="tm">18:05:37</span><span class="nk"> &lt;ogondza&gt;</span> any -1s?
+<a name="l-44"></a><span class="tm">18:06:09</span><span class="nk"> &lt;ogondza&gt;</span> if there are none, I will implement the change latter this week...
+<a name="l-45"></a><span class="tm">18:06:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Do you need permissions for that?
+<a name="l-46"></a><span class="tm">18:06:43</span><span class="nk"> &lt;ogondza&gt;</span> thank you everyone
+<a name="l-47"></a><span class="tm">18:07:06</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> I can grant it to myself. Is there any better way except the dialog with jenkins-admin?
+<a name="l-48"></a><span class="tm">18:07:14</span><span class="nk"> &lt;danielbe_&gt;</span> ogondza FWIW I'd be happy to click on all the merge buttons you put in front of me
+<a name="l-49"></a><span class="tm">18:07:29</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">let's mass apply Jenkinsfiles to repos as discussed on the dev list</span>
+<a name="l-50"></a><span class="tm">18:07:35</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to apply Jenkinsfiles</span>
+<a name="l-51"></a><span class="tm">18:07:38</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-52"></a><span class="tm">18:07:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes, Jenkins GitHub admins do not need to get permissions
+<a name="l-53"></a><span class="tm">18:07:57</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbe_:</span> that would be extra sweet. Or making me and org admin if that makes sense...
+<a name="l-54"></a><span class="tm">18:08:04</span><span class="nk"> &lt;danielbe_&gt;</span> I think we can discuss implementation separately
+<a name="l-55"></a><span class="tm">18:08:19</span><span class="nk"> &lt;ogondza&gt;</span> yeah, will reach out to you. Thanks!
+<a name="l-56"></a><span class="tm">18:08:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for making ogondza org admin. IMHO it's well deserved
+<a name="l-57"></a><span class="tm">18:08:32</span><span class="nk"> &lt;rtyler&gt;</span> I'm also fine with that
+<a name="l-58"></a><span class="tm">18:08:32</span><span class="nk"> &lt;ogondza&gt;</span> not sure about that...
+<a name="l-59"></a><span class="tm">18:08:34</span><span class="nk"> &lt;rtyler&gt;</span> I trust ogondza :)
+<a name="l-60"></a><span class="tm">18:08:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> + we would benefit from some extra bandwidth :)
+<a name="l-61"></a><span class="tm">18:08:50</span><span class="nk"> &lt;danielbe_&gt;</span> also a topic for elsewhere :P
+<a name="l-62"></a><span class="tm">18:08:53</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="topic">#topic </span><span class="topicline">Growing community via a stronger Twitter presence</span>
+<a name="l-63"></a><span class="tm">18:09:02</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/gqR_ee5grtM</span>
+<a name="l-64"></a><span class="tm">18:09:06</span><span class="nk"> &lt;danielbe_&gt;</span> tracymiranda that's yours
+<a name="l-65"></a><span class="tm">18:09:10</span><span class="nk"> &lt;tracymiranda&gt;</span> thanks
+<a name="l-66"></a><span class="tm">18:09:18</span><span class="nk"> &lt;tracymiranda&gt;</span> thanks for all feedback on mailing list
+<a name="l-67"></a><span class="tm">18:09:21 </span><span class="nka">* oleg-nenashev</span> <span class="ac">wonders whether it should be JEPped</span>
+<a name="l-68"></a><span class="tm">18:09:25</span><span class="nk"> &lt;tracymiranda&gt;</span> I will put together a JEP
+<a name="l-69"></a><span class="tm">18:09:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yey
+<a name="l-70"></a><span class="tm">18:09:33</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-71"></a><span class="tm">18:09:36</span><span class="nk"> &lt;tracymiranda&gt;</span> @rtyler will you be BDFL?
+<a name="l-72"></a><span class="tm">18:09:40</span><span class="nk"> &lt;tracymiranda&gt;</span> delegate
+<a name="l-73"></a><span class="tm">18:09:43</span><span class="nk"> &lt;rtyler&gt;</span> I would presume to be, hyes
+<a name="l-74"></a><span class="tm">18:09:47</span><span class="nk"> &lt;tracymiranda&gt;</span> great
+<a name="l-75"></a><span class="tm">18:09:53</span><span class="nk"> &lt;danielbe_&gt;</span> so glad to see this happening
+<a name="l-76"></a><span class="tm">18:10:09</span><span class="nk"> &lt;tracymiranda&gt;</span> note the scope of JEP will be around individuals getting onto twitter
+<a name="l-77"></a><span class="tm">18:10:16</span><span class="nk"> &lt;tracymiranda&gt;</span> not sure about fixing up the automation...
+<a name="l-78"></a><span class="tm">18:10:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Generally we could add Twitter bot to ChatOps
+<a name="l-79"></a><span class="tm">18:10:30</span><span class="nk"> &lt;rtyler&gt;</span> the automation would need some different stuff if you wanted to include tagging
+<a name="l-80"></a><span class="tm">18:10:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> at least for retweets
+<a name="l-81"></a><span class="tm">18:10:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">tracymiranda:</span> I think focus on the people first is a good prioritization
+<a name="l-82"></a><span class="tm">18:11:23</span><span class="nk"> &lt;tracymiranda&gt;</span> yes so policies for tweets, what folks need to do to be trusted
+<a name="l-83"></a><span class="tm">18:11:39</span><span class="nk"> &lt;tracymiranda&gt;</span> also maybe a setup for sharing analytics in a public forum e.g. regular meeting
+<a name="l-84"></a><span class="tm">18:12:00</span><span class="nk"> &lt;danielbe_&gt;</span> does twitter have support for account sharing? or is that done as a hack without 2FA for anyone etc?
+<a name="l-85"></a><span class="tm">18:12:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> afaik no support
+<a name="l-86"></a><span class="tm">18:12:34</span><span class="nk"> &lt;rtyler&gt;</span> TweetDeck does, which is how most orgs doo it
+<a name="l-87"></a><span class="tm">18:12:36</span><span class="nk"> &lt;tracymiranda&gt;</span> for eclipse fdn accounts folks were given tweetdeck access
+<a name="l-88"></a><span class="tm">18:12:44</span><span class="nk"> &lt;tracymiranda&gt;</span> so you can tweet, follow people and reply
+<a name="l-89"></a><span class="tm">18:12:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There are whatever crappy Marketing services for it on the top of multiple social media things
+<a name="l-90"></a><span class="tm">18:12:53</span><span class="nk"> &lt;danielbe_&gt;</span> ah ok
+<a name="l-91"></a><span class="tm">18:13:00</span><span class="nk"> &lt;tracymiranda&gt;</span> but not see analytics or change core things (e.g.profile)
+<a name="l-92"></a><span class="tm">18:13:02</span><span class="nk"> &lt;rtyler&gt;</span> TweetDeck is a twitter property
+<a name="l-93"></a><span class="tm">18:13:35</span><span class="nk"> &lt;danielbe_&gt;</span> so discusison of security of the twitter account would be useful
+<a name="l-94"></a><span class="tm">18:13:41</span><span class="nk"> &lt;danielbe_&gt;</span> as part of the JEP
+<a name="l-95"></a><span class="tm">18:13:49</span><span class="nk"> &lt;tracymiranda&gt;</span> should scope of this jep be @jenkinsci only or more accounts?
+<a name="l-96"></a><span class="tm">18:14:03</span><span class="nk"> &lt;bitwiseman&gt;</span> Are there more acconts?
+<a name="l-97"></a><span class="tm">18:14:06</span><span class="nk"> &lt;danielbe_&gt;</span> jenkins_release is automated anyway. are there others?
+<a name="l-98"></a><span class="tm">18:14:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Jenkins Releases
+<a name="l-99"></a><span class="tm">18:14:12</span><span class="nk"> &lt;rtyler&gt;</span> @jenkinsxio
+<a name="l-100"></a><span class="tm">18:14:17</span><span class="nk"> &lt;rtyler&gt;</span> or whatever
+<a name="l-101"></a><span class="tm">18:14:19</span><span class="nk"> &lt;tracymiranda&gt;</span> @jenkins_plugins or similar
+<a name="l-102"></a><span class="tm">18:14:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also JAM accounts
+<a name="l-103"></a><span class="tm">18:14:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But they rather out of the scope
+<a name="l-104"></a><span class="tm">18:14:30</span><span class="nk"> &lt;rtyler&gt;</span> JAM accounts are only run by organizers
+<a name="l-105"></a><span class="tm">18:14:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> jenkinsconf maybe
+<a name="l-106"></a><span class="tm">18:14:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Is it a community thing at all tho?
+<a name="l-107"></a><span class="tm">18:14:59</span><span class="nk"> &lt;bitwiseman&gt;</span> So, we don't have master list anywhere
+<a name="l-108"></a><span class="tm">18:14:59</span><span class="nk"> &lt;alyssat_&gt;</span> rtyler is correct about JAM accounts
+<a name="l-109"></a><span class="tm">18:15:09</span><span class="nk"> &lt;kohsuke&gt;</span> Can we put Jenkins facebook account under the same policies?
+<a name="l-110"></a><span class="tm">18:15:11</span><span class="nk"> &lt;alyssat_&gt;</span> jenkinsconf account is managed by CloudBees
+<a name="l-111"></a><span class="tm">18:15:35</span><span class="nk"> &lt;kohsuke&gt;</span> or whatever it's called by Facebook -- Facebook Page, maybe
+<a name="l-112"></a><span class="tm">18:15:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> can that be punted to another discuhssion
+<a name="l-113"></a><span class="tm">18:15:45</span><span class="nk"> &lt;danielbe_&gt;</span> we have a facebook account?
+<a name="l-114"></a><span class="tm">18:15:55</span><span class="nk"> &lt;rtyler&gt;</span> that's not even nearly managed/maintained presently right now as Twitter
+<a name="l-115"></a><span class="tm">18:15:58</span><span class="nk"> &lt;rtyler&gt;</span> and never really has
+<a name="l-116"></a><span class="tm">18:16:03</span><span class="nk"> &lt;danielbe_&gt;</span> rtyler +1
+<a name="l-117"></a><span class="tm">18:16:04</span><span class="nk"> &lt;rtyler&gt;</span> scope creep *hiss*
+<a name="l-118"></a><span class="tm">18:16:16</span><span class="nk"> &lt;kohsuke&gt;</span> Okay. It's autoposting from blogs atm
+<a name="l-119"></a><span class="tm">18:16:27</span><span class="nk"> &lt;danielbe_&gt;</span> tracymiranda I think the path forward with the JEP is clear, anything else you wanted to discuss?
+<a name="l-120"></a><span class="tm">18:16:30</span><span class="nk"> &lt;tracymiranda&gt;</span> hehe, any linked in pages I should know about
+<a name="l-121"></a><span class="tm">18:16:44</span><span class="nk"> &lt;tracymiranda&gt;</span> no nothing else
+<a name="l-122"></a><span class="tm">18:16:56</span><span class="nk"> &lt;rtyler&gt;</span> let's get twitter sorted, then we can tackle all the other social shenanigans :P
+<a name="l-123"></a><span class="tm">18:17:03</span><span class="nk"> &lt;danielbe_&gt;</span> linkedin? can't tell whether that's a joke or real :-/
+<a name="l-124"></a><span class="tm">18:17:06 </span><span class="nka">* rtyler</span> <span class="ac">wonders if we have any property in Second Life</span>
+<a name="l-125"></a><span class="tm">18:17:09</span><span class="nk"> &lt;danielbe_&gt;</span> alright, moving on
+<a name="l-126"></a><span class="tm">18:17:15</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins Ambassader applicants</span>
+<a name="l-127"></a><span class="tm">18:17:17</span><span class="nk"> &lt;kohsuke&gt;</span> https://www.linkedin.com/company/jenkins-project/
+<a name="l-128"></a><span class="tm">18:17:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Malcolm Groves does all the Facebook job well
+<a name="l-129"></a><span class="tm">18:17:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And he is not the bot :)
+<a name="l-130"></a><span class="tm">18:17:30</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/Tp0Q1QAHP2k</span>
+<a name="l-131"></a><span class="tm">18:17:42</span><span class="nk"> &lt;danielbe_&gt;</span> bitwiseman and alyssat_ this is yours?
+<a name="l-132"></a><span class="tm">18:17:47</span><span class="nk"> &lt;alyssat_&gt;</span> yep
+<a name="l-133"></a><span class="tm">18:18:01</span><span class="nk"> &lt;alyssat_&gt;</span> We've received 8 applications for the ambassador program #info https://docs.google.com/document/d/1bL8YJpW45ByXQnfPEd0iJc-KBGoexhxgT-IcP0b2FZM/edit?usp=sharing.
+<a name="l-134"></a><span class="tm">18:18:31</span><span class="nk"> &lt;alyssat_&gt;</span> All 8 applicants appear highly qualified to me. I would like to request that we move forward and award these applicants the title of Jenkins Ambassadors
+<a name="l-135"></a><span class="tm">18:18:55</span><span class="nk"> &lt;rtyler&gt;</span> as I mentioned on the dev list, I wholeheartedly agree with this inaugural class
+<a name="l-136"></a><span class="tm">18:19:05</span><span class="nk"> &lt;alyssat_&gt;</span> awesome!
+<a name="l-137"></a><span class="tm">18:19:11</span><span class="nk"> &lt;bitwiseman&gt;</span> Looks great to meet. +1
+<a name="l-138"></a><span class="tm">18:19:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> works for me
+<a name="l-139"></a><span class="tm">18:19:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We probably need an announcement blog + invitation to apply for others
+<a name="l-140"></a><span class="tm">18:19:40</span><span class="nk"> &lt;kohsuke&gt;</span> Great list indeed
+<a name="l-141"></a><span class="tm">18:19:57</span><span class="nk"> &lt;alyssat_&gt;</span> +1 for forth coming blog(s)
+<a name="l-142"></a><span class="tm">18:20:52</span><span class="nk"> &lt;danielbe_&gt;</span> this list looks great
+<a name="l-143"></a><span class="tm">18:21:11</span><span class="nk"> &lt;bitwiseman&gt;</span> Along with that, in the next couple weeks we can move JEP-4 to "Active".
+<a name="l-144"></a><span class="tm">18:21:17</span><span class="nk"> &lt;danielbe_&gt;</span> anyone against moving forward here?
+<a name="l-145"></a><span class="tm">18:21:35</span><span class="nk"> &lt;alyssat_&gt;</span> If there aren't any -1 i'll move forward with next steps of announcing these applicants Ambassadors
+<a name="l-146"></a><span class="tm">18:21:43</span><span class="nk"> &lt;tracymiranda&gt;</span> great
+<a name="l-147"></a><span class="tm">18:21:49</span><span class="nk"> &lt;rtyler&gt;</span> go go gadget ambassadors
+<a name="l-148"></a><span class="tm">18:21:58</span><span class="nk"> &lt;alyssat_&gt;</span> woot woot..thank you all
+<a name="l-149"></a><span class="tm">18:22:10</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Ambassador program is moving forward with candidates</span>
+<a name="l-150"></a><span class="tm">18:22:25</span><span class="nk"> &lt;danielbe_&gt;</span> next topic?
+<a name="l-151"></a><span class="tm">18:22:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yup
+<a name="l-152"></a><span class="tm">18:22:36</span><span class="nk"> &lt;rtyler&gt;</span> let's do it
+<a name="l-153"></a><span class="tm">18:22:41</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC status update and travel grants budget request</span>
+<a name="l-154"></a><span class="tm">18:22:44</span><span class="nk"> &lt;danielbe_&gt;</span> oleg-nenashev yours
+<a name="l-155"></a><span class="tm">18:22:51</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/zS1jzYRoF08</span>
+<a name="l-156"></a><span class="tm">18:22:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, before I go panhandling...
+<a name="l-157"></a><span class="tm">18:23:10</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-158"></a><span class="tm">18:23:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">All 3 students have passed the Phase 2 evaluation</span>
+<a name="l-159"></a><span class="tm">18:23:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://www.meetup.com/Jenkins-online-meetup/events/252500125/ if you have missed it</span>
+<a name="l-160"></a><span class="tm">18:24:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next stop is final evaluation in 3 weeks, but we have started doing org things like travel grants for students</span>
+<a name="l-161"></a><span class="tm">18:24:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Travel grant request</span>
+<a name="l-162"></a><span class="tm">18:24:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Oops
+<a name="l-163"></a><span class="tm">18:24:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/zS1jzYRoF08</span>
+<a name="l-164"></a><span class="tm">18:24:52 </span><span class="nka">* tracymiranda</span> <span class="ac">thinks this is a great investment</span>
+<a name="l-165"></a><span class="tm">18:24:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Sooo, we would like to sponsor our students
+<a name="l-166"></a><span class="tm">18:25:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I have tried to list benefits to the community in the email
+<a name="l-167"></a><span class="tm">18:25:16</span><span class="nk"> &lt;rtyler&gt;</span> I'm in support of this, the budget is definitely there for this kind of thing in SPI
+<a name="l-168"></a><span class="tm">18:25:26</span><span class="nk"> &lt;danielbe_&gt;</span> it's not even SPI budget IIUC
+<a name="l-169"></a><span class="tm">18:25:35</span><span class="nk"> &lt;tracymiranda&gt;</span> it is split?
+<a name="l-170"></a><span class="tm">18:25:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> GSoC money are in SPI
+<a name="l-171"></a><span class="tm">18:25:53</span><span class="nk"> &lt;danielbe_&gt;</span> ah, ok
+<a name="l-172"></a><span class="tm">18:25:55</span><span class="nk"> &lt;tracymiranda&gt;</span> ok
+<a name="l-173"></a><span class="tm">18:26:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> just so we're clear, the students understand that we would need to re-imburse them
+<a name="l-174"></a><span class="tm">18:26:03</span><span class="nk"> &lt;danielbe_&gt;</span> but specific GSoC budget we have enough of
+<a name="l-175"></a><span class="tm">18:26:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So they are part of the overall budget presented by rtyler
+<a name="l-176"></a><span class="tm">18:26:08</span><span class="nk"> &lt;rtyler&gt;</span> we cannot purchase tickets or anything
+<a name="l-177"></a><span class="tm">18:26:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes
+<a name="l-178"></a><span class="tm">18:26:17</span><span class="nk"> &lt;rtyler&gt;</span> ok, sounds good
+<a name="l-179"></a><span class="tm">18:26:29</span><span class="nk"> &lt;tracymiranda&gt;</span> so will we cover 100% of travel expenses?
+<a name="l-180"></a><span class="tm">18:26:37</span><span class="nk"> &lt;tracymiranda&gt;</span> we i.e. jenkins spi
+<a name="l-181"></a><span class="tm">18:26:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">JEP draft for GSoC budget and reimbursements: https://github.com/jenkinsci/jep/pull/144</span>
+<a name="l-182"></a><span class="tm">18:26:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Students are aware of that
+<a name="l-183"></a><span class="tm">18:27:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">tracymiranda:</span> our problem is that we cannot offer 100% coverage only with GSoC budget
+<a name="l-184"></a><span class="tm">18:27:33</span><span class="nk"> &lt;tracymiranda&gt;</span> yes so does board approve the rest?
+<a name="l-185"></a><span class="tm">18:27:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we would need up to 2k USD in addition to what we have
+<a name="l-186"></a><span class="tm">18:27:40</span><span class="nk"> &lt;tracymiranda&gt;</span> isn't that part of the ask here?
+<a name="l-187"></a><span class="tm">18:27:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I have sent a request to the board, had a discussion with kohsuke
+<a name="l-188"></a><span class="tm">18:28:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> His opinion is that it is rather for Governance meeting IIUC
+<a name="l-189"></a><span class="tm">18:28:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Waiting for the formal Jenkins Board response tho
+<a name="l-190"></a><span class="tm">18:28:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> FYI rtyler harebrain ^
+<a name="l-191"></a><span class="tm">18:28:52</span><span class="nk"> &lt;kohsuke&gt;</span> So just to make sure everyone is on the same page, because it took me a while to grok this,
+<a name="l-192"></a><span class="tm">18:28:53</span><span class="nk"> &lt;rtyler&gt;</span> we have ample funds to use here, 2k is probalby less than the attempts we've made in years past for FOSDEM travel grants combined :P
+<a name="l-193"></a><span class="tm">18:29:26</span><span class="nk"> &lt;kohsuke&gt;</span> There's about $4K that Google has paid for in GSoCs over years to Jenkins that we haven't used
+<a name="l-194"></a><span class="tm">18:29:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> it's 2k USD + GSoC money, so it's rather about 5-6k USD tops
+<a name="l-195"></a><span class="tm">18:29:58</span><span class="nk"> &lt;kohsuke&gt;</span> ... which is already held in SPI mixed with the rest of "general Jenkins coffer" that's totalling about $25K
+<a name="l-196"></a><span class="tm">18:30:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> GSoC budget calculations are also in the email
+<a name="l-197"></a><span class="tm">18:30:28</span><span class="nk"> &lt;rtyler&gt;</span> heh, I don't think this is actually that complicated
+<a name="l-198"></a><span class="tm">18:30:38</span><span class="nk"> &lt;kohsuke&gt;</span> The fist ask, which I thought was no brainer, that this $4K Google paid for GSoC be used for GSoC
+<a name="l-199"></a><span class="tm">18:30:50</span><span class="nk"> &lt;rtyler&gt;</span> GSoC brings in 2200 more into our account, and we need a total of ~4400 for these travel grants
+<a name="l-200"></a><span class="tm">18:31:00</span><span class="nk"> &lt;kohsuke&gt;</span> ... by the discretion of the leader of GSoC in Jenkins, which is oleg-nenashev
+<a name="l-201"></a><span class="tm">18:31:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I propose to split vote to two parts. (1) Does Governance meeting approve using GSoC budget from 2016? (2) Are we open do go beyond (does not need to ne decided now)?
+<a name="l-202"></a><span class="tm">18:31:23</span><span class="nk"> &lt;kohsuke&gt;</span> The second ask, is that we spend another $2K or so from the general coffer for GSoC students
+<a name="l-203"></a><span class="tm">18:31:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> exactly kohsuke
+<a name="l-204"></a><span class="tm">18:32:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, any -1s regarding (1) ?
+<a name="l-205"></a><span class="tm">18:32:10</span><span class="nk"> &lt;kohsuke&gt;</span> +1, oleg-nenashev
+<a name="l-206"></a><span class="tm">18:32:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Does Governance meeting approve using GSoC budget from 2016?
+<a name="l-207"></a><span class="tm">18:32:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-208"></a><span class="tm">18:32:18</span><span class="nk"> &lt;danielbe_&gt;</span> the newest treasurer report is Dec 2017 with 33.5k in the bank, what happened since I don't know. But between GitHub and Azure giving us free stuff, I doubt we have lots of expenses?
+<a name="l-209"></a><span class="tm">18:32:29</span><span class="nk"> &lt;rtyler&gt;</span> +1 to all of this, just ship it ;)
+<a name="l-210"></a><span class="tm">18:32:35</span><span class="nk"> &lt;danielbe_&gt;</span> (1) +1 (2) +2
+<a name="l-211"></a><span class="tm">18:32:49</span><span class="nk"> &lt;tracymiranda&gt;</span> can i vote? +1 anyway
+<a name="l-212"></a><span class="tm">18:32:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbe_:</span> iwe do not, security gifts and some github costs are what we spend money on
+<a name="l-213"></a><span class="tm">18:32:56</span><span class="nk"> &lt;kohsuke&gt;</span> Does GitHub give us free stuff?
+<a name="l-214"></a><span class="tm">18:32:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> everybody can vote
+<a name="l-215"></a><span class="tm">18:33:01</span><span class="nk"> &lt;alyssat_&gt;</span> +1
+<a name="l-216"></a><span class="tm">18:33:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> jenkinsci-cert is gratis, jenkins-infra is not
+<a name="l-217"></a><span class="tm">18:33:11</span><span class="nk"> &lt;danielbe_&gt;</span> kohsuke jenkinsci-cert is 100% off forever
+<a name="l-218"></a><span class="tm">18:33:20</span><span class="nk"> &lt;tracymiranda&gt;</span> cool
+<a name="l-219"></a><span class="tm">18:33:25</span><span class="nk"> &lt;danielbe_&gt;</span> which is at 1500 USD per year or so right now
+<a name="l-220"></a><span class="tm">18:34:09</span><span class="nk"> &lt;kohsuke&gt;</span> nice, I didn't know
+<a name="l-221"></a><span class="tm">18:34:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> less than stickers, yeah? :)
+<a name="l-222"></a><span class="tm">18:34:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Okay, any other votes?
+<a name="l-223"></a><span class="tm">18:34:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Counting 5
+<a name="l-224"></a><span class="tm">18:34:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 4
+<a name="l-225"></a><span class="tm">18:34:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 3
+<a name="l-226"></a><span class="tm">18:34:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2
+<a name="l-227"></a><span class="tm">18:34:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 1
+<a name="l-228"></a><span class="tm">18:34:27</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">We finance GSoC travel for the students from GSoC + general funds</span>
+<a name="l-229"></a><span class="tm">18:34:39</span><span class="nk"> &lt;tracymiranda&gt;</span> thanks for sorting this oleg
+<a name="l-230"></a><span class="tm">18:34:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to proceed with the budget things and GSoC logistics</span>
+<a name="l-231"></a><span class="tm">18:34:58</span><span class="nk"> &lt;danielbe_&gt;</span> \o/
+<a name="l-232"></a><span class="tm">18:34:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">tracymiranda:</span> happy to do that
+<a name="l-233"></a><span class="tm">18:35:23</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-234"></a><span class="tm">18:35:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Does anybody want to be a GSoC budget BDFL delegate?
+<a name="l-235"></a><span class="tm">18:35:35 </span><span class="nka">* oleg-nenashev</span> <span class="ac">is too slow</span>
+<a name="l-236"></a><span class="tm">18:35:52</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC status update and travel grants budget request</span>
+<a name="l-237"></a><span class="tm">18:35:57</span><span class="nk"> &lt;danielbe_&gt;</span> we can go back
+<a name="l-238"></a><span class="tm">18:36:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> let's see. I'd guess it should be kohsuke or rtyler  since they represent the board (and SPI)
+<a name="l-239"></a><span class="tm">18:36:40</span><span class="nk"> &lt;kohsuke&gt;</span> this needs JEP beyond what we decided?
+<a name="l-240"></a><span class="tm">18:36:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep
+<a name="l-241"></a><span class="tm">18:36:50</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-242"></a><span class="tm">18:37:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Common things like "we reimburse only economy class"
+<a name="l-243"></a><span class="tm">18:37:28</span><span class="nk"> &lt;kohsuke&gt;</span> Then I'll see it and figure out the delegate
+<a name="l-244"></a><span class="tm">18:37:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> + transparency requirements
+<a name="l-245"></a><span class="tm">18:37:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks kohsuke!
+<a name="l-246"></a><span class="tm">18:37:52</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-247"></a><span class="tm">18:38:04</span><span class="nk"> &lt;danielbe_&gt;</span> August 1
+<a name="l-248"></a><span class="tm">18:38:11</span><span class="nk"> &lt;danielbe_&gt;</span> any public holidays I'm missing again?
+<a name="l-249"></a><span class="tm">18:38:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Switzerland
+<a name="l-250"></a><span class="tm">18:38:37</span><span class="nk"> &lt;rtyler&gt;</span> isn't August 1st when the entire country of france goes on holiday?
+<a name="l-251"></a><span class="tm">18:39:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> aug 1 should be fine
+<a name="l-252"></a><span class="tm">18:39:15</span><span class="nk"> &lt;kohsuke&gt;</span> Let's stick to Aug 1, it's always holiday somewhere
+<a name="l-253"></a><span class="tm">18:39:25</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-254"></a><span class="tm">18:39:30</span><span class="nk"> &lt;danielbe_&gt;</span> ok then, Aug 1 it is
+<a name="l-255"></a><span class="tm">18:39:34</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 21:50:14 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:06:25 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 85.315
+  exclusion.robots: 0.106
+  exclusion.robots.policy: 0.098
+  RedisCDXSource: 0.579
+  esindex: 0.009
+  LoadShardBlock: 55.904 (3)
+  PetaboxLoader3.datanode: 62.471 (4)
+  CDXLines.iter: 25.039 (3)
+  load_resource: 89.23
+  PetaboxLoader3.resolve: 40.13
+-->

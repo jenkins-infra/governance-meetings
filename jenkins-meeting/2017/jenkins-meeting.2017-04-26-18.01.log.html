@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app210.us.archive.org';v.server_ms=615;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-04-26-18.01.log.html","20210115153218","https://web.archive.org/","web","/_static/",
+	      "1610724738");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:11</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:11</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:18</span><span class="nk"> &lt;batmat&gt;</span> o/
+<a name="l-4"></a><span class="tm">18:01:19</span><span class="nk"> &lt;danielbeck&gt;</span> let's see whether I remember how to use the bot
+<a name="l-5"></a><span class="tm">18:01:32</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">kohsuke rtyler hare_brain</span>
+<a name="l-6"></a><span class="tm">18:01:36</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke rtyler hare_brain</span>
+<a name="l-7"></a><span class="tm">18:01:36</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-8"></a><span class="tm">18:02:03</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-9"></a><span class="tm">18:02:09</span><span class="nk"> &lt;danielbeck&gt;</span> http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-04-12-18.00.html
+<a name="l-10"></a><span class="tm">18:02:20</span><span class="nk"> &lt;danielbeck&gt;</span> RC is out
+<a name="l-11"></a><span class="tm">18:02:38</span><span class="nk"> &lt;ogondza&gt;</span> yep, with a bit of delay but it is
+<a name="l-12"></a><span class="tm">18:02:40</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-04-12-18.00.html</span>
+<a name="l-13"></a><span class="tm">18:02:45</span><span class="nk"> &lt;danielbeck&gt;</span> orrc are you on the spam brigade now?
+<a name="l-14"></a><span class="tm">18:03:38</span><span class="nk"> &lt;danielbeck&gt;</span> apparently not here, so let's move on
+<a name="l-15"></a><span class="tm">18:03:52</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-16"></a><span class="tm">18:03:59</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza (and, well, me) :-)
+<a name="l-17"></a><span class="tm">18:04:07</span><span class="nk"> &lt;ogondza&gt;</span> we are ready to go :P
+<a name="l-18"></a><span class="tm">18:04:12</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-19"></a><span class="tm">18:04:14</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> I am
+<a name="l-20"></a><span class="tm">18:04:19</span><span class="nk"> &lt;orrc&gt;</span> (forgot about the meeting, sorry)
+<a name="l-21"></a><span class="tm">18:04:28</span><span class="nk"> &lt;danielbeck&gt;</span> in fact, 2.46.2 it should already be showing up for some people
+<a name="l-22"></a><span class="tm">18:04:50</span><span class="nk"> &lt;danielbeck&gt;</span> no release notes yet though, as usual, will be held until the weekly is done as well
+<a name="l-23"></a><span class="tm">18:05:06</span><span class="nk"> &lt;ogondza&gt;</span> offered on website as well
+<a name="l-24"></a><span class="tm">18:05:15 </span><span class="nka">* danielbeck</span> <span class="ac">grumbles</span>
+<a name="l-25"></a><span class="tm">18:05:22</span><span class="nk"> &lt;danielbeck&gt;</span> pipelines still cannot be disabled :&lt;
+<a name="l-26"></a><span class="tm">18:05:34</span><span class="nk"> &lt;danielbeck&gt;</span> but a topic for a different channel
+<a name="l-27"></a><span class="tm">18:05:42</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins Ambassador program heads up</span>
+<a name="l-28"></a><span class="tm">18:05:50</span><span class="nk"> &lt;danielbeck&gt;</span> alyssat_ this is yours
+<a name="l-29"></a><span class="tm">18:06:07</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="cmd">#info </span><span class="cmdline">A heads up. I'd like organize a Jenkins Ambassador program https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Ambassador</span>
+<a name="l-30"></a><span class="tm">18:06:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> "revive" the program?
+<a name="l-31"></a><span class="tm">18:06:30</span><span class="nk"> &lt;alyssat_&gt;</span> I am looking for 1) suggestions/feedback for the details of the program, esp under the "Selection Process" and 2) need volunteers to form a team
+<a name="l-32"></a><span class="tm">18:06:38</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev this isn't the CIA program ;-)
+<a name="l-33"></a><span class="tm">18:06:56</span><span class="nk"> &lt;danielbeck&gt;</span> … I think
+<a name="l-34"></a><span class="tm">18:07:11 </span><span class="nka">* oleg-nenashev</span> <span class="ac">volunteers to be JAMbassador</span>
+<a name="l-35"></a><span class="tm">18:07:22</span><span class="nk"> &lt;danielbeck&gt;</span> alyssat_ this has nothing to do with https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CIA+Program right?
+<a name="l-36"></a><span class="tm">18:07:24</span><span class="nk"> &lt;alyssat_&gt;</span> right. this isn't the CIA program but in some ways it is similar
+<a name="l-37"></a><span class="tm">18:08:03</span><span class="nk"> &lt;danielbeck&gt;</span> okay
+<a name="l-38"></a><span class="tm">18:08:10</span><span class="nk"> &lt;danielbeck&gt;</span> I assume an email to the dev list will be forthcoming?
+<a name="l-39"></a><span class="tm">18:08:17</span><span class="nk"> &lt;alyssat_&gt;</span> the inspiration here is similar to the docker captain, and java champion programs
+<a name="l-40"></a><span class="tm">18:08:38</span><span class="nk"> &lt;alyssat_&gt;</span> yes, will send email to dev list
+<a name="l-41"></a><span class="tm">18:09:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">alyssat_:</span> It would be nice to define requirements to ambassadors. E.g. verified IRC account, etc.
+<a name="l-42"></a><span class="tm">18:09:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Or being organizer at least in one JAM
+<a name="l-43"></a><span class="tm">18:09:46</span><span class="nk"> &lt;alyssat_&gt;</span> +1.
+<a name="l-44"></a><span class="tm">18:09:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> With at least 2 meetings over the last year... ?
+<a name="l-45"></a><span class="tm">18:10:14</span><span class="nk"> &lt;alyssat_&gt;</span> ok
+<a name="l-46"></a><span class="tm">18:10:31</span><span class="nk"> &lt;orrc&gt;</span> Is the "goal" section the goal of the program, or a description of what an ambassador does?
+<a name="l-47"></a><span class="tm">18:10:31</span><span class="nk"> &lt;bitwiseman&gt;</span> Someone who meets the definition of Contributor.
+<a name="l-48"></a><span class="tm">18:10:37</span><span class="nk"> &lt;orrc&gt;</span> I'm not quite understanding it
+<a name="l-49"></a><span class="tm">18:10:53</span><span class="nk"> &lt;alyssat_&gt;</span> any other suggestions for defining the requirements
+<a name="l-50"></a><span class="tm">18:11:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">bitwiseman:</span> Just do not say "official contributor" :D
+<a name="l-51"></a><span class="tm">18:11:26</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev alyssat_ This looks like something best discussed on the thread. Notably, requirements are still TBD, and I already brought up the potential risk of people gaming the system to get free stuff (which appears to not be insignificant, at least the JW ticket)
+<a name="l-52"></a><span class="tm">18:11:51</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">oleg-nenashev:</span> fire and explosions.
+<a name="l-53"></a><span class="tm">18:11:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Not significant being compared to the travel cost :(
+<a name="l-54"></a><span class="tm">18:12:02</span><span class="nk"> &lt;alyssat_&gt;</span> yes, let's take this to email
+<a name="l-55"></a><span class="tm">18:12:26</span><span class="nk"> &lt;bitwiseman&gt;</span> What's the action items for this then?
+<a name="l-56"></a><span class="tm">18:12:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> to start a thread
+<a name="l-57"></a><span class="tm">18:12:57</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">alyssat_ to start thread on ambassador program</span>
+<a name="l-58"></a><span class="tm">18:13:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> With voting on the next meeting maybe
+<a name="l-59"></a><span class="tm">18:13:15</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">everyone else to participate in the discussion ;-)</span>
+<a name="l-60"></a><span class="tm">18:13:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> heh
+<a name="l-61"></a><span class="tm">18:13:27</span><span class="nk"> &lt;danielbeck&gt;</span> anything we forgot?
+<a name="l-62"></a><span class="tm">18:13:35</span><span class="nk"> &lt;alyssat_&gt;</span> that's it for me
+<a name="l-63"></a><span class="tm">18:13:56</span><span class="nk"> &lt;danielbeck&gt;</span> reloading the wiki doesn't yield new agenda items
+<a name="l-64"></a><span class="tm">18:14:00</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-65"></a><span class="tm">18:14:19</span><span class="nk"> &lt;danielbeck&gt;</span> May 10 it looks like
+<a name="l-66"></a><span class="tm">18:14:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> lgtm
+<a name="l-67"></a><span class="tm">18:14:40</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 15:32:18 Jan 15, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:09:07 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 259.659
+  exclusion.robots: 0.301
+  exclusion.robots.policy: 0.21
+  cdx.remote: 0.084
+  esindex: 0.011
+  LoadShardBlock: 204.981 (3)
+  PetaboxLoader3.datanode: 242.998 (4)
+  CDXLines.iter: 21.406 (3)
+  load_resource: 348.482
+  PetaboxLoader3.resolve: 291.24
+-->

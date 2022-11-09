@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app204.us.archive.org';v.server_ms=288;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-05-23-18.02.log.html","20211027231858","https://web.archive.org/","web","/_static/",
+	      "1635376738");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:02:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:02:39</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler  kohsuke</span>
+<a name="l-4"></a><span class="tm">18:02:52</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:02:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">18:03:06</span><span class="nk"> &lt;kohsuke&gt;</span> Well
+<a name="l-7"></a><span class="tm">18:03:15</span><span class="nk"> &lt;kohsuke&gt;</span> It looks like there's not even an agenda list for today
+<a name="l-8"></a><span class="tm">18:03:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> do you have anything specific?
+<a name="l-9"></a><span class="tm">18:03:38</span><span class="nk"> &lt;kohsuke&gt;</span> I know daniel is in the air and tyler is busy today
+<a name="l-10"></a><span class="tm">18:03:57</span><span class="nk"> &lt;ogondza&gt;</span> nothing noteworthy, except that LTS is almost empty
+<a name="l-11"></a><span class="tm">18:04:25</span><span class="nk"> &lt;ogondza&gt;</span> kohsuke, I have done all I see necessary to get the packaginng-ref.txt ready for your consumption
+<a name="l-12"></a><span class="tm">18:04:32</span><span class="nk"> &lt;ogondza&gt;</span> so it should work
+<a name="l-13"></a><span class="tm">18:04:49</span><span class="nk"> &lt;ogondza&gt;</span> FYI, we decided to ship packaging master
+<a name="l-14"></a><span class="tm">18:04:52</span><span class="nk"> &lt;rtyler&gt;</span> o/
+<a name="l-15"></a><span class="tm">18:04:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> thanks, and if it doesn't work the fix is easy
+<a name="l-16"></a><span class="tm">18:05:17</span><span class="nk"> &lt;ogondza&gt;</span> kohsuke, I was mostly concerned about the consuming part on your end as that i shinned from us/me
+<a name="l-17"></a><span class="tm">18:05:18</span><span class="nk"> &lt;kohsuke&gt;</span> LTS is almost empty because the quality of bits are so great we didn't nee dany backporting!?!?
+<a name="l-18"></a><span class="tm">18:05:28</span><span class="nk"> &lt;ogondza&gt;</span> but it should be ok, i guess
+<a name="l-19"></a><span class="tm">18:05:42</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, it's been working for the main line
+<a name="l-20"></a><span class="tm">18:05:42</span><span class="nk"> &lt;ogondza&gt;</span> it is because we picked recent baseline, I am affraid
+<a name="l-21"></a><span class="tm">18:05:49</span><span class="nk"> &lt;ogondza&gt;</span> :)
+<a name="l-22"></a><span class="tm">18:06:10</span><span class="nk"> &lt;ogondza&gt;</span> anyway, I think the bits are good to go
+<a name="l-23"></a><span class="tm">18:06:16</span><span class="nk"> &lt;kohsuke&gt;</span> That's what I figured
+<a name="l-24"></a><span class="tm">18:06:18</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-25"></a><span class="tm">18:06:44</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else?
+<a name="l-26"></a><span class="tm">18:06:56</span><span class="nk"> &lt;ogondza&gt;</span> not on the topic
+<a name="l-27"></a><span class="tm">18:07:05</span><span class="nk"> &lt;kohsuke&gt;</span> Otherwise we can aim for breaking the record of fastest project meeting
+<a name="l-28"></a><span class="tm">18:07:27</span><span class="nk"> &lt;ogondza&gt;</span> would be a shame no to try that
+<a name="l-29"></a><span class="tm">18:07:48</span><span class="nk"> &lt;kohsuke&gt;</span> All right then
+<a name="l-30"></a><span class="tm">18:07:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:18:58 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:06:05 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 125.177
+  exclusion.robots: 0.143
+  exclusion.robots.policy: 0.133
+  cdx.remote: 0.095
+  esindex: 0.011
+  LoadShardBlock: 67.916 (3)
+  PetaboxLoader3.datanode: 62.034 (4)
+  CDXLines.iter: 19.744 (3)
+  load_resource: 158.339
+  PetaboxLoader3.resolve: 62.525
+-->

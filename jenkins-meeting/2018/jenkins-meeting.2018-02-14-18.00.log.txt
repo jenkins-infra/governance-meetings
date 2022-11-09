@@ -1,0 +1,226 @@
+18:00:07 <danielbeck> #startmeeting
+18:00:07 <robobutler> Let the Jenkins meeting commence!
+18:00:10 <oleg-nenashev> o/
+18:00:16 <danielbeck> #chair kohsuke rtyler
+18:00:16 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:25 <danielbeck> agenda: https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda?nocache
+18:00:34 <danielbeck> #topic Recap last meeting's actions
+18:00:51 <danielbeck> http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-01-17-18.01.html
+18:01:25 <danielbeck> looks like oleg-nenashev rtyler alyssat_ markewaite had actions
+18:01:41 <danielbeck> (Did we skip the meeting two weeks ago?)
+18:01:43 <rtyler> I updated the trademark page, I think
+18:01:53 <markewaite> markewaite action item not required, FOSDEM shirts delivered as needed by atong
+18:01:53 * rtyler checks
+18:01:57 <danielbeck> Oh, right, nobody was around two weeks ago
+18:02:08 <oleg-nenashev> All my action items excepting JEP-200 post-mortem are done
+18:02:16 <rtyler> yeah, I got the trademark thing done
+18:02:21 <rtyler> https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage
+18:02:38 <oleg-nenashev> This one is in my TODO list for the timeframe before  RC
+18:02:50 <alyssat_> I've communicated w JFrog about the trademark guidelines
+18:02:57 <danielbeck> oleg-nenashev ok, thanks!
+18:03:01 <danielbeck> looking forward to it
+18:03:10 <danielbeck> great, looks like everything got done
+18:03:17 <rtyler> \o/
+18:03:23 <danielbeck> #topic LTS status check
+18:03:26 <danielbeck> Well, it's out
+18:03:37 <danielbeck> #info https://jenkins.io/security/advisory/2018-02-14/
+18:03:41 <rtyler> heh
+18:03:45 <danielbeck> You may want to update your Jenkinses
+18:03:59 <oleg-nenashev> yeah, asap
+18:04:18 <danielbeck> I think that's it for 2.89.4, anything you'd like to add ogondza ?
+18:04:37 <ogondza> nothing except we had 2 security releases during the line
+18:04:43 <ogondza> quite exceptional
+18:04:53 <rtyler> is that a good thing or a bad thing
+18:05:17 <danielbeck> bad that they're needed (and 2.89.2 was unplanned), good that we're getting them out
+18:05:17 <ogondza> it sure is elaborate for the people, otherwise it is good I think
+18:05:40 * ogondza looking forward next topic
+18:05:52 <danielbeck> :)
+18:05:53 <danielbeck> #topic LTS baseline selection
+18:06:00 <danielbeck> #info https://jenkins.io/changelog/
+18:06:21 <oleg-nenashev> JEP-200 has stabilized AFAICT
+18:06:25 <danielbeck> notably, no negative non-JEP-200 feedback recently
+18:06:31 <danielbeck> and JEP-200 was a month or so ago
+18:06:32 <jglick> IIUC by date criteria, 2.104 is the default candidate
+18:06:56 <danielbeck> recent releases look good, just downvote vandalism without real problems behind them
+18:06:57 <ogondza> security release issued today. Daniel, do you prefer to have it there by default (iow, is backporting it a problem)?
+18:07:14 <oleg-nenashev> We have one open JEP-200 issue: JENKINS-49543, likely specific to Tomcat only. Not sure what is the scope
+18:07:30 <danielbeck> ogondza backporting should be trivial: https://github.com/jenkinsci/jenkins/commit/09e1f8cd0ca173f3526f016e9ff18410fb422807
+18:07:38 <danielbeck> if we decide to go with an older release
+18:07:56 <jglick> you mean, older than 2.107
+18:07:58 <danielbeck> jglick strictly speaking, soaking only applies for backporting
+18:08:00 * rtyler doesn't have a strong opinion on a future baseline
+18:08:01 <oleg-nenashev> #info for JEP-200 we fixed around 50 plugins: https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+fix+for+JEP-200
+18:08:05 <jglick> danielbeck: ah
+18:08:14 <rtyler> wow
+18:08:25 <rtyler> CLAPz for oleg-nenashev and team
+18:08:34 <kohsuke> Amen
+18:08:35 <oleg-nenashev> #info JEP-200 is generally good, the biggest open issue is Artifactory plugin which is not compatible
+18:08:46 <danielbeck> FWIW for 2.89 we went with the then current weekly
+18:09:01 <oleg-nenashev> jFrog support is notified, they are working on that
+18:09:14 <jglick> So if the soak period only applies to backports, and we have started issuing security patches in all LTS micro releases, then our default policy should be for LTS baselines to be the most recent weekly no?
+18:09:29 <jglick> “Default”, i.e., unless we see something particularly scary that just landed.
+18:09:39 <ogondza> 2.104 or even 2.105 looks good to me
+18:10:02 <jglick> My only reservation about 2.105 would be JENKINS-48463
+18:10:07 <oleg-nenashev> I would just use 1.107 unless we have negative ratings by tomorrow
+18:10:13 <danielbeck> ogondza If you like 2.105 I see no reason why we shouldn't go with 2.107
+18:10:33 <oleg-nenashev> Well, we have some changes in SSHD
+18:10:42 <ogondza> the docs might not be clear about soaking criteria though there are still some reasons not to pick latest
+18:10:45 <jglick> also JENKINS-47793 has a known regression but the fix is already filed and probably a trivial backport
+18:10:48 <oleg-nenashev> Which are pretty major && not battle-tested well (in 2.106)
+18:10:52 <ogondza> in general I mean
+18:11:06 <jglick> 2.106 has an SSHD upgrade which is more significant.
+18:11:21 <oleg-nenashev> #info SSHD changes in 2.106: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12341097&styleName=Text&projectId=12310849&Create=Create&atl_token=A5KQ-2QAV-T4JA-FDED%7C47f5fd1e799680219ff14477b5b2c29ce7aaf6fd%7Clin
+18:11:29 <danielbeck> ah, okay -- wasn't sure how notable, especially since it was first on-holded but then merged anyway
+18:11:57 <danielbeck> notably, jglick posted https://github.com/jenkinsci/jenkins/pull/3278#pullrequestreview-95274673 :P
+18:12:22 <oleg-nenashev> OTOH I would be really happy to pull in jglick's patches for Remoting Request/Response stats, maybe kinda helpful for JEP-200
+18:12:32 <oleg-nenashev> 2.106 also
+18:12:38 <jglick> 2.106 also has my Remoting logging stuff. Probably safe enough, though it does touch on a heavily used code path.
+18:13:01 <jglick> To be clear, I have no objection to using 2.107, just trying to list the major risks.
+18:13:13 <danielbeck> so, given remoting and sshd changes, who's concerned about 2.106? Seems we're deciding between 2.105+security and 2.107.
+18:13:23 <oleg-nenashev> yup
+18:13:51 <oleg-nenashev> kohsuke ndeloof: Is https://github.com/jenkinsci/jenkins/pull/3279 important for Configuration-as-Code stories (JEP-201)?
+18:14:16 <danielbeck> shouldn't be a reason to choose one over the other tbh, still too early
+18:14:25 <oleg-nenashev> maybe
+18:14:31 <danielbeck> Strictly speaking we have two weeks to change plans if we learn sshd or remoting are bad
+18:14:38 <jglick> yeah the C-as-C stuff is going to need all kinds of patches, there is no way we would expect *this* LTS to be usable for it
+18:14:53 <jglick> danielbeck: or, again, https://github.com/jenkinsci/jenkins/pull/3185/files which affects every XML file save
+18:15:03 <jglick> (in 2.105)
+18:15:18 <danielbeck> so I suggest we go with 2.107 for now and keep watching for problems, we have two weeks to change direction if something major comes up
+18:15:22 <oleg-nenashev> I think we have to live with it
+18:15:31 <danielbeck> don't get me started on that change -.-
+18:15:42 <oleg-nenashev> JEP-200 upgrade guide includes "Do a backup" anyway
+18:15:48 <jglick> heh
+18:16:05 <oleg-nenashev> So XML 1.1 does not make it much worse
+18:16:16 <danielbeck> FWIW the problems reported against it were problems downgrading, so we can just add it to the upgrade guide. Nothing beyond needing a sed -i
+18:16:27 <jglick> So what would be the process if we *do* decide to backdate the LTS in the next two weeks? Throw away the `stable-2.107` branch and start a new one I suppose?
+18:16:41 <danielbeck> jglick that would be my suggestion if it comes to that
+18:16:48 <jglick> OK with me.
+18:16:49 <ogondza> jglick, IIRC we have done that once
+18:17:04 <danielbeck> right now we've identified three potentially bad changes, the question is whether they result in older baseline picked up
+18:17:23 <danielbeck> personally I don't think we should plan for that quite yet.
+18:17:24 <ogondza> depends on our ability to hotfix
+18:17:35 <jglick> Frankly, compared to JEP-200, I suspect none of them are serious risks.
+18:17:45 <danielbeck> ogondza and if we can't, go with older base within 2 weeks
+18:17:56 <ogondza> yes
+18:18:18 <ogondza> If we decide to go with latest and we have some concerns, I would like to have some deadline to make the call
+18:18:39 <ogondza> ... if we have decided to reconsider or we can do the backports
+18:18:40 <oleg-nenashev> Feb 21?
+18:18:49 <ogondza> that was my suggestion
+18:18:52 <danielbeck> if we go with 2.107 there's not a lot of backporting that qualifies, so 2 weeks from today should be fine.
+18:19:11 <jglick> So: plan on 2.107, watch for reported regressions, try to hotfix anything we can (possibly making exemptions to backport soaking policy for these), and if it seems unwieldy after two weeks, switch to an older baseline? +1 from me if so.
+18:19:30 <oleg-nenashev> +1
+18:19:39 <ogondza> my concerns is we would have 2 weeks for backports and testing
+18:19:48 <oleg-nenashev> we could even spin 2.107.1-rc-1 even now if it helps
+18:20:27 <danielbeck> ogondza not a lot of changes will qualify for 2.107.1 in the next two weeks, so if we drop it, we can go with 2.105 + security.
+18:20:38 <danielbeck> that should be done in a day, no?
+18:20:38 <oleg-nenashev> assuming JEP-200, having extra 2 weeks for RC would not hurt
+18:20:44 <jglick> I expect we will need to evaluate our soak policies in the near future in light of JEP-301.
+18:21:10 <ogondza> is there a reason we _want_ 107 over 104/105+security, or it is just "why not latest"?
+18:21:12 <jglick> FWIW backporting the 2.107-2.106 security fixes would be very simple.
+18:22:07 <danielbeck> ogondza no strong reason to, but also not not to
+18:22:31 <danielbeck> ogondza so you'd consider 2.105 much safer, with some security fix backports?
+18:22:54 <ogondza> I do not mind to improvise if we have a reason to make exception but we do not seem to in this case ....
+18:23:40 <danielbeck> well, I'm just saying 107 seems fine and if it turns out it's not, we can easily handle it.
+18:23:49 <danielbeck> no improvisation as of today, just a backup plan
+18:24:07 <jglick> Again if anyone is arguing for a conservative baseline, 2.104 would make more sense than 2.105.
+18:24:44 <danielbeck> jglick because of xml 1.1?
+18:24:46 <ogondza> danielbeck, right, that depends on how confident we are we would not need the backup plan. Which we seem to be pretty confident
+18:24:50 <jglick> danielbeck: yes
+18:25:14 <oleg-nenashev> JENKINS-47793 has some unresolved UI regressions, so picking 2.104 would solve that. Anyway, it's not a big deal
+18:25:48 <jglick> yeah I mentioned that earlier, but it is pretty minor
+18:26:40 <ogondza> I do not object giving 107 a try and see if something pops up
+18:26:54 * rtyler shrugs
+18:27:01 <rtyler> if ogondza's okay, I'm okay
+18:27:04 <oleg-nenashev> As JEP-200 maintainer, I would rather like to see 2.107 as RC and spinning rc-1 earlier to give people more time to test their stuff
+18:27:13 <oleg-nenashev> So I am also ok
+18:27:21 <ogondza> oleg-nenashev, but that would be just weekly, no?
+18:27:29 <jglick> oleg-nenashev: what would 2.107-rc-1 be besides 2.107??
+18:27:39 <oleg-nenashev> nothing, that's the point
+18:27:43 <jglick> uh
+18:27:44 <danielbeck> well, then test that
+18:27:50 <jglick> exactly
+18:27:58 <oleg-nenashev> we may need rc-2 with extra whitelists & Co
+18:28:14 <danielbeck> we can determine that by testing 2.107
+18:28:14 <oleg-nenashev> But rc-1 would explicitly say that it's ready for testing
+18:28:42 <oleg-nenashev> In an ideal world, there are Jenkins users who pick RC and test it on their instances
+18:28:44 <markewaite> naming it rc-1 would cause me to start testing it (as an example)
+18:28:53 <jglick> I think it would be more confusing to create another release version that is identical to one we already have. Better to just broadcast more widely the proposed baseline and ask people to test weeklies.
+18:28:55 <ogondza> It is trivial to push it it just feels odd
+18:29:04 <danielbeck> ogondza sends emails, that's how LTS testing info is distributed. If the email says, 2.107 is expected to be 2.107.1, should be fine
+18:29:27 <oleg-nenashev> I do RC tests, and I could just do test for weekly instead
+18:29:46 <markewaite> I can switch to weekly 2.107 for my RC tests as well
+18:29:46 <danielbeck> right, just use 2.107 for those
+18:29:47 <jglick> So he should just instruct anyone like Mark who does testing to start testing against the weekly baseline. I mean, that is good advice for *any* LTS line.
+18:29:58 <danielbeck> FWIW I consider the security fixes to be pretty safe this time around :-)
+18:30:10 <oleg-nenashev> famous last words
+18:30:13 <danielbeck> (unlike last time)
+18:30:15 <danielbeck> heh
+18:30:24 * rtyler prints out that statement
+18:30:26 * rtyler hangs it on the wall
+18:30:31 <oleg-nenashev> but yeah, should be safe
+18:30:38 * rtyler prints that out too
+18:30:46 <jglick> yeah unless you have `src/main/webapp/I-dare-you-to-..-try-to-use-\\\-this-URL.html`
+18:30:53 <danielbeck> rtyler has a printer
+18:31:05 <rtyler> heh
+18:31:12 <danielbeck> jglick I grepped sources, so low risk and trivial to address in plugins
+18:31:19 <jglick> yes, jk
+18:31:38 <oleg-nenashev> OK, so we vote for 107 + extra announcement in advance?
+18:31:49 <jglick> +1
+18:31:52 <danielbeck> 107 +1
+18:31:57 <ogondza> +1
+18:31:58 <danielbeck> (i.e. +107)
+18:32:02 <oleg-nenashev> +1
+18:32:14 <danielbeck> anyone opposed?
+18:32:24 <markewaite> +1
+18:33:03 <ogondza> alright
+18:33:16 <danielbeck> #agreed 2.107 will be the LTS baseline unless we find major problems, no currently planned backports, testing can commence with the weekly, and ogondza will announce it as such
+18:33:24 <oleg-nenashev> yey
+18:33:53 <danielbeck> #agree 2.107 will be the LTS baseline unless we find major problems, no currently planned backports, testing can commence with the weekly, and ogondza will announce it as such
+18:33:58 <danielbeck> in case I got the command wrong
+18:34:09 <danielbeck> #topic Quick GSoC update
+18:34:13 <danielbeck> oleg-nenashev this is yours
+18:34:34 <oleg-nenashev> #info: TL;DR: We have been accepted to GSoC 2018. https://jenkins.io/projects/gsoc/
+18:34:37 <oleg-nenashev> yey
+18:35:03 <oleg-nenashev> I will get the thing announced in the blogpost tomorrow + update the docs
+18:35:05 <rtyler> \o/
+18:35:10 <danielbeck> \o/
+18:35:29 <alyssat_> congrats Oleg
+18:35:46 <oleg-nenashev> #info So far we have 8 finalized project ideas and 11 mentors. We will be accepting new project ideas till March 05
+18:35:49 <oleg-nenashev> thanks!
+18:35:56 <danielbeck> #info https://developers.google.com/open-source/gsoc/timeline
+18:36:14 <oleg-nenashev> #info Org admins this year: oleg_nenashev martinda14 schristou
+18:36:41 <oleg-nenashev> Generally, if you have any idea, you are more than welcome to join the party
+18:37:14 <oleg-nenashev> Developer mailing list already got some GSoC threads, be ready to more topics there
+18:37:16 <rtyler> you need more mentors don't you?
+18:37:21 <oleg-nenashev> always
+18:38:01 <oleg-nenashev> #info Mentors are welcome, with or without project ideas
+18:38:14 <oleg-nenashev> hmm, https://jenkins.io/blog/2018/01/05/gsoc2018-call-for-mentors returns 404
+18:38:33 <oleg-nenashev> #info https://jenkins.io/blog/2018/01/06/gsoc2018-call-for-mentors/
+18:38:41 <oleg-nenashev> ok, time to fix it
+18:39:11 <oleg-nenashev> Question to the meeting, do we want to have a GSoC Jumbotron?
+18:39:28 <oleg-nenashev> The current Blue Ocean one is kinda outdated anyway
+18:39:42 <danielbeck> Judging by FOSDEM booth conversations, people still don't know
+18:40:02 <danielbeck> I wonder how useful pointing random visitors to GSOC is, what would be the goal of that?
+18:40:11 <danielbeck> I assume students get here from GSOC?
+18:40:20 <oleg-nenashev> yes, mostly
+18:40:31 <oleg-nenashev> though not all students are aware about GSoC
+18:40:42 <oleg-nenashev> so we could get some extra traffix
+18:40:45 <oleg-nenashev> *c
+18:40:58 <bitwiseman> But it is a cool thing that the Jenkins project is participating  in.
+18:41:01 <danielbeck> if you expect it'll get more people to participate, go for it
+18:41:31 <oleg-nenashev> I would +1 for a limited-time Jumbotron, e.g. 1 week
+18:41:50 <danielbeck> I think you can just submit the PR, no need to vote here ;)
+18:41:51 <oleg-nenashev> and we need to poke people to create a new one, e.g. for Declarative Pipeline
+18:42:09 <oleg-nenashev> I wanted to get the feedback first to save time
+18:42:35 <oleg-nenashev> Jumbotron creation UX sucks, would like to rework it eventually
+18:43:06 <oleg-nenashev> I mean an ultra-long HTML description in a single line, for example
+18:43:23 <danielbeck> OK then, Is anyone here opposed to using the jumbotron for GSOC?
+18:44:06 <oleg-nenashev> #action oleg_nenashev to create a GSoC blog post for students/mentors
+18:44:08 <danielbeck> oleg-nenashev nobody speaking up is probably the best you can get…
+18:44:17 <danielbeck> oleg-nenashev anything else you want to share about GSOC?
+18:44:38 <oleg-nenashev> #action oleg_nenashev to create a Jumbotron patch in a SEPARATE pull request
+18:44:43 <oleg-nenashev> nope, nothing else
+18:45:09 <danielbeck> #topic next meeting
+18:45:20 <danielbeck> that would be February 28, same time same place
+18:45:51 <danielbeck> possibly with an LTS baseline decision revisited
+18:46:06 <danielbeck> #endmeeting

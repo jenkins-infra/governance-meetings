@@ -1,0 +1,219 @@
+18:00:29 <rtyler> #startmeeting
+18:00:29 <robobutler> Let the Jenkins meeting commence!
+18:00:35 <rtyler> #chairs danielbeck kohsuke hare_brain rtyler
+18:00:39 <rtyler> every freaking tmie
+18:00:43 <rtyler> #chair danielbeck kohsuke hare_brain rtyler
+18:00:44 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:00:46 * rtyler sighs
+18:00:52 <rtyler> #topic Recap last meeting action items
+18:01:05 <rtyler> ogondza: you pushed an RC right?
+18:01:15 <rtyler> oleg-nenashev: then you have some items around GSoC
+18:01:21 <rtyler> #info http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-05-25-18.01.html
+18:01:31 <ogondza> yep, rc pushed
+18:01:44 <rtyler> \o/
+18:02:06 <oleg-nenashev> rtyler: I'm there
+18:02:29 <oleg-nenashev> But my items are in progress. I'll make the full update later
+18:02:42 <rtyler> okie doke
+18:02:44 <rtyler> moving on
+18:02:51 <rtyler> #topic LTS status check
+18:02:54 <rtyler> ogondza: floor is yours
+18:03:24 <ogondza> no problems found with the rc
+18:03:32 <ogondza> I am fine releasing it as it is
+18:03:58 <rtyler> this is the last LTS in this line right/
+18:04:03 <ogondza> there ware request to backport windows filed deletion fix that I am not so confident about
+18:04:15 <rtyler> link?
+18:04:17 <ogondza> rtyler: right, I would like to pick next today
+18:04:40 <ogondza> https://issues.jenkins-ci.org/browse/JENKINS-15331
+18:05:12 <ogondza> jglick: i missed https://issues.jenkins-ci.org/browse/JENKINS-34281. is it applicable for current line?
+18:05:43 <ogondza> now I see affects older version that, 2.0
+18:06:02 <ogondza> #action ogondza to report testing is done and ping kk to do the release
+18:06:14 <jglick> ogondza: yes; but anyway I have found a related bug which remains open, and I have also found a workaround for the symptom of this bug affecting Pipeline
+18:06:35 <jglick> (Affects freestyle builds too, but the symptom is less obvious.)
+18:07:11 <ogondza> ok, thanks. i am done (for this AI)
+18:07:18 <rtyler> alright, moving to the next item
+18:07:25 <rtyler> #topic Next LTS baseline selection
+18:07:28 <ogondza> https://jenkins.io/changelog/
+18:07:41 <rtyler> #info https://jenkins.io/changelog/ for changelogs and community ratings
+18:07:59 <rtyler> no frownies on 2.7
+18:08:26 <rtyler> but the fix for https://issues.jenkins-ci.org/browse/JENKINS-35206 in 2.8 looks like it would be missed, wouldn't it?
+18:08:33 <danielbeck> backportable probably
+18:08:40 <danielbeck> 2.8 looks too recent
+18:08:44 <oleg-nenashev> 2.7 is a big bugfix
+18:08:50 <danielbeck> 2.6 or 2.7, and the latter is mostly fixes
+18:08:51 <oleg-nenashev> so 2.7 is better than 2.8
+18:09:10 <rtyler> I'm in favor of 2.7
+18:09:41 <rtyler> not a lot of compelling feature additions in 2.8 either
+18:10:16 <oleg-nenashev> I think about Slave listener
+18:10:21 <danielbeck> Agree with 2.7. Still rather more recent than I'd like, but it seems to mostly be fixes we'd like to backport anyway if we chose 2.6.
+18:10:25 <oleg-nenashev> It may be useful
+18:10:36 <danielbeck> not a criterion for LTS
+18:10:45 <danielbeck> we want stable over shiny
+18:11:12 <rtyler> danielbeck: the Groovy change is in 2.7
+18:11:39 <rtyler> that's the big reason IMHO to base LTS off it
+18:11:48 <danielbeck> would be backported anyway I'd hope
+18:11:54 <oleg-nenashev> we need to bump to 2.4.7 in any case
+18:12:07 <oleg-nenashev> so Groovy is not a criteria
+18:12:29 <ogondza> how can 2.6 have such a good score with the blocker bug - JENKINS-35206?
+18:12:32 <oleg-nenashev> I'm -1 on having an internal release in LTS
+18:12:49 <rtyler> oleg-nenashev: is 2.4.7 properly released?
+18:12:57 <oleg-nenashev> ogondza: It appears for several update cases only
+18:13:05 <oleg-nenashev> rtyler: AFAIK yes
+18:13:20 <oleg-nenashev> https://github.com/jenkinsci/jenkins/pull/2399
+18:13:31 <rtyler> well, we have some time before the LTS would be released anyways, so that change could be backported if ogondza is okay with it
+18:13:50 <rtyler> what's important to me is that the bug isn't present in the first 2.x-based LTS
+18:14:21 <ogondza> rtyler: +1 on using released groovy
+18:14:37 <oleg-nenashev> JENKINS-35206 has been caused by Install Wizard extensibility in 2.6
+18:15:06 <oleg-nenashev> It didn't count loading of configs from the disk, but it's fixed in 2.8
+18:15:25 <ogondza> I am fine with 2.7
+18:15:50 <rtyler> ogondza: got somebody to nominate to make sure daspilker's PR gets backported? :D
+18:15:57 <danielbeck> 2.7 + JENKINS-35206 backport + Groovy 2.4.7 basically?
+18:16:02 <rtyler> danielbeck: +1
+18:16:08 <oleg-nenashev> +1
+18:16:22 <danielbeck> (+whatever else pops up, but those seem to be the big ones)
+18:16:30 <rtyler> ogondza: does that work for you?
+18:16:32 <oleg-nenashev> I would backport all 2.8 fixes
+18:16:44 <oleg-nenashev> We still have 2 weeks for soaking before LTS]
+18:17:12 <ogondza> danielbeck: fine with me
+18:17:26 <rtyler> #agreed next LTS baseline 2.7 + JENKINS-35206 backport + Groovy 2.4.7
+18:17:26 <oleg-nenashev> JENKINS-34881 is critical for several cases for example
+18:17:44 <rtyler> ogondza: I trust you and oleg-nenashev can figure out what additional backports are necessary separate from this meeting?
+18:17:52 <danielbeck> rtyler +1
+18:17:58 <oleg-nenashev> yep, we can
+18:18:03 <rtyler> wunderbar
+18:18:10 <oleg-nenashev> That's why we have email thread
+18:18:27 <rtyler> #topic GSoC Status Check
+18:18:32 <rtyler> oleg-nenashev: the floor is yours
+18:18:35 * oleg-nenashev starts typing
+18:18:48 <oleg-nenashev> 1) Student projects are in progress. Code is being pushed to repos.
+18:18:48 <oleg-nenashev> Any Jenkins community member is invited to participate in discussions/reviews
+18:18:48 <oleg-nenashev> #info Jenkins Core Web UI improvements: https://github.com/jenkinsci/jenkins/pull/2388
+18:18:48 <oleg-nenashev> #info Support Core Plugin improvements: https://github.com/jenkinsci/support-core-plugin/pull/64
+18:18:48 <oleg-nenashev> #info External Workspace Manager: https://github.com/jenkinsci/external-workspace-manager-plugin
+18:18:49 <oleg-nenashev> #info Jenkins usage stats: https://github.com/Payal94/GSoC-Jenkins-Usage-Statistics-Analysis
+18:18:49 <oleg-nenashev> #info Plugin documentation publishing:
+18:18:50 <oleg-nenashev> 2) We are going to announce mid-term evaluation plan on this week
+18:18:50 <oleg-nenashev> 3) No other news, oleg-nenashev still has several hanging TODOs
+18:18:51 <oleg-nenashev> 4) rtyler can make a brief update about infra requirements for GSoC projects, there is a related item in the agenda for this meeting
+18:18:51 <ogondza> rtyler: agree with Oleg. To make sure nothing gets lost add it to the email or/and lts-candidate it
+18:18:55 <rtyler> holy crap oleg-nenashev
+18:18:56 <danielbeck> it's called copying & pasting
+18:18:57 <rtyler> heh
+18:19:00 <ogondza> damn, you are fast
+18:19:16 <oleg-nenashev> otherwise I would forget something
+18:19:19 <rtyler> let's all take a moment to read the rapid-fire text from oleg-nenashev xD
+18:19:25 <danielbeck> oleg-nenashev That last #-info is incomplete
+18:19:42 <oleg-nenashev> canyango1: Could you add the link?
+18:20:09 <canyango1> oleg-nenashev: yes sure
+18:21:10 <oleg-nenashev> My hanging AIs: 1) send abstracts to alyssat.  2) Publish a blogpost
+18:21:40 <canyango1> #info Plugin documentation publishing:https://github.com/anyangocynthia/GSOC-automatic-publisher
+18:22:01 <rtyler> oleg-nenashev: anything else we should cover before moving on?
+18:22:02 <oleg-nenashev> canyango1: Thanks!
+18:22:18 <oleg-nenashev> rtyler: Infra requirements for GSoC?
+18:22:32 <oleg-nenashev> If there is nothing from students, I'm fine
+18:23:00 <oleg-nenashev> #info The next public office hours will be held tomorrow as usual
+18:23:34 <oleg-nenashev> #info 7PM UTC, likely in #jenkins-community
+18:23:47 <oleg-nenashev> We have network issues
+18:23:53 <rtyler> #info the GSoC Office Hours are in the public Jenkins calendar https://jenkins.io/content/event-calendar/
+18:24:15 <minudika> So it will not be a google hangout?
+18:24:38 <oleg-nenashev> Let's start in hangouts. If it does not work, we will switch to IRC
+18:24:55 <canyango1> oleg-nenashev: That is ok
+18:24:57 <rtyler> oleg-nenashev: you need to upgrade to bonded ISDN or whatever the state of the art in switzerland is these days xD
+18:25:22 <oleg-nenashev> My network is fine
+18:25:38 <rtyler> #topic Q3 patron messages
+18:25:40 <oleg-nenashev> But canyango1 and payal had issues last time
+18:25:44 <rtyler> ah
+18:25:53 <danielbeck> https://github.com/jenkinsci/patron/pull/12 is the current state of Q3 messages
+18:25:53 <rtyler> danielbeck: you're up kumpel
+18:26:04 <danielbeck> XebiaLabs are back with a new message
+18:26:04 <rtyler> #info https://github.com/jenkinsci/patron/pull/12 is the current state of Q3 messages
+18:26:35 <danielbeck> linked from the PR message (it's a lengthy URL so I'd rather not #info it here…)
+18:26:51 <danielbeck> http://jenkinsci.github.io/patron/tester.html?caption=Evolve+your+Jenkins+pipeline+to+CD+with+XebiaLabs&link=https%3A%2F%2Fxebialabs.com%2Fproducts%2F&blurb=Release+Orchestration+%7C+Deployment+Automation+%7C+Test+Results+Management+Automate+your+Enterpise+Continuous+Delivery+pipeline+with+XebiaLabs&logo=http%3A%2F%2Fgo.xebialabs.com%2Frs%2F404-ZJQ-295%2Fimages%2FXebiaLabs78x78.png
+18:26:52 <rtyler> these looks fine to me
+18:26:55 <rtyler> heh
+18:27:25 <oleg-nenashev> lgtm
+18:27:26 <alyssat> +1
+18:27:30 <danielbeck> We'll probably fix their typo in Enterpise before going live, but otherwise :)
+18:28:07 <danielbeck> Haven't heard from other patrons yet, but I'm assuming they keep their approved messages
+18:28:28 <danielbeck> anyone opposed to the Xebialabs message, or can we record approval?
+18:28:34 <alyssat> there's a change in CloudBees' ad
+18:29:03 <alyssat> i don't have the content sent to  you me at the moment. but the ad will be on Jenkins World
+18:29:19 <danielbeck> alyssat We already have a Jenkins World message -- still different?
+18:29:29 <danielbeck> alyssat https://github.com/jenkinsci/patron/pull/12/files#diff-b2f8cad336649b880770ccf8bf14169cR358
+18:29:33 <danielbeck> remember, CloudBees has two
+18:29:47 <oleg-nenashev> certification + JW
+18:30:01 <alyssat> yes. it may be specific to the agenda being live..not sure yet
+18:30:08 <danielbeck> ah okay -- next meeting then
+18:30:15 <alyssat> but if we're too late for approval here we can keep it as is
+18:30:28 <danielbeck> Well, if you don't have the message, we cannot really approve…
+18:30:37 <alyssat> let's move on :o)
+18:31:01 <rtyler> danielbeck: ?
+18:31:13 <danielbeck> #agreed XebiaLabs message is approved
+18:31:24 <danielbeck> rtyler that's it for this topic
+18:31:53 <rtyler> no actions for next time?
+18:32:11 <danielbeck> #action danielbeck to prepare new CB patron messages for approval
+18:32:17 <rtyler> #topic Licensing and unrestricted access of Usage Statistics
+18:32:21 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Usage+Statistics
+18:32:41 <rtyler> #info I sent a proposal to the infra list already to sanity check: http://lists.jenkins-ci.org/pipermail/jenkins-infra/2016-June/000742.html
+18:33:13 <rtyler> basically, we have this monthly census data which goes up on stats.jenkins-ci.org and we have given people access to it in  the past when they have asked for it
+18:33:19 <oleg-nenashev> +1 for me for the proposal
+18:33:28 <rtyler> it has become clear to me that our "access control" didn't make any sense
+18:33:54 <rtyler> so I would like to license the census data under the Open Database License 1.0 and allow public access on census.jenkins.io
+18:34:00 <rtyler> #info Open Database License http://opendatacommons.org/licenses/odbl/1.0/
+18:34:13 <oleg-nenashev> Yeah, open data for open project!
+18:34:42 <rtyler> heh
+18:34:59 <rtyler> batmat couldn't join us but he registered a +1 here http://lists.jenkins-ci.org/pipermail/jenkins-infra/2016-June/000752.html
+18:35:34 <rtyler> in the thread vpandey, abayer and kohsuke all appear in favor as well
+18:36:02 <danielbeck> As long as rtyler is writing the next privacy advisory when we mess up, especially in the face of https://github.com/jenkinsci/jenkins/pull/1985
+18:36:18 <rtyler> danielbeck: IIRC I helped write the last one :P
+18:36:51 <rtyler> but yes, I agree with your underlying point, we need to be more proactive about usage stats
+18:37:07 <rtyler> and ensuring the data's integrity
+18:37:19 <danielbeck> with PR 1985 we have zero control about the data collected by plugins
+18:37:30 <danielbeck> right now it's a medium issue concern, as we only publish reports
+18:37:45 <danielbeck> in the future, we publish all the raw data again
+18:38:14 <rtyler> the "raw data" i.e. immediately post-decryption is not what I am suggesting we license here
+18:38:34 <KostyaSha> stop encrypting?
+18:38:35 <oleg-nenashev> If we put data in a structured form (e.g. Elasticsearch), we could setup per-field filtering and moderation. But it will require some efforts
+18:38:49 <danielbeck> And it's going to be _us_ who publish everyone's credentials store contents if a weird plugin starts collecting that.
+18:38:55 <KostyaSha> you can't place raw in elastic without denormalisation
+18:39:34 <rtyler> danielbeck: I think I need to dig into these PRs separately from this discussion, if these are going to enable plugins to send a boatload of data to jenkins infra, I will likely have a problem with that :)
+18:39:49 <danielbeck> rtyler right now, possibly sensitive data is all filtered, but additions by plugins will not be.
+18:39:52 <rtyler> not to mention, the manner in which usage stats are encrypted and sent has a size limit
+18:40:21 <rtyler> danielbeck: right, that's a requirement that should be addressed regardless
+18:40:30 <rtyler> we shouldn't pretend that census data has been strictly access controlled
+18:41:13 <danielbeck> it is now.
+18:41:17 <rtyler> so privacy concerns about batmat's PRs should be addressed regardless of this topic
+18:41:20 <rtyler> hah
+18:41:32 <rtyler> well it is now largely because we shut off the data pipe
+18:41:40 <rtyler> "no access" is one form of access control I suppose :P
+18:42:06 <danielbeck> I see this topic and batmat's PR as linked -- we cannot reasonably implement the PR while at the same time providing access to monthly files again
+18:42:10 <danielbeck> IMO
+18:42:27 <rtyler> then I would rather put the burden on that PR/feature
+18:42:38 <danielbeck> at least open (as proposed) or mostly open (as in the past) access
+18:42:49 <rtyler> we have one GSoC student whose work relies on this data, in addition to a few other folks who do various tinkerings with it
+18:43:34 <danielbeck> And I have no problem handing the data to someone who's working on something benefiting the project on a case by case basis.
+18:44:05 <rtyler> well as of now we have no licensing of the data to begin with
+18:44:18 <rtyler> so the "benefitting the project" is a total pipe dream to me
+18:44:47 <rtyler> that also puts "us" in the position of judging whether somebody's work is beneficial to the project
+18:45:04 <rtyler> and we would need a means of objectively determining that
+18:45:09 <danielbeck> In Payal's case, we proposed the GSoC project. So it's very clear cut here.
+18:45:49 <danielbeck> I mean, go ahead if you like, but it will basically kill the PR.
+18:46:14 <danielbeck> I don't see how it wouldn't.
+18:47:26 <oleg-nenashev> move to the ML? we need batmat's opinion at least
+18:47:37 <rtyler> I might try to kill that PR once somebody informs me of the infra impact anyways :P
+18:47:50 <danielbeck> To clarify, I'm not -1 here, but we need to be aware of the side effects.
+18:48:12 <rtyler> hm
+18:48:22 <rtyler> danielbeck: how about this, I'm going to punt this to the next meeting
+18:48:39 <rtyler> and I'll figure out a lot more with batmat when he's back online
+18:49:02 <rtyler> I agree with your concerns about side-effects, and without batmat here to discuss, I don't think this is urgent enough to push on right now
+18:49:17 <danielbeck> +1, and sorry for derailing this without notice
+18:49:27 <rtyler> it's not like you're on the infra list or anything :P
+18:49:29 * rtyler ducks
+18:49:50 <rtyler> #action rtyler to sync with batmat to identify side effects for https://github.com/jenkinsci/jenkins/pull/1985 with this proposal
+18:49:54 <rtyler> #topic next meeting
+18:50:11 <rtyler> The 22nd doesn't look problematic
+18:51:10 <alyssat> that works
+18:51:20 <rtyler> any EU holidays I might not know about?
+18:51:38 <danielbeck> not here
+18:51:50 <rtyler> #info Next meeting June 22nd
+18:51:54 <rtyler> thanks everyboyd!
+18:51:56 <rtyler> #endmeeting

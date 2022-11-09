@@ -1,0 +1,135 @@
+18:03:15 <kohsuke> #startmeeting
+18:03:15 <robobutler> Let the Jenkins meeting commence!
+18:03:27 <rtyler> #info agenda https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-October31thMeeting
+18:03:35 <rtyler> chair me!
+18:03:45 <kohsuke> #chair rtyler hare_brain abayer
+18:03:45 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:03:59 <rtyler> #topic Recap last meeting's items
+18:04:08 <kohsuke> #info https://issues.jenkins-ci.org/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+MEETING+AND+status+%3D+Open+ORDER+BY+priority+DESC&mode=hide
+18:04:11 <rtyler> kohsuke: this is pretty much all you :P
+18:04:17 <kohsuke> Yes sir
+18:04:33 <kohsuke> I'm afraid no progress to report
+18:04:36 <rtyler> and that link isn't useful, whatever it's supposed to be :P
+18:04:52 <rtyler> kohsuke: survey banner was added across the board
+18:04:54 <kohsuke> It's supposed to show all the open issues in the 'MEETING' project
+18:05:02 <rtyler> jenkinsci-cert?
+18:05:28 <rtyler> I forget what that is
+18:05:31 <kohsuke> Ouch, yes, let me at least add that
+18:05:43 <LeLutin> gah, I tried configuring ldap login but failed.. and now I can't login anymore. how can I change config.xml to set it back to internal users ?
+18:05:46 <kohsuke> I need to add people to the group and set the context
+18:06:19 * kohsuke files a ticket for this
+18:06:21 <rtyler> LeLutin: hold that thought for a bit, we're holding a project meeting right now
+18:06:24 <orrc> LeLutin: we're in the middle of a meeting, but this shoudl help: https://wiki.jenkins-ci.org/display/JENKINS/Disable+security
+18:07:15 <kohsuke> created https://issues.jenkins-ci.org/browse/MEETING-7
+18:07:16 <LeLutin> rtyler, orrc: oh ok. thanks for your time. I'll have a look at that page
+18:07:39 <kohsuke> Let's move on to the next topic
+18:07:54 <kohsuke> #topic Take over "Jenkins users and developers" group at meetup.com
+18:08:15 <kohsuke> The context is that we have occasionally used http://www.meetup.com/jenkinsmeetup/ in the past to organize meet-ups all around the world
+18:08:23 <kohsuke> but the cost of this came out of abayer's pocket
+18:08:31 <kohsuke> and that's expiring now
+18:08:49 <kohsuke> so two options is to either have the project take it over (for the cost of $150/year)
+18:08:59 <kohsuke> ... or let it lapse and use other free services
+18:09:13 <rtyler> looking back over the recent events that have been organized through it, and considering the goal of community organized events, I think we should foot the bill
+18:09:18 <kohsuke> LisaWells or Heidi suggested that we can try eventbrite
+18:09:27 <rtyler> meetup.com is, at least in the US, the most common way to organize these things
+18:10:10 <rtyler> do you know of any user-meetups/events driven through eventbirte?
+18:10:17 <rtyler> I've only seen it for company-driven things
+18:10:28 <kohsuke> Not really, but they said it does let us keep track of RSVPs against a certain capacity
+18:11:01 <kohsuke> ... which is the main thing we get out of meetup.com today, I think
+18:11:05 <rtyler> I'm not sure how open it is compared to meetup, which has the meetup "feed" comments, etc
+18:11:16 <kohsuke> I don't think eventbrite has any of those
+18:11:36 <rtyler> in the grand scheme of things, I personally don't think $150 nets out to enough to worry about it
+18:11:54 <rtyler> the one downside AFAIK of eventbrite is that RSVPs aren't listed
+18:11:55 <kohsuke> Yeah, I think it's OK for us to spend $150
+18:12:04 <rtyler> hare_brain: any thoughts on this?
+18:12:24 <hare_brain> +1 for continuing to use meetup.com
+18:12:52 <kohsuke> OK, let's do that then
+18:12:56 <rtyler> I'll take it
+18:13:06 <rtyler> #action rtyler to renew the meetup.com group thingie
+18:13:21 <kohsuke> #agreed project will take over the meetup.com group
+18:13:49 <kohsuke> moving on to the next topic...
+18:14:03 <kohsuke> #topic sticker budget for SCALE11x and FOSDEM
+18:14:14 <rtyler> This was my agenda item
+18:14:22 <rtyler> we don't need to spend much time on it
+18:14:25 <rtyler> I just wanted to check:
+18:14:31 <kohsuke> #info I have enough stickers on hand right now --- I believe I ordered this batch just a few months ago
+18:14:35 <rtyler> how many stickers did we bring to FOSDEM last year
+18:14:42 <kohsuke> by enough I mean at least 1000 and probably 1500+
+18:15:02 <kohsuke> last year in FOSDEM I believe I brought 250-300 and used them all
+18:15:14 <rtyler> I think we should plan to have at least 400 for FOSDEM
+18:15:19 <kohsuke> SCALE was little less
+18:15:31 <rtyler> then it sounds like we'll get by with our current sticker allotment :)
+18:15:36 <kohsuke> Yes
+18:15:40 <kohsuke> But that reminds me
+18:15:45 <kohsuke> We should get a better flyer
+18:15:48 <rtyler> #info we have ~1000-1500 stickers currently
+18:16:03 <rtyler> anybody know designers? :P
+18:16:20 <kohsuke> I'll check with LisaWells if she can do it or whoever she normally uses it can do it for us
+18:16:31 <jorgenpt> rtyler: There are a bunch sitting right near the iOS team ;D
+18:16:39 <rtyler> jorgenpt: did you forget some?
+18:16:50 <jorgenpt> rtyler: I mean designers.
+18:16:55 <rtyler> oh
+18:16:59 <rtyler> they're not mine to bother
+18:17:02 <jorgenpt> Trololo.
+18:17:05 <kohsuke> I think the primary thing we need an input from here is the content
+18:17:26 <rtyler> agreed, let's take this to the mailing list perhaps and discuss with a broader audience
+18:17:33 <rtyler> perhaps the survey results can help guide this?
+18:17:41 <kohsuke> for example, I don't think the graph that showed installation count was effective --- it had no labels neither on X/Y axes
+18:17:53 * rtyler nods
+18:18:03 <kohsuke> Yes, possibly
+18:18:05 <rtyler> next topic?
+18:18:19 <kohsuke> #action kohsuke to write an e-mail soliciting feedback for flyer
+18:18:37 <kohsuke> rtyler: can you check your designers or are they "not yours to bother"?
+18:18:54 <rtyler> they're not mine to bother
+18:19:01 <kohsuke> ok
+18:19:07 <kohsuke> #topic Accepting donations in Europe
+18:19:08 <rtyler> I can probably ask if they have time, but they're Lookout specific :)
+18:19:23 <rtyler> orrc: your time to shine buddy
+18:19:34 <kohsuke> rtyler: Oh then please ask. The worst thing that can happen is "no"
+18:20:00 <rtyler> kohsuke: I'm not comfortable asking, they have zero overlap with the Jenkins project
+18:20:08 <kohsuke> all right. no problem.
+18:20:30 <kohsuke> orrc: so who's "Euro-friends-of-SPI"?
+18:21:48 <orrc> http://www.ffis.de/Verein/spi-en.html
+18:22:06 <orrc> sorry, was busy for a sec
+18:22:07 <rtyler> this site is definitely located in the EU
+18:22:10 * rtyler waits patiently
+18:22:18 <kohsuke> "associated projects of SPI which are more or less automatically also associated to ffis e.V"
+18:22:25 <orrc> so, I emailed these guys and asked about that there sentence
+18:22:44 <orrc> they want a "formal letter" emailed to their board asking for association and handling of donations
+18:22:54 <orrc> "Apart from that we'd need a project liaison who may authorise reimbursement requests or receipts for ffis to pay on behalf of the project"
+18:23:09 <orrc> "We can offer you a view to the Jenkins part of the bank account once an connection is established."
+18:23:13 <kohsuke> OK, I guess that'd be the interim board
+18:23:29 <orrc> but that was basically it.. i.e. it seems possible and straightforward
+18:23:36 <rtyler> yeah, this looks promising
+18:23:41 <kohsuke> And I can write that e-mail.
+18:24:30 <rtyler> orrc: thanks for bringing this up again, and I agree, we should try to nail this down before fosdem
+18:24:56 <orrc> ok. I'll send kohsuke the details
+18:25:00 <kohsuke> So this is primarily a German entity?
+18:25:34 <rtyler> #action orrc to send kohsuke more details on the ffis
+18:25:45 <kohsuke> I know I'm getting tangential here, but personally, I'd love to get orrc on the board and have him interact with them!
+18:26:09 <kohsuke> I wonder if this is something I need to inform SPI about?
+18:26:09 <orrc> kohsuke: yup. basically the "Association for the Advancement of Free Software and Information"
+18:26:31 <kohsuke> ... that we are also dating with others
+18:26:51 <kohsuke> #action kohsuke to send a heads-up to SPI about this just so they know
+18:27:54 <kohsuke> I guess that's it for the day
+18:28:24 <kohsuke> If vjuranek is here we can briefly sync up about LTS status
+18:28:34 <kohsuke> #topic next meeting time
+18:28:56 <kohsuke> Nov 14th, same time?
+18:28:59 <kohsuke> (that's the usual time)
+18:29:01 <rtyler> that works for me
+18:29:01 <hare_brain> +1
+18:29:10 <rtyler> I think after that it gets spotty until 2013 :P
+18:29:22 <kohsuke> #info beware of daylight saving time change
+18:29:29 <rtyler> OH NOES
+18:29:38 <hare_brain> Oh yeah. Is that happening between now and then?
+18:29:44 <kohsuke> Yes. Nov 4th
+18:29:49 <rtyler> 14th
+18:29:51 <rtyler> oh, right
+18:29:53 <rtyler> the switch
+18:30:08 <orrc> or last week, if you're in Europe!
+18:30:10 <hare_brain> Oh this weekend. I had no idea.
+18:30:27 <kohsuke> so please double check the posted meeting time. I believe it'll be one hour later than usual for the rest of the world
+18:30:40 <kohsuke> or if you are in Europe, this one was the odd ball
+18:30:40 <kohsuke> anyway
+18:30:50 <kohsuke> thanks everyone
+18:30:54 <kohsuke> #endmeeting

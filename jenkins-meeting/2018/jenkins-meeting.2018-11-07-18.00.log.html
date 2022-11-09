@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app226.us.archive.org';v.server_ms=305;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-11-07-18.00.log.html","20211027233422","https://web.archive.org/","web","/_static/",
+	      "1635377662");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:13</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:13</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:15</span><span class="nk"> &lt;danielbeck&gt;</span> hi everyone!
+<a name="l-4"></a><span class="tm">18:00:21</span><span class="nk"> &lt;bitwiseman&gt;</span> Hello!
+<a name="l-5"></a><span class="tm">18:00:24</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">18:00:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> o/
+<a name="l-7"></a><span class="tm">18:00:35</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting actions</span>
+<a name="l-8"></a><span class="tm">18:00:42</span><span class="nk"> &lt;danielbeck&gt;</span> it's been a while…
+<a name="l-9"></a><span class="tm">18:00:45</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-10-10-17.59.html</span>
+<a name="l-10"></a><span class="tm">18:00:58</span><span class="nk"> &lt;danielbeck&gt;</span> two items for kohsuke from last time. are you around?
+<a name="l-11"></a><span class="tm">18:01:11</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-12"></a><span class="tm">18:01:20</span><span class="nk"> &lt;kohsuke&gt;</span> Let me check
+<a name="l-13"></a><span class="tm">18:01:35</span><span class="nk"> &lt;kohsuke&gt;</span> Right, I've communicated the approved trademark to TechMatrix
+<a name="l-14"></a><span class="tm">18:01:35</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke</span>
+<a name="l-15"></a><span class="tm">18:01:36</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke
+<a name="l-16"></a><span class="tm">18:01:41</span><span class="nk"> &lt;kohsuke&gt;</span> I'll update the Wiki right now
+<a name="l-17"></a><span class="tm">18:01:56</span><span class="nk"> &lt;danielbeck&gt;</span> ok
+<a name="l-18"></a><span class="tm">18:02:12</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-19"></a><span class="tm">18:02:28</span><span class="nk"> &lt;danielbeck&gt;</span> doesn't look like ogondza is around
+<a name="l-20"></a><span class="tm">18:02:48</span><span class="nk"> &lt;danielbeck&gt;</span> has anyone heard from him?
+<a name="l-21"></a><span class="tm">18:03:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Nope - since Nice
+<a name="l-22"></a><span class="tm">18:03:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe he is still traveling
+<a name="l-23"></a><span class="tm">18:03:40</span><span class="nk"> &lt;danielbeck&gt;</span> FWIW I got an email from ltypkova that their testing looks good, but nothing from ogondza
+<a name="l-24"></a><span class="tm">18:04:13</span><span class="nk"> &lt;danielbeck&gt;</span> let's move on for now, and ask Oliver for an update if he doesn't show towards the end. it's the first meeting after DST change after all
+<a name="l-25"></a><span class="tm">18:04:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> how do we select LTS without him?
+<a name="l-26"></a><span class="tm">18:04:46</span><span class="nk"> &lt;danielbeck&gt;</span> by consensus? :)
+<a name="l-27"></a><span class="tm">18:05:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> cannot offer anything better
+<a name="l-28"></a><span class="tm">18:05:24</span><span class="nk"> &lt;danielbeck&gt;</span> can always reconsider if someone brings up a major blocker, including Oliver
+<a name="l-29"></a><span class="tm">18:05:41</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS next baseline selection</span>
+<a name="l-30"></a><span class="tm">18:05:44</span><span class="nk"> &lt;danielbeck&gt;</span> speaking of which
+<a name="l-31"></a><span class="tm">18:06:10</span><span class="nk"> &lt;danielbeck&gt;</span> given how empty it is, I propose 2.150
+<a name="l-32"></a><span class="tm">18:06:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">https://jenkins.io/changelog/</span>
+<a name="l-33"></a><span class="tm">18:06:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> All recent releases contain bad statuses
+<a name="l-34"></a><span class="tm">18:06:31</span><span class="nk"> &lt;bitwiseman&gt;</span> Pleasant number as well.
+<a name="l-35"></a><span class="tm">18:06:41</span><span class="nk"> &lt;danielbeck&gt;</span> only potential problem is that we introduced some client side problems in some browsers in 2.148
+<a name="l-36"></a><span class="tm">18:06:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I have not been tracking the weekly releases, so no opinion from me
+<a name="l-37"></a><span class="tm">18:07:20</span><span class="nk"> &lt;danielbeck&gt;</span> The fix that addressed the Firefox event issue in that release likely caused https://issues.jenkins-ci.org/browse/JENKINS-54333 https://issues.jenkins-ci.org/browse/JENKINS-54261
+<a name="l-38"></a><span class="tm">18:07:28</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-54233 was reported but I have no idea if it could be related. I cannot reproduce.
+<a name="l-39"></a><span class="tm">18:07:29</span><span class="nk"> &lt;danielbeck&gt;</span> neither of which we want in an LTS release
+<a name="l-40"></a><span class="tm">18:08:36</span><span class="nk"> &lt;jglick&gt;</span> Well. Easily reverted if confirmed.
+<a name="l-41"></a><span class="tm">18:08:40</span><span class="nk"> &lt;danielbeck&gt;</span> that said, JENKINS-53462 would be trivial to back out in the backporting period
+<a name="l-42"></a><span class="tm">18:09:00</span><span class="nk"> &lt;danielbeck&gt;</span> https://github.com/jenkinsci/jenkins/pull/3689/files
+<a name="l-43"></a><span class="tm">18:09:48</span><span class="nk"> &lt;danielbeck&gt;</span> I would rather like the telemetry improvements in 2.149, so rather than 2.147 + a bunch of backports I propose 2.150 with potentially JENKINS-53462 reverted if we don't find a better fix.
+<a name="l-44"></a><span class="tm">18:10:10</span><span class="nk"> &lt;jglick&gt;</span> Seems reasonable.
+<a name="l-45"></a><span class="tm">18:11:37</span><span class="nk"> &lt;danielbeck&gt;</span> any further opinions?
+<a name="l-46"></a><span class="tm">18:12:05</span><span class="nk"> &lt;bitwiseman&gt;</span> +1
+<a name="l-47"></a><span class="tm">18:13:19</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">choose 2.150 as next LTS baseline, but back out JENKINS-53462 unless we find a better fix due to regressions it seems to have caused.</span>
+<a name="l-48"></a><span class="tm">18:13:32</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to email dev list and ogondza with the above</span>
+<a name="l-49"></a><span class="tm">18:13:50</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark sublicensing request</span>
+<a name="l-50"></a><span class="tm">18:14:12</span><span class="nk"> &lt;danielbeck&gt;</span> so I'm not sure what's going on here
+<a name="l-51"></a><span class="tm">18:14:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Rick is off, so I will handle it on behalf of him as discussed in Gitter
+<a name="l-52"></a><span class="tm">18:14:26</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev thanks
+<a name="l-53"></a><span class="tm">18:14:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/UveOvVO-gwQ</span>
+<a name="l-54"></a><span class="tm">18:15:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, this is a second incarnation of the WeChat discussions
+<a name="l-55"></a><span class="tm">18:15:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Rick wants to create a WeChat channel for Jenkins
+<a name="l-56"></a><span class="tm">18:15:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And the request from WeChat is to provide a trademark usage approval
+<a name="l-57"></a><span class="tm">18:16:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So we need approval from the Governance Meeting, and then an approval letter from one of the Jenkins Board members. CC rtyler kohsuke
+<a name="l-58"></a><span class="tm">18:16:57</span><span class="nk"> &lt;danielbeck&gt;</span> But it's not the organization account that would require a business or other entity to back it, but the "subscription account", right?
+<a name="l-59"></a><span class="tm">18:17:04</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I chimed in on that thread but didn't follow up
+<a name="l-60"></a><span class="tm">18:17:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, it will be a personal account IIUYC
+<a name="l-61"></a><span class="tm">18:17:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Trademark request still applies
+<a name="l-62"></a><span class="tm">18:17:46</span><span class="nk"> &lt;kohsuke&gt;</span> My comment was that this shouldn't be a trademark sublicensing, but since it's on the agenda, I guess I didn't convince others?
+<a name="l-63"></a><span class="tm">18:17:58</span><span class="nk"> &lt;kohsuke&gt;</span> Let me check how people responded...
+<a name="l-64"></a><span class="tm">18:18:45</span><span class="nk"> &lt;danielbeck&gt;</span> looks to me like this is a "on behalf of the Jenkins project" kind of situation
+<a name="l-65"></a><span class="tm">18:19:11</span><span class="nk"> &lt;danielbeck&gt;</span> so no trademark sublicense, except that WeChat requires permission be granted.
+<a name="l-66"></a><span class="tm">18:19:16</span><span class="nk"> &lt;danielbeck&gt;</span> "WeChat platform said I need submit the permission of Jenkins trademark."
+<a name="l-67"></a><span class="tm">18:19:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Some conversation is also is in the community gitter
+<a name="l-68"></a><span class="tm">18:19:37</span><span class="nk"> &lt;danielbeck&gt;</span> IOW, not a sublicense, but we still need to explicitly allow it?
+<a name="l-69"></a><span class="tm">18:20:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I believe Trademark Usage Approval is exactly  what WeChat looks for
+<a name="l-70"></a><span class="tm">18:20:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So I would stick to the request and vote for "Jenkins WeChat Account" for starters
+<a name="l-71"></a><span class="tm">18:20:55</span><span class="nk"> &lt;bitwiseman&gt;</span> What part of the discussion was on Gitter?  What was explained there?
+<a name="l-72"></a><span class="tm">18:21:00</span><span class="nk"> &lt;kohsuke&gt;</span> As Daniel said, this is a situation in which Rick is acting on behalf of the Jenkins project, AIU
+<a name="l-73"></a><span class="tm">18:21:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yup
+<a name="l-74"></a><span class="tm">18:21:43</span><span class="nk"> &lt;danielbeck&gt;</span> right, per the specific wiki page it's not strictly sublicensing, just 'approved usage', and we certainly approve, so ¯\_(ツ)_/¯
+<a name="l-75"></a><span class="tm">18:21:44</span><span class="nk"> &lt;kohsuke&gt;</span> So I guess what WeChat is asking is verifying that he's acting on that capacity
+<a name="l-76"></a><span class="tm">18:22:19</span><span class="nk"> &lt;kohsuke&gt;</span> So I agree with Daniel that this is not a sublicensing situation
+<a name="l-77"></a><span class="tm">18:22:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Trademark Usage Approval is not necessarily sublicencing
+<a name="l-78"></a><span class="tm">18:23:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> At least this is how https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage is not only about sublicenses
+<a name="l-79"></a><span class="tm">18:23:07</span><span class="nk"> &lt;kohsuke&gt;</span> What do you mean "Trademark Usage Approval is not necessarily sublicencing"?
+<a name="l-80"></a><span class="tm">18:23:25</span><span class="nk"> &lt;danielbeck&gt;</span> I mean, since they need a separate letter anyway, we can decide that Rick is allowed to register this, and that KK write the letter…?
+<a name="l-81"></a><span class="tm">18:23:39</span><span class="nk"> &lt;danielbeck&gt;</span> no need to get stuck at how we record this on the wiki
+<a name="l-82"></a><span class="tm">18:23:53</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah
+<a name="l-83"></a><span class="tm">18:24:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage approves usage of trademark. that's it. It is not a sublicense referred above. But I also agree with danielbeck
+<a name="l-84"></a><span class="tm">18:24:07</span><span class="nk"> &lt;kohsuke&gt;</span> So WeChat needs a signed letter?
+<a name="l-85"></a><span class="tm">18:24:25</span><span class="nk"> &lt;kohsuke&gt;</span> I see that in Rick's response
+<a name="l-86"></a><span class="tm">18:25:02</span><span class="nk"> &lt;kohsuke&gt;</span> I also echo Olivier's point that the account be tied to list.jenkins-ci.org address
+<a name="l-87"></a><span class="tm">18:25:13</span><span class="nk"> &lt;kohsuke&gt;</span> IIUC, that's how the community ensures it has ultimate control, right?
+<a name="l-88"></a><span class="tm">18:25:36</span><span class="nk"> &lt;kohsuke&gt;</span> Oh, then Rick clarifies
+<a name="l-89"></a><span class="tm">18:25:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I believe we just start from the approval letter
+<a name="l-90"></a><span class="tm">18:26:02</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-91"></a><span class="tm">18:26:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write a signed letter clarifying that Rick is acting as an agent of the rightful Jenkins trademark owner to create a WeChat account</span>
+<a name="l-92"></a><span class="tm">18:26:35</span><span class="nk"> &lt;kohsuke&gt;</span> ... or something like that
+<a name="l-93"></a><span class="tm">18:26:46</span><span class="nk"> &lt;danielbeck&gt;</span> LGTM
+<a name="l-94"></a><span class="tm">18:27:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-95"></a><span class="tm">18:27:12</span><span class="nk"> &lt;danielbeck&gt;</span> + individual subscription account IIUC
+<a name="l-96"></a><span class="tm">18:27:32</span><span class="nk"> &lt;kohsuke&gt;</span> And in case this isn't obvious enough, I think we all support his effort to have the Jenkins project operate the "official" Jenkins wechat account
+<a name="l-97"></a><span class="tm">18:27:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> That's for sure
+<a name="l-98"></a><span class="tm">18:27:51</span><span class="nk"> &lt;danielbeck&gt;</span> agreed
+<a name="l-99"></a><span class="tm">18:28:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It would be great to have announcement on jenkins.io or whatever
+<a name="l-100"></a><span class="tm">18:28:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> once it is in place
+<a name="l-101"></a><span class="tm">18:28:08</span><span class="nk"> &lt;tracymiranda&gt;</span> +1
+<a name="l-102"></a><span class="tm">18:28:12</span><span class="nk"> &lt;danielbeck&gt;</span> are we all good with these next steps, or anyone around who would like to -1?
+<a name="l-103"></a><span class="tm">18:28:19</span><span class="nk"> &lt;kohsuke&gt;</span> So don't let "no trademark approval" be confused with the disapproval of the effort itself. It's more technical "that's for a different purpose, we don't need it" kinda thing
+<a name="l-104"></a><span class="tm">18:28:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I do not understand why we cannot just approve it TBH
+<a name="l-105"></a><span class="tm">18:28:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> but up to you
+<a name="l-106"></a><span class="tm">18:29:05</span><span class="nk"> &lt;kohsuke&gt;</span> I said everything I wanted to say, we can move on while I write the letter
+<a name="l-107"></a><span class="tm">18:29:14</span><span class="nk"> &lt;bitwiseman&gt;</span> +1
+<a name="l-108"></a><span class="tm">18:29:56</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev Are you asking for "#agreed Rick can register the WeChat individual subscription account on behalf of the Jenkins project" or WDYM?
+<a name="l-109"></a><span class="tm">18:30:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would prefer to explictly put it on the Trademark Approval Page so that Rick can refer it if needed
+<a name="l-110"></a><span class="tm">18:31:36</span><span class="nk"> &lt;danielbeck&gt;</span> needs major reformatting since there's no Company involved,and no separate mark. Let's postpone this until they want more than KK's letter.
+<a name="l-111"></a><span class="tm">18:32:06</span><span class="nk"> &lt;kohsuke&gt;</span> +1 with danielbeck
+<a name="l-112"></a><span class="tm">18:32:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> up to you
+<a name="l-113"></a><span class="tm">18:32:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I was just following the "And It's better to record this in wiki." from Rick
+<a name="l-114"></a><span class="tm">18:32:44</span><span class="nk"> &lt;danielbeck&gt;</span> Well, we record it in the meeting minutes, seems close enough :)
+<a name="l-115"></a><span class="tm">18:32:54</span><span class="nk"> &lt;danielbeck&gt;</span> can always add it later if required
+<a name="l-116"></a><span class="tm">18:33:19</span><span class="nk"> &lt;danielbeck&gt;</span> shall we move on?
+<a name="l-117"></a><span class="tm">18:33:27</span><span class="nk"> &lt;kohsuke&gt;</span> Let's move on
+<a name="l-118"></a><span class="tm">18:33:35</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Outreachy update</span>
+<a name="l-119"></a><span class="tm">18:33:43</span><span class="nk"> &lt;danielbeck&gt;</span> tracymiranda this is yours
+<a name="l-120"></a><span class="tm">18:33:46</span><span class="nk"> &lt;tracymiranda&gt;</span> thx
+<a name="l-121"></a><span class="tm">18:34:02</span><span class="nk"> &lt;tracymiranda&gt;</span> We are coming up to the close of the application period for outreachy
+<a name="l-122"></a><span class="tm">18:34:24</span><span class="nk"> &lt;tracymiranda&gt;</span> So far we had about 9 folks find their way to the gitter chat. Majority were interested in audit logs project
+<a name="l-123"></a><span class="tm">18:34:58</span><span class="nk"> &lt;tracymiranda&gt;</span> Of that we appear to have 3 people who submitted applications which they could do after submitting a PR
+<a name="l-124"></a><span class="tm">18:35:15</span><span class="nk"> &lt;tracymiranda&gt;</span> 2 applications for audit logs, 1 for docs project
+<a name="l-125"></a><span class="tm">18:35:30</span><span class="nk"> &lt;tracymiranda&gt;</span> We need to make selections by deadline of Nov 12th
+<a name="l-126"></a><span class="tm">18:36:03</span><span class="nk"> &lt;tracymiranda&gt;</span> So I will be meeting with the outreachy mentors bitwiseman and mattsicker to see who qualifies, etc
+<a name="l-127"></a><span class="tm">18:36:18</span><span class="nk"> &lt;tracymiranda&gt;</span> That's the update
+<a name="l-128"></a><span class="tm">18:36:42</span><span class="nk"> &lt;danielbeck&gt;</span> thanks. what's the next update? The selection on the 12th?
+<a name="l-129"></a><span class="tm">18:37:08</span><span class="nk"> &lt;tracymiranda&gt;</span> yes, once selected, we hear back if we were first choice then all gets announced on 12th
+<a name="l-130"></a><span class="tm">18:37:36</span><span class="nk"> &lt;tracymiranda&gt;</span> if we decide to accept &gt;1 we need to find out if outreachy fund will cover it or not
+<a name="l-131"></a><span class="tm">18:37:52</span><span class="nk"> &lt;tracymiranda&gt;</span> then soon after that the internship starts in earnest
+<a name="l-132"></a><span class="tm">18:39:06</span><span class="nk"> &lt;danielbeck&gt;</span> ok, sounds good
+<a name="l-133"></a><span class="tm">18:39:52</span><span class="nk"> &lt;danielbeck&gt;</span> let's move on then
+<a name="l-134"></a><span class="tm">18:40:04</span><span class="nk"> &lt;danielbeck&gt;</span> since ogondza hasn't shown up, we're still a bit in the air with the current LTS release
+<a name="l-135"></a><span class="tm">18:40:09</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-136"></a><span class="tm">18:41:11</span><span class="nk"> &lt;danielbeck&gt;</span> As I wrote previously, I got confirmation from Lucie that their testing looked good, but no further context. To make sure we're not blocked, I would propose we wait another day for ogondza to tell us it's not ready, otherwise we release tomorrow. WDYT?
+<a name="l-137"></a><span class="tm">18:41:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-138"></a><span class="tm">18:42:15</span><span class="nk"> &lt;bitwiseman&gt;</span> +1
+<a name="l-139"></a><span class="tm">18:43:55</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">let's contact ogondza and ask whether we need to postpone. if not, or no response within 24 hrs, we release 2.138.3</span>
+<a name="l-140"></a><span class="tm">18:44:04</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to email ogondza</span>
+<a name="l-141"></a><span class="tm">18:44:14</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-142"></a><span class="tm">18:44:30</span><span class="nk"> &lt;danielbeck&gt;</span> that would be Nov 21st
+<a name="l-143"></a><span class="tm">18:44:44</span><span class="nk"> &lt;danielbeck&gt;</span> same earlier time, same channel
+<a name="l-144"></a><span class="tm">18:44:49</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:34:22 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:07:27 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 228.794
+  exclusion.robots: 0.103
+  exclusion.robots.policy: 0.093
+  RedisCDXSource: 0.827
+  esindex: 0.009
+  LoadShardBlock: 201.458 (3)
+  PetaboxLoader3.datanode: 170.854 (4)
+  CDXLines.iter: 22.075 (3)
+  load_resource: 61.633
+  PetaboxLoader3.resolve: 42.942
+-->

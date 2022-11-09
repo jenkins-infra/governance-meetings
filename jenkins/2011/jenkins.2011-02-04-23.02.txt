@@ -1,0 +1,438 @@
+================
+#jenkins Meeting
+================
+
+
+Meeting started by kohsuke at 23:02:35 UTC. The full logs are available
+at
+http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-02-04-23.02.log.html
+.
+
+
+
+Meeting summary
+---------------
+* proposal for Jenkins governance structure  (kohsuke, 23:04:18)
+  * At a minimum, I think anyone who has committed to core or any
+    plugins/extras/etc hosted in our Github org should have voting
+    rights, and it makes sense to recognize the efforts of bug
+    reporters, contributors to the wiki, etc as well. (from abayer)
+    (kohsuke, 23:09:50)
+  * IDEA: tech support on the mailing lists and irc, but that's kind of
+    hard to track :/ (from rpetti)  (kohsuke, 23:10:02)
+  * that sounds good, it can have a metric applied to it, etc (from
+    mwalling)  (kohsuke, 23:10:39)
+  * since we're on github now, what about people who fork and send pull
+    request, but don't commit directly? not sure if there are many of
+    those (from tom_huybrechts)  (kohsuke, 23:12:45)
+  * (in repsonse to lacostej asking why not just have a hardcoded list)
+    that's a fair point, but with Jenkins, we are consciously trying to
+    have as broad a communitya s possible.  (abayer, 23:13:28)
+  * lacostej: in our case maybe those who signed CLA could form the
+    "core committer" group?  (kohsuke, 23:13:36)
+  * IDEA: I think having some automatability is a must in eligibility
+    determination. I hope that much can be agreed on by all  (kohsuke,
+    23:14:54)
+  * AGREED: voting eligibility must be automate-able.  (kohsuke,
+    23:15:57)
+  * Like I said, I'm working on the actual proposal - which won't be set
+    in stone in the least. This is definitely helping shape it, though.
+    (abayer, 23:16:02)
+  * ACTION: abayer to write a proposal of the voter eligibility
+    (kohsuke, 23:17:03)
+  * IDEA: why not to have a competition for the logo?  (AhtiK, 23:17:22)
+
+* The logo  (kohsuke, 23:17:30)
+  * IDEA: why not to have a competition for the logo?  (AhtiK, 23:17:57)
+  * Ok, so the current logo is, in fact, Microsoft clipart. Turns out
+    that we're probably not using it in a way that actually fits their
+    terms of use. So we should, y'know, change it. =)  (abayer,
+    23:18:06)
+  * IDEA: I'd still like a butler-themed logo - that's an integral part
+    of the project's identity, I think.  (abayer, 23:18:35)
+  * LINK: http://blog.stackoverflow.com/2008/04/logo-design-contest/
+    (mwalling, 23:18:38)
+  * IDEA: A logo contest but with some guidelines ?  (aheritier,
+    23:18:58)
+  * http://en.wikipedia.org/wiki/Jenkins lists several interpretations
+    for Jenkins as a name (for logo inspiration).  (AhtiK, 23:19:00)
+  * at least one person contacted me offline that he might be able to
+    pitch in his designer resource  (kohsuke, 23:19:05)
+  * LINK: http://blog.stackoverflow.com/2008/04/logo-design-contest/
+    (from mwalling)  (kohsuke, 23:19:52)
+  * IDEA: I would say poll the community, and if nothing comes of it,
+    hit up 99designs or some other third party (from rpetti)  (abayer,
+    23:20:21)
+  * IDEA: Multiple contests, one for the theme… and then the actual
+    artwork?  (larrys, 23:20:22)
+  * I've used 99designs once and liked it  (kohsuke, 23:20:38)
+  * LINK:
+    http://99designs.com/help/how-much-does-running-a-design-contest-cost
+    99 designs rate sheet  (mwalling, 23:20:46)
+  * IDEA: one reason for keeping the butler theme is to emphasize the
+    continuity.  (kohsuke, 23:21:14)
+  * ACTION: we'll send an email out to the groups explaining why we need
+    to change logos, and calling for logo ideas/designs from the
+    community.  (kohsuke, 23:22:45)
+  * IDEA: 2 weeks would be a good time frame for this (from AhtiK)
+    (kohsuke, 23:23:24)
+  * while designing a new logo it would be nice if it has less details
+    than current one. It's hard to scale it to 16x16 while keeping the
+    integrity.  (AhtiK, 23:25:40)
+  * AGREED: there was good consensus to the butler theme, but we are not
+    violently averse to other ideas for logos if they're really really
+    awesome  (kohsuke, 23:25:54)
+  * SVG might be preferable.  (rpetti, 23:25:59)
+  * in 99 designs they'll always just give you a vector graphics version
+    (kohsuke, 23:27:24)
+  * IDEA: I think once we decide on logo, we can then ask for the
+    community to try a good 16x16 version  (kohsuke, 23:28:02)
+
+* Trademark registration  (kohsuke, 23:29:07)
+  * So we need to register trademarks (EU+US, I'd say) for Jenkins.
+    That's not cheap. CloudBees has offered to help pay for this, but
+    I'm honestly not sure whether that's something we want right now.
+    It's important to make it clear to everyone that Jenkins is not a
+    CloudBees project - it's a community project, independent of any
+    company.  (abayer, 23:30:51)
+  * Just to make sure, the registration will be still under my name, as
+    we planned and said early on.  (kohsuke, 23:31:32)
+  * ... to be transfered to the custodian when we move under there.
+    (kohsuke, 23:31:50)
+  * IDEA: how about setting up a donation for the trademark
+    registration?  (emanuelez, 23:32:22)
+  * SPI does money handling/donation processing for other projects
+    (drupal, debian, etc)  (mwalling, 23:33:07)
+  * Having a way to take donations is a key goal - we just don't ahve
+    that yet.  (abayer, 23:33:10)
+  * IDEA: Which trademark do we register ? Jenkins vs JenkinsCI vs ...
+    (aheritier, 23:33:38)
+  * IDEA: I wanted to keep for post-formal Q&A but now seems a good
+    place: Now that Oracle is probably not going to continue its support
+    for Jenkins, should there be a more endorsed form of donation? Is
+    there going to be an organization who could even receive some
+    financial help from the community to support Jenkins? Is there a
+    need for such help?  (AhtiK, 23:33:38)
+  * The plan is to be under the wing of a formal foundation, be it SFC
+    or elsewhere, which would be able to take donations, own
+    trademarks/copyrights/hardware assets, pay bills, etc.  (abayer,
+    23:34:31)
+  * But that's not in place now, and we need to get the registration
+    done ASAP.  (abayer, 23:34:49)
+  * At least a couple thousand $, probably.  (abayer, 23:35:56)
+  * so the cheap-cheap online registration service for trademark on US +
+    EU is like $1K  (kohsuke, 23:35:56)
+  * LINK: http://www.uspto.gov/inventors/trademarks.jsp#heading-5 USPTO
+    trademark costs, 275 to 375  (mwalling, 23:36:00)
+  * http://www.uspto.gov/inventors/trademarks.jsp#heading-5 USPTO
+    trademark costs, 275 to 375 (by mwalling )  (aheritier, 23:36:32)
+  * my understanding is that if you use a real lawyer, it's one order of
+    magnitude more  (kohsuke, 23:36:33)
+  * AGREED: on allowing CloudBees et. all to donate to the Jenkins
+    project once we have a formal donation mechanism in place  (rtyler,
+    23:37:48)
+  * IDEA: so sounds like the main question is how to do donations now?
+    (kohsuke, 23:37:48)
+  * ACTION: abayer and kohsuke to pin down the exact costs on trademark
+    registration  (rtyler, 23:38:51)
+  * ACTION: rtyler to research means of accepting donations as soon as
+    possible to cover infrastructure, trademark and other costs
+    (rtyler, 23:39:29)
+  * ACTION: Someone (kohsuke)? to figure out the difference between the
+    $1k and $10k registrations in terms of what we'd actually get. =)
+    (abayer, 23:40:10)
+  * ACTION: kohsuke to figure out the difference between $1k and 1$10k
+    registrations for TM, and what the project would receive for each
+    (rtyler, 23:40:56)
+  * AGREED: Ok, I think the resolution for now is that we're willing to
+    take donations from CloudBees, but if we can find a way to make this
+    work without having to have CloudBees do the actual registration,
+    we're better off. So more research is needed.  (abayer, 23:41:18)
+  * 900€ for EU community trademark, see
+    http://oami.europa.eu/ows/rw/pages/CTM/feesPayment/feesPayment.en.do
+    (tom_huybrechts, 23:41:58)
+  * ACTION: abayer, kohsuke, hare_brain: figure out  what exactly we're
+    going to register. =)  (abayer, 23:42:24)
+  * AGREED: the trademark will be just "Jenkins". Not "Jenkins CI", no
+    logo.  (kohsuke, 23:43:52)
+
+* Umbrella foundation  (abayer, 23:44:25)
+  * So as we've mentioned, we've been hoping to get Jenkins into SFC
+    (the Software Freedom Conservancy) as a legal umbrella.  (abayer,
+    23:45:09)
+  * that'd give us an entity to hold trademarks/copyrights, take
+    donations, pay bills, etc.  (abayer, 23:45:25)
+  * IDEA: next time, please post the agenda  (uzilan, 23:45:37)
+  * ACTION: rtyler to prepare meeting agenda ahead of time for the next
+    meeting  (rtyler, 23:45:54)
+  * But it's not a sure thing we'll be able to use SFC. They're a little
+    worried about messing with Oracle, they're a little overloaded with
+    projects already, etc.  (abayer, 23:46:03)
+  * So I think we need to look into alternatives as well.  (abayer,
+    23:46:22)
+  * IDEA: apache?  (uzilan, 23:46:48)
+  * Just to make sure, SFC is still something we are pursuing. I still
+    like the SFC model best.  (kohsuke, 23:47:16)
+  * ASF is a pipe dream of mine here - admittedly influenced by olamy,
+    aheritier and the swarm of Apache committers/members I work with. =)
+    But from waht I know, the problem is that we can't get copyright
+    reassignment of the existing code to Apache, nor can we relicense.
+    (abayer, 23:47:30)
+  * Since Oracle owns (or co-owns) the copyright on the code.  (abayer,
+    23:47:47)
+  * IDEA: I think it's worth at least talking with Apache as to whether
+    there's any chance we can pair up.  (abayer, 23:48:53)
+  * IDEA: Out of curiosity, how hard is it to set up an entity on our
+    own?  (kohsuke, 23:48:59)
+  * LINK: http://www.spi-inc.org/ SPI is the umbrella that covers
+    Debian, Drupal, Gallery, OOo, OpenWrt, PostgreSQL, etc, to throw in
+    a third option  (mwalling, 23:50:14)
+  * LINK: http://www.spi-inc.org/ An alternative to the SFC  (rtyler,
+    23:50:45)
+  * the purposes for an umbrella organization are: recipient of CLAs,
+    legal representation, donation accepting, etc  (rtyler, 23:51:46)
+  * ACTION: abayer to dig more into what sort of leeway the ASF might be
+    able to grant the Jenkins project  (rtyler, 23:53:21)
+  * LINK:
+    http://www.mail-archive.com/spi-general@lists.spi-inc.org/msg01126.html
+    a google hit for "SPI vs SFC", seems to be semi useful  (mwalling,
+    23:53:42)
+  * LINK: http://www.spi-inc.org/projects/associated-project-howto/
+    (AhtiK, 23:54:37)
+  * AGREED: Codehaus is just a hosting platform. Or so I hear. From
+    everyone.  (abayer, 23:56:25)
+  * kohsuke also raised an interesting question before regarding how
+    much it would cost to set up the org itself. non-profit. but maybe
+    even more than the cost itself it's the effort and time it takes to
+    manage.... could be too much time to waste on paperwork.  (AhtiK,
+    23:57:27)
+  * AGREED: Setting up our own Jenkins Foundation is a last resort
+    option provided other alternatives don't work out  (rtyler,
+    23:58:03)
+
+* The CLA - what's needed now?  (abayer, 23:59:47)
+  * So previously, changes to core required submitting a CLA to Oracle.
+    (abayer, 00:00:03)
+  * Obviously, that doesn't apply any more (and I, in fact, am going to
+    be revoking my Oracle CLA). So what are the rules for contributing
+    to core now?  (abayer, 00:00:34)
+  * CLA -> Contributor License Agreement  (rtyler, 00:00:37)
+  * Current one is http://oss.oracle.com/oca.pdf  (kohsuke, 00:00:49)
+  * So in the interim, do we keep using the existing CLA?  (abayer,
+    00:01:46)
+  * IDEA: Core contributors signing an "intent to sign a CLA for
+    Jenkins" once an umbrella organization is found to assign to
+    (rtyler, 00:05:07)
+  * that reminds me that we need to know where the difference between a
+    patch vs a change  (kohsuke, 00:06:40)
+  * History background: one of the main reasons why there was an SCA was
+    because Sun had to change the license for a project with many
+    contrbutors and it was a mess.  (pelegri, 00:09:54)
+  * Eclipse.org projects need to get CLA signed only for contributions
+    that are bigger than X lines (sry, have forgotten what the X was).
+    (AhtiK, 00:10:20)
+  * Ok, how many core devs do we have in here at the moment?  (abayer,
+    00:10:20)
+  * my opinion is to ride it out until we're entitized, then get people
+    to sign CLAs. no CLA, signifigant patches rolled back, grumbling,
+    etc.  (mwalling, 00:11:02)
+  * i also think CLAs should cover plugins under github/jenkinsci/
+    (mwalling, 00:11:25)
+  * in practice, I think I personally trust the fairly limited number of
+    contributors to core to not screw us over in the (hopefully!) short
+    time until we have a real CLA, etc.  (abayer, 00:12:11)
+  * IDEA: JCA -> Jenkins Contributor Agreement  (rtyler, 00:13:25)
+  * there are two risks (of not SCA): One is code is not of the
+    contributor (and illegal).  Two is we can't change the copryight /
+    license later.  (pelegri, 00:13:47)
+  * IDEA: We don't have a formal CLA until we have a legal entity, etc.
+    We ask all core devs to acknowledge that they'll need to sign a CLA
+    when we *do* hae an entity. We probably don't add any more core devs
+    until there's a formal CLA process. Pull requests can still be
+    taken, so long as they're not huge.  (abayer, 00:14:31)
+  * ACTION: kohsuke, abayer, hare_brain to get a draft CLA ready before
+    we meet next.  (abayer, 00:15:07)
+  * IDEA: an addendum - we also don't do any massive changes to core
+    functionality until the formal CLA is in place, in case of a worst
+    case scenario of someone going back on it and not signing, etc.
+    (abayer, 00:16:20)
+  * ACTION: : update
+    http://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code
+    (aheritier, 00:17:40)
+  * AGREED: No massive core changes until CLA is set up  (rtyler,
+    00:18:22)
+  * ACTION: abayer to get statements from all core devs on their intent
+    to sign eventual CLA.  (abayer, 00:18:37)
+
+* Next meeting logistics  (abayer, 00:18:52)
+  * Just to have some background when to ask for CLA - for example,
+    Eclipse requires signing agreement for contributions with more than
+    250 lines. More details
+    http://www.eclipse.org/legal/EclipseLegalProcessPoster.pdf  (AhtiK,
+    00:19:08)
+  * IDEA: Schedule meeting for earlier than 11:00 PM for our european
+    users  (rtyler, 00:19:18)
+  * IDEA: I'd like to meet weekly for the time being - we've got a lot
+    of stuff to iron out, etc.  (abayer, 00:20:42)
+  * AGREED: No more friday meetings  (rtyler, 00:20:57)
+  * AGREED: Weekly meetings until further notice, and some more things
+    are ironed out  (rtyler, 00:21:12)
+  * IDEA: How would 11am PST (8pm CET) on Wednesdays work for people?
+    (abayer, 00:21:23)
+  * LINK:
+    http://www.timeanddate.com/worldclock/meetingtime.html?month=2&day=9&year=2011&p1=195&p2=224&p3=57&p4=-1
+    (AhtiK, 00:23:56)
+  * ACTION: rtyler to work with abayer, kohsuke and hare_brain on agenda
+    for next week's meeting.  (abayer, 00:23:58)
+  * ACTION: rtyler to post a meeting agenda and accouncement at least a
+    good 24 hours ahead of time to the blog  (rtyler, 00:24:18)
+  * IDEA: Next Wednesday, 11am PST (8pm CET, 7pm GMT, 2pm EST), for next
+    meeting and then revisit scheduling depending on how that works.
+    (abayer, 00:24:42)
+  * IDEA: Ensure meetings are primarily things that need discussion over
+    IRC, and cannot be resolved over the mailing lists  (rtyler,
+    00:24:49)
+  * The interim board is all in the PST timezone  (rtyler, 00:25:17)
+  * AGREED: Next meeting, Wednesday Feb 9, 11am PST etc.  (abayer,
+    00:25:51)
+  * IDEA: so use the mailing list to lock down agenda of topics
+    (larrys, 00:25:55)
+  * IDEA: use the wiki for the agenda planning  (mwalling, 00:26:25)
+  * IDEA: : Open a google agenda to share it with everybody  (aheritier,
+    00:26:38)
+  * IDEA: proposing to allow additions to agenda from the community and
+    just have the agenda fixed before the start. optionally Q&A/open mic
+    in the end.  (AhtiK, 00:27:14)
+  * ACTION: rtyler to post meeting notes and an overview to the blog in
+    the next 24 hours  (rtyler, 00:27:15)
+
+Meeting ended at 00:27:47 UTC.
+
+
+
+
+Action Items
+------------
+* abayer to write a proposal of the voter eligibility
+* we'll send an email out to the groups explaining why we need to change
+  logos, and calling for logo ideas/designs from the community.
+* abayer and kohsuke to pin down the exact costs on trademark
+  registration
+* rtyler to research means of accepting donations as soon as possible to
+  cover infrastructure, trademark and other costs
+* Someone (kohsuke)? to figure out the difference between the $1k and
+  $10k registrations in terms of what we'd actually get. =)
+* kohsuke to figure out the difference between $1k and 1$10k
+  registrations for TM, and what the project would receive for each
+* abayer, kohsuke, hare_brain: figure out  what exactly we're going to
+  register. =)
+* rtyler to prepare meeting agenda ahead of time for the next meeting
+* abayer to dig more into what sort of leeway the ASF might be able to
+  grant the Jenkins project
+* kohsuke, abayer, hare_brain to get a draft CLA ready before we meet
+  next.
+* : update
+  http://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code
+* abayer to get statements from all core devs on their intent to sign
+  eventual CLA.
+* rtyler to work with abayer, kohsuke and hare_brain on agenda for next
+  week's meeting.
+* rtyler to post a meeting agenda and accouncement at least a good 24
+  hours ahead of time to the blog
+* rtyler to post meeting notes and an overview to the blog in the next
+  24 hours
+
+
+
+
+Action Items, by person
+-----------------------
+* abayer
+  * abayer to write a proposal of the voter eligibility
+  * abayer and kohsuke to pin down the exact costs on trademark
+    registration
+  * abayer, kohsuke, hare_brain: figure out  what exactly we're going to
+    register. =)
+  * abayer to dig more into what sort of leeway the ASF might be able to
+    grant the Jenkins project
+  * kohsuke, abayer, hare_brain to get a draft CLA ready before we meet
+    next.
+  * abayer to get statements from all core devs on their intent to sign
+    eventual CLA.
+  * rtyler to work with abayer, kohsuke and hare_brain on agenda for
+    next week's meeting.
+* hare_brain
+  * abayer, kohsuke, hare_brain: figure out  what exactly we're going to
+    register. =)
+  * kohsuke, abayer, hare_brain to get a draft CLA ready before we meet
+    next.
+  * rtyler to work with abayer, kohsuke and hare_brain on agenda for
+    next week's meeting.
+* kohsuke
+  * abayer and kohsuke to pin down the exact costs on trademark
+    registration
+  * Someone (kohsuke)? to figure out the difference between the $1k and
+    $10k registrations in terms of what we'd actually get. =)
+  * kohsuke to figure out the difference between $1k and 1$10k
+    registrations for TM, and what the project would receive for each
+  * abayer, kohsuke, hare_brain: figure out  what exactly we're going to
+    register. =)
+  * kohsuke, abayer, hare_brain to get a draft CLA ready before we meet
+    next.
+  * rtyler to work with abayer, kohsuke and hare_brain on agenda for
+    next week's meeting.
+* rtyler
+  * rtyler to research means of accepting donations as soon as possible
+    to cover infrastructure, trademark and other costs
+  * rtyler to prepare meeting agenda ahead of time for the next meeting
+  * rtyler to work with abayer, kohsuke and hare_brain on agenda for
+    next week's meeting.
+  * rtyler to post a meeting agenda and accouncement at least a good 24
+    hours ahead of time to the blog
+  * rtyler to post meeting notes and an overview to the blog in the next
+    24 hours
+* **UNASSIGNED**
+  * we'll send an email out to the groups explaining why we need to
+    change logos, and calling for logo ideas/designs from the community.
+  * : update
+    http://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code
+
+
+
+
+People Present (lines said)
+---------------------------
+* abayer (158)
+* rtyler (92)
+* kohsuke (83)
+* aheritier (63)
+* mwalling (50)
+* larrys (42)
+* AhtiK (27)
+* pelegri (22)
+* hare_brain (15)
+* rpetti (10)
+* uzilan (10)
+* bap2000 (9)
+* tom_huybrechts (9)
+* emanuelez (8)
+* olamy (7)
+* mindless (6)
+* lacostej (5)
+* taco (5)
+* calavera (5)
+* robobutler (3)
+* onlyteo (2)
+* atmos (2)
+* vtintillier (1)
+* fredg02 (1)
+* ssogabe (1)
+* cquinn1 (1)
+* zaphX (1)
+
+
+
+
+Generated by `MeetBot`_ 0.1.4
+
+.. _`MeetBot`: http://www.jenkins-ci.org/meetings/

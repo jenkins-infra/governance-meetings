@@ -1,0 +1,176 @@
+18:03:28 <rtyler> #startmeeting
+18:03:28 <robobutler> Let the Jenkins meeting commence!
+18:03:33 <rtyler> #chair hare_brain_ kohsuke danielbe_
+18:03:33 <robobutler> Current chairs: danielbe_ hare_brain_ kohsuke rtyler
+18:03:38 <rtyler> #topic Last meeting actions
+18:03:52 <rtyler> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-11-23-18.00.html
+18:04:10 <rtyler> I believe, because I'm running it, that kohsuke released 2.19.4 :)
+18:04:26 <rtyler> I have not yet set up the December GSoC retrospective discussion
+18:04:47 <jglick> Yes 2.19.4 seems to exist.
+18:04:48 <rtyler> I know that oleg-nenashev and Jacob got the klocwork plugin all sorted and Jacob is moving forward with releases
+18:05:02 <rtyler> did ogondza have a chance to prep the next 2.32-based branch?
+18:05:17 <jglick> does not seem to be present
+18:05:53 <rtyler> hrmph
+18:06:02 <jglick> ogondza I mean
+18:06:18 <jglick> the branch is there: https://github.com/jenkinsci/jenkins/compare/master...stable-2.32
+18:06:19 <rtyler> indeed, but has the next lts been branched?
+18:06:20 <rtyler> \o/
+18:06:41 <rtyler> I don't think there are any other actions to really cover
+18:06:41 <jglick> with two backports already
+18:07:26 <rtyler> #topic LTS status check
+18:07:37 <rtyler> #info the branch has been created
+18:07:43 <rtyler> https://github.com/jenkinsci/jenkins/compare/master...stable-2.32
+18:08:00 <rtyler> without ogondza here, not sure there's much we can do on this topic
+18:08:03 <rtyler> danielbe_: any thoughts?
+18:08:11 <danielbe_> oops
+18:08:14 <danielbe_> missed the start
+18:08:44 <danielbe_> right, needs ogondza to tell us status
+18:09:07 <rtyler> alrighty, moving on then
+18:09:19 <rtyler> batmat: you awake? :)
+18:09:21 <jglick> nothing on jenkinsci-dev about it AFAICT
+18:09:32 <danielbe_> rtyler what about my LTS related item?
+18:09:47 <rtyler> your proposal around xmas?
+18:10:03 <danielbe_> yes
+18:10:10 <rtyler> looks like batmat will not be here for the meeting, so I am going to punt that item anyways
+18:10:24 <rtyler> "
+18:10:24 <rtyler> Should we just skip two weeks around Christmas like we did last year, postpone .2 RC from Jan 4 to Jan 18? "
+18:11:21 <danielbe_> not a lot is going on during holidays
+18:11:22 <danielbe_> and the baseline is pretty recent
+18:11:43 <danielbe_> while this won't help .1, we'll have a better chance to make .2/.3 good
+18:11:54 <rtyler> this makes sense to me, but without some buy-in from ogondza not sure we can close that item out
+18:11:54 <rtyler> agreed on that
+18:11:57 <danielbe_> based on user feedback, if we have the time
+18:12:04 <rtyler> perhaps send an email to the devlist CC'ing ogondza with the proposal, I think if he's okay with it, it's legit for him as Mr. Release officer to just make it happen
+18:12:10 <rtyler> since he's not around to discuss
+18:12:29 <danielbe_> #action danielbe_ to email dev list cc ogondza re 2 week delay for .2 due to holidays
+18:13:10 <rtyler> #topic JDK8 as baseline, with the timeline proposed by Oliver
+18:13:14 <rtyler> https://groups.google.com/d/msg/jenkinsci-dev/fo5nKLhZK5U/IRJdMeS6CgAJ
+18:13:27 <rtyler> without batmat I don't think we can discuss this much here
+18:13:33 <danielbe_> teilo brought up a new issue here (Windows development)
+18:13:39 <danielbe_> so it seems the discussion is still ongoing
+18:14:04 <rtyler> right, for moving this topic in the future I think we need to be clear about the separation between communicating a plan, which is important to do as early as possible
+18:14:08 <rtyler> and executing a plan
+18:14:10 <jglick> So would that mean that 2.32.x is the last to support 7? Or what?
+18:14:44 <jglick> Or the next line TBA also supports 7?
+18:14:46 <rtyler> not likely, I think it would likely mean that two LTSes from 2.32 would be the last to support 7
+18:14:58 <jglick> ?!
+18:15:02 <rtyler> 2 from now
+18:15:37 <rtyler> so basically in March, based on his proposal, we would stop shipping weeklies with 7 support
+18:15:38 <jglick> If “month 0” is now, then “month 3” is dev run-up to 2.32+LTS+LTS
+18:15:40 <danielbe_> well, Baptiste says we should switch early 2017 which means 2.32.x is the last line with Java 7 support
+18:15:42 <rtyler> if I'm reading this
+18:15:44 <rtyler> properly
+18:16:10 <rtyler> danielbe_: batmat was proposing we follow oliver's plan, which isn't switching early 2017 for LTS
+18:16:27 <danielbe_> three months later means ~2.45 will be the last LTS for Java 7
+18:16:46 <jglick> Right, that is my understanding.
+18:17:00 <jglick> Then ~2.58 would be 8 only.
+18:17:07 <rtyler> danielbe_: IMO I think we might need to plan to hold that LTS line open for a little longer than usual
+18:17:12 <rtyler> for security fixens, etc
+18:17:25 <danielbe_> isn't Java 7 EOL?
+18:17:28 <rtyler> ish
+18:17:29 <rtyler> :P
+18:17:33 <jglick> Oh yes, for some time now.
+18:18:02 <danielbe_> 1.5 years AFAICT
+18:18:09 <rtyler> if we're saying LOUD that in six months from now, you will no longer receive Jeknins updates/security fixes for JRE7 based installations
+18:18:12 <rtyler> that's fine for me
+18:18:29 <danielbe_> right
+18:18:36 <danielbe_> remember the line lives for ~3 months
+18:18:36 <rtyler> but if we're not communicating this to users this month, the Month 0 of oliver's plan has to move out
+18:19:01 <rtyler> basically my point is that the counter has to start after announcement to users
+18:19:01 <danielbe_> right
+18:19:17 <rtyler> other than that criteria, the plan ogondza proposes is fine for me
+18:19:27 * rtyler is just a lowly user
+18:19:52 <danielbe_> So teilo needs to explain what exactly would be blocking him so we can address that
+18:20:10 <rtyler> oh there's ogondza :)
+18:20:24 <rtyler> indeed
+18:20:29 <danielbe_> it's going to be a meeting after all \o/
+18:20:46 <rtyler> #action teilo to help clarify what blocks windows development of Jenkins on JDK8
+18:21:18 <danielbe_> back to LTS status check?
+18:21:21 <jglick> (AFAIK nothing fundamental, probably a sideshow)
+18:21:28 <ogondza> damn!
+18:21:43 <rtyler> well, danielbe_ in lieu of batmat, what do you think next steps are on this topic?
+18:22:36 <danielbe_> find out what teilo's concerns are exactly, then decide whether they block (likely not), possibly address, then get consensus, then communicate
+18:22:44 <rtyler> okay
+18:23:18 <rtyler> #action batmat to figure out whether teilo's concerns block moving forward with a gaining consensus on ogondza's JRE8 plan and moving forward
+18:23:22 <rtyler> #topic LTS status chcek
+18:23:25 <rtyler> #topic LTS status check
+18:23:29 <rtyler> ogondza: the floor is yours
+18:23:38 <ogondza> sorry everyone
+18:23:52 <ogondza> I have checked the candidates yesterday and the queue was empty
+18:24:02 <ogondza> there are 2 minor fixes to go to .1
+18:24:18 <ogondza> I will recheck the queue and push the RC tomorrow
+18:24:59 <danielbe_> \o/
+18:25:18 <danielbe_> what about the release scheduled for Dec 21? Have you heard from KK? What's the concern here anyway?
+18:25:36 <ogondza> I have not tried to reach him
+18:25:44 <danielbe_> kohsuke around?
+18:25:50 <rtyler> welp
+18:25:55 <ogondza> IIRC batmat was unsure if he will be available
+18:26:38 <ogondza> I put that on agenda hoping KK will join the meeting
+18:26:57 <rtyler> maybe ogondza fell asleep
+18:26:59 <kohsuke> Limited bandwidth
+18:27:05 <jglick> I just sent him a private ping just in case that gets through.
+18:27:44 <ogondza> kohsuke: ok to release on Dec 21th?
+18:27:50 <ogondza> or should we postpone ...
+18:28:01 <jglick> (2.32.1 IIUC)
+18:28:08 <kohsuke> I can do that. Np
+18:28:40 <danielbe_> okay so that's cleared up
+18:28:57 <ogondza> cool. so the schedule is as usual
+18:29:05 <danielbe_> ogondza FWIW I put on the agenda the question what to do about holidays this year
+18:29:19 <danielbe_> last year we had a two week break in the schedule
+18:29:33 <danielbe_> right now, .1 is Dec 21, then .2 RC on Jan 4, then .2 on Jan 18.
+18:29:47 <ogondza> danielbe_: we should have RC in early January - that sound OK to me
+18:29:47 <danielbe_> My proposal was to postpone .2 RC to Jan 18
+18:30:08 <ogondza> IIRC we did that so people are not expected to test shortly before holidays
+18:30:10 <danielbe_> this would give us more time to see what feedback is like
+18:30:58 <ogondza> though, I do not object to postpone
+18:31:21 <danielbe_> I mean our schedule means we have 4 weeks of slack per year we're not using
+18:31:48 <danielbe_> slowing down when everything else is slowing down anyway seems reasonable in case something comes up
+18:31:48 <ogondza> this is for the first time someone complains I keep up with the schedule :P
+18:31:53 <danielbe_> heh
+18:31:57 <danielbe_> not complaining
+18:32:14 <danielbe_> in fact I'm very happy that we're keeping to the schedule so well
+18:32:39 <ogondza> ok, danielbe_ can you update the calendar?
+18:32:47 <ogondza> I see you have put the dates in ...
+18:32:53 <danielbe_> #action danielbe_ to update LTS calendar for 2 week delay
+18:32:56 <ogondza> or are those the "correct" dates?
+18:32:57 <jglick> danielbe_: so you are saying that you want a longer period of feedback about .1 before we even try to make .2 RC
+18:33:25 <danielbe_> jglick Basically. I mean we can also release .1 on Jan 4 so people actually get to upgrade in time
+18:33:31 <danielbe_> that would probably be even better
+18:33:56 <ogondza> in what way?
+18:34:34 <danielbe_> How many people do you expect will upgrade between Dec 21 and new years?
+18:34:46 <danielbe_> I expect LTS feedback will be delayed by that
+18:34:46 <recena> .1 is a full release and can be used. RCs are not deployed.
+18:35:18 <danielbe_> right, but if something's wrong with .1 we learn from its users and can fix .2
+18:36:02 <ogondza> danielbe_: if we want feedback sooner - so we should release .1 sooner
+18:36:13 <danielbe_> good point
+18:36:14 <recena> +1
+18:36:46 <danielbe_> So keep .1 release schedule, but move back .2 RC to allow for a longer feedback period?
+18:36:58 <ogondza> ack
+18:36:59 <danielbe_> to clarify, all future dates would shift accordingly
+18:37:59 <ogondza> action me!
+18:37:59 <danielbe_> decide now or write to the dev list and wait for feedback? WDYT ogondza ?
+18:38:46 <ogondza> #action ogondza postpone .2 RC by 2 weeks
+18:39:14 <danielbe_> #action ogondza postpone .2 RC by 2 weeks (all future dates postposed accordingly)
+18:40:13 <rtyler> heh
+18:40:15 <danielbe_> batmat awake by now?
+18:41:18 <danielbe_> doesn't look like it
+18:41:20 <danielbe_> next topic?
+18:41:37 <ogondza> sure
+18:41:37 <rtyler> #topic New Security Officer Announcement
+18:42:03 <rtyler> I haven't sent the email out, but wanted to take the opportunity to welcome Daniel Beck back for his second term as the Jenkins Security Officer
+18:42:29 <danielbe_> I really need to make this look more fun ;-)
+18:42:29 <batmat> danielbe_: here
+18:42:42 <rtyler> omg we're totally not doing the JDK8 topic again
+18:42:49 <danielbe_> lol
+18:42:56 <danielbe_> batmat read the log we have a path forward for JDK8
+18:43:07 <rtyler> #topic Next meeting
+18:43:10 <batmat> danielbe_: NO WE GO BACK!
+18:43:11 <batmat> :)
+18:43:18 <batmat> sure, I was not going to ask for it
+18:43:25 <recena> GREAT!
+18:43:50 <rtyler> so next meeting should be Dec 21st, but I'm not sure if people will all be on vacations that week
+18:45:17 <danielbe_> let's just schedule and see what happens
+18:45:28 * rtyler shrugs
+18:45:29 <rtyler> fine with me
+18:45:35 <rtyler> #info Next meeting Dec 21st
+18:45:37 <rtyler> #endmeeting

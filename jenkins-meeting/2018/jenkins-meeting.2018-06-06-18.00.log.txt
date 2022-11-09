@@ -1,0 +1,250 @@
+18:00:04 <danielbeck> #startmeeting
+18:00:04 <robobutler> Let the Jenkins meeting commence!
+18:00:07 <danielbeck> hi everyone!
+18:00:30 <rtyler> \o/
+18:00:30 <danielbeck> #info https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Jun6thmeeting
+18:00:39 <danielbeck> #topic Recap last meeting's actions
+18:00:44 <danielbeck> #chairs rtyler kohsuke
+18:00:45 <danielbeck> ops
+18:00:49 <rtyler> #chair
+18:00:53 <danielbeck> #chair rtyler kohsuke
+18:00:53 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:58 <danielbeck> that command has a response at least :)
+18:00:59 <rtyler> tracymiranda: o/
+18:01:04 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-05-23-18.02.html
+18:01:19 <danielbeck> so, not much from last meeting
+18:01:26 <danielbeck> #topic LTS status check
+18:01:28 <rtyler> heh
+18:01:31 <danielbeck> ogondza around?
+18:01:37 <ogondza> it was a quick one
+18:02:21 <danielbeck> It's LTS o'clock already
+18:02:34 <ogondza> right, I was late publishing the RC bits
+18:02:35 <rtyler> heh
+18:02:56 <danielbeck> ogondza are we still on for today, or should we postpone?
+18:03:07 <ogondza> though no problems ware reported
+18:03:23 <ogondza> I do not see that to be a reason to postpone the release
+18:03:43 <danielbeck> is the LTS empty? or is https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.121.1-fixed wrong?
+18:04:10 <ogondza> it is wrong
+18:04:12 <oleg-nenashev> We still need upgrade guidelines
+18:04:24 <danielbeck> oleg-nenashev yep, I'm late :-/
+18:04:26 <ogondza> fixed packaging and performance improvement on /pluginmanager/installed
+18:04:33 <danielbeck> #action danielbeck to write upgrade guide and changelog
+18:04:46 <oleg-nenashev> At least: exception serialization in Remoting - JENKINS-50237, permission changes - JENKINS-14713
+18:04:48 <danielbeck> #action ogondza to fix up Jira labels for 2.121.1 related issues
+18:05:06 <danielbeck> ogondza so we're ready to release?
+18:05:20 <ogondza> yep, fixing the labels right away
+18:06:00 <oleg-nenashev> FYI I have resolved  tickets for all Weekly releases since 2.121 and added lts-candidate labels
+18:06:11 <oleg-nenashev> There is quite a number of them
+18:06:59 <ogondza> hope to see as many of them tomorrow as I can manage...
+18:07:27 <danielbeck> ogondza so we're good to release based on testing?
+18:07:38 <ogondza> danielbeck, yes we are
+18:07:43 <danielbeck> #action kohsuke to release 2.121.1
+18:07:50 <danielbeck> this is the first release with the packaging ref, right?
+18:07:58 <ogondza> yes
+18:08:06 <rtyler> wooo
+18:08:20 <danielbeck> anything else about 2.121.1 or can we move on?
+18:08:28 <ogondza> discussed it with KK last time, it should be fine
+18:08:45 <ogondza> lets move on, then
+18:08:56 <tracymiranda> is that my cue?
+18:08:58 <danielbeck> #topic Trademark sublicensing request "CloudBees Jenkins Support"
+18:09:01 <danielbeck> tracymiranda it is!
+18:09:07 <danielbeck> #info https://groups.google.com/forum/#!msg/jenkinsci-dev/d1rrCcY-VyM/Pu4RdH2LBwAJ
+18:09:28 <tracymiranda> yes as per that thread I would like to seek approval on behalf of CloudBees
+18:09:51 <tracymiranda> discussion or straight to vote?
+18:09:52 <danielbeck> wait, wrong link
+18:10:01 <danielbeck> what did I link!?
+18:10:12 <tracymiranda> #info https://groups.google.com/d/msgid/jenkinsci-dev/bbed285d-2bc6-46c9-9334-484cbc014cf9%40googlegroups.com
+18:10:29 <danielbeck> THis is the correct link, there's two in the agenda: https://groups.google.com/d/msg/jenkinsci-dev/dvnua3N32C0/D-FBELTECwAJ
+18:10:42 <danielbeck> sorry about that
+18:11:04 <rtyler> our trademark guidelines can be found: https://jenkins.io/project/governance/#trademark
+18:11:04 <alyssat_> danielbeck: you scared me for a minute there :)
+18:11:09 <tracymiranda> probably my copy & pasting
+18:11:42 <danielbeck> alyssat_ just making sure you're awake :)
+18:11:58 <tracymiranda> so any questions, objections, etc?
+18:12:19 <oleg-nenashev> I abstain
+18:12:44 <rtyler> the mark being "CloudBees Jenkins Support" I don't see any problem with
+18:13:02 <tracymiranda> yes PM withdrew other request
+18:15:01 <alyssat_> +1
+18:15:59 * danielbeck wonders whether ogondza orrc or schristou have an opinion
+18:16:18 <oleg-nenashev> also orrc ^
+18:16:25 <oleg-nenashev> oh
+18:16:29 <bitwiseman> +1
+18:17:50 <rtyler> heh
+18:17:56 <danielbeck> well, an enthusiastic response this is not, but tracymiranda gave plenty of notice and nobody rejected it, so this looks to be passing?
+18:18:08 <danielbeck> last chance to speak up :)
+18:18:48 <rtyler> seems reasonable to me
+18:19:26 <rtyler> this is a pretty perfunctory process
+18:19:48 <danielbeck> #agreed The trademark sublicensing request for "CloudBees Jenkins Support" is approved
+18:19:58 <danielbeck> #action danielbeck to edit the wiki to record this decision
+18:20:27 <danielbeck> #topic Jenkins Ambassador program update
+18:20:48 <danielbeck> complete with a dead link to bitwiseman's GitHub repo :P
+18:20:54 <rtyler> hahaha
+18:20:57 <danielbeck> bitwiseman alyssat_ could you provide the reference for this? :)
+18:20:59 <rtyler> w00ps
+18:21:03 <bitwiseman> #info https://github.com/jenkinsci/jep/edit/master/jep/5/README.adoc
+18:21:05 <alyssat_> sorry my fault
+18:21:11 <danielbeck> bitwiseman thanks
+18:21:24 <danielbeck> #info https://github.com/jenkinsci/jep/blob/master/jep/5/README.adoc really
+18:21:41 <bitwiseman> heh, links are awesome all around today.
+18:21:55 <danielbeck> I'm so glad I'm in good company!
+18:22:08 * oleg-nenashev checks his links
+18:22:12 <danielbeck> alyssat_ bitwiseman you have the floor
+18:22:25 <bitwiseman> The Jenkins Ambassador program is kicking off.
+18:22:39 <oleg-nenashev> hm
+18:22:58 <bitwiseman> I'm currently making edits with the latest updates and decisions and will submit a PR today.
+18:23:30 <bitwiseman> (the name is definitely Jenkins Ambassador, for example)
+18:23:41 <danielbeck> bitwiseman ok. what's your agenda for today? raise awareness of the program? get some sort of approval?
+18:23:46 <tracymiranda> the process looks good
+18:23:59 <tracymiranda> the name I had one last thought about...
+18:24:25 <bitwiseman> At a recent community team meeting in SJC we came up with some ideas for nominees.
+18:24:36 <oleg-nenashev> Some of my comments have not been addressed yet, but I am looking forward to see bitwiseman's pull request
+18:24:57 <bitwiseman> oleg-nenashev: you can expect the edits to match what you got in email.
+18:25:03 <oleg-nenashev> yey
+18:25:14 <bitwiseman> was that on the ML?
+18:25:15 <tracymiranda> since that meeting was wondering if name should just be 'Jenkins Champion' as that will be familiar to e.g. Java community
+18:25:33 <alyssat_> I'd say our goal for today is to raise awareness about the program and that we'd like to begin implementing and getting some Ambassadors awarded sometime soon
+18:25:46 <rtyler> tracymiranda: there are lots of advocates out there (like me originally) who had no real relationship to the Java ecosystem
+18:25:49 * rtyler shrugs
+18:25:59 <rtyler> (I still don't)
+18:26:02 <bitwiseman> and that final approval of new ambassadors will be done in this meeting.
+18:26:09 <bitwiseman> future meetings.
+18:26:10 <oleg-nenashev> I would prefer Champion to Ambassador, but some differenciation would be useful
+18:26:41 <oleg-nenashev> We already have JEP which overlap with Java
+18:27:12 <danielbeck> aren't our JEPs based more on PEPs?
+18:27:13 <bitwiseman> #info Discussion thread: https://groups.google.com/d/topic/jenkinsci-dev/12D2tWxO6mM/discussion
+18:27:20 <rtyler> danielbeck: they are
+18:27:33 <oleg-nenashev> for sure
+18:27:36 <rtyler> "based" is really more copied 100% :P
+18:27:59 <oleg-nenashev> we changed a lot in JEP-1, so not 100% for sure :)
+18:28:06 <oleg-nenashev> But the acronym is same
+18:28:17 <bitwiseman> danielbeck: the acronym collides with Java Enhancement Proposal.
+18:28:26 <danielbeck> (FTR Java's JEP-200 also a train wreck :P)
+18:28:46 <oleg-nenashev> JEP-261 is a train wreck
+18:28:47 <bitwiseman> Returning to the topic at hand.
+18:28:48 <rtyler> what the heck does the JEP acronym have to do with our current topic?
+18:28:52 <oleg-nenashev> JEP-200 is fine actually
+18:29:12 <oleg-nenashev> Yeah, sorry
+18:29:15 <danielbeck> bitwiseman so it looks like we can expect some updates soon?
+18:29:28 <bitwiseman> danielbeck: Ye.
+18:30:00 <bitwiseman> danielbeck: key among them is that this group will be making the final approvals of new Ambassadors.
+18:31:11 <danielbeck> bitwiseman will the format be similar to our usual approach of proposing on the dev list, then hopefully having a clear consensus here?
+18:31:36 <bitwiseman> danielbeck: exactly.
+18:33:13 <danielbeck> bitwiseman is that part of your upcoming updates?
+18:33:39 <danielbeck> seems to me there's still quite a few moving parts in that proposal
+18:33:49 <bitwiseman> danielbeck: yes, it is also, in alyssa's last reply on the thread linked.
+18:34:28 <danielbeck> ok
+18:34:42 <danielbeck> I assume we'll get an update on the dev list once the next version is out?
+18:34:58 <bitwiseman> yes.
+18:35:34 <danielbeck> bitwiseman alyssat_ anything else we should look out for in that proposal? Otherwise we still have a bit of agenda to get through today, so I propose we move on
+18:35:45 <bitwiseman> Also, start thinking of nomminees.
+18:35:58 <danielbeck> good point
+18:36:06 <alyssat_> I don't have anything
+18:36:13 <bitwiseman> And that is it for me.
+18:36:23 <danielbeck> thanks!
+18:36:27 <danielbeck> #topic GSoC status check
+18:36:30 <danielbeck> oleg-nenashev this is yours
+18:36:36 <oleg-nenashev> o/
+18:36:50 <oleg-nenashev> #info: GSoC: https://jenkins.io/projects/gsoc/
+18:37:43 <oleg-nenashev> So now we have 3 active projects. So good so far. All projects got progress and some community traction, I hope we will have alpha releases in Mid June
+18:37:51 <rtyler> \o/
+18:37:54 <danielbeck> \o/
+18:38:17 <oleg-nenashev> #info June 15 is a evaluation deadline
+18:38:34 <oleg-nenashev> #action oleg_nenashev to set up public meeting with project demos
+18:38:51 <oleg-nenashev> #actions students to create blog posts, etc.
+18:38:53 <tracymiranda> is there a demo day sometime?
+18:39:02 <oleg-nenashev> Yes
+18:39:04 <oleg-nenashev> TBA
+18:39:09 <tracymiranda> great
+18:39:12 <oleg-nenashev> Likely end of the next week
+18:39:19 <oleg-nenashev> Of course, we will do HoA
+18:39:29 <oleg-nenashev> But probably it's too early for JOM
+18:39:42 * tracymiranda is struggling with the TLAs
+18:39:51 <oleg-nenashev> Jenkins Online Meetup
+18:39:55 <danielbeck> Hangout on Air
+18:39:58 <tracymiranda> :)
+18:39:59 <tracymiranda> thx
+18:40:02 <oleg-nenashev> yw
+18:40:15 <oleg-nenashev> Any questions?
+18:40:39 <danielbeck> looking forward to the demos :)
+18:40:51 <tracymiranda> yes, same!
+18:40:56 <oleg-nenashev> Yeah, we have much more collaboration this year
+18:40:58 <danielbeck> so other than "are we there yet?", no questions
+18:41:39 <oleg-nenashev> E.g. in Simple PR Job Plugin we apparently use Configuration As Code plugin for some integrations
+18:42:07 <oleg-nenashev> "are we there yet?" ?
+18:42:15 <danielbeck> joke :)
+18:42:19 <danielbeck> will that tie student success to casc releases?
+18:42:28 <oleg-nenashev> nope
+18:42:35 <danielbeck> ok, then that should be fine
+18:42:36 <oleg-nenashev> Risk Management 101
+18:42:49 <tracymiranda> is there a plugin for that?
+18:42:56 <tracymiranda> ;)
+18:43:07 * rtyler booes
+18:43:10 <danielbeck> it's a thing, so there's a plugin for it
+18:43:11 * rtyler throws tomatoes at tracymiranda
+18:43:13 <danielbeck> moving on…
+18:43:18 <danielbeck> #topic Update: Jenkins & Java 10 Online Hackathon
+18:43:21 <oleg-nenashev> There are many plugins for risk mismanagement around :)
+18:43:23 <danielbeck> another one from oleg-nenashev
+18:43:53 <oleg-nenashev> #info  https://groups.google.com/forum/#!topic/jenkinsci-dev/FdCvQlscl_I
+18:44:08 <oleg-nenashev> Wow, I didn't mess up the link
+18:44:21 <danielbeck> boo
+18:44:25 <tracymiranda> hehe
+18:44:29 <tracymiranda> I'm already signed up!
+18:44:41 <rtyler> heh
+18:44:53 <oleg-nenashev> So yeah, in 2 weeks we are going to have an online hackathon to get some progress on Java 10 stories
+18:45:04 <rtyler> oleg-nenashev: just out of my own curiosity, do you think there are going to be tons of core PRs that weeks?
+18:45:27 <oleg-nenashev> As a guy who routes Jenkins JIRA issues , I am personally invested to get some progress there :)
+18:45:50 <oleg-nenashev> rtyler: TBD, but we will likely have some PRs
+18:46:00 <tracymiranda> depends what swag we offer :)
+18:46:09 <danielbeck> rtyler any particular reason you're asking?
+18:46:25 <oleg-nenashev> I am the core maintainer, so I will do the core reviews & help ready PRs to get landed
+18:46:27 <danielbeck> For example a need to get some organized code review going?
+18:46:29 <oleg-nenashev> Same for Rmoting
+18:46:58 <oleg-nenashev> For Pipeline we are also going to find some review capacity
+18:47:06 <rtyler> danielbeck: capcaity planning on ci.jenkins.io
+18:47:09 <danielbeck> rtyler ah
+18:47:12 <rtyler> core PRs are pretty heavy
+18:47:14 <oleg-nenashev> I anticipate Pipeline to be the most hot area
+18:47:17 <danielbeck> rtyler perhaps also a java 10 option to build core? :)
+18:47:22 <rtyler> just want to make sure we can support the hackers as much as possible
+18:48:08 <oleg-nenashev> rtyler: I will make sure to land https://github.com/jenkinsci/jenkins/pull/3438 so that we do not run ATH each time
+18:48:17 <oleg-nenashev> Should help a bit, right?
+18:48:31 <danielbeck> oleg-nenashev do we already have responses? or still too early?
+18:48:39 <oleg-nenashev> danielbeck: 4 responses
+18:48:50 <tracymiranda> cool, just one hour in!
+18:48:55 <oleg-nenashev> #info We already have 4 responders to the hackathon invite
+18:48:59 <danielbeck> nice
+18:49:11 <oleg-nenashev> #action oleg_nenashev to blogpost the announcement
+18:49:23 <tracymiranda> i will also promote next week at eclipsecon, see if I can arm twist some folks there to join
+18:49:43 <oleg-nenashev> #action oleg_nenashev to work with Infra team to ensure that our INFRA is ready
+18:49:49 <rtyler> INFRA!
+18:49:58 <oleg-nenashev> thanks tracymiranda!
+18:50:35 <bitwiseman> oleg-nenashev: should a create a blog post based on your email?
+18:50:41 <bitwiseman> shall I?
+18:50:47 <oleg-nenashev> Will create INFRA ticket and appropriate Sprints & Co
+18:51:19 <oleg-nenashev> bitwiseman: If you have some capacity, go for it? I am working on some artwork & Co to prettify the announcement
+18:51:31 <oleg-nenashev> no "?"
+18:52:01 <tracymiranda> a nice image with dates would be good for sharing on social media
+18:52:36 <bitwiseman> tracymiranda: +1
+18:52:48 <oleg-nenashev> #action all interested contributors to RSVP here: https://docs.google.com/forms/d/1ReYyuyCGC0PIz2quh6XehnjpH2K52inx-veHLPlNreE/
+18:53:03 <danielbeck> \o/
+18:53:12 <danielbeck> oleg-nenashev I think that's it? Or anything else we need to know about this?
+18:53:14 <bitwiseman> oleg-nenashev: not that link
+18:53:23 <oleg-nenashev> I am thinking about reworked https://jenkins.io/images/logos/formal/formal.png with a Java cup
+18:53:25 <bitwiseman> That is the edit link. :(
+18:53:29 <oleg-nenashev> Suggestions welcome
+18:54:06 <danielbeck> bitwiseman post the correct link please
+18:54:17 <oleg-nenashev> bitwiseman: Open in the incognito mode. I just granted you permissions :P
+18:54:18 <bitwiseman> #action all interested RSVP here: https://goo.gl/forms/ybEfKw6TB6WZaszM2
+18:54:39 <danielbeck> bitwiseman thanks
+18:54:43 <tracymiranda> good idea for logo
+18:55:01 <oleg-nenashev> the links point to the same place tho
+18:55:07 <oleg-nenashev> whatever
+18:55:23 <oleg-nenashev> So, any other questions?
+18:55:48 <danielbeck> doesn't look like it
+18:56:00 <danielbeck> thanks everyone for your participation today!
+18:56:05 <danielbeck> #topic next meeting
+18:56:15 <danielbeck> that would be June 20, same time
+18:56:25 <rtyler> \o/
+18:56:38 <tracymiranda> thanks all
+18:56:42 <danielbeck> #endmeeting

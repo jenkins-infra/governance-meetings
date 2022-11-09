@@ -1,0 +1,189 @@
+18:01:10 <kohsuke> #startmeeting
+18:01:10 <robobutler> Let the Jenkins meeting commence!
+18:01:22 <kohsuke> #chair rtyler
+18:01:22 <robobutler> Current chairs: kohsuke rtyler
+18:01:33 <kohsuke> #topic action recap
+18:02:24 <kohsuke> #action kohsuke to release 2.150.3
+18:02:47 <kohsuke> I need to finish off the broken repo update part
+18:02:57 <kohsuke> Duh
+18:02:59 <kohsuke> Thanks
+18:03:01 <rtyler> :)
+18:03:08 <oleg-nenashev> ty
+18:03:14 <oleg-nenashev> I was googling the command
+18:03:15 <kohsuke> ogondza to update calendar with 2.164 based releases
+18:03:23 <ogondza> done that
+18:03:28 <kohsuke> tracymiranda to ask outreachy about impact of move to CDF
+18:03:57 <kohsuke> Not sure if she's around
+18:04:12 <kohsuke> Let's just carry forward for now
+18:04:13 <kohsuke> #action tracymiranda to ask outreachy about impact of move to CDF
+18:04:24 <oleg-nenashev> Hmm
+18:04:34 <kohsuke> Shall we move on to the next topic?
+18:04:41 <oleg-nenashev> Does it mean that we do not vote for budget approvals today?
+18:04:52 <oleg-nenashev> IIRC it was critical for Outreachy
+18:05:18 <rtyler> yeah, I don't recall the timeline on that off the top of my head
+18:05:20 <oleg-nenashev> or maybe the next meeting is also fine
+18:05:49 <kohsuke> Let's keep moving, I can ping tracy in the mean time
+18:05:50 <rtyler> march 5th is the last date to sign up
+18:05:52 <tracymiranda> hi
+18:05:56 <tracymiranda> sorry just joined
+18:06:04 <tracymiranda> yes heard back from outreachy and it is fine
+18:06:09 <tracymiranda> they can be flexible on invoice
+18:06:25 <oleg-nenashev> does it mean that we can vote next time?
+18:06:46 <oleg-nenashev> after March 5th.
+18:06:57 <oleg-nenashev> likely these are separate questions
+18:08:42 <rtyler> tracymiranda: thoughts on timeline?
+18:09:10 <tracymiranda> yeah I think we need a vote today
+18:09:19 <tracymiranda> march 12 is last day to confirm if we join
+18:09:37 <tracymiranda> the sooner we join we can get projects listed
+18:09:58 <kohsuke> OK. Let's add that to the agenda items
+18:10:13 <rtyler> my understanding of the conversation on the mailing list and the last meeting was that nobody objected to another outreachy intern, it was more a question of mentorship capacity
+18:10:22 <rtyler> but awyways, you're running the show here kohsuke
+18:10:24 <rtyler> :)
+18:10:35 * rtyler might haveto get off the bus in the next 5 minutes
+18:10:41 <tracymiranda> to tylers question, matt sicker would like to continue...
+18:10:59 <oleg-nenashev> CDF before we have issues with the bus factor ?
+18:11:10 <rtyler> :)
+18:11:22 <kohsuke> #topic outreachy status and vote
+18:11:31 * kohsuke makes the formality match the reality
+18:12:08 <tracymiranda> thanks
+18:12:29 <rtyler> I am in favor of budgeting an outreachy intern this summer
+18:12:33 <oleg-nenashev> I am +0.1, because budgeting was not  requested in the mailing list before the meeting
+18:12:34 <tracymiranda> +1
+18:13:25 <oleg-nenashev> I may have missed the request tho. Let's try to make sure that all budgeting topics are discussed in advanced in public
+18:14:49 <kohsuke> I just caught up with the context. I'm very happy to get the funding blessed but indeed the mentor bandwidth problem needs a solution separately.
+18:15:15 <kohsuke> Is Matt double-booked with GSoC?
+18:15:21 <oleg-nenashev> nope
+18:15:36 <kohsuke> So I guess we have one mentor secured minimally
+18:16:10 <tracymiranda> yes, I propose based on that to move forward with suggesting we fund 1 spot
+18:16:24 <tracymiranda> but oleg is correct I did not pre-seed this in mailing list...
+18:17:04 <kohsuke> Yeah, that would have been nicer, but I think we can still vote and approve the budget
+18:17:11 <oleg-nenashev> This is a yellow flag for me, not a blocker in this particular case
+18:17:14 <kohsuke> Given the deadline and all
+18:17:30 <kohsuke> Here's my +1
+18:17:40 <oleg-nenashev> If we do Outreachy in summer, weill we still have funds for 2020 Winter?
+18:18:11 <rtyler> yes
+18:18:27 <oleg-nenashev> Then should be okay
+18:18:56 <oleg-nenashev> I believe that the budgets and spendings will change by magnitude in CDF
+18:19:04 <kohsuke> The amount is 5000 USD for 1 spot?
+18:19:04 <tracymiranda> yes
+18:19:15 <kohsuke> I vaguely recalled it was less than that
+18:19:49 <tracymiranda> actually is 6500
+18:20:19 <kohsuke> OK
+18:20:28 <kohsuke> Any objections, other thoughts before we conclude this vote?
+18:20:47 <kohsuke> Going ...
+18:20:57 <kohsuke> Going twice ...
+18:21:28 <kohsuke> #agreed 6500 USD expenditure for 1 spot for 2019 summer round of Outreachy participation
+18:21:37 <kohsuke> #topic LTS status check
+18:21:39 <tracymiranda> hooray
+18:22:01 <rtyler> time to get off the bus, A+ for CDF, toodles
+18:22:10 <ogondza> there are no backports suggested as we choose pretty recent baseline
+18:22:51 <ogondza> I doubt there is anything unussual that would not be discussed as a part of java 11 readiness
+18:23:16 <kohsuke> INFRA-2016 that was blocking 2.150.3 is solved so I need to finish that up
+18:23:16 <ogondza> unless there are objections, I will push an rc tomorrow morning (UTC)
+18:23:27 <oleg-nenashev> +1 from me
+18:23:31 <ogondza> kohsuke: before the rc?
+18:23:42 <oleg-nenashev> I built the stable branch today, looks fine
+18:24:41 <kohsuke> ogondza: I'm sorry if I confused you. I started a release of 2.150.3 on Feb 13th that didn't finish due to INFRA-2016
+18:24:52 <kohsuke> AFAIK I still need to conclude it
+18:25:00 <ogondza> kohsuke: I got that. thanks for doing that
+18:25:08 <oleg-nenashev> we also had glitches with Native package releases in .3
+18:25:15 <kohsuke> I think you are talking about 2.164.1
+18:25:32 <ogondza> I am wondering if there are any timing constrains relevent to .1
+18:25:38 <ogondza> i presume there are none
+18:26:41 <oleg-nenashev> we might have a limited bandwidth in the Java 11 support team on the week of Mar 13
+18:27:10 <oleg-nenashev> But I believe we will be able to do initial triage for Blocker/Critical issues if something goes wrong
+18:28:00 <oleg-nenashev> But having RC tomorrow would be an advantage for us. More testing
+18:28:24 <ogondza> is there anything else on RC alone?
+18:28:54 <ogondza> or we can move on?
+18:29:00 <oleg-nenashev> 🚢 🇮🇹
+18:29:07 <kohsuke> Not sure how to read that one
+18:29:15 <kohsuke> I guess it's a sign to move on?
+18:29:20 <kohsuke> #topic Java 11 readiness check
+18:29:34 <oleg-nenashev> hmm, okay
+18:30:01 <oleg-nenashev> So we have been testing 2.164 with Java 11 and Java 8, looks good so far
+18:30:49 <oleg-nenashev> ATH is fine (thanks to ogondza  and Ramon), PCT is also fine (kudos to batmat )
+18:31:18 <oleg-nenashev> There is a plan to run more tests, but I believe we can go forward with Java 11 GA in 2.164.1
+18:32:23 <oleg-nenashev> https://issues.jenkins-ci.org/browse/JENKINS-55202 is one of the outstanding issues we have, but it has a low installation number
+18:32:54 <oleg-nenashev> So... any objections if we announce Java 11 GA in 2.164.1 ?
+18:33:19 <oleg-nenashev> Documentation is also in place,  https://github.com/jenkins-infra/jenkins.io/pull/2097
+18:33:52 <oleg-nenashev> ^ esp. ogondza danielbe_ batmat markewaite
+18:34:07 <kohsuke> Why don't we announce Java 11 GA on a mainline release?
+18:34:24 <ogondza> I can use a review of javadoc update to render java 11 generated report: https://github.com/jenkinsci/javadoc-plugin/pull/10
+18:34:49 <ogondza> otherwise, this is great and we should scream we are ready
+18:35:01 <oleg-nenashev> kohsuke: We are finishing some investigations, but generally we needto sign it off in Platform SIG
+18:35:11 <oleg-nenashev> which *may* happen tomorrow
+18:35:34 <oleg-nenashev> Announcement blogpost draft: https://github.com/jenkins-infra/jenkins.io/pull/2101
+18:35:52 <kohsuke> The point is, it feels a little odd that a new "feature" is first announced on a LTS release
+18:36:29 <oleg-nenashev> We did preview availability for Weekly before
+18:37:12 <oleg-nenashev> Yes we could delay the GA announcement till .2 if we want to have a bigger gap between Weekly and GA announcements
+18:37:42 <oleg-nenashev> ogondza: Is javadoc release needed before the GA announcement?
+18:37:58 <ogondza> oleg-nenashev: low prio but yes
+18:38:15 <kohsuke> I'm still not sure if I'm getting my point across. I'm not asking for more delay or a bigger gap. If 2.164 is ready for Java 11, why don't we announce Java 11 GA with 2.164, which would naturally signal that 2.164.1 is Java 11 ready, too
+18:39:05 <oleg-nenashev> kohsuke: we have not fully completed testing by 2.164
+18:39:28 <kohsuke> But by the time you announce GA with 2.164.1, presumably we will, right?
+18:39:51 <oleg-nenashev> ogondza: thanks. I marked the issue correctly. It was not marked in JIRA/GitHub, so we did not scrub it as a Java 11 Support Team
+18:40:16 <oleg-nenashev> > But by the time you announce GA with 2.164.1, presumably we will, right?
+18:40:16 <oleg-nenashev> I think so. otherwise we should not do announcements
+18:40:24 * rtyler is now back, from the office
+18:41:01 <kohsuke> Right, so my question is, whenever we announce Java 11 GA, why are we doing that with 2.164.1 instead of 2.164?
+18:41:45 <oleg-nenashev> kohsuke:  the announcement will be for both Weekly and LTS , I believe
+18:41:51 <ogondza> I gues we do that for .1 and whatever weekly at that time
+18:42:10 <kohsuke> OK
+18:42:18 <oleg-nenashev> We will just announce Java 11 support post-factum. 2.164 was a silent launch
+18:42:29 <kohsuke> Yeah, exactly > oleg-nenashev
+18:42:43 <ogondza> though I agree it would make more sense to go for weakly first, though I like the platform SIG getting confident about that first
+18:43:12 <oleg-nenashev> I think we can discuss it tomorrow at the SIG meeting
+18:43:22 <ogondza> yep
+18:43:27 <kohsuke> Anything else on this?
+18:43:34 <oleg-nenashev> We did not have the sign-off discussion there yet
+18:43:38 <oleg-nenashev> Not from me
+18:43:44 <kohsuke> #topic GSoC update
+18:44:04 <oleg-nenashev> #info Jenkins project is accepted to GSoC 2019
+18:44:34 <kohsuke> Congrats!
+18:44:49 <oleg-nenashev> So yeah, it is a quick update. Everything is ready to roll on the website and in the process
+18:45:08 <oleg-nenashev> We have 27 project ideas and around 30 mentors
+18:45:53 <oleg-nenashev> #info We are still looking for new project ideas. If you are interested to be a mentor or to propose a project, please apply by March 11th
+18:46:05 <oleg-nenashev> More communications to come this week
+18:46:39 <oleg-nenashev> Any questions?
+18:46:59 <oleg-nenashev> I will try to send a detailed email to the dev list tomorrow
+18:47:22 <kohsuke> It'd be nice to be able to pool mentors across different efforts
+18:47:46 <kohsuke> We can conceive more programs, such as one of our own, beyond GSoC and Outreachy
+18:48:14 <oleg-nenashev> kohsuke: Would you be interested to run it? ;)
+18:48:17 <kohsuke> It's a little bit like how there's Ambassadors program and then (ideally/hopefully) different channels to engage them
+18:48:34 <oleg-nenashev> We definitely could do something in the Winter timeframe
+18:48:53 <kohsuke> oleg-nenashev: no, I'm just shooting crazy ideas to see if it hatches in somebody's minds
+18:49:18 <oleg-nenashev> That\s not a crazy idea
+18:49:24 <oleg-nenashev> just a matter of capacity
+18:49:33 <oleg-nenashev> We could do that
+18:49:49 <oleg-nenashev> And we will likely apply to Google Code-In this year
+18:49:58 <kohsuke> Anything more on this?
+18:50:03 <kohsuke> That's good to hear, oleg
+18:50:22 <oleg-nenashev> We had a discussion with tracymiranda about a shared pool for this year
+18:50:45 <oleg-nenashev> Generally GSoC mentors are welcome to cross-post their project ideas in Outreachy
+18:50:48 <tracymiranda> yeah, this would be great
+18:51:49 <kohsuke> #topic CDF move update
+18:52:04 <kohsuke> So the comment period ended last Friday
+18:52:26 <kohsuke> And we didn't get any input beyond what's already in public
+18:52:59 <kohsuke> So as the things stand at the moment, there still is a significant consensus among a small number of people who care about this.
+18:53:36 <kohsuke> rtyler and I will meet later today and I expect us to issue a statement to finalize the move very soon
+18:53:57 <kohsuke> Any addiition, rtyler? Any questions, anyone?
+18:54:14 <rtyler> nothing for me to add that I haven't already :)
+18:54:26 <oleg-nenashev> I may have missed the last feedback ping :(
+18:55:01 <oleg-nenashev> But anyway, I am +1 about CDF. The referenced docs look good for me
+18:55:14 <kohsuke> OK, good
+18:55:22 <kohsuke> You got me worried for a moment
+18:55:27 <rtyler> oblig party parrot
+18:55:40 <kohsuke> #topic next meeting
+18:55:46 <oleg-nenashev> What are the further steps? Does the Board proceed? Or do we have a formal vote in the co,,unity?
+18:56:27 <kohsuke> The next step is the announcement and the execution. The comment period was meant to replace a vote.
+18:56:48 <oleg-nenashev> okay
+18:57:45 <kohsuke> I believe I shared my plan with you off list, then I also laid that out in the announcement of the comment period.
+18:58:10 <oleg-nenashev> Yeah. I am fine with that
+18:58:20 <kohsuke> #topic next meeting
+18:58:46 <kohsuke> next meeting is 3/13 the usual time
+18:59:00 <rtyler> woopwoop
+18:59:03 <kohsuke> Not that it matters, but that's my father's birthday
+18:59:28 <kohsuke> And some of us will be live from half moon bay with more CDF updates to share
+18:59:45 <rtyler> that's going to be a busy week!
+18:59:48 <kohsuke> Thanks everyone, see you soon somewhere in the world
+18:59:55 <kohsuke> #endmeeting

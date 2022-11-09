@@ -1,0 +1,346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:02:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:02:10</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain rtyler abayer</span>
+<a name="l-4"></a><span class="tm">18:02:23</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:02:39</span><span class="nk"> &lt;kohsuke&gt;</span> The manual of the robobutler is http://meetbot.debian.net/Manual.html
+<a name="l-6"></a><span class="tm">18:02:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I was about to post that
+<a name="l-7"></a><span class="tm">18:02:50</span><span class="nk"> &lt;kohsuke&gt;</span> I think the only thing people need to remember is to use #info and #idea
+<a name="l-8"></a><span class="tm">18:02:55</span><span class="nk"> &lt;kohsuke&gt;</span> Sorry I stole your thunder
+<a name="l-9"></a><span class="tm">18:03:00</span><span class="nk"> &lt;rtyler&gt;</span> if you've not participated in a meeting before, I highly recommend reading that link folks
+<a name="l-10"></a><span class="tm">18:03:08</span><span class="nk"> &lt;rtyler&gt;</span> at least to get familiar with rodmidde
+<a name="l-11"></a><span class="tm">18:03:10</span><span class="nk"> &lt;rtyler&gt;</span> er
+<a name="l-12"></a><span class="tm">18:03:11</span><span class="nk"> &lt;rtyler&gt;</span> robobutler:
+<a name="l-13"></a><span class="tm">18:03:14 </span><span class="nka">* rtyler</span> <span class="ac">fails</span>
+<a name="l-14"></a><span class="tm">18:03:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">JIRA project split</span>
+<a name="l-15"></a><span class="tm">18:04:05</span><span class="nk"> &lt;kohsuke&gt;</span> I believe this one is driven by aheritier
+<a name="l-16"></a><span class="tm">18:04:06</span><span class="nk"> &lt;fcamblor&gt;</span> just in time :-)
+<a name="l-17"></a><span class="tm">18:04:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> perhaps a bit of background on this?
+<a name="l-18"></a><span class="tm">18:04:07</span><span class="nk"> &lt;aheritier&gt;</span> Ok. Let' talk about it.
+<a name="l-19"></a><span class="tm">18:04:22 </span><span class="nka">* rtyler</span> <span class="ac">hates to be "that guy"</span>
+<a name="l-20"></a><span class="tm">18:04:40</span><span class="nk"> &lt;aheritier&gt;</span> Yes few background about what users reported
+<a name="l-21"></a><span class="tm">18:04:44</span><span class="nk"> &lt;aheritier&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Jira+Projects+Split+and+Cleanup</span>
+<a name="l-22"></a><span class="tm">18:05:23</span><span class="nk"> &lt;aheritier&gt;</span> To sumup it is easy for them to report =&gt; there is only one jira. But it is difficult to search for issues
+<a name="l-23"></a><span class="tm">18:05:37</span><span class="nk"> &lt;aheritier&gt;</span> and to find in which version/plugin it was fixed
+<a name="l-24"></a><span class="tm">18:06:02</span><span class="nk"> &lt;aheritier&gt;</span> The main issue is that it is impossible in jira to manage versions for components
+<a name="l-25"></a><span class="tm">18:06:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">The main issue is that it is impossible in jira to manage versions for components</span>
+<a name="l-26"></a><span class="tm">18:06:23</span><span class="nk"> &lt;rtyler&gt;</span> (sorry)
+<a name="l-27"></a><span class="tm">18:06:24</span><span class="nk"> &lt;aheritier&gt;</span> Thus for now we didn't used versions as everything was smixed
+<a name="l-28"></a><span class="tm">18:06:37</span><span class="nk"> &lt;aheritier&gt;</span> (do not hesitate)
+<a name="l-29"></a><span class="tm">18:06:56</span><span class="nk"> &lt;rtyler&gt;</span> (okay)
+<a name="l-30"></a><span class="tm">18:06:58 </span><span class="nka">* rtyler</span> <span class="ac">giggles</span>
+<a name="l-31"></a><span class="tm">18:06:58</span><span class="nk"> &lt;ndeloof&gt;</span> would you like to use Jira the same way Apache Maven core &amp; plugin are managed ?
+<a name="l-32"></a><span class="tm">18:07:11</span><span class="nk"> &lt;aheritier&gt;</span> The proposal is to split the current project in 3 projects
+<a name="l-33"></a><span class="tm">18:07:17</span><span class="nk"> &lt;aheritier&gt;</span> (to start)
+<a name="l-34"></a><span class="tm">18:07:53</span><span class="nk"> &lt;rodmidde&gt;</span> What's the alternative? Any pros and cons?
+<a name="l-35"></a><span class="tm">18:08:23</span><span class="nk"> &lt;aheritier&gt;</span> <span class="cmd">#info </span><span class="cmdline">the goal is to split the current jenkins in one project dedicated to the core, one for plugins, one for infrastructure</span>
+<a name="l-36"></a><span class="tm">18:08:25</span><span class="nk"> &lt;kohsuke&gt;</span> I guess one alternative is status quo, another is to push it all the way and have one project per one plugin?
+<a name="l-37"></a><span class="tm">18:08:39</span><span class="nk"> &lt;fredg02&gt;</span> +1 for one project per plugin
+<a name="l-38"></a><span class="tm">18:08:56</span><span class="nk"> &lt;aheritier&gt;</span> @koksuke : yes
+<a name="l-39"></a><span class="tm">18:09:05</span><span class="nk"> &lt;fredg02&gt;</span> this would make automatic generation of release notes easier
+<a name="l-40"></a><span class="tm">18:09:16</span><span class="nk"> &lt;rodmidde&gt;</span> What is essentially the problem: version management of plugins and core?
+<a name="l-41"></a><span class="tm">18:09:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">note that this proposal doesn't preclude doing more later</span>
+<a name="l-42"></a><span class="tm">18:09:29</span><span class="nk"> &lt;aheritier&gt;</span> @rodmidde yes
+<a name="l-43"></a><span class="tm">18:09:32</span><span class="nk"> &lt;fcamblor&gt;</span> what are the drawback of 1 project per plugin ?
+<a name="l-44"></a><span class="tm">18:09:58</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">fcamblor:</span> lots and lots of work, lots and lots of projects. That's something that may be possible down the road, but I don't think that's the first thing we should do.
+<a name="l-45"></a><span class="tm">18:10:02</span><span class="nk"> &lt;aheritier&gt;</span> @fcamblor the fact to have to manage all of them ?
+<a name="l-46"></a><span class="tm">18:10:07</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-47"></a><span class="tm">18:10:33</span><span class="nk"> &lt;aheritier&gt;</span> yes more projects we have less it is easier to generate reports and to follow them
+<a name="l-48"></a><span class="tm">18:10:34</span><span class="nk"> &lt;rodmidde&gt;</span> Anyone experience with the JIRA-organisation of other projects?
+<a name="l-49"></a><span class="tm">18:10:39</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">aheritier:</span> what means "management" ?
+<a name="l-50"></a><span class="tm">18:10:53</span><span class="nk"> &lt;fcamblor&gt;</span> I mean ... creation of project could be automated
+<a name="l-51"></a><span class="tm">18:11:01</span><span class="nk"> &lt;fcamblor&gt;</span> creation of version for project too
+<a name="l-52"></a><span class="tm">18:11:03</span><span class="nk"> &lt;aheritier&gt;</span> @fcamblor : create them, manage versions, ensure they are up-to-date ...
+<a name="l-53"></a><span class="tm">18:11:15</span><span class="nk"> &lt;fcamblor&gt;</span> then every plugin could have its own maintainer
+<a name="l-54"></a><span class="tm">18:11:27</span><span class="nk"> &lt;aheritier&gt;</span> @fcamblor : I agree but in that case it is a pre-requisite to have 1 project per plugin
+<a name="l-55"></a><span class="tm">18:11:56</span><span class="nk"> &lt;aheritier&gt;</span> doing it manually is boring
+<a name="l-56"></a><span class="tm">18:11:56</span><span class="nk"> &lt;rodmidde&gt;</span> Administration/delegation is easier when having one project per plugin.
+<a name="l-57"></a><span class="tm">18:12:05</span><span class="nk"> &lt;fcamblor&gt;</span> for sure ! :)
+<a name="l-58"></a><span class="tm">18:12:14</span><span class="nk"> &lt;kohsuke&gt;</span> And I found in the past that automating JIRA related activities isn't often as easy as it should be.
+<a name="l-59"></a><span class="tm">18:12:17</span><span class="nk"> &lt;aheritier&gt;</span> I don't remember how many plugins we have but there are more than one hundred
+<a name="l-60"></a><span class="tm">18:12:20</span><span class="nk"> &lt;abayer&gt;</span> I personally am not a big fan of the every-plugin-gets-a-project option, due to the additional work in creating them all, making sure they're up to date with admin stuff, and the noise from h aving so many projects.
+<a name="l-61"></a><span class="tm">18:12:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> 300+
+<a name="l-62"></a><span class="tm">18:12:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> how do you feel about plugin developers opting for their own project
+<a name="l-63"></a><span class="tm">18:12:51</span><span class="nk"> &lt;fredg02&gt;</span> <span class="hi">abayer:</span> true
+<a name="l-64"></a><span class="tm">18:12:53</span><span class="nk"> &lt;aheritier&gt;</span> @kohsuke : +1000 remote APIs are not very powerful
+<a name="l-65"></a><span class="tm">18:12:54</span><span class="nk"> &lt;rodmidde&gt;</span> Can use the RPC-plugin, however being very outdated, will be replaced by a REST-version in upcoming JIRA versions.
+<a name="l-66"></a><span class="tm">18:12:54</span><span class="nk"> &lt;rtyler&gt;</span> like using JPLUGINS as an incubator
+<a name="l-67"></a><span class="tm">18:13:03</span><span class="nk"> &lt;abayer&gt;</span> (brb, adium locking up)
+<a name="l-68"></a><span class="tm">18:13:05</span><span class="nk"> &lt;rtyler&gt;</span> and when plugins are big enough/have enough activity, they earn their own project :P
+<a name="l-69"></a><span class="tm">18:13:23</span><span class="nk"> &lt;bap2000&gt;</span> how much extra effort would individual project be for the plugin developer?
+<a name="l-70"></a><span class="tm">18:13:38</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rodmidde:</span> yes I'm waiting for these new REST services :-)
+<a name="l-71"></a><span class="tm">18:13:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> the only down side for that is for those who are reporting bugs, it makes things harder
+<a name="l-72"></a><span class="tm">18:13:57</span><span class="nk"> &lt;abayer&gt;</span> I think allowing for individual projects to opt for that in the future would be ok, but first, I think we should get the core separated from the plugins as a whole. That's more important and a necessary step for any future options.
+<a name="l-73"></a><span class="tm">18:13:58</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> it is what we are doing for MOJO @ codehaus
+<a name="l-74"></a><span class="tm">18:14:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">just as a data point, even to implement the current automation in ircbot, I had to do some page scraping</span>
+<a name="l-75"></a><span class="tm">18:14:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that's a fair point
+<a name="l-76"></a><span class="tm">18:14:34</span><span class="nk"> &lt;aheritier&gt;</span> @kohsuke : I'm not surprized :(
+<a name="l-77"></a><span class="tm">18:14:36</span><span class="nk"> &lt;rodmidde&gt;</span> <span class="hi">@aheritier:</span> Have patience, we (Avisi) are also waiting for it, but I think we'll have to wait for JIRA5.
+<a name="l-78"></a><span class="tm">18:14:37</span><span class="nk"> &lt;kohsuke&gt;</span> So all in all I'm in favor of aheritier's proposal of starting small and split to 3.
+<a name="l-79"></a><span class="tm">18:14:45</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-80"></a><span class="tm">18:14:48</span><span class="nk"> &lt;rodmidde&gt;</span> +1
+<a name="l-81"></a><span class="tm">18:14:51</span><span class="nk"> &lt;fcamblor&gt;</span> can't we delegate creation of jira project for plugins to maintainers ? could jira permission allow this ?
+<a name="l-82"></a><span class="tm">18:14:53</span><span class="nk"> &lt;kohsuke&gt;</span> It seems like the good first step that doesn't preclude anything.
+<a name="l-83"></a><span class="tm">18:15:00</span><span class="nk"> &lt;fredg02&gt;</span> +1
+<a name="l-84"></a><span class="tm">18:15:03</span><span class="nk"> &lt;bap2000&gt;</span> +1
+<a name="l-85"></a><span class="tm">18:15:07</span><span class="nk"> &lt;ndeloof&gt;</span> +1
+<a name="l-86"></a><span class="tm">18:15:09</span><span class="nk"> &lt;aheritier&gt;</span> @fcamblor : we cannot. We need to be admin
+<a name="l-87"></a><span class="tm">18:15:18</span><span class="nk"> &lt;rodmidde&gt;</span> Can make separate projects along the way when needed.
+<a name="l-88"></a><span class="tm">18:15:22</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">aheritier:</span> ok too bad :(
+<a name="l-89"></a><span class="tm">18:15:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">fcamblor:</span> aheritier: in the current scheme, yes you can create your own component for a plugin
+<a name="l-90"></a><span class="tm">18:15:43</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> via the ircbot.
+<a name="l-91"></a><span class="tm">18:15:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">you just need to have a voice in the channel, which every committer should, and then you let the ircbot does it for you.</span>
+<a name="l-92"></a><span class="tm">18:16:02</span><span class="nk"> &lt;kohsuke&gt;</span> fcamblor should certainly have a voice
+<a name="l-93"></a><span class="tm">18:16:24</span><span class="nk"> &lt;abayer&gt;</span> (yes, he should, but I don't think that was what he was asking)
+<a name="l-94"></a><span class="tm">18:16:33</span><span class="nk"> &lt;aheritier&gt;</span> @kohsuke : yes for components. But for projects the ircbot must act as an admin (which is possible)
+<a name="l-95"></a><span class="tm">18:16:36</span><span class="nk"> &lt;fcamblor&gt;</span> +1 for split in 3
+<a name="l-96"></a><span class="tm">18:17:02</span><span class="nk"> &lt;kohsuke&gt;</span> On a  related topic, I have some idea.
+<a name="l-97"></a><span class="tm">18:17:11</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">kohsuke:</span> was not identified :)
+<a name="l-98"></a><span class="tm">18:17:36</span><span class="nk"> &lt;aheritier&gt;</span> Thus the biggest task in the migration is to recreate components in the new project. But we may automate it (perhaps with the bot)
+<a name="l-99"></a><span class="tm">18:18:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Normally, when you have versions in JIRA, the person who fix the issue marks the bug with a certain version. But I could more easily and more reliably do it by having a release process do "git rev-list" and identify fixes that went into that release.</span>
+<a name="l-100"></a><span class="tm">18:18:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">between backporting to the stable branch, marking bugs closed scm-issue-link, and branching/merging , I think this works</span>
+<a name="l-101"></a><span class="tm">18:19:03</span><span class="nk"> &lt;kohsuke&gt;</span> ... works better
+<a name="l-102"></a><span class="tm">18:19:22</span><span class="nk"> &lt;abayer&gt;</span> +1 to that - I am a big fan of automated changelog creation.
+<a name="l-103"></a><span class="tm">18:19:34</span><span class="nk"> &lt;aheritier&gt;</span> @kohsuke good idea but how do you put that in Jira ? The main goal is to allow to find easily issues and to know when they were fixed
+<a name="l-104"></a><span class="tm">18:19:38</span><span class="nk"> &lt;kohsuke&gt;</span> So my question is, and I think this is really just a JIRA question, but can "fixed in version X" be updated after the issue is closed?
+<a name="l-105"></a><span class="tm">18:19:46</span><span class="nk"> &lt;fredg02&gt;</span> I think it would really help to have fix versions once the split in 3 is done.
+<a name="l-106"></a><span class="tm">18:19:50</span><span class="nk"> &lt;kohsuke&gt;</span> And can it be fixed in multiple releases?
+<a name="l-107"></a><span class="tm">18:20:19</span><span class="nk"> &lt;aheritier&gt;</span> @kohsuke : the eternel question of reopening an issue vs cloning it
+<a name="l-108"></a><span class="tm">18:20:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">aheritier:</span> I think the end result is the same. People will see the version the fix is delivered in.
+<a name="l-109"></a><span class="tm">18:20:23</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">aheritier:</span> I'd imagine the release process knows what version it is in JIRA, and updates any bugs in its changelog with that as the fixed version
+<a name="l-110"></a><span class="tm">18:20:56</span><span class="nk"> &lt;aheritier&gt;</span> @kohsuke @abayer ok. +1. I like the idea
+<a name="l-111"></a><span class="tm">18:21:01</span><span class="nk"> &lt;code_fu_blkbelt&gt;</span> e
+<a name="l-112"></a><span class="tm">18:21:21</span><span class="nk"> &lt;kohsuke&gt;</span> If a single issue cannot be fixed in multiple branches, that's fine --- it could be just in comments, in custom fields, etc. I just wanted to know if it is possible.
+<a name="l-113"></a><span class="tm">18:21:38</span><span class="nk"> &lt;rodmidde&gt;</span> <span class="hi">@koksuke:</span> In my experience (using JIRA4) an issue can have more than one fix-version, is that what you need?
+<a name="l-114"></a><span class="tm">18:21:47</span><span class="nk"> &lt;kohsuke&gt;</span> yeah, that's perfect
+<a name="l-115"></a><span class="tm">18:21:49</span><span class="nk"> &lt;aheritier&gt;</span> in jira you can have several fixversions
+<a name="l-116"></a><span class="tm">18:21:59</span><span class="nk"> &lt;abayer&gt;</span> Yeah.
+<a name="l-117"></a><span class="tm">18:23:12</span><span class="nk"> &lt;aheritier&gt;</span> thus how do we organized that ?
+<a name="l-118"></a><span class="tm">18:23:23</span><span class="nk"> &lt;kohsuke&gt;</span> "that"?
+<a name="l-119"></a><span class="tm">18:23:31</span><span class="nk"> &lt;kohsuke&gt;</span> multiple fix versions?
+<a name="l-120"></a><span class="tm">18:23:35</span><span class="nk"> &lt;aheritier&gt;</span> we have to prepare and try to automate few things and communicate arround the change
+<a name="l-121"></a><span class="tm">18:23:44</span><span class="nk"> &lt;kohsuke&gt;</span> right
+<a name="l-122"></a><span class="tm">18:23:46</span><span class="nk"> &lt;aheritier&gt;</span> the migration and the new release process
+<a name="l-123"></a><span class="tm">18:23:52</span><span class="nk"> &lt;abayer&gt;</span> So I'm +1 on (a) automating changelog generation for core from git comments, (b) using that information to update fix versions once we've split core out in JIRA, and c) trying to make that functionality available for the plugins eventually as well, both changelog generation and JIRA version updating...
+<a name="l-124"></a><span class="tm">18:24:06</span><span class="nk"> &lt;abayer&gt;</span> (assuming some plugins eventually have their own projects)
+<a name="l-125"></a><span class="tm">18:24:44</span><span class="nk"> &lt;aheritier&gt;</span> +1 with @abayer 's list of tasks
+<a name="l-126"></a><span class="tm">18:25:15</span><span class="nk"> &lt;fcamblor&gt;</span> +1 that would be great :-)
+<a name="l-127"></a><span class="tm">18:25:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Come to think of it, I can do this "mark JIRA by release number" as a daemon that works externally, and thus make it work across all plugins</span>
+<a name="l-128"></a><span class="tm">18:25:22</span><span class="nk"> &lt;abayer&gt;</span> I can take a look at the version updating bit, I think. That'd be useful for some stuff we've got here at work too, I think.
+<a name="l-129"></a><span class="tm">18:25:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> you mean (b)?
+<a name="l-130"></a><span class="tm">18:26:10</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> Let's see if we can do it as much as possible within the release process. I'd like to make this as portable as possible, since it really does seem like it could ahve value elsewhere.
+<a name="l-131"></a><span class="tm">18:26:14</span><span class="nk"> &lt;abayer&gt;</span> Yeah.
+<a name="l-132"></a><span class="tm">18:26:53</span><span class="nk"> &lt;kohsuke&gt;</span> We can talk offline about this, but the beauty of doing this outside is de-coupling and idempotentness
+<a name="l-133"></a><span class="tm">18:27:09</span><span class="nk"> &lt;kohsuke&gt;</span> Daemon and JIRA can go offline from time to time and it won't affect anything
+<a name="l-134"></a><span class="tm">18:27:32</span><span class="nk"> &lt;kohsuke&gt;</span> We can also make it reusable elsewhere without too much effort.
+<a name="l-135"></a><span class="tm">18:27:35</span><span class="nk"> &lt;abayer&gt;</span> True. Yeah, let's talk offline. =)
+<a name="l-136"></a><span class="tm">18:27:42</span><span class="nk"> &lt;aheritier&gt;</span> @kohsuke @abayer yes. A very interesting and reusable project
+<a name="l-137"></a><span class="tm">18:27:47</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so back to logistics...
+<a name="l-138"></a><span class="tm">18:28:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">aheritier:</span> would you be able to help us figure out what needs to be done in JIRA?
+<a name="l-139"></a><span class="tm">18:29:09</span><span class="nk"> &lt;kohsuke&gt;</span> I'd imagine some programs/scripts need to be written and what now.
+<a name="l-140"></a><span class="tm">18:29:09</span><span class="nk"> &lt;fredg02&gt;</span> <span class="hi">abayer:</span> how would you filter git comments to only include comments in the changelog that are relevant for it?
+<a name="l-141"></a><span class="tm">18:29:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">fredg02:</span> man git-rev-list
+<a name="l-142"></a><span class="tm">18:29:46</span><span class="nk"> &lt;kohsuke&gt;</span> git rev-list previous-release-tag..release-tag
+<a name="l-143"></a><span class="tm">18:29:53</span><span class="nk"> &lt;fredg02&gt;</span> ok
+<a name="l-144"></a><span class="tm">18:30:06</span><span class="nk"> &lt;rtyler&gt;</span> that's how I generate deployment notes here :)
+<a name="l-145"></a><span class="tm">18:30:08</span><span class="nk"> &lt;aheritier&gt;</span> @kohsuke yes. I can drive the work. (sorry I I have one hand less because of my daughter.:-) )
+<a name="l-146"></a><span class="tm">18:30:31</span><span class="nk"> &lt;thafreeze&gt;</span> you should be able to hook in the workflow using a plugin
+<a name="l-147"></a><span class="tm">18:30:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">aheritier:</span> great
+<a name="l-148"></a><span class="tm">18:30:48</span><span class="nk"> &lt;fredg02&gt;</span> I'm still new to git...sorry :)
+<a name="l-149"></a><span class="tm">18:31:17</span><span class="nk"> &lt;aheritier&gt;</span> We try to start it ASAP ?
+<a name="l-150"></a><span class="tm">18:31:37</span><span class="nk"> &lt;aheritier&gt;</span> It a subject launched a long time ago
+<a name="l-151"></a><span class="tm">18:31:50</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-152"></a><span class="tm">18:31:51</span><span class="nk"> &lt;kohsuke&gt;</span> If it's something that can be done soon, sure.
+<a name="l-153"></a><span class="tm">18:32:38</span><span class="nk"> &lt;kohsuke&gt;</span> I assumed that we needed some small scale experiment for the script to be used
+<a name="l-154"></a><span class="tm">18:33:06</span><span class="nk"> &lt;rtyler&gt;</span> next?
+<a name="l-155"></a><span class="tm">18:33:08</span><span class="nk"> &lt;kohsuke&gt;</span> And other coordinations, like backing up JIRA, taking it publicly inacccessible while the work is in progress, and so on.
+<a name="l-156"></a><span class="tm">18:33:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> Yes. Let's take the details of the work outside this meeting
+<a name="l-157"></a><span class="tm">18:33:33</span><span class="nk"> &lt;kohsuke&gt;</span> Next agenda...
+<a name="l-158"></a><span class="tm">18:33:34</span><span class="nk"> &lt;rtyler&gt;</span> any #actions?
+<a name="l-159"></a><span class="tm">18:33:34</span><span class="nk"> &lt;hare_brain&gt;</span> Can we set up a testing instance of JIRA to try it out on, instead of using the production one?
+<a name="l-160"></a><span class="tm">18:33:35</span><span class="nk"> &lt;aheritier&gt;</span> @kohsuke +1
+<a name="l-161"></a><span class="tm">18:33:51</span><span class="nk"> &lt;aheritier&gt;</span> @hare_brain +1000 if possible
+<a name="l-162"></a><span class="tm">18:33:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> should be possible
+<a name="l-163"></a><span class="tm">18:33:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler and/or kohsuke to set up a test instance of JIRA for aheritier</span>
+<a name="l-164"></a><span class="tm">18:34:08</span><span class="nk"> &lt;aheritier&gt;</span> perfect
+<a name="l-165"></a><span class="tm">18:34:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> we should have a new machine hitting the OSUOSL soon for JIRA
+<a name="l-166"></a><span class="tm">18:34:34</span><span class="nk"> &lt;rtyler&gt;</span> hopefully we can just reuse the current JIRA VM for this and move production to the new box
+<a name="l-167"></a><span class="tm">18:34:51</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rtyler:</span> ok. it's perfect.
+<a name="l-168"></a><span class="tm">18:35:34</span><span class="nk"> &lt;kohsuke&gt;</span> I guess you mean keep the current JIRA VM as is,  put the sandbox in new machine, and when it's ready flip it over to the new machine, right?
+<a name="l-169"></a><span class="tm">18:35:59</span><span class="nk"> &lt;rtyler&gt;</span> or that
+<a name="l-170"></a><span class="tm">18:36:07</span><span class="nk"> &lt;aheritier&gt;</span> I thought it said the other way
+<a name="l-171"></a><span class="tm">18:36:08</span><span class="nk"> &lt;rtyler&gt;</span> who goes where doesn't really matter to me :P
+<a name="l-172"></a><span class="tm">18:36:14</span><span class="nk"> &lt;aheritier&gt;</span> :-)
+<a name="l-173"></a><span class="tm">18:36:41</span><span class="nk"> &lt;kohsuke&gt;</span> Because the end state is to run JIRA and Confluence on separate boxes, I thought.
+<a name="l-174"></a><span class="tm">18:36:50</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway. Will work out those details later
+<a name="l-175"></a><span class="tm">18:36:56</span><span class="nk"> &lt;kohsuke&gt;</span> Next agenda?
+<a name="l-176"></a><span class="tm">18:36:58</span><span class="nk"> &lt;aheritier&gt;</span> yes
+<a name="l-177"></a><span class="tm">18:36:59</span><span class="nk"> &lt;kohsuke&gt;</span> shall we?
+<a name="l-178"></a><span class="tm">18:37:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">"ULTIMATE ROBO LOGO SHOWDOWN" results</span>
+<a name="l-179"></a><span class="tm">18:37:19</span><span class="nk"> &lt;kohsuke&gt;</span> Just so that we can tell you that we can't just share it yet :-)
+<a name="l-180"></a><span class="tm">18:37:23</span><span class="nk"> &lt;rtyler&gt;</span> are we going to reveal it *now* :-O
+<a name="l-181"></a><span class="tm">18:37:25</span><span class="nk"> &lt;rtyler&gt;</span> hah
+<a name="l-182"></a><span class="tm">18:37:36</span><span class="nk"> &lt;rtyler&gt;</span> so I've got some things on this topic
+<a name="l-183"></a><span class="tm">18:37:36</span><span class="nk"> &lt;aheritier&gt;</span> :-)
+<a name="l-184"></a><span class="tm">18:37:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Overall the runoff vote received just shy of 2000 votes</span>
+<a name="l-185"></a><span class="tm">18:37:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I've got the branch that incorporated the new art work. It'll ship in the next release this weekend.</span>
+<a name="l-186"></a><span class="tm">18:38:05</span><span class="nk"> &lt;fcamblor&gt;</span> *suspens*
+<a name="l-187"></a><span class="tm">18:38:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">This evening at the Engine Yard meetup we'll be unveiling the logo, and I will also be updating jenkins-ci.org with a newer look</span>
+<a name="l-188"></a><span class="tm">18:38:36</span><span class="nk"> &lt;aheritier&gt;</span> We need to find how to hack @kohsuke 's private git repo ;-)
+<a name="l-189"></a><span class="tm">18:38:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> if you send a trojan via lolcats, you should be able to get root access :)
+<a name="l-190"></a><span class="tm">18:39:15</span><span class="nk"> &lt;aheritier&gt;</span> @rtyler :-)
+<a name="l-191"></a><span class="tm">18:39:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to unveil the logo at the Bay Area Meetup tonight</span>
+<a name="l-192"></a><span class="tm">18:39:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to update the site with the new logo/look</span>
+<a name="l-193"></a><span class="tm">18:39:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">everybody else to be shocked, amazed, delighted!</span>
+<a name="l-194"></a><span class="tm">18:39:58</span><span class="nk"> &lt;rtyler&gt;</span> next? :P
+<a name="l-195"></a><span class="tm">18:40:02</span><span class="nk"> &lt;kohsuke&gt;</span> Oh, one thing. I suspect we need to ask the submitter something about our rights to use the logo
+<a name="l-196"></a><span class="tm">18:40:16</span><span class="nk"> &lt;rtyler&gt;</span> I thought abayer already cleared all that at the start
+<a name="l-197"></a><span class="tm">18:40:17</span><span class="nk"> &lt;kohsuke&gt;</span> What should that be?
+<a name="l-198"></a><span class="tm">18:40:27</span><span class="nk"> &lt;rtyler&gt;</span> license-wise?
+<a name="l-199"></a><span class="tm">18:40:28</span><span class="nk"> &lt;magnayn&gt;</span> You mean they didn't sign a CLA?? :-)
+<a name="l-200"></a><span class="tm">18:40:38</span><span class="nk"> &lt;kohsuke&gt;</span> :-) Yes, CLA equivalent
+<a name="l-201"></a><span class="tm">18:40:48</span><span class="nk"> &lt;kohsuke&gt;</span> abayer:?
+<a name="l-202"></a><span class="tm">18:40:49</span><span class="nk"> &lt;fredg02&gt;</span> don't forget merchandise with the new logo!!
+<a name="l-203"></a><span class="tm">18:40:50</span><span class="nk"> &lt;ndeloof&gt;</span> yes, please avoid yet another trademark/licensing issue ! :P
+<a name="l-204"></a><span class="tm">18:41:00</span><span class="nk"> &lt;thafreeze&gt;</span> lol
+<a name="l-205"></a><span class="tm">18:41:04</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">rtyler:</span> stickers
+<a name="l-206"></a><span class="tm">18:41:09</span><span class="nk"> &lt;kohsuke&gt;</span> Should it be some kind of creative commons?
+<a name="l-207"></a><span class="tm">18:41:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">fredg02:</span> we're having little Jenkins robots being manufactured by the same children that make McDonald's toys as we speak
+<a name="l-208"></a><span class="tm">18:41:27</span><span class="nk"> &lt;thafreeze&gt;</span> coffee mucks
+<a name="l-209"></a><span class="tm">18:41:32</span><span class="nk"> &lt;fredg02&gt;</span> hehe
+<a name="l-210"></a><span class="tm">18:41:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to look into creating a new bunch of Jenkins logo stickers</span>
+<a name="l-211"></a><span class="tm">18:41:41</span><span class="nk"> &lt;abayer&gt;</span> I don't think we specified an exact license, no. But we can check with the winner to make sure it can be put under an appropriate creative commons.
+<a name="l-212"></a><span class="tm">18:42:02</span><span class="nk"> &lt;rtyler&gt;</span> since I know who it is, I don't anticipate any issues there :)
+<a name="l-213"></a><span class="tm">18:42:22</span><span class="nk"> &lt;kohsuke&gt;</span> I agree, but nonetheless it'd be good to put something in place.
+<a name="l-214"></a><span class="tm">18:42:26</span><span class="nk"> &lt;mwalling&gt;</span> <span class="hi">rtyler:</span> fedex me a stack and i might be able to do the east coast distribution
+<a name="l-215"></a><span class="tm">18:42:27 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-216"></a><span class="tm">18:42:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">mwalling to do east coast distribution (he has no idea what he's just signed up for)</span>
+<a name="l-217"></a><span class="tm">18:42:53</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-218"></a><span class="tm">18:42:55</span><span class="nk"> &lt;rodmidde&gt;</span> :D
+<a name="l-219"></a><span class="tm">18:43:04</span><span class="nk"> &lt;mwalling&gt;</span> <span class="cmd">#info </span><span class="cmdline">i said *MIGHT*</span>
+<a name="l-220"></a><span class="tm">18:43:15</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-221"></a><span class="tm">18:43:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler and kohsuke to follow up with the current thread with the winner to get some paper work in place to assure our rights to use the logo</span>
+<a name="l-222"></a><span class="tm">18:43:37</span><span class="nk"> &lt;kohsuke&gt;</span> OK, shall we move on?
+<a name="l-223"></a><span class="tm">18:43:57</span><span class="nk"> &lt;rtyler&gt;</span> let's do it
+<a name="l-224"></a><span class="tm">18:43:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">trademark registration status</span>
+<a name="l-225"></a><span class="tm">18:44:18</span><span class="nk"> &lt;kohsuke&gt;</span> So the status as of the end of the last meeting is ...
+<a name="l-226"></a><span class="tm">18:44:57</span><span class="nk"> &lt;kohsuke&gt;</span> that we are OK to get CloudBees' help in getting the trademark registered, but we want to be very clear that it won't own the trademark
+<a name="l-227"></a><span class="tm">18:45:13</span><span class="nk"> &lt;kohsuke&gt;</span> So I just uploaded the PDFs that pledge to that extent at https://wiki.jenkins-ci.org/pages/viewpageattachments.action?pageId=54722987&amp;sortBy=date&amp;highlight=Trademark+pledge.pdf&amp;
+<a name="l-228"></a><span class="tm">18:45:38</span><span class="nk"> &lt;kohsuke&gt;</span> I should put this in the minutes.
+<a name="l-229"></a><span class="tm">18:45:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info  </span><span class="cmdline">I just uploaded the PDFs that pledge to that extent at https://wiki.jenkins-ci.org/pages/viewpageattachments.action?pageId=54722987&amp;sortBy=date&amp;highlight=Trademark+pledge.pdf&amp;</span>
+<a name="l-230"></a><span class="tm">18:45:58</span><span class="nk"> &lt;kohsuke&gt;</span> One is from Sacha the CEO
+<a name="l-231"></a><span class="tm">18:46:08</span><span class="nk"> &lt;kohsuke&gt;</span> The other is from me
+<a name="l-232"></a><span class="tm">18:46:35</span><span class="nk"> &lt;kohsuke&gt;</span> Together it hopefully ensures that the trademark gets to the eventual umbrella org
+<a name="l-233"></a><span class="tm">18:46:41 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-234"></a><span class="tm">18:46:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">if you have any concerns about the wording, etc, please let me know.</span>
+<a name="l-235"></a><span class="tm">18:47:13</span><span class="nk"> &lt;kohsuke&gt;</span> Come to think of it, I should have PGP-signed them
+<a name="l-236"></a><span class="tm">18:48:00</span><span class="nk"> &lt;bap2000&gt;</span> yeah - what does 'Neuchâtel' mean? :-)
+<a name="l-237"></a><span class="tm">18:48:01</span><span class="nk"> &lt;aheritier&gt;</span> @kohsuke perfect for the non english native speaker I am
+<a name="l-238"></a><span class="tm">18:48:23</span><span class="nk"> &lt;hare_brain&gt;</span> @bap2000 I think that's the name of a city.
+<a name="l-239"></a><span class="tm">18:48:26</span><span class="nk"> &lt;aheritier&gt;</span> It is were sacha lives
+<a name="l-240"></a><span class="tm">18:48:36</span><span class="nk"> &lt;bap2000&gt;</span> cool
+<a name="l-241"></a><span class="tm">18:48:38</span><span class="nk"> &lt;aheritier&gt;</span> s/were/where
+<a name="l-242"></a><span class="tm">18:48:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">SHA1sum: 847b69dff6c5d0494bb760a3d562bdee6ebed71b  and 30803b0d711af09f2f02ca30db82b6f5fc71f7af</span>
+<a name="l-243"></a><span class="tm">18:48:38</span><span class="nk"> &lt;rodmidde&gt;</span> Yes, it's in Switzerland.
+<a name="l-244"></a><span class="tm">18:48:57</span><span class="nk"> &lt;kohsuke&gt;</span> If those look fair enough, and I think they are, I'll get this going.
+<a name="l-245"></a><span class="tm">18:49:18</span><span class="nk"> &lt;kohsuke&gt;</span> So do let me know quickly if you have issues.
+<a name="l-246"></a><span class="tm">18:49:21</span><span class="nk"> &lt;hare_brain&gt;</span> I have no problems with them.
+<a name="l-247"></a><span class="tm">18:49:25</span><span class="nk"> &lt;thafreeze&gt;</span> so...whats next?
+<a name="l-248"></a><span class="tm">18:49:28</span><span class="nk"> &lt;abayer&gt;</span> I'm good.
+<a name="l-249"></a><span class="tm">18:49:42</span><span class="nk"> &lt;aheritier&gt;</span> (a really beautiful little town for holidays :-) )
+<a name="l-250"></a><span class="tm">18:49:44</span><span class="nk"> &lt;kohsuke&gt;</span> Next is to actually file for a registration
+<a name="l-251"></a><span class="tm">18:50:01</span><span class="nk"> &lt;kohsuke&gt;</span> But that's offline, so moving on to the next agenda...
+<a name="l-252"></a><span class="tm">18:50:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">SFC/SPI/Apache status</span>
+<a name="l-253"></a><span class="tm">18:50:29</span><span class="nk"> &lt;kohsuke&gt;</span> Let me report the status..
+<a name="l-254"></a><span class="tm">18:51:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I've pinged SFC yesterday as we planned in the last minutes, but haven't heard back yet, understandably.</span>
+<a name="l-255"></a><span class="tm">18:51:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I've also initiated the next step with SPI, that is to ask for an application</span>
+<a name="l-256"></a><span class="tm">18:52:21</span><span class="nk"> &lt;kohsuke&gt;</span> I read their formal-looking documents and I think I understand how it works better
+<a name="l-257"></a><span class="tm">18:52:55</span><span class="nk"> &lt;kohsuke&gt;</span> ... in that it really is like SFC, in that it lets us use the benefit of their legal entity status, like taking donations, holding assets, etc.
+<a name="l-258"></a><span class="tm">18:53:36</span><span class="nk"> &lt;kohsuke&gt;</span> The project can be in any governance form that matches with their basic principles, and we can get out of it any time we want, if needed.
+<a name="l-259"></a><span class="tm">18:53:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">The next step is for them to decide if they can take us or not, and then we will have 60 days to decide if we want to get married like that or not.</span>
+<a name="l-260"></a><span class="tm">18:54:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#link </span><span class="cmdline">http://sfconservancy.org/ SFC</span>
+<a name="l-261"></a><span class="tm">18:54:26</span><span class="nk"> &lt;mwalling&gt;</span> lol at getting married
+<a name="l-262"></a><span class="tm">18:54:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#link </span><span class="cmdline">http://www.spi-inc.org/ SPI</span>
+<a name="l-263"></a><span class="tm">18:55:03</span><span class="nk"> &lt;kohsuke&gt;</span> I'll keep the list posted about the progress. The preliminary reaction was good, but that might change, who knows.
+<a name="l-264"></a><span class="tm">18:55:17</span><span class="nk"> &lt;rtyler&gt;</span> I'm looking forward to hearing back from SPI
+<a name="l-265"></a><span class="tm">18:55:27</span><span class="nk"> &lt;abayer&gt;</span> I'm still advocating for Apache - I think the additional structure it'd provide/mandate would provide more good than it'd hurt us.
+<a name="l-266"></a><span class="tm">18:55:33</span><span class="nk"> &lt;rtyler&gt;</span> our "relationship" with Oracle seems to frighten some folks :P
+<a name="l-267"></a><span class="tm">18:55:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> Yes, me too. I like that we can keep our way of doing things without forced changes.
+<a name="l-268"></a><span class="tm">18:56:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> any info from cutting on Jenkins + ASF and what flexibility we might have there?
+<a name="l-269"></a><span class="tm">18:56:35</span><span class="nk"> &lt;abayer&gt;</span> A fair amount. kohsuke, you took notes when Doug, you and I met, right?
+<a name="l-270"></a><span class="tm">18:56:39</span><span class="nk"> &lt;magnayn&gt;</span> I thought Apache had a 'all your infra must belong on us' mentality?
+<a name="l-271"></a><span class="tm">18:57:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> Yes, and magnayn: yes, it wants more uniformness from member projects
+<a name="l-272"></a><span class="tm">18:57:10</span><span class="nk"> &lt;aheritier&gt;</span> @rtyler : As PMC of the project you are free to decide about a lot of things
+<a name="l-273"></a><span class="tm">18:57:23</span><span class="nk"> &lt;ndeloof&gt;</span> Apache may indeed have some strict rules about licensing, hosted infra and so on
+<a name="l-274"></a><span class="tm">18:57:23</span><span class="nk"> &lt;kohsuke&gt;</span> But let's have this discussion in some other time
+<a name="l-275"></a><span class="tm">18:57:26</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">magnayn:</span> They do, but I don't really know if that's a problem - they're working on getting git going at ASF, which would be my biggest concern in that regard.
+<a name="l-276"></a><span class="tm">18:57:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> agreed
+<a name="l-277"></a><span class="tm">18:57:32</span><span class="nk"> &lt;magnayn&gt;</span> So no github then?
+<a name="l-278"></a><span class="tm">18:57:40</span><span class="nk"> &lt;magnayn&gt;</span> That'd be a dealbreaker for me
+<a name="l-279"></a><span class="tm">18:58:03</span><span class="nk"> &lt;kohsuke&gt;</span> For now, I just wanted to report the progress
+<a name="l-280"></a><span class="tm">18:58:08</span><span class="nk"> &lt;aheritier&gt;</span> @magnayn : at least no github for the main repo
+<a name="l-281"></a><span class="tm">18:58:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-282"></a><span class="tm">18:58:37</span><span class="nk"> &lt;abayer&gt;</span> fwiw, I don't think it's an either/or - the "official" repository would need to be ASF, but there's no reason why changes couldn't go through a github repo to get to the ASF repo.
+<a name="l-283"></a><span class="tm">18:58:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> wait wait wait
+<a name="l-284"></a><span class="tm">18:59:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Infrastructure update</span>
+<a name="l-285"></a><span class="tm">18:59:14</span><span class="nk"> &lt;rtyler&gt;</span> my turn to talk :)
+<a name="l-286"></a><span class="tm">18:59:20</span><span class="nk"> &lt;kohsuke&gt;</span> sure
+<a name="l-287"></a><span class="tm">18:59:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">We've cut a dramatic amount of our overages out for bandwidth from jenkins-ci.org by pushing more and more onto our mirror network</span>
+<a name="l-288"></a><span class="tm">18:59:54</span><span class="nk"> &lt;kohsuke&gt;</span> YUS!
+<a name="l-289"></a><span class="tm">18:59:59 </span><span class="nka">* kohsuke</span> <span class="ac">mimics rtyler</span>
+<a name="l-290"></a><span class="tm">19:00:09</span><span class="nk"> &lt;thafreeze&gt;</span> go for it ;)
+<a name="l-291"></a><span class="tm">19:00:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">We're still using up a lot of bandwidth (we're so popular!), so I'm actively working with Contegix to get a blessing on that machine to where we don't have to pay for it ;)</span>
+<a name="l-292"></a><span class="tm">19:00:45</span><span class="nk"> &lt;rtyler&gt;</span> hopefully by next meeting, I'll be able to have a better update on that
+<a name="l-293"></a><span class="tm">19:00:52</span><span class="nk"> &lt;kohsuke&gt;</span> We need to do a post of "we love our mirrors and we don't know what to do without you"
+<a name="l-294"></a><span class="tm">19:01:06</span><span class="nk"> &lt;kohsuke&gt;</span> OK. Can we move to the next meeting time?
+<a name="l-295"></a><span class="tm">19:01:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Still working on getting the two fancy new machines from Chicago to Oregon (OSUOSL)</span>
+<a name="l-296"></a><span class="tm">19:01:17</span><span class="nk"> &lt;fcamblor&gt;</span> If you want, I can speak about plugin-compat-tester
+<a name="l-297"></a><span class="tm">19:01:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">need to post a "we love you" post or seven</span>
+<a name="l-298"></a><span class="tm">19:01:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> the floor is yours
+<a name="l-299"></a><span class="tm">19:01:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">fcamblor:</span> do you think we can do it in the next meeting?
+<a name="l-300"></a><span class="tm">19:01:47</span><span class="nk"> &lt;fcamblor&gt;</span> (or we can report this to next meeting ... it should be okay there ;-))
+<a name="l-301"></a><span class="tm">19:01:54</span><span class="nk"> &lt;fcamblor&gt;</span> <span class="hi">kohsuke:</span> yup :)
+<a name="l-302"></a><span class="tm">19:01:58</span><span class="nk"> &lt;kohsuke&gt;</span> I'd really love to hear it
+<a name="l-303"></a><span class="tm">19:02:00</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-304"></a><span class="tm">19:02:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-305"></a><span class="tm">19:02:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-306"></a><span class="tm">19:02:05</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-307"></a><span class="tm">19:02:09</span><span class="nk"> &lt;rtyler&gt;</span> beat me to it
+<a name="l-308"></a><span class="tm">19:02:13</span><span class="nk"> &lt;fcamblor&gt;</span> I'm preparing a Wiki page describing everything :)
+<a name="l-309"></a><span class="tm">19:02:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">The natural candidate is two weeks from now, same time. Any other suggestions/objections?</span>
+<a name="l-310"></a><span class="tm">19:02:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-311"></a><span class="tm">19:03:00</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-312"></a><span class="tm">19:03:05</span><span class="nk"> &lt;kohsuke&gt;</span> OK.
+<a name="l-313"></a><span class="tm">19:03:18 </span><span class="nka">* rtyler</span> <span class="ac">runs to lunch</span>
+<a name="l-314"></a><span class="tm">19:03:19</span><span class="nk"> &lt;kohsuke&gt;</span> As usual, feel free to update the wiki for agenda items
+<a name="l-315"></a><span class="tm">19:03:30</span><span class="nk"> &lt;kohsuke&gt;</span> And with that, I think we call it a wrap
+<a name="l-316"></a><span class="tm">19:03:30</span><span class="nk"> &lt;rtyler&gt;</span> I'll mail the minutes to the lists when I get back if somebody hasn't already
+<a name="l-317"></a><span class="tm">19:03:36</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks everyone!
+<a name="l-318"></a><span class="tm">19:03:38</span><span class="nk"> &lt;ndeloof&gt;</span> +1, was my first meeting, very instructive
+<a name="l-319"></a><span class="tm">19:03:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

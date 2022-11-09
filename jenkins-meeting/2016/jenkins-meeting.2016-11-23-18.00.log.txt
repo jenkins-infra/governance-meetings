@@ -1,0 +1,186 @@
+18:00:12 <rtyler> #startmeeting
+18:00:12 <robobutler> Let the Jenkins meeting commence!
+18:00:22 <rtyler> #chair danielbeck kohsuke hare_brain rtyler
+18:00:22 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:00:25 <oleg-nenashev> o/
+18:00:46 <rtyler> #topic Last meeting actions
+18:00:56 <rtyler> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-11-09-18.01.html
+18:01:05 <rtyler> the only thing from that meeting was for danielbeck to send another UTC reminder to the dev list
+18:01:15 <rtyler> not sure if he did that but it doesn't raelly matter to discuss right now IMO
+18:01:31 <rtyler> danielbeck: you around either way?
+18:01:41 <danielbeck> I don't think I did
+18:01:45 <danielbeck> I was kind of distracted
+18:01:55 <rtyler> heh
+18:01:58 <rtyler> by what? xD
+18:02:02 <rtyler> anyways, moving on
+18:02:08 <rtyler> #topic Revival of the Klocwork plugin
+18:02:13 <ogondza> ehm
+18:02:15 <rtyler> oleg-nenashev: want to share the context for this topic?
+18:02:17 <rtyler> oh right
+18:02:20 <rtyler> missed a thing
+18:02:20 <oleg-nenashev> ehm?
+18:02:26 <rtyler> #topic LTS base line selection
+18:02:39 <rtyler> my bad ogondza, I'm used to the first item in the list being last meeting actions :p
+18:02:41 <ogondza> before we get there, 2.19.4 is ready for release
+18:02:43 <rtyler> but this time it was LTS
+18:02:55 <rtyler> #action kohsuke to cut 2.19.4 release
+18:03:06 <kohsuke> yay
+18:03:09 <oleg-nenashev> So, the new one...
+18:03:12 <ogondza> #info https://jenkins.io/changelog/
+18:03:40 <oleg-nenashev> 2.26..2.30 were broken
+18:03:48 <rtyler> 2.32?
+18:03:50 <oleg-nenashev> I would propose 2.31 or 2.32
+18:03:58 <oleg-nenashev> 2.32 is 2.31 + security
+18:04:05 <ogondza> oleg-nenashev: remoting 3.1?
+18:04:13 <rtyler> I know that vivekpandey had some changes the blue ocean folks were wishing would make it into the next LTS
+18:04:18 <rtyler> which weekly did those go into?
+18:04:34 <danielbeck> rtyler the broken ones, they're the reason they were broken
+18:04:43 <oleg-nenashev> rtyler: 2.30 was the final fix IIRC
+18:04:51 <rtyler> haha
+18:05:01 <danielbeck> 2.33 has the localization fix
+18:05:06 <danielbeck> but seems too recent
+18:05:14 <oleg-nenashev> ogondza: remoting 3.1 is in 2.31. It includes JENKINS- 39617 and diagnostic improvements
+18:05:27 <danielbeck> taking 2.31 seems ridiculous as 2.32 is security fixes that are on LTS anyway
+18:05:47 <oleg-nenashev> So remoting 3.1 should be more or less safe
+18:05:57 <ogondza> I lean towards .32 as well
+18:05:58 <danielbeck> So 2.32 seems reasonable unless we want to dive into later 2.2x releases and discuss backporting the brokenness fixes
+18:06:02 * rtyler suggest .32
+18:06:24 <oleg-nenashev> +1
+18:06:32 <oleg-nenashev> ogondza: WDYT?
+18:06:47 <danielbeck> oleg-nenashev what's the current state of ruby-runtime? All fixed from core POV?
+18:06:59 <oleg-nenashev> danielbeck: Yes
+18:07:00 <ogondza> #action ogondza to prepare next stable branch based on 2.32
+18:07:14 <oleg-nenashev> I restored Stapler binary compatibility in 2.30
+18:07:17 <rtyler> \o/
+18:07:20 <oleg-nenashev> At least I hope so
+18:07:56 <rtyler> does that cover this topic?
+18:08:17 <oleg-nenashev> imho yes
+18:08:33 <rtyler> ogondza: ?
+18:08:47 <ogondza> yes we are good
+18:08:54 <danielbeck> #agreed 2.32 is the next LTS baseline
+18:09:03 <rtyler> #topic Revival of the Klocwork plugin (for real this time)
+18:09:13 <oleg-nenashev> #info https://groups.google.com/forum/#!search/klocwork/jenkinsci-dev/U7SFVsjsHHQ/cA8SlsTgBQAJ
+18:09:44 <oleg-nenashev> So my question is "Does anybody disagree with the proposed plan?"
+18:10:00 <danielbeck> This is one of gbois's plugins… has anyone tried contacting him via gmail?
+18:10:05 <oleg-nenashev> yes
+18:10:08 <oleg-nenashev> No success
+18:10:17 <rtyler> based on the thread, it seems like multiple tried to contact multiple people :P
+18:10:36 <oleg-nenashev> 2 week timeout has passed as well
+18:10:58 <danielbeck> Anyone opposed to me trying again? In the past (this year) I've had some success in poking him
+18:11:01 <oleg-nenashev> The only problem is that the "main" fork is within the external GitHub org
+18:11:29 <oleg-nenashev> danielbeck: Yep, we can wait for a while
+18:11:40 <rtyler> I don't seem any problem with poking him again danielbeck, but I find it unfortunate that Jacob has had to sit on his hands for so long here
+18:11:45 <danielbeck> right
+18:11:50 <oleg-nenashev> Especially if we agree to grant the requester permissions to Jenkins org
+18:11:57 <oleg-nenashev> Without release permissions
+18:12:26 <rtyler> oleg-nenashev: what if we recommended jacob get the repo up to date in jenkinsci organization, and then hold off on a release for a week or two while danielbeck makes one last ditch effort to get gboissnot's response?
+18:12:46 <oleg-nenashev> rtyler: It is well aligned with my proposal
+18:12:46 <danielbeck> Right, basically concurrent with Oleg's "item 3" on the list
+18:12:47 <rtyler> then once the timer is up, jacob can release, but still do work in the meantime
+18:12:52 * rtyler nods
+18:12:58 <oleg-nenashev> ANy -1s?
+18:13:15 <danielbeck> which open item 4 would we do? New plugin, or take over?
+18:13:32 <oleg-nenashev> I would prefer 4.2
+18:13:42 <rtyler> ditto
+18:13:45 <oleg-nenashev> Much more convenient for users and contributors
+18:13:47 <danielbeck> agree
+18:14:10 <danielbeck> also, external plugin hosting is on thin ice with the project anyway, then abandoning? you're out.
+18:14:25 <oleg-nenashev> So, do we agree with the plan?
+18:14:30 <rtyler> looks to me like there's a good consensus on oleg's proposal with danielbeck concurrently reaching out again
+18:14:39 <rtyler> oleg-nenashev: think that would work for jacob?
+18:14:46 <oleg-nenashev> yep
+18:15:18 <oleg-nenashev> So, +1s?
+18:15:19 <oleg-nenashev> 5
+18:15:21 <oleg-nenashev> 4
+18:15:23 <oleg-nenashev> 3
+18:15:26 <rtyler> #agreed oleg-nenashev's proposal for reviving Klocwork plugin under the jenkinsci organization
+18:15:37 <rtyler> #action danielbeck to reach out to gboissinot one more time
+18:15:57 <rtyler> #action oleg-nenashev to help jacob get jenkinsci/klocwork-plugin revived and in releasable shape
+18:16:03 <rtyler> when should we consider the timeout?
+18:16:04 <oleg-nenashev> #action oleg_nenashev to grant write permissions to Jacob
+18:16:22 <oleg-nenashev> rtyler: 2 weeks IMHo - depends on Thales
+18:16:34 <oleg-nenashev> #action: oleg_nenashev to write to Thales
+18:16:54 <rtyler> alrighty, I think we can move forward then
+18:16:59 <oleg-nenashev> +1
+18:17:02 <rtyler> #topic GSoC2017 sync-up
+18:17:10 <rtyler> another segment on the Oleg Show!
+18:17:11 <rtyler> :)
+18:17:25 <kohsuke> I thought we are just done with '16!
+18:17:26 <oleg-nenashev> So, I just wonder if anybody wants to participate as a mentor or org admin
+18:17:42 <oleg-nenashev> kohsuke: We should start earlier on this year
+18:17:47 <kohsuke> Yes
+18:17:53 <rtyler> kohsuke: it's always summer somewhere
+18:18:06 <rtyler> oleg-nenashev: of course I'm fine being both org admin and mentor again
+18:18:38 <oleg-nenashev> Yep. I'm not sure I'm fine
+18:18:38 <danielbeck> isn't it time for our 2016 retrospective? i.e. "two hours of oleg yelling at us nonstop"?
+18:19:10 <rtyler> I think the biggest take-aways here are:
+18:19:15 <oleg-nenashev> This year soaked too much time from me. Student herding, mentor herding, sometimes org admin herding :(
+18:19:20 <rtyler> 1. We want to do GSoC again (duh)
+18:19:35 <rtyler> 2. We cannot rely on taking so much time from Oleg, so somebody needs to be Oleg for 2017
+18:19:50 <oleg-nenashev> At least a part of Oleg
+18:20:15 <rtyler> heh
+18:20:45 <rtyler> oleg-nenashev: honestly, I'm not sure we can resolve #2 in this meeting, but making sure everybody is aware of it is an important first step
+18:21:05 <oleg-nenashev> I can be an org admin  or a mentor. Being both requires better effort sharing and better student project process
+18:21:30 <rtyler> what we need is an 'owner' for the effort
+18:21:51 <oleg-nenashev> danielbeck: I do not want to yell on anybody. It was a spare-tme effort at the end of the day. But yeah we need to learn some lessons
+18:22:47 <rtyler> oleg-nenashev: I can take an action to start finding an 'owner' and org admin for GSoC 2017, so you're not that person again
+18:22:52 <rtyler> (even if that person ends up being me)
+18:22:53 <danielbeck> oleg-nenashev yes I wasn't quite serious. But mentoring problems resulted in a lot of extra work for you. Hence the importance of all the participants getting together and discuss what was good and bad
+18:23:08 <oleg-nenashev> I can be the GSoC officer again, but it will require a guaranteed time dedication from mentors
+18:23:33 <oleg-nenashev> So yes, we need a formal retrospective
+18:24:00 <oleg-nenashev> Maybe early December? (in 3 weeks)
+18:24:37 <rtyler> not sure, my december schedule is already messy :'(
+18:24:43 <oleg-nenashev> same shit
+18:24:48 <rtyler> but I can help drive that to alleviate the pressure on you oleg-nenashev
+18:25:06 <oleg-nenashev> would be nice
+18:25:11 <rtyler> #action rtyler to set up a December GSoC2016 retrospective discussion with mentors and org admins
+18:25:38 <rtyler> #action rtyler to help find new gsoc org admins for 2017
+18:25:52 <rtyler> does that cover this topic at least for now oleg-nenashev?
+18:25:57 <oleg-nenashev> Yep
+18:26:06 <rtyler> \o/
+18:26:11 <rtyler> #topic Azure migration / Infrastructure update
+18:26:24 <kohsuke> Now it's Tyler show
+18:26:27 <rtyler> I wanted to give a bit of a broader update
+18:26:41 <rtyler> The Azure migration is slowly but surely starting
+18:27:04 <rtyler> most of the efforts I have put in over the past weeks have been more around infrastructure design; attempting to be less stupid and naive than current infrastructure :)
+18:27:27 <rtyler> the way that I have been structuring this is with a basic format for design documents, persisted in Git here: https://github.com/jenkins-infra/iep
+18:27:53 <rtyler> #info ci.jenkins.io is already using Azure-based build/test infrastructure
+18:28:31 <rtyler> the current biggest risk is around access management unfortunately
+18:28:39 * oleg-nenashev wishes he could help. But no new OSS commitments till January at least
+18:28:52 <rtyler> Azure provides "Azure Active Directory" which governs all resources, similar to AWS' IAM
+18:28:55 <rtyler> and Jenkins has LDAP
+18:29:05 <rtyler> still waiting on feedback from our friends at Microsoft on how to bridge the gap
+18:29:28 <rtyler> if that's unpossible, then we'll have redundant access control between things like JIRA/Confluence/etc and "cloud things"
+18:29:57 <rtyler> without access management figured out, I cannot for example grant batmat access to some cloud resources for prototyping or fixing things
+18:30:17 <rtyler> so that's the only "risk" in the project I see right now, and there is of course work-arounds
+18:30:36 <rtyler> everything else is really just "work" insofar that code needs to be written, resources need to be provisioned, etc
+18:30:53 <rtyler> are there any concerns/questions about where we are/where we're going/etc?
+18:32:04 <danielbeck> any time table?
+18:32:19 <rtyler> for everything to be CLOUDIFIED?
+18:32:26 <danielbeck> CLOUD ALL THE THINGS
+18:32:28 <rtyler> heh
+18:32:30 <danielbeck> yes
+18:32:34 <danielbeck> or any milestones planned
+18:33:03 <danielbeck> or is it just a matter of looking through open INFRA issues?
+18:33:12 <rtyler> we should be migrated by April, my goal is to have fundamental infrastructure in place, distribution, and jenkins.io all hosted on Azure by our birthday
+18:33:15 <rtyler> (Feb 5)
+18:33:21 <rtyler> oh right
+18:33:46 <rtyler> #info currently, HTTPs debian/redhat/opensuse repositories serve their files via TLS-end-to-end from Azure blob storage
+18:34:04 <rtyler> there's a bug in there caused by some packaging rsync deleting htaccess files, but that for the most part is working well
+18:34:56 <rtyler> really once the fundamental infra (ldap, puppet, etc) is in Azure, everything else can move rather quickly
+18:35:21 <rtyler> any other questions?
+18:35:43 <kohsuke> nope
+18:36:04 <rtyler> alrighty then
+18:36:28 <rtyler> #info more questions can be asked, and maybe even answered, in #jenkins-infra during normal working PST hours :)
+18:36:31 <rtyler> #topic Next meeting time
+18:36:43 <rtyler> Dec 7th is what I see on the calendar
+18:37:09 <rtyler> doesn't look like there are any special holidays; I might be pre-occupied at that tiem so danielbeck or kohsuke will have to run
+18:37:19 <rtyler> (meeting with MS to get all my stupid azure questions answered that day)
+18:37:20 <kohsuke> I'll be in Europe on that day
+18:37:27 <rtyler> ruh roh
+18:37:37 <rtyler> I think they have internet in europe though
+18:37:56 <kohsuke> I'll check
+18:38:06 <rtyler> heh
+18:38:22 <kohsuke> see you all in Dec!
+18:38:34 <rtyler> #info next meeting dec 7th, same time
+18:38:37 <rtyler> #endmeeting

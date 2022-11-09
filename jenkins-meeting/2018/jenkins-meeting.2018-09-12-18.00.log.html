@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app213.us.archive.org';v.server_ms=360;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-09-12-18.00.log.html","20211027233640","https://web.archive.org/","web","/_static/",
+	      "1635377800");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:05</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:05</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:12</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler kohsuke</span>
+<a name="l-4"></a><span class="tm">18:00:12</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:17</span><span class="nk"> &lt;danielbeck&gt;</span> hi everyone!
+<a name="l-6"></a><span class="tm">18:00:21</span><span class="nk"> &lt;alyssat_&gt;</span> hello
+<a name="l-7"></a><span class="tm">18:00:35</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-8"></a><span class="tm">18:00:44</span><span class="nk"> &lt;danielbeck&gt;</span> this should be quick
+<a name="l-9"></a><span class="tm">18:00:51</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting actions</span>
+<a name="l-10"></a><span class="tm">18:00:57</span><span class="nk"> &lt;rtyler&gt;</span> oh right
+<a name="l-11"></a><span class="tm">18:01:02</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-08-29-18.04.html</span>
+<a name="l-12"></a><span class="tm">18:01:13</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev did you submit a summary blog post?
+<a name="l-13"></a><span class="tm">18:01:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> not yet, sry
+<a name="l-14"></a><span class="tm">18:01:49</span><span class="nk"> &lt;danielbeck&gt;</span> okay
+<a name="l-15"></a><span class="tm">18:01:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Waited for some retrospective feedback
+<a name="l-16"></a><span class="tm">18:02:08</span><span class="nk"> &lt;danielbeck&gt;</span> and that took longer than expected, right?
+<a name="l-17"></a><span class="tm">18:02:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> https://docs.google.com/document/d/1sJ9KIYHUoFWWE9HmoZC7HPDxm2i3uMFGQ2KKZ_1TTjk/edit just in case somebody interested
+<a name="l-18"></a><span class="tm">18:02:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, took longer. We needed two meetings to finish it
+<a name="l-19"></a><span class="tm">18:02:36</span><span class="nk"> &lt;danielbeck&gt;</span> ok
+<a name="l-20"></a><span class="tm">18:02:43</span><span class="nk"> &lt;danielbeck&gt;</span> alright, let's move on, that was the only action from last time
+<a name="l-21"></a><span class="tm">18:02:53</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-22"></a><span class="tm">18:02:55 </span><span class="nka">* rtyler</span> <span class="ac">claps</span>
+<a name="l-23"></a><span class="tm">18:03:03</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza this is yours
+<a name="l-24"></a><span class="tm">18:03:10</span><span class="nk"> &lt;ogondza&gt;</span> single back on top of 2.138
+<a name="l-25"></a><span class="tm">18:03:19</span><span class="nk"> &lt;ogondza&gt;</span> testing has revealed no regressions
+<a name="l-26"></a><span class="tm">18:03:31</span><span class="nk"> &lt;ogondza&gt;</span> nor there ware any complains from community testers
+<a name="l-27"></a><span class="tm">18:03:37</span><span class="nk"> &lt;ogondza&gt;</span> we are good to go
+<a name="l-28"></a><span class="tm">18:03:52</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to release 2.138.1</span>
+<a name="l-29"></a><span class="tm">18:03:54</span><span class="nk"> &lt;danielbeck&gt;</span> great
+<a name="l-30"></a><span class="tm">18:04:16</span><span class="nk"> &lt;danielbeck&gt;</span> well, that's it for this week
+<a name="l-31"></a><span class="tm">18:04:19</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-32"></a><span class="tm">18:04:20 </span><span class="nka">* rtyler</span> <span class="ac">claps</span>
+<a name="l-33"></a><span class="tm">18:04:23</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-34"></a><span class="tm">18:04:33</span><span class="nk"> &lt;danielbeck&gt;</span> we somehow managed to dodge the conference
+<a name="l-35"></a><span class="tm">18:04:47</span><span class="nk"> &lt;danielbeck&gt;</span> so the next meeting would be September 26
+<a name="l-36"></a><span class="tm">18:05:01</span><span class="nk"> &lt;rtyler&gt;</span> wunderbar
+<a name="l-37"></a><span class="tm">18:05:06</span><span class="nk"> &lt;danielbeck&gt;</span> Are we in DST range already? Just in case, remember this is UTC
+<a name="l-38"></a><span class="tm">18:05:16</span><span class="nk"> &lt;danielbeck&gt;</span> thanks everyone!
+<a name="l-39"></a><span class="tm">18:05:16</span><span class="nk"> &lt;rtyler&gt;</span> I think we might be coming close
+<a name="l-40"></a><span class="tm">18:05:18</span><span class="nk"> &lt;rtyler&gt;</span> I can never remember
+<a name="l-41"></a><span class="tm">18:05:23</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:36:40 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:07:00 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 239.143
+  exclusion.robots: 0.105
+  exclusion.robots.policy: 0.096
+  cdx.remote: 0.093
+  esindex: 0.011
+  LoadShardBlock: 72.372 (3)
+  PetaboxLoader3.datanode: 77.926 (4)
+  CDXLines.iter: 19.852 (3)
+  load_resource: 114.974
+  PetaboxLoader3.resolve: 79.626
+-->

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:04:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:04:22</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:04:31</span><span class="nk"> &lt;kohsuke&gt;</span> so that the conversation gets logged and all
+<a name="l-4"></a><span class="tm">18:04:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> I admit I haven't thought about 1.509.4.
+<a name="l-5"></a><span class="tm">18:05:14</span><span class="nk"> &lt;s7726&gt;</span> <span class="hi">schristou:</span> macetw found his path to include the $PATH variable still, maybe the additional processing was preventing the variable expansion, or trying to insert things after the expansion was done, but also needed expanding its self?
+<a name="l-6"></a><span class="tm">18:05:27</span><span class="nk"> &lt;ogondza&gt;</span> most backports are prepared in stable branch
+<a name="l-7"></a><span class="tm">18:05:34</span><span class="nk"> &lt;kohsuke&gt;</span> I need to catch up with the dev thread on this
+<a name="l-8"></a><span class="tm">18:05:52</span><span class="nk"> &lt;ogondza&gt;</span> i suggest to wait ~week until a couple of fixes becomes soaked
+<a name="l-9"></a><span class="tm">18:06:03</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-10"></a><span class="tm">18:06:33</span><span class="nk"> &lt;kohsuke&gt;</span> JENKINS-14362 , I assuem
+<a name="l-11"></a><span class="tm">18:06:35</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> did you say that you did *not* want to do a 1.509.5?
+<a name="l-12"></a><span class="tm">18:06:37</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-14362:100% CPU load during org.kohsuke.stapler.compression.CompressionFilter.reportException (Resolved) http://jenkins-ci.org/issue/14362
+<a name="l-13"></a><span class="tm">18:07:01</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-14362 could use a little extra soak time; action item for me is to verify a proposed jzlib fix
+<a name="l-14"></a><span class="tm">18:07:07</span><span class="nk"> &lt;ogondza&gt;</span> jglick, yes, i hope new LTS will be ready at the time
+<a name="l-15"></a><span class="tm">18:07:38</span><span class="nk"> &lt;jglick&gt;</span> Sure, if we can do a 1.535.1 or whatever, 1.509.5 should not be necessary.
+<a name="l-16"></a><span class="tm">18:08:06</span><span class="nk"> &lt;ogondza&gt;</span> jglick, the commit you proposed is a workaround for the bug in jzlib. Can it be used in release or do we need the proper fix?
+<a name="l-17"></a><span class="tm">18:08:26</span><span class="nk"> &lt;ogondza&gt;</span> already backported btw.
+<a name="l-18"></a><span class="tm">18:08:40</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> I think the workaround is safe; it just calls jzlib with different parameters that are not known to tickle the bug, at least on the known test case.
+<a name="l-19"></a><span class="tm">18:08:47</span><span class="nk"> &lt;kohsuke&gt;</span> by "proper fix" you mean fixing JDK?
+<a name="l-20"></a><span class="tm">18:08:55</span><span class="nk"> &lt;jglick&gt;</span> No, proper fix in jzlib.
+<a name="l-21"></a><span class="tm">18:09:02</span><span class="nk"> &lt;ogondza&gt;</span> jglick, yes
+<a name="l-22"></a><span class="tm">18:09:10</span><span class="nk"> &lt;jglick&gt;</span> There is a subtle IIOBE caused by certain inputs.
+<a name="l-23"></a><span class="tm">18:09:31</span><span class="nk"> &lt;kohsuke&gt;</span> wow
+<a name="l-24"></a><span class="tm">18:09:50</span><span class="nk"> &lt;kohsuke&gt;</span> makes me wonder if that's causing infinite loop in native zlib implementation
+<a name="l-25"></a><span class="tm">18:10:01</span><span class="nk"> &lt;jglick&gt;</span> Basically something was supposed to be &lt;32768 and it was ≥32768 though &lt;65536.
+<a name="l-26"></a><span class="tm">18:10:30</span><span class="nk"> &lt;jglick&gt;</span> I guess it is conceivable that they ported the bug from zlib.c, but I doubt it is related.
+<a name="l-27"></a><span class="tm">18:10:36</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-28"></a><span class="tm">18:10:46</span><span class="nk"> &lt;jglick&gt;</span> Appears as a regression after the jzlib switch.
+<a name="l-29"></a><span class="tm">18:11:11</span><span class="nk"> &lt;jglick&gt;</span> Anyway, upstream dev has a proposed true fix, need to verify it and get back to him.
+<a name="l-30"></a><span class="tm">18:11:27</span><span class="nk"> &lt;kohsuke&gt;</span> The only thing I'm afraid of is that there seems to be never-ending stream of backporting requests
+<a name="l-31"></a><span class="tm">18:11:37</span><span class="nk"> &lt;kohsuke&gt;</span> I think we need to set the date and stick to it
+<a name="l-32"></a><span class="tm">18:11:40</span><span class="nk"> &lt;jglick&gt;</span> The stream ends with the next LTS release!
+<a name="l-33"></a><span class="tm">18:12:24</span><span class="nk"> &lt;kohsuke&gt;</span> Just the day before yesterday Daniel Beck wants JENKINS-19418
+<a name="l-34"></a><span class="tm">18:12:26</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19418:Random HTTP 404 when viewing build details (Resolved) http://jenkins-ci.org/issue/19418
+<a name="l-35"></a><span class="tm">18:12:57</span><span class="nk"> &lt;kohsuke&gt;</span> ah but that one appears already backported
+<a name="l-36"></a><span class="tm">18:12:58</span><span class="nk"> &lt;ogondza&gt;</span> kohsuke, can we talk about this size of the LTSs as a next meeting item?
+<a name="l-37"></a><span class="tm">18:13:40</span><span class="nk"> &lt;jglick&gt;</span> Do you think too many fixes are going in?
+<a name="l-38"></a><span class="tm">18:13:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> sure, just put it up on https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-39"></a><span class="tm">18:14:07</span><span class="nk"> &lt;jglick&gt;</span> The release driver should not be afraid to reject a fix as being too minor and/or risky to deal with.
+<a name="l-40"></a><span class="tm">18:14:36</span><span class="nk"> &lt;ogondza&gt;</span> lots of candidates definitely, I dot intent to backport anything alse not needed for issues rejected in 1.509.3
+<a name="l-41"></a><span class="tm">18:14:58</span><span class="nk"> &lt;ogondza&gt;</span> there is still 17 candidate bug fixes
+<a name="l-42"></a><span class="tm">18:15:45</span><span class="nk"> &lt;kohsuke&gt;</span> if I were you I'd declare backporting done for 1.509.4
+<a name="l-43"></a><span class="tm">18:15:54</span><span class="nk"> &lt;kohsuke&gt;</span> and not let anything further in unless they beg and bribe you
+<a name="l-44"></a><span class="tm">18:16:32</span><span class="nk"> &lt;ogondza&gt;</span> jglick, can we do without JENKINS-19338. I guess maven suport is more important
+<a name="l-45"></a><span class="tm">18:16:34</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19338:Cannot archive artifacts using Maven 3.1.0 on Windows slave (Open) http://jenkins-ci.org/issue/19338
+<a name="l-46"></a><span class="tm">18:17:39</span><span class="nk"> &lt;jglick&gt;</span> Oh forgot about this one. Yes I think we can do without. Better to have Unix 3.1.0 support than none at all.
+<a name="l-47"></a><span class="tm">18:18:35</span><span class="nk"> &lt;jglick&gt;</span> Not even sure if this is reproducible by anyone else, or just something wrong on my machine.
+<a name="l-48"></a><span class="tm">18:18:43</span><span class="nk"> &lt;schristou&gt;</span> <span class="hi">s7726:</span> now looking at the tag changes https://github.com/jenkinsci/jenkins/commit/3eea39648943583a530f47f69f93737266537d9d might be the issue
+<a name="l-49"></a><span class="tm">18:18:58</span><span class="nk"> &lt;ogondza&gt;</span> Then the backporting is pretty much closed
+<a name="l-50"></a><span class="tm">18:19:25</span><span class="nk"> &lt;kohsuke&gt;</span> except the follow-up fix for jzlib fix (JENKINS-14362) ?
+<a name="l-51"></a><span class="tm">18:19:28</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-14362:100% CPU load during org.kohsuke.stapler.compression.CompressionFilter.reportException (Resolved) http://jenkins-ci.org/issue/14362
+<a name="l-52"></a><span class="tm">18:19:38</span><span class="nk"> &lt;kohsuke&gt;</span> Or is that also what we can let go?
+<a name="l-53"></a><span class="tm">18:20:08</span><span class="nk"> &lt;kohsuke&gt;</span> We could just produce RC and test while we soak
+<a name="l-54"></a><span class="tm">18:20:14</span><span class="nk"> &lt;jglick&gt;</span> Well the proposed workaround for JENKINS-19473 is already backported IIUC.
+<a name="l-55"></a><span class="tm">18:20:17</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19473:failed to archive slave artifacts. Unexpected end of ZLIB input stream (Resolved) http://jenkins-ci.org/issue/19473
+<a name="l-56"></a><span class="tm">18:20:41</span><span class="nk"> &lt;kohsuke&gt;</span> oh well then, I suggest we declare 1.509.4 RC
+<a name="l-57"></a><span class="tm">18:21:07</span><span class="nk"> &lt;ogondza&gt;</span> please wait for JENKINS-19251
+<a name="l-58"></a><span class="tm">18:21:10</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19251:After upgrade from 1.519 to 1.526 -&gt; NumberFormatException occurs during maven 3 build (Resolved) http://jenkins-ci.org/issue/19251
+<a name="l-59"></a><span class="tm">18:21:11</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-60"></a><span class="tm">18:21:27</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> you plan to backport my fix for that?
+<a name="l-61"></a><span class="tm">18:21:58</span><span class="nk"> &lt;ogondza&gt;</span> the NumberFormatException? yes
+<a name="l-62"></a><span class="tm">18:22:05</span><span class="nk"> &lt;jglick&gt;</span> I think the fix is good, but it is rather new.
+<a name="l-63"></a><span class="tm">18:22:35</span><span class="nk"> &lt;jglick&gt;</span> Up to you.
+<a name="l-64"></a><span class="tm">18:22:42</span><span class="nk"> &lt;ogondza&gt;</span> I'll wait
+<a name="l-65"></a><span class="tm">18:23:03</span><span class="nk"> &lt;jglick&gt;</span> What are we waiting for? Time to pass?
+<a name="l-66"></a><span class="tm">18:23:29</span><span class="nk"> &lt;kohsuke&gt;</span> technically it'd take 2 weeks for this to pass the "soaked in the main line release" criteria
+<a name="l-67"></a><span class="tm">18:24:30</span><span class="nk"> &lt;jglick&gt;</span> I am not sure JENKINS-19251 is worth waiting for. The bug is of course severe, but the workaround once you know it is trivial.
+<a name="l-68"></a><span class="tm">18:24:32</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19251:After upgrade from 1.519 to 1.526 -&gt; NumberFormatException occurs during maven 3 build (Resolved) http://jenkins-ci.org/issue/19251
+<a name="l-69"></a><span class="tm">18:25:00</span><span class="nk"> &lt;jglick&gt;</span> Or you can exempt it from the soaking time if you think the fix is clearly correct.
+<a name="l-70"></a><span class="tm">18:25:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> is this something that's affecting you guys?
+<a name="l-71"></a><span class="tm">18:26:04</span><span class="nk"> &lt;ogondza&gt;</span> no
+<a name="l-72"></a><span class="tm">18:26:17</span><span class="nk"> &lt;kohsuke&gt;</span> IMHO 4 votes don't seem too bad compared to other issues
+<a name="l-73"></a><span class="tm">18:26:44</span><span class="nk"> &lt;ogondza&gt;</span> I dont mind leaving it out
+<a name="l-74"></a><span class="tm">18:26:54</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">kohsuke:</span> FWIW came up with at least one CloudBees customer. Not sure how prevalent it is.
+<a name="l-75"></a><span class="tm">18:27:04</span><span class="nk"> &lt;kohsuke&gt;</span> anyone searching stack trace on Google will probably quickly find this issue, and as jglick says there's an easy workaround
+<a name="l-76"></a><span class="tm">18:27:46</span><span class="nk"> &lt;jglick&gt;</span> The main reason to include it is that we are including JENKINS-15935 and this is triggered by that change.
+<a name="l-77"></a><span class="tm">18:27:48</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-15935:Can't build using maven 3.1.0 (Resolved) http://jenkins-ci.org/issue/15935
+<a name="l-78"></a><span class="tm">18:28:01</span><span class="nk"> &lt;jglick&gt;</span> I.e. will appear as a regression to a 1.509.3 user.
+<a name="l-79"></a><span class="tm">18:29:32</span><span class="nk"> &lt;jglick&gt;</span> Up to ogondza’s judgment I think. Anything else on the topic?
+<a name="l-80"></a><span class="tm">18:29:33</span><span class="nk"> &lt;kohsuke&gt;</span> I don't feel too strongly, but my preference is to skip it. I hate to wait 2 more weeks for this, yet this doesn't seem like a big enough issue to bend the self-imposed rules
+<a name="l-81"></a><span class="tm">18:29:58</span><span class="nk"> &lt;kohsuke&gt;</span> +1 on ogondza's judgement
+<a name="l-82"></a><span class="tm">18:30:14</span><span class="nk"> &lt;kohsuke&gt;</span> I'll watch out for backporting complete e-mail to stage RC
+<a name="l-83"></a><span class="tm">18:30:44</span><span class="nk"> &lt;kohsuke&gt;</span> and no, nothing else on the agenda
+<a name="l-84"></a><span class="tm">18:31:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-85"></a><span class="tm">18:31:46</span><span class="nk"> &lt;kohsuke&gt;</span> we'll meet in two weeks
+<a name="l-86"></a><span class="tm">18:31:51</span><span class="nk"> &lt;kohsuke&gt;</span> already up on https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-87"></a><span class="tm">18:31:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

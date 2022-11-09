@@ -1,0 +1,190 @@
+19:03:41 <kohsuke> #startmeeting
+19:03:41 <robobutler> Let the Jenkins meeting commence!
+19:04:00 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:04:07 <kohsuke> #chair abayer hare_brain rtyler
+19:04:07 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+19:04:48 <kohsuke> #topic recap of actions
+19:04:52 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-01-25-19.00.html
+19:05:05 <kohsuke> jieryn: ndeloof: ping
+19:05:24 <kohsuke> In the mean time,
+19:05:54 <kohsuke> #info my apologies about the SSL certs. renewal of SSL certificates is in progress, pending approval from rtyler (the domain contact)
+19:06:00 <abayer> Cool.
+19:06:05 <kohsuke> most likely it won't happen until he lands to SFO
+19:06:18 <kohsuke> Poor rtyler appear to have missed his flight back to the US
+19:06:33 <kohsuke> JIRA/Wiki are updated so that one is complete
+19:06:55 <kohsuke> OK, I don't think jieryn and ndeloof are here, but
+19:07:09 <kohsuke> wrt the "FOSS requirement for sponsor logo" thing,
+19:07:32 <kohsuke> I know Sacha (our boss) said we'd be very happy to be just listed in the sponsor section like other companies
+19:08:04 <kohsuke> So I think it's now up to jieryn to play with it and come back to this meeting
+19:08:27 <kohsuke> I think I shall move on to the next topic...
+19:08:37 <DarkRift> hoy
+19:08:45 <kohsuke> #topic Pull requests and inbound contributor funnel discussion
+19:09:39 <kohsuke> This started in my e-mail
+19:09:41 <abayer> That reminds me, I have to set up pull request notification for jenkins-scripts...
+19:09:56 <kohsuke> "pull request notification"?
+19:10:27 <abayer> Team stuff. I created the repo manually. =)
+19:10:54 <kohsuke> but anyway, the basic "issue" is that the change of workflow between SVN and GitHub is narrowing the funnel from pull request contributors to committers
+19:11:16 <kohsuke> Pull request is bit like throwing the stuff over the wall
+19:11:40 <abayer> #info I've actually been meaning to go through the org teams and repos and (a) update the teams to reflect the contributors (including people with multiple pull requests) of the teams and tie the teams to repos more accurately and narrowly.
+19:11:59 <abayer> …so as to make pull request emails more meaningful/less spammy.
+19:12:04 <kohsuke> They expect us to review & merge, but often we don't have enough people/eyes/time to properly look at them
+19:13:07 <hare_brain> Is this a better situation than the SVN model, where they could commit without a review?
+19:13:47 <abayer> I think the filter is a good thing, but we definitely need to make it more efficient - i.e., get pull request reviews done a lot more quickly, encourage people to become "team" members for plugins, etc.
+19:14:31 <kohsuke> hare_brain:  If we don't have bandwidth to review, then giving them the false sense of "now I'm done with my part and it's up to the Jenkins project" and disappoint them feels to me like a worse situation
+19:15:30 <hare_brain> Do you think the problem is worse for plugins or the core, or about the same?
+19:15:36 <kohsuke> But I don't know. This is all subjective and I don't really have any numbers to back up my feeling that the funnel became narrower
+19:15:51 <kohsuke> I'm more worried about plugins
+19:16:14 <kohsuke> We should be reviewing changes to the core, and adding committers there involve other barriers like CLA
+19:17:08 <vjuranek> IIRC there is some listing all pull requests older then 15 days, what about to extend it to send emails to the users, that the pull requests is pending for more then 15 days and they should consider to ask for commit access and commit it themselfs?
+19:17:17 <kohsuke> So my suggestion was to come up with some bot that automatically comment on old open unattended pull requests for plugins and write something like "hey, sorry about the delay. Maybe we don't have any committers on this plugin, and it'd be great if you'd be willing to become committers"
+19:17:21 <hare_brain> #info https://wiki.jenkins-ci.org/display/JENKINS/Pending+Pull+Requests
+19:17:42 <kohsuke> vjuranek: sounds like the same idea (with different implementations, granted).
+19:17:52 <vjuranek> yup
+19:18:31 <kohsuke> Looking at the history of this page might give us more objective numbers. I think this list has grown considerably
+19:19:39 <abayer> Sounds good.
+19:19:53 <kohsuke> #info the same list in 2011 Sep  https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=58002442
+19:19:59 * DarkRift bbl
+19:20:08 <hare_brain> I think the important thing is to increase a sense of ownership.
+19:20:29 <kohsuke> Yes, that's a good point
+19:20:30 <hare_brain> Throwing things over the wall can potentially lead to unstable releases.
+19:21:16 <kohsuke> In that sense maybe we want to somehow start keeping track of "maintainer" more officially?
+19:22:06 <kohsuke> That might help us signal "volunteers wanted" more easily?
+19:22:39 <hare_brain> Maybe gamify it. The maintainer is automatically updated to be person with the most commits over a period of time.
+19:23:12 <hare_brain> If you are the maintainer, and you have a lot of pending pull requests, you lose points.
+19:23:25 <kohsuke> Hmm
+19:23:45 <hare_brain> Actually
+19:23:46 <kohsuke> I was mainly thinking about keeping track of people's intent to maintain it
+19:23:50 <kohsuke> but that's interesting
+19:23:53 <imod> but that would also mean, people not knowing how to use the SCM (git) get more credit
+19:24:23 <imod> ...if every file changed gets its own commit...
+19:24:59 <hare_brain> So there are a couple of things going on. We want to increase the rate at which pull requests are reviewed and merged. A bottleneck is if there is a single maintainer, and that person is unavailable, that reduces throughput.
+19:25:19 <hare_brain> If there were more people who were "maintainers" we have better merge capacity.
+19:25:56 <hare_brain> I think who is a maintainer to be fairly dynamic, so that people can be free to come and go, but the rate of merges can remain high.
+19:26:35 <hare_brain> I think kohsuke, what you were getting at is a badge about the project itself. Whether it's a maintained or abandoned project.
+19:26:50 <Slide-O-Mix> kohsuke: have you had any chance to look at JENKINS-12647?
+19:26:51 <kohsuke> yeah, maybe that's what it is
+19:26:52 <jenkins-admin> JENKINS-12647:Jetty configuration causes locked files when running tests on Windows, which causes test failures (Open) http://jenkins-ci.org/issue/12647
+19:27:03 <hare_brain> That should definitely be highlighted so that people can quickly claim maintenance/ownership of a plugin has is in the abandoned state.
+19:27:05 <Slide-O-Mix> I know you've been traveling a lot
+19:27:51 <kohsuke> Or maybe it's just a matter of producing "your pull requests that the project thinks you should be looking at" list
+19:28:28 <hare_brain> Where would I go to see that?
+19:28:45 <kohsuke> currently we have only https://github.com/organizations/jenkinsci/dashboard/pulls
+19:29:20 <kohsuke> but if it can be somehow combined with your gamification idea and "who committed where recently" idea...
+19:29:25 <hare_brain> I almost never go to that page. How do we get people into the habit of doing that?
+19:30:29 <kohsuke> Exactly. So I thought if some program generates personalized notifications for your pull requests...
+19:31:10 <hare_brain> And make sure it doesn't get lost in the sea of other pull request emails... :)
+19:31:28 <kohsuke> At that point we can stop sending pull request e-mails
+19:31:35 <kohsuke> ah, but maybe it doesn't let you stop that
+19:31:50 <abayer> Yeah, and I'm not sure I'd want to have it turn off anyway.
+19:32:03 <hare_brain> I like the idea of not sending a pull request unless the project thinks you are a good candidate to review it.
+19:32:18 <kohsuke> abayer: we'll make sure you get all of them :-)
+19:32:20 <abayer> Yeah, that's kind of what I was thinking of with better refinement of team definitions.
+19:32:53 <kohsuke> this whole area I think is a good thing to think about, but I'm afraid unless someone wants to spend some real cycles, it'll be hard to get something done.
+19:33:22 <hare_brain> The GitHub guys seem to like us. Is this something we can ping them about to see if they have any ideas of how to make the notifications more relevant?
+19:33:31 <hare_brain> Maybe they'll have a great idea and just do it.
+19:34:23 <hare_brain> At the least, I think having a maintained/abandoned badge for each plugin, based on some criteria can help.
+19:34:26 <kohsuke> Yeah, we can ask them, although I suspect the way this project runs is somewhat unique
+19:34:43 <hare_brain> Then maybe we need to change a little bit to conform. :)
+19:35:06 <kohsuke> I can't think of any other orgs with 670 repositories
+19:35:48 <kohsuke> #action kohsuke to improve the pending pull request list generator to also post comments on old pull requests
+19:36:16 <kohsuke> I think we should move on to the next topic
+19:36:27 <orrc> wiki page or mailing list thread for the other ideas, if they're also relevant?
+19:36:33 <orrc> (not sure, I joined late)
+19:36:51 <hare_brain> I thought that was the only topic today. :)
+19:37:11 <kohsuke> I want to quickly update  about JFrog's offer to host our repository
+19:37:24 <hare_brain> Before switching to that.
+19:37:38 <hare_brain> Is some automation like Gerrit a possibility?
+19:37:44 <kohsuke> orrc: I'm happy to start a thread if that helps
+19:37:58 <kohsuke> I guess I'll do that as an encouragement for devs to look at pull requests
+19:38:00 <hare_brain> Have it do a merge and test, and if it succeeds, automatically merge it into the turnk?
+19:39:07 <kohsuke> hare_brain: I've got some code here that does that kind of pull request merge validation
+19:39:14 <abayer> hare_brain: Erm…dunno if we'd want that anyway.
+19:39:29 <abayer> I still think having no human intervention is a bad thing.
+19:39:38 <abayer> At least for new contributors.
+19:39:42 <hare_brain> We have no human intervention right now in a different way.
+19:40:10 <kohsuke> Maybe we can run the test but auto-merge only if no action happens for X days?
+19:40:20 <hare_brain> Yeah, that's fine.
+19:40:24 <abayer> I know the git plugin gets a lot of pull requests where the code can merge but really shouldn't, since it's just cluttering the code with more config options for edge cases, etc.
+19:41:16 <kohsuke> abayer: doing the automatic validation also helps the reviewer
+19:41:25 <abayer> Oh, automatic validation is a very good thing.
+19:41:40 <abayer> I like the gerrit approach of requiring code review and automatic validation in combination.
+19:42:27 <hare_brain> OK, I'm willing to move on now.
+19:43:01 <kohsuke> One more note --- the only thing about this pull request validation merge is that it depends on some proprietary CB plugins
+19:43:28 <kohsuke> And that reminds me if we'd be willing to run those (and other) proprietary plugins?
+19:43:33 <hare_brain> #idea Mark plugin projects with maintained/abandoned status to set expectation of how long a pull request may be outstanding
+19:43:45 <kohsuke> Like template plugin, for example
+19:43:55 <abayer> kohsuke: Never had a problem with that personally. =) I'd want rtyler's thoughts, though.
+19:43:57 <hare_brain> #idea Track list of who are potential reviewers for a pull request
+19:44:03 <kohsuke> ... vastly simplifying our plugin projects?
+19:44:06 <hare_brain> (Just recording the ideas we talked about)
+19:44:19 <ndeloof> kohsuke: sorry, late (children ...)
+19:44:32 <hare_brain> #idea Use a tool like Gerrit to do automatic validation and merge after pull requests have been outstanding for X days
+19:45:02 <kohsuke> ndeloof: No problem. I hope I correctly summarized your conversation with Sacha
+19:45:11 <ndeloof> right
+19:45:18 <kohsuke> #topic Hosted Maven repository
+19:45:48 <kohsuke> So there's an offer from JFrog to host the Maven repository on their hosted Artifactory
+19:46:36 <kohsuke> It'll be integrated with our LDAP, and all kinds of other measures will be taken to preserve the compatibility, meaning ...
+19:46:42 <kohsuke> plugin devs will not have to change anything
+19:46:52 <kohsuke> and we get sync to central and so on.
+19:47:01 <imod> sounds nice
+19:47:19 <hare_brain> How nice of them.
+19:47:24 <hare_brain> What do they want in exchange? :)
+19:47:25 <kohsuke> I thought it'd be nice to at least do some proof-of-concept with this
+19:47:37 <kohsuke> I need to dance and sing for them
+19:47:40 <Slide-O-Mix> will port 80 or 443 be available for releases?
+19:47:52 <kohsuke> No, just kidding :-) I haven't asked
+19:47:54 <abayer> Works for me.
+19:48:07 <abayer> And yeah, getting 80/443 would be key.
+19:48:09 <kohsuke> But I suspect it'll be logo on the sponsor section, etc, etc.
+19:48:33 <kohsuke> Slide-O-Mix: yeah, I'm sure it is
+19:48:37 <hare_brain> Any time we can outsource infrastructure to something more robust, that's a positive.
+19:48:46 <kohsuke> exactly my thinking
+19:48:53 <monkeysmuggler> Question! Do shell commands timeout? I've got a build setup that runs a particularly long task, and it's making it as Shell Execution Failed or whatever without actually throwing an error.
+19:49:01 <Slide-O-Mix> that would be great, I currently can't do releases from work :)
+19:49:04 <kohsuke> monkeysmuggler: let's hold it until we are done with the meeting
+19:49:29 <kohsuke> #info so if anyone is willing to volunteer with PoC, you'd be very welcome
+19:50:10 <kohsuke> Otherwise I'll work with them and get back to this meeting when it's demoable
+19:50:10 <hare_brain> I nominate rtyler.
+19:51:01 <kohsuke> I already talked to him about this idea and he's OK with this, though I don't know if he's willing to volunteer
+19:51:07 <kohsuke> I can see him saying "but I don't do Java"
+19:51:12 <hare_brain> Hahaha
+19:51:13 <Slide-O-Mix> heh
+19:51:29 <imod> what would it take to help on this?
+19:51:37 <imod> just do some releases?
+19:51:41 <kohsuke> #action kohsuke to check if rtyler is willing to spend some time doing hosted artifactory PoC
+19:52:00 <kohsuke> imod: at this stage realistically it needs to be someone with the infra access
+19:52:03 <abayer> I nominate imod. =)
+19:52:06 <abayer> Oh, right.
+19:52:09 <abayer> Details, details.
+19:52:17 <imod> :)
+19:52:30 <kohsuke> later we can solicit some plugin devs to help trying it out
+19:52:56 <ndeloof> I also can help
+19:53:09 * kohsuke looks at abayer because central sync is his pet-peeve
+19:53:37 <kohsuke> all right, next topic?
+19:53:59 <kohsuke> #topic next meeting time (but really, this is just a formality)
+19:54:17 <hare_brain> 2/22?
+19:54:20 <kohsuke> ... because our convention puts it to 2 weeks from now, same time
+19:54:32 <hare_brain> +1
+19:54:44 <ndeloof> +1
+19:54:52 <kohsuke> I won't be able to attend, because I'll be in Tokyo.
+19:55:04 <kohsuke> but +1 for 2/22
+19:55:17 <kohsuke> #agreed next meeting is 2/22, the same time
+19:55:25 <abayer> =)
+19:55:30 <abayer> Okiedokie.
+19:55:42 <kohsuke> Is that "Okiedokie" for Artifactory stuff or for 2/22?
+19:55:56 <abayer> 2/22. And I'm in favor of the Artifactory move.
+19:56:16 <kohsuke> I'll CC imod and abayer to the e-mail
+19:56:28 <kohsuke> ... so that both of them are in the loop at least
+19:56:34 <hare_brain> kohsuke when do you leave for Tokyo?
+19:56:47 <kohsuke> 2/14
+19:57:04 <hare_brain> You took two action items. Will you do anything with those before you leave?
+19:57:32 <kohsuke> I'll ping rtyler. The other one I suspect I won't be able to
+19:58:13 <hare_brain> And carry over the action for ndeloof and jieryn about the CloudBees FOSS thing?
+19:58:28 <kohsuke> Yes
+19:58:35 <hare_brain> Oh, jieryn was the cafepress discounts
+19:58:49 <hare_brain> #action jieryn to follow ask cafepress if they discount for non-profits
+19:58:52 <kohsuke> he's also the main guy behind trying out hosted Jenkins
+19:59:06 <hare_brain> #action ndeloof jieryn to confirm cloudbees foss requirements for sponsor logo
+19:59:32 <hare_brain> OK. We done?
+19:59:37 <kohsuke> Shall I close the meeting?
+19:59:44 <kohsuke> #endmeeting

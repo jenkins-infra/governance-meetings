@@ -1,0 +1,171 @@
+18:00:09 <rtyler> #startmeeting
+18:00:09 <robobutler> Let the Jenkins meeting commence!
+18:00:12 <rtyler> Woohoo let's go
+18:00:18 <rtyler> #chair kohsuke danielbeck
+18:00:18 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:40 <rtyler> unfortunately I believe kohsuke is on an airplane, and who knows where danielbeck is but he said he wasn't going to be able to join
+18:01:13 <rtyler> #topic Last meeting actions
+18:01:15 <jglick> present FWIW
+18:01:35 <rtyler> the last meeting notes: http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-03-28-18.00.html
+18:01:52 <zobel> SPI board members may visit this meeting?
+18:01:57 <rtyler> the only action that we had was oleg-nenashev encouraging everybody to help with Jenkins Essentials
+18:02:02 <rtyler> zobel: yes indeed
+18:02:04 <rtyler> it's open to everybody
+18:02:23 <rtyler> welcome :D
+18:02:33 <rtyler> zobel: we use a real IRC bot rather than irssi scripts  though ;)
+18:02:50 <rtyler> I saw ogondza earlier, but he's disappeared
+18:02:52 <zobel> rtyler: same as in #debconf-team :)
+18:03:04 <rtyler> aye, we're using debian's meetbot :D
+18:03:21 <rtyler> #info today's agenda https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-April11thmeeting
+18:03:55 <rtyler> welp, keep on goin' and hope he shows up
+18:03:59 * zobel will look into RT if we have outstanding transactions for jenkins.
+18:04:01 <rtyler> #topic LTS status check
+18:04:24 <rtyler> oleg-nenashev and jglick, would either of you be able to update on the current LTS status?
+18:04:50 <jglick> well, it seems to exist, so?
+18:05:05 <rtyler> heh, that's a low bar
+18:05:09 <jglick> Yup.
+18:05:15 <rtyler> I exist all the time, it's not very impressive I am told
+18:05:24 <markewaite> rtyler: are you asking status of 2.107.2, the most recent LTS?
+18:06:01 <rtyler> markewaite: I am asking aloud, I'm not following the LTS process very closely as of late, so I have no idea if we are awaiting release, have releases, everything on target, etc
+18:06:07 <markewaite> rtyler: it is available and I've deployed it in my environment, running and well-behaved.
+18:07:03 <rtyler> that's good :D
+18:07:08 <oleg-nenashev> rtyler: will be avail in 5 min, sorry. Confedence
+18:07:14 <rtyler> ah, okay
+18:07:32 <oleg-nenashev> * typos as well
+18:08:12 <rtyler> heh
+18:08:22 <jglick> It was part of today’s security release, so danielbeck would know all the details, but as far as I am concerned there is nothing more that needs to be discussed.
+18:08:25 <rtyler> okay, i'll pause on this topic for a little to allow ogondza to come back
+18:09:13 <markewaite> rtyler: only surprise with the LTS (for me) was that the Debian package did not appear to be marked as a security fix. I can discuss separately with danielbeck
+18:10:09 * rtyler nods
+18:10:20 <jglick> “Essentials” for me will mean that we will not need to have a meeting to discuss the fact that a release was cut. :-)
+18:10:21 <rtyler> if I remember correctly, we're on track to have three point releases under 2.107.x?
+18:10:59 * oleg-nenashev is online now
+18:11:06 <jglick> unless something urgent comes up in CERT land, I suppose so
+18:11:08 <rtyler> jglick: I'll make sure to put a meeting on your calendar every day to discuss new Essentials deployments ;)
+18:11:21 <rtyler> continuous meetings XD
+18:11:21 <bitwiseman> Hourly.
+18:11:22 <oleg-nenashev> .2 community ratings are fine so far
+18:12:07 <rtyler> oleg-nenashev: based on jglick's comments I would presume that there is no actionable tasks relating to the next LTS point release worth discussing?
+18:12:45 <oleg-nenashev> I think so. Business as usual
+18:12:49 <jglick> I would presume Oliver would start the backporting process for .3 soon.
+18:13:25 <rtyler> okay, just checking, I  think we can move forward then
+18:13:41 <rtyler> oleg-nenashev: I pinged you earlier in #jenkins-community, can we make the next agenda item GSoC update if you don't mind?
+18:13:51 <oleg-nenashev> sure
+18:13:58 <rtyler> #topic GSoC Status Update
+18:14:59 <oleg-nenashev> #info We have requested project slots from Google and got all slots we requested. Student projects will be announced on April 23
+18:15:21 <rtyler> how many slotswas that?
+18:15:31 <rtyler> or are we not allowed to know yet
+18:15:37 <oleg-nenashev> I cannot tell that yet, sorry
+18:15:50 <oleg-nenashev> But enough taking the applications we've got
+18:16:05 <oleg-nenashev> All active students with mentors will be accepted => fine
+18:16:09 <rtyler> cool
+18:16:22 <zobel> payment of the students will happen through whom?
+18:16:54 <oleg-nenashev> #info we will be doing some training sessions for newcomer contributors starting from April 23. Stay tuned for announcements in the dev list if you are interested
+18:17:10 <rtyler> zobel: my understanding was that students were sent their stipends directly
+18:17:11 <oleg-nenashev> zobel: Through Google. We do not manage student payments
+18:17:34 <zobel> ok. just asking. some projects to that through SPI.
+18:17:42 <zobel> s/to/do/
+18:18:09 <oleg-nenashev> Jenkins project get's its Google funding and will reimburse things to mentors (travel expenses, etc.) through SPI
+18:18:21 <oleg-nenashev> But it's not related to Mentor payments
+18:18:26 <zobel> k.
+18:18:30 <oleg-nenashev> *student payments
+18:18:56 <oleg-nenashev> SPI is generally fine. No other way till Jenkins project has a legal entity
+18:19:15 <rtyler> oleg-nenashev: are there any things you could use help on at this point, any calls to action for other contributors who are not involved in mentorship?
+18:20:25 <oleg-nenashev> Not for now. If somebody wants to run "Plugin development 101", "How to contribute to Jenkins?" and other such entry presentations, let me know
+18:20:52 <oleg-nenashev> I'd guess we want to do it as Online Meetup
+18:20:57 <rtyler> we do have some older content on YouTube for that, are those worth revisiting?
+18:21:44 <oleg-nenashev> I would prefer interactive sessions with live Q&A for students, but let's see
+18:21:53 <rtyler> okay
+18:21:55 <oleg-nenashev> My action item is to review materials
+18:22:15 <rtyler> #action rtyler to introduce oleg-nenashev to the YouTube channel "Manager" settings so he can run GSoC sessions
+18:22:20 <oleg-nenashev> Wiki => jenkins.io migration is in the middle, so we need to review materials
+18:22:36 <oleg-nenashev> rtyler: Would be cool, thanks!
+18:22:48 <rtyler> are we wrapped with this topic then?
+18:23:02 <oleg-nenashev> I do HoA in Jenkins RU, so I generally need to get permissions and study Jenkins policies
+18:23:13 <oleg-nenashev> I'm done if there is no questions
+18:23:20 <rtyler> any GSoC questions before we move on?
+18:23:53 <rtyler> alright, moving on
+18:23:56 <rtyler> #topic Trademark sublicensing request "DevOps World - Jenkins World"
+18:24:17 <rtyler> this is a request from CloudBees by way of kohsuke, which is now by way of me since he's on a plane >_<
+18:24:32 <rtyler> #info kohsuke's mail to the dev list https://groups.google.com/d/msg/jenkinsci-dev/d1rrCcY-VyM/Pu4RdH2LBwAJ
+18:24:55 <rtyler> #info for those not familiar with our trademark policies https://jenkins.io/project/governance/#trademark
+18:26:11 <rtyler> are there any questions about this request?
+18:26:40 <Slide-O-Mix> seems pretty straight forward
+18:27:15 <rtyler> that is my assessment as well from a trademark perspective
+18:28:10 <rtyler> danielbeck was unable to be here so he left his +1 on the list
+18:28:44 <rtyler> I believe this request is reasonable in accordance with our sublicense policies and also +1
+18:28:50 <Slide-O-Mix> +1
+18:29:04 <alyssat_> +1 from me as well
+18:29:11 <markewaite> +1
+18:29:34 <oleg-nenashev> +1
+18:30:01 <oleg-nenashev> As long as nobody makes me to say "DevOps" during my talk
+18:30:44 <alyssat_> i'm sure that won't be required Oleg :)
+18:30:52 <rtyler> oleg-nenashev: I was going to submit a John Malkovich-styled ignite talk where all I say is DevOps
+18:30:55 <rtyler> :)
+18:31:20 <rtyler> any other comments or concerns before we move on?
+18:31:50 * rtyler taps a bit
+18:31:52 <oleg-nenashev> Do a Balmer-styled one, eh?
+18:32:01 <Slide-O-Mix> sweaty pits and everything?
+18:32:10 * Slide-O-Mix digresses
+18:32:12 <rtyler> that's just the usual
+18:32:41 <rtyler> #agreed sublicense request for "DevOps World - Jenkins World" approved
+18:33:17 <rtyler> #info CloudBees, Inc is expected to follow the appropriate trademark sublicense attribution requirements for the event, as outlined here https://jenkins.io/project/governance/#attribution-for-sublicensees
+18:33:32 <rtyler> #action rtyler to update the approved trademark usage wiki page
+18:34:01 <rtyler> I'm going to add one more item onto the agenda by special request here :)
+18:34:07 <rtyler> (sorry)
+18:34:45 <rtyler> #topic SPI financial request for review
+18:35:02 <rtyler> #info meet zobel, one of the memebers of the Software in the Public Interest board
+18:35:07 <rtyler> zobel: you're up buddy
+18:35:28 <oleg-nenashev> hi!
+18:35:38 <zobel> SPI is currently working through financial data of 2017
+18:35:48 <zobel> and we try to close the books for 2017.
+18:36:09 <zobel> i am not sure who of you is subscribed to spi-general@lists.spi-inc.org
+18:36:35 <zobel> so: there are draft reports for all of 2017 in http://lists.spi-inc.org/pipermail/spi-general/2018-April/thread.html
+18:36:51 <zobel> the most important one is http://lists.spi-inc.org/pipermail/spi-general/2018-April/003845.html
+18:37:31 <zobel> if you check the second apperance of "jenkins" you will find the donations and expenses of jenkins in 2017.
+18:38:00 <zobel> it would be nice if someone could give at least feedback if things look fine or not.
+18:38:04 <zobel> </done>
+18:38:32 <rtyler> zobel: do you have a time frame for when you're trying to close this out?
+18:38:51 <markewaite> As far as I can see, that says there is a growing positive balance year over year for the Jenkins project. That seems like a good thing to me.
+18:39:13 <rtyler> markewaite: if we weren't getting free Azure credits, that number would be strongly going in the other direction xD
+18:39:19 <zobel> my goal is to close the books with the next spi board meeting. which is around May 14th
+18:39:40 <rtyler> #action rtyler to make sure to review the 2017 Jenkins financial data with kohsuke once he's back from walkabout
+18:40:24 <zobel> otherwise: rtyler thank you for letting me talk here, and for joining boards of directors @spi_inc.
+18:40:24 <rtyler> part of the reason I wanted to make some space for zobel's request today is that we have long not been paying much attention to what our actual budget is as a project
+18:40:55 <rtyler> this is something I would like many of the core contributors to start to think about as we grow, a healthy budget means we can do more things and invest in more "stuff"
+18:41:35 <rtyler> any questions for zobel before we close this topic out?
+18:41:36 <zobel> it is nice to see more donations as expenses, but i would like to also see projects doing expenses. we have a lot of money @spi_inc on behalf of associated projects
+18:42:03 <oleg-nenashev> right
+18:42:40 <oleg-nenashev> We will definitely do some GSoC expences this year, within the budget
+18:42:43 <markewaite> rtyler: will our likely future test automation needs (Jenkins Essentials) need funding from SPI, or can the Azure credits be used there?
+18:43:03 <rtyler> good question, let me FYI something here
+18:43:34 <rtyler> #info our current contract with Microsoft is approximate 2/3rds complete, which means we have "free" infra funding into mid April 2019
+18:43:57 <rtyler> markewaite: Jenkins Essentials infrastructure is going to be part of the overall project infra, so its cost will be associated under that item
+18:44:34 <rtyler> it's really basic CRUD apps which push bits back and forth at this point
+18:44:39 <oleg-nenashev> Do we plan to prolongate the contract with MS? I am not sure how much we spend on Azure, but probably a lot
+18:45:05 <zobel> if any financial questions arise, find me in #spi on irc.oftc.net
+18:45:12 <rtyler> oleg-nenashev: I discussed this in the Infra team meeting a bit on monday, but my plan is to start the discussions with Microsoft at Jenkins World SF to extend the current contract and terms
+18:45:20 <zobel> also if you wait for reimbursements too long.
+18:45:30 <oleg-nenashev> thanks for that!
+18:45:30 <alyssat_> we've sent out quite a stickers to JAMs I just need to do a better job at doing the expenses
+18:45:31 <rtyler> #info the SPI board and extended community can be found in the #spi channel on irc.oftc.net
+18:46:15 <rtyler> alyssat_: if we're going to expense that stuff through SPI, you and I should talk about how much we can budget appropriately for that, and make sure that request is approved in this meeting
+18:46:38 <rtyler> now that everybody's primed thinking about money, folks wanna talk :D
+18:46:54 <alyssat_> rtyler: will do
+18:47:14 <rtyler> any other SPI or zobel questions before we wrap?
+18:47:41 * rtyler taps
+18:48:18 <rtyler> alright, I'm going to close this item out, let's keep the discussion around GSoC and JAM budget going in #jenkins-community if you all would like
+18:48:22 <rtyler> #topic Next meeting
+18:48:24 <oleg-nenashev> zobel: If there are any things with GSoC payments from Google, please reach out to me or to jenkinsci orgs directly. But they usually go smooth AFAIK
+18:48:55 <rtyler> based on my calendar I see our next meeting should be April 25th, 2018
+18:48:58 <rtyler> any concerns with that?
+18:49:13 <oleg-nenashev> and again, thanks to SPI for all the help!
+18:49:17 <rtyler> \o/
+18:49:41 <oleg-nenashev> April 25 is fine, I'd guess
+18:49:50 <rtyler> I don't see any major holidays or anything
+18:49:51 <oleg-nenashev> I am out tho (Jenkins meetup)
+18:50:02 <zobel> oleg-nenashev: rtyler is now SPI board member as well..
+18:50:06 <rtyler> #info next meeting will be April 25th, same time of day 18:00 UTC
+18:50:07 <oleg-nenashev> yey
+18:50:22 <rtyler> with that, I'm going to close this out
+18:50:25 <rtyler> #endmeeting

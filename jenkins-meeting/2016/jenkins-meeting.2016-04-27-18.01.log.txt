@@ -1,0 +1,225 @@
+18:01:50 <rtyler> #startmeeting
+18:01:50 <robobutler> Let the Jenkins meeting commence!
+18:01:57 <rtyler> #chairs danielbeck kohsuke hare_brain
+18:02:03 <rtyler> #chair danielbeck kohsuke hare_brain
+18:02:03 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:02:05 <rtyler> there we go
+18:02:13 <rtyler> #topic Recap last meeting's actions
+18:02:17 <kohsuke> Thanks
+18:02:24 <rtyler> I just see two from kohsuke and ogondza
+18:02:41 <rtyler> kohsuke: 1.651.1 was released right?
+18:02:42 * ogondza hides
+18:02:44 <kohsuke> 1.651.1 is out as you can see
+18:03:01 <rtyler> did any of the process get documented?
+18:03:17 <ogondza> not by me, unfortunately
+18:03:32 <rtyler> ogondza: I'm sure we'll have more chances soon to document it :)
+18:03:44 <kohsuke> I think this was the week I was absent
+18:03:54 <rtyler> #topic LTS status check
+18:03:54 <kohsuke> I assume this is about the release process?
+18:03:56 <ogondza> kohsuke: are there any public docs we would like to extend?
+18:04:09 <ogondza> yes, release process
+18:05:00 <ogondza> Extending backporting page about the actual procedure is merely about finding a bit of time to do it for me
+18:05:03 <kohsuke> ogondza: I think we should set up some time to kick start this.
+18:05:06 <rtyler> #action ogondza to work with kohsuke to get whatever is undocumented about the release process documented to the extent  that it is possible
+18:05:14 * rtyler points to /topic
+18:05:21 <ogondza> ack
+18:05:24 <rtyler> ogondza: is there something you need from others?
+18:05:49 <ogondza> not for now, I will have to chase you and KK to clarify things
+18:05:54 <rtyler> okie doke
+18:05:59 <ogondza> moving on to LTS
+18:06:05 <ogondza> I am done backporting
+18:06:16 <ogondza> the version of remoting is 2.57
+18:06:28 <danielbeck> does this include JNLP3?
+18:06:34 <ogondza> not really battletested but look good enough
+18:06:52 <ogondza> danielbeck: not the jenkins part so it should not be used
+18:07:13 <ogondza> the fix we rejected last time actually made it the default protocol
+18:07:36 <danielbeck> okay, maybe something for the LTS RC test to be sure
+18:07:37 <ogondza> so it is not there this time either. 2 other remoting fixes are however
+18:07:47 <ogondza> JNLP test?
+18:07:54 <danielbeck> https://issues.jenkins-ci.org/issues/?jql=labels+%3D+1.651.2-fixed
+18:08:12 <danielbeck> ogondza you write 'should not be used' :-)
+18:08:14 <ogondza> not sure this is covered by ATH, TBH
+18:09:01 <danielbeck> right
+18:09:10 <ogondza> JNLP3 support is in remoting but Jenkins should still be using v2
+18:09:53 <danielbeck> okay, so we're ready for… who to create the RC? still KK?
+18:09:59 <ogondza> #action ogondza to push rc
+18:10:00 <kohsuke> ogondza now
+18:10:03 <danielbeck> \o/
+18:10:21 <ogondza> moving on
+18:10:22 <rtyler> #chair hare_brain
+18:10:22 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:10:27 <rtyler> alrighty
+18:10:32 <rtyler> #topic 2.0 status check
+18:10:37 <danielbeck> it's out \o/
+18:10:53 <rtyler> yey
+18:11:00 <danielbeck> #info https://jenkins.io/blog/2016/04/26/jenkins-20-is-here/
+18:11:13 <rtyler> danielbeck: I think we should find some time maybe two weeks from now to have a 2.0 retrospective?
+18:11:27 <rtyler> I think it would be good to figure out what went well and what didn't with this long-running-branch
+18:11:36 <danielbeck> rtyler Would have used next week's office hour, but overlaps with vJAM
+18:11:44 <danielbeck> rtyler So, yes, definitely.
+18:11:56 <rtyler> we don't always have to do things on wednesdays :P
+18:12:12 <rtyler> #action rtyler and danielbeck to figure out when to schedule a 2.0 retrospective
+18:12:27 <kohsuke> I say it doesn't hurt to just congratulate ourselves for the big milestone now!
+18:12:29 <rtyler> danielbeck: per the email you sent out previously, when is 2.1?
+18:12:37 <danielbeck> rtyler May 1(ish)
+18:12:53 <danielbeck> and after that, back to regular weekly releases, i.e. 2.2 around May 8
+18:13:01 <rtyler> #info the first followup release (2.1) should be sometime around May 1, then back to regular weekly releases
+18:13:17 <rtyler> anything else before we move on?
+18:13:23 <danielbeck> This makes 2.1 a pretty big update as well
+18:13:27 <rtyler> I'm going to pull an agenda update up
+18:13:29 <danielbeck> four weeks of changes, potentially
+18:13:32 <rtyler> agenda item*
+18:13:46 <rtyler> danielbeck: ATH is running on master again properly right>?
+18:13:55 * rtyler <3 automated tests
+18:14:25 <danielbeck> rtyler I don't know how our build system is structured since the infra update
+18:14:55 <rtyler> ATH was always running in DEV@Cloud I thought?
+18:14:57 <kohsuke> That one is on jenkins.ci.cloudbees.com
+18:14:59 <danielbeck> right
+18:15:03 <danielbeck> I had tfennelly look into the ATH before 2.0 release and he said he fixed all the tests
+18:15:04 <rtyler> that is unchanged
+18:15:08 <rtyler> ah okay
+18:15:17 <danielbeck> all brokenness was due to deliberate changes
+18:15:20 <rtyler> danielbeck: how about this, if 2.1 is going to be meaty and you think we need more testing, I can pitch in
+18:15:32 <danielbeck> rtyler I'll let you know later
+18:15:38 <rtyler> alright
+18:15:44 <rtyler> #topic Google Summer of Code update
+18:15:47 <rtyler> batmat: this is you
+18:15:53 <rtyler> (keeping our updates together in the meeting)
+18:16:37 * rtyler twiddles thumbs
+18:16:50 <batmat> sorry, was away a few seconds, thinking it was later
+18:16:54 <batmat> OKAY!
+18:16:59 <batmat> Some days ago, on the 22th of april, were announced the 5 accepted proposals.
+18:17:02 <batmat> That means we have 5 students to mentor until the end of august around different subjects.
+18:17:07 <batmat> #info 5 accepted GSoC proposals/students https://summerofcode.withgoogle.com/organizations/5668199471251456/
+18:17:17 <batmat> We're now in the so-called "Community-Bonding Period" until the 23th of May.
+18:17:21 <batmat> #info the GSoC timeline: https://developers.google.com/open-source/gsoc/timeline
+18:17:29 <batmat> Accepted proposals:
+18:17:29 <batmat> * Support-core plugin improvements, with Minudika Malshan
+18:17:29 <batmat> * Automatic Plugin Documentation Publishin, with canyango
+18:17:29 <batmat> * External Workspace Manager Plugin, with alexsomai
+18:17:29 <batmat> * Jenkins 2.0 Web Interface Improvements: New Job Creation and Configuration, with Samat Davletshin
+18:17:32 <batmat> * Jenkins Usage Statistics Analysis, by Payal Priyadarshini
+18:17:56 <rtyler> batmat: for the room, what does community bonding mean
+18:18:02 <kohsuke> Congrats to those 5 people.
+18:18:17 <batmat> As discussed just now with danielbeck, we decided to put an item on the Gov Meeting for a gsoc status check until the end of august
+18:18:20 <oleg-nenashev> uff, I've finally got to the meeting
+18:18:47 <batmat> rtyler: it's the time students are expected to start working w/ the community.
+18:18:52 * batmat looks for the link
+18:19:15 <batmat> #info What is community-bonding period http://googlesummerofcode.blogspot.fr/2007/04/so-what-is-this-community-bonding-all.html
+18:19:16 <rtyler> don't talk to me, talk to #info :)
+18:19:19 <rtyler> there ya go
+18:19:20 <oleg-nenashev> kohsuke danielbeck Have you contacted your student?
+18:19:30 <kohsuke> No I haven't
+18:19:37 <danielbeck> me neither.
+18:19:47 <kohsuke> We will do that, assuming that's what you mean
+18:19:53 <danielbeck> #action danielbeck and kohsuke to contact Payal
+18:20:15 <rtyler> you should start to familiarize your student with the community and relevant community projects/tools/etc I think
+18:20:17 <batmat> For sure, we've heard from Minudika, canyango, Samat
+18:20:23 <batmat> not sure about the other two for now
+18:20:46 <rtyler> IMO oneo f the most beneficial things is for students to start to meet people in the project who they can learn from, etc
+18:20:54 <oleg-nenashev> mda14 contacted Alexandru
+18:20:56 <batmat> #action kohsuke danielbeck to contact their GSoC studnet
+18:21:06 <batmat> *student :-/
+18:21:07 <rtyler> mentors aren't the only people students should interact with
+18:21:16 <batmat> rtyler: absolutely
+18:21:41 <batmat> the point here is just for mentors to /push/ their students to start creating that /bond/
+18:21:47 <danielbeck> right, so subscribe to all the lists, join all the channels
+18:21:50 <rtyler> heh
+18:21:51 <batmat> and indeed, use the public communication by default
+18:21:58 <batmat> danielbeck: exactly
+18:22:33 <rtyler> batmat: anything else we need to cover right now?
+18:22:46 <batmat> no, I think we're done for a status check
+18:22:46 <oleg-nenashev> swags
+18:23:10 <oleg-nenashev> We need an approval for spending some money if we want to distribute them to applicants
+18:23:23 <oleg-nenashev> alyssat ^^
+18:23:37 <rtyler> oleg-nenashev: send the board a more formal "we need $X for Y" kind of thing, I think that's easy to do
+18:23:44 <rtyler> or actually, I can just buy and reimburse
+18:23:45 <batmat> canyango1: welcome
+18:23:50 <rtyler> there's no problem sending some swag to students ASAP
+18:24:00 <alyssat> what kind of swag do you have in mind?
+18:24:03 <rtyler> #topic Approval of Q2 patron messages
+18:24:10 <danielbeck> #info https://github.com/jenkinsci/patron/pull/11
+18:24:13 <rtyler> let's talk about swag in #jenkins-community
+18:24:22 <oleg-nenashev> Yeah, I can also send them. Some stickers + maybe t-short
+18:24:24 <danielbeck> We have new messages from patrons
+18:24:25 <rtyler> that's not part of the meeting agenda and not critical for the project
+18:24:31 <oleg-nenashev> agreed
+18:24:57 <rtyler> danielbeck: can you #info the patron program details for posterity
+18:25:00 <danielbeck> links to the tester with preview of the new messages are in the PR
+18:25:02 <alyssat> we don't don't have t-short ..just t-shirts :o)
+18:25:07 <danielbeck> #info https://wiki.jenkins-ci.org/display/JENKINS/Patron+of+Jenkins+program
+18:25:11 <rtyler> and the other patrons are fine with their messages in Q2?
+18:25:26 <danielbeck> One didn't renew for Q2, the other kept their message
+18:25:34 * rtyler nods
+18:25:46 <rtyler> #agree the Q2 patron messages look fine to me
+18:25:55 <kohsuke> +1
+18:25:58 <alyssat> +1
+18:26:06 <oleg-nenashev> +1
+18:26:58 <hare_brain> +1
+18:27:23 <kohsuke> #agreed Q2 patrom message is accepted
+18:27:29 <kohsuke> (I think this is how you do it)
+18:27:32 <rtyler> alright, I'm going to move along so we can eat
+18:27:36 * rtyler looks at lunch
+18:27:39 <rtyler> #topic CERT membership request process changes (
+18:27:49 <rtyler> whoops, left a parens on there
+18:27:58 <rtyler> danielbeck: whatcha got
+18:28:00 <danielbeck> historically, CERT membership requests were requested on the mailing list and approved in this meeting
+18:28:13 <danielbeck> due to the biweekly scheduled this adds a delay to approval
+18:28:53 <danielbeck> so I'd like to handle this via the lists directly, and approval implemented by me as needed
+18:29:12 <jglick> +1
+18:29:38 <rtyler> I think it is reasonable to treat the security officer as the lead of the CERT team
+18:29:49 <rtyler> since the security officer is alerady running the meetings and ultimately responsible
+18:29:59 <kohsuke> As I wrote in the dev list I think it's in danielbeck 's authority as the security team lead to define this: https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/jenkinsci-dev/5_k8Uj5rErA/RolFdAUgBwAJ
+18:30:09 <batmat> +1
+18:30:24 <rtyler> danielbeck: I think, so long as the process is transparent and documented for consistency among future security officers
+18:30:39 <rtyler> then this is great, more efficiency in our security team is a good thing for the project
+18:30:42 <rtyler> +1
+18:31:21 <danielbeck> The other part to this is that I'd like to also remove people from the security team if I don't consider their membership useful to the project any longer.
+18:31:22 <rtyler> are there any concerns with this proposal?
+18:31:36 <danielbeck> right now, we have no process for that at all.
+18:31:47 <kohsuke> It'd be also nice to have somewhere to see the list of current members, too
+18:31:55 <rtyler> danielbeck: see aforementioned "transparent and documented"
+18:32:01 <batmat> +1, anything left to you danielbeck as long as says rtyler it's made in the open
+18:32:07 <danielbeck> of course.
+18:32:21 <batmat> nobody can be added privately to that list for example
+18:32:56 <kohsuke> batmat: he's proposing to handle approval by the list. So assuming dev list, it's still in public
+18:33:17 <batmat> kohsuke: yup, np.
+18:33:29 <batmat> rtyler: so, next subject?
+18:33:33 <batmat> you wanted to eat? :D
+18:33:41 <rtyler> heh
+18:33:44 <rsandell> but would that still require core committership approved by this meeting?
+18:34:05 <kohsuke> core committership is only really contingent on the CLA
+18:34:15 <kohsuke> It has never required a blessing here.
+18:34:21 <rsandell> ok
+18:34:29 <kohsuke> I think it's somewhere in the governance doc
+18:34:34 <rtyler> #agreed the security officer is empowered to curate the CERT team so long as it is done in a transparent and documented fashion
+18:34:51 <rsandell> just wondering if we could end up in a situation where cert membership was approved without committership to core
+18:34:51 <rtyler> which makes this subject funny
+18:34:58 <rsandell> it would be a strange situation
+18:34:58 <danielbeck> rtyler set it!
+18:34:59 <rtyler> #topic Approval of CERT membership requests
+18:35:02 <danielbeck> Given the outcome of the previous topic I'd like to inform the meeting that I approve the requests by Andres and Antonio. I will respond on the mailing list accordingly.
+18:35:06 <rtyler> haha
+18:35:07 <danielbeck> done.
+18:35:19 <rtyler> #topic Infra update
+18:35:47 <rtyler> since there's time, I would like to invite everybody to join me in #jenkins-infra in 25 minutes for more details and Q&A around what's been going on with our infra lately
+18:36:11 <rtyler> things are currently stable and we've addressed some technical debt while hardening our infrastructure
+18:36:18 <rtyler> but, especially with something like 2.0
+18:36:44 <rtyler> I want people to please start to remember that plugins, the update center and jenkins-on-jenkins are all important pieces of infrastructure for contributors and users alike
+18:36:55 * kohsuke updates calendar event entry
+18:36:59 <rtyler> and it can't be a 1.5 man show (between kohsuke and I) and continue to grow
+18:37:08 <rtyler> so like
+18:37:09 <rtyler> OMG HALP
+18:37:10 <rtyler> :)
+18:37:16 <rtyler> that is all :)
+18:37:21 <rtyler> #topic Next meeting
+18:37:33 <rtyler> I think this puts us at May 11th
+18:37:38 <rtyler> any issues with that?
+18:38:05 <batmat> rtyler: wiz wut?
+18:38:09 <danielbeck> no?
+18:38:11 <batmat> oops, OK
+18:38:13 <rtyler> heh
+18:38:17 <rtyler> okay
+18:38:19 <kohsuke> I'm going to miss the next meeting
+18:38:25 <rtyler> #info next meeting same time, same place, May 11th
+18:38:35 <rtyler> #endmeeting

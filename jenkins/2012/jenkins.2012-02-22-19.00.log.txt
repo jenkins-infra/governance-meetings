@@ -1,0 +1,248 @@
+19:00:20 <hare_brain> #startmeeting
+19:00:20 <robobutler> Let the Jenkins meeting commence!
+19:00:21 <rtyler> all my jenkins time was spent in the hour writing stupid blog posts :(
+19:00:31 <alyssa_> rtyler: ha ha ha
+19:00:35 <hare_brain> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:00:43 <hare_brain> #chair abayer hare_brain rtyler
+19:00:43 <robobutler> Current chairs: abayer hare_brain rtyler
+19:00:55 <hare_brain> #topic recap of actions
+19:01:14 <hare_brain> #info http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-02-08-19.03.log.html
+19:01:16 <alyssa_> eedri: recommendation is to book Marriott hotel ..same venue as the conference
+19:01:18 <rtyler> heh, beat me to it
+19:01:37 <rtyler> I think KK already got started on the artifactory thing
+19:01:48 <rtyler> he's definitely already submitted the puppet manifests to set up the cname
+19:02:04 <rtyler> ndeloof: "ndeloof jieryn to confirm cloudbees foss requirements for sponsor logo"
+19:02:24 <rtyler> in the mean time, jieryn what's the good word from cafepress?
+19:02:27 <alyssa_> can I pls get some votes on this https://skitch.com/alytong/8dwka/jenkinsinparis-crv-1.pdf-1-page
+19:02:46 <rtyler> alyssa_: not right now
+19:02:48 <heidig> test message
+19:02:48 <rtyler> project meeting
+19:02:52 <hare_brain> alyssa_, we've started our project meeting. Can you hold on that until we're done?
+19:03:00 * rtyler pokes jieryn harder
+19:03:14 <alyssa_> sorry..am a newbie
+19:03:21 <DarkRift> hoy people, wouldn't it be useful to have a jenkins plugin to add openvas testing for applications ? (just a thought)
+19:03:31 <heidig> @rtyler: CloudBees marketing is here for the JUC agenda item. Will you let us know when appropriate to speak up? Thanks! We are all newbies at this. :)
+19:03:33 <rtyler> DarkRift: we're in a project meeting, hold that thought :)
+19:03:40 <rtyler> heidig: can do
+19:03:44 <heidig> Thx
+19:03:48 <rtyler> hare_brain: can you chair abayer and myself please?
+19:03:54 <ndeloof> rtyler: "ndeloof to confirm cloudbees foss requirements for sponsor logo"
+19:04:00 <hare_brain> rtyler I did
+19:04:02 <abayer> rtyler: we're chaired.
+19:04:13 <rtyler> ah, must have missed it
+19:04:31 <rtyler> ndeloof: that was an action item from our last project meeting, I honestly don't remember the context though
+19:04:41 <ndeloof> cloudbees ok for sponsoring jenkins-ci with a "standard" logo on sponsors widget
+19:04:55 <ndeloof> -> jenkins.ci.cloudbees.com
+19:05:03 <ndeloof> used for building some of the ci jobs
+19:05:20 <ndeloof> plan was to move selenium tests there i thing
+19:05:31 <abayer> ndeloof: Yeah, that was the thought.
+19:05:46 <ndeloof> account is up,
+19:05:58 <rtyler> ndeloof: could I ask you to file a ticket for me to add the logo, and include the logo on the ticket?
+19:06:02 <ndeloof> foss "requirements" have been relaxed for jenkins-ci
+19:06:06 <rtyler> heh
+19:06:34 <ndeloof> so that you don't have to put the "powered by cloudbees" logo on home
+19:06:42 <ndeloof> logo on sponsor list is ok
+19:06:48 <ndeloof> will create a jira for that
+19:06:54 <hare_brain> OK, so to recap: Take advantage of CloudBees infrastructure for some J-on-J jobs, and in return, we put CloudBees logo in the sponsored widget.
+19:07:07 <abayer> +1
+19:07:11 <rtyler> #action ndeloof to file a ticket for rtyler to get a standard CB logo on the "sponsors" block on www.jenkins-ci.org
+19:07:39 <hare_brain> #agreed Take advantage of CloudBees infrastructure for some J-on-J jobs, and in return, we put CloudBees logo in the sponsored widget
+19:07:48 <rtyler> #action ndeloof will need to work with abayer and jieryn to figure out what jobs should go on Dev@Cloud and what stays on J-on-J
+19:07:55 <abayer> +1 again
+19:08:08 <rtyler> something we can figure out later, shall we move to the first agenda item?
+19:08:13 <abayer> Yup.
+19:08:23 <rtyler> #topic Proposal: Move away from Drupal to a Git repository powered by Jekyll for the community site
+19:08:33 <abayer> This one's pretty much all you, rtyler. =)
+19:08:35 <rtyler> this is my schtick, let me enumerate the pross and cons
+19:09:09 <rtyler> Drupal is great, but I think we could greatly benefit by a more simple statically generated site that we can manage with our typical GitHub infrastructure
+19:09:17 <rtyler> this will allow more authors and more content to be more easily published
+19:09:29 <abayer> Easy is always good.
+19:09:32 <rtyler> I've done a couple Drupal -> Jekyll conversions and it's pretty straight-forward
+19:09:47 <rtyler> I would honestly rather go this route, than figuring out a good ACL scheme for Drupal with our LDAP
+19:10:11 <rtyler> I can spend the time to get a working dump "online" without affecting normal operations
+19:10:13 <abayer> Works for me - but admittedly, I defer to you on all thing site-ish.
+19:10:23 <rtyler> right, I want to change that up a little more ;)
+19:10:30 <hare_brain> This is not for the wiki, but for jenkins-ci.org itself?
+19:10:35 <rtyler> www, yes
+19:10:53 <rtyler> this would also make things like ndeloof's logo action item a simple pull request by somebody that is not me
+19:10:56 <rtyler> :)
+19:10:57 <hare_brain> How would the changelogs and releases get updated?
+19:11:21 <rtyler> that's some simple PHP garbage on the host anyways
+19:11:30 <rtyler> we can still run that, it'd have to likely stay out of the tree I htink
+19:12:04 <abayer> Or we could set up a job to update static pages with the changelog/releases stuff, I'd imagine.
+19:12:07 <rtyler> #info need to be mindful of how changelogs are generated and sourced in the current site
+19:12:37 <imod> sounds like a good plan
+19:12:45 <rtyler> nobody's screamed in terror, so I think i'll start tinkering with it and see what I can come up with
+19:12:56 <abayer> Definitely worth pursuing at the very least.
+19:12:57 <rtyler> i want everybody that was at FOSDEM to be capable of also writing news updates for the project ;)
+19:13:13 <rtyler> #action rtyler to generate a prototype jekyll www site
+19:13:20 <imod> hmm, not sure if want that :)
+19:13:20 <iAsterisk> hey, I get this odd error that htmlpublisher fails to copy workspace/build/api to other folder (https://gist.github.com/1886697), any ideas what could be the possible reasons to this
+19:13:23 <rtyler> we'll skip over the board thing for now?
+19:13:26 <hare_brain> +1
+19:13:31 <rtyler> iAsterisk: give us a few minutes, we're in a project meeting right now
+19:13:33 <abayer> rtyler: I'd actually like to start talking about that.
+19:13:40 <rtyler> oh alrighty
+19:13:47 <rtyler> #topic It's been a year, should we elect a new board, how/when/etc?
+19:14:02 <rtyler> let's talk about it!
+19:14:03 <abayer> #info So, we've had the same board for a year. Which has been ok, but we should really have elections.
+19:14:19 <abayer> #info Question is - how do we elect new board members? How do we decide who can vote?
+19:15:03 <vjuranek> abayer: same thing as voting about rename hudson-> jenkins?
+19:15:07 <hare_brain> Even more fundamental to that, does the structure of the board need to be changed?
+19:15:09 <abayer> I'm the one who proposed the eligibility criteria for the rename vote last year, but that was ad hoc - just looking at the members list of the mailing lists as of a point in time.
+19:15:22 <abayer> But I'm not sure whether that's really viable at this point.
+19:15:29 <rtyler> it's a lot more people
+19:15:31 <rtyler> :)
+19:15:47 <rtyler> we don't have the concept of a "member" in the same way some other projects have
+19:15:52 <abayer> hare_brain: That too. I'd like to propose bumping it up to 5 people, so that we can get more people centrally involved.
+19:16:08 <imod> I think the current board should vote
+19:16:19 <rtyler> #info One model to follow might be the openSUSE structure, e.g. http://en.opensuse.org/openSUSE:Board_election
+19:16:23 <hare_brain> #idea Increase size of board to 5 people, instead of current 3.
+19:16:26 <abayer> imod: But then we could just vote for ourselves forever! =)
+19:16:40 <imod> true, but we need to start somewhere
+19:17:05 <abayer> rtyler: Ah, an open period for "registering" to vote...nice.
+19:17:31 <hare_brain> #idea Before elections, have an open period to allow people to register to vote.
+19:17:52 <hare_brain> I think registration can still be sign up for the dev or user mailing list?
+19:17:57 <imod> I mean, lets face it KK and styler are set for sure - everything else is not gone work - I think
+19:18:17 <abayer> #info managing the rename vote was a pain - making sure voters were on the mailing lists by the set time, etc.
+19:18:23 <abayer> imod: rtyler refuses to be on the board, actually. =)
+19:18:42 <evilchili> is there some assumption about who *shouldn't* be allowed to vote?
+19:18:46 <imod> that was not what i meant!
+19:19:20 <imod> abyer: I think you should be in too!
+19:20:11 <abayer> hare_brain: I'd really prefer a smaller, easier to verify electorate. That OpenSUSE model seemed pretty reasonable to me - though I'd probably want a lower bar for "registering" than they require for OpenSUSE membership, just 'cos I think pure users  need to be represented as well.
+19:20:21 <abayer> i.e., not just "contributors".
+19:20:33 <hare_brain> OK.
+19:21:24 <rtyler> abayer: I refused last year
+19:21:27 <rtyler> might not this year
+19:21:29 <rtyler> I'm hungry for power
+19:21:35 <abayer> Ah, well, then we're dooooomed.
+19:21:41 <hare_brain> Then I think that the current board should hash out a proposal for how elections would work, then review/ratify at a future project meeting.
+19:21:46 <hare_brain> Then we can set a date for elections.
+19:21:53 <rtyler> that sounds good to me
+19:22:35 <hare_brain> #action abayer kohsuke hare_brain to write up a proposal for board elections, then bring it to future project meeting for review/ratification.
+19:22:47 <abayer> +1
+19:23:15 <rtyler> moving on!
+19:23:19 <rtyler> #topic JUC promotion ideas
+19:23:20 <hare_brain> #idea Proposal should include nomination process, how to handle board member resignations, tenure
+19:23:23 <rtyler> ah shit
+19:23:36 <hare_brain> It's fine. I'm done.
+19:23:45 <rtyler> heidig: wake up!
+19:23:58 <heidig> Thanks! KK invited myself, Alyssa and Lisa to the meeting to talk (or type!) about JUC. We are really pumped to have 4 JUC conferences to organize this year! But we need your help in a big way. To ensure the conferences are successful, we need the Community to be very involved and to really make them *Jenkins* conferences, rather than a conference CloudBees is organizing. That is what we’d like to discuss today.
+19:23:59 <rtyler> this was an unattributed agenda item, I think it was KK
+19:24:19 <heidig> Yes
+19:24:53 <rtyler> what did we do for JUC SF, besides shouting about it a lot on Twitter?
+19:25:03 <rtyler> not that I don't enjoy that part
+19:25:19 <hare_brain> Drumming up presenters was a large effort.
+19:25:40 <heidig> We (CloudBees and KK) blogged, Tweeted, Facebooked, issued press releases. We had the momentum of Java One with us, too.
+19:25:52 <abayer> fwiw, JUC Paris is now looking to have a pretty good lineup of speakers, but I know JUC NYC could still use more.
+19:25:56 <heidig> Some thoughts: We’d like to have several folks from the community step up and be willing to really ramp up the noise in the Community about all 4 JUC conferences. Get people to register to attend (Early Bird pricing in effect right now, too), get organizations to sponsor and have people apply to speak. This could be a mixture of blogging, posting in Jenkins forums, emailing the Jenkins list, Tweeting, Facebooking – and getting o
+19:26:10 <rtyler> heidig: are you familiar with our fledgling CIA program? that would be helpful if we had built it up more by now :/
+19:26:32 <heidig> I have heard some about the CIA program - but not in any detail. I am aware of it - Lisa and Alyssa are, too.
+19:26:49 <rtyler> https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CIA+Program
+19:27:00 <lisawells> btw LOVE that logo!
+19:27:05 <rtyler> heh
+19:27:27 <rtyler> I think one key aspect would be to reach out to folks incorporated with local JUGs near the JUC
+19:27:38 <rtyler> and offer them a JUG-specific pricing to get a group going
+19:27:49 <alyssa_> is the CIA program contain  larger audience?
+19:27:58 <heidig> Is this something the Community is doing, currently? Or plans to do for the JUCs?
+19:28:02 <rtyler> alyssa_: it's really quite young, we're sitll working on it
+19:28:14 <lisawells> CIA program will be great for the Fall JUCs (Antwerp & San Francisco)
+19:28:18 <rtyler> agreed
+19:28:33 <rtyler> we still have to sow the seeds of the program
+19:28:38 <lisawells> CIA is basically Jenkins Evangelists, right?
+19:28:47 <rtyler> CI Ambassadors my dear lisa!
+19:29:01 <heidig> So what can we do right now, within the Community, to really make some noise about JUC Paris and NY?
+19:29:04 <lisawells> yes, just using another term :)
+19:29:23 <rtyler> jieryn: are there JUGs in NYC?
+19:29:23 <alyssa_> Nicolas De Loof has reach out to the local French JUG, etc and we did offer free tix
+19:29:31 <rtyler> ah, cool
+19:29:52 <alyssa_> I have also reached out to some local NYC JUC thanks to Jesse's help
+19:30:01 <rtyler> also cool
+19:30:06 <rtyler> that's all the ideas I've really had around it
+19:30:26 <rtyler> having people more local to the JUC will be mots beneficial from the grassroots perspective
+19:30:32 <lisawells> would it help if we wrote some sample tweets and asked the community to spread them / RT?
+19:30:48 <alyssa_> but it's still not enough to generate registrations and speaker and sponsors
+19:31:14 <rtyler> lisawells: have you seen some of the "I'm attending GUADEC" or "I'm attending FOSDEM" logos and badges that those conferences release for people to post on blogs?
+19:31:47 <lisawells> no, but I can imagine what they look like
+19:31:55 <heidig> Agreed with Alyssa. What else might make sense for the Community to do? Are there Jenkins users who are particularly well-connected and could really ramp up visibiilty within the Community?
+19:32:01 <rtyler> twitter is a little to ephemeral to rely on heavily IMO
+19:32:04 <rtyler> too*
+19:32:29 <rtyler> heidig: there probably are, but it depends on whether or not that have time or even want to ;)
+19:32:34 <imod> I have an internal dev community with a couple of hundred devs...
+19:32:39 <lisawells> @ryler: for the logos - how many folks in the community blog heavily?
+19:33:00 <heidig> Yeah, I know. Bandwidth is an issue for everyone. How to get more of it...
+19:33:03 <rtyler> lisawells: I'm less concerned about jenkins community people, and more concerned with people on the edges
+19:33:21 <rtyler> users without community ties to Jenkins (yet)
+19:33:46 <alyssa_> imod: where are your dev community located?
+19:33:56 <rtyler> lisawells: perhaps you guys could create a "CIA package"  that we could help publicize, which would contain a couple of hard hitting points for attending JUC
+19:34:01 <lisawells> @rtyler: good point! and now we're back to how we reach those folks...?
+19:34:06 <imod> europe, US, GB
+19:34:21 <rtyler> lisawells: combined with some "I'm attending JUC Paris!" badges, and some other short materials (less htan an A4 page)
+19:34:44 <rtyler> I would imagine imod could use such a CIA Airdrop
+19:34:52 * rtyler is trying out different words for it
+19:34:52 <lisawells> CIA package could ge good - would also help launch the program
+19:35:09 <rtyler> basically to give guys like imod something really easy to pass around internally
+19:35:38 <rtyler> hare_brain: can you take tihs the rest of the way, I need to bounce
+19:35:44 <rtyler> I'm also out of ideas
+19:35:50 <rtyler> for this anyways ;)
+19:35:58 <lisawells> @rtyler: one issue is we (heidig & alyssa_ & me) are already fully loaded doing publicity, sponsorship, planning,etc - do you think the community could help with this?
+19:36:06 <imod> actually I'm just submitting a talk to Jazoon in switzerland, so I could do some promotion there to
+19:36:36 <rtyler> #action rtyler to ponder harder about a CIA Package for JUC, contact lisawells and heidig with outlines/ideas/etc
+19:36:45 <rtyler> abayer: how about you, can you close tihs off?
+19:36:46 <lisawells> thanks!!
+19:36:46 <alyssa_> imod: that would help.
+19:37:03 <rtyler> imod: when is Jazoon?
+19:37:34 <imod> rtyler: endo of june
+19:38:00 <abayer> Sorry, distracted. =)
+19:38:02 * mika is in the organization team of one of the largest IT events in austria (linuxdays graz, >500 participants), could also do promotion
+19:38:10 <lisawells> imod: what's the best way to invovle your community?
+19:38:16 <abayer> Work puling me away at the moment.
+19:38:18 <rtyler> s/community/company
+19:38:20 <rtyler> xD
+19:38:54 <imod> lisawells: I'm already running an internal chat channel for jenkins and there are many more like one for java, maven...
+19:39:01 <hare_brain> rtyler, go ahead and bounce if you need to. Sorry, was looking away.
+19:39:07 <rtyler> hare_brain: alright, you're in charge
+19:39:41 <heidig> We want the JUCs to be wildly successful...but we need the Community to register, speak, sponsor, etc. Open to ideas as to how to engage.
+19:39:47 <lisawells> +imod: so we just hop on IRC and yak?
+19:40:42 <hare_brain> What rtyler was concerned about, and I agree with him, is that "the Community" is not equally engaged.
+19:40:50 <imod> lisawells: thats at least what I can do - but we also have some internal community meetings every other week, so I can place it there too
+19:40:53 <hare_brain> We have people who hang out here on IRC a lot.
+19:41:01 <hare_brain> There are the people who interact on the mailing lists
+19:41:07 <hare_brain> Those are the people that are easy to reach.
+19:41:12 <lisawells> +imod: that would be awesome - merci beaucoup!
+19:41:25 <hare_brain> But the bulk of the community, the "dark matter", if you will, is very disconnected.
+19:41:43 <heidig> @imod: those are the things that really help and make a difference!!
+19:41:45 <hare_brain> Maybe very is too strong. But more disconnected from these online hangouts.
+19:42:04 <lisawells> @hare_brain: you made me laugh. Have you found a good way to reach them?
+19:42:18 <heidig> But if those who are connected can really ramp it up, it makes a huge difference.
+19:42:31 <hare_brain> I don't have a good way to reach them.
+19:42:43 <abayer> I'm always surprised by how many people are following/etc me, kohsuke, @jenkinsci, etc on Twitter. Pretty much every time I tweet about the JUCs, someone's responding, retweeting, etc.
+19:43:39 <heidig> @bayer - have seen your Tweets. They are great!
+19:43:42 <abayer> I also think that JUC Paris is having a bit of a hard time 'cos of being alongside a new, predominantly French conference, while JUC NYC is in an even tougher spot, given that it's not alongside any conference.
+19:43:51 <hare_brain> The metaquestion is how are you guys defining community? Yahoo is a company of thousands and we use Jenkins, but I wouldnt' categorize all of them as being part of the community.
+19:44:12 <heidig> Community = Jenkins users. Period. Wherever they are.
+19:44:45 <hare_brain> I think you want *engaged* Jenkins users.
+19:45:23 <lisawells> anyone who cares about Jenkins and wants to engage
+19:45:28 <heidig> We want to reach anyone using Jenkins. To your point, the engaged users are the ones who can really help raise the noise level.
+19:46:02 <imod> hare_brain: you'r right, some just like to consume - but some just need to be asked
+19:48:14 <lisawells> OK, so +imod is going to post to IRC... and hopefully some of you are going to tweet, facebook, linkedin, forum-post, mention in IRC, etc....? I agree with @hare_brain, some folks just need to be asked
+19:48:49 <heidig> Right. We just don't know who they all are - even the engaged ones - to ask them to step up the noise. That's where we need help from the Community - to do the asking.
+19:49:36 <hare_brain> OK, is that all on this topic?
+19:49:47 <heidig> Anyway - thanks! We appreciate your time today and your thoughts/input. :)
+19:50:08 <lisawells> @hare_brain: I think that's it - thanks in advance to all for helping get the word out
+19:50:19 <hare_brain> #topic Next meeting
+19:50:42 <hare_brain> If we continue with our recurring schedule, the next meeting will be extra special.
+19:50:45 <hare_brain> 2/29!
+19:50:59 <imod> :)
+19:51:00 <hare_brain> Oh, no I'm wrong
+19:51:04 <hare_brain> Off by a week
+19:51:07 <hare_brain> It would be 3/7
+19:51:13 <hare_brain> Darn
+19:51:36 <lisawells> shame! 2/29 is almost as cool as 11.11.11
+19:51:36 <abayer> hehehh
+19:51:44 <hare_brain> Next meeting at 3/7 @ 11 am PST
+19:51:46 <hare_brain> Objections?
+19:51:49 <abayer> +1
+19:52:23 <hare_brain> #agreed Next meeting on March 7, 2012 11:00 PST (19:00 UTC)
+19:53:10 <hare_brain> OK, then that's a wrap.
+19:53:19 <hare_brain> #endmeeting

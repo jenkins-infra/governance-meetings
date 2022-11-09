@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app228.us.archive.org';v.server_ms=354;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-05-24-18.00.log.html","20210115145459","https://web.archive.org/","web","/_static/",
+	      "1610722499");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:01</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck kohsuke hare_brain</span>
+<a name="l-4"></a><span class="tm">18:00:08</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">ogondza</span>
+<a name="l-6"></a><span class="tm">18:00:13</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke ogondza rtyler
+<a name="l-7"></a><span class="tm">18:00:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-8"></a><span class="tm">18:00:34</span><span class="nk"> &lt;rtyler&gt;</span> last meeting notes: http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-05-10-18.00.html
+<a name="l-9"></a><span class="tm">18:01:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> i'm assuming you wrote the changelog? :)
+<a name="l-10"></a><span class="tm">18:02:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> he did
+<a name="l-11"></a><span class="tm">18:02:30</span><span class="nk"> &lt;rtyler&gt;</span> there was also some LTS related stuff
+<a name="l-12"></a><span class="tm">18:02:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.60 was released as discussed
+<a name="l-13"></a><span class="tm">18:02:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> you awake and with us? :)
+<a name="l-14"></a><span class="tm">18:02:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It is fine, hence it can be an LTS baseline
+<a name="l-15"></a><span class="tm">18:03:19 </span><span class="nka">* rtyler</span> <span class="ac">sounds the alarm</span>
+<a name="l-16"></a><span class="tm">18:03:21</span><span class="nk"> &lt;ogondza&gt;</span> yes, there is separate item for baseline discusion
+<a name="l-17"></a><span class="tm">18:03:21</span><span class="nk"> &lt;rtyler&gt;</span> wake up people :)
+<a name="l-18"></a><span class="tm">18:03:31</span><span class="nk"> &lt;ogondza&gt;</span> later today
+<a name="l-19"></a><span class="tm">18:03:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-20"></a><span class="tm">18:03:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> was just summarizing the results of our action items
+<a name="l-21"></a><span class="tm">18:03:53</span><span class="nk"> &lt;rtyler&gt;</span> do we have any more last meeting actions?
+<a name="l-22"></a><span class="tm">18:03:54</span><span class="nk"> &lt;olblak&gt;</span> o/
+<a name="l-23"></a><span class="tm">18:04:01</span><span class="nk"> &lt;rtyler&gt;</span> I can move on to the meatier topics
+<a name="l-24"></a><span class="tm">18:04:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-25"></a><span class="tm">18:04:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> you're up buddy :)
+<a name="l-26"></a><span class="tm">18:04:40</span><span class="nk"> &lt;rtyler&gt;</span> i'm hoping danielbeck is also awake
+<a name="l-27"></a><span class="tm">18:04:56</span><span class="nk"> &lt;ogondza&gt;</span> the testing have not revealed any problems
+<a name="l-28"></a><span class="tm">18:05:10</span><span class="nk"> &lt;ogondza&gt;</span> thanks Oleg, for your update
+<a name="l-29"></a><span class="tm">18:05:14</span><span class="nk"> &lt;rtyler&gt;</span> forgive my ignorance, this would be with 2.46.3?
+<a name="l-30"></a><span class="tm">18:05:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am happy to help
+<a name="l-31"></a><span class="tm">18:05:25</span><span class="nk"> &lt;ogondza&gt;</span> the problems we are seeing are infra related
+<a name="l-32"></a><span class="tm">18:05:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Though my instance does not run much Pipeline stuff so far
+<a name="l-33"></a><span class="tm">18:05:53</span><span class="nk"> &lt;ogondza&gt;</span> yes, I guess what I am saying is is 2.46.3 is good to be released
+<a name="l-34"></a><span class="tm">18:05:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler&gt;:</span> yep, 2.46.3
+<a name="l-35"></a><span class="tm">18:06:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 🚢 🇮🇹
+<a name="l-36"></a><span class="tm">18:06:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> wunderbar \o/
+<a name="l-37"></a><span class="tm">18:07:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">2.46.3 is ready to be released according to ogondza</span>
+<a name="l-38"></a><span class="tm">18:07:18</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke, please release the .3</span>
+<a name="l-39"></a><span class="tm">18:07:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> kohsuke is in APAC timezone now AFAIK
+<a name="l-40"></a><span class="tm">18:08:05</span><span class="nk"> &lt;rtyler&gt;</span> right
+<a name="l-41"></a><span class="tm">18:08:27</span><span class="nk"> &lt;ogondza&gt;</span> that is it from me
+<a name="l-42"></a><span class="tm">18:08:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> LTS election?
+<a name="l-43"></a><span class="tm">18:08:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next LTS baseline selectin</span>
+<a name="l-44"></a><span class="tm">18:09:31</span><span class="nk"> &lt;ogondza&gt;</span> IIRC we cut .60 with accumulated changes to be tested and used as conservative baseline
+<a name="l-45"></a><span class="tm">18:09:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, as we discussed at the last meeting, there is an interest to have 2.60 due to the new API required for the Pipeline job disabling stuff. CC abayer jglick
+<a name="l-46"></a><span class="tm">18:09:47</span><span class="nk"> &lt;ogondza&gt;</span> if things go well we will consider .61
+<a name="l-47"></a><span class="tm">18:10:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.61 didn't go well
+<a name="l-48"></a><span class="tm">18:10:04</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-49"></a><span class="tm">18:10:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.58 was a conservative baseline IIRC
+<a name="l-50"></a><span class="tm">18:10:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And the plan was to select between 2.58 and 2.60 if the latter once is good enough
+<a name="l-51"></a><span class="tm">18:10:59</span><span class="nk"> &lt;rtyler&gt;</span> I've pinged danielbeck try to to awaken him too
+<a name="l-52"></a><span class="tm">18:11:21</span><span class="nk"> &lt;jglick&gt;</span> 2.60 sounds good to me unless there was some known problem with it.
+<a name="l-53"></a><span class="tm">18:11:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Stats in 2.60: 62 suns &amp; 2 clouds, the linked issue is unrelated to the core
+<a name="l-54"></a><span class="tm">18:11:50</span><span class="nk"> &lt;ogondza&gt;</span> right
+<a name="l-55"></a><span class="tm">18:12:05</span><span class="nk"> &lt;jglick&gt;</span> Yup, `ssh-slaves`.
+<a name="l-56"></a><span class="tm">18:12:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> there is JENKINS-44120 regression in 2.59 (fixed in 2.61), but it can be easily backported
+<a name="l-57"></a><span class="tm">18:12:20</span><span class="nk"> &lt;rtyler&gt;</span> I was just about to say..
+<a name="l-58"></a><span class="tm">18:13:25</span><span class="nk"> &lt;rtyler&gt;</span> IMHO 2.60 is a fine choice
+<a name="l-59"></a><span class="tm">18:13:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yep
+<a name="l-60"></a><span class="tm">18:13:29</span><span class="nk"> &lt;ogondza&gt;</span> I am ok with .60
+<a name="l-61"></a><span class="tm">18:13:41</span><span class="nk"> &lt;ogondza&gt;</span> Jesse, seems to agree
+<a name="l-62"></a><span class="tm">18:13:44</span><span class="nk"> &lt;rtyler&gt;</span> any objections from those who are awake on 2.60 being the next LTS baseline?
+<a name="l-63"></a><span class="tm">18:13:57</span><span class="nk"> &lt;ogondza&gt;</span> kk and Daniel are gone. sound approved to me :P
+<a name="l-64"></a><span class="tm">18:14:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The only risk is a relatively new TrileadSSH-2, but I think we can backport regressions if they appear
+<a name="l-65"></a><span class="tm">18:14:00</span><span class="nk"> &lt;jglick&gt;</span> https://github.com/jenkinsci/jenkins/pull/2888 simple Trilead version bump IIUC.
+<a name="l-66"></a><span class="tm">18:14:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for 2.60 from me
+<a name="l-67"></a><span class="tm">18:14:19</span><span class="nk"> &lt;jglick&gt;</span> +1 from me for 2.60.
+<a name="l-68"></a><span class="tm">18:14:43</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Next lts will be 2.60</span>
+<a name="l-69"></a><span class="tm">18:14:47</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-70"></a><span class="tm">18:14:58</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to initiate the new LTS line</span>
+<a name="l-71"></a><span class="tm">18:15:11</span><span class="nk"> &lt;ogondza&gt;</span> that was quick
+<a name="l-72"></a><span class="tm">18:15:22</span><span class="nk"> &lt;rtyler&gt;</span> w00t
+<a name="l-73"></a><span class="tm">18:15:24</span><span class="nk"> &lt;rtyler&gt;</span> alrighty
+<a name="l-74"></a><span class="tm">18:15:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">s - R. Tyler Croy, Olivier Vernin</span>
+<a name="l-75"></a><span class="tm">18:15:34 </span><span class="nka">* oleg-nenashev</span> <span class="ac">considers adding a java 9 alpha migration proposal to the next meeting. Just to get more people in the room</span>
+<a name="l-76"></a><span class="tm">18:15:38</span><span class="nk"> &lt;rtyler&gt;</span> damnit
+<a name="l-77"></a><span class="tm">18:15:43</span><span class="nk"> &lt;rtyler&gt;</span> bad copy paste
+<a name="l-78"></a><span class="tm">18:15:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Purchasing a SendGrid account to send project emails from Azure-based applications</span>
+<a name="l-79"></a><span class="tm">18:15:53</span><span class="nk"> &lt;rtyler&gt;</span> there we go
+<a name="l-80"></a><span class="tm">18:16:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">olblak:</span> would you provide the background on this topic plz
+<a name="l-81"></a><span class="tm">18:16:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Is there an email thread link?
+<a name="l-82"></a><span class="tm">18:16:15</span><span class="nk"> &lt;rtyler&gt;</span> no
+<a name="l-83"></a><span class="tm">18:16:21</span><span class="nk"> &lt;olblak&gt;</span> not uyet
+<a name="l-84"></a><span class="tm">18:16:23</span><span class="nk"> &lt;olblak&gt;</span> not yet
+<a name="l-85"></a><span class="tm">18:16:27</span><span class="nk"> &lt;rtyler&gt;</span> this was discussed originally in the infra sync meeting on Monday :)
+<a name="l-86"></a><span class="tm">18:16:33</span><span class="nk"> &lt;rtyler&gt;</span> that you slept through oleg-nenashev xD
+<a name="l-87"></a><span class="tm">18:16:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> which I missed....
+<a name="l-88"></a><span class="tm">18:16:38</span><span class="nk"> &lt;olblak&gt;</span> at the moment we can only send email from OSUOSL network
+<a name="l-89"></a><span class="tm">18:16:52</span><span class="nk"> &lt;olblak&gt;</span> and we would like to send emails from azure network
+<a name="l-90"></a><span class="tm">18:17:06</span><span class="nk"> &lt;rtyler&gt;</span> s/would like/need/
+<a name="l-91"></a><span class="tm">18:17:23</span><span class="nk"> &lt;olblak&gt;</span> indeed need
+<a name="l-92"></a><span class="tm">18:17:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1. must-have since we move to Azure
+<a name="l-93"></a><span class="tm">18:17:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, what's the price?
+<a name="l-94"></a><span class="tm">18:17:49</span><span class="nk"> &lt;rtyler&gt;</span> I was about to ask olblak that too :)
+<a name="l-95"></a><span class="tm">18:18:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And any chance SendGrid sponsors it just in case?
+<a name="l-96"></a><span class="tm">18:18:14</span><span class="nk"> &lt;rtyler&gt;</span> I don't have any friends to beg at sendgrid :)
+<a name="l-97"></a><span class="tm">18:18:23</span><span class="nk"> &lt;olblak&gt;</span> 10$ per month
+<a name="l-98"></a><span class="tm">18:18:31</span><span class="nk"> &lt;olblak&gt;</span> with that we can send 40000 emails per month
+<a name="l-99"></a><span class="tm">18:18:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">if anybody has a friend at sendgrid or knows if they support open source projects, reach out to me on infra@lists.jenkins-ci.org</span>
+<a name="l-100"></a><span class="tm">18:18:43</span><span class="nk"> &lt;olblak&gt;</span> which I think is enough
+<a name="l-101"></a><span class="tm">18:18:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 10 bucks does not worth wasting time
+<a name="l-102"></a><span class="tm">18:18:48</span><span class="nk"> &lt;rtyler&gt;</span> so $120 per year to send project emails from azure, that seems very reasonable to me
+<a name="l-103"></a><span class="tm">18:18:51</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-104"></a><span class="tm">18:19:07</span><span class="nk"> &lt;rtyler&gt;</span> any objections to spending $10 a month to send emails from Azure based applications?
+<a name="l-105"></a><span class="tm">18:19:19</span><span class="nk"> &lt;ogondza&gt;</span> +1
+<a name="l-106"></a><span class="tm">18:19:23</span><span class="nk"> &lt;olblak&gt;</span> +1
+<a name="l-107"></a><span class="tm">18:20:02 </span><span class="nka">* rtyler</span> <span class="ac">waits one more minute or two</span>
+<a name="l-108"></a><span class="tm">18:20:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-109"></a><span class="tm">18:20:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll spend a little bit of money on sendgrid for azure-based infrastructure</span>
+<a name="l-110"></a><span class="tm">18:21:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Add olblak as an admin in LDAP and provide access to jenkins-keys (</span>
+<a name="l-111"></a><span class="tm">18:21:12</span><span class="nk"> &lt;rtyler&gt;</span> this is another infrastructure related topic
+<a name="l-112"></a><span class="tm">18:21:24</span><span class="nk"> &lt;rtyler&gt;</span> olblak has been doing a lot of infrastructure work and helping out quite a bit
+<a name="l-113"></a><span class="tm">18:21:36</span><span class="nk"> &lt;rtyler&gt;</span> I would like to enable his access to administrative level functions in project infrastructure
+<a name="l-114"></a><span class="tm">18:21:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any chance we get his time to review account creation requests? :)
+<a name="l-115"></a><span class="tm">18:21:53</span><span class="nk"> &lt;olblak&gt;</span> :)
+<a name="l-116"></a><span class="tm">18:22:00</span><span class="nk"> &lt;rtyler&gt;</span> this will reduce the bus factor on me, but also make some work easier for olblak I believe
+<a name="l-117"></a><span class="tm">18:22:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> not sure, that's up to olblak whether he wants to help with that
+<a name="l-118"></a><span class="tm">18:22:18</span><span class="nk"> &lt;olblak&gt;</span> This is something where I can help
+<a name="l-119"></a><span class="tm">18:22:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ack
+<a name="l-120"></a><span class="tm">18:22:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> At least we will have someone whom we can ping in the EU TZ
+<a name="l-121"></a><span class="tm">18:23:03</span><span class="nk"> &lt;rtyler&gt;</span> I fully support olblak becoming an infra admin
+<a name="l-122"></a><span class="tm">18:23:14</span><span class="nk"> &lt;autojack&gt;</span> if you support it, I'm fine with it.
+<a name="l-123"></a><span class="tm">18:23:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Does Jenkins keys allow to decrypt the usage stats raw data?
+<a name="l-124"></a><span class="tm">18:23:26</span><span class="nk"> &lt;rtyler&gt;</span> no
+<a name="l-125"></a><span class="tm">18:23:45</span><span class="nk"> &lt;rtyler&gt;</span> jenkins-keys is what decrypts all the api keys, private keys, etc for the puppet infrastructure
+<a name="l-126"></a><span class="tm">18:23:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> then I'm fine with that
+<a name="l-127"></a><span class="tm">18:23:52</span><span class="nk"> &lt;rtyler&gt;</span> right now kohsuke and I only have access to that
+<a name="l-128"></a><span class="tm">18:24:47</span><span class="nk"> &lt;rtyler&gt;</span> any concerns or questions I could answer
+<a name="l-129"></a><span class="tm">18:25:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for granting access
+<a name="l-130"></a><span class="tm">18:25:36</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler sorry I missed the start of this meeting
+<a name="l-131"></a><span class="tm">18:26:05</span><span class="nk"> &lt;ogondza&gt;</span> +1 on more infra admins
+<a name="l-132"></a><span class="tm">18:26:18</span><span class="nk"> &lt;danielbeck&gt;</span> belated +1 for 2.60
+<a name="l-133"></a><span class="tm">18:26:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">olblak to be granted infra admin access</span>
+<a name="l-134"></a><span class="tm">18:26:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> did you want to bring up admin access for you as well in this meeting?
+<a name="l-135"></a><span class="tm">18:27:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Why not since we have time? CC batmat
+<a name="l-136"></a><span class="tm">18:27:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Grant LDAP admin access to oleg-nenashev</span>
+<a name="l-137"></a><span class="tm">18:27:29</span><span class="nk"> &lt;rtyler&gt;</span> for background, LDAP admin access is required in order to properly process new accounts which look suspicious or spammy
+<a name="l-138"></a><span class="tm">18:27:36</span><span class="nk"> &lt;danielbeck&gt;</span> belated +1 for sendgrid
+<a name="l-139"></a><span class="tm">18:27:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am ready to help with reviewing account creation requests. As rtyler says, it requires admin access to LDAP right now
+<a name="l-140"></a><span class="tm">18:27:54</span><span class="nk"> &lt;rtyler&gt;</span> the reason I wanted to discuss this in this meeting is that those with account admin access have jenkins account superuser permissions
+<a name="l-141"></a><span class="tm">18:28:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> so potentially I can break everything
+<a name="l-142"></a><span class="tm">18:28:25</span><span class="nk"> &lt;rtyler&gt;</span> but I trust oleg-nenashev to do the right things, so I fully support granting him LDAP admin access
+<a name="l-143"></a><span class="tm">18:28:25</span><span class="nk"> &lt;danielbeck&gt;</span> what does this imply exactly? Jira admin, Confluence admin, elevated infra access?
+<a name="l-144"></a><span class="tm">18:28:52 </span><span class="nka">* oleg-nenashev</span> <span class="ac">does not trust himself though</span>
+<a name="l-145"></a><span class="tm">18:29:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> access to jira admin, confluence admin, accounts admin, and the puppet dashboard if oleg-nenashev could find it :p
+<a name="l-146"></a><span class="tm">18:29:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Good news : we have backups
+<a name="l-147"></a><span class="tm">18:30:17</span><span class="nk"> &lt;rtyler&gt;</span> the people who have this access right now are larrys, abayer, board members, and officers IIRC
+<a name="l-148"></a><span class="tm">18:30:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> In longer-term we need configuration as code &amp;&amp; public repo with PRs IMHO
+<a name="l-149"></a><span class="tm">18:30:36</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler is this an inherent requirement, or just a current account app restriction? I mean it basically needs account registration privileges which anyone can do
+<a name="l-150"></a><span class="tm">18:30:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But it is a moonshot
+<a name="l-151"></a><span class="tm">18:30:46</span><span class="nk"> &lt;danielbeck&gt;</span> + reset email
+<a name="l-152"></a><span class="tm">18:30:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> it is an inherent requirement in how the account-app is structured right now
+<a name="l-153"></a><span class="tm">18:31:15</span><span class="nk"> &lt;rtyler&gt;</span> I 'm not volunteering to "fix" the account-app for its many problems, this included, however :)
+<a name="l-154"></a><span class="tm">18:32:27</span><span class="nk"> &lt;danielbeck&gt;</span> I am not concerned about oleg
+<a name="l-155"></a><span class="tm">18:32:31</span><span class="nk"> &lt;danielbeck&gt;</span> so +1
+<a name="l-156"></a><span class="tm">18:32:56</span><span class="nk"> &lt;danielbeck&gt;</span> but it would be nice if we could open this up further, decoupling all of the admin access from approving signup requests
+<a name="l-157"></a><span class="tm">18:33:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> are you volunteering to make that feasible? :D
+<a name="l-158"></a><span class="tm">18:33:15</span><span class="nk"> &lt;danielbeck&gt;</span> I'm not sure yet
+<a name="l-159"></a><span class="tm">18:33:43</span><span class="nk"> &lt;danielbeck&gt;</span> But I know that I finally admitted to myself earlier this week that I'm not handling signup requests
+<a name="l-160"></a><span class="tm">18:33:53</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-161"></a><span class="tm">18:34:03</span><span class="nk"> &lt;rtyler&gt;</span> it sounds like we're in agreement on oleg-nenashev getting some super powers here
+<a name="l-162"></a><span class="tm">18:34:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +0
+<a name="l-163"></a><span class="tm">18:34:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> but happy to help anyway
+<a name="l-164"></a><span class="tm">18:34:28</span><span class="nk"> &lt;danielbeck&gt;</span> unless Oleg is made of time he won't be able to handle them all either, so we're going to be back here in a few weeks
+<a name="l-165"></a><span class="tm">18:34:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> likely
+<a name="l-166"></a><span class="tm">18:35:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to grant oleg-nenashev superpowers</span>
+<a name="l-167"></a><span class="tm">18:35:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">oleg-nenashev to get superpowers</span>
+<a name="l-168"></a><span class="tm">18:35:27</span><span class="nk"> &lt;rtyler&gt;</span> any other topics?
+<a name="l-169"></a><span class="tm">18:35:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to teach oleg-nenashev how to use these superpowers</span>
+<a name="l-170"></a><span class="tm">18:35:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Likely a documentation work for both of us
+<a name="l-171"></a><span class="tm">18:36:05</span><span class="nk"> &lt;olblak&gt;</span> +1
+<a name="l-172"></a><span class="tm">18:36:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-173"></a><span class="tm">18:36:55</span><span class="nk"> &lt;rtyler&gt;</span> June 7th looks like the next point on the calendar
+<a name="l-174"></a><span class="tm">18:37:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> no major events afaik
+<a name="l-175"></a><span class="tm">18:37:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">June 7th is the next meeting, same time same place</span>
+<a name="l-176"></a><span class="tm">18:37:36</span><span class="nk"> &lt;rtyler&gt;</span> see y'all later
+<a name="l-177"></a><span class="tm">18:37:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 14:54:59 Jan 15, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:10:11 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 168.202
+  exclusion.robots: 0.173
+  exclusion.robots.policy: 0.156
+  RedisCDXSource: 20.066
+  esindex: 0.012
+  LoadShardBlock: 125.344 (3)
+  PetaboxLoader3.datanode: 66.529 (4)
+  CDXLines.iter: 18.618 (3)
+  PetaboxLoader3.resolve: 205.642 (3)
+  load_resource: 173.073
+-->

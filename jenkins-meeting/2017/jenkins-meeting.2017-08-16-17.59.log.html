@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app218.us.archive.org';v.server_ms=439;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-08-16-17.59.log.html","20210115141705","https://web.archive.org/","web","/_static/",
+	      "1610720225");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">17:59:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">17:59:31</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">17:59:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke danielbeck</span>
+<a name="l-4"></a><span class="tm">17:59:41</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-5"></a><span class="tm">17:59:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-6"></a><span class="tm">18:00:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-08-02-18.00.html</span>
+<a name="l-7"></a><span class="tm">18:00:25</span><span class="nk"> &lt;rtyler&gt;</span> the Approved Trademark Usage page was updated
+<a name="l-8"></a><span class="tm">18:01:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> the rest of the actions are yours looks like
+<a name="l-9"></a><span class="tm">18:01:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Remoting changes are documented and announced
+<a name="l-10"></a><span class="tm">18:02:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io//projects/remoting/</span>
+<a name="l-11"></a><span class="tm">18:02:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/blog/2017/08/11/remoting-update/</span>
+<a name="l-12"></a><span class="tm">18:03:02</span><span class="nk"> &lt;kohsuke&gt;</span> Nice, project page for remoting
+<a name="l-13"></a><span class="tm">18:03:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> JENKINS-45057 is done, but ogondza didn't respond to my comment in the thread
+<a name="l-14"></a><span class="tm">18:03:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/3Vz_Db-rNzk</span>
+<a name="l-15"></a><span class="tm">18:03:55</span><span class="nk"> &lt;rtyler&gt;</span> I think that covers the last meeting actions rigth?
+<a name="l-16"></a><span class="tm">18:04:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> There are much TODOs on this front,  hopefully I'll find some time for it :)
+<a name="l-17"></a><span class="tm">18:04:30</span><span class="nk"> &lt;ogondza&gt;</span> right sorry, I did not get back to you
+<a name="l-18"></a><span class="tm">18:05:06</span><span class="nk"> &lt;ogondza&gt;</span> I was not conviced to backport it on the last minute
+<a name="l-19"></a><span class="tm">18:05:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> should have pinged you though
+<a name="l-20"></a><span class="tm">18:05:28</span><span class="nk"> &lt;ogondza&gt;</span> chances are this will be consumed by next line
+<a name="l-21"></a><span class="tm">18:05:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-22"></a><span class="tm">18:05:40 </span><span class="nka">* rtyler</span> <span class="ac">passes out boxing gloves</span>
+<a name="l-23"></a><span class="tm">18:05:56</span><span class="nk"> &lt;ogondza&gt;</span> upstream CI for ATH does not help me here much
+<a name="l-24"></a><span class="tm">18:06:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So JENKINS-45057  is missing LTS from what I see
+<a name="l-25"></a><span class="tm">18:06:16</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> yes
+<a name="l-26"></a><span class="tm">18:06:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> updating the ticket
+<a name="l-27"></a><span class="tm">18:06:33</span><span class="nk"> &lt;ogondza&gt;</span> based on internal test run the ATH seems as good as usually
+<a name="l-28"></a><span class="tm">18:06:47</span><span class="nk"> &lt;ogondza&gt;</span> no reply in the testing thread
+<a name="l-29"></a><span class="tm">18:07:07</span><span class="nk"> &lt;ogondza&gt;</span> I am tempted to as KK to release the thing
+<a name="l-30"></a><span class="tm">18:07:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Nothing failed on my instance
+<a name="l-31"></a><span class="tm">18:07:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But I had no time to do manual smoke testing on it
+<a name="l-32"></a><span class="tm">18:08:12</span><span class="nk"> &lt;jglick&gt;</span> I suppose JENKINS-45057 was too new to backport?
+<a name="l-33"></a><span class="tm">18:08:20</span><span class="nk"> &lt;rtyler&gt;</span> for my own understanding, this would be for 2.60.3 yes?
+<a name="l-34"></a><span class="tm">18:08:33</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> yes
+<a name="l-35"></a><span class="tm">18:08:54</span><span class="nk"> &lt;jglick&gt;</span> Anyway there is a workaround in `credentials-binding` 1.13, one of the affected triggers, so probably not a big deal.
+<a name="l-36"></a><span class="tm">18:08:59</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">jglick:</span> too new and not straightforward enough for me to make an exception
+<a name="l-37"></a><span class="tm">18:09:17</span><span class="nk"> &lt;jglick&gt;</span> :shipit:
+<a name="l-38"></a><span class="tm">18:09:53</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke will you please ship 2.60.3?</span>
+<a name="l-39"></a><span class="tm">18:10:04</span><span class="nk"> &lt;kohsuke&gt;</span> aye aye
+<a name="l-40"></a><span class="tm">18:10:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next LTS baseline selection</span>
+<a name="l-41"></a><span class="tm">18:10:27</span><span class="nk"> &lt;jglick&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/changelog/</span>
+<a name="l-42"></a><span class="tm">18:10:44</span><span class="nk"> &lt;rtyler&gt;</span> 2.73 is unbelievably sunny
+<a name="l-43"></a><span class="tm">18:10:55</span><span class="nk"> &lt;jglick&gt;</span> Yup 2.73 is looking like a good candidate.
+<a name="l-44"></a><span class="tm">18:10:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It's summer time
+<a name="l-45"></a><span class="tm">18:11:21</span><span class="nk"> &lt;rtyler&gt;</span> that stapler leak fix from 2.74 looks really important though
+<a name="l-46"></a><span class="tm">18:11:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for 2.73. We will also get JENKINS-45057 there OOTB
+<a name="l-47"></a><span class="tm">18:12:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> rtyler kohsuke: I am not sure Stapler is backportable, but we need to check it. There are few other important fixes there
+<a name="l-48"></a><span class="tm">18:12:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/stapler/stapler/blob/master/CHANGELOG.md</span>
+<a name="l-49"></a><span class="tm">18:12:37 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-50"></a><span class="tm">18:12:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> I thought we don't create backporting branches on stapler, we just instead of bundle newer version of stapler in the core
+<a name="l-51"></a><span class="tm">18:13:11</span><span class="nk"> &lt;kohsuke&gt;</span> but then that used to be the case for remoting but it's different now AIU
+<a name="l-52"></a><span class="tm">18:13:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> https://github.com/stapler/stapler/pull/106 is a feature with new API
+<a name="l-53"></a><span class="tm">18:13:21</span><span class="nk"> &lt;kohsuke&gt;</span> so maybe now you do it a little differently
+<a name="l-54"></a><span class="tm">18:13:55</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-45903 does not look important to me. Small leak (presumably until GC), avoided just by fixing your Groovy script.
+<a name="l-55"></a><span class="tm">18:14:32</span><span class="nk"> &lt;jglick&gt;</span> And JENKINS-43715 is only an issue for plugins which do something they should not be doing to begin with.
+<a name="l-56"></a><span class="tm">18:14:42</span><span class="nk"> &lt;jglick&gt;</span> So I would see no need to backport Stapler into 2.73.x.
+<a name="l-57"></a><span class="tm">18:14:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> It's definitely something to discuss. Usually we do not backport lib updates with major features. Too early to say if Stapler is fine anyway, 2.74 is only 1 day in the wild
+<a name="l-58"></a><span class="tm">18:14:58</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-46082 would be a trivial backport.
+<a name="l-59"></a><span class="tm">18:15:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would vote for backport if jglick has time to spin it
+<a name="l-60"></a><span class="tm">18:15:29</span><span class="nk"> &lt;jglick&gt;</span> ditto JENKINS-43848
+<a name="l-61"></a><span class="tm">18:15:42</span><span class="nk"> &lt;rtyler&gt;</span> I'm +1 with 2.73 being used, I'm a bit afraid of an LTS that doesn't include fixes for known leaks
+<a name="l-62"></a><span class="tm">18:16:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Well, we rather need to discuss HOW too backport
+<a name="l-63"></a><span class="tm">18:16:19</span><span class="nk"> &lt;ogondza&gt;</span> 2.73 does look good to me
+<a name="l-64"></a><span class="tm">18:16:38</span><span class="nk"> &lt;ogondza&gt;</span> I agree, lets see if we want the stapler leak in and then discuss how
+<a name="l-65"></a><span class="tm">18:16:41</span><span class="nk"> &lt;recena&gt;</span> IMHO, +1 for 2.73
+<a name="l-66"></a><span class="tm">18:16:47</span><span class="nk"> &lt;jglick&gt;</span> +1 for 2.73
+<a name="l-67"></a><span class="tm">18:16:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-68"></a><span class="tm">18:16:53</span><span class="nk"> &lt;olblak&gt;</span> +1
+<a name="l-69"></a><span class="tm">18:17:05</span><span class="nk"> &lt;ogondza&gt;</span> I forgot to count but it seems we have the consensus
+<a name="l-70"></a><span class="tm">18:17:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">2.73 should be the next baseline for LTS</span>
+<a name="l-71"></a><span class="tm">18:17:11</span><span class="nk"> &lt;rtyler&gt;</span> or is it
+<a name="l-72"></a><span class="tm">18:17:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agree </span><span class="cmdline">2.73 should be the next baseline for LTS</span>
+<a name="l-73"></a><span class="tm">18:17:17</span><span class="nk"> &lt;rtyler&gt;</span> either way
+<a name="l-74"></a><span class="tm">18:17:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I trust you all will be able to figure out how and what to backport to make sure this is a stable release :)
+<a name="l-75"></a><span class="tm">18:17:41</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza initiate next LTS line for 2.73</span>
+<a name="l-76"></a><span class="tm">18:18:04</span><span class="nk"> &lt;ogondza&gt;</span> moving on?
+<a name="l-77"></a><span class="tm">18:18:23</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-78"></a><span class="tm">18:18:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action: </span><span class="cmdline">oleg_nenashev and jglick to syncup on Stapler backporting approach</span>
+<a name="l-79"></a><span class="tm">18:18:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> + KK of course
+<a name="l-80"></a><span class="tm">18:18:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> from my understanding this next item isn't going to be a vote, do we need to have a discussion in this time baout it?
+<a name="l-81"></a><span class="tm">18:19:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Yes, only a discussion for now
+<a name="l-82"></a><span class="tm">18:19:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Discuss proposal: Add optional "Released as" and "Stage Release" states to JIRA</span>
+<a name="l-83"></a><span class="tm">18:19:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">https://docs.google.com/document/d/1EIRuCMOjmPgpxybkWRPHfx1f1yglcuYlqPWN8K1Ni28/edit#</span>
+<a name="l-84"></a><span class="tm">18:20:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/wzc4VLplHvs</span>
+<a name="l-85"></a><span class="tm">18:20:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I have negative feedback from i386 and michaelneale, so I am not going to iterate on the proposal until I discuss the concerns with them offline
+<a name="l-86"></a><span class="tm">18:21:53</span><span class="nk"> &lt;rtyler&gt;</span> I think that's a good move
+<a name="l-87"></a><span class="tm">18:22:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> OTOH other feedback is positive, uhafners concerns have been addressed in the doc
+<a name="l-88"></a><span class="tm">18:22:05</span><span class="nk"> &lt;rtyler&gt;</span> i386 probably spends more time in jira than the rest of us combined :P
+<a name="l-89"></a><span class="tm">18:22:10</span><span class="nk"> &lt;rtyler&gt;</span> except for maybe danielbeck
+<a name="l-90"></a><span class="tm">18:22:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Well, I closed more than 100 tickets yesterday :D
+<a name="l-91"></a><span class="tm">18:22:43 </span><span class="nka">* oleg-nenashev</span> <span class="ac">still has 250 ones assigned to him</span>
+<a name="l-92"></a><span class="tm">18:22:47</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-93"></a><span class="tm">18:23:00</span><span class="nk"> &lt;rtyler&gt;</span> I think coming up with a proposal that those guys are happy with is a good thing
+<a name="l-94"></a><span class="tm">18:23:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> s/closed/unasssigned though
+<a name="l-95"></a><span class="tm">18:23:20</span><span class="nk"> &lt;kohsuke&gt;</span> Should we punt on this for now and come back afterward?
+<a name="l-96"></a><span class="tm">18:23:31</span><span class="nk"> &lt;rtyler&gt;</span> personally I'm somewhat indifferent, I just want to make sure we're nto adding organizational technical debt
+<a name="l-97"></a><span class="tm">18:24:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> yeah, I'm cool with that
+<a name="l-98"></a><span class="tm">18:24:07</span><span class="nk"> &lt;rtyler&gt;</span> with the links in the record to the WIP proposal
+<a name="l-99"></a><span class="tm">18:24:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> that suffice for today?
+<a name="l-100"></a><span class="tm">18:24:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Since there is no new feedback, then yes
+<a name="l-101"></a><span class="tm">18:24:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Thread and document are open for new feedback
+<a name="l-102"></a><span class="tm">18:24:47</span><span class="nk"> &lt;rtyler&gt;</span> I'm going to throw one more thing on the agenda
+<a name="l-103"></a><span class="tm">18:24:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins World preparation</span>
+<a name="l-104"></a><span class="tm">18:25:17</span><span class="nk"> &lt;rtyler&gt;</span> alyssat_ has done a *fucking* *lot* of work to make the Jenkins project's presence at Jenkins World nice
+<a name="l-105"></a><span class="tm">18:25:29</span><span class="nk"> &lt;rtyler&gt;</span> if you're coming, you better damn well make sure you thank her :)
+<a name="l-106"></a><span class="tm">18:25:41</span><span class="nk"> &lt;alyssat_&gt;</span> 😀
+<a name="l-107"></a><span class="tm">18:25:43</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">We have a contributor summit on the 29th: https://www.meetup.com/jenkinsmeetup/events/241213280/</span>
+<a name="l-108"></a><span class="tm">18:25:54</span><span class="nk"> &lt;autojack&gt;</span> HAIL ALYSSA
+<a name="l-109"></a><span class="tm">18:25:58</span><span class="nk"> &lt;rtyler&gt;</span> please make sure you have RSVPd and are planning to join that, we're going to have a lot of sessions and discussions there
+<a name="l-110"></a><span class="tm">18:25:59</span><span class="nk"> &lt;alyssat_&gt;</span> as long as everyone can join us..that'll make it happy
+<a name="l-111"></a><span class="tm">18:26:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat_:</span> what's the link for the contributor appreciation dinner again? I don't have it handy
+<a name="l-112"></a><span class="tm">18:26:40</span><span class="nk"> &lt;alyssat_&gt;</span> one moment
+<a name="l-113"></a><span class="tm">18:27:08</span><span class="nk"> &lt;olblak&gt;</span> on eventbrite?
+<a name="l-114"></a><span class="tm">18:27:08</span><span class="nk"> &lt;rtyler&gt;</span> if you're not able to attend Jenkins World, it would be nice if you were online later in the week (friday/saturday) to join some virtual hacking
+<a name="l-115"></a><span class="tm">18:27:25</span><span class="nk"> &lt;kohsuke&gt;</span> And think about topics you want to discuss in the afternoon
+<a name="l-116"></a><span class="tm">18:27:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Please think about topics to discuss in the afternoon portion of the Contributor Summit</span>
+<a name="l-117"></a><span class="tm">18:28:00</span><span class="nk"> &lt;alyssat_&gt;</span> https://www.eventbrite.com/e/2017-jenkins-contributor-appreciation-evening-tickets-32591665549
+<a name="l-118"></a><span class="tm">18:28:07</span><span class="nk"> &lt;kohsuke&gt;</span> Also for alyssat_, do we already know the room for Tuesday?
+<a name="l-119"></a><span class="tm">18:28:22</span><span class="nk"> &lt;kohsuke&gt;</span> I think putting it in the meetup page will save people from looking for it
+<a name="l-120"></a><span class="tm">18:28:41</span><span class="nk"> &lt;alyssat_&gt;</span> not off the top of my head, I will post the room to the meetup page
+<a name="l-121"></a><span class="tm">18:28:55</span><span class="nk"> &lt;rtyler&gt;</span> thanks
+<a name="l-122"></a><span class="tm">18:29:06</span><span class="nk"> &lt;rtyler&gt;</span> any other reminders should share for people?
+<a name="l-123"></a><span class="tm">18:29:16</span><span class="nk"> &lt;rtyler&gt;</span> does anybody have questions about what the project is doing during Jenkins World?
+<a name="l-124"></a><span class="tm">18:29:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> there will be officer updates like the last year and would it be possible for you to have a few slides? I can channel you and present it there, again like the last year
+<a name="l-125"></a><span class="tm">18:30:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke and ogondza to figure out what kind of Release/LTS updates should be presented at the Contributor Summit</span>
+<a name="l-126"></a><span class="tm">18:30:49</span><span class="nk"> &lt;rtyler&gt;</span> anything else?
+<a name="l-127"></a><span class="tm">18:31:04</span><span class="nk"> &lt;rtyler&gt;</span> this is directly related to our final topic :)
+<a name="l-128"></a><span class="tm">18:31:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next Meeting</span>
+<a name="l-129"></a><span class="tm">18:31:25</span><span class="nk"> &lt;rtyler&gt;</span> August 30 is right at the beginning of Jenkins World, so many of us won't be able to be here
+<a name="l-130"></a><span class="tm">18:31:39</span><span class="nk"> &lt;rtyler&gt;</span> I propose making the next meeting the following week, Sept 6th
+<a name="l-131"></a><span class="tm">18:31:45</span><span class="nk"> &lt;rtyler&gt;</span> or wait, LTS scheduling
+<a name="l-132"></a><span class="tm">18:31:45</span><span class="nk"> &lt;kohsuke&gt;</span> Shoot, I was planning to do live IRC project meeting from my keynote
+<a name="l-133"></a><span class="tm">18:31:49</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-134"></a><span class="tm">18:32:26</span><span class="nk"> &lt;rtyler&gt;</span> to keep in line with the LTS scheduling, does t hat mean we should punt until Sept 13th?
+<a name="l-135"></a><span class="tm">18:32:59</span><span class="nk"> &lt;kohsuke&gt;</span> I guess danielbeck  is not here today
+<a name="l-136"></a><span class="tm">18:33:08</span><span class="nk"> &lt;rtyler&gt;</span> he's not
+<a name="l-137"></a><span class="tm">18:33:23</span><span class="nk"> &lt;kohsuke&gt;</span> I wanted to make sure if he is aware of any impact if this means slipping LTS by 2 weeks
+<a name="l-138"></a><span class="tm">18:33:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">recena:</span> ^^^
+<a name="l-139"></a><span class="tm">18:33:58</span><span class="nk"> &lt;recena&gt;</span> <span class="hi">oleg-nenashev:</span> reading...
+<a name="l-140"></a><span class="tm">18:34:24</span><span class="nk"> &lt;kohsuke&gt;</span> Correct me if I'm wrong, but I thought most of the time the LTS status check at the RC point is a non-event
+<a name="l-141"></a><span class="tm">18:34:53</span><span class="nk"> &lt;kohsuke&gt;</span> If so, what if we just plan on having a short meeting just to do that?
+<a name="l-142"></a><span class="tm">18:35:03</span><span class="nk"> &lt;rtyler&gt;</span> except when it isn't
+<a name="l-143"></a><span class="tm">18:35:16</span><span class="nk"> &lt;rtyler&gt;</span> I don't think this meeting is necessary to sync on an RC status necessarily
+<a name="l-144"></a><span class="tm">18:35:35</span><span class="nk"> &lt;ogondza&gt;</span> I agree - not much to discuss
+<a name="l-145"></a><span class="tm">18:35:53</span><span class="nk"> &lt;ogondza&gt;</span> I can make sure you have RC out by the time of the conference if you want to
+<a name="l-146"></a><span class="tm">18:36:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We can do a longer meeting on the weekend after JW if required
+<a name="l-147"></a><span class="tm">18:36:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> does that mean sept 13th is fine then?
+<a name="l-148"></a><span class="tm">18:36:32</span><span class="nk"> &lt;recena&gt;</span> Correct me if I'm wrong.
+<a name="l-149"></a><span class="tm">18:36:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> heh, a meeting is the opposite of what I want to do on the weekend :P
+<a name="l-150"></a><span class="tm">18:36:48</span><span class="nk"> &lt;recena&gt;</span> the idea is to delay 2.73.1, two weeks?
+<a name="l-151"></a><span class="tm">18:36:53</span><span class="nk"> &lt;ogondza&gt;</span> no
+<a name="l-152"></a><span class="tm">18:36:56</span><span class="nk"> &lt;recena&gt;</span> Instead of September 13th?
+<a name="l-153"></a><span class="tm">18:37:01</span><span class="nk"> &lt;ogondza&gt;</span> just no RC check as I understood
+<a name="l-154"></a><span class="tm">18:37:52</span><span class="nk"> &lt;kohsuke&gt;</span> Let me see if I got the current plan on the table
+<a name="l-155"></a><span class="tm">18:37:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> On that weekend you are going to CODE ;)
+<a name="l-156"></a><span class="tm">18:38:23</span><span class="nk"> &lt;kohsuke&gt;</span> No meeting in this channel on Aug 30th, but ogondza will produce RC on that day unless something unexpected happen, and 2.73.1 will ship on Sep 13th
+<a name="l-157"></a><span class="tm">18:38:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-158"></a><span class="tm">18:38:43</span><span class="nk"> &lt;rtyler&gt;</span> that sounds good to me
+<a name="l-159"></a><span class="tm">18:38:44</span><span class="nk"> &lt;ogondza&gt;</span> ack
+<a name="l-160"></a><span class="tm">18:38:48</span><span class="nk"> &lt;kohsuke&gt;</span> If anything unexpected happen to 2.73.1 RC, coordination will be on the dev list
+<a name="l-161"></a><span class="tm">18:39:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting will be Sept 13th</span>
+<a name="l-162"></a><span class="tm">18:39:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">recena:</span> I think you like this plan
+<a name="l-163"></a><span class="tm">18:39:30</span><span class="nk"> &lt;recena&gt;</span> thanks so much for your explanations
+<a name="l-164"></a><span class="tm">18:39:47</span><span class="nk"> &lt;rtyler&gt;</span> I think that wraps it up for today
+<a name="l-165"></a><span class="tm">18:40:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 14:17:05 Jan 15, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:11:28 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 215.377
+  exclusion.robots: 0.094
+  exclusion.robots.policy: 0.087
+  cdx.remote: 0.067
+  esindex: 0.009
+  LoadShardBlock: 82.496 (3)
+  PetaboxLoader3.datanode: 91.771 (4)
+  CDXLines.iter: 18.997 (3)
+  load_resource: 212.768
+  PetaboxLoader3.resolve: 161.089
+-->

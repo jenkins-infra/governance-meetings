@@ -1,0 +1,87 @@
+17:59:41 <danielbeck> #startmeeting
+17:59:41 <robobutler> Let the Jenkins meeting commence!
+18:00:04 <danielbeck> #chair kohsuke rtyler
+18:00:04 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:17 <danielbeck> #topic Recap last meeting's actions
+18:00:27 <danielbeck> hm, is this the right time?
+18:00:31 <danielbeck> anyone around?
+18:01:58 <alyssat_> howdy
+18:02:04 <danielbeck> o/
+18:02:33 <danielbeck> anyone else? olblak ogondza oleg-nenashev autojack ?
+18:02:44 <ogondza> just reconnected
+18:03:18 <danielbeck> okay, three people is a group I suppose ;-)
+18:03:24 <danielbeck> so, last meeting's actions
+18:03:28 <danielbeck> http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-10-11-18.00.html
+18:03:37 <danielbeck> I hope everyone updated their instances
+18:03:39 <danielbeck> *cough*
+18:03:53 * ogondza whistles
+18:04:07 <danielbeck> other than that, I said I wanted to ask for feedback on a fix on the dev list, which I haven't -- minor issue anyway. At least nobody has complained yet
+18:04:11 <danielbeck> moving on…
+18:04:18 <danielbeck> #topic LTS status check
+18:04:21 <danielbeck> ogondza \o/
+18:04:46 <ogondza> we are ready .3 rc
+18:04:59 <danielbeck> testing OK and everything?
+18:05:09 <ogondza> there is one recent change backported w.r.t. oracle JDK installer
+18:05:16 <danielbeck> good
+18:05:21 <danielbeck> aheritier 's issue
+18:05:42 <ogondza> yep, and many others
+18:05:46 <danielbeck> :(
+18:05:52 <ogondza> large part of testing is still ahead of us
+18:06:02 <danielbeck> WDYM? Didn't you ATH it?
+18:06:11 <danielbeck> that's upcoming?
+18:06:23 <danielbeck> sorry, confused RC with release, had a long day
+18:06:28 <ogondza> heh
+18:06:34 <danielbeck> okay, so
+18:06:44 <danielbeck> #action ogondza to release RC
+18:06:52 <danielbeck> ogondza do you know when we can expect it?
+18:07:05 <ogondza> ATH is running constantly, though telling if we are ok to release takes more than telling blue from red
+18:07:11 <ogondza> so I am not doing that for RC
+18:07:27 <danielbeck> … yet :-)
+18:07:37 <ogondza> danielbeck: tomorrow morning
+18:07:54 <ogondza> preferably, can do it tonight if you guys waiting for that
+18:08:10 <danielbeck> Assuming that's UTC morning, should be fine
+18:08:28 <ogondza> ack, moving on then
+18:08:40 <danielbeck> #topic Q4 patron messages
+18:08:59 <danielbeck> CloudBees have decided to patron…ize? us this Q4
+18:09:21 <danielbeck> I haven't had the time to prepare the PR yet, but the 2 messages would be as follows:
+18:09:30 <danielbeck> https://jenkins-infra.github.io/patron/tester.html?caption=Jenkins+Expertise+as+a+Service&link=https%3A%2F%2Fwww.cloudbees.com%2Fjenkins%2Fcloudbees-jenkins-advisor&blurb=CloudBees+Jenkins+Advisor+-+Identify+issues+before+they+impact+your+software+delivery+pipeline.+Use+it+free+today.&logo=
+18:09:53 <danielbeck> logo would be a modified Jenkins butler with a checklist on a plate
+18:09:57 <danielbeck> the second one:
+18:10:04 <danielbeck> https://jenkins-infra.github.io/patron/tester.html?caption=Become+Jenkins+Certified&link=https%3A%2F%2Fwww.cloudbees.com%2Fjenkins-certification&blurb=Make+yourself+even+more+valuable+%E2%80%93+the+certification+program+built+and+designed+for+Jenkins+Engineers.+Learn+more.&logo=
+18:10:30 <danielbeck> Icon for that is basically https://github.com/jenkins-infra/jenkins.io/blob/master/content/images/patrons/cloudbees-certification.png but without the year
+18:10:47 <danielbeck> I'd like to set them up ASAP as Q4 is already half over
+18:11:18 <danielbeck> personally I think these are fine, but would like to hear from others
+18:11:18 <alyssat_> I will forego the voting/approval since i was involved in this.
+18:11:53 <ogondza> so I do the voting or is there more of us? :P
+18:12:02 <danielbeck> orrc might be around
+18:12:06 <aheritier> :-)
+18:12:12 <danielbeck> otherwise, enjoy the absolute power
+18:12:18 <orrc> "Become Jenkins Certified" sounds a bit like it's something official from the project, but since CloudBees has the trademark grant for "Certified Jenkins Engineer" in any case, it's probably fine
+18:12:58 <ogondza> it struck me to. that it would be a trademark problem but a bit confusing
+18:13:09 <orrc> "Become a Jenkins Certified Engineer" would be an alternative
+18:13:21 <ogondza> Red Hat put its name in many of the certifications we provide...
+18:14:11 <ogondza> +1 on the way they are, though
+18:14:13 <danielbeck> I don't know what the current situation is, but community members are (or were) on the certification board
+18:14:40 <danielbeck> IIRC the idea was that CB would be running a "community" certification, that's why there's two
+18:14:40 <alyssat_> danielbeck: it should be ok to change it to "Become a Jenkins Certified Engineer"
+18:15:20 <danielbeck> I don't feel strongly either way, up to orrc and ogondza, not clear to me right now what they think of the current version
+18:15:43 <orrc> I don't recall that being discussed in the original certification discussion, but that's neither here nor there
+18:15:57 <orrc> I can give a +1
+18:16:19 <danielbeck> FTR https://www.cloudbees.com/jenkins/cloudbees-jenkins-advisor contains the logo that will also be used for the Advisor message
+18:16:29 <ogondza> "Become Jenkins Certified Engineer" reads better IMO then "Become Jenkins Certified" - that was my message
+18:16:41 <danielbeck> alyssat_ OK to change?
+18:16:42 <ogondza> I hereby support these patron messages
+18:16:52 <alyssat_> works for me
+18:17:18 <danielbeck> #agreed patron messages are approved, we'll change the title of the certification one as discussed
+18:17:28 <danielbeck> thanks ogondza and orrc
+18:17:28 <alyssat_> thank you ogondza & orrc
+18:17:50 <danielbeck> rtyler can't be here today, and there's some more discussion ongoing re JEP-1, so that's postponed again
+18:17:55 <danielbeck> that means we're done for today
+18:18:04 <danielbeck> #topic next meeting
+18:18:10 <danielbeck> November 9
+18:18:13 <danielbeck> 6 PM UTC
+18:18:24 <alyssat_> thank you danielbeck
+18:18:25 <danielbeck> Be aware of the DST change!!!
+18:18:31 <danielbeck> (Europe AFAIR)
+18:18:44 <danielbeck> thanks everyone
+18:18:50 <danielbeck> #endmeeting

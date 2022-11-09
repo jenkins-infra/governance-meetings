@@ -1,0 +1,116 @@
+18:01:54 <rtyler> #startmeeting
+18:01:54 <robobutler> Let the Jenkins meeting commence!
+18:02:00 <rtyler> #chairs danielbeck hare_brain kohsuke rtyler
+18:02:05 <rtyler> I always mess that up
+18:02:09 <rtyler> #chair danielbeck hare_brain kohsuke rtyler
+18:02:09 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:02:18 <rtyler> #topic Recap last meeting actions
+18:02:53 <rtyler> it looks like oleg-nenashev's done all his big GSoC stuff, right?
+18:03:03 <rtyler> and kohsuke published 1.651.2
+18:03:16 <rtyler> any other actions sitting around that we need to address really quick?
+18:03:30 <oleg-nenashev> rtyler: Not all the stuff, but I'm working on it
+18:04:46 * rtyler pauses for anything else before next topic
+18:05:12 <rtyler> alrighty then
+18:05:22 <rtyler> #topic LTS status check
+18:05:37 <danielbeck> ogondza ?
+18:05:43 <ogondza> all backports are done
+18:05:55 <ogondza> waiting for ATH to complete before I cut the RC
+18:06:09 <danielbeck> #info https://issues.jenkins-ci.org/issues/?jql=labels+%3D+1.651.3-fixed and https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%201.651.3-rejected
+18:06:28 <rtyler> while not this LTS, but for the enxt one, was a decision made on how to handle https://issues.jenkins-ci.org/browse/JENKINS-34751 in time for the next LTS cycle?
+18:06:29 <ogondza> thanks, rejected a couple of things that are 2.0 specific
+18:06:31 <rtyler> (this is the groovy thing)
+18:07:08 <danielbeck> daspilker opened https://github.com/jenkinsci/jenkins/pull/2369
+18:07:24 <danielbeck> whether this is safe enough to go into 2.x.1 LTS is up to ogondza
+18:07:41 <oleg-nenashev> We select the baseline on the next meeting, right?
+18:07:49 <ogondza> oleg-nenashev: right
+18:08:14 <ogondza> danielbeck: rtyler: I will have to look at that in more detail
+18:08:22 <oleg-nenashev> Current 2.5 and 2.6 community ratings are good
+18:08:31 <danielbeck> oleg-nenashev Let's table that until next time.
+18:08:34 <rtyler> ogondza: righto, I just wanted to bring it up to make sure any real-time questions/answers could be handled
+18:08:58 <oleg-nenashev> yep, I have no plans to advertise the baseline now
+18:09:00 <rtyler> but it sounds like there's nothing to do for the current LTS, and awe can move on?
+18:09:12 <danielbeck> Well, the RC needs to go out
+18:09:22 <rtyler> that is something that ogondza can drive IIRC
+18:09:23 <danielbeck> ogondza can you do that without KK? I forget the state of things…
+18:09:23 <ogondza> #action push the RC
+18:09:24 <rtyler> right?
+18:09:38 <ogondza> I can
+18:09:41 <rtyler> I remember setting up access for that kind of thing on mirrors.jenkins.io :)
+18:09:56 <danielbeck> \o/
+18:10:04 <ogondza> rtyler: I guess you will hear from me again
+18:10:13 <rtyler> ogondza: so we're unblocked on pushing the RC, any other items to discuss for this topic before I move on?
+18:10:22 <ogondza> not from me
+18:10:38 <rtyler> #topic GSoC status check
+18:10:42 <rtyler> oleg-nenashev: the floor is ours
+18:10:43 <rtyler> yours*
+18:11:05 <oleg-nenashev> 1) The coding phase has been started. Students work on the projects on the full-time basis
+18:11:05 <oleg-nenashev> 2) We have communicated all the community stuff
+18:11:05 <oleg-nenashev> 3) Good progress on Mid-Term evaluations and Jenkins World
+18:11:05 <oleg-nenashev> 4) Scheduled weekly and public GSoC office hours - 6PM UTC every Thursday
+18:11:05 <oleg-nenashev> #action oleg_nenashev to get another office hours scheduled for APAC/Europe
+18:11:05 <oleg-nenashev> #action oleg_nenashev to publish an overview blog post
+18:11:51 <oleg-nenashev> 5) GSoC students bwcame more active in the community. We have 2 blogposts now (alexsomai and Samat_)
+18:11:52 <rtyler> we already had one blog post from alexsomai https://jenkins.io/blog/2016/05/23/external-workspace-manager-plugin/
+18:11:56 <rtyler> with another one coming
+18:12:20 <rtyler> oleg-nenashev: do you want me to put the GSoC office hours on the google jenkins event calendar?
+18:12:39 <oleg-nenashev> rtyler: I have a TODO to create an INFRA ticket for it
+18:13:06 <oleg-nenashev> As well as for weekly meetings for projects. At least in EWM we have such meeting
+18:13:07 <schristou> +1 to that rtyler
+18:13:25 <rtyler> oleg-nenashev: this would be just on the httpS://jenkins-ci.org/hangout right?
+18:13:33 <rtyler> I can copy this event into the calendar right now
+18:13:45 <oleg-nenashev> rtyler: yes
+18:14:05 <rtyler> alright, that's done :)
+18:14:10 <rtyler> any other GSoC updates?
+18:14:15 <oleg-nenashev> Technically we do not have so much slots there, so maybe we will migrate later
+18:14:28 <oleg-nenashev> alexsomai Samat_: Any updates from you?
+18:14:38 <Samat_> Not really
+18:14:40 <oleg-nenashev> Also payalpriyadarshi
+18:14:48 <Samat_> I started working on Popup
+18:14:49 <alexsomai> oleg-nenashev: I've started working on the EWM plugin
+18:15:01 <payalpriyadarshi> yes
+18:15:07 <Samat_> For me, everything goes fine so far
+18:15:16 <oleg-nenashev> nice
+18:15:23 <payalpriyadarshi> Had meeting with Vivek regarding census data, where he gave me access and explained all the workaround on BigQuery platform.
+18:15:47 <oleg-nenashev> Any other actions required from jenkins-infra or other teams?
+18:16:03 <mda14_> alexsomai: I tried the pull request on EWM and it worked well. Nicely done.
+18:16:03 <payalpriyadarshi> I was thinking of directly querying the census data using bigQuery APIs. Currently I am working on that, probably would take 1 more day to complete.
+18:16:03 <batmat> already asked the question on jenkins-infra ML about that:
+18:16:08 <batmat> why not not -dev ML ?
+18:16:19 <batmat> usage stats danielbeck kohsuke
+18:16:22 <rtyler> batmat: asked about what?
+18:16:33 <alexsomai> mda14_: thank you, I'll show you a mini demo tomorrow and we'll discuss further details
+18:16:50 <batmat> payalpriyadarshi's questions on her project, asked on -infra and not -dev
+18:17:00 <batmat> when stats prolly interests all devs
+18:17:09 <batmat> -s
+18:17:14 <danielbeck> good point, can probably be forwarded to the dev list
+18:17:23 <danielbeck> and then continued there
+18:17:34 <batmat> yup, would seem more sensible
+18:17:35 <danielbeck> rtyler WDYT?
+18:17:37 <oleg-nenashev> maybe
+18:17:51 <rtyler> I think that's fair, but I do not want to encourage people to discuss infra work/requirements on the dev list; I cannot keep up with that list and everything else
+18:17:55 <batmat> and also, would make the feedback more probable
+18:17:58 <rtyler> so long as students are mindful of the audience, that's fine
+18:18:07 <danielbeck> Should we continue this in #jenkins-community?
+18:18:12 <oleg-nenashev> +1
+18:18:15 <rtyler> sure
+18:18:23 <rtyler> oleg-nenashev: any other updates on this topic?
+18:18:25 <batmat> yup
+18:18:32 <oleg-nenashev> No updates from me
+18:18:38 <rtyler> payalpriyadarshi: please join #jenkins-community and we can continue some of this discussion after the meeting
+18:18:43 <rtyler> #topic next meeting
+18:18:54 <payalpriyadarshi> sure, thanks
+18:18:58 <rtyler> June 6th, looks fine to me
+18:19:04 <danielbeck> huh?
+18:19:06 <oleg-nenashev> Maybe events update? CC alyssat
+18:19:16 <danielbeck> rtyler June 8!
+18:19:25 <rtyler> oh, misread
+18:19:30 <rtyler> oleg-nenashev: not on the agenda, we did that last time
+18:19:36 <oleg-nenashev> okay
+18:19:40 <rtyler> June 8th rather
+18:19:40 <alyssat> :o)
+18:19:44 <oleg-nenashev> June 8 works well
+18:19:54 <rtyler> I don't see any major holidays or issues with that
+18:20:02 <rtyler> all done?
+18:20:24 <oleg-nenashev> yep
+18:20:27 <danielbeck> rtyler thanks for driving!
+18:20:28 <rtyler> #endmeeting

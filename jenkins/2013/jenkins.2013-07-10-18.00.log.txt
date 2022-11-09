@@ -1,0 +1,177 @@
+18:00:59 <kohsuke> #startmeeting
+18:00:59 <robobutler> Let the Jenkins meeting commence!
+18:01:13 <Slide-O-Mix> woot!
+18:01:15 <kohsuke> #chair rtyler
+18:01:15 <robobutler> Current chairs: kohsuke rtyler
+18:01:48 <kohsuke> #topic improving out of the box experience
+18:02:08 <kohsuke> not sure if I'm ready to deliver on this as I meant to write to the dev list, which I didn't
+18:02:43 <kohsuke> #info the idea is that I think we need to increase the number of bundled plugins
+18:02:58 <jglick> or decrease
+18:03:03 <Slide-O-Mix> I vote for decrease
+18:03:10 <jglick> as per JENKINS-9598
+18:03:12 <jenkins-admin> JENKINS-9598:Bundle Git plugin, or overhaul bundled plugins or setup experience (Open) http://jenkins-ci.org/issue/9598
+18:03:22 <Slide-O-Mix> bundled plugins can be annoying
+18:04:06 <jglick> Or generally guide users better to the plugins we estimate they need/.
+18:04:18 <kohsuke> one of the important goals for me is not to leave new users clueless as to how to achieve typical things
+18:04:29 <Slide-O-Mix> perhaps there could be a plugin pack (or more than one) for different use cases
+18:04:55 <ctc> sorry to butt in, but as a first time Jenkins user some time last week, who needed to use CVS 1.6 because of a need for :sspi:, I found it very easy to find out how to download the old version and pin it.  2 cents, butting out
+18:06:09 <jglick> Slide-O-Mix: “pack” can take different forms. A simple list of plugins to install in batch during setup; or an actual plugin depending on others (updates to which might actually pull in new plugins).
+18:06:23 <jglick> The latter being more like a metapackage in Debian etc.
+18:06:28 <kohsuke> put another way, I feel like it needs to be bit more like IntelliJ, which comes with more stuff out of the box, than Eclipse, where the first thing you do after launching is to install more plugins
+18:06:34 <Slide-O-Mix> yeah, I was thinking more like a metapackage
+18:06:49 <hare_brain> I dislike the Eclipse model.
+18:06:57 <Slide-O-Mix> kohsuke: maybe have different releases then, because I think there are a large number of people that wouldn't like having more bundled plugins
+18:07:04 <kohsuke> #chair hare_brain
+18:07:04 <robobutler> Current chairs: hare_brain kohsuke rtyler
+18:07:27 <Slide-O-Mix> a bare release with no bundled plugins, and then other releases (Git Release, SVN Release, or something)
+18:07:28 <kohsuke> Slide-O-Mix: yes, it looks like there are strong voices not wanting to see more bundled stuff
+18:07:57 <kpfleming> i'll add my voice to that list, for what it's worth. i have nearly all the bundled plugins disabled.
+18:08:03 <jglick> What is wrong with shipping a bare release, and then making it convenient to add high-level bundles from UC once started?
+18:08:03 <hare_brain> Or a real installer that asks you what you want, and goes and fetches plugins for you.
+18:08:20 <kohsuke> But I also don't like "here's 7 different download packages (times 5 different platforms) you can choose from" Eclipse model
+18:08:39 <jglick> Agreed, -1 on a proliferation of downloads.
+18:08:47 <jglick> There should be one jenkins.war.
+18:08:57 <Slide-O-Mix> with nothing bundled ;)
+18:09:21 <kohsuke> jglick: this appeared to be where JENKINS-9598 conversation is heading to indeed >> "shipping a bare release, and then making it convenient to add high-level bundles from UC once started?"
+18:09:23 <jenkins-admin> JENKINS-9598:Bundle Git plugin, or overhaul bundled plugins or setup experience (Open) http://jenkins-ci.org/issue/9598
+18:09:58 <kohsuke> kpfleming: I think we all agree that what we bundle needs to be revisited
+18:10:17 <kohsuke> (the reason we bundle what we bundle is mostly for backward compatibility, not because we think majority of users need CVS)
+18:10:30 <kpfleming> Sure, that's what I figured.
+18:10:46 <jglick> Then why subversion-plugin?
+18:10:58 <kohsuke> subversion also used to be in the core
+18:12:04 <kohsuke> Looks like I definitely need to get a thread started.
+18:12:16 <kohsuke> This really is something a lot of people seem to have opinions about
+18:12:28 <jglick> We could have a special list in core of config.xml patterns indicating implicit usage of plugins that were split out of core.
+18:12:55 <kohsuke> jglick: I'm not sure how that would help?
+18:13:04 <jglick> So that if you start a new jenkins.war download on an existing $JENKINS_HOME you will not be left with broken data.
+18:13:24 <jglick> But we can then cease to bundle cvs.hpi, subversion.hpi, etc.
+18:13:34 <kohsuke> but isn't that a chicken & egg problem? By the time we are loading data, we've already started plugins?
+18:13:51 <jglick> Reload Configuration in that case.
+18:14:05 <jglick> Rare anyway.
+18:14:24 <kohsuke> or I guess we can bundle them but not activate them until we see them used
+18:14:48 <jglick> Actually probably not even necessary to worry about it, since if you had an old $JENKINS_HOME you would also have had plugins/cvs.jpi etc. there too.
+18:15:06 <jglick> I.e. unbundling plugins only has any effect on brand-new installations.
+18:15:08 <kohsuke> no you don't, that's the whole point
+18:15:28 <kohsuke> for example up until 1.467 LDAP support was in jenkins-core.jar
+18:15:45 <kohsuke> so if you are upgrading from 1.424 to the current release then you won't have plugins/ldap.jpi
+18:16:05 <jglick> Yeah but few people will upgrade in such a big leap without going through an intermediate release.
+18:16:33 <jglick> If you want to provide for those who do then we can use the hardcoded compatibility list I mentioned.
+18:16:39 <Slide-O-Mix> Those are the ones that cause problems though
+18:16:47 <Slide-O-Mix> someone upgrading from 1.3xx to 1.522 :)
+18:17:01 <jglick> Similar to what we already have in the plugin system for adding implicit plugin → plugin dependencies when a plugin depends on an older core.
+18:17:01 <hare_brain> I sense OSGI rearing its ugly head… :p
+18:18:13 <jglick> At any rate, I think the compatibility is a relatively minor technical point, if there is broad agreement that we want to avoid stuffing things into jenkins.war.
+18:19:16 <jglick> Still leaves open the question of how to guide new users toward installing popular, stable plugins that they do not yet know they need.
+18:19:16 <kohsuke> As I said, I'm actually for stuffing more into jenkins.war.
+18:19:45 <jglick> What is the advantage over using the update center?
+18:20:02 <jglick> The disadvantage is clear: big, unwieldy distribution files.
+18:20:19 <jonnyro> Backwards compatibility is overrated
+18:20:29 <Slide-O-Mix> I've had to increase the allowed upload size in Tomcat three times recently because jenkins.war is getting so big
+18:20:30 <jonnyro> I'd rather know exactly what I am getting
+18:20:30 <kohsuke> A part of it is that it creates a common combination of plugin versions
+18:20:50 <kohsuke> Makes it easier to focus our precious QA resources
+18:21:17 <jglick> QA can test a predetermined combination of plugins whether they are physically bundled or not.
+18:21:24 <kpfleming> Does it really though? If a user installs a new Jenkins, they'll likely update all the bundled plugins right away anyway.
+18:21:34 <Slide-O-Mix> just have a list of recommended plugin versions for that version of Jenkins
+18:21:47 <Slide-O-Mix> the "core" set of plugins that _used_ to be bundled with core
+18:21:50 <hare_brain> Another way to look at this is that jenkins.war is both what is built, and what is distributed. The two don't have to be the same. For example, what if there was a service that create a jenkins.war-as-a-distribution on the fly, based on a user's choice of plugins?
+18:21:59 <kpfleming> Slide-O-Mix: be careful... that discussion could lead to plugin branches :-)
+18:22:00 <jglick> I think the “recommended plugin version” should always be “latest”.
+18:22:13 <hare_brain> That is distinct from building a stripped down jenkins.war that is an input into that.
+18:23:08 <kohsuke> hare_brain: BTW someone built just that: http://code.google.com/p/jenkins-assembler/
+18:23:23 <hare_brain> Well, there you go. :)
+18:23:25 <hare_brain> Work complete.
+18:24:18 <kohsuke> But to me, the motivation is to steer a significant number of users into using largely the same combination, so giving everyone the option of creating their own made-to-order jenkins.war isn't helping at all
+18:24:37 <jglick> Right. The value we can add is the information.
+18:25:05 <jglick> Producing a custom jenkins.war seems pretty pointless anyway when you just start a minimal WAR and use the UC.
+18:26:13 <kpfleming> kohsuke: if you have just one combination you'd like new users to start with, could you create a 'Starter Pack' plugin that depends on all the other plugins you'd like them to have, and have the UI prompt them to install it if there are no other plugins installed?
+18:26:42 <hare_brain> I think the point is making that experience easier. Someone coming to Jenkins for the first time, and giving them a bare war, and sending them to UC would be a pretty intimidating experience, I think.
+18:27:01 <jglick> kpfleming: that is the “metapackage” discussed above, if you have just one.
+18:27:07 <kpfleming> right, ok.
+18:27:10 <kohsuke> kpfleming: right, I think something like that building on top of more visible meta-packages.
+18:27:36 <jglick> hare_brain: the full change would of course have to include offering a simplified view of the UC and showing it immediately after start, as a setup wizard.
+18:27:59 <kohsuke> and if we give the meta packages more visibility in the first landing screen upon boot, instead of the regular update center, I think that'd be easy enough user experience
+18:28:22 <jglick> kohsuke: exactly
+18:28:33 <hare_brain> Another thing to consider is that perhaps talking about plugin combinations is too low level for users. What they care about most is, "I have this specific workflow. What do I need to make Jenkins do that for me?"
+18:28:36 <jglick> Still not convinced that a metapackage is what we want, as opposed to a simple set of lists.
+18:29:15 <jglick> A metapackage is a plugin that remains installed, which has various effects on the UC UI thereafter: for example, if you turn off one of the implied plugins, you are forced to turn off the metapackage too.
+18:29:40 <jglick> This is intuitive enough when all plugins offer real functionality, but less intuitive when some are just placeholders.
+18:29:56 <kohsuke> jglick: that's true. at the implementation level I'm not too hang up on the meta package
+18:30:11 <jglick> Ubuntu does it, but I am not sure how it works technically when you work with the Software Center as opposed to low-level apt-get.
+18:30:36 <jglick> NetBeans also does it, but at the expense of rather complicated semantics that took a long time to hammer out (and are probably still not quite right).
+18:30:59 <kohsuke> hare_brain: aside from the "starter pack" and then Java/PHP/Ruby/Android/iOS pack, I'm not sure what will emerge
+18:31:04 <jglick> The alternative is a set of labeled lists of artifactId’s to be installed during startup and forgotten thereafter.
+18:31:33 <jglick> kohsuke: definitely SCMs need to be picked here topo
+18:31:34 <jglick> too
+18:31:54 <hare_brain> Take a look through the user mailing list at the questions of the form "How do I make Jenkins do X?"
+18:32:14 <kohsuke> OK
+18:32:46 <kohsuke> Would advertising features without installing it help?
+18:33:25 <jglick> kohsuke: from my experience I can say that this gets crazy very quickly
+18:33:25 <kohsuke> I think Microsoft used to do that --- you can install just the start-up icons, or even some menu items in Office, and it launches the Windows setup to install some additional components before it delivers what you asked for
+18:33:56 <kohsuke> Perhaps. I don't remember seeing in the current Office, so maybe they decided that it was a bad idea
+18:34:06 <jglick> NetBeans does it and it is living hell to keep the system working.
+18:35:04 <kpfleming> Knowing that quite a few Jenkins installations don't have direct access to the Internet would make that a concern in my mind.
+18:35:50 <kohsuke> Shall we move on to the next topic?
+18:35:59 <jglick> E.g. for a Builder you would need to inject a Descriptor computed based on labels in a released plugin you do not have installed locally, and <l:lazy> would need to install it, dynamically load it, etc. Ick.
+18:36:02 <hare_brain> Yes please. This could go on forever. :)
+18:36:26 <Creeture> kpfleming: I've thought many times about making a thing to package up all of the plugins on a $periodic basis and make them available offline. Y'all interested in that?
+18:37:09 <kohsuke> Creeture: go go go
+18:37:19 <kohsuke> But I'm going to switch the topic
+18:37:19 <kpfleming> Our installations wouldn't be, no, we vet and deploy plugins to internal servers manually. Our security team would never allow a package of 'all' plugins into the network.
+18:37:25 <jglick> Any summaries, or is this pending a fuller list discussion?
+18:37:55 <kohsuke> #info summary: strong preference on naming a collection of plugins and promoting them over just bundling more plugins in jenkins.war
+18:38:14 <Creeture> kpfleming: Your security team is exactly why I would make the thing. Same Nazis I work with. But please, carry on with the next topic.
+18:38:16 <kohsuke> #info summary: preference on not creating more download options
+18:38:36 <ndeloof> could look like https://github.com/jenkinsci/php-plugin (based on jenkins-php.org)
+18:38:38 <kohsuke> #info summary: preference on making those collections of plugins more visible upon start
+18:38:57 <rtyler> kohsuke: did you run #startmeeting?
+18:39:00 <rtyler> I don't see a different topic
+18:39:34 <rtyler> ah, nvm, it's running, robobutler just doesn't have ops
+18:39:35 <hare_brain> He did
+18:39:39 <kohsuke> #info summary: what to do with the current bundled plugins wrt backward compatibility is an issue
+18:40:16 <kohsuke> #action kohsuke to start a discussion in the dev list along those lines
+18:40:39 <kohsuke> ideally we should have some screen mock ups and specific implementation proposals
+18:40:50 <kohsuke> jglick: is that OK enough summary?
+18:41:00 <jglick> Good by me.
+18:41:03 <kohsuke> #topic pull request greeting bot
+18:41:33 <kohsuke> so over the weekend I got desperate at our pending pull requests
+18:41:52 <kohsuke> I made a dent by closing 5 or 6, then came back to sanity and did a bot
+18:41:52 <jglick> And you merged them all?
+18:42:03 <kohsuke> this was in github plugin
+18:42:12 <kohsuke> I turned down 1 or 2 and rewrote 1 or 2
+18:42:34 <kohsuke> So the bot I did was https://github.com/jenkinsci/throttle-concurrent-builds-plugin/pull/5
+18:43:01 <kohsuke> it just adds a link that points to a wall of text
+18:43:48 <kohsuke> the text that's there is just my first shot and I don't mind at all other people editing them
+18:44:16 <kohsuke> All I wanted is to try to steer the PR submitter through the funnel
+18:44:21 <jglick> BTW I might recommend [FIXED JENKINS-nnnnn] in the PR summary, so that the merge commit marks the issue closed, since there might be a dozen commits on the branch no one of which closes it.
+18:44:39 <kohsuke> and hopefully convert some of them into the active plugin developers
+18:44:52 <kohsuke> jglick: off topic, but +1
+18:44:57 <jglick> Should also mention the PR builder and how to interpret test failures.
+18:45:11 <jglick> kohsuke: on topic insofar as https://wiki.jenkins-ci.org/display/JENKINS/Pull+Request+to+Repositories discusses this.
+18:45:28 <kohsuke> OK, I see
+18:46:01 <kohsuke> I've run it once on 10% of our repositories Sunday to see if I get any push back
+18:46:20 <kohsuke> And then I took two days off, so I haven't had a chance to feel the reaction, if any
+18:46:42 <jglick> BTW y’all know about https://github.com/organizations/jenkinsci/dashboard/pulls right? (may not be visible w/o auth)
+18:46:51 <kohsuke> But if people thinks something like this is a good idea, I want to run this periodically on all the repos
+18:46:56 <jglick> Handy if hidden GH feature.
+18:47:00 <kohsuke> jglick: yes
+18:47:09 <jglick> +1 for the bot from me
+18:47:55 <kohsuke> (My earlier proposal was even more aggressive and made people committers automatically but abayer talked me out of it)
+18:48:22 <abayer> heehee
+18:48:36 <abayer> I love when I'm the conservative on commit bit.
+18:48:47 <johnkw> how is jenkins at supporting multiple repositories that are required for a single build?
+18:49:17 <kohsuke> #info BTW the code here: https://github.com/jenkinsci/backend-pull-request-greeter
+18:49:34 <kohsuke> All right, at least I'm not hearing complaints, so that's good to know
+18:50:04 <b2jrock> johnkw: good, but you're in the middle of a meeting, please wait until it's completed.
+18:50:11 <kohsuke> I think we can wrap up now
+18:50:26 <kpfleming> abayer: I agree with you. The 'bazaar' model of development doesn't produce quality code until the number of experienced comitters is substantial.
+18:51:18 <kohsuke> kpfleming: my argument is that "OK but not great" changes are better than stale plugins
+18:51:34 <kohsuke> anyway, I won't try to argue that position now
+18:51:35 <kpfleming> yes, that's true too. it's a hard line to find.
+18:51:44 <kohsuke> #topic next meeting
+18:51:59 <kohsuke> July 24th
+18:52:05 <kohsuke> the same time
+18:52:13 <hare_brain> Yep
+18:52:24 <kohsuke> All right, I think that's it.
+18:52:27 <kohsuke> Thank you everyone
+18:52:35 <kohsuke> #endmeeting

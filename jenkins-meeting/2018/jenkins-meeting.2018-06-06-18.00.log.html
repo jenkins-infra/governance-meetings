@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app201.us.archive.org';v.server_ms=499;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-06-06-18.00.log.html","20211027230823","https://web.archive.org/","web","/_static/",
+	      "1635376103");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:04</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:04</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:07</span><span class="nk"> &lt;danielbeck&gt;</span> hi everyone!
+<a name="l-4"></a><span class="tm">18:00:30</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-5"></a><span class="tm">18:00:30</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Jun6thmeeting</span>
+<a name="l-6"></a><span class="tm">18:00:39</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-7"></a><span class="tm">18:00:44</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">rtyler kohsuke</span>
+<a name="l-8"></a><span class="tm">18:00:45</span><span class="nk"> &lt;danielbeck&gt;</span> ops
+<a name="l-9"></a><span class="tm">18:00:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair</span><span class="cmdline"></span>
+<a name="l-10"></a><span class="tm">18:00:53</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler kohsuke</span>
+<a name="l-11"></a><span class="tm">18:00:53</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-12"></a><span class="tm">18:00:58</span><span class="nk"> &lt;danielbeck&gt;</span> that command has a response at least :)
+<a name="l-13"></a><span class="tm">18:00:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">tracymiranda:</span> o/
+<a name="l-14"></a><span class="tm">18:01:04</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-05-23-18.02.html</span>
+<a name="l-15"></a><span class="tm">18:01:19</span><span class="nk"> &lt;danielbeck&gt;</span> so, not much from last meeting
+<a name="l-16"></a><span class="tm">18:01:26</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-17"></a><span class="tm">18:01:28</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-18"></a><span class="tm">18:01:31</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza around?
+<a name="l-19"></a><span class="tm">18:01:37</span><span class="nk"> &lt;ogondza&gt;</span> it was a quick one
+<a name="l-20"></a><span class="tm">18:02:21</span><span class="nk"> &lt;danielbeck&gt;</span> It's LTS o'clock already
+<a name="l-21"></a><span class="tm">18:02:34</span><span class="nk"> &lt;ogondza&gt;</span> right, I was late publishing the RC bits
+<a name="l-22"></a><span class="tm">18:02:35</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-23"></a><span class="tm">18:02:56</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza are we still on for today, or should we postpone?
+<a name="l-24"></a><span class="tm">18:03:07</span><span class="nk"> &lt;ogondza&gt;</span> though no problems ware reported
+<a name="l-25"></a><span class="tm">18:03:23</span><span class="nk"> &lt;ogondza&gt;</span> I do not see that to be a reason to postpone the release
+<a name="l-26"></a><span class="tm">18:03:43</span><span class="nk"> &lt;danielbeck&gt;</span> is the LTS empty? or is https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.121.1-fixed wrong?
+<a name="l-27"></a><span class="tm">18:04:10</span><span class="nk"> &lt;ogondza&gt;</span> it is wrong
+<a name="l-28"></a><span class="tm">18:04:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We still need upgrade guidelines
+<a name="l-29"></a><span class="tm">18:04:24</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev yep, I'm late :-/
+<a name="l-30"></a><span class="tm">18:04:26</span><span class="nk"> &lt;ogondza&gt;</span> fixed packaging and performance improvement on /pluginmanager/installed
+<a name="l-31"></a><span class="tm">18:04:33</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to write upgrade guide and changelog</span>
+<a name="l-32"></a><span class="tm">18:04:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> At least: exception serialization in Remoting - JENKINS-50237, permission changes - JENKINS-14713
+<a name="l-33"></a><span class="tm">18:04:48</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to fix up Jira labels for 2.121.1 related issues</span>
+<a name="l-34"></a><span class="tm">18:05:06</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza so we're ready to release?
+<a name="l-35"></a><span class="tm">18:05:20</span><span class="nk"> &lt;ogondza&gt;</span> yep, fixing the labels right away
+<a name="l-36"></a><span class="tm">18:06:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> FYI I have resolved  tickets for all Weekly releases since 2.121 and added lts-candidate labels
+<a name="l-37"></a><span class="tm">18:06:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There is quite a number of them
+<a name="l-38"></a><span class="tm">18:06:59</span><span class="nk"> &lt;ogondza&gt;</span> hope to see as many of them tomorrow as I can manage...
+<a name="l-39"></a><span class="tm">18:07:27</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza so we're good to release based on testing?
+<a name="l-40"></a><span class="tm">18:07:38</span><span class="nk"> &lt;ogondza&gt;</span> danielbeck, yes we are
+<a name="l-41"></a><span class="tm">18:07:43</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to release 2.121.1</span>
+<a name="l-42"></a><span class="tm">18:07:50</span><span class="nk"> &lt;danielbeck&gt;</span> this is the first release with the packaging ref, right?
+<a name="l-43"></a><span class="tm">18:07:58</span><span class="nk"> &lt;ogondza&gt;</span> yes
+<a name="l-44"></a><span class="tm">18:08:06</span><span class="nk"> &lt;rtyler&gt;</span> wooo
+<a name="l-45"></a><span class="tm">18:08:20</span><span class="nk"> &lt;danielbeck&gt;</span> anything else about 2.121.1 or can we move on?
+<a name="l-46"></a><span class="tm">18:08:28</span><span class="nk"> &lt;ogondza&gt;</span> discussed it with KK last time, it should be fine
+<a name="l-47"></a><span class="tm">18:08:45</span><span class="nk"> &lt;ogondza&gt;</span> lets move on, then
+<a name="l-48"></a><span class="tm">18:08:56</span><span class="nk"> &lt;tracymiranda&gt;</span> is that my cue?
+<a name="l-49"></a><span class="tm">18:08:58</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark sublicensing request "CloudBees Jenkins Support"</span>
+<a name="l-50"></a><span class="tm">18:09:01</span><span class="nk"> &lt;danielbeck&gt;</span> tracymiranda it is!
+<a name="l-51"></a><span class="tm">18:09:07</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!msg/jenkinsci-dev/d1rrCcY-VyM/Pu4RdH2LBwAJ</span>
+<a name="l-52"></a><span class="tm">18:09:28</span><span class="nk"> &lt;tracymiranda&gt;</span> yes as per that thread I would like to seek approval on behalf of CloudBees
+<a name="l-53"></a><span class="tm">18:09:51</span><span class="nk"> &lt;tracymiranda&gt;</span> discussion or straight to vote?
+<a name="l-54"></a><span class="tm">18:09:52</span><span class="nk"> &lt;danielbeck&gt;</span> wait, wrong link
+<a name="l-55"></a><span class="tm">18:10:01</span><span class="nk"> &lt;danielbeck&gt;</span> what did I link!?
+<a name="l-56"></a><span class="tm">18:10:12</span><span class="nk"> &lt;tracymiranda&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/msgid/jenkinsci-dev/bbed285d-2bc6-46c9-9334-484cbc014cf9%40googlegroups.com</span>
+<a name="l-57"></a><span class="tm">18:10:29</span><span class="nk"> &lt;danielbeck&gt;</span> THis is the correct link, there's two in the agenda: https://groups.google.com/d/msg/jenkinsci-dev/dvnua3N32C0/D-FBELTECwAJ
+<a name="l-58"></a><span class="tm">18:10:42</span><span class="nk"> &lt;danielbeck&gt;</span> sorry about that
+<a name="l-59"></a><span class="tm">18:11:04</span><span class="nk"> &lt;rtyler&gt;</span> our trademark guidelines can be found: https://jenkins.io/project/governance/#trademark
+<a name="l-60"></a><span class="tm">18:11:04</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="hi">danielbeck:</span> you scared me for a minute there :)
+<a name="l-61"></a><span class="tm">18:11:09</span><span class="nk"> &lt;tracymiranda&gt;</span> probably my copy &amp; pasting
+<a name="l-62"></a><span class="tm">18:11:42</span><span class="nk"> &lt;danielbeck&gt;</span> alyssat_ just making sure you're awake :)
+<a name="l-63"></a><span class="tm">18:11:58</span><span class="nk"> &lt;tracymiranda&gt;</span> so any questions, objections, etc?
+<a name="l-64"></a><span class="tm">18:12:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I abstain
+<a name="l-65"></a><span class="tm">18:12:44</span><span class="nk"> &lt;rtyler&gt;</span> the mark being "CloudBees Jenkins Support" I don't see any problem with
+<a name="l-66"></a><span class="tm">18:13:02</span><span class="nk"> &lt;tracymiranda&gt;</span> yes PM withdrew other request
+<a name="l-67"></a><span class="tm">18:15:01</span><span class="nk"> &lt;alyssat_&gt;</span> +1
+<a name="l-68"></a><span class="tm">18:15:59 </span><span class="nka">* danielbeck</span> <span class="ac">wonders whether ogondza orrc or schristou have an opinion</span>
+<a name="l-69"></a><span class="tm">18:16:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> also orrc ^
+<a name="l-70"></a><span class="tm">18:16:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> oh
+<a name="l-71"></a><span class="tm">18:16:29</span><span class="nk"> &lt;bitwiseman&gt;</span> +1
+<a name="l-72"></a><span class="tm">18:17:50</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-73"></a><span class="tm">18:17:56</span><span class="nk"> &lt;danielbeck&gt;</span> well, an enthusiastic response this is not, but tracymiranda gave plenty of notice and nobody rejected it, so this looks to be passing?
+<a name="l-74"></a><span class="tm">18:18:08</span><span class="nk"> &lt;danielbeck&gt;</span> last chance to speak up :)
+<a name="l-75"></a><span class="tm">18:18:48</span><span class="nk"> &lt;rtyler&gt;</span> seems reasonable to me
+<a name="l-76"></a><span class="tm">18:19:26</span><span class="nk"> &lt;rtyler&gt;</span> this is a pretty perfunctory process
+<a name="l-77"></a><span class="tm">18:19:48</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">The trademark sublicensing request for "CloudBees Jenkins Support" is approved</span>
+<a name="l-78"></a><span class="tm">18:19:58</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to edit the wiki to record this decision</span>
+<a name="l-79"></a><span class="tm">18:20:27</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins Ambassador program update</span>
+<a name="l-80"></a><span class="tm">18:20:48</span><span class="nk"> &lt;danielbeck&gt;</span> complete with a dead link to bitwiseman's GitHub repo :P
+<a name="l-81"></a><span class="tm">18:20:54</span><span class="nk"> &lt;rtyler&gt;</span> hahaha
+<a name="l-82"></a><span class="tm">18:20:57</span><span class="nk"> &lt;danielbeck&gt;</span> bitwiseman alyssat_ could you provide the reference for this? :)
+<a name="l-83"></a><span class="tm">18:20:59</span><span class="nk"> &lt;rtyler&gt;</span> w00ps
+<a name="l-84"></a><span class="tm">18:21:03</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/jep/edit/master/jep/5/README.adoc</span>
+<a name="l-85"></a><span class="tm">18:21:05</span><span class="nk"> &lt;alyssat_&gt;</span> sorry my fault
+<a name="l-86"></a><span class="tm">18:21:11</span><span class="nk"> &lt;danielbeck&gt;</span> bitwiseman thanks
+<a name="l-87"></a><span class="tm">18:21:24</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/jep/blob/master/jep/5/README.adoc really</span>
+<a name="l-88"></a><span class="tm">18:21:41</span><span class="nk"> &lt;bitwiseman&gt;</span> heh, links are awesome all around today.
+<a name="l-89"></a><span class="tm">18:21:55</span><span class="nk"> &lt;danielbeck&gt;</span> I'm so glad I'm in good company!
+<a name="l-90"></a><span class="tm">18:22:08 </span><span class="nka">* oleg-nenashev</span> <span class="ac">checks his links</span>
+<a name="l-91"></a><span class="tm">18:22:12</span><span class="nk"> &lt;danielbeck&gt;</span> alyssat_ bitwiseman you have the floor
+<a name="l-92"></a><span class="tm">18:22:25</span><span class="nk"> &lt;bitwiseman&gt;</span> The Jenkins Ambassador program is kicking off.
+<a name="l-93"></a><span class="tm">18:22:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> hm
+<a name="l-94"></a><span class="tm">18:22:58</span><span class="nk"> &lt;bitwiseman&gt;</span> I'm currently making edits with the latest updates and decisions and will submit a PR today.
+<a name="l-95"></a><span class="tm">18:23:30</span><span class="nk"> &lt;bitwiseman&gt;</span> (the name is definitely Jenkins Ambassador, for example)
+<a name="l-96"></a><span class="tm">18:23:41</span><span class="nk"> &lt;danielbeck&gt;</span> bitwiseman ok. what's your agenda for today? raise awareness of the program? get some sort of approval?
+<a name="l-97"></a><span class="tm">18:23:46</span><span class="nk"> &lt;tracymiranda&gt;</span> the process looks good
+<a name="l-98"></a><span class="tm">18:23:59</span><span class="nk"> &lt;tracymiranda&gt;</span> the name I had one last thought about...
+<a name="l-99"></a><span class="tm">18:24:25</span><span class="nk"> &lt;bitwiseman&gt;</span> At a recent community team meeting in SJC we came up with some ideas for nominees.
+<a name="l-100"></a><span class="tm">18:24:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Some of my comments have not been addressed yet, but I am looking forward to see bitwiseman's pull request
+<a name="l-101"></a><span class="tm">18:24:57</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">oleg-nenashev:</span> you can expect the edits to match what you got in email.
+<a name="l-102"></a><span class="tm">18:25:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yey
+<a name="l-103"></a><span class="tm">18:25:14</span><span class="nk"> &lt;bitwiseman&gt;</span> was that on the ML?
+<a name="l-104"></a><span class="tm">18:25:15</span><span class="nk"> &lt;tracymiranda&gt;</span> since that meeting was wondering if name should just be 'Jenkins Champion' as that will be familiar to e.g. Java community
+<a name="l-105"></a><span class="tm">18:25:33</span><span class="nk"> &lt;alyssat_&gt;</span> I'd say our goal for today is to raise awareness about the program and that we'd like to begin implementing and getting some Ambassadors awarded sometime soon
+<a name="l-106"></a><span class="tm">18:25:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">tracymiranda:</span> there are lots of advocates out there (like me originally) who had no real relationship to the Java ecosystem
+<a name="l-107"></a><span class="tm">18:25:49 </span><span class="nka">* rtyler</span> <span class="ac">shrugs</span>
+<a name="l-108"></a><span class="tm">18:25:59</span><span class="nk"> &lt;rtyler&gt;</span> (I still don't)
+<a name="l-109"></a><span class="tm">18:26:02</span><span class="nk"> &lt;bitwiseman&gt;</span> and that final approval of new ambassadors will be done in this meeting.
+<a name="l-110"></a><span class="tm">18:26:09</span><span class="nk"> &lt;bitwiseman&gt;</span> future meetings.
+<a name="l-111"></a><span class="tm">18:26:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would prefer Champion to Ambassador, but some differenciation would be useful
+<a name="l-112"></a><span class="tm">18:26:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We already have JEP which overlap with Java
+<a name="l-113"></a><span class="tm">18:27:12</span><span class="nk"> &lt;danielbeck&gt;</span> aren't our JEPs based more on PEPs?
+<a name="l-114"></a><span class="tm">18:27:13</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="cmd">#info </span><span class="cmdline">Discussion thread: https://groups.google.com/d/topic/jenkinsci-dev/12D2tWxO6mM/discussion</span>
+<a name="l-115"></a><span class="tm">18:27:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> they are
+<a name="l-116"></a><span class="tm">18:27:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> for sure
+<a name="l-117"></a><span class="tm">18:27:36</span><span class="nk"> &lt;rtyler&gt;</span> "based" is really more copied 100% :P
+<a name="l-118"></a><span class="tm">18:27:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we changed a lot in JEP-1, so not 100% for sure :)
+<a name="l-119"></a><span class="tm">18:28:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But the acronym is same
+<a name="l-120"></a><span class="tm">18:28:17</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">danielbeck:</span> the acronym collides with Java Enhancement Proposal.
+<a name="l-121"></a><span class="tm">18:28:26</span><span class="nk"> &lt;danielbeck&gt;</span> (FTR Java's JEP-200 also a train wreck :P)
+<a name="l-122"></a><span class="tm">18:28:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> JEP-261 is a train wreck
+<a name="l-123"></a><span class="tm">18:28:47</span><span class="nk"> &lt;bitwiseman&gt;</span> Returning to the topic at hand.
+<a name="l-124"></a><span class="tm">18:28:48</span><span class="nk"> &lt;rtyler&gt;</span> what the heck does the JEP acronym have to do with our current topic?
+<a name="l-125"></a><span class="tm">18:28:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> JEP-200 is fine actually
+<a name="l-126"></a><span class="tm">18:29:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yeah, sorry
+<a name="l-127"></a><span class="tm">18:29:15</span><span class="nk"> &lt;danielbeck&gt;</span> bitwiseman so it looks like we can expect some updates soon?
+<a name="l-128"></a><span class="tm">18:29:28</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">danielbeck:</span> Ye.
+<a name="l-129"></a><span class="tm">18:30:00</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">danielbeck:</span> key among them is that this group will be making the final approvals of new Ambassadors.
+<a name="l-130"></a><span class="tm">18:31:11</span><span class="nk"> &lt;danielbeck&gt;</span> bitwiseman will the format be similar to our usual approach of proposing on the dev list, then hopefully having a clear consensus here?
+<a name="l-131"></a><span class="tm">18:31:36</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">danielbeck:</span> exactly.
+<a name="l-132"></a><span class="tm">18:33:13</span><span class="nk"> &lt;danielbeck&gt;</span> bitwiseman is that part of your upcoming updates?
+<a name="l-133"></a><span class="tm">18:33:39</span><span class="nk"> &lt;danielbeck&gt;</span> seems to me there's still quite a few moving parts in that proposal
+<a name="l-134"></a><span class="tm">18:33:49</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">danielbeck:</span> yes, it is also, in alyssa's last reply on the thread linked.
+<a name="l-135"></a><span class="tm">18:34:28</span><span class="nk"> &lt;danielbeck&gt;</span> ok
+<a name="l-136"></a><span class="tm">18:34:42</span><span class="nk"> &lt;danielbeck&gt;</span> I assume we'll get an update on the dev list once the next version is out?
+<a name="l-137"></a><span class="tm">18:34:58</span><span class="nk"> &lt;bitwiseman&gt;</span> yes.
+<a name="l-138"></a><span class="tm">18:35:34</span><span class="nk"> &lt;danielbeck&gt;</span> bitwiseman alyssat_ anything else we should look out for in that proposal? Otherwise we still have a bit of agenda to get through today, so I propose we move on
+<a name="l-139"></a><span class="tm">18:35:45</span><span class="nk"> &lt;bitwiseman&gt;</span> Also, start thinking of nomminees.
+<a name="l-140"></a><span class="tm">18:35:58</span><span class="nk"> &lt;danielbeck&gt;</span> good point
+<a name="l-141"></a><span class="tm">18:36:06</span><span class="nk"> &lt;alyssat_&gt;</span> I don't have anything
+<a name="l-142"></a><span class="tm">18:36:13</span><span class="nk"> &lt;bitwiseman&gt;</span> And that is it for me.
+<a name="l-143"></a><span class="tm">18:36:23</span><span class="nk"> &lt;danielbeck&gt;</span> thanks!
+<a name="l-144"></a><span class="tm">18:36:27</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC status check</span>
+<a name="l-145"></a><span class="tm">18:36:30</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev this is yours
+<a name="l-146"></a><span class="tm">18:36:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> o/
+<a name="l-147"></a><span class="tm">18:36:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">GSoC: https://jenkins.io/projects/gsoc/</span>
+<a name="l-148"></a><span class="tm">18:37:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So now we have 3 active projects. So good so far. All projects got progress and some community traction, I hope we will have alpha releases in Mid June
+<a name="l-149"></a><span class="tm">18:37:51</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-150"></a><span class="tm">18:37:54</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-151"></a><span class="tm">18:38:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">June 15 is a evaluation deadline</span>
+<a name="l-152"></a><span class="tm">18:38:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to set up public meeting with project demos</span>
+<a name="l-153"></a><span class="tm">18:38:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#actions </span><span class="cmdline">students to create blog posts, etc.</span>
+<a name="l-154"></a><span class="tm">18:38:53</span><span class="nk"> &lt;tracymiranda&gt;</span> is there a demo day sometime?
+<a name="l-155"></a><span class="tm">18:39:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes
+<a name="l-156"></a><span class="tm">18:39:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> TBA
+<a name="l-157"></a><span class="tm">18:39:09</span><span class="nk"> &lt;tracymiranda&gt;</span> great
+<a name="l-158"></a><span class="tm">18:39:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Likely end of the next week
+<a name="l-159"></a><span class="tm">18:39:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Of course, we will do HoA
+<a name="l-160"></a><span class="tm">18:39:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But probably it's too early for JOM
+<a name="l-161"></a><span class="tm">18:39:42 </span><span class="nka">* tracymiranda</span> <span class="ac">is struggling with the TLAs</span>
+<a name="l-162"></a><span class="tm">18:39:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Jenkins Online Meetup
+<a name="l-163"></a><span class="tm">18:39:55</span><span class="nk"> &lt;danielbeck&gt;</span> Hangout on Air
+<a name="l-164"></a><span class="tm">18:39:58</span><span class="nk"> &lt;tracymiranda&gt;</span> :)
+<a name="l-165"></a><span class="tm">18:39:59</span><span class="nk"> &lt;tracymiranda&gt;</span> thx
+<a name="l-166"></a><span class="tm">18:40:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yw
+<a name="l-167"></a><span class="tm">18:40:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any questions?
+<a name="l-168"></a><span class="tm">18:40:39</span><span class="nk"> &lt;danielbeck&gt;</span> looking forward to the demos :)
+<a name="l-169"></a><span class="tm">18:40:51</span><span class="nk"> &lt;tracymiranda&gt;</span> yes, same!
+<a name="l-170"></a><span class="tm">18:40:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yeah, we have much more collaboration this year
+<a name="l-171"></a><span class="tm">18:40:58</span><span class="nk"> &lt;danielbeck&gt;</span> so other than "are we there yet?", no questions
+<a name="l-172"></a><span class="tm">18:41:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> E.g. in Simple PR Job Plugin we apparently use Configuration As Code plugin for some integrations
+<a name="l-173"></a><span class="tm">18:42:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> "are we there yet?" ?
+<a name="l-174"></a><span class="tm">18:42:15</span><span class="nk"> &lt;danielbeck&gt;</span> joke :)
+<a name="l-175"></a><span class="tm">18:42:19</span><span class="nk"> &lt;danielbeck&gt;</span> will that tie student success to casc releases?
+<a name="l-176"></a><span class="tm">18:42:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nope
+<a name="l-177"></a><span class="tm">18:42:35</span><span class="nk"> &lt;danielbeck&gt;</span> ok, then that should be fine
+<a name="l-178"></a><span class="tm">18:42:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Risk Management 101
+<a name="l-179"></a><span class="tm">18:42:49</span><span class="nk"> &lt;tracymiranda&gt;</span> is there a plugin for that?
+<a name="l-180"></a><span class="tm">18:42:56</span><span class="nk"> &lt;tracymiranda&gt;</span> ;)
+<a name="l-181"></a><span class="tm">18:43:07 </span><span class="nka">* rtyler</span> <span class="ac">booes</span>
+<a name="l-182"></a><span class="tm">18:43:10</span><span class="nk"> &lt;danielbeck&gt;</span> it's a thing, so there's a plugin for it
+<a name="l-183"></a><span class="tm">18:43:11 </span><span class="nka">* rtyler</span> <span class="ac">throws tomatoes at tracymiranda</span>
+<a name="l-184"></a><span class="tm">18:43:13</span><span class="nk"> &lt;danielbeck&gt;</span> moving on…
+<a name="l-185"></a><span class="tm">18:43:18</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Update: Jenkins &amp; Java 10 Online Hackathon</span>
+<a name="l-186"></a><span class="tm">18:43:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There are many plugins for risk mismanagement around :)
+<a name="l-187"></a><span class="tm">18:43:23</span><span class="nk"> &lt;danielbeck&gt;</span> another one from oleg-nenashev
+<a name="l-188"></a><span class="tm">18:43:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info  </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/FdCvQlscl_I</span>
+<a name="l-189"></a><span class="tm">18:44:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Wow, I didn't mess up the link
+<a name="l-190"></a><span class="tm">18:44:21</span><span class="nk"> &lt;danielbeck&gt;</span> boo
+<a name="l-191"></a><span class="tm">18:44:25</span><span class="nk"> &lt;tracymiranda&gt;</span> hehe
+<a name="l-192"></a><span class="tm">18:44:29</span><span class="nk"> &lt;tracymiranda&gt;</span> I'm already signed up!
+<a name="l-193"></a><span class="tm">18:44:41</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-194"></a><span class="tm">18:44:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So yeah, in 2 weeks we are going to have an online hackathon to get some progress on Java 10 stories
+<a name="l-195"></a><span class="tm">18:45:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> just out of my own curiosity, do you think there are going to be tons of core PRs that weeks?
+<a name="l-196"></a><span class="tm">18:45:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> As a guy who routes Jenkins JIRA issues , I am personally invested to get some progress there :)
+<a name="l-197"></a><span class="tm">18:45:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> TBD, but we will likely have some PRs
+<a name="l-198"></a><span class="tm">18:46:00</span><span class="nk"> &lt;tracymiranda&gt;</span> depends what swag we offer :)
+<a name="l-199"></a><span class="tm">18:46:09</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler any particular reason you're asking?
+<a name="l-200"></a><span class="tm">18:46:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am the core maintainer, so I will do the core reviews &amp; help ready PRs to get landed
+<a name="l-201"></a><span class="tm">18:46:27</span><span class="nk"> &lt;danielbeck&gt;</span> For example a need to get some organized code review going?
+<a name="l-202"></a><span class="tm">18:46:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Same for Rmoting
+<a name="l-203"></a><span class="tm">18:46:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> For Pipeline we are also going to find some review capacity
+<a name="l-204"></a><span class="tm">18:47:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> capcaity planning on ci.jenkins.io
+<a name="l-205"></a><span class="tm">18:47:09</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler ah
+<a name="l-206"></a><span class="tm">18:47:12</span><span class="nk"> &lt;rtyler&gt;</span> core PRs are pretty heavy
+<a name="l-207"></a><span class="tm">18:47:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I anticipate Pipeline to be the most hot area
+<a name="l-208"></a><span class="tm">18:47:17</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler perhaps also a java 10 option to build core? :)
+<a name="l-209"></a><span class="tm">18:47:22</span><span class="nk"> &lt;rtyler&gt;</span> just want to make sure we can support the hackers as much as possible
+<a name="l-210"></a><span class="tm">18:48:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> I will make sure to land https://github.com/jenkinsci/jenkins/pull/3438 so that we do not run ATH each time
+<a name="l-211"></a><span class="tm">18:48:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Should help a bit, right?
+<a name="l-212"></a><span class="tm">18:48:31</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev do we already have responses? or still too early?
+<a name="l-213"></a><span class="tm">18:48:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> 4 responses
+<a name="l-214"></a><span class="tm">18:48:50</span><span class="nk"> &lt;tracymiranda&gt;</span> cool, just one hour in!
+<a name="l-215"></a><span class="tm">18:48:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">We already have 4 responders to the hackathon invite</span>
+<a name="l-216"></a><span class="tm">18:48:59</span><span class="nk"> &lt;danielbeck&gt;</span> nice
+<a name="l-217"></a><span class="tm">18:49:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to blogpost the announcement</span>
+<a name="l-218"></a><span class="tm">18:49:23</span><span class="nk"> &lt;tracymiranda&gt;</span> i will also promote next week at eclipsecon, see if I can arm twist some folks there to join
+<a name="l-219"></a><span class="tm">18:49:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to work with Infra team to ensure that our INFRA is ready</span>
+<a name="l-220"></a><span class="tm">18:49:49</span><span class="nk"> &lt;rtyler&gt;</span> INFRA!
+<a name="l-221"></a><span class="tm">18:49:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks tracymiranda!
+<a name="l-222"></a><span class="tm">18:50:35</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">oleg-nenashev:</span> should a create a blog post based on your email?
+<a name="l-223"></a><span class="tm">18:50:41</span><span class="nk"> &lt;bitwiseman&gt;</span> shall I?
+<a name="l-224"></a><span class="tm">18:50:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Will create INFRA ticket and appropriate Sprints &amp; Co
+<a name="l-225"></a><span class="tm">18:51:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">bitwiseman:</span> If you have some capacity, go for it? I am working on some artwork &amp; Co to prettify the announcement
+<a name="l-226"></a><span class="tm">18:51:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> no "?"
+<a name="l-227"></a><span class="tm">18:52:01</span><span class="nk"> &lt;tracymiranda&gt;</span> a nice image with dates would be good for sharing on social media
+<a name="l-228"></a><span class="tm">18:52:36</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">tracymiranda:</span> +1
+<a name="l-229"></a><span class="tm">18:52:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">all interested contributors to RSVP here: https://docs.google.com/forms/d/1ReYyuyCGC0PIz2quh6XehnjpH2K52inx-veHLPlNreE/</span>
+<a name="l-230"></a><span class="tm">18:53:03</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-231"></a><span class="tm">18:53:12</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev I think that's it? Or anything else we need to know about this?
+<a name="l-232"></a><span class="tm">18:53:14</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">oleg-nenashev:</span> not that link
+<a name="l-233"></a><span class="tm">18:53:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am thinking about reworked https://jenkins.io/images/logos/formal/formal.png with a Java cup
+<a name="l-234"></a><span class="tm">18:53:25</span><span class="nk"> &lt;bitwiseman&gt;</span> That is the edit link. :(
+<a name="l-235"></a><span class="tm">18:53:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Suggestions welcome
+<a name="l-236"></a><span class="tm">18:54:06</span><span class="nk"> &lt;danielbeck&gt;</span> bitwiseman post the correct link please
+<a name="l-237"></a><span class="tm">18:54:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">bitwiseman:</span> Open in the incognito mode. I just granted you permissions :P
+<a name="l-238"></a><span class="tm">18:54:18</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="cmd">#action </span><span class="cmdline">all interested RSVP here: https://goo.gl/forms/ybEfKw6TB6WZaszM2</span>
+<a name="l-239"></a><span class="tm">18:54:39</span><span class="nk"> &lt;danielbeck&gt;</span> bitwiseman thanks
+<a name="l-240"></a><span class="tm">18:54:43</span><span class="nk"> &lt;tracymiranda&gt;</span> good idea for logo
+<a name="l-241"></a><span class="tm">18:55:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> the links point to the same place tho
+<a name="l-242"></a><span class="tm">18:55:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> whatever
+<a name="l-243"></a><span class="tm">18:55:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, any other questions?
+<a name="l-244"></a><span class="tm">18:55:48</span><span class="nk"> &lt;danielbeck&gt;</span> doesn't look like it
+<a name="l-245"></a><span class="tm">18:56:00</span><span class="nk"> &lt;danielbeck&gt;</span> thanks everyone for your participation today!
+<a name="l-246"></a><span class="tm">18:56:05</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-247"></a><span class="tm">18:56:15</span><span class="nk"> &lt;danielbeck&gt;</span> that would be June 20, same time
+<a name="l-248"></a><span class="tm">18:56:25</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-249"></a><span class="tm">18:56:38</span><span class="nk"> &lt;tracymiranda&gt;</span> thanks all
+<a name="l-250"></a><span class="tm">18:56:42</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 23:08:23 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:06:12 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 217.665
+  exclusion.robots: 0.096
+  exclusion.robots.policy: 0.089
+  cdx.remote: 0.06
+  esindex: 0.009
+  LoadShardBlock: 86.661 (3)
+  PetaboxLoader3.datanode: 266.521 (4)
+  CDXLines.iter: 15.337 (3)
+  load_resource: 266.193
+  PetaboxLoader3.resolve: 56.89
+-->

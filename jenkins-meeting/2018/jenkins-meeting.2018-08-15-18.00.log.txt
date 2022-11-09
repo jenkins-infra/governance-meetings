@@ -1,0 +1,204 @@
+18:00:22 <danielbe_> #startmeeting
+18:00:22 <robobutler> Let the Jenkins meeting commence!
+18:00:26 <oleg-nenashev> o/
+18:00:31 <danielbe_> #chair rtyler kohsuke danielbe_
+18:00:31 <robobutler> Current chairs: danielbe_ kohsuke rtyler
+18:00:37 <danielbe_> hi everyone
+18:00:41 <tracymiranda> hello
+18:00:45 <alyssat_> o/
+18:00:46 <danielbe_> agenda: https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+18:00:53 <danielbe_> #topic Recap last meeting actions
+18:01:13 <danielbe_> #info http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-08-01-18.00.html
+18:01:27 <danielbe_> tracymiranda did you update the grant proposal?
+18:01:39 <tracymiranda> not yet
+18:01:51 <danielbe_> ok
+18:01:56 <danielbe_> that was the only action from last week
+18:01:57 <tracymiranda> actually question about that
+18:02:05 <danielbe_> sure
+18:02:12 <tracymiranda> did we say that should be a jep or an email to dev list?
+18:02:41 <oleg-nenashev> dev list first imho
+18:02:51 <danielbe_> consensus was JEP which requires dev list
+18:03:00 <danielbe_> see 18:31 in http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-08-01-18.00.log.html
+18:03:02 <tracymiranda> ok
+18:03:04 <tracymiranda> thanks
+18:03:20 <tracymiranda> will aim to get it done by next meeting
+18:03:26 <tracymiranda> with enough time for responses
+18:03:37 <danielbe_> ok
+18:03:48 <danielbe_> #topic LTS status check
+18:03:57 <danielbe_> LTS is out, you all should upgrade :)
+18:04:09 <danielbe_> #info https://jenkins.io/security/advisory/2018-08-15/
+18:04:13 <oleg-nenashev> done. So far so good
+18:04:18 <danielbe_> #info https://jenkins.io/changelog-stable/#v2.121.3
+18:04:20 <tracymiranda> cool stuff
+18:04:36 <danielbe_> ogondza anything from your side on this LTS?
+18:04:45 <ogondza> thanks, Daniel. I guess we can move on
+18:04:53 <danielbe_> #topic LTS next baseline selection
+18:05:16 * oleg-nenashev is tired of updating his instance every 2 weeks due to advisories
+18:05:21 <danielbe_> .3 is out today, so as usual it's time to select the next baseline again
+18:05:21 * rtyler takes a look https://jenkins.io/changelog/
+18:06:23 <oleg-nenashev> 2.135 is a conservative option
+18:06:29 <danielbe_> I don't think there are known recent regressions
+18:06:34 <danielbe_> except for the mess around Jetty
+18:06:49 <oleg-nenashev> JNA update is also suspicious. It was not soaked enough IMHO
+18:06:53 <rtyler> as opposed to 136 oleg-nenashev ?
+18:07:07 <oleg-nenashev> Major JNA update
+18:07:17 <oleg-nenashev> It's risky on exotic platforms
+18:07:25 <oleg-nenashev> which unlikely use Weekly
+18:07:39 <rtyler> which means you wouldn't know if there are issues until its in an LTS anyways
+18:07:43 <danielbe_> so what would postponing this update help?
+18:07:56 <danielbe_> +1 rtyler
+18:08:09 <oleg-nenashev> #info https://github.com/java-native-access/jna/blob/4.5.X/CHANGES.md
+18:09:11 <oleg-nenashev> I know that nobody wants to backport security fixes again
+18:09:19 <danielbe_> looks mostly like added features?
+18:10:02 <danielbe_> TBF, 2.137 is so empty that 2.138 is essentially soaked for 2 weeks already + security fixes
+18:10:04 <ogondza> with 2.137 almost empty, how about 2.138
+18:10:11 <ogondza> ?
+18:10:19 <bitwiseman> Take the security fixes
+18:10:55 * rtyler shrugs
+18:10:55 <oleg-nenashev> If we go to something newer that 2.135, 2.138 is ok for me
+18:10:58 <rtyler> sure, sounds reasonable to me
+18:11:20 <ogondza> I guess we have the consensus then
+18:11:31 <danielbe_> as usual we have 2 weeks before RC date anyway in case something critically broken is identified
+18:11:54 <danielbe_> consensus seems to be 2.138 unless someone speaks up now…
+18:12:02 <oleg-nenashev> I am -0.5
+18:12:27 <ogondza> oleg-nenashev: because of the JNA?
+18:12:33 <oleg-nenashev> mostly
+18:12:44 <oleg-nenashev> And because of removing 2 weeks of soak testing
+18:13:19 <ogondza> I usually do not vote for picking latest...
+18:13:46 <oleg-nenashev> Do not forget .1 lands on Sep 12
+18:13:57 <oleg-nenashev> Or whatever date right before Jenkins World
+18:14:10 <danielbe_> i.e. plenty of time to address any critical issues that show up
+18:14:12 <oleg-nenashev> Does anybody plan to be available for firefighting?
+18:14:52 <ogondza> I doubt issues for such marginal platforms would escalate that quickly
+18:15:10 * ogondza being a maintainer of a grid of such platforms
+18:15:14 <danielbe_> realistically, how likely is that a release with all interesting changes having 4 weeks before RC will break badly?
+18:15:54 <danielbe_> The next .1 will land in December, not much different
+18:16:11 <oleg-nenashev> Note that "marginal platforms" include Windows and ARM/Linux
+18:16:25 <ogondza> I am well aware :P
+18:16:38 <rtyler> like he said, marginal :P
+18:16:55 <bitwiseman> heh
+18:17:13 <ogondza> anyway, we can alwayse revert that one for .2 if it came to worse
+18:17:26 <danielbe_> or, if caught early, towards .1
+18:17:44 <danielbe_> ogondza perhaps add a note in the request for testing email?
+18:17:54 <danielbe_> that native related features should be exercised
+18:18:08 <oleg-nenashev> we have zero test automation for it, right?
+18:18:16 <ogondza> correct
+18:18:21 <oleg-nenashev> I can ask Linaro folks to try ARM
+18:18:25 <ogondza> zero infra to run it on
+18:18:38 <danielbe_> well, we do have Windows infra
+18:18:41 <ogondza> We can do some extra testing this time
+18:18:48 <ogondza> that us right
+18:18:58 <oleg-nenashev> ok
+18:19:13 <oleg-nenashev> I am okay if others want to go forward
+18:19:14 <ogondza> danielbe_: can we somehow specify "native related features"?
+18:19:32 <oleg-nenashev> Still looks a bit YOLO to me
+18:20:04 <danielbe_> I'm unsure what features are affected
+18:20:06 <rtyler> my specialty
+18:20:18 <danielbe_> would have guessed symlinks etc. but I think those are Java 8 now
+18:21:27 <ogondza> any other objections?
+18:22:02 <danielbe_> 2.138 looks reasonable. As always, our schedule has the slack needed to react if something shows up.
+18:22:12 <ogondza> agreed
+18:22:24 <oleg-nenashev> Note that the next LTS is the last one supporting WinXP SP2: https://github.com/kohsuke/winp/pull/53
+18:22:36 <danielbe_> good riddance
+18:22:38 <sst6627> 
+18:22:43 <sst6627>
+18:22:48 <sst6627>
+18:23:14 <danielbe_> #agreed 2.138 will be the next LTS baseline
+18:23:45 <danielbe_> ogondza can you send the advance notification? I don't think we'll expect many backports
+18:24:00 <ogondza> advance notification?
+18:24:33 <danielbe_> don't you usually send an email after baseline selection? Or is that only after backports?
+18:25:06 <ogondza> It is combines "we are starting backporting for .1"
+18:25:12 <ogondza> can do it tonight
+18:25:20 <danielbe_> ah, ok
+18:25:23 <danielbe_> yes, that one
+18:26:07 <ogondza> #action ogondza to announce backporting and LTS version involving JNA update ASAP
+18:26:16 <danielbe_> \o/
+18:26:27 <danielbe_> #topic GSoC end-of-summer check
+18:26:39 <danielbe_> the presentations were really great :)
+18:26:44 <danielbe_> oleg-nenashev I think this is yours?
+18:26:51 <oleg-nenashev> I'd guess so
+18:27:15 <oleg-nenashev> #info GSoC is officially over. Results will be announced on Aug 22
+18:27:58 <oleg-nenashev> #info All 3 students reached the final evaluation and presented their work. See https://www.meetup.com/Jenkins-online-meetup/events/253577758/
+18:28:19 <oleg-nenashev> And believe all projects bring value to the Jenkins community
+18:28:29 <rtyler> \o/
+18:28:49 <oleg-nenashev> #info Also, we formed an official GSoC SIG: https://jenkins.io/sigs/gsoc/
+18:29:58 <oleg-nenashev> #info: We also elected GSoC Mentor Summit delegates. Jeff Pearce and Oleg Nenashev  will go to the summit this year, the n they will talk about their visit at the SIG meeting
+18:30:05 <oleg-nenashev> + blogposts as usual
+18:30:16 <oleg-nenashev> Mentor summit: Oct 12-14
+18:30:25 <tracymiranda> where is it?
+18:30:35 <oleg-nenashev> Bay Area
+18:30:40 <tracymiranda> thx
+18:30:55 * oleg-nenashev expects nice jetlag at Jenkins conferences in Europe
+18:31:09 <oleg-nenashev> So...
+18:31:17 <oleg-nenashev> I cannot say much else till Aug 22
+18:31:31 <oleg-nenashev> Once the results are announced, there will be also a blogpost
+18:31:45 <oleg-nenashev> any questions?
+18:31:59 <tracymiranda> just comments - seemed really well run with great results
+18:32:07 <tracymiranda> so great stuff!
+18:32:20 <oleg-nenashev> yeah
+18:32:25 <danielbe_> presentations were really interesting, can recommend watching
+18:32:30 <oleg-nenashev> Next year we need more mentors, as usual :)
+18:32:54 <oleg-nenashev> We will have a public retrospective if somebody is interested
+18:33:07 <danielbe_> is that already announced?
+18:33:22 <tracymiranda> i do have a question actually
+18:33:36 <oleg-nenashev> danielbe_: not yet. Will do in few days
+18:33:52 <tracymiranda> folks could not join the hangout - is there something we can do about that or time to move to a new platform?
+18:33:52 <oleg-nenashev> #action: oleg_nenashev: schedule and announce the public retrospective
+18:34:04 <oleg-nenashev> yes...
+18:34:14 <oleg-nenashev> I was about asking infra team as well
+18:34:24 <oleg-nenashev> We are back to the 10 ppl limit in HoA
+18:34:34 <tracymiranda> eclipse recently adopted zoom after advice from linux foundation
+18:34:38 <oleg-nenashev> rtyler olblak: ^
+18:34:40 <tracymiranda> i can dig up costs
+18:35:31 <oleg-nenashev> We also hit the limit at the Cloud Native SIG meeting
+18:35:56 <tracymiranda> oh didn't realise that - not good if folks can't join
+18:36:02 <rtyler> hey here's a topic not on the agenda
+18:36:08 <danielbe_> probably a better topic for the dev list?
+18:36:28 <danielbe_> we're not going to find a solution today
+18:36:32 <oleg-nenashev> yes
+18:36:46 <oleg-nenashev> Zoom would do the job
+18:36:56 <oleg-nenashev> Especially if we can get sponsorship
+18:36:58 <danielbe_> FWIW issues like that are invisible to those not affected at the time, so a heads up is important
+18:37:12 <danielbe_> oleg-nenashev anything else on GSoC?
+18:37:21 <oleg-nenashev> not from me
+18:37:38 <danielbe_> let's wrap this up then
+18:37:41 <danielbe_> #topic next meeting
+18:37:53 <danielbe_> August 29
+18:37:59 <danielbe_> same time, same place
+18:38:08 <rodrigc> can I add something to this meeting?
+18:38:32 <oleg-nenashev> JCasC plugin naming?
+18:38:36 <rodrigc> no
+18:38:36 <danielbe_> rodrigc can you make it quick? :)
+18:38:40 <rodrigc> yes
+18:38:50 <rodrigc> #idea modify plugin adoption process
+18:39:05 <oleg-nenashev> bring it on
+18:39:09 <tracymiranda> :-)
+18:39:14 <oleg-nenashev> I have a draft for a change proposal
+18:39:18 <rodrigc> Currently on the web page to adopt a plugin, it mentions that someone should e-mail the Jenkins mailing list
+18:39:38 <rodrigc> for casual users of Jenkins, the e-mail lists are close to impossible to follow due to the popularity of Jenkins
+18:39:39 * oleg-nenashev has 518 drafts in his Gmail, do not be surprised
+18:39:45 <danielbe_> #topic modify plugin adoption process
+18:40:10 <rodrigc> My suggestion is that for adopting a plugin, someone should file a JIRA ticket against that plugin, and assign it to the current plugin owner
+18:40:20 <rodrigc> a tag should be set on the JIRA ticket, something like "adopt-plugin"
+18:40:38 <oleg-nenashev> JIRA may have only one assignee
+18:40:44 <danielbe_> rodrigc that deserves a larger audience, not something we can decide on today
+18:40:50 <oleg-nenashev> But there may be multiple maintainers
+18:41:01 <rodrigc> after a 2-3 week timeout period (to give the current plugin owner time to respond, due to vacation, sickness, etc.), then the plugin owner can be changed
+18:41:19 <danielbe_> rodrigc I recommend that you email the dev list with the proposal
+18:41:21 <oleg-nenashev> I would suggest to start a dev list discussion for it as well
+18:41:22 <rodrigc> well assign to one, but then @mention the other owners or whatever in the ticket
+18:41:34 <danielbe_> rodrigc it needs to account for plugins tracking issues elsewhere though, plugins without component in Jira, etc.
+18:41:50 <rodrigc> ok
+18:42:06 <oleg-nenashev> anyway, we could discuss that
+18:42:08 <rodrigc> #action will email something to the jenkins-dev list
+18:42:11 <danielbe_> rodrigc it's something we can entertain, but it needs to go through a dev list discussion and/or JEP
+18:42:38 <danielbe_> rodrigc but I agree, the initial adoption request is in a broken state
+18:42:45 <rodrigc> the current process was OK when the Jenkins community was much smaller, but the current process is hard to follow
+18:42:56 <danielbe_> #action rodrigc to email the dev list about a revision of the plugin adoption process
+18:43:13 <rodrigc> Thank you for allowing me to add this to this meeting.
+18:43:22 <danielbe_> sure
+18:43:24 <tracymiranda> yes good suggestion for future improvements
+18:43:29 <danielbe_> #topic next meeting
+18:43:40 <danielbe_> August 29, same time, same channel
+18:43:52 <danielbe_> I might need to +r this channel, so make sure you're registered with nickserv
+18:44:11 <danielbe_> #endmeeting

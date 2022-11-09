@@ -1,0 +1,214 @@
+18:00:43 <rtyler> #startmeeting
+18:00:43 <robobutler> Let the Jenkins meeting commence!
+18:00:48 <rtyler> #chair danielbeck hare_brain kohsuke
+18:00:48 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:00:58 <rtyler> #topic Last meeting actions
+18:01:33 <rtyler> danielbeck: the patron program thread, any significant movement on that?
+18:01:39 <danielbeck> no
+18:01:51 <danielbeck> also, consensus seems to be mostly to keep it
+18:02:02 <rtyler> I saw that kohsuke did provide some treasury numbers
+18:02:09 <rtyler> and that 2.32.3 was pushed
+18:02:40 <rtyler> danielbeck: i think we should revive the topic at the beginning of the next quarter (april 1)
+18:02:58 <rtyler> if we're only having one patron, I'll make more noise about killing it :P
+18:03:24 <alyssat_> XebiaLabs said they'll come back in in Q3
+18:03:45 <rtyler> with the status quo of the program alyssat_?
+18:04:15 <alyssat_> not sure i understand ?
+18:05:16 <rtyler> alyssat_: based on the existing structure of the patron program
+18:05:31 <danielbeck> rtyler only on wiki or WDYM?
+18:06:00 <alyssat_> oh yes...I have not informed them of anything new
+18:06:09 <rtyler> gotcha
+18:06:48 <rtyler> the other action I had was to revisit the trademark discussion around "CloudBees Jenkins", unfortunately I haven't had enough time to talk with kohsuke to form a revised plan, so that's still in limbo
+18:06:55 <rtyler> I think that's all the last meeting action items, shall we move on?
+18:07:13 <alyssat_> sure
+18:07:28 <oleg-nenashev> I had an AI for GSoC proposals, still on my plate
+18:07:37 <rtyler> #topic LTS status check
+18:07:51 <rtyler> ogondza: you're up buddy
+18:08:05 <ogondza> right, backporting is done
+18:08:17 <ogondza> I will push the RC as soon as ATH run completes
+18:08:34 <ogondza> I have postponed the groove version bump as discussed
+18:08:38 <ogondza> groovy that is
+18:08:38 * rtyler nods
+18:08:52 <rtyler> is there anything you need from others to keep moving along?
+18:09:32 <ogondza> no. except for chasing you to get move the automation to ci.jenkins.io :P
+18:09:53 <oleg-nenashev> +1
+18:09:59 <rtyler> ogondza: is that the ATH automation?
+18:10:02 <ogondza> I presume the RC will be out in ~16 hours
+18:10:16 <ogondza> rtyler: the (RC) release itself
+18:11:09 <rtyler> hm, okay
+18:11:35 <ogondza> bat that is off topic for the meeting
+18:11:38 <rtyler> anything else on the topic?
+18:11:54 <ogondza> let's move on if there is nothing else people want to discuss
+18:12:09 * rtyler waits a moment
+18:12:25 <rtyler> #topic "Day of Jenkins" sublicense request
+18:12:42 <rtyler> lakruzz is here from Praqma to discuss
+18:12:48 <rtyler> lakruzz: want to introduce the event and request?
+18:12:54 <lakruzz> Sure
+18:13:15 <lakruzz> We have scheduled "Day Of Jenkins" in Göteborg and Oslo and we'd like to apply for a sub license - I guess to use the name Jenkins in the title.
+18:13:33 <lakruzz> Some background:
+18:14:09 <lakruzz> we have developed a conference format we call "Day Of ..."
+18:14:28 <lakruzz> It's a different kind of conference, not based on traditional presentations, but rather with longer (90-120 mins) sessions.
+18:14:45 <rtyler> lakruzz: and this iteration is all about using Jenkins yeah?
+18:14:53 <rtyler> or Jenkinsy things
+18:15:04 <lakruzz> Yeah In the past we have done "Day Of Docker", "Day of Containers"...
+18:15:05 <oleg-nenashev> #info: http://www.code-conf.com/doj/doj-gbg/
+18:15:13 <oleg-nenashev> #info: http://www.code-conf.com/doj/doj-osl/
+18:15:19 <lakruzz> nad we're also doing "Day of Git" in the fall
+18:15:43 <lakruzz> Check - on the urls
+18:16:11 <lakruzz> It's actually not branded as Praqma, ---but we are the ones runing it
+18:16:17 * rtyler nods
+18:16:30 <danielbeck> (off topic: I hope these Jenkins butlers are being handed out as stickers, they're awesome)
+18:16:35 <lakruzz> We're doingit in context of Continuous Delivery Conferences ...www.code-conf.com
+18:16:52 <lakruzz> phable.io
+18:17:04 <rtyler> so as far as I am concerned this request looks fine to me, +1
+18:17:36 <hare_brain> These sites should mention that Jenkins is a registered trademark, and have attribution back to the project.
+18:17:52 <hare_brain> But there's no issue with how the term is being used.
+18:18:00 <danielbeck> rtyler is Day of Jenkins enough of a mark to need approval?
+18:18:01 <lakruzz> Check mark on that
+18:18:12 <danielbeck> if it's Day of … (insert topic here)
+18:18:53 <danielbeck> I mean I'm +1 for approval so we can just do it
+18:18:56 <rtyler> danielbeck: yes
+18:18:57 <danielbeck> just curious
+18:19:20 <oleg-nenashev> +1 from me though I may have a conflict of interest
+18:19:21 <rtyler> the biggest flag for me when reading over it, was the selling of tickets to "Day of Jenkins"
+18:19:24 <rtyler> for example
+18:19:26 <lakruzz> Well, I'm had the same thought myself @danielbeck, but I just wanted to play it safe
+18:19:36 <hare_brain> There's atrribution and there's sublicense. There should always be attribution (see https://lmi.linuxfoundation.org/programs/legal/trademark/attribution)
+18:19:55 <rtyler> if Code Conf tickets were being sold, and part of Code Conf was the Day of Jenkins, then the attribution would be sufficient by my understanding danielbeck
+18:20:09 <hare_brain> This case does also fall under the need for a sublicense because the conference (I believe) falls into the Software service category.
+18:20:12 <danielbeck> rtyler ack
+18:20:24 <rtyler> lakruzz: can you make sure that the attribution for the Jenkins registered trademark is added to those sites?
+18:20:36 <orrc> That was my interpretation as well, hare_brain
+18:20:43 * rtyler nods at hare_brain
+18:20:54 <lakruzz> Sure - you know me, we're just here to make friends :-)
+18:20:58 <hare_brain> But +1 for both.
+18:21:14 <rtyler> anybody else wish to chime in?
+18:21:26 <orrc> Sounds good to me on this one
+18:21:33 <alyssat_> +1
+18:22:07 <rtyler> #action lakruzz to ensure that attribution for Jenkins as a registered trademark is added to the code-conf site
+18:22:14 <rtyler> #agreed Day of Jenkins sublicense approve
+18:22:28 <danielbeck> #action danielbeck to add it to the wiki page
+18:22:35 <rtyler> #topic "DevOps Connect & Jenkins Days" sublicense request
+18:22:41 <orrc> danielbeck: beat me to it
+18:22:45 <danielbeck> orrc heh
+18:22:46 <rtyler> alyssat_: you're up
+18:22:49 <alyssat_> Last year CloudBees received approval to use CD Summit & Jenkins Days for their roadshow. This year, the same roadshow is taking place but would like to change the name to DevOps Connect & Jenkins Days as there are DevOps tracks and Jenkins tracks at the event.
+18:23:28 <alyssat_> I'm requesting for approval to sub license DevOps Connect & Jenkins Days
+18:23:55 <alyssat_> and i'll be true to include the attribution if there isn't already one :)
+18:24:01 <alyssat_> *be sure
+18:24:06 <rtyler> #info the meeting from the previous discussion around CD Summit & Jenkins Days http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-03-30-18.00.html
+18:24:35 <oleg-nenashev> Hard to say anything agains "Jenkins Days" after approving "Day of Jenkins"
+18:24:45 <orrc> (semi on-topic: I didn't notice any attribution on the CB site in general, from a quick look last week)
+18:24:59 <orrc> +1 for the new Jenkins Days mark
+18:25:10 <alyssat_> orrc: i'll check and will make sure it gets on there
+18:25:22 <rtyler> oleg-nenashev: heh, maybe next year everybody will have grown to Week of Jenkins and Jenkins Week ;)
+18:25:26 <rtyler> we can only hope
+18:25:40 <oleg-nenashev> orrc: https://www.cloudbees.com/jenkins/about, which is referenced in the header and footer
+18:25:44 <danielbeck> rtyler so that old discussion was actually unclear whether it approved "Jenkins Days" Or "CD Summit & Jenkins Days"
+18:25:47 <danielbeck> AFAICT
+18:26:26 <rtyler> the agreed text says "CD summit & Jenkins Days" which is what I was going off
+18:26:37 <rtyler> didn't read through the raw meeting log, so boring :P
+18:27:43 <orrc> oleg-nenashev: I don't think that's really attribution of the trademark. But that's off topic for now. But I  might try and suggest changes to the governance doc to make it clearer here, and remove the levels of indirection
+18:27:48 <rtyler> I don't have any issue with "DevOps Connect & Jenkins Days" as the rebranded thing from last year (full disclosure: am cloudbees employee of course)
+18:29:00 <rtyler> hare_brain: any thoughts?
+18:29:08 <oleg-nenashev> orrc: Yep, maybe makes sense to follow-up
+18:29:36 <hare_brain> No issues.
+18:30:23 * rtyler taps foot
+18:30:24 <rtyler> anybody else?
+18:30:55 <rtyler> #action alyssat_ to ensure that the proper attribution exists for the Jenkins registered trademark
+18:31:06 * rtyler taps foot some more
+18:31:09 <alyssat_> rtyler: got it! thnx
+18:31:26 <hare_brain> Are you waiting for explicit +1's?
+18:31:55 <rtyler> heh, not especially
+18:32:03 <rtyler> just want to hold the door open as long as necessary
+18:32:06 <rtyler> we're well under time anyways
+18:32:15 <rtyler> but looks like folks are kosher here
+18:32:30 <rtyler> #agreed "DevOps Connect & Jenkins Days" sublicense request granted
+18:32:43 <rtyler> #action danielbeck to update the wiki page because he'll already have it open
+18:32:48 <rtyler> #topic Next meeting
+18:32:51 <rtyler> :D
+18:32:52 <hare_brain> If you want to be pedantic about it, does the & operate as a separator? :P
+18:33:02 <orrc> Since we're on the topic, and possibly have the right people here, can I be a pain and ask about the trademark usage for this commercial event? http://www.cvent.com/events/jenkins-automotive-and-embedded-day/event-summary-d2f9773096a648339f6e486c120d344f.aspx
+18:33:12 <hare_brain> If the part before the separator changes, does it need a re-approval?
+18:33:37 <orrc> hare_brain: depends how offensive the part before is :D
+18:33:50 <hare_brain> Haha
+18:33:54 <rtyler> #topic Other trademark usages
+18:34:12 <rtyler> #info http://www.cvent.com/events/jenkins-automotive-and-embedded-day/event-summary-d2f9773096a648339f6e486c120d344f.aspx
+18:34:22 <oleg-nenashev> orrc: I got the trademark fixed on the CB site, but missed CVent
+18:34:26 <oleg-nenashev> rtyler: ^
+18:34:34 <oleg-nenashev> Will fix it
+18:34:46 <rtyler> oleg-nenashev: what's the CB site link?
+18:35:03 <hare_brain> What _does_ Continuous Delivery mean in the automotive industry???
+18:35:14 <danielbeck> hare_brain I'm not sure you want to know :-)
+18:35:33 <rtyler> hare_brain: you wouldn't download a car would you?
+18:35:34 <oleg-nenashev> #info: https://www.cloudbees.com/event/cloudbees-jenkins-automotive-and-embedded-day
+18:35:35 <orrc> oleg-nenashev: cool, but it would presumably also need to have a trademark grant requested like these other events
+18:36:00 <oleg-nenashev> orrc: It was a delimiter lifehack IIRC
+18:36:24 <orrc> Ah, thanks for the canonical URL. I missed it as the SEO seems to be pretty bad on that site. Or I can't use Google on my phone well
+18:36:34 <rtyler> 3indeed
+18:36:47 <oleg-nenashev> hare_brain: It just means that Marketing in particular company operates only with the CD buzzword
+18:36:53 <rtyler> heh
+18:36:54 <oleg-nenashev> Do not worry
+18:37:10 <rtyler> I think this missed my spidey-sense because I thought it was called "Embedded and Automotive Day"
+18:37:10 <hare_brain> Hahaha
+18:37:13 <rtyler> but orrc is right
+18:37:38 <rtyler> alyssat_: as far as I am aware, cloudbees has not requested a sublicense for the commercial usage here, is that correct?
+18:37:45 <oleg-nenashev> no
+18:37:50 <rtyler> I don't see it here https://wiki.jenkins-ci.org/display/JENKINS/Approved+Trademark+Usage
+18:37:53 <alyssat_> rtyler: yeah I believe that's correct
+18:37:54 <oleg-nenashev> We were discussion it for this event in 2016
+18:38:08 <oleg-nenashev> And CB decided that the delimiter is enough
+18:38:16 <rtyler> oleg-nenashev: you mean the pipe?
+18:38:33 <oleg-nenashev> |
+18:38:41 <rtyler> yeah, well that was an erroneous conclusion
+18:38:43 * rtyler sighs
+18:38:48 <oleg-nenashev> It was discussed in #jenkins-community IIRC
+18:39:04 <oleg-nenashev> Can check the background since I was the one who raised it
+18:39:10 <orrc> Should have been in #jenkins-legal :P
+18:39:13 <rtyler> hah
+18:39:17 <rtyler> plz no more jenkins channels
+18:39:28 <alyssat_> can we use this time to request for approval?
+18:39:33 <rtyler> if you wish
+18:39:52 <oleg-nenashev> makes sense since the event is going to happen soon
+18:39:56 <orrc> oleg-nenashev: there's no approved trademark grant for "CloudBees | Jenkins": https://wiki.jenkins-ci.org/display/JENKINS/Approved+Trademark+Usage
+18:39:59 <rtyler> alyssat_: what is the proper name for this event we should discuss?
+18:40:15 <rtyler> Jenkins Automotive and Embedded Day?
+18:40:26 <alyssat_> ok. I'm requesting for sub license to use "Jenkins Automotive and Embedded Day
+18:40:56 <rtyler> #topic "Jenkins Automotive and Embedded Day" sublicense request
+18:41:05 <rtyler> #info https://www.cloudbees.com/event/cloudbees-jenkins-automotive-and-embedded-day
+18:41:24 <rtyler> #action alyssat_ to ensure that the site and marketing materials attribute Jenkins as a properly registered trademark
+18:41:38 <alyssat_> 👍
+18:41:56 <orrc> Seems OK to me, subject to what we've been discussing for the other proposals, fwiw
+18:42:07 <oleg-nenashev> also other pages
+18:42:18 <hare_brain> I'm fine with approving the request. (And in general, I think it's OK to be generous with approvals, as long as the request is made, there's proper attribution, and there's nothing "offensive in the part before it."
+18:42:21 <oleg-nenashev> like http://www.cvent.com/events/jenkins-automotive-and-embedded-day/event-summary-d2f9773096a648339f6e486c120d344f.aspx
+18:42:39 <rtyler> hare_brain: ditto
+18:43:13 <rtyler> based on the sessions (http://www.cvent.com/events/jenkins-automotive-and-embedded-day/agenda-d2f9773096a648339f6e486c120d344f.aspx?cpc=JKNJ963Y5BP&RefID=SpeakerLineUp) this is pretty clearly Jenkins related and acceptable IMO
+18:43:36 <oleg-nenashev> orrc rtyler alyssat_: I will raise the "Delimiter is not enough" topic internally.
+18:43:38 <rtyler> hare_brain: the only addendum to your criteria that I use is "it has to be Jenkins related" for hopefully obvious reasons :)
+18:43:57 <hare_brain> Of course.
+18:44:04 <orrc> Another hare_brain +1 from me
+18:44:08 <rtyler> oleg-nenashev: the relevant text from https://jenkins.io/project/governance/#trademark is "Does my mark contain the following string of adjacent letters, in this order: "Jenkins"? These letters may or may not be capitalized, and in the case of foreign characters, phonetic translations also apply."
+18:44:52 <rtyler> alyssat_ and lakruzz, in the future I would like thse requests to come up sooner rather than later :)
+18:45:03 <rtyler> any more thoughts on this topic?
+18:45:20 <alyssat_> rtyler: +1
+18:45:21 <rtyler> seems like we're generally in agreement here, subject to the proper attribution getting handled as soon as possible
+18:45:51 <hare_brain> We don't have to do this today, but I wonder if we need attribution guidelines.
+18:46:09 <oleg-nenashev> we do
+18:46:22 <rtyler> #action rtyler to make sure we have clear and concise trademark attribution guidelines linked in the governance document
+18:46:35 <oleg-nenashev> Now it is something like "Due credit to the Jenkins project be given wherever such credit normally appears, such as in documentation, website, and so on."
+18:46:40 <rtyler> #agreed "Jenkins Automotive and Embedded Day" sublicense request approved
+18:46:48 <oleg-nenashev> #info: https://gist.github.com/kohsuke/573cb5620fcc25c9e5c0
+18:47:28 <rtyler> oleg-nenashev: that's not quite a guideline
+18:47:34 <rtyler> and not correct either
+18:47:36 <oleg-nenashev> yeah
+18:47:54 <oleg-nenashev> that the only thing we have now AFAIK
+18:48:12 <rtyler> anyways, I have that item
+18:48:16 <rtyler> #topic Next meeting
+18:48:32 <rtyler> looks like next time would be March 29th
+18:48:52 <hare_brain> Time change bit me today. :)
+18:49:13 <rtyler> hare_brain: the project Google Calendar accounts for it
+18:49:25 <hare_brain> My local calendar didn't.
+18:49:29 <rtyler> ah
+18:49:34 <danielbeck> #info https://jenkins.io/content/event-calendar/
+18:49:35 <rtyler> alright, I think we're done
+18:49:41 <rtyler> #endmeeting

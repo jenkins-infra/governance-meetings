@@ -1,0 +1,240 @@
+19:01:06 <kohsuke> #startmeeting
+19:01:06 <robobutler> Let the Jenkins meeting commence!
+19:01:25 <kohsuke> #chairs rtyler hare_brain
+19:01:31 <kohsuke> #chair rtyler hare_brain
+19:01:31 <robobutler> Current chairs: hare_brain kohsuke rtyler
+19:02:00 <kohsuke> #topic https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:02:03 <kohsuke> oops
+19:02:04 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:02:09 <jenkins-builds> Starting build #3940 for job jenkins_main_trunk (previous build: SUCCESS)
+19:02:18 <kohsuke> #topic Releases of Windows libraries: winp and winsw
+19:02:42 <kohsuke> oleg-nenashev: it looks like this is mostly between you and me?
+19:03:11 <oleg-nenashev> kohsuke: Probably. The main topic for the community is MVS  version
+19:03:39 <oleg-nenashev> Since there're many contributors, it makes sense to agree on this topic
+19:03:49 <kohsuke> MVS = Micorsoft Visual Studio ?
+19:03:56 <oleg-nenashev> Yes
+19:04:08 <oleg-nenashev> I propose to use Visual Studio Community 2013
+19:04:21 <oleg-nenashev> http://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx
+19:04:42 <kohsuke> OK, that works for me
+19:05:15 <oleg-nenashev> Any objections from others? If no, I'll migrate projects
+19:05:37 <kohsuke> And I should just merge PR #12? https://github.com/kohsuke/winp/pull/12
+19:05:41 <kohsuke> I don't have a problem with the change
+19:05:57 <oleg-nenashev> Seems so
+19:06:26 <kohsuke> And that leaves JENKINS-10547 & JENKINS-22685 ?
+19:06:29 <jenkins-admin> JENKINS-10547:Windows service can't start if Windows Application Event log is full (In Progress) https://issues.jenkins-ci.org/browse/JENKINS-10547
+19:06:30 <jenkins-admin> JENKINS-22685:Jenkins cannot restart Windows service (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-22685
+19:06:42 <oleg-nenashev> Both fixes have been merged
+19:06:51 <oleg-nenashev> We just need to release them
+19:06:56 <kohsuke> Ah
+19:07:33 <oleg-nenashev> I can do it for winsw. In the case of winp I have no permissions
+19:07:53 <kohsuke> IIRC the bits also need to be digitally signed.
+19:07:59 <kohsuke> Do you have the certificate etc to do that?
+19:08:29 <kohsuke> the permission you speak of in winp is which permission? git push? Maven repo?
+19:08:53 <oleg-nenashev> It's optional IMO. I have my old MS Dev certificate, but yours one would be bettter
+19:09:01 <oleg-nenashev> > the permission you speak of in winp is which permission? git push? Maven repo?
+19:09:07 <oleg-nenashev> Git push
+19:09:24 <kohsuke> git push I just fixed
+19:09:52 <kohsuke> But to release you need maven central permission as well
+19:10:30 <kohsuke> looks like winsw is pushed to Jenkins maven repo so that one has no issues
+19:10:57 <oleg-nenashev> Thanks :) I'll, check maven central permissions for winp. AFAIK I've released somethin to MavenCentral long-long ago
+19:11:21 <kohsuke> The permission is specific to group ID
+19:11:41 <kohsuke> So I think I need to know your oss.sonatype.org ID to be able to file a request
+19:12:08 <oleg-nenashev> OK, I'll try to restore the access
+19:12:37 <oleg-nenashev> #action oleg-nenashev to migrate winp and winsw to MVS2013 Community Edition
+19:12:39 <kohsuke> FYI this is what I've done for jglick: https://issues.sonatype.org/browse/OSSRH-7827
+19:13:46 <kohsuke> I think that's it for this topic
+19:13:54 <oleg-nenashev> Yes
+19:14:00 <kohsuke> hare_brain: you around?
+19:14:22 <oleg-nenashev> Thanks for your time. The agenda does not have much items
+19:14:43 <kohsuke> #topic sticker approvals
+19:15:02 <kohsuke> I'm going to sneak in this one quickly if there are enough others who can give +1s
+19:15:36 <kohsuke> Between Tokyo JUC, FOSDEM, and SCALE, I needed more stickers
+19:15:53 <kohsuke> So I went ahead and ordered 500 each of two new designs
+19:16:15 <kohsuke> https://twitter.com/kohsukekawa/status/547899082820169729
+19:16:53 <danielbeck> that left one is Japanese only?
+19:16:55 <kohsuke> I'd like to expense this from the project, and I usually get a prior approval, but in this case I placed the order first for timing issue
+19:17:22 <kohsuke> It's written in Japanese but meant to be used globally, actually
+19:17:34 <ScottHebertErics> +1 for me
+19:17:49 <kohsuke> It's a play on Super Sentai http://en.wikipedia.org/wiki/Super_Sentai
+19:17:52 <oleg-nenashev> +1. You can also distribute stickers for votes :)
+19:17:53 <alyssa_> +1
+19:18:08 <ogondza> +1 from me
+19:18:21 <KostyaSha> +1
+19:18:26 <kohsuke> Great, thanks
+19:18:54 * kohsuke tries to remember how to record an agreement
+19:19:08 <danielbeck> "Outside Japan, the Super Sentai Series is best known as the source material for the Power Rangers franchise." looks like very limited international appeal... ±0
+19:20:17 <danielbeck> nothing against regional stickers but I wonder about how useful they are (if you still have some left)
+19:20:29 <kohsuke> I have about 250 of that one left I think
+19:20:46 <kohsuke> I'll see how that goes in SCALE & FOSDEM
+19:21:14 <kohsuke> So far, people who saw them liked them, and who doesn't like freebies!?
+19:21:23 <kohsuke> robobutler: help
+19:21:23 <robobutler> kohsuke: (help [<plugin>] [<command>]) -- This command gives a useful description of what <command> does. <plugin> is only necessary if the command is in more than one plugin.
+19:21:51 <danielbeck> kohsuke it's #agreed
+19:22:19 <kohsuke> #agreed sticker expense for Jan 2015 batch was blessed
+19:22:24 <kohsuke> thanks
+19:22:31 <kohsuke> #topic Jenkins at 100K active users
+19:22:49 <HeidiG> Probably in February, we will hit a milestone for the Jenkins project of 100,000 active installations.
+19:22:59 <HeidiG> What does everyone think about celebrating it, within the community?
+19:23:02 <danielbeck> who are you?
+19:23:05 <kohsuke> #info https://groups.google.com/d/msgid/jenkinsci-users/897a42d6-4830-4604-868a-964360593005%40googlegroups.com
+19:23:24 <HeidiG> I am Heidi Gilmore
+19:23:25 <oleg-nenashev> Great. It was not about 100k users on a single installation
+19:23:32 <kohsuke> HeidiG is the marketing person from CloudBees
+19:23:42 <HeidiG> No - 100K active installations of Jenkins around the world.
+19:23:49 <danielbeck> oh, ok
+19:23:59 <kohsuke> She thought this would be a good excuse to celebrate, which I thought is a great idea
+19:24:16 <KostyaSha> i thought 100k on single instance... :(
+19:24:32 <danielbeck> "we finally made Jenkins scale" :D
+19:24:44 <HeidiG> LOL!
+19:24:52 <kohsuke> KostyaSha: the trajectory came from http://stats.jenkins-ci.org/jenkins-stats/svg/total-jenkins.svg
+19:25:10 <KostyaSha> kohsuke, i know
+19:25:14 <HeidiG> Sometime in Feb, we should hit 100K active installations (100K separate installations - just to be clear) ;)
+19:25:14 <kohsuke> (the year end always see a seasonal drop if you look back)
+19:25:29 <KostyaSha> kohsuke, can i put one topic on stack ? http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-11-26-19.13.html 5c and infra at all
+19:25:37 <HeidiG> What does everyone think about celebrating it, in some way?
+19:25:44 <danielbeck> from anon usage stats, so the real numbers are likely much higher, still, as good a reason to celebrate as any I guess
+19:25:45 <oleg-nenashev> kohsuke: Have you found the plugin #1000?
+19:25:56 <oleg-nenashev> Just a good topic to celebrate as well
+19:26:05 <kohsuke> oleg-nenashev: yes, and for that one I've already sent a 3D Mr.Jenkins
+19:26:15 <KostyaSha> maybe i will finally get some sticker or t-shirt...
+19:26:36 <KostyaSha> kohsuke, and didn't print yourself?)
+19:26:44 <HeidiG> 100K active installs, 1,000+ plugins, 10+ years of continuously delivering software
+19:26:45 <kohsuke> Oh man, looks like I didn't even blog about 1000th plugin
+19:26:52 <KostyaSha> 1000k bugs?)
+19:27:17 <kohsuke> KostyaSha: I did print one for myself, and then I lost it. I need to order another one.
+19:27:20 <HeidiG> 1000K fixes?
+19:27:44 <oleg-nenashev> 20000 commits BTW
+19:27:52 <HeidiG> Anyway - it's an excuse to celebrate.
+19:27:56 <danielbeck> oleg-nenashev since importing to Git?
+19:28:04 <oleg-nenashev> Yep
+19:28:13 <oleg-nenashev> Or no...
+19:28:21 <oleg-nenashev> 20048 commits on GitHub stats
+19:28:43 <kohsuke> 19926 on master (since import into SVN)
+19:28:51 <dtrainor> re: save/create jobs from API or some automated method, this is a godsend
+19:28:58 <dtrainor> godsend, too - http://stackoverflow.com/questions/8424228/export-import-jobs-in-jenkins
+19:29:01 <HeidiG> So probably all kinds of great stats that we can pull into a Jenkins Day or some sort of celebration
+19:29:03 <dtrainor> wish i could type today, that would be cool.
+19:29:05 <danielbeck> I wouldn't celebrate bugs, fixes, or commits, too weird and too easily attacked. Current Jenkins seems pretty buggy.
+19:29:23 <KostyaSha> dtrainor, please ask questions after meeting
+19:29:23 <kohsuke> Oh, 20048, never mind.
+19:29:23 <dtrainor> (i'm sorry, just realized the meeting)
+19:29:48 <kohsuke> it certainly doesn't fit the nice "power of ten" theme
+19:30:08 <phschwartz> I am building a docker container that has just the java jre, jenkins.war, and jenkins plugins installed. Jenkins comes up without issue, but no matter what I try, to get plugins pre-loaded I am never successful.
+19:30:13 <kohsuke> The question for me is what can be done as a celebration
+19:30:18 <danielbeck> phschwartz Project meeting right now, please wait a bit
+19:30:46 <kohsuke> For 1000th plugin, we were able to pin it on a specific person to send something to. 100K th user, not so much
+19:31:04 <HeidiG> Right. If we agree we should celebrate, what ideas does everyone have? In the spirit of brainstorming, anything is fair game (except bugs, issues, etc.)
+19:31:09 <oleg-nenashev> kohsuke: Additional posters/stickers for FOSDEM? It seems to be too late
+19:31:38 <kohsuke> Yeah, I'm afraid it's too late for that
+19:31:43 <HeidiG> Well - what if we created a badge for Jenkins users to use on Twitter or their Jenkins profile or somewhere that said, "I am part of the 100K"
+19:31:59 <HeidiG> That way it's all-inclusive.
+19:32:11 <HeidiG> Just throwing that out in the spirit of brainstorming
+19:32:37 <kohsuke> Perhaps if we could use that as a raffle entry to win 3D Mr.Jenkins figure or something...
+19:32:51 <kohsuke> (if it's something we can track, that is)
+19:32:51 <hare_brain> Hashtag?
+19:32:55 <HeidiG> Sure - great!
+19:33:24 <kohsuke> Is there a way of listing up all the tweets that have the specific hash tag?
+19:33:31 <HeidiG> We could definitely track by hashtag
+19:33:59 <HeidiG> Yes - we have done that for other hashtags/Twitter promotions
+19:34:40 <HeidiG> It's quite easy to track
+19:34:42 <kohsuke> The other idea I had was to track down rtyler, abayer, hare_brain, etc and do some audio recording to reflect on the history
+19:34:57 <kohsuke> ... of the project.
+19:35:14 <hare_brain> I have been coughing up a storm lately. I have a nice gravelly radoi voice because of that. :)
+19:35:32 <HeidiG> +1
+19:35:40 <danielbeck> that one would be interesting I think
+19:35:41 <oleg-nenashev> abayer has already recorded a good video. http://jenkins-ci.org/content/andrew-bayer-discusses-jenkins-tim-obrien
+19:35:59 <HeidiG> Not +1 on the gravelly voice, but on kohsuke
+19:36:02 <HeidiG> s idea
+19:36:36 <kohsuke> as always hare_brain is enriching my English vocabulary
+19:36:51 <hare_brain> Hahaha
+19:37:28 <HeidiG> rtyler, abayer, hare_brain --> what do you think about the recording idea with kohsuke?
+19:37:54 <hare_brain> What would that actually be? A podcast/talk show? Something that gets embedded and played on a web site?
+19:37:54 <kohsuke> This one needs a bit of prep-work though. I need some material / somebody to drive the conversation
+19:38:05 <HeidiG> Will also check out abayer's recording
+19:38:16 <KostyaSha> you can do hangouts meeting
+19:38:28 <kohsuke> hare_brain: I was thinking of just an mp3 file that gets posted on the blog
+19:38:47 <HeidiG> 10 years of Jenkins, 100K individual active users, 1000+ plugins -->this is big
+19:38:54 <KostyaSha> kohsuke, or you can do in terms of some existed  podcast
+19:38:54 <kohsuke> hangout could work, too
+19:39:06 <kohsuke> KostyaSha: oh that's a great idea
+19:39:14 <KostyaSha> linux podcast or something else
+19:39:27 <KostyaSha> afair there was java podcast (or closed)
+19:39:48 <HeidiG> Could be any of the above ideas - talk show format would be nice, talk about the history of Jenkins and how far the community has come over the 10 years
+19:39:53 <kohsuke> We've done FLOSS weekly once: http://twit.tv/show/floss-weekly
+19:39:54 * KostyaSha put on meeting stack infra item
+19:40:35 <danielbeck> June '11
+19:40:47 <KostyaSha> HeidiG, kohsuke infographics
+19:40:49 <danielbeck> http://twit.tv/show/floss-weekly/169
+19:41:22 <KostyaSha> then i can cut infographits to slides in case of some reports on conferences :)
+19:41:32 <kohsuke> "Changelog" also sounds familiar but I need to check if I know people from this show: https://itunes.apple.com/us/podcast/the-changelog/id341623264?mt=2
+19:41:54 <kohsuke> Oh I guess I do: episode #89 from 2011 Feb
+19:42:28 <kohsuke> KostyaSha: do you know of any other OSS/Linux podcasts?
+19:42:52 <HeidiG> So KostyaSha - you are suggesting some sort of inforgraphic about Jenkins - maybe w/milestones, etc. ?
+19:43:02 <KostyaSha> only http://tuxradar.com/podcast but i mostly listening native language podcasts
+19:43:30 <danielbeck> How about software engineering themed podcasts?
+19:43:33 <kohsuke> http://www.javaposse.com/ ?
+19:44:28 <kohsuke> I need to see if they are open to the idea and willing to give us the air time, so I need multiple prospects
+19:45:41 <HeidiG> I'll offer it up, since I have access to it - we could use WebEx, record it and make it available to the community?
+19:45:53 <kohsuke> danielbeck: if you know of any, let us know and I can try to approach
+19:46:53 <kohsuke> HeidiG: webex/hangout/etc would be a fallback plan. We just need to find a host
+19:47:05 <kohsuke> maybe abayer can convince Tim Obrien like he did before
+19:47:07 <HeidiG> We can post it on the Jenkins site/share so anyone can view. Could even record it live and promote people to attend/participate
+19:47:21 <KostyaSha> who did this image http://www.businesswire.com/news/home/20130108005628/en/Survey-Shows-Jenkins-Mission-Critical-Platform-Application-Development ?
+19:47:30 <HeidiG> K. Sounds good - but it is there for fallback.
+19:47:43 <KostyaSha> "The state of jenkins CI"
+19:47:50 <kohsuke> The nice thing about being on existing podcast is added visibility + less work on our side
+19:48:08 <KostyaSha> yeap plus guests for podcast
+19:48:38 <kohsuke> hare_brain: so you are game for this, right? assuming that the timing works out?
+19:48:46 <HeidiG> KostyaSha - that infographic was done by Lisa Wells/CloudBees from the JUC survey of a couple of years ago.
+19:48:48 <KostyaSha> some java podcast will be more suitable imho
+19:48:53 <kohsuke> I need to chase down rtyler and abayer at least
+19:49:20 <HeidiG> Ok - sounds like the beginnings of a plan for celebrating Jenkins. Other thoughts?
+19:49:23 <hare_brain> Sure, if timing works out.
+19:49:28 <KostyaSha> HeidiG, right, after survey! My company also forgot to answer CB managers
+19:49:56 <HeidiG> +1 KostyaSha - that is correct. Done after the survey
+19:50:10 <KostyaSha> Do we need new survey?)
+19:50:28 <kohsuke> Any other ways to give out stuff to people?
+19:50:30 <KostyaSha> or CB will spam people again?)
+19:50:38 <kohsuke> Maybe a cake in FOSDEM?
+19:51:05 <kohsuke> danielbeck: are you coming to FOSDEM?
+19:51:11 <HeidiG> Depends on what we want to show. If we want an infographic celebrating our 10's and other things, we have enough content for that.
+19:51:23 <danielbeck> kohsuke Don't have time
+19:51:28 <kohsuke> ok
+19:52:05 <ogondza> How about a spread the word weak? Everyone who blogs about Jenkins and let us know can win something nice.
+19:52:19 <ogondza> or, one of the people
+19:52:29 <HeidiG> Twitter is a good way to promote
+19:52:40 <alyssa_> +ogondza: i like that i idea
+19:53:18 <HeidiG> excellent idea - get people to blog and promote
+19:53:36 <HeidiG> Tweets, also - lots of us are on Twitter
+19:53:46 <kohsuke> We ask those posts to ping back the master blog or something, and we collect them all?
+19:53:53 <HeidiG> Use a hashtag #Jenkins100K
+19:54:22 <kohsuke> And then maybe  in our little podcast we can go over those to drive the conversation
+19:54:34 <HeidiG> +1
+19:54:45 <HeidiG> Highlight ones that were esp informative, creative, funny, etc.
+19:55:18 <alyssa_> maybe announce winner of the blog on the podcast to encourage attendance
+19:56:16 <danielbeck> like that will work
+19:56:17 <kohsuke> All right, I think the idea is solidifying
+19:57:27 <kohsuke> danielbeck: I think the incentive won't hurt
+19:57:44 <kohsuke> it might not make a big difference, but just some more cherries to add on top
+19:57:46 <danielbeck> we're still talking about someone being guest on someone else's podcast, right?
+19:58:17 <danielbeck> I have my doubts that they could take over the whole thing to pick winners of some promotion...
+19:58:20 <HeidiG> It woudl be great to have abayer, tcroy, hare brain and koshuke all together
+19:58:30 <kohsuke> danielbeck: I'll have to see if they are willing
+19:59:06 <kohsuke> perhaps logistics-wise it'd be easier to just record on our own
+19:59:32 <HeidiG> Main conversation is still talking about Jenkins/milestones, but holding some sort of drawing/announcing winners, too.
+19:59:39 <HeidiG> Great idea
+20:00:16 <jenkins-builds> Project jenkins_main_trunk build #3940: SUCCESS in 58 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/3940/
+20:00:17 <jenkins-builds> * Jesse Glick: [JENKINS-26519] Confirming that it is safe to rerun migration by just deleting legacyId files.
+20:00:17 <jenkins-builds> * Jesse Glick: [FIXED JENKINS-26519] Accept Windows text file quasi-symlinks for build numbers.
+20:00:19 <jenkins-admin> JENKINS-26519:Build records not migrated due to ?failed to rename" (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-26519
+20:00:27 <jenkins-builds> Starting build #3941 for job jenkins_main_trunk (previous build: SUCCESS)
+20:00:43 <kohsuke> Maybe it can be combined. The main show is recorded on our own, and one of us can go talk to some of the existing podcasts for 5 mins
+20:00:49 <kohsuke> Anyway, I think we are running out of time
+20:00:58 <HeidiG> Ok - to be continued, I guess. But sounds like we are generally in favor of celebrating
+20:00:59 <danielbeck> kohsuke That last suggestion seems good
+20:01:15 <kohsuke> #action kohsuke to chase down abayer and rtyler about the idea
+20:01:43 <kohsuke> #action kohsuke to write to people doing those podcasts to see the options
+20:01:59 <kohsuke> #action HeidiG to come up a blog-fest proposal
+20:02:13 <kohsuke> #topic next meeting
+20:02:32 <kohsuke> #info next meeting will be Feb 4th same time
+20:02:37 <kohsuke> #endmeeting

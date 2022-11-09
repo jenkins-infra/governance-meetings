@@ -1,0 +1,237 @@
+18:02:08 <kohsuke> #startmeeting
+18:02:08 <robobutler> Let the Jenkins meeting commence!
+18:02:35 <kohsuke> #chair hare_brain rtyler
+18:02:35 <robobutler> Current chairs: hare_brain kohsuke rtyler
+18:02:38 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:02:53 <kohsuke> #topic 1.554 for LTS base: go or no-go
+18:03:02 <kohsuke> ogondza: ping
+18:03:07 <ogondza> over here
+18:03:14 <ScottHebertErics> Hi! This is Scott From Ericsson. Very happy to be taking part in my first Jenkins Governance meeting!
+18:03:24 <kohsuke> ScottHebertErics: Yay, thanks for joining
+18:03:31 <marcomiller> Me too ;)
+18:03:42 <christianLagueEr> Christian Lague as well
+18:03:47 <ScottHebertErics> #info I would like to propose to have JENKINS-22310 backported to 1.554.x seeing as it has a major impact on CLI performance.
+18:03:49 <jenkins-admin> JENKINS-22310:CLI slow performance investigation (Resolved) http://jenkins-ci.org/issue/22310
+18:04:00 <kohsuke> ogondza:  So the context is that we want to start executing on the new LTS plan
+18:04:13 <kohsuke> and we thought that would start ticking when we pick the next LTS base version
+18:04:45 <kohsuke> In the previous meeting it looked like 1.554 was good, but it felt bit too new and you weren't there
+18:04:58 <kohsuke> So we kicked the can down the road a bit to this one
+18:05:11 <ogondza> yeah, 1.554 looks goo to me too
+18:05:33 <kohsuke> #info look at http://jenkins-ci.org/changelog and click "Community ratings"
+18:05:50 <kohsuke> Yes, 1.554 looks even better now than before
+18:06:01 <kohsuke> All right, so let's go with that one
+18:06:06 <kohsuke> where is the time line document...
+18:06:18 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line
+18:06:24 <ogondza> one more thing before that. 1.532.3
+18:06:45 <ogondza> backports are ready since March 1
+18:07:13 <kohsuke> OK, so my failing as usual then
+18:07:32 <kohsuke> I'll push out RC ASAP
+18:07:40 <ScottHebertErics> Is 532.3 accepting backports?
+18:07:41 <kohsuke> #action kohsuke to post 1.532.3 RC ASAP
+18:08:13 <kohsuke> ScottHebertErics: It was from Feb 15th
+18:08:36 <ogondza> ScottHebertErics, no. I do not think there will be any 1.532.4
+18:09:10 <kohsuke> I'm going to write 1.554.x LTS schedules in the calendar
+18:09:45 <ScottHebertErics> ok...what about 554.x? Can we request backports?
+18:09:51 <kohsuke> #info http://jenkins-ci.org/content/event-calendar
+18:10:00 <jenkins-builds> Yippie, build fixed!
+18:10:01 <jenkins-builds> Project jenkins_main_trunk build #3276: FIXED in 59 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/3276/
+18:10:01 <jenkins-builds> Jesse Glick: When a QueueItemAuthenticator is in use, report the user under whose authentication the build is running.
+18:10:23 <kohsuke> ScottHebertErics: yeah, see "Backporting process" under https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line
+18:11:03 <kohsuke> So Apr 16th would be 1.554.1 LTS RC
+18:11:27 <kohsuke> Apr 30th would be 1.554.1 ship date
+18:12:06 <kohsuke> May 14 is 1.554.2 RC
+18:12:13 <kohsuke> May 28 is 1.554.2 LTS
+18:13:17 <kohsuke> Jun 11 is 1.554.3 RC
+18:13:28 <ScottHebertErics> JENKINS-22310 is already marked as lts-candidate. What can we do to get it into 554.x? We have resources to help backport it.
+18:13:30 <jenkins-admin> JENKINS-22310:CLI slow performance investigation (Resolved) http://jenkins-ci.org/issue/22310
+18:13:33 <kohsuke> Jun 25 is 1.554.3 release and picking next baseline
+18:14:31 <ogondza> perfect. so the next backporting window is as you suggested last time April 2-16th
+18:14:49 <marcomiller> +1 on Scott's question ;)
+18:15:03 <kohsuke> ScottHebertErics: I need to check when it went into the mainline release to see if it satisfies the soaking criteria
+18:15:31 <ScottHebertErics> kohsuke: Went in before 557
+18:15:37 <kohsuke> Generally speaking, the fix needs to be out for a while before it can be backported
+18:15:53 <kohsuke> But otherwise I think it's great that you can help us backport
+18:16:03 <ScottHebertErics> But then again, you fixed it...so it's gold :)
+18:16:59 <kohsuke> I think the fix of JENKINS-22310 went in as JENKINS-21579, which is targeted for 1.558 and that's next Monday
+18:17:01 <jenkins-admin> JENKINS-22310:CLI slow performance investigation (Resolved) http://jenkins-ci.org/issue/22310
+18:17:03 <jenkins-admin> JENKINS-21579:Very slow resource loading from UberClassLoader (Resolved) http://jenkins-ci.org/issue/21579
+18:18:14 <kohsuke> Hmm, I'm not seeing the soaking requirement explicitly mentioned in the LTS wiki page any more
+18:18:28 <kohsuke> Did we drop that?
+18:18:45 <kohsuke> jglick: ping?
+18:19:03 <kohsuke> Oh there it is "Changes to this branch will be restricted to backported cherry-picked changes from the trunk that are "battle-tested" — meaning those commits that have already been a part of a main line release for more than a week."
+18:19:23 <kohsuke> which means it's up for backporting from April 14th
+18:19:36 <kohsuke> So I guess we can plan on it unless 1.558 flops
+18:19:52 <kohsuke> It is a change in the classloader, so bad things may happen
+18:19:58 <jglick> (yup here)
+18:20:14 <kohsuke> anyway
+18:20:26 <jglick> Yes JENKINS-21579 has high regression risk.
+18:20:28 <jenkins-admin> JENKINS-21579:Very slow resource loading from UberClassLoader (Resolved) http://jenkins-ci.org/issue/21579
+18:20:34 <jglick> But is very important too.
+18:20:40 <kohsuke> #action rename current 'stable' branch to 'stable-1.532' and move stable to 1.554
+18:20:42 <ScottHebertErics> kohsuke: Can you add an action for Ericsson to port that JENKINS-22310/JENKINS-21579?
+18:20:44 <jenkins-admin> JENKINS-22310:CLI slow performance investigation (Resolved) http://jenkins-ci.org/issue/22310
+18:21:09 <kohsuke> #action ScottHebertErics to backport JENKINS-22310 and JENKINS-21579
+18:21:20 <kohsuke> ogondza: I assume you are OK with it
+18:21:34 <FarrisG> Is there any way to make an "Invoke Batch Task" step block subsequent steps? We have a step that runs a deploy, and then we want to run QA on the deployed code. But the deploy gets invoked, and then before finishing the build goes to the next step, so QA tests always fail.
+18:21:49 <kohsuke> FarrisG: let's hold the question while the project meeting is in progress
+18:22:04 <ogondza> not at all
+18:22:14 <kohsuke> oh that's not good
+18:22:36 <ogondza> oh, I do not _mind_ at all
+18:22:42 <kohsuke> phew
+18:22:43 <FarrisG> my apologies
+18:22:54 <kohsuke> #agreed next LTS would be 1.554.x and schedule is on the calendar now
+18:23:14 <kohsuke> shall we move on to the next topic?
+18:23:33 <kohsuke> #topic Patron of Jenkins program approval
+18:23:38 <kohsuke> I hope hare_brain is here for this one
+18:24:05 <kohsuke> We have discussed this a few meetings back
+18:24:22 <kohsuke> #info and the record is here http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-01-22-19.01.html
+18:24:44 <kohsuke> The basic idea is to add another donation thank you program
+18:25:10 <kohsuke> ... which is also like an advertisement on our Wiki
+18:25:22 <hare_brain> I am here
+18:25:35 <kohsuke> Yay
+18:25:35 <kohsuke> The feedback in the original conversation was that people generally seemed OK with it
+18:25:50 <kohsuke> and so lisawells and I went back and worked on details
+18:26:06 <kohsuke> That's captured in https://wiki.jenkins-ci.org/display/JENKINS/Patron+of+Jenkins+program
+18:26:25 <kohsuke> And for the last 2 weeks or so I have test deployed it on our Wiki
+18:26:43 <kohsuke> So some of you might have seen a text banner for security advisory and JUC
+18:27:15 <hare_brain> I hadn’t. I got distracted by Mr. Clean. ;)
+18:27:36 <kohsuke> It only shows every once in 7 page hits, so it was rare
+18:27:52 <kohsuke> hare_brain: glad to hear you look at blogs!
+18:28:18 <hare_brain> Ah, I got a blank banner space just now.
+18:28:28 <hare_brain> So nothing programmed against it at the moment?
+18:28:31 <kohsuke> And the backend does seem to work now, and I haven't heard any complaint so that was good sign
+18:28:46 <kohsuke> hare_brain: I guess now it's Q2 so we lost the messages
+18:28:51 <kohsuke> My test broadcast was only for Q1
+18:28:57 <kohsuke> BTW data comes from here: https://github.com/jenkinsci/patron/blob/gh-pages/messages.xml
+18:29:23 <kohsuke> And you can see ones in ...
+18:29:57 <kohsuke> http://jenkinsci.github.io/patron/tester.html
+18:30:12 <kohsuke> or https://jenkins-ci.org/patron/2014Q1-0_0.html
+18:30:23 <kohsuke> hmm not sure why image animates on the 2nd one
+18:30:44 <hare_brain> It gave me a chuckle.
+18:31:09 <kohsuke> Between the muted tone of the message and relative infrequency of this, hopefully this satisfies the concern that it's not too distracting
+18:31:39 <kohsuke> The other concern was the diversity
+18:31:55 <hare_brain> The only tweak I would suggest is fine print in the box to let people know this is a patron message.
+18:32:06 <kohsuke> ah
+18:32:21 <kohsuke> That's a good point
+18:33:00 <kohsuke> I'll add something
+18:33:37 <kohsuke> #action kohsuke to add a fineprint in the top right corner to say this is a message from a patron
+18:33:41 <hare_brain> It doesn’t have to be too serious. “And now, a message from our patrons” gives it a bit of character.
+18:33:47 <hare_brain> Or something along those lines
+18:33:53 <kohsuke> Yeah
+18:34:17 <kohsuke> So back to diversity
+18:34:43 <kohsuke> lisawells talked to a number of contacts she had and arranged 3 willing patrons filling all 4 slots for a launch
+18:34:59 <kohsuke> you can see their messages at https://github.com/jenkinsci/patron/blob/gh-pages/messages.xml#L22
+18:35:42 <kohsuke> it's currently put as Q3 but if this meeting approves the messages, they'd be happy to donate the amount and we'd put these messages live
+18:35:50 <hare_brain> I don’t recall the details around the original concern.
+18:36:50 <kohsuke> let me see if I can find that in the full log quickly
+18:37:32 <kohsuke> IIRC abayer wanted to make sure it wasn't dominated by one patron
+18:38:28 <kohsuke> They are in http://meetings.jenkins-ci.org/jenkins/2013/jenkins.2013-12-11-19.01.log.html
+18:38:37 <hare_brain> Yeah, scanning that too.
+18:38:47 <kohsuke> around 19:21:09
+18:39:29 <kohsuke> rtyler: you here?
+18:40:15 <hare_brain> Oh, an even earlier discussion on this.
+18:40:35 <lacostej> hello, I am getting strange exceptions while checking out a git project http://pastebin.com/NS4dEGPL I've tried ~15 times, and I am hitting the same issue at various times during the checkout. I have a fast internet pipe (> 20Mbits both ways, even though it doesn't help). Not using abort / build time out anymore. Has anyone seen that before ?
+18:40:39 <kohsuke> I obviously have some conflict of interest here, but I think the current proposal adequately addresses the concern
+18:40:54 <Slide-O-Mix> lacostej: can you hold on your question until after the meeting?
+18:41:03 <lacostej> oopps sorry.
+18:41:05 <kohsuke> Even with CloudBees' 2 slots it still only shows up once in 14 page hits
+18:41:05 <hare_brain> So from the messages.xml, it looks like Lisa has CB taking up two slots.
+18:41:06 <electrical> hi all. anyone here using https://wiki.jenkins-ci.org/display/JENKINS/GitHub+pull+request+builder+plugin ?? im having the issue that its not detecting any new PR's or changes
+18:41:23 <kohsuke> hare_brain: yes
+18:41:33 <kohsuke> electrical: can you hold on your question until after the meeting?
+18:41:45 <hare_brain> What happens if not all slots are filled? Just rotate through what we have, or does CloudBees become a default slot filler? I would be concerned about the latter.
+18:42:01 <electrical> kohsuke: meeting?
+18:42:02 <kohsuke> No, just empty box will show up, as you saw today
+18:42:11 <Slide-O-Mix> electrical: governance meeting is going on
+18:42:25 <electrical> Slide-O-Mix: ahh okay. yeah of course :-)
+18:42:40 <hare_brain> So it seems like we should have a default Jenkins community filler for empty slots.
+18:42:43 <hare_brain> Or Chuck Norris.
+18:42:57 <kohsuke> Yeah, I could that
+18:43:30 <kohsuke> #action kohsuke to enhance the backend so that idle slots will be filled by the community messages
+18:43:35 <hare_brain> With those comments, I’m good with it.
+18:44:05 <kohsuke> Any other thoughts anyone else?
+18:44:14 * kohsuke is trying to cautious to avoid any backlash later
+18:44:18 <hare_brain> I was wondering about whether to allow one patron to buy up all the slots, or if there’s a maximum number of slots for a patron, but I haven’t formed an opinion one way or another about it yet.
+18:44:51 <kohsuke> lisawells: I think we will refrain from sponsoring more than 2 given the past concern
+18:44:55 <hare_brain> But definitely not something to hold this up for.
+18:45:10 <hare_brain> Good of her to say that. I was thinking about other patrons. :)
+18:45:17 <lisawells> I think it would make sense to say you can only sponsor 2 slots per quarter - then no one sponsor 'dominates'
+18:45:55 <hare_brain> Let’s give it a whirl.
+18:46:13 <kohsuke> We are asking prospective patrons to get in contact with us before they pull the trigger
+18:46:40 <kohsuke> hare_brain: I assume you mean you don't think we have to codify it just yet
+18:47:20 <kohsuke> #action kohsuke to get abayer's +1 offline
+18:47:44 <kohsuke> Oh, and do the current list of messages look good? I'd like to have them approved as well
+18:47:57 <kohsuke> I'm hoping to launch this today
+18:48:06 <kohsuke> since it's the beginning of a new quarter
+18:48:19 <kohsuke> #info the proposed messages are in https://github.com/jenkinsci/patron/blob/gh-pages/messages.xml#L22
+18:48:25 <hare_brain> Yes, that’s what I meant.
+18:48:43 <kohsuke> any concerns/+1 from folks?
+18:49:38 <ScottHebertErics> +1 from me for messages
+18:49:45 <hare_brain> The messages are fine.
+18:49:50 <kohsuke> #agreed the program and current proposed patron messages are approved with the recorded TODOs
+18:49:55 <kohsuke> ScottHebertErics: thanks for your +1
+18:49:59 <hare_brain> I assume we’re not going to be generating so much traffic that we tank those servers.
+18:50:07 <kohsuke> :-)
+18:50:22 <kohsuke> OK, moving on to the next topic of Slide-O-Mix
+18:50:27 <kohsuke> #topic JIRA versions backend app
+18:50:31 <Slide-O-Mix> howdy
+18:50:46 <kohsuke> Slide-O-Mix: sorry the other topics ate too much time. The floor is all yours now
+18:50:56 <Slide-O-Mix> I had proposed on the mailing list a while back to add specific versions to JIRA
+18:51:17 <Slide-O-Mix> There were several ideas thrown around and we ended up talking about parsing the Maven repo information and using that as a backend job
+18:51:22 <Slide-O-Mix> I created https://github.com/jenkinsci/backend-jira-versions for that purpose
+18:51:41 <kohsuke> cool
+18:51:51 <Slide-O-Mix> I'd like to get some feedback on the implementation and once its +1'd get it into the backend setup
+18:52:25 <Slide-O-Mix> In addition, I created a pull request (https://github.com/jenkinsci/backend-ircbot/pull/10) which adds the ability to create versions via the Jenkins IRC bot
+18:52:37 <kohsuke> So IIUC, the version field will show the combined versions of all the plugins
+18:52:48 <kohsuke> which would be ... like a few 1000s?
+18:53:01 <Slide-O-Mix> You mean if you looked at "versions" in JIRA?
+18:53:08 <kohsuke> #info the thread that Slide-O-Mix is referring to is https://groups.google.com/d/msg/jenkinsci-dev/ncvbwPj_R78/FnE38TGToJ0J
+18:53:08 <kohsuke> yes
+18:53:26 <Slide-O-Mix> Yes, there would be many there, JIRA doesn't seem to have a way to assign them to specific components, they would be global
+18:53:39 <jamescarr> is it possible to get all the additional details about  the build from run and job here? https://github.com/jenkinsci/notification-plugin/blob/master/src/main/java/com/tikal/hudson/plugins/notification/Phase.java#L51
+18:53:47 <Slide-O-Mix> The issue I am trying to fix is when someone chooses "current" for the version when submitting an issue, current is not helpful
+18:53:47 <hare_brain> I literally just read an email about field contexts in JIRA.
+18:54:03 <kohsuke> Have we considered the possibility of just using numbers like "1.0" without the plugin name?
+18:54:22 <Slide-O-Mix> kohsuke: that's a possibility, though if you wanted to report on bugs per version, it wouldn't give you the info you wanted
+18:54:34 <Slide-O-Mix> plus, you have lots of different versioning schemes from what I've seen
+18:55:04 <kohsuke> Yes, but still presumably a lot less than adding plugin name as a prefix
+18:55:08 <Slide-O-Mix> True
+18:55:17 <kohsuke> But I guess what you want is to be able to query by a specific version of a specific plugin
+18:55:49 <Slide-O-Mix> Well, if an issue is for multiple plugins with different versions, what do you do in that case? or if plugins have the same version, which versions match to which plugins for the issue?
+18:55:50 <kohsuke> or that perhaps can be achieved by combining version with component
+18:56:45 <kohsuke> Oh I see, you can have many versions in one issue
+18:56:50 <kohsuke> OK, that makes sense
+18:56:52 <Slide-O-Mix> right
+18:57:02 <errant_rider> anyone out there in lala land use the Swarm plugin?
+18:57:06 <kohsuke> And it's an auto-completion field so presumably having lots of lots versions won't be too bad
+18:57:17 <Slide-O-Mix> Maybe we can filter the maven repo based on date and only start importing versions after a certain date
+18:57:41 <kohsuke> Everyone in that thread seems to be  happy with this, so shall we just go ahead and deploy this?
+18:57:55 <kohsuke> I suppose the worst case we can delete all those versions
+18:58:38 <kohsuke> Do you still feel the need to add this to ircbot as well?
+18:58:40 <hare_brain> Deleting versions might break saved queries. Not sure if anyone would care.
+18:58:43 <errant_rider> I am trying to run the swarm client JAR and getting this error: http://pastie.org/8989430  can anyone help me out?
+18:59:02 <kohsuke> hare_brain: I was thinking about deleting versions as a way of completely rolling back the deployment of this new version scheme
+18:59:08 <hare_brain> Oh OK
+18:59:18 <Slide-O-Mix> kohsuke: the only reason I would like to have the IRC bot stuff is so that plugin developers can add releases before they are actually released, that way they can mark something as fixed in a specific version
+18:59:22 <kohsuke> I wasn't thinking about that to discard old versions after a while, which would cause the problem you mention
+18:59:47 <kohsuke> I see, that makes sense
+18:59:49 <Slide-O-Mix> The "Fixed in version" field would actually mean soemthing
+19:00:04 <ogondza> +1 from me
+19:00:20 <kohsuke> +1 from me, too
+19:00:24 <Slide-O-Mix> cool
+19:00:36 <kohsuke> So I'll need to deploy this somewhere, right?
+19:00:42 <kohsuke> ci.jenkins-ci.org job to run this periodically
+19:00:47 <Slide-O-Mix> yes, that's correct
+19:00:55 <kohsuke> #action kohsuke to deploy https://github.com/jenkinsci/backend-jira-versions
+19:01:02 <Slide-O-Mix> It does support reading the JIRA username/password from the .jenkins.org file like the IRC bot
+19:01:13 <kohsuke> Perfect
+19:01:20 <Slide-O-Mix> I wasn't sure of the requirements for the infra stuff, so if that needs to change, let me know
+19:01:20 <kohsuke> Slide-O-Mix: thank you very much for doing this
+19:01:26 <kohsuke> I think it's really useful
+19:01:31 <Slide-O-Mix> kohsuke: great, glad to help
+19:01:39 <kohsuke> I'll make sure that you have write access to the relevant stuff
+19:01:53 <kohsuke> so that you can tweak them as needed
+19:02:03 <Slide-O-Mix> thank you
+19:02:07 <kohsuke> #topic next meeting
+19:02:26 <kohsuke> #info the next meeting would be April 16th same time
+19:02:46 <kohsuke> #endmeeting

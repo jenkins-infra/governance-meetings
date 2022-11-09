@@ -1,0 +1,330 @@
+18:04:32 <kohsuke> #startmeeting
+18:04:32 <robobutler> Let the Jenkins meeting commence!
+18:04:39 <emanuelez> kohsuke: I agree
+18:04:41 <kohsuke> #chair abayer rtyler hare_brain
+18:04:41 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:05:13 <kohsuke> #info I apologize for the lack of preparation for this. I didn't even have the agenda page up for this until today.
+18:05:24 <rtyler> heh
+18:05:31 <kohsuke> #topic foundation update
+18:06:14 <kohsuke> I'd like abayer, hare_brain, and myself to follow up with the action, namely to hash out ASF details once and for all.
+18:06:28 <rtyler> weren't you all going to have a literal sit-down meeting?
+18:06:50 <kohsuke> Yes, haven't done so yet, and we should do it soon, since SPI clock is ticking.
+18:06:56 <rtyler> indeed
+18:07:12 <abayer> For what it's worth, I tend to agree with the sentiment I read from last meeting - SPI for now, consider ASF in the future when they've got all the infrastructural issues we'd need resolved.
+18:07:17 <abayer> Namely, git/github questions.
+18:07:24 <kohsuke> A part of it is also about me and abayer writing down the notes from our previous meeting with Doug.
+18:07:52 <abayer> And I'm saying this as a strong advocate of ASF as the right long-term home.
+18:08:52 * rtyler nods
+18:08:53 <kohsuke> OK. Hearing that from abayer pretty much decides what we should do, in my mind.
+18:08:56 <rtyler> haha
+18:09:39 <kohsuke> And I suppose there's no chance hare_brain can join us tomorrow evening in San Francisco?
+18:09:57 <rtyler> I haven't heard from him recently on the subject
+18:10:07 <hare_brain> Sorry, not tomorrow.
+18:10:22 <abayer> I'm not keen on SFC for some political/philosophical reasons, but SPI seems to do its job nice and apolitically. Getting a legal umbrella is the most important thing for us in re: a foundation, ASF isn't ready for our infra reqs yet, and SPI is right there. And there's no lock-in at SPI so far as I can tell.
+18:10:46 <kohsuke> Right.
+18:11:19 <kohsuke> OK, in that case, any reason we shouldn't make the binding decision right now right here?
+18:11:32 <hare_brain> I think I said this at the last meeting, but we should pick a foundation with the intent of staying there. If we're going into SPI with the intent that it's merely a "placeholder", how is that going to look?
+18:11:43 <rtyler> don't all board members need to physically insert their Jenkins Key into the reactor core?
+18:12:20 <abayer> hare_brain: I think it looks alright, actually. We need a legal umbrella, we're not 100% sure what our long-term home would be, but we need that umbrella now. SPI's willing to provide that. Why not take it?
+18:13:07 <abayer> I just don't think it's in the project's best interest for us to wait another 4-6 months to get a legal home, interim or otherwise.
+18:13:30 <abayer> (speaking of - any trademark update, kohsuke?)
+18:13:45 <sayresVT> i'm guessing the jdk6u13 issue may have something to do with the fact that there was already a separate install of jdk6u13 on the machine at ProgramFiles?
+18:13:46 <kohsuke> No, sorry. I feel bad, but no.
+18:13:51 <hare_brain> I agree with that. But how does it help to project if we move to Apache in 4-6 months?
+18:14:12 <hare_brain> "help the project"
+18:14:38 <hare_brain> In other words, if SPI is good enough, why wouldn't we stay there forever?
+18:14:44 <abayer> hare_brain: Well, it's not like we definitely would move. I just want to be sure we don't choose something now based on short-term requirements that blocks us from future moves if we so choose.
+18:15:09 <rtyler> hare_brain: I think what will happen is that we'll stay at SPI anyways, since we won't feel like moving in the future :P
+18:15:27 <abayer> rtyler: heh.
+18:15:28 <kohsuke> I think it is very possible that we'll stay with SPI forever.
+18:15:43 * stephenc wonders has he actually arrived for a board meeting
+18:15:52 <rtyler> stephenc: you may have!
+18:15:59 <kohsuke> I mean, if things really work out well, we might be swamped by other things and urge to move might not cross the threshold.
+18:16:00 <stephenc> wooot!
+18:16:08 <kohsuke> Think about our move to GitHub.
+18:16:31 <abayer> I'm just saying that I don't oppose the SPI option, even though I personally think ASF is a better long-term option, because SPI's the one we actually have available now, and going with SPI now doesn't mean we *can't* go to ASF in the future.
+18:16:54 <stephenc> I think ASF right now is not a good fit for our dev model
+18:17:11 <kohsuke> And I'm with abayer that we really want some legal umbrella and other normalizations.
+18:17:17 <kohsuke> ... sooner than later
+18:17:19 <stephenc> +1
+18:17:20 <stephenc> +1000
+18:17:32 <rtyler> you don't get that many votes!
+18:17:39 * rtyler subtracts 2000 from stephenc's register
+18:17:56 * stephenc claims bonus votes for actually getting to a meeting
+18:18:28 <hare_brain> I am +1 for moving to SPI now. I am 0 for waiting until ASF is ready for us. I am -1 for moving to SPI now and then moving again to ASF in the future.
+18:19:12 <stephenc> well what is needed for ASF to be ready for us
+18:19:24 <stephenc> as I see it most of the block is git
+18:19:27 <rtyler> see the last meeting notes
+18:19:47 <stephenc> yeah but for me the killer is svn being canonical
+18:20:20 <abayer> hare_brain: I'm the most pro-ASF voice here currently, and even I'm not saying SPI is only an interim home - I just don't want to close doors in the future. Inertia on its own will mean that if we go with SPI now, anything else would have to be really worth it to move again.
+18:20:39 <hare_brain> OK, that's what I wanted to hear from you. :)
+18:21:06 <abayer> =)
+18:21:07 <kohsuke> Yes, kind of hard to commit to our future actions when they depend on things unknown to us yet
+18:21:28 <rtyler> do we have a unanimous vote to accept the SPI invitation?
+18:21:52 <abayer> I'm +1 on accepting.
+18:21:54 <kohsuke> +1 from me
+18:22:14 <stephenc> +1 from me
+18:22:25 <hare_brain> And I'll reiterate my +1
+18:22:38 <rtyler> stephenc: I meant from the board ;)
+18:22:56 <rtyler> #info The board has unanimously agreed to accept the invitation to join the SPI
+18:22:59 <rtyler> next?
+18:23:07 <rtyler> :)
+18:23:13 <kohsuke> I can do some quick updates on LTS release
+18:23:16 <abayer> #topic Trademark
+18:23:22 <rtyler> DERP
+18:23:23 <abayer> Just to quickly touch on this again. =)
+18:23:33 <kohsuke> I don't think kutzi is here today to talk about test harness.
+18:23:35 <abayer> Is there anything we can do to help getting the ball rolling on it?
+18:24:03 <kohsuke> I'll really get that going. My apologies. I'll write to Sacha right away.
+18:24:27 <abayer> Thanks.
+18:24:35 <abayer> #topic LTS release update
+18:24:35 <kohsuke> And I'll CC you, as an added pressure :-)
+18:25:21 <kohsuke> #info As folks might have noticed, vjuranek from RedHat has been really pushing this ball rolling
+18:25:30 * rtyler applauds
+18:25:31 <kohsuke> He isn't here but wanted to put the credit where it's due.
+18:25:38 <rtyler> #save
+18:25:42 <kohsuke> And a release is now created and bits staged.
+18:25:52 <abayer> Hooray!
+18:25:55 <hare_brain> It's 1.409.1 right?
+18:26:02 <kohsuke> I need to mirror it before I make it visible in the top page.
+18:26:04 <kohsuke> Yes, it's 1.409.1
+18:26:10 <rtyler> let's not forget our #info tags gentlemen :)
+18:26:10 <hare_brain> Excellent
+18:26:20 <hare_brain> #info LTS is 1.409.1
+18:26:31 * rtyler grins
+18:26:52 <kohsuke> #action I'll do the mirroring today and update the top page.
+18:27:23 <hare_brain> If people click on the LTS tab on the changelog, will the changelog reflect what went into the LTS release?
+18:27:23 <kohsuke> People also wanted to me to remove RCs from the top page, so I need to think about where to put them
+18:27:48 <rtyler> well, we can shuffle it maybe
+18:28:00 <kohsuke> #info no changelog generation taken care of yet. For the time being I'll compose it manually until we automate that.
+18:28:05 <rtyler> keep that box: Release / Long Term Release
+18:28:12 <rtyler> then add a new box just for release candidates?
+18:28:37 <kohsuke> or "changelog | past releases" to "changelog | past releases | upcoming RC"
+18:28:44 <rtyler> that too
+18:28:52 <rtyler> is all the update center work in place for LTS?
+18:29:23 <kohsuke> That's taken care of already, but wouldn't hurt to test sanity
+18:29:40 <kohsuke> The UC feed for LTS only serves bits compatible with 1.409
+18:29:51 <rtyler> is there any plans to allow plugin developers to target LTS specifically?
+18:30:07 <kohsuke> Yes, they just need to release with parent POM 1.409.1
+18:30:07 <abayer> kohsuke: That's the same UC logic you set up for the 1.395 UC, right?
+18:30:27 <kohsuke> #info the backend is different from 1.395, actually.
+18:30:29 <rtyler> kohsuke: that sounds good to me, something to clearly document for folks
+18:30:40 <hare_brain> Regarding the Release/RC/LTS box, I think part of the confusion may stem from "Download" being inside the tabbed box. Download should be the div heading, and the tabs for each type of download inside.
+18:31:01 <kohsuke> That makes sense.
+18:31:06 <rtyler> #action rtyler to update the LTS wiki pages with some plugin developer notes
+18:32:13 <kohsuke> I think we need to boot the train model going for LTS as well. Ideally I'd have liked to cut the RC for 1.409.2 at the same time I release 1.409.1
+18:32:24 <kohsuke> but today there's no backported changes yet
+18:32:46 <abayer> (afk a few minutes)
+18:32:56 <stephenc> kohsuke: you should backport the versionnumber changes
+18:33:04 <kohsuke> I'll do some this week and create an RC branch.
+18:33:21 <hare_brain> Really? That implies that we'd be revving the LTS branch frequently. I thought the intent was major bug fixes only.
+18:33:22 <stephenc> that would allow you to start numbering the rc's for lts with version numbers like 1.409.2-rc-1
+18:33:38 <kohsuke> stephenc: it'll have to wait for a week or so minimum. We need more soaking on changes.
+18:33:45 <stephenc> oh yeah
+18:33:54 <stephenc> i'm just saying it should be on the list
+18:33:59 <rtyler> must resist the urge to push LTS often ;)
+18:34:06 <kohsuke> hare_brain: OK, so let's put the question differently. When should we target 1.409.2?
+18:34:23 <stephenc> have we got a bug severity criteria
+18:34:26 <hare_brain> When there's a bad bug that needs to be fixed?
+18:34:28 <hare_brain> Exactly.
+18:34:41 <stephenc> S1 -> jenkins blows up
+18:34:57 <hare_brain> More generally, criteria around what bugs to backport.
+18:34:59 <stephenc> S2 -> builds fail to build / plugin blows up
+18:35:08 <stephenc> S3 -> something less
+18:35:12 <stephenc> S4 -> trivial
+18:35:26 <stephenc> S1 -> rev LTS asap
+18:35:38 <stephenc> S2 -> rev LTS within 1 week of fix
+18:35:47 <kohsuke> OK, so we'll wait for some important bugs to show up and then cut the RC at that point?
+18:35:49 <stephenc> S3 -> out of scope
+18:36:03 <kohsuke> I can sweep through 1.409-1.415 to see if there has been any.
+18:36:11 <bap2000> suspect winstone help still says it's hudson, might be wise to get that into LTS before 1st release
+18:36:54 <stephenc> that would be S3 though
+18:37:02 <stephenc> or even S4
+18:37:05 <hare_brain> My assumption was that anything worthy of the major bug style in the changelog would make up the candidate pool for backporting.
+18:37:09 <stephenc> as it is cosmetic
+18:37:21 <stephenc> yeah but when do we call it major
+18:37:24 <bap2000> ... but not yet released
+18:37:25 <stephenc> need a criteria
+18:37:39 <kohsuke> hare_brain: the other temptation is to backport fixes that's low hanging.
+18:37:42 <hare_brain> Yeah, agree. I liked your tiers.
+18:39:23 <hare_brain> Isn't the point of LTS to cater to people who want to minimize change? So while the idea of fixing bugs is personally appealing, IMO, the spirit of LTS is to not change it until something major crops up.
+18:39:25 <kohsuke> hare_brain: how do you backport fixes into your internal branch? Got any criteria?
+18:39:48 <kohsuke> Based on how vocally people complain?
+18:40:15 <hare_brain> Pretty much. We generally avoid cherry picking. We've only backported 2 or 3 times in 3 years, that I can remember.
+18:41:46 <kohsuke> OK, I think that's a workable model. Sounds like for the time being we wait for 1.409.1 users to start complaining about something then.
+18:41:57 <abayer> +1
+18:42:06 <hare_brain> Less work for you, too. :)
+18:42:09 <kohsuke> Maybe I can get a thread going in the dev list so that we hear from vjuranek.
+18:42:11 <kohsuke> Exactly :-)
+18:42:33 <kohsuke> Anything else we want to talk about?
+18:42:48 <jieryn> any status about eclipse.org ?
+18:42:55 <rtyler> lolwut
+18:42:59 <hare_brain> LOL
+18:43:09 <jieryn> last meeting there was a lot of work that resulted from hudson->eclipse, and possibility of reunite .. is that fish fully dead now?
+18:43:12 <rtyler> shall I give an infra updating?
+18:43:23 <rtyler> jieryn: zed's dead baby
+18:43:27 <jieryn> good
+18:43:29 <rtyler> haha
+18:43:44 <kohsuke> jieryn: yes, the consensus was that we won't be doing it.
+18:43:58 <kohsuke> #topic infra update
+18:44:01 <abayer> jieryn: I haven't heard anything from anyone on the Hudson side of things on reunion, so I'm willing to guess they're not actually interested either.
+18:44:20 <jieryn> https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Hudson+Reconciliation+Requirements should be updated?
+18:44:22 <rtyler> alright, this will be short and sweet
+18:44:30 * rtyler bangs his gavel
+18:44:40 <abayer> #action abayer to update https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Hudson+Reconciliation+Requirements
+18:45:13 <rtyler> #info both lettuce and cabbage are racked and at least one of them has an OS installed on it
+18:45:26 <rtyler> the OSUOSL has either been swamped, or I've not been very effective at whining
+18:45:36 <abayer> You might want to mention what lettuce and cabbage are. =)
+18:46:02 <rtyler> #info lettuce and cabbage are a 3U and 2U multi-core machines donated to the project
+18:46:39 <rtyler> #action rtyler to publish a post thanking Rackspace for their generous donation of a build machine which we've been relying heavily on
+18:46:48 <kohsuke> yes, I was going to nag you on that
+18:46:56 <kohsuke> thanks for taking the action.
+18:46:58 <rtyler> #info Backups at Contegix are stalled waiting for a part to arrive
+18:47:16 <hare_brain> Put the thank you in the dog-food notifications. ;)
+18:47:33 <rtyler> backups are in my queue, but lower priority than some of these other tasks since I have manual backups running
+18:47:59 <rtyler> #topic minor office hours update
+18:48:13 <rtyler> #info the first series of user and dev office hours went exceptionally well
+18:48:23 <rtyler> finding time, and speakers it turns out is incredibly difficult
+18:48:42 <rtyler> #info Need to investigate Fuze instead of WebEx: http://www.fuzemeeting.com/
+18:49:02 <rtyler> I think I might try to push for a monthly session, since everybody's schedules are very hectic this summer
+18:49:28 <rtyler> any other notes on office hours before I pass the mic?
+18:49:31 <kohsuke> #idea I think it's OK to do it without any fixed agenda, at least the dev session. I'm willing to hang around.
+18:49:35 <hare_brain> Regarding backups, I was watching the WWDC keynote earlier this week, and my first thought was, Hudson masters should run on OS X Lion.
+18:49:50 <rtyler> heh
+18:50:02 <rtyler> kohsuke: if you're cool with doing that, that'd be great
+18:50:08 <rtyler> the guy that does minecraft does that sometimes
+18:50:16 <rtyler> but more in the "look at me code you voyeurs!"
+18:50:18 <abayer> kohsuke, rtyler: I'm up for doing a dev session on the groovy view stuff once I get back from Europe and have written the tutorial/docs stuff on it. =)
+18:50:23 <kohsuke> hare_brain: it does run. I guess you mean something new that we should be taking advantages of?
+18:51:00 <hare_brain> kohsuke: Yeah. Auto-file versioning. Good way to version configurations.
+18:51:01 <kohsuke> Did we have any Cisco folks willing to sponsor WebEx?
+18:51:21 <rtyler> kohsuke: we'd still have the recording problem with webex
+18:51:23 * kohsuke mumbles zfs having it for years!
+18:51:31 <hare_brain> LOL
+18:51:33 <rtyler> unless we always start with windows machine alwasy
+18:51:41 <rtyler> kohsuke: it's only innovation when apple does it, not sun ;)
+18:52:20 <hare_brain> What do people say? Apple's best product is its marketing team?
+18:52:41 * hare_brain apologizes for the tangent
+18:52:44 <rtyler> heh
+18:53:00 <rtyler> kohsuke: if you're willing to host weekly dev sessions, even without agenda, I think that'd be fantastic
+18:53:05 <kohsuke> No, generally we try to take advantage of the underlying platform features. We have libraries that enable us to do so.
+18:53:16 <rtyler> user sessions I think require some semblence of an agenda to be marketed effectively
+18:53:20 <kohsuke> So if there's something in Lion that get people excited, we should do it.
+18:53:27 <rtyler> ZOMG TANGENT
+18:53:27 <kohsuke> rtyler: yes, I'm willing.
+18:53:39 <kohsuke> But let's do biweekly
+18:54:18 <rtyler> #action kohsuke to host a dev session bi-weekly
+18:54:26 <kohsuke> sounds good.
+18:54:30 <rtyler> #action rtyler to get a bloody subscribe-able calendar functioning
+18:54:39 * rtyler sighs
+18:55:00 <kohsuke> #topic next meeting time
+18:55:03 <rtyler> any other topics other than 'next meeting'
+18:55:05 <rtyler> heh
+18:55:07 <rtyler> guess not
+18:55:14 <stephenc> i have some issues
+18:55:21 <rtyler> abayer is out of the country, so that will be tricky
+18:55:23 <jieryn> oh boy
+18:55:30 <stephenc> I'd like to start a big refactoring of the build
+18:55:41 <stephenc> get things more aligned with the maven way
+18:55:55 <abayer> rtyler: meh, I'll be in Paris. I can probably make it.
+18:56:05 <stephenc> there are a number of things "done wrong" for use maven heads
+18:56:14 <rtyler> stephenc: can we do the "next meeting time" topic then swing around to the builds?
+18:56:18 <stephenc> ok
+18:56:31 <stephenc> as long as N does not crap all over the later topic
+18:56:33 <rtyler> hare_brain: how about you, same time same place, 22nd?
+18:56:34 <kohsuke> So in 2 weeks? At the same time?
+18:56:38 <hare_brain> +1
+18:56:49 <kohsuke> there was some interest from Tokyo folks to try one-off Asian friendly time.
+18:56:50 <abayer> +1 for me. That's 8pm Paris time, yes?
+18:57:06 <magnayn> minor req: could @jenkinsci send out a reminder ..
+18:57:17 <rtyler> magnayn: heh, yeah, I forgot entirely this week
+18:57:36 <kohsuke> #agreed next meeting in two weeks same time.
+18:57:48 <rtyler> added to the wiki page
+18:58:08 <rtyler> #topic refactoring the jenkins build?
+18:58:12 <rtyler> stephenc: SPEAK NOW
+18:58:15 <rtyler> :)
+18:58:20 <hare_brain> Gotta drop.
+18:58:29 <jieryn> ciao
+18:58:30 <stephenc> ok, so there be a lot of "not the maven way"isms in the current build
+18:58:37 <stephenc> I have two choices....
+18:58:45 <stephenc> feature branch or incremental
+18:59:09 <stephenc> given the s/hudson.model.Hudson/jenkins.model.Jenkins/ going on at the moment
+18:59:21 <stephenc> I fear a feature branch too brittle
+18:59:38 <stephenc> though i'll be sticking at the pom & plugin level
+18:59:55 <jieryn> can you describe some of the changes to be made?
+18:59:58 <kohsuke> I don't think there's any more s/Hudson/Jenkins/g change. It's all integrated.
+19:00:11 <abayer> Either's fine by me - I just want to see the groovy view stuff make it out in a reasonably stable release before we do any more major changes to core or the build process, so I can go nuts with that. =)
+19:00:23 <stephenc> OK, first off I think there is a need to align the hpi plugin with the maven way
+19:00:44 <stephenc> that will probably involve me doing a bit of NIH... (pot calling kettle)
+19:01:17 <stephenc> then there is stripping out most of the antrun stuff (to be replaced with better mojos in hpi plugin replacement)
+19:01:20 <abayer> Make it work and I don't care what you did. =)
+19:01:38 <stephenc> It should also have nice dev mode for working on core
+19:01:50 <kohsuke> Knowing stephenc, I think a branch is better.
+19:01:53 <stephenc> i.e. auto pick-up changes in the core
+19:02:11 <stephenc> knowing kk we need reigns to stop you adding features to the build
+19:02:22 <kohsuke> As long as other folks know that they shouldn't be messing too much with POMs in the trunk, there shouldn't be any merge conflicts, right?
+19:02:26 <jieryn> poms are pretty stable, changewise, i think
+19:02:32 <stephenc> i don't want a big goalpost move in the plugins
+19:02:54 <stephenc> and I need to sync up with kk as to what that whole jenkins-module packaging type is for
+19:03:00 <jieryn> i made a large change to the master pom.xml to try and impose some OCD discipline to versions, e.g.
+19:03:16 <abayer> And aheritier did something similar with Maven plugin versions.
+19:03:27 <jieryn> then aheritier duplicated almost the entire work in jenkins master :-/
+19:03:27 <stephenc> i'll probably run tidy:pom on everything first
+19:03:45 <aheritier> I didn't know :(
+19:03:45 <stephenc> so that merging changes will be easier
+19:03:48 <kohsuke> That way we have freedom to choose when to merge, so if we need a couple more releases to solidify groovy-view,  we can do so without having another potential destabilizer going on.
+19:04:00 <stephenc> ok so feature-branch
+19:04:17 <stephenc> but alert everyone that they need to ping me if they are making changes in the build/plugin*
+19:04:28 <aheritier> you can override my work if necessary. I won't be angry
+19:04:31 <jieryn> same
+19:04:40 <stephenc> if they are just touching versions in dep/depMgmt fine by me
+19:04:45 <stephenc> adding deps, fine
+19:04:54 <stephenc> adding plugins or reving plugins, ping me
+19:05:02 <stephenc> and give me 24h to respond
+19:05:11 <stephenc> no response means I'm +1
+19:05:14 <stephenc> unless at weekend
+19:05:15 <kohsuke> #action stephenc to send in an announcement requesting people to kindly refrain from big POM changes to simplify the merge later.
+19:05:27 <jieryn> i even invoke versions plugin to check for updates, e.g. http://ci.jenkins-ci.org/job/jenkins_pom/lastBuild/console
+19:05:56 <kohsuke> I'm sure people will also want to know about the kind of changes you'll be making.
+19:05:59 <stephenc> jieryn: I need to rev versions-m-p once I get its tests stabilised
+19:06:13 <stephenc> kk: I will probably blog about it when I have a feel
+19:06:23 <jieryn> cool :)
+19:06:25 <kohsuke> thanks
+19:06:29 <stephenc> there is a lot of technical debt built up in the build process
+19:06:41 <stephenc> I think my changes will make working on jenkins a lot easier
+19:06:48 <rtyler> does that count as irony?
+19:06:59 <stephenc> wait until you wee
+19:07:05 <stephenc> s/wee/see/
+19:07:09 <rtyler> O_o
+19:07:31 <kohsuke> Every so often I entertain the idea of using Gradle. Is that out of question?
+19:07:41 <stephenc> If somebody else wants to
+19:07:55 <stephenc> olamy/aheritier/me will want maven
+19:08:04 <abayer> Me too.
+19:08:12 <abayer> My convention over configuration nerdiness is strong.
+19:08:18 <stephenc> yeah and you are not biased in favour of maven
+19:08:26 <kohsuke> OK. I'll keep it as my dream then.
+19:08:30 <rtyler> heh
+19:08:33 <abayer> Well, I am biased, but not as a result of being a Maven dev. =)
+19:08:33 <magnayn> I'd like to see gradle...
+19:08:41 <magnayn> ... but not to force it on anyone else
+19:08:50 <magnayn> (IE: academic interest)
+19:09:08 <aheritier> do not hesitate to test gradle elsewhere. You'll be happy to come back on maven later :-)
+19:09:15 <abayer> kohsuke: I don't see any reason you couldn't come up with an optional Gradle build for plugins.
+19:09:18 <stephenc> two parallel build systems never works
+19:09:57 <kohsuke> Yeah, like I said, I'll keep it as my dream
+19:09:57 <aheritier> it could be possible for plugins to use gradle. The problem is to reuse existing plugins (hpi & co)
+19:10:01 <aheritier> the cost is high
+19:10:31 <kohsuke> Yes, from practical point of view, it's hard for us.
+19:10:51 <stephenc> my feeling is that a build done Maven right will have you happy
+19:11:00 <stephenc> gradle is grand for the person writing the build
+19:11:15 <stephenc> but if you have to take over maintenance of that build it's like an ANT build
+19:11:26 <stephenc> you have to read it to figure out what it is doing
+19:11:52 <stephenc> what we have with our maven build is a hybrid
+19:12:01 <stephenc> which is the worst of all worlds
+19:12:15 <stephenc> getting to pure maven build will make life easier
+19:12:27 <stephenc> _and_ make it easier to transition away from maven if you want to
+19:12:42 * stephenc knows that is a paradox... but that is the truth of a good maven build
+19:13:01 <kohsuke> Anything else or shall we close the meeting?
+19:13:10 <stephenc> i'm good
+19:13:13 <rtyler> book'em danno
+19:13:26 <kohsuke> #endmeeting

@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:01:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:01:36</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:01:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain rtyler</span>
+<a name="l-4"></a><span class="tm">19:01:48</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">19:01:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer</span>
+<a name="l-6"></a><span class="tm">19:01:59</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-7"></a><span class="tm">19:02:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">agenda: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Nov30thMeeting</span>
+<a name="l-8"></a><span class="tm">19:02:14</span><span class="nk"> &lt;Creeture&gt;</span> <span class="hi">kohsuke:</span> This enough of a trace? Shit - don't start the meeting yet. :) https://gist.github.com/1410322
+<a name="l-9"></a><span class="tm">19:02:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting action items</span>
+<a name="l-10"></a><span class="tm">19:02:30</span><span class="nk"> &lt;rtyler&gt;</span> this is kohsuke, kutzi and vjuranek
+<a name="l-11"></a><span class="tm">19:02:33 </span><span class="nka">* rtyler</span> <span class="ac">steps back</span>
+<a name="l-12"></a><span class="tm">19:02:48</span><span class="nk"> &lt;kohsuke&gt;</span> I think I created the board alias
+<a name="l-13"></a><span class="tm">19:02:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">last meeting notes http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-11-09-19.00.html</span>
+<a name="l-14"></a><span class="tm">19:02:57</span><span class="nk"> &lt;kohsuke&gt;</span> I'll double check and do so during this meeting if I haven't
+<a name="l-15"></a><span class="tm">19:03:18</span><span class="nk"> &lt;kohsuke&gt;</span> Contacting SPI, still TODO.
+<a name="l-16"></a><span class="tm">19:03:28</span><span class="nk"> &lt;kohsuke&gt;</span> LTS RC has been respined
+<a name="l-17"></a><span class="tm">19:03:57</span><span class="nk"> &lt;kohsuke&gt;</span> And I did get the report of failing tests from hare_brain but I don't think I did from imod, kutzi, and Majost
+<a name="l-18"></a><span class="tm">19:04:22</span><span class="nk"> &lt;imod&gt;</span> I reported to you, that I was not able to reproduce these
+<a name="l-19"></a><span class="tm">19:04:31</span><span class="nk"> &lt;kohsuke&gt;</span> Ah, that's right. my bad.
+<a name="l-20"></a><span class="tm">19:04:44</span><span class="nk"> &lt;kohsuke&gt;</span> And for vjuranek, 1.424 LTS test wiki page is https://wiki.jenkins-ci.org/display/JENKINS/LTS+1.424.x+RC+Testing
+<a name="l-21"></a><span class="tm">19:05:14</span><span class="nk"> &lt;kohsuke&gt;</span> I also wonder if abayer had heard back from GitHub about a private repository to host CLAs?
+<a name="l-22"></a><span class="tm">19:05:18</span><span class="nk"> &lt;vjuranek&gt;</span> yup, wiki created, test done
+<a name="l-23"></a><span class="tm">19:05:27</span><span class="nk"> &lt;kohsuke&gt;</span> (technically it's not listed in this action items)
+<a name="l-24"></a><span class="tm">19:05:35</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> Ack, yes, I did. ksawicki had another suggestion, but I forgot to reply. Will pick that up again.
+<a name="l-25"></a><span class="tm">19:05:43</span><span class="nk"> &lt;kohsuke&gt;</span> cool
+<a name="l-26"></a><span class="tm">19:05:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> #action for this meeting then?
+<a name="l-27"></a><span class="tm">19:06:11</span><span class="nk"> &lt;abayer&gt;</span> 'k
+<a name="l-28"></a><span class="tm">19:06:44</span><span class="nk"> &lt;rtyler&gt;</span> ...
+<a name="l-29"></a><span class="tm">19:06:52</span><span class="nk"> &lt;abayer&gt;</span> Sorry, doing like five things at once. =)
+<a name="l-30"></a><span class="tm">19:06:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to pick up GitHub private repository conversation for CLA</span>
+<a name="l-31"></a><span class="tm">19:06:57</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-32"></a><span class="tm">19:06:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> noted
+<a name="l-33"></a><span class="tm">19:07:07</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's it for the actions
+<a name="l-34"></a><span class="tm">19:07:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">infra update from rtyler</span>
+<a name="l-35"></a><span class="tm">19:07:42</span><span class="nk"> &lt;rtyler&gt;</span> so
+<a name="l-36"></a><span class="tm">19:07:43</span><span class="nk"> &lt;rtyler&gt;</span> where to start
+<a name="l-37"></a><span class="tm">19:07:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Tonight there will be an hour or so downtime of cucumber.jenkins-ci.org</span>
+<a name="l-38"></a><span class="tm">19:08:03</span><span class="nk"> &lt;rtyler&gt;</span> which is because the NIC and riser card arrived
+<a name="l-39"></a><span class="tm">19:08:14</span><span class="nk"> &lt;rtyler&gt;</span> which means we'll be getting proper automated offsite backups of that machine being done
+<a name="l-40"></a><span class="tm">19:08:22</span><span class="nk"> &lt;rtyler&gt;</span> instead of the ad-hoc crap I'm doing currently &lt;_&lt;
+<a name="l-41"></a><span class="tm">19:08:38</span><span class="nk"> &lt;kohsuke&gt;</span> yay
+<a name="l-42"></a><span class="tm">19:08:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">After backups are running, we need to perform another major downtime of cucumber.jenkins-ci.org to do an OS upgrade</span>
+<a name="l-43"></a><span class="tm">19:09:11</span><span class="nk"> &lt;rtyler&gt;</span> we're currently using a version of Ubuntu that's not even under LTS anymore, which is bad news bears
+<a name="l-44"></a><span class="tm">19:09:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">I (rtyler) have started discussions with Contegix to spin off the hosting account for cucumber off of my personal account with Contegix</span>
+<a name="l-45"></a><span class="tm">19:09:54</span><span class="nk"> &lt;rtyler&gt;</span> which would be owned by the SPI
+<a name="l-46"></a><span class="tm">19:10:11</span><span class="nk"> &lt;rtyler&gt;</span> I think that's it, any infra questions I can answer before we move on?
+<a name="l-47"></a><span class="tm">19:10:31</span><span class="nk"> &lt;imod&gt;</span> any more mirrors needed?
+<a name="l-48"></a><span class="tm">19:10:53</span><span class="nk"> &lt;rtyler&gt;</span> not as far as I can tell, if we need more it might be to increase the mix of european mirrors
+<a name="l-49"></a><span class="tm">19:11:02</span><span class="nk"> &lt;rtyler&gt;</span> we had some hiccups with our german mirror recently
+<a name="l-50"></a><span class="tm">19:11:12</span><span class="nk"> &lt;rtyler&gt;</span> not /pressing/, it fits under "nice to have" :)
+<a name="l-51"></a><span class="tm">19:11:22</span><span class="nk"> &lt;orrc&gt;</span> does anyone have an update on the infra-fundraiser?
+<a name="l-52"></a><span class="tm">19:11:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> want to speak to that?
+<a name="l-53"></a><span class="tm">19:11:37</span><span class="nk"> &lt;imod&gt;</span> ok, if so just screen :)
+<a name="l-54"></a><span class="tm">19:11:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> let me check
+<a name="l-55"></a><span class="tm">19:12:09</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think we've received any additional donation for a while
+<a name="l-56"></a><span class="tm">19:12:29</span><span class="nk"> &lt;kohsuke&gt;</span> So it's still more or less at $4040
+<a name="l-57"></a><span class="tm">19:12:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to post a christmas donation beg-fest post to the blog</span>
+<a name="l-58"></a><span class="tm">19:12:51</span><span class="nk"> &lt;rtyler&gt;</span> shall I continue?
+<a name="l-59"></a><span class="tm">19:13:01</span><span class="nk"> &lt;kohsuke&gt;</span> please
+<a name="l-60"></a><span class="tm">19:13:01</span><span class="nk"> &lt;rtyler&gt;</span> that fits somewhat with our next topic :)
+<a name="l-61"></a><span class="tm">19:13:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">SCALE10x plans for Jenkins</span>
+<a name="l-62"></a><span class="tm">19:13:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Jenkins has been allowed to be an exhibitor at SCALE 10x on Jan 20-22 http://www.socallinuxexpo.org/scale10x/jenkins-ci</span>
+<a name="l-63"></a><span class="tm">19:13:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">SCALE is the Southern California Linux Expo, it's a very large expo and conference in LA</span>
+<a name="l-64"></a><span class="tm">19:14:04</span><span class="nk"> &lt;rtyler&gt;</span> we don't really have any "booth gear"
+<a name="l-65"></a><span class="tm">19:14:21</span><span class="nk"> &lt;rtyler&gt;</span> we will get a table though
+<a name="l-66"></a><span class="tm">19:14:29</span><span class="nk"> &lt;rtyler&gt;</span> so we can set up just about whatever to show off
+<a name="l-67"></a><span class="tm">19:14:43</span><span class="nk"> &lt;rtyler&gt;</span> oh
+<a name="l-68"></a><span class="tm">19:14:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">rtyler will be attending</span>
+<a name="l-69"></a><span class="tm">19:14:52</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-70"></a><span class="tm">19:15:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I'll be attending too</span>
+<a name="l-71"></a><span class="tm">19:15:09</span><span class="nk"> &lt;kohsuke&gt;</span> And I can bring stickers
+<a name="l-72"></a><span class="tm">19:15:25</span><span class="nk"> &lt;rtyler&gt;</span> I'm not sure if abayer or hare_brain will be able to attend
+<a name="l-73"></a><span class="tm">19:15:33</span><span class="nk"> &lt;rtyler&gt;</span> any other California Jenkins folks we can rope in?
+<a name="l-74"></a><span class="tm">19:15:46</span><span class="nk"> &lt;kohsuke&gt;</span> I guess we'll bring a computer as a demo machine?
+<a name="l-75"></a><span class="tm">19:16:07</span><span class="nk"> &lt;rtyler&gt;</span> well, if we road trip it, I have a couple extra computers I could bring and at least two extra monitors
+<a name="l-76"></a><span class="tm">19:16:21</span><span class="nk"> &lt;rtyler&gt;</span> a little demo cluster with maybe xfpanel plugin + builders would be neat :)
+<a name="l-77"></a><span class="tm">19:16:29</span><span class="nk"> &lt;kohsuke&gt;</span> sounds fun
+<a name="l-78"></a><span class="tm">19:16:42</span><span class="nk"> &lt;rtyler&gt;</span> last year connectivity to the booths was *good* but it'll be better to be prepared if it's not
+<a name="l-79"></a><span class="tm">19:16:44</span><span class="nk"> &lt;hare_brain&gt;</span> I cannot go that weekend.
+<a name="l-80"></a><span class="tm">19:17:12</span><span class="nk"> &lt;kohsuke&gt;</span> I think we need a blog post about this to solicit other so-cal people to join us
+<a name="l-81"></a><span class="tm">19:17:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to work out potential road-trip/carpool plans for Bay Area people</span>
+<a name="l-82"></a><span class="tm">19:17:29</span><span class="nk"> &lt;hokatichenci&gt;</span> will there be any jenkins talks?
+<a name="l-83"></a><span class="tm">19:17:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hokatichenci:</span> unfortunately not, the CFP ended shortly after they invited us :P
+<a name="l-84"></a><span class="tm">19:17:53</span><span class="nk"> &lt;Majost&gt;</span> Where in LA is this?
+<a name="l-85"></a><span class="tm">19:17:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">Majost:</span> right outside of LAX
+<a name="l-86"></a><span class="tm">19:18:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to write blog post to solicit California Jenkins people to join us at SCALE</span>
+<a name="l-87"></a><span class="tm">19:18:22</span><span class="nk"> &lt;Majost&gt;</span> Nice! So it's right next to my offices!
+<a name="l-88"></a><span class="tm">19:18:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Majost has been volunteered as well</span>
+<a name="l-89"></a><span class="tm">19:18:50</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe we can plan some get-together as well?
+<a name="l-90"></a><span class="tm">19:18:52</span><span class="nk"> &lt;Majost&gt;</span> haha
+<a name="l-91"></a><span class="tm">19:19:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> another CI Dinner? :)
+<a name="l-92"></a><span class="tm">19:19:07</span><span class="nk"> &lt;kohsuke&gt;</span> yeah
+<a name="l-93"></a><span class="tm">19:19:11</span><span class="nk"> &lt;rtyler&gt;</span> might be difficult, there's stuff going on all the nights really
+<a name="l-94"></a><span class="tm">19:19:17</span><span class="nk"> &lt;rtyler&gt;</span> saturday night is the keysigning party IIRC
+<a name="l-95"></a><span class="tm">19:19:17</span><span class="nk"> &lt;Majost&gt;</span> Count me in
+<a name="l-96"></a><span class="tm">19:19:19</span><span class="nk"> &lt;rtyler&gt;</span> and other drinks
+<a name="l-97"></a><span class="tm">19:19:32</span><span class="nk"> &lt;Majost&gt;</span> I know of some good places for beers too.
+<a name="l-98"></a><span class="tm">19:19:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to ponder a CI Dinner or something along those lines for SCALE</span>
+<a name="l-99"></a><span class="tm">19:19:52</span><span class="nk"> &lt;kohsuke&gt;</span> great
+<a name="l-100"></a><span class="tm">19:19:57</span><span class="nk"> &lt;rtyler&gt;</span> may I move on?
+<a name="l-101"></a><span class="tm">19:20:01</span><span class="nk"> &lt;kohsuke&gt;</span> yeah
+<a name="l-102"></a><span class="tm">19:20:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins at FOSDEM 2012</span>
+<a name="l-103"></a><span class="tm">19:20:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">FOSDEM is a big deal</span>
+<a name="l-104"></a><span class="tm">19:20:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Deadline to apply for a table at FOSDEM is Dec. 13th</span>
+<a name="l-105"></a><span class="tm">19:20:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Deadline for lightning talks at FOSDEM is Dec. 13th</span>
+<a name="l-106"></a><span class="tm">19:21:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Many of the devrooms are currently soliciting for speakers/presentations right now http://www.fosdem.org/2012/devrooms_for_2012</span>
+<a name="l-107"></a><span class="tm">19:21:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">z00dax6:</span> pipe up :)
+<a name="l-108"></a><span class="tm">19:21:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">aheritier:</span> you're also going to FOSDEM yes? :)
+<a name="l-109"></a><span class="tm">19:21:45</span><span class="nk"> &lt;jenkinsci_builds&gt;</span> Project jenkins_main_trunk build #1,330: UNSTABLE in 1 hr 10 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/1330/
+<a name="l-110"></a><span class="tm">19:21:46</span><span class="nk"> &lt;jenkinsci_builds&gt;</span> Kohsuke Kawaguchi: [FIXED JENKINS-11714] Fixed the problem in the find command operator priority.
+<a name="l-111"></a><span class="tm">19:22:02</span><span class="nk"> &lt;jenkinsci_builds&gt;</span> Starting build 1,331 for job jenkins_main_trunk (previous build: UNSTABLE -- last SUCCESS #1329 17 hr ago)
+<a name="l-112"></a><span class="tm">19:22:06</span><span class="nk"> &lt;hare_brain&gt;</span> Ssh. We're in a meeting.
+<a name="l-113"></a><span class="tm">19:22:29</span><span class="nk"> &lt;rtyler&gt;</span> jenkinsci_builds and I are the only ones saying anything , does that count as a meeting? :)
+<a name="l-114"></a><span class="tm">19:22:42</span><span class="nk"> &lt;imod&gt;</span> I'll come too, if you think I'll be of any help
+<a name="l-115"></a><span class="tm">19:22:50</span><span class="nk"> &lt;orrc&gt;</span> I should be at FOSDEM
+<a name="l-116"></a><span class="tm">19:22:57</span><span class="nk"> &lt;kohsuke&gt;</span> I wonder if kutzi, drulli, gboissinot, etc might be interested in talking
+<a name="l-117"></a><span class="tm">19:23:05</span><span class="nk"> &lt;z00dax6&gt;</span> <span class="hi">rtyler:</span> Fosdem tends to be a good place to engage with people who are in turn doing development work on open source projects.
+<a name="l-118"></a><span class="tm">19:23:06</span><span class="nk"> &lt;kohsuke&gt;</span> or orrc :-)
+<a name="l-119"></a><span class="tm">19:23:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">imod:</span> I think going to FOSDEM is it's own reward, regardless of whether we do anything :)
+<a name="l-120"></a><span class="tm">19:23:21</span><span class="nk"> &lt;rtyler&gt;</span> okay, how about this
+<a name="l-121"></a><span class="tm">19:23:27</span><span class="nk"> &lt;z00dax6&gt;</span> and there will be a fair few people there, it might actually be the largest open source centric, non commercial get together anywhere
+<a name="l-122"></a><span class="tm">19:23:38</span><span class="nk"> &lt;rtyler&gt;</span> I propose we apply for a Jenkins stand at FOSDEM
+<a name="l-123"></a><span class="tm">19:23:41</span><span class="nk"> &lt;drulli&gt;</span> I'm sorry, but I can't attend
+<a name="l-124"></a><span class="tm">19:23:48</span><span class="nk"> &lt;z00dax6&gt;</span> having a Jenkins specific talk would definitely be good
+<a name="l-125"></a><span class="tm">19:24:29</span><span class="nk"> &lt;imod&gt;</span> <span class="hi">rtyler:</span> ok, so count me in :)
+<a name="l-126"></a><span class="tm">19:24:45 </span><span class="nka">* rtyler</span> <span class="ac">speaks up a bit</span>
+<a name="l-127"></a><span class="tm">19:24:47</span><span class="nk"> &lt;rtyler&gt;</span> I propose we apply for a Jenkins stand at FOSDEM
+<a name="l-128"></a><span class="tm">19:24:48</span><span class="nk"> &lt;abayer&gt;</span> When/where is FOSDEM specifically?
+<a name="l-129"></a><span class="tm">19:24:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> 4-5 Feb. Brussels
+<a name="l-130"></a><span class="tm">19:25:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">FOSDEM 2012 is Feb 4-5th in Brussels, Belgium</span>
+<a name="l-131"></a><span class="tm">19:25:31</span><span class="nk"> &lt;z00dax6&gt;</span> ( which is a weekend )
+<a name="l-132"></a><span class="tm">19:25:32</span><span class="nk"> &lt;abayer&gt;</span> 'k. I think I have coworkers going, but I'm probably traveled out. I'll check if I can get cloudera to pay, though. If so… =)
+<a name="l-133"></a><span class="tm">19:25:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I think meetbot needs a #poll action
+<a name="l-134"></a><span class="tm">19:26:05</span><span class="nk"> &lt;rtyler&gt;</span> I PROPOSE WE APPLY FOR A JENKINS STAND AT FOSDEM
+<a name="l-135"></a><span class="tm">19:26:12</span><span class="nk"> &lt;z00dax6&gt;</span> <span class="hi">rtyler:</span> go for it :)
+<a name="l-136"></a><span class="tm">19:26:13 </span><span class="nka">* rtyler</span> <span class="ac">pokes all the euros</span>
+<a name="l-137"></a><span class="tm">19:26:28</span><span class="nk"> &lt;abayer&gt;</span> Sounds good to me, assuming we can get at least a few people willing to take turns manning it. =)
+<a name="l-138"></a><span class="tm">19:26:33</span><span class="nk"> &lt;rtyler&gt;</span> exactly
+<a name="l-139"></a><span class="tm">19:26:35</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, I think we need someone in Europe to drive it.
+<a name="l-140"></a><span class="tm">19:27:06</span><span class="nk"> &lt;rtyler&gt;</span> if I'm flying in, then I will only be able to bring one extra laptop for display purposes
+<a name="l-141"></a><span class="tm">19:27:23</span><span class="nk"> &lt;rtyler&gt;</span> which means having somebody local to help man the booth and set up demos would be valuable
+<a name="l-142"></a><span class="tm">19:27:37</span><span class="nk"> &lt;imod&gt;</span> sure I'll helpout
+<a name="l-143"></a><span class="tm">19:27:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> can you ping some of the cloudbees in europe to see if they'll join in?
+<a name="l-144"></a><span class="tm">19:27:47</span><span class="nk"> &lt;rtyler&gt;</span> ndeloof seems fun :)
+<a name="l-145"></a><span class="tm">19:27:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write to a few contacts to see if they'd be willing</span>
+<a name="l-146"></a><span class="tm">19:28:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to apply for a Jenkins stand at FOSDEM</span>
+<a name="l-147"></a><span class="tm">19:28:27</span><span class="nk"> &lt;rtyler&gt;</span> alright, I give up, next topic :)
+<a name="l-148"></a><span class="tm">19:28:30</span><span class="nk"> &lt;rtyler&gt;</span> all you kohsuke
+<a name="l-149"></a><span class="tm">19:28:32</span><span class="nk"> &lt;kohsuke&gt;</span> I wonder if another call for help post for this is in order, similar to SCALE 10x
+<a name="l-150"></a><span class="tm">19:28:39</span><span class="nk"> &lt;kohsuke&gt;</span> aye
+<a name="l-151"></a><span class="tm">19:28:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to write blog post for help with FOSDEM</span>
+<a name="l-152"></a><span class="tm">19:28:55 </span><span class="nka">* rtyler</span> <span class="ac">is racking up the action items :/</span>
+<a name="l-153"></a><span class="tm">19:29:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins CIA program</span>
+<a name="l-154"></a><span class="tm">19:29:42</span><span class="nk"> &lt;kohsuke&gt;</span> So one of the lessons for me (and I've heard from others in the CB booth as well) during JavaOne is that there are many people still haven't heard about Jenkins
+<a name="l-155"></a><span class="tm">19:30:07</span><span class="nk"> &lt;kohsuke&gt;</span> So people suggested that we should do some evangelism effort
+<a name="l-156"></a><span class="tm">19:30:51</span><span class="nk"> &lt;kohsuke&gt;</span> And around the same time, I got the extra Jenkins stickers and people seem to like those
+<a name="l-157"></a><span class="tm">19:31:02</span><span class="nk"> &lt;abayer&gt;</span> ooo, I need those.
+<a name="l-158"></a><span class="tm">19:31:04</span><span class="nk"> &lt;imod&gt;</span> my daily business at work :)
+<a name="l-159"></a><span class="tm">19:31:04</span><span class="nk"> &lt;tbb&gt;</span> I would gladly help but I'm not exactly a Jenkins guru and therefore not really useful
+<a name="l-160"></a><span class="tm">19:31:05</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-161"></a><span class="tm">19:31:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">tbb:</span> guru status not necessary
+<a name="l-162"></a><span class="tm">19:31:42</span><span class="nk"> &lt;kohsuke&gt;</span> So one of the idea that's tossed around is to help non-gurus in the community to spread the words by arming them with ...
+<a name="l-163"></a><span class="tm">19:32:05</span><span class="nk"> &lt;rtyler&gt;</span> guns
+<a name="l-164"></a><span class="tm">19:32:07</span><span class="nk"> &lt;rtyler&gt;</span> lots of guns
+<a name="l-165"></a><span class="tm">19:32:08</span><span class="nk"> &lt;tbb&gt;</span> STICKERS \o/
+<a name="l-166"></a><span class="tm">19:32:13</span><span class="nk"> &lt;kohsuke&gt;</span> some standard slide deck that they can use to introduce Jenkins, we'll send stickers so that they can hand them out, and
+<a name="l-167"></a><span class="tm">19:32:22</span><span class="nk"> &lt;kohsuke&gt;</span> maybe a T-shirt for the person himself
+<a name="l-168"></a><span class="tm">19:32:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">CIA == CI Ambassador</span>
+<a name="l-169"></a><span class="tm">19:32:47</span><span class="nk"> &lt;kohsuke&gt;</span> rtyler said OpenSUSE does something like this and call it street teams
+<a name="l-170"></a><span class="tm">19:32:55</span><span class="nk"> &lt;imod&gt;</span> my company has about 3000 dev's and not too many know CI yet…. this would definitely help
+<a name="l-171"></a><span class="tm">19:32:57</span><span class="nk"> &lt;kohsuke&gt;</span> pelegri told me that OpenSolaris used to do this, too.
+<a name="l-172"></a><span class="tm">19:32:58</span><span class="nk"> &lt;rtyler&gt;</span> openSUSE actually calls them ambassadors
+<a name="l-173"></a><span class="tm">19:33:09</span><span class="nk"> &lt;kohsuke&gt;</span> Oh, then CIA is perfect
+<a name="l-174"></a><span class="tm">19:33:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">openSUSE has a very good model (IMHO) to check out for their Ambassador program</span>
+<a name="l-175"></a><span class="tm">19:33:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the openSUSE Greek Ambassador community is of particular interest</span>
+<a name="l-176"></a><span class="tm">19:33:37</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, I thought CIA with a fake Central Intelligence Agency logo would be fun
+<a name="l-177"></a><span class="tm">19:33:49</span><span class="nk"> &lt;z00dax6&gt;</span> the ambassadors programs in various linux distro's has been a hit/miss situation - but it definitely gives people the sense of involvement, and they have a specific agenda and purpose
+<a name="l-178"></a><span class="tm">19:33:51</span><span class="nk"> &lt;b2jrock&gt;</span> A standard slide deck would also help for introducing Jenkins within a company.
+<a name="l-179"></a><span class="tm">19:33:53</span><span class="nk"> &lt;hare_brain&gt;</span> Put dark glasses and an earpiece on the butler.
+<a name="l-180"></a><span class="tm">19:33:54</span><span class="nk"> &lt;kohsuke&gt;</span> We can have a world map with pins showing which cities have been conquered
+<a name="l-181"></a><span class="tm">19:34:05</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-182"></a><span class="tm">19:34:18</span><span class="nk"> &lt;rtyler&gt;</span> the CIA name has certainly grown on me since you first pitched it kohsuke
+<a name="l-183"></a><span class="tm">19:34:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> I like that idea
+<a name="l-184"></a><span class="tm">19:34:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">b2jrock:</span> totally
+<a name="l-185"></a><span class="tm">19:34:46</span><span class="nk"> &lt;imod&gt;</span> the CIA logo is not as good known in europe though
+<a name="l-186"></a><span class="tm">19:34:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">a standard "intro to jenkins" slide deck should be created</span>
+<a name="l-187"></a><span class="tm">19:35:04</span><span class="nk"> &lt;kohsuke&gt;</span> So I guess I was curious whether some people here would be willing to be our CIA agent if we do all those
+<a name="l-188"></a><span class="tm">19:35:20</span><span class="nk"> &lt;kohsuke&gt;</span> The idea is to go to some local meetups and present Jenkins, and we'll help
+<a name="l-189"></a><span class="tm">19:35:23</span><span class="nk"> &lt;rtyler&gt;</span> I'm willing to help organize such a program as part of my regular evangelism duties
+<a name="l-190"></a><span class="tm">19:35:32</span><span class="nk"> &lt;imod&gt;</span> sure I would
+<a name="l-191"></a><span class="tm">19:35:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> why don't we plan/prepare this stuff during Dec.
+<a name="l-192"></a><span class="tm">19:36:01</span><span class="nk"> &lt;rtyler&gt;</span> then try to launch the program in 2012 before SCALE
+<a name="l-193"></a><span class="tm">19:36:15</span><span class="nk"> &lt;kohsuke&gt;</span> sure
+<a name="l-194"></a><span class="tm">19:36:25</span><span class="nk"> &lt;rtyler&gt;</span> slide deck, X many stickers and blammo you're part of the CIA
+<a name="l-195"></a><span class="tm">19:36:33</span><span class="nk"> &lt;imod&gt;</span> keep us unto date and let us know if you need help
+<a name="l-196"></a><span class="tm">19:36:39</span><span class="nk"> &lt;hare_brain&gt;</span> No background check? ;)
+<a name="l-197"></a><span class="tm">19:36:41</span><span class="nk"> &lt;rtyler&gt;</span> maybe t-shirts for those who organize meetups or go speak at UGs?
+<a name="l-198"></a><span class="tm">19:36:53</span><span class="nk"> &lt;aheritier&gt;</span> @rtyler : not yet sure but I will try
+<a name="l-199"></a><span class="tm">19:37:35</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, I'll check with the usual sponsor.  I think agent only T-shirts would be a great incentive
+<a name="l-200"></a><span class="tm">19:38:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler, kohsuke, and imod to try to plan/prepare the program during Dec, before SCALE</span>
+<a name="l-201"></a><span class="tm">19:38:14</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's it on this.
+<a name="l-202"></a><span class="tm">19:38:21</span><span class="nk"> &lt;kohsuke&gt;</span> moving on
+<a name="l-203"></a><span class="tm">19:38:22</span><span class="nk"> &lt;rtyler&gt;</span> \o
+<a name="l-204"></a><span class="tm">19:38:31</span><span class="nk"> &lt;Majost&gt;</span> What help do you need for SCALE?
+<a name="l-205"></a><span class="tm">19:38:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">Majost:</span> we'll discuss later
+<a name="l-206"></a><span class="tm">19:38:40</span><span class="nk"> &lt;Majost&gt;</span> np
+<a name="l-207"></a><span class="tm">19:38:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS</span>
+<a name="l-208"></a><span class="tm">19:38:53 </span><span class="nka">* rtyler</span> <span class="ac">pokes vjuranek</span>
+<a name="l-209"></a><span class="tm">19:38:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/LTS+1.424.x+RC+Testing</span>
+<a name="l-210"></a><span class="tm">19:39:13</span><span class="nk"> &lt;vjuranek&gt;</span> so, from my point of view tests are done, we can release 1.424.1
+<a name="l-211"></a><span class="tm">19:39:31</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-212"></a><span class="tm">19:39:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/nMg36fR_QFA</span>
+<a name="l-213"></a><span class="tm">19:39:42</span><span class="nk"> &lt;swankier&gt;</span> hi there.  I just setup a rather complex project that has many intermodule dependencies.  Often times downstream projects will fail to compile without any code changes in them.  No blame emails get sent, and the console (while it has the compile message) has no commit information.
+<a name="l-214"></a><span class="tm">19:39:47</span><span class="nk"> &lt;vjuranek&gt;</span> as I mentioned on dev list, other backports should IMHO go to 1.424.2
+<a name="l-215"></a><span class="tm">19:39:52</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-216"></a><span class="tm">19:40:05</span><span class="nk"> &lt;imod&gt;</span> +1
+<a name="l-217"></a><span class="tm">19:40:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">swankier:</span> we're right in the middle of a meeting, give us a few minuts to finish this off
+<a name="l-218"></a><span class="tm">19:40:40</span><span class="nk"> &lt;imod&gt;</span> ….if we get pull 316 into 1.424.2 :)
+<a name="l-219"></a><span class="tm">19:40:56</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so I think we have a consensus for 1.424.1. It's a GO
+<a name="l-220"></a><span class="tm">19:41:18</span><span class="nk"> &lt;swankier&gt;</span> yessir
+<a name="l-221"></a><span class="tm">19:41:24</span><span class="nk"> &lt;kohsuke&gt;</span> Any objections?
+<a name="l-222"></a><span class="tm">19:41:44</span><span class="nk"> &lt;rtyler&gt;</span> FIRE ZE MISSILES!
+<a name="l-223"></a><span class="tm">19:41:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">1.424.1 will ship as it is now, and other fixes will be in 1.424.2</span>
+<a name="l-224"></a><span class="tm">19:42:22</span><span class="nk"> &lt;kohsuke&gt;</span> I haven't really read pull #316 yet, but does it have security implications beyond m2release?
+<a name="l-225"></a><span class="tm">19:42:38</span><span class="nk"> &lt;imod&gt;</span> no, its only for the m2release
+<a name="l-226"></a><span class="tm">19:42:44</span><span class="nk"> &lt;kohsuke&gt;</span> maybe I should contact James offline to understand it better
+<a name="l-227"></a><span class="tm">19:43:05</span><span class="nk"> &lt;imod&gt;</span> although it opens other possibilities for plugins too
+<a name="l-228"></a><span class="tm">19:43:08</span><span class="nk"> &lt;kohsuke&gt;</span> Because I believe we've been refraining from adding new APIs in LTS intentionally
+<a name="l-229"></a><span class="tm">19:43:22</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway, I think I'm probably side tracking
+<a name="l-230"></a><span class="tm">19:43:28</span><span class="nk"> &lt;imod&gt;</span> I understand, but this one is really a bummer
+<a name="l-231"></a><span class="tm">19:43:34</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-232"></a><span class="tm">19:43:52</span><span class="nk"> &lt;teilo_&gt;</span> (james is kicking around)
+<a name="l-233"></a><span class="tm">19:44:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">teilo_:</span>  if you can hang around for 10 more minues, maybe we can wrap up this meeting first and then talk about it?
+<a name="l-234"></a><span class="tm">19:44:43</span><span class="nk"> &lt;hare_brain&gt;</span> Settle on next meeting and wrap?
+<a name="l-235"></a><span class="tm">19:44:44</span><span class="nk"> &lt;teilo_&gt;</span> (offline is good - As I will want you to change hat also)
+<a name="l-236"></a><span class="tm">19:44:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">teilo_:</span>  ok, will do.
+<a name="l-237"></a><span class="tm">19:45:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> yes
+<a name="l-238"></a><span class="tm">19:45:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-239"></a><span class="tm">19:45:24</span><span class="nk"> &lt;rtyler&gt;</span> one more before the new year!
+<a name="l-240"></a><span class="tm">19:45:45</span><span class="nk"> &lt;hare_brain&gt;</span> 14th?
+<a name="l-241"></a><span class="tm">19:45:54</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-242"></a><span class="tm">19:46:06</span><span class="nk"> &lt;rtyler&gt;</span> I'm down
+<a name="l-243"></a><span class="tm">19:46:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting will be Dec 14th, same time as this week</span>
+<a name="l-244"></a><span class="tm">19:46:44</span><span class="nk"> &lt;kohsuke&gt;</span> and I think that's it.
+<a name="l-245"></a><span class="tm">19:46:47</span><span class="nk"> &lt;hare_brain&gt;</span> Looking at next year, if we go back to our original biweekly schedule, the first meeting would be on the 4th. Not sure everyone would be back by then.
+<a name="l-246"></a><span class="tm">19:47:10</span><span class="nk"> &lt;hare_brain&gt;</span> So it seems like we're on a new two-week schedule following today and the 14th, then probably the 11th is the first meeting of the new year.
+<a name="l-247"></a><span class="tm">19:47:19 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-248"></a><span class="tm">19:47:34</span><span class="nk"> &lt;kohsuke&gt;</span> sounds good
+<a name="l-249"></a><span class="tm">19:47:40</span><span class="nk"> &lt;hare_brain&gt;</span> Everyone reset their recurring meetings. ;)
+<a name="l-250"></a><span class="tm">19:47:41</span><span class="nk"> &lt;rtyler&gt;</span> bring us home kk
+<a name="l-251"></a><span class="tm">19:48:06</span><span class="nk"> &lt;kohsuke&gt;</span> OK, thanks for everyone (and in particular vjuranek for the hard work on LTS)
+<a name="l-252"></a><span class="tm">19:48:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

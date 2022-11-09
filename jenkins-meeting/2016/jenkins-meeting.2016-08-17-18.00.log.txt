@@ -1,0 +1,144 @@
+18:00:18 <danielbeck> #startmeeting
+18:00:18 <robobutler> Let the Jenkins meeting commence!
+18:00:38 <danielbeck> #chair kohsuke rtyler
+18:00:38 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:59 <danielbeck> Agenda today: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-August17meeting
+18:01:07 <kohsuke> Tyler said he might be late, so let's get this going
+18:01:11 <danielbeck> #topic Recap last meeting's actions
+18:01:18 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-08-03-18.01.html
+18:01:28 * rtyler waves
+18:01:33 <kohsuke> oh you are here
+18:01:42 <rtyler> wildly unprepared, so you drive this time
+18:01:44 <danielbeck> kohsuke has posted 2.7.2, and oleg-nenashev has posted the POM, so those are done
+18:01:54 <kohsuke> so 2.7.2 is posted
+18:02:15 <danielbeck> Can we move on?
+18:02:17 <oleg-nenashev> We will likely need pom 2.14 (CC jglick)
+18:02:25 <oleg-nenashev> off-topic
+18:02:40 <kohsuke> danielbeck: go on
+18:02:42 <danielbeck> #topic LTS status check
+18:02:49 <danielbeck> ogondza your turn
+18:03:08 <ogondza> I am going through issues reported by oleg
+18:03:29 <ogondza> stephen around?
+18:03:34 <oleg-nenashev> nopr
+18:03:41 <kohsuke> stephen is on vacation
+18:03:49 <danielbeck> what issues are those?
+18:03:51 <ogondza> I guess I still do not understand what is so pressing about https://issues.jenkins-ci.org/browse/JENKINS-37315
+18:04:07 <oleg-nenashev> I can explain
+18:04:17 <ogondza> danielbeck: https://groups.google.com/d/msg/jenkinsci-dev/KY6AVXyTAAU/nnWBl7EMBwAJ
+18:04:36 <oleg-nenashev> 10% of LTS instances now get JNLP3 protocol, which has many known issues
+18:04:49 <oleg-nenashev> We have enabled it for A/B testing only
+18:05:03 <oleg-nenashev> And we unlikely want LTS users to perform A/B testing
+18:05:25 <kohsuke> Are those issues getting fixed in the mainline?
+18:05:53 <kohsuke> oh it's basically just turned off completely in mainline
+18:06:03 <ogondza> we have been A/B testing it since https://github.com/jenkinsci/jenkins/commit/b1e3f6fdd2095d17293ce2c9b26e40ea98380d73
+18:06:05 <danielbeck> oleg-nenashev Why are you referencing the issue introduced in 2.16 that is almost certainly unrelated to any backports in a thread about the LTS line?
+18:06:15 <oleg-nenashev> kohsuke: We fixed some issues in remoting 2.60 and 2.62
+18:06:33 <ogondza> 1.653 that is
+18:06:36 <danielbeck> oleg-nenashev I assume that last line refers to the file locking issue
+18:06:42 <ogondza> also, the impact as I understand it is minimal
+18:07:00 <oleg-nenashev> Do we mess up remoting and other issues now? I'm lost
+18:07:46 <oleg-nenashev> ogondza: Not sure. Broken header impact about 20% of connection attempts IIRC
+18:08:10 <ogondza> but with a fallback people do not even notice, right?
+18:08:45 <ogondza> (the seemingly trivial fix brings in more non-trivial patches we do not want for sure)
+18:08:51 <oleg-nenashev> Nope. Sometime JNLP3 goes into the infinite loop and hangs
+18:09:18 <oleg-nenashev> Also JNLP3 has no NIO and causes more load and threads on the master
+18:09:33 <oleg-nenashev> So I would vote for just disabling A/B testing in LTS
+18:09:43 <kohsuke> This seems like we can go both ways - one one hand, there's no harm turning this off for LTS users, but OTOH there just aren't that many actual report of these problems AFAICT
+18:09:49 <oleg-nenashev> If we want to continue it in weekly releases, I'm fine
+18:09:59 <kohsuke> ogondza: what's your cocnern for letting this change in?
+18:10:22 <ogondza> I was not aware of most of this issues. Thanks Oleg
+18:10:27 <ogondza> these*
+18:10:59 <ogondza> #action get JENKINS-37315 integrated
+18:11:37 <ogondza> Ok, this one is in
+18:11:47 <oleg-nenashev> ogondza: I can provide a full list to justify it
+18:11:55 <oleg-nenashev> At least for changelogs
+18:12:26 <oleg-nenashev> Then, remoting version pick-up
+18:12:27 <ogondza> no need to
+18:12:30 <ogondza> right
+18:12:54 <oleg-nenashev> #info Proposed changes - remoting 2.61 and 2.62: JENKINS-21486
+18:12:58 <oleg-nenashev> crap
+18:13:22 <oleg-nenashev> #info Proposed changes - remoting 2.61 and 2.62: Jhttps://github.com/jenkinsci/remoting/blob/stable-2.x/CHANGELOG.md
+18:13:44 <oleg-nenashev> All of them are more or less safe, but they do not match the 2-week criteria
+18:13:53 <kohsuke> anything else here/
+18:14:18 <kohsuke> ?
+18:14:25 <oleg-nenashev> kohsuke: if we go through each proposed change, then yes
+18:14:28 <danielbeck> 2.62 is safe?
+18:14:30 * rtyler makes cricket sounds
+18:14:36 <danielbeck> With a PR too long for GitHub to show?
+18:14:57 <oleg-nenashev> danielbeck: It's not in 2.62
+18:15:11 <oleg-nenashev> It's in master, which is about becoming 3.0 at some point
+18:15:15 <danielbeck> oleg-nenashev In that case https://github.com/jenkinsci/remoting/blob/stable-2.x/CHANGELOG.md is lying
+18:15:43 <danielbeck> It references PR 92
+18:15:45 <danielbeck> which is JNLP4
+18:16:19 <danielbeck> Seems like a wrong PR reference, doesn't match description
+18:16:27 <oleg-nenashev> yes, wrong link
+18:17:39 <danielbeck> to be honest these changes look a bit more extensive than I'd be comfortable with, especially given the role of remoting
+18:17:44 <danielbeck> luckily it's not my call =)
+18:17:50 <oleg-nenashev> https://github.com/jenkinsci/remoting/compare/remoting-2.60...stable-2.x
+18:18:07 <oleg-nenashev> Actually I'm fine if we exclude it from .3
+18:18:23 <oleg-nenashev> Ones who want more stable remoting can build their own .4
+18:18:38 <ogondza> That is what i suggest
+18:18:50 <oleg-nenashev> So we keep 2.60?
+18:18:51 <ogondza> I would hesitate if it ware .1 but not now
+18:18:55 <ogondza> yes
+18:19:03 <oleg-nenashev> agreed
+18:19:23 <oleg-nenashev> other proposed changes are minor FindBugs nitpicks
+18:19:42 <jglick> Can you not cherry-pick the desired change only and cut a special release of remoting?
+18:19:58 <jglick> (maybe I missed something)
+18:20:35 <danielbeck> IIRC we try not to do that because it's an untested configuration in LTS
+18:20:41 <ogondza> so it is https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.7.2-fixed plus  JENKINS-37315
+18:20:43 <oleg-nenashev> jglick: Actually the most important change is also the most dangerous one
+18:20:49 <ogondza> agree with Daniel
+18:21:01 <jglick> OK (2×)
+18:21:35 <ogondza> this was a long one. Thank you, I am done
+18:21:52 <danielbeck> So, no https://issues.jenkins-ci.org/browse/JENKINS-31791 ?
+18:22:12 <danielbeck> Too unsafe?
+18:22:30 <danielbeck> ( oleg-nenashev mentioned it in the email)
+18:23:07 <ogondza> too unsafe and too new
+18:23:28 <ogondza> I would be ok with one of those but not both
+18:23:28 <danielbeck> okay
+18:23:38 <danielbeck> well, it has been in two releases… :-)
+18:23:57 <danielbeck> Shall we move on?
+18:24:08 <oleg-nenashev> Anyway 2.x.1 is gonna to contain much more fixes
+18:24:17 <oleg-nenashev> And not so many features
+18:25:08 <danielbeck> ogondza Will you be able to post the RC today? Or are we delayed due to backports?
+18:25:24 <ogondza> danielbeck: likely tomorrow (CEST)
+18:25:40 <ogondza> why?
+18:25:46 <danielbeck> just asking
+18:25:56 <danielbeck> so I know when to start poking :)
+18:26:13 <ogondza> It is getting late around here ...
+18:26:22 <ogondza> moving on
+18:26:28 <oleg-nenashev> so let's move on then
+18:26:37 <danielbeck> #action ogondza to post 2.7.3 RC
+18:26:41 <danielbeck> #topic GSoC status check
+18:26:48 <danielbeck> oleg-nenashev time to paste some text!
+18:27:24 <oleg-nenashev> #info: We have announced Online Meetup for GSoC project presentations by students: https://www.meetup.com/Jenkins-online-meetup/events/233378586/
+18:27:51 <oleg-nenashev> #info rtyler and mda14 will be delegates at the GSoC Mewtor Summit
+18:28:41 <oleg-nenashev> #info oleg-nenashev and lanwen will try to get there via global Green Card lottery (aka Wait List)
+18:29:23 <oleg-nenashev> #info GSoC ends on the next week
+18:29:44 <oleg-nenashev> #info alexsomai will also present his project at Jenkins World
+18:29:54 <oleg-nenashev> That's all from me
+18:30:17 <rtyler> \o/
+18:30:36 <danielbeck> Well, good luck to you two
+18:30:52 <kohsuke> It's done in the next week, I didn't know!
+18:30:58 <kohsuke> Congrats
+18:31:01 <danielbeck> anything else we should discuss?
+18:31:23 <danielbeck> kohsuke You'll of course watch the presentations on 25th, right?
+18:31:53 <oleg-nenashev> alexsomai Any updates from you?
+18:31:57 <kohsuke> I should be able to
+18:32:04 <alexsomai> I don't any any
+18:32:14 <alexsomai> I am planning to release the External Workspace Manager Plugin this week
+18:32:23 <alexsomai> don't have any*
+18:32:41 <oleg-nenashev> #info https://github.com/jenkinsci/external-workspace-manager-plugin/
+18:32:49 <alexsomai> and I invite you to watch the presentation, I have many features to show :)
+18:33:45 <danielbeck> let's move on
+18:33:52 <danielbeck> #topic next meeting
+18:33:57 <danielbeck> Aug 31st
+18:34:08 <danielbeck> That's not yet a DST change date anywhere, right?
+18:34:26 * oleg-nenashev wishes to move meetings to UTC
+18:34:35 <kohsuke> No, I don't think so
+18:34:47 <danielbeck> oleg-nenashev Put it on next meeting's agenda
+18:34:54 <oleg-nenashev> okay
+18:35:04 <danielbeck> Alright, then same time same place two weeks from today
+18:35:07 <danielbeck> thanks everyone!
+18:35:09 <danielbeck> #endmeeting

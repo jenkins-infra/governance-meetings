@@ -1,0 +1,266 @@
+18:00:05 <rtyler> #startmeeting
+18:00:05 <robobutler> Let the Jenkins meeting commence!
+18:00:11 <rtyler> #chair danielbeck kohsuke hare_brain
+18:00:11 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:00:36 <rtyler> #topic Recap last meeting's actiona
+18:00:42 <rtyler> oops *shrug*
+18:01:17 <rtyler> danielbeck:  I can't speak for you, but I know I haven't had the time to see what amount of OSI-compliance enforcement we can do in Artifactory or elsewhere
+18:01:27 <danielbeck> me neither
+18:01:28 <rtyler> wrt "whether we can ensure OSI-licensed code is being distributed "all the way down" for plugins to comply with governance document guidelines around proprietary code in plugins
+18:01:44 <rtyler> I'm going to go ahead and file an INFRA ticket so this doesn't get lost
+18:01:49 <danielbeck> right
+18:01:58 <danielbeck> I also didn't tell the guy
+18:02:29 <rtyler> heh
+18:02:31 <rtyler> can you plz
+18:02:47 <danielbeck> I will
+18:02:54 <rtyler> https://issues.jenkins-ci.org/browse/INFRA-1085 FWIW
+18:03:14 <rtyler> ogondza: I'm assuming you pushed the 2.32.3 RC?
+18:03:21 <ogondza> yes
+18:03:28 <rtyler> yay
+18:03:34 <rtyler> #topic LTS status check
+18:04:08 <ogondza> The testing is done< have heard no complains
+18:04:30 <oleg-nenashev> I have been running it for more than 1 week. LGTM
+18:04:50 <ogondza> oleg-nenashev: dogfooding it?
+18:04:54 <oleg-nenashev> yep
+18:05:01 <rtyler> when would 2.32.3 be pushed then?
+18:05:03 <danielbeck> om nom
+18:05:14 <ogondza> today
+18:05:18 * oleg-nenashev finally has a reasonably big Jenkins instance for testing
+18:05:26 <ogondza> #action kohsuke please push 2.32.3
+18:05:29 <kohsuke> so the release is good to go
+18:05:59 <rtyler> anything else on this topic we should cover?
+18:06:10 <ogondza> not from me
+18:06:23 * ogondza excited about the next one
+18:06:29 <rtyler> #topic Pick a new LTS baseline
+18:06:32 <oleg-nenashev> I think we need a version older than 2.47 due to Groovy 2.4.8
+18:06:33 <rtyler> https://jenkins.io/changelog/
+18:06:54 <danielbeck> oleg-nenashev one of the storm votes is me, and I think the cloud vote is you?
+18:07:07 <oleg-nenashev> yes, it's mine
+18:07:18 <ogondza> what does "Do not use this version if you are running Pipeline builds unless you also update Pipeline: Groovy to 2.28 or higher." mean?
+18:07:32 <oleg-nenashev> But we have a confirmed bug, and Pipeline plugins need to be updated
+18:07:32 <ogondza> is it refering to that jenkins version or all previous versions?
+18:07:38 <danielbeck> ogondza https://issues.jenkins-ci.org/browse/JENKINS-42189
+18:07:43 <danielbeck> ogondza that version specifically
+18:07:50 <danielbeck> oleg-nenashev can be covered by upgrade guide
+18:07:55 <jglick> ogondza: the Groovy upgrade broke `workflow-cps`
+18:08:05 <jglick> Fix is released in `workflow-cps`.
+18:08:26 <danielbeck> So FWIW watchers on JENKINS-42189 are the reporter and "us"
+18:08:33 <oleg-nenashev> danielbeck: But can be be sure this is the only introduced issue in Groovy?
+18:08:53 <danielbeck> oleg-nenashev no but JENKINS-42189 isn't a big enough deal to base anything on
+18:08:54 <oleg-nenashev> The update was 10 days ago, maybe there are other regressions we have not seen
+18:09:17 <danielbeck> oleg-nenashev If we say "We are concerned more things could break", that's fine -- but what we've seen so far seems like no big deal
+18:10:02 <oleg-nenashev> My opinion is not that strong
+18:10:03 <jglick> Well. I disagree it is not a big deal. But there is a released fix. So I do not consider that a blocker for using 2.47.
+18:10:14 <danielbeck> jglick … based on actual user feedback
+18:10:20 <rtyler> imho 2.47 with appropriate backports would be good
+18:10:45 <oleg-nenashev> why not 2.48 then? No major changes
+18:10:52 <jglick> What would “appropriate backports” be rtyler?
+18:10:53 <danielbeck> if we choose 2.47 we could as well go with 2.48 and pick up the new URLs. everything there was pretty minor
+18:10:58 <oleg-nenashev> And it allows to pick the jenkins.io redirects
+18:11:32 <danielbeck> I think the big decision here is between 2.46 and 2.48, based on our confidence in the Groovy upgrade
+18:11:32 <rtyler> jglick: wasn't there a core change around the groovy thing, or was that just the pipeline plugin updates?
+18:12:03 <oleg-nenashev> The root cause was in the core
+18:12:06 <jglick> rtyler: 2.47 updated Groovy in core. `workflow-cps` needed an update to avoid regressing.
+18:12:07 <kohsuke> Isn't 2.48 too new?
+18:12:34 <ogondza> a bit too new
+18:12:39 <rtyler> jglick: and we would have no way of guarding against core upgrades without a plugin upgrade then right?
+18:12:41 <oleg-nenashev> according to the previous practices, it's "too new" of course
+18:12:46 <danielbeck> https://github.com/jenkinsci/jenkins/compare/jenkins-2.47...jenkins-2.48 has nothing but URL changes
+18:13:00 <danielbeck> s/nothing/barely anything
+18:13:01 <rtyler> danielbeck: that's not what the changelog says
+18:13:03 <rtyler> heh
+18:13:23 <danielbeck> and FWIW most of the stuff would be lts-candidate anyway IMO
+18:13:38 <danielbeck> so if we'd choose 2.47 + backports we could as well do 2.48
+18:13:42 <oleg-nenashev> Likely yes, including remoting 3.5
+18:13:53 <ogondza> I would be more comfortable with 2.46 given the groovy bump does not address anything critical
+18:13:56 <jglick> danielbeck: `DownloadFromURLInstaller` change is nontrivial
+18:14:18 <ogondza> we know it broke single plugin that is in the spotlight - god know what else got broken
+18:14:35 <jglick> As is the `ListView` change.
+18:14:49 <danielbeck> so… 2.46 then?
+18:14:51 <ogondza> s/what else/how man other plugins/
+18:15:06 <oleg-nenashev> I would prefer 2.46
+18:15:13 <jglick> ogondza: FWIW I doubt the Groovy upgrade would have affected other plugins. Pipeline is just pretty special.
+18:15:19 <rtyler> what would backport from 2.47 to 2.46 then?
+18:15:29 <rtyler> the windows service restart thing looks kind of notable
+18:15:41 <ogondza> and remoting
+18:15:42 <oleg-nenashev> +/-
+18:15:53 <jglick> #info https://github.com/jenkinsci/jenkins/compare/jenkins-2.46...jenkins-2.47
+18:16:04 <oleg-nenashev> Windows has some potentially dangerous changes inside
+18:16:10 <ogondza> essentially the rest of .47 sounds safe from my pow
+18:16:10 <danielbeck> if I manage to bribe ogondza, the redirect URLs 8)
+18:16:19 <rtyler> ogondza: from my perspective if you're comfortable with 2.46 and backporting from 2.47 the good bits, I'm +1 on 2.46
+18:16:49 <danielbeck> I think 2.46 is acceptable to everyone here?
+18:16:55 <oleg-nenashev> +1
+18:17:01 <kohsuke> +1
+18:17:04 <teilo> so memory leak issue sounds serious.  would that be a bckport candidate for .2 then?
+18:17:09 <danielbeck> for backports from newer releases we also still have two more weeks for soaking
+18:17:12 <teilo> (which seems more risky to me)
+18:17:31 <jglick> oleg-nenashev: was `remoting` 3.5 really in 2.47?
+18:17:35 <danielbeck> teilo probably not, it's a pretty big minor upgrade to groovy AFAICT
+18:17:42 <oleg-nenashev> jglick: yes IIRC. Checking
+18:17:50 <jglick> oh, in root `pom.xml`, nvm
+18:18:05 <danielbeck> (at least until KK's core change lands then we can just patch in whatever we want into LTS…)
+18:18:54 <rtyler> as far as I can tell everybody is agreeing on 2.46 as a starting point
+18:19:00 <oleg-nenashev> yes, remoting upgrade will be the lts-candidate
+18:19:01 <rtyler> the specific backports is an exercise for another time IMO
+18:19:04 <danielbeck> #agree 2.46 is the next LTS baseline
+18:19:12 <danielbeck> (or is it #agreed?)
+18:19:18 <ogondza> seems so
+18:19:21 <rtyler> I never remember
+18:19:38 <danielbeck> according to http://meetbot.debian.net/Manual.html#commands both work
+18:19:46 <rtyler> #topic The future of the patron program
+18:19:52 <rtyler> danielbeck: you're up buckaroo
+18:20:06 <oleg-nenashev> #info: https://groups.google.com/forum/#!topic/jenkinsci-dev/-FwdQ-nw7Mc
+18:20:21 <danielbeck> thanks oleg-nenashev was looking for that
+18:20:45 <danielbeck> basically, we have the patron program in which substantial donations to the project let donors show messages on the wiki
+18:21:11 <rtyler> alyssat_: didn't a number of patrons stop renewing recently?
+18:21:23 <alyssat_> yes 2
+18:21:42 <alyssat_> but that can change every quarter
+18:21:42 <rtyler> how many active patrons do we currently have?
+18:21:53 <alyssat_> at the moment is 1
+18:22:04 <rtyler> heh
+18:22:12 <danielbeck> however, recently we started moving content off the wiki -- quite a bit of user documentation and project documentation are already on jenkins.io, developer documentation will be soon, there's plugins.jenkins.io -- so the usefulness to everyone of the current implementation seems questionable
+18:22:13 <rtyler> we're crushing it guise
+18:22:25 <oleg-nenashev> in the current state patroning does not make sense of course
+18:22:44 <danielbeck> so I propose we either step it up, including issue tracker and/or site, or stop the program
+18:22:48 <rtyler> alyssat_: who its the current patron?
+18:22:58 <danielbeck> JFrog
+18:23:01 <kohsuke> See https://github.com/jenkins-infra/patron/blob/master/messages.xml
+18:23:11 <alyssat_> yes JFrog.
+18:23:29 <alyssat_> CloudBees and XebiaLabs are the 2 on pause at the moment
+18:23:36 <kohsuke> danielbeck: is it true that the exposure has decreased? That's something measurable
+18:24:12 <rtyler> kohsuke: it doesn't matter, we're proactively moving key content from the wiki elsewhere
+18:24:25 <danielbeck> kohsuke not what I'm saying -- I'm sure the wiki is doing fine. But as we move content out of it, seems weird to limit this to the wiki
+18:24:46 <danielbeck> FWIW I also expect the wiki to be visited a lot more since we started this
+18:25:31 <danielbeck> but I haven't checked -- I just noticed that the wiki is no longer where docs go by default, so having that be the one location for the patron program seems weird
+18:26:16 <kohsuke> Okay, then what's the motivation for us? The agenda says  "It doesn't make sense in its current form with the wiki slowly getting replaced", which I took it as "we are no longer giving patrons what they think they are getting, so it cannot continue as-is"
+18:26:32 <kohsuke> But I guess that's not it?
+18:26:34 <rtyler> patron*
+18:26:35 <rtyler> :P
+18:27:14 <kohsuke> Is the point more like "we only have one patron now and maybe it's not worth the effort"?
+18:27:17 <rtyler> I'm on the same wave-length as danielbeck here, I think we should shutter the patron program, or retool it to expose patron content across more properties
+18:27:35 <rtyler> the latter option to me only makes sense if we were going to see more than one patron come back
+18:27:39 <danielbeck> kohsuke even if the absolute numbers are up from when we started this, I expect the relative numbers (all page views or however this is measured) to be lower, and keep getting lower, as documentation lives on jenkins.io, GitHub, etc.
+18:28:10 <oleg-nenashev> I would rather vote for second if we can do it more or less easily (e.g. Documentation and Blog pages)
+18:29:50 <rtyler> at this point, I would like to not-volunteer to do the design work necessary to make those ugly little boxes fit seamlessly into jenkins.io or JIRA :P
+18:30:07 <kohsuke> I guess I don't understand why the relative number matters, especially if we are not hearing from patrons themselves that this is a problem.
+18:30:26 <kohsuke> We seem to think the actual exposure is getting bigger because the total pie is getting bigger
+18:30:40 <danielbeck> kohsuke well, we're down to one right now…
+18:30:56 <rtyler> kohsuke: how much of 2017 revenue can we expect from the patron program?
+18:31:15 <kohsuke> If the point is "the whole thing is not worth it if just for one patron" that's something I understand, and I asked that above
+18:31:19 <alyssat_> at minimum we could have 1 patron a quarter
+18:31:50 <rtyler> this is another thing that invariably danielbeck, alyssat_, and I seem to end up maintaining, and if it's not putting money in the bank, I would rather have less of these superfluous things to do
+18:32:49 <kohsuke> So I don't have the exact tally but the donations from patron represents a large percentage of the total donations
+18:33:06 <kohsuke> OTOH it's not that we are in need of money ATM, and in the past when we did some fundraising drive, the community responded well
+18:33:19 <danielbeck> right, but according to rtyler we have costs of ~2k per year and have >20k in the bank
+18:33:36 <rtyler> danielbeck: can we punt this perhaps until next time and collect better numbres and provide a clearer proposal on shuttering or retooling?
+18:33:42 <danielbeck> although I only have treasurer reports from SPI, so that's an incomplete picture
+18:34:04 <kohsuke> I'll provide the numbers for 2016 & 2015
+18:34:20 <danielbeck> alyssat_ any idea when patrons typically donate? Do we have 2 weeks before that?
+18:34:25 <rtyler> #action kohsuke to provide treasury numbers for 2015 and 2016
+18:34:36 <kohsuke> It's not like we are getting donations in 100s
+18:34:46 <alyssat_> danielbeck: sometimes it right before the quarter
+18:35:09 <alyssat_> not necessarily 2 wks before
+18:35:29 <danielbeck> okay
+18:35:46 <danielbeck> perhaps we can manage to conclude this on the dev list anyway once we have more info
+18:36:13 <danielbeck> shall we move on?
+18:36:18 <rtyler> #action danielbeck to drive the patron program discussion further on the dev list for now
+18:36:36 <rtyler> #topic Obtain clearance on trademark usage "CloudBees Jenkins X"
+18:36:57 <rtyler> Some context from way back when, from the first time we first discussed the trademark approvals for CloudBees
+18:37:10 <rtyler> #info kohsuke's original trademark grant proposal https://gist.github.com/kohsuke/573cb5620fcc25c9e5c0
+18:37:29 <rtyler> #info the meeting where we discussed it http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-11-26-19.13.log.html#l-66
+18:37:44 <rtyler> #info and of course the wiki page covering current usages https://wiki.jenkins-ci.org/display/JENKINS/Approved+Trademark+Usage
+18:38:05 <kohsuke> this wasn't really a proposal from me, it was my attempt to capture the consensus during the meeting so that we can put this motion to a vote, which passed
+18:38:25 <rtyler> okie
+18:39:04 <rtyler> the proposal that alyssat_ and I wanted to put forward was to grant CloudBees more leeway on renaming and switching their marketing around the use of "CloudBees Jenkins $Foo"
+18:39:23 <danielbeck> rtyler for non-empty $Foo ?
+18:39:33 <rtyler> I would add, with much stronger enforcement of our trademark guidelines, which CloudBees Marketing has been doing better with since two meetings ago
+18:39:42 <rtyler> danielbeck: good question!
+18:39:58 <oleg-nenashev> It still may be "CloudBees Jenkins Open-Source Solution" or "CloudBees Jenkins Automation Server"
+18:40:10 <rtyler> alyssat_: I think restricting the grant from a bare "CloudBees Jenkins" is a good restriction, what do you think
+18:40:25 <rtyler> as in, it *must* always be CloudBees Jenkins Something
+18:40:35 <alyssat_> +1
+18:41:07 <oleg-nenashev> -1 on such proposal if there is no blacklisted names defined by the community
+18:41:24 <rtyler> #info the proposal is then to loosen the restriction on approved trademark usage for "CloudBees Jenkins $X" with no allowance for bare "CloudBees Jenkins"
+18:41:28 <rtyler> oleg-nenashev: blacklisted names?
+18:41:39 <danielbeck> rtyler <oleg-nenashev>	It still may be "CloudBees Jenkins Open-Source Solution" or "CloudBees Jenkins Automation Server"
+18:41:39 <oleg-nenashev> rtyler: See the examples above
+18:42:14 <rtyler> hm
+18:42:59 <alyssat_> "CloudBees Jenkins Open-Source Solution" there seems contradiction in this name :P
+18:43:04 <rtyler> hebh
+18:43:10 <rtyler> I think oleg-nenashev's point is valid
+18:43:51 <oleg-nenashev> I would prefer "CloudBees Jenkins Enterprise .*" or whatever else. Just to have additional word
+18:44:06 <oleg-nenashev> Or a blacklist from our side
+18:44:36 <danielbeck> As security officer, I don't think blacklists are great
+18:44:49 <rtyler> so how about we say "no using phrase 'open source' and if verbiage may result in user confusion between Jenkins and CloudBees Jenkins X, CLoudBees has the responsibility to proactive discuss in a project meeting?"
+18:44:54 <rtyler> danielbeck: heh
+18:45:02 <teilo> yeah CloudBees Jenkins Rules :)
+18:45:14 <oleg-nenashev> does not make difference compared to the current approach
+18:45:20 <rtyler> oleg-nenashev: sure it does
+18:45:57 <rtyler> "CloudBees Jenkins Engineer" was what originally motivated this discussion between alyssat_ and I
+18:46:10 <rtyler> CloudBees Jenkins Training is something else I can imagine
+18:46:31 <oleg-nenashev> "CloudBees Jenkins Engineer" is a member of "CloudBees Jenkins Team", right? :D
+18:46:41 <rtyler> heh
+18:46:50 <danielbeck> rtyler there is no meta-term for "all the things CloudBees sell" is there? So it could just be CloudBees Jenkins Metaterm Engineer?
+18:46:52 <teilo> Hmm the latter isnlt a violation if you use the apostophe "CLoudBees' Jenkins Training"
+18:46:58 <kohsuke> BTW those certification related name usages are discussed as a part of the certification discussion in this venue
+18:47:02 <teilo> and a small "t"
+18:47:26 * rtyler facepalms
+18:47:39 <rtyler> teilo: always nice to have you awake for these :P
+18:48:47 <oleg-nenashev> So, what would be the proposal then?
+18:48:53 <kohsuke> I don't think we are going to resolve this in the remaining 12 minutes. I suggest we move on
+18:49:10 <danielbeck> I think the GSoC update is quick :-/
+18:49:10 <rtyler> #action rtyler to come up with a more concrete proposal based on this meeting's feedback
+18:50:07 <rtyler> oleg-nenashev: I'll have to think of how to properly define updated guidance in a way that gives CloudBees some leeway while avoiding confusion and potentials for abuse of the Jenkins trademark
+18:50:26 <oleg-nenashev> rtyler: thanks!
+18:50:31 <rtyler> #topic GSoC 2017 update
+18:50:42 <oleg-nenashev> #info Jenkins project has NOT been accepted to GSoC 2017. We are waiting for the feedback from Google about the decision reasons
+18:50:58 <kohsuke> Ouch, that's too bad
+18:51:09 <rtyler> the responsibility rests on us here
+18:51:15 <rtyler> I sent org admins some thoughts already
+18:51:27 <oleg-nenashev> #info After dozens of emails and blog posts we got 3 project ideas
+18:51:31 <rtyler> IMHO we didn't deserve GSoC, we had lackluster participation by potential mentors
+18:51:46 <oleg-nenashev> agreed
+18:52:11 <kohsuke> I just want to thank oleg-nenashev for the effort he put into this year's submission
+18:52:20 <rtyler> ditto
+18:52:27 <oleg-nenashev> thanks!
+18:52:27 <rtyler> we did put together a good proposal
+18:52:36 <oleg-nenashev> though I'm still very dissapointed
+18:52:47 <kohsuke> ... and others who also helped that effort
+18:52:48 <rtyler> HOWEVER, this should prevent us from making contribution easier
+18:52:58 <oleg-nenashev> And I think it correlates well with the number of people at the Governance meeting
+18:53:10 <rtyler> I think we should consider making a sprint before the summer to ease the learning curve for contribution
+18:53:22 <rtyler> (see also danielbeck's developer docs effort)
+18:53:30 <oleg-nenashev> rtyler kohsuke: I am working on several proposals for the onboarding process
+18:53:31 <danielbeck> "HOWEVER, this should prevent us from making contribution easier" huh?
+18:53:42 <rtyler> danielbeck: the lack of students coming in
+18:53:54 <danielbeck> rtyler is there a "not" missing?
+18:53:56 <rtyler> danielbeck: last year students forced us to write some documentation and revisit some developer on-boarding things
+18:54:01 <rtyler> correct
+18:54:06 <rtyler> i type god
+18:54:07 <oleg-nenashev> We rather need commercial companies than students
+18:54:09 <rtyler> :)
+18:54:15 <kohsuke> oleg-nenashev: when you say we got 3 project ideas, are those from students?
+18:54:27 <oleg-nenashev> kohsuke: From potential mentors
+18:54:35 <kohsuke> IOW, assuming parties are interesting/willing, is there a way to do this outside GSoC?
+18:54:41 <kohsuke> OK, then scratch that
+18:54:45 <oleg-nenashev> We have not reached the student application phase
+18:55:03 <rtyler> kohsuke: I was against accepting project ideas without mentorship volunteers this year
+18:55:18 <rtyler> last year we had a TON of ideas, and then when it came time to mentor students, lots of nothing :(
+18:55:28 <oleg-nenashev> I even went panhandling in my company in order to find some mentors :( Also failed
+18:55:52 <rtyler> heh
+18:56:03 <rtyler> anything else we should cover here?
+18:56:07 <oleg-nenashev> So yeah, we need to do something
+18:56:25 <rtyler> GSoC troubles are a contribution canary-in-the-coal-mine IMO
+18:56:32 <alyssat_> would it help for us to have more Jenkins exposure in colleges?
+18:56:39 <oleg-nenashev> #action oleg-nenashev to write the proposals
+18:57:01 <rtyler> alyssat_: perhaps, any and all new blood in the project is good :)
+18:57:15 <oleg-nenashev> exactly
+18:57:29 <oleg-nenashev> But we failred on this year anyway
+18:57:43 <kohsuke> Shall we wrap up?
+18:57:48 <oleg-nenashev> yep
+18:57:54 <rtyler> #topic Next meeting
+18:58:02 <rtyler> beware the ides of march
+18:58:10 <rtyler> looks like March 15 will be next up
+18:58:23 <rtyler> same time, same place, yada yada
+18:58:25 <rtyler> #endmeeting

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:05:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:05:46</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:05:46 </span><span class="nka">* rtyler</span> <span class="ac">heads back to work</span>
+<a name="l-4"></a><span class="tm">18:05:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler abayer hare_brain</span>
+<a name="l-5"></a><span class="tm">18:05:54</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:06:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Next LTS plan and start lifting Java 6 dependency</span>
+<a name="l-7"></a><span class="tm">18:06:16</span><span class="nk"> &lt;kohsuke&gt;</span> is vjuranek around?
+<a name="l-8"></a><span class="tm">18:06:23</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> yes
+<a name="l-9"></a><span class="tm">18:06:30</span><span class="nk"> &lt;kohsuke&gt;</span> YUS!
+<a name="l-10"></a><span class="tm">18:07:11</span><span class="nk"> &lt;kohsuke&gt;</span> jglick told me that it's about 3 months since picking 1.509
+<a name="l-11"></a><span class="tm">18:07:35</span><span class="nk"> &lt;kohsuke&gt;</span> and if we are still aiming for the cadence we need to start thinking about next LTS plan
+<a name="l-12"></a><span class="tm">18:07:45</span><span class="nk"> &lt;vjuranek&gt;</span> yes, I was looking for new major jenkins branch, but usr ratting for recent jenkins releases are not very good
+<a name="l-13"></a><span class="tm">18:07:52</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-14"></a><span class="tm">18:08:29</span><span class="nk"> &lt;kohsuke&gt;</span> The other thing I thought was that 1.509 was a relatively new release back then and so that'd be an argument to stay on it for a little longer
+<a name="l-15"></a><span class="tm">18:08:34</span><span class="nk"> &lt;vjuranek&gt;</span> lask one which look good is 1.518 ... I;m not sure if it's not too close to 1.509
+<a name="l-16"></a><span class="tm">18:08:58</span><span class="nk"> &lt;vjuranek&gt;</span> so are you ok with another minor release of 1.509?
+<a name="l-17"></a><span class="tm">18:09:11</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-18"></a><span class="tm">18:09:20</span><span class="nk"> &lt;vjuranek&gt;</span> ok, so let's do it:-)
+<a name="l-19"></a><span class="tm">18:09:26</span><span class="nk"> &lt;kohsuke&gt;</span> A relevant thing to this is: http://maven.40175.n5.nabble.com/VOTE-All-new-non-patch-releases-of-Maven-Core-after-30th-Sep-2013-to-require-Java-6-td5764610.html
+<a name="l-20"></a><span class="tm">18:09:52</span><span class="nk"> &lt;kohsuke&gt;</span> jglick, stephenc, and I were whining about how we still have to support a version of Java that EOLed 5 years ago
+<a name="l-21"></a><span class="tm">18:10:28</span><span class="nk"> &lt;ericNdfw&gt;</span> Not to barge in, but we just tried to upgrade (last week) from 1.480.3 to 1.509.2 and ended up having to roll back - still trying to debug what all was wrong.
+<a name="l-22"></a><span class="tm">18:10:43</span><span class="nk"> &lt;ericNdfw&gt;</span> so I'm all for getting any issues in 1.509 shored up
+<a name="l-23"></a><span class="tm">18:11:01</span><span class="nk"> &lt;vjuranek&gt;</span> I need to go through this treah, I missed it
+<a name="l-24"></a><span class="tm">18:11:04</span><span class="nk"> &lt;kohsuke&gt;</span> and we came up with an idea that maybe if we can reach several OSS projects that still have to support Java5, and put some stake on the ground and move on to Java6, that might help
+<a name="l-25"></a><span class="tm">18:11:24</span><span class="nk"> &lt;kohsuke&gt;</span> In our case, the mainline release had recently moved on to Java6, but current LTS still supports 1.5
+<a name="l-26"></a><span class="tm">18:11:44</span><span class="nk"> &lt;kohsuke&gt;</span> And even in the mainline release we still have animal-sniffer watching out for the actual use of Java6 APIs
+<a name="l-27"></a><span class="tm">18:12:49</span><span class="nk"> &lt;hare_brain&gt;</span> Do the anonymous usage stats collect Java version?
+<a name="l-28"></a><span class="tm">18:12:50</span><span class="nk"> &lt;kohsuke&gt;</span> So I thought perhaps we could join this bandwagon by saying "Next major LTS rebump after Sep 30th 2013 WILL require Java6"
+<a name="l-29"></a><span class="tm">18:13:27</span><span class="nk"> &lt;kohsuke&gt;</span> and that "mainline after Sep 30th 2013 will start relying on Java6 JRE features" (by lifting animal-sniffer to 6)
+<a name="l-30"></a><span class="tm">18:13:31</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">hare_brain:</span> IIRC yes
+<a name="l-31"></a><span class="tm">18:13:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> Yes, I think imod looked at it
+<a name="l-32"></a><span class="tm">18:13:46</span><span class="nk"> &lt;kohsuke&gt;</span> Let me dig it up
+<a name="l-33"></a><span class="tm">18:13:58</span><span class="nk"> &lt;kohsuke&gt;</span> It was very small in numbers
+<a name="l-34"></a><span class="tm">18:14:28</span><span class="nk"> &lt;hare_brain&gt;</span> Small in which direction? (Java 5 small or Java 6 small?)
+<a name="l-35"></a><span class="tm">18:14:34</span><span class="nk"> &lt;kohsuke&gt;</span> Java5 is small
+<a name="l-36"></a><span class="tm">18:14:36</span><span class="nk"> &lt;vjuranek&gt;</span> ok, I have no problem to require java6
+<a name="l-37"></a><span class="tm">18:15:00</span><span class="nk"> &lt;vjuranek&gt;</span> IIRC java5 is problem only on AIX machines
+<a name="l-38"></a><span class="tm">18:15:31</span><span class="nk"> &lt;vjuranek&gt;</span> (or upgrade to java6 is problem on AIX machine)
+<a name="l-39"></a><span class="tm">18:15:51</span><span class="nk"> &lt;kohsuke&gt;</span> Since 1.520 we ship with 1.6 class files, and I think we haven't heard an uproar against it since then
+<a name="l-40"></a><span class="tm">18:15:57</span><span class="nk"> &lt;kohsuke&gt;</span> That was Jun 25th
+<a name="l-41"></a><span class="tm">18:16:13</span><span class="nk"> &lt;kohsuke&gt;</span> There was one ticket with I think 3 or 4 votes when I looked at it
+<a name="l-42"></a><span class="tm">18:17:24</span><span class="nk"> &lt;hare_brain&gt;</span> I have no data to prove that this is actually the case, but consider that the type of person/org that runs mainline *might be* more likely to be on Java 6 than the type of person/org that runs LTS.
+<a name="l-43"></a><span class="tm">18:17:33</span><span class="nk"> &lt;kohsuke&gt;</span> On a related note, does anyone know other projects that still depend on Java5 who might be inerested in joining this coalition?
+<a name="l-44"></a><span class="tm">18:17:34</span><span class="nk"> &lt;hare_brain&gt;</span> Having said that, I agree it's time to move on.
+<a name="l-45"></a><span class="tm">18:18:08</span><span class="nk"> &lt;potstickr&gt;</span> Howdy. I'm new to Jenkins. I have manually defined a job. Have a config.xml. Can I put that config.xml in a github repo, and have a jenkins server fetch it and create a job from it? How?
+<a name="l-46"></a><span class="tm">18:18:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> yes, we'll need to watch out for another uproar when LTS starts requiring 1.6
+<a name="l-47"></a><span class="tm">18:19:30</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway, so the relevant to LTS here is that this would also favor for sticking with 1.509 a bit more
+<a name="l-48"></a><span class="tm">18:19:50</span><span class="nk"> &lt;kohsuke&gt;</span> And then during the summer hopefully we'll have the next baseline that people are happy about.
+<a name="l-49"></a><span class="tm">18:20:13</span><span class="nk"> &lt;kohsuke&gt;</span> That's it from me
+<a name="l-50"></a><span class="tm">18:20:24</span><span class="nk"> &lt;kohsuke&gt;</span> ... unless other people have stuff to talk about
+<a name="l-51"></a><span class="tm">18:20:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-52"></a><span class="tm">18:20:55</span><span class="nk"> &lt;kohsuke&gt;</span> it'd be Aug 7th
+<a name="l-53"></a><span class="tm">18:21:00</span><span class="nk"> &lt;kohsuke&gt;</span> same time
+<a name="l-54"></a><span class="tm">18:21:01</span><span class="nk"> &lt;vjuranek&gt;</span> +1
+<a name="l-55"></a><span class="tm">18:21:14</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-56"></a><span class="tm">18:21:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

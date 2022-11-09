@@ -1,0 +1,347 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app223.us.archive.org';v.server_ms=218;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-01-15-18.01.log.html","20211027224219","https://web.archive.org/","web","/_static/",
+	      "1635374539");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:24</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Agenda: #startmeeting</span>
+<a name="l-4"></a><span class="tm">18:01:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Agenda: https://docs.google.com/document/d/11Nr8QpqYgBiZjORplL_3Zkwys2qK1vEvK-NYyYa4rzg/edit#heading=h.vylsknw2s91m</span>
+<a name="l-5"></a><span class="tm">18:02:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap of previous action items</span>
+<a name="l-6"></a><span class="tm">18:02:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> do we have ones?
+<a name="l-7"></a><span class="tm">18:02:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Previous meeting: http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-12-18-18.02.html</span>
+<a name="l-8"></a><span class="tm">18:02:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> no action items
+<a name="l-9"></a><span class="tm">18:03:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">New meeting time</span>
+<a name="l-10"></a><span class="tm">18:03:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">Discussion: https://groups.google.com/forum/#!topic/jenkinsci-dev/RuWQ124gUsw</span>
+<a name="l-11"></a><span class="tm">18:03:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> IIUC we still need to send out Doodle
+<a name="l-12"></a><span class="tm">18:04:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Nope, it was sent
+<a name="l-13"></a><span class="tm">18:04:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Doodle for the new meeting slot: https://doodle.com/poll/pq2g45anu92yz2b8</span>
+<a name="l-14"></a><span class="tm">18:04:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So far 2 votes
+<a name="l-15"></a><span class="tm">18:04:33 </span><span class="nka">* oleg-nenashev</span> <span class="ac">did not vote</span>
+<a name="l-16"></a><span class="tm">18:04:59</span><span class="nk"> &lt;drulli&gt;</span> I thought your initial times setup is your vote?
+<a name="l-17"></a><span class="tm">18:05:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Not exactly
+<a name="l-18"></a><span class="tm">18:05:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I just took common slots with good EMEA/APAC and Americas/EMEA overlap
+<a name="l-19"></a><span class="tm">18:06:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But I will make any slot work if needed
+<a name="l-20"></a><span class="tm">18:06:42</span><span class="nk"> &lt;drulli&gt;</span> It looks like the current time is the best :-)
+<a name="l-21"></a><span class="tm">18:06:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Basically the current options are 5PM UTC or 6PM UTC on Monday to Thursday
+<a name="l-22"></a><span class="tm">18:07:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Unless somebody else votes, +1 for keeping the time
+<a name="l-23"></a><span class="tm">18:07:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Should we postpone it till the next meeting (and keep the slot as is for now)?
+<a name="l-24"></a><span class="tm">18:07:42</span><span class="nk"> &lt;alyssat_&gt;</span> I think that's a good idea
+<a name="l-25"></a><span class="tm">18:08:10</span><span class="nk"> &lt;drulli&gt;</span> that means today is an excception?
+<a name="l-26"></a><span class="tm">18:08:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Today is a regular slot drulli
+<a name="l-27"></a><span class="tm">18:08:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 6PM UTC
+<a name="l-28"></a><span class="tm">18:08:41</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Who is asking for an update to the meeting time? Or, who is the current slot bad for?
+<a name="l-29"></a><span class="tm">18:09:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Well, it was rather an attempt to have more people on the call
+<a name="l-30"></a><span class="tm">18:10:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It is not ideal for Europe - right after the common working hours. So all School/shopping runs &amp; Co. But not a big deal for me
+<a name="l-31"></a><span class="tm">18:10:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> drulli Slide-O-Mix : so, do we keep it for now?
+<a name="l-32"></a><span class="tm">18:10:51</span><span class="nk"> &lt;drulli&gt;</span> Well it is not ideal for me (kids are going to bed right now…) but we can handle
+<a name="l-33"></a><span class="tm">18:11:00</span><span class="nk"> &lt;drulli&gt;</span> it twice a month ;-)
+<a name="l-34"></a><span class="tm">18:11:21</span><span class="nk"> &lt;drulli&gt;</span> So let us keep it...
+<a name="l-35"></a><span class="tm">18:11:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Or move 1h earlier?
+<a name="l-36"></a><span class="tm">18:11:57</span><span class="nk"> &lt;drulli&gt;</span> for me it would be better one hour later
+<a name="l-37"></a><span class="tm">18:12:17</span><span class="nk"> &lt;drulli&gt;</span> but as I said, it is not that often
+<a name="l-38"></a><span class="tm">18:12:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to add a 7PM UTC option to the poll</span>
+<a name="l-39"></a><span class="tm">18:12:48</span><span class="nk"> &lt;drulli&gt;</span> ok
+<a name="l-40"></a><span class="tm">18:12:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Let's keep it as is for now, and keep the poll going
+<a name="l-41"></a><span class="tm">18:13:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">We keep 6PM UTC for now, please vote in the poll!</span>
+<a name="l-42"></a><span class="tm">18:13:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Updates in the Governance Meeting tooling</span>
+<a name="l-43"></a><span class="tm">18:13:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Now we use Google Doc for the agenda. See the new Governance Board Meetings page here: https://jenkins.io/project/governance-meeting/</span>
+<a name="l-44"></a><span class="tm">18:14:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> That's it, I;d guess
+<a name="l-45"></a><span class="tm">18:14:10</span><span class="nk"> &lt;drulli&gt;</span> This is ok for me
+<a name="l-46"></a><span class="tm">18:14:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Is everyone comfortable with the new tooling?
+<a name="l-47"></a><span class="tm">18:14:29</span><span class="nk"> &lt;alyssat_&gt;</span> it's fine for me as well
+<a name="l-48"></a><span class="tm">18:14:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It is a part of our Wiki migration/evacuation
+<a name="l-49"></a><span class="tm">18:15:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Moving on in 30 sec if no comments
+<a name="l-50"></a><span class="tm">18:15:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Approval request: CommunityBridge funding page</span>
+<a name="l-51"></a><span class="tm">18:16:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It is by me
+<a name="l-52"></a><span class="tm">18:16:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/iLutO2X0bdg</span>
+<a name="l-53"></a><span class="tm">18:16:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would like to get approval to setup a funding page prototype on CommunityBridge
+<a name="l-54"></a><span class="tm">18:17:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Current page (for mentorship only): https://funding.communitybridge.org/projects/jenkins</span>
+<a name="l-55"></a><span class="tm">18:17:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The plan is to enable other categories and to reference the flow from jenkins.io/donate as an experimental one
+<a name="l-56"></a><span class="tm">18:18:02</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Sounds like a good plan to me
+<a name="l-57"></a><span class="tm">18:18:08</span><span class="nk"> &lt;drulli&gt;</span> I think it make sense to move everything to CDF
+<a name="l-58"></a><span class="tm">18:18:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We will have to move, because SPI is expected to stop accepting donations sooner or later
+<a name="l-59"></a><span class="tm">18:18:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> They agreed to stop doing so in May 2019
+<a name="l-60"></a><span class="tm">18:19:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But they still do that tho :)
+<a name="l-61"></a><span class="tm">18:19:26</span><span class="nk"> &lt;alyssat_&gt;</span> +1 for me as donations has been sent via email previously.  This is much better looking then sending an email to SPI
+<a name="l-62"></a><span class="tm">18:20:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So far there was no negative feedback in the thread. Do we need any clarification? or should we just vote?
+<a name="l-63"></a><span class="tm">18:20:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">P.S:</span> You may see a 3K USD self-donation. This is a stipend for our first CommunityBridge mentee (Sladyn Nunes)
+<a name="l-64"></a><span class="tm">18:21:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">VOTE:</span> Approve beta testing of the CommunityBridge as a reference implementation
+<a name="l-65"></a><span class="tm">18:21:12</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1
+<a name="l-66"></a><span class="tm">18:21:13 </span><span class="nka">* oleg-nenashev</span> <span class="ac">abstains</span>
+<a name="l-67"></a><span class="tm">18:21:19</span><span class="nk"> &lt;drulli&gt;</span> +1
+<a name="l-68"></a><span class="tm">18:21:19</span><span class="nk"> &lt;alyssat_&gt;</span> +1
+<a name="l-69"></a><span class="tm">18:21:32</span><span class="nk"> &lt;markewaite&gt;</span> +1
+<a name="l-70"></a><span class="tm">18:21:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> let's wait for 30 sec
+<a name="l-71"></a><span class="tm">18:22:31</span><span class="nk"> &lt;drulli&gt;</span> Would it be possible or does it make sense to show the totals of the donations somewhere on the web page? In the style of wikipedia? So that the people see how many income we have?
+<a name="l-72"></a><span class="tm">18:23:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">drulli:</span> You mean donations from multiple channels? or just SPI?
+<a name="l-73"></a><span class="tm">18:23:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> uhm, just CommunityBridge
+<a name="l-74"></a><span class="tm">18:23:17</span><span class="nk"> &lt;drulli&gt;</span> From all channels
+<a name="l-75"></a><span class="tm">18:23:30</span><span class="nk"> &lt;drulli&gt;</span> ah ok, sorry
+<a name="l-76"></a><span class="tm">18:23:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> CommunityBridge publishes summary: https://usercontent.irccloud-cdn.com/file/lJSc9awR/image.png
+<a name="l-77"></a><span class="tm">18:24:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> For all channels we could do quarterly reports, but it would require manual actions
+<a name="l-78"></a><span class="tm">18:24:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> used to do the treasury report for SPI
+<a name="l-79"></a><span class="tm">18:24:55</span><span class="nk"> &lt;drulli&gt;</span> I see, that link is already sufficient.
+<a name="l-80"></a><span class="tm">18:25:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So we can improve it as we go
+<a name="l-81"></a><span class="tm">18:25:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Linux Foundation also seeks feedback about improvements they could make on the portal
+<a name="l-82"></a><span class="tm">18:26:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The payments backend for them is Expensify. We use it, and IMHO it's awesome
+<a name="l-83"></a><span class="tm">18:26:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Especially being compared to other systems I used before
+<a name="l-84"></a><span class="tm">18:26:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any other questions?
+<a name="l-85"></a><span class="tm">18:27:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ok, let's proceed
+<a name="l-86"></a><span class="tm">18:32:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Hi all
+<a name="l-87"></a><span class="tm">18:32:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> IRCCloud went down
+<a name="l-88"></a><span class="tm">18:32:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> do I was dropped off
+<a name="l-89"></a><span class="tm">18:32:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> same for markewaite and lyssat
+<a name="l-90"></a><span class="tm">18:33:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> _alyssat
+<a name="l-91"></a><span class="tm">18:33:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> is everyone back?
+<a name="l-92"></a><span class="tm">18:33:52</span><span class="nk"> &lt;drulli&gt;</span> yes I am still here
+<a name="l-93"></a><span class="tm">18:33:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> lucky you
+<a name="l-94"></a><span class="tm">18:33:59</span><span class="nk"> &lt;Alyssat&gt;</span> i'm in
+<a name="l-95"></a><span class="tm">18:34:06</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I'm still here
+<a name="l-96"></a><span class="tm">18:34:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I had to fallback to another IRC service
+<a name="l-97"></a><span class="tm">18:34:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> OK, let;s continue
+<a name="l-98"></a><span class="tm">18:34:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Beta testing of CommunityBridge funding is approved</span>
+<a name="l-99"></a><span class="tm">18:34:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to setup a reference implementation and draft a JEP</span>
+<a name="l-100"></a><span class="tm">18:37:28</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> hmm
+<a name="l-101"></a><span class="tm">18:37:42</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> this meeting becomes fun
+<a name="l-102"></a><span class="tm">18:37:56</span><span class="nk"> &lt;Alyssat&gt;</span> ;D
+<a name="l-103"></a><span class="tm">18:37:58</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> so many oleg's!
+<a name="l-104"></a><span class="tm">18:38:05</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Did the "agreed" message arrive?
+<a name="l-105"></a><span class="tm">18:38:15</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> No
+<a name="l-106"></a><span class="tm">18:38:42</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">CommunityBridge Funding beta testing is approved</span>
+<a name="l-107"></a><span class="tm">18:39:02</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to setup the reference implementation and draft a JEP</span>
+<a name="l-108"></a><span class="tm">18:39:04</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> uff
+<a name="l-109"></a><span class="tm">18:39:08</span><span class="nk"> &lt;rtyler&gt;</span> oof, sorry, I lost track of time
+<a name="l-110"></a><span class="tm">18:39:10</span><span class="nk"> &lt;rtyler&gt;</span> p/
+<a name="l-111"></a><span class="tm">18:39:28</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Slide-O-Mix drulli rtyler Could someone please take it over?
+<a name="l-112"></a><span class="tm">18:39:46</span><span class="nk"> &lt;rtyler&gt;</span> take what over?
+<a name="l-113"></a><span class="tm">18:39:50</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> the meeting
+<a name="l-114"></a><span class="tm">18:39:56</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> what is the doc link for the agenda?
+<a name="l-115"></a><span class="tm">18:39:57</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> yey
+<a name="l-116"></a><span class="tm">18:40:29</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> https://docs.google.com/document/d/11Nr8QpqYgBiZjORplL_3Zkwys2qK1vEvK-NYyYa4rzg/edit
+<a name="l-117"></a><span class="tm">18:40:54</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Ok, are we ready to move to the next topic?
+<a name="l-118"></a><span class="tm">18:40:56</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> I am still here, just afraid of network issues
+<a name="l-119"></a><span class="tm">18:40:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev39:</span> you need to #chair some people
+<a name="l-120"></a><span class="tm">18:41:07</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> I think we are :(
+<a name="l-121"></a><span class="tm">18:41:35</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins Evergreen Infra Status</span>
+<a name="l-122"></a><span class="tm">18:41:47</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> hmmm, need #chair oleg-nenashev39
+<a name="l-123"></a><span class="tm">18:41:48</span><span class="nk"> &lt;rtyler&gt;</span> oleg-nenashev39 needs to invoke the #chair command
+<a name="l-124"></a><span class="tm">18:42:00</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="cmd">#chair </span><span class="cmdline">Slide-O-Mix</span>
+<a name="l-125"></a><span class="tm">18:42:07</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins Evergreen Infra Status</span>
+<a name="l-126"></a><span class="tm">18:42:15</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">robobutler:</span> are you alive?!
+<a name="l-127"></a><span class="tm">18:42:15</span><span class="nk"> &lt;robobutler&gt;</span> <span class="hi">Slide-O-Mix:</span> Error: "are" is not a valid command.
+<a name="l-128"></a><span class="tm">18:42:19</span><span class="nk"> &lt;rtyler&gt;</span> change your nick back oleg-nenashev39
+<a name="l-129"></a><span class="tm">18:42:20</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> ineed
+<a name="l-130"></a><span class="tm">18:42:21</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> indeed
+<a name="l-131"></a><span class="tm">18:42:27</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> OK, I will try
+<a name="l-132"></a><span class="tm">18:42:31</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> I am still the chair
+<a name="l-133"></a><span class="tm">18:42:45</span><span class="nk"> &lt;rtyler&gt;</span> `oleg-nenashev` is the chair
+<a name="l-134"></a><span class="tm">18:42:46</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Switch back fails, thanks IRC Cloud
+<a name="l-135"></a><span class="tm">18:42:50</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins Evergreen Infra status. Do we shut down the Evergreen infra? (Olivier Vernin, Oleg Nenashev)</span>
+<a name="l-136"></a><span class="tm">18:43:34</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Well, we can proceed without topic
+<a name="l-137"></a><span class="tm">18:43:36</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">oleg-nenashev39:</span> /msg nickserv ghost oleg-nenashev &lt;password&gt;
+<a name="l-138"></a><span class="tm">18:43:41</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> The meetings will be a mess tho
+<a name="l-139"></a><span class="tm">18:43:55</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> then change your nick
+<a name="l-140"></a><span class="tm">18:45:47</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> wip
+<a name="l-141"></a><span class="tm">18:46:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#chair </span><span class="cmdline">Slide-O-Mix</span>
+<a name="l-142"></a><span class="tm">18:46:12</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: Slide-O-Mix oleg-nenashev
+<a name="l-143"></a><span class="tm">18:46:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler</span>
+<a name="l-144"></a><span class="tm">18:46:16</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: Slide-O-Mix oleg-nenashev rtyler
+<a name="l-145"></a><span class="tm">18:46:20</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> thanks
+<a name="l-146"></a><span class="tm">18:46:21</span><span class="nk"> &lt;rtyler&gt;</span> that was stupid
+<a name="l-147"></a><span class="tm">18:46:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">Slide-O-Mix:</span> please continue :)
+<a name="l-148"></a><span class="tm">18:46:42</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> My IRCfu is so rusty
+<a name="l-149"></a><span class="tm">18:46:52</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins Evergreen Infra status. Do we shut down the Evergreen infra? (Olivier Vernin, Oleg Nenashev)</span>
+<a name="l-150"></a><span class="tm">18:47:01</span><span class="nk"> &lt;rtyler&gt;</span> robobutler doesn't have real access controls, anybody could have changed nicks to yours and taken it over :)
+<a name="l-151"></a><span class="tm">18:47:01</span><span class="nk"> &lt;robobutler&gt;</span> <span class="hi">rtyler:</span> Error: "doesn't" is not a valid command.
+<a name="l-152"></a><span class="tm">18:47:39</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!msg/jenkinsci-dev/OlG1IEFmSiQ/8RHA_urCBQAJ</span>
+<a name="l-153"></a><span class="tm">18:47:47</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> I am not sure whether olblak is around
+<a name="l-154"></a><span class="tm">18:47:55</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">olblak:</span> ping?
+<a name="l-155"></a><span class="tm">18:48:01</span><span class="nk"> &lt;rtyler&gt;</span> I'm in favor of shutting it down, and closing the Evergreen experiment down
+<a name="l-156"></a><span class="tm">18:48:08</span><span class="nk"> &lt;rtyler&gt;</span> I can/should write a blog post to that topic
+<a name="l-157"></a><span class="tm">18:48:13</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> What's the current usage of it?
+<a name="l-158"></a><span class="tm">18:48:20</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Is it heavily used, or minimal usage?
+<a name="l-159"></a><span class="tm">18:48:23</span><span class="nk"> &lt;rtyler&gt;</span> broken :)
+<a name="l-160"></a><span class="tm">18:48:28</span><span class="nk"> &lt;rtyler&gt;</span> batmat and I haven't been pushing updates
+<a name="l-161"></a><span class="tm">18:48:31</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Long story short, we are migrating from ACS to AKS, and we need to either shut down the service or find maintainers
+<a name="l-162"></a><span class="tm">18:48:39</span><span class="nk"> &lt;rtyler&gt;</span> the service was already broken
+<a name="l-163"></a><span class="tm">18:48:46</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> ok, so even if people are "using" it, it is not useful at all?
+<a name="l-164"></a><span class="tm">18:49:08</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> I have heard a rumor of 8 users 1 year ago
+<a name="l-165"></a><span class="tm">18:49:11</span><span class="nk"> &lt;rtyler&gt;</span> shutting down evergreen servers doesn't do anything but return their Jenkins environments to what they otherwise are, stagnate and un-updating :p
+<a name="l-166"></a><span class="tm">18:49:27</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I'm in favor of shutting it down
+<a name="l-167"></a><span class="tm">18:49:35</span><span class="nk"> &lt;rtyler&gt;</span> the experiment taught me some good things at least, not sure what lessons others learned :)
+<a name="l-168"></a><span class="tm">18:49:36</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> We will still need to somewhat announce the project shutdown
+<a name="l-169"></a><span class="tm">18:49:46</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Also, the code stays with us
+<a name="l-170"></a><span class="tm">18:50:04</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> rtyler and batmat did everything-as-code IIRC
+<a name="l-171"></a><span class="tm">18:50:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev39:</span> I think olblak should be free to disable the services, I will then write a blog post on the subject
+<a name="l-172"></a><span class="tm">18:50:32</span><span class="nk"> &lt;rtyler&gt;</span> we don't need to block decommissioning ACS
+<a name="l-173"></a><span class="tm">18:50:46</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> rtyler I think we can send a notice in advance
+<a name="l-174"></a><span class="tm">18:51:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev39:</span> I am not committing to that
+<a name="l-175"></a><span class="tm">18:51:05</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> If we approve it, we can send a blog in few days and let the service die on Jan 31
+<a name="l-176"></a><span class="tm">18:51:09</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Is there a target for migrating to AKS?
+<a name="l-177"></a><span class="tm">18:51:24</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Jan 31 is a deadline
+<a name="l-178"></a><span class="tm">18:51:24</span><span class="nk"> &lt;rtyler&gt;</span> I don't think you're understanding the state of things
+<a name="l-179"></a><span class="tm">18:51:36</span><span class="nk"> &lt;rtyler&gt;</span> users are NOT getting updates right now, and haven't gotten them in many many months
+<a name="l-180"></a><span class="tm">18:51:40</span><span class="nk"> &lt;rtyler&gt;</span> the service is fundamentally broken
+<a name="l-181"></a><span class="tm">18:51:46</span><span class="nk"> &lt;rtyler&gt;</span> blocking olblak in any way is pointless and saves us nothing
+<a name="l-182"></a><span class="tm">18:51:59</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> I agree
+<a name="l-183"></a><span class="tm">18:52:22</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> If we want to sign-off immediate shutdown, I am also fine
+<a name="l-184"></a><span class="tm">18:52:42</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I say shut it down now
+<a name="l-185"></a><span class="tm">18:52:50</span><span class="nk"> &lt;rtyler&gt;</span> ditto\
+<a name="l-186"></a><span class="tm">18:52:51</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> There is no point keeping it up if its broken right now
+<a name="l-187"></a><span class="tm">18:52:56</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> sorry for confusion rtyler
+<a name="l-188"></a><span class="tm">18:53:41</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> So, vote for "Sign-off immediate shutdown of Evergreen Infra OR any other decommission process preferred by the Infra Officer"
+<a name="l-189"></a><span class="tm">18:54:00</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Just to leave olblak option to "do nothing until it dies on its own"
+<a name="l-190"></a><span class="tm">18:54:14</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1 Sign-off immediate shutdown
+<a name="l-191"></a><span class="tm">18:54:15</span><span class="nk"> &lt;drulli&gt;</span> +1
+<a name="l-192"></a><span class="tm">18:54:19</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> +1
+<a name="l-193"></a><span class="tm">18:54:48</span><span class="nk"> &lt;rtyler&gt;</span> obvs +1
+<a name="l-194"></a><span class="tm">18:55:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to archive evergreen repository</span>
+<a name="l-195"></a><span class="tm">18:55:45</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to update jenkins.io projects (archive Evergreen there)</span>
+<a name="l-196"></a><span class="tm">18:56:01</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> rtyler do you take the blogpost?
+<a name="l-197"></a><span class="tm">18:56:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to eventually write a blog post wrapping up the Evergreen experiment, updating the website too</span>
+<a name="l-198"></a><span class="tm">18:57:20</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> OK, I will just move Evergreen out of active projects
+<a name="l-199"></a><span class="tm">18:57:43</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> so, next topic?
+<a name="l-200"></a><span class="tm">18:58:03</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> sounds good
+<a name="l-201"></a><span class="tm">18:58:12</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> uhm, also we need to stop Sentry accounts
+<a name="l-202"></a><span class="tm">18:58:25</span><span class="nk"> &lt;drulli&gt;</span> ?
+<a name="l-203"></a><span class="tm">18:58:31</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Or reuse them fo ci.jenkins.io like it was discussed on Tuesday
+<a name="l-204"></a><span class="tm">18:58:32</span><span class="nk"> &lt;rtyler&gt;</span> that's only used by Evergreen IIRC
+<a name="l-205"></a><span class="tm">18:58:57</span><span class="nk"> &lt;rtyler&gt;</span> we can definitely use it for other purposes, we have an open source gratis license with Sentry
+<a name="l-206"></a><span class="tm">18:59:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">drulli:</span> sentry.io
+<a name="l-207"></a><span class="tm">18:59:08</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> drulli Sentry is a event logging / reporting system which was used for Evergreen
+<a name="l-208"></a><span class="tm">18:59:23</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> E.g. we caught some JEP-200 and Java 11 issues through it
+<a name="l-209"></a><span class="tm">18:59:39</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> rtyler I would prefer to keep it for now if you are fine
+<a name="l-210"></a><span class="tm">18:59:46</span><span class="nk"> &lt;rtyler&gt;</span> yeah, no problem with that
+<a name="l-211"></a><span class="tm">18:59:49</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> ty
+<a name="l-212"></a><span class="tm">18:59:53</span><span class="nk"> &lt;rtyler&gt;</span> I never turn away free stuff :)
+<a name="l-213"></a><span class="tm">19:00:13</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">keep Sentry account for now (could be used for other systems)</span>
+<a name="l-214"></a><span class="tm">19:00:25</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> So we have a meetup topic
+<a name="l-215"></a><span class="tm">19:00:38</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Would be nice to vote there if everyone has few minutes
+<a name="l-216"></a><span class="tm">19:00:56</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Sorry for the IRC mess and delays it caused
+<a name="l-217"></a><span class="tm">19:01:22</span><span class="nk"> &lt;rtyler&gt;</span> let's keep rolling, Slide-O-Mix if you'll do the honors
+<a name="l-218"></a><span class="tm">19:01:31</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins Area Meetup removal follow-up (Alyssa Tong, Oleg Nenashev)</span>
+<a name="l-219"></a><span class="tm">19:01:46</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/cviU5XUX8vQ</span>
+<a name="l-220"></a><span class="tm">19:01:59</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> The history summary is in the thread
+<a name="l-221"></a><span class="tm">19:02:10</span><span class="nk"> &lt;Alyssat&gt;</span> Thank you Oleg for writing out that email..very comprehensive :]
+<a name="l-222"></a><span class="tm">19:02:20</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> happy to help
+<a name="l-223"></a><span class="tm">19:02:43</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> We are following up on the fallout after the account removal together with Alyssat
+<a name="l-224"></a><span class="tm">19:03:06</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> But it is a good time to start shutting down inactive accounts IMHO
+<a name="l-225"></a><span class="tm">19:03:10</span><span class="nk"> &lt;rtyler&gt;</span> I'm all for cleanup, and if Alyssat says it's good, then I'm +1 on whatever she wants :)
+<a name="l-226"></a><span class="tm">19:03:23</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> So, 2 votes here
+<a name="l-227"></a><span class="tm">19:03:25</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="hi">VOTE:</span> Approve the suggested process in general &amp;&amp; delegate the final process decision to the event officer and Advocacy and Outreach SIG (immediate/short-term step down for meetups which never happened, grace period for stale ones)
+<a name="l-228"></a><span class="tm">19:03:25</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> channels
+<a name="l-229"></a><span class="tm">19:03:41</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1 on both from me
+<a name="l-230"></a><span class="tm">19:03:43</span><span class="nk"> &lt;Alyssat&gt;</span> The JAMS w/ data corruption is still being worked on by meetup.com..this may take them some time to recover
+<a name="l-231"></a><span class="tm">19:03:48</span><span class="nk"> &lt;drulli&gt;</span> +1
+<a name="l-232"></a><span class="tm">19:03:55</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> The latter one is to just do some housekeeping and reduce the number of channels we have to maintain
+<a name="l-233"></a><span class="tm">19:04:22</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> I am +1 for both, obviously
+<a name="l-234"></a><span class="tm">19:06:20</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> good to go then?
+<a name="l-235"></a><span class="tm">19:06:26</span><span class="nk"> &lt;rtyler&gt;</span> I think so
+<a name="l-236"></a><span class="tm">19:06:33</span><span class="nk"> &lt;Alyssat&gt;</span> thank you all
+<a name="l-237"></a><span class="tm">19:06:39</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="topic">#topic </span><span class="topicline">FOSDEM updates (Oleg Nenashev)</span>
+<a name="l-238"></a><span class="tm">19:06:47</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> thank you too Alyssat
+<a name="l-239"></a><span class="tm">19:06:58</span><span class="nk"> &lt;rtyler&gt;</span> most importantly, I won't be able to join in FOSDEM :'(
+<a name="l-240"></a><span class="tm">19:06:59</span><span class="nk"> &lt;Alyssat&gt;</span> :]
+<a name="l-241"></a><span class="tm">19:07:19</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/blog/2020/01/10/fosdem-is-coming/</span>
+<a name="l-242"></a><span class="tm">19:07:20</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I've never been to FOSDEM, I should look at attending in the future
+<a name="l-243"></a><span class="tm">19:07:30</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Slide-O-Mix yes you should!
+<a name="l-244"></a><span class="tm">19:07:37</span><span class="nk"> &lt;rtyler&gt;</span> it's a delightful chaos
+<a name="l-245"></a><span class="tm">19:07:55</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> wouldn't be this year, but maybe next
+<a name="l-246"></a><span class="tm">19:08:02</span><span class="nk"> &lt;Alyssat&gt;</span> lots of good food and beer :]
+<a name="l-247"></a><span class="tm">19:08:10</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> There is also Delirium. Best place to pay all the beer debts you accumulate over the year
+<a name="l-248"></a><span class="tm">19:08:50</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="cmd">#info </span><span class="cmdline">We have a small contributor summit on 31st. https://www.meetup.com/jenkinsmeetup/events/267684785/</span>
+<a name="l-249"></a><span class="tm">19:08:58</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> So it is not just about beers
+<a name="l-250"></a><span class="tm">19:09:13</span><span class="nk"> &lt;rtyler&gt;</span> is markewaite doing a pipeline training? I couldn't tell who might be running that
+<a name="l-251"></a><span class="tm">19:09:27</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> rtyler Yes, it is Mark
+<a name="l-252"></a><span class="tm">19:09:40</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="cmd">#info </span><span class="cmdline">On the Thursday 30 of January, there will be two workshops one about Jenkins Pipelines lead by Mark Waite, and a second one about JenkinsX by Viktor Farcic.</span>
+<a name="l-253"></a><span class="tm">19:09:50</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> <span class="cmd">#info </span><span class="cmdline">Finally the FOSDEM, the 01 and 02 of February, we’ll all be at FOSDEM. So come and say "hi" at the Jenkins/JenkinsX stand, inside the CICD Devroom.</span>
+<a name="l-254"></a><span class="tm">19:10:16</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> I like just copy-pasting olblak's post :)  thanks for writing it olblak!
+<a name="l-255"></a><span class="tm">19:10:29</span><span class="nk"> &lt;rtyler&gt;</span> IMHO we should definitely promote Marks' training from @jenkinsci (assuming it's relevant to Jenkins users and not CloudBees proprietary)
+<a name="l-256"></a><span class="tm">19:10:33</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> So, is anyone going to SCALE?
+<a name="l-257"></a><span class="tm">19:10:46</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> rtyler Yes, I have it in my list for Tweets
+<a name="l-258"></a><span class="tm">19:11:15</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> We had CB posts few days ago, so I delayed jenkinsci tweets a bit
+<a name="l-259"></a><span class="tm">19:11:38</span><span class="nk"> &lt;Alyssat&gt;</span> I will be there to help out w/ the trainings and the booth..we'll have Jenkins socks =D
+<a name="l-260"></a><span class="tm">19:12:13</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> rtyler Slide-O-Mix markewaite What about SCALE?
+<a name="l-261"></a><span class="tm">19:12:21</span><span class="nk"> &lt;rtyler&gt;</span> I will not be attending SCALE
+<a name="l-262"></a><span class="tm">19:12:38</span><span class="nk"> &lt;Alyssat&gt;</span> We will be at SCALE as well..at least Mark and I will
+<a name="l-263"></a><span class="tm">19:12:42</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I have not heard of SCALE...
+<a name="l-264"></a><span class="tm">19:12:50</span><span class="nk"> &lt;Alyssat&gt;</span> Mark will be doing he same training
+<a name="l-265"></a><span class="tm">19:12:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">Slide-O-Mix:</span> in Pasadena, which is closeish for ya IIRC
+<a name="l-266"></a><span class="tm">19:13:03</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> It's like FOSDEM, but less beers and Clubmate
+<a name="l-267"></a><span class="tm">19:13:13</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> yeah, much closer than FOSDEM for sure
+<a name="l-268"></a><span class="tm">19:13:21</span><span class="nk"> &lt;Alyssat&gt;</span> and we have the usual Jenkins booth. We'd love to have more folks to help us with booth staff
+<a name="l-269"></a><span class="tm">19:13:29</span><span class="nk"> &lt;rtyler&gt;</span> it is also a great event
+<a name="l-270"></a><span class="tm">19:13:37</span><span class="nk"> &lt;rtyler&gt;</span> far more kid friendly than FOSDEM too
+<a name="l-271"></a><span class="tm">19:14:22</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> I may go to SCALE this year, to be confirmed if timing for other trips is fine
+<a name="l-272"></a><span class="tm">19:14:32</span><span class="nk"> &lt;rtyler&gt;</span> any other details on this topic?
+<a name="l-273"></a><span class="tm">19:14:38</span><span class="nk"> &lt;rtyler&gt;</span> we're straying into advocacyland
+<a name="l-274"></a><span class="tm">19:14:39</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Will be happy to help if I am there
+<a name="l-275"></a><span class="tm">19:14:44</span><span class="nk"> &lt;Alyssat&gt;</span> (y)
+<a name="l-276"></a><span class="tm">19:14:53</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> yup, nothing from me
+<a name="l-277"></a><span class="tm">19:14:56</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> Thanks all!
+<a name="l-278"></a><span class="tm">19:15:32</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> And thanks to Slide-O-Mix for taking it over... second time in a row :bow:
+<a name="l-279"></a><span class="tm">19:15:41</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> glad to help
+<a name="l-280"></a><span class="tm">19:15:48</span><span class="nk"> &lt;rtyler&gt;</span> are we all done?
+<a name="l-281"></a><span class="tm">19:16:01</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Last thing on the agenda is Next meeting
+<a name="l-282"></a><span class="tm">19:16:05</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-283"></a><span class="tm">19:16:13</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> I;d guess we discussed it in the beginning
+<a name="l-284"></a><span class="tm">19:16:18</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> true
+<a name="l-285"></a><span class="tm">19:16:21</span><span class="nk"> &lt;oleg-nenashev39&gt;</span> We agreed to keep 6PM UTC for now
+<a name="l-286"></a><span class="tm">19:16:30</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> ok, we'll end meeting then
+<a name="l-287"></a><span class="tm">19:16:37</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:42:19 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 14:58:51 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 89.32
+  exclusion.robots: 0.223
+  exclusion.robots.policy: 0.202
+  RedisCDXSource: 6.083
+  esindex: 0.015
+  LoadShardBlock: 49.24 (3)
+  PetaboxLoader3.datanode: 55.663 (4)
+  CDXLines.iter: 27.713 (3)
+  load_resource: 104.18
+  PetaboxLoader3.resolve: 63.7
+-->

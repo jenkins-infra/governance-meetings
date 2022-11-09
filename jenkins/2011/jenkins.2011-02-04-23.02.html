@@ -1,0 +1,781 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 23:02:35 UTC
+(<a href="jenkins.2011-02-04-23.02.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li><b class="TOPIC">proposal for Jenkins governance structure</b> <span class="details">(<a href='jenkins.2011-02-04-23.02.log.html#l-11'>kohsuke</a>, 23:04:18)</span>
+<ol type="a">
+  <li><span class="INFO">At a minimum, I think anyone who has committed
+    to core or any plugins/extras/etc hosted in our Github org should
+    have voting rights, and it makes sense to recognize the efforts of
+    bug reporters, contributors to the wiki, etc as well. (from
+    abayer)</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-29'>kohsuke</a>,
+    23:09:50)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">tech support on
+    the mailing lists and irc, but that's kind of hard to track :/ (from
+    rpetti)</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-30'>kohsuke</a>,
+    23:10:02)</span></li>
+  <li><span class="INFO">that sounds good, it can have a metric applied
+    to it, etc (from mwalling)</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-32'>kohsuke</a>,
+    23:10:39)</span></li>
+  <li><span class="INFO">since we're on github now, what about people
+    who fork and send pull request, but don't commit directly? not sure
+    if there are many of those (from tom_huybrechts)</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-40'>kohsuke</a>,
+    23:12:45)</span></li>
+  <li><span class="INFO">(in repsonse to lacostej asking why not just
+    have a hardcoded list) that's a fair point, but with Jenkins, we are
+    consciously trying to have as broad a communitya s possible.</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-42'>abayer</a>,
+    23:13:28)</span></li>
+  <li><span class="INFO">lacostej: in our case maybe those who signed
+    CLA could form the "core committer" group?</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-43'>kohsuke</a>,
+    23:13:36)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">I think having
+    some automatability is a must in eligibility determination. I hope
+    that much can be agreed on by all</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-45'>kohsuke</a>,
+    23:14:54)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">voting
+    eligibility must be automate-able.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-51'>kohsuke</a>,
+    23:15:57)</span></li>
+  <li><span class="INFO">Like I said, I'm working on the actual proposal
+    - which won't be set in stone in the least. This is definitely
+    helping shape it, though.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-52'>abayer</a>,
+    23:16:02)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer to
+    write a proposal of the voter eligibility</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-60'>kohsuke</a>,
+    23:17:03)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">why not to have a
+    competition for the logo?</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-63'>AhtiK</a>,
+    23:17:22)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">The logo</b> <span class="details">(<a href='jenkins.2011-02-04-23.02.log.html#l-66'>kohsuke</a>, 23:17:30)</span>
+<ol type="a">
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">why not to have a
+    competition for the logo?</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-70'>AhtiK</a>,
+    23:17:57)</span></li>
+  <li><span class="INFO">Ok, so the current logo is, in fact, Microsoft
+    clipart. Turns out that we're probably not using it in a way that
+    actually fits their terms of use. So we should, y'know, change it.
+    =)</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-71'>abayer</a>,
+    23:18:06)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">I'd still like a
+    butler-themed logo - that's an integral part of the project's
+    identity, I think.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-75'>abayer</a>,
+    23:18:35)</span></li>
+  <li><a
+    href="http://blog.stackoverflow.com/2008/04/logo-design-contest/">http://blog.stackoverflow.com/2008/04/logo-design-contest/</a>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-76'>mwalling</a>,
+    23:18:38)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">A logo contest
+    but with some guidelines ?</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-77'>aheritier</a>,
+    23:18:58)</span></li>
+  <li><span class="INFO">http://en.wikipedia.org/wiki/Jenkins lists
+    several interpretations for Jenkins as a name (for logo
+    inspiration).</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-79'>AhtiK</a>,
+    23:19:00)</span></li>
+  <li><span class="INFO">at least one person contacted me offline that
+    he might be able to pitch in his designer resource</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-80'>kohsuke</a>,
+    23:19:05)</span></li>
+  <li><a
+    href="http://blog.stackoverflow.com/2008/04/logo-design-contest/">http://blog.stackoverflow.com/2008/04/logo-design-contest/</a>
+    (from mwalling) <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-86'>kohsuke</a>,
+    23:19:52)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">I would say poll
+    the community, and if nothing comes of it, hit up 99designs or some
+    other third party (from rpetti)</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-92'>abayer</a>,
+    23:20:21)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Multiple
+    contests, one for the theme… and then the actual artwork?</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-93'>larrys</a>,
+    23:20:22)</span></li>
+  <li><span class="INFO">I've used 99designs once and liked it</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-96'>kohsuke</a>,
+    23:20:38)</span></li>
+  <li><a
+    href="http://99designs.com/help/how-much-does-running-a-design-contest-cost">http://99designs.com/help/how-much-does-running-a-design-contest-cost</a>
+    99 designs rate sheet <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-97'>mwalling</a>,
+    23:20:46)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">one reason for
+    keeping the butler theme is to emphasize the continuity.</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-100'>kohsuke</a>,
+    23:21:14)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">we'll send an
+    email out to the groups explaining why we need to change logos, and
+    calling for logo ideas/designs from the community.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-115'>kohsuke</a>,
+    23:22:45)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">2 weeks would be
+    a good time frame for this (from AhtiK)</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-118'>kohsuke</a>,
+    23:23:24)</span></li>
+  <li><span class="INFO">while designing a new logo it would be nice if
+    it has less details than current one. It's hard to scale it to 16x16
+    while keeping the integrity.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-141'>AhtiK</a>,
+    23:25:40)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">there was
+    good consensus to the butler theme, but we are not violently averse
+    to other ideas for logos if they're really really awesome</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-143'>kohsuke</a>,
+    23:25:54)</span></li>
+  <li><span class="INFO">SVG might be preferable.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-146'>rpetti</a>,
+    23:25:59)</span></li>
+  <li><span class="INFO">in 99 designs they'll always just give you a
+    vector graphics version</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-153'>kohsuke</a>,
+    23:27:24)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">I think once we
+    decide on logo, we can then ask for the community to try a good
+    16x16 version</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-156'>kohsuke</a>,
+    23:28:02)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Trademark registration</b> <span class="details">(<a href='jenkins.2011-02-04-23.02.log.html#l-165'>kohsuke</a>, 23:29:07)</span>
+<ol type="a">
+  <li><span class="INFO">So we need to register trademarks (EU+US, I'd
+    say) for Jenkins. That's not cheap. CloudBees has offered to help
+    pay for this, but I'm honestly not sure whether that's something we
+    want right now. It's important to make it clear to everyone that
+    Jenkins is not a CloudBees project - it's a community project,
+    independent of any company.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-172'>abayer</a>,
+    23:30:51)</span></li>
+  <li><span class="INFO">Just to make sure, the registration will be
+    still under my name, as we planned and said early on.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-175'>kohsuke</a>,
+    23:31:32)</span></li>
+  <li><span class="INFO">... to be transfered to the custodian when we
+    move under there.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-177'>kohsuke</a>,
+    23:31:50)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">how about setting
+    up a donation for the trademark registration?</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-184'>emanuelez</a>,
+    23:32:22)</span></li>
+  <li><span class="INFO">SPI does money handling/donation processing for
+    other projects (drupal, debian, etc)</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-195'>mwalling</a>,
+    23:33:07)</span></li>
+  <li><span class="INFO">Having a way to take donations is a key goal -
+    we just don't ahve that yet.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-196'>abayer</a>,
+    23:33:10)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Which trademark
+    do we register ? Jenkins vs JenkinsCI vs ...</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-202'>aheritier</a>,
+    23:33:38)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">I wanted to keep
+    for post-formal Q&amp;A but now seems a good place: Now that Oracle
+    is probably not going to continue its support for Jenkins, should
+    there be a more endorsed form of donation? Is there going to be an
+    organization who could even receive some financial help from the
+    community to support Jenkins? Is there a need for such help?</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-203'>AhtiK</a>,
+    23:33:38)</span></li>
+  <li><span class="INFO">The plan is to be under the wing of a formal
+    foundation, be it SFC or elsewhere, which would be able to take
+    donations, own trademarks/copyrights/hardware assets, pay bills,
+    etc.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-208'>abayer</a>,
+    23:34:31)</span></li>
+  <li><span class="INFO">But that's not in place now, and we need to get
+    the registration done ASAP.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-211'>abayer</a>,
+    23:34:49)</span></li>
+  <li><span class="INFO">At least a couple thousand $, probably.</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-222'>abayer</a>,
+    23:35:56)</span></li>
+  <li><span class="INFO">so the cheap-cheap online registration service
+    for trademark on US + EU is like $1K</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-223'>kohsuke</a>,
+    23:35:56)</span></li>
+  <li><a
+    href="http://www.uspto.gov/inventors/trademarks.jsp#heading-5">http://www.uspto.gov/inventors/trademarks.jsp#heading-5</a>
+    USPTO trademark costs, 275 to 375 <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-224'>mwalling</a>,
+    23:36:00)</span></li>
+  <li><span
+    class="INFO">http://www.uspto.gov/inventors/trademarks.jsp#heading-5
+    USPTO trademark costs, 275 to 375 (by mwalling )</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-227'>aheritier</a>,
+    23:36:32)</span></li>
+  <li><span class="INFO">my understanding is that if you use a real
+    lawyer, it's one order of magnitude more</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-228'>kohsuke</a>,
+    23:36:33)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">on allowing
+    CloudBees et. all to donate to the Jenkins project once we have a
+    formal donation mechanism in place</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-238'>rtyler</a>,
+    23:37:48)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">so sounds like
+    the main question is how to do donations now?</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-239'>kohsuke</a>,
+    23:37:48)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer and
+    kohsuke to pin down the exact costs on trademark registration</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-246'>rtyler</a>,
+    23:38:51)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    research means of accepting donations as soon as possible to cover
+    infrastructure, trademark and other costs</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-251'>rtyler</a>,
+    23:39:29)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">Someone
+    (kohsuke)? to figure out the difference between the $1k and $10k
+    registrations in terms of what we'd actually get. =)</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-256'>abayer</a>,
+    23:40:10)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    figure out the difference between $1k and 1$10k registrations for
+    TM, and what the project would receive for each</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-259'>rtyler</a>,
+    23:40:56)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">Ok, I think
+    the resolution for now is that we're willing to take donations from
+    CloudBees, but if we can find a way to make this work without having
+    to have CloudBees do the actual registration, we're better off. So
+    more research is needed.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-261'>abayer</a>,
+    23:41:18)</span></li>
+  <li><span class="INFO">900€ for EU community trademark, see
+    http://oami.europa.eu/ows/rw/pages/CTM/feesPayment/feesPayment.en.do</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-269'>tom_huybrechts</a>,
+    23:41:58)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer,
+    kohsuke, hare_brain: figure out  what exactly we're going to
+    register. =)</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-271'>abayer</a>,
+    23:42:24)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">the trademark
+    will be just "Jenkins". Not "Jenkins CI", no logo.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-290'>kohsuke</a>,
+    23:43:52)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Umbrella foundation</b> <span class="details">(<a href='jenkins.2011-02-04-23.02.log.html#l-295'>abayer</a>, 23:44:25)</span>
+<ol type="a">
+  <li><span class="INFO">So as we've mentioned, we've been hoping to get
+    Jenkins into SFC (the Software Freedom Conservancy) as a legal
+    umbrella.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-299'>abayer</a>,
+    23:45:09)</span></li>
+  <li><span class="INFO">that'd give us an entity to hold
+    trademarks/copyrights, take donations, pay bills, etc.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-301'>abayer</a>,
+    23:45:25)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">next time, please
+    post the agenda</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-303'>uzilan</a>,
+    23:45:37)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    prepare meeting agenda ahead of time for the next meeting</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-305'>rtyler</a>,
+    23:45:54)</span></li>
+  <li><span class="INFO">But it's not a sure thing we'll be able to use
+    SFC. They're a little worried about messing with Oracle, they're a
+    little overloaded with projects already, etc.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-306'>abayer</a>,
+    23:46:03)</span></li>
+  <li><span class="INFO">So I think we need to look into alternatives as
+    well.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-307'>abayer</a>,
+    23:46:22)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">apache?</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-309'>uzilan</a>,
+    23:46:48)</span></li>
+  <li><span class="INFO">Just to make sure, SFC is still something we
+    are pursuing. I still like the SFC model best.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-311'>kohsuke</a>,
+    23:47:16)</span></li>
+  <li><span class="INFO">ASF is a pipe dream of mine here - admittedly
+    influenced by olamy, aheritier and the swarm of Apache
+    committers/members I work with. =) But from waht I know, the problem
+    is that we can't get copyright reassignment of the existing code to
+    Apache, nor can we relicense.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-312'>abayer</a>,
+    23:47:30)</span></li>
+  <li><span class="INFO">Since Oracle owns (or co-owns) the copyright on
+    the code.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-313'>abayer</a>,
+    23:47:47)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">I think it's
+    worth at least talking with Apache as to whether there's any chance
+    we can pair up.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-320'>abayer</a>,
+    23:48:53)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Out of curiosity,
+    how hard is it to set up an entity on our own?</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-321'>kohsuke</a>,
+    23:48:59)</span></li>
+  <li><a href="http://www.spi-inc.org/">http://www.spi-inc.org/</a> SPI
+    is the umbrella that covers Debian, Drupal, Gallery, OOo, OpenWrt,
+    PostgreSQL, etc, to throw in a third option <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-333'>mwalling</a>,
+    23:50:14)</span></li>
+  <li><a href="http://www.spi-inc.org/">http://www.spi-inc.org/</a> An
+    alternative to the SFC <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-339'>rtyler</a>,
+    23:50:45)</span></li>
+  <li><span class="INFO">the purposes for an umbrella organization are:
+    recipient of CLAs, legal representation, donation accepting,
+    etc</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-352'>rtyler</a>,
+    23:51:46)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer to dig
+    more into what sort of leeway the ASF might be able to grant the
+    Jenkins project</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-365'>rtyler</a>,
+    23:53:21)</span></li>
+  <li><a
+    href="http://www.mail-archive.com/spi-general@lists.spi-inc.org/msg01126.html">http://www.mail-archive.com/spi-general@lists.spi-inc.org/msg01126.html</a>
+    a google hit for "SPI vs SFC", seems to be semi useful <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-369'>mwalling</a>,
+    23:53:42)</span></li>
+  <li><a
+    href="http://www.spi-inc.org/projects/associated-project-howto/">http://www.spi-inc.org/projects/associated-project-howto/</a>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-376'>AhtiK</a>,
+    23:54:37)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">Codehaus is
+    just a hosting platform. Or so I hear. From everyone.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-392'>abayer</a>,
+    23:56:25)</span></li>
+  <li><span class="INFO">kohsuke also raised an interesting question
+    before regarding how much it would cost to set up the org itself.
+    non-profit. but maybe even more than the cost itself it's the effort
+    and time it takes to manage.... could be too much time to waste on
+    paperwork.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-400'>AhtiK</a>,
+    23:57:27)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">Setting up
+    our own Jenkins Foundation is a last resort option provided other
+    alternatives don't work out</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-406'>rtyler</a>,
+    23:58:03)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">The CLA - what's needed now?</b> <span class="details">(<a href='jenkins.2011-02-04-23.02.log.html#l-424'>abayer</a>, 23:59:47)</span>
+<ol type="a">
+  <li><span class="INFO">So previously, changes to core required
+    submitting a CLA to Oracle.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-425'>abayer</a>,
+    00:00:03)</span></li>
+  <li><span class="INFO">Obviously, that doesn't apply any more (and I,
+    in fact, am going to be revoking my Oracle CLA). So what are the
+    rules for contributing to core now?</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-432'>abayer</a>,
+    00:00:34)</span></li>
+  <li><span class="INFO">CLA -&gt; Contributor License Agreement</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-433'>rtyler</a>,
+    00:00:37)</span></li>
+  <li><span class="INFO">Current one is
+    http://oss.oracle.com/oca.pdf</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-434'>kohsuke</a>,
+    00:00:49)</span></li>
+  <li><span class="INFO">So in the interim, do we keep using the
+    existing CLA?</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-440'>abayer</a>,
+    00:01:46)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Core contributors
+    signing an "intent to sign a CLA for Jenkins" once an umbrella
+    organization is found to assign to</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-463'>rtyler</a>,
+    00:05:07)</span></li>
+  <li><span class="INFO">that reminds me that we need to know where the
+    difference between a patch vs a change</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-471'>kohsuke</a>,
+    00:06:40)</span></li>
+  <li><span class="INFO">History background: one of the main reasons why
+    there was an SCA was because Sun had to change the license for a
+    project with many contrbutors and it was a mess.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-494'>pelegri</a>,
+    00:09:54)</span></li>
+  <li><span class="INFO">Eclipse.org projects need to get CLA signed
+    only for contributions that are bigger than X lines (sry, have
+    forgotten what the X was).</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-495'>AhtiK</a>,
+    00:10:20)</span></li>
+  <li><span class="INFO">Ok, how many core devs do we have in here at
+    the moment?</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-496'>abayer</a>,
+    00:10:20)</span></li>
+  <li><span class="INFO">my opinion is to ride it out until we're
+    entitized, then get people to sign CLAs. no CLA, signifigant patches
+    rolled back, grumbling, etc.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-504'>mwalling</a>,
+    00:11:02)</span></li>
+  <li><span class="INFO">i also think CLAs should cover plugins under
+    github/jenkinsci/</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-506'>mwalling</a>,
+    00:11:25)</span></li>
+  <li><span class="INFO">in practice, I think I personally trust the
+    fairly limited number of contributors to core to not screw us over
+    in the (hopefully!) short time until we have a real CLA, etc.</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-510'>abayer</a>,
+    00:12:11)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">JCA -&gt; Jenkins
+    Contributor Agreement</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-518'>rtyler</a>,
+    00:13:25)</span></li>
+  <li><span class="INFO">there are two risks (of not SCA): One is code
+    is not of the contributor (and illegal).  Two is we can't change the
+    copryight / license later.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-521'>pelegri</a>,
+    00:13:47)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">We don't have a
+    formal CLA until we have a legal entity, etc. We ask all core devs
+    to acknowledge that they'll need to sign a CLA when we *do* hae an
+    entity. We probably don't add any more core devs until there's a
+    formal CLA process. Pull requests can still be taken, so long as
+    they're not huge.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-525'>abayer</a>,
+    00:14:31)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke,
+    abayer, hare_brain to get a draft CLA ready before we meet
+    next.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-531'>abayer</a>,
+    00:15:07)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">an addendum - we
+    also don't do any massive changes to core functionality until the
+    formal CLA is in place, in case of a worst case scenario of someone
+    going back on it and not signing, etc.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-537'>abayer</a>,
+    00:16:20)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">: update
+    http://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-543'>aheritier</a>,
+    00:17:40)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">No massive
+    core changes until CLA is set up</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-548'>rtyler</a>,
+    00:18:22)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer to get
+    statements from all core devs on their intent to sign eventual
+    CLA.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-551'>abayer</a>,
+    00:18:37)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Next meeting logistics</b> <span class="details">(<a href='jenkins.2011-02-04-23.02.log.html#l-553'>abayer</a>, 00:18:52)</span>
+<ol type="a">
+  <li><span class="INFO">Just to have some background when to ask for
+    CLA - for example, Eclipse requires signing agreement for
+    contributions with more than 250 lines. More details
+    http://www.eclipse.org/legal/EclipseLegalProcessPoster.pdf</span>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-555'>AhtiK</a>,
+    00:19:08)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Schedule meeting
+    for earlier than 11:00 PM for our european users</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-558'>rtyler</a>,
+    00:19:18)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">I'd like to meet
+    weekly for the time being - we've got a lot of stuff to iron out,
+    etc.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-570'>abayer</a>,
+    00:20:42)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">No more
+    friday meetings</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-572'>rtyler</a>,
+    00:20:57)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">Weekly
+    meetings until further notice, and some more things are ironed
+    out</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-576'>rtyler</a>,
+    00:21:12)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">How would 11am
+    PST (8pm CET) on Wednesdays work for people?</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-579'>abayer</a>,
+    00:21:23)</span></li>
+  <li><a
+    href="http://www.timeanddate.com/worldclock/meetingtime.html?month=2&amp;day=9&amp;year=2011&amp;p1=195&amp;p2=224&amp;p3=57&amp;p4=-1">http://www.timeanddate.com/worldclock/meetingtime.html?month=2&amp;day=9&amp;year=2011&amp;p1=195&amp;p2=224&amp;p3=57&amp;p4=-1</a>
+    <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-603'>AhtiK</a>,
+    00:23:56)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    work with abayer, kohsuke and hare_brain on agenda for next week's
+    meeting.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-604'>abayer</a>,
+    00:23:58)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    post a meeting agenda and accouncement at least a good 24 hours
+    ahead of time to the blog</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-607'>rtyler</a>,
+    00:24:18)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Next Wednesday,
+    11am PST (8pm CET, 7pm GMT, 2pm EST), for next meeting and then
+    revisit scheduling depending on how that works.</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-610'>abayer</a>,
+    00:24:42)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">Ensure meetings
+    are primarily things that need discussion over IRC, and cannot be
+    resolved over the mailing lists</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-611'>rtyler</a>,
+    00:24:49)</span></li>
+  <li><span class="INFO">The interim board is all in the PST
+    timezone</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-616'>rtyler</a>,
+    00:25:17)</span></li>
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">Next meeting,
+    Wednesday Feb 9, 11am PST etc.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-619'>abayer</a>,
+    00:25:51)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">so use the
+    mailing list to lock down agenda of topics</span> <span
+    class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-620'>larrys</a>,
+    00:25:55)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">use the wiki for
+    the agenda planning</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-626'>mwalling</a>,
+    00:26:25)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">: Open a google
+    agenda to share it with everybody</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-629'>aheritier</a>,
+    00:26:38)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">proposing to
+    allow additions to agenda from the community and just have the
+    agenda fixed before the start. optionally Q&amp;A/open mic in the
+    end.</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-631'>AhtiK</a>,
+    00:27:14)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    post meeting notes and an overview to the blog in the next 24
+    hours</span> <span class="details">(<a
+    href='jenkins.2011-02-04-23.02.log.html#l-633'>rtyler</a>,
+    00:27:15)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 00:27:47 UTC
+(<a href="jenkins.2011-02-04-23.02.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>abayer to write a proposal of the voter eligibility</li>
+  <li>we'll send an email out to the groups explaining why we need to change logos, and calling for logo ideas/designs from the community.</li>
+  <li>abayer and kohsuke to pin down the exact costs on trademark registration</li>
+  <li>rtyler to research means of accepting donations as soon as possible to cover infrastructure, trademark and other costs</li>
+  <li>Someone (kohsuke)? to figure out the difference between the $1k and $10k registrations in terms of what we'd actually get. =)</li>
+  <li>kohsuke to figure out the difference between $1k and 1$10k registrations for TM, and what the project would receive for each</li>
+  <li>abayer, kohsuke, hare_brain: figure out  what exactly we're going to register. =)</li>
+  <li>rtyler to prepare meeting agenda ahead of time for the next meeting</li>
+  <li>abayer to dig more into what sort of leeway the ASF might be able to grant the Jenkins project</li>
+  <li>kohsuke, abayer, hare_brain to get a draft CLA ready before we meet next.</li>
+  <li>: update http://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code</li>
+  <li>abayer to get statements from all core devs on their intent to sign eventual CLA.</li>
+  <li>rtyler to work with abayer, kohsuke and hare_brain on agenda for next week's meeting.</li>
+  <li>rtyler to post a meeting agenda and accouncement at least a good 24 hours ahead of time to the blog</li>
+  <li>rtyler to post meeting notes and an overview to the blog in the next 24 hours</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> abayer <ol>
+    <li>abayer to write a proposal of the voter eligibility</li>
+    <li>abayer and kohsuke to pin down the exact costs on trademark registration</li>
+    <li>abayer, kohsuke, hare_brain: figure out  what exactly we're going to register. =)</li>
+    <li>abayer to dig more into what sort of leeway the ASF might be able to grant the Jenkins project</li>
+    <li>kohsuke, abayer, hare_brain to get a draft CLA ready before we meet next.</li>
+    <li>abayer to get statements from all core devs on their intent to sign eventual CLA.</li>
+    <li>rtyler to work with abayer, kohsuke and hare_brain on agenda for next week's meeting.</li>
+  </ol></li>
+  <li> hare_brain <ol>
+    <li>abayer, kohsuke, hare_brain: figure out  what exactly we're going to register. =)</li>
+    <li>kohsuke, abayer, hare_brain to get a draft CLA ready before we meet next.</li>
+    <li>rtyler to work with abayer, kohsuke and hare_brain on agenda for next week's meeting.</li>
+  </ol></li>
+  <li> kohsuke <ol>
+    <li>abayer and kohsuke to pin down the exact costs on trademark registration</li>
+    <li>Someone (kohsuke)? to figure out the difference between the $1k and $10k registrations in terms of what we'd actually get. =)</li>
+    <li>kohsuke to figure out the difference between $1k and 1$10k registrations for TM, and what the project would receive for each</li>
+    <li>abayer, kohsuke, hare_brain: figure out  what exactly we're going to register. =)</li>
+    <li>kohsuke, abayer, hare_brain to get a draft CLA ready before we meet next.</li>
+    <li>rtyler to work with abayer, kohsuke and hare_brain on agenda for next week's meeting.</li>
+  </ol></li>
+  <li> rtyler <ol>
+    <li>rtyler to research means of accepting donations as soon as possible to cover infrastructure, trademark and other costs</li>
+    <li>rtyler to prepare meeting agenda ahead of time for the next meeting</li>
+    <li>rtyler to work with abayer, kohsuke and hare_brain on agenda for next week's meeting.</li>
+    <li>rtyler to post a meeting agenda and accouncement at least a good 24 hours ahead of time to the blog</li>
+    <li>rtyler to post meeting notes and an overview to the blog in the next 24 hours</li>
+  </ol></li>
+  <li><b>UNASSIGNED</b><ol>
+    <li>we'll send an email out to the groups explaining why we need to change logos, and calling for logo ideas/designs from the community.</li>
+    <li>: update http://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code</li>
+  </ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>abayer (158)</li>
+  <li>rtyler (92)</li>
+  <li>kohsuke (83)</li>
+  <li>aheritier (63)</li>
+  <li>mwalling (50)</li>
+  <li>larrys (42)</li>
+  <li>AhtiK (27)</li>
+  <li>pelegri (22)</li>
+  <li>hare_brain (15)</li>
+  <li>rpetti (10)</li>
+  <li>uzilan (10)</li>
+  <li>bap2000 (9)</li>
+  <li>tom_huybrechts (9)</li>
+  <li>emanuelez (8)</li>
+  <li>olamy (7)</li>
+  <li>mindless (6)</li>
+  <li>lacostej (5)</li>
+  <li>taco (5)</li>
+  <li>calavera (5)</li>
+  <li>robobutler (3)</li>
+  <li>onlyteo (2)</li>
+  <li>atmos (2)</li>
+  <li>vtintillier (1)</li>
+  <li>fredg02 (1)</li>
+  <li>ssogabe (1)</li>
+  <li>cquinn1 (1)</li>
+  <li>zaphX (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

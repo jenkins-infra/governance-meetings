@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app225.us.archive.org';v.server_ms=383;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-07-08-18.00.log.html","20200504091044","https://web.archive.org/","web","/_static/",
+	      "1588583444");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:58</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler hare_brain danielbeck</span>
+<a name="l-4"></a><span class="tm">18:01:14</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:01:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-6"></a><span class="tm">18:01:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-06-10-18.01.html</span>
+<a name="l-7"></a><span class="tm">18:01:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/projects/MEETING</span>
+<a name="l-8"></a><span class="tm">18:02:10</span><span class="nk"> &lt;danielbeck&gt;</span> no actions to recap
+<a name="l-9"></a><span class="tm">18:02:20</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-10"></a><span class="tm">18:02:31</span><span class="nk"> &lt;kohsuke&gt;</span> It's been a while we do this
+<a name="l-11"></a><span class="tm">18:02:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">1.609.2 RC status check</span>
+<a name="l-12"></a><span class="tm">18:03:11</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> thanks for the calendar access
+<a name="l-13"></a><span class="tm">18:03:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> ^^
+<a name="l-14"></a><span class="tm">18:03:18</span><span class="nk"> &lt;ogondza&gt;</span> we are ready
+<a name="l-15"></a><span class="tm">18:03:23</span><span class="nk"> &lt;kohsuke&gt;</span> No problems, thanks for asking!
+<a name="l-16"></a><span class="tm">18:03:38</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza Unless you consider JENKINS-28058? It was filed as Improvement but is a bug
+<a name="l-17"></a><span class="tm">18:03:39</span><span class="nk"> &lt;kohsuke&gt;</span> danielbeck told me there's one last minute change that he thought we should pull in?
+<a name="l-18"></a><span class="tm">18:03:41</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-28058:Excessive classes being sent to slave machine (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-28058
+<a name="l-19"></a><span class="tm">18:03:56</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Nope, all the really important ones are in. This one is nice to have I think
+<a name="l-20"></a><span class="tm">18:04:02</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> I have not, let me see
+<a name="l-21"></a><span class="tm">18:04:22</span><span class="nk"> &lt;kohsuke&gt;</span> OK, then I can crank the wheel now?
+<a name="l-22"></a><span class="tm">18:04:36</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Oliver backported all previously proposed issues, including Stephen's queue fixes yesterday
+<a name="l-23"></a><span class="tm">18:04:42</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Wait a minute
+<a name="l-24"></a><span class="tm">18:04:44</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I think that's the one you told me
+<a name="l-25"></a><span class="tm">18:05:26</span><span class="nk"> &lt;danielbeck&gt;</span> For reference, Oliver used the delayed RC to backport JENKINS-28690, JENKINS-28840, JENKINS-27289, JENKINS-14899 and JENKINS-28926
+<a name="l-26"></a><span class="tm">18:05:28</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-28690:Deadlock in hudson.model.Executor (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-28690
+<a name="l-27"></a><span class="tm">18:05:30</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-28840:Deadlock between Queue.maintain and Executor.interrupt (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-28840
+<a name="l-28"></a><span class="tm">18:05:32</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-27289:Masking classLoader doesn`t work on remote Slave (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-27289
+<a name="l-29"></a><span class="tm">18:05:34</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-14899:consoleText stops updating at 5000 lines until end of build job (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-14899
+<a name="l-30"></a><span class="tm">18:05:35</span><span class="nk"> &lt;ogondza&gt;</span> I assume we can live without J28058
+<a name="l-31"></a><span class="tm">18:05:36</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-28926:Jenkins queue self-locking without apparent reason? (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-28926
+<a name="l-32"></a><span class="tm">18:06:22</span><span class="nk"> &lt;danielbeck&gt;</span> Then it's time for the RC
+<a name="l-33"></a><span class="tm">18:06:27</span><span class="nk"> &lt;kohsuke&gt;</span> Great
+<a name="l-34"></a><span class="tm">18:06:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">1.609.2 RC is good to go</span>
+<a name="l-35"></a><span class="tm">18:07:15</span><span class="nk"> &lt;kohsuke&gt;</span> I think we can finish very quickly today and maybe we can use the rest of the time fixing SPoF and other infra work
+<a name="l-36"></a><span class="tm">18:07:20</span><span class="nk"> &lt;danielbeck&gt;</span> so did this delay push back future releases?
+<a name="l-37"></a><span class="tm">18:07:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-38"></a><span class="tm">18:07:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> I think so, no?
+<a name="l-39"></a><span class="tm">18:07:43</span><span class="nk"> &lt;danielbeck&gt;</span> i.e. +2w until 609.2, +6w 609.3, +10w NNN.1?
+<a name="l-40"></a><span class="tm">18:07:52</span><span class="nk"> &lt;danielbeck&gt;</span> Just asking to get confirmation
+<a name="l-41"></a><span class="tm">18:07:59</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> yes
+<a name="l-42"></a><span class="tm">18:08:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> thanks for creating calendar entries
+<a name="l-43"></a><span class="tm">18:08:35</span><span class="nk"> &lt;ogondza&gt;</span> I will try to make the process more visible for devs and testers
+<a name="l-44"></a><span class="tm">18:09:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> you and I talked about reviving the office hours. Any thoughts on when we'd start?
+<a name="l-45"></a><span class="tm">18:10:24</span><span class="nk"> &lt;danielbeck&gt;</span> I'll try to get something set up for next week if I have the time, otherwise two weeks later
+<a name="l-46"></a><span class="tm">18:10:48</span><span class="nk"> &lt;kohsuke&gt;</span> looking forward to a blog post for that one
+<a name="l-47"></a><span class="tm">18:10:59</span><span class="nk"> &lt;kohsuke&gt;</span> should we wrap up the meeting?
+<a name="l-48"></a><span class="tm">18:11:07</span><span class="nk"> &lt;danielbeck&gt;</span> I think so
+<a name="l-49"></a><span class="tm">18:11:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next time</span>
+<a name="l-50"></a><span class="tm">18:11:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next meeting would be July 22nd same time</span>
+<a name="l-51"></a><span class="tm">18:11:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 09:10:44 May 04, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:55:07 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 89.903
+  exclusion.robots: 0.12
+  exclusion.robots.policy: 0.11
+  RedisCDXSource: 0.676
+  esindex: 0.01
+  LoadShardBlock: 62.625 (3)
+  PetaboxLoader3.datanode: 92.03 (4)
+  CDXLines.iter: 21.909 (3)
+  load_resource: 286.405
+  PetaboxLoader3.resolve: 237.412
+-->

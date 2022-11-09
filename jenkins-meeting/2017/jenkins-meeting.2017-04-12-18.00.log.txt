@@ -1,0 +1,128 @@
+18:00:17 <rtyler> #startmeeting
+18:00:17 <robobutler> Let the Jenkins meeting commence!
+18:00:23 <rtyler> #topic Last meeting actions
+18:00:40 <rtyler> #info http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-03-29-18.02.html
+18:01:38 <ogondza> release was run by KK
+18:01:56 <rtyler> yay
+18:02:06 <rtyler> I think alyssat_ took care of all the trademark things
+18:02:17 <alyssat_> yes. that's done
+18:02:20 <rtyler> danielbeck: upgrade guide got squared away too IIRC
+18:02:23 <alyssat_> thanks to Daniel
+18:02:49 <danielbeck> rtyler yes
+18:02:55 <rtyler> wunderbar, let's move on
+18:03:02 <rtyler> #topic LTS status check
+18:03:25 <ogondza> ok, the number of backported fixes i minimal
+18:03:36 <ogondza> ATH test are still in progress
+18:03:40 <danielbeck> no candidates?
+18:03:50 <ogondza> 2 and one of them is groovy
+18:04:04 <ogondza> IIRC we agreed it is too risky for 2.46.X
+18:04:11 <oleg-nenashev> 2.4.10 or 2.4.8?
+18:04:15 <danielbeck> I don't think the situation improved since we decided on 2.46
+18:04:31 <oleg-nenashev> Yeah, there was at least one reported defect
+18:04:33 <danielbeck> https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.46.2-fixed
+18:04:44 <ogondza> however, this time it will require serious look at ATH results
+18:05:05 <ogondza> as some failures look scary and there is a pile of failures as plugins was delisted
+18:05:11 <danielbeck> oops
+18:05:32 <oleg-nenashev> ogondza: I will check issues and update the lts-candidate list today if something is missing. Just in case
+18:05:35 <ogondza> I am not sure what to do with such tests - those plugins might never come back to distribution ...
+18:05:47 <oleg-nenashev> @Igmnore ?
+18:05:47 <danielbeck> ogondza skip for now?
+18:05:49 <Slide-O-Mix> is there a way to skip if the plugin doesn't exist?
+18:05:51 <ogondza> I guess
+18:06:11 <ogondza> my question is not a technical one
+18:06:36 <ogondza> keeping the suppressed code will we never need sucks as well
+18:07:16 <ogondza> the point being, I will have to look at that tomorrow and push the RC once the results looks reasonably well
+18:07:30 <oleg-nenashev> Maybe we want to backport "Internal: Make sure system threads run as SYSTEM.", but the issue link is broken in the changelog
+18:07:38 <oleg-nenashev> will fix that as well :(
+18:08:01 <ogondza> #action push the RC on Thursday once ATH looks green
+18:08:22 <orrc> *blue
+18:08:28 <ogondza> #action ogondza push the RC on Thursday once ATH looks green
+18:08:56 <rtyler> heh
+18:09:10 <ogondza> orrc: we do not see any of that colors around ATH very often
+18:09:11 <rtyler> ogondza: IIRC the next LTS baseline will be in june right?
+18:09:28 <danielbeck> chosen in 4 weeks, released in 8
+18:09:37 <danielbeck> wait
+18:09:40 <danielbeck> 6 / 10
+18:09:48 <ogondza> will be picked 24th of May
+18:10:19 <rtyler> righto
+18:10:25 <rtyler> ready to move on?
+18:10:29 <ogondza> 21th of June  is the .1
+18:10:40 <ogondza> yes we can
+18:10:48 <rtyler> #topic Google Groups issues
+18:10:52 <ogondza> can some of the chairs action me?
+18:10:52 * rtyler grumbles
+18:11:02 <rtyler> ogondza: for what?
+18:11:06 <rtyler> #chair danielbeck kohsuke
+18:11:06 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:11:42 <ogondza> rtyler: oh, there is no butler confirmation on action command? ok
+18:11:53 <rtyler> no
+18:12:04 <rtyler> so google groups has flagged jenkinsci-users and jenkinsci-issues
+18:12:24 <rtyler> from my understanding jenkinsci-users is now unblocked but there's no telling why it was blocked or if it might happen again
+18:12:37 <danielbeck> happened at least twice now
+18:12:42 <rtyler> right
+18:12:54 <oleg-nenashev> I hope it is not about "too many slave mentions"
+18:13:10 <rtyler> a lot of folks suggested groups.io which I have starteed to look into, I'm hoping we can figure something out, but please know that I have literally no idea why we keep getting flagged :/
+18:13:48 <oleg-nenashev> rtyler: Any chance we get a response from Google Support?
+18:13:57 <orrc> hahaha :)
+18:13:59 <rtyler> there isn't really "support"
+18:14:10 <rtyler> there's a friend of mine who has been acting as a go between
+18:14:18 <batmat> we're being the product, not the customer...
+18:14:25 <rtyler> but apparently there's supposed to be an "Appeal" type link for when a group is flagged
+18:14:25 <oleg-nenashev> I know
+18:14:31 <rtyler> except there isn't one anywhere :(
+18:14:43 <oleg-nenashev> I am formally a customer of Google
+18:14:46 <rtyler> I'm not entirely convinced thaqt there are humans involved here
+18:14:47 <oleg-nenashev> Can give a try
+18:15:11 <orrc> groups.io seems to have been around for a while, and has plenty of usage, decent features, and it would be totally reasonable to pay $10/mo or whatever to not have Google involved, and to maybe stop hosting mailman or whatever it is
+18:15:23 * orrc goes to look what anti-spam features they have
+18:15:57 <rtyler> I don't expect to do this now, but between now and the next project meeting I would like to figure something out
+18:16:15 <rtyler> if anybody has any contacts within google who might be closer to google groups, I would of course appreciate an introduction :)
+18:16:27 <rtyler> otherwise, I don't really have any news, good or bad, to shed on the situation
+18:16:35 <rtyler> any questions?
+18:17:04 <danielbeck> rtyler given the risk of Google groups, are we considering alternatives like groups.io?
+18:17:44 <rtyler> danielbeck: I think you may have missed a line
+18:17:48 <batmat> how many moderators are there/should we start moderating messages? Are they moderated already?
+18:18:08 <rtyler> the first-post-is-moderated thing isn't set on jenkinsci-users so I don't know
+18:18:20 <rtyler> but between the first and second time the group was flagged, there wasn't any spam
+18:18:25 <rtyler> so I'm not certain spam is the reason
+18:18:35 <danielbeck> rtyler sorry, only saw orrc's comments
+18:18:53 * orrc volunteers for Euro-timezone mod duty for the existing lists
+18:19:17 <rtyler> consider it done orrc :D
+18:19:29 <rtyler> #action rtyler to add orrc to the spam brigade
+18:19:36 <batmat> +1, maybe there's some rules on ggroups to auto garbage groups where too many spams are reported, but we basically don't know for sure indeed :(
+18:19:50 <rtyler> the thing is, users can also report groups
+18:19:59 <batmat> heh
+18:20:02 <rtyler> so in theory, if enough people reported jenkinsci-users@ as abusive or spam
+18:20:07 <rtyler> then we might get kicked off
+18:20:17 <rtyler> but there's no way to tell what happened right now unfortunately
+18:21:02 <rtyler> so what I'm thinking is that we: look into groups.io, continue to try to get more answers about what's up with google, and revisit next time aroundf
+18:21:18 <rtyler> if we get flagged again between nwo and next meeting, we might need to accelerate a migration <_<
+18:21:22 <danielbeck> jenkinsci-dev is currently still unaffected?
+18:21:28 <rtyler> yes
+18:22:11 <oleg-nenashev> We may want to consider moving Security Advisories as a step 1
+18:22:32 <oleg-nenashev> If they get blocked at the wrong time, we may have a problem
+18:22:47 <orrc> +1 to rtyler
+18:22:48 <rtyler> moving lists also means that the email address would change
+18:23:00 <rtyler> I would rather not move if we can avoid it
+18:23:12 <orrc> once every six years isn't so bad :D
+18:23:31 * rtyler sends an email to orrc@java.net
+18:23:40 <orrc> haha, I did just look on there to see where it goes
+18:23:57 <orrc> sadly no more project hosting
+18:24:16 <rtyler> if we get flagged again before next meeting, or cannot get answers before next meeting, I expect to come with a proposal for migrating all lists to groups.io
+18:24:36 <danielbeck> oleg-nenashev the advisories list only allows KK and me to post, so I'd be very surprised
+18:26:09 <oleg-nenashev> m2
+18:26:43 <rtyler> anything else on this topic?
+18:26:55 <danielbeck> no
+18:26:57 <danielbeck> seems reasonable
+18:27:04 <danielbeck> email the dev list as well about this
+18:27:16 <rtyler> yeah, I'll start a new thread
+18:28:12 <rtyler> alrighty then
+18:28:23 <rtyler> #action rtyler to inform the dev list
+18:28:28 <rtyler> #topic next meeting
+18:28:52 <rtyler> April 26 is what my very trustworthy calendar (hosted by Google) says
+18:29:12 <danielbeck> don't rely on it too much
+18:29:34 <rtyler> heh
+18:29:42 <danielbeck> if too many of your meeting invitations are marked spam…
+18:29:48 <rtyler> #info April 26 will be the next meeting
+18:29:58 <rtyler> thanks everybody, short and (bitter)sweet today
+18:30:00 <rtyler> #endmeeting

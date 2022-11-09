@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app219.us.archive.org';v.server_ms=219;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-05-14-18.06.log.html","20200508070726","https://web.archive.org/","web","/_static/",
+	      "1588921646");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:06:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:06:01</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:06:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-4"></a><span class="tm">18:07:00</span><span class="nk"> &lt;hare_brain&gt;</span> Are there even any agenda items?
+<a name="l-5"></a><span class="tm">18:07:07</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm, I thought Lisa_ (is that you?) was adding one
+<a name="l-6"></a><span class="tm">18:07:23</span><span class="nk"> &lt;kohsuke&gt;</span> but if not, I think we should just skip it
+<a name="l-7"></a><span class="tm">18:07:32</span><span class="nk"> &lt;kohsuke&gt;</span> I'll just go back to coding workflow...
+<a name="l-8"></a><span class="tm">18:07:34</span><span class="nk"> &lt;Lisa_&gt;</span> Just a JUC update
+<a name="l-9"></a><span class="tm">18:07:40</span><span class="nk"> &lt;kohsuke&gt;</span> There you are
+<a name="l-10"></a><span class="tm">18:07:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">JUC update</span>
+<a name="l-11"></a><span class="tm">18:08:12</span><span class="nk"> &lt;Lisa_&gt;</span> @Alyssa, do you have the latest registration numbers?
+<a name="l-12"></a><span class="tm">18:08:18</span><span class="nk"> &lt;Alyssa&gt;</span> just to give a quick update of where we are in terms of registrations &amp; sponsorship
+<a name="l-13"></a><span class="tm">18:08:32</span><span class="nk"> &lt;Alyssa&gt;</span> JUC registration as of 5/14: Boston = 215, Berlin = 173, Israel=70
+<a name="l-14"></a><span class="tm">18:09:04</span><span class="nk"> &lt;Alyssa&gt;</span> We've also reached out to local JUGs who has promoted JUC to their members.
+<a name="l-15"></a><span class="tm">18:09:13</span><span class="nk"> &lt;kohsuke&gt;</span> What's the total we are aiming to fill?
+<a name="l-16"></a><span class="tm">18:09:24</span><span class="nk"> &lt;Lisa_&gt;</span> registration numbers are looking really good - both conferences are likely to fill at 300
+<a name="l-17"></a><span class="tm">18:09:28</span><span class="nk"> &lt;Alyssa&gt;</span> we aim to fill 300 for each locations
+<a name="l-18"></a><span class="tm">18:09:33</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-19"></a><span class="tm">18:09:41</span><span class="nk"> &lt;kohsuke&gt;</span> I did put some plug about it in my workflow announcement
+<a name="l-20"></a><span class="tm">18:09:54</span><span class="nk"> &lt;Lisa_&gt;</span> <span class="hi">kohsuke:</span> thank you!
+<a name="l-21"></a><span class="tm">18:10:16</span><span class="nk"> &lt;Lisa_&gt;</span> if the community can keep helping spread the word, that is very helpful
+<a name="l-22"></a><span class="tm">18:10:33</span><span class="nk"> &lt;Alyssa&gt;</span> +1 we'll sold out very fast :o)
+<a name="l-23"></a><span class="tm">18:10:42</span><span class="nk"> &lt;Lisa_&gt;</span> on the sponsor side, we have almost more than we can keep track of
+<a name="l-24"></a><span class="tm">18:11:06</span><span class="nk"> &lt;Lisa_&gt;</span> new ones since last project meeting: odecentric AG, Ravello, Serena Software, Blazemeter, Praqma, Eliassen, Yahoo, SOASTA, Cloudera, Kensho; maybe SalesForce.com &amp; several others
+<a name="l-25"></a><span class="tm">18:11:25 </span><span class="nka">* kohsuke</span> <span class="ac">tried to thank abayer and he isn't here</span>
+<a name="l-26"></a><span class="tm">18:11:29</span><span class="nk"> &lt;Lisa_&gt;</span> sorry, that's CODEcentric AG, not odecentric
+<a name="l-27"></a><span class="tm">18:11:42</span><span class="nk"> &lt;kohsuke&gt;</span> maybe it's his ploy to have his company pay for another Germany visit
+<a name="l-28"></a><span class="tm">18:11:50</span><span class="nk"> &lt;Lisa_&gt;</span> if anyone else is interested in sponsoring - this is the last week to sign up and still get your logo on the tshirt (which is very cool this year)
+<a name="l-29"></a><span class="tm">18:12:11</span><span class="nk"> &lt;kohsuke&gt;</span> T-shirts would be a good blog post
+<a name="l-30"></a><span class="tm">18:12:24</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">kohsuke:</span> will do
+<a name="l-31"></a><span class="tm">18:12:28</span><span class="nk"> &lt;Lisa_&gt;</span> yes... it's just a matter of time. we have several we need to write
+<a name="l-32"></a><span class="tm">18:12:42</span><span class="nk"> &lt;Lisa_&gt;</span> any volunteers to write it besides Alyssa &amp; me? we are pretty backed up
+<a name="l-33"></a><span class="tm">18:13:26</span><span class="nk"> &lt;Alyssa&gt;</span> fyi -we've also solicited speakers to write blog but that's slow coming. i think i have 1 volunteer
+<a name="l-34"></a><span class="tm">18:13:35</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm, I suspect it's bit tricky for others to write about them
+<a name="l-35"></a><span class="tm">18:14:43</span><span class="nk"> &lt;Lisa_&gt;</span> fair enough - we'll do it if we can. can include Alyssa's sweet Jenkins pins too
+<a name="l-36"></a><span class="tm">18:15:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">and there'll be 2nd JUC Tokyo in Jan 11th next year</span>
+<a name="l-37"></a><span class="tm">18:15:46</span><span class="nk"> &lt;kohsuke&gt;</span> If anyone wants to go speak there you are welcome :-)
+<a name="l-38"></a><span class="tm">18:15:54</span><span class="nk"> &lt;rtyler&gt;</span> WOOHOO
+<a name="l-39"></a><span class="tm">18:15:59</span><span class="nk"> &lt;Lisa_&gt;</span> if everyone could give KK's Agenda blog a social media push in the meantime, that would be awesome: http://jenkins-ci.org/content/juc-agenda-posted
+<a name="l-40"></a><span class="tm">18:16:51</span><span class="nk"> &lt;kohsuke&gt;</span> All right, anything else on this?
+<a name="l-41"></a><span class="tm">18:17:12</span><span class="nk"> &lt;Lisa_&gt;</span> not from me
+<a name="l-42"></a><span class="tm">18:17:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">1.554.2 LTS RC</span>
+<a name="l-43"></a><span class="tm">18:17:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> my understanding is that it's good to go, right?
+<a name="l-44"></a><span class="tm">18:17:54</span><span class="nk"> &lt;kohsuke&gt;</span> I'll proceed accordingly unless I hear otherwise
+<a name="l-45"></a><span class="tm">18:17:54</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> yes it is
+<a name="l-46"></a><span class="tm">18:17:59</span><span class="nk"> &lt;kohsuke&gt;</span> OK, cool
+<a name="l-47"></a><span class="tm">18:18:21</span><span class="nk"> &lt;kohsuke&gt;</span> Unless anyone has anything else, I think we'll wrap up early today
+<a name="l-48"></a><span class="tm">18:18:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-49"></a><span class="tm">18:18:38</span><span class="nk"> &lt;danielbeck&gt;</span> could we rename the components in Jira?
+<a name="l-50"></a><span class="tm">18:18:49</span><span class="nk"> &lt;kohsuke&gt;</span> next meeting will be in 5/28
+<a name="l-51"></a><span class="tm">18:18:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> which one?
+<a name="l-52"></a><span class="tm">18:18:58</span><span class="nk"> &lt;danielbeck&gt;</span> all of the plugins
+<a name="l-53"></a><span class="tm">18:19:04</span><span class="nk"> &lt;kohsuke&gt;</span> oh
+<a name="l-54"></a><span class="tm">18:19:11</span><span class="nk"> &lt;danielbeck&gt;</span> some plugin names just invite wrong metadata
+<a name="l-55"></a><span class="tm">18:19:21</span><span class="nk"> &lt;danielbeck&gt;</span> core issues related to remoting -&gt; master-slave component
+<a name="l-56"></a><span class="tm">18:19:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">renaming plugin components in JIRA</span>
+<a name="l-57"></a><span class="tm">18:19:48</span><span class="nk"> &lt;danielbeck&gt;</span> (IIRC … there are a few)
+<a name="l-58"></a><span class="tm">18:20:04</span><span class="nk"> &lt;danielbeck&gt;</span> would be much clearer if the component name had the -plugin suffix
+<a name="l-59"></a><span class="tm">18:20:07</span><span class="nk"> &lt;kohsuke&gt;</span> and you want to rename all the plugins to *-plugin or something?
+<a name="l-60"></a><span class="tm">18:20:13</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-61"></a><span class="tm">18:20:22</span><span class="nk"> &lt;danielbeck&gt;</span> exactly. There’s the component overview page, but nobody reads that.
+<a name="l-62"></a><span class="tm">18:21:11</span><span class="nk"> &lt;larrys&gt;</span> I think that would fix a few wiki pages (or at least also be able to remove some jira override in the macro for plugin info)
+<a name="l-63"></a><span class="tm">18:21:12</span><span class="nk"> &lt;kohsuke&gt;</span> I'm OK with the idea, but I just find the actual work rather daunting!
+<a name="l-64"></a><span class="tm">18:22:30</span><span class="nk"> &lt;danielbeck&gt;</span> haven’t looked into what’s involved, just noticed the issue
+<a name="l-65"></a><span class="tm">18:22:37</span><span class="nk"> &lt;jglick&gt;</span> I would prefer if component matched artifactId/shortName, and everything in core was in core
+<a name="l-66"></a><span class="tm">18:22:51</span><span class="nk"> &lt;jglick&gt;</span> or remoting, or whatever the repo name for the code is
+<a name="l-67"></a><span class="tm">18:23:09</span><span class="nk"> &lt;danielbeck&gt;</span> repos have the -plugin suffix already
+<a name="l-68"></a><span class="tm">18:23:21</span><span class="nk"> &lt;kohsuke&gt;</span> the current scheme is that the artifactId does match the component name
+<a name="l-69"></a><span class="tm">18:23:57</span><span class="nk"> &lt;kohsuke&gt;</span> Unfortunately there's no API to manipulate these project metadata AFAIK
+<a name="l-70"></a><span class="tm">18:24:49</span><span class="nk"> &lt;danielbeck&gt;</span> OK, let’s dismiss this then.
+<a name="l-71"></a><span class="tm">18:24:54</span><span class="nk"> &lt;kohsuke&gt;</span> Nah I guess I was wrong: https://docs.atlassian.com/jira/REST/6.2.4/#d2e3483
+<a name="l-72"></a><span class="tm">18:25:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> I think we'd need to find a volunteer
+<a name="l-73"></a><span class="tm">18:25:30</span><span class="nk"> &lt;kohsuke&gt;</span> ... to either write a script or do a click-click-clicky for about 900 times
+<a name="l-74"></a><span class="tm">18:25:50</span><span class="nk"> &lt;danielbeck&gt;</span> I’ll look into it in my jira. If I get it to work, I’ll mention it again.
+<a name="l-75"></a><span class="tm">18:25:55</span><span class="nk"> &lt;kohsuke&gt;</span> sounds good
+<a name="l-76"></a><span class="tm">18:26:06</span><span class="nk"> &lt;kohsuke&gt;</span> all right, I think that's it
+<a name="l-77"></a><span class="tm">18:26:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 07:07:26 May 08, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:59:20 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 185.016
+  exclusion.robots: 0.136
+  exclusion.robots.policy: 0.125
+  cdx.remote: 0.094
+  esindex: 0.014
+  LoadShardBlock: 27.471 (3)
+  PetaboxLoader3.datanode: 28.624 (4)
+  CDXLines.iter: 19.296 (3)
+  load_resource: 24.722
+  PetaboxLoader3.resolve: 19.919
+-->

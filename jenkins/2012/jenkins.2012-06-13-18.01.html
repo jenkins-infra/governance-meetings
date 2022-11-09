@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 18:01:48 UTC
+(<a href="jenkins.2012-06-13-18.01.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li><b class="TOPIC">recap of actions</b> <span class="details">(<a href='jenkins.2012-06-13-18.01.log.html#l-5'>kohsuke</a>, 18:02:16)</span>
+<ol type="a">
+  <li><span
+    class="INFO">http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-05-30-18.01.html</span>
+    <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-6'>kohsuke</a>,
+    18:02:21)</span></li>
+  <li><span class="INFO">Meeting Agenda
+    https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-June13thMeeting</span>
+    <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-21'>rtyler</a>,
+    18:04:59)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    write to active users of svn.jenkins-ci.org that they can move to
+    GitHub very easily if they want</span> <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-22'>kohsuke</a>,
+    18:05:09)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    write a scanner that auto-adds Jenkins jobs for plugins</span> <span
+    class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-23'>kohsuke</a>,
+    18:05:16)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    split buildhive code into smaller pieces and install them to
+    jenkins.ci.cloudbees.com</span> <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-24'>kohsuke</a>,
+    18:05:22)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    puppet-ize ircbot on cucumber</span> <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-27'>kohsuke</a>,
+    18:05:39)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler and
+    jieryn to KVM up some more slaves somehow</span> <span
+    class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-28'>kohsuke</a>,
+    18:05:49)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Selenium tests, switch to Cucumber/Capybara (vjuranek)</b> <span class="details">(<a href='jenkins.2012-06-13-18.01.log.html#l-34'>kohsuke</a>, 18:06:37)</span>
+<ol type="a">
+  <li><span
+    class="INFO">https://github.com/jenkinsci/selenium-tests</span>
+    <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-37'>kohsuke</a>,
+    18:06:58)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    make sure kohsuke and vjuranek have the sauce labs
+    credentials</span> <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-68'>rtyler</a>,
+    18:14:00)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    schedule next office hours for selenium-tests</span> <span
+    class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-73'>kohsuke</a>,
+    18:15:23)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">New home for wiki.jenkins-ci.org</b> <span class="details">(<a href='jenkins.2012-06-13-18.01.log.html#l-75'>kohsuke</a>, 18:15:48)</span>
+<ol type="a">
+  <li><span class="INFO">I attempted JIRA and Wiki updates Monday
+    evening</span> <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-82'>kohsuke</a>,
+    18:16:46)</span></li>
+  <li><span class="INFO">JIRA updated smoothly but Confluence
+    didn't</span> <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-83'>kohsuke</a>,
+    18:16:58)</span></li>
+  <li><span class="INFO">I checked with rtyler and I'm going to try
+    setting up a new instance with our current database dump on
+    cabbage</span> <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-98'>kohsuke</a>,
+    18:19:11)</span></li>
+  <li><span class="INFO">Confluence is already acting strange even in
+    the current version</span> <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-105'>kohsuke</a>,
+    18:20:00)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler and
+    kohsuke to look at moving confluence over to a new host this coming
+    weekend (pending Mrs. Kawaguchi approval)</span> <span
+    class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-117'>rtyler</a>,
+    18:21:52)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">maven.jenkins-ci.org to repo.jenkins-ci.org switch over</b> <span class="details">(<a href='jenkins.2012-06-13-18.01.log.html#l-122'>kohsuke</a>, 18:23:01)</span>
+<ol type="a">
+  <li><span class="INFO">I switched over the update center index
+    generation entirely to Artifactory a few days ago</span> <span
+    class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-127'>kohsuke</a>,
+    18:23:45)</span></li>
+  <li><a
+    href="http://i.imgur.com/OabsH.jpg">http://i.imgur.com/OabsH.jpg</a>
+    <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-137'>rtyler</a>,
+    18:26:28)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2012-06-13-18.01.log.html#l-151'>kohsuke</a>, 18:29:27)</span>
+<ol type="a">
+  <li><span class="INFO">the next meeting is in 2 weeks (Jun 27), the
+    same time</span> <span class="details">(<a
+    href='jenkins.2012-06-13-18.01.log.html#l-154'>kohsuke</a>,
+    18:30:03)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 18:30:20 UTC
+(<a href="jenkins.2012-06-13-18.01.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>kohsuke to write to active users of svn.jenkins-ci.org that they can move to GitHub very easily if they want</li>
+  <li>kohsuke to write a scanner that auto-adds Jenkins jobs for plugins</li>
+  <li>kohsuke to split buildhive code into smaller pieces and install them to jenkins.ci.cloudbees.com</li>
+  <li>rtyler to puppet-ize ircbot on cucumber</li>
+  <li>rtyler and jieryn to KVM up some more slaves somehow</li>
+  <li>rtyler to make sure kohsuke and vjuranek have the sauce labs credentials</li>
+  <li>kohsuke to schedule next office hours for selenium-tests</li>
+  <li>rtyler and kohsuke to look at moving confluence over to a new host this coming weekend (pending Mrs. Kawaguchi approval)</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> kohsuke <ol>
+    <li>kohsuke to write to active users of svn.jenkins-ci.org that they can move to GitHub very easily if they want</li>
+    <li>kohsuke to write a scanner that auto-adds Jenkins jobs for plugins</li>
+    <li>kohsuke to split buildhive code into smaller pieces and install them to jenkins.ci.cloudbees.com</li>
+    <li>rtyler to make sure kohsuke and vjuranek have the sauce labs credentials</li>
+    <li>kohsuke to schedule next office hours for selenium-tests</li>
+    <li>rtyler and kohsuke to look at moving confluence over to a new host this coming weekend (pending Mrs. Kawaguchi approval)</li>
+  </ol></li>
+  <li> rtyler <ol>
+    <li>rtyler to puppet-ize ircbot on cucumber</li>
+    <li>rtyler and jieryn to KVM up some more slaves somehow</li>
+    <li>rtyler to make sure kohsuke and vjuranek have the sauce labs credentials</li>
+    <li>rtyler and kohsuke to look at moving confluence over to a new host this coming weekend (pending Mrs. Kawaguchi approval)</li>
+  </ol></li>
+  <li> vjuranek <ol>
+    <li>rtyler to make sure kohsuke and vjuranek have the sauce labs credentials</li>
+  </ol></li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>kohsuke (90)</li>
+  <li>rtyler (51)</li>
+  <li>vjuranek (8)</li>
+  <li>stephend (4)</li>
+  <li>robobutler (2)</li>
+  <li>Seb___ (1)</li>
+  <li>abayer (1)</li>
+  <li>hare_brain (0)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

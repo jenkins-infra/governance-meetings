@@ -1,0 +1,185 @@
+18:02:38 <danielbeck> #startmeeting
+18:02:38 <robobutler> Let the Jenkins meeting commence!
+18:02:41 <danielbeck> hi everyone!
+18:02:44 <oleg-nenashev> o/
+18:02:45 <danielbeck> #chair rtyler kohsuke
+18:02:45 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:03:00 <danielbeck> apparently we don't have an agenda
+18:03:02 <oleg-nenashev> I also added Hacktoberfest to the agenda, but I messed up the dates
+18:03:08 <danielbeck> ah, ok
+18:03:09 <oleg-nenashev> + LTS check
+18:03:14 <danielbeck> let's go through the usual ones, and then that
+18:03:18 <oleg-nenashev> sure
+18:03:19 <danielbeck> #topic last meeting's actions
+18:03:38 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-09-12-18.00.html
+18:03:40 <ogondza> the .1 got out. thanks KK
+18:03:42 <rtyler> woop
+18:03:44 <danielbeck> yup
+18:03:51 <danielbeck> #topic LTS status check
+18:03:53 <oleg-nenashev> yeah. so far so good
+18:03:54 <danielbeck> ogondza \o/
+18:04:10 <ogondza> the backports are out, have to recheck the results
+18:04:19 <ogondza> there is a question though
+18:04:29 <danielbeck> #info https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.138.2-fixed
+18:04:32 <ogondza> https://issues.jenkins-ci.org/browse/JENKINS-53768 adds public api
+18:04:46 <ogondza> which is sort of the point of inclusion
+18:05:02 <ogondza> I lean towards having it in but is sort of unusual
+18:05:14 * rtyler nods
+18:05:14 <oleg-nenashev> ehhm, unusual for sure
+18:05:21 <oleg-nenashev> Should we restrict it at least?
+18:05:50 <ogondza> that was my question, restrict or add unrestricted
+18:05:56 <oleg-nenashev> or revert
+18:06:02 <rtyler> for whatever my opinoin is worth, I'm in favor of it, helps us answer good questions for removing code, etc
+18:06:11 <danielbeck> having it in as an early backport seems safe to me given how standalone it is
+18:06:20 <danielbeck> easy to pull out in case of trouble
+18:06:22 <ogondza> oleg-nenashev: well , that is an option...\
+18:06:32 <oleg-nenashev> I do not mind if we keep it
+18:06:42 <danielbeck> restricting would make it much less useful if we expect plugins to pick it up
+18:06:42 <oleg-nenashev> assuming that APIs are restricted
+18:06:52 <oleg-nenashev> Note that it also introduces new UIs
+18:07:01 <danielbeck> well, extends an existing one
+18:07:11 <danielbeck> the help on anon usage stats existed before
+18:07:30 <ogondza> there is no problem of adding UI
+18:07:42 <danielbeck> for the basic extension point, plugins will need to be written against the earliest core that has this
+18:08:04 <ogondza> the API worries me
+18:08:31 <danielbeck> because of the usual weekly incompatibility problem? or something else?
+18:08:34 * batmat thinks about @Beta ?
+18:08:48 <oleg-nenashev> Beta may be OK
+18:08:54 <danielbeck> oooh, beta might be good
+18:08:55 <oleg-nenashev> though it's also unusual
+18:09:13 <oleg-nenashev> Note that we had crappy errors with Beta extension points in JCasC
+18:09:25 <oleg-nenashev> I would not do so without testing
+18:09:26 <ogondza> Note that there wold be something wrong with the API but reverting/restricting in .3 would be pain
+18:10:04 <oleg-nenashev> @Restricted(NoExternalUse) IMO
+18:10:22 <danielbeck> makes it much less useful though for plugins :|
+18:10:37 <ogondza> but that will force plugin authors use newer core preventing it to be used in this LTS line, no?
+18:10:38 <oleg-nenashev> For a while
+18:10:46 <danielbeck> ogondza yes.
+18:10:55 <oleg-nenashev> That's how Jenkins always worked
+18:11:28 <ogondza> yes, but I understood the wole point of this is the new API so I do not see much different between skippping and restricting
+18:11:29 <oleg-nenashev> We could add more complex Version compatibility logic than just "greater than" to plugins, but it's way out of the scope right now
+18:11:49 <danielbeck> we might get by by going crazy reflection in core to collect data from there, rather than plugins
+18:11:50 <oleg-nenashev> Restricted API still allows using it in the core
+18:12:17 <danielbeck> ogondza well, the core implementation is already useful
+18:12:27 <danielbeck> ogondza and having that propagated to LTS early is important already
+18:13:07 <oleg-nenashev> For quick adoption in plugins generally you need something better than Core API
+18:13:10 <ogondza> oh,there is one, right
+18:13:24 <danielbeck> we're at several k data submissions already :)
+18:13:25 <oleg-nenashev> Depending on latest LTS is not an option for many plugin maintainers
+18:14:18 <ogondza> oleg-nenashev: suggesting unrestricted backport?
+18:14:38 <oleg-nenashev> I am -1 for non-restricted/Beta API, and +0.5 for Restricted
+18:14:40 <oleg-nenashev> Un
+18:15:07 <oleg-nenashev> unrestricted backport will blow up in our face
+18:15:32 <ogondza> with the core impl, I am in favor of restricted backport
+18:15:36 <danielbeck> I think we can get by with having it restricted. Would be great not to, but I understand the concerns.
+18:16:03 <danielbeck> Would like to understand the problem with beta though
+18:16:21 * oleg-nenashev writing
+18:17:03 <oleg-nenashev> So the problem with Beta is that you will still permit the plugin to be installed e.g. on 2.139 which has no extension points
+18:17:54 <danielbeck> the API is such that Extension(optional = true) is all you need for it to not blow up
+18:18:11 <oleg-nenashev> Then, mvn hpi:run does not run well for pre-2.121.x. Should not be a problem for 1.238, but have not tested
+18:18:11 <danielbeck> it's not a new method on existing types or whatever
+18:18:46 <oleg-nenashev> Maybe
+18:19:09 <ogondza> well, new LTS line is just 10 weeks away
+18:19:14 <oleg-nenashev> I have never tried optional Extensions for core things. Sounds a bit strange, but it likely works
+18:19:15 <danielbeck> Seems both ogondza and oleg-nenashev are in favor of restricting, so that works for me. Any further opinions?
+18:19:26 <ogondza> +1
+18:19:41 <oleg-nenashev> +0.5
+18:19:51 <danielbeck> which is the parent pom I need to ignore @Restricted again? :-P
+18:20:04 <danielbeck> #agreed restrict backported telemetry extension point
+18:20:07 <danielbeck> #agree restrict backported telemetry extension point
+18:20:10 <danielbeck> (just in case)
+18:20:27 <danielbeck> I think that was it for the LTS?
+18:20:37 <ogondza> it was, thanks
+18:20:44 <danielbeck> \o/
+18:20:47 <danielbeck> #topic Participating in Hacktoberfest
+18:20:48 <ogondza> will to my homework tommoworw morning
+18:20:57 <danielbeck> oleg-nenashev you're up :)
+18:21:08 <oleg-nenashev> #info: https://groups.google.com/forum/#!topic/jenkinsci-dev/YYG1CyvcbgE
+18:21:23 <oleg-nenashev> Soo... do we want to participate this year?
+18:21:51 <oleg-nenashev> #info Last year we had ~20 unique contributors, ~15 of them were newcomers in Jenkins
+18:22:00 <oleg-nenashev> Not that many
+18:22:17 <danielbeck> what's the effort to result ratio? Do we consider it worth it?
+18:22:25 <oleg-nenashev> But this year we have an opportunity to promote it at Jenkins meetups & Co
+18:22:46 <oleg-nenashev> danielbeck: Hacktoberfest costs almost nothing excepting review capacity
+18:22:50 <danielbeck> Most I remember is the mess around the 'new view' PRs to core, but I'm told that's only a really minor part of it
+18:23:02 <oleg-nenashev> Yes, that was unfortunate
+18:23:24 <oleg-nenashev> I believe it should not have been marked as newbie friendly
+18:23:32 <danielbeck> oleg-nenashev do you expect to be able to properly handle reviews? How was contributors' experience with unmaintained plugins?
+18:23:56 <danielbeck> how many committed reviewers do you expect to need before we can properly support this?
+18:24:04 <rtyler> there's an event at GitHub in SF next Monday which I'm hoping to get to, it's a Hacktoberfest kickoff
+18:24:04 <oleg-nenashev> I remove newbie-friendly labels in non-maintained plugins
+18:24:26 <oleg-nenashev> So, somebody may still take it
+18:24:29 <rtyler> if all we need is newbie-friendly labeled task, then I can go through the Evergreen stuff, I know olblak already covered INFRA
+18:24:48 <oleg-nenashev> I can do some additions in JENKINS
+18:24:49 <danielbeck> rtyler ideally some followthrough that PRs aren't stuck in limbo forever
+18:25:04 <oleg-nenashev> we have some tasks after Google Code-In preps
+18:25:24 <oleg-nenashev> But yes, some review capacity will be really helpful
+18:25:26 <rtyler> well, Evergreen and Infra PRs are moving expediently through :)
+18:25:39 <oleg-nenashev> Last year it was mostly me and Mark IIRC
+18:25:39 <rtyler> don't know what to say about the rest of y'all slackers :P
+18:26:02 <oleg-nenashev> I believe it worth trying
+18:26:06 <danielbeck> can we get JCasC or Jenkins X to sign up for this? might be useful to have some interesting projects involved?
+18:26:07 <rtyler> agreed
+18:26:14 <oleg-nenashev> We can limit the list of components
+18:26:25 <oleg-nenashev> Consider JCasC as signed up, I am on it
+18:26:29 <rtyler> oleg-nenashev: I wasn't aware from your email of much work?
+18:26:45 <rtyler> I mean, nothing organizationally super special we /need/ to do in order to participate
+18:26:54 <oleg-nenashev> we don't
+18:27:10 <oleg-nenashev> We have everything more-or-less set up from 2017
+18:27:17 <danielbeck> FWIW my concern is mostly around making sure it's not a shitty experience for participants
+18:27:28 <rtyler> danielbeck: that should be your concern 24/7 :)
+18:27:43 <rtyler> reminds me of bitwiseman's ignite talk at the contributor summit :)
+18:27:44 <oleg-nenashev> @jenkinsci/hacktoberfet mentions are the problem, but we fallback to Gitter channel this time
+18:27:52 <oleg-nenashev> Jenkinci/hacktoberfest
+18:27:59 <oleg-nenashev> so that People can ping there
+18:28:08 <rtyler> the jenkinsci/jenkins gitter channel is good enough for me tbh
+18:28:17 <oleg-nenashev> maybe
+18:28:30 <oleg-nenashev> It just has some traffic so we may miss pings
+18:29:02 <oleg-nenashev> But whatever, the infra overhead is just a blogpost (mostly copy-paster) + some guidelines
+18:29:12 <bitwiseman> channels are easy to make on Gitter.
+18:29:18 <oleg-nenashev> yes
+18:29:27 <oleg-nenashev> Maybe some swag for Top contributors
+18:29:48 <rtyler> I'm experiencing channel fatigue, so please keep that in mind for others like me who are in elveenty billion channels already
+18:29:55 <danielbeck> rtyler Sure, but If we get people to show up it will be an unusual influx of newbies to potentially have to guide through getting their contribution in shape. 1 or 2 at a time is easer than 10-20.
+18:30:21 <danielbeck> so I'd like to make sure experienced contributors are ready to handle this.
+18:30:39 <rtyler> based on my experience with hacktoberfest, it's less total newbies like code-in or GSoC per se
+18:31:17 <oleg-nenashev> I do not mind if we get newbie buzz in jenkinsci/jenkins
+18:31:32 * rtyler has participated in hacktoberfest in the past :)
+18:32:17 <oleg-nenashev> #info 2017 announcement: https://jenkins.io/blog/2017/10/06/hacktoberfest/
+18:32:20 <rtyler> anyways, oleg-nenashev was there anything specific you were looking to accomplish here?
+18:32:28 <rtyler> or just get th e idea more thoroughly socialized?
+18:32:42 <oleg-nenashev> Socialization + ensuring there is no -1 votes
+18:33:09 <oleg-nenashev> I understand that it may cause some extra load on maintainers, so checking it just in case
+18:33:23 <oleg-nenashev> If nobody is against, I am ready to proceed
+18:33:32 <danielbeck> IMO a great idea, so preemptive +1
+18:33:34 <oleg-nenashev> danielbeck: WDYT after the discussion?
+18:33:42 <danielbeck> go for it, was never the question
+18:33:43 <oleg-nenashev> race condition
+18:34:00 <oleg-nenashev> Also, anybody is around in Nice on Oct 22?
+18:34:19 <danielbeck> haven't booked yet
+18:34:22 <oleg-nenashev> If yes, I can try to organize a mini-hackfest there
+18:34:56 <rtyler> I won't be there, iI'll be there in spirit though
+18:34:57 <danielbeck> probably best planned elsewhere
+18:35:01 <rtyler> as a spooky ghost
+18:35:08 <oleg-nenashev> yes, elsewhere
+18:35:27 <danielbeck> so I think you're good to go on Hacktoberfest
+18:35:28 <oleg-nenashev> Sonoma County Hackhergarten would do the job as well ;)
+18:35:30 <danielbeck> anything else?
+18:35:50 <oleg-nenashev> not from me
+18:35:59 <oleg-nenashev> I believe it's +1
+18:36:04 * rtyler claps
+18:36:20 <danielbeck> #topic next meeting
+18:36:25 <oleg-nenashev> #action: oleg_nenashevto stage the Hacktoberfest announcement so that we run it when Hacktoberfest is announced
+18:36:47 <rtyler> oleg-nenashev: I'll ping you if I'm able to go to the event next Monday
+18:36:59 <rtyler> in which case, I would want to help get that blog published the morning of the 1st
+18:37:08 <oleg-nenashev> thanks!
+18:37:27 <danielbeck> #topic next meeting
+18:37:29 <danielbeck> for real now :)
+18:37:33 <danielbeck> next meeting would be October 10
+18:37:46 <danielbeck> now we're well into DST change I think
+18:37:57 <oleg-nenashev> We are in UTC now
+18:38:05 <oleg-nenashev> so it should be better
+18:38:05 <rtyler> \o/
+18:38:12 <danielbeck> well, yes, which means it's no longer 8pm but 7pm or whatever
+18:38:30 <danielbeck> so make sure you know what local time corresponds to 6pm UTC
+18:38:41 <danielbeck> #endmeeting

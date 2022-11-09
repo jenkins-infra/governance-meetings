@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:02:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:02:08</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain rtyler</span>
+<a name="l-4"></a><span class="tm">18:02:35</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:02:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">18:02:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">1.554 for LTS base: go or no-go</span>
+<a name="l-7"></a><span class="tm">18:03:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> ping
+<a name="l-8"></a><span class="tm">18:03:07</span><span class="nk"> &lt;ogondza&gt;</span> over here
+<a name="l-9"></a><span class="tm">18:03:14</span><span class="nk"> &lt;ScottHebertErics&gt;</span> Hi! This is Scott From Ericsson. Very happy to be taking part in my first Jenkins Governance meeting!
+<a name="l-10"></a><span class="tm">18:03:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ScottHebertErics:</span> Yay, thanks for joining
+<a name="l-11"></a><span class="tm">18:03:31</span><span class="nk"> &lt;marcomiller&gt;</span> Me too ;)
+<a name="l-12"></a><span class="tm">18:03:42</span><span class="nk"> &lt;christianLagueEr&gt;</span> Christian Lague as well
+<a name="l-13"></a><span class="tm">18:03:47</span><span class="nk"> &lt;ScottHebertErics&gt;</span> <span class="cmd">#info </span><span class="cmdline">I would like to propose to have JENKINS-22310 backported to 1.554.x seeing as it has a major impact on CLI performance.</span>
+<a name="l-14"></a><span class="tm">18:03:49</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-22310:CLI slow performance investigation (Resolved) http://jenkins-ci.org/issue/22310
+<a name="l-15"></a><span class="tm">18:04:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span>  So the context is that we want to start executing on the new LTS plan
+<a name="l-16"></a><span class="tm">18:04:13</span><span class="nk"> &lt;kohsuke&gt;</span> and we thought that would start ticking when we pick the next LTS base version
+<a name="l-17"></a><span class="tm">18:04:45</span><span class="nk"> &lt;kohsuke&gt;</span> In the previous meeting it looked like 1.554 was good, but it felt bit too new and you weren't there
+<a name="l-18"></a><span class="tm">18:04:58</span><span class="nk"> &lt;kohsuke&gt;</span> So we kicked the can down the road a bit to this one
+<a name="l-19"></a><span class="tm">18:05:11</span><span class="nk"> &lt;ogondza&gt;</span> yeah, 1.554 looks goo to me too
+<a name="l-20"></a><span class="tm">18:05:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">look at http://jenkins-ci.org/changelog and click "Community ratings"</span>
+<a name="l-21"></a><span class="tm">18:05:50</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, 1.554 looks even better now than before
+<a name="l-22"></a><span class="tm">18:06:01</span><span class="nk"> &lt;kohsuke&gt;</span> All right, so let's go with that one
+<a name="l-23"></a><span class="tm">18:06:06</span><span class="nk"> &lt;kohsuke&gt;</span> where is the time line document...
+<a name="l-24"></a><span class="tm">18:06:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line</span>
+<a name="l-25"></a><span class="tm">18:06:24</span><span class="nk"> &lt;ogondza&gt;</span> one more thing before that. 1.532.3
+<a name="l-26"></a><span class="tm">18:06:45</span><span class="nk"> &lt;ogondza&gt;</span> backports are ready since March 1
+<a name="l-27"></a><span class="tm">18:07:13</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so my failing as usual then
+<a name="l-28"></a><span class="tm">18:07:32</span><span class="nk"> &lt;kohsuke&gt;</span> I'll push out RC ASAP
+<a name="l-29"></a><span class="tm">18:07:40</span><span class="nk"> &lt;ScottHebertErics&gt;</span> Is 532.3 accepting backports?
+<a name="l-30"></a><span class="tm">18:07:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to post 1.532.3 RC ASAP</span>
+<a name="l-31"></a><span class="tm">18:08:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ScottHebertErics:</span> It was from Feb 15th
+<a name="l-32"></a><span class="tm">18:08:36</span><span class="nk"> &lt;ogondza&gt;</span> ScottHebertErics, no. I do not think there will be any 1.532.4
+<a name="l-33"></a><span class="tm">18:09:10</span><span class="nk"> &lt;kohsuke&gt;</span> I'm going to write 1.554.x LTS schedules in the calendar
+<a name="l-34"></a><span class="tm">18:09:45</span><span class="nk"> &lt;ScottHebertErics&gt;</span> ok...what about 554.x? Can we request backports?
+<a name="l-35"></a><span class="tm">18:09:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://jenkins-ci.org/content/event-calendar</span>
+<a name="l-36"></a><span class="tm">18:10:00</span><span class="nk"> &lt;jenkins-builds&gt;</span> Yippie, build fixed!
+<a name="l-37"></a><span class="tm">18:10:01</span><span class="nk"> &lt;jenkins-builds&gt;</span> Project jenkins_main_trunk build #3276: FIXED in 59 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/3276/
+<a name="l-38"></a><span class="tm">18:10:01</span><span class="nk"> &lt;jenkins-builds&gt;</span> Jesse Glick: When a QueueItemAuthenticator is in use, report the user under whose authentication the build is running.
+<a name="l-39"></a><span class="tm">18:10:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ScottHebertErics:</span> yeah, see "Backporting process" under https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line
+<a name="l-40"></a><span class="tm">18:11:03</span><span class="nk"> &lt;kohsuke&gt;</span> So Apr 16th would be 1.554.1 LTS RC
+<a name="l-41"></a><span class="tm">18:11:27</span><span class="nk"> &lt;kohsuke&gt;</span> Apr 30th would be 1.554.1 ship date
+<a name="l-42"></a><span class="tm">18:12:06</span><span class="nk"> &lt;kohsuke&gt;</span> May 14 is 1.554.2 RC
+<a name="l-43"></a><span class="tm">18:12:13</span><span class="nk"> &lt;kohsuke&gt;</span> May 28 is 1.554.2 LTS
+<a name="l-44"></a><span class="tm">18:13:17</span><span class="nk"> &lt;kohsuke&gt;</span> Jun 11 is 1.554.3 RC
+<a name="l-45"></a><span class="tm">18:13:28</span><span class="nk"> &lt;ScottHebertErics&gt;</span> JENKINS-22310 is already marked as lts-candidate. What can we do to get it into 554.x? We have resources to help backport it.
+<a name="l-46"></a><span class="tm">18:13:30</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-22310:CLI slow performance investigation (Resolved) http://jenkins-ci.org/issue/22310
+<a name="l-47"></a><span class="tm">18:13:33</span><span class="nk"> &lt;kohsuke&gt;</span> Jun 25 is 1.554.3 release and picking next baseline
+<a name="l-48"></a><span class="tm">18:14:31</span><span class="nk"> &lt;ogondza&gt;</span> perfect. so the next backporting window is as you suggested last time April 2-16th
+<a name="l-49"></a><span class="tm">18:14:49</span><span class="nk"> &lt;marcomiller&gt;</span> +1 on Scott's question ;)
+<a name="l-50"></a><span class="tm">18:15:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ScottHebertErics:</span> I need to check when it went into the mainline release to see if it satisfies the soaking criteria
+<a name="l-51"></a><span class="tm">18:15:31</span><span class="nk"> &lt;ScottHebertErics&gt;</span> <span class="hi">kohsuke:</span> Went in before 557
+<a name="l-52"></a><span class="tm">18:15:37</span><span class="nk"> &lt;kohsuke&gt;</span> Generally speaking, the fix needs to be out for a while before it can be backported
+<a name="l-53"></a><span class="tm">18:15:53</span><span class="nk"> &lt;kohsuke&gt;</span> But otherwise I think it's great that you can help us backport
+<a name="l-54"></a><span class="tm">18:16:03</span><span class="nk"> &lt;ScottHebertErics&gt;</span> But then again, you fixed it...so it's gold :)
+<a name="l-55"></a><span class="tm">18:16:59</span><span class="nk"> &lt;kohsuke&gt;</span> I think the fix of JENKINS-22310 went in as JENKINS-21579, which is targeted for 1.558 and that's next Monday
+<a name="l-56"></a><span class="tm">18:17:01</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-22310:CLI slow performance investigation (Resolved) http://jenkins-ci.org/issue/22310
+<a name="l-57"></a><span class="tm">18:17:03</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-21579:Very slow resource loading from UberClassLoader (Resolved) http://jenkins-ci.org/issue/21579
+<a name="l-58"></a><span class="tm">18:18:14</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm, I'm not seeing the soaking requirement explicitly mentioned in the LTS wiki page any more
+<a name="l-59"></a><span class="tm">18:18:28</span><span class="nk"> &lt;kohsuke&gt;</span> Did we drop that?
+<a name="l-60"></a><span class="tm">18:18:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> ping?
+<a name="l-61"></a><span class="tm">18:19:03</span><span class="nk"> &lt;kohsuke&gt;</span> Oh there it is "Changes to this branch will be restricted to backported cherry-picked changes from the trunk that are "battle-tested" — meaning those commits that have already been a part of a main line release for more than a week."
+<a name="l-62"></a><span class="tm">18:19:23</span><span class="nk"> &lt;kohsuke&gt;</span> which means it's up for backporting from April 14th
+<a name="l-63"></a><span class="tm">18:19:36</span><span class="nk"> &lt;kohsuke&gt;</span> So I guess we can plan on it unless 1.558 flops
+<a name="l-64"></a><span class="tm">18:19:52</span><span class="nk"> &lt;kohsuke&gt;</span> It is a change in the classloader, so bad things may happen
+<a name="l-65"></a><span class="tm">18:19:58</span><span class="nk"> &lt;jglick&gt;</span> (yup here)
+<a name="l-66"></a><span class="tm">18:20:14</span><span class="nk"> &lt;kohsuke&gt;</span> anyway
+<a name="l-67"></a><span class="tm">18:20:26</span><span class="nk"> &lt;jglick&gt;</span> Yes JENKINS-21579 has high regression risk.
+<a name="l-68"></a><span class="tm">18:20:28</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-21579:Very slow resource loading from UberClassLoader (Resolved) http://jenkins-ci.org/issue/21579
+<a name="l-69"></a><span class="tm">18:20:34</span><span class="nk"> &lt;jglick&gt;</span> But is very important too.
+<a name="l-70"></a><span class="tm">18:20:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">rename current 'stable' branch to 'stable-1.532' and move stable to 1.554</span>
+<a name="l-71"></a><span class="tm">18:20:42</span><span class="nk"> &lt;ScottHebertErics&gt;</span> <span class="hi">kohsuke:</span> Can you add an action for Ericsson to port that JENKINS-22310/JENKINS-21579?
+<a name="l-72"></a><span class="tm">18:20:44</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-22310:CLI slow performance investigation (Resolved) http://jenkins-ci.org/issue/22310
+<a name="l-73"></a><span class="tm">18:21:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">ScottHebertErics to backport JENKINS-22310 and JENKINS-21579</span>
+<a name="l-74"></a><span class="tm">18:21:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> I assume you are OK with it
+<a name="l-75"></a><span class="tm">18:21:34</span><span class="nk"> &lt;FarrisG&gt;</span> Is there any way to make an "Invoke Batch Task" step block subsequent steps? We have a step that runs a deploy, and then we want to run QA on the deployed code. But the deploy gets invoked, and then before finishing the build goes to the next step, so QA tests always fail.
+<a name="l-76"></a><span class="tm">18:21:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">FarrisG:</span> let's hold the question while the project meeting is in progress
+<a name="l-77"></a><span class="tm">18:22:04</span><span class="nk"> &lt;ogondza&gt;</span> not at all
+<a name="l-78"></a><span class="tm">18:22:14</span><span class="nk"> &lt;kohsuke&gt;</span> oh that's not good
+<a name="l-79"></a><span class="tm">18:22:36</span><span class="nk"> &lt;ogondza&gt;</span> oh, I do not _mind_ at all
+<a name="l-80"></a><span class="tm">18:22:42</span><span class="nk"> &lt;kohsuke&gt;</span> phew
+<a name="l-81"></a><span class="tm">18:22:43</span><span class="nk"> &lt;FarrisG&gt;</span> my apologies
+<a name="l-82"></a><span class="tm">18:22:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next LTS would be 1.554.x and schedule is on the calendar now</span>
+<a name="l-83"></a><span class="tm">18:23:14</span><span class="nk"> &lt;kohsuke&gt;</span> shall we move on to the next topic?
+<a name="l-84"></a><span class="tm">18:23:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Patron of Jenkins program approval</span>
+<a name="l-85"></a><span class="tm">18:23:38</span><span class="nk"> &lt;kohsuke&gt;</span> I hope hare_brain is here for this one
+<a name="l-86"></a><span class="tm">18:24:05</span><span class="nk"> &lt;kohsuke&gt;</span> We have discussed this a few meetings back
+<a name="l-87"></a><span class="tm">18:24:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">and the record is here http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-01-22-19.01.html</span>
+<a name="l-88"></a><span class="tm">18:24:44</span><span class="nk"> &lt;kohsuke&gt;</span> The basic idea is to add another donation thank you program
+<a name="l-89"></a><span class="tm">18:25:10</span><span class="nk"> &lt;kohsuke&gt;</span> ... which is also like an advertisement on our Wiki
+<a name="l-90"></a><span class="tm">18:25:22</span><span class="nk"> &lt;hare_brain&gt;</span> I am here
+<a name="l-91"></a><span class="tm">18:25:35</span><span class="nk"> &lt;kohsuke&gt;</span> Yay
+<a name="l-92"></a><span class="tm">18:25:35</span><span class="nk"> &lt;kohsuke&gt;</span> The feedback in the original conversation was that people generally seemed OK with it
+<a name="l-93"></a><span class="tm">18:25:50</span><span class="nk"> &lt;kohsuke&gt;</span> and so lisawells and I went back and worked on details
+<a name="l-94"></a><span class="tm">18:26:06</span><span class="nk"> &lt;kohsuke&gt;</span> That's captured in https://wiki.jenkins-ci.org/display/JENKINS/Patron+of+Jenkins+program
+<a name="l-95"></a><span class="tm">18:26:25</span><span class="nk"> &lt;kohsuke&gt;</span> And for the last 2 weeks or so I have test deployed it on our Wiki
+<a name="l-96"></a><span class="tm">18:26:43</span><span class="nk"> &lt;kohsuke&gt;</span> So some of you might have seen a text banner for security advisory and JUC
+<a name="l-97"></a><span class="tm">18:27:15</span><span class="nk"> &lt;hare_brain&gt;</span> I hadn’t. I got distracted by Mr. Clean. ;)
+<a name="l-98"></a><span class="tm">18:27:36</span><span class="nk"> &lt;kohsuke&gt;</span> It only shows every once in 7 page hits, so it was rare
+<a name="l-99"></a><span class="tm">18:27:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> glad to hear you look at blogs!
+<a name="l-100"></a><span class="tm">18:28:18</span><span class="nk"> &lt;hare_brain&gt;</span> Ah, I got a blank banner space just now.
+<a name="l-101"></a><span class="tm">18:28:28</span><span class="nk"> &lt;hare_brain&gt;</span> So nothing programmed against it at the moment?
+<a name="l-102"></a><span class="tm">18:28:31</span><span class="nk"> &lt;kohsuke&gt;</span> And the backend does seem to work now, and I haven't heard any complaint so that was good sign
+<a name="l-103"></a><span class="tm">18:28:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I guess now it's Q2 so we lost the messages
+<a name="l-104"></a><span class="tm">18:28:51</span><span class="nk"> &lt;kohsuke&gt;</span> My test broadcast was only for Q1
+<a name="l-105"></a><span class="tm">18:28:57</span><span class="nk"> &lt;kohsuke&gt;</span> BTW data comes from here: https://github.com/jenkinsci/patron/blob/gh-pages/messages.xml
+<a name="l-106"></a><span class="tm">18:29:23</span><span class="nk"> &lt;kohsuke&gt;</span> And you can see ones in ...
+<a name="l-107"></a><span class="tm">18:29:57</span><span class="nk"> &lt;kohsuke&gt;</span> http://jenkinsci.github.io/patron/tester.html
+<a name="l-108"></a><span class="tm">18:30:12</span><span class="nk"> &lt;kohsuke&gt;</span> or https://jenkins-ci.org/patron/2014Q1-0_0.html
+<a name="l-109"></a><span class="tm">18:30:23</span><span class="nk"> &lt;kohsuke&gt;</span> hmm not sure why image animates on the 2nd one
+<a name="l-110"></a><span class="tm">18:30:44</span><span class="nk"> &lt;hare_brain&gt;</span> It gave me a chuckle.
+<a name="l-111"></a><span class="tm">18:31:09</span><span class="nk"> &lt;kohsuke&gt;</span> Between the muted tone of the message and relative infrequency of this, hopefully this satisfies the concern that it's not too distracting
+<a name="l-112"></a><span class="tm">18:31:39</span><span class="nk"> &lt;kohsuke&gt;</span> The other concern was the diversity
+<a name="l-113"></a><span class="tm">18:31:55</span><span class="nk"> &lt;hare_brain&gt;</span> The only tweak I would suggest is fine print in the box to let people know this is a patron message.
+<a name="l-114"></a><span class="tm">18:32:06</span><span class="nk"> &lt;kohsuke&gt;</span> ah
+<a name="l-115"></a><span class="tm">18:32:21</span><span class="nk"> &lt;kohsuke&gt;</span> That's a good point
+<a name="l-116"></a><span class="tm">18:33:00</span><span class="nk"> &lt;kohsuke&gt;</span> I'll add something
+<a name="l-117"></a><span class="tm">18:33:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to add a fineprint in the top right corner to say this is a message from a patron</span>
+<a name="l-118"></a><span class="tm">18:33:41</span><span class="nk"> &lt;hare_brain&gt;</span> It doesn’t have to be too serious. “And now, a message from our patrons” gives it a bit of character.
+<a name="l-119"></a><span class="tm">18:33:47</span><span class="nk"> &lt;hare_brain&gt;</span> Or something along those lines
+<a name="l-120"></a><span class="tm">18:33:53</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah
+<a name="l-121"></a><span class="tm">18:34:17</span><span class="nk"> &lt;kohsuke&gt;</span> So back to diversity
+<a name="l-122"></a><span class="tm">18:34:43</span><span class="nk"> &lt;kohsuke&gt;</span> lisawells talked to a number of contacts she had and arranged 3 willing patrons filling all 4 slots for a launch
+<a name="l-123"></a><span class="tm">18:34:59</span><span class="nk"> &lt;kohsuke&gt;</span> you can see their messages at https://github.com/jenkinsci/patron/blob/gh-pages/messages.xml#L22
+<a name="l-124"></a><span class="tm">18:35:42</span><span class="nk"> &lt;kohsuke&gt;</span> it's currently put as Q3 but if this meeting approves the messages, they'd be happy to donate the amount and we'd put these messages live
+<a name="l-125"></a><span class="tm">18:35:50</span><span class="nk"> &lt;hare_brain&gt;</span> I don’t recall the details around the original concern.
+<a name="l-126"></a><span class="tm">18:36:50</span><span class="nk"> &lt;kohsuke&gt;</span> let me see if I can find that in the full log quickly
+<a name="l-127"></a><span class="tm">18:37:32</span><span class="nk"> &lt;kohsuke&gt;</span> IIRC abayer wanted to make sure it wasn't dominated by one patron
+<a name="l-128"></a><span class="tm">18:38:28</span><span class="nk"> &lt;kohsuke&gt;</span> They are in http://meetings.jenkins-ci.org/jenkins/2013/jenkins.2013-12-11-19.01.log.html
+<a name="l-129"></a><span class="tm">18:38:37</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah, scanning that too.
+<a name="l-130"></a><span class="tm">18:38:47</span><span class="nk"> &lt;kohsuke&gt;</span> around 19:21:09
+<a name="l-131"></a><span class="tm">18:39:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> you here?
+<a name="l-132"></a><span class="tm">18:40:15</span><span class="nk"> &lt;hare_brain&gt;</span> Oh, an even earlier discussion on this.
+<a name="l-133"></a><span class="tm">18:40:35</span><span class="nk"> &lt;lacostej&gt;</span> hello, I am getting strange exceptions while checking out a git project http://pastebin.com/NS4dEGPL I've tried ~15 times, and I am hitting the same issue at various times during the checkout. I have a fast internet pipe (&gt; 20Mbits both ways, even though it doesn't help). Not using abort / build time out anymore. Has anyone seen that before ?
+<a name="l-134"></a><span class="tm">18:40:39</span><span class="nk"> &lt;kohsuke&gt;</span> I obviously have some conflict of interest here, but I think the current proposal adequately addresses the concern
+<a name="l-135"></a><span class="tm">18:40:54</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">lacostej:</span> can you hold on your question until after the meeting?
+<a name="l-136"></a><span class="tm">18:41:03</span><span class="nk"> &lt;lacostej&gt;</span> oopps sorry.
+<a name="l-137"></a><span class="tm">18:41:05</span><span class="nk"> &lt;kohsuke&gt;</span> Even with CloudBees' 2 slots it still only shows up once in 14 page hits
+<a name="l-138"></a><span class="tm">18:41:05</span><span class="nk"> &lt;hare_brain&gt;</span> So from the messages.xml, it looks like Lisa has CB taking up two slots.
+<a name="l-139"></a><span class="tm">18:41:06</span><span class="nk"> &lt;electrical&gt;</span> hi all. anyone here using https://wiki.jenkins-ci.org/display/JENKINS/GitHub+pull+request+builder+plugin ?? im having the issue that its not detecting any new PR's or changes
+<a name="l-140"></a><span class="tm">18:41:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> yes
+<a name="l-141"></a><span class="tm">18:41:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">electrical:</span> can you hold on your question until after the meeting?
+<a name="l-142"></a><span class="tm">18:41:45</span><span class="nk"> &lt;hare_brain&gt;</span> What happens if not all slots are filled? Just rotate through what we have, or does CloudBees become a default slot filler? I would be concerned about the latter.
+<a name="l-143"></a><span class="tm">18:42:01</span><span class="nk"> &lt;electrical&gt;</span> <span class="hi">kohsuke:</span> meeting?
+<a name="l-144"></a><span class="tm">18:42:02</span><span class="nk"> &lt;kohsuke&gt;</span> No, just empty box will show up, as you saw today
+<a name="l-145"></a><span class="tm">18:42:11</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">electrical:</span> governance meeting is going on
+<a name="l-146"></a><span class="tm">18:42:25</span><span class="nk"> &lt;electrical&gt;</span> <span class="hi">Slide-O-Mix:</span> ahh okay. yeah of course :-)
+<a name="l-147"></a><span class="tm">18:42:40</span><span class="nk"> &lt;hare_brain&gt;</span> So it seems like we should have a default Jenkins community filler for empty slots.
+<a name="l-148"></a><span class="tm">18:42:43</span><span class="nk"> &lt;hare_brain&gt;</span> Or Chuck Norris.
+<a name="l-149"></a><span class="tm">18:42:57</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, I could that
+<a name="l-150"></a><span class="tm">18:43:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to enhance the backend so that idle slots will be filled by the community messages</span>
+<a name="l-151"></a><span class="tm">18:43:35</span><span class="nk"> &lt;hare_brain&gt;</span> With those comments, I’m good with it.
+<a name="l-152"></a><span class="tm">18:44:05</span><span class="nk"> &lt;kohsuke&gt;</span> Any other thoughts anyone else?
+<a name="l-153"></a><span class="tm">18:44:14 </span><span class="nka">* kohsuke</span> <span class="ac">is trying to cautious to avoid any backlash later</span>
+<a name="l-154"></a><span class="tm">18:44:18</span><span class="nk"> &lt;hare_brain&gt;</span> I was wondering about whether to allow one patron to buy up all the slots, or if there’s a maximum number of slots for a patron, but I haven’t formed an opinion one way or another about it yet.
+<a name="l-155"></a><span class="tm">18:44:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">lisawells:</span> I think we will refrain from sponsoring more than 2 given the past concern
+<a name="l-156"></a><span class="tm">18:44:55</span><span class="nk"> &lt;hare_brain&gt;</span> But definitely not something to hold this up for.
+<a name="l-157"></a><span class="tm">18:45:10</span><span class="nk"> &lt;hare_brain&gt;</span> Good of her to say that. I was thinking about other patrons. :)
+<a name="l-158"></a><span class="tm">18:45:17</span><span class="nk"> &lt;lisawells&gt;</span> I think it would make sense to say you can only sponsor 2 slots per quarter - then no one sponsor 'dominates'
+<a name="l-159"></a><span class="tm">18:45:55</span><span class="nk"> &lt;hare_brain&gt;</span> Let’s give it a whirl.
+<a name="l-160"></a><span class="tm">18:46:13</span><span class="nk"> &lt;kohsuke&gt;</span> We are asking prospective patrons to get in contact with us before they pull the trigger
+<a name="l-161"></a><span class="tm">18:46:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I assume you mean you don't think we have to codify it just yet
+<a name="l-162"></a><span class="tm">18:47:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to get abayer's +1 offline</span>
+<a name="l-163"></a><span class="tm">18:47:44</span><span class="nk"> &lt;kohsuke&gt;</span> Oh, and do the current list of messages look good? I'd like to have them approved as well
+<a name="l-164"></a><span class="tm">18:47:57</span><span class="nk"> &lt;kohsuke&gt;</span> I'm hoping to launch this today
+<a name="l-165"></a><span class="tm">18:48:06</span><span class="nk"> &lt;kohsuke&gt;</span> since it's the beginning of a new quarter
+<a name="l-166"></a><span class="tm">18:48:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the proposed messages are in https://github.com/jenkinsci/patron/blob/gh-pages/messages.xml#L22</span>
+<a name="l-167"></a><span class="tm">18:48:25</span><span class="nk"> &lt;hare_brain&gt;</span> Yes, that’s what I meant.
+<a name="l-168"></a><span class="tm">18:48:43</span><span class="nk"> &lt;kohsuke&gt;</span> any concerns/+1 from folks?
+<a name="l-169"></a><span class="tm">18:49:38</span><span class="nk"> &lt;ScottHebertErics&gt;</span> +1 from me for messages
+<a name="l-170"></a><span class="tm">18:49:45</span><span class="nk"> &lt;hare_brain&gt;</span> The messages are fine.
+<a name="l-171"></a><span class="tm">18:49:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the program and current proposed patron messages are approved with the recorded TODOs</span>
+<a name="l-172"></a><span class="tm">18:49:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ScottHebertErics:</span> thanks for your +1
+<a name="l-173"></a><span class="tm">18:49:59</span><span class="nk"> &lt;hare_brain&gt;</span> I assume we’re not going to be generating so much traffic that we tank those servers.
+<a name="l-174"></a><span class="tm">18:50:07</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-175"></a><span class="tm">18:50:22</span><span class="nk"> &lt;kohsuke&gt;</span> OK, moving on to the next topic of Slide-O-Mix
+<a name="l-176"></a><span class="tm">18:50:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">JIRA versions backend app</span>
+<a name="l-177"></a><span class="tm">18:50:31</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> howdy
+<a name="l-178"></a><span class="tm">18:50:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Slide-O-Mix:</span> sorry the other topics ate too much time. The floor is all yours now
+<a name="l-179"></a><span class="tm">18:50:56</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I had proposed on the mailing list a while back to add specific versions to JIRA
+<a name="l-180"></a><span class="tm">18:51:17</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> There were several ideas thrown around and we ended up talking about parsing the Maven repo information and using that as a backend job
+<a name="l-181"></a><span class="tm">18:51:22</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I created https://github.com/jenkinsci/backend-jira-versions for that purpose
+<a name="l-182"></a><span class="tm">18:51:41</span><span class="nk"> &lt;kohsuke&gt;</span> cool
+<a name="l-183"></a><span class="tm">18:51:51</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I'd like to get some feedback on the implementation and once its +1'd get it into the backend setup
+<a name="l-184"></a><span class="tm">18:52:25</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> In addition, I created a pull request (https://github.com/jenkinsci/backend-ircbot/pull/10) which adds the ability to create versions via the Jenkins IRC bot
+<a name="l-185"></a><span class="tm">18:52:37</span><span class="nk"> &lt;kohsuke&gt;</span> So IIUC, the version field will show the combined versions of all the plugins
+<a name="l-186"></a><span class="tm">18:52:48</span><span class="nk"> &lt;kohsuke&gt;</span> which would be ... like a few 1000s?
+<a name="l-187"></a><span class="tm">18:53:01</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> You mean if you looked at "versions" in JIRA?
+<a name="l-188"></a><span class="tm">18:53:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the thread that Slide-O-Mix is referring to is https://groups.google.com/d/msg/jenkinsci-dev/ncvbwPj_R78/FnE38TGToJ0J</span>
+<a name="l-189"></a><span class="tm">18:53:08</span><span class="nk"> &lt;kohsuke&gt;</span> yes
+<a name="l-190"></a><span class="tm">18:53:26</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Yes, there would be many there, JIRA doesn't seem to have a way to assign them to specific components, they would be global
+<a name="l-191"></a><span class="tm">18:53:39</span><span class="nk"> &lt;jamescarr&gt;</span> is it possible to get all the additional details about  the build from run and job here? https://github.com/jenkinsci/notification-plugin/blob/master/src/main/java/com/tikal/hudson/plugins/notification/Phase.java#L51
+<a name="l-192"></a><span class="tm">18:53:47</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> The issue I am trying to fix is when someone chooses "current" for the version when submitting an issue, current is not helpful
+<a name="l-193"></a><span class="tm">18:53:47</span><span class="nk"> &lt;hare_brain&gt;</span> I literally just read an email about field contexts in JIRA.
+<a name="l-194"></a><span class="tm">18:54:03</span><span class="nk"> &lt;kohsuke&gt;</span> Have we considered the possibility of just using numbers like "1.0" without the plugin name?
+<a name="l-195"></a><span class="tm">18:54:22</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">kohsuke:</span> that's a possibility, though if you wanted to report on bugs per version, it wouldn't give you the info you wanted
+<a name="l-196"></a><span class="tm">18:54:34</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> plus, you have lots of different versioning schemes from what I've seen
+<a name="l-197"></a><span class="tm">18:55:04</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, but still presumably a lot less than adding plugin name as a prefix
+<a name="l-198"></a><span class="tm">18:55:08</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> True
+<a name="l-199"></a><span class="tm">18:55:17</span><span class="nk"> &lt;kohsuke&gt;</span> But I guess what you want is to be able to query by a specific version of a specific plugin
+<a name="l-200"></a><span class="tm">18:55:49</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Well, if an issue is for multiple plugins with different versions, what do you do in that case? or if plugins have the same version, which versions match to which plugins for the issue?
+<a name="l-201"></a><span class="tm">18:55:50</span><span class="nk"> &lt;kohsuke&gt;</span> or that perhaps can be achieved by combining version with component
+<a name="l-202"></a><span class="tm">18:56:45</span><span class="nk"> &lt;kohsuke&gt;</span> Oh I see, you can have many versions in one issue
+<a name="l-203"></a><span class="tm">18:56:50</span><span class="nk"> &lt;kohsuke&gt;</span> OK, that makes sense
+<a name="l-204"></a><span class="tm">18:56:52</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> right
+<a name="l-205"></a><span class="tm">18:57:02</span><span class="nk"> &lt;errant_rider&gt;</span> anyone out there in lala land use the Swarm plugin?
+<a name="l-206"></a><span class="tm">18:57:06</span><span class="nk"> &lt;kohsuke&gt;</span> And it's an auto-completion field so presumably having lots of lots versions won't be too bad
+<a name="l-207"></a><span class="tm">18:57:17</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> Maybe we can filter the maven repo based on date and only start importing versions after a certain date
+<a name="l-208"></a><span class="tm">18:57:41</span><span class="nk"> &lt;kohsuke&gt;</span> Everyone in that thread seems to be  happy with this, so shall we just go ahead and deploy this?
+<a name="l-209"></a><span class="tm">18:57:55</span><span class="nk"> &lt;kohsuke&gt;</span> I suppose the worst case we can delete all those versions
+<a name="l-210"></a><span class="tm">18:58:38</span><span class="nk"> &lt;kohsuke&gt;</span> Do you still feel the need to add this to ircbot as well?
+<a name="l-211"></a><span class="tm">18:58:40</span><span class="nk"> &lt;hare_brain&gt;</span> Deleting versions might break saved queries. Not sure if anyone would care.
+<a name="l-212"></a><span class="tm">18:58:43</span><span class="nk"> &lt;errant_rider&gt;</span> I am trying to run the swarm client JAR and getting this error: http://pastie.org/8989430  can anyone help me out?
+<a name="l-213"></a><span class="tm">18:59:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I was thinking about deleting versions as a way of completely rolling back the deployment of this new version scheme
+<a name="l-214"></a><span class="tm">18:59:08</span><span class="nk"> &lt;hare_brain&gt;</span> Oh OK
+<a name="l-215"></a><span class="tm">18:59:18</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">kohsuke:</span> the only reason I would like to have the IRC bot stuff is so that plugin developers can add releases before they are actually released, that way they can mark something as fixed in a specific version
+<a name="l-216"></a><span class="tm">18:59:22</span><span class="nk"> &lt;kohsuke&gt;</span> I wasn't thinking about that to discard old versions after a while, which would cause the problem you mention
+<a name="l-217"></a><span class="tm">18:59:47</span><span class="nk"> &lt;kohsuke&gt;</span> I see, that makes sense
+<a name="l-218"></a><span class="tm">18:59:49</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> The "Fixed in version" field would actually mean soemthing
+<a name="l-219"></a><span class="tm">19:00:04</span><span class="nk"> &lt;ogondza&gt;</span> +1 from me
+<a name="l-220"></a><span class="tm">19:00:20</span><span class="nk"> &lt;kohsuke&gt;</span> +1 from me, too
+<a name="l-221"></a><span class="tm">19:00:24</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> cool
+<a name="l-222"></a><span class="tm">19:00:36</span><span class="nk"> &lt;kohsuke&gt;</span> So I'll need to deploy this somewhere, right?
+<a name="l-223"></a><span class="tm">19:00:42</span><span class="nk"> &lt;kohsuke&gt;</span> ci.jenkins-ci.org job to run this periodically
+<a name="l-224"></a><span class="tm">19:00:47</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> yes, that's correct
+<a name="l-225"></a><span class="tm">19:00:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to deploy https://github.com/jenkinsci/backend-jira-versions</span>
+<a name="l-226"></a><span class="tm">19:01:02</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> It does support reading the JIRA username/password from the .jenkins.org file like the IRC bot
+<a name="l-227"></a><span class="tm">19:01:13</span><span class="nk"> &lt;kohsuke&gt;</span> Perfect
+<a name="l-228"></a><span class="tm">19:01:20</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I wasn't sure of the requirements for the infra stuff, so if that needs to change, let me know
+<a name="l-229"></a><span class="tm">19:01:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Slide-O-Mix:</span> thank you very much for doing this
+<a name="l-230"></a><span class="tm">19:01:26</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's really useful
+<a name="l-231"></a><span class="tm">19:01:31</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">kohsuke:</span> great, glad to help
+<a name="l-232"></a><span class="tm">19:01:39</span><span class="nk"> &lt;kohsuke&gt;</span> I'll make sure that you have write access to the relevant stuff
+<a name="l-233"></a><span class="tm">19:01:53</span><span class="nk"> &lt;kohsuke&gt;</span> so that you can tweak them as needed
+<a name="l-234"></a><span class="tm">19:02:03</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> thank you
+<a name="l-235"></a><span class="tm">19:02:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-236"></a><span class="tm">19:02:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the next meeting would be April 16th same time</span>
+<a name="l-237"></a><span class="tm">19:02:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

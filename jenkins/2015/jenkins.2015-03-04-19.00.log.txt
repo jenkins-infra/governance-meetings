@@ -1,0 +1,263 @@
+19:00:07 <kohsuke_> #startmeeting
+19:00:07 <robobutler> Let the Jenkins meeting commence!
+19:00:17 <kohsuke_> #chair rtyler hare_brain
+19:00:17 <robobutler> Current chairs: hare_brain kohsuke_ rtyler
+19:00:32 <kohsuke_> #topic LTS RC status check
+19:00:50 <ogondza> kohsuke_: ready for RC
+19:01:08 <kohsuke_> I failed once again to push 1.596.1 in time, so my hats off to you ogondza
+19:01:26 <ogondza> no problem
+19:01:46 <kohsuke_> #topic Recap last meeting's actions
+19:02:12 <kohsuke_> And let's see what those are
+19:02:34 <kohsuke_> #info http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-02-18-19.01.html
+19:02:57 <KostyaSha> rtyler, to board
+19:03:01 <kohsuke_> So it's basically mine
+19:04:04 <kohsuke_> I was hoping to find one more person aside from rtyler and run a confidence vote
+19:04:23 <kohsuke_> ... to increase the board to 5 people and let us remove "interim"
+19:04:36 <oleg-nenashev> what about jglick?
+19:04:46 <hare_brain> Too much CloudBees representation.
+19:04:48 <kohsuke_> but during the podcast recording abayer wanted to just hand over his seat to rtyler
+19:04:55 <oleg-nenashev> He's committer #2 btw
+19:05:08 <KostyaSha> kohsuke_, what about somebody from RH ogondza ?
+19:05:49 <kohsuke_> So I think I have more herding to do
+19:06:05 <ogondza> I do not object, though I have limited understanding that board responsibilities are
+19:06:17 <ogondza> *what
+19:06:39 <KostyaSha> ogondza, i don't know at all and don't know how it should help to jenkins as project
+19:06:41 <kohsuke_> And what I thought was 20mins recording run like 90mins, and I failed to talk about the nominations
+19:06:59 <KostyaSha> rtyler can work on infra now without any titles
+19:07:07 <kohsuke_> yes
+19:07:20 <kohsuke_> So that's the current status of my action
+19:07:33 <kohsuke_> The other AI is to update wolfs. I'll do that.
+19:07:58 <kohsuke_> Can we move on to the next topic?
+19:08:09 <KostyaSha> +
+19:08:17 <kohsuke_> #topic "Patron of Jenkins"
+19:08:49 <KostyaSha> orrc, ?
+19:09:07 <kohsuke_> So indeed looks like there's no patron for 2015 Q1,
+19:09:13 <kohsuke_> #info https://github.com/jenkinsci/patron/blob/gh-pages/messages.xml
+19:09:19 <kohsuke_> (scroll to the bottom)
+19:10:06 <kohsuke_> but I think it's just a lapse of the hand off. lisa who used to do it handed it over to christina
+19:10:37 <orrc> maybe we just need to add a contact point to the patron wiki page
+19:10:52 <kohsuke_> There's a ML for that
+19:11:50 <kohsuke_> So I'll circle back with her to put this back in order
+19:12:02 <kohsuke_> And separate from that, there's a review of this program as a whole
+19:12:16 <kohsuke_> That is, how does people feel about this? Is this something we can continue?
+19:12:39 <KostyaSha> i will be interested only on whether jenkins has budget for working
+19:12:42 <orrc> I think it's fine. has there been any feedback from patrons?
+19:12:48 <KostyaSha> or should we cal for donates massively
+19:12:55 <kohsuke_> It brings in about $2000+ / quarter, which is sizable money
+19:13:35 <hare_brain> I agree with orrc. It’s not about whether to continue it, but whether if people who have signed up are getting value out of it.
+19:13:49 <kohsuke_> I know one patron (CB) is happy, but I don't know about other patrons
+19:13:59 <KostyaSha> :D
+19:14:18 <kohsuke_> Xebia seems to continue doing this, so I think they are happy enough
+19:14:20 <ogondza> i proposed this to my manager to give some money to Jenkins project, his question was what can a company that does not make money on Jenkins can get becoming a patron
+19:14:31 <ogondza> the point is, there are lot more users than sellers
+19:14:47 <ogondza> it is worth to attract those
+19:14:56 <KostyaSha> ogondza, provide him comparison to TeamCity costs
+19:15:38 <orrc> so, I'd be happy with it continuing. users and (a few) patrons seem happy. I don't think we ever promoted the program on the blog? maybe that would help fill up the slots
+19:15:43 <kohsuke_> ogondza: I think we can put a thank you message to RH to recognize their contributions
+19:16:07 <KostyaSha> is LTS covered only by RH?
+19:16:18 <KostyaSha> i mean release/testing
+19:16:32 <hare_brain> #idea give away an open patron slot to show value to the target patron?
+19:16:36 <kohsuke_> ogondza: if you can think of something that's more attractive to redhat, I'd love to know
+19:16:55 <hare_brain> That would require some analytics on their end to demonstrate an uptick in traffic.
+19:17:04 <ogondza> KostyaSha: I do not follow, I think the add space price might be too high if you are not setting Jenkins based product
+19:17:26 <ogondza> kohsuke_: I will ask cross BUs and let upstream know
+19:17:59 <kohsuke_> #action kohsuke to blog about patron program in the hope to attract more patrons
+19:18:14 <kohsuke_> #action kohsuke to ping christina to get the program back in order for Q2
+19:18:27 <kohsuke_> should we move on?
+19:18:40 <ogondza> y
+19:18:46 <kohsuke_> #topic workflow specific mailing list
+19:19:28 <kohsuke_> Is that really necessary?
+19:19:46 <kohsuke_> jglick: any thoughts?
+19:19:50 <hare_brain> I was noticing that the traffic on the users mailing list has been heaving on this topic.
+19:19:54 <hare_brain> That’s why I brought it up.
+19:20:10 <hare_brain> On certain days, it tends to drown out other messages.
+19:20:11 <jglick> I am not opposed, if you think there is enough traffic to warrant it.
+19:20:22 <KostyaSha> i think devel maillist is enough
+19:20:27 <jglick> The “certain days” are when I get around to reading it.
+19:20:28 <jglick> :-)
+19:20:37 <KostyaSha> workflow broke enough in core so other devs should follow changes
+19:20:46 <KostyaSha> and see discussions
+19:20:47 <kohsuke_> hare_brain: I think it's the day jglick binge-replied workflow messages
+19:20:51 <jglick> KostyaSha: well this is about user view, not jenkinsci-dev topics.
+19:20:52 <hare_brain> This is about a dedicated mailing list for users.
+19:21:00 <hare_brain> I think devel should stay together.
+19:21:01 <KostyaSha> for user we have user maillist
+19:21:28 <jglick> I doubt it is enough volume to merit its own list.
+19:21:54 <hare_brain> Looking back, I see that you had binge replies last Wednesday and Thursday.
+19:22:00 <hare_brain> Which is when I happened to notice.
+19:22:04 <jglick> Yup.
+19:22:11 <oleg-nenashev> -1 for the new mailing list. workflow is being integrated everywhere, so there should be a smooth migration at some point
+19:22:29 <kohsuke_> I feel it's easier for people if we stick to one users list
+19:22:42 <orrc> yup
+19:22:49 <jglick> I guess -0 from me. More convenient in some ways to have a separate list, but this can be taken too far.
+19:23:30 <KostyaSha> and after 1-2y such maillist will die as usual
+19:23:32 <kohsuke_> hare_brain: do you feel strongly one way or the other?
+19:23:49 <hare_brain> No, I don’t.
+19:24:08 <kohsuke_> #agreed we'll stick to one users list. No workflow specific list, at least for now
+19:24:17 <kohsuke_> #topic new release process
+19:24:45 <kohsuke_> So basically I'm trying not to become an obstacle here
+19:25:02 <kohsuke_> jglick and danielbeck didn't like the current 'rc' branch practice
+19:25:20 <kohsuke_> So we'll be ditching that, and switch back to doing release from the master branch
+19:25:49 <jglick> Well it was not just ditching the rc branch but finding a decent replacement for hotfixes of serious regressions.
+19:26:09 <jglick> That is what commits into rc are supposed to be for today, it just does not work well from a Git standpoint.
+19:26:22 <jglick> And we have to wait days for those fixes to be delivered.
+19:26:56 <KostyaSha> i think branch + X.Y-Z , where Z can be suitable for hotfixing
+19:27:02 <kohsuke_> for the record out of cycle releases for hot fixes have been done number of times, and I'm all for it
+19:27:36 <KostyaSha> kohsuke_ why not use 1.600-1 for hotfix to not overlap with lts?
+19:27:38 <jglick> Yeah, if 1.678 or whatever is released and found to have some major regression, I would like to publish 1.678-1 or whatever, that day if possible.
+19:28:01 <hare_brain> Why not just go to 1.679?
+19:28:04 <jglick> KostyaSha: I think that is what he just said.
+19:28:10 <kohsuke_> introducing three digit version scheme needs more backend work
+19:28:14 <KostyaSha> hare_brain, because people working on master, master can have many commits
+19:28:21 <kohsuke_> Doing 1.679 would be easier
+19:28:38 <KostyaSha> and will end to other issues
+19:28:42 <jglick> Yes, though it breaks the mental model of one release per week, and does not indicate in any way that this was a hotfix.
+19:29:13 <hare_brain> Does master really have work in progress? Is there any checking right now that the RC isn’t picking up any such work?
+19:29:55 <jglick> master should not have works in progress.
+19:30:07 <hare_brain> Right.
+19:30:21 <kohsuke_> No formal check beyond the automated tests, but when release is regular it creates expectation among developers that you shall not have WiP in master over the weekend
+19:30:25 <jglick> But there are plenty of changes that could well introduce unrelated regressions. I want to be able to do a release that contains just the one-line change I know fixes the reported issue.
+19:30:41 <KostyaSha> but not released commits from master are tested during next commits development
+19:30:51 <KostyaSha> jglick, +1
+19:31:01 <KostyaSha> because even such fix can be not final fix
+19:31:06 <jglick> Well, sort of tested, but not very thoroughly. Obviously they introduce regressions.
+19:31:15 <KostyaSha> and then we will need -2 to sort out final fix of initial issue
+19:31:16 <jglick> (or we would not be having this discussion)
+19:31:35 <hare_brain> So release from master, then create hot fix branch to cherry pick changes into when necessary?
+19:31:45 <jglick> That was my hope.
+19:31:48 <KostyaSha> having additional commits will add more complexity for issue resolution
+19:31:54 <KostyaSha> hare_brain, +1
+19:32:04 <jglick> Today we cherry pick to rc.
+19:32:05 <jglick> Then wait several days.
+19:32:06 <kohsuke_> I've done that kind of "let's just add one commit" kind of release in long time ago, which involves creating a new temporary branch and doing a release from there
+19:32:06 <KostyaSha> hare_brain, not from master, from 1.600
+19:32:18 <KostyaSha> stop, i confused
+19:32:23 <jglick> And hope that the merge back to master does not produce weird botched merges (which seems to happen more often than not).
+19:32:28 <kohsuke_> It messes up changelog script, but otherwise it works
+19:32:52 <KostyaSha> kohsuke_, this is how all projects do, changelog is just problem of automation
+19:33:07 <jglick> changelog.html gets messed up today, cannot be any worse.
+19:33:30 <kohsuke_> KostyaSha: I dunno. The big company I used to work, there was always a release branch
+19:34:01 <KostyaSha> kohsuke_ for regular releases yes, for hotfix only new branches to fix exact issue
+19:34:49 <kohsuke_> Are we good with 1.679 as opposed to 1.678-1?
+19:34:57 <kohsuke_> I really want to avoid 1.678-1
+19:35:03 <jglick> Right, I imagined a new hotfix branch would be created on demand based off the weekly release tag: git checkout -b hotfix-1.678 jenkins-1.678 && mvn -DnewVersion=1.678-1-SNAPSHOT versions:set
+19:35:30 <jglick> kohsuke: 1.679 does not work for me, b/c then you are picking up unrelated changes in master, which can have their own regressions.
+19:35:50 <jglick> Sounds like there is not consensus here, should be taken to the dev list I guess.
+19:35:56 <hare_brain> Why does using 1.679 mean you pick up unrelated changes?
+19:36:06 <danielbeck> sorry I'm late
+19:36:08 <kohsuke_> No, we are still  branching off from the 1.678 release tag.
+19:36:13 <hare_brain> You just bump the version in master to 1.680 when you “burn” 1.679"
+19:36:23 <jglick> I see.
+19:36:28 <kohsuke_> IOW, git checkout -b hotfix-1.678 jenkins-1.678 && mvn -DnewVersion=1.679-SNAPSHOT versions:set
+19:36:50 <jglick> And then git checkout master && mvn -DnewVersion=1.680-SNAPSHOT versions:set
+19:36:59 <kohsuke_> and then when you merge it back to the master the master gets 1.680-SNAPSHOT
+19:37:14 <jglick> And again if a second hotfix is needed, master goes to 1.681, etc.
+19:37:22 <hare_brain> Yaeh
+19:37:29 <jglick> Why would you merge anything back to master?
+19:37:30 <kohsuke_> ... or if you are anxious to set the master to the right maven version you can run version:set again
+19:37:40 <jglick> This is just a cherry-pick of something already done in master.
+19:38:11 <KostyaSha> i usually draw pictures with flows for such discussions :)
+19:38:14 <jglick> I see no need to merge.
+19:38:55 <kohsuke_> I find it more peaceful to have one release tag reachable from another release tag
+19:38:59 <jglick> IOW, the fix is done in master (as a PR, whatever), then after some conferring among core devs, a hotfix branch is set up, the relevant changes cherry-picked and a release cut.
+19:39:12 <KostyaSha> kohsuke_ you current approach probably ok for general releases, were you have merges/versions etc. For hotfix we need branch without merging back to fix exact issue
+19:39:26 <jglick> Well the merge back to master is one of the error-prone parts of the current rc scheme that I wanted to get rid of.
+19:39:30 <KostyaSha> *your
+19:39:56 <KostyaSha> btw, cloudbees also automerging something to master?
+19:40:51 <jglick> Huh?
+19:41:02 <danielbeck> KostyaSha Isn't this going off topic?
+19:41:29 <kohsuke_> The merge commit back from hotfix to master will be largely celemonial, so while I don't understand why people strongly about it, but I'm OK to give up that one too
+19:41:31 <KostyaSha> danielbeck, maybe
+19:41:54 <jglick> Yeah it is supposed to be ceremonial, but at least when you do it, the result is very often wrong.
+19:42:00 <hare_brain> LOL
+19:42:10 <kohsuke_> The error prone part of the rc scheme is going away, and we are not arguing that.
+19:42:11 <jglick> Something weird goes on, I guess w.r.t. conflicts in changelog.html.
+19:42:29 <danielbeck> changelog should just work like github pages IMO
+19:42:42 <jglick> danielbeck: how so?
+19:42:50 <jglick> You mean like github.io?
+19:42:51 <KostyaSha> separate place for tracking changelog
+19:42:53 <danielbeck> separate branch with nothing else
+19:43:03 <KostyaSha> or even repo, instead of branch
+19:43:03 <oleg-nenashev> Or just a separate repo
+19:43:06 <jglick> Agreed, it does not work to keep it in the main branch.
+19:43:17 <danielbeck> PRs don't edit changelog in our process
+19:43:19 <oleg-nenashev> ... which can be attached via a submodule
+19:43:21 <KostyaSha> or this can be generated from jira with correct project setup
+19:43:35 <KostyaSha> oleg-nenashev, nooo not submodules
+19:43:43 <jglick> PRs *could* edit changelog.html but then they will usually be merge conflicts.
+19:43:58 <danielbeck> KostyaSha Too error prone, plus issues usually have crappy titles
+19:44:17 <danielbeck> jglick Or wrong release given how long they stick around
+19:44:20 <KostyaSha> danielbeck, plus CB fixes without jira ids
+19:44:25 <kohsuke_> All right, let's just agree to stop the rc branching practice
+19:44:35 <jglick> FWIW my original proposal was for the changelog to be autogenerated from Git history. Anyway this is diverging.
+19:44:53 <jglick> kohsuke_ so will you write up a concrete proposal for its replacement?
+19:44:55 <kohsuke_> and when the next hot fix comes we can fight out the details of that branching practice
+19:45:15 <kohsuke_> and I declare changelog automation to be a whole separate conversation
+19:45:28 <danielbeck> one minor issue though
+19:45:29 <jglick> I think we need something determined in advance, b/c when the hot fix is needed there will not be much time, and you might not even be available.
+19:46:02 <danielbeck> how often are changes done in master that break things, but discovered by devs within 1-2 days to fix them? How affected will the new release process be?
+19:46:33 <jglick> danielbeck: well usually I do the breaking and you do the discovering :-)
+19:46:51 <ogondza> danielbeck: rarely, I would say
+19:47:15 <KostyaSha> jglick, he should have part of your salary :D
+19:47:43 <kohsuke_> So proposal is: "mainline release comes directly off the master branch in the same cadence. In case of a hot fix release, we'll create a temporary branch right at the point of 1.N, cherry-pick, and release 1.${N+1} from there"
+19:47:48 <zirpu> https://issues.jenkins-ci.org/browse/JENKINS-27246  anyone have a fresh jenkins instance that they can test this bug on ?  i'd like to know if i'm just insane somehow.
+19:47:49 <jenkins-admin> JENKINS-27246:adding ssh credentials for jenkins to use generates an "Oops" page. (Open) https://issues.jenkins-ci.org/browse/JENKINS-27246
+19:48:07 <danielbeck> zirpu Please wait a bit, meeting in progress
+19:48:14 <zirpu> oops. sorry.
+19:48:28 <danielbeck> kohsuke_ looks good. If it doesn't work out we can modify it.
+19:48:34 <kohsuke_> yeah
+19:48:47 <jglick> kohsuke_ +1
+19:49:03 <kohsuke_> #agreed mainline release comes directly off the master branch in the same cadence. In case of a hot fix release, we'll create a temporary branch right at the point of 1.N, cherry-pick, and release 1.${N+1} from there
+19:49:08 <KostyaSha> will it be possible to release withou kk?
+19:49:22 <jglick> That is a very good question.
+19:49:25 <kohsuke_> We are slowing getting there as a part of SPoF elimination
+19:49:30 <KostyaSha> if not then make zero sense
+19:49:41 <danielbeck> kk told me I can break into his basement if a release is needed :-)
+19:49:42 <kohsuke_> I wouldn't say "zero sense"
+19:49:46 <danielbeck> at least that's what I heard
+19:49:56 <kohsuke_> danielbeck: no, you made that up, sir
+19:50:05 <kohsuke_> and I don't have basement!
+19:50:24 <jglick> Well compared to the current state, at least the hotfix branch can be prepared and kohsuke_ asked to run a release on that day, rather than waiting until the next Wed or whatever it is.
+19:51:04 <jglick> But yes the automation needs to be built.
+19:51:49 <zkay11> Anyone willing to help me troubleshoot some issues with the jenkins-mesos plugin? I'm just trying to deploy it, but doing so by first deploying a jenkins-master in a docker container to marathon.
+19:52:01 <KostyaSha> zkay11, meeting, ask later
+19:52:44 <KostyaSha> gentoo for example creating separate channel for meetings
+19:52:45 <kohsuke_> To me, the ultimate power of my lead role came from the fact that I eventually controlled what gets released. So I hope people understand this is a big change for me.
+19:52:57 <danielbeck> one issue at a time
+19:52:59 <kohsuke_> #topic Governance Document Updates
+19:53:23 <kohsuke_> First, trademark
+19:53:38 <kohsuke_> And yes, we finally have a mark, but it came with some fineprints
+19:53:56 <kohsuke_> Apparently there are multiple classes of trademark and we were only awarded with the weaker one
+19:54:44 <kohsuke_> I'll forward the email, and if anyone is willing to understand the difference, you have my support
+19:55:32 <kohsuke_> #action kohsuke to forward the trademark registration email from SFC
+19:55:55 <kohsuke_> Agreed that we should have more information about the board
+19:56:17 <kohsuke_> I guess we should have a separate Wiki page that lists the current members
+19:56:28 <KostyaSha> https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Boards
+19:56:52 <KostyaSha> add here or split page to multiple
+19:56:58 <danielbeck> for some of the real roles it would be helpful to know who is what
+19:57:03 <kohsuke_> I think a specific rev of the governance document is blessed, so putting it in another document simplifies updating
+19:57:09 <danielbeck> "real" roles as in, not just plugin dev or user
+19:57:42 <kohsuke_> I don't want to get into real vs not, but I think it's fair to call out individual names of the board
+19:58:29 <danielbeck> by that I just meant those that are actually enumerable
+19:58:35 <danielbeck> infra may be helpful as well
+19:58:39 <kohsuke_> wrt "release process", I don't think that document should say anything about nitty gritty branching details
+19:59:52 <kohsuke_> So it should just say this meeting decides the details of the release process and leave it at that
+20:00:16 <orrc> sure
+20:00:33 <kohsuke_> ... which probably means we need the mainline version of https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line
+20:01:53 <kohsuke_> I have hard stop at noon so I really need to wrap this up, but would orrc be interested in taking a shot at updating the doc?
+20:02:08 <orrc> yeah, I just realised it's not protected; I thought it was
+20:02:23 <orrc> so yeah, I can fix up a bunch of stuff
+20:02:35 <kohsuke_> I think the updates are mainly cosmetic and I don't think anything suggested there is controversial
+20:02:45 <orrc> indeed
+20:03:27 <kohsuke_> KostyaSha: I'm afraid we'll have to move your topic to the next meeting
+20:03:35 <kohsuke_> #topic next meeting
+20:04:06 <kohsuke_> #info next meeting is March 18th same time
+20:04:16 <KostyaSha> kohsuke_ ok, wasted 2h :D i will be glad to be unblocked with github-api issue also, waiting it fulltime
+20:04:44 <kohsuke_> I have no idea when DST starts kicking in, but I hope it won't affect the next one
+20:04:49 <hare_brain> 8th
+20:04:53 <hare_brain> This weekend
+20:04:54 <KostyaSha> ouch, logging of meeting not end
+20:05:08 <kohsuke_> oh, so the next one IS affected by DST
+20:05:13 <hare_brain> Yes.
+20:05:22 <kohsuke_> #info beware of DST change
+20:05:26 <kohsuke_> #endmeeting

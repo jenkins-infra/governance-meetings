@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app217.us.archive.org';v.server_ms=501;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-02-18-19.01.log.html","20200505044045","https://web.archive.org/","web","/_static/",
+	      "1588653645");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:01:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:01:43</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:01:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler hare_brain</span>
+<a name="l-4"></a><span class="tm">19:01:54</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">19:02:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">19:02:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Approving another batch of stickers</span>
+<a name="l-7"></a><span class="tm">19:02:45</span><span class="nk"> &lt;kohsuke&gt;</span> In every year, Jan-Feb is a month that we use a lot of stickers
+<a name="l-8"></a><span class="tm">19:02:52</span><span class="nk"> &lt;kohsuke&gt;</span> ... between FOSDEM &amp; SCALE
+<a name="l-9"></a><span class="tm">19:03:18</span><span class="nk"> &lt;kohsuke&gt;</span> In FOSDEM we handed out about 1000, and I expect similar number in SCALE
+<a name="l-10"></a><span class="tm">19:03:31</span><span class="nk"> &lt;kohsuke&gt;</span> So I want to put an order for more stickers
+<a name="l-11"></a><span class="tm">19:04:16</span><span class="nk"> &lt;kohsuke&gt;</span> The two new variations were popular in FOSDEM
+<a name="l-12"></a><span class="tm">19:04:21</span><span class="nk"> &lt;kohsuke&gt;</span> https://wiki.jenkins-ci.org/download/attachments/2916393/superhero-all.svg
+<a name="l-13"></a><span class="tm">19:04:28</span><span class="nk"> &lt;kohsuke&gt;</span> https://wiki.jenkins-ci.org/download/attachments/2916393/ninjenkins.svg
+<a name="l-14"></a><span class="tm">19:04:43</span><span class="nk"> &lt;kohsuke&gt;</span> but OTOH it often just resulting in the same person getting 3 stickers instead of just one
+<a name="l-15"></a><span class="tm">19:04:54</span><span class="nk"> &lt;kohsuke&gt;</span> So one could argue whether that's the best use of money
+<a name="l-16"></a><span class="tm">19:05:02</span><span class="nk"> &lt;integer`&gt;</span> and i still have zero stickers :D
+<a name="l-17"></a><span class="tm">19:05:26</span><span class="nk"> &lt;kohsuke&gt;</span> Can you join us in SCALE? :-) it's in the end of this week
+<a name="l-18"></a><span class="tm">19:05:41</span><span class="nk"> &lt;irf&gt;</span> nope.. still same issue
+<a name="l-19"></a><span class="tm">19:05:48</span><span class="nk"> &lt;akkad&gt;</span> <span class="hi">kohsuke:</span> where?
+<a name="l-20"></a><span class="tm">19:05:49</span><span class="nk"> &lt;integer`&gt;</span> kohsuke, have no Visa's and highload because of jenkins bugs :(
+<a name="l-21"></a><span class="tm">19:06:00</span><span class="nk"> &lt;kohsuke&gt;</span> Los Angeles
+<a name="l-22"></a><span class="tm">19:06:16</span><span class="nk"> &lt;irf&gt;</span> not getting value
+<a name="l-23"></a><span class="tm">19:06:38</span><span class="nk"> &lt;integer`&gt;</span> irf, please wait, meeting is going on channel atm
+<a name="l-24"></a><span class="tm">19:06:48</span><span class="nk"> &lt;irf&gt;</span> ok sure
+<a name="l-25"></a><span class="tm">19:06:51</span><span class="nk"> &lt;irf&gt;</span> will wait
+<a name="l-26"></a><span class="tm">19:07:00</span><span class="nk"> &lt;kohsuke&gt;</span> BTW there are two more designs
+<a name="l-27"></a><span class="tm">19:07:00</span><span class="nk"> &lt;kohsuke&gt;</span> https://twitter.com/masanobuimai/status/564248061296140288/photo/1
+<a name="l-28"></a><span class="tm">19:07:00</span><span class="nk"> &lt;integer`&gt;</span> irf, value="${buildenv.get(\"a\",\"\")}"
+<a name="l-29"></a><span class="tm">19:07:16</span><span class="nk"> &lt;kohsuke&gt;</span> https://twitter.com/masanobuimai/status/564349882190659584
+<a name="l-30"></a><span class="tm">19:07:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Stickers are quite cheap BTW. 3 stickers is not a big problem
+<a name="l-31"></a><span class="tm">19:07:53</span><span class="nk"> &lt;alyssa&gt;</span> +1 for more stickers. they're inexpensive but help to build awareness
+<a name="l-32"></a><span class="tm">19:08:00</span><span class="nk"> &lt;kohsuke&gt;</span> I'm thinking 2000 of the standard one, 1000 each for super hero and Ninja
+<a name="l-33"></a><span class="tm">19:08:33</span><span class="nk"> &lt;integer`&gt;</span> kohsuke, do you have some image where hudson is killed? :D
+<a name="l-34"></a><span class="tm">19:08:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> As I remember, there was a discussion regarding Japanese comics (I suppose it's related for last 2k stickers)
+<a name="l-35"></a><span class="tm">19:08:44</span><span class="nk"> &lt;integer`&gt;</span> or oracle...
+<a name="l-36"></a><span class="tm">19:08:53</span><span class="nk"> &lt;kohsuke&gt;</span> That Japanese comic one was the super hero one
+<a name="l-37"></a><span class="tm">19:09:09</span><span class="nk"> &lt;kohsuke&gt;</span> somebody said maybe there's no point in having that text that no one can read
+<a name="l-38"></a><span class="tm">19:09:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">integer:</span> Hudson is alive ;) Don't be evil
+<a name="l-39"></a><span class="tm">19:09:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">integer`:</span> I no longer feel any urge/need to rub it in
+<a name="l-40"></a><span class="tm">19:09:53</span><span class="nk"> &lt;sean_abbott&gt;</span> anyone else having problems with the jdk installer?
+<a name="l-41"></a><span class="tm">19:09:54</span><span class="nk"> &lt;irf&gt;</span> again jelly exception
+<a name="l-42"></a><span class="tm">19:10:09</span><span class="nk"> &lt;integer`&gt;</span> irf, then after meeting
+<a name="l-43"></a><span class="tm">19:10:18</span><span class="nk"> &lt;irf&gt;</span> ok
+<a name="l-44"></a><span class="tm">19:10:20</span><span class="nk"> &lt;irf&gt;</span> sure
+<a name="l-45"></a><span class="tm">19:10:23</span><span class="nk"> &lt;irf&gt;</span> plz
+<a name="l-46"></a><span class="tm">19:10:24</span><span class="nk"> &lt;sean_abbott&gt;</span> as in, it's not populating the jdk's and also throwing an error when you try and download the jdk?
+<a name="l-47"></a><span class="tm">19:10:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> A new IRC channel would be useful....
+<a name="l-48"></a><span class="tm">19:10:40</span><span class="nk"> &lt;integer`&gt;</span> sean_abbott, please wait until meeting on channel ends
+<a name="l-49"></a><span class="tm">19:10:56</span><span class="nk"> &lt;kohsuke&gt;</span> Any more thoughts on stickers, can I consider that blessed?
+<a name="l-50"></a><span class="tm">19:10:57</span><span class="nk"> &lt;sean_abbott&gt;</span> ok
+<a name="l-51"></a><span class="tm">19:11:15</span><span class="nk"> &lt;ogondza&gt;</span> +1
+<a name="l-52"></a><span class="tm">19:11:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for stickers. There's a link to jenkins-ci.org on Ninja one as well
+<a name="l-53"></a><span class="tm">19:11:23</span><span class="nk"> &lt;integer`&gt;</span> +1
+<a name="l-54"></a><span class="tm">19:11:28</span><span class="nk"> &lt;batmat&gt;</span> +1 for stickers
+<a name="l-55"></a><span class="tm">19:11:28</span><span class="nk"> &lt;alyssa&gt;</span> +1
+<a name="l-56"></a><span class="tm">19:11:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">kohsuke will order 2000 of the standard one, 1000 each for super hero and Ninja (should last for 2015)</span>
+<a name="l-57"></a><span class="tm">19:12:04</span><span class="nk"> &lt;kohsuke&gt;</span> BTW, possibly related https://twitter.com/kimika127/status/562866597078265856
+<a name="l-58"></a><span class="tm">19:12:21</span><span class="nk"> &lt;integer`&gt;</span> :D
+<a name="l-59"></a><span class="tm">19:12:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">IntelliJ license</span>
+<a name="l-60"></a><span class="tm">19:12:30</span><span class="nk"> &lt;kohsuke&gt;</span> oh kostasya isn't here
+<a name="l-61"></a><span class="tm">19:12:32</span><span class="nk"> &lt;batmat&gt;</span> I'm afraid that one could sound sexist
+<a name="l-62"></a><span class="tm">19:12:36</span><span class="nk"> &lt;integer`&gt;</span> kohsuke, its me
+<a name="l-63"></a><span class="tm">19:12:49</span><span class="nk"> &lt;kohsuke&gt;</span> integer` = kostasya?
+<a name="l-64"></a><span class="tm">19:12:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Do we consider all JetBrains licenses? (ReSharper, etc.)
+<a name="l-65"></a><span class="tm">19:12:52</span><span class="nk"> &lt;integer`&gt;</span> yes
+<a name="l-66"></a><span class="tm">19:12:56</span><span class="nk"> &lt;kohsuke&gt;</span> oh
+<a name="l-67"></a><span class="tm">19:13:07</span><span class="nk"> &lt;jglick&gt;</span> (= KostyaSha I think)
+<a name="l-68"></a><span class="tm">19:13:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> thanks!
+<a name="l-69"></a><span class="tm">19:13:21</span><span class="nk"> &lt;KostyaSha&gt;</span> IRC doesn't support multiple logins :(
+<a name="l-70"></a><span class="tm">19:13:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> yeah, I think so
+<a name="l-71"></a><span class="tm">19:13:45</span><span class="nk"> &lt;batmat&gt;</span> speaking to kohsuke btw, though I understand this may sound less this way for manga-aware people?
+<a name="l-72"></a><span class="tm">19:13:47</span><span class="nk"> &lt;KostyaSha&gt;</span> oleg-nenashev, and RubyMine that can be useful for infra work with puppet
+<a name="l-73"></a><span class="tm">19:14:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">batmat:</span> I agree with you that it's better for me to stay away from it, especially outside Japan
+<a name="l-74"></a><span class="tm">19:14:28</span><span class="nk"> &lt;kohsuke&gt;</span> it's sensitive area
+<a name="l-75"></a><span class="tm">19:14:37</span><span class="nk"> &lt;kohsuke&gt;</span> back to the topic...
+<a name="l-76"></a><span class="tm">19:14:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">it used to be that I applied for IntelliJ and RubyMine licenses on behalf of the project and handed out the licenses to those who are interested</span>
+<a name="l-77"></a><span class="tm">19:15:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">but this year I noticed that JetBrains has changed the OSS license terms and I no longer qualify</span>
+<a name="l-78"></a><span class="tm">19:15:20</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, could you pass JB communication to somebody else to not waste your time?
+<a name="l-79"></a><span class="tm">19:15:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://www.jetbrains.com/idea/buy/choose_edition.jsp?license=OPEN_SOURCE</span>
+<a name="l-80"></a><span class="tm">19:15:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> there's no real "communication" to speak of
+<a name="l-81"></a><span class="tm">19:16:12</span><span class="nk"> &lt;kohsuke&gt;</span> I just fill in the form, and somebody from their side get back to me in a month or so with the license
+<a name="l-82"></a><span class="tm">19:16:17</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, but support redirected me to you 2m ago
+<a name="l-83"></a><span class="tm">19:16:46</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, i mean part of providing licenses for those who need them
+<a name="l-84"></a><span class="tm">19:16:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> I could directly push somebody from CloudBees in St. Petersburg, but I'm not eligible to get OSS license as well
+<a name="l-85"></a><span class="tm">19:16:57</span><span class="nk"> &lt;kohsuke&gt;</span> If it helps, I'd be happy to write something like "I'm the lead of the project and this person is our official liaison, and I'm not qualified license-wise but he is"
+<a name="l-86"></a><span class="tm">19:17:10</span><span class="nk"> &lt;KostyaSha&gt;</span> oleg-nenashev, from CB ? 0_o
+<a name="l-87"></a><span class="tm">19:17:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> I assume you mean JetBrains, not CloudBees!
+<a name="l-88"></a><span class="tm">19:17:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ohh
+<a name="l-89"></a><span class="tm">19:17:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> From JetBrains, of course
+<a name="l-90"></a><span class="tm">19:17:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> sorry
+<a name="l-91"></a><span class="tm">19:17:48</span><span class="nk"> &lt;kohsuke&gt;</span> So I guess the primary question for me is, who satisfies the conditions and is willing to talk to JetBrains?
+<a name="l-92"></a><span class="tm">19:17:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> you said you don't qualify either
+<a name="l-93"></a><span class="tm">19:18:21</span><span class="nk"> &lt;kohsuke&gt;</span> The problematic term specifically is "You do not perform any paid support, consulting or training services for your OS project, and you do not distribute paid versions of your OS software. If you provide paid services for or distribute paid versions of your OS software, we might have other options available for your project"
+<a name="l-94"></a><span class="tm">19:18:53</span><span class="nk"> &lt;KostyaSha&gt;</span> probably oleg-nenashev also. kohsuke should we first check with JB our case?
+<a name="l-95"></a><span class="tm">19:19:10</span><span class="nk"> &lt;kohsuke&gt;</span> I suppose I can ask
+<a name="l-96"></a><span class="tm">19:19:17</span><span class="nk"> &lt;KostyaSha&gt;</span> maybe oleg-nenashev can talk with JB directly and describe situation
+<a name="l-97"></a><span class="tm">19:19:20</span><span class="nk"> &lt;kohsuke&gt;</span> come to think of it, that's what master rtyler taught me
+<a name="l-98"></a><span class="tm">19:19:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Who is you contact at JB?
+<a name="l-99"></a><span class="tm">19:19:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> *your
+<a name="l-100"></a><span class="tm">19:19:55</span><span class="nk"> &lt;kohsuke&gt;</span> Like I said, there's no contact. I just fill in the form, and every year someone new answers that email
+<a name="l-101"></a><span class="tm">19:20:04</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, we have some direct personal contacts in JB :)
+<a name="l-102"></a><span class="tm">19:20:06</span><span class="nk"> &lt;kohsuke&gt;</span> But I can find those email addresses that I interacted in the past if it helps
+<a name="l-103"></a><span class="tm">19:20:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> can you send that to oleg-nenashev?
+<a name="l-104"></a><span class="tm">19:20:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Probably it helps. Actually, JB guys do not like Jenkins due to obvious reasons :)
+<a name="l-105"></a><span class="tm">19:20:56</span><span class="nk"> &lt;KostyaSha&gt;</span> ha-ha :)
+<a name="l-106"></a><span class="tm">19:21:36</span><span class="nk"> &lt;kohsuke&gt;</span> If it's just Stefan Wolf who can use the license, maybe we'll ask him to talk to JetBrains
+<a name="l-107"></a><span class="tm">19:21:46</span><span class="nk"> &lt;KostyaSha&gt;</span> Nadya Kudryavtseva
+<a name="l-108"></a><span class="tm">19:21:46</span><span class="nk"> &lt;KostyaSha&gt;</span> Community Support Coordinator
+<a name="l-109"></a><span class="tm">19:22:15</span><span class="nk"> &lt;KostyaSha&gt;</span> He answered on my question about licenses renewal
+<a name="l-110"></a><span class="tm">19:22:18</span><span class="nk"> &lt;KostyaSha&gt;</span> *She
+<a name="l-111"></a><span class="tm">19:22:33</span><span class="nk"> &lt;kohsuke&gt;</span> and the email address that came from is opensource@jetbrains.com
+<a name="l-112"></a><span class="tm">19:22:52</span><span class="nk"> &lt;KostyaSha&gt;</span> right
+<a name="l-113"></a><span class="tm">19:23:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> do you want to take this AI, or should we punt to wolfs?
+<a name="l-114"></a><span class="tm">19:23:32</span><span class="nk"> &lt;jan_n&gt;</span> howdy.
+<a name="l-115"></a><span class="tm">19:24:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Lets ask Stefan to use the official way. If it does not help, I'll try a workaround
+<a name="l-116"></a><span class="tm">19:24:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write to wolfs that he is in charge for getting the license he wants. fall back to oleg-nenashev if that doesn't work</span>
+<a name="l-117"></a><span class="tm">19:24:37</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, i think answer mean that license key is still active and you can continue providing it
+<a name="l-118"></a><span class="tm">19:25:03</span><span class="nk"> &lt;kohsuke&gt;</span> I want those emails to go to wolfs :-)
+<a name="l-119"></a><span class="tm">19:25:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> should we move on?
+<a name="l-120"></a><span class="tm">19:25:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, IDEA + RubyMine + probably ReSharper (if somebody wants to hack WinSW). Do we need anything else?
+<a name="l-121"></a><span class="tm">19:25:34</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, then redirect contact to him and give him key and bless :)
+<a name="l-122"></a><span class="tm">19:25:51</span><span class="nk"> &lt;KostyaSha&gt;</span> oleg-nenashev, teamcity?:D
+<a name="l-123"></a><span class="tm">19:26:02</span><span class="nk"> &lt;kohsuke&gt;</span> I still don't understand this notion of contact and key
+<a name="l-124"></a><span class="tm">19:26:15</span><span class="nk"> &lt;kohsuke&gt;</span> Like I said, all I do every year is just file a form that's on the public website
+<a name="l-125"></a><span class="tm">19:26:30</span><span class="nk"> &lt;kohsuke&gt;</span> For all I know the form is handled by an intern of the year
+<a name="l-126"></a><span class="tm">19:26:41</span><span class="nk"> &lt;kohsuke&gt;</span> There's no continued "conversation" of any sort
+<a name="l-127"></a><span class="tm">19:26:42</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, you are contact person for providing keys for Jenkins project
+<a name="l-128"></a><span class="tm">19:27:22</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I'll write to opensource@jetbrains.com that this year expect to hear from somebody else as I'm disqualified.
+<a name="l-129"></a><span class="tm">19:27:27</span><span class="nk"> &lt;KostyaSha&gt;</span> This key is multiuser and they renew it every time you contact them
+<a name="l-130"></a><span class="tm">19:28:04</span><span class="nk"> &lt;kohsuke&gt;</span> I don't want to touch the license that I'm not allowed to use. It's not kosher.
+<a name="l-131"></a><span class="tm">19:28:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span>  Can we move on to the next topic?
+<a name="l-132"></a><span class="tm">19:28:19</span><span class="nk"> &lt;KostyaSha&gt;</span> yes
+<a name="l-133"></a><span class="tm">19:28:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Should we have an "ops lead"? Adding more infra team members? Moderator teams?</span>
+<a name="l-134"></a><span class="tm">19:28:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/046RwHh3Nko</span>
+<a name="l-135"></a><span class="tm">19:28:55</span><span class="nk"> &lt;kohsuke&gt;</span> so more of a continuation of INFRA-240 discussion
+<a name="l-136"></a><span class="tm">19:28:56</span><span class="nk"> &lt;luckysideburn&gt;</span> hi to all
+<a name="l-137"></a><span class="tm">19:28:57</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-240:Releasing plugins is not possible as Artifactory is refusing credentials (Resolved) https://issues.jenkins-ci.org/browse/INFRA-240
+<a name="l-138"></a><span class="tm">19:29:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for ops lead
+<a name="l-139"></a><span class="tm">19:29:43</span><span class="nk"> &lt;kohsuke&gt;</span> rtyler indicated me offline that he expects (or wants) to be able to bring back more cycles to the project
+<a name="l-140"></a><span class="tm">19:30:03</span><span class="nk"> &lt;KostyaSha&gt;</span> -1 for lead
+<a name="l-141"></a><span class="tm">19:30:05</span><span class="nk"> &lt;kohsuke&gt;</span> and I understand that KostyaSha feels strongly about meritocracy
+<a name="l-142"></a><span class="tm">19:30:09</span><span class="nk"> &lt;batmat&gt;</span> Why not an ops-lead, not sure it's that important as already said by some on the ML.
+<a name="l-143"></a><span class="tm">19:30:12</span><span class="nk"> &lt;luckysideburn&gt;</span> I developed a maven plugin that create a jar and the pom.. all seems ok, but the jenkins plugin for artifactory seems not find the jar  and does not deploy it to artifactory. any suggestions?
+<a name="l-144"></a><span class="tm">19:30:32</span><span class="nk"> &lt;luckysideburn&gt;</span> please :)
+<a name="l-145"></a><span class="tm">19:30:49</span><span class="nk"> &lt;kohsuke&gt;</span> I also took some push back internally and I need to work in CB to figure out how much time of who I can get engaged for this
+<a name="l-146"></a><span class="tm">19:30:50</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, i'm lead and worked on many projects with hundreds servers, jenkins needs just resolve issues
+<a name="l-147"></a><span class="tm">19:30:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> rtyler is the only candidate IMO. BTW, it would be great to avoid 1-person bottlenecks
+<a name="l-148"></a><span class="tm">19:31:12</span><span class="nk"> &lt;rtyler&gt;</span> wat
+<a name="l-149"></a><span class="tm">19:31:19</span><span class="nk"> &lt;rtyler&gt;</span> I've been summoned
+<a name="l-150"></a><span class="tm">19:31:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">luckysideburn:</span> we are in the project meeting, so let's hold off questions until that ends. but you are welcome to participate in the discussion
+<a name="l-151"></a><span class="tm">19:31:28</span><span class="nk"> &lt;rtyler&gt;</span> oh right, meeting
+<a name="l-152"></a><span class="tm">19:31:40</span><span class="nk"> &lt;rtyler&gt;</span> the cold in boston made me forget, I swear!
+<a name="l-153"></a><span class="tm">19:32:56</span><span class="nk"> &lt;KostyaSha&gt;</span> my main idea that things must be fixed/resolved with peer reviews, lead is redundant here
+<a name="l-154"></a><span class="tm">19:32:56</span><span class="nk"> &lt;kohsuke&gt;</span> So I'm back tracking somewhat on my proposal about nominating the lead role, though I still think the underlying concern is valid
+<a name="l-155"></a><span class="tm">19:33:00</span><span class="nk"> &lt;rtyler&gt;</span> one suggestion I made to kohsuke was to make a board member "responsible" for infra
+<a name="l-156"></a><span class="tm">19:33:11</span><span class="nk"> &lt;rtyler&gt;</span> and in turn, responsible for infra to the project, and driving that forward
+<a name="l-157"></a><span class="tm">19:33:21</span><span class="nk"> &lt;rtyler&gt;</span> since the project and infra are obviously closely intertwined :)
+<a name="l-158"></a><span class="tm">19:34:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Offtopic/Personal update. I've finally got approvals from my current employer. I'll be able to officially contribute to jenkins-infra starting from March 1st
+<a name="l-159"></a><span class="tm">19:34:14</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-160"></a><span class="tm">19:34:28</span><span class="nk"> &lt;kohsuke&gt;</span> I think the ops-focused board member would work, though not sure about "in turn" part
+<a name="l-161"></a><span class="tm">19:34:46</span><span class="nk"> &lt;kohsuke&gt;</span> For example, I doubt if hare_brain is willing to do that
+<a name="l-162"></a><span class="tm">19:34:54</span><span class="nk"> &lt;irf&gt;</span> plz ping me when meeting done ..
+<a name="l-163"></a><span class="tm">19:35:03</span><span class="nk"> &lt;rtyler&gt;</span> I'm basically suggestion making the infra more "consumer oriented"
+<a name="l-164"></a><span class="tm">19:35:21</span><span class="nk"> &lt;rtyler&gt;</span> in that, the priorities would be more driven by what the project needs, which would be agreed upon by the board nad in meetings
+<a name="l-165"></a><span class="tm">19:35:31</span><span class="nk"> &lt;rtyler&gt;</span> it's kind of haphazard right now based on time and effort
+<a name="l-166"></a><span class="tm">19:36:09</span><span class="nk"> &lt;hare_brain&gt;</span> We need more board members anyway..
+<a name="l-167"></a><span class="tm">19:36:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> can I assume that you are stepping up to that role?
+<a name="l-168"></a><span class="tm">19:36:15</span><span class="nk"> &lt;rtyler&gt;</span> you can
+<a name="l-169"></a><span class="tm">19:36:24</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> you mean having somehow a backlog/todolist agreed/planned in advance and trying to make it forward instead of just doing things you like when you find time?
+<a name="l-170"></a><span class="tm">19:36:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> yes, this would be a good opportunity to add more
+<a name="l-171"></a><span class="tm">19:36:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> basically :P
+<a name="l-172"></a><span class="tm">19:36:48</span><span class="nk"> &lt;rtyler&gt;</span> I laid out some 2014 goals just as an experiment for infra work
+<a name="l-173"></a><span class="tm">19:37:18</span><span class="nk"> &lt;rtyler&gt;</span> we actually got through a good chunk, but it was largely a list that came out of my brain, instead of being something that would clearly improve the project or make developers or users' lives easier
+<a name="l-174"></a><span class="tm">19:37:39</span><span class="nk"> &lt;batmat&gt;</span> btw, will there be another thread abt how much you need to engage to be part of that "team"?
+<a name="l-175"></a><span class="tm">19:38:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">batmat:</span> yeah we should have that conversation
+<a name="l-176"></a><span class="tm">19:38:56</span><span class="nk"> &lt;kohsuke&gt;</span> My feeling is that lots of people with very little time each isn't as helpful for infra work
+<a name="l-177"></a><span class="tm">19:39:18</span><span class="nk"> &lt;rtyler&gt;</span> it depends on their sticking power
+<a name="l-178"></a><span class="tm">19:39:29</span><span class="nk"> &lt;batmat&gt;</span> I mean, as said above, we're (almost?) all volunteers here and that's pretty difficult to say "yeah, well I promise I'll be able to be on call if something falls down"
+<a name="l-179"></a><span class="tm">19:39:31</span><span class="nk"> &lt;rtyler&gt;</span> a lot of little pieces of one person's time, like KostyaSha, definitely adds up :)
+<a name="l-180"></a><span class="tm">19:40:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yep, occasional contributions should be appreciated
+<a name="l-181"></a><span class="tm">19:40:56</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, i had full vacation and didn't get ability to end work :( now i'm busy with jenkins bugs like git-plugin and flexible-publish :(  But usually i have time for contributions
+<a name="l-182"></a><span class="tm">19:41:01</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I'm going to produce a revised proposal about adding two more people to the board, nominating rtyler for one of them and as "infra focused" person
+<a name="l-183"></a><span class="tm">19:41:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Do we have any options excepting the "full infrastructure access"?
+<a name="l-184"></a><span class="tm">19:41:14</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> yes, that's basically how I see it, having more people should help mitigate that issue (btw, I'm definitely candidating here ;-))
+<a name="l-185"></a><span class="tm">19:41:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> yeah, there's plenty to do in the jenkins-infra repo
+<a name="l-186"></a><span class="tm">19:41:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> no access is required
+<a name="l-187"></a><span class="tm">19:41:40</span><span class="nk"> &lt;rtyler&gt;</span> there's a huge lack of organization on my part on what's important and how to do it
+<a name="l-188"></a><span class="tm">19:42:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yep. JIRA, Confluense ond ci.jenkins-ci.org can be managed separately as well
+<a name="l-189"></a><span class="tm">19:42:20</span><span class="nk"> &lt;KostyaSha&gt;</span> rtyler, how much resources/money has infra for running new servers etc?
+<a name="l-190"></a><span class="tm">19:42:47</span><span class="nk"> &lt;KostyaSha&gt;</span> or all in stickers now? :)
+<a name="l-191"></a><span class="tm">19:43:05</span><span class="nk"> &lt;kohsuke&gt;</span> good portion of them are hosted in OSUOSL for free
+<a name="l-192"></a><span class="tm">19:43:12</span><span class="nk"> &lt;kohsuke&gt;</span> Some other portions are hosted in Rackspace through their donations
+<a name="l-193"></a><span class="tm">19:43:25</span><span class="nk"> &lt;rtyler&gt;</span> we're getting a bit off topic
+<a name="l-194"></a><span class="tm">19:43:26</span><span class="nk"> &lt;kohsuke&gt;</span> Then one (but important) server in Contegix for pay
+<a name="l-195"></a><span class="tm">19:43:31</span><span class="nk"> &lt;KostyaSha&gt;</span> Are they are in cloud? Can servers be reprovisioned?
+<a name="l-196"></a><span class="tm">19:43:31</span><span class="nk"> &lt;kohsuke&gt;</span> yes
+<a name="l-197"></a><span class="tm">19:44:10</span><span class="nk"> &lt;batmat&gt;</span> +1 rtyler I don't think we're gonna describe the whole infra here?
+<a name="l-198"></a><span class="tm">19:44:10</span><span class="nk"> &lt;kohsuke&gt;</span> Should I go ahead and schedule ToI to spead knowledge, or do you want to do it differently rtyler?
+<a name="l-199"></a><span class="tm">19:44:31</span><span class="nk"> &lt;rtyler&gt;</span> it'll have to wait another couple weeks, earliest would be second week in march
+<a name="l-200"></a><span class="tm">19:44:48</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> morea KT as stephenc says ? :-)
+<a name="l-201"></a><span class="tm">19:44:56</span><span class="nk"> &lt;kohsuke&gt;</span> KT, fine, KT
+<a name="l-202"></a><span class="tm">19:45:01</span><span class="nk"> &lt;rtyler&gt;</span> for the purposes of the meeting, can we get come to a conclusion on the topic at hand
+<a name="l-203"></a><span class="tm">19:45:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the jenkins-infra team business is discussed in #jenkins-infra on Freenode</span>
+<a name="l-204"></a><span class="tm">19:45:22</span><span class="nk"> &lt;KostyaSha&gt;</span> i mean that ancient platforms can be a blocker, I have no desire to work with ruby 1.8 and etc :D
+<a name="l-205"></a><span class="tm">19:45:25 </span><span class="nka">* rtyler</span> <span class="ac">assumes he's a chair</span>
+<a name="l-206"></a><span class="tm">19:45:29</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-207"></a><span class="tm">19:45:33</span><span class="nk"> &lt;kohsuke&gt;</span> yes you are
+<a name="l-208"></a><span class="tm">19:46:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to produce a revised proposal about adding two more people to the board, nominating rtyler for one of them and as "infra focused" person</span>
+<a name="l-209"></a><span class="tm">19:46:28</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-210"></a><span class="tm">19:46:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Do we vote on the infrastructure lead today?
+<a name="l-211"></a><span class="tm">19:46:52</span><span class="nk"> &lt;rtyler&gt;</span> negative
+<a name="l-212"></a><span class="tm">19:46:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">rtyler will schedule "knowledge transfer" of infra in the next month or so</span>
+<a name="l-213"></a><span class="tm">19:47:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oleg-nenashev:</span> incidentally the board will be meeting next week, so I'll get the proposal more solidified
+<a name="l-214"></a><span class="tm">19:47:49</span><span class="nk"> &lt;kohsuke&gt;</span> For one, I want even number of people to break ties, and so we want to add one more person aside from rtyler
+<a name="l-215"></a><span class="tm">19:48:01</span><span class="nk"> &lt;kohsuke&gt;</span> ideally someone from different background and so on
+<a name="l-216"></a><span class="tm">19:48:15</span><span class="nk"> &lt;kohsuke&gt;</span> I'm counting on hare_brain's wisdom
+<a name="l-217"></a><span class="tm">19:48:30</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's good enough coverage of this topic for today?
+<a name="l-218"></a><span class="tm">19:48:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Who should we reach out for JUC speakers?</span>
+<a name="l-219"></a><span class="tm">19:49:25</span><span class="nk"> &lt;kohsuke&gt;</span> One of the feedback from the last year's JUC  was that some speakers weren't very good
+<a name="l-220"></a><span class="tm">19:49:38</span><span class="nk"> &lt;kohsuke&gt;</span> And I thought one way to fix this is not just to wait for people to submit proposals but for us to go out and ask
+<a name="l-221"></a><span class="tm">19:49:59</span><span class="nk"> &lt;kohsuke&gt;</span> People doing JUC in Tokyo does this for about half the talks and those are all generally well received
+<a name="l-222"></a><span class="tm">19:50:30</span><span class="nk"> &lt;kohsuke&gt;</span> I'm happy to write to them, but I need help from everyone for suggestions
+<a name="l-223"></a><span class="tm">19:50:44</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, usually regular event covers all topics in first year. If question is about quality, then maybe number of JUCs can be reduced
+<a name="l-224"></a><span class="tm">19:51:15</span><span class="nk"> &lt;batmat&gt;</span> I wonder if this is the way to go. Isn't the issue more on the call selection side here?
+<a name="l-225"></a><span class="tm">19:51:21</span><span class="nk"> &lt;KostyaSha&gt;</span> i usually do one report per year after huge work
+<a name="l-226"></a><span class="tm">19:51:33</span><span class="nk"> &lt;batmat&gt;</span> What was the issue again? Talk quality? Speaker? Subject?*
+<a name="l-227"></a><span class="tm">19:51:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">batmat:</span>  selection side can be improved too
+<a name="l-228"></a><span class="tm">19:51:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> every conference or meetup I've been involved in organizing, we've proactively recruited many speakers
+<a name="l-229"></a><span class="tm">19:52:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> that's what I thought
+<a name="l-230"></a><span class="tm">19:52:20</span><span class="nk"> &lt;rtyler&gt;</span> from the people the organizers knew were doing interesting things in the space, or were compelling speakers, things like that
+<a name="l-231"></a><span class="tm">19:52:28</span><span class="nk"> &lt;rtyler&gt;</span> half my FOSDEM devrooms were recruited ;)
+<a name="l-232"></a><span class="tm">19:52:33</span><span class="nk"> &lt;rtyler&gt;</span> recruited to submit proposals of course
+<a name="l-233"></a><span class="tm">19:52:39</span><span class="nk"> &lt;kohsuke&gt;</span> right
+<a name="l-234"></a><span class="tm">19:53:21</span><span class="nk"> &lt;kohsuke&gt;</span> did you know who are in Europe, or did you ignore that and pinged people wherever they are?
+<a name="l-235"></a><span class="tm">19:53:54</span><span class="nk"> &lt;kohsuke&gt;</span> I can think of a few people
+<a name="l-236"></a><span class="tm">19:54:26</span><span class="nk"> &lt;kohsuke&gt;</span> like https://github.com/magnayn who did docker plugin
+<a name="l-237"></a><span class="tm">19:54:43</span><span class="nk"> &lt;kohsuke&gt;</span> Surya who did https://github.com/groupon/DotCi
+<a name="l-238"></a><span class="tm">19:54:47</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, you already requested mesos devs
+<a name="l-239"></a><span class="tm">19:55:04</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, maybe also try somebody from RH?
+<a name="l-240"></a><span class="tm">19:55:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> What about drulli?
+<a name="l-241"></a><span class="tm">19:55:18</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, drulli, great suggestion
+<a name="l-242"></a><span class="tm">19:55:21</span><span class="nk"> &lt;KostyaSha&gt;</span> disk-usage plugin was refactored by RH
+<a name="l-243"></a><span class="tm">19:55:36</span><span class="nk"> &lt;kohsuke&gt;</span> and they did the first version, too :-)
+<a name="l-244"></a><span class="tm">19:55:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> ^^
+<a name="l-245"></a><span class="tm">19:56:06</span><span class="nk"> &lt;kohsuke&gt;</span> Did danielbe_ spoke in JUC last year?
+<a name="l-246"></a><span class="tm">19:56:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I pinged people from all over
+<a name="l-247"></a><span class="tm">19:56:29</span><span class="nk"> &lt;rtyler&gt;</span> I think .au was the furthest I ttried recruiting from
+<a name="l-248"></a><span class="tm">19:56:37</span><span class="nk"> &lt;alyssa&gt;</span> <span class="hi">kohsuke:</span> i don't think so.
+<a name="l-249"></a><span class="tm">19:56:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> did that work :-D
+<a name="l-250"></a><span class="tm">19:57:33</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, &gt; oleg-nenashev  maintain many plugins ;)
+<a name="l-251"></a><span class="tm">19:57:51</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, I want to see regulars in this channel present
+<a name="l-252"></a><span class="tm">19:58:03</span><span class="nk"> &lt;kohsuke&gt;</span> Slide-O-1ix, larrys, autojack, oleg-nenashev, ...
+<a name="l-253"></a><span class="tm">19:58:03</span><span class="nk"> &lt;KostyaSha&gt;</span> but i hope to have some Russian speaking event someday
+<a name="l-254"></a><span class="tm">19:58:10</span><span class="nk"> &lt;kohsuke&gt;</span> and you too, KostyaSha
+<a name="l-255"></a><span class="tm">19:58:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> couldn't get the aussie
+<a name="l-256"></a><span class="tm">19:58:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I consider submitting an abstract
+<a name="l-257"></a><span class="tm">19:58:54</span><span class="nk"> &lt;batmat&gt;</span> one scriptable way could be to extract committer emails from jenkins-all repo and filter on domain names? :-)
+<a name="l-258"></a><span class="tm">19:58:57</span><span class="nk"> &lt;kohsuke&gt;</span> And there's the FreeBSD guy, and I think he's in here
+<a name="l-259"></a><span class="tm">19:59:18</span><span class="nk"> &lt;batmat&gt;</span> well, wouldn't work very well since many people have @gmail.com and the likes I guess ;-)
+<a name="l-260"></a><span class="tm">19:59:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">batmat:</span> I don't want to do mass mail though
+<a name="l-261"></a><span class="tm">19:59:32</span><span class="nk"> &lt;kohsuke&gt;</span> or do you think its' fair?
+<a name="l-262"></a><span class="tm">19:59:54</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, "Call for papers" to devlist?
+<a name="l-263"></a><span class="tm">20:00:09</span><span class="nk"> &lt;KostyaSha&gt;</span> or it was already..
+<a name="l-264"></a><span class="tm">20:00:15</span><span class="nk"> &lt;batmat&gt;</span> Sure, I was thinking that this way you could do a first extract of the most active ones and then even filter them manually to see if you want to ask them
+<a name="l-265"></a><span class="tm">20:00:33</span><span class="nk"> &lt;kohsuke&gt;</span> I can do that again, but I feel that I need to write individually or else it gets under their radar
+<a name="l-266"></a><span class="tm">20:00:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">batmat:</span> right, OK, so it's to build the candidate list
+<a name="l-267"></a><span class="tm">20:00:58</span><span class="nk"> &lt;irf&gt;</span> i tried with other combination of single/double quotes .. still no luck :(
+<a name="l-268"></a><span class="tm">20:01:06</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> I will not make it to JUC, I can not think of any RH speaker
+<a name="l-269"></a><span class="tm">20:01:09</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> yup
+<a name="l-270"></a><span class="tm">20:01:40</span><span class="nk"> &lt;kohsuke&gt;</span> all right, time is up so it's really just a call for help to let me know if you can think of any names
+<a name="l-271"></a><span class="tm">20:02:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">please ping kohsuke if you know anyone doing interesting things in this space that we should invite to JUC</span>
+<a name="l-272"></a><span class="tm">20:02:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-273"></a><span class="tm">20:02:30</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> we are ready
+<a name="l-274"></a><span class="tm">20:02:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> yay, nice and sweet
+<a name="l-275"></a><span class="tm">20:02:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-276"></a><span class="tm">20:03:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Probably, tfenelly could talk about his vision of Jenkins WebUI
+<a name="l-277"></a><span class="tm">20:03:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next meeting will be March 4th same time</span>
+<a name="l-278"></a><span class="tm">20:03:30</span><span class="nk"> &lt;kohsuke&gt;</span> and maybe he and kevin can finally meet
+<a name="l-279"></a><span class="tm">20:03:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 04:40:45 May 05, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:53:27 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 368.631
+  exclusion.robots: 0.114
+  exclusion.robots.policy: 0.105
+  cdx.remote: 0.076
+  esindex: 0.011
+  LoadShardBlock: 97.015 (3)
+  PetaboxLoader3.datanode: 87.59 (4)
+  CDXLines.iter: 21.537 (3)
+  load_resource: 113.198
+  PetaboxLoader3.resolve: 95.185
+-->

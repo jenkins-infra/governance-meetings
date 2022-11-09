@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:06:40</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:06:40</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:06:49</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer hare_brain rtyler</span>
+<a name="l-4"></a><span class="tm">18:06:49</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain rtyler
+<a name="l-5"></a><span class="tm">18:07:09</span><span class="nk"> &lt;hare_brain&gt;</span> Are rtyler and/or abayer even around?
+<a name="l-6"></a><span class="tm">18:07:09</span><span class="nk"> &lt;rtyler&gt;</span> woowoo
+<a name="l-7"></a><span class="tm">18:07:14</span><span class="nk"> &lt;hare_brain&gt;</span> There's one
+<a name="l-8"></a><span class="tm">18:07:58</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap of last meeting's action items</span>
+<a name="l-9"></a><span class="tm">18:08:23</span><span class="nk"> &lt;hare_brain&gt;</span> Let's see. kohsuke not here, so we'll have to skip his
+<a name="l-10"></a><span class="tm">18:08:29</span><span class="nk"> &lt;hare_brain&gt;</span> Let me carry those forward
+<a name="l-11"></a><span class="tm">18:08:44</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to set up JIRA for project meeting actions</span>
+<a name="l-12"></a><span class="tm">18:08:57</span><span class="nk"> &lt;ndeloof&gt;</span> done
+<a name="l-13"></a><span class="tm">18:09:20</span><span class="nk"> &lt;ndeloof&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/browse/MEETING</span>
+<a name="l-14"></a><span class="tm">18:09:20</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write to the publisher, point to our document, and ask them to seek our approval of the use of the mark (I think this is about Ulli's Android app)</span>
+<a name="l-15"></a><span class="tm">18:09:33</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to install this plugin on JIRA</span>
+<a name="l-16"></a><span class="tm">18:09:44</span><span class="nk"> &lt;hare_brain&gt;</span> LisaWells are you here?
+<a name="l-17"></a><span class="tm">18:09:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-August22thMeeting</span>
+<a name="l-18"></a><span class="tm">18:10:23</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#action </span><span class="cmdline">LisaWells to publish the write up on hat we can help to facilitate meet-ups in meat space</span>
+<a name="l-19"></a><span class="tm">18:10:39</span><span class="nk"> &lt;hare_brain&gt;</span> mika are you here?
+<a name="l-20"></a><span class="tm">18:11:17</span><span class="nk"> &lt;hare_brain&gt;</span> Guess not
+<a name="l-21"></a><span class="tm">18:11:32</span><span class="nk"> &lt;rtyler&gt;</span> there's really not much to cover today :p
+<a name="l-22"></a><span class="tm">18:11:33</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#action </span><span class="cmdline">mika to package backend-ircbot for deb</span>
+<a name="l-23"></a><span class="tm">18:11:40</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah, this is a really useful use of time
+<a name="l-24"></a><span class="tm">18:11:42</span><span class="nk"> &lt;rtyler&gt;</span> I think he finished most of that up
+<a name="l-25"></a><span class="tm">18:11:44</span><span class="nk"> &lt;hare_brain&gt;</span> ndeloof
+<a name="l-26"></a><span class="tm">18:11:49</span><span class="nk"> &lt;ndeloof&gt;</span> right, "ndeloof volunteered to see if there's any opportunity to organize low-cost "user event" in Devoxx or in Paris"
+<a name="l-27"></a><span class="tm">18:11:58</span><span class="nk"> &lt;ndeloof&gt;</span> I discussed with "french mafia"
+<a name="l-28"></a><span class="tm">18:12:00</span><span class="nk"> &lt;rtyler&gt;</span> I'm still coordinating the call for devrooms btw
+<a name="l-29"></a><span class="tm">18:12:04</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-30"></a><span class="tm">18:12:21</span><span class="nk"> &lt;ndeloof&gt;</span> we probably can't have a "user conference" in paris as locations are expensives
+<a name="l-31"></a><span class="tm">18:12:28</span><span class="nk"> &lt;ndeloof&gt;</span> but would like to have smaller events
+<a name="l-32"></a><span class="tm">18:12:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ndeloof:</span> no universities?
+<a name="l-33"></a><span class="tm">18:12:48</span><span class="nk"> &lt;ndeloof&gt;</span> I have to contact them
+<a name="l-34"></a><span class="tm">18:13:03</span><span class="nk"> &lt;ndeloof&gt;</span> gboissinot plans to have small user-events every 3 month at Zenika
+<a name="l-35"></a><span class="tm">18:13:08</span><span class="nk"> &lt;rtyler&gt;</span> ah
+<a name="l-36"></a><span class="tm">18:13:09</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">locations in Paris are too expensive for user conferences</span>
+<a name="l-37"></a><span class="tm">18:13:26</span><span class="nk"> &lt;ndeloof&gt;</span> we also may have a BOF at devoxxFrance, or something comparable to meet as jenkins contributors
+<a name="l-38"></a><span class="tm">18:13:48</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">but smaller events are desirable, possibly piggybacking as BOF sessions at other events.</span>
+<a name="l-39"></a><span class="tm">18:14:09</span><span class="nk"> &lt;ndeloof&gt;</span> <span class="cmd">#action </span><span class="cmdline">ndeloof to contact high schools / universites in paris for opportunity to host a user conference</span>
+<a name="l-40"></a><span class="tm">18:14:43</span><span class="nk"> &lt;hare_brain&gt;</span> What about companies hosting spaces? For example, LinkedIn and Yahoo regularly host industry events in our conference rooms
+<a name="l-41"></a><span class="tm">18:15:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> that's what Zenika is doing effectively
+<a name="l-42"></a><span class="tm">18:15:27</span><span class="nk"> &lt;hare_brain&gt;</span> ok
+<a name="l-43"></a><span class="tm">18:15:42</span><span class="nk"> &lt;ndeloof&gt;</span> indeed, and companies in Paris don't have large enough building for such events
+<a name="l-44"></a><span class="tm">18:15:51</span><span class="nk"> &lt;ndeloof&gt;</span> max is ~25 people
+<a name="l-45"></a><span class="tm">18:16:28</span><span class="nk"> &lt;hare_brain&gt;</span> What, you can't just go down to Champs Elysee and take over a brasserie? :)
+<a name="l-46"></a><span class="tm">18:16:40</span><span class="nk"> &lt;ndeloof&gt;</span> nice idea :)
+<a name="l-47"></a><span class="tm">18:16:54</span><span class="nk"> &lt;ndeloof&gt;</span> I have to check few other options
+<a name="l-48"></a><span class="tm">18:17:01</span><span class="nk"> &lt;rtyler&gt;</span> STUPID CHANSERV
+<a name="l-49"></a><span class="tm">18:17:21</span><span class="nk"> &lt;rtyler&gt;</span> shall we move forward?
+<a name="l-50"></a><span class="tm">18:17:33</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#action </span><span class="cmdline">ndeloof to continue to look into other venues in Paris</span>
+<a name="l-51"></a><span class="tm">18:18:00</span><span class="nk"> &lt;hare_brain&gt;</span> rtyler you said yours action item was still in progress?
+<a name="l-52"></a><span class="tm">18:18:16</span><span class="nk"> &lt;rtyler&gt;</span> yes
+<a name="l-53"></a><span class="tm">18:18:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> you around?
+<a name="l-54"></a><span class="tm">18:18:42</span><span class="nk"> &lt;hare_brain&gt;</span> Carry forward for an update next meeting then?
+<a name="l-55"></a><span class="tm">18:18:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> yes
+<a name="l-56"></a><span class="tm">18:19:08</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to work on the "Call for Dev Rooms" when it's published</span>
+<a name="l-57"></a><span class="tm">18:19:10</span><span class="nk"> &lt;rtyler&gt;</span> by the enxt meeting I'll have submitted the proposal, so I'll at least be able to talk about that :)
+<a name="l-58"></a><span class="tm">18:19:24</span><span class="nk"> &lt;hare_brain&gt;</span> OK, first (and only) real topic then
+<a name="l-59"></a><span class="tm">18:19:33</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="topic">#topic </span><span class="topicline">Travel Grant for FOSDEM</span>
+<a name="l-60"></a><span class="tm">18:19:44</span><span class="nk"> &lt;hare_brain&gt;</span> I wasn't here last time so I have no idea what this is about
+<a name="l-61"></a><span class="tm">18:21:02</span><span class="nk"> &lt;rtyler&gt;</span> right, I think with kohsuke's absence we should put this off
+<a name="l-62"></a><span class="tm">18:21:11</span><span class="nk"> &lt;rtyler&gt;</span> basically tlaking about spending money to help bring people to FOSDE
+<a name="l-63"></a><span class="tm">18:21:13</span><span class="nk"> &lt;rtyler&gt;</span> FOSDEM
+<a name="l-64"></a><span class="tm">18:21:33</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah, with kohsuke not here and abayer not being responsive, we should table this
+<a name="l-65"></a><span class="tm">18:21:36</span><span class="nk"> &lt;rtyler&gt;</span> the thought process being, it's a major OSS event, and agreat time/place to get devs together
+<a name="l-66"></a><span class="tm">18:21:46</span><span class="nk"> &lt;rtyler&gt;</span> I'll put it on the next meeting's agenda after this
+<a name="l-67"></a><span class="tm">18:21:48</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#action </span><span class="cmdline">Travel grant for FOSDEM</span>
+<a name="l-68"></a><span class="tm">18:21:54</span><span class="nk"> &lt;rtyler&gt;</span> any other topics to hammer down on?
+<a name="l-69"></a><span class="tm">18:22:15</span><span class="nk"> &lt;hare_brain&gt;</span> You don't like my laser focus on getting through topics? ;)
+<a name="l-70"></a><span class="tm">18:22:32</span><span class="nk"> &lt;rtyler&gt;</span> no, well run meetings are enjoyable and quick
+<a name="l-71"></a><span class="tm">18:22:44</span><span class="nk"> &lt;hare_brain&gt;</span> That was it on the agenda. Does anyone else have anything else they would like to talk about?
+<a name="l-72"></a><span class="tm">18:23:41</span><span class="nk"> &lt;hare_brain&gt;</span> OK, then just next meeting time
+<a name="l-73"></a><span class="tm">18:23:46</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting time</span>
+<a name="l-74"></a><span class="tm">18:24:09</span><span class="nk"> &lt;hare_brain&gt;</span> Our regular interval puts that on September 5
+<a name="l-75"></a><span class="tm">18:24:16</span><span class="nk"> &lt;rtyler&gt;</span> Sept 5 seems most logical, know when labor day is?
+<a name="l-76"></a><span class="tm">18:24:24</span><span class="nk"> &lt;hare_brain&gt;</span> I think it's the third
+<a name="l-77"></a><span class="tm">18:24:27</span><span class="nk"> &lt;hare_brain&gt;</span> I'll double check that
+<a name="l-78"></a><span class="tm">18:24:39</span><span class="nk"> &lt;hare_brain&gt;</span> Yep
+<a name="l-79"></a><span class="tm">18:24:46</span><span class="nk"> &lt;rtyler&gt;</span> then yeah, the 5th seems fine
+<a name="l-80"></a><span class="tm">18:25:09</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting time is September 5, 2012 11AM PDT</span>
+<a name="l-81"></a><span class="tm">18:25:27</span><span class="nk"> &lt;ndeloof&gt;</span> I also had an action about low cost stickers,
+<a name="l-82"></a><span class="tm">18:25:59</span><span class="nk"> &lt;hare_brain&gt;</span> Oh did you? I'm sorry, I must have missed that.
+<a name="l-83"></a><span class="tm">18:26:14</span><span class="nk"> &lt;ndeloof&gt;</span> we didn't registered an action for that
+<a name="l-84"></a><span class="tm">18:26:26</span><span class="nk"> &lt;ndeloof&gt;</span> I ordered 1000 of them for 70€
+<a name="l-85"></a><span class="tm">18:26:36</span><span class="nk"> &lt;ndeloof&gt;</span> here is how they will look like : https://www.dropbox.com/s/lfixkutt799wt8q/BAT310216%20%281%29.pdf
+<a name="l-86"></a><span class="tm">18:26:55</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">ndeloof ordered 1000 of these https://www.dropbox.com/s/lfixkutt799wt8q/BAT310216%20%281%29.pdf</span>
+<a name="l-87"></a><span class="tm">18:27:21</span><span class="nk"> &lt;hare_brain&gt;</span> The pink border is just the edge of the sticker?
+<a name="l-88"></a><span class="tm">18:27:35</span><span class="nk"> &lt;ndeloof&gt;</span> will get them next week, and post pictures for you to consider quality, as well a post some of them to KK
+<a name="l-89"></a><span class="tm">18:27:41</span><span class="nk"> &lt;ndeloof&gt;</span> right, those are round ones
+<a name="l-90"></a><span class="tm">18:28:00</span><span class="nk"> &lt;ndeloof&gt;</span> if you want me to post few of them, just send me postal address
+<a name="l-91"></a><span class="tm">18:29:08</span><span class="nk"> &lt;hare_brain&gt;</span> OK, is that it then?
+<a name="l-92"></a><span class="tm">18:29:59</span><span class="nk"> &lt;hare_brain&gt;</span> Going once
+<a name="l-93"></a><span class="tm">18:30:09</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

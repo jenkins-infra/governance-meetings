@@ -1,0 +1,103 @@
+18:00:08 <rtyler> #startmeeting
+18:00:09 <robobutler> Let the Jenkins meeting commence!
+18:00:14 <rtyler> YAY
+18:00:18 <rtyler> #topic Last meeting actions
+18:00:33 <rtyler> http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-09-13-18.00.html
+18:00:36 <rtyler> none!
+18:00:38 <rtyler> YAY
+18:00:57 <rtyler> #topic LTS status check
+18:01:01 <rtyler> ogondza: all yours buddy
+18:01:33 <ogondza> I am finishing the labeling and will send announcment later today
+18:01:50 <ogondza> then I will push the RC, hopefully this week
+18:02:02 <rtyler> this would be the 2.73.2 RC1?
+18:02:08 <ogondza> yes
+18:02:19 <rtyler> \o/
+18:02:28 <rtyler> anything you need from others on the RC?
+18:02:30 <ogondza> Oleg, was kind enough to release special bits of remoting that needs a bit more love
+18:02:50 <ogondza> so during the testing the actual dependency version will be replaced but the code will be the some
+18:03:02 <ogondza> (hiccups with the release process)
+18:03:08 <ogondza> rtyler: glad yo uasked
+18:03:27 <ogondza> Can someone have a look at INFRA-1346?
+18:03:56 <ogondza> I would like to finally move LTS ATH to ci.jenkins.io but it will be sort of special
+18:03:56 <rtyler> I'll go ahead and take that
+18:04:08 <rtyler> ci.jenkins.io is Pipeline-only
+18:04:12 <ogondza> cool, thanks
+18:04:25 <rtyler> I'll have to investigate whether I had previously created an LDAP group which you are part of for permissions there
+18:04:28 <ogondza> rtyler: sure, I am not able to even create a job there
+18:04:56 <rtyler> ogondza: right, but once you're in a group with Job/Create permissions you would technically be able to create a Freestyle Job
+18:05:09 <rtyler> which would cause that rtyler guy to be very upset with you if you did :P
+18:05:16 <ogondza> rtyler: You have my word I won't :P
+18:05:23 <rtyler> but anyways, I'll review the LDAP groups and unblock you there
+18:05:27 <danielbeck> I can write a plugin to prevent that ;-)
+18:05:34 <rtyler> 2.73.2 RC1 will contain that jbcrypt fix right?
+18:05:46 <rtyler> should we ping markewaite about helping with testing if he's available to help?
+18:05:59 <ogondza> yes, jbcrypt is there
+18:06:30 <ogondza> rtyler: not sure he had a chance to test the weekly change. worth trying I guess
+18:06:54 <rtyler> I will mention it to him when I catch him on IRC
+18:07:08 <ogondza> rtyler: sweet
+18:07:16 <rtyler> ogondza: I suggest asking folks for help in testing specific areas in your RC email fwiw
+18:07:19 <rtyler> that seems to work really well
+18:07:29 <rtyler> rather than a general "call for testing"
+18:07:36 <jglick> rtyler: w.r.t. the BCrypt fix, I wrote an ATH regression test for it
+18:07:45 <rtyler> jglick: I saw! \o/
+18:08:00 <rtyler> one of the many reasons I'm hoping we can get ATH sorted on ci.jenkins.io and run it much more frequently
+18:08:15 <jglick> so if we actually run ATH against LTS release candidates (apparently we did not run it against 2.80) then we should be OK
+18:08:29 <rtyler> ogondza: any other points to discuss here?
+18:08:36 <rtyler> jglick: *nod*
+18:08:49 <ogondza> rtyler: any specific people to ask (for testing)
+18:09:06 <ogondza> you mean people who fixed the things or some list of ussual suspects?
+18:09:36 <rtyler> folks who originally reported some of these issues perhaps :)
+18:10:01 <oleg-nenashev> I can do some testing tomorrow. Today is tough
+18:10:06 <ogondza> yes, why not
+18:10:23 <ogondza> anyway, we can move on I guess
+18:10:26 <rtyler> oleg-nenashev: today is almost over!
+18:10:28 <rtyler> :D
+18:10:35 <oleg-nenashev> Yeah
+18:10:38 <ogondza> rtyler: tell me about it
+18:10:38 <rtyler> Forest_: you still awake and with us? :D
+18:10:57 <rtyler> ogondza: after the meeting would you be able to chat briefly with me in #jenkins about some ATH items?
+18:11:08 <ogondza> rtyler: sure
+18:11:32 <rtyler> #topic Huayou Tech request for mark usage for events "Jenkins User Conference China"
+18:11:43 <rtyler> https://groups.google.com/d/msg/jenkinsci-dev/xeowuF-aDE0/NTrBhiHiBAAJ
+18:12:02 <rtyler> Forest_ sent this request to the dev list already about a sublicense request for "Jenkins User Conference China"
+18:12:20 <Forest_> Hello, everyone, I was here last project meeting :)
+18:12:38 <alyssat_> Hi Forest_
+18:12:52 <olblak> \o
+18:13:03 <rtyler> Forest_: for your information, make sure you read: https://jenkins.io/project/governance/#trademark and https://jenkins.io/project/governance/#attribution-for-sublicensees
+18:13:25 <rtyler> (maybe tomorrow after a good sleep :))
+18:13:41 <Forest_> understood, I'll check it later, thank you.
+18:14:15 <alyssat_> I can also work with Forest_ to make sure he dot his i and cross his t's wrt trademark attributions
+18:14:24 <Forest_> lol, I've joined dev list. And we would like to hold JUC China in Shanghai Nov.
+18:14:26 <rtyler> Forest_: for events done on behalf of the Jenkins project we also expect that the Code of Conduct to be followed at the event: https://jenkins.io/project/conduct
+18:14:57 <rtyler> anyways
+18:15:08 <Forest_> OK
+18:15:14 <rtyler> I'm +1 on this sublicense request (exciting to see a growing chinese user community)
+18:15:23 <oleg-nenashev> +1
+18:15:23 <autojack> +1 from me.
+18:15:24 <alyssat_> +1
+18:15:24 <danielbeck> finally I get to write +1
+18:15:37 <autojack> "even so..."
+18:15:38 <olblak> +1
+18:15:44 <alyssat_> exciting to see the growth
+18:15:54 <rtyler> autojack: even so?
+18:16:07 <autojack> joke. ignore.
+18:16:11 <rtyler> heh, okay
+18:16:32 <Forest_> It will be a amazing event, hope you could come and join us :)
+18:16:34 <rtyler> any questions or concerns we should discuss here?
+18:16:49 <danielbeck> Forest_ could we get a blog post or two about it?
+18:17:06 <Forest_> Sure about that.
+18:17:17 <danielbeck> great
+18:17:17 <Forest_> Once we get the approval :)
+18:17:19 <rtyler> Forest_: I suggest working with alyssat_ on those after the meeting (and sleep :))
+18:17:43 <alyssat_> 😃+1:
+18:18:06 <Forest_> No problem, I took a nap just now and very exciting to join this meeting.
+18:18:40 <rtyler> #agreed Trademark sublicense request for "Jenkins User Conference China" granted to Huayou Tech subject to the usual terms and conditions
+18:18:49 <rtyler> #action rtyler to update the Approved Trademark Usage wiki page
+18:19:12 <rtyler> that concludes the agenda items \o/
+18:19:15 <rtyler> #topic Next meeting
+18:19:30 <rtyler> The next spot on the schedule is Oct 11th
+18:19:38 <rtyler> danielbeck: I will need you to run that meeting, since i'll be at puppetconf
+18:19:44 <danielbeck> ack
+18:19:51 <rtyler> #info next meeting Oct 11th, same time, same place
+18:19:54 <rtyler> that's a wrap!
+18:19:56 <rtyler> #endmeeting

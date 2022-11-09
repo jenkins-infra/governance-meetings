@@ -1,0 +1,85 @@
+18:01:03 <kohsuke> #startmeeting
+18:01:03 <robobutler> Let the Jenkins meeting commence!
+18:01:11 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:01:19 <kohsuke> #chair abayer rtyler hare_brain
+18:01:19 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:01:46 <rtyler> ruh roh
+18:01:51 <kohsuke> #topic recap of actions
+18:01:53 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-06-13-18.01.html
+18:02:38 <kohsuke> rtyler and I did make progress on moving Confluence
+18:03:04 <kohsuke> but I believe rtyler still wants to make some more puppet massaging before it goes live
+18:03:25 <kohsuke> #action rtyler to fiddle with puppet script for Confluence
+18:03:25 <rtyler> indeed, I'm anxiously looking forward to finally having some time this weekend
+18:03:28 <rtyler> heh
+18:03:53 <kohsuke> I think other actions are basically still carry-forward
+18:04:02 <kohsuke> #action kohsuke to write to active users of svn.jenkins-ci.org that they can move to GitHub very easily if they want
+18:04:07 <kohsuke> #action kohsuke to write a scanner that auto-adds Jenkins jobs for plugins
+18:04:13 <kohsuke> #action kohsuke to split buildhive code into smaller pieces and install them to jenkins.ci.cloudbees.com
+18:04:27 <kohsuke> this one made some progress but I owe ndeloof some debugging
+18:04:36 <kohsuke> #action rtyler to make sure kohsuke and vjuranek have the sauce labs credentials
+18:05:09 <kohsuke> I suspect KVM effort is stalled, and with more builds moving to jenkins.ci.cloudbees.com we can probably get by with what we have for now
+18:05:15 <kohsuke> #action rtyler to puppet-ize ircbot on cucumber
+18:05:47 <kohsuke> #topic next LTS baseline
+18:06:01 <kohsuke> #info http://jenkins-ci.org/changelog
+18:06:04 <vjuranek> any proposals?
+18:06:16 <kohsuke> let's see here...
+18:06:20 <vjuranek> I was thining about 1.464 or 1.465
+18:06:32 <hare_brain> We've been trying to get 1.460 out internally, but have been having this issue with stream corruption on FreeBSD slaves.
+18:06:35 <kohsuke> I guess the first question is if hare_brain has any info about what Yahoo is thinking about picking
+18:06:43 <abayer> +1 - from whatI've seen, those have been pretty good, but I'll defer to hare_brain.
+18:07:00 <kohsuke> hare_brain: looking forward to resuming that debugging
+18:07:24 <hare_brain> So the basic functionality of 1.460 seems fine, but the new version of the remoting module that changed since 1.424 is causing this problem for us.
+18:08:00 <hare_brain> kohsuke, I submitted a pull request for the remoting project last night that has some debugging code I wrote. I wound up writing that ring buffer to capture the data being read and written
+18:08:19 <kohsuke> 1.466 does seem good.
+18:08:33 <kohsuke> It also has this concurrent matrix build support which was well received
+18:08:45 <abayer> +++++++1. =)
+18:09:24 <googolplex> hello everybody
+18:09:25 <kohsuke> 1.460 looks OK too. It misses the reorderable publishers
+18:09:45 <googolplex> thanks for twitter invitation to join chat
+18:10:31 <kohsuke> If Yahoo spent some effort already on 1.460, it seems like that's a good version to pick
+18:10:44 <hare_brain> I don't have a problem going to 1.466.
+18:10:56 <abayer> Getting the concurrent matrix builds would be good.
+18:11:02 <hare_brain> Especially if people are enjoying the concurrent matrix builds.
+18:11:22 <hare_brain> We'll resync our fork to 1.466
+18:11:40 <kohsuke> OK, then let's do 1.466
+18:11:47 <vjuranek> great
+18:12:18 <kohsuke> It has all the UI improvement features
+18:12:22 <hare_brain> "Enabled concurrent build support for matrix projects (issue 6747)" Why does that also show up for 1.467?
+18:12:24 * rtyler claps
+18:12:32 <hare_brain> Did some work get split across the two?
+18:12:38 <kohsuke> checking
+18:13:00 <kohsuke> it did go in 1.466
+18:13:04 <kohsuke> looks like changelog mishup
+18:13:17 <hare_brain> OK.
+18:13:34 <kohsuke> All right, then.
+18:13:45 <kohsuke> #agreed Next LTS will be based on 1.466
+18:13:54 <hare_brain> I was just going to say that if the work somehow got split across two, we base off of 1.466 and pick up any straggling changes for that feature for LTS.
+18:14:01 <hare_brain> But if that's not case, not an issue.
+18:14:30 <kohsuke> yeah, this went into 1.467: https://github.com/jenkinsci/jenkins/commit/c7d8b541787f36b50f7f0aaf91fc334a233f405b
+18:14:44 <kohsuke> but https://github.com/jenkinsci/jenkins/commit/c86aa67953ca0d7d5e8a0ede276a659cdbe8ba6b went into 1.466, which is the actual change
+18:15:06 <hare_brain> OK
+18:15:23 <kohsuke> vjuranek:  I guess we'll try this in 2 weeks?
+18:15:55 <hare_brain> I'd be interested in seeing of the remoting issue is particular to us.
+18:16:02 <vjuranek> kohsuke: yes, should be doable, will you create new branch or I should do it?
+18:16:09 <hare_brain> Anyone else using FreeBSD?
+18:16:16 <rtyler> yes and no :)
+18:16:17 <kohsuke> vjuranek:  I can do it
+18:16:25 <vjuranek> kohsuke: thanks
+18:16:29 <Nerp> Does jenkins have issues with double square brackets?
+18:16:45 <rtyler> Nerp: mind holding that thought until we finish our project meeting?
+18:16:51 <Nerp> sure
+18:16:58 <Nerp> sorry about that
+18:17:34 <kohsuke> hare_brain: I guess process-wise we won't be able to pull in that remoting fix in this LTS if we want one out in 2 weeks
+18:17:56 <kohsuke> If that needs to go in LTS will need to wait a bit more before the change gets validated in mainline releases
+18:18:04 <hare_brain> That's fine. It's not a fix. It's just hooks for debugging.
+18:18:26 <kohsuke> ... which might be a good thing, because there's some race condition fixed recently in remoting
+18:18:41 <kohsuke> OK, then I guess we'll push that to 1.466.2 or something
+18:19:08 <kohsuke> I think that's it for today
+18:19:13 <kohsuke> #topic next meeting time
+18:19:40 <kohsuke> the next one will be July 11th the same time
+18:19:46 <hare_brain> +1
+18:19:56 <rtyler> works for me
+18:20:01 <vjuranek> +1
+18:20:03 <kohsuke> (I want to start a thread to bundle git plugin to core)
+18:20:13 <kohsuke> #agreed next meeting will be July 11th the same time
+18:20:22 <kohsuke> #endmeeting

@@ -1,0 +1,177 @@
+18:00:01 <rtyler> #startmeeting
+18:00:01 <robobutler> Let the Jenkins meeting commence!
+18:00:08 <rtyler> #chair danielbeck kohsuke hare_brain
+18:00:08 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+18:00:13 <rtyler> #chair ogondza
+18:00:13 <robobutler> Current chairs: danielbeck hare_brain kohsuke ogondza rtyler
+18:00:23 <rtyler> #topic Last meeting actions
+18:00:34 <rtyler> last meeting notes: http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-05-10-18.00.html
+18:01:36 <rtyler> danielbeck: i'm assuming you wrote the changelog? :)
+18:02:14 <oleg-nenashev> he did
+18:02:30 <rtyler> there was also some LTS related stuff
+18:02:35 <oleg-nenashev> 2.60 was released as discussed
+18:02:46 <rtyler> ogondza: you awake and with us? :)
+18:02:49 <oleg-nenashev> It is fine, hence it can be an LTS baseline
+18:03:19 * rtyler sounds the alarm
+18:03:21 <ogondza> yes, there is separate item for baseline discusion
+18:03:21 <rtyler> wake up people :)
+18:03:31 <ogondza> later today
+18:03:37 <oleg-nenashev> +1
+18:03:51 <oleg-nenashev> was just summarizing the results of our action items
+18:03:53 <rtyler> do we have any more last meeting actions?
+18:03:54 <olblak> o/
+18:04:01 <rtyler> I can move on to the meatier topics
+18:04:26 <rtyler> #topic LTS status check
+18:04:31 <rtyler> ogondza: you're up buddy :)
+18:04:40 <rtyler> i'm hoping danielbeck is also awake
+18:04:56 <ogondza> the testing have not revealed any problems
+18:05:10 <ogondza> thanks Oleg, for your update
+18:05:14 <rtyler> forgive my ignorance, this would be with 2.46.3?
+18:05:20 <oleg-nenashev> I am happy to help
+18:05:25 <ogondza> the problems we are seeing are infra related
+18:05:36 <oleg-nenashev> Though my instance does not run much Pipeline stuff so far
+18:05:53 <ogondza> yes, I guess what I am saying is is 2.46.3 is good to be released
+18:05:55 <oleg-nenashev> rtyler>: yep, 2.46.3
+18:06:21 <oleg-nenashev> 🚢 🇮🇹
+18:06:50 <rtyler> ogondza: wunderbar \o/
+18:07:03 <rtyler> #info 2.46.3 is ready to be released according to ogondza
+18:07:18 <ogondza> #action kohsuke, please release the .3
+18:07:42 <oleg-nenashev> kohsuke is in APAC timezone now AFAIK
+18:08:05 <rtyler> right
+18:08:27 <ogondza> that is it from me
+18:08:44 <oleg-nenashev> LTS election?
+18:08:46 <rtyler> #topic Next LTS baseline selectin
+18:09:31 <ogondza> IIRC we cut .60 with accumulated changes to be tested and used as conservative baseline
+18:09:47 <oleg-nenashev> So, as we discussed at the last meeting, there is an interest to have 2.60 due to the new API required for the Pipeline job disabling stuff. CC abayer jglick
+18:09:47 <ogondza> if things go well we will consider .61
+18:10:01 <oleg-nenashev> 2.61 didn't go well
+18:10:04 <rtyler> heh
+18:10:18 <oleg-nenashev> 2.58 was a conservative baseline IIRC
+18:10:49 <oleg-nenashev> And the plan was to select between 2.58 and 2.60 if the latter once is good enough
+18:10:59 <rtyler> I've pinged danielbeck try to to awaken him too
+18:11:21 <jglick> 2.60 sounds good to me unless there was some known problem with it.
+18:11:28 <oleg-nenashev> Stats in 2.60: 62 suns & 2 clouds, the linked issue is unrelated to the core
+18:11:50 <ogondza> right
+18:12:05 <jglick> Yup, `ssh-slaves`.
+18:12:13 <oleg-nenashev> there is JENKINS-44120 regression in 2.59 (fixed in 2.61), but it can be easily backported
+18:12:20 <rtyler> I was just about to say..
+18:13:25 <rtyler> IMHO 2.60 is a fine choice
+18:13:29 <oleg-nenashev> Yep
+18:13:29 <ogondza> I am ok with .60
+18:13:41 <ogondza> Jesse, seems to agree
+18:13:44 <rtyler> any objections from those who are awake on 2.60 being the next LTS baseline?
+18:13:57 <ogondza> kk and Daniel are gone. sound approved to me :P
+18:14:00 <oleg-nenashev> The only risk is a relatively new TrileadSSH-2, but I think we can backport regressions if they appear
+18:14:00 <jglick> https://github.com/jenkinsci/jenkins/pull/2888 simple Trilead version bump IIUC.
+18:14:17 <oleg-nenashev> +1 for 2.60 from me
+18:14:19 <jglick> +1 from me for 2.60.
+18:14:43 <ogondza> #agreed Next lts will be 2.60
+18:14:47 <rtyler> \o/
+18:14:58 <ogondza> #action ogondza to initiate the new LTS line
+18:15:11 <ogondza> that was quick
+18:15:22 <rtyler> w00t
+18:15:24 <rtyler> alrighty
+18:15:33 <rtyler> #topic s - R. Tyler Croy, Olivier Vernin
+18:15:34 * oleg-nenashev considers adding a java 9 alpha migration proposal to the next meeting. Just to get more people in the room
+18:15:38 <rtyler> damnit
+18:15:43 <rtyler> bad copy paste
+18:15:50 <rtyler> #topic Purchasing a SendGrid account to send project emails from Azure-based applications
+18:15:53 <rtyler> there we go
+18:16:02 <rtyler> olblak: would you provide the background on this topic plz
+18:16:09 <oleg-nenashev> Is there an email thread link?
+18:16:15 <rtyler> no
+18:16:21 <olblak> not uyet
+18:16:23 <olblak> not yet
+18:16:27 <rtyler> this was discussed originally in the infra sync meeting on Monday :)
+18:16:33 <rtyler> that you slept through oleg-nenashev xD
+18:16:37 <oleg-nenashev> which I missed....
+18:16:38 <olblak> at the moment we can only send email from OSUOSL network
+18:16:52 <olblak> and we would like to send emails from azure network
+18:17:06 <rtyler> s/would like/need/
+18:17:23 <olblak> indeed need
+18:17:26 <oleg-nenashev> +1. must-have since we move to Azure
+18:17:34 <oleg-nenashev> So, what's the price?
+18:17:49 <rtyler> I was about to ask olblak that too :)
+18:18:05 <oleg-nenashev> And any chance SendGrid sponsors it just in case?
+18:18:14 <rtyler> I don't have any friends to beg at sendgrid :)
+18:18:23 <olblak> 10$ per month
+18:18:31 <olblak> with that we can send 40000 emails per month
+18:18:33 <rtyler> #info if anybody has a friend at sendgrid or knows if they support open source projects, reach out to me on infra@lists.jenkins-ci.org
+18:18:43 <olblak> which I think is enough
+18:18:48 <oleg-nenashev> 10 bucks does not worth wasting time
+18:18:48 <rtyler> so $120 per year to send project emails from azure, that seems very reasonable to me
+18:18:51 <rtyler> haha
+18:19:07 <rtyler> any objections to spending $10 a month to send emails from Azure based applications?
+18:19:19 <ogondza> +1
+18:19:23 <olblak> +1
+18:20:02 * rtyler waits one more minute or two
+18:20:09 <oleg-nenashev> +1
+18:20:41 <rtyler> #agreed we'll spend a little bit of money on sendgrid for azure-based infrastructure
+18:21:05 <rtyler> #topic Add olblak as an admin in LDAP and provide access to jenkins-keys (
+18:21:12 <rtyler> this is another infrastructure related topic
+18:21:24 <rtyler> olblak has been doing a lot of infrastructure work and helping out quite a bit
+18:21:36 <rtyler> I would like to enable his access to administrative level functions in project infrastructure
+18:21:42 <oleg-nenashev> Any chance we get his time to review account creation requests? :)
+18:21:53 <olblak> :)
+18:22:00 <rtyler> this will reduce the bus factor on me, but also make some work easier for olblak I believe
+18:22:09 <rtyler> oleg-nenashev: not sure, that's up to olblak whether he wants to help with that
+18:22:18 <olblak> This is something where I can help
+18:22:18 <oleg-nenashev> ack
+18:22:39 <oleg-nenashev> At least we will have someone whom we can ping in the EU TZ
+18:23:03 <rtyler> I fully support olblak becoming an infra admin
+18:23:14 <autojack> if you support it, I'm fine with it.
+18:23:15 <oleg-nenashev> Does Jenkins keys allow to decrypt the usage stats raw data?
+18:23:26 <rtyler> no
+18:23:45 <rtyler> jenkins-keys is what decrypts all the api keys, private keys, etc for the puppet infrastructure
+18:23:51 <oleg-nenashev> then I'm fine with that
+18:23:52 <rtyler> right now kohsuke and I only have access to that
+18:24:47 <rtyler> any concerns or questions I could answer
+18:25:30 <oleg-nenashev> +1 for granting access
+18:25:36 <danielbeck> rtyler sorry I missed the start of this meeting
+18:26:05 <ogondza> +1 on more infra admins
+18:26:18 <danielbeck> belated +1 for 2.60
+18:26:21 <rtyler> #agreed olblak to be granted infra admin access
+18:26:46 <rtyler> oleg-nenashev: did you want to bring up admin access for you as well in this meeting?
+18:27:00 <oleg-nenashev> Why not since we have time? CC batmat
+18:27:10 <rtyler> #topic Grant LDAP admin access to oleg-nenashev
+18:27:29 <rtyler> for background, LDAP admin access is required in order to properly process new accounts which look suspicious or spammy
+18:27:36 <danielbeck> belated +1 for sendgrid
+18:27:42 <oleg-nenashev> I am ready to help with reviewing account creation requests. As rtyler says, it requires admin access to LDAP right now
+18:27:54 <rtyler> the reason I wanted to discuss this in this meeting is that those with account admin access have jenkins account superuser permissions
+18:28:22 <oleg-nenashev> so potentially I can break everything
+18:28:25 <rtyler> but I trust oleg-nenashev to do the right things, so I fully support granting him LDAP admin access
+18:28:25 <danielbeck> what does this imply exactly? Jira admin, Confluence admin, elevated infra access?
+18:28:52 * oleg-nenashev does not trust himself though
+18:29:02 <rtyler> danielbeck: access to jira admin, confluence admin, accounts admin, and the puppet dashboard if oleg-nenashev could find it :p
+18:29:04 <oleg-nenashev> Good news : we have backups
+18:30:17 <rtyler> the people who have this access right now are larrys, abayer, board members, and officers IIRC
+18:30:24 <oleg-nenashev> In longer-term we need configuration as code && public repo with PRs IMHO
+18:30:36 <danielbeck> rtyler is this an inherent requirement, or just a current account app restriction? I mean it basically needs account registration privileges which anyone can do
+18:30:39 <oleg-nenashev> But it is a moonshot
+18:30:46 <danielbeck> + reset email
+18:30:58 <rtyler> danielbeck: it is an inherent requirement in how the account-app is structured right now
+18:31:15 <rtyler> I 'm not volunteering to "fix" the account-app for its many problems, this included, however :)
+18:32:27 <danielbeck> I am not concerned about oleg
+18:32:31 <danielbeck> so +1
+18:32:56 <danielbeck> but it would be nice if we could open this up further, decoupling all of the admin access from approving signup requests
+18:33:06 <rtyler> danielbeck: are you volunteering to make that feasible? :D
+18:33:15 <danielbeck> I'm not sure yet
+18:33:43 <danielbeck> But I know that I finally admitted to myself earlier this week that I'm not handling signup requests
+18:33:53 <rtyler> heh
+18:34:03 <rtyler> it sounds like we're in agreement on oleg-nenashev getting some super powers here
+18:34:13 <oleg-nenashev> +0
+18:34:25 <oleg-nenashev> but happy to help anyway
+18:34:28 <danielbeck> unless Oleg is made of time he won't be able to handle them all either, so we're going to be back here in a few weeks
+18:34:57 <oleg-nenashev> likely
+18:35:09 <rtyler> #action rtyler to grant oleg-nenashev superpowers
+18:35:24 <rtyler> #agreed oleg-nenashev to get superpowers
+18:35:27 <rtyler> any other topics?
+18:35:32 <oleg-nenashev> #action rtyler to teach oleg-nenashev how to use these superpowers
+18:35:57 <oleg-nenashev> Likely a documentation work for both of us
+18:36:05 <olblak> +1
+18:36:37 <rtyler> #topic Next meeting
+18:36:55 <rtyler> June 7th looks like the next point on the calendar
+18:37:19 <oleg-nenashev> no major events afaik
+18:37:31 <rtyler> #info June 7th is the next meeting, same time same place
+18:37:36 <rtyler> see y'all later
+18:37:38 <rtyler> #endmeeting

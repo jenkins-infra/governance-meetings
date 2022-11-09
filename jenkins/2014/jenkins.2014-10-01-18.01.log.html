@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app224.us.archive.org';v.server_ms=737;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-10-01-18.01.log.html","20200505163219","https://web.archive.org/","web","/_static/",
+	      "1588696339");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:16</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:27</span><span class="nk"> &lt;kohsuke&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-4"></a><span class="tm">18:01:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Q4 patron ads on Jenkins Wiki</span>
+<a name="l-5"></a><span class="tm">18:01:55</span><span class="nk"> &lt;FofG&gt;</span> woah
+<a name="l-6"></a><span class="tm">18:02:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">FofG:</span> rpetti: sorry to interrupt your conversations
+<a name="l-7"></a><span class="tm">18:02:45</span><span class="nk"> &lt;kohsuke&gt;</span> So the first one is the patron message change proposal
+<a name="l-8"></a><span class="tm">18:02:50</span><span class="nk"> &lt;kohsuke&gt;</span> ... and the diff is in https://github.com/jenkinsci/patron/pull/1/files
+<a name="l-9"></a><span class="tm">18:03:14</span><span class="nk"> &lt;kohsuke&gt;</span> for the context, we have this "patron of Jenkins" program going for while: https://wiki.jenkins-ci.org/display/JENKINS/Patron+of+Jenkins+program
+<a name="l-10"></a><span class="tm">18:03:26</span><span class="nk"> &lt;kohsuke&gt;</span> ... where large donors get to put messages in our Wiki
+<a name="l-11"></a><span class="tm">18:04:01</span><span class="nk"> &lt;kohsuke&gt;</span> And when the message changes, we want to pre-approve the messages so that it won't get too flashy or advertisement-ish
+<a name="l-12"></a><span class="tm">18:04:06</span><span class="nk"> &lt;hare_brain&gt;</span> Looks OK to me. +1
+<a name="l-13"></a><span class="tm">18:04:33</span><span class="nk"> &lt;kohsuke&gt;</span> Any other +1s? concerns?
+<a name="l-14"></a><span class="tm">18:05:02</span><span class="nk"> &lt;danielbeck&gt;</span> seems fine
+<a name="l-15"></a><span class="tm">18:05:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the proposed message change looks OK to us</span>
+<a name="l-16"></a><span class="tm">18:05:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Plugins not getting forked into jenkinsci, or not getting released from there</span>
+<a name="l-17"></a><span class="tm">18:06:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> are we seeing a lot of those now?
+<a name="l-18"></a><span class="tm">18:06:41</span><span class="nk"> &lt;danielbeck&gt;</span> subjectively this has come up a few times in the past, organizations that don't fork into the jenkinsci org, or actually use their own, or don't use the Jenkins JIRA
+<a name="l-19"></a><span class="tm">18:06:53</span><span class="nk"> &lt;hare_brain&gt;</span> What problems does this cause?
+<a name="l-20"></a><span class="tm">18:06:55</span><span class="nk"> &lt;danielbeck&gt;</span> no specific numbers but I've seen a few in the past few weeks
+<a name="l-21"></a><span class="tm">18:07:16</span><span class="nk"> &lt;danielbeck&gt;</span> It's more difficult to find the repo and issue tracker
+<a name="l-22"></a><span class="tm">18:07:35</span><span class="nk"> &lt;danielbeck&gt;</span> the community cannot contribute outside jenkinsci
+<a name="l-23"></a><span class="tm">18:07:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> part of it is that when the original author goes inactive, it increases the hurdle for others to take over
+<a name="l-24"></a><span class="tm">18:08:39</span><span class="nk"> &lt;ogondza&gt;</span> for instance, there is a security issue in sonar-plugin: https://github.com/SonarSource/jenkins-sonar-plugin/pull/9
+<a name="l-25"></a><span class="tm">18:08:54</span><span class="nk"> &lt;ogondza&gt;</span> not sure there is a way for us to take the lead
+<a name="l-26"></a><span class="tm">18:09:27</span><span class="nk"> &lt;kohsuke&gt;</span> I still think overall sufficient number of plugins are getting hosted in the jenkinsci org
+<a name="l-27"></a><span class="tm">18:09:45</span><span class="nk"> &lt;kohsuke&gt;</span> I think our governance document talks about that and generally encourages people to do it that way
+<a name="l-28"></a><span class="tm">18:10:32</span><span class="nk"> &lt;hare_brain&gt;</span> Is there a commonality to plugins that are not hosted on jenkins-ci.org? i.e., are they from individuals? Companies?
+<a name="l-29"></a><span class="tm">18:10:47</span><span class="nk"> &lt;kohsuke&gt;</span> if we think the people doing it outside our org is doing so because they don't know we want thier plugins co-hosted, perhaps a bit of outreach would be worthwhile
+<a name="l-30"></a><span class="tm">18:10:54</span><span class="nk"> &lt;danielbeck&gt;</span> haven't systematically checked it, but seems to be mostly companies
+<a name="l-31"></a><span class="tm">18:11:22</span><span class="nk"> &lt;danielbeck&gt;</span> IIRC the DotCi devs specifically mentioned wanting a popular looking GitHub org with stars
+<a name="l-32"></a><span class="tm">18:11:37</span><span class="nk"> &lt;kohsuke&gt;</span> But OTOH if someone like sonarsource people really wants to control it by themselves, not sure how far we can push
+<a name="l-33"></a><span class="tm">18:11:42</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah
+<a name="l-34"></a><span class="tm">18:12:30</span><span class="nk"> &lt;kohsuke&gt;</span> Do we think additional carrots/sticks would be needed to encourage people to move into the community?
+<a name="l-35"></a><span class="tm">18:12:35</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Plugins that are not hosted in jenkinsci GitHub org do not get wiki pages on jenkinsci.org, nor do they show up as an available plugin from default update center</span>
+<a name="l-36"></a><span class="tm">18:12:48</span><span class="nk"> &lt;hare_brain&gt;</span> In other words, discovery of these plugins gets harder.
+<a name="l-37"></a><span class="tm">18:13:09</span><span class="nk"> &lt;danielbeck&gt;</span> Like some Linux distros with separate "non-free" repos maybe?
+<a name="l-38"></a><span class="tm">18:13:24</span><span class="nk"> &lt;danielbeck&gt;</span> check an option and you still get them, but off by default
+<a name="l-39"></a><span class="tm">18:13:41</span><span class="nk"> &lt;hare_brain&gt;</span> Something like that.
+<a name="l-40"></a><span class="tm">18:13:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span>  I agree. That's the intention of our UC anyway, but just haven't enforced them
+<a name="l-41"></a><span class="tm">18:14:47</span><span class="nk"> &lt;danielbeck&gt;</span> AFAICT right now almost anyone can upload anything and it'll show up in the UC
+<a name="l-42"></a><span class="tm">18:15:11</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, which is also bit of a security nightmare
+<a name="l-43"></a><span class="tm">18:15:50</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Add UI to plugin manager for “report a bug”. Plugin authors can add a link to their issue tracker to the plugin metadata.</span>
+<a name="l-44"></a><span class="tm">18:17:27</span><span class="nk"> &lt;larrys&gt;</span> There was also a recent plugin, vnc recorder plugin, which went straight into Subversion, instead of a github repo... which I found odd, and have been meaning to ask why its source code is in subversion, and not github
+<a name="l-45"></a><span class="tm">18:17:35</span><span class="nk"> &lt;kohsuke&gt;</span> I really want to encourage every plugin to be in this massive melting pot / salad bowl
+<a name="l-46"></a><span class="tm">18:18:20</span><span class="nk"> &lt;kohsuke&gt;</span> And so I'm not really keen on helping people who want to do them otherwise
+<a name="l-47"></a><span class="tm">18:18:35</span><span class="nk"> &lt;danielbeck&gt;</span> Yes, authors should be encouraged to integrate with project infra (wiki, Jira, github org)
+<a name="l-48"></a><span class="tm">18:18:52</span><span class="nk"> &lt;danielbeck&gt;</span> anything besides those three?
+<a name="l-49"></a><span class="tm">18:19:41</span><span class="nk"> &lt;kohsuke&gt;</span> What makes it difficult for me is that I think we benefited from not actively rejecting those companies/projects who do feel strongly about hosting plugins elsewhere
+<a name="l-50"></a><span class="tm">18:19:57</span><span class="nk"> &lt;kohsuke&gt;</span> Many of them do produce rather interesting plugins
+<a name="l-51"></a><span class="tm">18:20:34</span><span class="nk"> &lt;hare_brain&gt;</span> Right, and for those plugins, that separation makes it hard for a Jenkins user to be able to report problems, or find documentation.
+<a name="l-52"></a><span class="tm">18:21:25</span><span class="nk"> &lt;danielbeck&gt;</span> They still may have a wiki page but it's still weird, especially if as an experienced user you start looking on github.com/jenkinsci, or in Jira
+<a name="l-53"></a><span class="tm">18:21:52</span><span class="nk"> &lt;hare_brain&gt;</span> But not all users are experienced.
+<a name="l-54"></a><span class="tm">18:22:26</span><span class="nk"> &lt;danielbeck&gt;</span> we should probably find out how many and which are actually affected (no Jira component, no jenkinsci repo, no releases in jenkinsci, no wiki page)
+<a name="l-55"></a><span class="tm">18:22:38</span><span class="nk"> &lt;hare_brain&gt;</span> Data would be good. :)
+<a name="l-56"></a><span class="tm">18:23:13</span><span class="nk"> &lt;danielbeck&gt;</span> wanted to bring this up now primarily to find out whether I'm the only one who doesn't like it if authors do this
+<a name="l-57"></a><span class="tm">18:23:48</span><span class="nk"> &lt;hare_brain&gt;</span> I don’t think we should explicitly disallow this, but we can do things to encourage people to use our infrastructure.
+<a name="l-58"></a><span class="tm">18:23:52</span><span class="nk"> &lt;danielbeck&gt;</span> FWIW the wiki plugin element also cannot handle it sometimes
+<a name="l-59"></a><span class="tm">18:23:56</span><span class="nk"> &lt;kohsuke&gt;</span> I don't like it either. But I think it's an OK compromise
+<a name="l-60"></a><span class="tm">18:24:08</span><span class="nk"> &lt;hare_brain&gt;</span> (Like discoverability, etc.)
+<a name="l-61"></a><span class="tm">18:24:12</span><span class="nk"> &lt;danielbeck&gt;</span> right, disallowing would be bad.
+<a name="l-62"></a><span class="tm">18:24:38</span><span class="nk"> &lt;danielbeck&gt;</span> as I mentioned, an off-by-default 'include plugins not hosted on jenkinsci infra' option to UC
+<a name="l-63"></a><span class="tm">18:24:43</span><span class="nk"> &lt;danielbeck&gt;</span> or something similar
+<a name="l-64"></a><span class="tm">18:24:59</span><span class="nk"> &lt;danielbeck&gt;</span> (off for new installs only probably)
+<a name="l-65"></a><span class="tm">18:25:13</span><span class="nk"> &lt;hare_brain&gt;</span> Call out plugins on https://wiki.jenkins-ci.org/display/JENKINS/Plugins that are hosted externally. Or remove their references entirely
+<a name="l-66"></a><span class="tm">18:25:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to improve UC generation so that we can track plugins that do not follow the encouraged hosting guideline</span>
+<a name="l-67"></a><span class="tm">18:26:08</span><span class="nk"> &lt;larrys&gt;</span> There is something that Atlassian started to do recently with their "marketplace" where they have "Verified" badges that plugins get, among some other badges... not sure how (or if) we could do something similar...
+<a name="l-68"></a><span class="tm">18:27:06</span><span class="nk"> &lt;kohsuke&gt;</span> I think we are starting from a better position than theirs because in our case I think the most of the plugin does follow the guideline
+<a name="l-69"></a><span class="tm">18:27:27</span><span class="nk"> &lt;kohsuke&gt;</span> I don't know what Atlassian Verified does, but presumably that's a sign of quality (which is different from the topic at hand but still good to do)
+<a name="l-70"></a><span class="tm">18:27:35</span><span class="nk"> &lt;hare_brain&gt;</span> I thought about a badge too, but I don’t know what it would actually mean to a user that a plugin is hosted by the community infrastructure.
+<a name="l-71"></a><span class="tm">18:28:58</span><span class="nk"> &lt;hare_brain&gt;</span> I think getting data about how many plugins this is true for, and then not including them in the UC metadata are good first steps.
+<a name="l-72"></a><span class="tm">18:29:26</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">hare_brain:</span> You mean completely remove them?
+<a name="l-73"></a><span class="tm">18:29:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I took the action to keep track of that, and I wouldn't quite go so far as to remove them from UC, at least not yet
+<a name="l-74"></a><span class="tm">18:29:46</span><span class="nk"> &lt;hare_brain&gt;</span> Remove, or not on by default.
+<a name="l-75"></a><span class="tm">18:30:12</span><span class="nk"> &lt;hare_brain&gt;</span> But yes, that’s step two.
+<a name="l-76"></a><span class="tm">18:30:16</span><span class="nk"> &lt;kohsuke&gt;</span> I want to see which ones would be impacted
+<a name="l-77"></a><span class="tm">18:30:19</span><span class="nk"> &lt;hare_brain&gt;</span> Agreed
+<a name="l-78"></a><span class="tm">18:30:48</span><span class="nk"> &lt;kohsuke&gt;</span> All right, shall we move on?
+<a name="l-79"></a><span class="tm">18:30:51</span><span class="nk"> &lt;danielbeck&gt;</span> yes
+<a name="l-80"></a><span class="tm">18:31:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">GitHub private repositories for security work</span>
+<a name="l-81"></a><span class="tm">18:31:10</span><span class="nk"> &lt;kohsuke&gt;</span> I sent the proposal to the dev list
+<a name="l-82"></a><span class="tm">18:31:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the idea is to pay $300/yr to get 10 or so private repositories on GitHub, primarily to be used for Jenkins CERT work</span>
+<a name="l-83"></a><span class="tm">18:31:41</span><span class="nk"> &lt;kohsuke&gt;</span> ... which requires developing fixes in private
+<a name="l-84"></a><span class="tm">18:31:42</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-85"></a><span class="tm">18:31:50</span><span class="nk"> &lt;danielbeck&gt;</span> looks reasonable
+<a name="l-86"></a><span class="tm">18:32:07</span><span class="nk"> &lt;hare_brain&gt;</span> Maybe GitHub will even give us special dispensation.
+<a name="l-87"></a><span class="tm">18:32:26</span><span class="nk"> &lt;kohsuke&gt;</span> abayer tried that a few years ago but that didn't work
+<a name="l-88"></a><span class="tm">18:32:30</span><span class="nk"> &lt;hare_brain&gt;</span> Haha. OK
+<a name="l-89"></a><span class="tm">18:32:40</span><span class="nk"> &lt;kohsuke&gt;</span> But anyone knows anybody there, please give it a try
+<a name="l-90"></a><span class="tm">18:32:44</span><span class="nk"> &lt;abayer&gt;</span> Yeaaaaah.
+<a name="l-91"></a><span class="tm">18:32:57</span><span class="nk"> &lt;abayer&gt;</span> If we can pull it off, that'd be great, but it just kinda withered on the vine.
+<a name="l-92"></a><span class="tm">18:33:28</span><span class="nk"> &lt;kohsuke&gt;</span> And they do already provide us free hosting, so there's that.
+<a name="l-93"></a><span class="tm">18:33:56</span><span class="nk"> &lt;hare_brain&gt;</span> $300/year is totally reasonable.
+<a name="l-94"></a><span class="tm">18:34:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">paying for GitHub private repos is approved</span>
+<a name="l-95"></a><span class="tm">18:34:11</span><span class="nk"> &lt;danielbeck&gt;</span> especially when compared to $2k for stickers...
+<a name="l-96"></a><span class="tm">18:34:19</span><span class="nk"> &lt;hare_brain&gt;</span> Hahaha
+<a name="l-97"></a><span class="tm">18:34:27</span><span class="nk"> &lt;hare_brain&gt;</span> Marketing is important!
+<a name="l-98"></a><span class="tm">18:34:40</span><span class="nk"> &lt;kohsuke&gt;</span> I think I misremembered that figure
+<a name="l-99"></a><span class="tm">18:34:49</span><span class="nk"> &lt;kohsuke&gt;</span> It's more like 2000 stickers/yr, for $600 or so
+<a name="l-100"></a><span class="tm">18:35:01</span><span class="nk"> &lt;kohsuke&gt;</span> But anyway, overall picture remains the same
+<a name="l-101"></a><span class="tm">18:35:03</span><span class="nk"> &lt;hare_brain&gt;</span> Yes, I remember that’s more accurate.
+<a name="l-102"></a><span class="tm">18:35:33</span><span class="nk"> &lt;kohsuke&gt;</span> Does anyone have any preference on separate org vs same org?
+<a name="l-103"></a><span class="tm">18:35:46</span><span class="nk"> &lt;kohsuke&gt;</span> I was going to put this in a separate org
+<a name="l-104"></a><span class="tm">18:35:55</span><span class="nk"> &lt;kohsuke&gt;</span> So if you disagree let me know soon
+<a name="l-105"></a><span class="tm">18:36:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">New LTS base line</span>
+<a name="l-106"></a><span class="tm">18:36:09</span><span class="nk"> &lt;hare_brain&gt;</span> Probably better to separate, so permissions can be managed independently.
+<a name="l-107"></a><span class="tm">18:36:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> yes, one of the factors is that I'm concerned about bot doing some unexpected things with them
+<a name="l-108"></a><span class="tm">18:37:06</span><span class="nk"> &lt;mark0n&gt;</span> I'm running into problems installing the warnings plug-in using puppet-jenkins v1.2: The package gets downloaded and extracted into /var/lib/jenkins/plugins/ but it does not show up on the web GUI.
+<a name="l-109"></a><span class="tm">18:37:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I'm releaseing 1.565.3 today, which means it's time to pick the new base line</span>
+<a name="l-110"></a><span class="tm">18:37:28</span><span class="nk"> &lt;kohsuke&gt;</span> http://jenkins-ci.org/changelog
+<a name="l-111"></a><span class="tm">18:37:35</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">mark0n:</span> Please wait a few minutes, project meeting right now
+<a name="l-112"></a><span class="tm">18:38:01</span><span class="nk"> &lt;mark0n&gt;</span> I also noted that the most recent version of the plug-in is 4.28 on http://updates.jenkins-ci.org/download/plugins/warnings/ and 4.42 on https://wiki.jenkins-ci.org/display/JENKINS/Warnings+Plugin - why is that?
+<a name="l-113"></a><span class="tm">18:38:01</span><span class="nk"> &lt;kohsuke&gt;</span> FYI 1.577+ would allow us to bring workflow to LTS users
+<a name="l-114"></a><span class="tm">18:38:22</span><span class="nk"> &lt;mark0n&gt;</span> <span class="hi">danielbeck:</span> ok
+<a name="l-115"></a><span class="tm">18:38:31</span><span class="nk"> &lt;danielbeck&gt;</span> 1.581 issues are completely bogus, just ignore the 3 votes
+<a name="l-116"></a><span class="tm">18:38:57</span><span class="nk"> &lt;danielbeck&gt;</span> all recent versions look pretty good IMO
+<a name="l-117"></a><span class="tm">18:39:11</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, certainly looks that way
+<a name="l-118"></a><span class="tm">18:39:17</span><span class="nk"> &lt;danielbeck&gt;</span> there may be problems with the user name migration, but that's in since 1.568 or so
+<a name="l-119"></a><span class="tm">18:40:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> are you there?
+<a name="l-120"></a><span class="tm">18:40:23</span><span class="nk"> &lt;kohsuke&gt;</span> jglick told me JavaOne network blocks him from accessing IRC
+<a name="l-121"></a><span class="tm">18:40:31</span><span class="nk"> &lt;ogondza&gt;</span> 1.577+ works for me
+<a name="l-122"></a><span class="tm">18:40:46 </span><span class="nka">* ogondza</span> <span class="ac">scanning change log</span>
+<a name="l-123"></a><span class="tm">18:40:52</span><span class="nk"> &lt;kohsuke&gt;</span> 1.580?
+<a name="l-124"></a><span class="tm">18:41:07</span><span class="nk"> &lt;danielbeck&gt;</span> final choice now, or do we still have some time to look over issues?
+<a name="l-125"></a><span class="tm">18:41:12</span><span class="nk"> &lt;kohsuke&gt;</span> It is the oldest in the recent stability streak
+<a name="l-126"></a><span class="tm">18:41:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> we want to decide now to have room for backporting window
+<a name="l-127"></a><span class="tm">18:41:43</span><span class="nk"> &lt;danielbeck&gt;</span> 1.581 would shut the X-Frame-Options users up
+<a name="l-128"></a><span class="tm">18:41:57</span><span class="nk"> &lt;danielbeck&gt;</span> OTOH we get the background color regression I messed up
+<a name="l-129"></a><span class="tm">18:42:23</span><span class="nk"> &lt;danielbeck&gt;</span> but that's an easy fix
+<a name="l-130"></a><span class="tm">18:42:33</span><span class="nk"> &lt;ogondza&gt;</span> I see no reason to go with anything older than 1.580, so ack from me
+<a name="l-131"></a><span class="tm">18:42:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span>  I think you can just backport fc78fdee
+<a name="l-132"></a><span class="tm">18:43:23</span><span class="nk"> &lt;danielbeck&gt;</span> Like ogondza would allow that :-)
+<a name="l-133"></a><span class="tm">18:43:58</span><span class="nk"> &lt;ogondza&gt;</span> :)
+<a name="l-134"></a><span class="tm">18:44:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> is 1.580 OK? Or do you really want 1.581?
+<a name="l-135"></a><span class="tm">18:44:24</span><span class="nk"> &lt;danielbeck&gt;</span> 1.580 is fine
+<a name="l-136"></a><span class="tm">18:44:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">1.580</span>
+<a name="l-137"></a><span class="tm">18:44:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-138"></a><span class="tm">18:45:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting would be Oct 15th</span>
+<a name="l-139"></a><span class="tm">18:45:43</span><span class="nk"> &lt;kohsuke&gt;</span> Yep, I'll be here
+<a name="l-140"></a><span class="tm">18:45:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 16:32:19 May 05, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 16:01:05 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 323.127
+  exclusion.robots: 0.108
+  exclusion.robots.policy: 0.1
+  RedisCDXSource: 0.887
+  esindex: 0.01
+  LoadShardBlock: 288.846 (3)
+  PetaboxLoader3.datanode: 316.862 (4)
+  CDXLines.iter: 25.569 (3)
+  load_resource: 399.682
+  PetaboxLoader3.resolve: 244.823
+-->

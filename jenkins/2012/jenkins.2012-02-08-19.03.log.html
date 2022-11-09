@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:03:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:03:41</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:04:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-4"></a><span class="tm">19:04:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer hare_brain rtyler</span>
+<a name="l-5"></a><span class="tm">19:04:07</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-6"></a><span class="tm">19:04:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">recap of actions</span>
+<a name="l-7"></a><span class="tm">19:04:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-01-25-19.00.html</span>
+<a name="l-8"></a><span class="tm">19:05:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jieryn:</span> ndeloof: ping
+<a name="l-9"></a><span class="tm">19:05:24</span><span class="nk"> &lt;kohsuke&gt;</span> In the mean time,
+<a name="l-10"></a><span class="tm">19:05:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">my apologies about the SSL certs. renewal of SSL certificates is in progress, pending approval from rtyler (the domain contact)</span>
+<a name="l-11"></a><span class="tm">19:06:00</span><span class="nk"> &lt;abayer&gt;</span> Cool.
+<a name="l-12"></a><span class="tm">19:06:05</span><span class="nk"> &lt;kohsuke&gt;</span> most likely it won't happen until he lands to SFO
+<a name="l-13"></a><span class="tm">19:06:18</span><span class="nk"> &lt;kohsuke&gt;</span> Poor rtyler appear to have missed his flight back to the US
+<a name="l-14"></a><span class="tm">19:06:33</span><span class="nk"> &lt;kohsuke&gt;</span> JIRA/Wiki are updated so that one is complete
+<a name="l-15"></a><span class="tm">19:06:55</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I don't think jieryn and ndeloof are here, but
+<a name="l-16"></a><span class="tm">19:07:09</span><span class="nk"> &lt;kohsuke&gt;</span> wrt the "FOSS requirement for sponsor logo" thing,
+<a name="l-17"></a><span class="tm">19:07:32</span><span class="nk"> &lt;kohsuke&gt;</span> I know Sacha (our boss) said we'd be very happy to be just listed in the sponsor section like other companies
+<a name="l-18"></a><span class="tm">19:08:04</span><span class="nk"> &lt;kohsuke&gt;</span> So I think it's now up to jieryn to play with it and come back to this meeting
+<a name="l-19"></a><span class="tm">19:08:27</span><span class="nk"> &lt;kohsuke&gt;</span> I think I shall move on to the next topic...
+<a name="l-20"></a><span class="tm">19:08:37</span><span class="nk"> &lt;DarkRift&gt;</span> hoy
+<a name="l-21"></a><span class="tm">19:08:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Pull requests and inbound contributor funnel discussion</span>
+<a name="l-22"></a><span class="tm">19:09:39</span><span class="nk"> &lt;kohsuke&gt;</span> This started in my e-mail
+<a name="l-23"></a><span class="tm">19:09:41</span><span class="nk"> &lt;abayer&gt;</span> That reminds me, I have to set up pull request notification for jenkins-scripts...
+<a name="l-24"></a><span class="tm">19:09:56</span><span class="nk"> &lt;kohsuke&gt;</span> "pull request notification"?
+<a name="l-25"></a><span class="tm">19:10:27</span><span class="nk"> &lt;abayer&gt;</span> Team stuff. I created the repo manually. =)
+<a name="l-26"></a><span class="tm">19:10:54</span><span class="nk"> &lt;kohsuke&gt;</span> but anyway, the basic "issue" is that the change of workflow between SVN and GitHub is narrowing the funnel from pull request contributors to committers
+<a name="l-27"></a><span class="tm">19:11:16</span><span class="nk"> &lt;kohsuke&gt;</span> Pull request is bit like throwing the stuff over the wall
+<a name="l-28"></a><span class="tm">19:11:40</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#info </span><span class="cmdline">I've actually been meaning to go through the org teams and repos and (a) update the teams to reflect the contributors (including people with multiple pull requests) of the teams and tie the teams to repos more accurately and narrowly.</span>
+<a name="l-29"></a><span class="tm">19:11:59</span><span class="nk"> &lt;abayer&gt;</span> …so as to make pull request emails more meaningful/less spammy.
+<a name="l-30"></a><span class="tm">19:12:04</span><span class="nk"> &lt;kohsuke&gt;</span> They expect us to review &amp; merge, but often we don't have enough people/eyes/time to properly look at them
+<a name="l-31"></a><span class="tm">19:13:07</span><span class="nk"> &lt;hare_brain&gt;</span> Is this a better situation than the SVN model, where they could commit without a review?
+<a name="l-32"></a><span class="tm">19:13:47</span><span class="nk"> &lt;abayer&gt;</span> I think the filter is a good thing, but we definitely need to make it more efficient - i.e., get pull request reviews done a lot more quickly, encourage people to become "team" members for plugins, etc.
+<a name="l-33"></a><span class="tm">19:14:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span>  If we don't have bandwidth to review, then giving them the false sense of "now I'm done with my part and it's up to the Jenkins project" and disappoint them feels to me like a worse situation
+<a name="l-34"></a><span class="tm">19:15:30</span><span class="nk"> &lt;hare_brain&gt;</span> Do you think the problem is worse for plugins or the core, or about the same?
+<a name="l-35"></a><span class="tm">19:15:36</span><span class="nk"> &lt;kohsuke&gt;</span> But I don't know. This is all subjective and I don't really have any numbers to back up my feeling that the funnel became narrower
+<a name="l-36"></a><span class="tm">19:15:51</span><span class="nk"> &lt;kohsuke&gt;</span> I'm more worried about plugins
+<a name="l-37"></a><span class="tm">19:16:14</span><span class="nk"> &lt;kohsuke&gt;</span> We should be reviewing changes to the core, and adding committers there involve other barriers like CLA
+<a name="l-38"></a><span class="tm">19:17:08</span><span class="nk"> &lt;vjuranek&gt;</span> IIRC there is some listing all pull requests older then 15 days, what about to extend it to send emails to the users, that the pull requests is pending for more then 15 days and they should consider to ask for commit access and commit it themselfs?
+<a name="l-39"></a><span class="tm">19:17:17</span><span class="nk"> &lt;kohsuke&gt;</span> So my suggestion was to come up with some bot that automatically comment on old open unattended pull requests for plugins and write something like "hey, sorry about the delay. Maybe we don't have any committers on this plugin, and it'd be great if you'd be willing to become committers"
+<a name="l-40"></a><span class="tm">19:17:21</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Pending+Pull+Requests</span>
+<a name="l-41"></a><span class="tm">19:17:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> sounds like the same idea (with different implementations, granted).
+<a name="l-42"></a><span class="tm">19:17:52</span><span class="nk"> &lt;vjuranek&gt;</span> yup
+<a name="l-43"></a><span class="tm">19:18:31</span><span class="nk"> &lt;kohsuke&gt;</span> Looking at the history of this page might give us more objective numbers. I think this list has grown considerably
+<a name="l-44"></a><span class="tm">19:19:39</span><span class="nk"> &lt;abayer&gt;</span> Sounds good.
+<a name="l-45"></a><span class="tm">19:19:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the same list in 2011 Sep  https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=58002442</span>
+<a name="l-46"></a><span class="tm">19:19:59 </span><span class="nka">* DarkRift</span> <span class="ac">bbl</span>
+<a name="l-47"></a><span class="tm">19:20:08</span><span class="nk"> &lt;hare_brain&gt;</span> I think the important thing is to increase a sense of ownership.
+<a name="l-48"></a><span class="tm">19:20:29</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, that's a good point
+<a name="l-49"></a><span class="tm">19:20:30</span><span class="nk"> &lt;hare_brain&gt;</span> Throwing things over the wall can potentially lead to unstable releases.
+<a name="l-50"></a><span class="tm">19:21:16</span><span class="nk"> &lt;kohsuke&gt;</span> In that sense maybe we want to somehow start keeping track of "maintainer" more officially?
+<a name="l-51"></a><span class="tm">19:22:06</span><span class="nk"> &lt;kohsuke&gt;</span> That might help us signal "volunteers wanted" more easily?
+<a name="l-52"></a><span class="tm">19:22:39</span><span class="nk"> &lt;hare_brain&gt;</span> Maybe gamify it. The maintainer is automatically updated to be person with the most commits over a period of time.
+<a name="l-53"></a><span class="tm">19:23:12</span><span class="nk"> &lt;hare_brain&gt;</span> If you are the maintainer, and you have a lot of pending pull requests, you lose points.
+<a name="l-54"></a><span class="tm">19:23:25</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm
+<a name="l-55"></a><span class="tm">19:23:45</span><span class="nk"> &lt;hare_brain&gt;</span> Actually
+<a name="l-56"></a><span class="tm">19:23:46</span><span class="nk"> &lt;kohsuke&gt;</span> I was mainly thinking about keeping track of people's intent to maintain it
+<a name="l-57"></a><span class="tm">19:23:50</span><span class="nk"> &lt;kohsuke&gt;</span> but that's interesting
+<a name="l-58"></a><span class="tm">19:23:53</span><span class="nk"> &lt;imod&gt;</span> but that would also mean, people not knowing how to use the SCM (git) get more credit
+<a name="l-59"></a><span class="tm">19:24:23</span><span class="nk"> &lt;imod&gt;</span> ...if every file changed gets its own commit...
+<a name="l-60"></a><span class="tm">19:24:59</span><span class="nk"> &lt;hare_brain&gt;</span> So there are a couple of things going on. We want to increase the rate at which pull requests are reviewed and merged. A bottleneck is if there is a single maintainer, and that person is unavailable, that reduces throughput.
+<a name="l-61"></a><span class="tm">19:25:19</span><span class="nk"> &lt;hare_brain&gt;</span> If there were more people who were "maintainers" we have better merge capacity.
+<a name="l-62"></a><span class="tm">19:25:56</span><span class="nk"> &lt;hare_brain&gt;</span> I think who is a maintainer to be fairly dynamic, so that people can be free to come and go, but the rate of merges can remain high.
+<a name="l-63"></a><span class="tm">19:26:35</span><span class="nk"> &lt;hare_brain&gt;</span> I think kohsuke, what you were getting at is a badge about the project itself. Whether it's a maintained or abandoned project.
+<a name="l-64"></a><span class="tm">19:26:50</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">kohsuke:</span> have you had any chance to look at JENKINS-12647?
+<a name="l-65"></a><span class="tm">19:26:51</span><span class="nk"> &lt;kohsuke&gt;</span> yeah, maybe that's what it is
+<a name="l-66"></a><span class="tm">19:26:52</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-12647:Jetty configuration causes locked files when running tests on Windows, which causes test failures (Open) http://jenkins-ci.org/issue/12647
+<a name="l-67"></a><span class="tm">19:27:03</span><span class="nk"> &lt;hare_brain&gt;</span> That should definitely be highlighted so that people can quickly claim maintenance/ownership of a plugin has is in the abandoned state.
+<a name="l-68"></a><span class="tm">19:27:05</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I know you've been traveling a lot
+<a name="l-69"></a><span class="tm">19:27:51</span><span class="nk"> &lt;kohsuke&gt;</span> Or maybe it's just a matter of producing "your pull requests that the project thinks you should be looking at" list
+<a name="l-70"></a><span class="tm">19:28:28</span><span class="nk"> &lt;hare_brain&gt;</span> Where would I go to see that?
+<a name="l-71"></a><span class="tm">19:28:45</span><span class="nk"> &lt;kohsuke&gt;</span> currently we have only https://github.com/organizations/jenkinsci/dashboard/pulls
+<a name="l-72"></a><span class="tm">19:29:20</span><span class="nk"> &lt;kohsuke&gt;</span> but if it can be somehow combined with your gamification idea and "who committed where recently" idea...
+<a name="l-73"></a><span class="tm">19:29:25</span><span class="nk"> &lt;hare_brain&gt;</span> I almost never go to that page. How do we get people into the habit of doing that?
+<a name="l-74"></a><span class="tm">19:30:29</span><span class="nk"> &lt;kohsuke&gt;</span> Exactly. So I thought if some program generates personalized notifications for your pull requests...
+<a name="l-75"></a><span class="tm">19:31:10</span><span class="nk"> &lt;hare_brain&gt;</span> And make sure it doesn't get lost in the sea of other pull request emails... :)
+<a name="l-76"></a><span class="tm">19:31:28</span><span class="nk"> &lt;kohsuke&gt;</span> At that point we can stop sending pull request e-mails
+<a name="l-77"></a><span class="tm">19:31:35</span><span class="nk"> &lt;kohsuke&gt;</span> ah, but maybe it doesn't let you stop that
+<a name="l-78"></a><span class="tm">19:31:50</span><span class="nk"> &lt;abayer&gt;</span> Yeah, and I'm not sure I'd want to have it turn off anyway.
+<a name="l-79"></a><span class="tm">19:32:03</span><span class="nk"> &lt;hare_brain&gt;</span> I like the idea of not sending a pull request unless the project thinks you are a good candidate to review it.
+<a name="l-80"></a><span class="tm">19:32:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> we'll make sure you get all of them :-)
+<a name="l-81"></a><span class="tm">19:32:20</span><span class="nk"> &lt;abayer&gt;</span> Yeah, that's kind of what I was thinking of with better refinement of team definitions.
+<a name="l-82"></a><span class="tm">19:32:53</span><span class="nk"> &lt;kohsuke&gt;</span> this whole area I think is a good thing to think about, but I'm afraid unless someone wants to spend some real cycles, it'll be hard to get something done.
+<a name="l-83"></a><span class="tm">19:33:22</span><span class="nk"> &lt;hare_brain&gt;</span> The GitHub guys seem to like us. Is this something we can ping them about to see if they have any ideas of how to make the notifications more relevant?
+<a name="l-84"></a><span class="tm">19:33:31</span><span class="nk"> &lt;hare_brain&gt;</span> Maybe they'll have a great idea and just do it.
+<a name="l-85"></a><span class="tm">19:34:23</span><span class="nk"> &lt;hare_brain&gt;</span> At the least, I think having a maintained/abandoned badge for each plugin, based on some criteria can help.
+<a name="l-86"></a><span class="tm">19:34:26</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, we can ask them, although I suspect the way this project runs is somewhat unique
+<a name="l-87"></a><span class="tm">19:34:43</span><span class="nk"> &lt;hare_brain&gt;</span> Then maybe we need to change a little bit to conform. :)
+<a name="l-88"></a><span class="tm">19:35:06</span><span class="nk"> &lt;kohsuke&gt;</span> I can't think of any other orgs with 670 repositories
+<a name="l-89"></a><span class="tm">19:35:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to improve the pending pull request list generator to also post comments on old pull requests</span>
+<a name="l-90"></a><span class="tm">19:36:16</span><span class="nk"> &lt;kohsuke&gt;</span> I think we should move on to the next topic
+<a name="l-91"></a><span class="tm">19:36:27</span><span class="nk"> &lt;orrc&gt;</span> wiki page or mailing list thread for the other ideas, if they're also relevant?
+<a name="l-92"></a><span class="tm">19:36:33</span><span class="nk"> &lt;orrc&gt;</span> (not sure, I joined late)
+<a name="l-93"></a><span class="tm">19:36:51</span><span class="nk"> &lt;hare_brain&gt;</span> I thought that was the only topic today. :)
+<a name="l-94"></a><span class="tm">19:37:11</span><span class="nk"> &lt;kohsuke&gt;</span> I want to quickly update  about JFrog's offer to host our repository
+<a name="l-95"></a><span class="tm">19:37:24</span><span class="nk"> &lt;hare_brain&gt;</span> Before switching to that.
+<a name="l-96"></a><span class="tm">19:37:38</span><span class="nk"> &lt;hare_brain&gt;</span> Is some automation like Gerrit a possibility?
+<a name="l-97"></a><span class="tm">19:37:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> I'm happy to start a thread if that helps
+<a name="l-98"></a><span class="tm">19:37:58</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I'll do that as an encouragement for devs to look at pull requests
+<a name="l-99"></a><span class="tm">19:38:00</span><span class="nk"> &lt;hare_brain&gt;</span> Have it do a merge and test, and if it succeeds, automatically merge it into the turnk?
+<a name="l-100"></a><span class="tm">19:39:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I've got some code here that does that kind of pull request merge validation
+<a name="l-101"></a><span class="tm">19:39:14</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">hare_brain:</span> Erm…dunno if we'd want that anyway.
+<a name="l-102"></a><span class="tm">19:39:29</span><span class="nk"> &lt;abayer&gt;</span> I still think having no human intervention is a bad thing.
+<a name="l-103"></a><span class="tm">19:39:38</span><span class="nk"> &lt;abayer&gt;</span> At least for new contributors.
+<a name="l-104"></a><span class="tm">19:39:42</span><span class="nk"> &lt;hare_brain&gt;</span> We have no human intervention right now in a different way.
+<a name="l-105"></a><span class="tm">19:40:10</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe we can run the test but auto-merge only if no action happens for X days?
+<a name="l-106"></a><span class="tm">19:40:20</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah, that's fine.
+<a name="l-107"></a><span class="tm">19:40:24</span><span class="nk"> &lt;abayer&gt;</span> I know the git plugin gets a lot of pull requests where the code can merge but really shouldn't, since it's just cluttering the code with more config options for edge cases, etc.
+<a name="l-108"></a><span class="tm">19:41:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> doing the automatic validation also helps the reviewer
+<a name="l-109"></a><span class="tm">19:41:25</span><span class="nk"> &lt;abayer&gt;</span> Oh, automatic validation is a very good thing.
+<a name="l-110"></a><span class="tm">19:41:40</span><span class="nk"> &lt;abayer&gt;</span> I like the gerrit approach of requiring code review and automatic validation in combination.
+<a name="l-111"></a><span class="tm">19:42:27</span><span class="nk"> &lt;hare_brain&gt;</span> OK, I'm willing to move on now.
+<a name="l-112"></a><span class="tm">19:43:01</span><span class="nk"> &lt;kohsuke&gt;</span> One more note --- the only thing about this pull request validation merge is that it depends on some proprietary CB plugins
+<a name="l-113"></a><span class="tm">19:43:28</span><span class="nk"> &lt;kohsuke&gt;</span> And that reminds me if we'd be willing to run those (and other) proprietary plugins?
+<a name="l-114"></a><span class="tm">19:43:33</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Mark plugin projects with maintained/abandoned status to set expectation of how long a pull request may be outstanding</span>
+<a name="l-115"></a><span class="tm">19:43:45</span><span class="nk"> &lt;kohsuke&gt;</span> Like template plugin, for example
+<a name="l-116"></a><span class="tm">19:43:55</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> Never had a problem with that personally. =) I'd want rtyler's thoughts, though.
+<a name="l-117"></a><span class="tm">19:43:57</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Track list of who are potential reviewers for a pull request</span>
+<a name="l-118"></a><span class="tm">19:44:03</span><span class="nk"> &lt;kohsuke&gt;</span> ... vastly simplifying our plugin projects?
+<a name="l-119"></a><span class="tm">19:44:06</span><span class="nk"> &lt;hare_brain&gt;</span> (Just recording the ideas we talked about)
+<a name="l-120"></a><span class="tm">19:44:19</span><span class="nk"> &lt;ndeloof&gt;</span> <span class="hi">kohsuke:</span> sorry, late (children ...)
+<a name="l-121"></a><span class="tm">19:44:32</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Use a tool like Gerrit to do automatic validation and merge after pull requests have been outstanding for X days</span>
+<a name="l-122"></a><span class="tm">19:45:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ndeloof:</span> No problem. I hope I correctly summarized your conversation with Sacha
+<a name="l-123"></a><span class="tm">19:45:11</span><span class="nk"> &lt;ndeloof&gt;</span> right
+<a name="l-124"></a><span class="tm">19:45:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Hosted Maven repository</span>
+<a name="l-125"></a><span class="tm">19:45:48</span><span class="nk"> &lt;kohsuke&gt;</span> So there's an offer from JFrog to host the Maven repository on their hosted Artifactory
+<a name="l-126"></a><span class="tm">19:46:36</span><span class="nk"> &lt;kohsuke&gt;</span> It'll be integrated with our LDAP, and all kinds of other measures will be taken to preserve the compatibility, meaning ...
+<a name="l-127"></a><span class="tm">19:46:42</span><span class="nk"> &lt;kohsuke&gt;</span> plugin devs will not have to change anything
+<a name="l-128"></a><span class="tm">19:46:52</span><span class="nk"> &lt;kohsuke&gt;</span> and we get sync to central and so on.
+<a name="l-129"></a><span class="tm">19:47:01</span><span class="nk"> &lt;imod&gt;</span> sounds nice
+<a name="l-130"></a><span class="tm">19:47:19</span><span class="nk"> &lt;hare_brain&gt;</span> How nice of them.
+<a name="l-131"></a><span class="tm">19:47:24</span><span class="nk"> &lt;hare_brain&gt;</span> What do they want in exchange? :)
+<a name="l-132"></a><span class="tm">19:47:25</span><span class="nk"> &lt;kohsuke&gt;</span> I thought it'd be nice to at least do some proof-of-concept with this
+<a name="l-133"></a><span class="tm">19:47:37</span><span class="nk"> &lt;kohsuke&gt;</span> I need to dance and sing for them
+<a name="l-134"></a><span class="tm">19:47:40</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> will port 80 or 443 be available for releases?
+<a name="l-135"></a><span class="tm">19:47:52</span><span class="nk"> &lt;kohsuke&gt;</span> No, just kidding :-) I haven't asked
+<a name="l-136"></a><span class="tm">19:47:54</span><span class="nk"> &lt;abayer&gt;</span> Works for me.
+<a name="l-137"></a><span class="tm">19:48:07</span><span class="nk"> &lt;abayer&gt;</span> And yeah, getting 80/443 would be key.
+<a name="l-138"></a><span class="tm">19:48:09</span><span class="nk"> &lt;kohsuke&gt;</span> But I suspect it'll be logo on the sponsor section, etc, etc.
+<a name="l-139"></a><span class="tm">19:48:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Slide-O-Mix:</span> yeah, I'm sure it is
+<a name="l-140"></a><span class="tm">19:48:37</span><span class="nk"> &lt;hare_brain&gt;</span> Any time we can outsource infrastructure to something more robust, that's a positive.
+<a name="l-141"></a><span class="tm">19:48:46</span><span class="nk"> &lt;kohsuke&gt;</span> exactly my thinking
+<a name="l-142"></a><span class="tm">19:48:53</span><span class="nk"> &lt;monkeysmuggler&gt;</span> Question! Do shell commands timeout? I've got a build setup that runs a particularly long task, and it's making it as Shell Execution Failed or whatever without actually throwing an error.
+<a name="l-143"></a><span class="tm">19:49:01</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> that would be great, I currently can't do releases from work :)
+<a name="l-144"></a><span class="tm">19:49:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">monkeysmuggler:</span> let's hold it until we are done with the meeting
+<a name="l-145"></a><span class="tm">19:49:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">so if anyone is willing to volunteer with PoC, you'd be very welcome</span>
+<a name="l-146"></a><span class="tm">19:50:10</span><span class="nk"> &lt;kohsuke&gt;</span> Otherwise I'll work with them and get back to this meeting when it's demoable
+<a name="l-147"></a><span class="tm">19:50:10</span><span class="nk"> &lt;hare_brain&gt;</span> I nominate rtyler.
+<a name="l-148"></a><span class="tm">19:51:01</span><span class="nk"> &lt;kohsuke&gt;</span> I already talked to him about this idea and he's OK with this, though I don't know if he's willing to volunteer
+<a name="l-149"></a><span class="tm">19:51:07</span><span class="nk"> &lt;kohsuke&gt;</span> I can see him saying "but I don't do Java"
+<a name="l-150"></a><span class="tm">19:51:12</span><span class="nk"> &lt;hare_brain&gt;</span> Hahaha
+<a name="l-151"></a><span class="tm">19:51:13</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> heh
+<a name="l-152"></a><span class="tm">19:51:29</span><span class="nk"> &lt;imod&gt;</span> what would it take to help on this?
+<a name="l-153"></a><span class="tm">19:51:37</span><span class="nk"> &lt;imod&gt;</span> just do some releases?
+<a name="l-154"></a><span class="tm">19:51:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to check if rtyler is willing to spend some time doing hosted artifactory PoC</span>
+<a name="l-155"></a><span class="tm">19:52:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">imod:</span> at this stage realistically it needs to be someone with the infra access
+<a name="l-156"></a><span class="tm">19:52:03</span><span class="nk"> &lt;abayer&gt;</span> I nominate imod. =)
+<a name="l-157"></a><span class="tm">19:52:06</span><span class="nk"> &lt;abayer&gt;</span> Oh, right.
+<a name="l-158"></a><span class="tm">19:52:09</span><span class="nk"> &lt;abayer&gt;</span> Details, details.
+<a name="l-159"></a><span class="tm">19:52:17</span><span class="nk"> &lt;imod&gt;</span> :)
+<a name="l-160"></a><span class="tm">19:52:30</span><span class="nk"> &lt;kohsuke&gt;</span> later we can solicit some plugin devs to help trying it out
+<a name="l-161"></a><span class="tm">19:52:56</span><span class="nk"> &lt;ndeloof&gt;</span> I also can help
+<a name="l-162"></a><span class="tm">19:53:09 </span><span class="nka">* kohsuke</span> <span class="ac">looks at abayer because central sync is his pet-peeve</span>
+<a name="l-163"></a><span class="tm">19:53:37</span><span class="nk"> &lt;kohsuke&gt;</span> all right, next topic?
+<a name="l-164"></a><span class="tm">19:53:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time (but really, this is just a formality)</span>
+<a name="l-165"></a><span class="tm">19:54:17</span><span class="nk"> &lt;hare_brain&gt;</span> 2/22?
+<a name="l-166"></a><span class="tm">19:54:20</span><span class="nk"> &lt;kohsuke&gt;</span> ... because our convention puts it to 2 weeks from now, same time
+<a name="l-167"></a><span class="tm">19:54:32</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-168"></a><span class="tm">19:54:44</span><span class="nk"> &lt;ndeloof&gt;</span> +1
+<a name="l-169"></a><span class="tm">19:54:52</span><span class="nk"> &lt;kohsuke&gt;</span> I won't be able to attend, because I'll be in Tokyo.
+<a name="l-170"></a><span class="tm">19:55:04</span><span class="nk"> &lt;kohsuke&gt;</span> but +1 for 2/22
+<a name="l-171"></a><span class="tm">19:55:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting is 2/22, the same time</span>
+<a name="l-172"></a><span class="tm">19:55:25</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-173"></a><span class="tm">19:55:30</span><span class="nk"> &lt;abayer&gt;</span> Okiedokie.
+<a name="l-174"></a><span class="tm">19:55:42</span><span class="nk"> &lt;kohsuke&gt;</span> Is that "Okiedokie" for Artifactory stuff or for 2/22?
+<a name="l-175"></a><span class="tm">19:55:56</span><span class="nk"> &lt;abayer&gt;</span> 2/22. And I'm in favor of the Artifactory move.
+<a name="l-176"></a><span class="tm">19:56:16</span><span class="nk"> &lt;kohsuke&gt;</span> I'll CC imod and abayer to the e-mail
+<a name="l-177"></a><span class="tm">19:56:28</span><span class="nk"> &lt;kohsuke&gt;</span> ... so that both of them are in the loop at least
+<a name="l-178"></a><span class="tm">19:56:34</span><span class="nk"> &lt;hare_brain&gt;</span> kohsuke when do you leave for Tokyo?
+<a name="l-179"></a><span class="tm">19:56:47</span><span class="nk"> &lt;kohsuke&gt;</span> 2/14
+<a name="l-180"></a><span class="tm">19:57:04</span><span class="nk"> &lt;hare_brain&gt;</span> You took two action items. Will you do anything with those before you leave?
+<a name="l-181"></a><span class="tm">19:57:32</span><span class="nk"> &lt;kohsuke&gt;</span> I'll ping rtyler. The other one I suspect I won't be able to
+<a name="l-182"></a><span class="tm">19:58:13</span><span class="nk"> &lt;hare_brain&gt;</span> And carry over the action for ndeloof and jieryn about the CloudBees FOSS thing?
+<a name="l-183"></a><span class="tm">19:58:28</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-184"></a><span class="tm">19:58:35</span><span class="nk"> &lt;hare_brain&gt;</span> Oh, jieryn was the cafepress discounts
+<a name="l-185"></a><span class="tm">19:58:49</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#action </span><span class="cmdline">jieryn to follow ask cafepress if they discount for non-profits</span>
+<a name="l-186"></a><span class="tm">19:58:52</span><span class="nk"> &lt;kohsuke&gt;</span> he's also the main guy behind trying out hosted Jenkins
+<a name="l-187"></a><span class="tm">19:59:06</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#action </span><span class="cmdline">ndeloof jieryn to confirm cloudbees foss requirements for sponsor logo</span>
+<a name="l-188"></a><span class="tm">19:59:32</span><span class="nk"> &lt;hare_brain&gt;</span> OK. We done?
+<a name="l-189"></a><span class="tm">19:59:37</span><span class="nk"> &lt;kohsuke&gt;</span> Shall I close the meeting?
+<a name="l-190"></a><span class="tm">19:59:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

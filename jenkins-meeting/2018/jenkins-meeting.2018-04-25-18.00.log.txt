@@ -1,0 +1,148 @@
+18:00:03 <rtyler> #startmeeting
+18:00:03 <robobutler> Let the Jenkins meeting commence!
+18:00:13 <rtyler> #chair kohsuke danielbe_
+18:00:13 <robobutler> Current chairs: danielbe_ kohsuke rtyler
+18:00:35 <rtyler> #topic Last meeting actions
+18:00:50 <rtyler> the last meeting log: http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-04-11-18.00.html
+18:01:05 <rtyler> fortunately everything was on my plate /o\
+18:01:26 <rtyler> oleg-nenashev is now set up as a "manager" on the YouTube Brand Account so he can run GSoC recorded sessions
+18:02:00 <rtyler> the first office hours oleg-nenashev ran today in fact! https://www.youtube.com/watch?v=kg1-Zhsor-Q
+18:02:30 <rtyler> the other item I had was updating the approved trademark usage page, which has been done: https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage
+18:03:06 <rtyler> the final item I had was to discuss some 2017 Jenkins project finances with kohsuke, which was a request from zobel, which hasn't yet been done
+18:03:12 <rtyler> turns out kohsuke was on walkabout longer than I had anticipated :)
+18:03:27 <rtyler> any questions on the last meeting's actions before we continue onward in the agenda: https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+18:03:39 <danielbe_> rtyler re the finances, does this mean anything for reimbursements from 2017?
+18:04:04 <rtyler> no, it's just us making sure that the books that SPI has are in line with what we expect
+18:04:14 <rtyler> are there reimbursements you haven't seen go through from 2017 yet?
+18:04:35 <danielbe_> no, but I did it in mid 2017, since then there's been a few I haven't filed yet
+18:04:45 <danielbe_> if I can do those whenever then that's fine
+18:04:55 <danielbe_> if I should do those now I'd like to know
+18:05:08 <rtyler> you should definitely file reimbursement formws
+18:05:54 <danielbe_> I will, but I wonder whether it needs to be done _now_ for 2017
+18:05:57 <rtyler> now that I kind of see behind the scenes in SPI more, I'm trying to make sure that kohsuke isn't a SPoF for many of our interactions as far as reimbursements and things like that go
+18:06:21 <rtyler> danielbe_: eeehhhh, that I don't know about, I'm pretty sure zobel and co. have closed the books for 2017, or are really trying to
+18:06:31 <danielbe_> huh
+18:06:35 <danielbe_> okay, will do that then
+18:06:37 <rtyler> it's april dude
+18:06:37 <rtyler> heh
+18:06:55 <danielbe_> Us Germans get a full year for their taxes :P
+18:06:57 <rtyler> zobel: if you're around, any additional information on this topic would be helpful
+18:07:41 <danielbe_> didn't want this to hold up the meeting, I think we should move on?
+18:07:44 <rtyler> I'm going to guess not for today, danielbe_ I'll discuss with the folks in #spi on OFTC
+18:08:00 <rtyler> alright, moving on
+18:08:06 <rtyler> #topic LTS status check
+18:08:29 <rtyler> off to ogondza, jglick, and oleg-nenashev for the usual LTS party? :)
+18:08:45 <ogondza> while the tests are still running, it seems reasonably good to promise you RC out tomorrow
+18:08:45 <jglick> I have no special info about LTS.
+18:08:47 <ogondza> https://ci.jenkins.io/job/Core/job/jenkins/job/stable-2.107/15/console
+18:09:19 <ogondza> now the full suite including docker based tests should be run in upstream!
+18:09:19 <danielbe_> rtyler the contentious meeting is in two weeks when we select the next baseline :P
+18:09:30 <WolfpackFan> hey guys i'm here for the meeting.  I'd like to suggest changing the jenkins logo to something less offensive.  Thanks!
+18:09:40 <jglick> not as contentious as for 2.107.x I hope
+18:10:07 <rtyler> WolfpackFan: we have an agenda https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda if you have a topic, and we have time at the end, we'll get to it
+18:10:21 <rtyler> ogondza: anything you need from anybody else to drive the LTS RC tomorrow?
+18:10:30 <ogondza> so unless there are objections I would like to have an action recorded for myself please
+18:10:40 <ogondza> rtyler, nope
+18:10:52 <rtyler> #action ogondza to cut the next LTS RC this week
+18:11:08 <ogondza> rtyler, I have implemented your suggestion in the build i linked, FTR
+18:11:27 <rtyler> I have no idea what I suggested
+18:11:27 <rtyler> heh
+18:11:36 <ogondza> I guess it was my idea, then
+18:11:47 <rtyler> if it was a good idea, then probably wasn't me
+18:11:54 <ogondza> heh
+18:11:57 <ogondza> thanks anyway
+18:12:02 <ogondza> we can move on i think
+18:12:02 <rtyler> alright, let's continue on
+18:12:11 <rtyler> #topic JEP-200 status update
+18:12:15 <rtyler> jglick: can you lead this topic?
+18:12:32 <jglick> I guess. Was actually added by oleg-nenashev and there is perhaps not much to say.
+18:12:41 <jglick> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/AUdrTLmezgU
+18:12:48 <jglick> pretty much says it all
+18:12:50 <rtyler> haha
+18:12:53 <rtyler> ok
+18:13:10 <jglick> I think he wanted to reserve a slot in case anyone wants to discuss this live.
+18:13:29 <rtyler> #info according to oleg-nenashev, May 1st is when the JEP-200 related proactive maintenance period ends
+18:13:46 <jglick> There is already a public retrospective doc, which would be the place for anyone to contribute feedback.
+18:13:50 <rtyler> #info JEP-200 was "Switch Remoting/XStream blacklist to a whitelist"
+18:14:13 <jglick> But in case there is anything which you think needs to be discussed specifically by governance people…
+18:14:22 <rtyler> #info the retrospective document for JEP-200 can be found here https://docs.google.com/document/d/1KCCIxWh-c44GJbW_AwKooOd7wD4vthWp_KC0r2OJQl0/edit
+18:14:50 <jglick> There was of course the general issue that lots of plugins are barely maintained, if at all, which makes it very difficult to do behavioral changes upstream.
+18:14:59 <ogondza> #info both mentioned fixes ware added to 2.107.3 LTS
+18:15:06 <rtyler> since I don't believe we have oleg-nenashev with us today, I would recommend following up on the dev list thread with questions you all might have: https://groups.google.com/forum/#!topic/jenkinsci-dev/AUdrTLmezgU
+18:15:15 <rtyler> ogondza: \o/
+18:15:29 <martinda> oleg-nenashev is not here now, that's why I am here
+18:15:46 <jglick> martinda: great, anything you would like to add?
+18:15:49 <rtyler> any JEP-200 related questions or areas of concern we should discuss? otherwise we can move on
+18:15:58 <rtyler> jglick: I think he's here for our next item on the agenda :)
+18:16:04 <jglick> ah
+18:16:11 <martinda> nothing on this topic, I am here for the gsoc update
+18:16:16 <jglick> Yes I think we can move on then.
+18:16:50 * rtyler taps his foot a few times
+18:17:10 <rtyler> #topic GSoC status update
+18:17:27 <rtyler> martinda: thanks for stepping up to discuss this today :)
+18:17:51 <rtyler> the floor is yours
+18:17:55 <martinda> sure. there is not much for me to say since oleg-nenashev has already provided a written update https://groups.google.com/forum/#!topic/jenkinsci-dev/92wY9hBW1Vo
+18:18:28 <martinda> should I use the pound-info for this link?
+18:18:50 <rtyler> links are automatically added to the meeting minutes as info items
+18:19:04 <martinda> we asked for 4 slots from GSoC, and we got all 4
+18:19:13 <rtyler> how many mentors do we have signed up for those four projects?
+18:19:48 * martinda is counting
+18:20:10 <rtyler> if you run out of fingers and toes, I have a few extra you can use
+18:20:11 <martinda> we have at least two per project, some projects have 3
+18:20:20 <rtyler> ah that's wonderful
+18:20:30 <martinda> yes, it is really nice
+18:20:48 <rtyler> martinda: are there any calls to action we should be aware of for non-mentors to get involved or help the students in any way?
+18:20:50 <martinda> this year we have lead mentors and co-mentors
+18:21:18 <martinda> we will need core contributors in specific areas to provide guidance
+18:21:53 <martinda> during the community bonding phase, so that projects get started in the right diretion
+18:22:21 <rtyler> by core contributor do you mean to jenkinsci/jenkins or just frequent fliers? :)
+18:22:26 <martinda> we also collaborate with the librecores org for the EDA plugin project
+18:23:04 <martinda> core contributors or experts in specific aspects, either highly opinionated or those knowledgeable with the code
+18:23:28 <rtyler> understood
+18:23:32 <martinda> I know jglick contributed several ideas to the simple pull-request plugin for example
+18:24:01 <martinda> the next three weeks are critical to discuss these ideas and determine the road the project will take
+18:24:32 <rtyler> gotcha
+18:24:41 <rtyler> after the next three weeks what happens?
+18:25:12 <martinda> The mentors are Oleg, Martin, Willy, Jeff, Supun, Kristin and possibly another Jeff, and one member for librecores Stefan
+18:25:38 <martinda> rtyler: one more question
+18:26:05 <martinda> A student is asking if we need to create a github repository before creating a gitter room for the project?
+18:26:28 <rtyler> it is ideal to do so, then the mapping is automatic by gitter
+18:26:37 <rtyler> that's something I can help with after this meeting in #jenkins-infra
+18:26:43 <martinda> that would be under github.com/jenkinsci/<gsoc project name>
+18:26:59 * rtyler nods
+18:27:18 <martinda> the meeting minutes for the first gsoc office hours are https://docs.google.com/document/d/18QKXxYrRm1XPmSHMNqCjIemTcm2hxF4NbZw7-EdcGrc/edit#
+18:27:22 <rtyler> any questions for martinda before we move on?
+18:27:55 <martinda> gsoc coding starts on May 14. Some students may write code before that, but it is not required until then.
+18:28:22 <martinda> rtyler: we will need someone to provide a plugin writing session on the hangout
+18:28:51 <martinda> plugin writing tutorial session that is, date tbd but in the next 3 weeks most likely.
+18:29:03 <rtyler> I suggest reaching out to markewaite or schristou who have given such sessions before, outside of this meeting
+18:29:11 <martinda> thanks
+18:29:24 <rtyler> we also have recordings on youtube.com/c/jenkinscicd
+18:30:13 <rtyler> shall we continue on?
+18:30:22 <martinda> yes
+18:30:48 <rtyler> #topic Unplanned agenda items
+18:31:23 <rtyler> WolfpackFan: you had a concern you wanted to raise, while I don't think this is the right place to /start/ a discussion, I wanted to take the opportunity to point you in the right direction for pursuing this topic in the future if you're passionate about it
+18:32:12 <WolfpackFan> rtyler okay sounds good.. yes just want to reconsider the logo since it's a bit offensive, perhaps we could take design discussion on that
+18:32:46 <martinda> WolfpackFan: which logo is that? (just curious)
+18:32:48 <WolfpackFan> or i can raise the concern where needed
+18:33:01 <rtyler> while I don't understand how it's offensive, the design was chosen by the project from a selection of logos submitted in 2011
+18:33:03 <WolfpackFan> the one here https://jenkins.io/
+18:33:30 <WolfpackFan> it could be construed as offensive to balding men
+18:33:47 <rtyler> there are a number of balding men in the project who might disagree :)
+18:33:54 <WolfpackFan> this is 2018 so i think we want to make sure we aren't offending folks
+18:34:06 <rtyler> to keep this productive, if you're serious, please state your case and discuss this at jenkinsci-dev@googlegroups.com
+18:34:13 <WolfpackFan> lol i'm just messing with yall, it's fine.  Enjoyed the meeting, yall have a good one
+18:34:32 <danielbe_> well
+18:34:39 <rtyler> WolfpackFan: if you want to poll bald folks, ask danielbe_ abayer and aheritier :P
+18:34:46 <danielbe_> at least we've demonstrated that this meeting _is_ open to everyone :)
+18:34:54 <WolfpackFan> indeed
+18:35:01 <rtyler> as time goes on, I fear more and more of us are starting to look like Mr. Jenkins :-!
+18:35:07 <rtyler> let's move forward :)
+18:35:12 <rtyler> #topic Next meeting
+18:35:27 <rtyler> I believe May 9th is the next slot on the calendar we have
+18:35:49 <rtyler> I don't see any big major holidays or reasons why we cannot hold a meeting then
+18:36:21 <danielbe_> isn't europe off basically for all of May? :P
+18:36:24 <rtyler> #info next meeting May 9th at 18:00 UTC
+18:36:34 <rtyler> when isn't europe on holiday or strike
+18:36:42 <rtyler> anyways, thanks everybody for participating :)
+18:36:45 <rtyler> #endmeeting

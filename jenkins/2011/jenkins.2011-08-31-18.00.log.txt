@@ -1,0 +1,436 @@
+18:00:30 <rtyler> #startmeeting Jenkins Project Meeting (2011.08.31)
+18:00:30 <robobutler> Let the Jenkins meeting commence!
+18:00:31 <kohsuke> and I'm back
+18:00:33 <rtyler> #chair kohsuke
+18:00:33 <robobutler> Current chairs: kohsuke rtyler
+18:00:36 <rtyler> #chair abayer
+18:00:36 <robobutler> Current chairs: abayer kohsuke rtyler
+18:00:37 <hare_brain> Woohoo
+18:00:43 <hare_brain> On time start!
+18:00:43 <rtyler> #chair hare_brain
+18:00:43 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:00:51 <rtyler> #info For everybody's reference, agenda: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-ForAug31stMeeting%28rescheduledfromAugust24th%29
+18:01:13 <kohsuke> rtyler is a lean mean meeting machine today
+18:01:25 <rtyler> we have a lot to get through
+18:01:29 <rtyler> #topic Plugin Deprecations
+18:01:53 <rtyler> #info Proposed plugin deprecation discussion https://wiki.jenkins-ci.org/display/JENKINS/Proposed+Plugin+Deprecation
+18:02:06 <rtyler> abayer: I believe you and maybe jieryn were pushing a lot of this?
+18:02:15 <abayer> Yeah, I put up a proposal linked from there.
+18:02:16 * rtyler relinquishes the microphone
+18:02:28 <abayer> But I'm also a bit distracted - hardware problems, just got online, blah.
+18:02:40 <rtyler> should we come back around to it?
+18:02:47 <abayer> 'k
+18:02:49 <rtyler> alright
+18:02:51 <jieryn> the jenkins-plugin-info confluence macro supports a deprecation system, but there are no hooks in update-center
+18:02:52 <rtyler> we'll come back around
+18:02:59 <rtyler> #topic The Jenkins User Conference
+18:03:00 <jieryn> ok
+18:03:12 <rtyler> not sure who added this agenda item, speak up!
+18:03:25 <kohsuke> I think it's just a quick status update
+18:03:26 <rtyler> #info Details pertaining to the JUC can be found here: http://jenkins-ci.org/content/jenkins-user-conference
+18:03:33 <rtyler> kohsuke: want to drive?
+18:03:36 <kohsuke> #info we are starting to see submissions coming in
+18:03:39 <rtyler> (this topic anyways :))
+18:03:39 <norro> guys, just to be sure ... the call for papers for JUC ends tomorrow, right? So tomorrow I can still send in proposals, right?
+18:03:50 <rtyler> norro: from my understanding, yes
+18:03:54 <norro> good :)
+18:03:55 <rtyler> I'm submitting mine tonight :D
+18:04:02 <kohsuke> norro: Yes,  but please make sure you get yours in!
+18:04:08 <norro> I will
+18:04:18 <kohsuke> #info: I think it's at around 140 registrations now
+18:04:29 <rtyler> #info We have at this point over 150 people registered
+18:04:51 <rtyler> #info Current signed up sponsors include: CloudBees, RedHat, Liferay, New Relic
+18:04:53 <kohsuke> I continue to encourage folks to send in any suggestions, and appreciate any help in driving the attendance.
+18:05:00 <kohsuke> and Sauce Lab, I believe.
+18:05:16 <rtyler> #info and Sauce Labs
+18:05:17 <rtyler> whoops
+18:05:47 <kohsuke> #info And anyone who's willing to sponsor or anyone who knows someone who might would be greatly appreciated, too
+18:06:09 <kohsuke> San Francisco is apparently very expensive
+18:06:19 <rtyler> kohsuke: have you given more thought to a dev hackathon towards the tail end of JavaOne?
+18:06:32 <kohsuke> I'm always game for it.
+18:06:42 <kohsuke> As long as there are others willing to come and we have a venue
+18:06:59 <rtyler> #action rtyler to prod kohsuke and the dev list to guage interest for a JavaOne Jenkins Hackathon
+18:07:01 <kohsuke> Wonder if abayer and Cloudera's new San Francisco would be good?
+18:07:04 <kohsuke> +1
+18:07:16 <abayer> kohsuke: depends on the day, but I can probably host something, yeah.
+18:07:26 <rtyler> other status updates for JUC?
+18:07:30 <kohsuke> not from me
+18:07:48 <rtyler> #topic Jenkins mailing list spam, what to do about it
+18:08:01 <jieryn> we consistently get a few mails a month with spam
+18:08:20 <jieryn> google has a nice way to do audits of messages for people who have not yet posted (and been approved as !spam)
+18:08:21 <kohsuke> My impression is that it was worth a few weeks back and then the problem appeared to have gone way
+18:08:24 <abayer> I try to mark 'em as spam when I see 'em.
+18:08:25 <rtyler> #info Google Groups document on cutting down spam: http://groups.google.com/support/bin/answer.py?hl=en&answer=186997
+18:08:50 <abayer> I personally think that with our current rate of spam, filtering after the fact is a lot easier than trying to filter every new poster beforehand.
+18:08:53 <abayer> That's a lot of cycles.
+18:08:55 <kohsuke> Is it still worth doing something more manual, like the proposed "approve the first time post"?
+18:09:09 <kohsuke> abayer: +1 --- that's my feeling, too
+18:09:37 <rtyler> is there a threshhold we can decide on, that if spam per week/day gets above this, we could start work on the approved poster proposal?
+18:09:37 <kohsuke> OTOH, to be fair, we had a couple of volunteers willing to help screen the new posts
+18:09:41 <jieryn> ok, can we consider it again if we get another batch?
+18:09:59 <hare_brain> My experience with processes like "approve the first time post" is that you'll lose legitimate first time posters in the noise of spammers.
+18:10:13 <jieryn> i'm not all that concerned with PEN1S ENLARG3MENT messages in the historical database, i just don't want to have to see spam in my inbox
+18:10:19 <hare_brain> They tend to create disposable email addresses.
+18:10:49 <rtyler> jieryn: I'll stop sending those to you then
+18:10:53 <rtyler> I thought you'd appreciate the help xD
+18:11:00 <jieryn> we've done this on a couple of the codehaus lists which are off their main ML structure, it works ok .. let's consider it again if we get another batch?
+18:11:06 * jieryn winks at rtyler
+18:11:09 <rtyler> #agreed
+18:11:22 <rtyler> #action jieryn to speak up again for spam list action if the problem gets out of hand
+18:11:40 <rtyler> #topic Pull requests that lie in wait for 30+ days
+18:11:53 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Pending+Pull+Requests
+18:11:54 <kohsuke> #info I did a partial sweep over the last weekend
+18:12:05 <kohsuke> That drove the number down a bit, at least ones in red
+18:12:23 <rtyler> for clarification
+18:12:33 <rtyler> these are waiting changes, unreleased changes, yes?
+18:12:42 <kohsuke> That's separate
+18:12:44 <jieryn> yep, i just think we have this awesome tool to raise awareness on the stuff done by one-off contributors, and a lot of them sit for quite a while
+18:12:58 <rtyler> on the one hand, I want to annoy plugin maintainers
+18:13:01 <rtyler> on the other hand, I don't :P
+18:13:37 <kohsuke> This could be a good hackathon slot
+18:13:38 <jieryn> it kind of snares up another topic, if a plugin maintainer hasn't done anything in XX days (pending pull requests or not..) what's the feeling for commiters, not directly on that plugin, doing the changes?
+18:13:50 <abayer> jieryn's got the real question, I think.
+18:14:07 <kohsuke> jieryn: we've been trying to encourage that
+18:14:16 <mns> I've got a Captivate, that I had CM7 on.  I just got it back to original stock samsung 2.1.  I've got ROM Manager installed, and have run "Flash ClockworkMod Recovery"  but when I reboot into recovery it always comes up with the samsung recovery menu.  am I missing something ?
+18:14:30 <rtyler> mns: I'm pretty sure you intended that for another channel :)
+18:14:38 <kutzi> lol
+18:14:52 <kohsuke> ... even including the submitter of the pull request to take over the maintenance
+18:14:57 <jieryn> OK! so it probably won't go amiss if someone steps in on a stale plugin
+18:15:07 <rtyler> IMHO if a committer can test the changes, it's okay. I don't think folks who've never touched the synergy plugin (for example), should really commit anything other than minor fixes perhaps
+18:15:29 <P4G0> hey guys. does someone use jenkins with .net?
+18:15:51 <kohsuke> rtyler: yes, some  are hard, but your gut can normally tell.
+18:15:51 <rtyler> P4G0: yes, we're in the middle of a project meeting right now, check out wiki.jenkins-ci.org for some plugins, or ask again in about 45 minutes
+18:15:52 <hare_brain> Ideally, pull requests should come with tests.
+18:16:02 <kutzi> +1
+18:16:26 <kohsuke> I've been long meaning to write bots that encourage those
+18:16:33 <jieryn> hotness
+18:16:42 <rtyler> any action items we can tease out for this topic?
+18:16:44 <kohsuke> like suggesting "hey, you don't have a test there --- would you like to write one?" kind of thing
+18:16:57 <rtyler> Klippy? :D
+18:16:58 <hare_brain> I'm having Clippy flashbacks.
+18:17:08 <kohsuke> Hadoop does that in Apache JIRA
+18:17:14 <P4G0> ok, i'll come again later. kohsuke i got an jenkins svn+sasl error (already since hudson). so don't leave :P
+18:17:17 <jieryn> so do we think it is not an assholic thing to do to close a pull request for something not under our direct coding if it doesn't have tests?
+18:17:34 <jieryn> given an otherwise, i hate to say it, abandoned plugin?
+18:17:47 <hare_brain> I have no problems being an asshole. ;)
+18:17:54 <rtyler> P4G0: we don't let kohsuke leave, ever. stay tuned
+18:17:56 <kutzi> not close it - but don't merge it until it has a test
+18:18:01 <jieryn> start closing some pull requests as no-tests-included then! :)
+18:18:01 <kohsuke> by "closing a pull request" you mean rejecting it?
+18:18:04 <rtyler> +1 kutzi
+18:18:15 <jieryn> right, it won't appear as an active pull request any longer, and i presume off that awesome auto-generated thing
+18:18:21 <kutzi> if requester doesn't add a test in time then close it
+18:18:23 <jieryn> BUT! github actually keeps that code around ,and it can be re-opened
+18:19:00 <kohsuke> When committers can add changes without writing a test, why would we hold contributors to a higher bar?
+18:19:20 <mns> rtyler: duh !! thought I was in the android channel.  sorry.
+18:19:30 <jieryn> hehehe
+18:19:33 <rtyler> kohsuke: IMO if a committer can't get a feel for the quality of a commit, *and* it doesn't have tests
+18:19:35 <kutzi> kohsuke
+18:19:37 <hare_brain> IMO, committers should be held to the same standard.
+18:19:43 <kutzi> oops
+18:20:14 <jieryn> ok, but me, as a committer to a lot of plugins but not the one with a 30-day+ pull request pending, ... do i close it w/out a test? or do i apply it? it just looks bad to have 72-day pull requests, etc
+18:20:23 <rtyler> i.e. if I fix some stupid little issue that's a clear bug in an "abandoned plugin", then it's kind of a dick move to say "come back with some tests sonny boy"
+18:20:41 <kohsuke> rtyler: right, in which case folks should be encouraged to go look at pull requests to other repos and see if they feel comfortable merging it, but it'd make it hard for you to go someone else's repo and reject their pull requests, no?
+18:20:45 <jieryn> it's gray when you're a committer but not the lead on that plugin
+18:20:50 <kohsuke> ... because other people might feel OK committing.
+18:21:40 * rtyler puts on his meeting leader hat
+18:22:02 <rtyler> actions? votes?
+18:22:13 <kohsuke> Shall we leave it at "those who can do a sweep on pull requests, please do"?
+18:22:21 <jieryn> fine by me
+18:22:25 <kohsuke> and merge what you can merge?
+18:22:35 <rtyler> #info For now, "those who can do a sweep on pull requests, please do"
+18:22:49 <kohsuke> next agenda, please
+18:22:50 <rtyler> #info New contributors should be encouraged to include tests with their pull requests
+18:23:04 <rtyler> #topic LTS 1.409.2, test status, ready to release?
+18:23:22 <rtyler> vjuranek: you're up!
+18:23:23 <vjuranek> well, ont tested properly yet
+18:23:52 <vjuranek> but I guess by Monday or Tuesday it hopefully be (I was bussy last few days:-()
+18:23:55 <kohsuke> My understanding is that so far no big issues has been discovered
+18:23:58 <rtyler> #info Test progress: https://wiki.jenkins-ci.org/display/JENKINS/LTS+1.409.x+RC+Testing
+18:24:22 <vjuranek> yup, so far any issue (besides certificate one)
+18:24:35 <rtyler> #info I want to publicly recognize and thank vjuranek for the hard work that's been put in from his end on testing the LTS line
+18:24:40 <vjuranek> whicih should be fixed when release will be done
+18:24:46 <kohsuke> rtyler: +1
+18:24:56 <kutzi> rtyler +1
+18:25:01 <vjuranek> rtyler: :-))
+18:25:01 <hare_brain> vjuranek How did I not see this test matrix before?
+18:25:07 <hare_brain> That is amazing!!
+18:25:24 <hare_brain> rtyler +100 :)
+18:25:24 <rtyler> hare_brain: Tools > Watch :)
+18:25:56 <kohsuke> #idea I think @jenkinsci should tweet about this page and solicit more volunteers
+18:25:57 <jieryn> why is rtyler getting all the votes when vjuranek did the works? :)
+18:26:04 <rtyler> heh
+18:26:06 <kohsuke> :-)
+18:26:14 <hare_brain> Hahah
+18:26:26 <rtyler> #action rtyler to tweet out the LTS test matrix page to solicit help from the broader community
+18:26:28 <kohsuke> Otherwise I think we should release in a week or two.
+18:26:32 <kutzi> I've been merging the LTS into my own LTS fork and been running it since Monday. vjuranek you think it's okay if I add my findings to that page, too?
+18:26:35 <rtyler> i'll take care of that post meeting, perhaps with a blog post as well
+18:26:50 <jieryn> nice
+18:26:54 <vjuranek> :-) ok, to make it short, I was hoping that testing will be over by now, but it isn't so I propose I'll send an email to dev list once I'm done
+18:27:08 <kohsuke> Sounds like a plan
+18:27:11 <vjuranek> kutzi: definitely!
+18:27:25 <rtyler> #action vjuranek to follow up on the dev list after he's finished more testing
+18:27:37 <kohsuke> #info I'd also encourage people to start thinking about the base version for the next LTS
+18:27:41 <stigkj> Have it been discussed automating these LTS tests?
+18:27:52 <rtyler> #action kutzi to update the LTS 1.409.x testing page with his own findings as well
+18:27:55 <vjuranek> kohsuke: +1
+18:28:15 <rtyler> stigkj: some of them would be tricky to automate (install verification, for example)
+18:28:19 <hare_brain> kohsuke, we're on the cusp of moving forward from 1.409.1, as part of our next internal release.
+18:28:34 <hare_brain> We were targetting moving forward to 1.424 (need to double check my notes)
+18:28:37 <rtyler> stigkj: some of this we can do Selenium testing for though
+18:28:49 <hare_brain> But I'll come back with our early opinion on that release.
+18:28:51 <vjuranek> rtyler: install is IMHO quite easy if you have proper tools... rest can be difficult
+18:28:52 <rtyler> #info Y! targetting 1.424 as the base of their next internal Jenkins stable release
+18:28:55 <hare_brain> Should be in a week or two.
+18:28:57 <stigkj> rtyler: as many as possible would be nice, then :-)
+18:29:02 <rtyler> stigkj: agreed
+18:29:28 <rtyler> vjuranek: we're going to be doing some Selenium work internally over the next couple weeks, I'll think about what from your matrix could be easily automated with it
+18:29:44 <stigkj> using Vagrant to install into, maybe
+18:29:48 <kohsuke> 1.424 looks good. We need several backporting right away, but I think it would work
+18:29:54 <vjuranek> rtyler: thanks, I'll think about it as well
+18:29:55 <rtyler> #action hare_brain to follow up on the dev list with Y!'s findings on using 1.424 as the next LTS base
+18:30:31 <rtyler> are we ready to move on?
+18:30:32 <kohsuke> Err, don't we want API token support?
+18:30:37 <kohsuke> that's in 1.426
+18:30:39 <vjuranek> I was thinkint about use Beaker for automated installation tests
+18:30:55 <kohsuke> people consuming Jenkins from tools would benefit from it a lot
+18:31:16 <kohsuke> or maybe it's considered too new and too risky?
+18:31:34 <kohsuke> vjuranek: http://fedoraproject.org/wiki/QA/Beaker ?
+18:31:46 <vjuranek> kohsuke: yes
+18:31:58 <kohsuke> #info https://fedorahosted.org/beaker/ apparently is more up to date
+18:32:22 <kutzi> Wonder if it's not too early to decide on the base of the next LTS when the previous LTS isn't out of the door, yet
+18:32:56 <kohsuke> kutzi: Yeah, I don't think we need to reach a conclusion now
+18:33:00 <hare_brain> kutzi I don't think we're trying to make that decision right now.
+18:33:10 <kutzi> okay
+18:33:20 <kohsuke> Just that it'd be good to start thinking about it, since we'll hopefully pick one soon
+18:33:31 <kohsuke> OK, I think we are ready to move to the next agenda.
+18:33:34 <kutzi> that can I +1
+18:33:45 <rtyler> #topic Official commit workflow for core committers
+18:33:56 <hare_brain> Ah, that's mine.
+18:34:18 <hare_brain> I was asking about this the other day and I think jieryn was the one that pointed me at https://wiki.jenkins-ci.org/display/JENKINS/Dev+Good+Practice
+18:34:54 <hare_brain> My reaction was that page felt "squishy", and I wanted to get a sense of how core committers felt on standardizing on a workflow for committing?
+18:35:16 <rtyler> committing to core, yes?
+18:35:19 <hare_brain> Yes.
+18:35:25 <rtyler> just checking :D
+18:35:30 * rtyler steps back from this conversation
+18:35:53 <kohsuke> It depends on the actual rules, I guess
+18:35:54 <hare_brain> Things that can benefit: a standard way to do code reviews if people feel one is necessary before a change is merged.
+18:35:58 <stigkj> vjuranek: Beaker looks nice
+18:36:17 <hare_brain> Hopefully easier to trace where changes came from, and how they evolved.
+18:36:44 <hare_brain> I'm still pretty green with Git, so I don't think I'm the right one to propose what the best workflow should be.
+18:37:55 <hare_brain> Also, I think if we want to encourage more contributions to the core, it's helpful to newcomers to have instructions for how they can work with the code base.
+18:37:57 <stigkj> hare_brain: Using github's pull request would fit quite good, wouldn't it?
+18:38:18 <kohsuke> I think writing down what's recommended is definitely a good thing
+18:38:19 <hare_brain> That's certainly one option.
+18:38:33 <hare_brain> But would Kohsuke really be submitting pull requests? :)
+18:38:49 <stigkj> just when he wanted comments, I guess ;-)
+18:38:51 <kohsuke> like we encourage them to file a ticket, have a test, refer to the ticket in the commit, use pull request, etc.
+18:39:05 <stigkj> kohsuke: +1
+18:39:11 <rg> today one of the github people released their workflow http://scottchacon.com/2011/08/31/github-flow.html
+18:39:23 <kohsuke> It's not obvious to people interested in contributing how they should go about it
+18:39:30 <hare_brain> Yes, exactly.
+18:40:02 <kohsuke> That's something my boss wants to see written down, too.
+18:40:21 <rg> the master branch is always ready to be deployed, devleopers create feature branches, and use pull request to get people to review their changes, if they get a aproval from any developer, and it passes the tests they can merge it to the master, and deploy it
+18:40:27 <abayer> It's a fairly standard thing for OSS projects to have documented, yeah.
+18:40:37 <abayer> Question is just who writes it. =)
+18:40:59 <kohsuke> I'd be happy to.
+18:41:11 <kohsuke> I need to be happy to, I should say.
+18:41:16 <hare_brain> Ha
+18:41:22 <abayer> #action kohsuke to write a draft for core contributor workflow
+18:41:24 <abayer> =)
+18:41:44 <kohsuke> shall we go to the next agenda?
+18:41:46 <rtyler> #info Git's document, for reference: http://git.kernel.org/?p=git/git.git;a=blob;f=Documentation/SubmittingPatches;h=938eccf2a5ac9dd629be1bc6bb53a59723c99083;hb=HEAD
+18:41:51 <orrc> what we need is a pre-tested commit plugin for github pull requests :)
+18:42:00 <kohsuke> yes!
+18:42:06 <rtyler> OMG I'm so moving on
+18:42:07 <abayer> orrc: I have reaosn to believe GitHub are working on exactly that. =)
+18:42:10 <rtyler> before I gerrit-hammer you people
+18:42:12 <rtyler> :D
+18:42:14 * jieryn coughs at ksawicki and rtyler
+18:42:14 <kohsuke> ksawicki: ^^
+18:42:16 <abayer> *nudges ksawicki*
+18:42:18 <abayer> heh
+18:42:24 <rtyler> #topic Featuring the issue tracking page in a more prominent place
+18:42:25 <ksawicki> reading...
+18:42:33 <rtyler> kutzi: you're up
+18:42:36 <ksawicki> yes, i am working on that
+18:42:48 <ksawicki> a plugin to build all pull requests either inter or intra repository
+18:42:51 <kutzi> mom
+18:42:53 <abayer> *swoon*
+18:42:58 <orrc> cool
+18:43:05 <stigkj> ksawicki: me like!
+18:43:06 <kohsuke> #idea should "bug tracker" in http://jenkins-ci.org/ link to that?
+18:43:15 <kutzi> Yes, that was my idea
+18:43:19 <rtyler> #info "that" being: https://wiki.jenkins-ci.org/display/JENKINS/Issue+Tracking
+18:43:28 <kutzi> thanks rtyler
+18:43:44 <rtyler> kohsuke: I think that's a good suggestion, there's no reason to link directly to issues. IMO
+18:43:58 <kohsuke> That's a very easy change, too
+18:44:02 <rtyler> especially since some people are still confused by which login credentials to use for JIRA >_>
+18:44:11 <rtyler> #action rtyler to update the "bug tracker" link on jenkins-ci.org
+18:44:25 <rtyler> shall I move us along then?
+18:44:26 <orrc> yes, the prerequisites (like having the right type of account) should be listed on that wiki page too
+18:44:35 <jieryn> think the first thing on that Issue+Tracking ought to be the real http://issues.jenkins-ci.org tho
+18:44:43 <kohsuke> jieryn: +1
+18:44:49 <imod> there leo a request to make the link to the plugins more promiment
+18:45:13 <imod> *also
+18:45:26 <rtyler> we have a lot of important links TBH
+18:45:38 <rtyler> jenkins-ci is cluttered right now, I've been thinking about ways to clean that up a bit
+18:45:39 <hare_brain> #idea Put a link to the issue tracker in the side bar on Use Jenkins
+18:45:49 <hare_brain> Oh, never mind
+18:45:51 <hare_brain> already there.
+18:46:02 <jieryn> ok, i updated it
+18:46:04 <kohsuke> I guess you are proving that those links aren't very effective
+18:46:15 <hare_brain> No, it's just proving that I can't read.
+18:46:40 <rtyler> #topic Feedback on the request for official definitions of stable, unstable, failure
+18:46:47 <hare_brain> Although the Jenkins / Documents split seems arbitrary.
+18:46:48 <rtyler> #info https://issues.jenkins-ci.org/browse/JENKINS-10763
+18:46:50 <jenkins-admin> JENKINS-10763:Definition of the terms Stable/Unstable/Failed; Successful/Unsuccessful and so on (Open) http://jenkins-ci.org/issue/10763
+18:46:59 <rtyler> kutzi: this one's yours to drive as well :)
+18:47:09 <kutzi> Yes, thanks.
+18:47:20 <kutzi> I've started this as a question on the dev list
+18:47:24 <rtyler> (I figured this one would take a good chunk of time, so I'm pushing things along)
+18:47:43 <kutzi> Not sure if everyone has read it, there's also a link in the issue
+18:48:00 <rtyler> #info related discussion on the dev list: https://groups.google.com/forum/?hl=de#!topic/jenkinsci-dev/2rMdYX3WMwo
+18:48:01 <kutzi> I think it would be highly beneficial to have these terms defined
+18:48:15 <rtyler> #agreed
+18:49:42 <kutzi> any opinions on this?
+18:49:53 <kohsuke> My feeling is that we don't seem to have any significant disagreement about what those states mean,
+18:50:20 <kohsuke> but actually defining them by words is an art of itself
+18:50:28 <rtyler> kohsuke: does cloudbees have any technical writer friends? I'm wondering if we could ask a tech writer to clean up the terms in a good concise manner
+18:50:53 <kohsuke> For example, you define it in terms of artifacts in one of the e-mails, but I have lots of jobs that do not produce any artifacts.
+18:50:53 <kutzi> We don't need to get it 100% right IMO,
+18:51:13 <kohsuke> That's true.
+18:51:21 <kutzi> but we need this as a guideline e.g. for plugin developers how reporters should change the build result
+18:51:39 <rtyler> anecdotally, I've seen first hand the confusion the lack of clarity between a broken build and an unstable build here
+18:51:40 <kohsuke> I'm happy to incorporate any attempt to define them.
+18:51:48 <kutzi> in the end it's up to the users to decide, if the plugins are configurable
+18:51:57 <rtyler> "it's not red, so, it's good!"
+18:52:22 <kutzi> yes, I would really like to get rid of "unstable is successful"
+18:52:46 <rtyler> I think there's some room for clarification in these terms particularly for those of us who don't have BUILDS!
+18:52:47 <kutzi> but I guess that a different battle to fight ;)
+18:52:51 <rtyler> scripts scripts all the time!
+18:52:58 <orrc> actually, I think unstable builds are included in the "failed" RSS feed
+18:53:05 <rtyler> "oh thanks jenkins, my build or this rails project succeeded? -_-"
+18:53:33 <kutzi> but latest successful build also links to the latest unstable, doesn't it?
+18:53:47 <rtyler> kutzi: I think we're going to have to push for clarifications on a case by case basis on the mailing lists
+18:53:47 <kohsuke> kutzi: no, it doesn't
+18:53:57 <rtyler> and I also think it's going to have to be kind of a case-by-case thing too :/
+18:54:41 <kohsuke> shall we move on to the next agenda?
+18:54:55 <kutzi> action items?
+18:55:06 <rtyler> #action everybody should start thinking of how to clear up some of these terms across the widest cross-section of our userbase
+18:55:16 <rtyler> that's all I can think of :/
+18:55:30 <kohsuke> kutzi: are you writing them in a Wiki page or somewhere?
+18:55:49 <rtyler> #info Terms somewhat enumerated here: https://wiki.jenkins-ci.org/display/JENKINS/Terminology
+18:55:52 <kohsuke> We can link from the Jenkins UI "legend" page to it, for example
+18:55:56 <kutzi> #action kutzi to write down his proposal in the wiki
+18:56:08 <rtyler> #topic Donation drive!
+18:56:16 <rtyler> finally, the best topic on the agenda!
+18:56:26 <stigkj> he, he
+18:56:26 <orrc> maybe with a list of use cases and we can categorise them into success/not-build/unstable? e.g. scm checkout fails, buildwrapper plugin errors out, some tests fail
+18:56:27 <kohsuke> :-)
+18:56:33 <rtyler> as a bit of background, thanks to stellar growth (ahem)
+18:56:38 <kutzi> kohsuke: http://ci.jenkins-ci.org/view/Plugins/job/plugins_batch-task/lastSuccessfulBuild/ that's a unstable one
+18:56:55 * rtyler clears his throat
+18:57:12 <rtyler> I've accidentally personally donated over $5k to the Jenkins project infrastructure :P
+18:57:42 <rtyler> which has made the need to fundraise, something we need to address sooner rather than later
+18:57:54 <rtyler> kohsuke has already started pushing on SPI to get our online donations set up
+18:58:00 <kohsuke> kutzi: my bad, you are right
+18:58:17 <rtyler> #info the SPI's donation page is here: http://spi-inc.org/donations/
+18:58:17 <kohsuke> #info so far I still haven't heard back from SPI that the account is set up
+18:58:27 <rtyler> that's for online donations only
+18:58:34 <hare_brain> Put a jar out at the JUC
+18:58:35 <rtyler> people can still mail checks for Jennkins :P
+18:58:37 <orrc> should have put a $30 registration fee on the Jenkins User Conference ;)
+18:58:49 <rtyler> orrc: we want people to show up more than we want to pay me back
+18:59:12 <hare_brain> Since JUC is in SF, have rtyler sit outside, panhandling.
+18:59:20 <rtyler> #info I've started talking with a Contegix accountant to get their donations of bandwidth and colocation space assigned to the SPI
+18:59:27 <hare_brain> Make sure to wear clothes that haven't been washed in a few weeks, and don't shower for a while, either.
+18:59:36 <rtyler> so, a regular sunday? :D
+18:59:46 <hare_brain> And you need a sheet of cardboard to sit on.
+18:59:49 <abayer> I was planning to mug people on their way out of sessions.
+18:59:59 <rtyler> anywhoo, are there any objections to starting a general "donation drive" once the SPI online account has been set up?
+19:00:15 <rtyler> I'd like to shoot for at least $7k, so we have some funds in our general SPI account
+19:00:21 <jieryn> donating to SPI would make it a tax benefit for the donator, right?
+19:00:26 <rtyler> jieryn: yes
+19:00:33 <abayer> rtyler: I pledge $500!
+19:00:35 <kohsuke> #info And we do have some random expenses that some of us have been paying out of pocket
+19:00:38 <hare_brain> Kohsuke, do you know if there's going to be a standard presentation template for JUC? A donation drive slide could be part of that template.
+19:00:43 <kohsuke> so it'd be good to get this funding scheme going
+19:00:43 <abayer> Do I get a tote bag? =)
+19:00:51 <abayer> There is a template, yes.
+19:00:54 <kohsuke> Good idea
+19:00:56 <rtyler> abayer: we're not NPR, you hippy
+19:01:07 <abayer> awwwww.
+19:01:16 <rtyler> #action kohsuke to ping Rackspace about transferring assets to the SPI and starting to write off their donations as well
+19:01:22 <jweinberg> abayer: how about a bowtie?
+19:01:24 * rtyler likes giving kohsuke moar work
+19:01:31 <abayer> I don't like ties. They make me feel strangled. =)
+19:01:35 <abayer> Speaking of kohsuke and work...
+19:01:40 <hare_brain> #idea Add a donation drive slide to JUC presentation template
+19:01:42 <abayer> Trademark!
+19:01:46 <kohsuke> I don't think Rackspace has donated any assets.
+19:01:48 <rtyler> abayer: NOT ON THE AGENDA
+19:01:53 <rtyler> kohsuke: that build machine
+19:01:56 <abayer> hrmph
+19:01:56 <kohsuke> They are just giving us access to the machine they own
+19:01:57 <hare_brain> Time check
+19:01:57 <rtyler> kohsuke: that's write-offable by them
+19:02:03 <rtyler> hare_brain: we have one more item
+19:02:05 <jieryn> gavel it done, then?
+19:02:06 <rtyler> I'm moving on
+19:02:08 <jieryn> oh
+19:02:18 <rtyler> #topic Infrastructure update
+19:02:41 <rtyler> #info Contegix has donated another 4TB of bandwidth to our machine, cucumber
+19:02:55 <rtyler> #info cabbage and lettuce are both racked at the OSL
+19:02:55 <kohsuke> 4TB/month that is
+19:02:59 <rtyler> indeed
+19:03:20 <rtyler> #info rtyler has made the painful executive decision that Jenkins infra will standardize on Ubuntu+Puppet
+19:03:31 <rtyler> CentOS and Apache ruined my weekend, so there's that :P
+19:04:02 <rtyler> mirrors.jenkins-ci.org will be moved in the next week from cucumber to lettuce, where we won't be paying for any bandwidth whatsoever
+19:04:15 <rtyler> sinec mirrors.jenkins-ci.org still actually serves files directly, if the mirrors are not yet updated (ouch)
+19:04:45 <P4G0> still in meeting?
+19:04:48 <orrc> how frequently do we push to mirrors?
+19:04:50 <kohsuke> (the context is that the $5K cost was because of the bandwidth surcharge, caused by our mirror brain serving bits by itself instead of directing traffic to mirrors)
+19:05:14 <rtyler> orrc: the OSL mirror (primary) is synced every time a plugin is released
+19:05:15 <rtyler> for example
+19:05:25 <kohsuke> It's error prone, so we are trying to make sure that even if it happens again it won't cost us real money.
+19:05:26 <rtyler> the problem is, mirrorbrain then has to scan all the mirrors to keep its index updated
+19:05:37 <rtyler> which takes ~15-20 minutes, so we do it hourly
+19:05:45 <abayer> btw, I just pinged SPI and they say they'll hopefully have us in their donation system todayish.
+19:05:54 <rtyler> all secondary mirrors have been instructed to run an hourly rsync
+19:06:31 <rtyler> #info for reference, here's our bandwidth spike on cucumber: http://strongspace.com/rtyler/public/year_cucumber_bw.png
+19:06:37 <rtyler> Jenkins is popular and HEAVY
+19:06:53 <rtyler> #action rtyler to move mirrorbrain from cucumber to lettuce
+19:07:08 <rtyler> pertaining to last night's JIRA issue
+19:07:28 <rtyler> I've raised the priority of a proper nagios monitoring across our cluster of machines
+19:07:48 <rtyler> and filed a ticket for myself to start managing our backups and snapshots better
+19:08:01 <kohsuke> #info FishEye has been unstable, too. There's a ticket open on Atlassian Support to find out what's going on.
+19:08:11 <rtyler> INFRA is *not* a glorious job, and there's not enough volunteers that have the ability/trust to help :/
+19:08:16 <rtyler> we need puppet people
+19:08:37 <rtyler> #info Jenkins puppet manifests are being collected here: github.com/jenkinsci/infra-puppet
+19:08:53 <stigkj> How are they coming along?
+19:08:53 <rtyler> that's most of what I have to update on, any questions before I bang the gavel?
+19:08:59 <rtyler> stigkj: puppet manifests?
+19:09:02 <stigkj> yes
+19:09:11 <rtyler> slowly, I wasted too much time with CentOS unfortunately
+19:09:17 <orrc> I forgot about fisheye.. do people still use it since moving to github?
+19:09:20 <rtyler> z00dax6 has a lot of work he's done locally that I've not seen nor integrated
+19:09:31 <stigkj> rtyler: ok :-)
+19:09:54 <orrc> rtyler: one more thing: how about a recap of the last meeting's action items at the start of each meeting?
+19:09:56 <kohsuke> orrc: there's a conversation of possibly just stop the service, indeed.
+19:10:07 <rtyler> we now have enough machines, it's the management of those machines that's the bottleneck now
+19:10:23 <rtyler> #topic Next meeting
+19:10:37 <kohsuke> rtyler: I don't know, we still need other OSes, for example
+19:10:38 <rtyler> kohsuke: Sept 14th, same time same place?
+19:10:46 <kohsuke> +1
+19:10:47 <rtyler> kohsuke: build machines are not the same :)
+19:10:59 <rtyler> unless anybody objects, I'm going to schedule it
+19:11:06 <rtyler> going
+19:11:11 <rtyler> going
+19:11:21 <stigkj> kohsuke: you mean, like, OS X and Windows, for example?
+19:11:27 <stigkj> rtyler:
+19:11:29 <kohsuke> stigkj: yes
+19:11:30 <stigkj> sorry
+19:11:30 <rtyler> #info Next project meeting 2011.09.14 at 18:00 UTC
+19:11:33 <rtyler> #endmeeting

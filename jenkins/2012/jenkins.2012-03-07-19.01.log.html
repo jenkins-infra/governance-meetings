@@ -1,0 +1,318 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:01:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:01:15</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:01:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">hare_brain abayer rtyler</span>
+<a name="l-4"></a><span class="tm">19:01:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain abayer rtyler</span>
+<a name="l-5"></a><span class="tm">19:01:30</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-6"></a><span class="tm">19:01:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">topic is in https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-7"></a><span class="tm">19:02:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">recap of actions</span>
+<a name="l-8"></a><span class="tm">19:02:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">actions are http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-02-22-19.00.html</span>
+<a name="l-9"></a><span class="tm">19:02:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ndeloof1:</span> rtyler: abayer: ping
+<a name="l-10"></a><span class="tm">19:03:08</span><span class="nk"> &lt;docbop&gt;</span> Using a shell to run python nosetests, it creates a results file, issue since working directory is not jenkins it can't create and test fails.  If I chown and chmod the file all tests after that are fine.  What is a workaround?
+<a name="l-11"></a><span class="tm">19:03:41</span><span class="nk"> &lt;kohsuke&gt;</span> if none of them are there, I guess we need to skip them
+<a name="l-12"></a><span class="tm">19:04:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">review current status and plans for the new e-mailer</span>
+<a name="l-13"></a><span class="tm">19:04:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/The+new+EMailer</span>
+<a name="l-14"></a><span class="tm">19:04:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Slide-O-Mix:</span> this is yours
+<a name="l-15"></a><span class="tm">19:05:42</span><span class="nk"> &lt;abayer&gt;</span> Sorry, busy - I haven't done anything on the board vote proposal.
+<a name="l-16"></a><span class="tm">19:06:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> maybe I can talk to you about my idea tomorrow?
+<a name="l-17"></a><span class="tm">19:06:16</span><span class="nk"> &lt;kohsuke&gt;</span> Do you already have some thoughts
+<a name="l-18"></a><span class="tm">19:06:17</span><span class="nk"> &lt;kohsuke&gt;</span> ?
+<a name="l-19"></a><span class="tm">19:06:19</span><span class="nk"> &lt;abayer&gt;</span> Definitely.
+<a name="l-20"></a><span class="tm">19:06:36</span><span class="nk"> &lt;abayer&gt;</span> And no, I don't really have much.
+<a name="l-21"></a><span class="tm">19:06:42</span><span class="nk"> &lt;kohsuke&gt;</span> wrt new e-mailer, I'm not sure if anyone is actively pushing on the effort
+<a name="l-22"></a><span class="tm">19:07:00</span><span class="nk"> &lt;rpetti&gt;</span> it's been stagnating for a while
+<a name="l-23"></a><span class="tm">19:07:01</span><span class="nk"> &lt;kohsuke&gt;</span> I think this is one of those things that everyone agree that it'd be nice but lacking the person that does the heavy lifting
+<a name="l-24"></a><span class="tm">19:07:38</span><span class="nk"> &lt;kohsuke&gt;</span> Once I complete a round of UI enhancements maybe this could be the next target?
+<a name="l-25"></a><span class="tm">19:08:09</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway, sounds like we need to get to the next topic given that Slide-O-Mix isn't here
+<a name="l-26"></a><span class="tm">19:08:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Google SoC mentorship</span>
+<a name="l-27"></a><span class="tm">19:08:30 </span><span class="nka">* kohsuke</span> <span class="ac">looks for the URL to the Google group thread</span>
+<a name="l-28"></a><span class="tm">19:09:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/topic/jenkinsci-dev/5DlvBKBzjUc/discussion</span>
+<a name="l-29"></a><span class="tm">19:09:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/topic/jenkinsci-dev/-9aLc11lUdU/discussion</span>
+<a name="l-30"></a><span class="tm">19:09:37</span><span class="nk"> &lt;kohsuke&gt;</span> oh, the dead line is this Friday
+<a name="l-31"></a><span class="tm">19:10:04</span><span class="nk"> &lt;kohsuke&gt;</span> I think we should at least submit something
+<a name="l-32"></a><span class="tm">19:10:16</span><span class="nk"> &lt;kohsuke&gt;</span> The main question for this forum is if anyone else is willing to be listed as a mentor
+<a name="l-33"></a><span class="tm">19:10:36</span><span class="nk"> &lt;orrc&gt;</span> if someone is willing to be a mentor, I think we have to have an "ideas" page up soon to go with the application
+<a name="l-34"></a><span class="tm">19:10:52</span><span class="nk"> &lt;dhaun&gt;</span> yeah, I was about to ask about your ideas page :)
+<a name="l-35"></a><span class="tm">19:11:10</span><span class="nk"> &lt;dhaun&gt;</span> this will be an important part of the application
+<a name="l-36"></a><span class="tm">19:11:13</span><span class="nk"> &lt;kohsuke&gt;</span> I think we have pages from the past that lists some of them
+<a name="l-37"></a><span class="tm">19:11:31</span><span class="nk"> &lt;dhaun&gt;</span> I found one from 2009 on the wiki - maybe brush that up a little?
+<a name="l-38"></a><span class="tm">19:11:34</span><span class="nk"> &lt;kohsuke&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/Google+Summer+of+Code+Idea+List
+<a name="l-39"></a><span class="tm">19:11:56</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah
+<a name="l-40"></a><span class="tm">19:12:05</span><span class="nk"> &lt;dhaun&gt;</span> that's the one
+<a name="l-41"></a><span class="tm">19:12:24</span><span class="nk"> &lt;kohsuke&gt;</span> Some of those are already done
+<a name="l-42"></a><span class="tm">19:12:34</span><span class="nk"> &lt;kohsuke&gt;</span> But we can add more
+<a name="l-43"></a><span class="tm">19:12:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">mobile interface</span>
+<a name="l-44"></a><span class="tm">19:12:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">that e-mail enhancement</span>
+<a name="l-45"></a><span class="tm">19:13:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">IDE integration (for Martin)</span>
+<a name="l-46"></a><span class="tm">19:13:13</span><span class="nk"> &lt;rpetti&gt;</span> jenkinsmobi?
+<a name="l-47"></a><span class="tm">19:13:39</span><span class="nk"> &lt;kohsuke&gt;</span> The "problem" with that is that it's not open-source
+<a name="l-48"></a><span class="tm">19:13:55</span><span class="nk"> &lt;rpetti&gt;</span> :(
+<a name="l-49"></a><span class="tm">19:13:57</span><span class="nk"> &lt;kohsuke&gt;</span> I thoguht mobile might be something students might be interested in
+<a name="l-50"></a><span class="tm">19:14:13</span><span class="nk"> &lt;kohsuke&gt;</span> I've heard that those youngsters don't know what PCs are
+<a name="l-51"></a><span class="tm">19:14:28</span><span class="nk"> &lt;orrc&gt;</span> something with pre-tested commit could be an idea
+<a name="l-52"></a><span class="tm">19:14:39</span><span class="nk"> &lt;kohsuke&gt;</span> yeah
+<a name="l-53"></a><span class="tm">19:14:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">pre-tested commit</span>
+<a name="l-54"></a><span class="tm">19:14:48 </span><span class="nka">* orrc</span> <span class="ac">looks at top JIRAs :)</span>
+<a name="l-55"></a><span class="tm">19:14:58</span><span class="nk"> &lt;ndeloof1&gt;</span> can't stay online - just qui message to tell you I didn't act for the action I had. Will do before next meeting
+<a name="l-56"></a><span class="tm">19:15:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ndeloof1:</span> I can just add the logo to Drupal
+<a name="l-57"></a><span class="tm">19:16:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to add CB logo on the "sponsors" block, taking over ndeloof1's action from the last week</span>
+<a name="l-58"></a><span class="tm">19:16:51</span><span class="nk"> &lt;kohsuke&gt;</span> Ideally GSoC topics should be something that doesn't require too much Jenkins experience upfront
+<a name="l-59"></a><span class="tm">19:17:10</span><span class="nk"> &lt;kohsuke&gt;</span> No other volunteers for mentors?
+<a name="l-60"></a><span class="tm">19:17:53</span><span class="nk"> &lt;kohsuke&gt;</span> All right
+<a name="l-61"></a><span class="tm">19:18:00</span><span class="nk"> &lt;dhaun&gt;</span> regarding GSoC: the application form has an option where you can list other organizations that were in GSoC in the past to vouch for you.
+<a name="l-62"></a><span class="tm">19:18:16</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-63"></a><span class="tm">19:18:39</span><span class="nk"> &lt;kohsuke&gt;</span> Do you know any orgs that can vouch for us?
+<a name="l-64"></a><span class="tm">19:18:45</span><span class="nk"> &lt;dhaun&gt;</span> try to find some - or if you want, we (Geeklog) could vouch for you
+<a name="l-65"></a><span class="tm">19:19:08</span><span class="nk"> &lt;jieryn&gt;</span> can someone's gsoc project be to be a gsoc mentor? with $2k incentive i'll find the time to mentor
+<a name="l-66"></a><span class="tm">19:19:17</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-67"></a><span class="tm">19:19:28</span><span class="nk"> &lt;kohsuke&gt;</span> that's so meta
+<a name="l-68"></a><span class="tm">19:19:39</span><span class="nk"> &lt;jieryn&gt;</span> lol
+<a name="l-69"></a><span class="tm">19:19:45</span><span class="nk"> &lt;dhaun&gt;</span> the org gets $500 per student - we usually pass that on to our mentors
+<a name="l-70"></a><span class="tm">19:19:58</span><span class="nk"> &lt;jieryn&gt;</span> ah
+<a name="l-71"></a><span class="tm">19:20:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">dhaun:</span> thanks. I'll take your offer, and we'll ask rtyler to tweet to find other orgs who can vouch for us
+<a name="l-72"></a><span class="tm">19:21:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jieryn:</span> does that mean I can list you as another volunteer?
+<a name="l-73"></a><span class="tm">19:21:18</span><span class="nk"> &lt;kohsuke&gt;</span> (it's short of $2K, but...)
+<a name="l-74"></a><span class="tm">19:21:40</span><span class="nk"> &lt;kohsuke&gt;</span> I guess the answer is no :-)
+<a name="l-75"></a><span class="tm">19:21:54</span><span class="nk"> &lt;kohsuke&gt;</span> All right, should we move on?
+<a name="l-76"></a><span class="tm">19:22:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Baseline for next major LTS release</span>
+<a name="l-77"></a><span class="tm">19:22:09</span><span class="nk"> &lt;jieryn&gt;</span> sorry, i don't think i could be a good mentor with time constrains
+<a name="l-78"></a><span class="tm">19:22:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jieryn:</span> I understand
+<a name="l-79"></a><span class="tm">19:22:26</span><span class="nk"> &lt;kohsuke&gt;</span> sorry to put you on the spot
+<a name="l-80"></a><span class="tm">19:22:42</span><span class="nk"> &lt;jieryn&gt;</span> np :)
+<a name="l-81"></a><span class="tm">19:22:54</span><span class="nk"> &lt;kohsuke&gt;</span> back to LTS, the normal procedure is to see if hare_brain has some rough ideas about the next base version
+<a name="l-82"></a><span class="tm">19:23:20</span><span class="nk"> &lt;hare_brain&gt;</span> Yes, and we've been so busy on other things that we actually haven't moved forward off of 1.424 yet.
+<a name="l-83"></a><span class="tm">19:23:55</span><span class="nk"> &lt;kohsuke&gt;</span> looking at changelog now
+<a name="l-84"></a><span class="tm">19:24:27</span><span class="nk"> &lt;vjuranek&gt;</span> 1.447 has quite good user rating
+<a name="l-85"></a><span class="tm">19:24:51</span><span class="nk"> &lt;jieryn&gt;</span> but no breadcrumbs
+<a name="l-86"></a><span class="tm">19:25:13</span><span class="nk"> &lt;kohsuke&gt;</span> 448 had some regressions that only got fixed in 450
+<a name="l-87"></a><span class="tm">19:25:27</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm, breadcrumbs isn't listed in changelog
+<a name="l-88"></a><span class="tm">19:25:30</span><span class="nk"> &lt;kohsuke&gt;</span> neither context menu
+<a name="l-89"></a><span class="tm">19:26:03</span><span class="nk"> &lt;kohsuke&gt;</span> checking when they got released
+<a name="l-90"></a><span class="tm">19:26:21</span><span class="nk"> &lt;hare_brain&gt;</span> That's in 1.455
+<a name="l-91"></a><span class="tm">19:26:27</span><span class="nk"> &lt;hare_brain&gt;</span> Breadcrumb now supports drop-down menu for faster navigation (discussion)
+<a name="l-92"></a><span class="tm">19:26:27</span><span class="nk"> &lt;jieryn&gt;</span> i think more recent versions have a host of real nice UI features / plugins available
+<a name="l-93"></a><span class="tm">19:26:52</span><span class="nk"> &lt;jieryn&gt;</span> but, unproven obviously
+<a name="l-94"></a><span class="tm">19:27:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> yeah, you are right, I didn't realize it hasn't been released yet
+<a name="l-95"></a><span class="tm">19:27:31</span><span class="nk"> &lt;hare_brain&gt;</span> I would vote for 1.447 as the base for the next LTS, based on the community ratings.
+<a name="l-96"></a><span class="tm">19:28:22</span><span class="nk"> &lt;hare_brain&gt;</span> When Yahoo! is ready to jump forward again, I might have us jump ahead of that, to anticipate the next LTS.
+<a name="l-97"></a><span class="tm">19:28:38</span><span class="nk"> &lt;mykhyggz&gt;</span> So this bash script gives no console ouput until the job is done. Should it be possible to make it output while running?
+<a name="l-98"></a><span class="tm">19:29:08</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> haha, I just realized that I was missing the meeting!
+<a name="l-99"></a><span class="tm">19:29:53</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, 447 is OK
+<a name="l-100"></a><span class="tm">19:30:01</span><span class="nk"> &lt;kohsuke&gt;</span> I think another candidate is 452
+<a name="l-101"></a><span class="tm">19:30:22</span><span class="nk"> &lt;kohsuke&gt;</span> there has been a number of packaging issues fixed in 448-452 range
+<a name="l-102"></a><span class="tm">19:30:39</span><span class="nk"> &lt;kohsuke&gt;</span> and that has at least sticky save button right
+<a name="l-103"></a><span class="tm">19:31:15</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">kohsuke:</span> if we have a chance could we go back to the new emailer topic. I didn't have a reminder set on my meeting notice. if not, I can wait for next meeting
+<a name="l-104"></a><span class="tm">19:31:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Slide-O-Mix:</span> if we have time after a round we can come back to it
+<a name="l-105"></a><span class="tm">19:31:19</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> thanks
+<a name="l-106"></a><span class="tm">19:31:31</span><span class="nk"> &lt;vjuranek&gt;</span> I have no problem with 452 - more recent version, less effort with backporting;-)
+<a name="l-107"></a><span class="tm">19:32:02</span><span class="nk"> &lt;hare_brain&gt;</span> I was going to suggest 1.447 base, and backport things from more recent releases. But I'm not married to that.
+<a name="l-108"></a><span class="tm">19:32:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> any preference on 447 vs 452?
+<a name="l-109"></a><span class="tm">19:32:23</span><span class="nk"> &lt;kohsuke&gt;</span> is 452 too young?
+<a name="l-110"></a><span class="tm">19:32:30</span><span class="nk"> &lt;hare_brain&gt;</span> There's a pretty big sample size for 1.447, but not so much for 1.452
+<a name="l-111"></a><span class="tm">19:32:37</span><span class="nk"> &lt;hare_brain&gt;</span> That was my only reservation about it.
+<a name="l-112"></a><span class="tm">19:33:09</span><span class="nk"> &lt;kohsuke&gt;</span> And I just realized 452 is practical like the last release
+<a name="l-113"></a><span class="tm">19:33:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">zaytsev:</span> pong
+<a name="l-114"></a><span class="tm">19:33:22</span><span class="nk"> &lt;rtyler&gt;</span> oh whoops
+<a name="l-115"></a><span class="tm">19:33:30</span><span class="nk"> &lt;hare_brain&gt;</span> Although by the time LTS is ready, it will have been out for a while. :)
+<a name="l-116"></a><span class="tm">19:33:41</span><span class="nk"> &lt;kohsuke&gt;</span> and it'll never gets any eyeballs because we are telling people to upgrade to 454
+<a name="l-117"></a><span class="tm">19:33:49</span><span class="nk"> &lt;hare_brain&gt;</span> Ah right.
+<a name="l-118"></a><span class="tm">19:33:51</span><span class="nk"> &lt;kohsuke&gt;</span> OK, let's do 1.447
+<a name="l-119"></a><span class="tm">19:33:58</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-120"></a><span class="tm">19:34:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> OK with that?
+<a name="l-121"></a><span class="tm">19:34:24</span><span class="nk"> &lt;vjuranek&gt;</span> yes, no problem
+<a name="l-122"></a><span class="tm">19:34:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next LTS base is 1.447</span>
+<a name="l-123"></a><span class="tm">19:34:48</span><span class="nk"> &lt;kohsuke&gt;</span> any release time line in mind?
+<a name="l-124"></a><span class="tm">19:34:58</span><span class="nk"> &lt;vjuranek&gt;</span> in 2-3 weeks?
+<a name="l-125"></a><span class="tm">19:35:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll shoot for 1.447.1 in 2-3 weeks</span>
+<a name="l-126"></a><span class="tm">19:35:26</span><span class="nk"> &lt;kohsuke&gt;</span> next topic?
+<a name="l-127"></a><span class="tm">19:35:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">maven.jenkins-ci.org to repo.jenkins-ci.org</span>
+<a name="l-128"></a><span class="tm">19:36:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">security update distracted me away from completing the PoC</span>
+<a name="l-129"></a><span class="tm">19:36:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">PoC == proof of concept</span>
+<a name="l-130"></a><span class="tm">19:36:46</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-131"></a><span class="tm">19:36:51</span><span class="nk"> &lt;kohsuke&gt;</span> but we got the forward tunneling working so that you can continue to deploy the old maven.jenkins-ci.org:8081 and it'll be reverse-proxied to repo.jenkins-ci.org
+<a name="l-132"></a><span class="tm">19:36:59</span><span class="nk"> &lt;rpetti&gt;</span> XD
+<a name="l-133"></a><span class="tm">19:37:01</span><span class="nk"> &lt;jieryn&gt;</span> pretty hot
+<a name="l-134"></a><span class="tm">19:37:32</span><span class="nk"> &lt;kohsuke&gt;</span> I saw some people had already logged into Artifactory
+<a name="l-135"></a><span class="tm">19:37:41</span><span class="nk"> &lt;jieryn&gt;</span> worked with my jenkins account creds
+<a name="l-136"></a><span class="tm">19:37:48</span><span class="nk"> &lt;kohsuke&gt;</span> I've also deployed some big test artifacts to check that it works
+<a name="l-137"></a><span class="tm">19:38:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">a few folks (jieryn among others) reported about small sporadic outages in the service</span>
+<a name="l-138"></a><span class="tm">19:38:31</span><span class="nk"> &lt;kohsuke&gt;</span> ... so we'd like to start monitoring those
+<a name="l-139"></a><span class="tm">19:39:02</span><span class="nk"> &lt;jieryn&gt;</span> PoC is blisteringly fast, btw
+<a name="l-140"></a><span class="tm">19:39:20</span><span class="nk"> &lt;kohsuke&gt;</span> I still need to make sure the backend update center generation works
+<a name="l-141"></a><span class="tm">19:39:30</span><span class="nk"> &lt;kohsuke&gt;</span> that is really the only remaining work item
+<a name="l-142"></a><span class="tm">19:39:38</span><span class="nk"> &lt;aheritier&gt;</span> Any interest in a mass update of all poms to update repo entries ?
+<a name="l-143"></a><span class="tm">19:39:47</span><span class="nk"> &lt;aheritier&gt;</span> or we let everyone update its repo ?
+<a name="l-144"></a><span class="tm">19:39:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">aheritier:</span> ah, interesting idea
+<a name="l-145"></a><span class="tm">19:40:02</span><span class="nk"> &lt;aheritier&gt;</span> Not difficult to do
+<a name="l-146"></a><span class="tm">19:40:12</span><span class="nk"> &lt;aheritier&gt;</span> But just to see if we want ...
+<a name="l-147"></a><span class="tm">19:40:36</span><span class="nk"> &lt;kohsuke&gt;</span> I think it'd be good to do
+<a name="l-148"></a><span class="tm">19:40:36</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I'd do a deadline for people to update by themselves
+<a name="l-149"></a><span class="tm">19:41:22</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so we'll first officially embrace the switch-over, then create a Wiki page showing updates to the POM,
+<a name="l-150"></a><span class="tm">19:41:23</span><span class="nk"> &lt;aheritier&gt;</span> Ok, I have everything necessary to clone everything and to update poms
+<a name="l-151"></a><span class="tm">19:41:37</span><span class="nk"> &lt;kohsuke&gt;</span> and in a while maybe we can come back to asking aheritier to bulk update POM?
+<a name="l-152"></a><span class="tm">19:41:42</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">kohsuke:</span> ok
+<a name="l-153"></a><span class="tm">19:41:57</span><span class="nk"> &lt;rpetti&gt;</span> will this still work with poms that are targetting old versions of hudson?
+<a name="l-154"></a><span class="tm">19:42:10</span><span class="nk"> &lt;kohsuke&gt;</span> Plugins not updated means new people will fail to build them out of box, so it'd be good to fix
+<a name="l-155"></a><span class="tm">19:42:11</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">rpetti:</span> yes
+<a name="l-156"></a><span class="tm">19:42:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rpetti:</span> Yes
+<a name="l-157"></a><span class="tm">19:42:22</span><span class="nk"> &lt;rpetti&gt;</span> ok
+<a name="l-158"></a><span class="tm">19:42:28</span><span class="nk"> &lt;kohsuke&gt;</span> It's just &lt;repository&gt; change
+<a name="l-159"></a><span class="tm">19:42:33</span><span class="nk"> &lt;aheritier&gt;</span> for me we change all URLs and repoIDs
+<a name="l-160"></a><span class="tm">19:42:35</span><span class="nk"> &lt;aheritier&gt;</span> yep
+<a name="l-161"></a><span class="tm">19:42:36</span><span class="nk"> &lt;jieryn&gt;</span> and pluginrepository
+<a name="l-162"></a><span class="tm">19:42:39</span><span class="nk"> &lt;rpetti&gt;</span> kk
+<a name="l-163"></a><span class="tm">19:42:39</span><span class="nk"> &lt;kohsuke&gt;</span> that, too
+<a name="l-164"></a><span class="tm">19:42:41</span><span class="nk"> &lt;aheritier&gt;</span> yes
+<a name="l-165"></a><span class="tm">19:42:59</span><span class="nk"> &lt;hare_brain&gt;</span> But, any repositories in the parent poms for those old versions wouldn't get converted over.
+<a name="l-166"></a><span class="tm">19:43:15</span><span class="nk"> &lt;kohsuke&gt;</span> True
+<a name="l-167"></a><span class="tm">19:43:27</span><span class="nk"> &lt;aheritier&gt;</span> yes we don't touch old parents
+<a name="l-168"></a><span class="tm">19:43:34</span><span class="nk"> &lt;kohsuke&gt;</span> So we can't block Maven from hitting non-existent server
+<a name="l-169"></a><span class="tm">19:43:41</span><span class="nk"> &lt;kohsuke&gt;</span> ... and taking longer
+<a name="l-170"></a><span class="tm">19:43:42</span><span class="nk"> &lt;aheritier&gt;</span> and if plugins didn't redefined repo, they'll fails
+<a name="l-171"></a><span class="tm">19:43:49</span><span class="nk"> &lt;hare_brain&gt;</span> Like m.g.o-public
+<a name="l-172"></a><span class="tm">19:43:57</span><span class="nk"> &lt;hare_brain&gt;</span> (We got bit pretty hard by that.)
+<a name="l-173"></a><span class="tm">19:44:11</span><span class="nk"> &lt;aheritier&gt;</span> we can always have in our docs the tip for the mirror
+<a name="l-174"></a><span class="tm">19:44:15</span><span class="nk"> &lt;aheritier&gt;</span> for old deps
+<a name="l-175"></a><span class="tm">19:44:23</span><span class="nk"> &lt;aheritier&gt;</span> but yes maven is stupid
+<a name="l-176"></a><span class="tm">19:44:27</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, we should have done this sooner
+<a name="l-177"></a><span class="tm">19:44:37</span><span class="nk"> &lt;kohsuke&gt;</span> And my apologies, but that's water under the bridge
+<a name="l-178"></a><span class="tm">19:44:42</span><span class="nk"> &lt;aheritier&gt;</span> it will check for all repo ids it finds
+<a name="l-179"></a><span class="tm">19:44:55</span><span class="nk"> &lt;aheritier&gt;</span> ok no problem
+<a name="l-180"></a><span class="tm">19:45:10</span><span class="nk"> &lt;kohsuke&gt;</span> Oh, so maybe if we keep the same repo ID and just set the URL to repo.jenkins-ci.org, would that clobber the problematic URL?
+<a name="l-181"></a><span class="tm">19:45:23</span><span class="nk"> &lt;kohsuke&gt;</span> anyway, we need a bit more experiment
+<a name="l-182"></a><span class="tm">19:45:31</span><span class="nk"> &lt;kohsuke&gt;</span> And more importantly, if anyone has any objections/concerns about repo.jenkins-ci.org, please speak up soon
+<a name="l-183"></a><span class="tm">19:45:35</span><span class="nk"> &lt;jieryn&gt;</span> yahoo should be using a MRM ;-b
+<a name="l-184"></a><span class="tm">19:45:43</span><span class="nk"> &lt;hare_brain&gt;</span> We are.
+<a name="l-185"></a><span class="tm">19:46:03</span><span class="nk"> &lt;kohsuke&gt;</span> I think we have more attention from JFrog people before the switch over than afterward, so now is the time to have them work for us ;-)
+<a name="l-186"></a><span class="tm">19:46:26</span><span class="nk"> &lt;kohsuke&gt;</span> but otherwise let's move on to the next topic...
+<a name="l-187"></a><span class="tm">19:46:31</span><span class="nk"> &lt;hare_brain&gt;</span> Yup
+<a name="l-188"></a><span class="tm">19:46:39</span><span class="nk"> &lt;aheritier&gt;</span> As far as the offer a quality of services ..
+<a name="l-189"></a><span class="tm">19:46:42</span><span class="nk"> &lt;aheritier&gt;</span> yep
+<a name="l-190"></a><span class="tm">19:46:55</span><span class="nk"> &lt;kohsuke&gt;</span> and that means going back to new e-mailer from Slide-O-Mix
+<a name="l-191"></a><span class="tm">19:46:55</span><span class="nk"> &lt;hare_brain&gt;</span> Go back to the new emailer topic?
+<a name="l-192"></a><span class="tm">19:47:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Review current status and plans for The new EMailer</span>
+<a name="l-193"></a><span class="tm">19:47:04</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> sorry for being late
+<a name="l-194"></a><span class="tm">19:47:24</span><span class="nk"> &lt;kohsuke&gt;</span> np
+<a name="l-195"></a><span class="tm">19:47:45</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> It seems like there is a lot of desire to have a new emailer in the core, and there is some information on that wiki page in the agenda, is it still something that is desired?
+<a name="l-196"></a><span class="tm">19:47:57</span><span class="nk"> &lt;kohsuke&gt;</span> I think so
+<a name="l-197"></a><span class="tm">19:48:23</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I can start taking a look if people really are interested
+<a name="l-198"></a><span class="tm">19:48:40</span><span class="nk"> &lt;jieryn&gt;</span> this would be a whole cloth replacement ?
+<a name="l-199"></a><span class="tm">19:48:55</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> That is what is proposed on the new emailer wiki page
+<a name="l-200"></a><span class="tm">19:48:55</span><span class="nk"> &lt;kohsuke&gt;</span> In my mind the main work is to refactor email-ext more into extension points + implementations so that we can bundle some subset of it
+<a name="l-201"></a><span class="tm">19:49:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Slide-O-Mix:</span> if you are willing to give it a stab, I think that's great
+<a name="l-202"></a><span class="tm">19:49:37</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">kohsuke:</span> email-ext is done with a few extension points, are there others that you are thinking of?
+<a name="l-203"></a><span class="tm">19:50:10</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, I'd like the config UI out of the box to be bit simpler
+<a name="l-204"></a><span class="tm">19:50:25</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> yeah, it's growing like weeds
+<a name="l-205"></a><span class="tm">19:50:25</span><span class="nk"> &lt;kohsuke&gt;</span> I don't recall all the details, but for example controlling when someone gets e-mail isn't pluggable
+<a name="l-206"></a><span class="tm">19:50:30</span><span class="nk"> &lt;jieryn&gt;</span> so we'd rip out the old email configuration, provide some xstream aliases to get as close to the previous behavior, and then bundle email-ext along with the other external but bundled plugins?
+<a name="l-207"></a><span class="tm">19:50:45</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> triggers are pluggable
+<a name="l-208"></a><span class="tm">19:51:16</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> but I can take another look
+<a name="l-209"></a><span class="tm">19:51:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jieryn:</span> classes need to be in there, deprecated and hibenated
+<a name="l-210"></a><span class="tm">19:51:29</span><span class="nk"> &lt;jieryn&gt;</span> k
+<a name="l-211"></a><span class="tm">19:51:31</span><span class="nk"> &lt;kohsuke&gt;</span> other plugins might depend on those
+<a name="l-212"></a><span class="tm">19:51:35</span><span class="nk"> &lt;jieryn&gt;</span> right
+<a name="l-213"></a><span class="tm">19:51:48</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> one other thing I would like to consider is consuming token-macro as a major source of tokens for substitution
+<a name="l-214"></a><span class="tm">19:51:49</span><span class="nk"> &lt;kohsuke&gt;</span> but yes, xstream aliases to new classes
+<a name="l-215"></a><span class="tm">19:51:57</span><span class="nk"> &lt;Corey&gt;</span> I'm using git, and my branch specifier is set to origin/master; yet my builds are failing on: You are not on branch 'master' but on '(no branch)'
+<a name="l-216"></a><span class="tm">19:52:00</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> if this is going to be part of core, then token macro would need to be as well, correct?
+<a name="l-217"></a><span class="tm">19:52:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Slide-O-Mix:</span> yes
+<a name="l-218"></a><span class="tm">19:52:16</span><span class="nk"> &lt;kohsuke&gt;</span> it's more like just "bundled plugin", not a part of core
+<a name="l-219"></a><span class="tm">19:52:21</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> right
+<a name="l-220"></a><span class="tm">19:52:38</span><span class="nk"> &lt;kohsuke&gt;</span> But yes, that's an unification I'd like to see, too
+<a name="l-221"></a><span class="tm">19:52:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Slide-O-Mix:</span> maybe we should look at this in the office hours
+<a name="l-222"></a><span class="tm">19:52:50</span><span class="nk"> &lt;kohsuke&gt;</span> ... if your time permits
+<a name="l-223"></a><span class="tm">19:53:02</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">kohsuke:</span> I'd have to check when those are, but that would be cool
+<a name="l-224"></a><span class="tm">19:53:13</span><span class="nk"> &lt;kohsuke&gt;</span> I think this is mostly technical deep dive to scope out what needs to be done
+<a name="l-225"></a><span class="tm">19:53:21</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> agreed
+<a name="l-226"></a><span class="tm">19:53:23</span><span class="nk"> &lt;kohsuke&gt;</span> it's the same time as this meeting
+<a name="l-227"></a><span class="tm">19:53:27</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> oh, ok
+<a name="l-228"></a><span class="tm">19:53:33</span><span class="nk"> &lt;kohsuke&gt;</span> every other week
+<a name="l-229"></a><span class="tm">19:53:34</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> time wise that should be fine (during my lunch)
+<a name="l-230"></a><span class="tm">19:54:16</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I've started looking at porting to use the token macro plugin, perhaps I'll hold off on that a bit
+<a name="l-231"></a><span class="tm">19:54:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">Slide-O-Mix kohsuke and other interested parties to do technical deep dive of the new emailer work in office hours</span>
+<a name="l-232"></a><span class="tm">19:54:44</span><span class="nk"> &lt;kohsuke&gt;</span> Can we wrap up now?
+<a name="l-233"></a><span class="tm">19:54:48</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> I'm good, thanks
+<a name="l-234"></a><span class="tm">19:54:52</span><span class="nk"> &lt;stephenc_&gt;</span> Did I miss it?
+<a name="l-235"></a><span class="tm">19:55:04</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> <span class="hi">stephenc_:</span> off by an hour
+<a name="l-236"></a><span class="tm">19:55:11</span><span class="nk"> &lt;kohsuke&gt;</span> is that something quick?
+<a name="l-237"></a><span class="tm">19:55:19</span><span class="nk"> &lt;stephenc_&gt;</span> Or did you forget to add credentials plugin
+<a name="l-238"></a><span class="tm">19:55:56</span><span class="nk"> &lt;kohsuke&gt;</span> OK, that's not gonna fit in the remaining time, is it?
+<a name="l-239"></a><span class="tm">19:56:05</span><span class="nk"> &lt;stephenc_&gt;</span> And how we will be looking for testers
+<a name="l-240"></a><span class="tm">19:56:18</span><span class="nk"> &lt;stephenc_&gt;</span> Just that we will be looking for testers
+<a name="l-241"></a><span class="tm">19:56:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">credentials plugins</span>
+<a name="l-242"></a><span class="tm">19:56:39</span><span class="nk"> &lt;stephenc_&gt;</span> And it would be good for people to think about it for the next lts
+<a name="l-243"></a><span class="tm">19:56:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">we are considering to use that in the SSH slaves plugin</span>
+<a name="l-244"></a><span class="tm">19:56:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">there's a branch that already integrates the fix, and we are looking for testers</span>
+<a name="l-245"></a><span class="tm">19:57:10</span><span class="nk"> &lt;stephenc_&gt;</span> I have a bit of work for same with scp and ash plugins in draft
+<a name="l-246"></a><span class="tm">19:57:12</span><span class="nk"> &lt;jieryn&gt;</span> the other one would be subversion, yah?
+<a name="l-247"></a><span class="tm">19:57:19</span><span class="nk"> &lt;stephenc_&gt;</span> Yep next on my list
+<a name="l-248"></a><span class="tm">19:57:23</span><span class="nk"> &lt;stephenc_&gt;</span> And then hit
+<a name="l-249"></a><span class="tm">19:57:31</span><span class="nk"> &lt;jieryn&gt;</span> svn credentials is a hugely fragile thing it seems, tons of jiras on it, mass confusion, etc
+<a name="l-250"></a><span class="tm">19:57:35</span><span class="nk"> &lt;stephenc_&gt;</span> S/hit/giy/
+<a name="l-251"></a><span class="tm">19:57:39</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-252"></a><span class="tm">19:57:43</span><span class="nk"> &lt;stephenc_&gt;</span> Stupid iPhone
+<a name="l-253"></a><span class="tm">19:57:57</span><span class="nk"> &lt;kohsuke&gt;</span> All right, maybe more about it next time?
+<a name="l-254"></a><span class="tm">19:58:08</span><span class="nk"> &lt;stephenc_&gt;</span> Git also for integration
+<a name="l-255"></a><span class="tm">19:58:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-256"></a><span class="tm">19:58:27</span><span class="nk"> &lt;stephenc_&gt;</span> After that there should be enough examples for everyone else to take up
+<a name="l-257"></a><span class="tm">19:58:35</span><span class="nk"> &lt;kohsuke&gt;</span> oh, sorry
+<a name="l-258"></a><span class="tm">19:58:58</span><span class="nk"> &lt;kohsuke&gt;</span> the same time, in 2 weeks?
+<a name="l-259"></a><span class="tm">19:59:07</span><span class="nk"> &lt;kohsuke&gt;</span> When is the daylight saving time switch?
+<a name="l-260"></a><span class="tm">19:59:11</span><span class="nk"> &lt;stephenc_&gt;</span> Ie I will draft integration for scp, ssh, svn and git
+<a name="l-261"></a><span class="tm">19:59:17</span><span class="nk"> &lt;jieryn&gt;</span> this weekend
+<a name="l-262"></a><span class="tm">19:59:27</span><span class="nk"> &lt;stephenc_&gt;</span> Eu is last w/e in march
+<a name="l-263"></a><span class="tm">19:59:37</span><span class="nk"> &lt;kohsuke&gt;</span> Is this meeting pegged to UTC or US?
+<a name="l-264"></a><span class="tm">20:00:02</span><span class="nk"> &lt;kohsuke&gt;</span> I guess it's been pegged to US time zone
+<a name="l-265"></a><span class="tm">20:00:11</span><span class="nk"> &lt;kohsuke&gt;</span> I don't remember ever doing this in noon my time
+<a name="l-266"></a><span class="tm">20:00:32</span><span class="nk"> &lt;kohsuke&gt;</span> I guess that means for the rest of the world this meeting is one hour earlier next time
+<a name="l-267"></a><span class="tm">20:00:32</span><span class="nk"> &lt;jieryn&gt;</span> you're in a different tz every other week
+<a name="l-268"></a><span class="tm">20:00:42</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-269"></a><span class="tm">20:00:47</span><span class="nk"> &lt;jieryn&gt;</span> probbaly ran out of stamp pages in your passport
+<a name="l-270"></a><span class="tm">20:00:48</span><span class="nk"> &lt;hare_brain&gt;</span> We've been biased towards pinning to 11am Pacific
+<a name="l-271"></a><span class="tm">20:00:55</span><span class="nk"> &lt;jieryn&gt;</span> nod
+<a name="l-272"></a><span class="tm">20:01:03</span><span class="nk"> &lt;kohsuke&gt;</span> Is that a problem with others?
+<a name="l-273"></a><span class="tm">20:01:12</span><span class="nk"> &lt;stephenc_&gt;</span> Hey I still ain't going to be able to meet that time
+<a name="l-274"></a><span class="tm">20:01:37</span><span class="nk"> &lt;stephenc_&gt;</span> KK, you know how Nicholas objects to anything after 5pm GMT
+<a name="l-275"></a><span class="tm">20:01:46</span><span class="nk"> &lt;stephenc_&gt;</span> ;-)
+<a name="l-276"></a><span class="tm">20:01:50</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah
+<a name="l-277"></a><span class="tm">20:02:00</span><span class="nk"> &lt;kohsuke&gt;</span> And Tokyo folks are totally tuned out because it's 2am their time
+<a name="l-278"></a><span class="tm">20:02:15</span><span class="nk"> &lt;kohsuke&gt;</span> At some point I'd love to try out more creative rotating schedule or something
+<a name="l-279"></a><span class="tm">20:02:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">stephenc_:</span>  you willing to come up with some?
+<a name="l-280"></a><span class="tm">20:02:33</span><span class="nk"> &lt;stephenc_&gt;</span> Ha!
+<a name="l-281"></a><span class="tm">20:02:52</span><span class="nk"> &lt;kohsuke&gt;</span> But I think for the next week let's stick to 11am PDT
+<a name="l-282"></a><span class="tm">20:02:59</span><span class="nk"> &lt;stephenc_&gt;</span> We can try and get spike to arrange the next face to face to overlap
+<a name="l-283"></a><span class="tm">20:03:01</span><span class="nk"> &lt;hare_brain&gt;</span> Week after.
+<a name="l-284"></a><span class="tm">20:03:08</span><span class="nk"> &lt;kohsuke&gt;</span> right, sorry
+<a name="l-285"></a><span class="tm">20:03:10</span><span class="nk"> &lt;kohsuke&gt;</span> 21st
+<a name="l-286"></a><span class="tm">20:03:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">we are open to try out new schedules if someone has a proposal</span>
+<a name="l-287"></a><span class="tm">20:03:37</span><span class="nk"> &lt;ndeloof1&gt;</span> stephenc_ I don't object, my wife and children do
+<a name="l-288"></a><span class="tm">20:03:41</span><span class="nk"> &lt;hare_brain&gt;</span> +1 for me. I get to keep my recurring calendar entry. :)
+<a name="l-289"></a><span class="tm">20:03:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">but next meeting is 7/21 11PDT (beware of US day-light saving time  change)</span>
+<a name="l-290"></a><span class="tm">20:04:05</span><span class="nk"> &lt;kohsuke&gt;</span> 11am PDT
+<a name="l-291"></a><span class="tm">20:04:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

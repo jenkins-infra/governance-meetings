@@ -1,0 +1,243 @@
+==============================================
+#jenkins: Jenkins Project Meeting (2011.08.31)
+==============================================
+
+
+Meeting started by rtyler at 18:00:30 UTC. The full logs are available
+at
+http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-08-31-18.00.log.html
+.
+
+
+
+Meeting summary
+---------------
+* For everybody's reference, agenda:
+  https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-ForAug31stMeeting%28rescheduledfromAugust24th%29
+  (rtyler, 18:00:51)
+* Plugin Deprecations  (rtyler, 18:01:29)
+  * Proposed plugin deprecation discussion
+    https://wiki.jenkins-ci.org/display/JENKINS/Proposed+Plugin+Deprecation
+    (rtyler, 18:01:53)
+
+* The Jenkins User Conference  (rtyler, 18:02:59)
+  * Details pertaining to the JUC can be found here:
+    http://jenkins-ci.org/content/jenkins-user-conference  (rtyler,
+    18:03:26)
+  * we are starting to see submissions coming in  (kohsuke, 18:03:36)
+  * : I think it's at around 140 registrations now  (kohsuke, 18:04:18)
+  * We have at this point over 150 people registered  (rtyler, 18:04:29)
+  * Current signed up sponsors include: CloudBees, RedHat, Liferay, New
+    Relic  (rtyler, 18:04:51)
+  * and Sauce Labs  (rtyler, 18:05:16)
+  * And anyone who's willing to sponsor or anyone who knows someone who
+    might would be greatly appreciated, too  (kohsuke, 18:05:47)
+  * ACTION: rtyler to prod kohsuke and the dev list to guage interest
+    for a JavaOne Jenkins Hackathon  (rtyler, 18:06:59)
+
+* Jenkins mailing list spam, what to do about it  (rtyler, 18:07:48)
+  * Google Groups document on cutting down spam:
+    http://groups.google.com/support/bin/answer.py?hl=en&answer=186997
+    (rtyler, 18:08:25)
+  * AGREED:   (rtyler, 18:11:09)
+  * ACTION: jieryn to speak up again for spam list action if the problem
+    gets out of hand  (rtyler, 18:11:22)
+
+* Pull requests that lie in wait for 30+ days  (rtyler, 18:11:40)
+  * https://wiki.jenkins-ci.org/display/JENKINS/Pending+Pull+Requests
+    (rtyler, 18:11:53)
+  * I did a partial sweep over the last weekend  (kohsuke, 18:11:54)
+  * For now, "those who can do a sweep on pull requests, please do"
+    (rtyler, 18:22:35)
+  * New contributors should be encouraged to include tests with their
+    pull requests  (rtyler, 18:22:50)
+
+* LTS 1.409.2, test status, ready to release?  (rtyler, 18:23:04)
+  * Test progress:
+    https://wiki.jenkins-ci.org/display/JENKINS/LTS+1.409.x+RC+Testing
+    (rtyler, 18:23:58)
+  * I want to publicly recognize and thank vjuranek for the hard work
+    that's been put in from his end on testing the LTS line  (rtyler,
+    18:24:35)
+  * IDEA: I think @jenkinsci should tweet about this page and solicit
+    more volunteers  (kohsuke, 18:25:56)
+  * ACTION: rtyler to tweet out the LTS test matrix page to solicit help
+    from the broader community  (rtyler, 18:26:26)
+  * ACTION: vjuranek to follow up on the dev list after he's finished
+    more testing  (rtyler, 18:27:25)
+  * I'd also encourage people to start thinking about the base version
+    for the next LTS  (kohsuke, 18:27:37)
+  * ACTION: kutzi to update the LTS 1.409.x testing page with his own
+    findings as well  (rtyler, 18:27:52)
+  * Y! targetting 1.424 as the base of their next internal Jenkins
+    stable release  (rtyler, 18:28:52)
+  * ACTION: hare_brain to follow up on the dev list with Y!'s findings
+    on using 1.424 as the next LTS base  (rtyler, 18:29:55)
+  * https://fedorahosted.org/beaker/ apparently is more up to date
+    (kohsuke, 18:31:58)
+
+* Official commit workflow for core committers  (rtyler, 18:33:45)
+  * ACTION: kohsuke to write a draft for core contributor workflow
+    (abayer, 18:41:22)
+  * Git's document, for reference:
+    http://git.kernel.org/?p=git/git.git;a=blob;f=Documentation/SubmittingPatches;h=938eccf2a5ac9dd629be1bc6bb53a59723c99083;hb=HEAD
+    (rtyler, 18:41:46)
+
+* Featuring the issue tracking page in a more prominent place  (rtyler,
+  18:42:24)
+  * IDEA: should "bug tracker" in http://jenkins-ci.org/ link to that?
+    (kohsuke, 18:43:06)
+  * "that" being:
+    https://wiki.jenkins-ci.org/display/JENKINS/Issue+Tracking  (rtyler,
+    18:43:19)
+  * ACTION: rtyler to update the "bug tracker" link on jenkins-ci.org
+    (rtyler, 18:44:11)
+  * IDEA: Put a link to the issue tracker in the side bar on Use Jenkins
+    (hare_brain, 18:45:39)
+
+* Feedback on the request for official definitions of stable, unstable,
+  failure  (rtyler, 18:46:40)
+  * https://issues.jenkins-ci.org/browse/JENKINS-10763  (rtyler,
+    18:46:48)
+  * related discussion on the dev list:
+    https://groups.google.com/forum/?hl=de#!topic/jenkinsci-dev/2rMdYX3WMwo
+    (rtyler, 18:48:00)
+  * AGREED:   (rtyler, 18:48:15)
+  * ACTION: everybody should start thinking of how to clear up some of
+    these terms across the widest cross-section of our userbase
+    (rtyler, 18:55:06)
+  * Terms somewhat enumerated here:
+    https://wiki.jenkins-ci.org/display/JENKINS/Terminology  (rtyler,
+    18:55:49)
+  * ACTION: kutzi to write down his proposal in the wiki  (kutzi,
+    18:55:56)
+
+* Donation drive!  (rtyler, 18:56:08)
+  * the SPI's donation page is here: http://spi-inc.org/donations/
+    (rtyler, 18:58:17)
+  * so far I still haven't heard back from SPI that the account is set
+    up  (kohsuke, 18:58:17)
+  * I've started talking with a Contegix accountant to get their
+    donations of bandwidth and colocation space assigned to the SPI
+    (rtyler, 18:59:20)
+  * And we do have some random expenses that some of us have been paying
+    out of pocket  (kohsuke, 19:00:35)
+  * ACTION: kohsuke to ping Rackspace about transferring assets to the
+    SPI and starting to write off their donations as well  (rtyler,
+    19:01:16)
+  * IDEA: Add a donation drive slide to JUC presentation template
+    (hare_brain, 19:01:40)
+
+* Infrastructure update  (rtyler, 19:02:18)
+  * Contegix has donated another 4TB of bandwidth to our machine,
+    cucumber  (rtyler, 19:02:41)
+  * cabbage and lettuce are both racked at the OSL  (rtyler, 19:02:55)
+  * rtyler has made the painful executive decision that Jenkins infra
+    will standardize on Ubuntu+Puppet  (rtyler, 19:03:20)
+  * for reference, here's our bandwidth spike on cucumber:
+    http://strongspace.com/rtyler/public/year_cucumber_bw.png  (rtyler,
+    19:06:31)
+  * ACTION: rtyler to move mirrorbrain from cucumber to lettuce
+    (rtyler, 19:06:53)
+  * FishEye has been unstable, too. There's a ticket open on Atlassian
+    Support to find out what's going on.  (kohsuke, 19:08:01)
+  * Jenkins puppet manifests are being collected here:
+    github.com/jenkinsci/infra-puppet  (rtyler, 19:08:37)
+
+* Next meeting  (rtyler, 19:10:23)
+  * Next project meeting 2011.09.14 at 18:00 UTC  (rtyler, 19:11:30)
+
+Meeting ended at 19:11:33 UTC.
+
+
+
+
+Action Items
+------------
+* rtyler to prod kohsuke and the dev list to guage interest for a
+  JavaOne Jenkins Hackathon
+* jieryn to speak up again for spam list action if the problem gets out
+  of hand
+* rtyler to tweet out the LTS test matrix page to solicit help from the
+  broader community
+* vjuranek to follow up on the dev list after he's finished more testing
+* kutzi to update the LTS 1.409.x testing page with his own findings as
+  well
+* hare_brain to follow up on the dev list with Y!'s findings on using
+  1.424 as the next LTS base
+* kohsuke to write a draft for core contributor workflow
+* rtyler to update the "bug tracker" link on jenkins-ci.org
+* everybody should start thinking of how to clear up some of these terms
+  across the widest cross-section of our userbase
+* kutzi to write down his proposal in the wiki
+* kohsuke to ping Rackspace about transferring assets to the SPI and
+  starting to write off their donations as well
+* rtyler to move mirrorbrain from cucumber to lettuce
+
+
+
+
+Action Items, by person
+-----------------------
+* hare_brain
+  * hare_brain to follow up on the dev list with Y!'s findings on using
+    1.424 as the next LTS base
+* jieryn
+  * jieryn to speak up again for spam list action if the problem gets
+    out of hand
+* kohsuke
+  * rtyler to prod kohsuke and the dev list to guage interest for a
+    JavaOne Jenkins Hackathon
+  * kohsuke to write a draft for core contributor workflow
+  * kohsuke to ping Rackspace about transferring assets to the SPI and
+    starting to write off their donations as well
+* kutzi
+  * kutzi to update the LTS 1.409.x testing page with his own findings
+    as well
+  * kutzi to write down his proposal in the wiki
+* rg
+  * rtyler to update the "bug tracker" link on jenkins-ci.org
+* rtyler
+  * rtyler to prod kohsuke and the dev list to guage interest for a
+    JavaOne Jenkins Hackathon
+  * rtyler to tweet out the LTS test matrix page to solicit help from
+    the broader community
+  * rtyler to update the "bug tracker" link on jenkins-ci.org
+  * rtyler to move mirrorbrain from cucumber to lettuce
+* vjuranek
+  * vjuranek to follow up on the dev list after he's finished more
+    testing
+* **UNASSIGNED**
+  * everybody should start thinking of how to clear up some of these
+    terms across the widest cross-section of our userbase
+
+
+
+
+People Present (lines said)
+---------------------------
+* rtyler (163)
+* kohsuke (92)
+* hare_brain (41)
+* jieryn (29)
+* kutzi (28)
+* abayer (26)
+* stigkj (15)
+* vjuranek (12)
+* orrc (9)
+* robobutler (4)
+* ksawicki (3)
+* P4G0 (3)
+* norro (3)
+* imod (2)
+* mns (2)
+* rg (2)
+* jenkins-admin (1)
+* jweinberg (1)
+
+
+
+
+Generated by `MeetBot`_ 0.1.4
+
+.. _`MeetBot`: http://www.jenkins-ci.org/meetings/

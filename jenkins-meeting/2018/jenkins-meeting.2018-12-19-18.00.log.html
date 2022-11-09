@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app228.us.archive.org';v.server_ms=420;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-12-19-18.00.log.html","20211027221204","https://web.archive.org/","web","/_static/",
+	      "1635372724");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:24</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:34</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-4"></a><span class="tm">18:00:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler  kohsuke</span>
+<a name="l-5"></a><span class="tm">18:00:39</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:00:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting actions</span>
+<a name="l-7"></a><span class="tm">18:01:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-12-05-18.01.html</span>
+<a name="l-8"></a><span class="tm">18:01:26</span><span class="nk"> &lt;kohsuke&gt;</span> "oleg_nenashev to clarify the Java 11 experimental update center in the JEP-211"
+<a name="l-9"></a><span class="tm">18:02:21</span><span class="nk"> &lt;kohsuke&gt;</span> "kohsuke or rtyler to update https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage" didn't happen, but hopefully there's a whole batch to add from this week anyway
+<a name="l-10"></a><span class="tm">18:02:29</span><span class="nk"> &lt;kohsuke&gt;</span> I guess oleg-nenashev is not here
+<a name="l-11"></a><span class="tm">18:03:06</span><span class="nk"> &lt;kohsuke&gt;</span> I'll just carry forward that one till the next year, assuming it's a real action item
+<a name="l-12"></a><span class="tm">18:03:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg-nenashev to clarify the Java 11 experimental update center in the JEP-211 (carry over from Dec 5th)</span>
+<a name="l-13"></a><span class="tm">18:03:36</span><span class="nk"> &lt;kohsuke&gt;</span> Moving on ...
+<a name="l-14"></a><span class="tm">18:03:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-15"></a><span class="tm">18:04:24</span><span class="nk"> &lt;rtyler&gt;</span> welp, ogondza isn't around and I don't know about danielbeck
+<a name="l-16"></a><span class="tm">18:04:50</span><span class="nk"> &lt;kohsuke&gt;</span> danielbeck is done for the year I think
+<a name="l-17"></a><span class="tm">18:05:03</span><span class="nk"> &lt;rtyler&gt;</span> did somebody put him back in his stasis pod already?
+<a name="l-18"></a><span class="tm">18:05:15</span><span class="nk"> &lt;bitwiseman&gt;</span> Rejuvinator
+<a name="l-19"></a><span class="tm">18:05:22</span><span class="nk"> &lt;bitwiseman&gt;</span> Just a quick stint.
+<a name="l-20"></a><span class="tm">18:05:35</span><span class="nk"> &lt;rtyler&gt;</span> he
+<a name="l-21"></a><span class="tm">18:05:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> we're not doing anything LTS until the new year anyways I thought
+<a name="l-22"></a><span class="tm">18:05:57</span><span class="nk"> &lt;kohsuke&gt;</span> I think the 2.150.2 release schedule is pushed out by two weeks so I think we can safely punt this today
+<a name="l-23"></a><span class="tm">18:06:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">trademark sublicensing requests</span>
+<a name="l-24"></a><span class="tm">18:06:55</span><span class="nk"> &lt;kohsuke&gt;</span> So there are 5 all in all
+<a name="l-25"></a><span class="tm">18:07:00</span><span class="nk"> &lt;rtyler&gt;</span> good grief
+<a name="l-26"></a><span class="tm">18:07:04</span><span class="nk"> &lt;bitwiseman&gt;</span> Yup.
+<a name="l-27"></a><span class="tm">18:07:24</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/topic/jenkinsci-dev/MGZDWfhFaZI/discussion</span>
+<a name="l-28"></a><span class="tm">18:07:43</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/topic/jenkinsci-dev/jv8oFl9PMM4/discussion</span>
+<a name="l-29"></a><span class="tm">18:07:54 </span><span class="nka">* kohsuke</span> <span class="ac">would have loved to have more people around</span>
+<a name="l-30"></a><span class="tm">18:08:24</span><span class="nk"> &lt;bitwiseman&gt;</span> We could table this to the next meeting if we feel it is needed.
+<a name="l-31"></a><span class="tm">18:08:27</span><span class="nk"> &lt;kohsuke&gt;</span> But I do think it all falls well within the line of past patterns of approvals: https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage
+<a name="l-32"></a><span class="tm">18:08:50</span><span class="nk"> &lt;rtyler&gt;</span> instead of just linking to Google Groups, can we go through these one by one please
+<a name="l-33"></a><span class="tm">18:09:01</span><span class="nk"> &lt;bitwiseman&gt;</span> sure.
+<a name="l-34"></a><span class="tm">18:09:16</span><span class="nk"> &lt;bitwiseman&gt;</span> There are 4 trainings and one distribution.
+<a name="l-35"></a><span class="tm">18:09:31</span><span class="nk"> &lt;bitwiseman&gt;</span> Let's start with the dist.
+<a name="l-36"></a><span class="tm">18:09:54</span><span class="nk"> &lt;bitwiseman&gt;</span> CloudBees Jenkins X Distribution
+<a name="l-37"></a><span class="tm">18:10:09</span><span class="nk"> &lt;bitwiseman&gt;</span> Jenkins X folks approved in email.
+<a name="l-38"></a><span class="tm">18:10:25</span><span class="nk"> &lt;rtyler&gt;</span> nobody from the Jenkins X core team balked at that, so as far as I am concerned that's a +1
+<a name="l-39"></a><span class="tm">18:10:37</span><span class="nk"> &lt;rtyler&gt;</span> in line with previously existing items
+<a name="l-40"></a><span class="tm">18:10:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> ?
+<a name="l-41"></a><span class="tm">18:11:01</span><span class="nk"> &lt;kohsuke&gt;</span> I think this is quite in line with the earlier $COMPANY Jenkins $SOMETHING format
+<a name="l-42"></a><span class="tm">18:11:24</span><span class="nk"> &lt;kohsuke&gt;</span> I'm +1 myself, and in my best attempt to channel everyone else, I can't think of anyone who might object
+<a name="l-43"></a><span class="tm">18:11:42</span><span class="nk"> &lt;kohsuke&gt;</span> So I think we are in good standing to approve this today
+<a name="l-44"></a><span class="tm">18:11:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">CloudBees Jenkins X Distribution sublicense is granted with the usaul stipulations around usage, etc</span>
+<a name="l-45"></a><span class="tm">18:12:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to update the approved trademarks page</span>
+<a name="l-46"></a><span class="tm">18:12:18</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">Next:</span> Jenkins CI/CD Workshop by CloudBees
+<a name="l-47"></a><span class="tm">18:12:36</span><span class="nk"> &lt;rtyler&gt;</span> so all these trainings are just "Foo" by CloudBees right?
+<a name="l-48"></a><span class="tm">18:13:01</span><span class="nk"> &lt;kohsuke&gt;</span> What do you mean by "Foo"?
+<a name="l-49"></a><span class="tm">18:13:16</span><span class="nk"> &lt;bitwiseman&gt;</span> &lt;something&gt;
+<a name="l-50"></a><span class="tm">18:13:20</span><span class="nk"> &lt;kohsuke&gt;</span> Right
+<a name="l-51"></a><span class="tm">18:13:35</span><span class="nk"> &lt;bitwiseman&gt;</span> &lt;your text here&gt;
+<a name="l-52"></a><span class="tm">18:14:08</span><span class="nk"> &lt;kohsuke&gt;</span> We haven't approved this pattern for a while, but I think it's still safely within the line of the spirit -- avoiding the confusion about the origin of the effort
+<a name="l-53"></a><span class="tm">18:14:35</span><span class="nk"> &lt;kohsuke&gt;</span> Again on this one, I'm +1 myself, and in my best attempt to channel everyone else, I can't think of anyone who might object
+<a name="l-54"></a><span class="tm">18:15:09</span><span class="nk"> &lt;rtyler&gt;</span> generally speaking "Jenkins thing" by "Jenkins supporting company" whether it's CloudBees, Praqma, Microsoft, etc, I am comfortable with so long as the mark isn't being abused and the $thing is relevant to Jenkins
+<a name="l-55"></a><span class="tm">18:15:10</span><span class="nk"> &lt;kohsuke&gt;</span> Ah, I take "haven't approved this pattern for a while" back. We had "Jenkins Days by CloudBees"
+<a name="l-56"></a><span class="tm">18:15:38</span><span class="nk"> &lt;rtyler&gt;</span> also presuming the mark doesn't present confusion to Jenkins users, but IMHO "by Commpany" does that suitably
+<a name="l-57"></a><span class="tm">18:16:08</span><span class="nk"> &lt;bitwiseman&gt;</span> +1
+<a name="l-58"></a><span class="tm">18:16:26</span><span class="nk"> &lt;rtyler&gt;</span> frankly, I'm +1 on all four trainings with the usual stipulations, for example that attribution is in place, and the company is using the full sublicensed mark in their materials, including the "by CloudBees"
+<a name="l-59"></a><span class="tm">18:16:42</span><span class="nk"> &lt;kohsuke&gt;</span> Well, you asked for going through this one by one, so let's go through the ceremony
+<a name="l-60"></a><span class="tm">18:17:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">"Jenkins CI/CD Workshop by CloudBees sublicense" is granted, same fine print as above</span>
+<a name="l-61"></a><span class="tm">18:17:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> you read my mind :)
+<a name="l-62"></a><span class="tm">18:17:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Next:</span> Jenkins Jumpstart by CloudBees
+<a name="l-63"></a><span class="tm">18:17:39</span><span class="nk"> &lt;rtyler&gt;</span> +1
+<a name="l-64"></a><span class="tm">18:17:41</span><span class="nk"> &lt;kohsuke&gt;</span> Same reasoning as before, +1
+<a name="l-65"></a><span class="tm">18:17:44</span><span class="nk"> &lt;bitwiseman&gt;</span> +1
+<a name="l-66"></a><span class="tm">18:17:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">"Jenkins Jumpstart by CloudBees" is granted, same fine print as above</span>
+<a name="l-67"></a><span class="tm">18:18:02</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">Next:</span> Jenkins Virtuoso Workshop by CloudBees
+<a name="l-68"></a><span class="tm">18:18:13</span><span class="nk"> &lt;kohsuke&gt;</span> Same reasoning as before, +1
+<a name="l-69"></a><span class="tm">18:18:16</span><span class="nk"> &lt;bitwiseman&gt;</span> +1
+<a name="l-70"></a><span class="tm">18:18:34</span><span class="nk"> &lt;rtyler&gt;</span> who comes up with these names? :P
+<a name="l-71"></a><span class="tm">18:18:35</span><span class="nk"> &lt;rtyler&gt;</span> +1
+<a name="l-72"></a><span class="tm">18:18:55</span><span class="nk"> &lt;bitwiseman&gt;</span> (ex-microsofties for sure)
+<a name="l-73"></a><span class="tm">18:19:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">"Jenkins Virtuoso Workshop by CloudBees" is granted, same fine print as above</span>
+<a name="l-74"></a><span class="tm">18:19:09</span><span class="nk"> &lt;bitwiseman&gt;</span> <span class="hi">Next:</span> Jenkins X Cloud Native CI/CD Workshop by CloudBees
+<a name="l-75"></a><span class="tm">18:19:17</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-76"></a><span class="tm">18:19:21</span><span class="nk"> &lt;bitwiseman&gt;</span> +1
+<a name="l-77"></a><span class="tm">18:19:37</span><span class="nk"> &lt;rtyler&gt;</span> needs more buzzword, +1
+<a name="l-78"></a><span class="tm">18:19:47</span><span class="nk"> &lt;bitwiseman&gt;</span> (blockchain)
+<a name="l-79"></a><span class="tm">18:19:52</span><span class="nk"> &lt;kohsuke&gt;</span> (btw if anyone else is watching and forming thought, please say so)
+<a name="l-80"></a><span class="tm">18:19:52</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-81"></a><span class="tm">18:20:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">"Jenkins X Cloud Native CI/CD Workshop by CloudBees" is granted, same fine print as above</span>
+<a name="l-82"></a><span class="tm">18:20:45</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's time to propose some well-known patterns of blanket approvals
+<a name="l-83"></a><span class="tm">18:21:00</span><span class="nk"> &lt;rtyler&gt;</span> I remember bringing that up last year to you ;)
+<a name="l-84"></a><span class="tm">18:21:05</span><span class="nk"> &lt;rtyler&gt;</span> we can tackle that in 2019
+<a name="l-85"></a><span class="tm">18:21:10</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-86"></a><span class="tm">18:21:31</span><span class="nk"> &lt;kohsuke&gt;</span> I think the argument is that much strong now and more obvious
+<a name="l-87"></a><span class="tm">18:21:37</span><span class="nk"> &lt;rtyler&gt;</span> is that end of this topic
+<a name="l-88"></a><span class="tm">18:21:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-89"></a><span class="tm">18:21:45</span><span class="nk"> &lt;rtyler&gt;</span> hold on smokey
+<a name="l-90"></a><span class="tm">18:21:48</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-91"></a><span class="tm">18:21:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">SPI business</span>
+<a name="l-92"></a><span class="tm">18:22:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the Jenkins marks have been renewed with the US Patent and Trademark Office by our friends at Software in the Public Interest</span>
+<a name="l-93"></a><span class="tm">18:22:22</span><span class="nk"> &lt;rtyler&gt;</span> I believe the filing fee was around $350 if anybody cares
+<a name="l-94"></a><span class="tm">18:23:02</span><span class="nk"> &lt;rtyler&gt;</span> I'm not sure where we are on the budget, or how the Outreachy stipends are/were paid
+<a name="l-95"></a><span class="tm">18:23:08 </span><span class="nka">* kohsuke</span> <span class="ac">feels the government is not charging what the market bears</span>
+<a name="l-96"></a><span class="tm">18:23:09</span><span class="nk"> &lt;rtyler&gt;</span> but we're in the black
+<a name="l-97"></a><span class="tm">18:23:29</span><span class="nk"> &lt;kohsuke&gt;</span> There was an email from tracymiranda about how Outreachy can invoice SPI
+<a name="l-98"></a><span class="tm">18:23:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> if you would like to pay more for stuff, please let me sell you some old junk :)
+<a name="l-99"></a><span class="tm">18:24:17</span><span class="nk"> &lt;kohsuke&gt;</span> I'm just saying good old "Uncle Sam should charge more from other people" American pass time
+<a name="l-100"></a><span class="tm">18:24:37</span><span class="nk"> &lt;rtyler&gt;</span> that's all the SPI things I wanted to bring up
+<a name="l-101"></a><span class="tm">18:24:46</span><span class="nk"> &lt;kohsuke&gt;</span> Great
+<a name="l-102"></a><span class="tm">18:25:06</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else on other topics?
+<a name="l-103"></a><span class="tm">18:25:15</span><span class="nk"> &lt;rtyler&gt;</span> not at this time
+<a name="l-104"></a><span class="tm">18:25:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-105"></a><span class="tm">18:25:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting is Jan 2nd</span>
+<a name="l-106"></a><span class="tm">18:25:49</span><span class="nk"> &lt;bitwiseman&gt;</span> Woot.
+<a name="l-107"></a><span class="tm">18:25:51</span><span class="nk"> &lt;kohsuke&gt;</span> the same time as this one
+<a name="l-108"></a><span class="tm">18:26:11</span><span class="nk"> &lt;bitwiseman&gt;</span> The day after hangover day.
+<a name="l-109"></a><span class="tm">18:26:15</span><span class="nk"> &lt;kohsuke&gt;</span> I think 2018 has been an amazing year for the Jenkins project. I'm thinking about doing some quick "year in review" post
+<a name="l-110"></a><span class="tm">18:26:38</span><span class="nk"> &lt;kohsuke&gt;</span> Here's to hope that 2019 will up the game
+<a name="l-111"></a><span class="tm">18:26:44</span><span class="nk"> &lt;bitwiseman&gt;</span> +1
+<a name="l-112"></a><span class="tm">18:26:59</span><span class="nk"> &lt;kohsuke&gt;</span> On that note, happy Christmas and new year everyone. See you in 2019.
+<a name="l-113"></a><span class="tm">18:27:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:12:04 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:08:19 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 348.436
+  exclusion.robots: 0.148
+  exclusion.robots.policy: 0.135
+  RedisCDXSource: 2.003
+  esindex: 0.024
+  LoadShardBlock: 318.334 (3)
+  PetaboxLoader3.datanode: 209.28 (4)
+  CDXLines.iter: 23.134 (3)
+  load_resource: 62.669
+  PetaboxLoader3.resolve: 33.918
+-->

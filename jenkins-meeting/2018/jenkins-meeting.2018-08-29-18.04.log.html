@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app28.us.archive.org';v.server_ms=620;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-08-29-18.04.log.html","20211027224257","https://web.archive.org/","web","/_static/",
+	      "1635374577");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:04:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:04:42</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:04:50</span><span class="nk"> &lt;jglick&gt;</span> present
+<a name="l-4"></a><span class="tm">18:04:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck kohsuke</span>
+<a name="l-5"></a><span class="tm">18:04:51</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:04:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting actions</span>
+<a name="l-7"></a><span class="tm">18:05:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2018/jenkins-meeting.2018-08-15-18.00.html</span>
+<a name="l-8"></a><span class="tm">18:05:40</span><span class="nk"> &lt;danielbeck&gt;</span> rodrigc's adoption proposal is ongoing, with a draft JEP
+<a name="l-9"></a><span class="tm">18:05:42</span><span class="nk"> &lt;rtyler&gt;</span> I believe that ogondza tackled the LTS backporting with regards to JNA?
+<a name="l-10"></a><span class="tm">18:05:48 </span><span class="nka">* rtyler</span> <span class="ac">claps</span>
+<a name="l-11"></a><span class="tm">18:05:52</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler yes
+<a name="l-12"></a><span class="tm">18:06:17</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/msg/jenkinsci-dev/Snz_mdXsq6s/VXtisasyDgAJ</span>
+<a name="l-13"></a><span class="tm">18:06:29</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/msg/jenkinsci-dev/zrBUwcuhqBY/T_fd0DG9DwAJ</span>
+<a name="l-14"></a><span class="tm">18:07:47</span><span class="nk"> &lt;danielbeck&gt;</span> not sure I have a reference for oleg-nenashev 's retrospective announcement
+<a name="l-15"></a><span class="tm">18:07:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I don't recall if you scheduled a public retrospective or not
+<a name="l-16"></a><span class="tm">18:08:04</span><span class="nk"> &lt;rtyler&gt;</span> either way, let's move on with the agenda https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-17"></a><span class="tm">18:08:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-18"></a><span class="tm">18:08:32</span><span class="nk"> &lt;danielbeck&gt;</span> no backports, weekly user feedback seems reasonable
+<a name="l-19"></a><span class="tm">18:09:20</span><span class="nk"> &lt;rtyler&gt;</span> guess ogondza isn't around hm
+<a name="l-20"></a><span class="tm">18:09:52</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler RC was posted last week already since he isn't around this week
+<a name="l-21"></a><span class="tm">18:10:04</span><span class="nk"> &lt;danielbeck&gt;</span> (first info link above)
+<a name="l-22"></a><span class="tm">18:10:10</span><span class="nk"> &lt;rtyler&gt;</span> ah
+<a name="l-23"></a><span class="tm">18:10:12</span><span class="nk"> &lt;rtyler&gt;</span> moving on then?
+<a name="l-24"></a><span class="tm">18:10:18</span><span class="nk"> &lt;markewaite&gt;</span> my testing with 2.138 for the last week has found no surprises
+<a name="l-25"></a><span class="tm">18:10:25</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler +1
+<a name="l-26"></a><span class="tm">18:10:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I hope you're her :)
+<a name="l-27"></a><span class="tm">18:10:48</span><span class="nk"> &lt;rtyler&gt;</span> your topics are next
+<a name="l-28"></a><span class="tm">18:10:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC Summer of Code: Results</span>
+<a name="l-29"></a><span class="tm">18:11:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 1 sec
+<a name="l-30"></a><span class="tm">18:12:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ok
+<a name="l-31"></a><span class="tm">18:12:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Retrospective is WiP
+<a name="l-32"></a><span class="tm">18:13:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">GSoC is over, yey. 2 projects passed, 1 was failed by mentors at the final evaluation. All projects bring value to the community and move critical stories forward</span>
+<a name="l-33"></a><span class="tm">18:13:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ... independently of the final result
+<a name="l-34"></a><span class="tm">18:13:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to submit a summary blogpost this week</span>
+<a name="l-35"></a><span class="tm">18:14:01</span><span class="nk"> &lt;rtyler&gt;</span> wunderbar
+<a name="l-36"></a><span class="tm">18:14:14</span><span class="nk"> &lt;alyssat_&gt;</span> congrats
+<a name="l-37"></a><span class="tm">18:14:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">Join the GSoC SIG mailing list if you want to attend retrospective or share feedback: https://groups.google.com/forum/#!forum/jenkinsci-gsoc-all-public</span>
+<a name="l-38"></a><span class="tm">18:14:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We will have a public meeting next week
+<a name="l-39"></a><span class="tm">18:15:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">You can also meet Pham Vu Tuan at DevOps World | Jenkins World in US (Remoting over Kafka). He will be presenting at the Cloud Native SIG meeting there</span>
+<a name="l-40"></a><span class="tm">18:17:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Martin and me will also summarize GSoC at the Contributor summit + lightning talk in the Community Theater</span>
+<a name="l-41"></a><span class="tm">18:17:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> OK, that's it. Stay tuned for the blogpost
+<a name="l-42"></a><span class="tm">18:18:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> any questions?
+<a name="l-43"></a><span class="tm">18:18:19</span><span class="nk"> &lt;rtyler&gt;</span> not from me
+<a name="l-44"></a><span class="tm">18:18:49</span><span class="nk"> &lt;danielbeck&gt;</span> lgtm
+<a name="l-45"></a><span class="tm">18:19:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Just heads up, I am looking for GSoC Org Admins for the next year. If somebody is interested, let me know
+<a name="l-46"></a><span class="tm">18:19:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> so, next topic?
+<a name="l-47"></a><span class="tm">18:19:59</span><span class="nk"> &lt;rtyler&gt;</span> thanks oleg-nenashev
+<a name="l-48"></a><span class="tm">18:20:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Cloud Native SIG update</span>
+<a name="l-49"></a><span class="tm">18:20:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe we could convert such SIG status updates to a recorded HoA call
+<a name="l-50"></a><span class="tm">18:21:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Cloud Native SIG had two meetings this month: https://jenkins.io/sigs/cloud-native/#meetings</span>
+<a name="l-51"></a><span class="tm">18:22:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Man focus - Pluggable Storage stories, esp. External Logging and Configuration Storage. A number of JEPs were submitted and reviewed during the calls: JEP-206, 207, 210, 212, and 213</span>
+<a name="l-52"></a><span class="tm">18:22:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> More JEPs to come soon
+<a name="l-53"></a><span class="tm">18:23:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Right now I am working on the SIG landing page cleanup so that it reflects the current status
+<a name="l-54"></a><span class="tm">18:23:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There is also a plan to submit an Info JEP so that we summarize Pluggable Storage stories in general
+<a name="l-55"></a><span class="tm">18:23:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Most likely - towards the contributor summit
+<a name="l-56"></a><span class="tm">18:24:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2018 is so 2016 if you participated there :)
+<a name="l-57"></a><span class="tm">18:24:19</span><span class="nk"> &lt;rtyler&gt;</span> huh?
+<a name="l-58"></a><span class="tm">18:24:22</span><span class="nk"> &lt;danielbeck&gt;</span> hah
+<a name="l-59"></a><span class="tm">18:24:31</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler we discussed pluggable storage previously
+<a name="l-60"></a><span class="tm">18:25:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> At JW 2016 we had a session about Pluggable Storage, and there is still a lot we take from there in terms of priorities &amp; approaches
+<a name="l-61"></a><span class="tm">18:25:17</span><span class="nk"> &lt;rtyler&gt;</span> ah
+<a name="l-62"></a><span class="tm">18:26:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next Confirmed Cloud Native SIG meeting - Sep 17, Contributor Summit. Drop your agenda items here: https://docs.google.com/document/d/1Hw1mpXSpH8BAe2YK5SrCfFuHQLRf__KnjDBK_SbhGls/edit</span>
+<a name="l-63"></a><span class="tm">18:26:46</span><span class="nk"> &lt;jglick&gt;</span> I suppose we could omit these updates from #jenkins-meeting in favor of SIG-specific channels in Gitter?
+<a name="l-64"></a><span class="tm">18:26:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe
+<a name="l-65"></a><span class="tm">18:27:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I believe it should be a Dev List message or a blogpost
+<a name="l-66"></a><span class="tm">18:27:22</span><span class="nk"> &lt;rtyler&gt;</span> let's not try to prematurely optimize this right now please
+<a name="l-67"></a><span class="tm">18:27:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I just follow the JEP-4 advice &amp; do the update
+<a name="l-68"></a><span class="tm">18:27:57</span><span class="nk"> &lt;rtyler&gt;</span> anything the Cloud Native SIG needs from the rest of us?
+<a name="l-69"></a><span class="tm">18:27:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But yeah, any feedback will be appreciated :)
+<a name="l-70"></a><span class="tm">18:29:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Not so far AFAICT, we are working closely with alyssat_  and tracymiranda to get it running,  so we are good
+<a name="l-71"></a><span class="tm">18:29:23</span><span class="nk"> &lt;rtyler&gt;</span> oki
+<a name="l-72"></a><span class="tm">18:29:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Platform SIG update</span>
+<a name="l-73"></a><span class="tm">18:29:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Okay...
+<a name="l-74"></a><span class="tm">18:29:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/sigs/platform/</span>
+<a name="l-75"></a><span class="tm">18:31:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Over last month we had 3 meetings. Topics: Java 10+ support planning,  Windows 64but packaging, OpenJ9 discussion (JOM) and, today, Multi-architecture Docker Images planning</span>
+<a name="l-76"></a><span class="tm">18:31:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So far so good, we have action items and progress on all topics
+<a name="l-77"></a><span class="tm">18:32:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Also, Jenkins project is now a part of Quality Outreach:  https://wiki.openjdk.java.net/display/quality/Quality+Outreach</span>
+<a name="l-78"></a><span class="tm">18:32:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We still need to figure out what we do there, but we have started some helpful communications
+<a name="l-79"></a><span class="tm">18:33:00</span><span class="nk"> &lt;rtyler&gt;</span> neat
+<a name="l-80"></a><span class="tm">18:33:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Same with Eclipse OpenJ9, tracymiranda got them onboard
+<a name="l-81"></a><span class="tm">18:34:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">Regarding the Platform side, we are working on Chocolatey Packaging (Slide-O-Mix), and Docker images for Arm and ppc</span>
+<a name="l-82"></a><span class="tm">18:34:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And I need help with that SIG a bit...
+<a name="l-83"></a><span class="tm">18:35:03</span><span class="nk"> &lt;rtyler&gt;</span> somebody else to drive it more?
+<a name="l-84"></a><span class="tm">18:35:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> rtyler olblak : I need you to accept my SIG invitations so that I make you admins  according to JEP-4
+<a name="l-85"></a><span class="tm">18:35:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Of course, more contributions will be welcome
+<a name="l-86"></a><span class="tm">18:35:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But generally I am a happy panda. The SIG is pretty active now
+<a name="l-87"></a><span class="tm">18:36:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Many folks help a lot with it
+<a name="l-88"></a><span class="tm">18:37:06 </span><span class="nka">* rtyler</span> <span class="ac">claps</span>
+<a name="l-89"></a><span class="tm">18:37:30</span><span class="nk"> &lt;danielbeck&gt;</span> yep, sounds great
+<a name="l-90"></a><span class="tm">18:37:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Generally I am going to drive Platform SIG in short term though my plan is to also get Embedded/HW SIGs running
+<a name="l-91"></a><span class="tm">18:38:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I already can start a youtube broadcast with closed eyes tho :)
+<a name="l-92"></a><span class="tm">18:38:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Next thing is to stop forgetting about sharing screen and managing presenters
+<a name="l-93"></a><span class="tm">18:39:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any questions?
+<a name="l-94"></a><span class="tm">18:39:34</span><span class="nk"> &lt;danielbeck&gt;</span> is there an easy way to increase visibility into these SIGs? moving off the dev list didn't help that.
+<a name="l-95"></a><span class="tm">18:39:53</span><span class="nk"> &lt;danielbeck&gt;</span> not for today, but perhaps to be considered.
+<a name="l-96"></a><span class="tm">18:40:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I will make sure to repost updates and major threads in Dev list
+<a name="l-97"></a><span class="tm">18:40:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We also need help with HoA
+<a name="l-98"></a><span class="tm">18:40:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have a 10-person CAP now, and we hit it at SIG meetings even now
+<a name="l-99"></a><span class="tm">18:40:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> tracymiranda was going to take a look at Zoom IIRC
+<a name="l-100"></a><span class="tm">18:41:45</span><span class="nk"> &lt;rtyler&gt;</span> next topic?
+<a name="l-101"></a><span class="tm">18:41:55</span><span class="nk"> &lt;danielbeck&gt;</span> +1
+<a name="l-102"></a><span class="tm">18:42:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> if nobody can help with HoA, yes
+<a name="l-103"></a><span class="tm">18:42:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins Ambassador applicants</span>
+<a name="l-104"></a><span class="tm">18:42:07</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/Tp0Q1QAHP2k</span>
+<a name="l-105"></a><span class="tm">18:42:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> mind taking over, I need to step away real quick
+<a name="l-106"></a><span class="tm">18:42:39</span><span class="nk"> &lt;alyssat_&gt;</span> As mentioned in the thread, we received 2 new Ambassador applications. I'd like to open it up for discussion here and see if there's any concerns with naming these folks ambassadors.
+<a name="l-107"></a><span class="tm">18:42:58</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Jenkins+Ambassador</span>
+<a name="l-108"></a><span class="tm">18:43:05</span><span class="nk"> &lt;danielbeck&gt;</span> wait, no, that's really old
+<a name="l-109"></a><span class="tm">18:43:12 </span><span class="nka">* rtyler</span> <span class="ac">steps away</span>
+<a name="l-110"></a><span class="tm">18:43:12</span><span class="nk"> &lt;danielbeck&gt;</span> alyssat_ what's the reference on ambassadors?
+<a name="l-111"></a><span class="tm">18:43:13</span><span class="nk"> &lt;alyssat_&gt;</span> :)
+<a name="l-112"></a><span class="tm">18:43:30</span><span class="nk"> &lt;alyssat_&gt;</span> The 2 new applicants
+<a name="l-113"></a><span class="tm">18:43:42</span><span class="nk"> &lt;danielbeck&gt;</span> alyssat_ to clarify, the entire program
+<a name="l-114"></a><span class="tm">18:44:06</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/jep/tree/master/jep/5</span>
+<a name="l-115"></a><span class="tm">18:44:08</span><span class="nk"> &lt;danielbeck&gt;</span> there it is
+<a name="l-116"></a><span class="tm">18:44:48</span><span class="nk"> &lt;alyssat_&gt;</span> are there any concerns with awarding them ambassadorship based on their contributions in the Chinese community?
+<a name="l-117"></a><span class="tm">18:45:02</span><span class="nk"> &lt;markewaite&gt;</span> +1 No concerns from me
+<a name="l-118"></a><span class="tm">18:45:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-119"></a><span class="tm">18:45:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> works for me
+<a name="l-120"></a><span class="tm">18:45:45</span><span class="nk"> &lt;danielbeck&gt;</span> Is Tao Lei an organizer of the Beijing JAM?
+<a name="l-121"></a><span class="tm">18:45:58</span><span class="nk"> &lt;alyssat_&gt;</span> he's one of them
+<a name="l-122"></a><span class="tm">18:45:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Though it would be nice if there are GitHub or Jenkins JIRA IDs attached to the thread next time
+<a name="l-123"></a><span class="tm">18:46:56</span><span class="nk"> &lt;danielbeck&gt;</span> alyssat_ did you confirm that Xuefeng Shi satisfies our criteria?
+<a name="l-124"></a><span class="tm">18:47:10</span><span class="nk"> &lt;alyssat_&gt;</span> oleg-nenashev I can include applicants GitHub Jenkins JIRA IDs if they're on there
+<a name="l-125"></a><span class="tm">18:47:15</span><span class="nk"> &lt;danielbeck&gt;</span> Since the application is fairly short, lacking references
+<a name="l-126"></a><span class="tm">18:47:39</span><span class="nk"> &lt;alyssat_&gt;</span> yes, I've personally been involved w/ him and others on many of their events planning
+<a name="l-127"></a><span class="tm">18:47:49</span><span class="nk"> &lt;alyssat_&gt;</span> for Jenkins events
+<a name="l-128"></a><span class="tm">18:47:52</span><span class="nk"> &lt;danielbeck&gt;</span> great
+<a name="l-129"></a><span class="tm">18:47:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I believe Jenkins LDAP ID should be a must for applications
+<a name="l-130"></a><span class="tm">18:48:24</span><span class="nk"> &lt;danielbeck&gt;</span> why?
+<a name="l-131"></a><span class="tm">18:48:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Project affiliation
+<a name="l-132"></a><span class="tm">18:48:34</span><span class="nk"> &lt;alyssat_&gt;</span> I know the Chinese are restricted on my many tools..not sure if that's one it
+<a name="l-133"></a><span class="tm">18:49:23</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev I disagree. But this discussion should take place elsewhere.
+<a name="l-134"></a><span class="tm">18:49:56</span><span class="nk"> &lt;danielbeck&gt;</span> okay, so both applicants seem to satisfy our criteria, and got upvotes
+<a name="l-135"></a><span class="tm">18:50:00</span><span class="nk"> &lt;danielbeck&gt;</span> no downvotes so far
+<a name="l-136"></a><span class="tm">18:50:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> JEP-5 does not define affiliation requirements, so OK
+<a name="l-137"></a><span class="tm">18:50:36</span><span class="nk"> &lt;danielbeck&gt;</span> alyssat_ now you have the feedback to decide :)
+<a name="l-138"></a><span class="tm">18:51:02</span><span class="nk"> &lt;alyssat_&gt;</span> feedback noted. thank you
+<a name="l-139"></a><span class="tm">18:51:05</span><span class="nk"> &lt;danielbeck&gt;</span> I don't think we need to record agreement, as the JEP does not require a project meeting vote.
+<a name="l-140"></a><span class="tm">18:51:33</span><span class="nk"> &lt;alyssat_&gt;</span> sounds good
+<a name="l-141"></a><span class="tm">18:51:43</span><span class="nk"> &lt;danielbeck&gt;</span> shall we move on?
+<a name="l-142"></a><span class="tm">18:51:54</span><span class="nk"> &lt;alyssat_&gt;</span> yup. thanks
+<a name="l-143"></a><span class="tm">18:51:59</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-144"></a><span class="tm">18:52:16</span><span class="nk"> &lt;danielbeck&gt;</span> September 12
+<a name="l-145"></a><span class="tm">18:52:38</span><span class="nk"> &lt;rtyler&gt;</span> ye
+<a name="l-146"></a><span class="tm">18:52:47</span><span class="nk"> &lt;danielbeck&gt;</span> Remember that the meeting time is in UTC, and we're coming up to end of DST in the next few months
+<a name="l-147"></a><span class="tm">18:53:04</span><span class="nk"> &lt;danielbeck&gt;</span> (or potentially beginning if you're upside down)
+<a name="l-148"></a><span class="tm">18:53:25</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:42:57 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:06:54 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 486.621
+  exclusion.robots: 0.158
+  exclusion.robots.policy: 0.146
+  cdx.remote: 0.134
+  esindex: 0.014
+  LoadShardBlock: 34.908 (3)
+  PetaboxLoader3.datanode: 57.772 (4)
+  CDXLines.iter: 23.429 (3)
+  load_resource: 113.012
+  PetaboxLoader3.resolve: 34.658
+-->

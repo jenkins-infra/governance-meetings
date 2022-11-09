@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app228.us.archive.org';v.server_ms=530;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-04-12-18.00.log.html","20210115140328","https://web.archive.org/","web","/_static/",
+	      "1610719408");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:17</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-4"></a><span class="tm">18:00:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-03-29-18.02.html</span>
+<a name="l-5"></a><span class="tm">18:01:38</span><span class="nk"> &lt;ogondza&gt;</span> release was run by KK
+<a name="l-6"></a><span class="tm">18:01:56</span><span class="nk"> &lt;rtyler&gt;</span> yay
+<a name="l-7"></a><span class="tm">18:02:06</span><span class="nk"> &lt;rtyler&gt;</span> I think alyssat_ took care of all the trademark things
+<a name="l-8"></a><span class="tm">18:02:17</span><span class="nk"> &lt;alyssat_&gt;</span> yes. that's done
+<a name="l-9"></a><span class="tm">18:02:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> upgrade guide got squared away too IIRC
+<a name="l-10"></a><span class="tm">18:02:23</span><span class="nk"> &lt;alyssat_&gt;</span> thanks to Daniel
+<a name="l-11"></a><span class="tm">18:02:49</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler yes
+<a name="l-12"></a><span class="tm">18:02:55</span><span class="nk"> &lt;rtyler&gt;</span> wunderbar, let's move on
+<a name="l-13"></a><span class="tm">18:03:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-14"></a><span class="tm">18:03:25</span><span class="nk"> &lt;ogondza&gt;</span> ok, the number of backported fixes i minimal
+<a name="l-15"></a><span class="tm">18:03:36</span><span class="nk"> &lt;ogondza&gt;</span> ATH test are still in progress
+<a name="l-16"></a><span class="tm">18:03:40</span><span class="nk"> &lt;danielbeck&gt;</span> no candidates?
+<a name="l-17"></a><span class="tm">18:03:50</span><span class="nk"> &lt;ogondza&gt;</span> 2 and one of them is groovy
+<a name="l-18"></a><span class="tm">18:04:04</span><span class="nk"> &lt;ogondza&gt;</span> IIRC we agreed it is too risky for 2.46.X
+<a name="l-19"></a><span class="tm">18:04:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.4.10 or 2.4.8?
+<a name="l-20"></a><span class="tm">18:04:15</span><span class="nk"> &lt;danielbeck&gt;</span> I don't think the situation improved since we decided on 2.46
+<a name="l-21"></a><span class="tm">18:04:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yeah, there was at least one reported defect
+<a name="l-22"></a><span class="tm">18:04:33</span><span class="nk"> &lt;danielbeck&gt;</span> https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%202.46.2-fixed
+<a name="l-23"></a><span class="tm">18:04:44</span><span class="nk"> &lt;ogondza&gt;</span> however, this time it will require serious look at ATH results
+<a name="l-24"></a><span class="tm">18:05:05</span><span class="nk"> &lt;ogondza&gt;</span> as some failures look scary and there is a pile of failures as plugins was delisted
+<a name="l-25"></a><span class="tm">18:05:11</span><span class="nk"> &lt;danielbeck&gt;</span> oops
+<a name="l-26"></a><span class="tm">18:05:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">ogondza:</span> I will check issues and update the lts-candidate list today if something is missing. Just in case
+<a name="l-27"></a><span class="tm">18:05:35</span><span class="nk"> &lt;ogondza&gt;</span> I am not sure what to do with such tests - those plugins might never come back to distribution ...
+<a name="l-28"></a><span class="tm">18:05:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> @Igmnore ?
+<a name="l-29"></a><span class="tm">18:05:47</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza skip for now?
+<a name="l-30"></a><span class="tm">18:05:49</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> is there a way to skip if the plugin doesn't exist?
+<a name="l-31"></a><span class="tm">18:05:51</span><span class="nk"> &lt;ogondza&gt;</span> I guess
+<a name="l-32"></a><span class="tm">18:06:11</span><span class="nk"> &lt;ogondza&gt;</span> my question is not a technical one
+<a name="l-33"></a><span class="tm">18:06:36</span><span class="nk"> &lt;ogondza&gt;</span> keeping the suppressed code will we never need sucks as well
+<a name="l-34"></a><span class="tm">18:07:16</span><span class="nk"> &lt;ogondza&gt;</span> the point being, I will have to look at that tomorrow and push the RC once the results looks reasonably well
+<a name="l-35"></a><span class="tm">18:07:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe we want to backport "Internal: Make sure system threads run as SYSTEM.", but the issue link is broken in the changelog
+<a name="l-36"></a><span class="tm">18:07:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> will fix that as well :(
+<a name="l-37"></a><span class="tm">18:08:01</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">push the RC on Thursday once ATH looks green</span>
+<a name="l-38"></a><span class="tm">18:08:22</span><span class="nk"> &lt;orrc&gt;</span> *blue
+<a name="l-39"></a><span class="tm">18:08:28</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza push the RC on Thursday once ATH looks green</span>
+<a name="l-40"></a><span class="tm">18:08:56</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-41"></a><span class="tm">18:09:10</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">orrc:</span> we do not see any of that colors around ATH very often
+<a name="l-42"></a><span class="tm">18:09:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> IIRC the next LTS baseline will be in june right?
+<a name="l-43"></a><span class="tm">18:09:28</span><span class="nk"> &lt;danielbeck&gt;</span> chosen in 4 weeks, released in 8
+<a name="l-44"></a><span class="tm">18:09:37</span><span class="nk"> &lt;danielbeck&gt;</span> wait
+<a name="l-45"></a><span class="tm">18:09:40</span><span class="nk"> &lt;danielbeck&gt;</span> 6 / 10
+<a name="l-46"></a><span class="tm">18:09:48</span><span class="nk"> &lt;ogondza&gt;</span> will be picked 24th of May
+<a name="l-47"></a><span class="tm">18:10:19</span><span class="nk"> &lt;rtyler&gt;</span> righto
+<a name="l-48"></a><span class="tm">18:10:25</span><span class="nk"> &lt;rtyler&gt;</span> ready to move on?
+<a name="l-49"></a><span class="tm">18:10:29</span><span class="nk"> &lt;ogondza&gt;</span> 21th of June  is the .1
+<a name="l-50"></a><span class="tm">18:10:40</span><span class="nk"> &lt;ogondza&gt;</span> yes we can
+<a name="l-51"></a><span class="tm">18:10:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Google Groups issues</span>
+<a name="l-52"></a><span class="tm">18:10:52</span><span class="nk"> &lt;ogondza&gt;</span> can some of the chairs action me?
+<a name="l-53"></a><span class="tm">18:10:52 </span><span class="nka">* rtyler</span> <span class="ac">grumbles</span>
+<a name="l-54"></a><span class="tm">18:11:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> for what?
+<a name="l-55"></a><span class="tm">18:11:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck kohsuke</span>
+<a name="l-56"></a><span class="tm">18:11:06</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-57"></a><span class="tm">18:11:42</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">rtyler:</span> oh, there is no butler confirmation on action command? ok
+<a name="l-58"></a><span class="tm">18:11:53</span><span class="nk"> &lt;rtyler&gt;</span> no
+<a name="l-59"></a><span class="tm">18:12:04</span><span class="nk"> &lt;rtyler&gt;</span> so google groups has flagged jenkinsci-users and jenkinsci-issues
+<a name="l-60"></a><span class="tm">18:12:24</span><span class="nk"> &lt;rtyler&gt;</span> from my understanding jenkinsci-users is now unblocked but there's no telling why it was blocked or if it might happen again
+<a name="l-61"></a><span class="tm">18:12:37</span><span class="nk"> &lt;danielbeck&gt;</span> happened at least twice now
+<a name="l-62"></a><span class="tm">18:12:42</span><span class="nk"> &lt;rtyler&gt;</span> right
+<a name="l-63"></a><span class="tm">18:12:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I hope it is not about "too many slave mentions"
+<a name="l-64"></a><span class="tm">18:13:10</span><span class="nk"> &lt;rtyler&gt;</span> a lot of folks suggested groups.io which I have starteed to look into, I'm hoping we can figure something out, but please know that I have literally no idea why we keep getting flagged :/
+<a name="l-65"></a><span class="tm">18:13:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> Any chance we get a response from Google Support?
+<a name="l-66"></a><span class="tm">18:13:57</span><span class="nk"> &lt;orrc&gt;</span> hahaha :)
+<a name="l-67"></a><span class="tm">18:13:59</span><span class="nk"> &lt;rtyler&gt;</span> there isn't really "support"
+<a name="l-68"></a><span class="tm">18:14:10</span><span class="nk"> &lt;rtyler&gt;</span> there's a friend of mine who has been acting as a go between
+<a name="l-69"></a><span class="tm">18:14:18</span><span class="nk"> &lt;batmat&gt;</span> we're being the product, not the customer...
+<a name="l-70"></a><span class="tm">18:14:25</span><span class="nk"> &lt;rtyler&gt;</span> but apparently there's supposed to be an "Appeal" type link for when a group is flagged
+<a name="l-71"></a><span class="tm">18:14:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I know
+<a name="l-72"></a><span class="tm">18:14:31</span><span class="nk"> &lt;rtyler&gt;</span> except there isn't one anywhere :(
+<a name="l-73"></a><span class="tm">18:14:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am formally a customer of Google
+<a name="l-74"></a><span class="tm">18:14:46</span><span class="nk"> &lt;rtyler&gt;</span> I'm not entirely convinced thaqt there are humans involved here
+<a name="l-75"></a><span class="tm">18:14:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Can give a try
+<a name="l-76"></a><span class="tm">18:15:11</span><span class="nk"> &lt;orrc&gt;</span> groups.io seems to have been around for a while, and has plenty of usage, decent features, and it would be totally reasonable to pay $10/mo or whatever to not have Google involved, and to maybe stop hosting mailman or whatever it is
+<a name="l-77"></a><span class="tm">18:15:23 </span><span class="nka">* orrc</span> <span class="ac">goes to look what anti-spam features they have</span>
+<a name="l-78"></a><span class="tm">18:15:57</span><span class="nk"> &lt;rtyler&gt;</span> I don't expect to do this now, but between now and the next project meeting I would like to figure something out
+<a name="l-79"></a><span class="tm">18:16:15</span><span class="nk"> &lt;rtyler&gt;</span> if anybody has any contacts within google who might be closer to google groups, I would of course appreciate an introduction :)
+<a name="l-80"></a><span class="tm">18:16:27</span><span class="nk"> &lt;rtyler&gt;</span> otherwise, I don't really have any news, good or bad, to shed on the situation
+<a name="l-81"></a><span class="tm">18:16:35</span><span class="nk"> &lt;rtyler&gt;</span> any questions?
+<a name="l-82"></a><span class="tm">18:17:04</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler given the risk of Google groups, are we considering alternatives like groups.io?
+<a name="l-83"></a><span class="tm">18:17:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> I think you may have missed a line
+<a name="l-84"></a><span class="tm">18:17:48</span><span class="nk"> &lt;batmat&gt;</span> how many moderators are there/should we start moderating messages? Are they moderated already?
+<a name="l-85"></a><span class="tm">18:18:08</span><span class="nk"> &lt;rtyler&gt;</span> the first-post-is-moderated thing isn't set on jenkinsci-users so I don't know
+<a name="l-86"></a><span class="tm">18:18:20</span><span class="nk"> &lt;rtyler&gt;</span> but between the first and second time the group was flagged, there wasn't any spam
+<a name="l-87"></a><span class="tm">18:18:25</span><span class="nk"> &lt;rtyler&gt;</span> so I'm not certain spam is the reason
+<a name="l-88"></a><span class="tm">18:18:35</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler sorry, only saw orrc's comments
+<a name="l-89"></a><span class="tm">18:18:53 </span><span class="nka">* orrc</span> <span class="ac">volunteers for Euro-timezone mod duty for the existing lists</span>
+<a name="l-90"></a><span class="tm">18:19:17</span><span class="nk"> &lt;rtyler&gt;</span> consider it done orrc :D
+<a name="l-91"></a><span class="tm">18:19:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to add orrc to the spam brigade</span>
+<a name="l-92"></a><span class="tm">18:19:36</span><span class="nk"> &lt;batmat&gt;</span> +1, maybe there's some rules on ggroups to auto garbage groups where too many spams are reported, but we basically don't know for sure indeed :(
+<a name="l-93"></a><span class="tm">18:19:50</span><span class="nk"> &lt;rtyler&gt;</span> the thing is, users can also report groups
+<a name="l-94"></a><span class="tm">18:19:59</span><span class="nk"> &lt;batmat&gt;</span> heh
+<a name="l-95"></a><span class="tm">18:20:02</span><span class="nk"> &lt;rtyler&gt;</span> so in theory, if enough people reported jenkinsci-users@ as abusive or spam
+<a name="l-96"></a><span class="tm">18:20:07</span><span class="nk"> &lt;rtyler&gt;</span> then we might get kicked off
+<a name="l-97"></a><span class="tm">18:20:17</span><span class="nk"> &lt;rtyler&gt;</span> but there's no way to tell what happened right now unfortunately
+<a name="l-98"></a><span class="tm">18:21:02</span><span class="nk"> &lt;rtyler&gt;</span> so what I'm thinking is that we: look into groups.io, continue to try to get more answers about what's up with google, and revisit next time aroundf
+<a name="l-99"></a><span class="tm">18:21:18</span><span class="nk"> &lt;rtyler&gt;</span> if we get flagged again between nwo and next meeting, we might need to accelerate a migration &lt;_&lt;
+<a name="l-100"></a><span class="tm">18:21:22</span><span class="nk"> &lt;danielbeck&gt;</span> jenkinsci-dev is currently still unaffected?
+<a name="l-101"></a><span class="tm">18:21:28</span><span class="nk"> &lt;rtyler&gt;</span> yes
+<a name="l-102"></a><span class="tm">18:22:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We may want to consider moving Security Advisories as a step 1
+<a name="l-103"></a><span class="tm">18:22:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> If they get blocked at the wrong time, we may have a problem
+<a name="l-104"></a><span class="tm">18:22:47</span><span class="nk"> &lt;orrc&gt;</span> +1 to rtyler
+<a name="l-105"></a><span class="tm">18:22:48</span><span class="nk"> &lt;rtyler&gt;</span> moving lists also means that the email address would change
+<a name="l-106"></a><span class="tm">18:23:00</span><span class="nk"> &lt;rtyler&gt;</span> I would rather not move if we can avoid it
+<a name="l-107"></a><span class="tm">18:23:12</span><span class="nk"> &lt;orrc&gt;</span> once every six years isn't so bad :D
+<a name="l-108"></a><span class="tm">18:23:31 </span><span class="nka">* rtyler</span> <span class="ac">sends an email to orrc@java.net</span>
+<a name="l-109"></a><span class="tm">18:23:40</span><span class="nk"> &lt;orrc&gt;</span> haha, I did just look on there to see where it goes
+<a name="l-110"></a><span class="tm">18:23:57</span><span class="nk"> &lt;orrc&gt;</span> sadly no more project hosting
+<a name="l-111"></a><span class="tm">18:24:16</span><span class="nk"> &lt;rtyler&gt;</span> if we get flagged again before next meeting, or cannot get answers before next meeting, I expect to come with a proposal for migrating all lists to groups.io
+<a name="l-112"></a><span class="tm">18:24:36</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev the advisories list only allows KK and me to post, so I'd be very surprised
+<a name="l-113"></a><span class="tm">18:26:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> m2
+<a name="l-114"></a><span class="tm">18:26:43</span><span class="nk"> &lt;rtyler&gt;</span> anything else on this topic?
+<a name="l-115"></a><span class="tm">18:26:55</span><span class="nk"> &lt;danielbeck&gt;</span> no
+<a name="l-116"></a><span class="tm">18:26:57</span><span class="nk"> &lt;danielbeck&gt;</span> seems reasonable
+<a name="l-117"></a><span class="tm">18:27:04</span><span class="nk"> &lt;danielbeck&gt;</span> email the dev list as well about this
+<a name="l-118"></a><span class="tm">18:27:16</span><span class="nk"> &lt;rtyler&gt;</span> yeah, I'll start a new thread
+<a name="l-119"></a><span class="tm">18:28:12</span><span class="nk"> &lt;rtyler&gt;</span> alrighty then
+<a name="l-120"></a><span class="tm">18:28:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to inform the dev list</span>
+<a name="l-121"></a><span class="tm">18:28:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-122"></a><span class="tm">18:28:52</span><span class="nk"> &lt;rtyler&gt;</span> April 26 is what my very trustworthy calendar (hosted by Google) says
+<a name="l-123"></a><span class="tm">18:29:12</span><span class="nk"> &lt;danielbeck&gt;</span> don't rely on it too much
+<a name="l-124"></a><span class="tm">18:29:34</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-125"></a><span class="tm">18:29:42</span><span class="nk"> &lt;danielbeck&gt;</span> if too many of your meeting invitations are marked spam…
+<a name="l-126"></a><span class="tm">18:29:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">April 26 will be the next meeting</span>
+<a name="l-127"></a><span class="tm">18:29:58</span><span class="nk"> &lt;rtyler&gt;</span> thanks everybody, short and (bitter)sweet today
+<a name="l-128"></a><span class="tm">18:30:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 14:03:28 Jan 15, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:08:50 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 342.4
+  exclusion.robots: 0.138
+  exclusion.robots.policy: 0.125
+  RedisCDXSource: 2.952
+  esindex: 0.01
+  LoadShardBlock: 316.185 (3)
+  PetaboxLoader3.resolve: 335.276 (4)
+  PetaboxLoader3.datanode: 114.339 (4)
+  CDXLines.iter: 18.869 (3)
+  load_resource: 171.01
+-->

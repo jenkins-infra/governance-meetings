@@ -1,0 +1,123 @@
+18:01:23 <danielbeck> #startmeeting
+18:01:23 <robobutler> Let the Jenkins meeting commence!
+18:01:38 <danielbeck> agenda for today: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Dec21meeting
+18:01:47 <danielbeck> #topic Recap last meeting's actions
+18:01:59 <danielbeck> #chair rtyler kohsuke
+18:01:59 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:02:08 <alyssat> hola
+18:02:34 <danielbeck> from last time we have postponing .2 RC, which I think we let everyone know
+18:02:52 <danielbeck> and batmat determined that teilo's concerns about JDK8 weren't a JDK8 specific issue
+18:02:57 <batmat> hola, will be mostly afk, but updated the JDK8 bullet point if possible.
+18:03:16 * batmat goes back with children
+18:03:30 <danielbeck> #topic LTS status check
+18:03:32 <danielbeck> ogondza around?
+18:03:36 <ogondza> yep
+18:04:01 <ogondza> I have done the testing and have not heard about a reason not to push the 2.32.1 tonight
+18:04:12 <danielbeck> great
+18:04:18 <danielbeck> well, that was quick :)
+18:04:36 <danielbeck> #topic FOSDEM 2017 Plans
+18:04:45 <danielbeck> #info https://wiki.jenkins-ci.org/display/JENKINS/FOSDEM+2017
+18:04:47 <danielbeck> alyssat around?
+18:04:53 <alyssat> yup. am here
+18:04:57 <alyssat> #info: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:05:03 <alyssat> sorry wrong link
+18:05:20 <alyssat> https://wiki.jenkins-ci.org/display/JENKINS/FOSDEM+2017
+18:05:30 <alyssat> We are planning for Fosdem, it will be similar to this year's Fosdem. Wanted to see if there are suggestions for what other things we can do at the stand i.e demos, etc
+18:05:56 <alyssat> current planning has been documented in the wiki page
+18:06:12 <kohsuke> I'm late
+18:06:16 <rtyler> I'm working with somebody at cloudbees to create a little pipeline syntax quick reference card we can use at the table
+18:06:39 <rtyler> use/handout that is
+18:07:05 <alyssat> yup. i think i've updated that in the wiki page...but i had Patrick's name on it.
+18:07:15 <alyssat> will update to include rtyler
+18:08:37 <alyssat> any suggestions for demos to use to share w/ attendees?
+18:08:57 <rtyler> alyssat: I'd rather say: if you want to create demos to share with attendees to work with you
+18:09:00 <rtyler> ideas are cheap
+18:09:11 <rtyler> actual useful demos are the real work there :P
+18:09:38 <alyssat> ok..so talk is cheap...we want action..gotcha
+18:09:40 <rtyler> heh
+18:09:56 <rtyler> we have ci.jenkins.io and the blueocean dogfood server which are always on and available for pointing to
+18:11:01 <oleg-nenashev> I can show LibreCores CI if anybody of hardware guys appears at the stand (Pipeline + BO + ara-specific stuff)
+18:11:05 <oleg-nenashev> *area
+18:11:35 <alyssat> thnx oleg
+18:12:36 <oleg-nenashev> It needs internet access on the other hand :(
+18:12:45 <rtyler> FOSDEM has internet access!
+18:13:23 <rtyler> alyssat: I don't think you're going to get much more demo volunteers in this meeting :)
+18:13:24 <alyssat> i'll send out an email to fosdem + events mailing lists as well in case we have other volunteers/suggestions.
+18:13:33 <rtyler> what else ya got?
+18:13:34 <alyssat> yeah i don't think so either.
+18:13:59 <alyssat> besides demos i'm open for suggestions on what others suggest
+18:14:28 <alyssat> if there isn't any other suggestions I think we are good.
+18:14:43 <rtyler> alyssat: where should people who wish to help make FOSDEM happen get involved?
+18:15:30 <alyssat> at the table stand on feb 4 @ 9am
+18:15:43 <rtyler> uh
+18:15:46 <rtyler> how about before then? :P
+18:15:46 <alyssat> I think we are in the K building
+18:15:56 <rtyler> I meant people to help /you/ :)
+18:16:17 <alyssat> i'll update the wiki page once I have more info about that
+18:16:20 <alyssat> :P
+18:16:31 <alyssat> right now it's TBD
+18:17:08 <rtyler> #info join the #jenins-community channel to discuss more FOSDEM planning or events@lists.jenkins-ci.org
+18:17:08 <alyssat> i'm good if there's no other questions
+18:17:14 <rtyler> #topic Infra update
+18:17:26 <rtyler> I just wanted t ogive a brief update on where our infra migration to Azure is
+18:17:44 <rtyler> CloudBees received hired olblak who has been helping me with the work
+18:18:21 <rtyler> we're using the infra@lists.jenkins-ci.org mailing list and creating Intra Enhancement Proposal documents to capture our plans/designs
+18:18:28 <rtyler> https://github.com/jenkins-infra/iep
+18:18:46 <rtyler> as per usual, more help is always welcome :)
+18:19:05 <rtyler> any general or specific infra team questions before I move on?
+18:19:32 <kohsuke> not from here
+18:20:07 <rtyler> #topic JDK8 baseline upgrade followup
+18:20:14 <rtyler> https://groups.google.com/d/msg/jenkinsci-dev/fo5nKLhZK5U/IRJdMeS6CgAJ
+18:20:19 <rtyler> timeline proposed by ogondza ^
+18:20:27 <rtyler> https://groups.google.com/d/msg/jenkinsci-dev/fo5nKLhZK5U/uh3IK_fzEAAJ
+18:20:34 <rtyler> timeline around windows issues/fixes ^
+18:20:55 <rtyler> since batmat is here, I'm not sure what the goal of this agenda item is :/
+18:20:59 <ogondza> ftr, I do not plan to fix the windows issues mentioned :p
+18:21:10 <rtyler> heh
+18:21:34 <rtyler> Slide-o-Mix has been working to get jenkins core to run its builds and tests on Windows as well as Linux
+18:21:49 <rtyler> aside from that, I'm not sure what there is to discuss in this meeting slot
+18:22:07 <batmat> Goal is to agree/decide on this, and start the plan rtyler
+18:22:19 <ogondza> I more or less agree with what batmat suggested. Perhaps I would be more comfortable to have the build passing on windows _before_ announcing the drop
+18:22:35 <batmat> I can create the blog entry PR
+18:22:42 <rtyler> OH HEY IT'S BATMAT
+18:22:43 <ogondza> (not hurry to fix it to meet the schedule)
+18:23:25 <rtyler> I'm in favor of batmat's proposal
+18:23:28 <batmat> ogondza: well, there should not be a real hurry after slide analysis
+18:23:36 <kohsuke> Where is the "proposed timeline by ogondza" ?
+18:23:38 <rtyler> I'm also in favor of batmat fixing the windows issue xD
+18:23:42 <batmat> like there"s one actual one to fix
+18:23:47 <batmat> I can do it
+18:23:51 <oleg-nenashev> FYI I'm going to drop the .NET2 and 3.5 support in WinSW within maybe 1 year
+18:24:00 <kohsuke> oh never mind now the link worked
+18:25:17 <kohsuke> From 6->7 we had some time period during which new class file shipped but we held off using new language features
+18:25:18 <batmat> This thread has been going on since September or IIRC, so though there's no hurry, maybe now we have an agreement that at least we can announce it so users can act upon it
+18:25:32 <batmat> ogondza: and we can just delay more the time of the weekly upgrade
+18:25:38 <kohsuke> Am I right that the new plan doesn't have that phase?
+18:25:41 <batmat> keeping the announce asap, so that users have time
+18:25:52 <rtyler> batmat: considering the timing of the holidays, if you write a blog post today I wouldn't suggest publishing it until jan 4-5th at the earliest
+18:26:03 <rtyler> that gives us time to make windows builds pass I hope
+18:26:07 <batmat> rtyler: agreed
+18:26:11 <batmat> agreed too
+18:26:13 <batmat> gtg
+18:27:01 <rtyler> it doesn't seem like there have been any concrete objections, so I suggest we keep plotting away at this work and continue the discussion on jenkinsci-dev
+18:27:04 <ogondza> kohsuke: what was the point for staying away of new api? backportability/revertability?
+18:27:53 <batmat> rtyler: hence the pt here is just to move on, or not. Since yes, there seems to me we have an agreement there now.
+18:28:06 <kohsuke> Revertability; if we get a surprising reaction from users, that would allow us to backpedal
+18:29:08 <ogondza> kohsuke: do you think it is a concern if we announce it in advance?
+18:29:09 <rtyler> per batmat's and others' points, JDK7 is dead
+18:29:12 <rtyler> :P
+18:29:37 <batmat> rtyler: or we should then at some point introduce an Apache like voting concept on the dev ml if you want decisions be assessable there
+18:30:01 <rtyler> I don't think we should prematurely optimize for a negative reaction when literally nothing has been communicated to the broader user base baout our intentions
+18:30:15 <kohsuke> ogondza: No. With 6->7, it was announcement, then class file change, then using new APIs
+18:30:26 <rtyler> batmat: that's a yak shave for another time please
+18:31:05 <kohsuke> All right, I guess I will not rock the boat given the effort that went into driving this consensus
+18:33:04 * rtyler waits for any other comments/discussion
+18:34:16 <rtyler> okie doke; seems like we're fine to continue moving forward for now with the tentative timeline that ogondza put forward which batmat is helping to drive
+18:34:27 <rtyler> subject to crazy shenanigans with windows cropping up of course :)
+18:34:52 <rtyler> but I think we'll have to wait and see how much stuff is minorly problematic versus very broken once Slide's Jenkinsfile changes merge
+18:35:15 <rtyler> #topic Next meeting
+18:35:33 <rtyler> the calendar says two weeks would be january 4th
+18:35:49 <kohsuke> Happy new year
+18:35:50 <rtyler> that seems reasonable to me, probably sparsely attended because of all those vacations though :)
+18:36:06 <rtyler> #info next meeting january 4th, same time, same place, new year
+18:36:13 <rtyler> #endmeeting

@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 18:01:09 UTC
+(<a href="jenkins.2012-05-30-18.01.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li>
+<ol type="a">
+  <li><span
+    class="INFO">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+    <span class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-3'>kohsuke</a>,
+    18:01:17)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">quick recap of actions</b> <span class="details">(<a href='jenkins.2012-05-30-18.01.log.html#l-10'>kohsuke</a>, 18:02:19)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    ping SPI again</span> <span class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-16'>kohsuke</a>,
+    18:03:05)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">moving Subversion repository to GitHub</b> <span class="details">(<a href='jenkins.2012-05-30-18.01.log.html#l-24'>kohsuke</a>, 18:04:41)</span>
+<ol type="a">
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">Subversion
+    plugin will move to GitHub</span> <span class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-39'>kohsuke</a>,
+    18:08:04)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    write to active users of svn.jenkins-ci.org that they can move to
+    GitHub very easily if they want</span> <span class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-58'>kohsuke</a>,
+    18:13:04)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Improving JonJ and IRC bot stability</b> <span class="details">(<a href='jenkins.2012-05-30-18.01.log.html#l-59'>kohsuke</a>, 18:13:24)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    move IRC bot to cucumber</span> <span class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-62'>kohsuke</a>,
+    18:13:49)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    puppet-ize ircbot</span> <span class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-86'>kohsuke</a>,
+    18:17:03)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    send the credential file to rtyler</span> <span class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-87'>kohsuke</a>,
+    18:17:12)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    investigate J-on-J / remote-slave-6 stability issue</span> <span
+    class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-103'>kohsuke</a>,
+    18:19:15)</span></li>
+  <li><a
+    href="http://ci.jenkins-ci.org/computer/remote-slave-6/load-statistics">http://ci.jenkins-ci.org/computer/remote-slave-6/load-statistics</a>
+    <span class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-110'>jieryn</a>,
+    18:20:17)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler and
+    jieryn to KVM up some more slaves somehow</span> <span
+    class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-125'>rtyler</a>,
+    18:22:29)</span></li>
+  <li><span class="INFO">we brought back remote-slave-8 from redhat but
+    we'll monitor if this is functioning correctly</span> <span
+    class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-126'>kohsuke</a>,
+    18:22:37)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">plugin JonJ on DEV@cloud of BuildHive</b> <span class="details">(<a href='jenkins.2012-05-30-18.01.log.html#l-134'>kohsuke</a>, 18:24:54)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    write a scanner that auto-adds Jenkins jobs for plugins</span> <span
+    class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-158'>kohsuke</a>,
+    18:29:42)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    split buildhive code into smaller pieces and install them to
+    jenkins.ci.cloudbees.com</span> <span class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-160'>kohsuke</a>,
+    18:30:37)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">recampbell to
+    install JIRA plugin on jenkins.ci.cloudbees.com</span> <span
+    class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-164'>kohsuke</a>,
+    18:31:10)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2012-05-30-18.01.log.html#l-173'>kohsuke</a>, 18:32:58)</span>
+<ol type="a">
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">next meeting
+    time is 6/13, same time (11am pacific time)</span> <span
+    class="details">(<a
+    href='jenkins.2012-05-30-18.01.log.html#l-188'>kohsuke</a>,
+    18:36:39)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 18:36:52 UTC
+(<a href="jenkins.2012-05-30-18.01.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>kohsuke to ping SPI again</li>
+  <li>kohsuke to write to active users of svn.jenkins-ci.org that they can move to GitHub very easily if they want</li>
+  <li>kohsuke to move IRC bot to cucumber</li>
+  <li>rtyler to puppet-ize ircbot</li>
+  <li>kohsuke to send the credential file to rtyler</li>
+  <li>kohsuke to investigate J-on-J / remote-slave-6 stability issue</li>
+  <li>rtyler and jieryn to KVM up some more slaves somehow</li>
+  <li>kohsuke to write a scanner that auto-adds Jenkins jobs for plugins</li>
+  <li>kohsuke to split buildhive code into smaller pieces and install them to jenkins.ci.cloudbees.com</li>
+  <li>recampbell to install JIRA plugin on jenkins.ci.cloudbees.com</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> jieryn <ol>
+    <li>rtyler and jieryn to KVM up some more slaves somehow</li>
+  </ol></li>
+  <li> kohsuke <ol>
+    <li>kohsuke to ping SPI again</li>
+    <li>kohsuke to write to active users of svn.jenkins-ci.org that they can move to GitHub very easily if they want</li>
+    <li>kohsuke to move IRC bot to cucumber</li>
+    <li>kohsuke to send the credential file to rtyler</li>
+    <li>kohsuke to investigate J-on-J / remote-slave-6 stability issue</li>
+    <li>kohsuke to write a scanner that auto-adds Jenkins jobs for plugins</li>
+    <li>kohsuke to split buildhive code into smaller pieces and install them to jenkins.ci.cloudbees.com</li>
+  </ol></li>
+  <li> recampbell <ol>
+    <li>recampbell to install JIRA plugin on jenkins.ci.cloudbees.com</li>
+  </ol></li>
+  <li> rtyler <ol>
+    <li>rtyler to puppet-ize ircbot</li>
+    <li>kohsuke to send the credential file to rtyler</li>
+    <li>rtyler and jieryn to KVM up some more slaves somehow</li>
+  </ol></li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>kohsuke (88)</li>
+  <li>jieryn (41)</li>
+  <li>rtyler (38)</li>
+  <li>jenkins-builds (7)</li>
+  <li>hare_brain (4)</li>
+  <li>recampbell (4)</li>
+  <li>robobutler (2)</li>
+  <li>Creeture (2)</li>
+  <li>whimboo (2)</li>
+  <li>jenkins-admin (1)</li>
+  <li>abayer (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

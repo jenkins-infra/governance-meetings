@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app222.us.archive.org';v.server_ms=255;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-08-31-18.00.log.html","20211020061913","https://web.archive.org/","web","/_static/",
+	      "1634710753");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:39</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke rtyler danielbe_ hare_brain</span>
+<a name="l-4"></a><span class="tm">18:00:50</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbe_ hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:01:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting actions</span>
+<a name="l-6"></a><span class="tm">18:01:18</span><span class="nk"> &lt;rtyler&gt;</span> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-08-17-18.00.html
+<a name="l-7"></a><span class="tm">18:01:30</span><span class="nk"> &lt;batmat&gt;</span> o/
+<a name="l-8"></a><span class="tm">18:01:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> seems all AIs are done
+<a name="l-9"></a><span class="tm">18:01:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> there's an item here about JENKINS-37315 for the LTS, did that get integrated?
+<a name="l-10"></a><span class="tm">18:01:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> \o
+<a name="l-11"></a><span class="tm">18:01:54</span><span class="nk"> &lt;rtyler&gt;</span> ah okie doke
+<a name="l-12"></a><span class="tm">18:02:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> do you mind if I throw a brief GSoC recap as the next topic?
+<a name="l-13"></a><span class="tm">18:02:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> np
+<a name="l-14"></a><span class="tm">18:02:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ogondza is getting late
+<a name="l-15"></a><span class="tm">18:02:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC recap</span>
+<a name="l-16"></a><span class="tm">18:03:13</span><span class="nk"> &lt;rtyler&gt;</span> the summer is over!
+<a name="l-17"></a><span class="tm">18:03:15</span><span class="nk"> &lt;rtyler&gt;</span> :(
+<a name="l-18"></a><span class="tm">18:03:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">GSoC 2016 is over</span>
+<a name="l-19"></a><span class="tm">18:03:40</span><span class="nk"> &lt;rtyler&gt;</span> I believe we will be seeing alexsomai in a couple weeks at Jenkins WOrld
+<a name="l-20"></a><span class="tm">18:03:52</span><span class="nk"> &lt;rtyler&gt;</span> and then we have a mentor summit in the fall some time
+<a name="l-21"></a><span class="tm">18:03:54</span><span class="nk"> &lt;alexsomai&gt;</span> yes I'll be there :)
+<a name="l-22"></a><span class="tm">18:04:00 </span><span class="nka">* rtyler</span> <span class="ac">can't remember dates past Jenkins World right now</span>
+<a name="l-23"></a><span class="tm">18:04:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> do you think there are any notable updates to share here?
+<a name="l-24"></a><span class="tm">18:04:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">WWe had two students working on second part of the project. 1 student has passed the final evaluation (alexsomai)</span>
+<a name="l-25"></a><span class="tm">18:04:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">On Thursday we had presentations by students</span>
+<a name="l-26"></a><span class="tm">18:05:01</span><span class="nk"> &lt;rtyler&gt;</span> this was our first year accepted into GSoC, so there are lots of learnings that I hope we can apply next year
+<a name="l-27"></a><span class="tm">18:05:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Slides and recordings are referenced here: https://www.meetup.com/Jenkins-online-meetup/events/233378586/</span>
+<a name="l-28"></a><span class="tm">18:05:06 </span><span class="nka">* rtyler</span> <span class="ac">crosses fingers</span>
+<a name="l-29"></a><span class="tm">18:05:31</span><span class="nk"> &lt;ogondza&gt;</span> sorry, got disconnected silently
+<a name="l-30"></a><span class="tm">18:05:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev and batmat to follow-up on the old retrospective and feedback collection AI</span>
+<a name="l-31"></a><span class="tm">18:06:02</span><span class="nk"> &lt;batmat&gt;</span> yup
+<a name="l-32"></a><span class="tm">18:06:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">alexsomay will conduct a lightning talk and demo at Jenkins World. You can find him at the Community Booth there ;)</span>
+<a name="l-33"></a><span class="tm">18:06:44</span><span class="nk"> &lt;rtyler&gt;</span> any questions/thoughts before we move on?
+<a name="l-34"></a><span class="tm">18:06:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to write a final blogpost and to prepare his lightning talk for JW</span>
+<a name="l-35"></a><span class="tm">18:07:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> No other updats from me
+<a name="l-36"></a><span class="tm">18:07:19</span><span class="nk"> &lt;orrc&gt;</span> Does the "retrospective" Oleg mentioned mean discussing the learnings that Tyler mentioned?
+<a name="l-37"></a><span class="tm">18:07:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to work on sending swags to students</span>
+<a name="l-38"></a><span class="tm">18:07:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">orrc:</span> Yes
+<a name="l-39"></a><span class="tm">18:07:41</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">orrc:</span> somehow, yes.
+<a name="l-40"></a><span class="tm">18:07:42</span><span class="nk"> &lt;orrc&gt;</span> Cool
+<a name="l-41"></a><span class="tm">18:07:57</span><span class="nk"> &lt;batmat&gt;</span> We already started collecting things, but yeah
+<a name="l-42"></a><span class="tm">18:08:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> rtyler also has AI to go to the Mentor summit and to bring a bunch of notes from there
+<a name="l-43"></a><span class="tm">18:08:13</span><span class="nk"> &lt;orrc&gt;</span> Good job, GSoC mentors :)
+<a name="l-44"></a><span class="tm">18:08:16</span><span class="nk"> &lt;rtyler&gt;</span> such notes
+<a name="l-45"></a><span class="tm">18:08:26</span><span class="nk"> &lt;orrc&gt;</span> (and mentees, if that's a word)
+<a name="l-46"></a><span class="tm">18:08:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-47"></a><span class="tm">18:08:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> you're up buddy
+<a name="l-48"></a><span class="tm">18:08:50</span><span class="nk"> &lt;ogondza&gt;</span> we are ready for the release
+<a name="l-49"></a><span class="tm">18:09:00</span><span class="nk"> &lt;rtyler&gt;</span> of 2.7.3 yeah?
+<a name="l-50"></a><span class="tm">18:09:12</span><span class="nk"> &lt;ogondza&gt;</span> special thanks to Oleg for reporting regression during RC period
+<a name="l-51"></a><span class="tm">18:09:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> kohsuke ogondza: So the plan is to spin it today?
+<a name="l-52"></a><span class="tm">18:09:16</span><span class="nk"> &lt;ogondza&gt;</span> yes, .3
+<a name="l-53"></a><span class="tm">18:09:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have been actively testing RC on these weeks, no other serious regressions
+<a name="l-54"></a><span class="tm">18:09:49</span><span class="nk"> &lt;ogondza&gt;</span> good to hear that
+<a name="l-55"></a><span class="tm">18:10:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> JENKINS-37759 has been addressed in all OSS plugins
+<a name="l-56"></a><span class="tm">18:10:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So we do not need to fix it in the core
+<a name="l-57"></a><span class="tm">18:10:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I mean urgent fix
+<a name="l-58"></a><span class="tm">18:11:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/browse/JENKINS-37759</span>
+<a name="l-59"></a><span class="tm">18:11:49</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> lets get in into the next one then
+<a name="l-60"></a><span class="tm">18:11:57</span><span class="nk"> &lt;rtyler&gt;</span> next topic?
+<a name="l-61"></a><span class="tm">18:12:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> I need the release date from kohsuke
+<a name="l-62"></a><span class="tm">18:12:33</span><span class="nk"> &lt;ogondza&gt;</span> action kohsuke to release 2.7.3
+<a name="l-63"></a><span class="tm">18:12:38</span><span class="nk"> &lt;ogondza&gt;</span> is he around?
+<a name="l-64"></a><span class="tm">18:12:45</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to release 2.7.3</span>
+<a name="l-65"></a><span class="tm">18:12:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Seems no
+<a name="l-66"></a><span class="tm">18:13:09</span><span class="nk"> &lt;ogondza&gt;</span> ok, lets agree it will happen for today
+<a name="l-67"></a><span class="tm">18:13:14</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-68"></a><span class="tm">18:13:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hrmpw:</span> you're closest, make sure he pushes buttons
+<a name="l-69"></a><span class="tm">18:13:28</span><span class="nk"> &lt;ogondza&gt;</span> can we move on?
+<a name="l-70"></a><span class="tm">18:13:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> fingers crossed
+<a name="l-71"></a><span class="tm">18:13:47</span><span class="nk"> &lt;rtyler&gt;</span> in a related area, ogondza and I discussed some tasks earlier for decreasins the SPoF on the release process
+<a name="l-72"></a><span class="tm">18:13:57</span><span class="nk"> &lt;rtyler&gt;</span> that's covered under https://issues.jenkins-ci.org/browse/INFRA-910
+<a name="l-73"></a><span class="tm">18:13:59</span><span class="nk"> &lt;rtyler&gt;</span> FYI
+<a name="l-74"></a><span class="tm">18:14:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nice 2 hear
+<a name="l-75"></a><span class="tm">18:14:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Pick new LTS version</span>
+<a name="l-76"></a><span class="tm">18:14:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we are working on the same for remoting
+<a name="l-77"></a><span class="tm">18:14:33</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/changelog/</span>
+<a name="l-78"></a><span class="tm">18:14:57</span><span class="nk"> &lt;danielbe_&gt;</span> the default choice would be 2.18 based on age
+<a name="l-79"></a><span class="tm">18:15:18</span><span class="nk"> &lt;danielbe_&gt;</span> I like 2.19 due to better user feedback, and the diff is also reasonable
+<a name="l-80"></a><span class="tm">18:15:23</span><span class="nk"> &lt;ogondza&gt;</span> 2.16+ can cause Jenkins not starting - do we want to postpone that (and choose something older)?
+<a name="l-81"></a><span class="tm">18:15:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.18 ... 2.20 are more like bugfix releases
+<a name="l-82"></a><span class="tm">18:15:38</span><span class="nk"> &lt;danielbe_&gt;</span> ogondza ?
+<a name="l-83"></a><span class="tm">18:15:46</span><span class="nk"> &lt;hrmpw&gt;</span> <span class="hi">rtyler:</span> he's presenting right now but he does always have 2 laptops with him
+<a name="l-84"></a><span class="tm">18:15:52</span><span class="nk"> &lt;hrmpw&gt;</span> should be able to multitask
+<a name="l-85"></a><span class="tm">18:15:52</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-86"></a><span class="tm">18:15:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hrmpw:</span> as long as it happens today!
+<a name="l-87"></a><span class="tm">18:16:04</span><span class="nk"> &lt;rtyler&gt;</span> 2.19 looks pretty good
+<a name="l-88"></a><span class="tm">18:16:29</span><span class="nk"> &lt;rtyler&gt;</span> the fix for JENKINS-37332 shouhld be backported IMHO if we choose anything under 19
+<a name="l-89"></a><span class="tm">18:16:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-90"></a><span class="tm">18:16:32</span><span class="nk"> &lt;danielbe_&gt;</span> ogondza Well, at some point we need to base LTS on 2.16+ for the plugin loading
+<a name="l-91"></a><span class="tm">18:16:42</span><span class="nk"> &lt;danielbe_&gt;</span> ogondza And it's actually improved robustness
+<a name="l-92"></a><span class="tm">18:16:51</span><span class="nk"> &lt;danielbe_&gt;</span> ogondza Assuming you refer to JENKINS-21486
+<a name="l-93"></a><span class="tm">18:17:16</span><span class="nk"> &lt;ogondza&gt;</span> yes. I said we are talking about postponing what will happen anyway
+<a name="l-94"></a><span class="tm">18:17:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> No strong opinion, but maybe sooner is better than later
+<a name="l-95"></a><span class="tm">18:17:58</span><span class="nk"> &lt;danielbe_&gt;</span> oleg-nenashev recently mentioned something about a kind of "upgrade guide" listing what to look out for when upgrading to newer LTS, if we did that, we should be able to enable users to do this successfully
+<a name="l-96"></a><span class="tm">18:18:22</span><span class="nk"> &lt;danielbe_&gt;</span> i.e. not just a bold line in the changelog, but a section in a short manual
+<a name="l-97"></a><span class="tm">18:18:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to finally create a PR for the upgrade guide</span>
+<a name="l-98"></a><span class="tm">18:18:47</span><span class="nk"> &lt;ogondza&gt;</span> neat
+<a name="l-99"></a><span class="tm">18:18:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Needs some polishing
+<a name="l-100"></a><span class="tm">18:19:05</span><span class="nk"> &lt;ogondza&gt;</span> I am fine with 2.19
+<a name="l-101"></a><span class="tm">18:19:24</span><span class="nk"> &lt;danielbe_&gt;</span> So IMO 2.16+ isn't much of a concern, and we need to get better at telling users about possibly breaking changes anyway
+<a name="l-102"></a><span class="tm">18:19:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We will need to backport the most of 2.20, but I'm fine as well
+<a name="l-103"></a><span class="tm">18:19:49</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbe_:</span> agreed
+<a name="l-104"></a><span class="tm">18:19:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.20 has some potentially important/breaking changes like JENKINS-37559
+<a name="l-105"></a><span class="tm">18:20:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So I would not vote for it
+<a name="l-106"></a><span class="tm">18:20:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> there are only a couple fixes in 2.20 that look important, unless i'm missing the severity of some of these
+<a name="l-107"></a><span class="tm">18:20:34</span><span class="nk"> &lt;danielbe_&gt;</span> oleg-nenashev Solaris is the only one, the rest looks harmless, no?
+<a name="l-108"></a><span class="tm">18:20:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, all other PRs are pretty small
+<a name="l-109"></a><span class="tm">18:21:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe the new permission is the second biggest risk
+<a name="l-110"></a><span class="tm">18:21:28</span><span class="nk"> &lt;danielbe_&gt;</span> So IMO 2.20 would also work, but I think we would prefer 2.19 + backports of most of it?
+<a name="l-111"></a><span class="tm">18:21:37</span><span class="nk"> &lt;danielbe_&gt;</span> ugh new permission :&lt;
+<a name="l-112"></a><span class="tm">18:21:42</span><span class="nk"> &lt;danielbe_&gt;</span> it's a feature :-)
+<a name="l-113"></a><span class="tm">18:22:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> right
+<a name="l-114"></a><span class="tm">18:22:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I'm not happy how some plugins handle new permissions
+<a name="l-115"></a><span class="tm">18:22:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But "sooner or later" again
+<a name="l-116"></a><span class="tm">18:22:30</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> in what way?
+<a name="l-117"></a><span class="tm">18:22:57</span><span class="nk"> &lt;danielbe_&gt;</span> let's table this for now
+<a name="l-118"></a><span class="tm">18:23:24</span><span class="nk"> &lt;ogondza&gt;</span> ok, so do you guys prefer 2.20?
+<a name="l-119"></a><span class="tm">18:23:54</span><span class="nk"> &lt;danielbe_&gt;</span> content-wise, slight preference, age-wise, no. I'd rather see a 2.19 + most of the stuff backported
+<a name="l-120"></a><span class="tm">18:23:55</span><span class="nk"> &lt;rtyler&gt;</span> 2.19 or 2.20 both seem reasonable to me
+<a name="l-121"></a><span class="tm">18:24:04</span><span class="nk"> &lt;rtyler&gt;</span> I can support that danielbe_
+<a name="l-122"></a><span class="tm">18:24:23</span><span class="nk"> &lt;ogondza&gt;</span> I do not feel strongly and there always ware voices to pick the latest and go ...
+<a name="l-123"></a><span class="tm">18:24:34</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbe_:</span> the question is what is the effective difference
+<a name="l-124"></a><span class="tm">18:24:49</span><span class="nk"> &lt;ogondza&gt;</span> taking it as it is, we know people use that before
+<a name="l-125"></a><span class="tm">18:25:01</span><span class="nk"> &lt;batmat&gt;</span> Yeah, prolly 2.20 would not be a good signal for an LTS I guess
+<a name="l-126"></a><span class="tm">18:25:15</span><span class="nk"> &lt;rtyler&gt;</span> three days old release :P
+<a name="l-127"></a><span class="tm">18:25:17</span><span class="nk"> &lt;danielbe_&gt;</span> 2.20 is a bit too recent for me
+<a name="l-128"></a><span class="tm">18:25:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> New permission + Solaris + JSON Signature API, which is restricted anyway
+<a name="l-129"></a><span class="tm">18:25:26</span><span class="nk"> &lt;batmat&gt;</span> Yeah, right, soaked enough
+<a name="l-130"></a><span class="tm">18:25:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.19 is better from my PoV
+<a name="l-131"></a><span class="tm">18:26:02</span><span class="nk"> &lt;rtyler&gt;</span> so it seems like 2.19 is the consensus
+<a name="l-132"></a><span class="tm">18:26:03</span><span class="nk"> &lt;danielbe_&gt;</span> also, easier to go 2.19 + not backport something than 2.20 + revert.
+<a name="l-133"></a><span class="tm">18:26:14</span><span class="nk"> &lt;batmat&gt;</span> Sure
+<a name="l-134"></a><span class="tm">18:26:16</span><span class="nk"> &lt;ogondza&gt;</span> 2.19 + not backport everything
+<a name="l-135"></a><span class="tm">18:26:20</span><span class="nk"> &lt;ogondza&gt;</span> ?
+<a name="l-136"></a><span class="tm">18:26:34</span><span class="nk"> &lt;danielbe_&gt;</span> yes
+<a name="l-137"></a><span class="tm">18:26:35</span><span class="nk"> &lt;batmat&gt;</span> Well, yes, or it's a 2.20 :) ?
+<a name="l-138"></a><span class="tm">18:26:40</span><span class="nk"> &lt;danielbe_&gt;</span> some of it, not all of it
+<a name="l-139"></a><span class="tm">18:26:47</span><span class="nk"> &lt;ogondza&gt;</span> of course
+<a name="l-140"></a><span class="tm">18:27:03</span><span class="nk"> &lt;danielbe_&gt;</span> (I don't trust the Solaris change without more feedback TBH, we have too few users on that)
+<a name="l-141"></a><span class="tm">18:27:23 </span><span class="nka">* batmat</span> <span class="ac">thinks that guy ^ is right</span>
+<a name="l-142"></a><span class="tm">18:27:57</span><span class="nk"> &lt;ogondza&gt;</span> alright
+<a name="l-143"></a><span class="tm">18:28:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">2.19 will be the next baseline for the LTS</span>
+<a name="l-144"></a><span class="tm">18:28:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I also do not trust Windows junctions :)
+<a name="l-145"></a><span class="tm">18:28:27</span><span class="nk"> &lt;batmat&gt;</span> yay
+<a name="l-146"></a><span class="tm">18:28:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-147"></a><span class="tm">18:28:44</span><span class="nk"> &lt;danielbe_&gt;</span> interesting for once
+<a name="l-148"></a><span class="tm">18:28:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have Jenkins World
+<a name="l-149"></a><span class="tm">18:28:50</span><span class="nk"> &lt;rtyler&gt;</span> the calendar would have us on September 14th, which is the first day of presentations at Jenkins World
+<a name="l-150"></a><span class="tm">18:29:02</span><span class="nk"> &lt;rtyler&gt;</span> I propose we simply skip a cycle, and resume four weeks from now
+<a name="l-151"></a><span class="tm">18:29:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Impacts RC
+<a name="l-152"></a><span class="tm">18:29:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But we can discuss it offline
+<a name="l-153"></a><span class="tm">18:29:23</span><span class="nk"> &lt;rtyler&gt;</span> which would be Sept 28
+<a name="l-154"></a><span class="tm">18:29:25</span><span class="nk"> &lt;ogondza&gt;</span> it is rc check - we can do  that on ML
+<a name="l-155"></a><span class="tm">18:29:31</span><span class="nk"> &lt;danielbe_&gt;</span> We can probably do a short meeting limited to RC if needed, or ML
+<a name="l-156"></a><span class="tm">18:29:55</span><span class="nk"> &lt;rtyler&gt;</span> for that, I trust our release officer to coordinate to the extent it is required :)
+<a name="l-157"></a><span class="tm">18:30:21</span><span class="nk"> &lt;rtyler&gt;</span> would Sept 28th work for everybody?
+<a name="l-158"></a><span class="tm">18:30:25</span><span class="nk"> &lt;danielbe_&gt;</span> +1
+<a name="l-159"></a><span class="tm">18:30:32</span><span class="nk"> &lt;batmat&gt;</span> ALL HAIL FOR THE RELEASE OFFICER
+<a name="l-160"></a><span class="tm">18:30:33</span><span class="nk"> &lt;batmat&gt;</span> +1
+<a name="l-161"></a><span class="tm">18:30:39</span><span class="nk"> &lt;ogondza&gt;</span> sure, i am not the one who is traveling
+<a name="l-162"></a><span class="tm">18:31:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting will be September 28th</span>
+<a name="l-163"></a><span class="tm">18:31:30</span><span class="nk"> &lt;rtyler&gt;</span> alright folks, that's a wrap for today
+<a name="l-164"></a><span class="tm">18:31:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yey
+<a name="l-165"></a><span class="tm">18:31:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 06:19:13 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:42:06 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 133.654
+  exclusion.robots: 0.174
+  exclusion.robots.policy: 0.159
+  RedisCDXSource: 16.529
+  esindex: 0.009
+  LoadShardBlock: 96.114 (3)
+  PetaboxLoader3.datanode: 72.057 (4)
+  CDXLines.iter: 17.569 (3)
+  PetaboxLoader3.resolve: 102.66 (2)
+  load_resource: 107.326
+-->

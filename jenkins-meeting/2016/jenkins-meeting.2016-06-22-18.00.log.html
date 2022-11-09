@@ -1,0 +1,356 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app220.us.archive.org';v.server_ms=1001;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-06-22-18.00.log.html","20211020074702","https://web.archive.org/","web","/_static/",
+	      "1634716022");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:06</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">danielbeck hare_brain kohsuke rtyler</span>
+<a name="l-4"></a><span class="tm">18:00:19</span><span class="nk"> &lt;rtyler&gt;</span> every time
+<a name="l-5"></a><span class="tm">18:00:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck hare_brain kohsuke rtyler</span>
+<a name="l-6"></a><span class="tm">18:00:23</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-7"></a><span class="tm">18:00:24</span><span class="nk"> &lt;kohsuke&gt;</span> Yay
+<a name="l-8"></a><span class="tm">18:00:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">agenda https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-June22meeting</span>
+<a name="l-9"></a><span class="tm">18:00:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">last meeting actions</span>
+<a name="l-10"></a><span class="tm">18:01:01</span><span class="nk"> &lt;hare_brain&gt;</span> I'm in the middle of a production firedrill so not really paying attention here today.
+<a name="l-11"></a><span class="tm">18:01:05</span><span class="nk"> &lt;rtyler&gt;</span> rgr
+<a name="l-12"></a><span class="tm">18:01:12</span><span class="nk"> &lt;kohsuke&gt;</span> good luck!
+<a name="l-13"></a><span class="tm">18:01:26</span><span class="nk"> &lt;rtyler&gt;</span> ogondza likely isn't going to be here either, but he mentioned on the mailing list that the RC for the next LTS should be ready to go
+<a name="l-14"></a><span class="tm">18:01:31</span><span class="nk"> &lt;rtyler&gt;</span> see the dev list for more info there
+<a name="l-15"></a><span class="tm">18:01:46</span><span class="nk"> &lt;rtyler&gt;</span> danielbeck has prepared the new patron messages for approval, we'll get to that later
+<a name="l-16"></a><span class="tm">18:02:10</span><span class="nk"> &lt;rtyler&gt;</span> and batmat and I did discuss some usage statistics/census concerns that danielbeck had last meeting, which we'll also revisit later
+<a name="l-17"></a><span class="tm">18:02:16</span><span class="nk"> &lt;rtyler&gt;</span> that's it for our outstanding action items though
+<a name="l-18"></a><span class="tm">18:02:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-19"></a><span class="tm">18:02:39</span><span class="nk"> &lt;kohsuke&gt;</span> I guess we just did that
+<a name="l-20"></a><span class="tm">18:02:49</span><span class="nk"> &lt;rtyler&gt;</span> I was going to add some things
+<a name="l-21"></a><span class="tm">18:03:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">JENKINS-35641 and JENKINS-34923 were not backported according to oliver, he wishes for them to have more soak-time</span>
+<a name="l-22"></a><span class="tm">18:03:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">at ogondza's next available time, he intends to cut the first new LTS RC</span>
+<a name="l-23"></a><span class="tm">18:03:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The LTS backports LGTM
+<a name="l-24"></a><span class="tm">18:03:37</span><span class="nk"> &lt;rtyler&gt;</span> any questions or other discussion items we have here?
+<a name="l-25"></a><span class="tm">18:04:17</span><span class="nk"> &lt;kohsuke&gt;</span> nope
+<a name="l-26"></a><span class="tm">18:04:22 </span><span class="nka">* rtyler</span> <span class="ac">waits patiently</span>
+<a name="l-27"></a><span class="tm">18:04:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC status check</span>
+<a name="l-28"></a><span class="tm">18:04:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> all yours
+<a name="l-29"></a><span class="tm">18:04:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Tomorrow we have mid-term presentations by students: https://jenkins.io/blog/2016/06/21/gsoc-midterm-presentations-ann/</span>
+<a name="l-30"></a><span class="tm">18:05:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">4 projects will be presented. We have 2 meetings on June 23 and June 24</span>
+<a name="l-31"></a><span class="tm">18:05:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> No other major updates right now
+<a name="l-32"></a><span class="tm">18:06:06</span><span class="nk"> &lt;kohsuke&gt;</span> Is it fair to say you are looking for people there to send more love to students?
+<a name="l-33"></a><span class="tm">18:06:35</span><span class="nk"> &lt;rtyler&gt;</span> what does that even mean
+<a name="l-34"></a><span class="tm">18:06:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Mid-term evaluation deadline is June 27. And yes, we are looking for more participants from the developer community</span>
+<a name="l-35"></a><span class="tm">18:06:46</span><span class="nk"> &lt;kohsuke&gt;</span> encouragement, praise, appreciation, etc
+<a name="l-36"></a><span class="tm">18:07:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> anything else?
+<a name="l-37"></a><span class="tm">18:07:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> no from my side
+<a name="l-38"></a><span class="tm">18:07:37</span><span class="nk"> &lt;rtyler&gt;</span> alrighty
+<a name="l-39"></a><span class="tm">18:07:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Are there any other updates?
+<a name="l-40"></a><span class="tm">18:08:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 3
+<a name="l-41"></a><span class="tm">18:08:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2
+<a name="l-42"></a><span class="tm">18:08:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 1
+<a name="l-43"></a><span class="tm">18:08:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 0
+<a name="l-44"></a><span class="tm">18:08:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Security officer update</span>
+<a name="l-45"></a><span class="tm">18:09:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> isn't really here to give much of an update, but I asked him earlier, outside of the security advisory from earlier this week there's nothing to report
+<a name="l-46"></a><span class="tm">18:09:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Events officer update</span>
+<a name="l-47"></a><span class="tm">18:09:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat:</span> you're up
+<a name="l-48"></a><span class="tm">18:09:38</span><span class="nk"> &lt;alyssat&gt;</span> 1)	Jenkins World planning is in full swing. Agenda has been posted
+<a name="l-49"></a><span class="tm">18:09:48</span><span class="nk"> &lt;alyssat&gt;</span> <span class="cmd">#info </span><span class="cmdline">Jenkins World Agenda: https://www.cloudbees.com/juc/agenda</span>
+<a name="l-50"></a><span class="tm">18:10:04</span><span class="nk"> &lt;alyssat&gt;</span> 2)	There are currently 135 registrations.
+<a name="l-51"></a><span class="tm">18:10:18</span><span class="nk"> &lt;alyssat&gt;</span> 3)	We are also planning a Contributor Hackathon for Sept 16 &amp; 17
+<a name="l-52"></a><span class="tm">18:10:34</span><span class="nk"> &lt;alyssat&gt;</span> 4)	At the conference there will be Ask the Experts booth – I have about 14 folks to man this booth. Not all will be at the booth at the same time, of course. But if anyone wants to connect w/ the attendees and provide Jenkins support to attendees, pls let me know.
+<a name="l-53"></a><span class="tm">18:10:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nice
+<a name="l-54"></a><span class="tm">18:11:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Will we have more space at the booth this time?
+<a name="l-55"></a><span class="tm">18:11:05</span><span class="nk"> &lt;alyssat&gt;</span> 5) a contributor/JAM leader appreciation evening is also being planned for Sept 13
+<a name="l-56"></a><span class="tm">18:11:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> JUC London was really crowded on breaks
+<a name="l-57"></a><span class="tm">18:11:41</span><span class="nk"> &lt;alyssat&gt;</span> JUC Israel is currently sold out
+<a name="l-58"></a><span class="tm">18:12:09 </span><span class="nka">* kohsuke</span> <span class="ac">tests lag</span>
+<a name="l-59"></a><span class="tm">18:12:19</span><span class="nk"> &lt;alyssat&gt;</span> JAM activities is going well. JAM Paris was created this morning
+<a name="l-60"></a><span class="tm">18:12:44</span><span class="nk"> &lt;alyssat&gt;</span> I think those are the high lights
+<a name="l-61"></a><span class="tm">18:12:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> JAM Belarus has been created yesterday
+<a name="l-62"></a><span class="tm">18:13:06</span><span class="nk"> &lt;alyssat&gt;</span> sweet
+<a name="l-63"></a><span class="tm">18:13:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat:</span> see oleg-nenashev's question?
+<a name="l-64"></a><span class="tm">18:13:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Outside the common org. Maybe alyssat wants to negotiate with KostyaSha on it
+<a name="l-65"></a><span class="tm">18:13:47</span><span class="nk"> &lt;alyssat&gt;</span> ah! yes! we'll have a much bigger space this time
+<a name="l-66"></a><span class="tm">18:13:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yey
+<a name="l-67"></a><span class="tm">18:14:48</span><span class="nk"> &lt;alyssat&gt;</span> <span class="hi">oleg-nenashev:</span> what did you want me to negotiate w/ KostyaSha about? was it JAM Belarus?
+<a name="l-68"></a><span class="tm">18:14:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep
+<a name="l-69"></a><span class="tm">18:15:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">There will be a Contributor Summit at Jenkins World on tuesday the 13th</span>
+<a name="l-70"></a><span class="tm">18:15:18</span><span class="nk"> &lt;rtyler&gt;</span> that will follow a similar pattern to the previous Contributor Summits we have had at FOSDEM, etc
+<a name="l-71"></a><span class="tm">18:15:27</span><span class="nk"> &lt;alyssat&gt;</span> <span class="hi">oleg-nenashev:</span> we can chat more off line
+<a name="l-72"></a><span class="tm">18:15:40</span><span class="nk"> &lt;rtyler&gt;</span> any other events things to discuss/update?
+<a name="l-73"></a><span class="tm">18:15:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> agreed
+<a name="l-74"></a><span class="tm">18:15:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I have another minor update. Jenkins community has been in http://2016.secr.ru/lang/en/ - one of the biggest software conferences in Russia.
+<a name="l-75"></a><span class="tm">18:16:04</span><span class="nk"> &lt;rtyler&gt;</span> neet
+<a name="l-76"></a><span class="tm">18:16:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action: </span><span class="cmdline">oleg-nenashev to follow-up on SECR in the mailing list</span>
+<a name="l-77"></a><span class="tm">18:16:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> * has been invited to participate
+<a name="l-78"></a><span class="tm">18:16:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Sorry for confusion
+<a name="l-79"></a><span class="tm">18:17:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">alyssat:</span> that it?
+<a name="l-80"></a><span class="tm">18:17:17</span><span class="nk"> &lt;alyssat&gt;</span> we should get the meetup page for the Contributor Summit up shortly
+<a name="l-81"></a><span class="tm">18:17:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> cool
+<a name="l-82"></a><span class="tm">18:17:27 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-83"></a><span class="tm">18:17:28</span><span class="nk"> &lt;alyssat&gt;</span> this it
+<a name="l-84"></a><span class="tm">18:17:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And for hackaton?
+<a name="l-85"></a><span class="tm">18:17:52</span><span class="nk"> &lt;kohsuke&gt;</span> that one is not ready yet
+<a name="l-86"></a><span class="tm">18:17:56</span><span class="nk"> &lt;rtyler&gt;</span> I think we'll need to manage that outside of meetup.com to be honest
+<a name="l-87"></a><span class="tm">18:18:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> okay, makes sense
+<a name="l-88"></a><span class="tm">18:18:07</span><span class="nk"> &lt;alyssat&gt;</span> the hackathon is for those who attended the fosdem summit
+<a name="l-89"></a><span class="tm">18:18:18</span><span class="nk"> &lt;rtyler&gt;</span> since CloudBees was going to fund some lodging and foodstuffs, the inaccurate RSVP counts for meetup can be a problem
+<a name="l-90"></a><span class="tm">18:18:29</span><span class="nk"> &lt;rtyler&gt;</span> but still much to be decided there
+<a name="l-91"></a><span class="tm">18:18:48</span><span class="nk"> &lt;rtyler&gt;</span> moving on
+<a name="l-92"></a><span class="tm">18:18:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Release officer update</span>
+<a name="l-93"></a><span class="tm">18:18:59</span><span class="nk"> &lt;rtyler&gt;</span> ogondza is not here, so no updates here
+<a name="l-94"></a><span class="tm">18:19:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Infra status update</span>
+<a name="l-95"></a><span class="tm">18:19:15 </span><span class="nka">* rtyler</span> <span class="ac">pulls out his spiral notebook</span>
+<a name="l-96"></a><span class="tm">18:19:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#infra </span><span class="cmdline">JIRA has been upgraded to JIRA 7</span>
+<a name="l-97"></a><span class="tm">18:19:25</span><span class="nk"> &lt;rtyler&gt;</span> er
+<a name="l-98"></a><span class="tm">18:19:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">JIRA has been upgraded to JIRA7</span>
+<a name="l-99"></a><span class="tm">18:19:45</span><span class="nk"> &lt;rtyler&gt;</span> this makes all our softwares more agile, or something :)
+<a name="l-100"></a><span class="tm">18:19:52</span><span class="nk"> &lt;kohsuke&gt;</span> much fall out from that
+<a name="l-101"></a><span class="tm">18:20:01</span><span class="nk"> &lt;rtyler&gt;</span> an unintended side-effect of this was that the SOAP API was nuked in JIRA7
+<a name="l-102"></a><span class="tm">18:20:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Requires some fixes
+<a name="l-103"></a><span class="tm">18:20:11</span><span class="nk"> &lt;rtyler&gt;</span> and I wasn't previously aware of how much relied on that SOAP API
+<a name="l-104"></a><span class="tm">18:20:18</span><span class="nk"> &lt;rtyler&gt;</span> which had been deprecated in JIRA 5 iirc
+<a name="l-105"></a><span class="tm">18:20:20 </span><span class="nka">* rtyler</span> <span class="ac">sighs</span>
+<a name="l-106"></a><span class="tm">18:20:33 </span><span class="nka">* oleg-nenashev</span> <span class="ac">is working on IRC bot fixes</span>
+<a name="l-107"></a><span class="tm">18:20:41</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-108"></a><span class="tm">18:20:51</span><span class="nk"> &lt;kohsuke&gt;</span> I've updated lib-jira-api so hopefully it'd be useful
+<a name="l-109"></a><span class="tm">18:21:11</span><span class="nk"> &lt;kohsuke&gt;</span> It took me a while to assemble the right dependencies. Atlassian's own documentation is outdated.
+<a name="l-110"></a><span class="tm">18:21:18</span><span class="nk"> &lt;rtyler&gt;</span> I'm not sure what's depending on that, but from what  Ican tell the services that interact with JIRA are:
+<a name="l-111"></a><span class="tm">18:21:21</span><span class="nk"> &lt;rtyler&gt;</span> accounts app
+<a name="l-112"></a><span class="tm">18:21:21</span><span class="nk"> &lt;rtyler&gt;</span> ircbot
+<a name="l-113"></a><span class="tm">18:21:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> abayer also fixed some stuff on this front
+<a name="l-114"></a><span class="tm">18:21:26</span><span class="nk"> &lt;rtyler&gt;</span> some release process
+<a name="l-115"></a><span class="tm">18:21:30</span><span class="nk"> &lt;rtyler&gt;</span> I thnk that might be it
+<a name="l-116"></a><span class="tm">18:21:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/lib-jira-api</span>
+<a name="l-117"></a><span class="tm">18:21:43</span><span class="nk"> &lt;rtyler&gt;</span> OH, the SCM linker bot thing, which runs on a kohsuke machine somewhere
+<a name="l-118"></a><span class="tm">18:21:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkins-infra/ircbot/pull/29</span>
+<a name="l-119"></a><span class="tm">18:21:49</span><span class="nk"> &lt;danielbeck&gt;</span> is the account app fixed? The account sync thing?
+<a name="l-120"></a><span class="tm">18:21:52</span><span class="nk"> &lt;rtyler&gt;</span> there's an old SPoF ticket somewhere in the backlog associated with that
+<a name="l-121"></a><span class="tm">18:21:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> yes
+<a name="l-122"></a><span class="tm">18:22:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have a problem with JIRA Scraper
+<a name="l-123"></a><span class="tm">18:22:20</span><span class="nk"> &lt;kohsuke&gt;</span> OK, thanks for that heads up rtyler
+<a name="l-124"></a><span class="tm">18:22:24</span><span class="nk"> &lt;kohsuke&gt;</span> I'll fix that one
+<a name="l-125"></a><span class="tm">18:22:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It also uses some old Atlassian libs
+<a name="l-126"></a><span class="tm">18:22:33</span><span class="nk"> &lt;kohsuke&gt;</span> What's JIRA scraper?
+<a name="l-127"></a><span class="tm">18:22:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/lib-jira-scraper</span>
+<a name="l-128"></a><span class="tm">18:22:58</span><span class="nk"> &lt;kohsuke&gt;</span> ah
+<a name="l-129"></a><span class="tm">18:23:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> REST Client for particular JIRA commands
+<a name="l-130"></a><span class="tm">18:23:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The libs beneath are not compatible with modern atlassian libs. Reworking it in IRCBot
+<a name="l-131"></a><span class="tm">18:23:31</span><span class="nk"> &lt;rtyler&gt;</span> suffice it to say, there's still some legacy messiness which the JIRA7 upgrade uncovered, which is still being fixed
+<a name="l-132"></a><span class="tm">18:23:38 </span><span class="nka">* rtyler</span> <span class="ac">continues with his update</span>
+<a name="l-133"></a><span class="tm">18:23:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">we have Azure</span>
+<a name="l-134"></a><span class="tm">18:23:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> \o/
+<a name="l-135"></a><span class="tm">18:24:01</span><span class="nk"> &lt;kohsuke&gt;</span> (with all that said, congrats to update of JIRA)
+<a name="l-136"></a><span class="tm">18:24:12</span><span class="nk"> &lt;rtyler&gt;</span> since the last meeting the actual credentials/API tokens for the Jenkins project have been 'delivered' which means we can start spinning up infrastructure on azure
+<a name="l-137"></a><span class="tm">18:24:23</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-138"></a><span class="tm">18:24:27</span><span class="nk"> &lt;rtyler&gt;</span> my working document for migration is here: https://wiki.jenkins-ci.org/display/infra/Azure+Migration+Project+Plan
+<a name="l-139"></a><span class="tm">18:24:40</span><span class="nk"> &lt;rtyler&gt;</span> I haven't had the time to work on it for the past week or two unfortunately
+<a name="l-140"></a><span class="tm">18:24:43</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Azure+Migration+Project+Plan</span>
+<a name="l-141"></a><span class="tm">18:24:48</span><span class="nk"> &lt;danielbeck&gt;</span> (infra wiki is restricted)
+<a name="l-142"></a><span class="tm">18:24:49</span><span class="nk"> &lt;rtyler&gt;</span> er, whoops
+<a name="l-143"></a><span class="tm">18:24:54</span><span class="nk"> &lt;rtyler&gt;</span> that page was moved anyways
+<a name="l-144"></a><span class="tm">18:25:00</span><span class="nk"> &lt;rtyler&gt;</span> stupid autocomplete in my browser :)
+<a name="l-145"></a><span class="tm">18:25:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Do we have an EPIC for this plan?
+<a name="l-146"></a><span class="tm">18:25:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> maybe too early
+<a name="l-147"></a><span class="tm">18:25:34</span><span class="nk"> &lt;rtyler&gt;</span> no
+<a name="l-148"></a><span class="tm">18:25:38</span><span class="nk"> &lt;rtyler&gt;</span> I think it's probably too early really
+<a name="l-149"></a><span class="tm">18:25:52 </span><span class="nka">* oleg-nenashev</span> <span class="ac">agrees</span>
+<a name="l-150"></a><span class="tm">18:25:52</span><span class="nk"> &lt;rtyler&gt;</span> I have some basics of /what/ needs to be done, not quite scoped out enough on /how/
+<a name="l-151"></a><span class="tm">18:26:15</span><span class="nk"> &lt;rtyler&gt;</span> the first 'thing' that azure is likely going to resolve thouhg, is this ticket about windows agents for ci.jenkins.io https://issues.jenkins-ci.org/browse/INFRA-606
+<a name="l-152"></a><span class="tm">18:26:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> No wonder
+<a name="l-153"></a><span class="tm">18:26:43</span><span class="nk"> &lt;rtyler&gt;</span> because hey why not :)
+<a name="l-154"></a><span class="tm">18:26:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Good start with this document in any case. thumbs up
+<a name="l-155"></a><span class="tm">18:27:11</span><span class="nk"> &lt;rtyler&gt;</span> if there are any volunteers who want to start researching terraform (https://terraform.io) and azure integration with me, I would appreciate any help
+<a name="l-156"></a><span class="tm">18:27:23</span><span class="nk"> &lt;rtyler&gt;</span> that's about it for my update, any questions before we move on?
+<a name="l-157"></a><span class="tm">18:27:46 </span><span class="nka">* batmat</span> <span class="ac">is pondering that</span>
+<a name="l-158"></a><span class="tm">18:27:59</span><span class="nk"> &lt;kohsuke&gt;</span> terraform is bit painful to be used by a team due to lack of state sharing
+<a name="l-159"></a><span class="tm">18:28:19</span><span class="nk"> &lt;kohsuke&gt;</span> ... unless we also use their state sharing service (atlas?)
+<a name="l-160"></a><span class="tm">18:28:37</span><span class="nk"> &lt;rtyler&gt;</span> define state sharing
+<a name="l-161"></a><span class="tm">18:28:48</span><span class="nk"> &lt;kohsuke&gt;</span> I can take this off-meeting with you
+<a name="l-162"></a><span class="tm">18:28:49</span><span class="nk"> &lt;rtyler&gt;</span> also, are you volunteering to help research the viability here
+<a name="l-163"></a><span class="tm">18:28:59</span><span class="nk"> &lt;rtyler&gt;</span> or just throwing opinions out there?: P
+<a name="l-164"></a><span class="tm">18:29:11</span><span class="nk"> &lt;kohsuke&gt;</span> I'm sharing my experience of using it
+<a name="l-165"></a><span class="tm">18:29:50</span><span class="nk"> &lt;rtyler&gt;</span> the high level requirement is that resources (load balancers, machines, databases, etc) will need to be managed more explicitly then they are now if we're to be successful on Azure
+<a name="l-166"></a><span class="tm">18:30:07</span><span class="nk"> &lt;rtyler&gt;</span> terraform is one potential possibility there, as is "out of the box" Azure Resource Manager templates
+<a name="l-167"></a><span class="tm">18:30:40</span><span class="nk"> &lt;rtyler&gt;</span> (i'm sure there are other lolzy options too)
+<a name="l-168"></a><span class="tm">18:30:58</span><span class="nk"> &lt;rtyler&gt;</span> but anyways, plenty to be discussed in #jenkins-infra or the mailing lists on this front
+<a name="l-169"></a><span class="tm">18:31:08 </span><span class="nka">* rtyler</span> <span class="ac">continues through the agenda</span>
+<a name="l-170"></a><span class="tm">18:31:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Licensing and unrestricted access of Usage Statistics (aka "census data")</span>
+<a name="l-171"></a><span class="tm">18:31:39</span><span class="nk"> &lt;rtyler&gt;</span> we discussed this last meeting, but unfortunately batmat wasn't here
+<a name="l-172"></a><span class="tm">18:32:01</span><span class="nk"> &lt;rtyler&gt;</span> and there were some additional questions by danielbeck which needed to be answered before we move forward
+<a name="l-173"></a><span class="tm">18:32:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> I hope you're awake now! :)
+<a name="l-174"></a><span class="tm">18:32:50</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://lists.jenkins-ci.org/pipermail/jenkins-infra/2016-June/000770.html and the thread preceding it</span>
+<a name="l-175"></a><span class="tm">18:32:51</span><span class="nk"> &lt;batmat&gt;</span> I was awake last time too! just not in front of the computer :)
+<a name="l-176"></a><span class="tm">18:33:05</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-177"></a><span class="tm">18:33:25</span><span class="nk"> &lt;batmat&gt;</span> to sum up, all this originally comes from JENKINS-26466
+<a name="l-178"></a><span class="tm">18:33:34</span><span class="nk"> &lt;danielbeck&gt;</span> https://issues.jenkins-ci.org/browse/JENKINS-26466
+<a name="l-179"></a><span class="tm">18:33:40</span><span class="nk"> &lt;batmat&gt;</span> hence trying to extract things from the core, here node_monitors
+<a name="l-180"></a><span class="tm">18:33:47</span><span class="nk"> &lt;rtyler&gt;</span> I unforrunately haven't had a chance to respond to your email here batmat, i'm still believing that we have a semaphore here where only one side can go
+<a name="l-181"></a><span class="tm">18:34:27</span><span class="nk"> &lt;batmat&gt;</span> cf. an older thread abt it, where jglick (among more people) both encouraged going forward with it, and advised abt that design
+<a name="l-182"></a><span class="tm">18:35:11</span><span class="nk"> &lt;kohsuke&gt;</span> Extension point to allow arbitrary plugins to submit arbitrary data looks risky
+<a name="l-183"></a><span class="tm">18:35:11</span><span class="nk"> &lt;batmat&gt;</span> well, I guess I'm not gonna revamp what's the in email above... Already explained I guess. Prolly simpler to answer possible questions here?
+<a name="l-184"></a><span class="tm">18:35:15</span><span class="nk"> &lt;batmat&gt;</span> if there ar
+<a name="l-185"></a><span class="tm">18:35:18</span><span class="nk"> &lt;batmat&gt;</span> *are
+<a name="l-186"></a><span class="tm">18:35:47</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> well, as I say, some plugin *already* do. Just outside that channel
+<a name="l-187"></a><span class="tm">18:35:57</span><span class="nk"> &lt;rtyler&gt;</span> frankly, any form of uncontrolled usage statistics reporting presents potential issues for infrastructure where that data is being reported
+<a name="l-188"></a><span class="tm">18:36:10</span><span class="nk"> &lt;rtyler&gt;</span> in addition to the data security questions
+<a name="l-189"></a><span class="tm">18:36:25</span><span class="nk"> &lt;batmat&gt;</span> obviously
+<a name="l-190"></a><span class="tm">18:36:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> I'm less concerned with plugins reporting data to wherever they want outside of projcet infra
+<a name="l-191"></a><span class="tm">18:36:50</span><span class="nk"> &lt;rtyler&gt;</span> that doesn't have the potential to corrupt usage stats or explode our disk usage requirements
+<a name="l-192"></a><span class="tm">18:36:57</span><span class="nk"> &lt;batmat&gt;</span> Well, I'm not that attached to JENKINS-32485
+<a name="l-193"></a><span class="tm">18:36:59</span><span class="nk"> &lt;danielbeck&gt;</span> FWIW we're already well into "can browsers actually handle it?" URL length with existing usage stats
+<a name="l-194"></a><span class="tm">18:37:09</span><span class="nk"> &lt;batmat&gt;</span> it was just a way to decouple things for 26466
+<a name="l-195"></a><span class="tm">18:37:09</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-196"></a><span class="tm">18:37:16</span><span class="nk"> &lt;danielbeck&gt;</span> So we may need to look into a different submission mechanism sooner than later
+<a name="l-197"></a><span class="tm">18:37:33</span><span class="nk"> &lt;rtyler&gt;</span> so here's what I think can move us forward
+<a name="l-198"></a><span class="tm">18:37:38</span><span class="nk"> &lt;danielbeck&gt;</span> (For reference, it's a GET request with a giant query string)
+<a name="l-199"></a><span class="tm">18:37:46</span><span class="nk"> &lt;batmat&gt;</span> Because extension points are the standard to inverse control in Jenkins...
+<a name="l-200"></a><span class="tm">18:38:12</span><span class="nk"> &lt;rtyler&gt;</span> the original agenda item, as I had proposed it was to both license the data and remove access controls
+<a name="l-201"></a><span class="tm">18:38:48</span><span class="nk"> &lt;rtyler&gt;</span> it's clear to me that it's time to revisit the design and implementation of usage statistics reporting, but I'm not sure I want to tie these two things together
+<a name="l-202"></a><span class="tm">18:39:15</span><span class="nk"> &lt;danielbeck&gt;</span> what about "only one side can go"?
+<a name="l-203"></a><span class="tm">18:39:21</span><span class="nk"> &lt;rtyler&gt;</span> I think batmat's changes are in the right direction there, but without the corresponding design changes on stats submission, and infra requirements, that work (IMHO) cannot be successfully merged
+<a name="l-204"></a><span class="tm">18:40:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> that's where I'm getting to ;)
+<a name="l-205"></a><span class="tm">18:40:14</span><span class="nk"> &lt;danielbeck&gt;</span> k
+<a name="l-206"></a><span class="tm">18:41:17</span><span class="nk"> &lt;rtyler&gt;</span> my proposal is that we license census data under the Open Database license (http://opendatacommons.org/licenses/odbl/1.0/) and based on the census data being reported by Jenkins instances right now, remove access control for census data, subject to revisions on handling the newer goals/requirements for usage stats submission by batmat
+<a name="l-207"></a><span class="tm">18:41:49</span><span class="nk"> &lt;rtyler&gt;</span> (for example, we could just create a separate 'channel' for these "untrusted" usage stats, and restrict access there at a future date)
+<a name="l-208"></a><span class="tm">18:43:38</span><span class="nk"> &lt;kohsuke&gt;</span> FTR I still think it's a bad idea to allow plugins to report arbitrary data to usage stats. We can't stop plugins from doing that through other means but we shouldn't endorse that.
+<a name="l-209"></a><span class="tm">18:43:56</span><span class="nk"> &lt;kohsuke&gt;</span> The node_monitor split into plugin can be solved without opening it up to everyone
+<a name="l-210"></a><span class="tm">18:44:23</span><span class="nk"> &lt;kohsuke&gt;</span> And I'm +1 on licensing census data &amp; remove access control
+<a name="l-211"></a><span class="tm">18:44:28</span><span class="nk"> &lt;rtyler&gt;</span> that aspect of the discussion is why I'm trying to separate these two a bit
+<a name="l-212"></a><span class="tm">18:44:48</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke At least by going that way we can encourage plugins to respect the usage stats opt-out. Which at least one currently doesnt'.
+<a name="l-213"></a><span class="tm">18:44:50</span><span class="nk"> &lt;rtyler&gt;</span> I wish to tackle the data we have, not the data we may have :p
+<a name="l-214"></a><span class="tm">18:45:22</span><span class="nk"> &lt;danielbeck&gt;</span> My concern is that this will result in an insurmountable obstacle to implementing extensible usage stats and we then don't get it
+<a name="l-215"></a><span class="tm">18:46:10</span><span class="nk"> &lt;rtyler&gt;</span> I am already a fairly insurmountable obstacle to extensible usage stats submission :p
+<a name="l-216"></a><span class="tm">18:46:13</span><span class="nk"> &lt;danielbeck&gt;</span> if we're open to, once other concerns there have been addressed, again revoke access to stats data to pave the way, that would be fine
+<a name="l-217"></a><span class="tm">18:46:31</span><span class="nk"> &lt;kohsuke&gt;</span> Are there other use cases for "extensible usage stats"?
+<a name="l-218"></a><span class="tm">18:46:36</span><span class="nk"> &lt;rtyler&gt;</span> I'm open to restricting *other* data sets
+<a name="l-219"></a><span class="tm">18:46:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> my hope is that we can start thinking about this as layered datasets
+<a name="l-220"></a><span class="tm">18:46:53</span><span class="nk"> &lt;rtyler&gt;</span> instead of a single big bucket of data
+<a name="l-221"></a><span class="tm">18:47:10</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> WDYM? other use cases?
+<a name="l-222"></a><span class="tm">18:47:21</span><span class="nk"> &lt;rtyler&gt;</span> this perceived conflict is really only an issue if we cannot stratify our usage stats datasets
+<a name="l-223"></a><span class="tm">18:47:40</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> some plugins are already reporting stats outside that channel, so there are definitely use case for user stats
+<a name="l-224"></a><span class="tm">18:47:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">batmat:</span> I understood yours well, which is a desire to split node monitors into a plugin
+<a name="l-225"></a><span class="tm">18:48:21</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> as danielbeck said too, this would also help respect the opt-in/opt-out choice, and streamline all
+<a name="l-226"></a><span class="tm">18:48:29</span><span class="nk"> &lt;kohsuke&gt;</span> I've also come across one plugin in that past that uses Google analytics to track who's using it, and I thought that was problematic. That's what I think of when I think of "extensible usage stats"
+<a name="l-227"></a><span class="tm">18:49:10</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway, I think I'm getting off topic
+<a name="l-228"></a><span class="tm">18:49:30</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">kohsuke:</span> maybe it's still the same one, but there's definitely at least one doing that now. Anyway, I'm not that much all for it
+<a name="l-229"></a><span class="tm">18:49:32</span><span class="nk"> &lt;kohsuke&gt;</span> I think rtyler is trying to narrow this down to the current usage stats data set to make a progress
+<a name="l-230"></a><span class="tm">18:49:41 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-231"></a><span class="tm">18:49:52</span><span class="nk"> &lt;rtyler&gt;</span> I live in the present ;)
+<a name="l-232"></a><span class="tm">18:49:54</span><span class="nk"> &lt;batmat&gt;</span> I agree we need to think about the whole to accept different data on the collection side
+<a name="l-233"></a><span class="tm">18:50:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> so are you okay with my proposal on licensing and access control on our existing dataset, and the action item to evaluate new datasets differently as necessary?
+<a name="l-234"></a><span class="tm">18:52:01</span><span class="nk"> &lt;rtyler&gt;</span> anybody else care about this? :P
+<a name="l-235"></a><span class="tm">18:52:02</span><span class="nk"> &lt;batmat&gt;</span> not sure I get what that means globally, but I think yeah. I think I'm gonna close that PR for now, since I've been working on it for too long and it's best to just forget about it until we decide we want to tackle that subject. And try maybe to attack JENKINS-26466 another way.
+<a name="l-236"></a><span class="tm">18:52:41</span><span class="nk"> &lt;batmat&gt;</span> copy/pasta was one way... But we chose to try and avoid it :)
+<a name="l-237"></a><span class="tm">18:52:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> I would want to be involved in any future design discussions about usage stats that would be reported into project infra
+<a name="l-238"></a><span class="tm">18:52:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> your thoughts?
+<a name="l-239"></a><span class="tm">18:53:35</span><span class="nk"> &lt;danielbeck&gt;</span> still not sure it's worth it to open up stats
+<a name="l-240"></a><span class="tm">18:53:52</span><span class="nk"> &lt;rtyler&gt;</span> well then let's turn this off
+<a name="l-241"></a><span class="tm">18:54:01</span><span class="nk"> &lt;danielbeck&gt;</span> haven't seen one concrete use of it (besides Payal's project I suppose)
+<a name="l-242"></a><span class="tm">18:54:17</span><span class="nk"> &lt;rtyler&gt;</span> domi's original stats.jenkins-ci.org work was based on census data access
+<a name="l-243"></a><span class="tm">18:54:21 </span><span class="nka">* batmat</span> <span class="ac">would then like to have opinions on how to decouple the current cycles in the code for JENKINS-26466 ;)</span>
+<a name="l-244"></a><span class="tm">18:54:35</span><span class="nk"> &lt;rtyler&gt;</span> we cannot expect to see interesting hacks or visualizations on the data otherwise
+<a name="l-245"></a><span class="tm">18:54:36</span><span class="nk"> &lt;kohsuke&gt;</span> vivekp's extension point &amp; implementation analysis is another, right?
+<a name="l-246"></a><span class="tm">18:54:43 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-247"></a><span class="tm">18:55:07</span><span class="nk"> &lt;kohsuke&gt;</span> And if anything I thought the motivation was it's easier to open it up than lock it down &amp; access control
+<a name="l-248"></a><span class="tm">18:55:08</span><span class="nk"> &lt;danielbeck&gt;</span> haven't seen any results from that. It's not on stats.j.o
+<a name="l-249"></a><span class="tm">18:55:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> correct
+<a name="l-250"></a><span class="tm">18:55:34</span><span class="nk"> &lt;rtyler&gt;</span> also, closed stats is antithetical to what we should be doing imho
+<a name="l-251"></a><span class="tm">18:55:45</span><span class="nk"> &lt;kohsuke&gt;</span> so to me the question is "is it worth closing down stats"
+<a name="l-252"></a><span class="tm">18:55:56</span><span class="nk"> &lt;danielbeck&gt;</span> they're already closed.
+<a name="l-253"></a><span class="tm">18:56:20</span><span class="nk"> &lt;kohsuke&gt;</span> somewhat half-heartedly
+<a name="l-254"></a><span class="tm">18:56:43 </span><span class="nka">* rtyler</span> <span class="ac">looks at the time</span>
+<a name="l-255"></a><span class="tm">18:56:51</span><span class="nk"> &lt;kohsuke&gt;</span> is your concern that there might be undesirable data leak?
+<a name="l-256"></a><span class="tm">18:56:52</span><span class="nk"> &lt;danielbeck&gt;</span> and since I haven't seen a single use of the stats from anyone who isn't a contributor to Jenkins and would have got personal access by asking us, I wonder what the point is
+<a name="l-257"></a><span class="tm">18:57:15</span><span class="nk"> &lt;rtyler&gt;</span> the easiest access control is no access control
+<a name="l-258"></a><span class="tm">18:57:51</span><span class="nk"> &lt;danielbeck&gt;</span> which raises the bar for stats extensibility for no tangible benefit
+<a name="l-259"></a><span class="tm">18:58:05</span><span class="nk"> &lt;rtyler&gt;</span> well, I give up for today
+<a name="l-260"></a><span class="tm">18:58:07</span><span class="nk"> &lt;danielbeck&gt;</span> so if I'm the only critical one, so be it
+<a name="l-261"></a><span class="tm">18:58:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> I think we need to have further discussions on this
+<a name="l-262"></a><span class="tm">18:58:13</span><span class="nk"> &lt;rtyler&gt;</span> if we're going to shut down stats, then everybody can lose access
+<a name="l-263"></a><span class="tm">18:58:28</span><span class="nk"> &lt;danielbeck&gt;</span> I don't think this needs to be unanimous, so you can probably go ahead.
+<a name="l-264"></a><span class="tm">18:58:32</span><span class="nk"> &lt;rtyler&gt;</span> or somebody can propose an actual non-stupid access control policy that isn't just a "gotta-know-somebody-to-get-it"
+<a name="l-265"></a><span class="tm">18:58:47</span><span class="nk"> &lt;rtyler&gt;</span> I just don't understand your objections
+<a name="l-266"></a><span class="tm">18:59:24</span><span class="nk"> &lt;kohsuke&gt;</span> let's get to patron message approval and we can talk more about this outside the meeting
+<a name="l-267"></a><span class="tm">18:59:37</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think there's urgency on deciding this today
+<a name="l-268"></a><span class="tm">18:59:39</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> maybe one way to go forward /a bit?/ abt it is to ask plugins devs?
+<a name="l-269"></a><span class="tm">18:59:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Approval of new Q3 patron messages</span>
+<a name="l-270"></a><span class="tm">19:00:11</span><span class="nk"> &lt;batmat&gt;</span> that would make it for today, and next time we might have some feedback abt devs expectations abt it
+<a name="l-271"></a><span class="tm">19:00:15</span><span class="nk"> &lt;danielbeck&gt;</span> Q3 is upon us, and we have some minor message updates from the patrons
+<a name="l-272"></a><span class="tm">19:00:16 </span><span class="nka">* batmat</span> <span class="ac">is done on that</span>
+<a name="l-273"></a><span class="tm">19:00:18</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/patron/pull/12#issuecomment-227803082</span>
+<a name="l-274"></a><span class="tm">19:00:44</span><span class="nk"> &lt;danielbeck&gt;</span> The first commit was already approved two weeks ago, now we have changes for the CloudBees and JFrog messages
+<a name="l-275"></a><span class="tm">19:00:54</span><span class="nk"> &lt;rtyler&gt;</span> the messages look fine to me
+<a name="l-276"></a><span class="tm">19:00:56</span><span class="nk"> &lt;danielbeck&gt;</span> https://github.com/jenkinsci/patron/pull/12/commits/876d31c50f186082ad41210bee55e8ecdd45d8b1 and https://github.com/jenkinsci/patron/pull/12/commits/5ac2ffb196892dcac8c8d884c42df00e15e66fc1
+<a name="l-277"></a><span class="tm">19:01:11</span><span class="nk"> &lt;danielbeck&gt;</span> The tester links are up to date with these changes, so you can click the links in the newest comment
+<a name="l-278"></a><span class="tm">19:01:46</span><span class="nk"> &lt;alyssat&gt;</span> in the last approval process for JFrog we had issues w/ "The Only..." this can be removed
+<a name="l-279"></a><span class="tm">19:02:01</span><span class="nk"> &lt;kohsuke&gt;</span> LGTM
+<a name="l-280"></a><span class="tm">19:02:43</span><span class="nk"> &lt;danielbeck&gt;</span> anyone concerned about one or both of these message updates?
+<a name="l-281"></a><span class="tm">19:02:53</span><span class="nk"> &lt;kohsuke&gt;</span> "Free 30 day trial" does feel more advertisement-ish than other typical patron messages, but that's already approved in the previous meeting
+<a name="l-282"></a><span class="tm">19:03:10 </span><span class="nka">* rtyler</span> <span class="ac">shrugs</span>
+<a name="l-283"></a><span class="tm">19:03:32 </span><span class="nka">* rtyler</span> <span class="ac">looks around for concerns</span>
+<a name="l-284"></a><span class="tm">19:04:03</span><span class="nk"> &lt;kohsuke&gt;</span> going going ..
+<a name="l-285"></a><span class="tm">19:04:17</span><span class="nk"> &lt;kohsuke&gt;</span> gone!
+<a name="l-286"></a><span class="tm">19:04:23</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Patron message changes are approved</span>
+<a name="l-287"></a><span class="tm">19:04:25</span><span class="nk"> &lt;rtyler&gt;</span> HEH
+<a name="l-288"></a><span class="tm">19:04:29</span><span class="nk"> &lt;rtyler&gt;</span> er, nocaps
+<a name="l-289"></a><span class="tm">19:04:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-290"></a><span class="tm">19:04:41</span><span class="nk"> &lt;rtyler&gt;</span> July 6th looks like our next scheduled meeting
+<a name="l-291"></a><span class="tm">19:04:49</span><span class="nk"> &lt;rtyler&gt;</span> any issues with that?
+<a name="l-292"></a><span class="tm">19:05:01 </span><span class="nka">* batmat</span> <span class="ac">is OK</span>
+<a name="l-293"></a><span class="tm">19:05:02</span><span class="nk"> &lt;kohsuke&gt;</span> see you then!
+<a name="l-294"></a><span class="tm">19:05:05</span><span class="nk"> &lt;alyssat&gt;</span> works for me
+<a name="l-295"></a><span class="tm">19:05:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">July 6 next meeting</span>
+<a name="l-296"></a><span class="tm">19:05:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 07:47:02 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:41:11 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 877.892
+  exclusion.robots: 0.17
+  exclusion.robots.policy: 0.155
+  RedisCDXSource: 584.014
+  esindex: 0.008
+  LoadShardBlock: 273.889 (3)
+  PetaboxLoader3.resolve: 267.21 (3)
+  PetaboxLoader3.datanode: 69.695 (4)
+  CDXLines.iter: 16.356 (3)
+  load_resource: 104.883
+-->

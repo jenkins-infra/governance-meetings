@@ -1,0 +1,235 @@
+19:00:34 <kohsuke> #startmeeting
+19:00:34 <robobutler> Let the Jenkins meeting commence!
+19:00:56 <kohsuke> #topic Moving cucumber from Contegix to the OSUOSL data centers
+19:01:07 <kohsuke> Scary
+19:01:08 <softservant> matrix ... will do thanks.
+19:01:15 <rtyler> heh
+19:01:17 <softservant> awolf2: that's a plugin a take it?
+19:01:30 <rtyler> softservant: mind holding off for a bit, we're starting up a project meeting
+19:01:36 <rtyler> kohsuke: so all these agenda items are related
+19:01:43 <kohsuke> Yeah
+19:02:07 <rtyler> I wanted to bring this up, because I'd like to consolidate our non-mirror infrastructure into the OSUOSL
+19:02:16 <rtyler> well, non-mirror and non-builder
+19:02:44 <kohsuke> So in the sorted order, how do you see this happen in what steps?
+19:03:00 <kohsuke> Do we move off services from cucumber before it moves?
+19:03:10 <kohsuke> Or do we just take a hit for a few days (?) while the machine moves?
+19:03:36 <kohsuke> Or when we say "move cucumber", are you thinking about moving its functionalities but not the physical machine itself?
+19:04:24 <rtyler> both
+19:04:32 <rtyler> I would move services off, and then move the server itself
+19:04:48 <kohsuke> OK
+19:05:16 <rtyler> the primary services are: www, mirrorbrain, jenkins master
+19:05:28 <rtyler> there's a few other little things though
+19:05:31 <kohsuke> right
+19:05:48 <kohsuke> l10n submissions, log store
+19:06:17 <rtyler> I'd be more than happy to run some things in AWS for the time of transit and migration
+19:06:20 <rtyler> for the littler things
+19:06:22 <rtyler> that's easy peasy
+19:06:46 <hare_brain> Sorry, I've been a bit out of the loop. What's the context for this move?
+19:06:47 <rtyler> so, with this agenda item, I had no timeline in mind, I just wanted to discuss it with you, hare_brain and abayer
+19:06:48 <kohsuke> So let's think about big boys first
+19:07:01 <rtyler> hare_brain: consolidation of infrastructure to the OSUOSL
+19:07:13 <rtyler> and potentially decommissioning the physical machine cucumber
+19:07:15 <hare_brain> I meant, what's the motivation?
+19:07:52 <kohsuke> hare_brain: that's a good question --- status quo is the easiest
+19:08:02 <rtyler> to consolidate things to the OSUOSL, cheaper, easier to manage
+19:08:15 <rtyler> the status quo is crap
+19:08:29 <rtyler> that machine runs pretty warm, and is already 3 years old or something like that
+19:08:46 <rtyler> it can do things for a long time, but we ask quite a lot of it right now
+19:08:50 <kohsuke> When I asked that to rtyler, whether the motivation is the cost or the principle, I think he said both
+19:09:23 <kohsuke> The cost problem we should fix by having the project pay, if that hasn't happened already
+19:09:48 <kohsuke> And I understood the "principle" part to be "let's make sure we are working toward the right direction"
+19:09:54 <hare_brain> So crap could mean that you're not happy with the setup, but has it been causing problems for people? And by people, I mean committers and end users.
+19:10:34 <kohsuke> hare_brain:  I do worry about a catastrophic loss of the server that will happen one day
+19:10:45 <rtyler> it has not been causing problems for end-users or committers
+19:11:03 <kohsuke> It's a hodge podge of services that I don't think we know how to fully recreate if it goes to the server heave
+19:11:09 <kohsuke> n
+19:11:11 * rtyler nods
+19:11:17 <rtyler> that's exactly why I dislike it
+19:11:17 <rtyler> :P
+19:11:47 <hare_brain> OK, so this is clean up to allow for improved "business continuity" for lack of a better term.
+19:12:11 <rtyler> heh
+19:12:11 <kohsuke> That's my take of it
+19:12:12 <rtyler> yes
+19:12:48 <rtyler> so in terms of infra tasks
+19:12:56 <hare_brain> So what's the cost now, and what do you expect the cost to be on OSUOSL? i.e., what makes the new thing cheaper?
+19:13:00 <rtyler> we need to move confluence off eggplant to a new VM
+19:13:09 <rtyler> hare_brain: we don't pay for any services at the OSUOSL
+19:13:15 <rtyler> we just beg people to donate to them :P
+19:13:18 <rtyler> they're so nice
+19:13:23 <rtyler> #info the OSUOSL is nice
+19:13:37 <rtyler> let me pull up my trello board
+19:13:37 <kohsuke> And in terms of what we pay to Contegix, how much?
+19:13:43 <rtyler> $60/month
+19:14:04 <kohsuke> Right, so money-wise the project can keep it as long as we need.
+19:14:04 <rtyler> #info Jenkins Infra trello board <https://trello.com/b/PhY2cx2y/jenkins-infrastructure>
+19:14:08 <hare_brain> Is that coming out of your pocket? The project should reimburse you for that if it has been.
+19:14:22 <rtyler> it has been, but I don't care enough about it to change it right now
+19:14:42 <rtyler> anyways, what I'd like to do, is get the okay here to start migrating non-puppetized services off cucumber
+19:15:05 <rtyler> with the long term goal of moving more services into "better long term" pieces of infra
+19:15:23 <kohsuke> That's nice of you, but a part of it is also about preventing the server from disappear when your plane crashes & burns
+19:15:33 <rtyler> heh
+19:16:14 <kohsuke> So separate from the migration discussion, I think we want the server to be owned by the project, pay the cost, and etc.
+19:16:46 * rtyler nods
+19:16:49 <hare_brain> +1
+19:17:28 <kohsuke> (And that reminds me of the domain name --- is that actually transferred to SPI, or is it still owned by you?)
+19:17:57 <rtyler> I believe it's under my namecheap account
+19:18:05 <kohsuke> (every time I get SSL it has to go through your approval, so there's that bus factor)
+19:18:12 * rtyler nods
+19:18:21 <rtyler> kohsuke: neither of us are good at preventing jenkins bus factor
+19:18:28 <rtyler> you can never come flying with me
+19:18:29 <kohsuke> #action kohsuke to ask SPI how to transfer domain ownership to SPI
+19:18:31 <kohsuke> :-)
+19:18:37 <rtyler> good item
+19:18:58 <kohsuke> Now, on migration ...
+19:19:00 <rtyler> #action kohsuke to ask SPI about best way to "own" hardware at Contegix datacenter
+19:19:04 <kohsuke> Yeah
+19:19:09 <kohsuke> I'm sure Debian is already doing it
+19:19:30 <hare_brain> Probably just have a spreadsheet somewhere that lists project hardware.
+19:19:51 <kohsuke> I need to find out how to set things up so that bills go SPI
+19:19:57 * rtyler nods
+19:20:17 <rtyler> hare_brain: do you have a trello username? I'll add you to this infra board
+19:20:27 <hare_brain> I don't think I do.
+19:20:33 <rtyler> ok, we can resolve that later then
+19:20:41 <rtyler> #topic Migration of services off cucumber
+19:20:55 <kohsuke> Or at least so that Contegix recognize SPI as the lawful owner (and maybe put me or somebody as the person who handles payment)
+19:21:14 <rtyler> right
+19:21:26 <kohsuke> Right, on migration, can we use docker? I'm a fan boy now
+19:21:39 <rtyler> heh
+19:21:47 <kohsuke> Makes adding new services & testing it easier
+19:21:48 <rtyler> DOCKER IS NOT FOR PRODUCTION USE
+19:21:53 <rtyler> it says it so clearly guise
+19:22:15 <rtyler> the how I'm less concerned with
+19:22:21 <rtyler> and that doesn't need to be discussed here
+19:22:26 <rtyler> I think the what and when is more prudent to discuss
+19:22:30 <kohsuke> OK
+19:23:03 <rtyler> in terms of things that aren't puppetized, I think i18n isn't, nor is robobutler
+19:23:07 <rtyler> so I could start with those?
+19:23:21 <kohsuke> Sure
+19:24:25 <rtyler> alright
+19:24:29 <kohsuke> To me, a big part of infra as code is to be mindful of where states are
+19:24:43 <rtyler> #action rtyler to start puppetizing the i10n app to prep for migration
+19:24:43 <kohsuke> Just puppetizing it doesn't capture that.
+19:25:00 <rtyler> that's more the ops part of devops ;)
+19:25:38 <rtyler> the puppetization being the first part solves for the "continuity " problem even if we don't move anything off cucumber
+19:26:02 <rtyler> anyways, I'll start on that, we can discuss on the infra@ list the mechanics of moving things at a later point
+19:26:06 <rtyler> can we talk confluence now?
+19:26:38 <kohsuke> I'd feel great if we get to the point where state is backed up separately for each service, non-state for each service is Dockerized, and, we'd do a migration of a service from one box to another
+19:26:46 <kohsuke> Yes, OK, confluence
+19:26:56 <rtyler> #topic Migrating Confluence off Eggplant
+19:27:09 <rtyler> so, I "found" the machine again that the OSUOSL gave us solely for confluence
+19:27:15 <kohsuke> Yay
+19:27:17 <rtyler> this is what happens when we don't write things down :P
+19:27:22 <kohsuke> Can you add my key while you still remember it?
+19:27:28 <hare_brain> Admit it, you never lost it. You were just using it to mine bitcoins.
+19:27:28 <rtyler> yours was there already
+19:27:30 <rtyler> but under the root user
+19:27:36 <rtyler> which is the part I forgot
+19:28:01 <kohsuke> nope
+19:28:07 <kohsuke> ssh root@jenkins-confluence.osuosl.org refuses me
+19:28:31 <rtyler> so I'd like to set up confluence on the machine based on our Puppet bits, and start pointing it the same DB
+19:28:54 <rtyler> I'm not sure if that's a sensible idea, or wil confluence totally fuck our DB that way?
+19:28:57 <kohsuke> Err, I don't think Confluence would be happy to have two instances pointing to the same DB
+19:29:08 <rtyler> crap
+19:29:15 <hare_brain> What's the DB?
+19:29:21 <kohsuke> Let me verify
+19:29:30 <rtyler> some hosted OSUOSL hosted postgres DB IIRC
+19:29:39 <rtyler> that's the other nice thing about consolidation to the OSUOSL
+19:29:43 <rtyler> is they'll run DB servers for us
+19:29:44 <rtyler> \o/
+19:30:01 <hare_brain> Can you set up a replicated slave?
+19:30:13 <rtyler> we probably do have access to such a beast
+19:30:16 <kohsuke> https://confluence.atlassian.com/display/DOC/Cluster+Checklist#ClusterChecklist-DatabaseSetup
+19:30:29 <kohsuke> So looks like I'm wrong
+19:30:37 <rtyler> #action kohsuke and rtyler to work out plan to validate new Confluence instance in parallel with the existing one
+19:30:38 <kohsuke> But we do need to store attachments in DB, which we don't
+19:30:52 <rtyler> I'll add a task in Trello about attachments
+19:31:23 <kohsuke> I still think it's easier to start by cloning a DB and then cut over later
+19:31:33 <rtyler> #info We're planning on moving Confluence because the existing host runs Jira and Confluence and can't handle the load
+19:31:39 <kohsuke> not sure if replicated slave would work because new confluence will want to write, too
+19:31:46 <rtyler> kohsuke: okay, we'll do that
+19:31:55 <rtyler> kohsuke: do you have an expert at Cloudbees that could work with me?
+19:31:59 <rtyler> your time is too sporadic
+19:32:02 <kohsuke> There's also the related static cache layer (and nginx) to go with it
+19:32:26 <kohsuke> We are hiring! Lookins gor a great ops guy to work with us!
+19:32:32 <kohsuke> Looking for...
+19:32:39 <rtyler> heh
+19:32:54 <rtyler> okay
+19:33:00 <kohsuke> The flip side is that we don't really have a full-time ops guy at hand
+19:33:03 <rtyler> #action rtyler to find some sucker that isn't kohsuke to help with the confluence migration
+19:33:09 <kohsuke> But let me check with our acting ops guy
+19:33:17 <rtyler> I think that covers my questions about confluence
+19:33:25 <rtyler> last topic?
+19:33:31 <hare_brain> (I was suggesting replicated to set up new confluence in read only mode first, and then when we're confident of the new setup, flip the switch to make it the new writable master, and turn off writes on the old one.)
+19:33:44 <hare_brain> But if we just go with clustering, that is a better way to go
+19:34:03 <kohsuke> might be a good opportunity to also finally bite the bullet and upgrade to Confluence 4
+19:34:09 * rtyler nods
+19:34:14 <rtyler> I'm sure the devs will LOVE 4
+19:34:16 * rtyler gags
+19:34:26 <kohsuke> The totally backward incompatible beast that still has the same name.
+19:34:39 <kohsuke> #topic more stickers
+19:34:48 <rtyler> this wasn't on the agenda!
+19:34:52 <kohsuke> #chair rtyler hare_brain
+19:34:52 <robobutler> Current chairs: hare_brain kohsuke rtyler
+19:34:53 <hare_brain> Yes it was
+19:34:53 <rtyler> ORDER IN THE COURT! ORDER IN THE COURT!
+19:35:02 <kohsuke> oh
+19:35:05 <kohsuke> we skipped one
+19:35:11 <kohsuke> #topic Switching from masterless Puppet to a Puppet master.
+19:35:17 <rtyler> yisss
+19:35:20 <hare_brain> Hahah
+19:35:22 <rtyler> okay, this is more of an FYI
+19:35:33 <rtyler> I've asked the OSUOSL for a new VM to run a puppetmaster
+19:35:51 <rtyler> masterless puppet has served us well enough, but we're missing a LOT of inventory and status information from machines
+19:36:01 <rtyler> like, did the puppet run actually work
+19:36:33 <rtyler> I'm planning in the next couple months on moving more things under a puppetmaster, which would change our workflow from git commit + poll-based git pull deployments
+19:36:51 <rtyler> to git commit -> testing in JonJ -> deployment of puppet to master -> machines updating
+19:37:04 <kohsuke> OK
+19:37:10 <rtyler> so we'll get more inventory and status info, but also have a better delivery and quality pipeline
+19:37:13 <kohsuke> What would "test in JonJ" look like?
+19:37:33 <rtyler> at the minimum, rspec-puppet, and catalog compilation
+19:37:39 <rtyler> best case scenario, actual integration testing
+19:37:43 <rtyler> TBD though
+19:37:46 <kohsuke> OK
+19:38:13 <rtyler> now we can talk stickers :)
+19:38:16 <rtyler> hold on
+19:38:27 <rtyler> #action rtyler to keep the board in the loop on the puppetmaster migration status
+19:38:50 <rtyler> #action rtyler reaching out to Puppet Labs to see if they will help set up a beautiful/ideal "Open source using Puppet" infrastructure with us
+19:38:58 <rtyler> #topic More stickers
+19:39:04 <kohsuke> Right
+19:39:15 <kohsuke> So between FOSDEM and SCALE I've run out of all the stickers
+19:39:24 <kohsuke> except one or two packs that I still have at hand
+19:39:29 <kohsuke> So it's time to reorder
+19:39:42 <kohsuke> Let me pull up the price here...
+19:40:03 <kohsuke> 2000 stickers for about $600
+19:40:19 <kohsuke> Any objection in spending that money?
+19:40:54 <kohsuke> I'm assuming it's OK
+19:41:05 <hare_brain> +1
+19:41:15 <rtyler> can we get more for cheaper per-piece?
+19:41:25 <rtyler> how long did it take us to burn through the last 2k stickers?
+19:41:26 <kohsuke> Just wanted to get some confirmation so that I won't be acting alone
+19:41:40 <kohsuke> The last order was Feb 2013
+19:41:51 <rtyler> so 2000 stickers a year?
+19:41:55 <kohsuke> Yeah
+19:42:02 <rtyler> seems reasonable, BUY IT NAO
+19:42:20 <rtyler> try to get them to give you a special open source price or something thoguh
+19:42:22 <hare_brain> Tempted to ask what the run rate was at each event, but I doubt you were keeping track. :)
+19:42:39 <kohsuke> FOSDEM and SCALE are really the ones stickers fly away
+19:42:44 <rtyler> hare_brain: FOSDEM we definitely burned about 500
+19:42:54 <kohsuke> I think in all the past years we've spent all that we brought there
+19:43:00 * rtyler nods
+19:43:03 <kohsuke> So it's mainly constrained by how many we can bring
+19:43:28 <kohsuke> Other local meet-ups and JUCs, # of attendees are small enough
+19:43:45 <kohsuke> 2000 has 85% discount and 3000 has 87% discount
+19:43:56 <kohsuke> So going beyond 2000 isn't really saving much.
+19:44:12 * rtyler nods
+19:44:23 <kohsuke> Actually, I should check with that guy who offered us free stickers
+19:44:43 <kohsuke> He insisted that we talk this in e-mail and not in IRC, and sure enough I lost track of that conversation
+19:44:48 <rtyler> when do we talk about cloudbees giving us some of their newfound venture monies? :)
+19:45:08 <rtyler> high rollas
+19:45:16 <kohsuke> rtyler: it's coming: https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=71435396
+19:45:31 <rtyler> excellent
+19:45:52 <rtyler> does that conclude the meeting?
+19:46:11 <kohsuke> I'll get stickers ordered in parallel to follow up with the other sticker guy
+19:46:20 <kohsuke> so that I have some supplies at hand
+19:46:25 <kohsuke> And yes, I think that concludes it
+19:46:28 <rtyler> #endmeeting

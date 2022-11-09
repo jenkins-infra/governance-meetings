@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:03:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:03:54</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:03:55</span><span class="nk"> &lt;Syd&gt;</span> sure
+<a name="l-4"></a><span class="tm">19:03:56</span><span class="nk"> &lt;joeljohnson&gt;</span> sure
+<a name="l-5"></a><span class="tm">19:04:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">abayer rtyler</span>
+<a name="l-6"></a><span class="tm">19:04:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">agenda https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Dec14thMeeting</span>
+<a name="l-7"></a><span class="tm">19:04:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer rtyler</span>
+<a name="l-8"></a><span class="tm">19:04:12</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer kohsuke rtyler
+<a name="l-9"></a><span class="tm">19:04:19</span><span class="nk"> &lt;kohsuke&gt;</span> I need auto-completion
+<a name="l-10"></a><span class="tm">19:04:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">recap of actions</span>
+<a name="l-11"></a><span class="tm">19:04:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">see http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-11-30-19.01.html</span>
+<a name="l-12"></a><span class="tm">19:05:03</span><span class="nk"> &lt;rtyler&gt;</span> I'll start since abayer is asleep
+<a name="l-13"></a><span class="tm">19:05:13</span><span class="nk"> &lt;rtyler&gt;</span> beg-fest blog post went up thanks to kohsuke, worked out well
+<a name="l-14"></a><span class="tm">19:05:20</span><span class="nk"> &lt;rtyler&gt;</span> scale10x blog post went out
+<a name="l-15"></a><span class="tm">19:05:24</span><span class="nk"> &lt;rtyler&gt;</span> FOSDEM stand applied for
+<a name="l-16"></a><span class="tm">19:05:28</span><span class="nk"> &lt;rtyler&gt;</span> no blogpost on FOSDEM yet
+<a name="l-17"></a><span class="tm">19:05:45</span><span class="nk"> &lt;rtyler&gt;</span> scale@lists.jenkins-ci.org created to help coordate scale10x plans
+<a name="l-18"></a><span class="tm">19:06:04</span><span class="nk"> &lt;rtyler&gt;</span> I've started working on a standard Jenkins project LibreOffice Impress template, but infrastructure has taken up far more of my time ;)
+<a name="l-19"></a><span class="tm">19:06:18</span><span class="nk"> &lt;jorgenpt&gt;</span> Is there any public tracking of how much in donations has been received?
+<a name="l-20"></a><span class="tm">19:06:25</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, let me report that
+<a name="l-21"></a><span class="tm">19:06:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">we are currently at $10046</span>
+<a name="l-22"></a><span class="tm">19:06:58</span><span class="nk"> &lt;rtyler&gt;</span> O_O
+<a name="l-23"></a><span class="tm">19:07:02</span><span class="nk"> &lt;jorgenpt&gt;</span> \o/
+<a name="l-24"></a><span class="tm">19:07:05</span><span class="nk"> &lt;orrc&gt;</span> woah, awesome
+<a name="l-25"></a><span class="tm">19:07:15</span><span class="nk"> &lt;imod&gt;</span> nice!
+<a name="l-26"></a><span class="tm">19:07:17</span><span class="nk"> &lt;orrc&gt;</span> your personal appeal really worked ;)
+<a name="l-27"></a><span class="tm">19:07:21</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-28"></a><span class="tm">19:07:42</span><span class="nk"> &lt;abayer&gt;</span> Sorry, fiddling with stuff. =)
+<a name="l-29"></a><span class="tm">19:07:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I think that joke did work, and credit goes to orrc</span>
+<a name="l-30"></a><span class="tm">19:08:27</span><span class="nk"> &lt;kohsuke&gt;</span> I think I was meaning to write a post to thank everyone for successful conclusion of this fund-raising drive.
+<a name="l-31"></a><span class="tm">19:08:34</span><span class="nk"> &lt;jenkinsci_builds&gt;</span> Project jenkins_main_trunk build #1,362: SUCCESS in 27 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/1362/
+<a name="l-32"></a><span class="tm">19:08:34</span><span class="nk"> &lt;jenkinsci_builds&gt;</span> * imod: [FIXED JENKINS-10915] fix french translation
+<a name="l-33"></a><span class="tm">19:08:35</span><span class="nk"> &lt;jenkinsci_builds&gt;</span> * imod: [FIXED JENKINS-7926] Add time execution of the build on build detail page
+<a name="l-34"></a><span class="tm">19:08:37</span><span class="nk"> &lt;kohsuke&gt;</span> and update the Wiki page for the donor list.
+<a name="l-35"></a><span class="tm">19:08:47</span><span class="nk"> &lt;rtyler&gt;</span> did people opt in to be public with their donations?
+<a name="l-36"></a><span class="tm">19:08:49</span><span class="nk"> &lt;jorgenpt&gt;</span> When is it done?
+<a name="l-37"></a><span class="tm">19:09:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> yes, e-mail goes out to everyone who donated, asking if they want to be anonymous or credited to the name of their choosing
+<a name="l-38"></a><span class="tm">19:09:39</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> woo, got stapler annotations working in a weird way.
+<a name="l-39"></a><span class="tm">19:09:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write a blog post concluding the fund-raising drive and update the Wiki page</span>
+<a name="l-40"></a><span class="tm">19:10:05</span><span class="nk"> &lt;abayer&gt;</span> Gonna clean up and push my work in progress somewhere as I continue to vaguely pay attention here. =)
+<a name="l-41"></a><span class="tm">19:10:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> what's the current status of GitHub private repo for CLA?
+<a name="l-42"></a><span class="tm">19:10:20</span><span class="nk"> &lt;abayer&gt;</span> No update. Will ping again.
+<a name="l-43"></a><span class="tm">19:10:45</span><span class="nk"> &lt;kohsuke&gt;</span> I think we should start collecting CLAs regardless
+<a name="l-44"></a><span class="tm">19:10:59</span><span class="nk"> &lt;kohsuke&gt;</span> For a while it can live in our inboxes, and for some people this can take some time anyway.
+<a name="l-45"></a><span class="tm">19:11:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to ping github again for a possible private repo</span>
+<a name="l-46"></a><span class="tm">19:12:17</span><span class="nk"> &lt;kohsuke&gt;</span> Let's see other actions of mine...
+<a name="l-47"></a><span class="tm">19:12:33</span><span class="nk"> &lt;kohsuke&gt;</span> CI dinner at SCALE. I don't think I've done that
+<a name="l-48"></a><span class="tm">19:12:48</span><span class="nk"> &lt;kohsuke&gt;</span> I probably need to be briefed by rtyler for what SCALE schedule looks like
+<a name="l-49"></a><span class="tm">19:12:54</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-50"></a><span class="tm">19:13:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to ponder a CI Dinner or something along those lines for SCALE</span>
+<a name="l-51"></a><span class="tm">19:13:53</span><span class="nk"> &lt;kohsuke&gt;</span> Talking to additional people about FOSDEM --- I think I've thrown them in when rtyler was sending the original e-mail
+<a name="l-52"></a><span class="tm">19:13:58</span><span class="nk"> &lt;kohsuke&gt;</span> so I consider that done
+<a name="l-53"></a><span class="tm">19:14:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">wrt Jenkins CIA, I've asked cowboyd if FrontSide can do another awesome logo</span>
+<a name="l-54"></a><span class="tm">19:14:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to ping cowboyd about CIA logo</span>
+<a name="l-55"></a><span class="tm">19:14:38</span><span class="nk"> &lt;cowboyd&gt;</span> we're working on it :)
+<a name="l-56"></a><span class="tm">19:14:40</span><span class="nk"> &lt;cowboyd&gt;</span> seriously.
+<a name="l-57"></a><span class="tm">19:14:46</span><span class="nk"> &lt;kohsuke&gt;</span> oh, you are here!
+<a name="l-58"></a><span class="tm">19:14:48</span><span class="nk"> &lt;kohsuke&gt;</span> thanks
+<a name="l-59"></a><span class="tm">19:15:00</span><span class="nk"> &lt;kohsuke&gt;</span> really appreciated
+<a name="l-60"></a><span class="tm">19:15:16</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's it for the actions
+<a name="l-61"></a><span class="tm">19:15:25</span><span class="nk"> &lt;rtyler&gt;</span> aye
+<a name="l-62"></a><span class="tm">19:15:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">infra update</span>
+<a name="l-63"></a><span class="tm">19:15:39</span><span class="nk"> &lt;rtyler&gt;</span> oh jeez, where to start on this
+<a name="l-64"></a><span class="tm">19:15:52</span><span class="nk"> &lt;rtyler&gt;</span> alright
+<a name="l-65"></a><span class="tm">19:16:13</span><span class="nk"> &lt;kohsuke&gt;</span> pager duty &amp; nagios
+<a name="l-66"></a><span class="tm">19:16:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">The downtime mentioned last meeting went by smoothly</span>
+<a name="l-67"></a><span class="tm">19:16:43</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to harrass Contegix some more about getting our backups going properly</span>
+<a name="l-68"></a><span class="tm">19:17:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Still working with Contegix on spinning off the account</span>
+<a name="l-69"></a><span class="tm">19:17:29</span><span class="nk"> &lt;rtyler&gt;</span> last weekend I set up nagios finally
+<a name="l-70"></a><span class="tm">19:17:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Nagios can now be found at http://nagios.jenkins-ci.org/nagios3/</span>
+<a name="l-71"></a><span class="tm">19:17:43</span><span class="nk"> &lt;kohsuke&gt;</span> yay!
+<a name="l-72"></a><span class="tm">19:17:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Anonymous read-only access with the login: jenkins/jenkins</span>
+<a name="l-73"></a><span class="tm">19:18:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">We are also now using our gratis PagerDuty account, and I've placed some folks in an on-call rotation</span>
+<a name="l-74"></a><span class="tm">19:18:40</span><span class="nk"> &lt;rtyler&gt;</span> There is still a lot of work left to to get more things managed by puppet, namely the machine cucumber and then JIRA and Confluence
+<a name="l-75"></a><span class="tm">19:18:48</span><span class="nk"> &lt;rtyler&gt;</span> but we're rolling on that again :)
+<a name="l-76"></a><span class="tm">19:19:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Add aheritier to the users-core puppet group</span>
+<a name="l-77"></a><span class="tm">19:19:18</span><span class="nk"> &lt;rtyler&gt;</span> I added this one
+<a name="l-78"></a><span class="tm">19:19:28</span><span class="nk"> &lt;rtyler&gt;</span> so aheritier isn't here, which sucks
+<a name="l-79"></a><span class="tm">19:19:39</span><span class="nk"> &lt;kohsuke&gt;</span> if you are OK with it, I'm OK.
+<a name="l-80"></a><span class="tm">19:19:56</span><span class="nk"> &lt;kohsuke&gt;</span> I do wish we have some folks from Asia
+<a name="l-81"></a><span class="tm">19:19:57</span><span class="nk"> &lt;rtyler&gt;</span> like jieryn, I've never met him before
+<a name="l-82"></a><span class="tm">19:20:18</span><span class="nk"> &lt;rtyler&gt;</span> but he's been around the project long enough, and does a lot of work with puppet and the likes for managing the eXo platform
+<a name="l-83"></a><span class="tm">19:20:38</span><span class="nk"> &lt;rtyler&gt;</span> I also think it's silly to have somebody be on-call but have no access to fix things ;)
+<a name="l-84"></a><span class="tm">19:20:46</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-85"></a><span class="tm">19:20:49</span><span class="nk"> &lt;abayer&gt;</span> Makes sense to me.
+<a name="l-86"></a><span class="tm">19:21:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler needs to flesh out the infra wiki with more contingency plans for some more "common" outages</span>
+<a name="l-87"></a><span class="tm">19:21:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> do I have a +1 from a second board member?
+<a name="l-88"></a><span class="tm">19:21:31</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-89"></a><span class="tm">19:22:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">aheritier to be added to the users-core module</span>
+<a name="l-90"></a><span class="tm">19:22:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler add aheritier to the users-core module</span>
+<a name="l-91"></a><span class="tm">19:22:31</span><span class="nk"> &lt;rtyler&gt;</span> that's really the end of our scheduled agenda :P
+<a name="l-92"></a><span class="tm">19:22:43</span><span class="nk"> &lt;rtyler&gt;</span> anything else, or should we close up shop and go on xmas vavcation? :D
+<a name="l-93"></a><span class="tm">19:22:43</span><span class="nk"> &lt;kohsuke&gt;</span> I think that's good
+<a name="l-94"></a><span class="tm">19:22:52</span><span class="nk"> &lt;nmeister&gt;</span> Any able to help with a hudson question?
+<a name="l-95"></a><span class="tm">19:22:55</span><span class="nk"> &lt;vjuranek&gt;</span> two quick questions...
+<a name="l-96"></a><span class="tm">19:23:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">nmeister:</span> hold on a moment, still in our project meeting
+<a name="l-97"></a><span class="tm">19:23:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">vjuranek:</span> shoot
+<a name="l-98"></a><span class="tm">19:23:11</span><span class="nk"> &lt;vjuranek&gt;</span> is there any target date for LTS 1.424.2?
+<a name="l-99"></a><span class="tm">19:23:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Unscheduled items</span>
+<a name="l-100"></a><span class="tm">19:23:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">vjuranek asked about a target date for LTS 1.424.2</span>
+<a name="l-101"></a><span class="tm">19:23:39</span><span class="nk"> &lt;kohsuke&gt;</span> I didn't think about it
+<a name="l-102"></a><span class="tm">19:23:57</span><span class="nk"> &lt;kohsuke&gt;</span> Do you have any preference?
+<a name="l-103"></a><span class="tm">19:24:06</span><span class="nk"> &lt;vjuranek&gt;</span> I did backport of JENKINS-9349 and pull/316 - originally asked to be in 1.424.1, so not sure how urgent it is...
+<a name="l-104"></a><span class="tm">19:24:08</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-9349:Viewing large console logs with timestamper plugin cause Jenkins to crash (Resolved) http://jenkins-ci.org/issue/9349
+<a name="l-105"></a><span class="tm">19:24:15</span><span class="nk"> &lt;nmeister&gt;</span> ah, k.
+<a name="l-106"></a><span class="tm">19:24:50</span><span class="nk"> &lt;vjuranek&gt;</span> I would prefere in early January...i.e. did some tests over Chritstams and release after new year...ok?
+<a name="l-107"></a><span class="tm">19:25:10</span><span class="nk"> &lt;kohsuke&gt;</span> Sure.
+<a name="l-108"></a><span class="tm">19:25:32</span><span class="nk"> &lt;imod&gt;</span> I think we talked about getting this one in too: https://github.com/jenkinsci/jenkins/pull/316
+<a name="l-109"></a><span class="tm">19:25:41</span><span class="nk"> &lt;kohsuke&gt;</span> I'll do another pass on backport candidates
+<a name="l-110"></a><span class="tm">19:25:55</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">imod:</span> already backported
+<a name="l-111"></a><span class="tm">19:25:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">imod:</span> see above. vjuranek said he's already merged it
+<a name="l-112"></a><span class="tm">19:26:13</span><span class="nk"> &lt;imod&gt;</span> damn - sorry, missed it
+<a name="l-113"></a><span class="tm">19:26:19</span><span class="nk"> &lt;imod&gt;</span> thanks!
+<a name="l-114"></a><span class="tm">19:26:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Plan for 1.424.2 is to release it sometime in early January</span>
+<a name="l-115"></a><span class="tm">19:26:46</span><span class="nk"> &lt;kohsuke&gt;</span> So first RC in a week, soak over the end of the year, and shoot for release in next month about this time?
+<a name="l-116"></a><span class="tm">19:27:00</span><span class="nk"> &lt;vjuranek&gt;</span> yes
+<a name="l-117"></a><span class="tm">19:27:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to create a new LTS RC in about a week</span>
+<a name="l-118"></a><span class="tm">19:27:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">first RC in a week, soak over the end of the year, and shoot for release in next month about this time</span>
+<a name="l-119"></a><span class="tm">19:27:29</span><span class="nk"> &lt;abayer&gt;</span> yay.
+<a name="l-120"></a><span class="tm">19:27:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span>  what was your second question?
+<a name="l-121"></a><span class="tm">19:27:43</span><span class="nk"> &lt;vjuranek&gt;</span> and second one: does anybody coordinate "standard jenkins presentations"?
+<a name="l-122"></a><span class="tm">19:27:55</span><span class="nk"> &lt;abayer&gt;</span> No, but that'd be handy.
+<a name="l-123"></a><span class="tm">19:28:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">vjuranek:</span> I have been working on a template for that, I think we might need a couple standard presos
+<a name="l-124"></a><span class="tm">19:28:13</span><span class="nk"> &lt;rtyler&gt;</span> one for Java-fanboys, and one for the rest of us ;)
+<a name="l-125"></a><span class="tm">19:28:16</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, we are supposed to be planning the Jenkins CIA program that includes that
+<a name="l-126"></a><span class="tm">19:28:20</span><span class="nk"> &lt;abayer&gt;</span> I know we have bits  and pieces floating around - it'd make sense to aggregate available presentations on the wiki, as well as having boilerplate presos.
+<a name="l-127"></a><span class="tm">19:28:37</span><span class="nk"> &lt;kohsuke&gt;</span> should it be a dev list thread?
+<a name="l-128"></a><span class="tm">19:28:45</span><span class="nk"> &lt;rtyler&gt;</span> users list IMHO
+<a name="l-129"></a><span class="tm">19:28:46</span><span class="nk"> &lt;kohsuke&gt;</span> imod has already had some thoughts
+<a name="l-130"></a><span class="tm">19:28:58</span><span class="nk"> &lt;imod&gt;</span> just some starting points...
+<a name="l-131"></a><span class="tm">19:29:14</span><span class="nk"> &lt;vjuranek&gt;</span> I'm going to preprepare presenation for one conferecence over the christmass, so I'll probably contribute
+<a name="l-132"></a><span class="tm">19:29:25</span><span class="nk"> &lt;kohsuke&gt;</span> Let's move it to the users list since people seem to be interested
+<a name="l-133"></a><span class="tm">19:29:47</span><span class="nk"> &lt;kohsuke&gt;</span> If it's only easier to collaborate on slides.
+<a name="l-134"></a><span class="tm">19:30:02</span><span class="nk"> &lt;kohsuke&gt;</span> I mean, it'd be nice if it's easier to collaborate ...
+<a name="l-135"></a><span class="tm">19:30:06</span><span class="nk"> &lt;imod&gt;</span> if something from the CIA program comes up, I would tai fit to FOSDEM
+<a name="l-136"></a><span class="tm">19:30:06</span><span class="nk"> &lt;kohsuke&gt;</span> those stuff just don't merge very well
+<a name="l-137"></a><span class="tm">19:30:30</span><span class="nk"> &lt;abayer&gt;</span> Hmmm...
+<a name="l-138"></a><span class="tm">19:30:43</span><span class="nk"> &lt;imod&gt;</span> can we at least agree on the officelibre?
+<a name="l-139"></a><span class="tm">19:30:46</span><span class="nk"> &lt;vjuranek&gt;</span> if the srouce code is in tex/latex/beamer then yes;-)
+<a name="l-140"></a><span class="tm">19:30:53 </span><span class="nka">* rtyler</span> <span class="ac">vomits</span>
+<a name="l-141"></a><span class="tm">19:30:56</span><span class="nk"> &lt;abayer&gt;</span> We could do the  "slides" in markdown - you can do Markdown-&gt;PDF, and PDF-&gt;pptish, right?
+<a name="l-142"></a><span class="tm">19:31:01 </span><span class="nka">* rtyler</span> <span class="ac">vomits some more</span>
+<a name="l-143"></a><span class="tm">19:31:08</span><span class="nk"> &lt;abayer&gt;</span> =P
+<a name="l-144"></a><span class="tm">19:31:08</span><span class="nk"> &lt;rtyler&gt;</span> text heavy slides suck
+<a name="l-145"></a><span class="tm">19:31:19</span><span class="nk"> &lt;abayer&gt;</span> Guess it's latex time, then. =)
+<a name="l-146"></a><span class="tm">19:31:26</span><span class="nk"> &lt;imod&gt;</span> :)
+<a name="l-147"></a><span class="tm">19:31:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">imod:</span> since you and I are going to be doing a lot here, I think LibreOffice will be what we'll be using ;)
+<a name="l-148"></a><span class="tm">19:31:43</span><span class="nk"> &lt;imod&gt;</span> ok
+<a name="l-149"></a><span class="tm">19:31:46</span><span class="nk"> &lt;kohsuke&gt;</span> sure
+<a name="l-150"></a><span class="tm">19:31:50</span><span class="nk"> &lt;kohsuke&gt;</span> or what about google docs?
+<a name="l-151"></a><span class="tm">19:31:58</span><span class="nk"> &lt;mc1arke&gt;</span> surely jenkins could automate slide production ;)
+<a name="l-152"></a><span class="tm">19:32:04</span><span class="nk"> &lt;imod&gt;</span> never used until now...
+<a name="l-153"></a><span class="tm">19:32:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> not a great choice, requires a connection and a google account
+<a name="l-154"></a><span class="tm">19:32:15</span><span class="nk"> &lt;kohsuke&gt;</span> me neither. Just throwing it out there.
+<a name="l-155"></a><span class="tm">19:32:16</span><span class="nk"> &lt;rtyler&gt;</span> also makes crappy presentations
+<a name="l-156"></a><span class="tm">19:32:18</span><span class="nk"> &lt;rtyler&gt;</span> :P
+<a name="l-157"></a><span class="tm">19:32:20</span><span class="nk"> &lt;orrc&gt;</span> Google Docs lets you export to PPT or PDF, but not ODP or anything
+<a name="l-158"></a><span class="tm">19:32:44</span><span class="nk"> &lt;imod&gt;</span> I think it should be something people can reuse later too
+<a name="l-159"></a><span class="tm">19:32:51</span><span class="nk"> &lt;rtyler&gt;</span> I think we might as well kill the meeting here then, we can bikeshed about presos off the record ;)
+<a name="l-160"></a><span class="tm">19:33:00</span><span class="nk"> &lt;kohsuke&gt;</span> yeah
+<a name="l-161"></a><span class="tm">19:33:05</span><span class="nk"> &lt;imod&gt;</span> +1
+<a name="l-162"></a><span class="tm">19:33:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-163"></a><span class="tm">19:33:28</span><span class="nk"> &lt;kohsuke&gt;</span> Jan 4th?
+<a name="l-164"></a><span class="tm">19:33:29</span><span class="nk"> &lt;rtyler&gt;</span> we discussed this last time
+<a name="l-165"></a><span class="tm">19:33:33</span><span class="nk"> &lt;rtyler&gt;</span> too early
+<a name="l-166"></a><span class="tm">19:33:34</span><span class="nk"> &lt;kohsuke&gt;</span> oh
+<a name="l-167"></a><span class="tm">19:33:58</span><span class="nk"> &lt;rtyler&gt;</span> http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-11-30-19.01.log.html
+<a name="l-168"></a><span class="tm">19:34:01</span><span class="nk"> &lt;rtyler&gt;</span> we had talked about the 14th
+<a name="l-169"></a><span class="tm">19:34:09</span><span class="nk"> &lt;rtyler&gt;</span> oh wait
+<a name="l-170"></a><span class="tm">19:34:10</span><span class="nk"> &lt;rtyler&gt;</span> derp
+<a name="l-171"></a><span class="tm">19:34:11</span><span class="nk"> &lt;kohsuke&gt;</span> Right
+<a name="l-172"></a><span class="tm">19:34:12</span><span class="nk"> &lt;rtyler&gt;</span> misread that
+<a name="l-173"></a><span class="tm">19:34:18</span><span class="nk"> &lt;rtyler&gt;</span> 11th
+<a name="l-174"></a><span class="tm">19:34:30</span><span class="nk"> &lt;kohsuke&gt;</span> Jan 11th, same time.
+<a name="l-175"></a><span class="tm">19:34:38</span><span class="nk"> &lt;rtyler&gt;</span> works for me
+<a name="l-176"></a><span class="tm">19:34:59</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I think that's it for the day
+<a name="l-177"></a><span class="tm">19:35:12</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks everyone, and let the bikeshedding begin...
+<a name="l-178"></a><span class="tm">19:35:13</span><span class="nk"> &lt;myusuf3_&gt;</span> hey guys
+<a name="l-179"></a><span class="tm">19:35:21</span><span class="nk"> &lt;jorgenpt&gt;</span> RED!
+<a name="l-180"></a><span class="tm">19:35:21</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> https://github.com/abayer/associated-files-plugin
+<a name="l-181"></a><span class="tm">19:35:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

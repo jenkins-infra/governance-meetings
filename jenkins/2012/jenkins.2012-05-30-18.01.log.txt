@@ -1,0 +1,190 @@
+18:01:09 <kohsuke> #startmeeting
+18:01:09 <robobutler> Let the Jenkins meeting commence!
+18:01:17 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:01:28 <kohsuke> #chairs hare_brain abayer rtyler
+18:01:32 <rtyler> ruh roh
+18:01:41 <kohsuke> or was it #chair?
+18:01:46 <kohsuke> #chair hare_brain abayer rtyler
+18:01:46 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:02:02 <kohsuke> it replies "chairs" to the chair command!
+18:02:19 <kohsuke> #topic quick recap of actions
+18:02:35 <kohsuke> abayer: did stickers get to rtyler?
+18:02:38 <rtyler> yes
+18:02:46 <kohsuke> rtyler: did we hear back from SPI about your reimbursement?
+18:02:49 <rtyler> I actually am mailing some out today for the IBM Innovate giuyguy
+18:02:52 <rtyler> no
+18:03:05 <kohsuke> #action kohsuke to ping SPI again
+18:03:09 <rtyler> my plan of "get reimbursed before blowing lots of
+18:03:13 <rtyler> moeny on JUC Tokyo"
+18:03:16 <rtyler> not working out so well
+18:03:43 <kohsuke> I'll think about other ways of nagging, too
+18:03:49 <rtyler> sky writing?
+18:03:51 <kohsuke> maybe IRC or e-mail to individuals
+18:04:09 <kohsuke> I'll save sky writing for escalation
+18:04:41 <kohsuke> #topic moving Subversion repository to GitHub
+18:04:46 <whimboo> kohsuke: would you mind to have a look at https://bugzilla.mozilla.org/show_bug.cgi?id=751557? looks like jenkins is leaking a lot after a while
+18:05:02 <kohsuke> whimboo: let's wait until the meeting is over
+18:05:11 <whimboo> kohsuke: sure. just ping me
+18:05:18 <kohsuke> so the motion is to move the Subversion plugin from its current hosting location in svn.jenkins-ci.org to GitHub
+18:05:50 <kohsuke> The last time I tried it, which was more than a year ago, it was rejected
+18:06:04 <kohsuke> but since then it felt like the feeling has changed a bit
+18:06:38 <hare_brain> I was one of the people who -1'd it last time, but I've flip-flopped.
+18:06:43 <hare_brain> I'm +1 to moving it this year.
+18:07:02 <kohsuke> and there are some pull requests already in there
+18:07:12 <jieryn> is this for all plugins?
+18:07:17 <jieryn> i'm not sure what the motion is
+18:07:29 <kohsuke> the motion is to move the Subversion plugin from its current hosting location in svn.jenkins-ci.org to GitHub
+18:07:33 <jieryn> oh
+18:07:45 <jieryn> +1 just for the irony
+18:08:04 <kohsuke> #agreed Subversion plugin will move to GitHub
+18:08:10 <kohsuke> I'll write to kutzi and ssogabe
+18:08:17 <kohsuke> as they've made some changes in the recent past
+18:08:29 <jieryn> is there a broader thing here, like.. let's commit to move everything over from svn -> git ?
+18:08:31 <kohsuke> I was hoping kutzi is here today, but looks like he isn't
+18:08:39 <kohsuke> jieryn: yeah, maybe
+18:08:48 <kohsuke> let's see if anyone is actively committing to Subversion
+18:09:52 <kohsuke> hmm, it is actually actively used
+18:10:07 <kohsuke> Just yesterday there was like 6 commits
+18:10:12 <rtyler> O_O
+18:10:17 <kohsuke> on average about half a dozen commit per day
+18:10:50 <rtyler> that's nuts, how is that plugin still seeing that much development
+18:11:08 <kohsuke> No, this isn't just Subversion plugin
+18:11:17 <kohsuke> I'm talking about all commits to our Subversion repository
+18:11:24 <rtyler> oh
+18:11:29 <rtyler> got it :)
+18:12:05 <kohsuke> I see the same name over and over
+18:12:18 <kohsuke> might be worth writing to them if they'd be interested in moving things to GitHub
+18:12:43 <kohsuke> just in case they don't know that it's already synced and it's easy to jump
+18:13:04 <kohsuke> #action kohsuke to write to active users of svn.jenkins-ci.org that they can move to GitHub very easily if they want
+18:13:24 <kohsuke> #topic Improving JonJ and IRC bot stability
+18:13:37 <kohsuke> the latter is very easy.
+18:13:48 <rtyler> how's that?
+18:13:49 <kohsuke> #action kohsuke to move IRC bot to cucumber
+18:14:04 <rtyler> aw yeah
+18:14:15 <kohsuke> I haven't really digged deeper into why it gets disconnected and fail to reconnect
+18:14:21 <rtyler> why not lettuce or cabbage?
+18:14:23 <jieryn> under a general user inside screen/dtatch or something?
+18:14:39 <kohsuke> so for a while it needs to be restarted manually if it's dead
+18:14:41 <rtyler> can I take that task from you?
+18:14:44 <rtyler> and put it unto you know, supervisor
+18:14:45 <rtyler> like a real service <_<
+18:15:02 <kohsuke> most of the time it's not that the program is dead
+18:15:17 <kohsuke> it's in a weird state that either stops trying to connect or fail to reconnect
+18:15:34 <kohsuke> so I suspect auto restart by itself won't fix it
+18:15:41 <rtyler> developer error! ;)
+18:15:50 <kohsuke> rtyle: but sure, you are very welcome to put it on your TODO
+18:16:02 <jieryn> while 1 ; do sleep 10s ; run-bot ; done
+18:16:07 <jieryn> jenkins-admin: terminate self
+18:16:07 <jenkins-admin> I didn't understand the command
+18:16:20 <rtyler> are there any special credentials or configurations you have locally?
+18:16:21 <jieryn> and then let it go from there
+18:16:22 <jenkins-builds> Starting build #1730 for job jenkins_main_trunk (previous build: STILL FAILING -- last SUCCESS #1725 8 days 5 hr ago)
+18:16:23 <kohsuke> the program is already at https://github.com/jenkinsci/backend-ircbot
+18:16:34 <kohsuke> rtyler: yeah, there's one credential file that needs to be in /home/ircbot
+18:16:36 * rtyler nods
+18:16:49 <rtyler> kohsuke: please gpg it to me :)
+18:17:03 <kohsuke> #action rtyler to puppet-ize ircbot
+18:17:12 <kohsuke> #action kohsuke to send the credential file to rtyler
+18:17:16 <jenkins-builds> Project jenkins_main_trunk build #1730: STILL FAILING in 1 min 38 sec: http://ci.jenkins-ci.org/job/jenkins_main_trunk/1730/
+18:17:17 <jenkins-builds> * Kohsuke Kawaguchi: Making it easy to activate the animal-sniffer Java5 check.
+18:17:17 <jenkins-builds> * Kohsuke Kawaguchi: Splitting off LDAP and PAM auth plugin.
+18:17:18 <jenkins-builds> * Kohsuke Kawaguchi: LDAP is now a bundled plugin
+18:17:18 <jenkins-builds> * Kohsuke Kawaguchi: PAM authentication is now a bundled plugin
+18:17:19 <jenkins-builds> * Kohsuke Kawaguchi: Core need not bundle libpam4j
+18:17:45 <jieryn> well, the other half of that topic is jonj itself, and right now we have a stalled build
+18:17:58 * rtyler nods
+18:17:59 <kohsuke> it's something I really need to look into
+18:18:10 <kohsuke> that's like the whole point of eating our own dogfood
+18:18:16 <rtyler> heh, indeed
+18:18:49 <kohsuke> I decided that this week is my quality time with Jenkins
+18:18:55 <kohsuke> so let me take that as well
+18:19:11 <jieryn> ok, so if you can diag this recent cluster of stallings .. i think this will be addressing the topic
+18:19:12 <Creeture> Help me fix my Gerrit trigger. Jenkins is building whenever something is pushed to refs/for/master in Gerrit, not when the change has been Submitted into refs/master
+18:19:15 <kohsuke> #action kohsuke to investigate J-on-J / remote-slave-6 stability issue
+18:19:21 <rtyler> Creeture: not right now, we're in a project meeting
+18:19:33 <kohsuke> and we could use a few more slaves, too
+18:19:38 <Creeture> rtyler: Always with the meeting with you. :)
+18:19:56 <rtyler> I wonder if lettuce or cabbage might work as KVM hosts
+18:20:03 <rtyler> jieryn: you're big on the kvm's right?
+18:20:13 <kohsuke> jieryn: any reason why remote-slave-8 from RedHat is disconnected?
+18:20:17 <jieryn> http://ci.jenkins-ci.org/computer/remote-slave-6/load-statistics
+18:20:46 <jieryn> wow, not sure why that is stuck offline with me owning it
+18:20:51 <jieryn> it was failing every build
+18:20:51 <rtyler> heh
+18:21:07 <jieryn> dependency resolution woe, lets enable it and see if it still applies
+18:21:14 <kohsuke> OK
+18:21:17 <jieryn> done
+18:21:25 <jieryn> rtyler: yes, i like it :)
+18:21:36 <jieryn> we could provide a custom .kvm image to work as a slave?
+18:21:44 <jieryn> people that want to dedicate resources, is that your idea?
+18:22:02 <rtyler> not quite, just thjinking about it as an isolation mechanism to use lettuce and cabbage more effectively
+18:22:11 <jieryn> ah
+18:22:15 <jieryn> let's talk about it after?
+18:22:17 <rtyler> we can talk about it later
+18:22:18 * rtyler nods
+18:22:29 <rtyler> #action rtyler and jieryn to KVM up some more slaves somehow
+18:22:37 <kohsuke> #info we brought back remote-slave-8 from redhat but we'll monitor if this is functioning correctly
+18:23:13 <rtyler> kohsuke: that machine (kale) is in Nagios
+18:23:18 <rtyler> kohsuke: only with SSH checks though
+18:23:38 <kohsuke> I won't be surprised if some build tools etc aren't properly available or something
+18:23:58 <kohsuke> this is RHEL, not Ubuntu, so our puppet manifest might be having a trouble, too
+18:24:37 <kohsuke> I think we can move on to the next topic?
+18:24:42 * jieryn nods
+18:24:43 * rtyler nods
+18:24:54 <kohsuke> #topic plugin JonJ on DEV@cloud of BuildHive
+18:25:09 <jieryn> so we moved the plugins_* jobs out of ci.jenkins-ci.org deployment
+18:25:20 <jieryn> i did a full backup with all job history, and also a config backup
+18:25:28 <jieryn> i have a backup of the configs, and i believe rtyler does also
+18:25:34 <rtyler> not yet
+18:25:35 <rtyler> <_<
+18:25:36 <rtyler> >_>
+18:25:37 <jieryn> ok :)
+18:25:39 <kohsuke> yay, thanks for doing it!
+18:25:59 <jieryn> so we currently have two separate jenkins building all the plugins
+18:26:00 <kohsuke> My understanding is that we want DEV@cloud for this, and I have an action to install relevant plugins there
+18:26:26 <jieryn> yes, it would be great if it could be monitoring the pull requests
+18:26:31 <jieryn> as well as updating jira
+18:27:17 <kohsuke> I think we can make it all work unless recampbell feel otherwise
+18:27:17 <jieryn> creating new jobs is fairly painless given the template system ndeloof put in place
+18:27:35 <kohsuke> and it's something we should put into ircbot
+18:27:43 <jieryn> i think we may just want to investigate how do we add more people with the ability to create jobs and/or teach jenkins-admin how to do it
+18:27:49 <kohsuke> or I guess better yet, auto-generate them for all plugins?
+18:28:19 <jieryn> nightly scan the github organization and create missing ones
+18:28:25 <kohsuke> yeah, something like that
+18:28:33 <jieryn> safe to assume anything with -plugin in the repo name
+18:28:46 <kohsuke> yes
+18:28:48 <jieryn> dunno if we want everything? i suppose it wouldn't hurt
+18:29:09 <kohsuke> we can disable it if it's unwanted
+18:29:42 <kohsuke> #action kohsuke to write a scanner that auto-adds Jenkins jobs for plugins
+18:30:15 <jieryn> can we action recampbell to install jira plugin? :)
+18:30:37 <kohsuke> #action kohsuke to split buildhive code into smaller pieces and install them to jenkins.ci.cloudbees.com
+18:30:40 <recampbell> sure, on which instance? are we talking about buildhive or jenkins.ci?
+18:30:49 <kohsuke> jenkins.ci.cloudbees.com
+18:31:00 <recampbell> kohsuke, lots of people have asked for that action
+18:31:10 <kohsuke> #action recampbell to install JIRA plugin on jenkins.ci.cloudbees.com
+18:31:24 <jieryn> is the pull request monitor thing available?
+18:31:40 <kohsuke> not yet, but it can be made independent
+18:31:47 <jieryn> ok no worries
+18:32:04 <kohsuke> I consider that to be a part of "split buildhive code into smaller pieces" action
+18:32:22 <kohsuke> I think we are done with this part of the agenda
+18:32:26 <jieryn> ok
+18:32:35 <kohsuke> ... unless you feel otherwise, that is
+18:32:53 <jieryn> think this is very good
+18:32:58 <kohsuke> #topic next meeting time
+18:33:13 <kohsuke> So the main question is if we should meet in 2 weeks or in 4 weeks
+18:33:53 <kohsuke> Looks like 4 weeks is OK
+18:34:03 <jieryn> 4 is fine, but need more reminders
+18:34:07 <jieryn> missing it will be doubly bad
+18:34:23 <kohsuke> That's true. So maybe having a shorter one 2 weeks is actually better to solicit attendance
+18:34:28 <kohsuke> I'm fine either way
+18:34:54 <kohsuke> Yeah, sticking to biweekly might be better to prevent people from forgetting
+18:35:16 <recampbell> JIRA plugin will be installed after jenkins.ci.cloudbees.com restarts. "JIRA issue updater plugin" was already installed.
+18:35:24 <kohsuke> I'm inclined to go back to bi-weekly
+18:35:26 <kohsuke> recampbell: thanks!
+18:35:33 <recampbell> np
+18:35:52 <kohsuke> The same time in 6/13 OK?
+18:35:57 <hare_brain> I prefer bi-weekly as well. Other potential with monthly is a backlog of agenda items that would need more time to get through
+18:36:33 <hare_brain> I'll be on vacation, but have the meeting on 6/13 anyway.
+18:36:39 <kohsuke> #agreed next meeting time is 6/13, same time (11am pacific time)
+18:36:47 <abayer> Oh, crap, meeting. Sorry, guys.
+18:36:52 <kohsuke> #endmeeting

@@ -1,0 +1,463 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting </span><span class="cmdline">Jenkins Project Meeting (2011.08.31)</span>
+<a name="l-2"></a><span class="tm">18:00:30</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:31</span><span class="nk"> &lt;kohsuke&gt;</span> and I'm back
+<a name="l-4"></a><span class="tm">18:00:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke</span>
+<a name="l-5"></a><span class="tm">18:00:33</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:00:36</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer</span>
+<a name="l-7"></a><span class="tm">18:00:36</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer kohsuke rtyler
+<a name="l-8"></a><span class="tm">18:00:37</span><span class="nk"> &lt;hare_brain&gt;</span> Woohoo
+<a name="l-9"></a><span class="tm">18:00:43</span><span class="nk"> &lt;hare_brain&gt;</span> On time start!
+<a name="l-10"></a><span class="tm">18:00:43</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain</span>
+<a name="l-11"></a><span class="tm">18:00:43</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-12"></a><span class="tm">18:00:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">For everybody's reference, agenda: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-ForAug31stMeeting%28rescheduledfromAugust24th%29</span>
+<a name="l-13"></a><span class="tm">18:01:13</span><span class="nk"> &lt;kohsuke&gt;</span> rtyler is a lean mean meeting machine today
+<a name="l-14"></a><span class="tm">18:01:25</span><span class="nk"> &lt;rtyler&gt;</span> we have a lot to get through
+<a name="l-15"></a><span class="tm">18:01:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Plugin Deprecations</span>
+<a name="l-16"></a><span class="tm">18:01:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Proposed plugin deprecation discussion https://wiki.jenkins-ci.org/display/JENKINS/Proposed+Plugin+Deprecation</span>
+<a name="l-17"></a><span class="tm">18:02:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> I believe you and maybe jieryn were pushing a lot of this?
+<a name="l-18"></a><span class="tm">18:02:15</span><span class="nk"> &lt;abayer&gt;</span> Yeah, I put up a proposal linked from there.
+<a name="l-19"></a><span class="tm">18:02:16 </span><span class="nka">* rtyler</span> <span class="ac">relinquishes the microphone</span>
+<a name="l-20"></a><span class="tm">18:02:28</span><span class="nk"> &lt;abayer&gt;</span> But I'm also a bit distracted - hardware problems, just got online, blah.
+<a name="l-21"></a><span class="tm">18:02:40</span><span class="nk"> &lt;rtyler&gt;</span> should we come back around to it?
+<a name="l-22"></a><span class="tm">18:02:47</span><span class="nk"> &lt;abayer&gt;</span> 'k
+<a name="l-23"></a><span class="tm">18:02:49</span><span class="nk"> &lt;rtyler&gt;</span> alright
+<a name="l-24"></a><span class="tm">18:02:51</span><span class="nk"> &lt;jieryn&gt;</span> the jenkins-plugin-info confluence macro supports a deprecation system, but there are no hooks in update-center
+<a name="l-25"></a><span class="tm">18:02:52</span><span class="nk"> &lt;rtyler&gt;</span> we'll come back around
+<a name="l-26"></a><span class="tm">18:02:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">The Jenkins User Conference</span>
+<a name="l-27"></a><span class="tm">18:03:00</span><span class="nk"> &lt;jieryn&gt;</span> ok
+<a name="l-28"></a><span class="tm">18:03:12</span><span class="nk"> &lt;rtyler&gt;</span> not sure who added this agenda item, speak up!
+<a name="l-29"></a><span class="tm">18:03:25</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's just a quick status update
+<a name="l-30"></a><span class="tm">18:03:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Details pertaining to the JUC can be found here: http://jenkins-ci.org/content/jenkins-user-conference</span>
+<a name="l-31"></a><span class="tm">18:03:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> want to drive?
+<a name="l-32"></a><span class="tm">18:03:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">we are starting to see submissions coming in</span>
+<a name="l-33"></a><span class="tm">18:03:39</span><span class="nk"> &lt;rtyler&gt;</span> (this topic anyways :))
+<a name="l-34"></a><span class="tm">18:03:39</span><span class="nk"> &lt;norro&gt;</span> guys, just to be sure ... the call for papers for JUC ends tomorrow, right? So tomorrow I can still send in proposals, right?
+<a name="l-35"></a><span class="tm">18:03:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">norro:</span> from my understanding, yes
+<a name="l-36"></a><span class="tm">18:03:54</span><span class="nk"> &lt;norro&gt;</span> good :)
+<a name="l-37"></a><span class="tm">18:03:55</span><span class="nk"> &lt;rtyler&gt;</span> I'm submitting mine tonight :D
+<a name="l-38"></a><span class="tm">18:04:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">norro:</span> Yes,  but please make sure you get yours in!
+<a name="l-39"></a><span class="tm">18:04:08</span><span class="nk"> &lt;norro&gt;</span> I will
+<a name="l-40"></a><span class="tm">18:04:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info: </span><span class="cmdline">I think it's at around 140 registrations now</span>
+<a name="l-41"></a><span class="tm">18:04:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">We have at this point over 150 people registered</span>
+<a name="l-42"></a><span class="tm">18:04:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Current signed up sponsors include: CloudBees, RedHat, Liferay, New Relic</span>
+<a name="l-43"></a><span class="tm">18:04:53</span><span class="nk"> &lt;kohsuke&gt;</span> I continue to encourage folks to send in any suggestions, and appreciate any help in driving the attendance.
+<a name="l-44"></a><span class="tm">18:05:00</span><span class="nk"> &lt;kohsuke&gt;</span> and Sauce Lab, I believe.
+<a name="l-45"></a><span class="tm">18:05:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">and Sauce Labs</span>
+<a name="l-46"></a><span class="tm">18:05:17</span><span class="nk"> &lt;rtyler&gt;</span> whoops
+<a name="l-47"></a><span class="tm">18:05:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">And anyone who's willing to sponsor or anyone who knows someone who might would be greatly appreciated, too</span>
+<a name="l-48"></a><span class="tm">18:06:09</span><span class="nk"> &lt;kohsuke&gt;</span> San Francisco is apparently very expensive
+<a name="l-49"></a><span class="tm">18:06:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> have you given more thought to a dev hackathon towards the tail end of JavaOne?
+<a name="l-50"></a><span class="tm">18:06:32</span><span class="nk"> &lt;kohsuke&gt;</span> I'm always game for it.
+<a name="l-51"></a><span class="tm">18:06:42</span><span class="nk"> &lt;kohsuke&gt;</span> As long as there are others willing to come and we have a venue
+<a name="l-52"></a><span class="tm">18:06:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to prod kohsuke and the dev list to guage interest for a JavaOne Jenkins Hackathon</span>
+<a name="l-53"></a><span class="tm">18:07:01</span><span class="nk"> &lt;kohsuke&gt;</span> Wonder if abayer and Cloudera's new San Francisco would be good?
+<a name="l-54"></a><span class="tm">18:07:04</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-55"></a><span class="tm">18:07:16</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> depends on the day, but I can probably host something, yeah.
+<a name="l-56"></a><span class="tm">18:07:26</span><span class="nk"> &lt;rtyler&gt;</span> other status updates for JUC?
+<a name="l-57"></a><span class="tm">18:07:30</span><span class="nk"> &lt;kohsuke&gt;</span> not from me
+<a name="l-58"></a><span class="tm">18:07:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins mailing list spam, what to do about it</span>
+<a name="l-59"></a><span class="tm">18:08:01</span><span class="nk"> &lt;jieryn&gt;</span> we consistently get a few mails a month with spam
+<a name="l-60"></a><span class="tm">18:08:20</span><span class="nk"> &lt;jieryn&gt;</span> google has a nice way to do audits of messages for people who have not yet posted (and been approved as !spam)
+<a name="l-61"></a><span class="tm">18:08:21</span><span class="nk"> &lt;kohsuke&gt;</span> My impression is that it was worth a few weeks back and then the problem appeared to have gone way
+<a name="l-62"></a><span class="tm">18:08:24</span><span class="nk"> &lt;abayer&gt;</span> I try to mark 'em as spam when I see 'em.
+<a name="l-63"></a><span class="tm">18:08:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Google Groups document on cutting down spam: http://groups.google.com/support/bin/answer.py?hl=en&amp;answer=186997</span>
+<a name="l-64"></a><span class="tm">18:08:50</span><span class="nk"> &lt;abayer&gt;</span> I personally think that with our current rate of spam, filtering after the fact is a lot easier than trying to filter every new poster beforehand.
+<a name="l-65"></a><span class="tm">18:08:53</span><span class="nk"> &lt;abayer&gt;</span> That's a lot of cycles.
+<a name="l-66"></a><span class="tm">18:08:55</span><span class="nk"> &lt;kohsuke&gt;</span> Is it still worth doing something more manual, like the proposed "approve the first time post"?
+<a name="l-67"></a><span class="tm">18:09:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> +1 --- that's my feeling, too
+<a name="l-68"></a><span class="tm">18:09:37</span><span class="nk"> &lt;rtyler&gt;</span> is there a threshhold we can decide on, that if spam per week/day gets above this, we could start work on the approved poster proposal?
+<a name="l-69"></a><span class="tm">18:09:37</span><span class="nk"> &lt;kohsuke&gt;</span> OTOH, to be fair, we had a couple of volunteers willing to help screen the new posts
+<a name="l-70"></a><span class="tm">18:09:41</span><span class="nk"> &lt;jieryn&gt;</span> ok, can we consider it again if we get another batch?
+<a name="l-71"></a><span class="tm">18:09:59</span><span class="nk"> &lt;hare_brain&gt;</span> My experience with processes like "approve the first time post" is that you'll lose legitimate first time posters in the noise of spammers.
+<a name="l-72"></a><span class="tm">18:10:13</span><span class="nk"> &lt;jieryn&gt;</span> i'm not all that concerned with PEN1S ENLARG3MENT messages in the historical database, i just don't want to have to see spam in my inbox
+<a name="l-73"></a><span class="tm">18:10:19</span><span class="nk"> &lt;hare_brain&gt;</span> They tend to create disposable email addresses.
+<a name="l-74"></a><span class="tm">18:10:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jieryn:</span> I'll stop sending those to you then
+<a name="l-75"></a><span class="tm">18:10:53</span><span class="nk"> &lt;rtyler&gt;</span> I thought you'd appreciate the help xD
+<a name="l-76"></a><span class="tm">18:11:00</span><span class="nk"> &lt;jieryn&gt;</span> we've done this on a couple of the codehaus lists which are off their main ML structure, it works ok .. let's consider it again if we get another batch?
+<a name="l-77"></a><span class="tm">18:11:06 </span><span class="nka">* jieryn</span> <span class="ac">winks at rtyler</span>
+<a name="l-78"></a><span class="tm">18:11:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-79"></a><span class="tm">18:11:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">jieryn to speak up again for spam list action if the problem gets out of hand</span>
+<a name="l-80"></a><span class="tm">18:11:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Pull requests that lie in wait for 30+ days</span>
+<a name="l-81"></a><span class="tm">18:11:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Pending+Pull+Requests</span>
+<a name="l-82"></a><span class="tm">18:11:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I did a partial sweep over the last weekend</span>
+<a name="l-83"></a><span class="tm">18:12:05</span><span class="nk"> &lt;kohsuke&gt;</span> That drove the number down a bit, at least ones in red
+<a name="l-84"></a><span class="tm">18:12:23</span><span class="nk"> &lt;rtyler&gt;</span> for clarification
+<a name="l-85"></a><span class="tm">18:12:33</span><span class="nk"> &lt;rtyler&gt;</span> these are waiting changes, unreleased changes, yes?
+<a name="l-86"></a><span class="tm">18:12:42</span><span class="nk"> &lt;kohsuke&gt;</span> That's separate
+<a name="l-87"></a><span class="tm">18:12:44</span><span class="nk"> &lt;jieryn&gt;</span> yep, i just think we have this awesome tool to raise awareness on the stuff done by one-off contributors, and a lot of them sit for quite a while
+<a name="l-88"></a><span class="tm">18:12:58</span><span class="nk"> &lt;rtyler&gt;</span> on the one hand, I want to annoy plugin maintainers
+<a name="l-89"></a><span class="tm">18:13:01</span><span class="nk"> &lt;rtyler&gt;</span> on the other hand, I don't :P
+<a name="l-90"></a><span class="tm">18:13:37</span><span class="nk"> &lt;kohsuke&gt;</span> This could be a good hackathon slot
+<a name="l-91"></a><span class="tm">18:13:38</span><span class="nk"> &lt;jieryn&gt;</span> it kind of snares up another topic, if a plugin maintainer hasn't done anything in XX days (pending pull requests or not..) what's the feeling for commiters, not directly on that plugin, doing the changes?
+<a name="l-92"></a><span class="tm">18:13:50</span><span class="nk"> &lt;abayer&gt;</span> jieryn's got the real question, I think.
+<a name="l-93"></a><span class="tm">18:14:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jieryn:</span> we've been trying to encourage that
+<a name="l-94"></a><span class="tm">18:14:16</span><span class="nk"> &lt;mns&gt;</span> I've got a Captivate, that I had CM7 on.  I just got it back to original stock samsung 2.1.  I've got ROM Manager installed, and have run "Flash ClockworkMod Recovery"  but when I reboot into recovery it always comes up with the samsung recovery menu.  am I missing something ?
+<a name="l-95"></a><span class="tm">18:14:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">mns:</span> I'm pretty sure you intended that for another channel :)
+<a name="l-96"></a><span class="tm">18:14:38</span><span class="nk"> &lt;kutzi&gt;</span> lol
+<a name="l-97"></a><span class="tm">18:14:52</span><span class="nk"> &lt;kohsuke&gt;</span> ... even including the submitter of the pull request to take over the maintenance
+<a name="l-98"></a><span class="tm">18:14:57</span><span class="nk"> &lt;jieryn&gt;</span> OK! so it probably won't go amiss if someone steps in on a stale plugin
+<a name="l-99"></a><span class="tm">18:15:07</span><span class="nk"> &lt;rtyler&gt;</span> IMHO if a committer can test the changes, it's okay. I don't think folks who've never touched the synergy plugin (for example), should really commit anything other than minor fixes perhaps
+<a name="l-100"></a><span class="tm">18:15:29</span><span class="nk"> &lt;P4G0&gt;</span> hey guys. does someone use jenkins with .net?
+<a name="l-101"></a><span class="tm">18:15:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> yes, some  are hard, but your gut can normally tell.
+<a name="l-102"></a><span class="tm">18:15:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">P4G0:</span> yes, we're in the middle of a project meeting right now, check out wiki.jenkins-ci.org for some plugins, or ask again in about 45 minutes
+<a name="l-103"></a><span class="tm">18:15:52</span><span class="nk"> &lt;hare_brain&gt;</span> Ideally, pull requests should come with tests.
+<a name="l-104"></a><span class="tm">18:16:02</span><span class="nk"> &lt;kutzi&gt;</span> +1
+<a name="l-105"></a><span class="tm">18:16:26</span><span class="nk"> &lt;kohsuke&gt;</span> I've been long meaning to write bots that encourage those
+<a name="l-106"></a><span class="tm">18:16:33</span><span class="nk"> &lt;jieryn&gt;</span> hotness
+<a name="l-107"></a><span class="tm">18:16:42</span><span class="nk"> &lt;rtyler&gt;</span> any action items we can tease out for this topic?
+<a name="l-108"></a><span class="tm">18:16:44</span><span class="nk"> &lt;kohsuke&gt;</span> like suggesting "hey, you don't have a test there --- would you like to write one?" kind of thing
+<a name="l-109"></a><span class="tm">18:16:57</span><span class="nk"> &lt;rtyler&gt;</span> Klippy? :D
+<a name="l-110"></a><span class="tm">18:16:58</span><span class="nk"> &lt;hare_brain&gt;</span> I'm having Clippy flashbacks.
+<a name="l-111"></a><span class="tm">18:17:08</span><span class="nk"> &lt;kohsuke&gt;</span> Hadoop does that in Apache JIRA
+<a name="l-112"></a><span class="tm">18:17:14</span><span class="nk"> &lt;P4G0&gt;</span> ok, i'll come again later. kohsuke i got an jenkins svn+sasl error (already since hudson). so don't leave :P
+<a name="l-113"></a><span class="tm">18:17:17</span><span class="nk"> &lt;jieryn&gt;</span> so do we think it is not an assholic thing to do to close a pull request for something not under our direct coding if it doesn't have tests?
+<a name="l-114"></a><span class="tm">18:17:34</span><span class="nk"> &lt;jieryn&gt;</span> given an otherwise, i hate to say it, abandoned plugin?
+<a name="l-115"></a><span class="tm">18:17:47</span><span class="nk"> &lt;hare_brain&gt;</span> I have no problems being an asshole. ;)
+<a name="l-116"></a><span class="tm">18:17:54</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">P4G0:</span> we don't let kohsuke leave, ever. stay tuned
+<a name="l-117"></a><span class="tm">18:17:56</span><span class="nk"> &lt;kutzi&gt;</span> not close it - but don't merge it until it has a test
+<a name="l-118"></a><span class="tm">18:18:01</span><span class="nk"> &lt;jieryn&gt;</span> start closing some pull requests as no-tests-included then! :)
+<a name="l-119"></a><span class="tm">18:18:01</span><span class="nk"> &lt;kohsuke&gt;</span> by "closing a pull request" you mean rejecting it?
+<a name="l-120"></a><span class="tm">18:18:04</span><span class="nk"> &lt;rtyler&gt;</span> +1 kutzi
+<a name="l-121"></a><span class="tm">18:18:15</span><span class="nk"> &lt;jieryn&gt;</span> right, it won't appear as an active pull request any longer, and i presume off that awesome auto-generated thing
+<a name="l-122"></a><span class="tm">18:18:21</span><span class="nk"> &lt;kutzi&gt;</span> if requester doesn't add a test in time then close it
+<a name="l-123"></a><span class="tm">18:18:23</span><span class="nk"> &lt;jieryn&gt;</span> BUT! github actually keeps that code around ,and it can be re-opened
+<a name="l-124"></a><span class="tm">18:19:00</span><span class="nk"> &lt;kohsuke&gt;</span> When committers can add changes without writing a test, why would we hold contributors to a higher bar?
+<a name="l-125"></a><span class="tm">18:19:20</span><span class="nk"> &lt;mns&gt;</span> <span class="hi">rtyler:</span> duh !! thought I was in the android channel.  sorry.
+<a name="l-126"></a><span class="tm">18:19:30</span><span class="nk"> &lt;jieryn&gt;</span> hehehe
+<a name="l-127"></a><span class="tm">18:19:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> IMO if a committer can't get a feel for the quality of a commit, *and* it doesn't have tests
+<a name="l-128"></a><span class="tm">18:19:35</span><span class="nk"> &lt;kutzi&gt;</span> kohsuke
+<a name="l-129"></a><span class="tm">18:19:37</span><span class="nk"> &lt;hare_brain&gt;</span> IMO, committers should be held to the same standard.
+<a name="l-130"></a><span class="tm">18:19:43</span><span class="nk"> &lt;kutzi&gt;</span> oops
+<a name="l-131"></a><span class="tm">18:20:14</span><span class="nk"> &lt;jieryn&gt;</span> ok, but me, as a committer to a lot of plugins but not the one with a 30-day+ pull request pending, ... do i close it w/out a test? or do i apply it? it just looks bad to have 72-day pull requests, etc
+<a name="l-132"></a><span class="tm">18:20:23</span><span class="nk"> &lt;rtyler&gt;</span> i.e. if I fix some stupid little issue that's a clear bug in an "abandoned plugin", then it's kind of a dick move to say "come back with some tests sonny boy"
+<a name="l-133"></a><span class="tm">18:20:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> right, in which case folks should be encouraged to go look at pull requests to other repos and see if they feel comfortable merging it, but it'd make it hard for you to go someone else's repo and reject their pull requests, no?
+<a name="l-134"></a><span class="tm">18:20:45</span><span class="nk"> &lt;jieryn&gt;</span> it's gray when you're a committer but not the lead on that plugin
+<a name="l-135"></a><span class="tm">18:20:50</span><span class="nk"> &lt;kohsuke&gt;</span> ... because other people might feel OK committing.
+<a name="l-136"></a><span class="tm">18:21:40 </span><span class="nka">* rtyler</span> <span class="ac">puts on his meeting leader hat</span>
+<a name="l-137"></a><span class="tm">18:22:02</span><span class="nk"> &lt;rtyler&gt;</span> actions? votes?
+<a name="l-138"></a><span class="tm">18:22:13</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we leave it at "those who can do a sweep on pull requests, please do"?
+<a name="l-139"></a><span class="tm">18:22:21</span><span class="nk"> &lt;jieryn&gt;</span> fine by me
+<a name="l-140"></a><span class="tm">18:22:25</span><span class="nk"> &lt;kohsuke&gt;</span> and merge what you can merge?
+<a name="l-141"></a><span class="tm">18:22:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">For now, "those who can do a sweep on pull requests, please do"</span>
+<a name="l-142"></a><span class="tm">18:22:49</span><span class="nk"> &lt;kohsuke&gt;</span> next agenda, please
+<a name="l-143"></a><span class="tm">18:22:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">New contributors should be encouraged to include tests with their pull requests</span>
+<a name="l-144"></a><span class="tm">18:23:04</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS 1.409.2, test status, ready to release?</span>
+<a name="l-145"></a><span class="tm">18:23:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">vjuranek:</span> you're up!
+<a name="l-146"></a><span class="tm">18:23:23</span><span class="nk"> &lt;vjuranek&gt;</span> well, ont tested properly yet
+<a name="l-147"></a><span class="tm">18:23:52</span><span class="nk"> &lt;vjuranek&gt;</span> but I guess by Monday or Tuesday it hopefully be (I was bussy last few days:-()
+<a name="l-148"></a><span class="tm">18:23:55</span><span class="nk"> &lt;kohsuke&gt;</span> My understanding is that so far no big issues has been discovered
+<a name="l-149"></a><span class="tm">18:23:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Test progress: https://wiki.jenkins-ci.org/display/JENKINS/LTS+1.409.x+RC+Testing</span>
+<a name="l-150"></a><span class="tm">18:24:22</span><span class="nk"> &lt;vjuranek&gt;</span> yup, so far any issue (besides certificate one)
+<a name="l-151"></a><span class="tm">18:24:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">I want to publicly recognize and thank vjuranek for the hard work that's been put in from his end on testing the LTS line</span>
+<a name="l-152"></a><span class="tm">18:24:40</span><span class="nk"> &lt;vjuranek&gt;</span> whicih should be fixed when release will be done
+<a name="l-153"></a><span class="tm">18:24:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> +1
+<a name="l-154"></a><span class="tm">18:24:56</span><span class="nk"> &lt;kutzi&gt;</span> rtyler +1
+<a name="l-155"></a><span class="tm">18:25:01</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">rtyler:</span> :-))
+<a name="l-156"></a><span class="tm">18:25:01</span><span class="nk"> &lt;hare_brain&gt;</span> vjuranek How did I not see this test matrix before?
+<a name="l-157"></a><span class="tm">18:25:07</span><span class="nk"> &lt;hare_brain&gt;</span> That is amazing!!
+<a name="l-158"></a><span class="tm">18:25:24</span><span class="nk"> &lt;hare_brain&gt;</span> rtyler +100 :)
+<a name="l-159"></a><span class="tm">18:25:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> Tools &gt; Watch :)
+<a name="l-160"></a><span class="tm">18:25:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">I think @jenkinsci should tweet about this page and solicit more volunteers</span>
+<a name="l-161"></a><span class="tm">18:25:57</span><span class="nk"> &lt;jieryn&gt;</span> why is rtyler getting all the votes when vjuranek did the works? :)
+<a name="l-162"></a><span class="tm">18:26:04</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-163"></a><span class="tm">18:26:06</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-164"></a><span class="tm">18:26:14</span><span class="nk"> &lt;hare_brain&gt;</span> Hahah
+<a name="l-165"></a><span class="tm">18:26:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to tweet out the LTS test matrix page to solicit help from the broader community</span>
+<a name="l-166"></a><span class="tm">18:26:28</span><span class="nk"> &lt;kohsuke&gt;</span> Otherwise I think we should release in a week or two.
+<a name="l-167"></a><span class="tm">18:26:32</span><span class="nk"> &lt;kutzi&gt;</span> I've been merging the LTS into my own LTS fork and been running it since Monday. vjuranek you think it's okay if I add my findings to that page, too?
+<a name="l-168"></a><span class="tm">18:26:35</span><span class="nk"> &lt;rtyler&gt;</span> i'll take care of that post meeting, perhaps with a blog post as well
+<a name="l-169"></a><span class="tm">18:26:50</span><span class="nk"> &lt;jieryn&gt;</span> nice
+<a name="l-170"></a><span class="tm">18:26:54</span><span class="nk"> &lt;vjuranek&gt;</span> :-) ok, to make it short, I was hoping that testing will be over by now, but it isn't so I propose I'll send an email to dev list once I'm done
+<a name="l-171"></a><span class="tm">18:27:08</span><span class="nk"> &lt;kohsuke&gt;</span> Sounds like a plan
+<a name="l-172"></a><span class="tm">18:27:11</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kutzi:</span> definitely!
+<a name="l-173"></a><span class="tm">18:27:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">vjuranek to follow up on the dev list after he's finished more testing</span>
+<a name="l-174"></a><span class="tm">18:27:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I'd also encourage people to start thinking about the base version for the next LTS</span>
+<a name="l-175"></a><span class="tm">18:27:41</span><span class="nk"> &lt;stigkj&gt;</span> Have it been discussed automating these LTS tests?
+<a name="l-176"></a><span class="tm">18:27:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kutzi to update the LTS 1.409.x testing page with his own findings as well</span>
+<a name="l-177"></a><span class="tm">18:27:55</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> +1
+<a name="l-178"></a><span class="tm">18:28:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">stigkj:</span> some of them would be tricky to automate (install verification, for example)
+<a name="l-179"></a><span class="tm">18:28:19</span><span class="nk"> &lt;hare_brain&gt;</span> kohsuke, we're on the cusp of moving forward from 1.409.1, as part of our next internal release.
+<a name="l-180"></a><span class="tm">18:28:34</span><span class="nk"> &lt;hare_brain&gt;</span> We were targetting moving forward to 1.424 (need to double check my notes)
+<a name="l-181"></a><span class="tm">18:28:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">stigkj:</span> some of this we can do Selenium testing for though
+<a name="l-182"></a><span class="tm">18:28:49</span><span class="nk"> &lt;hare_brain&gt;</span> But I'll come back with our early opinion on that release.
+<a name="l-183"></a><span class="tm">18:28:51</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">rtyler:</span> install is IMHO quite easy if you have proper tools... rest can be difficult
+<a name="l-184"></a><span class="tm">18:28:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Y! targetting 1.424 as the base of their next internal Jenkins stable release</span>
+<a name="l-185"></a><span class="tm">18:28:55</span><span class="nk"> &lt;hare_brain&gt;</span> Should be in a week or two.
+<a name="l-186"></a><span class="tm">18:28:57</span><span class="nk"> &lt;stigkj&gt;</span> <span class="hi">rtyler:</span> as many as possible would be nice, then :-)
+<a name="l-187"></a><span class="tm">18:29:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">stigkj:</span> agreed
+<a name="l-188"></a><span class="tm">18:29:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">vjuranek:</span> we're going to be doing some Selenium work internally over the next couple weeks, I'll think about what from your matrix could be easily automated with it
+<a name="l-189"></a><span class="tm">18:29:44</span><span class="nk"> &lt;stigkj&gt;</span> using Vagrant to install into, maybe
+<a name="l-190"></a><span class="tm">18:29:48</span><span class="nk"> &lt;kohsuke&gt;</span> 1.424 looks good. We need several backporting right away, but I think it would work
+<a name="l-191"></a><span class="tm">18:29:54</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">rtyler:</span> thanks, I'll think about it as well
+<a name="l-192"></a><span class="tm">18:29:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">hare_brain to follow up on the dev list with Y!'s findings on using 1.424 as the next LTS base</span>
+<a name="l-193"></a><span class="tm">18:30:31</span><span class="nk"> &lt;rtyler&gt;</span> are we ready to move on?
+<a name="l-194"></a><span class="tm">18:30:32</span><span class="nk"> &lt;kohsuke&gt;</span> Err, don't we want API token support?
+<a name="l-195"></a><span class="tm">18:30:37</span><span class="nk"> &lt;kohsuke&gt;</span> that's in 1.426
+<a name="l-196"></a><span class="tm">18:30:39</span><span class="nk"> &lt;vjuranek&gt;</span> I was thinkint about use Beaker for automated installation tests
+<a name="l-197"></a><span class="tm">18:30:55</span><span class="nk"> &lt;kohsuke&gt;</span> people consuming Jenkins from tools would benefit from it a lot
+<a name="l-198"></a><span class="tm">18:31:16</span><span class="nk"> &lt;kohsuke&gt;</span> or maybe it's considered too new and too risky?
+<a name="l-199"></a><span class="tm">18:31:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> http://fedoraproject.org/wiki/QA/Beaker ?
+<a name="l-200"></a><span class="tm">18:31:46</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> yes
+<a name="l-201"></a><span class="tm">18:31:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://fedorahosted.org/beaker/ apparently is more up to date</span>
+<a name="l-202"></a><span class="tm">18:32:22</span><span class="nk"> &lt;kutzi&gt;</span> Wonder if it's not too early to decide on the base of the next LTS when the previous LTS isn't out of the door, yet
+<a name="l-203"></a><span class="tm">18:32:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> Yeah, I don't think we need to reach a conclusion now
+<a name="l-204"></a><span class="tm">18:33:00</span><span class="nk"> &lt;hare_brain&gt;</span> kutzi I don't think we're trying to make that decision right now.
+<a name="l-205"></a><span class="tm">18:33:10</span><span class="nk"> &lt;kutzi&gt;</span> okay
+<a name="l-206"></a><span class="tm">18:33:20</span><span class="nk"> &lt;kohsuke&gt;</span> Just that it'd be good to start thinking about it, since we'll hopefully pick one soon
+<a name="l-207"></a><span class="tm">18:33:31</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I think we are ready to move to the next agenda.
+<a name="l-208"></a><span class="tm">18:33:34</span><span class="nk"> &lt;kutzi&gt;</span> that can I +1
+<a name="l-209"></a><span class="tm">18:33:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Official commit workflow for core committers</span>
+<a name="l-210"></a><span class="tm">18:33:56</span><span class="nk"> &lt;hare_brain&gt;</span> Ah, that's mine.
+<a name="l-211"></a><span class="tm">18:34:18</span><span class="nk"> &lt;hare_brain&gt;</span> I was asking about this the other day and I think jieryn was the one that pointed me at https://wiki.jenkins-ci.org/display/JENKINS/Dev+Good+Practice
+<a name="l-212"></a><span class="tm">18:34:54</span><span class="nk"> &lt;hare_brain&gt;</span> My reaction was that page felt "squishy", and I wanted to get a sense of how core committers felt on standardizing on a workflow for committing?
+<a name="l-213"></a><span class="tm">18:35:16</span><span class="nk"> &lt;rtyler&gt;</span> committing to core, yes?
+<a name="l-214"></a><span class="tm">18:35:19</span><span class="nk"> &lt;hare_brain&gt;</span> Yes.
+<a name="l-215"></a><span class="tm">18:35:25</span><span class="nk"> &lt;rtyler&gt;</span> just checking :D
+<a name="l-216"></a><span class="tm">18:35:30 </span><span class="nka">* rtyler</span> <span class="ac">steps back from this conversation</span>
+<a name="l-217"></a><span class="tm">18:35:53</span><span class="nk"> &lt;kohsuke&gt;</span> It depends on the actual rules, I guess
+<a name="l-218"></a><span class="tm">18:35:54</span><span class="nk"> &lt;hare_brain&gt;</span> Things that can benefit: a standard way to do code reviews if people feel one is necessary before a change is merged.
+<a name="l-219"></a><span class="tm">18:35:58</span><span class="nk"> &lt;stigkj&gt;</span> <span class="hi">vjuranek:</span> Beaker looks nice
+<a name="l-220"></a><span class="tm">18:36:17</span><span class="nk"> &lt;hare_brain&gt;</span> Hopefully easier to trace where changes came from, and how they evolved.
+<a name="l-221"></a><span class="tm">18:36:44</span><span class="nk"> &lt;hare_brain&gt;</span> I'm still pretty green with Git, so I don't think I'm the right one to propose what the best workflow should be.
+<a name="l-222"></a><span class="tm">18:37:55</span><span class="nk"> &lt;hare_brain&gt;</span> Also, I think if we want to encourage more contributions to the core, it's helpful to newcomers to have instructions for how they can work with the code base.
+<a name="l-223"></a><span class="tm">18:37:57</span><span class="nk"> &lt;stigkj&gt;</span> <span class="hi">hare_brain:</span> Using github's pull request would fit quite good, wouldn't it?
+<a name="l-224"></a><span class="tm">18:38:18</span><span class="nk"> &lt;kohsuke&gt;</span> I think writing down what's recommended is definitely a good thing
+<a name="l-225"></a><span class="tm">18:38:19</span><span class="nk"> &lt;hare_brain&gt;</span> That's certainly one option.
+<a name="l-226"></a><span class="tm">18:38:33</span><span class="nk"> &lt;hare_brain&gt;</span> But would Kohsuke really be submitting pull requests? :)
+<a name="l-227"></a><span class="tm">18:38:49</span><span class="nk"> &lt;stigkj&gt;</span> just when he wanted comments, I guess ;-)
+<a name="l-228"></a><span class="tm">18:38:51</span><span class="nk"> &lt;kohsuke&gt;</span> like we encourage them to file a ticket, have a test, refer to the ticket in the commit, use pull request, etc.
+<a name="l-229"></a><span class="tm">18:39:05</span><span class="nk"> &lt;stigkj&gt;</span> <span class="hi">kohsuke:</span> +1
+<a name="l-230"></a><span class="tm">18:39:11</span><span class="nk"> &lt;rg&gt;</span> today one of the github people released their workflow http://scottchacon.com/2011/08/31/github-flow.html
+<a name="l-231"></a><span class="tm">18:39:23</span><span class="nk"> &lt;kohsuke&gt;</span> It's not obvious to people interested in contributing how they should go about it
+<a name="l-232"></a><span class="tm">18:39:30</span><span class="nk"> &lt;hare_brain&gt;</span> Yes, exactly.
+<a name="l-233"></a><span class="tm">18:40:02</span><span class="nk"> &lt;kohsuke&gt;</span> That's something my boss wants to see written down, too.
+<a name="l-234"></a><span class="tm">18:40:21</span><span class="nk"> &lt;rg&gt;</span> the master branch is always ready to be deployed, devleopers create feature branches, and use pull request to get people to review their changes, if they get a aproval from any developer, and it passes the tests they can merge it to the master, and deploy it
+<a name="l-235"></a><span class="tm">18:40:27</span><span class="nk"> &lt;abayer&gt;</span> It's a fairly standard thing for OSS projects to have documented, yeah.
+<a name="l-236"></a><span class="tm">18:40:37</span><span class="nk"> &lt;abayer&gt;</span> Question is just who writes it. =)
+<a name="l-237"></a><span class="tm">18:40:59</span><span class="nk"> &lt;kohsuke&gt;</span> I'd be happy to.
+<a name="l-238"></a><span class="tm">18:41:11</span><span class="nk"> &lt;kohsuke&gt;</span> I need to be happy to, I should say.
+<a name="l-239"></a><span class="tm">18:41:16</span><span class="nk"> &lt;hare_brain&gt;</span> Ha
+<a name="l-240"></a><span class="tm">18:41:22</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write a draft for core contributor workflow</span>
+<a name="l-241"></a><span class="tm">18:41:24</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-242"></a><span class="tm">18:41:44</span><span class="nk"> &lt;kohsuke&gt;</span> shall we go to the next agenda?
+<a name="l-243"></a><span class="tm">18:41:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Git's document, for reference: http://git.kernel.org/?p=git/git.git;a=blob;f=Documentation/SubmittingPatches;h=938eccf2a5ac9dd629be1bc6bb53a59723c99083;hb=HEAD</span>
+<a name="l-244"></a><span class="tm">18:41:51</span><span class="nk"> &lt;orrc&gt;</span> what we need is a pre-tested commit plugin for github pull requests :)
+<a name="l-245"></a><span class="tm">18:42:00</span><span class="nk"> &lt;kohsuke&gt;</span> yes!
+<a name="l-246"></a><span class="tm">18:42:06</span><span class="nk"> &lt;rtyler&gt;</span> OMG I'm so moving on
+<a name="l-247"></a><span class="tm">18:42:07</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">orrc:</span> I have reaosn to believe GitHub are working on exactly that. =)
+<a name="l-248"></a><span class="tm">18:42:10</span><span class="nk"> &lt;rtyler&gt;</span> before I gerrit-hammer you people
+<a name="l-249"></a><span class="tm">18:42:12</span><span class="nk"> &lt;rtyler&gt;</span> :D
+<a name="l-250"></a><span class="tm">18:42:14 </span><span class="nka">* jieryn</span> <span class="ac">coughs at ksawicki and rtyler</span>
+<a name="l-251"></a><span class="tm">18:42:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ksawicki:</span> ^^
+<a name="l-252"></a><span class="tm">18:42:16</span><span class="nk"> &lt;abayer&gt;</span> *nudges ksawicki*
+<a name="l-253"></a><span class="tm">18:42:18</span><span class="nk"> &lt;abayer&gt;</span> heh
+<a name="l-254"></a><span class="tm">18:42:24</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Featuring the issue tracking page in a more prominent place</span>
+<a name="l-255"></a><span class="tm">18:42:25</span><span class="nk"> &lt;ksawicki&gt;</span> reading...
+<a name="l-256"></a><span class="tm">18:42:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kutzi:</span> you're up
+<a name="l-257"></a><span class="tm">18:42:36</span><span class="nk"> &lt;ksawicki&gt;</span> yes, i am working on that
+<a name="l-258"></a><span class="tm">18:42:48</span><span class="nk"> &lt;ksawicki&gt;</span> a plugin to build all pull requests either inter or intra repository
+<a name="l-259"></a><span class="tm">18:42:51</span><span class="nk"> &lt;kutzi&gt;</span> mom
+<a name="l-260"></a><span class="tm">18:42:53</span><span class="nk"> &lt;abayer&gt;</span> *swoon*
+<a name="l-261"></a><span class="tm">18:42:58</span><span class="nk"> &lt;orrc&gt;</span> cool
+<a name="l-262"></a><span class="tm">18:43:05</span><span class="nk"> &lt;stigkj&gt;</span> <span class="hi">ksawicki:</span> me like!
+<a name="l-263"></a><span class="tm">18:43:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">should "bug tracker" in http://jenkins-ci.org/ link to that?</span>
+<a name="l-264"></a><span class="tm">18:43:15</span><span class="nk"> &lt;kutzi&gt;</span> Yes, that was my idea
+<a name="l-265"></a><span class="tm">18:43:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">"that" being: https://wiki.jenkins-ci.org/display/JENKINS/Issue+Tracking</span>
+<a name="l-266"></a><span class="tm">18:43:28</span><span class="nk"> &lt;kutzi&gt;</span> thanks rtyler
+<a name="l-267"></a><span class="tm">18:43:44</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I think that's a good suggestion, there's no reason to link directly to issues. IMO
+<a name="l-268"></a><span class="tm">18:43:58</span><span class="nk"> &lt;kohsuke&gt;</span> That's a very easy change, too
+<a name="l-269"></a><span class="tm">18:44:02</span><span class="nk"> &lt;rtyler&gt;</span> especially since some people are still confused by which login credentials to use for JIRA &gt;_&gt;
+<a name="l-270"></a><span class="tm">18:44:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to update the "bug tracker" link on jenkins-ci.org</span>
+<a name="l-271"></a><span class="tm">18:44:25</span><span class="nk"> &lt;rtyler&gt;</span> shall I move us along then?
+<a name="l-272"></a><span class="tm">18:44:26</span><span class="nk"> &lt;orrc&gt;</span> yes, the prerequisites (like having the right type of account) should be listed on that wiki page too
+<a name="l-273"></a><span class="tm">18:44:35</span><span class="nk"> &lt;jieryn&gt;</span> think the first thing on that Issue+Tracking ought to be the real http://issues.jenkins-ci.org tho
+<a name="l-274"></a><span class="tm">18:44:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jieryn:</span> +1
+<a name="l-275"></a><span class="tm">18:44:49</span><span class="nk"> &lt;imod&gt;</span> there leo a request to make the link to the plugins more promiment
+<a name="l-276"></a><span class="tm">18:45:13</span><span class="nk"> &lt;imod&gt;</span> *also
+<a name="l-277"></a><span class="tm">18:45:26</span><span class="nk"> &lt;rtyler&gt;</span> we have a lot of important links TBH
+<a name="l-278"></a><span class="tm">18:45:38</span><span class="nk"> &lt;rtyler&gt;</span> jenkins-ci is cluttered right now, I've been thinking about ways to clean that up a bit
+<a name="l-279"></a><span class="tm">18:45:39</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Put a link to the issue tracker in the side bar on Use Jenkins</span>
+<a name="l-280"></a><span class="tm">18:45:49</span><span class="nk"> &lt;hare_brain&gt;</span> Oh, never mind
+<a name="l-281"></a><span class="tm">18:45:51</span><span class="nk"> &lt;hare_brain&gt;</span> already there.
+<a name="l-282"></a><span class="tm">18:46:02</span><span class="nk"> &lt;jieryn&gt;</span> ok, i updated it
+<a name="l-283"></a><span class="tm">18:46:04</span><span class="nk"> &lt;kohsuke&gt;</span> I guess you are proving that those links aren't very effective
+<a name="l-284"></a><span class="tm">18:46:15</span><span class="nk"> &lt;hare_brain&gt;</span> No, it's just proving that I can't read.
+<a name="l-285"></a><span class="tm">18:46:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Feedback on the request for official definitions of stable, unstable, failure</span>
+<a name="l-286"></a><span class="tm">18:46:47</span><span class="nk"> &lt;hare_brain&gt;</span> Although the Jenkins / Documents split seems arbitrary.
+<a name="l-287"></a><span class="tm">18:46:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/browse/JENKINS-10763</span>
+<a name="l-288"></a><span class="tm">18:46:50</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-10763:Definition of the terms Stable/Unstable/Failed; Successful/Unsuccessful and so on (Open) http://jenkins-ci.org/issue/10763
+<a name="l-289"></a><span class="tm">18:46:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kutzi:</span> this one's yours to drive as well :)
+<a name="l-290"></a><span class="tm">18:47:09</span><span class="nk"> &lt;kutzi&gt;</span> Yes, thanks.
+<a name="l-291"></a><span class="tm">18:47:20</span><span class="nk"> &lt;kutzi&gt;</span> I've started this as a question on the dev list
+<a name="l-292"></a><span class="tm">18:47:24</span><span class="nk"> &lt;rtyler&gt;</span> (I figured this one would take a good chunk of time, so I'm pushing things along)
+<a name="l-293"></a><span class="tm">18:47:43</span><span class="nk"> &lt;kutzi&gt;</span> Not sure if everyone has read it, there's also a link in the issue
+<a name="l-294"></a><span class="tm">18:48:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">related discussion on the dev list: https://groups.google.com/forum/?hl=de#!topic/jenkinsci-dev/2rMdYX3WMwo</span>
+<a name="l-295"></a><span class="tm">18:48:01</span><span class="nk"> &lt;kutzi&gt;</span> I think it would be highly beneficial to have these terms defined
+<a name="l-296"></a><span class="tm">18:48:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-297"></a><span class="tm">18:49:42</span><span class="nk"> &lt;kutzi&gt;</span> any opinions on this?
+<a name="l-298"></a><span class="tm">18:49:53</span><span class="nk"> &lt;kohsuke&gt;</span> My feeling is that we don't seem to have any significant disagreement about what those states mean,
+<a name="l-299"></a><span class="tm">18:50:20</span><span class="nk"> &lt;kohsuke&gt;</span> but actually defining them by words is an art of itself
+<a name="l-300"></a><span class="tm">18:50:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> does cloudbees have any technical writer friends? I'm wondering if we could ask a tech writer to clean up the terms in a good concise manner
+<a name="l-301"></a><span class="tm">18:50:53</span><span class="nk"> &lt;kohsuke&gt;</span> For example, you define it in terms of artifacts in one of the e-mails, but I have lots of jobs that do not produce any artifacts.
+<a name="l-302"></a><span class="tm">18:50:53</span><span class="nk"> &lt;kutzi&gt;</span> We don't need to get it 100% right IMO,
+<a name="l-303"></a><span class="tm">18:51:13</span><span class="nk"> &lt;kohsuke&gt;</span> That's true.
+<a name="l-304"></a><span class="tm">18:51:21</span><span class="nk"> &lt;kutzi&gt;</span> but we need this as a guideline e.g. for plugin developers how reporters should change the build result
+<a name="l-305"></a><span class="tm">18:51:39</span><span class="nk"> &lt;rtyler&gt;</span> anecdotally, I've seen first hand the confusion the lack of clarity between a broken build and an unstable build here
+<a name="l-306"></a><span class="tm">18:51:40</span><span class="nk"> &lt;kohsuke&gt;</span> I'm happy to incorporate any attempt to define them.
+<a name="l-307"></a><span class="tm">18:51:48</span><span class="nk"> &lt;kutzi&gt;</span> in the end it's up to the users to decide, if the plugins are configurable
+<a name="l-308"></a><span class="tm">18:51:57</span><span class="nk"> &lt;rtyler&gt;</span> "it's not red, so, it's good!"
+<a name="l-309"></a><span class="tm">18:52:22</span><span class="nk"> &lt;kutzi&gt;</span> yes, I would really like to get rid of "unstable is successful"
+<a name="l-310"></a><span class="tm">18:52:46</span><span class="nk"> &lt;rtyler&gt;</span> I think there's some room for clarification in these terms particularly for those of us who don't have BUILDS!
+<a name="l-311"></a><span class="tm">18:52:47</span><span class="nk"> &lt;kutzi&gt;</span> but I guess that a different battle to fight ;)
+<a name="l-312"></a><span class="tm">18:52:51</span><span class="nk"> &lt;rtyler&gt;</span> scripts scripts all the time!
+<a name="l-313"></a><span class="tm">18:52:58</span><span class="nk"> &lt;orrc&gt;</span> actually, I think unstable builds are included in the "failed" RSS feed
+<a name="l-314"></a><span class="tm">18:53:05</span><span class="nk"> &lt;rtyler&gt;</span> "oh thanks jenkins, my build or this rails project succeeded? -_-"
+<a name="l-315"></a><span class="tm">18:53:33</span><span class="nk"> &lt;kutzi&gt;</span> but latest successful build also links to the latest unstable, doesn't it?
+<a name="l-316"></a><span class="tm">18:53:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kutzi:</span> I think we're going to have to push for clarifications on a case by case basis on the mailing lists
+<a name="l-317"></a><span class="tm">18:53:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> no, it doesn't
+<a name="l-318"></a><span class="tm">18:53:57</span><span class="nk"> &lt;rtyler&gt;</span> and I also think it's going to have to be kind of a case-by-case thing too :/
+<a name="l-319"></a><span class="tm">18:54:41</span><span class="nk"> &lt;kohsuke&gt;</span> shall we move on to the next agenda?
+<a name="l-320"></a><span class="tm">18:54:55</span><span class="nk"> &lt;kutzi&gt;</span> action items?
+<a name="l-321"></a><span class="tm">18:55:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">everybody should start thinking of how to clear up some of these terms across the widest cross-section of our userbase</span>
+<a name="l-322"></a><span class="tm">18:55:16</span><span class="nk"> &lt;rtyler&gt;</span> that's all I can think of :/
+<a name="l-323"></a><span class="tm">18:55:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> are you writing them in a Wiki page or somewhere?
+<a name="l-324"></a><span class="tm">18:55:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Terms somewhat enumerated here: https://wiki.jenkins-ci.org/display/JENKINS/Terminology</span>
+<a name="l-325"></a><span class="tm">18:55:52</span><span class="nk"> &lt;kohsuke&gt;</span> We can link from the Jenkins UI "legend" page to it, for example
+<a name="l-326"></a><span class="tm">18:55:56</span><span class="nk"> &lt;kutzi&gt;</span> <span class="cmd">#action </span><span class="cmdline">kutzi to write down his proposal in the wiki</span>
+<a name="l-327"></a><span class="tm">18:56:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Donation drive!</span>
+<a name="l-328"></a><span class="tm">18:56:16</span><span class="nk"> &lt;rtyler&gt;</span> finally, the best topic on the agenda!
+<a name="l-329"></a><span class="tm">18:56:26</span><span class="nk"> &lt;stigkj&gt;</span> he, he
+<a name="l-330"></a><span class="tm">18:56:26</span><span class="nk"> &lt;orrc&gt;</span> maybe with a list of use cases and we can categorise them into success/not-build/unstable? e.g. scm checkout fails, buildwrapper plugin errors out, some tests fail
+<a name="l-331"></a><span class="tm">18:56:27</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-332"></a><span class="tm">18:56:33</span><span class="nk"> &lt;rtyler&gt;</span> as a bit of background, thanks to stellar growth (ahem)
+<a name="l-333"></a><span class="tm">18:56:38</span><span class="nk"> &lt;kutzi&gt;</span> <span class="hi">kohsuke:</span> http://ci.jenkins-ci.org/view/Plugins/job/plugins_batch-task/lastSuccessfulBuild/ that's a unstable one
+<a name="l-334"></a><span class="tm">18:56:55 </span><span class="nka">* rtyler</span> <span class="ac">clears his throat</span>
+<a name="l-335"></a><span class="tm">18:57:12</span><span class="nk"> &lt;rtyler&gt;</span> I've accidentally personally donated over $5k to the Jenkins project infrastructure :P
+<a name="l-336"></a><span class="tm">18:57:42</span><span class="nk"> &lt;rtyler&gt;</span> which has made the need to fundraise, something we need to address sooner rather than later
+<a name="l-337"></a><span class="tm">18:57:54</span><span class="nk"> &lt;rtyler&gt;</span> kohsuke has already started pushing on SPI to get our online donations set up
+<a name="l-338"></a><span class="tm">18:58:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> my bad, you are right
+<a name="l-339"></a><span class="tm">18:58:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the SPI's donation page is here: http://spi-inc.org/donations/</span>
+<a name="l-340"></a><span class="tm">18:58:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">so far I still haven't heard back from SPI that the account is set up</span>
+<a name="l-341"></a><span class="tm">18:58:27</span><span class="nk"> &lt;rtyler&gt;</span> that's for online donations only
+<a name="l-342"></a><span class="tm">18:58:34</span><span class="nk"> &lt;hare_brain&gt;</span> Put a jar out at the JUC
+<a name="l-343"></a><span class="tm">18:58:35</span><span class="nk"> &lt;rtyler&gt;</span> people can still mail checks for Jennkins :P
+<a name="l-344"></a><span class="tm">18:58:37</span><span class="nk"> &lt;orrc&gt;</span> should have put a $30 registration fee on the Jenkins User Conference ;)
+<a name="l-345"></a><span class="tm">18:58:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> we want people to show up more than we want to pay me back
+<a name="l-346"></a><span class="tm">18:59:12</span><span class="nk"> &lt;hare_brain&gt;</span> Since JUC is in SF, have rtyler sit outside, panhandling.
+<a name="l-347"></a><span class="tm">18:59:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">I've started talking with a Contegix accountant to get their donations of bandwidth and colocation space assigned to the SPI</span>
+<a name="l-348"></a><span class="tm">18:59:27</span><span class="nk"> &lt;hare_brain&gt;</span> Make sure to wear clothes that haven't been washed in a few weeks, and don't shower for a while, either.
+<a name="l-349"></a><span class="tm">18:59:36</span><span class="nk"> &lt;rtyler&gt;</span> so, a regular sunday? :D
+<a name="l-350"></a><span class="tm">18:59:46</span><span class="nk"> &lt;hare_brain&gt;</span> And you need a sheet of cardboard to sit on.
+<a name="l-351"></a><span class="tm">18:59:49</span><span class="nk"> &lt;abayer&gt;</span> I was planning to mug people on their way out of sessions.
+<a name="l-352"></a><span class="tm">18:59:59</span><span class="nk"> &lt;rtyler&gt;</span> anywhoo, are there any objections to starting a general "donation drive" once the SPI online account has been set up?
+<a name="l-353"></a><span class="tm">19:00:15</span><span class="nk"> &lt;rtyler&gt;</span> I'd like to shoot for at least $7k, so we have some funds in our general SPI account
+<a name="l-354"></a><span class="tm">19:00:21</span><span class="nk"> &lt;jieryn&gt;</span> donating to SPI would make it a tax benefit for the donator, right?
+<a name="l-355"></a><span class="tm">19:00:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jieryn:</span> yes
+<a name="l-356"></a><span class="tm">19:00:33</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> I pledge $500!
+<a name="l-357"></a><span class="tm">19:00:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">And we do have some random expenses that some of us have been paying out of pocket</span>
+<a name="l-358"></a><span class="tm">19:00:38</span><span class="nk"> &lt;hare_brain&gt;</span> Kohsuke, do you know if there's going to be a standard presentation template for JUC? A donation drive slide could be part of that template.
+<a name="l-359"></a><span class="tm">19:00:43</span><span class="nk"> &lt;kohsuke&gt;</span> so it'd be good to get this funding scheme going
+<a name="l-360"></a><span class="tm">19:00:43</span><span class="nk"> &lt;abayer&gt;</span> Do I get a tote bag? =)
+<a name="l-361"></a><span class="tm">19:00:51</span><span class="nk"> &lt;abayer&gt;</span> There is a template, yes.
+<a name="l-362"></a><span class="tm">19:00:54</span><span class="nk"> &lt;kohsuke&gt;</span> Good idea
+<a name="l-363"></a><span class="tm">19:00:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> we're not NPR, you hippy
+<a name="l-364"></a><span class="tm">19:01:07</span><span class="nk"> &lt;abayer&gt;</span> awwwww.
+<a name="l-365"></a><span class="tm">19:01:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to ping Rackspace about transferring assets to the SPI and starting to write off their donations as well</span>
+<a name="l-366"></a><span class="tm">19:01:22</span><span class="nk"> &lt;jweinberg&gt;</span> <span class="hi">abayer:</span> how about a bowtie?
+<a name="l-367"></a><span class="tm">19:01:24 </span><span class="nka">* rtyler</span> <span class="ac">likes giving kohsuke moar work</span>
+<a name="l-368"></a><span class="tm">19:01:31</span><span class="nk"> &lt;abayer&gt;</span> I don't like ties. They make me feel strangled. =)
+<a name="l-369"></a><span class="tm">19:01:35</span><span class="nk"> &lt;abayer&gt;</span> Speaking of kohsuke and work...
+<a name="l-370"></a><span class="tm">19:01:40</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Add a donation drive slide to JUC presentation template</span>
+<a name="l-371"></a><span class="tm">19:01:42</span><span class="nk"> &lt;abayer&gt;</span> Trademark!
+<a name="l-372"></a><span class="tm">19:01:46</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think Rackspace has donated any assets.
+<a name="l-373"></a><span class="tm">19:01:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">abayer:</span> NOT ON THE AGENDA
+<a name="l-374"></a><span class="tm">19:01:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that build machine
+<a name="l-375"></a><span class="tm">19:01:56</span><span class="nk"> &lt;abayer&gt;</span> hrmph
+<a name="l-376"></a><span class="tm">19:01:56</span><span class="nk"> &lt;kohsuke&gt;</span> They are just giving us access to the machine they own
+<a name="l-377"></a><span class="tm">19:01:57</span><span class="nk"> &lt;hare_brain&gt;</span> Time check
+<a name="l-378"></a><span class="tm">19:01:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that's write-offable by them
+<a name="l-379"></a><span class="tm">19:02:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> we have one more item
+<a name="l-380"></a><span class="tm">19:02:05</span><span class="nk"> &lt;jieryn&gt;</span> gavel it done, then?
+<a name="l-381"></a><span class="tm">19:02:06</span><span class="nk"> &lt;rtyler&gt;</span> I'm moving on
+<a name="l-382"></a><span class="tm">19:02:08</span><span class="nk"> &lt;jieryn&gt;</span> oh
+<a name="l-383"></a><span class="tm">19:02:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Infrastructure update</span>
+<a name="l-384"></a><span class="tm">19:02:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Contegix has donated another 4TB of bandwidth to our machine, cucumber</span>
+<a name="l-385"></a><span class="tm">19:02:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">cabbage and lettuce are both racked at the OSL</span>
+<a name="l-386"></a><span class="tm">19:02:55</span><span class="nk"> &lt;kohsuke&gt;</span> 4TB/month that is
+<a name="l-387"></a><span class="tm">19:02:59</span><span class="nk"> &lt;rtyler&gt;</span> indeed
+<a name="l-388"></a><span class="tm">19:03:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">rtyler has made the painful executive decision that Jenkins infra will standardize on Ubuntu+Puppet</span>
+<a name="l-389"></a><span class="tm">19:03:31</span><span class="nk"> &lt;rtyler&gt;</span> CentOS and Apache ruined my weekend, so there's that :P
+<a name="l-390"></a><span class="tm">19:04:02</span><span class="nk"> &lt;rtyler&gt;</span> mirrors.jenkins-ci.org will be moved in the next week from cucumber to lettuce, where we won't be paying for any bandwidth whatsoever
+<a name="l-391"></a><span class="tm">19:04:15</span><span class="nk"> &lt;rtyler&gt;</span> sinec mirrors.jenkins-ci.org still actually serves files directly, if the mirrors are not yet updated (ouch)
+<a name="l-392"></a><span class="tm">19:04:45</span><span class="nk"> &lt;P4G0&gt;</span> still in meeting?
+<a name="l-393"></a><span class="tm">19:04:48</span><span class="nk"> &lt;orrc&gt;</span> how frequently do we push to mirrors?
+<a name="l-394"></a><span class="tm">19:04:50</span><span class="nk"> &lt;kohsuke&gt;</span> (the context is that the $5K cost was because of the bandwidth surcharge, caused by our mirror brain serving bits by itself instead of directing traffic to mirrors)
+<a name="l-395"></a><span class="tm">19:05:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> the OSL mirror (primary) is synced every time a plugin is released
+<a name="l-396"></a><span class="tm">19:05:15</span><span class="nk"> &lt;rtyler&gt;</span> for example
+<a name="l-397"></a><span class="tm">19:05:25</span><span class="nk"> &lt;kohsuke&gt;</span> It's error prone, so we are trying to make sure that even if it happens again it won't cost us real money.
+<a name="l-398"></a><span class="tm">19:05:26</span><span class="nk"> &lt;rtyler&gt;</span> the problem is, mirrorbrain then has to scan all the mirrors to keep its index updated
+<a name="l-399"></a><span class="tm">19:05:37</span><span class="nk"> &lt;rtyler&gt;</span> which takes ~15-20 minutes, so we do it hourly
+<a name="l-400"></a><span class="tm">19:05:45</span><span class="nk"> &lt;abayer&gt;</span> btw, I just pinged SPI and they say they'll hopefully have us in their donation system todayish.
+<a name="l-401"></a><span class="tm">19:05:54</span><span class="nk"> &lt;rtyler&gt;</span> all secondary mirrors have been instructed to run an hourly rsync
+<a name="l-402"></a><span class="tm">19:06:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">for reference, here's our bandwidth spike on cucumber: http://strongspace.com/rtyler/public/year_cucumber_bw.png</span>
+<a name="l-403"></a><span class="tm">19:06:37</span><span class="nk"> &lt;rtyler&gt;</span> Jenkins is popular and HEAVY
+<a name="l-404"></a><span class="tm">19:06:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to move mirrorbrain from cucumber to lettuce</span>
+<a name="l-405"></a><span class="tm">19:07:08</span><span class="nk"> &lt;rtyler&gt;</span> pertaining to last night's JIRA issue
+<a name="l-406"></a><span class="tm">19:07:28</span><span class="nk"> &lt;rtyler&gt;</span> I've raised the priority of a proper nagios monitoring across our cluster of machines
+<a name="l-407"></a><span class="tm">19:07:48</span><span class="nk"> &lt;rtyler&gt;</span> and filed a ticket for myself to start managing our backups and snapshots better
+<a name="l-408"></a><span class="tm">19:08:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">FishEye has been unstable, too. There's a ticket open on Atlassian Support to find out what's going on.</span>
+<a name="l-409"></a><span class="tm">19:08:11</span><span class="nk"> &lt;rtyler&gt;</span> INFRA is *not* a glorious job, and there's not enough volunteers that have the ability/trust to help :/
+<a name="l-410"></a><span class="tm">19:08:16</span><span class="nk"> &lt;rtyler&gt;</span> we need puppet people
+<a name="l-411"></a><span class="tm">19:08:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Jenkins puppet manifests are being collected here: github.com/jenkinsci/infra-puppet</span>
+<a name="l-412"></a><span class="tm">19:08:53</span><span class="nk"> &lt;stigkj&gt;</span> How are they coming along?
+<a name="l-413"></a><span class="tm">19:08:53</span><span class="nk"> &lt;rtyler&gt;</span> that's most of what I have to update on, any questions before I bang the gavel?
+<a name="l-414"></a><span class="tm">19:08:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">stigkj:</span> puppet manifests?
+<a name="l-415"></a><span class="tm">19:09:02</span><span class="nk"> &lt;stigkj&gt;</span> yes
+<a name="l-416"></a><span class="tm">19:09:11</span><span class="nk"> &lt;rtyler&gt;</span> slowly, I wasted too much time with CentOS unfortunately
+<a name="l-417"></a><span class="tm">19:09:17</span><span class="nk"> &lt;orrc&gt;</span> I forgot about fisheye.. do people still use it since moving to github?
+<a name="l-418"></a><span class="tm">19:09:20</span><span class="nk"> &lt;rtyler&gt;</span> z00dax6 has a lot of work he's done locally that I've not seen nor integrated
+<a name="l-419"></a><span class="tm">19:09:31</span><span class="nk"> &lt;stigkj&gt;</span> <span class="hi">rtyler:</span> ok :-)
+<a name="l-420"></a><span class="tm">19:09:54</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">rtyler:</span> one more thing: how about a recap of the last meeting's action items at the start of each meeting?
+<a name="l-421"></a><span class="tm">19:09:56</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> there's a conversation of possibly just stop the service, indeed.
+<a name="l-422"></a><span class="tm">19:10:07</span><span class="nk"> &lt;rtyler&gt;</span> we now have enough machines, it's the management of those machines that's the bottleneck now
+<a name="l-423"></a><span class="tm">19:10:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-424"></a><span class="tm">19:10:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> I don't know, we still need other OSes, for example
+<a name="l-425"></a><span class="tm">19:10:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> Sept 14th, same time same place?
+<a name="l-426"></a><span class="tm">19:10:46</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-427"></a><span class="tm">19:10:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> build machines are not the same :)
+<a name="l-428"></a><span class="tm">19:10:59</span><span class="nk"> &lt;rtyler&gt;</span> unless anybody objects, I'm going to schedule it
+<a name="l-429"></a><span class="tm">19:11:06</span><span class="nk"> &lt;rtyler&gt;</span> going
+<a name="l-430"></a><span class="tm">19:11:11</span><span class="nk"> &lt;rtyler&gt;</span> going
+<a name="l-431"></a><span class="tm">19:11:21</span><span class="nk"> &lt;stigkj&gt;</span> <span class="hi">kohsuke:</span> you mean, like, OS X and Windows, for example?
+<a name="l-432"></a><span class="tm">19:11:27</span><span class="nk"> &lt;stigkj&gt;</span> rtyler:
+<a name="l-433"></a><span class="tm">19:11:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">stigkj:</span> yes
+<a name="l-434"></a><span class="tm">19:11:30</span><span class="nk"> &lt;stigkj&gt;</span> sorry
+<a name="l-435"></a><span class="tm">19:11:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next project meeting 2011.09.14 at 18:00 UTC</span>
+<a name="l-436"></a><span class="tm">19:11:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

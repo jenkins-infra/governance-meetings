@@ -1,0 +1,279 @@
+19:01:43 <kohsuke> #startmeeting
+19:01:43 <robobutler> Let the Jenkins meeting commence!
+19:01:54 <kohsuke> #chair rtyler hare_brain
+19:01:54 <robobutler> Current chairs: hare_brain kohsuke rtyler
+19:02:05 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:02:17 <kohsuke> #topic Approving another batch of stickers
+19:02:45 <kohsuke> In every year, Jan-Feb is a month that we use a lot of stickers
+19:02:52 <kohsuke> ... between FOSDEM & SCALE
+19:03:18 <kohsuke> In FOSDEM we handed out about 1000, and I expect similar number in SCALE
+19:03:31 <kohsuke> So I want to put an order for more stickers
+19:04:16 <kohsuke> The two new variations were popular in FOSDEM
+19:04:21 <kohsuke> https://wiki.jenkins-ci.org/download/attachments/2916393/superhero-all.svg
+19:04:28 <kohsuke> https://wiki.jenkins-ci.org/download/attachments/2916393/ninjenkins.svg
+19:04:43 <kohsuke> but OTOH it often just resulting in the same person getting 3 stickers instead of just one
+19:04:54 <kohsuke> So one could argue whether that's the best use of money
+19:05:02 <integer`> and i still have zero stickers :D
+19:05:26 <kohsuke> Can you join us in SCALE? :-) it's in the end of this week
+19:05:41 <irf> nope.. still same issue
+19:05:48 <akkad> kohsuke: where?
+19:05:49 <integer`> kohsuke, have no Visa's and highload because of jenkins bugs :(
+19:06:00 <kohsuke> Los Angeles
+19:06:16 <irf> not getting value
+19:06:38 <integer`> irf, please wait, meeting is going on channel atm
+19:06:48 <irf> ok sure
+19:06:51 <irf> will wait
+19:07:00 <kohsuke> BTW there are two more designs
+19:07:00 <kohsuke> https://twitter.com/masanobuimai/status/564248061296140288/photo/1
+19:07:00 <integer`> irf, value="${buildenv.get(\"a\",\"\")}"
+19:07:16 <kohsuke> https://twitter.com/masanobuimai/status/564349882190659584
+19:07:24 <oleg-nenashev> Stickers are quite cheap BTW. 3 stickers is not a big problem
+19:07:53 <alyssa> +1 for more stickers. they're inexpensive but help to build awareness
+19:08:00 <kohsuke> I'm thinking 2000 of the standard one, 1000 each for super hero and Ninja
+19:08:33 <integer`> kohsuke, do you have some image where hudson is killed? :D
+19:08:35 <oleg-nenashev> kohsuke: As I remember, there was a discussion regarding Japanese comics (I suppose it's related for last 2k stickers)
+19:08:44 <integer`> or oracle...
+19:08:53 <kohsuke> That Japanese comic one was the super hero one
+19:09:09 <kohsuke> somebody said maybe there's no point in having that text that no one can read
+19:09:10 <oleg-nenashev> integer: Hudson is alive ;) Don't be evil
+19:09:34 <kohsuke> integer`: I no longer feel any urge/need to rub it in
+19:09:53 <sean_abbott> anyone else having problems with the jdk installer?
+19:09:54 <irf> again jelly exception
+19:10:09 <integer`> irf, then after meeting
+19:10:18 <irf> ok
+19:10:20 <irf> sure
+19:10:23 <irf> plz
+19:10:24 <sean_abbott> as in, it's not populating the jdk's and also throwing an error when you try and download the jdk?
+19:10:30 <oleg-nenashev> A new IRC channel would be useful....
+19:10:40 <integer`> sean_abbott, please wait until meeting on channel ends
+19:10:56 <kohsuke> Any more thoughts on stickers, can I consider that blessed?
+19:10:57 <sean_abbott> ok
+19:11:15 <ogondza> +1
+19:11:15 <oleg-nenashev> +1 for stickers. There's a link to jenkins-ci.org on Ninja one as well
+19:11:23 <integer`> +1
+19:11:28 <batmat> +1 for stickers
+19:11:28 <alyssa> +1
+19:11:50 <kohsuke> #agreed kohsuke will order 2000 of the standard one, 1000 each for super hero and Ninja (should last for 2015)
+19:12:04 <kohsuke> BTW, possibly related https://twitter.com/kimika127/status/562866597078265856
+19:12:21 <integer`> :D
+19:12:23 <kohsuke> #topic IntelliJ license
+19:12:30 <kohsuke> oh kostasya isn't here
+19:12:32 <batmat> I'm afraid that one could sound sexist
+19:12:36 <integer`> kohsuke, its me
+19:12:49 <kohsuke> integer` = kostasya?
+19:12:52 <oleg-nenashev> Do we consider all JetBrains licenses? (ReSharper, etc.)
+19:12:52 <integer`> yes
+19:12:56 <kohsuke> oh
+19:13:07 <jglick> (= KostyaSha I think)
+19:13:19 <kohsuke> jglick: thanks!
+19:13:21 <KostyaSha> IRC doesn't support multiple logins :(
+19:13:45 <kohsuke> oleg-nenashev: yeah, I think so
+19:13:45 <batmat> speaking to kohsuke btw, though I understand this may sound less this way for manga-aware people?
+19:13:47 <KostyaSha> oleg-nenashev, and RubyMine that can be useful for infra work with puppet
+19:14:23 <kohsuke> batmat: I agree with you that it's better for me to stay away from it, especially outside Japan
+19:14:28 <kohsuke> it's sensitive area
+19:14:37 <kohsuke> back to the topic...
+19:14:58 <kohsuke> #info it used to be that I applied for IntelliJ and RubyMine licenses on behalf of the project and handed out the licenses to those who are interested
+19:15:13 <kohsuke> #info but this year I noticed that JetBrains has changed the OSS license terms and I no longer qualify
+19:15:20 <KostyaSha> kohsuke, could you pass JB communication to somebody else to not waste your time?
+19:15:37 <kohsuke> #info https://www.jetbrains.com/idea/buy/choose_edition.jsp?license=OPEN_SOURCE
+19:15:52 <kohsuke> KostyaSha: there's no real "communication" to speak of
+19:16:12 <kohsuke> I just fill in the form, and somebody from their side get back to me in a month or so with the license
+19:16:17 <KostyaSha> kohsuke, but support redirected me to you 2m ago
+19:16:46 <KostyaSha> kohsuke, i mean part of providing licenses for those who need them
+19:16:56 <oleg-nenashev> kohsuke: I could directly push somebody from CloudBees in St. Petersburg, but I'm not eligible to get OSS license as well
+19:16:57 <kohsuke> If it helps, I'd be happy to write something like "I'm the lead of the project and this person is our official liaison, and I'm not qualified license-wise but he is"
+19:17:10 <KostyaSha> oleg-nenashev, from CB ? 0_o
+19:17:13 <kohsuke> oleg-nenashev: I assume you mean JetBrains, not CloudBees!
+19:17:18 <oleg-nenashev> ohh
+19:17:29 <oleg-nenashev> From JetBrains, of course
+19:17:46 <oleg-nenashev> sorry
+19:17:48 <kohsuke> So I guess the primary question for me is, who satisfies the conditions and is willing to talk to JetBrains?
+19:17:54 <kohsuke> KostyaSha: you said you don't qualify either
+19:18:21 <kohsuke> The problematic term specifically is "You do not perform any paid support, consulting or training services for your OS project, and you do not distribute paid versions of your OS software. If you provide paid services for or distribute paid versions of your OS software, we might have other options available for your project"
+19:18:53 <KostyaSha> probably oleg-nenashev also. kohsuke should we first check with JB our case?
+19:19:10 <kohsuke> I suppose I can ask
+19:19:17 <KostyaSha> maybe oleg-nenashev can talk with JB directly and describe situation
+19:19:20 <kohsuke> come to think of it, that's what master rtyler taught me
+19:19:37 <oleg-nenashev> kohsuke: Who is you contact at JB?
+19:19:47 <oleg-nenashev> *your
+19:19:55 <kohsuke> Like I said, there's no contact. I just fill in the form, and every year someone new answers that email
+19:20:04 <KostyaSha> kohsuke, we have some direct personal contacts in JB :)
+19:20:06 <kohsuke> But I can find those email addresses that I interacted in the past if it helps
+19:20:32 <kohsuke> KostyaSha: can you send that to oleg-nenashev?
+19:20:44 <oleg-nenashev> Probably it helps. Actually, JB guys do not like Jenkins due to obvious reasons :)
+19:20:56 <KostyaSha> ha-ha :)
+19:21:36 <kohsuke> If it's just Stefan Wolf who can use the license, maybe we'll ask him to talk to JetBrains
+19:21:46 <KostyaSha> Nadya Kudryavtseva
+19:21:46 <KostyaSha> Community Support Coordinator
+19:22:15 <KostyaSha> He answered on my question about licenses renewal
+19:22:18 <KostyaSha> *She
+19:22:33 <kohsuke> and the email address that came from is opensource@jetbrains.com
+19:22:52 <KostyaSha> right
+19:23:08 <kohsuke> oleg-nenashev: do you want to take this AI, or should we punt to wolfs?
+19:23:32 <jan_n> howdy.
+19:24:04 <oleg-nenashev> kohsuke: Lets ask Stefan to use the official way. If it does not help, I'll try a workaround
+19:24:33 <kohsuke> #action kohsuke to write to wolfs that he is in charge for getting the license he wants. fall back to oleg-nenashev if that doesn't work
+19:24:37 <KostyaSha> kohsuke, i think answer mean that license key is still active and you can continue providing it
+19:25:03 <kohsuke> I want those emails to go to wolfs :-)
+19:25:34 <kohsuke> KostyaSha: should we move on?
+19:25:34 <oleg-nenashev> So, IDEA + RubyMine + probably ReSharper (if somebody wants to hack WinSW). Do we need anything else?
+19:25:34 <KostyaSha> kohsuke, then redirect contact to him and give him key and bless :)
+19:25:51 <KostyaSha> oleg-nenashev, teamcity?:D
+19:26:02 <kohsuke> I still don't understand this notion of contact and key
+19:26:15 <kohsuke> Like I said, all I do every year is just file a form that's on the public website
+19:26:30 <kohsuke> For all I know the form is handled by an intern of the year
+19:26:41 <kohsuke> There's no continued "conversation" of any sort
+19:26:42 <KostyaSha> kohsuke, you are contact person for providing keys for Jenkins project
+19:27:22 <kohsuke> All right, I'll write to opensource@jetbrains.com that this year expect to hear from somebody else as I'm disqualified.
+19:27:27 <KostyaSha> This key is multiuser and they renew it every time you contact them
+19:28:04 <kohsuke> I don't want to touch the license that I'm not allowed to use. It's not kosher.
+19:28:15 <kohsuke> KostyaSha:  Can we move on to the next topic?
+19:28:19 <KostyaSha> yes
+19:28:28 <kohsuke> #topic Should we have an "ops lead"? Adding more infra team members? Moderator teams?
+19:28:39 <kohsuke> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/046RwHh3Nko
+19:28:55 <kohsuke> so more of a continuation of INFRA-240 discussion
+19:28:56 <luckysideburn> hi to all
+19:28:57 <jenkins-admin> INFRA-240:Releasing plugins is not possible as Artifactory is refusing credentials (Resolved) https://issues.jenkins-ci.org/browse/INFRA-240
+19:29:27 <oleg-nenashev> +1 for ops lead
+19:29:43 <kohsuke> rtyler indicated me offline that he expects (or wants) to be able to bring back more cycles to the project
+19:30:03 <KostyaSha> -1 for lead
+19:30:05 <kohsuke> and I understand that KostyaSha feels strongly about meritocracy
+19:30:09 <batmat> Why not an ops-lead, not sure it's that important as already said by some on the ML.
+19:30:12 <luckysideburn> I developed a maven plugin that create a jar and the pom.. all seems ok, but the jenkins plugin for artifactory seems not find the jar  and does not deploy it to artifactory. any suggestions?
+19:30:32 <luckysideburn> please :)
+19:30:49 <kohsuke> I also took some push back internally and I need to work in CB to figure out how much time of who I can get engaged for this
+19:30:50 <KostyaSha> kohsuke, i'm lead and worked on many projects with hundreds servers, jenkins needs just resolve issues
+19:30:55 <oleg-nenashev> rtyler is the only candidate IMO. BTW, it would be great to avoid 1-person bottlenecks
+19:31:12 <rtyler> wat
+19:31:19 <rtyler> I've been summoned
+19:31:20 <kohsuke> luckysideburn: we are in the project meeting, so let's hold off questions until that ends. but you are welcome to participate in the discussion
+19:31:28 <rtyler> oh right, meeting
+19:31:40 <rtyler> the cold in boston made me forget, I swear!
+19:32:56 <KostyaSha> my main idea that things must be fixed/resolved with peer reviews, lead is redundant here
+19:32:56 <kohsuke> So I'm back tracking somewhat on my proposal about nominating the lead role, though I still think the underlying concern is valid
+19:33:00 <rtyler> one suggestion I made to kohsuke was to make a board member "responsible" for infra
+19:33:11 <rtyler> and in turn, responsible for infra to the project, and driving that forward
+19:33:21 <rtyler> since the project and infra are obviously closely intertwined :)
+19:34:07 <oleg-nenashev> Offtopic/Personal update. I've finally got approvals from my current employer. I'll be able to officially contribute to jenkins-infra starting from March 1st
+19:34:14 <rtyler> \o/
+19:34:28 <kohsuke> I think the ops-focused board member would work, though not sure about "in turn" part
+19:34:46 <kohsuke> For example, I doubt if hare_brain is willing to do that
+19:34:54 <irf> plz ping me when meeting done ..
+19:35:03 <rtyler> I'm basically suggestion making the infra more "consumer oriented"
+19:35:21 <rtyler> in that, the priorities would be more driven by what the project needs, which would be agreed upon by the board nad in meetings
+19:35:31 <rtyler> it's kind of haphazard right now based on time and effort
+19:36:09 <hare_brain> We need more board members anyway..
+19:36:10 <kohsuke> rtyler: can I assume that you are stepping up to that role?
+19:36:15 <rtyler> you can
+19:36:24 <batmat> rtyler: you mean having somehow a backlog/todolist agreed/planned in advance and trying to make it forward instead of just doing things you like when you find time?
+19:36:32 <kohsuke> hare_brain: yes, this would be a good opportunity to add more
+19:36:34 <rtyler> batmat: basically :P
+19:36:48 <rtyler> I laid out some 2014 goals just as an experiment for infra work
+19:37:18 <rtyler> we actually got through a good chunk, but it was largely a list that came out of my brain, instead of being something that would clearly improve the project or make developers or users' lives easier
+19:37:39 <batmat> btw, will there be another thread abt how much you need to engage to be part of that "team"?
+19:38:21 <kohsuke> batmat: yeah we should have that conversation
+19:38:56 <kohsuke> My feeling is that lots of people with very little time each isn't as helpful for infra work
+19:39:18 <rtyler> it depends on their sticking power
+19:39:29 <batmat> I mean, as said above, we're (almost?) all volunteers here and that's pretty difficult to say "yeah, well I promise I'll be able to be on call if something falls down"
+19:39:31 <rtyler> a lot of little pieces of one person's time, like KostyaSha, definitely adds up :)
+19:40:26 <oleg-nenashev> Yep, occasional contributions should be appreciated
+19:40:56 <KostyaSha> rtyler, i had full vacation and didn't get ability to end work :( now i'm busy with jenkins bugs like git-plugin and flexible-publish :(  But usually i have time for contributions
+19:41:01 <kohsuke> I guess I'm going to produce a revised proposal about adding two more people to the board, nominating rtyler for one of them and as "infra focused" person
+19:41:05 <oleg-nenashev> Do we have any options excepting the "full infrastructure access"?
+19:41:14 <batmat> rtyler: yes, that's basically how I see it, having more people should help mitigate that issue (btw, I'm definitely candidating here ;-))
+19:41:26 <rtyler> oleg-nenashev: yeah, there's plenty to do in the jenkins-infra repo
+19:41:30 <rtyler> oleg-nenashev: no access is required
+19:41:40 <rtyler> there's a huge lack of organization on my part on what's important and how to do it
+19:42:13 <oleg-nenashev> Yep. JIRA, Confluense ond ci.jenkins-ci.org can be managed separately as well
+19:42:20 <KostyaSha> rtyler, how much resources/money has infra for running new servers etc?
+19:42:47 <KostyaSha> or all in stickers now? :)
+19:43:05 <kohsuke> good portion of them are hosted in OSUOSL for free
+19:43:12 <kohsuke> Some other portions are hosted in Rackspace through their donations
+19:43:25 <rtyler> we're getting a bit off topic
+19:43:26 <kohsuke> Then one (but important) server in Contegix for pay
+19:43:31 <KostyaSha> Are they are in cloud? Can servers be reprovisioned?
+19:43:31 <kohsuke> yes
+19:44:10 <batmat> +1 rtyler I don't think we're gonna describe the whole infra here?
+19:44:10 <kohsuke> Should I go ahead and schedule ToI to spead knowledge, or do you want to do it differently rtyler?
+19:44:31 <rtyler> it'll have to wait another couple weeks, earliest would be second week in march
+19:44:48 <batmat> kohsuke: morea KT as stephenc says ? :-)
+19:44:56 <kohsuke> KT, fine, KT
+19:45:01 <rtyler> for the purposes of the meeting, can we get come to a conclusion on the topic at hand
+19:45:19 <rtyler> #info the jenkins-infra team business is discussed in #jenkins-infra on Freenode
+19:45:22 <KostyaSha> i mean that ancient platforms can be a blocker, I have no desire to work with ruby 1.8 and etc :D
+19:45:25 * rtyler assumes he's a chair
+19:45:29 <rtyler> heh
+19:45:33 <kohsuke> yes you are
+19:46:17 <kohsuke> #action kohsuke to produce a revised proposal about adding two more people to the board, nominating rtyler for one of them and as "infra focused" person
+19:46:28 <rtyler> \o/
+19:46:42 <oleg-nenashev> Do we vote on the infrastructure lead today?
+19:46:52 <rtyler> negative
+19:46:57 <kohsuke> #agreed rtyler will schedule "knowledge transfer" of infra in the next month or so
+19:47:26 <kohsuke> oleg-nenashev: incidentally the board will be meeting next week, so I'll get the proposal more solidified
+19:47:49 <kohsuke> For one, I want even number of people to break ties, and so we want to add one more person aside from rtyler
+19:48:01 <kohsuke> ideally someone from different background and so on
+19:48:15 <kohsuke> I'm counting on hare_brain's wisdom
+19:48:30 <kohsuke> I think it's good enough coverage of this topic for today?
+19:48:58 <kohsuke> #topic Who should we reach out for JUC speakers?
+19:49:25 <kohsuke> One of the feedback from the last year's JUC  was that some speakers weren't very good
+19:49:38 <kohsuke> And I thought one way to fix this is not just to wait for people to submit proposals but for us to go out and ask
+19:49:59 <kohsuke> People doing JUC in Tokyo does this for about half the talks and those are all generally well received
+19:50:30 <kohsuke> I'm happy to write to them, but I need help from everyone for suggestions
+19:50:44 <KostyaSha> kohsuke, usually regular event covers all topics in first year. If question is about quality, then maybe number of JUCs can be reduced
+19:51:15 <batmat> I wonder if this is the way to go. Isn't the issue more on the call selection side here?
+19:51:21 <KostyaSha> i usually do one report per year after huge work
+19:51:33 <batmat> What was the issue again? Talk quality? Speaker? Subject?*
+19:51:56 <kohsuke> batmat:  selection side can be improved too
+19:51:57 <rtyler> kohsuke: every conference or meetup I've been involved in organizing, we've proactively recruited many speakers
+19:52:18 <kohsuke> rtyler: that's what I thought
+19:52:20 <rtyler> from the people the organizers knew were doing interesting things in the space, or were compelling speakers, things like that
+19:52:28 <rtyler> half my FOSDEM devrooms were recruited ;)
+19:52:33 <rtyler> recruited to submit proposals of course
+19:52:39 <kohsuke> right
+19:53:21 <kohsuke> did you know who are in Europe, or did you ignore that and pinged people wherever they are?
+19:53:54 <kohsuke> I can think of a few people
+19:54:26 <kohsuke> like https://github.com/magnayn who did docker plugin
+19:54:43 <kohsuke> Surya who did https://github.com/groupon/DotCi
+19:54:47 <KostyaSha> kohsuke, you already requested mesos devs
+19:55:04 <KostyaSha> kohsuke, maybe also try somebody from RH?
+19:55:04 <oleg-nenashev> What about drulli?
+19:55:18 <kohsuke> Yeah, drulli, great suggestion
+19:55:21 <KostyaSha> disk-usage plugin was refactored by RH
+19:55:36 <kohsuke> and they did the first version, too :-)
+19:55:41 <kohsuke> ogondza: ^^
+19:56:06 <kohsuke> Did danielbe_ spoke in JUC last year?
+19:56:22 <rtyler> kohsuke: I pinged people from all over
+19:56:29 <rtyler> I think .au was the furthest I ttried recruiting from
+19:56:37 <alyssa> kohsuke: i don't think so.
+19:56:52 <kohsuke> rtyler: did that work :-D
+19:57:33 <KostyaSha> kohsuke, > oleg-nenashev  maintain many plugins ;)
+19:57:51 <kohsuke> Yes, I want to see regulars in this channel present
+19:58:03 <kohsuke> Slide-O-1ix, larrys, autojack, oleg-nenashev, ...
+19:58:03 <KostyaSha> but i hope to have some Russian speaking event someday
+19:58:10 <kohsuke> and you too, KostyaSha
+19:58:20 <rtyler> kohsuke: couldn't get the aussie
+19:58:29 <oleg-nenashev> I consider submitting an abstract
+19:58:54 <batmat> one scriptable way could be to extract committer emails from jenkins-all repo and filter on domain names? :-)
+19:58:57 <kohsuke> And there's the FreeBSD guy, and I think he's in here
+19:59:18 <batmat> well, wouldn't work very well since many people have @gmail.com and the likes I guess ;-)
+19:59:20 <kohsuke> batmat: I don't want to do mass mail though
+19:59:32 <kohsuke> or do you think its' fair?
+19:59:54 <KostyaSha> kohsuke, "Call for papers" to devlist?
+20:00:09 <KostyaSha> or it was already..
+20:00:15 <batmat> Sure, I was thinking that this way you could do a first extract of the most active ones and then even filter them manually to see if you want to ask them
+20:00:33 <kohsuke> I can do that again, but I feel that I need to write individually or else it gets under their radar
+20:00:52 <kohsuke> batmat: right, OK, so it's to build the candidate list
+20:00:58 <irf> i tried with other combination of single/double quotes .. still no luck :(
+20:01:06 <ogondza> kohsuke: I will not make it to JUC, I can not think of any RH speaker
+20:01:09 <batmat> kohsuke: yup
+20:01:40 <kohsuke> all right, time is up so it's really just a call for help to let me know if you can think of any names
+20:02:00 <kohsuke> #info please ping kohsuke if you know anyone doing interesting things in this space that we should invite to JUC
+20:02:14 <kohsuke> #topic LTS status check
+20:02:30 <ogondza> kohsuke: we are ready
+20:02:47 <kohsuke> ogondza: yay, nice and sweet
+20:02:50 <kohsuke> #topic next meeting
+20:03:11 <oleg-nenashev> kohsuke: Probably, tfenelly could talk about his vision of Jenkins WebUI
+20:03:11 <kohsuke> #info Next meeting will be March 4th same time
+20:03:30 <kohsuke> and maybe he and kevin can finally meet
+20:03:38 <kohsuke> #endmeeting

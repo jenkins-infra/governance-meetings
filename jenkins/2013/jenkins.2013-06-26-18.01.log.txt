@@ -1,0 +1,89 @@
+18:01:24 <kohsuke> #startmeeting
+18:01:24 <robobutler> Let the Jenkins meeting commence!
+18:01:40 <kohsuke> #chairs hare_brain rtyler
+18:01:44 <kohsuke> #chair hare_brain rtyler
+18:01:44 <robobutler> Current chairs: hare_brain kohsuke rtyler
+18:01:53 <hare_brain> Oh, it's that time.
+18:02:20 <kohsuke> Really the only thing I wanted to ask was to sponsor someone to come to JUC Palo Alto
+18:02:52 <kohsuke> I believe the last conversation on the travel grant is that there's reasonable willingness in the community, and we'd try to raise some money for it
+18:03:43 <kohsuke> I haven't tallied the exact figure, but I think we have $1000 or so
+18:04:03 <ct_> Is it possible to use sspi with Jenkins CVS?
+18:04:39 <ct_> I'm getting errors, and have seen other people ask about it but not get answers
+18:04:56 <kohsuke> ct_: let's come back to the usual tech Q&A until after the project meeting
+18:05:28 <ct_> oh, didn't realize there was a project meeting going on, sorry
+18:05:32 <kohsuke> if we are to sponsor someone to travel, it's either this, FOSDEM, or Copenhagen event, I think
+18:05:42 <kohsuke> I mean JUC Palo Alto by "this"
+18:06:32 <hare_brain> Do you have someone in mind to travel, and what would be expected from the person in return for the sponsorship?
+18:06:52 <kohsuke> I talked to orrc in Munich and he was interested
+18:07:21 <kohsuke> Or maybe imod can be made convinced?
+18:07:38 <kohsuke> wrt "what's expected" ...
+18:08:10 <kohsuke> I'm not sure. Presenting in JUC and attending the dev event?
+18:09:33 <kohsuke> #info this is how OpenBSD does it: http://forums.freebsd.org/showthread.php?t=38573
+18:10:03 <hare_brain> reading
+18:11:26 <kohsuke> Aside from the trip report it's not really asking anything
+18:13:05 <kohsuke> Another one for Perl: http://news.perlfoundation.org/2013/02/perl-5-grant-application-trave-1.html
+18:13:37 <hare_brain> I'm generally not against the idea of a travel grant. From my recollection of conversations around fund raising, people were leery of doing it too much (rtyler, do you remember differently?). We don't really have a whole *lot* of funds, so using our funds for travel grants is less money we have to support infrastructure, etc. So given all this, I do think that something with a more tangible benefit should be expected.
+18:15:07 <hare_brain> So for example, if sponsoring someone to come to a conference so that they could be in physical proximity to speed of collaboration of a feature in core or a plugin, I would consider that a tangible benefit.
+18:15:17 <hare_brain> to speed up collaboration...
+18:16:05 <kohsuke> in that sense orrc is primarily interested in mobile development related things, and http://www.meetup.com/jenkinsmeetup/events/126595572/ we are planning is for large scale deployments, so it's not exactly a good fit
+18:17:37 <hare_brain> Not for that reason.
+18:17:55 <kohsuke> All right, I think I'll circle back to orrc and see if we can come up with "why the project should spend money" write-up like http://news.perlfoundation.org/2013/02/perl-5-grant-application-trave-1.html
+18:18:19 <kohsuke> As you say, I think the idea seems OK, so we just need to look at a specific case to vote.
+18:18:38 <hare_brain> I like the format of that Perl one. Clearly talks about benefits to the community, and what are the committed to deliverables.
+18:18:54 <smccarthy> I am trying to use groovy to copy a jenkins job, and change the default Choice parameter value. I see that value is a final String, so it can't be changed. Is there an example how to do this? This is what I have so far : http://pastebin.com/sTYzmzHz
+18:19:21 <kohsuke> I'll float the trial balloon to see if anyone else is willing to do something similar for other upcoming events
+18:19:47 <kohsuke> I think that's good enough for this for now
+18:20:02 <kohsuke> #topic other logistics
+18:20:04 <imod> I have an other short topic..
+18:20:26 <imod> I'll wait...
+18:20:30 <kohsuke> #action kohsuke to circle back to rtyler about distro updates
+18:20:37 <kohsuke> ... on our infra
+18:20:47 <kohsuke> #action kohsuke to implement the board election app
+18:21:27 <kohsuke> #info we'll be releasing 1.509.2 real soon so unless I hear otherwise
+18:21:31 <kohsuke> imod: I'm done
+18:21:49 <imod> OK, if we say we want to promote the LTS more
+18:22:06 <imod> why don't we place the LTS more pominent instead of the normal release
+18:22:20 <imod> so I would switch the tabs
+18:22:37 <kohsuke> hmm, personally I'd still like to promote main line releases
+18:23:00 <hare_brain> There are two aspects to this. What we want to promote, and what people are more interested in having access to.
+18:23:10 <hare_brain> Do we have data on split of LTS vs main releases?
+18:23:14 <hare_brain> installations
+18:23:41 <imod> I think we could split the data
+18:23:51 <imod> ust havend done
+18:24:12 <kohsuke> seems like a nice addition to http://stats.jenkins-ci.org/jenkins-stats/
+18:24:28 <imod> its just that still a lot of people I was tlaking to - did not realise there is a LTS
+18:24:49 <imod> yes, I can update the stats...
+18:25:32 <kohsuke> to me, a part of it seems like doing something to catch more problems in main line releases before it ships
+18:25:51 <imod> thats a good point
+18:26:25 <kohsuke> like testing common plugins with RCs
+18:26:40 <kohsuke> The last remoting classloader improvements regressions would have been caught if I were doing that
+18:27:00 <codepython7771> http://bpaste.net/show/uNQ6O4uSKGjeBtUbV1Sz/ - can anyone help me fix this problem. Anyone knows where to fix this username/password thats creating the problem
+18:27:46 <kohsuke> and that also brings me to the agenda I was going to post for the next meeting --- improve out of the box experience by bundling more common plugins
+18:28:17 <hare_brain> Before moving on to that though...
+18:28:32 <hare_brain> So gong back to imods original comment about making LTS more prominent.
+18:28:51 <hare_brain> I'm looking at http://jenkins-ci.org right now.
+18:29:09 <hare_brain> I think one thing we could do is move the version number into the tab, so that you don't have to click to see the version number of main compared to LTS.
+18:29:24 <hare_brain> For me, that's always the first bit of information I'm interested in.
+18:29:34 <imod> true, me too
+18:29:41 <kohsuke> OK, I can do that
+18:30:25 <hare_brain> Then in terms of which one gets top billing, I think we have to look at the data and try to see which one people are more interested in.
+18:30:47 <hare_brain> I would imagine that a pie chart of # of installations by version would look worse than the Android fragmentation chart.
+18:30:55 <kohsuke> :-)
+18:31:08 <imod> ok, I'll try to get the stats updated with this separation
+18:31:36 <imod> not tomorrow yet, but soon I hope
+18:32:18 <kohsuke> shall we leave it at that?
+18:32:26 <imod> I'm fine
+18:32:41 <kohsuke> We can come back to this when we have stats
+18:33:06 <hare_brain> #action kohsuke to move release and LTS version numbers "above the fold" on http://jenkins-ci.org
+18:33:27 <hare_brain> #action imod to update statistics with # of installations by version number
+18:33:42 <kohsuke> #topic next meeting time
+18:34:06 <kohsuke> July 10th, same time
+18:34:20 <kohsuke> And this time I'll assemble the proper agenda and etc.
+18:34:31 <hare_brain> You sure you're not traveling again? ;)
+18:34:47 <kohsuke> No, I won't be traveling the entire summer
+18:34:48 <kohsuke> I'm positive
+18:35:02 <kohsuke> I really need to code
+18:35:04 <hare_brain> Logged in the meeting record for posterity. ;)
+18:35:12 <kohsuke> :-)
+18:35:15 <imod> btw. the version numbers are already there: http://stats.jenkins-ci.org/jenkins-stats/svg/201305-jenkins.svg just not as a pie
+18:35:16 <kohsuke> #endmeeting

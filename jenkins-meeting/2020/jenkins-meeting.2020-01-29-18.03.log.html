@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app222.us.archive.org';v.server_ms=206;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-01-29-18.03.log.html","20211027223825","https://web.archive.org/","web","/_static/",
+	      "1635374305");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:03:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:03:25</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:03:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Agenda: https://docs.google.com/document/d/11Nr8QpqYgBiZjORplL_3Zkwys2qK1vEvK-NYyYa4rzg/edit#heading=h.vylsknw2s91m</span>
+<a name="l-4"></a><span class="tm">18:03:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap of previous action items</span>
+<a name="l-5"></a><span class="tm">18:04:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-01-15-18.01.html</span>
+<a name="l-6"></a><span class="tm">18:04:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> oleg_nenashev to add a 7PM UTC option to the poll
+<a name="l-7"></a><span class="tm">18:04:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> oleg_nenashev to setup a reference implementation and draft a JEP
+<a name="l-8"></a><span class="tm">18:04:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> oleg_nenashev to setup the reference implementation and draft a JEP
+<a name="l-9"></a><span class="tm">18:04:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> rtyler to archive evergreen repository
+<a name="l-10"></a><span class="tm">18:04:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> oleg_nenashev to update jenkins.io projects (archive Evergreen there)
+<a name="l-11"></a><span class="tm">18:04:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> rtyler to eventually write a blog post wrapping up the Evergreen experiment, updating the website too
+<a name="l-12"></a><span class="tm">18:05:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So we started the Community Bridge page for evaluation
+<a name="l-13"></a><span class="tm">18:05:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Jenkins Evergreen infra is also slated for shut down in 2 days
+<a name="l-14"></a><span class="tm">18:06:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And Tyler archived the repo
+<a name="l-15"></a><span class="tm">18:06:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There are some remaing ones tho
+<a name="l-16"></a><span class="tm">18:07:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Community Bridge page: https://funding.communitybridge.org/projects/jenkins</span>
+<a name="l-17"></a><span class="tm">18:07:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Which does not seem to work apparently...
+<a name="l-18"></a><span class="tm">18:07:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> okay
+<a name="l-19"></a><span class="tm">18:07:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any questions before we move on?
+<a name="l-20"></a><span class="tm">18:07:59</span><span class="nk"> &lt;drulli&gt;</span> no
+<a name="l-21"></a><span class="tm">18:08:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> moving on then
+<a name="l-22"></a><span class="tm">18:08:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Approving new Jenkins Core maintainers</span>
+<a name="l-23"></a><span class="tm">18:09:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/1ioTdU4784M</span>
+<a name="l-24"></a><span class="tm">18:09:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> it got a lot of positive votes in the mailing list, but I put it here just to ensure nobody is against
+<a name="l-25"></a><span class="tm">18:09:47</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> +1 from me
+<a name="l-26"></a><span class="tm">18:10:05</span><span class="nk"> &lt;drulli&gt;</span> +1 from me as well
+<a name="l-27"></a><span class="tm">18:10:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There are some comments to be addressed, special thanks to danielbeck for his feedback
+<a name="l-28"></a><span class="tm">18:10:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But I will try to deliver on these comments before granting permissions
+<a name="l-29"></a><span class="tm">18:10:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Is anybody against?
+<a name="l-30"></a><span class="tm">18:10:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 1 min timeout
+<a name="l-31"></a><span class="tm">18:12:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ok
+<a name="l-32"></a><span class="tm">18:13:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">oleg_nenashev to proceed with adding more people to the Core maintainers team</span>
+<a name="l-33"></a><span class="tm">18:13:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I also wanted to add a topic about making all GitHub teams public as a follow-up to the discussion with timja
+<a name="l-34"></a><span class="tm">18:13:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But apparently I did not get to it. Next time then
+<a name="l-35"></a><span class="tm">18:14:16</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="topic">#topic </span><span class="topicline">Any other topics</span>
+<a name="l-36"></a><span class="tm">18:14:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Any other topics to discuss?
+<a name="l-37"></a><span class="tm">18:14:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> By the way, I have breaking news for you. It is NOT raining in Brussels #FOSDEM
+<a name="l-38"></a><span class="tm">18:15:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Looking forward to meet folks during the conference days and at the contributor summit
+<a name="l-39"></a><span class="tm">18:15:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://www.meetup.com/jenkinsmeetup/</span>
+<a name="l-40"></a><span class="tm">18:15:49</span><span class="nk"> &lt;drulli&gt;</span> ok
+<a name="l-41"></a><span class="tm">18:15:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://www.meetup.com/jenkinsmeetup/events/267684785/</span>
+<a name="l-42"></a><span class="tm">18:16:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> drulli Slide-O-Mix anything from you?
+<a name="l-43"></a><span class="tm">18:16:14</span><span class="nk"> &lt;drulli&gt;</span> no
+<a name="l-44"></a><span class="tm">18:16:35 </span><span class="nka">* oleg-nenashev</span> <span class="ac">sets a reminder to review drulli's blogpost and the GSoC idea draft</span>
+<a name="l-45"></a><span class="tm">18:16:45</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> nothign from me
+<a name="l-46"></a><span class="tm">18:16:48</span><span class="nk"> &lt;Slide-O-Mix&gt;</span> nothing*
+<a name="l-47"></a><span class="tm">18:16:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> then, that's it
+<a name="l-48"></a><span class="tm">18:17:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Thanks all!
+<a name="l-49"></a><span class="tm">18:17:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:38:25 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 14:59:19 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 87.552
+  exclusion.robots: 0.084
+  exclusion.robots.policy: 0.076
+  RedisCDXSource: 0.521
+  esindex: 0.007
+  LoadShardBlock: 65.445 (3)
+  PetaboxLoader3.datanode: 79.233 (4)
+  CDXLines.iter: 18.572 (3)
+  load_resource: 113.46
+  PetaboxLoader3.resolve: 44.906
+-->

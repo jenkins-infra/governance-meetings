@@ -1,0 +1,319 @@
+18:02:10 <kohsuke> #startmeeting
+18:02:10 <robobutler> Let the Jenkins meeting commence!
+18:02:23 <kohsuke> #chair hare_brain rtyler abayer
+18:02:23 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:02:39 <kohsuke> The manual of the robobutler is http://meetbot.debian.net/Manual.html
+18:02:45 <rtyler> kohsuke: I was about to post that
+18:02:50 <kohsuke> I think the only thing people need to remember is to use #info and #idea
+18:02:55 <kohsuke> Sorry I stole your thunder
+18:03:00 <rtyler> if you've not participated in a meeting before, I highly recommend reading that link folks
+18:03:08 <rtyler> at least to get familiar with rodmidde
+18:03:10 <rtyler> er
+18:03:11 <rtyler> robobutler:
+18:03:14 * rtyler fails
+18:03:42 <kohsuke> #topic JIRA project split
+18:04:05 <kohsuke> I believe this one is driven by aheritier
+18:04:06 <fcamblor> just in time :-)
+18:04:06 <rtyler> kohsuke: perhaps a bit of background on this?
+18:04:07 <aheritier> Ok. Let' talk about it.
+18:04:22 * rtyler hates to be "that guy"
+18:04:40 <aheritier> Yes few background about what users reported
+18:04:44 <aheritier> #info https://wiki.jenkins-ci.org/display/JENKINS/Jira+Projects+Split+and+Cleanup
+18:05:23 <aheritier> To sumup it is easy for them to report => there is only one jira. But it is difficult to search for issues
+18:05:37 <aheritier> and to find in which version/plugin it was fixed
+18:06:02 <aheritier> The main issue is that it is impossible in jira to manage versions for components
+18:06:20 <rtyler> #info The main issue is that it is impossible in jira to manage versions for components
+18:06:23 <rtyler> (sorry)
+18:06:24 <aheritier> Thus for now we didn't used versions as everything was smixed
+18:06:37 <aheritier> (do not hesitate)
+18:06:56 <rtyler> (okay)
+18:06:58 * rtyler giggles
+18:06:58 <ndeloof> would you like to use Jira the same way Apache Maven core & plugin are managed ?
+18:07:11 <aheritier> The proposal is to split the current project in 3 projects
+18:07:17 <aheritier> (to start)
+18:07:53 <rodmidde> What's the alternative? Any pros and cons?
+18:08:23 <aheritier> #info the goal is to split the current jenkins in one project dedicated to the core, one for plugins, one for infrastructure
+18:08:25 <kohsuke> I guess one alternative is status quo, another is to push it all the way and have one project per one plugin?
+18:08:39 <fredg02> +1 for one project per plugin
+18:08:56 <aheritier> @koksuke : yes
+18:09:05 <fredg02> this would make automatic generation of release notes easier
+18:09:16 <rodmidde> What is essentially the problem: version management of plugins and core?
+18:09:25 <kohsuke> #info note that this proposal doesn't preclude doing more later
+18:09:29 <aheritier> @rodmidde yes
+18:09:32 <fcamblor> what are the drawback of 1 project per plugin ?
+18:09:58 <abayer> fcamblor: lots and lots of work, lots and lots of projects. That's something that may be possible down the road, but I don't think that's the first thing we should do.
+18:10:02 <aheritier> @fcamblor the fact to have to manage all of them ?
+18:10:07 <rtyler> heh
+18:10:33 <aheritier> yes more projects we have less it is easier to generate reports and to follow them
+18:10:34 <rodmidde> Anyone experience with the JIRA-organisation of other projects?
+18:10:39 <fcamblor> aheritier: what means "management" ?
+18:10:53 <fcamblor> I mean ... creation of project could be automated
+18:11:01 <fcamblor> creation of version for project too
+18:11:03 <aheritier> @fcamblor : create them, manage versions, ensure they are up-to-date ...
+18:11:15 <fcamblor> then every plugin could have its own maintainer
+18:11:27 <aheritier> @fcamblor : I agree but in that case it is a pre-requisite to have 1 project per plugin
+18:11:56 <aheritier> doing it manually is boring
+18:11:56 <rodmidde> Administration/delegation is easier when having one project per plugin.
+18:12:05 <fcamblor> for sure ! :)
+18:12:14 <kohsuke> And I found in the past that automating JIRA related activities isn't often as easy as it should be.
+18:12:17 <aheritier> I don't remember how many plugins we have but there are more than one hundred
+18:12:20 <abayer> I personally am not a big fan of the every-plugin-gets-a-project option, due to the additional work in creating them all, making sure they're up to date with admin stuff, and the noise from h aving so many projects.
+18:12:24 <rtyler> aheritier: 300+
+18:12:48 <rtyler> abayer: how do you feel about plugin developers opting for their own project
+18:12:51 <fredg02> abayer: true
+18:12:53 <aheritier> @kohsuke : +1000 remote APIs are not very powerful
+18:12:54 <rodmidde> Can use the RPC-plugin, however being very outdated, will be replaced by a REST-version in upcoming JIRA versions.
+18:12:54 <rtyler> like using JPLUGINS as an incubator
+18:13:03 <abayer> (brb, adium locking up)
+18:13:05 <rtyler> and when plugins are big enough/have enough activity, they earn their own project :P
+18:13:23 <bap2000> how much extra effort would individual project be for the plugin developer?
+18:13:38 <aheritier> rodmidde: yes I'm waiting for these new REST services :-)
+18:13:39 <kohsuke> rtyler: the only down side for that is for those who are reporting bugs, it makes things harder
+18:13:57 <abayer> I think allowing for individual projects to opt for that in the future would be ok, but first, I think we should get the core separated from the plugins as a whole. That's more important and a necessary step for any future options.
+18:13:58 <aheritier> rtyler: it is what we are doing for MOJO @ codehaus
+18:14:04 <kohsuke> #info just as a data point, even to implement the current automation in ircbot, I had to do some page scraping
+18:14:09 <rtyler> kohsuke: that's a fair point
+18:14:34 <aheritier> @kohsuke : I'm not surprized :(
+18:14:36 <rodmidde> @aheritier: Have patience, we (Avisi) are also waiting for it, but I think we'll have to wait for JIRA5.
+18:14:37 <kohsuke> So all in all I'm in favor of aheritier's proposal of starting small and split to 3.
+18:14:45 <abayer> +1
+18:14:48 <rodmidde> +1
+18:14:51 <fcamblor> can't we delegate creation of jira project for plugins to maintainers ? could jira permission allow this ?
+18:14:53 <kohsuke> It seems like the good first step that doesn't preclude anything.
+18:15:00 <fredg02> +1
+18:15:03 <bap2000> +1
+18:15:07 <ndeloof> +1
+18:15:09 <aheritier> @fcamblor : we cannot. We need to be admin
+18:15:18 <rodmidde> Can make separate projects along the way when needed.
+18:15:22 <fcamblor> aheritier: ok too bad :(
+18:15:30 <kohsuke> fcamblor: aheritier: in the current scheme, yes you can create your own component for a plugin
+18:15:43 <abayer> kohsuke: via the ircbot.
+18:15:49 <kohsuke> #info you just need to have a voice in the channel, which every committer should, and then you let the ircbot does it for you.
+18:16:02 <kohsuke> fcamblor should certainly have a voice
+18:16:24 <abayer> (yes, he should, but I don't think that was what he was asking)
+18:16:33 <aheritier> @kohsuke : yes for components. But for projects the ircbot must act as an admin (which is possible)
+18:16:36 <fcamblor> +1 for split in 3
+18:17:02 <kohsuke> On a  related topic, I have some idea.
+18:17:11 <fcamblor> kohsuke: was not identified :)
+18:17:36 <aheritier> Thus the biggest task in the migration is to recreate components in the new project. But we may automate it (perhaps with the bot)
+18:18:05 <kohsuke> #idea Normally, when you have versions in JIRA, the person who fix the issue marks the bug with a certain version. But I could more easily and more reliably do it by having a release process do "git rev-list" and identify fixes that went into that release.
+18:18:57 <kohsuke> #idea between backporting to the stable branch, marking bugs closed scm-issue-link, and branching/merging , I think this works
+18:19:03 <kohsuke> ... works better
+18:19:22 <abayer> +1 to that - I am a big fan of automated changelog creation.
+18:19:34 <aheritier> @kohsuke good idea but how do you put that in Jira ? The main goal is to allow to find easily issues and to know when they were fixed
+18:19:38 <kohsuke> So my question is, and I think this is really just a JIRA question, but can "fixed in version X" be updated after the issue is closed?
+18:19:46 <fredg02> I think it would really help to have fix versions once the split in 3 is done.
+18:19:50 <kohsuke> And can it be fixed in multiple releases?
+18:20:19 <aheritier> @kohsuke : the eternel question of reopening an issue vs cloning it
+18:20:20 <kohsuke> aheritier: I think the end result is the same. People will see the version the fix is delivered in.
+18:20:23 <abayer> aheritier: I'd imagine the release process knows what version it is in JIRA, and updates any bugs in its changelog with that as the fixed version
+18:20:56 <aheritier> @kohsuke @abayer ok. +1. I like the idea
+18:21:01 <code_fu_blkbelt> e
+18:21:21 <kohsuke> If a single issue cannot be fixed in multiple branches, that's fine --- it could be just in comments, in custom fields, etc. I just wanted to know if it is possible.
+18:21:38 <rodmidde> @koksuke: In my experience (using JIRA4) an issue can have more than one fix-version, is that what you need?
+18:21:47 <kohsuke> yeah, that's perfect
+18:21:49 <aheritier> in jira you can have several fixversions
+18:21:59 <abayer> Yeah.
+18:23:12 <aheritier> thus how do we organized that ?
+18:23:23 <kohsuke> "that"?
+18:23:31 <kohsuke> multiple fix versions?
+18:23:35 <aheritier> we have to prepare and try to automate few things and communicate arround the change
+18:23:44 <kohsuke> right
+18:23:46 <aheritier> the migration and the new release process
+18:23:52 <abayer> So I'm +1 on (a) automating changelog generation for core from git comments, (b) using that information to update fix versions once we've split core out in JIRA, and c) trying to make that functionality available for the plugins eventually as well, both changelog generation and JIRA version updating...
+18:24:06 <abayer> (assuming some plugins eventually have their own projects)
+18:24:44 <aheritier> +1 with @abayer 's list of tasks
+18:25:15 <fcamblor> +1 that would be great :-)
+18:25:20 <kohsuke> #idea Come to think of it, I can do this "mark JIRA by release number" as a daemon that works externally, and thus make it work across all plugins
+18:25:22 <abayer> I can take a look at the version updating bit, I think. That'd be useful for some stuff we've got here at work too, I think.
+18:25:56 <kohsuke> abayer: you mean (b)?
+18:26:10 <abayer> kohsuke: Let's see if we can do it as much as possible within the release process. I'd like to make this as portable as possible, since it really does seem like it could ahve value elsewhere.
+18:26:14 <abayer> Yeah.
+18:26:53 <kohsuke> We can talk offline about this, but the beauty of doing this outside is de-coupling and idempotentness
+18:27:09 <kohsuke> Daemon and JIRA can go offline from time to time and it won't affect anything
+18:27:32 <kohsuke> We can also make it reusable elsewhere without too much effort.
+18:27:35 <abayer> True. Yeah, let's talk offline. =)
+18:27:42 <aheritier> @kohsuke @abayer yes. A very interesting and reusable project
+18:27:47 <kohsuke> OK, so back to logistics...
+18:28:59 <kohsuke> aheritier: would you be able to help us figure out what needs to be done in JIRA?
+18:29:09 <kohsuke> I'd imagine some programs/scripts need to be written and what now.
+18:29:09 <fredg02> abayer: how would you filter git comments to only include comments in the changelog that are relevant for it?
+18:29:24 <kohsuke> fredg02: man git-rev-list
+18:29:46 <kohsuke> git rev-list previous-release-tag..release-tag
+18:29:53 <fredg02> ok
+18:30:06 <rtyler> that's how I generate deployment notes here :)
+18:30:08 <aheritier> @kohsuke yes. I can drive the work. (sorry I I have one hand less because of my daughter.:-) )
+18:30:31 <thafreeze> you should be able to hook in the workflow using a plugin
+18:30:40 <kohsuke> aheritier: great
+18:30:48 <fredg02> I'm still new to git...sorry :)
+18:31:17 <aheritier> We try to start it ASAP ?
+18:31:37 <aheritier> It a subject launched a long time ago
+18:31:50 <abayer> +1
+18:31:51 <kohsuke> If it's something that can be done soon, sure.
+18:32:38 <kohsuke> I assumed that we needed some small scale experiment for the script to be used
+18:33:06 <rtyler> next?
+18:33:08 <kohsuke> And other coordinations, like backing up JIRA, taking it publicly inacccessible while the work is in progress, and so on.
+18:33:29 <kohsuke> rtyler: Yes. Let's take the details of the work outside this meeting
+18:33:33 <kohsuke> Next agenda...
+18:33:34 <rtyler> any #actions?
+18:33:34 <hare_brain> Can we set up a testing instance of JIRA to try it out on, instead of using the production one?
+18:33:35 <aheritier> @kohsuke +1
+18:33:51 <aheritier> @hare_brain +1000 if possible
+18:33:54 <kohsuke> hare_brain: should be possible
+18:33:59 <rtyler> #action rtyler and/or kohsuke to set up a test instance of JIRA for aheritier
+18:34:08 <aheritier> perfect
+18:34:21 <rtyler> aheritier: we should have a new machine hitting the OSUOSL soon for JIRA
+18:34:34 <rtyler> hopefully we can just reuse the current JIRA VM for this and move production to the new box
+18:34:51 <aheritier> rtyler: ok. it's perfect.
+18:35:34 <kohsuke> I guess you mean keep the current JIRA VM as is,  put the sandbox in new machine, and when it's ready flip it over to the new machine, right?
+18:35:59 <rtyler> or that
+18:36:07 <aheritier> I thought it said the other way
+18:36:08 <rtyler> who goes where doesn't really matter to me :P
+18:36:14 <aheritier> :-)
+18:36:41 <kohsuke> Because the end state is to run JIRA and Confluence on separate boxes, I thought.
+18:36:50 <kohsuke> Anyway. Will work out those details later
+18:36:56 <kohsuke> Next agenda?
+18:36:58 <aheritier> yes
+18:36:59 <kohsuke> shall we?
+18:37:10 <kohsuke> #topic "ULTIMATE ROBO LOGO SHOWDOWN" results
+18:37:19 <kohsuke> Just so that we can tell you that we can't just share it yet :-)
+18:37:23 <rtyler> are we going to reveal it *now* :-O
+18:37:25 <rtyler> hah
+18:37:36 <rtyler> so I've got some things on this topic
+18:37:36 <aheritier> :-)
+18:37:48 <rtyler> #info Overall the runoff vote received just shy of 2000 votes
+18:37:49 <kohsuke> #info I've got the branch that incorporated the new art work. It'll ship in the next release this weekend.
+18:38:05 <fcamblor> *suspens*
+18:38:31 <rtyler> #info This evening at the Engine Yard meetup we'll be unveiling the logo, and I will also be updating jenkins-ci.org with a newer look
+18:38:36 <aheritier> We need to find how to hack @kohsuke 's private git repo ;-)
+18:38:54 <rtyler> aheritier: if you send a trojan via lolcats, you should be able to get root access :)
+18:39:15 <aheritier> @rtyler :-)
+18:39:25 <rtyler> #action kohsuke to unveil the logo at the Bay Area Meetup tonight
+18:39:35 <rtyler> #action rtyler to update the site with the new logo/look
+18:39:54 <rtyler> #action everybody else to be shocked, amazed, delighted!
+18:39:58 <rtyler> next? :P
+18:40:02 <kohsuke> Oh, one thing. I suspect we need to ask the submitter something about our rights to use the logo
+18:40:16 <rtyler> I thought abayer already cleared all that at the start
+18:40:17 <kohsuke> What should that be?
+18:40:27 <rtyler> license-wise?
+18:40:28 <magnayn> You mean they didn't sign a CLA?? :-)
+18:40:38 <kohsuke> :-) Yes, CLA equivalent
+18:40:48 <kohsuke> abayer:?
+18:40:49 <fredg02> don't forget merchandise with the new logo!!
+18:40:50 <ndeloof> yes, please avoid yet another trademark/licensing issue ! :P
+18:41:00 <thafreeze> lol
+18:41:04 <mwalling> rtyler: stickers
+18:41:09 <kohsuke> Should it be some kind of creative commons?
+18:41:21 <rtyler> fredg02: we're having little Jenkins robots being manufactured by the same children that make McDonald's toys as we speak
+18:41:27 <thafreeze> coffee mucks
+18:41:32 <fredg02> hehe
+18:41:37 <rtyler> #action rtyler to look into creating a new bunch of Jenkins logo stickers
+18:41:41 <abayer> I don't think we specified an exact license, no. But we can check with the winner to make sure it can be put under an appropriate creative commons.
+18:42:02 <rtyler> since I know who it is, I don't anticipate any issues there :)
+18:42:22 <kohsuke> I agree, but nonetheless it'd be good to put something in place.
+18:42:26 <mwalling> rtyler: fedex me a stack and i might be able to do the east coast distribution
+18:42:27 * rtyler nods
+18:42:47 <rtyler> #action mwalling to do east coast distribution (he has no idea what he's just signed up for)
+18:42:53 <kohsuke> :-)
+18:42:55 <rodmidde> :D
+18:43:04 <mwalling> #info i said *MIGHT*
+18:43:15 <rtyler> heh
+18:43:21 <kohsuke> #action rtyler and kohsuke to follow up with the current thread with the winner to get some paper work in place to assure our rights to use the logo
+18:43:37 <kohsuke> OK, shall we move on?
+18:43:57 <rtyler> let's do it
+18:43:59 <kohsuke> #topic trademark registration status
+18:44:18 <kohsuke> So the status as of the end of the last meeting is ...
+18:44:57 <kohsuke> that we are OK to get CloudBees' help in getting the trademark registered, but we want to be very clear that it won't own the trademark
+18:45:13 <kohsuke> So I just uploaded the PDFs that pledge to that extent at https://wiki.jenkins-ci.org/pages/viewpageattachments.action?pageId=54722987&sortBy=date&highlight=Trademark+pledge.pdf&
+18:45:38 <kohsuke> I should put this in the minutes.
+18:45:45 <kohsuke> #info  I just uploaded the PDFs that pledge to that extent at https://wiki.jenkins-ci.org/pages/viewpageattachments.action?pageId=54722987&sortBy=date&highlight=Trademark+pledge.pdf&
+18:45:58 <kohsuke> One is from Sacha the CEO
+18:46:08 <kohsuke> The other is from me
+18:46:35 <kohsuke> Together it hopefully ensures that the trademark gets to the eventual umbrella org
+18:46:41 * rtyler nods
+18:46:57 <kohsuke> #info if you have any concerns about the wording, etc, please let me know.
+18:47:13 <kohsuke> Come to think of it, I should have PGP-signed them
+18:48:00 <bap2000> yeah - what does 'Neuchâtel' mean? :-)
+18:48:01 <aheritier> @kohsuke perfect for the non english native speaker I am
+18:48:23 <hare_brain> @bap2000 I think that's the name of a city.
+18:48:26 <aheritier> It is were sacha lives
+18:48:36 <bap2000> cool
+18:48:38 <aheritier> s/were/where
+18:48:38 <kohsuke> #info SHA1sum: 847b69dff6c5d0494bb760a3d562bdee6ebed71b  and 30803b0d711af09f2f02ca30db82b6f5fc71f7af
+18:48:38 <rodmidde> Yes, it's in Switzerland.
+18:48:57 <kohsuke> If those look fair enough, and I think they are, I'll get this going.
+18:49:18 <kohsuke> So do let me know quickly if you have issues.
+18:49:21 <hare_brain> I have no problems with them.
+18:49:25 <thafreeze> so...whats next?
+18:49:28 <abayer> I'm good.
+18:49:42 <aheritier> (a really beautiful little town for holidays :-) )
+18:49:44 <kohsuke> Next is to actually file for a registration
+18:50:01 <kohsuke> But that's offline, so moving on to the next agenda...
+18:50:13 <kohsuke> #topic SFC/SPI/Apache status
+18:50:29 <kohsuke> Let me report the status..
+18:51:05 <kohsuke> #info I've pinged SFC yesterday as we planned in the last minutes, but haven't heard back yet, understandably.
+18:51:44 <kohsuke> #info I've also initiated the next step with SPI, that is to ask for an application
+18:52:21 <kohsuke> I read their formal-looking documents and I think I understand how it works better
+18:52:55 <kohsuke> ... in that it really is like SFC, in that it lets us use the benefit of their legal entity status, like taking donations, holding assets, etc.
+18:53:36 <kohsuke> The project can be in any governance form that matches with their basic principles, and we can get out of it any time we want, if needed.
+18:53:59 <kohsuke> #info The next step is for them to decide if they can take us or not, and then we will have 60 days to decide if we want to get married like that or not.
+18:54:08 <rtyler> #link http://sfconservancy.org/ SFC
+18:54:26 <mwalling> lol at getting married
+18:54:26 <rtyler> #link http://www.spi-inc.org/ SPI
+18:55:03 <kohsuke> I'll keep the list posted about the progress. The preliminary reaction was good, but that might change, who knows.
+18:55:17 <rtyler> I'm looking forward to hearing back from SPI
+18:55:27 <abayer> I'm still advocating for Apache - I think the additional structure it'd provide/mandate would provide more good than it'd hurt us.
+18:55:33 <rtyler> our "relationship" with Oracle seems to frighten some folks :P
+18:55:54 <kohsuke> rtyler: Yes, me too. I like that we can keep our way of doing things without forced changes.
+18:56:05 <rtyler> abayer: any info from cutting on Jenkins + ASF and what flexibility we might have there?
+18:56:35 <abayer> A fair amount. kohsuke, you took notes when Doug, you and I met, right?
+18:56:39 <magnayn> I thought Apache had a 'all your infra must belong on us' mentality?
+18:57:08 <kohsuke> abayer: Yes, and magnayn: yes, it wants more uniformness from member projects
+18:57:10 <aheritier> @rtyler : As PMC of the project you are free to decide about a lot of things
+18:57:23 <ndeloof> Apache may indeed have some strict rules about licensing, hosted infra and so on
+18:57:23 <kohsuke> But let's have this discussion in some other time
+18:57:26 <abayer> magnayn: They do, but I don't really know if that's a problem - they're working on getting git going at ASF, which would be my biggest concern in that regard.
+18:57:31 <rtyler> kohsuke: agreed
+18:57:32 <magnayn> So no github then?
+18:57:40 <magnayn> That'd be a dealbreaker for me
+18:58:03 <kohsuke> For now, I just wanted to report the progress
+18:58:08 <aheritier> @magnayn : at least no github for the main repo
+18:58:36 <kohsuke> #topic next meeting time
+18:58:37 <abayer> fwiw, I don't think it's an either/or - the "official" repository would need to be ASF, but there's no reason why changes couldn't go through a github repo to get to the ASF repo.
+18:58:56 <rtyler> kohsuke: wait wait wait
+18:59:07 <rtyler> #topic Infrastructure update
+18:59:14 <rtyler> my turn to talk :)
+18:59:20 <kohsuke> sure
+18:59:40 <rtyler> #info We've cut a dramatic amount of our overages out for bandwidth from jenkins-ci.org by pushing more and more onto our mirror network
+18:59:54 <kohsuke> YUS!
+18:59:59 * kohsuke mimics rtyler
+19:00:09 <thafreeze> go for it ;)
+19:00:21 <rtyler> #info We're still using up a lot of bandwidth (we're so popular!), so I'm actively working with Contegix to get a blessing on that machine to where we don't have to pay for it ;)
+19:00:45 <rtyler> hopefully by next meeting, I'll be able to have a better update on that
+19:00:52 <kohsuke> We need to do a post of "we love our mirrors and we don't know what to do without you"
+19:01:06 <kohsuke> OK. Can we move to the next meeting time?
+19:01:07 <rtyler> #info Still working on getting the two fancy new machines from Chicago to Oregon (OSUOSL)
+19:01:17 <fcamblor> If you want, I can speak about plugin-compat-tester
+19:01:19 <rtyler> #action need to post a "we love you" post or seven
+19:01:27 <rtyler> kohsuke: the floor is yours
+19:01:45 <kohsuke> fcamblor: do you think we can do it in the next meeting?
+19:01:47 <fcamblor> (or we can report this to next meeting ... it should be okay there ;-))
+19:01:54 <fcamblor> kohsuke: yup :)
+19:01:58 <kohsuke> I'd really love to hear it
+19:02:00 <kohsuke> OK
+19:02:03 <kohsuke> #topic next meeting time
+19:02:03 <rtyler> #topic next meeting time
+19:02:05 <rtyler> haha
+19:02:09 <rtyler> beat me to it
+19:02:13 <fcamblor> I'm preparing a Wiki page describing everything :)
+19:02:38 <kohsuke> #idea The natural candidate is two weeks from now, same time. Any other suggestions/objections?
+19:02:46 <rtyler> #agreed
+19:03:00 <hare_brain> #agreed
+19:03:05 <kohsuke> OK.
+19:03:18 * rtyler runs to lunch
+19:03:19 <kohsuke> As usual, feel free to update the wiki for agenda items
+19:03:30 <kohsuke> And with that, I think we call it a wrap
+19:03:30 <rtyler> I'll mail the minutes to the lists when I get back if somebody hasn't already
+19:03:36 <kohsuke> Thanks everyone!
+19:03:38 <ndeloof> +1, was my first meeting, very instructive
+19:03:44 <rtyler> #endmeeting

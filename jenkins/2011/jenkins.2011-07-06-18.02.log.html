@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:02:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:02:29</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">hare_brain rtyler abayer</span>
+<a name="l-4"></a><span class="tm">18:03:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">How do we handle pull requests which are pending for a long time</span>
+<a name="l-5"></a><span class="tm">18:03:44</span><span class="nk"> &lt;kohsuke&gt;</span> The background of this is that the shift to GitHub changed the way we get new people into the project
+<a name="l-6"></a><span class="tm">18:03:58</span><span class="nk"> &lt;kohsuke&gt;</span> So I think we need to make some adjustments.
+<a name="l-7"></a><span class="tm">18:04:28</span><span class="nk"> &lt;kohsuke&gt;</span> It used to be that people wanted make changes had a higher incentive to want a commit access, as it was harder in Subversion to maintain local patches
+<a name="l-8"></a><span class="tm">18:04:55</span><span class="nk"> &lt;kohsuke&gt;</span> But with GitHub, that incentive is smaller.
+<a name="l-9"></a><span class="tm">18:05:54</span><span class="nk"> &lt;kutzi&gt;</span> I think this topic is also related to how we would like to handle 'abandoned' plugins
+<a name="l-10"></a><span class="tm">18:05:59</span><span class="nk"> &lt;kohsuke&gt;</span> So we have people sending us pull requests and many of them get unattended for awfully long, which push potential contributors away.
+<a name="l-11"></a><span class="tm">18:06:01</span><span class="nk"> &lt;kohsuke&gt;</span> Exactly.
+<a name="l-12"></a><span class="tm">18:06:15</span><span class="nk"> &lt;kutzi&gt;</span> AFAI understood it, that was the original reason why this came up on IRC
+<a name="l-13"></a><span class="tm">18:06:18</span><span class="nk"> &lt;magnayn&gt;</span> I think I agree with what you were saying in the linked IRC log
+<a name="l-14"></a><span class="tm">18:06:20</span><span class="nk"> &lt;kohsuke&gt;</span> So I've been meaning to write some daemon that helps us.
+<a name="l-15"></a><span class="tm">18:06:59</span><span class="nk"> &lt;kohsuke&gt;</span> I was initially thinking about just giving them the push access automatically after some conditions are met, but ...
+<a name="l-16"></a><span class="tm">18:07:51</span><span class="nk"> &lt;kohsuke&gt;</span> since there were some push backs, maybe we can just have daemon say "hey, thanks for the pull requests, would you like to have a push access? If so, respond with YES." or something like that
+<a name="l-17"></a><span class="tm">18:07:57</span><span class="nk"> &lt;vjuranek&gt;</span> and what is the problem? Not enough people to review all pull requests?
+<a name="l-18"></a><span class="tm">18:08:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> I think that's a part of it.
+<a name="l-19"></a><span class="tm">18:08:39</span><span class="nk"> &lt;magnayn&gt;</span> IMO the key thing is (and what makes Jenkins a bit different from some other projects) is that it's a do-ocracy
+<a name="l-20"></a><span class="tm">18:08:47</span><span class="nk"> &lt;kohsuke&gt;</span> But a part of it is that it's not necessarily a problem, but just the way it is in OSSS projects. People come and back.
+<a name="l-21"></a><span class="tm">18:09:25</span><span class="nk"> &lt;kutzi&gt;</span> I agree basically with what abayer had said
+<a name="l-22"></a><span class="tm">18:09:50</span><span class="nk"> &lt;kutzi&gt;</span> The daemon could encourage them to ask for access, but they should have to ask
+<a name="l-23"></a><span class="tm">18:09:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">magnayn:</span> Yes. People willing to make changes should be able to make changes. That doesn't mean their changes cannot be rolled back, but they shouldn't be blocked by the inattention of existing developers.
+<a name="l-24"></a><span class="tm">18:10:16</span><span class="nk"> &lt;rpetti&gt;</span> Maybe have the daemon CC the current maintainer as well when granting/offering access?
+<a name="l-25"></a><span class="tm">18:10:24</span><span class="nk"> &lt;kutzi&gt;</span> +1
+<a name="l-26"></a><span class="tm">18:10:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> is what I outlined above OK? Have the daemon remind contributors that all they need is to just ask and it's theirs.
+<a name="l-27"></a><span class="tm">18:10:37</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">kohsuke:</span> exactly. I found Linus' talk about git really inspirational about this
+<a name="l-28"></a><span class="tm">18:11:08</span><span class="nk"> &lt;kutzi&gt;</span> <span class="hi">kohsuke:</span> what did you mean with 'If so, respond with YES.' then?
+<a name="l-29"></a><span class="tm">18:11:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rpetti:</span> the daemon will interact with us through GitHub pull requests, so relevant people automatically get reminders
+<a name="l-30"></a><span class="tm">18:11:24</span><span class="nk"> &lt;kutzi&gt;</span> just respond to the bot, or respond to e.g. the dev list?
+<a name="l-31"></a><span class="tm">18:11:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> if you then post "YES" as a comment, the daemon will pick that up
+<a name="l-32"></a><span class="tm">18:11:35</span><span class="nk"> &lt;kohsuke&gt;</span> ... and give you the push access.
+<a name="l-33"></a><span class="tm">18:11:35</span><span class="nk"> &lt;rpetti&gt;</span> brilliant! :)
+<a name="l-34"></a><span class="tm">18:11:43</span><span class="nk"> &lt;magnayn&gt;</span> Isn't the only real issue that of who is capable of rolling a release ?
+<a name="l-35"></a><span class="tm">18:12:02</span><span class="nk"> &lt;vjuranek&gt;</span> +1 give commit access upon request (but not by default)
+<a name="l-36"></a><span class="tm">18:12:08</span><span class="nk"> &lt;magnayn&gt;</span> Since git is so much easier to remove commits if things go badly wrong
+<a name="l-37"></a><span class="tm">18:12:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">magnayn:</span> in some sense yes, but I think what I'm hearing is that many of us want one more step before giving the commit access.
+<a name="l-38"></a><span class="tm">18:12:50</span><span class="nk"> &lt;kutzi&gt;</span> I had never problems reverting commits in SVN either ...
+<a name="l-39"></a><span class="tm">18:13:30</span><span class="nk"> &lt;kutzi&gt;</span> I'm not sure, if just asking a daemon would be enough ...
+<a name="l-40"></a><span class="tm">18:13:52</span><span class="nk"> &lt;kutzi&gt;</span> But maybe if the current maintainer and the dev-list is CC'ed, I would agrre
+<a name="l-41"></a><span class="tm">18:14:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> We've never required that, BTW. Thus far people just really needed to ask.
+<a name="l-42"></a><span class="tm">18:14:45</span><span class="nk"> &lt;hare_brain&gt;</span> Are we talking about plugins or the core right now?
+<a name="l-43"></a><span class="tm">18:14:48</span><span class="nk"> &lt;kohsuke&gt;</span> And we try to remind them that they should contact the existing devs.
+<a name="l-44"></a><span class="tm">18:14:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> plugins
+<a name="l-45"></a><span class="tm">18:14:56</span><span class="nk"> &lt;kutzi&gt;</span> <span class="hi">kohsuke:</span> yeah but asking real people and not some bot
+<a name="l-46"></a><span class="tm">18:15:01</span><span class="nk"> &lt;kohsuke&gt;</span> core CLA coming up later in the agenda
+<a name="l-47"></a><span class="tm">18:15:27</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so that's the difference in many people's minds
+<a name="l-48"></a><span class="tm">18:16:20</span><span class="nk"> &lt;kohsuke&gt;</span> I personally don't see any downside in automatically granting access, but sounds like a good starting point since many people seemed to be concerned about automatic grant
+<a name="l-49"></a><span class="tm">18:16:44</span><span class="nk"> &lt;kohsuke&gt;</span> And asking in the dev list is certainly not a big barrier --- the barrier has been that people didn't know that they can just ask.
+<a name="l-50"></a><span class="tm">18:16:56</span><span class="nk"> &lt;kohsuke&gt;</span> Plus getting them hooked up into the dev list has other benefits
+<a name="l-51"></a><span class="tm">18:17:03</span><span class="nk"> &lt;rpetti&gt;</span> +1
+<a name="l-52"></a><span class="tm">18:17:11</span><span class="nk"> &lt;kutzi&gt;</span> win win situation ;)
+<a name="l-53"></a><span class="tm">18:17:12</span><span class="nk"> &lt;kohsuke&gt;</span> So I'll record that as an agreement.
+<a name="l-54"></a><span class="tm">18:17:13</span><span class="nk"> &lt;magnayn&gt;</span> sounds good to me
+<a name="l-55"></a><span class="tm">18:17:15</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-56"></a><span class="tm">18:17:26</span><span class="nk"> &lt;drulli&gt;</span> +1
+<a name="l-57"></a><span class="tm">18:17:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the pull request bot should tell contributors that they just need to ask in the dev list to get the push access.</span>
+<a name="l-58"></a><span class="tm">18:18:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">the bot can and should also make other comments, like "hey, I noticed that you don't have any tests for this patch -- see this page for how to write one"</span>
+<a name="l-59"></a><span class="tm">18:18:32</span><span class="nk"> &lt;kutzi&gt;</span> absolutely +1 if you can get the bot smart enough to do that
+<a name="l-60"></a><span class="tm">18:18:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">another obvious one is "does this have a ticket in issues.jenkins-ci.org?"</span>
+<a name="l-61"></a><span class="tm">18:18:41</span><span class="nk"> &lt;rpetti&gt;</span> I'm having clippy flashbacks now... "It looks like you are trying to contribute code, let me help you with that!"
+<a name="l-62"></a><span class="tm">18:18:46</span><span class="nk"> &lt;hare_brain&gt;</span> LOL
+<a name="l-63"></a><span class="tm">18:18:53</span><span class="nk"> &lt;kohsuke&gt;</span> :-)
+<a name="l-64"></a><span class="tm">18:19:08</span><span class="nk"> &lt;kohsuke&gt;</span> I think we can move on to the next topic
+<a name="l-65"></a><span class="tm">18:19:25</span><span class="nk"> &lt;magnayn&gt;</span> maybe there should be a trigger to stop commits happening that cause undecided patches to not be able to merge..
+<a name="l-66"></a><span class="tm">18:19:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">What is the current state of the 'The new EMailer':  https://wiki.jenkins-ci.org/display/JENKINS/The+new+EMailer</span>
+<a name="l-67"></a><span class="tm">18:20:03</span><span class="nk"> &lt;kutzi&gt;</span> That was my topic
+<a name="l-68"></a><span class="tm">18:20:25</span><span class="nk"> &lt;kutzi&gt;</span> I don't know how long ago the new E-Mailer was proposed
+<a name="l-69"></a><span class="tm">18:20:38</span><span class="nk"> &lt;kutzi&gt;</span> but there's obviously not happening much
+<a name="l-70"></a><span class="tm">18:20:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Originally back in 2009 August</span>
+<a name="l-71"></a><span class="tm">18:21:06</span><span class="nk"> &lt;kutzi&gt;</span> I wonder how many people using e-mail notfication are using email-ext
+<a name="l-72"></a><span class="tm">18:21:11</span><span class="nk"> &lt;kohsuke&gt;</span> I don't remember seeing any objection. I think it's just lacking a driver.
+<a name="l-73"></a><span class="tm">18:21:34</span><span class="nk"> &lt;kutzi&gt;</span> IMO when you want some really useful notification you're using email-ext
+<a name="l-74"></a><span class="tm">18:21:39</span><span class="nk"> &lt;rtyler&gt;</span> I've never seen anybody *not* using email-ext :)
+<a name="l-75"></a><span class="tm">18:21:41</span><span class="nk"> &lt;kutzi&gt;</span> at least for Maven jobs
+<a name="l-76"></a><span class="tm">18:21:57</span><span class="nk"> &lt;kutzi&gt;</span> <span class="hi">rtyler:</span> yeah that's my observation, too
+<a name="l-77"></a><span class="tm">18:22:04</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kutzi:</span> 5085 instances in last anonymous survay
+<a name="l-78"></a><span class="tm">18:22:32</span><span class="nk"> &lt;kohsuke&gt;</span> Is someone volunteering?
+<a name="l-79"></a><span class="tm">18:22:49</span><span class="nk"> &lt;kutzi&gt;</span> for what, writing the new e-mailer?
+<a name="l-80"></a><span class="tm">18:22:51 </span><span class="nka">* rtyler</span> <span class="ac">hides</span>
+<a name="l-81"></a><span class="tm">18:23:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> yeah
+<a name="l-82"></a><span class="tm">18:23:09</span><span class="nk"> &lt;rtyler&gt;</span> I nominate abayer since he's not here ;)
+<a name="l-83"></a><span class="tm">18:23:19</span><span class="nk"> &lt;kutzi&gt;</span> I had one proposal (since probably no-one will step in): bundle email-ext
+<a name="l-84"></a><span class="tm">18:23:20</span><span class="nk"> &lt;kohsuke&gt;</span> I think the page is on the right track --- a bunch of extension points to enable plugins to contribute fragments.
+<a name="l-85"></a><span class="tm">18:23:48</span><span class="nk"> &lt;kohsuke&gt;</span> ... and it needs to be backward compatible with the current mailer configuration that people use
+<a name="l-86"></a><span class="tm">18:24:29</span><span class="nk"> &lt;kutzi&gt;</span> Yes, certainly. Question is: should we start from scratch or can we take email-ext as a staring point?
+<a name="l-87"></a><span class="tm">18:24:45</span><span class="nk"> &lt;nigjo&gt;</span> will this new mailer work on windows servers as well?
+<a name="l-88"></a><span class="tm">18:25:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">nigjo:</span> All our mailers work with Windows
+<a name="l-89"></a><span class="tm">18:25:09</span><span class="nk"> &lt;kutzi&gt;</span> I certainly doesn't fulfill all requirements for the new e-mailer, but still lot better than the current build-in one
+<a name="l-90"></a><span class="tm">18:25:19</span><span class="nk"> &lt;kutzi&gt;</span> I -&gt; It
+<a name="l-91"></a><span class="tm">18:25:19</span><span class="nk"> &lt;kohsuke&gt;</span> If I remember correctly, core email has a few use cases that email-ext doesn't support
+<a name="l-92"></a><span class="tm">18:25:46</span><span class="nk"> &lt;kohsuke&gt;</span> So maybe we just fix those and bundle email-ext to core, and upgrade all the instances of Mailers with the equivalent e-mail exts?
+<a name="l-93"></a><span class="tm">18:25:56</span><span class="nk"> &lt;rtyler&gt;</span> I like that idea :)
+<a name="l-94"></a><span class="tm">18:25:57</span><span class="nk"> &lt;kohsuke&gt;</span> And if we iteratively improve from there...
+<a name="l-95"></a><span class="tm">18:26:12</span><span class="nk"> &lt;kohsuke&gt;</span> we now have a viable upgrade path from both core email and email-ext
+<a name="l-96"></a><span class="tm">18:26:15</span><span class="nk"> &lt;kutzi&gt;</span> sounds like a good pragmatic solution to me
+<a name="l-97"></a><span class="tm">18:26:27</span><span class="nk"> &lt;rtyler&gt;</span> would that allow those extension points?
+<a name="l-98"></a><span class="tm">18:26:34</span><span class="nk"> &lt;rtyler&gt;</span> and do you mean incorporating email-ext, or pinning?
+<a name="l-99"></a><span class="tm">18:26:44</span><span class="nk"> &lt;kohsuke&gt;</span> ... except email-ext has so many switches and I don't know if those can be "simplified" without breaking compatibility?
+<a name="l-100"></a><span class="tm">18:27:02</span><span class="nk"> &lt;kutzi&gt;</span> one point: we should start a poll on dev- and user-list first, regarding usage percentage of email-ext
+<a name="l-101"></a><span class="tm">18:27:10</span><span class="nk"> &lt;kohsuke&gt;</span> Or maybe they can be refactored into extension points + implementations that can be disabled?
+<a name="l-102"></a><span class="tm">18:27:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> that's what we collect stats for
+<a name="l-103"></a><span class="tm">18:27:34</span><span class="nk"> &lt;kohsuke&gt;</span> we should already have that data
+<a name="l-104"></a><span class="tm">18:27:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> IMHO I think extension points are the way to go
+<a name="l-105"></a><span class="tm">18:27:57</span><span class="nk"> &lt;kutzi&gt;</span> +1
+<a name="l-106"></a><span class="tm">18:27:58</span><span class="nk"> &lt;rtyler&gt;</span> that gives us the added advantage in the future of having email become a much richer notification medium
+<a name="l-107"></a><span class="tm">18:28:19</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, and it also addresses the #1 voted issue in our tracker, the modular e-mail notification system.
+<a name="l-108"></a><span class="tm">18:28:21 </span><span class="nka">* rtyler</span> <span class="ac">pictures an RVM plugin that dumps the current ruby and gemset into the email notification</span>
+<a name="l-109"></a><span class="tm">18:28:29</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-110"></a><span class="tm">18:29:23</span><span class="nk"> &lt;kohsuke&gt;</span> Still would be nice to have a driver
+<a name="l-111"></a><span class="tm">18:29:28</span><span class="nk"> &lt;kutzi&gt;</span> The proposal with the ext. point would still mean that email-ext is bundled?
+<a name="l-112"></a><span class="tm">18:29:34 </span><span class="nka">* rtyler</span> <span class="ac">coughs "abayer"</span>
+<a name="l-113"></a><span class="tm">18:29:35</span><span class="nk"> &lt;rtyler&gt;</span> xD
+<a name="l-114"></a><span class="tm">18:29:47</span><span class="nk"> &lt;kohsuke&gt;</span> I'd love to do it but I should be realistic about the time I have...
+<a name="l-115"></a><span class="tm">18:30:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> ideally we'd do some massaging before bundling
+<a name="l-116"></a><span class="tm">18:30:33</span><span class="nk"> &lt;kutzi&gt;</span> okay, with that
+<a name="l-117"></a><span class="tm">18:30:40</span><span class="nk"> &lt;kohsuke&gt;</span> so email-ext -&gt; email2-core (with lots of extension points) + email-ext (implementations of those)
+<a name="l-118"></a><span class="tm">18:30:52</span><span class="nk"> &lt;kutzi&gt;</span> I just want the current build-in emailer to be replaced at some point
+<a name="l-119"></a><span class="tm">18:30:53</span><span class="nk"> &lt;kohsuke&gt;</span> and we start bundling email2-core
+<a name="l-120"></a><span class="tm">18:30:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I'm not sure how many volunteers you'll find running around right now ;)
+<a name="l-121"></a><span class="tm">18:31:04</span><span class="nk"> &lt;rtyler&gt;</span> what's cowboyd up to now that ruby is almost done? ;)
+<a name="l-122"></a><span class="tm">18:31:33</span><span class="nk"> &lt;cowboyd&gt;</span> you're relentless :P
+<a name="l-123"></a><span class="tm">18:31:45</span><span class="nk"> &lt;kohsuke&gt;</span> In this way core (and out-of-the-box experience) doesn't have to have all the configuration options of email-ext
+<a name="l-124"></a><span class="tm">18:32:48</span><span class="nk"> &lt;kohsuke&gt;</span> So I think we'll just update this Wiki page with the roadmap/plan and leave it at that for now?
+<a name="l-125"></a><span class="tm">18:33:03</span><span class="nk"> &lt;rtyler&gt;</span> and solicit on the dev list :)
+<a name="l-126"></a><span class="tm">18:33:05</span><span class="nk"> &lt;kutzi&gt;</span> We could use something like advanced advanced options in the config screens ;)
+<a name="l-127"></a><span class="tm">18:33:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kutzi:</span> just like the Git plugin which is the pinnacle of usability ;)
+<a name="l-128"></a><span class="tm">18:33:51</span><span class="nk"> &lt;magnayn&gt;</span> kitchen sink of usability...
+<a name="l-129"></a><span class="tm">18:34:06</span><span class="nk"> &lt;kutzi&gt;</span> Maybe something like enabling an 'very advanced options' flag in the global config
+<a name="l-130"></a><span class="tm">18:34:17</span><span class="nk"> &lt;kohsuke&gt;</span> In my mind, it's better for edge case features to be in separate plugin implementations
+<a name="l-131"></a><span class="tm">18:34:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kutzi to update the wiki page with the roadmap/plan for email-ext  -&gt; email2core with lots of extension points</span>
+<a name="l-132"></a><span class="tm">18:34:38</span><span class="nk"> &lt;kutzi&gt;</span> okay
+<a name="l-133"></a><span class="tm">18:34:47 </span><span class="nka">* rtyler</span> <span class="ac">likes volunteering people for things :D</span>
+<a name="l-134"></a><span class="tm">18:34:55</span><span class="nk"> &lt;kohsuke&gt;</span> Otherwise the base never gets proper extension points, as in the case with Subversion/Git, and and the feature creep happens
+<a name="l-135"></a><span class="tm">18:35:20</span><span class="nk"> &lt;kohsuke&gt;</span> Should we move on?
+<a name="l-136"></a><span class="tm">18:35:29</span><span class="nk"> &lt;rtyler&gt;</span> move it or lose it sister
+<a name="l-137"></a><span class="tm">18:35:34</span><span class="nk"> &lt;kohsuke&gt;</span> Any last words, kutzi?
+<a name="l-138"></a><span class="tm">18:35:42</span><span class="nk"> &lt;rtyler&gt;</span> well, that's ominous
+<a name="l-139"></a><span class="tm">18:35:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic</span><span class="topicline">: Infra update from R. Tyler Croy regarding new machines at the OSUOSL</span>
+<a name="l-140"></a><span class="tm">18:35:51</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-141"></a><span class="tm">18:36:19</span><span class="nk"> &lt;rtyler&gt;</span> So let's start with cabbage.jenkins-ci.org
+<a name="l-142"></a><span class="tm">18:36:35</span><span class="nk"> &lt;rtyler&gt;</span> this machine is sitting on the floor somewhere in the data center, unracked, under appreciated
+<a name="l-143"></a><span class="tm">18:36:38</span><span class="nk"> &lt;rtyler&gt;</span> and probably crying
+<a name="l-144"></a><span class="tm">18:37:16</span><span class="nk"> &lt;rtyler&gt;</span> waiting for somebody to send a student at the datacenter to the hardware store to pickup some washers to make the rack mounts on the machine fit with the racks that the OSUOSL has
+<a name="l-145"></a><span class="tm">18:37:38</span><span class="nk"> &lt;kohsuke&gt;</span> Does that mean one of us need to fly to Oregon?
+<a name="l-146"></a><span class="tm">18:37:50</span><span class="nk"> &lt;rtyler&gt;</span> no ETA on that, between summer, semester turn-overs, and various vacations it's pretty tough getting access to the time-shared, overworked staff
+<a name="l-147"></a><span class="tm">18:37:59</span><span class="nk"> &lt;rtyler&gt;</span> I don't think Corvallis has an airport
+<a name="l-148"></a><span class="tm">18:38:13</span><span class="nk"> &lt;rtyler&gt;</span> frankly, I'm still not convinced it's a made-up place
+<a name="l-149"></a><span class="tm">18:38:20</span><span class="nk"> &lt;rtyler&gt;</span> like the island for misfit toys
+<a name="l-150"></a><span class="tm">18:38:21</span><span class="nk"> &lt;rtyler&gt;</span> but anyways
+<a name="l-151"></a><span class="tm">18:38:24</span><span class="nk"> &lt;rtyler&gt;</span> that's the bad news
+<a name="l-152"></a><span class="tm">18:38:42</span><span class="nk"> &lt;rtyler&gt;</span> good news, lettuce.jenkins-ci.org is online and z00dax6 has access
+<a name="l-153"></a><span class="tm">18:39:07</span><span class="nk"> &lt;rtyler&gt;</span> lettuce is a quad core FWIW
+<a name="l-154"></a><span class="tm">18:39:31</span><span class="nk"> &lt;kohsuke&gt;</span> And how much RAM?
+<a name="l-155"></a><span class="tm">18:39:59</span><span class="nk"> &lt;rtyler&gt;</span> looks like 4GB
+<a name="l-156"></a><span class="tm">18:40:05</span><span class="nk"> &lt;kohsuke&gt;</span> And this is going to be the JIRA sandbox for aheritier, right?
+<a name="l-157"></a><span class="tm">18:40:11</span><span class="nk"> &lt;rtyler&gt;</span> I've created the infra-puppet repository for the puppet manifests
+<a name="l-158"></a><span class="tm">18:40:12</span><span class="nk"> &lt;rtyler&gt;</span> correct
+<a name="l-159"></a><span class="tm">18:40:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">z00dax6 to help get lettuce set up with some basic puppet manifests</span>
+<a name="l-160"></a><span class="tm">18:40:50</span><span class="nk"> &lt;magnayn&gt;</span> side issue: did you see the article about reducing concurrent JIRA sessions and the googlebot?
+<a name="l-161"></a><span class="tm">18:40:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to properly set up access to lettuce for kohsuke, abayer and aheriter</span>
+<a name="l-162"></a><span class="tm">18:41:01</span><span class="nk"> &lt;rtyler&gt;</span> I did not see it
+<a name="l-163"></a><span class="tm">18:41:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">magnayn:</span> URL?
+<a name="l-164"></a><span class="tm">18:41:17</span><span class="nk"> &lt;magnayn&gt;</span> ah - you probably want to do this - one sec I'll find the URL
+<a name="l-165"></a><span class="tm">18:41:55</span><span class="nk"> &lt;magnayn&gt;</span> ASF drops concurrent sessions on Tomcat 7 by 95% : http://www.theserverside.com/discussions/thread.tss?thread_id=62375
+<a name="l-166"></a><span class="tm">18:42:13</span><span class="nk"> &lt;kohsuke&gt;</span> Wow
+<a name="l-167"></a><span class="tm">18:42:27</span><span class="nk"> &lt;rtyler&gt;</span> we're not quite as popular as issues.apache.org, but I'll keep this in mind
+<a name="l-168"></a><span class="tm">18:42:43</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Throttling crawlers to JIRA http://www.theserverside.com/discussions/thread.tss?thread_id=62375</span>
+<a name="l-169"></a><span class="tm">18:43:10</span><span class="nk"> &lt;rtyler&gt;</span> as it stands right now, lettuce is my primary focus for infra setup/preparation
+<a name="l-170"></a><span class="tm">18:43:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to get off his lazy ass and finally order that second NIC for cucumber</span>
+<a name="l-171"></a><span class="tm">18:43:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that's it from me, update-wise
+<a name="l-172"></a><span class="tm">18:43:41</span><span class="nk"> &lt;kohsuke&gt;</span> thanks
+<a name="l-173"></a><span class="tm">18:43:45</span><span class="nk"> &lt;rtyler&gt;</span> any infra questions I can answer on record? :D
+<a name="l-174"></a><span class="tm">18:44:02</span><span class="nk"> &lt;kohsuke&gt;</span> Should those new machines be owned by SPI?
+<a name="l-175"></a><span class="tm">18:44:14</span><span class="nk"> &lt;rtyler&gt;</span> uh, sure?
+<a name="l-176"></a><span class="tm">18:44:19</span><span class="nk"> &lt;kohsuke&gt;</span> Is it just a matter of us saying to ourselves "yep, it's their machines"?
+<a name="l-177"></a><span class="tm">18:44:38</span><span class="nk"> &lt;rtyler&gt;</span> I guess so, z00dax6 shipped them to the OSUOSL, and I'm the primary contact on those
+<a name="l-178"></a><span class="tm">18:44:52</span><span class="nk"> &lt;kohsuke&gt;</span> right
+<a name="l-179"></a><span class="tm">18:45:05</span><span class="nk"> &lt;rtyler&gt;</span> we can say they're SPI owned assets for all I care, I don't think it really means much difference as far as my work goes :P
+<a name="l-180"></a><span class="tm">18:45:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">Kohsuke to write to SPI what it means for them to own assets --- any processes, steps, etc.</span>
+<a name="l-181"></a><span class="tm">18:45:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> why don't we discuss over -dev an access policy, and other things like that as well
+<a name="l-182"></a><span class="tm">18:45:45</span><span class="nk"> &lt;kohsuke&gt;</span> maybe z00dax6 even get some tax deduction
+<a name="l-183"></a><span class="tm">18:45:48</span><span class="nk"> &lt;rtyler&gt;</span> usage terms, etc
+<a name="l-184"></a><span class="tm">18:45:58</span><span class="nk"> &lt;kohsuke&gt;</span> sure
+<a name="l-185"></a><span class="tm">18:45:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I think the machines were being junked :P
+<a name="l-186"></a><span class="tm">18:46:11</span><span class="nk"> &lt;kohsuke&gt;</span> He doesn't have to say that to IRS
+<a name="l-187"></a><span class="tm">18:46:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to start a thread on -dev detailing access rights, usage policy, etc for hardware</span>
+<a name="l-188"></a><span class="tm">18:46:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">CLA discussion</span>
+<a name="l-189"></a><span class="tm">18:46:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">So the current plan on the record is here: https://wiki.jenkins-ci.org/display/JENKINS/Copyright+on+source+code</span>
+<a name="l-190"></a><span class="tm">18:46:59</span><span class="nk"> &lt;kohsuke&gt;</span> Let me back up
+<a name="l-191"></a><span class="tm">18:47:14</span><span class="nk"> &lt;kohsuke&gt;</span> Now that we are under SPI, I think it's time to start collecting CLA for core
+<a name="l-192"></a><span class="tm">18:47:52</span><span class="nk"> &lt;kohsuke&gt;</span> The page doesn't capture all the past discussions --- I guess I should have looked them up from the minutes
+<a name="l-193"></a><span class="tm">18:48:10</span><span class="nk"> &lt;magnayn&gt;</span> I still think CLAs have no clothes :)
+<a name="l-194"></a><span class="tm">18:48:34</span><span class="nk"> &lt;kohsuke&gt;</span> But IIRC, I think the idea was to (1) ask for CLA from regular contributors and (2) define some simpler "click a checkbox" kind of agreement for one-time contributors, and ...
+<a name="l-195"></a><span class="tm">18:49:09</span><span class="nk"> &lt;kohsuke&gt;</span> hopefully these are low enough bar that people are OK with this (and I do realize there were objections to the very concept of CLA from some of us)
+<a name="l-196"></a><span class="tm">18:49:41</span><span class="nk"> &lt;kohsuke&gt;</span> I suppose that "click a checkbox" kind of agreement would have to be a part of JIRA and pull request bot
+<a name="l-197"></a><span class="tm">18:50:24</span><span class="nk"> &lt;magnayn&gt;</span> You could use the Signed-Off-By: line for 1-off contributions if you don't need a CLA for them
+<a name="l-198"></a><span class="tm">18:50:41</span><span class="nk"> &lt;kohsuke&gt;</span> And for the actual CLA wording, the plan on the record is to steal those of Apache (but with s/Apache/SPI/)
+<a name="l-199"></a><span class="tm">18:51:18</span><span class="nk"> &lt;hare_brain&gt;</span> I forget: did SPI have a pre-crafted CLA for member projects?
+<a name="l-200"></a><span class="tm">18:51:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> possibly. We need to ask.
+<a name="l-201"></a><span class="tm">18:52:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">magnayn:</span> IIRC, hare_brain checked this setup with Yahoo lawyers and I believe this was considered OK.
+<a name="l-202"></a><span class="tm">18:53:24</span><span class="nk"> &lt;kohsuke&gt;</span> So at least we have some validation from a lawyer.
+<a name="l-203"></a><span class="tm">18:53:38</span><span class="nk"> &lt;kohsuke&gt;</span> ... whereas I just don't know if Signed-Off-By scheme passes the same bar.
+<a name="l-204"></a><span class="tm">18:54:07</span><span class="nk"> &lt;kohsuke&gt;</span> And I'm hoping the check box + CLA is easy enough not to be a impedance.
+<a name="l-205"></a><span class="tm">18:54:19</span><span class="nk"> &lt;kutzi&gt;</span> Does some know: if I contribute something on company time, does my company have to sign the corporate CLA?
+<a name="l-206"></a><span class="tm">18:54:23</span><span class="nk"> &lt;magnayn&gt;</span> well, IMO a CLA doesn't pass any bar anyway...
+<a name="l-207"></a><span class="tm">18:55:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> One benefit of reusing Apache CLA is that we can refer to Apache policies for those questions
+<a name="l-208"></a><span class="tm">18:55:23</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's better not to be creative about this kind of stuff. I think we just want to piggy-back what someone else is doing.
+<a name="l-209"></a><span class="tm">18:55:29 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-210"></a><span class="tm">18:55:36</span><span class="nk"> &lt;kohsuke&gt;</span> And Apache does this checkbox in JIRA thing.
+<a name="l-211"></a><span class="tm">18:55:47</span><span class="nk"> &lt;magnayn&gt;</span> I think you're right - if you're going to do it, best copy an established scheme
+<a name="l-212"></a><span class="tm">18:56:44</span><span class="nk"> &lt;magnayn&gt;</span> I'd just copy the linux scheme :)
+<a name="l-213"></a><span class="tm">18:57:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">kutzi:</span> I don't know the direct answer to your question, but I'm pretty sure someone/some webpage in Apache can answer that.
+<a name="l-214"></a><span class="tm">18:57:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">magnayn:</span> what I've been told is that some lawyers disagree with the Linux scheme while more are happy with this Apache scheme.
+<a name="l-215"></a><span class="tm">18:58:01</span><span class="nk"> &lt;rtyler&gt;</span> I think the tone of the dev list was that the ASF approach to this is fine for us
+<a name="l-216"></a><span class="tm">18:58:08</span><span class="nk"> &lt;magnayn&gt;</span> well, there is something about 2 lawyers will give you 4 opinions !
+<a name="l-217"></a><span class="tm">18:58:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">magnayn:</span> and I believe you said ou can still live with the Apache scheme, even though you don't like it.
+<a name="l-218"></a><span class="tm">18:58:19</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-219"></a><span class="tm">18:58:20</span><span class="nk"> &lt;kohsuke&gt;</span> ou -&gt; you
+<a name="l-220"></a><span class="tm">18:58:22</span><span class="nk"> &lt;magnayn&gt;</span> Oh sure, absolutely
+<a name="l-221"></a><span class="tm">18:58:34 </span><span class="nka">* rtyler</span> <span class="ac">taps his watch</span>
+<a name="l-222"></a><span class="tm">18:58:38</span><span class="nk"> &lt;kohsuke&gt;</span> That's right.
+<a name="l-223"></a><span class="tm">18:58:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> you still with us
+<a name="l-224"></a><span class="tm">18:58:46</span><span class="nk"> &lt;hare_brain&gt;</span> Yes.
+<a name="l-225"></a><span class="tm">18:58:56</span><span class="nk"> &lt;hare_brain&gt;</span> Flipping through reference material. :)
+<a name="l-226"></a><span class="tm">18:58:59</span><span class="nk"> &lt;rtyler&gt;</span> okay, just making sure 2/3 of the board was paying attention to this topic :)
+<a name="l-227"></a><span class="tm">18:59:08</span><span class="nk"> &lt;hare_brain&gt;</span> I am paying very close attention to this topic.
+<a name="l-228"></a><span class="tm">18:59:19</span><span class="nk"> &lt;kohsuke&gt;</span> I was hoping to get this plan of record agreed today
+<a name="l-229"></a><span class="tm">18:59:44</span><span class="nk"> &lt;kohsuke&gt;</span> Would I be rushing it?
+<a name="l-230"></a><span class="tm">19:00:06 </span><span class="nka">* rtyler</span> <span class="ac">has no idea</span>
+<a name="l-231"></a><span class="tm">19:00:15</span><span class="nk"> &lt;kohsuke&gt;</span> Any objections?
+<a name="l-232"></a><span class="tm">19:00:22</span><span class="nk"> &lt;magnayn&gt;</span> Go for it
+<a name="l-233"></a><span class="tm">19:00:34</span><span class="nk"> &lt;hare_brain&gt;</span> I think the only thing we still need to get an answer for is whether SPI has their own CLA.
+<a name="l-234"></a><span class="tm">19:00:55</span><span class="nk"> &lt;hare_brain&gt;</span> It doesn't make sense to have people start signing the Apache-modified one if they have their own and people have to sign another one.
+<a name="l-235"></a><span class="tm">19:01:06</span><span class="nk"> &lt;rtyler&gt;</span> good question
+<a name="l-236"></a><span class="tm">19:01:21</span><span class="nk"> &lt;rtyler&gt;</span> I highly doubt it, but worth double-checking with them
+<a name="l-237"></a><span class="tm">19:01:26</span><span class="nk"> &lt;kohsuke&gt;</span> OK. So we record the general consensus to the plan of record, and we'll take AI to verify this with SPI.
+<a name="l-238"></a><span class="tm">19:01:29</span><span class="nk"> &lt;hare_brain&gt;</span> But the general flow works for me. Regular core contributors need to sign some CLA. Check-box workflow for one off contributions.
+<a name="l-239"></a><span class="tm">19:01:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed</span><span class="cmdline"></span>
+<a name="l-240"></a><span class="tm">19:01:49</span><span class="nk"> &lt;kutzi&gt;</span> +1
+<a name="l-241"></a><span class="tm">19:02:11</span><span class="nk"> &lt;kohsuke&gt;</span> (hoping to see a few more +1s before moving on to the next meeting time)
+<a name="l-242"></a><span class="tm">19:02:16</span><span class="nk"> &lt;magnayn&gt;</span> +1
+<a name="l-243"></a><span class="tm">19:02:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">rpetti:</span> say plus one
+<a name="l-244"></a><span class="tm">19:02:21</span><span class="nk"> &lt;bap2000&gt;</span> +1
+<a name="l-245"></a><span class="tm">19:02:22</span><span class="nk"> &lt;rtyler&gt;</span> xD
+<a name="l-246"></a><span class="tm">19:02:23</span><span class="nk"> &lt;drulli&gt;</span> +1
+<a name="l-247"></a><span class="tm">19:02:29</span><span class="nk"> &lt;kohsuke&gt;</span> Thank you
+<a name="l-248"></a><span class="tm">19:02:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-249"></a><span class="tm">19:02:43</span><span class="nk"> &lt;kohsuke&gt;</span> As always, 2 weeks from now?
+<a name="l-250"></a><span class="tm">19:02:45</span><span class="nk"> &lt;rtyler&gt;</span> I already put the 20th on the page :P
+<a name="l-251"></a><span class="tm">19:02:50</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-252"></a><span class="tm">19:03:10</span><span class="nk"> &lt;hare_brain&gt;</span> +1 to the 20th.
+<a name="l-253"></a><span class="tm">19:03:11</span><span class="nk"> &lt;kohsuke&gt;</span> Unless we hear objections, 20th it is
+<a name="l-254"></a><span class="tm">19:03:11</span><span class="nk"> &lt;rtyler&gt;</span> I am liking this every two week rhythm
+<a name="l-255"></a><span class="tm">19:03:20</span><span class="nk"> &lt;rtyler&gt;</span> I kind of would like to stick with it unless we have a reason to change it
+<a name="l-256"></a><span class="tm">19:03:24</span><span class="nk"> &lt;rtyler&gt;</span> predictability is nice :)
+<a name="l-257"></a><span class="tm">19:03:28</span><span class="nk"> &lt;hare_brain&gt;</span> +1 to that.
+<a name="l-258"></a><span class="tm">19:03:37</span><span class="nk"> &lt;drulli&gt;</span> +1
+<a name="l-259"></a><span class="tm">19:03:42</span><span class="nk"> &lt;magnayn&gt;</span> +1 for predictability
+<a name="l-260"></a><span class="tm">19:03:42</span><span class="nk"> &lt;kohsuke&gt;</span> Yes. The only concern for me is that this discourages my fellow Asian contributors.
+<a name="l-261"></a><span class="tm">19:03:43</span><span class="nk"> &lt;rtyler&gt;</span> I can stick it on my big fat corporate schedule :)
+<a name="l-262"></a><span class="tm">19:04:04</span><span class="nk"> &lt;rtyler&gt;</span> to date the only asia-friendly time we've had was when you were there
+<a name="l-263"></a><span class="tm">19:04:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting time is June 20th, same time --- 2 weeks from now</span>
+<a name="l-264"></a><span class="tm">19:04:09</span><span class="nk"> &lt;rtyler&gt;</span> and that was only two hours early
+<a name="l-265"></a><span class="tm">19:04:23</span><span class="nk"> &lt;kohsuke&gt;</span> And even that was like still 1am there
+<a name="l-266"></a><span class="tm">19:04:35</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway, that's fine
+<a name="l-267"></a><span class="tm">19:04:51</span><span class="nk"> &lt;rtyler&gt;</span> stick a fork in it, it's done
+<a name="l-268"></a><span class="tm">19:05:01</span><span class="nk"> &lt;kohsuke&gt;</span> With that, I think the meeting is over
+<a name="l-269"></a><span class="tm">19:05:05</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-270"></a><span class="tm">19:05:17</span><span class="nk"> &lt;kohsuke&gt;</span> Have a good day everyone
+<a name="l-271"></a><span class="tm">19:05:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

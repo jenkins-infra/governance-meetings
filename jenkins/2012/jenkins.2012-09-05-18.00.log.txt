@@ -1,0 +1,299 @@
+18:00:37 <hare_brain> #startmeeting
+18:00:37 <robobutler> Let the Jenkins meeting commence!
+18:00:56 <hare_brain> #chair abayer hare_brain kohsuke rtyler
+18:00:56 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:01:18 * kohsuke tweets
+18:01:46 <hare_brain> #topic Recap action items
+18:01:57 <rtyler> uh
+18:02:00 <rtyler> so I sent in the proposal
+18:02:03 <kohsuke> #info https://issues.jenkins-ci.org/browse/MEETING
+18:02:03 <rtyler> for the FOSDEM dev room
+18:02:08 <hare_brain> We carried forward a lot of action items from the 8/8 eeting
+18:02:26 <kohsuke> I guess I'm going to close MEETING-5 then
+18:02:33 <kohsuke> is the proposal visible somewhere?
+18:02:35 <rtyler> we have JIRAs for these O_o
+18:02:48 <PvM_Iain> Hello
+18:02:57 <rtyler> #info The FOSDEM devroom proposal: https://gist.github.com/6546c827b777c55f1ff7/48124395c9690ff0f95964acf32cce9dd6c1ea2a
+18:03:13 <hare_brain> Wow I had no idea
+18:03:30 <rtyler> I can't tell if kohsuke is messing with us
+18:03:39 <rtyler> I think he's messing with us
+18:03:54 <hare_brain> He did this a month ago.
+18:03:59 <hare_brain> According to the dates on the issues
+18:04:25 <kohsuke> I think it was discussed in the meeting and I got an AI to set up JIRA to track actions
+18:04:29 <abayer> Well, huh.
+18:04:38 <rtyler> how'bout that
+18:04:46 <abayer> I suck even more than I thought I did.
+18:04:58 <hare_brain> That was even the action item #1 from the last meeting
+18:05:02 <hare_brain> kohsuke to set up JIRA for project meeting actions
+18:05:02 <rtyler> no ndeloof, so I'm guessing his items are still lingering another couple weeks :)
+18:05:12 <hare_brain> So we can cross that one off.
+18:05:20 <stephenc_> KK where is your "I have a bot for that" stock answer
+18:05:49 <kohsuke> What is the "travel grant" action?
+18:06:04 <kohsuke> Yeah, in due time, stephenc_
+18:06:26 <rtyler> kohsuke: that was what we discussed to some extent in japan
+18:06:40 <kohsuke> Yes, I know the context
+18:07:05 <kohsuke> ah, so this action was "let's discuss FOSDEM travel grant in the next meeting" action
+18:07:09 <rtyler> yes
+18:07:19 <rtyler> sorry, we were all drunk last time round
+18:07:21 <kohsuke> I'll add it to the end of the agenda then
+18:07:49 <rtyler> mika packaged the ircbot up and I've merged his changes in
+18:07:56 <kohsuke> oh nice
+18:07:58 <rtyler> it's now on me to add the puppet bits
+18:08:12 <kohsuke> closing https://issues.jenkins-ci.org/browse/MEETING-1 then
+18:08:16 <rtyler> I don't think lisa ever got around to a write-up
+18:08:16 <mika> if you need any further help, just ping me
+18:08:26 <rtyler> on meat-space meetups
+18:08:55 <kohsuke> #action LisaWells to publish the write up on hat we can help to facilitate meet-ups in meat space
+18:09:20 <stephenc__> s/hat/what/
+18:10:01 <kohsuke> I think that's it for actions
+18:10:09 <rtyler> let's mooooooooooooooooooooove it
+18:10:22 <kohsuke> #topic Should the "Sponsor this issue" link be ommited for closed issues
+18:10:32 <kohsuke> tonylampada: I believe it's yours
+18:10:34 <tonylampada> all right, my turn
+18:10:45 <tonylampada> Hi folks
+18:11:14 <tonylampada> so, I just wanted to ask if should implement https://github.com/freedomsponsors/freedomsponsors-jira-plugin/issues/4
+18:11:42 <kohsuke> I think it's up to you, but personally, if you ask me, it makes sense to implement it
+18:11:45 <tonylampada> I also, do a quick check to how do you guys like the new plugin, and if there's anything I can do do improve it
+18:12:21 <kohsuke> As far as I'm concerned, all I need to hear is "here's the new version, please deploy it"
+18:12:26 <rtyler> I've had no interaction with it
+18:12:58 * kohsuke now sees that the OpenID fix is somehow not working for him
+18:13:24 <tonylampada> Do you guys know if ppl check up on http://freedomsponsors.org/ from time to time ?
+18:13:53 <tonylampada> There's. ummm U$ 270 hanging on open issues already :-)
+18:14:22 <kohsuke> That's good to know
+18:14:26 <tonylampada> I mean, the commiters
+18:15:02 <kohsuke> I don't think there's much else to this topic.
+18:15:05 <hare_brain> #idea Publicize freedomsponsors.org at JUC?
+18:15:08 <msm> has anyone seen this bug:
+18:15:09 <msm> https://gist.github.com/3641693
+18:15:15 <tonylampada> ok. I will implement it then
+18:15:22 <tonylampada> :-)
+18:15:24 <tonylampada> thanks
+18:15:26 <kohsuke> #idea or a guest post on http://jenkins-ci.org/ ?
+18:15:34 <imod> is there some feedback to the issue itself as soon as there is some sponsoring on it already?
+18:15:43 <rtyler> I like the guest post idea
+18:16:05 <kohsuke> imod: that's another idea for tonylampada to implement on his service
+18:16:16 <tonylampada> I like hare_brain's idea! hehe
+18:16:42 <kohsuke> I'll mention this in my slides then
+18:16:42 <tonylampada> the guest post idea is a good one too
+18:17:16 <kohsuke> #action tonylampada to write a guest post on jenkins-ci.org about Freedom Sponsors
+18:17:34 <tonylampada> If someone could take a picture of Kohsuke with a FS slide in the background, it would make my day :-)
+18:17:41 <rtyler> hah
+18:17:57 <hare_brain> #idea Jenkins newsletter would be another place to talk about this
+18:17:57 <kohsuke> imod: looks like your comment is already filed as https://github.com/freedomsponsors/freedomsponsors-jira-plugin/issues/5
+18:18:10 <imod> yep, just seen it too :)
+18:18:22 <kohsuke> hare_brain: I'll mention that to Lisa
+18:18:32 <kohsuke> it looks like she's away today
+18:18:55 <kohsuke> moving on to next topic?
+18:19:16 <tonylampada> I think implementing issue 5 is easy enough. Will do that too okay?
+18:19:28 <kohsuke> +1
+18:19:37 <kohsuke> #topic election process proposal
+18:19:48 <kohsuke> I need to send this to dev and all
+18:19:59 <rtyler> oh snap
+18:20:11 <kohsuke> and I just wrote it up, so my apologies for being last minute
+18:20:13 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process+Proposal
+18:20:35 <hare_brain> I had made this comment to you in email, kohsuke, but your proposal doesn't talk about how people get nominated.
+18:20:55 <hare_brain> Does the current board nominate new candidates and voters just vote to approve the nomination(s)?
+18:21:07 <hare_brain> Or do you think it should be more wide open?
+18:21:34 <kohsuke> I didn't think about that
+18:22:03 <stephenc__> The risk with wide open is a hijacking by a load of fly by night committers joining
+18:22:25 <hare_brain> I agree with stephenc__. My preference would be for the first. That's how boards typically work anyway.
+18:22:27 <dapak> yeah there needs to be a stipulation somewhere in there
+18:22:40 <stephenc__> If you do "semi" I would say any 2 year+ committers can propose
+18:23:08 <stephenc__> And 10% of that population is required for a nomination
+18:23:10 <hare_brain> Or write-ins I guess.
+18:24:02 <stephenc__> Iow if 10%+ of the 2yr+ committers think ted should be on the board then he is nominated and a vote must be held by all to approve
+18:24:05 <hare_brain> Do I have this right? 2 year+ committers can propose a nominee. 10%+ approval to get that proposal on the ballot in the first place?
+18:24:48 <kohsuke> I was hoping that we can keep it simple
+18:25:01 <kohsuke> the more complicated the rules, the harder it is to justify
+18:25:04 <stephenc__> Ted then needs sufficient votes to get on the board... I am not making a suggestion on the voting process
+18:25:16 <abayer> …all I know is I'm voting for Ted.
+18:25:25 <stephenc__> Simple is the existing board nominate their replacements
+18:25:26 <rtyler> ALL GLORY TO THE HYPNOTED
+18:25:42 <hare_brain> I tend to agree with kohsuke. stephenc__'s proposal adds a lot more overhead.
+18:26:30 <hare_brain> As long as we don't fall into cronyism
+18:27:28 <lov> but I want to be a crony :(
+18:27:30 <dapak> when you say that "voters vote to approve" the candidates selected by the board, are there stipulations on who those voters are
+18:27:38 <stephenc_> Well if the proposal is rejected by 51% you have to come up with a second proposals
+18:27:52 <harpreet_> I have never commented here: are you looking to replace all board members at once or will it be rolling upgrade ;-)
+18:28:07 <hare_brain> dapak, harpreet_: read the propsal. :)
+18:28:13 <hare_brain> Both of your questions are covered.
+18:28:35 <dapak> words?  reading?  THIS WOULD NEVER HAPPEN UNDER TED'S RULE
+18:28:37 <kohsuke> I think if we can find who's interested in serving, while allowing the board to filter out weirdos, that'd be the best of the both worlds
+18:28:40 <dapak> ;)
+18:29:02 <abayer> My only quibble with the proposal is that I feel like I should be stepping down sooner than a year from now - I really haven't been pulling my weight.
+18:30:14 <harpreet_> hare_brain: thanks
+18:30:33 <kohsuke> I think I'm OK with letting people nominate themselves
+18:30:49 <kohsuke> I'm not really worried about weirdos caring enough to nominate themselves and then winning
+18:30:53 <abayer> (total sidenote - looks like there are under a thousand Jenkins *nodes* (slaves and masters) running JDK 1.5)
+18:30:54 <dapak> so as far as voting restriction, i feel like if you can somehow prove you are a jenkins community member you have a right to vote — perhaps contributing in some way traceable to your jenkins account (jira bug, github pull requests, etc)
+18:31:25 <abayer> dapak: If you register or have voted previously, you're eligible.
+18:31:28 <abayer> That simple.
+18:31:39 <kohsuke> my concern with hare_brain's "board nominates and the community would approve" is that how do the board find out who's willing
+18:31:49 <abayer> There's that.
+18:32:14 <hare_brain> Ah well, my thinking is that we have an idea of the types of perspectives we want represented on the board.
+18:32:22 <abayer> (ack, that was just masters)
+18:32:24 <hare_brain> We know people who align with that, and we ask.
+18:32:27 <rtyler> I propose we say the existing proposal is a good start, discuss this further on the mailing lists to tweak it as needed
+18:32:33 <rtyler> we're getting a little bogged down
+18:32:45 <dapak> elect everyone, problem solved
+18:33:01 <hare_brain> Occupy Jenkins!
+18:33:02 <hare_brain> Sorry.
+18:33:03 <stephenc_> dapak: Now you have two problems
+18:33:40 <kohsuke> rtyler: OK.
+18:33:43 <hare_brain> I second rtyler's motion. Clearly we need to work out the nomination process. We can do that over email
+18:33:44 <vjuranek> rtyler: +1 mroe wide discussion on mailing list
+18:33:54 <rtyler> yay i'm contributing
+18:34:13 <stephenc_> rtyler: It won't last
+18:34:18 <kohsuke> I'll write up hare_brain's "please trust the boards to nominate good people" model and send it to the dev list
+18:34:31 <kohsuke> #action I'll write up hare_brain's "please trust the boards to nominate good people" model and send it to the dev list
+18:34:40 <kohsuke> moving on...
+18:34:49 <kohsuke> #topic Help wanted: spams are on the rise
+18:35:09 <kohsuke> #info there has been some on-going spam problem on Wiki
+18:35:09 <stephenc_> Where is your bot for today
+18:35:19 <stephenc_> And jira
+18:35:32 <kohsuke> I've been deleting the posts and banning them manually
+18:35:44 <kohsuke> Yes, and JIRA, apparently, although I haven't checked it
+18:35:59 <rtyler> I think we should have a project in JIRA for spam reports to go into
+18:36:04 <stephenc_> At least one issue is just spam
+18:36:11 <kohsuke> 1. I wonder if anyone has experience dealing with those stuff
+18:36:13 <rtyler> then we'll at least have a queue
+18:36:18 <lov> Are you really planning on handling spam manually?
+18:36:32 <kohsuke> and 2. if we can give more power to more people to fight spams
+18:36:54 <stephenc_> rtyler: Do you mean a project for the spammers to put their spam issues in, or a project for us to report them in
+18:36:58 <dapak> isn't there some kind of wiki plugin to prevent this
+18:37:00 <kohsuke> Yes, JIRA project could work
+18:37:13 <dapak> if not, perhaps switch to something that's better secure
+18:37:28 <kohsuke> dapak: switching the system is too much work and not practical
+18:37:29 <rtyler> stephenc_: heh, more of a "report the spam" queue
+18:37:54 <stephenc_> There was me thinking you had a honeypot idea
+18:38:11 <kohsuke> I did track down 2 spammers sign-up history and they don't look like robots
+18:38:18 <vjuranek> moreover I;m not sure if it's generated by bot, maybe it's manual spam
+18:38:37 <kohsuke> (at least they didn't look like a program making HTTP calls right away)
+18:39:23 <lov> If you're convinced that these are real people signing up just to generate spam, you could try hellbanning them.
+18:39:34 <kohsuke> what is hellbanning?
+18:39:36 <lov> hellbanning is where only that user can actually see content that they create
+18:39:57 <stephenc_> There is no way Kohsuke could write a bot to clean up all the spam over lunch
+18:40:19 <imod> lets bet on it...
+18:40:28 <lov> that said, I can't imagine anyone is actually manually performing the spam themself.
+18:40:29 <kohsuke> It does seem somewhat possible
+18:40:40 <dapak> can you enable a captcha on editing / commenting
+18:40:47 <rtyler> #action kohsuke to create a 'report-the-spam' project in JIRA to help track and report spam
+18:40:48 <dapak> https://confluence.atlassian.com/display/DOC/Configuring+Captcha+for+Spam+Prevention
+18:41:00 <kohsuke> lov: yes, I agree, but then, I find it hard that someone cared enough to write a program against our custom user signup app
+18:41:11 <kohsuke> dapak: thanks, I'll check that out
+18:41:15 <stephenc_> No way. I will bet "five minutes of worshiping KK at the next huddle" that it cannot be done
+18:41:42 <kohsuke> stephenc_ knows how to poke me...
+18:42:07 <kohsuke> Anyway, I think I'm good on this topic for now
+18:42:13 <hare_brain> When I was on the Yahoo! Games team, we had all sorts of problem with spam and bots in the game rooms. I used to think like kohsuke did, why would anyone take the time to reverse engineer our protocol just to do this, but they did.
+18:42:23 <stephenc_> We'll see how effective my incentivising is...
+18:42:38 <hare_brain> It was an arms race
+18:42:41 <kohsuke> I wouldn't compare Yahoo! Games and Jenkins at the same level, but ...
+18:42:49 <rtyler> mooooooooooooooveee it
+18:42:50 <abayer> Yeah, Jenkins is waaaaaaaay bigger.
+18:43:02 <kohsuke> #info if anyone is willing to volunteer to be a spam police, please let us know
+18:43:03 <hare_brain> My point is that some people get their kicks out of the strangest things.
+18:43:32 <kohsuke> I'm one of those
+18:43:34 <kohsuke> #topic FOSDEM travel grant
+18:43:56 <kohsuke> Am I correct that I think there's a reasonable consensus for that?
+18:44:01 <rtyler> let's hurry on this topic, I'm hungry :D
+18:44:02 <abayer> I'm strongly in favor.
+18:44:12 <kohsuke> If so the only real question is how much we should spend
+18:44:38 <imod> I'm not gona be there this time so -1 :)
+18:44:42 <rtyler> heh
+18:45:05 <kohsuke> I was looking forward to seeing you
+18:45:28 <imod> you'l have to get to australia ...
+18:45:59 <imod> holidays are nice too
+18:46:02 <kohsuke> #info I haven't done the exact count, but I believe we have more than $5000 on our account in SPI
+18:46:29 <rtyler> how many people do we want to bring? :P
+18:46:30 <jenkins-builds> Project jenkins_main_trunk build #1892: SUCCESS in 47 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/1892/
+18:46:30 <jenkins-builds> * imod: update to new parent pom and cleanup plugin config to also work with m2e
+18:46:31 <jenkins-builds> * imod: update plugins parent to pickup new parent for cleaner m2e support
+18:46:44 <kohsuke> #info $7348.12 to be exact
+18:46:47 <kohsuke> #info http://spi-inc.org/meetings/minutes/2012/2012-08-09/
+18:46:49 <rtyler> if we get the devroom, I'll need all the help I can get :)
+18:47:07 <kohsuke> $1000 each for 2 people?
+18:47:10 <hare_brain> This grant is to pay for completely, or just subsidize
+18:47:13 <stephenc_> Where and when is it?
+18:47:13 <rtyler> I think we should shoot for at least 2 people
+18:47:23 <rtyler> kohsuke: I like 1k for two people
+18:47:24 <kohsuke> hare_brain: most likely just to subsidize
+18:47:44 <rtyler> if we're nominating people, I'd like to bring jieryn over :P
+18:47:52 <kohsuke> the whole trip will likely cost more than $1K and I think we want to decide how much we spend upfront
+18:48:11 <hare_brain> $2K is 27% of our funds.
+18:48:19 <rtyler> I think starting at $1k will be good, I'll see what I can scrounge up for specific sponsorships
+18:48:38 <rtyler> it might be feasible to get a few entities to help sponsor something specific around travel grants to FOSDEM
+18:49:22 <kohsuke> rtyler: you have some idea about who might pitch in?
+18:49:35 * rtyler coughs redhat
+18:50:00 <rtyler> let's decide on $2k spend on 2 travel grants for now
+18:50:04 <rtyler> hare_brain, abayer?
+18:50:09 <abayer> +!
+18:50:16 <abayer> or +1, y'know, whatever.
+18:50:31 <hare_brain> 0 undecided but willing to go along with the majority
+18:50:45 <kohsuke> hare_brain: our run rate has been mostly pretty low
+18:50:51 <dapak> redhat just purchased naming rights to an ampitheater here in raleigh for a million+, they could probably squeeze a couple extra dollars for travel   :P
+18:50:54 <kohsuke> it's been just CIA T-shirts and stickers
+18:51:29 <rtyler> I'd like to come up with a good program proposal, to structure this so it's not a one time thing
+18:51:30 <kohsuke> so I think we should be able to spend it
+18:51:52 <hare_brain> It just feels like a big chunk of what we've built up. Is this what we want to spend a quarter of our reserves on?
+18:52:00 <abayer> I think so.
+18:52:09 <rtyler> we'll do another end-of-year fundraiser
+18:52:21 <rtyler> I'm hopeful that we can raise a few thousand dollars, at least, every year
+18:52:22 <kohsuke> No, please let's not do fundraising every year
+18:52:27 <rtyler> really?
+18:52:32 <hare_brain> As I said, I'm willing to go along if everyone else thinks this is a good idea.
+18:52:35 <dapak> no fundraising?
+18:52:39 <kohsuke> That's so Wikipedia!
+18:52:55 <abayer> You don't want to be a massively successful household name? =)
+18:53:00 <imod> +1 from me, if I get some support to get to SF next time :)
+18:53:09 <dapak> GIANT PICTURE OF YOU REPLACING THE JENKINS LOGO UNTIL WE GET MONEY
+18:53:28 <rtyler> fundraising is an unfortunate fact of life though, we don't have to go full Wikitard, but I think it should be a end-of-year ask
+18:53:32 <hare_brain> I suggest future funding sources as a topic for the next meeting.
+18:53:41 <rtyler> lots of companies have end-of-year budgets that need to spend some money ;)
+18:53:43 <dapak> i second that suggestion
+18:53:46 * rtyler nods
+18:53:50 <rtyler> I'll add it
+18:53:58 <kohsuke> #action next agenda item: "I suggest future funding sources as a topic for the next meeting."
+18:54:02 <rtyler> heh
+18:54:23 <rtyler> that's all the time I have, i'll be back later :)
+18:54:26 <kohsuke> Let's also see if some people actually want to come to FOSDEM, too
+18:54:31 <abayer> We can also do more targeted fundraising - i.e., raise $2k for the travel grants specifically.
+18:55:11 <abayer> And I gotta run momentarily too. =)
+18:55:15 <hare_brain> Five minutes left
+18:55:27 <hare_brain> I had one thing to bring up before rubber stamping the next meeting time
+18:55:34 <kohsuke> #agreed we are basically OK with spending $1K x 2 people for FOSDEM travel grant, but we want to make sure money is used well
+18:55:42 <stephenc_> Well if KK is going to fosdem, I may go anyway
+18:55:52 <kohsuke> stephenc_:  I'm going
+18:55:58 <stephenc_> If we can convince sacha to pay that is ;-)
+18:56:02 <hare_brain> I had proposed to kohsuke that we should have a project meeting at JUC at the end of the month
+18:56:07 <kohsuke> but let's give the floor to hare_brain
+18:56:28 <kohsuke> hare_brain: want to change the topic accordingly?
+18:56:44 <hare_brain> #topic Hold project meeting at JUC SF on 9/30
+18:56:47 <kohsuke> hare_brain: and +1 to the project meeting at JUC
+18:56:57 <abayer> I'll +1 it on the condition that I get to resign from the board then. =)
+18:56:57 <kohsuke> I'm curious what it's going to look like.
+18:57:13 <hare_brain> We'd have to work out some logistics, since not everyone will be there.
+18:57:13 <kohsuke> abayer: that won't be sending the right message
+18:57:18 <abayer> bah1
+18:57:23 <hare_brain> Probably "simulcast" over IRC
+18:57:24 <abayer> =)
+18:57:42 <hare_brain> But my hope is that we get other people involved that normally not vocal here.
+18:58:08 <hare_brain> Could we use the panel session time slot at the conference for this?
+18:58:24 <hare_brain> Or do we need to do this out of band of the conference sessions?
+18:58:27 <abayer> I've got a lightning talk then, but I can finish up quick and run over.
+18:58:29 <kohsuke> Maybe I could report how we spent money last year
+18:58:49 <kohsuke> what we should be spending money on could be a great topic, too
+18:59:13 <hare_brain> I just wanted to get the idea in people's heads, and we can talk more about it at the next meeting, but I wanted to bring it up so we have time to figure it out before JUC
+18:59:24 <kohsuke> hare_brain: I'll check with Alyssa, but I'm sure  it's doable
+18:59:26 <hare_brain> I don't think there's time right now to get it all sorted it
+18:59:52 <hare_brain> That's it. I yield the floor. :)
+18:59:59 <kohsuke> #topic next meeting time
+19:00:08 <abayer> Two weeks from today, same time?
+19:00:11 <kohsuke> naturally, 9/19, the same time
+19:00:16 <abayer> Rightie-o.
+19:00:19 <hare_brain> Yup!
+19:00:23 <kohsuke> #agreed next meeting is the same time in 2 weeks (9/19)
+19:00:32 <kohsuke> And I think that's it for today
+19:00:39 <hare_brain> abayer, no sneeking your resignation from the board onto the next meeting's agenda. :p
+19:00:42 <abayer> bah!
+19:00:45 <kohsuke> Thank you gentlemen
+19:00:49 <kohsuke> #endmeeting

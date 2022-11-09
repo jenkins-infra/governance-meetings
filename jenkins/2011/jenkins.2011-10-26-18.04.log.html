@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:04:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:04:53</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:05:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">abayer rtyler hare_brain__</span>
+<a name="l-4"></a><span class="tm">18:05:19</span><span class="nk"> &lt;kohsuke&gt;</span> or was it #chair?
+<a name="l-5"></a><span class="tm">18:05:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer rtyler hare_brain__</span>
+<a name="l-6"></a><span class="tm">18:05:24</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain__ kohsuke rtyler
+<a name="l-7"></a><span class="tm">18:05:53</span><span class="nk"> &lt;rtyler&gt;</span> meeting agenda: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-8"></a><span class="tm">18:05:58</span><span class="nk"> &lt;jorgenpt&gt;</span> <span class="hi">cowboyd:</span> Turns out my rvm was old as molasses, which is why I was using 1.5.6 (default rvm install jruby on that one) :-)
+<a name="l-9"></a><span class="tm">18:06:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> thanks
+<a name="l-10"></a><span class="tm">18:06:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jorgenpt:</span> time to find another channel, or wait a little while
+<a name="l-11"></a><span class="tm">18:06:17 </span><span class="nka">* jorgenpt</span> <span class="ac">waits a little while</span>
+<a name="l-12"></a><span class="tm">18:06:21</span><span class="nk"> &lt;kohsuke&gt;</span> I dont' know if kutzi is here
+<a name="l-13"></a><span class="tm">18:06:27</span><span class="nk"> &lt;rtyler&gt;</span> he's not :/
+<a name="l-14"></a><span class="tm">18:06:42</span><span class="nk"> &lt;hare_brain__&gt;</span> Well this could be quick then...
+<a name="l-15"></a><span class="tm">18:07:08</span><span class="nk"> &lt;rtyler&gt;</span> I'm going to add some more agenda items really quick :D
+<a name="l-16"></a><span class="tm">18:07:09</span><span class="nk"> &lt;jieryn&gt;</span> i have an item on the agenda too
+<a name="l-17"></a><span class="tm">18:07:14</span><span class="nk"> &lt;abayer&gt;</span> We should probably wait a bit for him. =)
+<a name="l-18"></a><span class="tm">18:07:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Bringing old Jenkins plugins up to a common requiredCore</span>
+<a name="l-19"></a><span class="tm">18:07:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jieryn:</span> you have the fllor
+<a name="l-20"></a><span class="tm">18:07:40</span><span class="nk"> &lt;rtyler&gt;</span> floor too
+<a name="l-21"></a><span class="tm">18:07:43</span><span class="nk"> &lt;rtyler&gt;</span> take'em both
+<a name="l-22"></a><span class="tm">18:08:45</span><span class="nk"> &lt;jieryn&gt;</span> i put out a post the other week about standardizing plugin requiredCore - which is the parent version
+<a name="l-23"></a><span class="tm">18:09:07</span><span class="nk"> &lt;jieryn&gt;</span> we have a large range of parents which plugins depend on, and i was interested in taking the community temperature about standardizing
+<a name="l-24"></a><span class="tm">18:09:22</span><span class="nk"> &lt;abayer&gt;</span> I'm a fan of that personally.
+<a name="l-25"></a><span class="tm">18:09:23</span><span class="nk"> &lt;jieryn&gt;</span> <span class="hi">PROS:</span> creates concept of a 'rally' release, fits very nicely with LTS; speed up dev efficiency to reuse existing .m2/repo downloads
+<a name="l-26"></a><span class="tm">18:09:26</span><span class="nk"> &lt;jieryn&gt;</span> <span class="hi">CONS:</span> while few, there are old deployments; don't touch what ain't broken
+<a name="l-27"></a><span class="tm">18:09:55</span><span class="nk"> &lt;abayer&gt;</span> I've been saying that part of the appeal/value of the LTS is to give a stable target for plugin parenting.
+<a name="l-28"></a><span class="tm">18:10:20</span><span class="nk"> &lt;jieryn&gt;</span> you're ahead of your time then :) as i think that's a great target
+<a name="l-29"></a><span class="tm">18:10:38</span><span class="nk"> &lt;jieryn&gt;</span> i don't want to force jenkins just yet ,... but getting a 'rally' under our belts would be good experience to do just that
+<a name="l-30"></a><span class="tm">18:10:44</span><span class="nk"> &lt;kohsuke&gt;</span> Although this isn't proposing to bring them up to 1.409, right?
+<a name="l-31"></a><span class="tm">18:10:44</span><span class="nk"> &lt;pelegri&gt;</span> How do I add a topic?  "Adding Google Analytics to Jenkins community site"
+<a name="l-32"></a><span class="tm">18:10:48</span><span class="nk"> &lt;abayer&gt;</span> Though I also think it's reasonable to treat 1.395 as a de facto stable target for that regard.
+<a name="l-33"></a><span class="tm">18:10:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">pelegri:</span> I can add it for you
+<a name="l-34"></a><span class="tm">18:11:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">pelegri:</span> agenda: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Oct26thMeeting
+<a name="l-35"></a><span class="tm">18:11:03</span><span class="nk"> &lt;pelegri&gt;</span> thanks
+<a name="l-36"></a><span class="tm">18:11:18</span><span class="nk"> &lt;jieryn&gt;</span> 1.392 is what i'm pitching, because of an m-hpi-p problem which didn't put the requiredCore into the manifest -- we can fix that easily though
+<a name="l-37"></a><span class="tm">18:11:25</span><span class="nk"> &lt;abayer&gt;</span> Ah, good point.
+<a name="l-38"></a><span class="tm">18:11:29</span><span class="nk"> &lt;abayer&gt;</span> Forgot about that.
+<a name="l-39"></a><span class="tm">18:11:35</span><span class="nk"> &lt;jieryn&gt;</span> either way, the hands will already be in the till .. it's not a problem either way
+<a name="l-40"></a><span class="tm">18:12:01</span><span class="nk"> &lt;jieryn&gt;</span> anyhow, if w ethink this is good- then i will create JonJ to automatically update to the latest level and run the build
+<a name="l-41"></a><span class="tm">18:12:11</span><span class="nk"> &lt;jieryn&gt;</span> for each down level plugin
+<a name="l-42"></a><span class="tm">18:12:31</span><span class="nk"> &lt;jieryn&gt;</span> or..don't bother? :) i'm up for suggestions
+<a name="l-43"></a><span class="tm">18:12:34</span><span class="nk"> &lt;abayer&gt;</span> I think it's worth trying, yeah.
+<a name="l-44"></a><span class="tm">18:13:02</span><span class="nk"> &lt;abayer&gt;</span> Hell, I think it'd be worth aggregating the parent version info for each plugin somewhere, if nothing else.
+<a name="l-45"></a><span class="tm">18:13:12</span><span class="nk"> &lt;kohsuke&gt;</span> I'm fine either way.
+<a name="l-46"></a><span class="tm">18:14:05</span><span class="nk"> &lt;jieryn&gt;</span> ok then!
+<a name="l-47"></a><span class="tm">18:14:10</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe I have data showing how many still runs older releases
+<a name="l-48"></a><span class="tm">18:14:32</span><span class="nk"> &lt;jieryn&gt;</span> we can probably pull it from the anon data, i just got busy before mtg
+<a name="l-49"></a><span class="tm">18:14:42</span><span class="nk"> &lt;abayer&gt;</span> Nifty.
+<a name="l-50"></a><span class="tm">18:15:06</span><span class="nk"> &lt;kohsuke&gt;</span> What if we first do &lt;=1.320 to 1.392?
+<a name="l-51"></a><span class="tm">18:15:11</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-52"></a><span class="tm">18:15:28</span><span class="nk"> &lt;hare_brain__&gt;</span> How did you pick 1.320 for the cut-off?
+<a name="l-53"></a><span class="tm">18:15:30</span><span class="nk"> &lt;kohsuke&gt;</span> There's good number of them in there, and 1.320 is like 2 years old release, right?
+<a name="l-54"></a><span class="tm">18:15:38</span><span class="nk"> &lt;abayer&gt;</span> Though I don't think we need to do this for plugins which themselves haven't been released in ages.
+<a name="l-55"></a><span class="tm">18:16:20</span><span class="nk"> &lt;kohsuke&gt;</span> There are enough number requiring pre 1.320, and 1.320 seems old enough that it's less likely to negative impact users
+<a name="l-56"></a><span class="tm">18:16:36</span><span class="nk"> &lt;abayer&gt;</span> Yeah, that seems as good an arbitrary cutoff as any.
+<a name="l-57"></a><span class="tm">18:16:43</span><span class="nk"> &lt;kohsuke&gt;</span> and doing this gradually allows users to notice and complain
+<a name="l-58"></a><span class="tm">18:16:48</span><span class="nk"> &lt;rtyler&gt;</span> just for my on context, how long ago was that released?
+<a name="l-59"></a><span class="tm">18:16:55</span><span class="nk"> &lt;hare_brain__&gt;</span> OK, just wondering if you had metrics that let you pick that one.
+<a name="l-60"></a><span class="tm">18:17:05</span><span class="nk"> &lt;kohsuke&gt;</span> I'm still looking for the metrics
+<a name="l-61"></a><span class="tm">18:17:38</span><span class="nk"> &lt;hare_brain__&gt;</span> 8/14/2009
+<a name="l-62"></a><span class="tm">18:17:42</span><span class="nk"> &lt;abayer&gt;</span> Wow.
+<a name="l-63"></a><span class="tm">18:17:43</span><span class="nk"> &lt;rtyler&gt;</span> damn
+<a name="l-64"></a><span class="tm">18:17:46</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-65"></a><span class="tm">18:17:50</span><span class="nk"> &lt;rtyler&gt;</span> that's pretty damned old :D
+<a name="l-66"></a><span class="tm">18:18:04</span><span class="nk"> &lt;jieryn&gt;</span> ok
+<a name="l-67"></a><span class="tm">18:19:11</span><span class="nk"> &lt;kohsuke&gt;</span> and for the context, update center was first added in 1.312
+<a name="l-68"></a><span class="tm">18:19:18</span><span class="nk"> &lt;rtyler&gt;</span> O_O
+<a name="l-69"></a><span class="tm">18:20:44</span><span class="nk"> &lt;kohsuke&gt;</span> I take it back, that's incorrect. It's just that I don't have any more tags that go back beyond that
+<a name="l-70"></a><span class="tm">18:20:55</span><span class="nk"> &lt;abayer&gt;</span> heehee
+<a name="l-71"></a><span class="tm">18:21:03</span><span class="nk"> &lt;kohsuke&gt;</span> It was added in 1.220
+<a name="l-72"></a><span class="tm">18:21:08</span><span class="nk"> &lt;kohsuke&gt;</span> anyway
+<a name="l-73"></a><span class="tm">18:21:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jieryn:</span> does it sound like a reasonable start?
+<a name="l-74"></a><span class="tm">18:21:39</span><span class="nk"> &lt;jieryn&gt;</span> yes
+<a name="l-75"></a><span class="tm">18:22:28</span><span class="nk"> &lt;pelegri&gt;</span> I have to leave now (flight arriving early).  Andrew, I'll mail you what I meant to write...
+<a name="l-76"></a><span class="tm">18:22:30</span><span class="nk"> &lt;rtyler&gt;</span> shall we move on?
+<a name="l-77"></a><span class="tm">18:22:44</span><span class="nk"> &lt;rtyler&gt;</span> (still no kutzi
+<a name="l-78"></a><span class="tm">18:22:48</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">pelegri:</span> Alrightie.
+<a name="l-79"></a><span class="tm">18:22:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">jieryn to go through first 46 plugins that currently requires core &lt;=1.320 and bump them up to 1.392. We'll see the reactions then.</span>
+<a name="l-80"></a><span class="tm">18:23:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Infrastructure update</span>
+<a name="l-81"></a><span class="tm">18:23:14</span><span class="nk"> &lt;rtyler&gt;</span> we had an issue yesterday due to backups filling up eggplant's disk
+<a name="l-82"></a><span class="tm">18:23:19 </span><span class="nka">* rtyler</span> <span class="ac">sighs</span>
+<a name="l-83"></a><span class="tm">18:23:36</span><span class="nk"> &lt;rtyler&gt;</span> it's a stupid problem that I don't have a good solution for right now for automating the secure off-site backing up of that data
+<a name="l-84"></a><span class="tm">18:23:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to work out shuffling JIRA backups off eggplant</span>
+<a name="l-85"></a><span class="tm">18:24:20</span><span class="nk"> &lt;kohsuke&gt;</span> I can offer my home NAS
+<a name="l-86"></a><span class="tm">18:24:27</span><span class="nk"> &lt;rtyler&gt;</span> I spent last weekend hacking with some puppet engineers, so I have some good ideas on how/where to move our puppet manifests forward
+<a name="l-87"></a><span class="tm">18:24:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> ah right, that reminds me
+<a name="l-88"></a><span class="tm">18:24:40</span><span class="nk"> &lt;kohsuke&gt;</span> Or we can just remove some old backups
+<a name="l-89"></a><span class="tm">18:24:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler needs to buy that damned NIC for cucumber for our backups with Contegix</span>
+<a name="l-90"></a><span class="tm">18:25:09</span><span class="nk"> &lt;rtyler&gt;</span> basically we still have an outstanding offer of free backups at Contegix
+<a name="l-91"></a><span class="tm">18:25:13</span><span class="nk"> &lt;rtyler&gt;</span> just need a NIC to bridge the networks
+<a name="l-92"></a><span class="tm">18:25:34</span><span class="nk"> &lt;rtyler&gt;</span> which leads me into this
+<a name="l-93"></a><span class="tm">18:25:51</span><span class="nk"> &lt;rtyler&gt;</span> we'll have to have a new contract drawn up for cucumber, to properly assign ownership to the SPI
+<a name="l-94"></a><span class="tm">18:26:22</span><span class="nk"> &lt;rtyler&gt;</span> I'm currently working with our account rep at Contegix to work that out, I am hoping to square that away before the end of november
+<a name="l-95"></a><span class="tm">18:26:30</span><span class="nk"> &lt;kohsuke&gt;</span> cool
+<a name="l-96"></a><span class="tm">18:26:45</span><span class="nk"> &lt;rtyler&gt;</span> we haven't blown through our bandwidth the last couple months
+<a name="l-97"></a><span class="tm">18:26:51</span><span class="nk"> &lt;abayer&gt;</span> hooray!
+<a name="l-98"></a><span class="tm">18:26:52</span><span class="nk"> &lt;rtyler&gt;</span> so we're in good shape there, mirrors working properly :)
+<a name="l-99"></a><span class="tm">18:27:04 </span><span class="nka">* rtyler</span> <span class="ac">is hoping for a big christmas present from the SPI though</span>
+<a name="l-100"></a><span class="tm">18:27:25</span><span class="nk"> &lt;rtyler&gt;</span> I think that might be the extent of the infra updates
+<a name="l-101"></a><span class="tm">18:27:33</span><span class="nk"> &lt;rtyler&gt;</span> anything else to add under it
+<a name="l-102"></a><span class="tm">18:27:34</span><span class="nk"> &lt;rtyler&gt;</span> ?
+<a name="l-103"></a><span class="tm">18:28:03</span><span class="nk"> &lt;rtyler&gt;</span> still no kutzi, might have to punt that agenda item
+<a name="l-104"></a><span class="tm">18:28:10</span><span class="nk"> &lt;kohsuke&gt;</span> I guess we'll have to figure out how to have the cost of NIC paid from SPI
+<a name="l-105"></a><span class="tm">18:28:21</span><span class="nk"> &lt;kohsuke&gt;</span> First ever purchase of the project!
+<a name="l-106"></a><span class="tm">18:28:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that's easy
+<a name="l-107"></a><span class="tm">18:28:24</span><span class="nk"> &lt;kohsuke&gt;</span> oh
+<a name="l-108"></a><span class="tm">18:28:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I buy it, and then get reimbursed
+<a name="l-109"></a><span class="tm">18:28:34</span><span class="nk"> &lt;rtyler&gt;</span> unless we have a Jenkins Project Credit Card :P
+<a name="l-110"></a><span class="tm">18:28:43</span><span class="nk"> &lt;kohsuke&gt;</span> OK. If you already know how to do it, that's great.
+<a name="l-111"></a><span class="tm">18:29:03</span><span class="nk"> &lt;rtyler&gt;</span> without kutzi shall we set a next meeting time and wrap up early?
+<a name="l-112"></a><span class="tm">18:29:11</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-113"></a><span class="tm">18:29:13</span><span class="nk"> &lt;abayer&gt;</span> Wait!
+<a name="l-114"></a><span class="tm">18:29:19</span><span class="nk"> &lt;rtyler&gt;</span> pelegri's item?
+<a name="l-115"></a><span class="tm">18:29:25</span><span class="nk"> &lt;abayer&gt;</span> pelegri wanted us to talk about Google Analytics, yeah.
+<a name="l-116"></a><span class="tm">18:29:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Just quick donation update: as of today, we've raised $4040 up $140 from a month ago</span>
+<a name="l-117"></a><span class="tm">18:29:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Google Analytics for jenkins-ci.org</span>
+<a name="l-118"></a><span class="tm">18:29:44</span><span class="nk"> &lt;abayer&gt;</span> lemme c&amp;p his email.
+<a name="l-119"></a><span class="tm">18:29:46</span><span class="nk"> &lt;abayer&gt;</span> Simple proposal: Add Google Analytics to the Jenkins community site.
+<a name="l-120"></a><span class="tm">18:29:50</span><span class="nk"> &lt;abayer&gt;</span> Rationale is that this helps show &amp; quantify adoption growth, and...
+<a name="l-121"></a><span class="tm">18:29:54</span><span class="nk"> &lt;abayer&gt;</span> also helps in detecting geographic adoption patterns - like "high here, low there"
+<a name="l-122"></a><span class="tm">18:29:58</span><span class="nk"> &lt;abayer&gt;</span> Google Analytics provides pretty detailed demographic information.  Several of us have used in the past, including when at Hudson, and we found it very useful.
+<a name="l-123"></a><span class="tm">18:30:03</span><span class="nk"> &lt;abayer&gt;</span> Only issue I can think of is that the Google Analytics agreement. http://www.google.com/analytics/tos.html  Section 8. Indemnification...
+<a name="l-124"></a><span class="tm">18:30:48</span><span class="nk"> &lt;abayer&gt;</span> (that's the email)
+<a name="l-125"></a><span class="tm">18:30:53</span><span class="nk"> &lt;rtyler&gt;</span> so
+<a name="l-126"></a><span class="tm">18:30:58 </span><span class="nka">* rtyler</span> <span class="ac">coughs</span>
+<a name="l-127"></a><span class="tm">18:31:09</span><span class="nk"> &lt;abayer&gt;</span> I don't know anything about the TOS, but other than that, I have no issue, but I defer to rtyler on website matters.
+<a name="l-128"></a><span class="tm">18:31:17</span><span class="nk"> &lt;rtyler&gt;</span> we actually have it already
+<a name="l-129"></a><span class="tm">18:31:21</span><span class="nk"> &lt;rtyler&gt;</span> and I have historical data
+<a name="l-130"></a><span class="tm">18:31:23 </span><span class="nka">* rtyler</span> <span class="ac">coughs</span>
+<a name="l-131"></a><span class="tm">18:31:24</span><span class="nk"> &lt;abayer&gt;</span> …ha!
+<a name="l-132"></a><span class="tm">18:31:29</span><span class="nk"> &lt;rtyler&gt;</span> I've had GA enabled since the blog.hudson-ci.org days
+<a name="l-133"></a><span class="tm">18:31:44</span><span class="nk"> &lt;abayer&gt;</span> Well, then we should maybe do something with said data, I guess?
+<a name="l-134"></a><span class="tm">18:32:02</span><span class="nk"> &lt;rtyler&gt;</span> opening this data up is a little tricky AFAIK
+<a name="l-135"></a><span class="tm">18:32:12</span><span class="nk"> &lt;rtyler&gt;</span> since you basically have to have a google account, and I have to add access for it
+<a name="l-136"></a><span class="tm">18:32:51</span><span class="nk"> &lt;rtyler&gt;</span> so I think the take-away here is
+<a name="l-137"></a><span class="tm">18:33:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to work with pelegri on finding a good way to expose/open up GA data to the community</span>
+<a name="l-138"></a><span class="tm">18:33:28</span><span class="nk"> &lt;abayer&gt;</span> woot.
+<a name="l-139"></a><span class="tm">18:34:08</span><span class="nk"> &lt;kohsuke&gt;</span> Sounds good
+<a name="l-140"></a><span class="tm">18:34:13</span><span class="nk"> &lt;rtyler&gt;</span> next meeting?
+<a name="l-141"></a><span class="tm">18:34:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting times</span>
+<a name="l-142"></a><span class="tm">18:34:23</span><span class="nk"> &lt;abayer&gt;</span> 2 weeks from now, I assume.
+<a name="l-143"></a><span class="tm">18:34:26</span><span class="nk"> &lt;kohsuke&gt;</span> +1
+<a name="l-144"></a><span class="tm">18:34:42</span><span class="nk"> &lt;rtyler&gt;</span> if that works for Mr. Globe Trotter, it works for me :D
+<a name="l-145"></a><span class="tm">18:34:43</span><span class="nk"> &lt;abayer&gt;</span> I'll be at Apachecon but will find a table and wifi. =)
+<a name="l-146"></a><span class="tm">18:34:53</span><span class="nk"> &lt;rtyler&gt;</span> Nov 9th, agreed?
+<a name="l-147"></a><span class="tm">18:35:12</span><span class="nk"> &lt;kohsuke&gt;</span> yes, works for me
+<a name="l-148"></a><span class="tm">18:35:18</span><span class="nk"> &lt;rtyler&gt;</span> alright, i'll bump kutzi's items
+<a name="l-149"></a><span class="tm">18:35:25</span><span class="nk"> &lt;majost&gt;</span> regarding offsite backups; you may want to look at crashplan. I have been using it for personal use, and have been pretty happy with it.
+<a name="l-150"></a><span class="tm">18:35:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

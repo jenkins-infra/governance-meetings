@@ -1,0 +1,196 @@
+18:00:41 <rtyler> #startmeeting
+18:00:41 <robobutler> Let the Jenkins meeting commence!
+18:00:56 <rtyler> #chairs danielbeck
+18:01:00 <rtyler> #chair danielbeck
+18:01:00 <robobutler> Current chairs: danielbeck rtyler
+18:01:17 <rtyler> #topic Last meeting actions
+18:01:21 <oleg-nenashev> o/
+18:01:54 <rtyler> I saw that markewaite proposed the docs sig
+18:02:05 <markewaite> Yes I did...
+18:02:20 <rtyler> did I miss a blog post on GSoD?
+18:02:30 <oleg-nenashev> we were not accepted
+18:02:34 <rtyler> ah
+18:02:45 <oleg-nenashev> There is a scheduled retrospective meeting for tomorrow
+18:03:08 <markewaite> Still have the action item to submit the pull request to create the docs SIG structure.  First meeting of Docs SIG is Friday at 13:00 UTC (and retrospective).  See Gitter and docs mailing list for details
+18:03:17 <rtyler> okie doke
+18:03:21 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/c7DaQeZIrQE
+18:03:24 <rtyler> I think that covers the last meeting actions
+18:03:41 <rtyler> #topic LTS status check
+18:05:15 <rtyler> um, I'm not sure there's anything we need to cover here from danielbeck's or ogondza__'s standpoint?
+18:06:42 <oleg-nenashev> hmm
+18:06:58 <oleg-nenashev> Today is the next baseline selection
+18:07:08 <oleg-nenashev> So I assume we have something to cover
+18:07:19 <rtyler> yeah, next topic
+18:07:31 <rtyler> #topic LTS baseline selection
+18:08:05 <oleg-nenashev> No thread in the dev list about it
+18:08:13 <rtyler> 09:33 (@danielbec ) will not be able to make it to today's meeting, but as to baseline choice, recent weeklies look reasonable except for JENKINS-57244 which is only a problem in 2.175. Would go with 2.176 and the usual "we might change our minds until RC" disclaimer
+18:08:14 <oleg-nenashev> only https://groups.google.com/forum/#!topic/jenkinsci-dev/NKf22rIafiE for backporting
+18:08:17 <rtyler> 09:33 ( jenkins-a ) JENKINS-57244:java.io.NotSerializableException: The calling thread Thread has no
+18:08:45 <markewaite> I agree with 2.176 especially because of JENKINS-57244
+18:08:52 <oleg-nenashev> It is 2.174 or 2.176 for me
+18:09:14 <oleg-nenashev> I see no reason to NOT take 2.176
+18:09:22 <rtyler> agreed
+18:09:33 <markewaite> I'd like to not miss the Debian/Ubuntu launcher in 2.175, thus 2.176 for me
+18:09:38 <oleg-nenashev> Rick will need to backport one Chinese localization patch tho
+18:10:03 <markewaite> I don't understand the backport comment.  Isn't that already in 2.176?
+18:10:27 <rtyler> hrm, without ogondza around, I'm not sure what we can do other than strongly suggest 2.176 as the next baseline then?
+18:10:56 <oleg-nenashev> no reported regressions, no negative community ratings
+18:11:03 <oleg-nenashev> So i am +1 w.r.t 2.176
+18:11:23 <markewaite> +1 for me on 2.176 as well, though it is only 3 days old...
+18:11:56 <oleg-nenashev> Well, we have 2 weeks for testing and backporting issues
+18:12:21 * rtyler nods
+18:12:26 <oleg-nenashev> Jenkins core test coverage got improved since last years, so it should be acceptable
+18:12:26 * markewaite nods
+18:12:34 * oleg-nenashev nods as well
+18:12:48 <rtyler> #info recommend for release officer to take 2.176 as the next baseline
+18:12:56 <rtyler> tracymiranda: are you awake too? :)
+18:13:53 <tracymiranda> yep
+18:14:01 <tracymiranda> i think :)
+18:14:56 <rtyler> #topic GSoC Update
+18:15:01 <oleg-nenashev> Okay
+18:15:07 <oleg-nenashev> #info GSoC projects have been announced. There will be 7 projects in Jenkins this year: https://summerofcode.withgoogle.com/organizations/5489320354381824/
+18:16:10 <oleg-nenashev> Artifact Promotion plugin for Jenkins Pipeline
+18:16:10 <oleg-nenashev> Cloud Features for External Workspace Manager Plugin
+18:16:10 <oleg-nenashev> Multi-branch Pipeline support for Gitlab
+18:16:10 <oleg-nenashev> Plugins Installation Manager CLI Tool/Library
+18:16:10 <oleg-nenashev> Remoting over Apache Kafka with Kubernetes features
+18:16:11 <oleg-nenashev> Role Strategy Plugin Performance Improvement
+18:16:11 <oleg-nenashev> Working Hours Plugin - UI Improvements
+18:16:30 <rtyler> *dance*
+18:16:33 <oleg-nenashev> So, we target a number of important changes
+18:16:43 <rtyler> who are our mentors this time around?
+18:17:09 <oleg-nenashev> We have around 18 active mentors in the projects
+18:17:21 * tracymiranda claps
+18:17:26 <rtyler> dang
+18:17:43 <oleg-nenashev> We will have a blog post with all links and mentions, it is in progress
+18:18:00 <oleg-nenashev> Also, there are Jenkins-related projects in other organizations (Eclipse, FOSSi, CivicCRM): https://summerofcode.withgoogle.com/projects/?sp-search=Jenkins#!
+18:18:09 <oleg-nenashev> So thanks to everybody involved!
+18:18:34 <oleg-nenashev> Ok... back to the governance side
+18:19:21 <oleg-nenashev> We will be distributing some swag to mentors. I would proceed according to JEP-8 if this process is still OK after CDF. rtyler tracymiranda  WDYT?
+18:19:21 <rtyler> neat
+18:19:37 <rtyler> I think that should be totally fine
+18:19:42 <oleg-nenashev> To mentors and students who were not accepted this year
+18:20:27 <tracymiranda> not familiar with JEP-8, so looking up - but if done in the past should be good
+18:20:35 <oleg-nenashev> We had 32 mentors, and we also have few dozens of students who deserve some recognition after their hard work during GSoC application
+18:20:53 <tracymiranda> Is this highest participation ever?
+18:21:04 <rtyler> definitely
+18:21:06 <oleg-nenashev> Speaking of that... tomorrow I plan to bring up a Community Bridge topic at the Advocacy and Outreach SIG
+18:21:45 <oleg-nenashev> Even with 7 slots, it is less than we requested. And we may want to run some extra projects if there is an opportunity
+18:21:55 <oleg-nenashev> Same for GSoD, we have at least one lead there
+18:22:19 <oleg-nenashev> #info https://communitybridge.org/
+18:22:35 <tracymiranda> let's add to the agenda for tomorrow https://docs.google.com/document/d/1K5dTSqe56chFhDSGNfg_MCy-LmseUs_S3ys_tg60sTs/edit#heading=h.9jh09t587y90
+18:22:48 <oleg-nenashev> Yeah, that's my plan
+18:23:11 <oleg-nenashev> But yeah, this is definitely the biggest GSoC ever, looking forward to see how many projects suceed
+18:23:33 <rtyler> does anybody have any questions for oleg-nenashev about GSoC while we're on the topic?
+18:24:05 <oleg-nenashev> In addition to 7 students, we also bring in 5 new mentors who were not active Jenkins contributors before though they were active users
+18:24:26 <oleg-nenashev> basically, that's it from me
+18:24:41 <tracymiranda> sounds amazing, no questions from me
+18:24:47 <oleg-nenashev> Stay tuned for the website updates and for the blogpost
+18:25:23 <rtyler> agreed, this is wunderbar
+18:25:25 <rtyler> great work oleg-nenashev
+18:25:45 <oleg-nenashev> yeah, happy to do so
+18:25:47 <rtyler> #topic Google Season of Docs Update
+18:25:56 <rtyler> markewaite: any items for the record? :)
+18:26:42 <markewaite> I think they were already covered in the earlier comments I made.  Sorry I stepped out of turn.  Meeting Friday, includes retro on our "miss" for GSoD and what we're doing even without GSoD
+18:27:06 <rtyler> great, that's good for now I think
+18:27:11 <markewaite> Gathering mentors, identifying and encouraging contributors, and trying to learn from mistakes
+18:27:13 <rtyler> where/when is the retro
+18:27:40 <markewaite> Friday during docs SIG meeting
+18:27:42 <tracymiranda> I also received a belated email letting us know we didn't make it. They said they had almost 200 applications for the 50 organization slots
+18:27:53 <rtyler> wow
+18:27:56 <oleg-nenashev> 1pm utc on friday
+18:28:21 <oleg-nenashev> #action oleg_nenashev to add Docs SIG meeting to the Jenkins calendar
+18:28:53 <markewaite> #action markewaite get agreement on a regularly scheduled time for Docs SIG meeting
+18:29:19 <markewaite> that's all I have to report on Docs SIG
+18:29:33 <rtyler> #topic Outreachy Update
+18:30:14 <tracymiranda> #info we have 2 outreachy interns for this round
+18:30:23 <tracymiranda> https://www.outreachy.org/alums/
+18:30:40 <tracymiranda> We did not received Outreachy funding for the 2nd
+18:30:52 <tracymiranda> #info Both candidates will be funded by the Jenkins community
+18:31:20 <tracymiranda> Matt Sicker will be lead mentor for both interns
+18:31:59 <tracymiranda> With support from other community members
+18:32:12 <oleg-nenashev> Has the funding been approved at the Governance meeting?
+18:32:17 <oleg-nenashev> I mean the second student
+18:32:25 <tracymiranda> yes, at last meeting
+18:33:02 <oleg-nenashev> thanks!
+18:33:17 <oleg-nenashev> I am looking forward to finally see a release of this plugin
+18:33:33 <tracymiranda> So all-in-all add to GSoC and we have lots of new energy & activity in the community
+18:34:24 <rtyler> any other questions about outreachy?
+18:34:35 <oleg-nenashev> nope
+18:34:51 <oleg-nenashev> Maybe an ask to have more content on jenkins.io about it
+18:35:46 <tracymiranda> maybe we can have the interns reshare their outreachy posts on jenkins.io
+18:36:40 <oleg-nenashev> also, it would be nice to have a page for it, maybe under Advocacy & Outreach
+18:38:10 <rtyler> I think this covers it
+18:38:13 <rtyler> anything else tracymiranda ?
+18:38:38 <tracymiranda> I can do some CDF updates or take questions on CDF...
+18:38:53 <tracymiranda> or if you meant on outreachy, nothing else
+18:38:55 <rtyler> that's the next topic
+18:38:56 <rtyler> :)
+18:39:01 <rtyler> #topic CDF Update
+18:39:37 <tracymiranda> So some random CDF updates building on email to dev list
+18:40:03 <tracymiranda> #info Jenkins project is still in transition to CDF, still expected to take a few weeks as legal & other issues are worked through
+18:40:22 <rtyler> we're basically waiting for their lawyers to talk to our lawyers, yadda yadda yadda :)
+18:40:33 <tracymiranda> yep, lawyers in the loop now
+18:41:10 <tracymiranda> in meantime, lots of ongoing discussions have kicked off, including tomorrow's outreach & advocacy SIG
+18:41:22 <tracymiranda> we will discuss evolving SIGs & JAMs in context of CDF
+18:41:35 <oleg-nenashev> do we have "our layers"? :D
+18:41:44 <rtyler> technically SPI's
+18:41:46 <oleg-nenashev> * lawyers
+18:42:14 <tracymiranda> #info 2 new Technical Oversight Committee seats have been filled: Kris Nova & Tara Hernandez
+18:42:33 <tracymiranda> It was a well contested election with 12 different candidates put forward by governing board members
+18:43:21 <oleg-nenashev> Is there any timeline for the Outreach committee? Many of Jenkins activities would benefit if there were established channels for Outreach/Marketing activities in CDF
+18:44:01 <tracymiranda> the outreach committee has had a kickoff meeting
+18:44:16 <tracymiranda> it will start regular monthly meetings from June
+18:44:37 <tracymiranda> the formal committee & mailing list is open to reps from member companies
+18:45:07 <tracymiranda> what I recommend is that we use the Jenkins Advocacy & Outreach SIG to come up with what we would like to do
+18:45:08 <oleg-nenashev> So, no community mailing list?
+18:45:23 <tracymiranda> then communicate that through Alyssa to outreach committee
+18:45:23 <oleg-nenashev> Even for readonly?
+18:45:26 <tracymiranda> no
+18:45:31 <tracymiranda> not that i am aware of
+18:45:43 <tracymiranda> we are trying to get key notices posted to toc list
+18:46:08 <tracymiranda> plus through website, social media channels
+18:46:41 <tracymiranda> One thing I can share is that any newsworthy items can be sent to pr@cd.foundation for request to publicize
+18:47:03 <oleg-nenashev> It requires alyssat_ to be consistently present in the Jenkins community
+18:47:23 <tracymiranda> but generally CDF are monitoring jenkins accounts and blogs to promote them
+18:47:42 <oleg-nenashev> I mean, Advocacy & Outreach, SIGs and mailing lists, Governance meetings, chats
+18:48:25 <tracymiranda> I will help with that as well, plus Alyssa will attend the US timezone sig meetings
+18:48:26 <alyssat_> oleg-nenashev: noted.
+18:48:46 <rtyler> tracymiranda: I think what might be a good action for you or alyssa might be to document the expected relationship between the CDF outreach committee and existing project-specific efforts
+18:48:51 <alyssat_> i'll try to be better at this
+18:49:02 <oleg-nenashev> And TBH it is still not what I have expected from the migration to CDF
+18:49:10 <rtyler> I don't have a strong opinion in any direction at the moment, but it would be helpful to know where the seams ight overlap
+18:50:04 <tracymiranda> I think we should say what we need at the SIG meeting then myself & others can figure out how to get what we need from CDF
+18:51:21 <oleg-nenashev> yup
+18:51:26 <oleg-nenashev> we can definitely try that
+18:52:22 <rtyler> any other updates tracymiranda ?
+18:52:29 <tracymiranda> #info An nomination process and election will shortly be run for a seat on the Governing Board to be filled by a project contributor
+18:52:44 <tracymiranda> I believe KK will soon send out details to mailing list
+18:52:54 <oleg-nenashev> Did we get a response about the new trademark process  in CDF?
+18:53:35 <tracymiranda> yes, CDF is setting up a legal committee and that will approve a new trademark process (plus other licensing stuff)
+18:54:01 <tracymiranda> Are there any pending requests that make this more urgent?
+18:54:01 <oleg-nenashev> Just to be specific, I would like to make Jenkins RU official to avoid any collision risks
+18:54:18 <oleg-nenashev> And there was a request from Rick several weeks ago IIRC
+18:54:19 <tracymiranda> Jenkins RU?
+18:54:32 <tracymiranda> do you have link to Rick's request?
+18:54:44 <oleg-nenashev> Will try to find it
+18:55:00 <oleg-nenashev> IIRC it was at Advocacy and Oureach SIG meeting
+18:55:12 <oleg-nenashev> darn, we need a TLA for this SIG name
+18:55:38 <tracymiranda> I saw a request about SIGs in CDF but not for trademark request... but please let me know
+18:56:07 <oleg-nenashev> my request is not urgent, but I am ready to be a guinea pig for the new process
+18:56:20 <tracymiranda> that's great, thanks!
+18:57:05 <oleg-nenashev> #action oleg_nenashev to find the trademark question from Rick
+18:57:42 <tracymiranda> #action tracymiranda to follow up on project contributor seat on GB
+18:57:55 <oleg-nenashev> #action alyssat_  to join https://groups.google.com/forum/#!forum/jenkins-advocacy-and-outreach-sig
+18:58:47 <rtyler> the clock says we have one minute
+18:58:47 <oleg-nenashev> and https://gitter.im/jenkinsci/advocacy-and-outreach-sig , I'd guess
+18:58:50 <rtyler> any last words? :D
+18:59:15 <oleg-nenashev> next meeting as usual?
+18:59:22 <tracymiranda> nothing more from me
+18:59:25 <alyssat_> done! i've joined https://groups.google.com/forum/#!forum/jenkins-advocacy-and-outreach-sig
+18:59:36 <tracymiranda> hehe
+18:59:42 <alyssat_> :)
+18:59:44 <rtyler> honk
+18:59:50 <rtyler> #topic Next meeting
+19:00:13 <rtyler> #info our next meeting should be at the same time, same place, on May 22nd
+19:00:16 <rtyler> #endmeeting

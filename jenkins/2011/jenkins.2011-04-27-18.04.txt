@@ -1,0 +1,148 @@
+================
+#jenkins Meeting
+================
+
+
+Meeting started by kohsuke at 18:04:40 UTC. The full logs are available
+at
+http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-04-27-18.04.log.html
+.
+
+
+
+Meeting summary
+---------------
+* fcamblor to report the progress/status on plugin compat tester
+  (kohsuke, 18:05:13)
+  * Current plugin compat tester report is available here :
+    http://ci.jenkins-ci.org/job/plugin-compat-tester/ws/reports/PluginCompatReport.xml
+    (fcamblor, 18:06:16)
+  * plugin compat tester goal is to test latest plugin version
+    (available in update center) against some different core (jenkins +
+    hudson)  (fcamblor, 18:07:54)
+  * it's probably worth mentioning that Oracle is working on a similar
+    mechanism for testing compatibility with Hudson  (rpetti, 18:09:20)
+  * If we are talking about making reports visible somewhere in
+    jenkins-ci.org, yes, it's just a bit of backend work, but quite
+    doable.  (kohsuke, 18:11:30)
+  * plugin compat tester macro algorithm is available here :
+    https://wiki.jenkins-ci.org/display/JENKINS/Plugin+Compatibility+Tester
+    (fcamblor, 18:12:17)
+  * IDEA: You could use the SSH plugin to copy stuff to your website
+    (alzamabar, 18:12:37)
+  * ci.jenkins-ci.org and jenkins-ci.org are the same machine, so the
+    "publishing reports" in that part is easy  (kohsuke, 18:14:41)
+  * IDEA: Add discovery of usage of deprecated APIs to report.
+    (hare_brain, 18:14:42)
+  * IDEA: we should have a bug tracker component for this  (kohsuke,
+    18:15:05)
+  * IDEA: The test job should file bugs against the plugins when they
+    fail with new versions of core  (hare_brain, 18:16:28)
+  * 4 statuses for each cells : internal error, compilation failure,
+    test failure, success  (fcamblor, 18:17:12)
+  * First ball deals with compilation, second with tests  (fcamblor,
+    18:17:43)
+  * IDEA: Create a subscription list of maintainers on jenkins-ci.org
+    and have the failing job sent an email to distribution list.
+    (alzamabar, 18:17:56)
+  * ACTION: I'll have jenkins-admin create an issue tracker after this
+    meeting, and people who posted ideas can file RFEs.  (kohsuke,
+    18:19:19)
+  * IDEA: announce meeting as 2 PM CEST instead of CET ;)  (kutzi,
+    18:20:19)
+  * the current report is
+    http://ci.jenkins-ci.org/job/plugin-compat-tester/ws/reports/PluginCompatReport.xml
+    (kohsuke, 18:20:58)
+  * The 3rd icon is there to identify some problems (warning) in the pom
+    .. like bad scm url or user-locked github urls  (fcamblor, 18:20:59)
+  * If you want to contribute, don't hesitate  (fcamblor, 18:23:04)
+  * AGREED: we'll fix some loose ends and check on false positives, then
+    publish this report to a broader audience.  (kohsuke, 18:27:04)
+
+* trademark registration status  (kohsuke, 18:28:05)
+  * ACTION: Kohsuke to actually start talking to lawyers to file the
+    trademark  (kohsuke, 18:28:46)
+
+* Infra updates from rtyler  (kohsuke, 18:30:13)
+  * The two donated machines have arrived at the OSUOSL in Corvallis
+    (rtyler, 18:31:30)
+  * The larger (3U) machine has been racked  (rtyler, 18:31:42)
+  * The smaller (2U) machine is missing some racking hardware, which
+    I'll be purchasing as soon as the chaps at the OSUOSL tell me what's
+    needed  (rtyler, 18:32:02)
+  * ACTION: rtyler to work with the OSUOSL to get the new machines
+    initialized  (rtyler, 18:32:59)
+  * ACTION: rtyler needs to investigate mirrorbrain failures  (rtyler,
+    18:35:13)
+  * and speaking of JIRA/Confluence, the hotspot compilation adjustments
+    in VM greatly improved the stability of those services  (kohsuke,
+    18:35:29)
+  * we also have offers on the table for two additional european mirrors
+    (rtyler, 18:36:12)
+  * once mirrorbrain is properly geo-redirecting again, we'll bring
+    those online  (rtyler, 18:36:39)
+
+* next meeting time  (kohsuke, 18:37:47)
+  * AGREED: next meeting is 5/11 6pm GMT  (kohsuke, 18:40:01)
+  * AGREED:   (rtyler, 18:40:06)
+  * ACTION: Kohsuke to stop using CET and say CEST  (kohsuke, 18:40:13)
+  * ACTION: kohsuke to bring cookies to the next meeting  (rtyler,
+    18:40:31)
+
+Meeting ended at 18:41:37 UTC.
+
+
+
+
+Action Items
+------------
+* I'll have jenkins-admin create an issue tracker after this meeting,
+  and people who posted ideas can file RFEs.
+* Kohsuke to actually start talking to lawyers to file the trademark
+* rtyler to work with the OSUOSL to get the new machines initialized
+* rtyler needs to investigate mirrorbrain failures
+* Kohsuke to stop using CET and say CEST
+* kohsuke to bring cookies to the next meeting
+
+
+
+
+Action Items, by person
+-----------------------
+* kohsuke
+  * kohsuke to bring cookies to the next meeting
+* rtyler
+  * rtyler to work with the OSUOSL to get the new machines initialized
+  * rtyler needs to investigate mirrorbrain failures
+* **UNASSIGNED**
+  * I'll have jenkins-admin create an issue tracker after this meeting,
+    and people who posted ideas can file RFEs.
+  * Kohsuke to actually start talking to lawyers to file the trademark
+  * Kohsuke to stop using CET and say CEST
+
+
+
+
+People Present (lines said)
+---------------------------
+* kohsuke (65)
+* fcamblor (44)
+* rtyler (27)
+* kutzi (7)
+* orrc (6)
+* rpetti (6)
+* bap2000 (4)
+* peepsalot (3)
+* redsolo (3)
+* alzamabar (3)
+* hare_brain (3)
+* robobutler (2)
+* drulli (1)
+* abayer (0)
+
+
+
+
+Generated by `MeetBot`_ 0.1.4
+
+.. _`MeetBot`: http://www.jenkins-ci.org/meetings/

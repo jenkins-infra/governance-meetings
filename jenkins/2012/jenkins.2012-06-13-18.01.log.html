@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:48</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer rtyler hare_brain</span>
+<a name="l-4"></a><span class="tm">18:01:58</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:02:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">recap of actions</span>
+<a name="l-6"></a><span class="tm">18:02:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-05-30-18.01.html</span>
+<a name="l-7"></a><span class="tm">18:02:48</span><span class="nk"> &lt;kohsuke&gt;</span> I think J-on-J is back to action
+<a name="l-8"></a><span class="tm">18:02:56</span><span class="nk"> &lt;kohsuke&gt;</span> but I forgot what the root cause was
+<a name="l-9"></a><span class="tm">18:03:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> I hope you got the check from SPI
+<a name="l-10"></a><span class="tm">18:03:49</span><span class="nk"> &lt;rtyler&gt;</span> I did
+<a name="l-11"></a><span class="tm">18:03:51</span><span class="nk"> &lt;rtyler&gt;</span> check that off the list
+<a name="l-12"></a><span class="tm">18:03:57</span><span class="nk"> &lt;kohsuke&gt;</span> great
+<a name="l-13"></a><span class="tm">18:04:00</span><span class="nk"> &lt;rtyler&gt;</span> I now have money for all kinds of fishes in tokyo
+<a name="l-14"></a><span class="tm">18:04:21</span><span class="nk"> &lt;kohsuke&gt;</span> that reminds me if you want me to place a reservation you guys better decide a date soon
+<a name="l-15"></a><span class="tm">18:04:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> you up for visiting another city in Japan while at it?
+<a name="l-16"></a><span class="tm">18:04:49</span><span class="nk"> &lt;rtyler&gt;</span> let's figure this out later ;)
+<a name="l-17"></a><span class="tm">18:04:51</span><span class="nk"> &lt;kohsuke&gt;</span> There's a conversation of another meet-up 2 hours away
+<a name="l-18"></a><span class="tm">18:04:52</span><span class="nk"> &lt;kohsuke&gt;</span> yeah
+<a name="l-19"></a><span class="tm">18:04:54</span><span class="nk"> &lt;kohsuke&gt;</span> sorry
+<a name="l-20"></a><span class="tm">18:04:59</span><span class="nk"> &lt;kohsuke&gt;</span> let me just record other AIs
+<a name="l-21"></a><span class="tm">18:04:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Meeting Agenda https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-June13thMeeting</span>
+<a name="l-22"></a><span class="tm">18:05:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write to active users of svn.jenkins-ci.org that they can move to GitHub very easily if they want</span>
+<a name="l-23"></a><span class="tm">18:05:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write a scanner that auto-adds Jenkins jobs for plugins</span>
+<a name="l-24"></a><span class="tm">18:05:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to split buildhive code into smaller pieces and install them to jenkins.ci.cloudbees.com</span>
+<a name="l-25"></a><span class="tm">18:05:25</span><span class="nk"> &lt;kohsuke&gt;</span> (this work is in progress)
+<a name="l-26"></a><span class="tm">18:05:27</span><span class="nk"> &lt;rtyler&gt;</span> jinkeys
+<a name="l-27"></a><span class="tm">18:05:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to puppet-ize ircbot on cucumber</span>
+<a name="l-28"></a><span class="tm">18:05:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler and jieryn to KVM up some more slaves somehow</span>
+<a name="l-29"></a><span class="tm">18:06:01</span><span class="nk"> &lt;rtyler&gt;</span> that's not KVMable
+<a name="l-30"></a><span class="tm">18:06:10</span><span class="nk"> &lt;rtyler&gt;</span> I think we'll have to ues jails or something else to isolate the slaves
+<a name="l-31"></a><span class="tm">18:06:13</span><span class="nk"> &lt;kohsuke&gt;</span> meaning I should have scratched that?
+<a name="l-32"></a><span class="tm">18:06:17</span><span class="nk"> &lt;rtyler&gt;</span> but that can be further discussed later
+<a name="l-33"></a><span class="tm">18:06:28</span><span class="nk"> &lt;kohsuke&gt;</span> OK, moving on to the next topic...
+<a name="l-34"></a><span class="tm">18:06:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Selenium tests, switch to Cucumber/Capybara (vjuranek)</span>
+<a name="l-35"></a><span class="tm">18:06:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">vjuranek:</span> you awake? :)
+<a name="l-36"></a><span class="tm">18:06:49</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">rtyler:</span> yup
+<a name="l-37"></a><span class="tm">18:06:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/selenium-tests</span>
+<a name="l-38"></a><span class="tm">18:06:59</span><span class="nk"> &lt;rtyler&gt;</span> great :)
+<a name="l-39"></a><span class="tm">18:07:34</span><span class="nk"> &lt;vjuranek&gt;</span> but I have no experience with UI testing, so I don't consider myself to be quailified to make any comments;-)
+<a name="l-40"></a><span class="tm">18:07:49</span><span class="nk"> &lt;kohsuke&gt;</span> this repository has a few tests on the "new" capybara/cucumber
+<a name="l-41"></a><span class="tm">18:08:06</span><span class="nk"> &lt;kohsuke&gt;</span> and a bigger number of tests in the "old" (rspec?)  style
+<a name="l-42"></a><span class="tm">18:08:13</span><span class="nk"> &lt;rtyler&gt;</span> test::unit
+<a name="l-43"></a><span class="tm">18:08:30</span><span class="nk"> &lt;kohsuke&gt;</span> and we've made some improvements so that it has abstraction for starting/stopping Jenkins
+<a name="l-44"></a><span class="tm">18:08:37</span><span class="nk"> &lt;kohsuke&gt;</span> ... including "/etc/init.d/jenkins start" kind of things
+<a name="l-45"></a><span class="tm">18:09:07</span><span class="nk"> &lt;kohsuke&gt;</span> ... as well as vagrant based VM testing
+<a name="l-46"></a><span class="tm">18:09:12</span><span class="nk"> &lt;kohsuke&gt;</span> so I thought it'd be nice if some of the LTS tests can be automated in this form
+<a name="l-47"></a><span class="tm">18:09:25</span><span class="nk"> &lt;kohsuke&gt;</span> and then that can start running continuously on regular RC branch, etc
+<a name="l-48"></a><span class="tm">18:09:44</span><span class="nk"> &lt;rtyler&gt;</span> where would the jenkins instance run?
+<a name="l-49"></a><span class="tm">18:09:55</span><span class="nk"> &lt;rtyler&gt;</span> we have plenty of free minuts from sauce labs that we're not using, and should be
+<a name="l-50"></a><span class="tm">18:10:01</span><span class="nk"> &lt;kohsuke&gt;</span> that's abstracted away inside the driver
+<a name="l-51"></a><span class="tm">18:10:10</span><span class="nk"> &lt;kohsuke&gt;</span> the default "local" driver does "java -jar jenkins.war"
+<a name="l-52"></a><span class="tm">18:10:23 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-53"></a><span class="tm">18:10:29</span><span class="nk"> &lt;kohsuke&gt;</span> if we are to run this continuously that's what we'll do
+<a name="l-54"></a><span class="tm">18:10:37</span><span class="nk"> &lt;vjuranek&gt;</span> my point was to make some agreement how the tests should look like (cucumber/capybara)
+<a name="l-55"></a><span class="tm">18:10:46</span><span class="nk"> &lt;kohsuke&gt;</span> but we can test RC *.deb and *.rpm with a different driver, running in VM
+<a name="l-56"></a><span class="tm">18:11:19</span><span class="nk"> &lt;kohsuke&gt;</span> IIUC, this is the "new" format we should be writing this in: https://github.com/jenkinsci/selenium-tests/blob/master/features/freestyle_build.feature
+<a name="l-57"></a><span class="tm">18:11:22</span><span class="nk"> &lt;rtyler&gt;</span> if we want to use the sauce labs stuff, that is best supported through cucumber+capybara, and that's also how we (at Lookout) are doing all of our browser testing
+<a name="l-58"></a><span class="tm">18:11:47</span><span class="nk"> &lt;kohsuke&gt;</span> test::unit is just as alien to me, so I'm fine with cucumber+capybara
+<a name="l-59"></a><span class="tm">18:11:54</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-60"></a><span class="tm">18:12:15</span><span class="nk"> &lt;rtyler&gt;</span> my primary concern with test::unit, and why I want to switch us away, is that the tests become *utterly* unreadable
+<a name="l-61"></a><span class="tm">18:12:32</span><span class="nk"> &lt;rtyler&gt;</span> at the very least with cucumber at the outside, you have a document in plain english of what the behavior of jenkins should be
+<a name="l-62"></a><span class="tm">18:12:37</span><span class="nk"> &lt;rtyler&gt;</span> (I like that for other reasons too)
+<a name="l-63"></a><span class="tm">18:12:41</span><span class="nk"> &lt;kohsuke&gt;</span> maybe we can spend the next office hours going through how you run tests and how to write more
+<a name="l-64"></a><span class="tm">18:12:50</span><span class="nk"> &lt;vjuranek&gt;</span> ok, so looks like you agree with cucumber/capybara, so I start learing it and start writing tests in it
+<a name="l-65"></a><span class="tm">18:12:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that's a good idea
+<a name="l-66"></a><span class="tm">18:13:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">vjuranek:</span> are you around for office hours typically?
+<a name="l-67"></a><span class="tm">18:13:15</span><span class="nk"> &lt;kohsuke&gt;</span> (meaning next week same time)
+<a name="l-68"></a><span class="tm">18:14:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to make sure kohsuke and vjuranek have the sauce labs credentials</span>
+<a name="l-69"></a><span class="tm">18:14:02</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">rtyler:</span> not always, but next week it could be probably possible
+<a name="l-70"></a><span class="tm">18:14:33</span><span class="nk"> &lt;kohsuke&gt;</span> I'm also curious what can be improved in the core to help tests
+<a name="l-71"></a><span class="tm">18:14:57</span><span class="nk"> &lt;kohsuke&gt;</span> I suspect verifying the intended side effects can be done more easily with groovy script execution
+<a name="l-72"></a><span class="tm">18:14:59</span><span class="nk"> &lt;kohsuke&gt;</span> or even jruby
+<a name="l-73"></a><span class="tm">18:15:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to schedule next office hours for selenium-tests</span>
+<a name="l-74"></a><span class="tm">18:15:30</span><span class="nk"> &lt;kohsuke&gt;</span> should we move on?
+<a name="l-75"></a><span class="tm">18:15:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">New home for wiki.jenkins-ci.org</span>
+<a name="l-76"></a><span class="tm">18:15:50</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> every element having unique id? IIRC I have some troublems to find some elements in xpath when looked on it last time
+<a name="l-77"></a><span class="tm">18:15:58</span><span class="nk"> &lt;kohsuke&gt;</span> oops
+<a name="l-78"></a><span class="tm">18:16:00</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-79"></a><span class="tm">18:16:10</span><span class="nk"> &lt;vjuranek&gt;</span> np, just quick idea, we can go on
+<a name="l-80"></a><span class="tm">18:16:21</span><span class="nk"> &lt;rtyler&gt;</span> let's come back to that topic after the meeting
+<a name="l-81"></a><span class="tm">18:16:25</span><span class="nk"> &lt;rtyler&gt;</span> I want to pick kohsuke's brain too ;)
+<a name="l-82"></a><span class="tm">18:16:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I attempted JIRA and Wiki updates Monday evening</span>
+<a name="l-83"></a><span class="tm">18:16:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">JIRA updated smoothly but Confluence didn't</span>
+<a name="l-84"></a><span class="tm">18:17:19</span><span class="nk"> &lt;kohsuke&gt;</span> In the end it came up all right, but it renders the "Plugins" page incredibly slow
+<a name="l-85"></a><span class="tm">18:17:32</span><span class="nk"> &lt;kohsuke&gt;</span> and it quickly chokes up when I exposed it to public
+<a name="l-86"></a><span class="tm">18:17:39</span><span class="nk"> &lt;rtyler&gt;</span> in all fairness ,that page is enormous
+<a name="l-87"></a><span class="tm">18:17:44</span><span class="nk"> &lt;rtyler&gt;</span> was this an upgrade to confluence 4?
+<a name="l-88"></a><span class="tm">18:17:51</span><span class="nk"> &lt;kohsuke&gt;</span> Yes,
+<a name="l-89"></a><span class="tm">18:17:54</span><span class="nk"> &lt;kohsuke&gt;</span> 4.2.4 to be exact
+<a name="l-90"></a><span class="tm">18:18:07</span><span class="nk"> &lt;kohsuke&gt;</span> So in the end, like in 3am , I had to cut loss and roll back
+<a name="l-91"></a><span class="tm">18:18:32</span><span class="nk"> &lt;kohsuke&gt;</span> but there's a security advisory out there, so I do need to upgrade
+<a name="l-92"></a><span class="tm">18:18:33</span><span class="nk"> &lt;Seb___&gt;</span> À
+<a name="l-93"></a><span class="tm">18:18:51</span><span class="nk"> &lt;rtyler&gt;</span> there's not a fix in 3.xx?
+<a name="l-94"></a><span class="tm">18:18:56</span><span class="nk"> &lt;kohsuke&gt;</span> No
+<a name="l-95"></a><span class="tm">18:19:05</span><span class="nk"> &lt;rtyler&gt;</span> well shit
+<a name="l-96"></a><span class="tm">18:19:10</span><span class="nk"> &lt;stephend&gt;</span> has anyone run 1.470 with the new LDAP Plugin, here?
+<a name="l-97"></a><span class="tm">18:19:11</span><span class="nk"> &lt;rtyler&gt;</span> do we have any suppor contacts at atlassian?
+<a name="l-98"></a><span class="tm">18:19:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I checked with rtyler and I'm going to try setting up a new instance with our current database dump on cabbage</span>
+<a name="l-99"></a><span class="tm">18:19:20</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">stephend:</span> in the middle of a meeting, hold up
+<a name="l-100"></a><span class="tm">18:19:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">stephend:</span> oh no, don't tell me it's broken again
+<a name="l-101"></a><span class="tm">18:19:30</span><span class="nk"> &lt;stephend&gt;</span> I tried 1.469 last night and it didn't work
+<a name="l-102"></a><span class="tm">18:19:35</span><span class="nk"> &lt;stephend&gt;</span> no, I just haven't yet tried it
+<a name="l-103"></a><span class="tm">18:19:36</span><span class="nk"> &lt;rtyler&gt;</span> MEETING!
+<a name="l-104"></a><span class="tm">18:19:47</span><span class="nk"> &lt;stephend&gt;</span> k, sry
+<a name="l-105"></a><span class="tm">18:20:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">Confluence is already acting strange even in the current version</span>
+<a name="l-106"></a><span class="tm">18:20:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> we can work together and try to bring up a new confluence on another host and see what we see
+<a name="l-107"></a><span class="tm">18:20:16</span><span class="nk"> &lt;kohsuke&gt;</span> it's constantly using 30% CPU, and always rather slow
+<a name="l-108"></a><span class="tm">18:20:31</span><span class="nk"> &lt;rtyler&gt;</span> yeah, needs to move off that vm anyways
+<a name="l-109"></a><span class="tm">18:20:40</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, and by moving it to another machine we can give it more memory
+<a name="l-110"></a><span class="tm">18:20:52</span><span class="nk"> &lt;kohsuke&gt;</span> Both JIRA and Confluence could really use more memory
+<a name="l-111"></a><span class="tm">18:21:02</span><span class="nk"> &lt;kohsuke&gt;</span> so that's the plan.
+<a name="l-112"></a><span class="tm">18:21:03</span><span class="nk"> &lt;rtyler&gt;</span> will you have time this weekend? I can make room in my schedule for jenkins infra this upcoming weekend
+<a name="l-113"></a><span class="tm">18:21:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> I need to check with my wife
+<a name="l-114"></a><span class="tm">18:21:28</span><span class="nk"> &lt;kohsuke&gt;</span> but I'd like to take that offer
+<a name="l-115"></a><span class="tm">18:21:41</span><span class="nk"> &lt;kohsuke&gt;</span> I could really use your Puppet-fu
+<a name="l-116"></a><span class="tm">18:21:42</span><span class="nk"> &lt;abayer&gt;</span> (argh, sorry, in a meeting)
+<a name="l-117"></a><span class="tm">18:21:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler and kohsuke to look at moving confluence over to a new host this coming weekend (pending Mrs. Kawaguchi approval)</span>
+<a name="l-118"></a><span class="tm">18:22:10</span><span class="nk"> &lt;kohsuke&gt;</span> so that's it for this. mostly FYI
+<a name="l-119"></a><span class="tm">18:22:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I have a cookout saturday afternoon, so in the morning or on Sunday
+<a name="l-120"></a><span class="tm">18:22:25</span><span class="nk"> &lt;kohsuke&gt;</span> "cookout"? another lookout thing?
+<a name="l-121"></a><span class="tm">18:22:52</span><span class="nk"> &lt;kohsuke&gt;</span> moving on to the next topic?
+<a name="l-122"></a><span class="tm">18:23:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">maven.jenkins-ci.org to repo.jenkins-ci.org switch over</span>
+<a name="l-123"></a><span class="tm">18:23:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> grilling, burgers, sausages, etc ;)
+<a name="l-124"></a><span class="tm">18:23:15</span><span class="nk"> &lt;rtyler&gt;</span> I already like this topic
+<a name="l-125"></a><span class="tm">18:23:17</span><span class="nk"> &lt;kohsuke&gt;</span> BBQ outing, got it.
+<a name="l-126"></a><span class="tm">18:23:18</span><span class="nk"> &lt;rtyler&gt;</span> death to nexus
+<a name="l-127"></a><span class="tm">18:23:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I switched over the update center index generation entirely to Artifactory a few days ago</span>
+<a name="l-128"></a><span class="tm">18:24:00</span><span class="nk"> &lt;kohsuke&gt;</span> and I verified that it's serving the same things
+<a name="l-129"></a><span class="tm">18:24:22</span><span class="nk"> &lt;kohsuke&gt;</span> so on all technical fronts, we are ready to retire maven.jenkins-ci.org now
+<a name="l-130"></a><span class="tm">18:24:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jieryn:</span> are you awake?
+<a name="l-131"></a><span class="tm">18:25:01</span><span class="nk"> &lt;kohsuke&gt;</span> when we do the switch over, we'll set up Apache to reverse proxy maven.jenkins-ci.org:8081 (deploy endpoint) to repo.jenkins-ci.org
+<a name="l-132"></a><span class="tm">18:25:12</span><span class="nk"> &lt;kohsuke&gt;</span> and HTTP redirect for maven.jenkins-ci.org to repo.jenkins-ci.org
+<a name="l-133"></a><span class="tm">18:25:29</span><span class="nk"> &lt;kohsuke&gt;</span> there'll be one last rsync to move bits from maven.j.o to repo.j.o
+<a name="l-134"></a><span class="tm">18:25:43</span><span class="nk"> &lt;kohsuke&gt;</span> and putting JFrog logo into the sponsor section (which has been long overdue)
+<a name="l-135"></a><span class="tm">18:26:17</span><span class="nk"> &lt;kohsuke&gt;</span> so I guess I'm seeking the blessing of this meeting to this, which is technically still a "proof of concept"
+<a name="l-136"></a><span class="tm">18:26:18</span><span class="nk"> &lt;rtyler&gt;</span> I'm okay with all of those words
+<a name="l-137"></a><span class="tm">18:26:28</span><span class="nk"> &lt;rtyler&gt;</span> http://i.imgur.com/OabsH.jpg
+<a name="l-138"></a><span class="tm">18:26:44</span><span class="nk"> &lt;rtyler&gt;</span> I figure abayer and jieryn are better blessing giving candidates
+<a name="l-139"></a><span class="tm">18:26:54</span><span class="nk"> &lt;kohsuke&gt;</span> I take that image as your +1
+<a name="l-140"></a><span class="tm">18:27:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> ^^
+<a name="l-141"></a><span class="tm">18:27:40</span><span class="nk"> &lt;kohsuke&gt;</span> anyone else cares to send in their +1/-1s?
+<a name="l-142"></a><span class="tm">18:28:04</span><span class="nk"> &lt;kohsuke&gt;</span> :-(
+<a name="l-143"></a><span class="tm">18:28:19</span><span class="nk"> &lt;vjuranek&gt;</span> +1
+<a name="l-144"></a><span class="tm">18:28:20</span><span class="nk"> &lt;rtyler&gt;</span> where's dean, this meeting is disappointing
+<a name="l-145"></a><span class="tm">18:28:40</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I say just go for it then
+<a name="l-146"></a><span class="tm">18:28:41</span><span class="nk"> &lt;kohsuke&gt;</span> he's somewhere in a beach of Hawaii
+<a name="l-147"></a><span class="tm">18:28:45</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-148"></a><span class="tm">18:28:58</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, I think I'll go ahead and do it anyway
+<a name="l-149"></a><span class="tm">18:29:11</span><span class="nk"> &lt;kohsuke&gt;</span> So that's it for today
+<a name="l-150"></a><span class="tm">18:29:19</span><span class="nk"> &lt;rtyler&gt;</span> send it home
+<a name="l-151"></a><span class="tm">18:29:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-152"></a><span class="tm">18:29:46</span><span class="nk"> &lt;kohsuke&gt;</span> I guess June 27th, the same time
+<a name="l-153"></a><span class="tm">18:29:59</span><span class="nk"> &lt;rtyler&gt;</span> works for me
+<a name="l-154"></a><span class="tm">18:30:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the next meeting is in 2 weeks (Jun 27), the same time</span>
+<a name="l-155"></a><span class="tm">18:30:06</span><span class="nk"> &lt;rtyler&gt;</span> regular cadence is good IMO
+<a name="l-156"></a><span class="tm">18:30:11</span><span class="nk"> &lt;kohsuke&gt;</span> Aye
+<a name="l-157"></a><span class="tm">18:30:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

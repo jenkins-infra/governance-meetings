@@ -1,0 +1,291 @@
+19:01:15 <kohsuke> #startmeeting
+19:01:15 <robobutler> Let the Jenkins meeting commence!
+19:01:23 <kohsuke> #chairs hare_brain abayer rtyler
+19:01:30 <kohsuke> #chair hare_brain abayer rtyler
+19:01:30 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+19:01:41 <kohsuke> #info topic is in https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+19:02:10 <kohsuke> #topic recap of actions
+19:02:23 <kohsuke> #info actions are http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-02-22-19.00.html
+19:02:58 <kohsuke> ndeloof1: rtyler: abayer: ping
+19:03:08 <docbop> Using a shell to run python nosetests, it creates a results file, issue since working directory is not jenkins it can't create and test fails.  If I chown and chmod the file all tests after that are fine.  What is a workaround?
+19:03:41 <kohsuke> if none of them are there, I guess we need to skip them
+19:04:05 <kohsuke> #topic review current status and plans for the new e-mailer
+19:04:14 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/The+new+EMailer
+19:04:40 <kohsuke> Slide-O-Mix: this is yours
+19:05:42 <abayer> Sorry, busy - I haven't done anything on the board vote proposal.
+19:06:11 <kohsuke> abayer: maybe I can talk to you about my idea tomorrow?
+19:06:16 <kohsuke> Do you already have some thoughts
+19:06:17 <kohsuke> ?
+19:06:19 <abayer> Definitely.
+19:06:36 <abayer> And no, I don't really have much.
+19:06:42 <kohsuke> wrt new e-mailer, I'm not sure if anyone is actively pushing on the effort
+19:07:00 <rpetti> it's been stagnating for a while
+19:07:01 <kohsuke> I think this is one of those things that everyone agree that it'd be nice but lacking the person that does the heavy lifting
+19:07:38 <kohsuke> Once I complete a round of UI enhancements maybe this could be the next target?
+19:08:09 <kohsuke> Anyway, sounds like we need to get to the next topic given that Slide-O-Mix isn't here
+19:08:17 <kohsuke> #topic Google SoC mentorship
+19:08:30 * kohsuke looks for the URL to the Google group thread
+19:09:08 <kohsuke> #info https://groups.google.com/d/topic/jenkinsci-dev/5DlvBKBzjUc/discussion
+19:09:21 <kohsuke> #info https://groups.google.com/d/topic/jenkinsci-dev/-9aLc11lUdU/discussion
+19:09:37 <kohsuke> oh, the dead line is this Friday
+19:10:04 <kohsuke> I think we should at least submit something
+19:10:16 <kohsuke> The main question for this forum is if anyone else is willing to be listed as a mentor
+19:10:36 <orrc> if someone is willing to be a mentor, I think we have to have an "ideas" page up soon to go with the application
+19:10:52 <dhaun> yeah, I was about to ask about your ideas page :)
+19:11:10 <dhaun> this will be an important part of the application
+19:11:13 <kohsuke> I think we have pages from the past that lists some of them
+19:11:31 <dhaun> I found one from 2009 on the wiki - maybe brush that up a little?
+19:11:34 <kohsuke> https://wiki.jenkins-ci.org/display/JENKINS/Google+Summer+of+Code+Idea+List
+19:11:56 <kohsuke> Yeah
+19:12:05 <dhaun> that's the one
+19:12:24 <kohsuke> Some of those are already done
+19:12:34 <kohsuke> But we can add more
+19:12:42 <kohsuke> #idea mobile interface
+19:12:52 <kohsuke> #idea that e-mail enhancement
+19:13:07 <kohsuke> #idea IDE integration (for Martin)
+19:13:13 <rpetti> jenkinsmobi?
+19:13:39 <kohsuke> The "problem" with that is that it's not open-source
+19:13:55 <rpetti> :(
+19:13:57 <kohsuke> I thoguht mobile might be something students might be interested in
+19:14:13 <kohsuke> I've heard that those youngsters don't know what PCs are
+19:14:28 <orrc> something with pre-tested commit could be an idea
+19:14:39 <kohsuke> yeah
+19:14:46 <kohsuke> #idea pre-tested commit
+19:14:48 * orrc looks at top JIRAs :)
+19:14:58 <ndeloof1> can't stay online - just qui message to tell you I didn't act for the action I had. Will do before next meeting
+19:15:18 <kohsuke> ndeloof1: I can just add the logo to Drupal
+19:16:19 <kohsuke> #action kohsuke to add CB logo on the "sponsors" block, taking over ndeloof1's action from the last week
+19:16:51 <kohsuke> Ideally GSoC topics should be something that doesn't require too much Jenkins experience upfront
+19:17:10 <kohsuke> No other volunteers for mentors?
+19:17:53 <kohsuke> All right
+19:18:00 <dhaun> regarding GSoC: the application form has an option where you can list other organizations that were in GSoC in the past to vouch for you.
+19:18:16 <kohsuke> OK
+19:18:39 <kohsuke> Do you know any orgs that can vouch for us?
+19:18:45 <dhaun> try to find some - or if you want, we (Geeklog) could vouch for you
+19:19:08 <jieryn> can someone's gsoc project be to be a gsoc mentor? with $2k incentive i'll find the time to mentor
+19:19:17 <kohsuke> :-)
+19:19:28 <kohsuke> that's so meta
+19:19:39 <jieryn> lol
+19:19:45 <dhaun> the org gets $500 per student - we usually pass that on to our mentors
+19:19:58 <jieryn> ah
+19:20:41 <kohsuke> dhaun: thanks. I'll take your offer, and we'll ask rtyler to tweet to find other orgs who can vouch for us
+19:21:02 <kohsuke> jieryn: does that mean I can list you as another volunteer?
+19:21:18 <kohsuke> (it's short of $2K, but...)
+19:21:40 <kohsuke> I guess the answer is no :-)
+19:21:54 <kohsuke> All right, should we move on?
+19:22:04 <kohsuke> #topic Baseline for next major LTS release
+19:22:09 <jieryn> sorry, i don't think i could be a good mentor with time constrains
+19:22:18 <kohsuke> jieryn: I understand
+19:22:26 <kohsuke> sorry to put you on the spot
+19:22:42 <jieryn> np :)
+19:22:54 <kohsuke> back to LTS, the normal procedure is to see if hare_brain has some rough ideas about the next base version
+19:23:20 <hare_brain> Yes, and we've been so busy on other things that we actually haven't moved forward off of 1.424 yet.
+19:23:55 <kohsuke> looking at changelog now
+19:24:27 <vjuranek> 1.447 has quite good user rating
+19:24:51 <jieryn> but no breadcrumbs
+19:25:13 <kohsuke> 448 had some regressions that only got fixed in 450
+19:25:27 <kohsuke> Hmm, breadcrumbs isn't listed in changelog
+19:25:30 <kohsuke> neither context menu
+19:26:03 <kohsuke> checking when they got released
+19:26:21 <hare_brain> That's in 1.455
+19:26:27 <hare_brain> Breadcrumb now supports drop-down menu for faster navigation (discussion)
+19:26:27 <jieryn> i think more recent versions have a host of real nice UI features / plugins available
+19:26:52 <jieryn> but, unproven obviously
+19:27:02 <kohsuke> hare_brain: yeah, you are right, I didn't realize it hasn't been released yet
+19:27:31 <hare_brain> I would vote for 1.447 as the base for the next LTS, based on the community ratings.
+19:28:22 <hare_brain> When Yahoo! is ready to jump forward again, I might have us jump ahead of that, to anticipate the next LTS.
+19:28:38 <mykhyggz> So this bash script gives no console ouput until the job is done. Should it be possible to make it output while running?
+19:29:08 <Slide-O-Mix> haha, I just realized that I was missing the meeting!
+19:29:53 <kohsuke> Yeah, 447 is OK
+19:30:01 <kohsuke> I think another candidate is 452
+19:30:22 <kohsuke> there has been a number of packaging issues fixed in 448-452 range
+19:30:39 <kohsuke> and that has at least sticky save button right
+19:31:15 <Slide-O-Mix> kohsuke: if we have a chance could we go back to the new emailer topic. I didn't have a reminder set on my meeting notice. if not, I can wait for next meeting
+19:31:16 <kohsuke> Slide-O-Mix: if we have time after a round we can come back to it
+19:31:19 <Slide-O-Mix> thanks
+19:31:31 <vjuranek> I have no problem with 452 - more recent version, less effort with backporting;-)
+19:32:02 <hare_brain> I was going to suggest 1.447 base, and backport things from more recent releases. But I'm not married to that.
+19:32:23 <kohsuke> hare_brain: any preference on 447 vs 452?
+19:32:23 <kohsuke> is 452 too young?
+19:32:30 <hare_brain> There's a pretty big sample size for 1.447, but not so much for 1.452
+19:32:37 <hare_brain> That was my only reservation about it.
+19:33:09 <kohsuke> And I just realized 452 is practical like the last release
+19:33:11 <rtyler> zaytsev: pong
+19:33:22 <rtyler> oh whoops
+19:33:30 <hare_brain> Although by the time LTS is ready, it will have been out for a while. :)
+19:33:41 <kohsuke> and it'll never gets any eyeballs because we are telling people to upgrade to 454
+19:33:49 <hare_brain> Ah right.
+19:33:51 <kohsuke> OK, let's do 1.447
+19:33:58 <hare_brain> +1
+19:34:18 <kohsuke> vjuranek: OK with that?
+19:34:24 <vjuranek> yes, no problem
+19:34:28 <kohsuke> #agreed next LTS base is 1.447
+19:34:48 <kohsuke> any release time line in mind?
+19:34:58 <vjuranek> in 2-3 weeks?
+19:35:17 <kohsuke> #agreed we'll shoot for 1.447.1 in 2-3 weeks
+19:35:26 <kohsuke> next topic?
+19:35:47 <kohsuke> #topic maven.jenkins-ci.org to repo.jenkins-ci.org
+19:36:12 <kohsuke> #info security update distracted me away from completing the PoC
+19:36:45 <rtyler> #info PoC == proof of concept
+19:36:46 <rtyler> :)
+19:36:51 <kohsuke> but we got the forward tunneling working so that you can continue to deploy the old maven.jenkins-ci.org:8081 and it'll be reverse-proxied to repo.jenkins-ci.org
+19:36:59 <rpetti> XD
+19:37:01 <jieryn> pretty hot
+19:37:32 <kohsuke> I saw some people had already logged into Artifactory
+19:37:41 <jieryn> worked with my jenkins account creds
+19:37:48 <kohsuke> I've also deployed some big test artifacts to check that it works
+19:38:15 <kohsuke> #info a few folks (jieryn among others) reported about small sporadic outages in the service
+19:38:31 <kohsuke> ... so we'd like to start monitoring those
+19:39:02 <jieryn> PoC is blisteringly fast, btw
+19:39:20 <kohsuke> I still need to make sure the backend update center generation works
+19:39:30 <kohsuke> that is really the only remaining work item
+19:39:38 <aheritier> Any interest in a mass update of all poms to update repo entries ?
+19:39:47 <aheritier> or we let everyone update its repo ?
+19:39:58 <kohsuke> aheritier: ah, interesting idea
+19:40:02 <aheritier> Not difficult to do
+19:40:12 <aheritier> But just to see if we want ...
+19:40:36 <kohsuke> I think it'd be good to do
+19:40:36 <Slide-O-Mix> I'd do a deadline for people to update by themselves
+19:41:22 <kohsuke> OK, so we'll first officially embrace the switch-over, then create a Wiki page showing updates to the POM,
+19:41:23 <aheritier> Ok, I have everything necessary to clone everything and to update poms
+19:41:37 <kohsuke> and in a while maybe we can come back to asking aheritier to bulk update POM?
+19:41:42 <aheritier> kohsuke: ok
+19:41:57 <rpetti> will this still work with poms that are targetting old versions of hudson?
+19:42:10 <kohsuke> Plugins not updated means new people will fail to build them out of box, so it'd be good to fix
+19:42:11 <aheritier> rpetti: yes
+19:42:15 <kohsuke> rpetti: Yes
+19:42:22 <rpetti> ok
+19:42:28 <kohsuke> It's just <repository> change
+19:42:33 <aheritier> for me we change all URLs and repoIDs
+19:42:35 <aheritier> yep
+19:42:36 <jieryn> and pluginrepository
+19:42:39 <rpetti> kk
+19:42:39 <kohsuke> that, too
+19:42:41 <aheritier> yes
+19:42:59 <hare_brain> But, any repositories in the parent poms for those old versions wouldn't get converted over.
+19:43:15 <kohsuke> True
+19:43:27 <aheritier> yes we don't touch old parents
+19:43:34 <kohsuke> So we can't block Maven from hitting non-existent server
+19:43:41 <kohsuke> ... and taking longer
+19:43:42 <aheritier> and if plugins didn't redefined repo, they'll fails
+19:43:49 <hare_brain> Like m.g.o-public
+19:43:57 <hare_brain> (We got bit pretty hard by that.)
+19:44:11 <aheritier> we can always have in our docs the tip for the mirror
+19:44:15 <aheritier> for old deps
+19:44:23 <aheritier> but yes maven is stupid
+19:44:27 <kohsuke> Yeah, we should have done this sooner
+19:44:37 <kohsuke> And my apologies, but that's water under the bridge
+19:44:42 <aheritier> it will check for all repo ids it finds
+19:44:55 <aheritier> ok no problem
+19:45:10 <kohsuke> Oh, so maybe if we keep the same repo ID and just set the URL to repo.jenkins-ci.org, would that clobber the problematic URL?
+19:45:23 <kohsuke> anyway, we need a bit more experiment
+19:45:31 <kohsuke> And more importantly, if anyone has any objections/concerns about repo.jenkins-ci.org, please speak up soon
+19:45:35 <jieryn> yahoo should be using a MRM ;-b
+19:45:43 <hare_brain> We are.
+19:46:03 <kohsuke> I think we have more attention from JFrog people before the switch over than afterward, so now is the time to have them work for us ;-)
+19:46:26 <kohsuke> but otherwise let's move on to the next topic...
+19:46:31 <hare_brain> Yup
+19:46:39 <aheritier> As far as the offer a quality of services ..
+19:46:42 <aheritier> yep
+19:46:55 <kohsuke> and that means going back to new e-mailer from Slide-O-Mix
+19:46:55 <hare_brain> Go back to the new emailer topic?
+19:47:03 <kohsuke> #topic Review current status and plans for The new EMailer
+19:47:04 <Slide-O-Mix> sorry for being late
+19:47:24 <kohsuke> np
+19:47:45 <Slide-O-Mix> It seems like there is a lot of desire to have a new emailer in the core, and there is some information on that wiki page in the agenda, is it still something that is desired?
+19:47:57 <kohsuke> I think so
+19:48:23 <Slide-O-Mix> I can start taking a look if people really are interested
+19:48:40 <jieryn> this would be a whole cloth replacement ?
+19:48:55 <Slide-O-Mix> That is what is proposed on the new emailer wiki page
+19:48:55 <kohsuke> In my mind the main work is to refactor email-ext more into extension points + implementations so that we can bundle some subset of it
+19:49:31 <kohsuke> Slide-O-Mix: if you are willing to give it a stab, I think that's great
+19:49:37 <Slide-O-Mix> kohsuke: email-ext is done with a few extension points, are there others that you are thinking of?
+19:50:10 <kohsuke> Yes, I'd like the config UI out of the box to be bit simpler
+19:50:25 <Slide-O-Mix> yeah, it's growing like weeds
+19:50:25 <kohsuke> I don't recall all the details, but for example controlling when someone gets e-mail isn't pluggable
+19:50:30 <jieryn> so we'd rip out the old email configuration, provide some xstream aliases to get as close to the previous behavior, and then bundle email-ext along with the other external but bundled plugins?
+19:50:45 <Slide-O-Mix> triggers are pluggable
+19:51:16 <Slide-O-Mix> but I can take another look
+19:51:21 <kohsuke> jieryn: classes need to be in there, deprecated and hibenated
+19:51:29 <jieryn> k
+19:51:31 <kohsuke> other plugins might depend on those
+19:51:35 <jieryn> right
+19:51:48 <Slide-O-Mix> one other thing I would like to consider is consuming token-macro as a major source of tokens for substitution
+19:51:49 <kohsuke> but yes, xstream aliases to new classes
+19:51:57 <Corey> I'm using git, and my branch specifier is set to origin/master; yet my builds are failing on: You are not on branch 'master' but on '(no branch)'
+19:52:00 <Slide-O-Mix> if this is going to be part of core, then token macro would need to be as well, correct?
+19:52:06 <kohsuke> Slide-O-Mix: yes
+19:52:16 <kohsuke> it's more like just "bundled plugin", not a part of core
+19:52:21 <Slide-O-Mix> right
+19:52:38 <kohsuke> But yes, that's an unification I'd like to see, too
+19:52:46 <kohsuke> Slide-O-Mix: maybe we should look at this in the office hours
+19:52:50 <kohsuke> ... if your time permits
+19:53:02 <Slide-O-Mix> kohsuke: I'd have to check when those are, but that would be cool
+19:53:13 <kohsuke> I think this is mostly technical deep dive to scope out what needs to be done
+19:53:21 <Slide-O-Mix> agreed
+19:53:23 <kohsuke> it's the same time as this meeting
+19:53:27 <Slide-O-Mix> oh, ok
+19:53:33 <kohsuke> every other week
+19:53:34 <Slide-O-Mix> time wise that should be fine (during my lunch)
+19:54:16 <Slide-O-Mix> I've started looking at porting to use the token macro plugin, perhaps I'll hold off on that a bit
+19:54:29 <kohsuke> #action Slide-O-Mix kohsuke and other interested parties to do technical deep dive of the new emailer work in office hours
+19:54:44 <kohsuke> Can we wrap up now?
+19:54:48 <Slide-O-Mix> I'm good, thanks
+19:54:52 <stephenc_> Did I miss it?
+19:55:04 <Slide-O-Mix> stephenc_: off by an hour
+19:55:11 <kohsuke> is that something quick?
+19:55:19 <stephenc_> Or did you forget to add credentials plugin
+19:55:56 <kohsuke> OK, that's not gonna fit in the remaining time, is it?
+19:56:05 <stephenc_> And how we will be looking for testers
+19:56:18 <stephenc_> Just that we will be looking for testers
+19:56:29 <kohsuke> #topic credentials plugins
+19:56:39 <stephenc_> And it would be good for people to think about it for the next lts
+19:56:41 <kohsuke> #info we are considering to use that in the SSH slaves plugin
+19:56:52 <kohsuke> #info there's a branch that already integrates the fix, and we are looking for testers
+19:57:10 <stephenc_> I have a bit of work for same with scp and ash plugins in draft
+19:57:12 <jieryn> the other one would be subversion, yah?
+19:57:19 <stephenc_> Yep next on my list
+19:57:23 <stephenc_> And then hit
+19:57:31 <jieryn> svn credentials is a hugely fragile thing it seems, tons of jiras on it, mass confusion, etc
+19:57:35 <stephenc_> S/hit/giy/
+19:57:39 <kohsuke> :-)
+19:57:43 <stephenc_> Stupid iPhone
+19:57:57 <kohsuke> All right, maybe more about it next time?
+19:58:08 <stephenc_> Git also for integration
+19:58:23 <kohsuke> #topic next meeting time
+19:58:27 <stephenc_> After that there should be enough examples for everyone else to take up
+19:58:35 <kohsuke> oh, sorry
+19:58:58 <kohsuke> the same time, in 2 weeks?
+19:59:07 <kohsuke> When is the daylight saving time switch?
+19:59:11 <stephenc_> Ie I will draft integration for scp, ssh, svn and git
+19:59:17 <jieryn> this weekend
+19:59:27 <stephenc_> Eu is last w/e in march
+19:59:37 <kohsuke> Is this meeting pegged to UTC or US?
+20:00:02 <kohsuke> I guess it's been pegged to US time zone
+20:00:11 <kohsuke> I don't remember ever doing this in noon my time
+20:00:32 <kohsuke> I guess that means for the rest of the world this meeting is one hour earlier next time
+20:00:32 <jieryn> you're in a different tz every other week
+20:00:42 <kohsuke> :-)
+20:00:47 <jieryn> probbaly ran out of stamp pages in your passport
+20:00:48 <hare_brain> We've been biased towards pinning to 11am Pacific
+20:00:55 <jieryn> nod
+20:01:03 <kohsuke> Is that a problem with others?
+20:01:12 <stephenc_> Hey I still ain't going to be able to meet that time
+20:01:37 <stephenc_> KK, you know how Nicholas objects to anything after 5pm GMT
+20:01:46 <stephenc_> ;-)
+20:01:50 <kohsuke> Yeah
+20:02:00 <kohsuke> And Tokyo folks are totally tuned out because it's 2am their time
+20:02:15 <kohsuke> At some point I'd love to try out more creative rotating schedule or something
+20:02:24 <kohsuke> stephenc_:  you willing to come up with some?
+20:02:33 <stephenc_> Ha!
+20:02:52 <kohsuke> But I think for the next week let's stick to 11am PDT
+20:02:59 <stephenc_> We can try and get spike to arrange the next face to face to overlap
+20:03:01 <hare_brain> Week after.
+20:03:08 <kohsuke> right, sorry
+20:03:10 <kohsuke> 21st
+20:03:29 <kohsuke> #info we are open to try out new schedules if someone has a proposal
+20:03:37 <ndeloof1> stephenc_ I don't object, my wife and children do
+20:03:41 <hare_brain> +1 for me. I get to keep my recurring calendar entry. :)
+20:03:59 <kohsuke> #agreed but next meeting is 7/21 11PDT (beware of US day-light saving time  change)
+20:04:05 <kohsuke> 11am PDT
+20:04:14 <kohsuke> #endmeeting

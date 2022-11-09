@@ -1,0 +1,87 @@
+18:00:11 <kohsuke> #startmeeting
+18:00:11 <robobutler> Let the Jenkins meeting commence!
+18:00:19 <rtyler> you've got to remove the moderation first :)
+18:00:23 <rtyler> else it will just be us talking :P
+18:00:26 <kohsuke> #chair rtyler hare_brain
+18:00:26 <robobutler> Current chairs: hare_brain kohsuke rtyler
+18:00:38 <kohsuke> Thanks, I can never remember those IRC mode flags
+18:00:50 <kohsuke> #topic actions from the last meeting
+18:01:11 <rtyler> oleg-nenashev is really the only person with an older action AFAICT
+18:01:25 <oleg-nenashev> yay
+18:01:45 <oleg-nenashev> which action have I missed? :)
+18:01:52 <kohsuke> oleg-nenashev to follow-up on SECR in the mailing list
+18:01:59 <oleg-nenashev> oops
+18:02:01 <kohsuke> (see http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-06-22-18.00.html)
+18:02:13 <oleg-nenashev> I need to get approval from my manager first
+18:02:51 <kohsuke> OK, so let's say "work in progress"
+18:02:58 <rtyler> heh
+18:03:15 <oleg-nenashev> my bad, sorry
+18:03:49 <kohsuke> moving on
+18:04:02 <kohsuke> #topic LTS status check
+18:04:17 <ogondza> I have done some testing and all looks good
+18:04:18 <kohsuke> lots of excitement around the first 2.x LTS!!
+18:04:29 <danielbeck> what could possibly go wrong?
+18:04:39 <ogondza> have not heared from more people than usual, though
+18:04:49 <rtyler> there's that characteristic german optimism xD
+18:04:56 <ogondza> yeah, let's do it
+18:05:10 <oleg-nenashev> ogondza: We stick to remoting-2.59, right?
+18:05:20 <kohsuke> #agreed 2.7.1 is good to go
+18:05:23 <ogondza> yes
+18:05:27 <oleg-nenashev> ok
+18:05:30 <ogondza> I intend to bunp it in .2
+18:05:35 <kohsuke> oops
+18:05:51 <kohsuke> sorry, then "2.7.2 is good to go"?
+18:05:56 <oleg-nenashev> yes
+18:05:59 <danielbeck> ???
+18:06:01 <danielbeck> no
+18:06:07 <oleg-nenashev> :D
+18:06:22 <kohsuke> I'm confused
+18:06:26 <kohsuke> Oh
+18:06:28 <ogondza> .1 is good to go
+18:06:31 <kohsuke> You meant remoting 2.59 will be .2
+18:06:47 <kohsuke> So my earlier # agreed is in good standing
+18:06:52 <oleg-nenashev> yes
+18:06:57 <ogondza> I promissed Oleg to backport it in next release, sorry
+18:07:01 <kohsuke> Anything else on this ogondza ?
+18:07:06 <ogondza> not from me
+18:07:11 <kohsuke> #topic GSoC status
+18:07:19 * oleg-nenashev starts typing
+18:07:28 <danielbeck> oleg-nenashev it's called copy & paste :P
+18:07:35 <oleg-nenashev> Status update:
+18:07:35 <oleg-nenashev> #info: We finished Mid-term evaluations of students
+18:07:35 <oleg-nenashev> #info: 3 Projects have been cancelled: Support Core, Plugin Documentation Publishing, Jenkins Usage Stats analysis
+18:07:35 <oleg-nenashev> #info: 2 projects are active: Jenkins Web UI improvements and External Workspace Manager
+18:07:35 <oleg-nenashev> #info: Links to mid-term presentations by students are here: https://jenkins.io/blog/2016/06/21/gsoc-midterm-presentations-ann/
+18:07:35 <oleg-nenashev> #action: oleg_nenashev to follow-up with mentors on JW presentations and Mentor Summit
+18:07:35 <oleg-nenashev> #action: oleg_nenashev to follow-up with rtyler on the SPI side (project money)
+18:07:36 <oleg-nenashev> #action: oleg_nenashevto finally send something to alyssat
+18:08:34 <oleg-nenashev> #info: We changed the schedule of Public Office Hours, TBA today
+18:09:04 <oleg-nenashev> So this is the current status
+18:09:09 <oleg-nenashev> Generally we;re fine
+18:09:22 <kohsuke> I've seen the mid-term presentation and there were some really exciting project accomplishments
+18:09:24 <oleg-nenashev> But students still do not bother to join this meeting
+18:09:57 <oleg-nenashev> kohsuke: Yes, there is some good outcome for the community
+18:10:12 <oleg-nenashev> Also much topics to consider for the next year
+18:10:14 <danielbeck> oleg-nenashev how public can we do a retrospective once this is done? Any limitations?
+18:11:05 <oleg-nenashev> danielbeck: Any preferences? Now we have mentor-internal and org-admin-internal retrospective docs
+18:11:19 <oleg-nenashev> Also we would like to get feedback from students
+18:11:42 <danielbeck> oleg-nenashev Given that next year it may be a different set of mentors, I'd like to make at least the outcome as public as possible
+18:11:54 <oleg-nenashev> OK
+18:12:14 <danielbeck> hence my question how restricted we would be in discussing what happened
+18:12:15 <oleg-nenashev> Requires some filtering, but I'll do it before Contributor Summit
+18:12:19 <danielbeck> okay
+18:12:42 <oleg-nenashev> danielbeck: Not so much secrets there in any case
+18:13:24 <kohsuke> I agree that it'd be good to schedule some retrospective for this GSoC as a whole, at some point as input to the next year
+18:13:30 <oleg-nenashev> We just don't want to to have a kind of public person feedback
+18:13:38 <danielbeck> right
+18:13:46 <kohsuke> If some people want to give feedback anonymously, I think oleg-nenashev would be happy to talk to them in private and summarize the lessons
+18:13:53 <oleg-nenashev> yep
+18:14:12 <kohsuke> It sounds like there's no restriction from the GSoC program side about what can be public vs what needs to be private
+18:14:51 <kohsuke> Shall we wrap up?
+18:14:56 <kohsuke> Any more on GSoC?
+18:15:04 <oleg-nenashev> nothing from me
+18:15:11 <kohsuke> #topic next meeting
+18:15:26 <oleg-nenashev> #action: oleg_nenashev to schedule the GSoC retrospective
+18:15:29 <kohsuke> #info next meeting will be July 20th
+18:15:45 <kohsuke> Happy summer time, everyone
+18:15:49 <kohsuke> #endmeeting

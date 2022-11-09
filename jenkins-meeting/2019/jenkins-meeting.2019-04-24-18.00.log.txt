@@ -1,0 +1,85 @@
+18:00:04 <danielbeck> #startmeeting
+18:00:04 <robobutler> Let the Jenkins meeting commence!
+18:00:12 <danielbeck> #chair rtyler kohsuke
+18:00:12 <robobutler> Current chairs: danielbeck kohsuke rtyler
+18:00:16 <danielbeck> hi everyone!
+18:00:22 <danielbeck> #info https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+18:00:38 <bitwiseman> hello
+18:00:47 <danielbeck> #topic Recap last meeting actions
+18:01:01 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-04-10-18.00.html
+18:01:04 <danielbeck> no actions
+18:01:25 <alyssat_> hi danielbeck
+18:01:26 <danielbeck> I think we can move on then
+18:01:29 <danielbeck> o/
+18:01:38 <markewaite> o/
+18:01:42 <danielbeck> #topic LTS status check
+18:02:01 <danielbeck> hmmm, no ogondza around
+18:02:49 <danielbeck> #info https://groups.google.com/forum/#!msg/jenkinsci-dev/NKf22rIafiE/0fJFKwCdCgAJ
+18:03:43 <danielbeck> I got a fairly late backport in today, and nothing else would be a candidate, so I asusme we're good to go -- but up to ogondza
+18:03:59 <danielbeck> #action danielbeck to poke ogondza about LTS RC
+18:04:17 <danielbeck> without him around this is about the extent of what we can do now
+18:04:45 <danielbeck> anyone else know something, or should we move on?
+18:05:48 <danielbeck> let's move on
+18:05:54 <danielbeck> #topic Google Summer of Code update
+18:06:02 <danielbeck> oleg-nenashev ?
+18:06:19 <danielbeck> unsure whose entry this is
+18:07:33 <danielbeck> doesn't look like there's an update for this, moving on
+18:07:47 <danielbeck> #topic Google Season of Docs update
+18:07:51 <markewaite> Google Season of Docs application has been submitted by the Jenkins project with markewaite as org admin and tracymiranda as assistant org admin.
+18:07:59 <markewaite> Project ideas are being collected.  Several mentors have agreed to assist.
+18:08:04 <markewaite> Next key milestone is April 30, 2019 when Google publishes the list of accepted mentoring organizations.
+18:08:10 <markewaite> Timeline is at https://developers.google.com/season-of-docs/docs/timeline.
+18:08:21 <tracymiranda> woohoo
+18:08:32 <markewaite> #action markewaite submit pull request to propose docs special interest group
+18:09:03 <danielbeck> nice
+18:09:05 <markewaite> #action markewaite complete pull request to create Google Season of Docs project, similar to Google Summer of Code project
+18:09:13 <tracymiranda> fingers crossed we get accepted
+18:09:53 <markewaite> end of status report
+18:09:56 <danielbeck> thanks!
+18:10:04 <bitwiseman> awesome!
+18:10:11 <danielbeck> will you post to the dev list on April 30/May 1 with the result?
+18:10:17 <danielbeck> or where would the update be?
+18:10:37 <markewaite> #action markewaite provide blog posts of GSoD status to jenkins.io
+18:11:37 <danielbeck> I guess that's the answer
+18:11:43 <danielbeck> thanks markewaite
+18:11:55 <danielbeck> moving on…
+18:11:55 <markewaite> Yes @danielbeck that's the answer
+18:12:08 <danielbeck> #topic Outreachy update
+18:12:16 <danielbeck> tracymiranda you're up
+18:12:26 <tracymiranda> Thanks, reference is here https://groups.google.com/d/msg/jenkinsci-dev/9N3C5lMQ1p0/gjE2QvgiDQAJ
+18:12:54 <tracymiranda> #info We have 2 applicants from Outreachy for the next round
+18:13:26 <tracymiranda> Matt Sicker says they are both excellent candidates and would be up for mentoring both (with support) similar to the last round
+18:13:35 <tracymiranda> We have however, only committed to 1 round of funding so far.
+18:13:42 <tracymiranda> For the last round Outreachy funded our 2nd intern from the general fund. This round they have had 11 requests for the general fund so will be less likely to be able to fund a second again.
+18:14:24 <tracymiranda> So one question is whether Jenkins project is in a position to fund a second outreachy intern for this round?
+18:14:50 <danielbeck> to clarify, who's paying the first one? Also us?
+18:15:01 <tracymiranda> yes, we pay the first one
+18:15:20 <danielbeck> and the question is, should we pay for a second as well. how much is one internship?
+18:15:40 <tracymiranda> yes. An internship is $5500 USD
+18:16:24 <danielbeck> I think you and rtyler are the ones with the best idea about what our project finances look like
+18:16:46 <tracymiranda> is rtyler around?
+18:16:48 <danielbeck> I think we were at 30k or something in the bank last we checked? Did CDF change anything there already?
+18:17:15 <tracymiranda> no, transistion to CDF has not happened. When it does CDF will have a budget allocation for such programs.
+18:18:09 <tracymiranda> It might be good to do this especially as it ensures funds are spent on Jenkins project and do not have to be transferred to the general CDF pool - makes transition simpler.
+18:18:17 <rtyler> I am
+18:18:18 <rtyler> sorry
+18:18:30 <bitwiseman> +1 to using it
+18:19:09 <rtyler> we definitely have more than $5500 in the bank :)
+18:19:26 <rtyler> I'm fine with two interns assuming the mentorship is there
+18:19:57 <danielbeck> Azure will last us through the end of the year, right? We won't need real money tp pay for clouds and stuff for a while?
+18:20:24 <rtyler> correct
+18:20:27 <tracymiranda> yes, and by then it azure/cloud funding should be assumed by CDF
+18:20:41 <danielbeck> re mentorship, Matt did 2 interns before and committed to do it again, so no concerns there from me
+18:20:50 <tracymiranda> +1 officially from me
+18:21:03 <danielbeck> +1 lgtm
+18:21:46 <danielbeck> any other opinions?
+18:22:53 <rtyler> dozens, but not on this topic :)
+18:23:00 <danielbeck> you have a blog for those
+18:23:18 <danielbeck> well, doesn't look like it
+18:23:26 <danielbeck> #agreed we'll pay for the second intern if Outreachy doesn't
+18:23:44 <danielbeck> tracymiranda are we done with Outreachy?
+18:23:51 <tracymiranda> yes
+18:23:59 <danielbeck> #topic next meeting
+18:24:18 <danielbeck> That would be May 8
+18:24:34 <danielbeck> thanks everyone!
+18:24:35 <danielbeck> #endmeeting

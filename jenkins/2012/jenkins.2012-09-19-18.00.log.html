@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:42</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">hare_brain rtyler abayer</span>
+<a name="l-4"></a><span class="tm">18:01:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain rtyler</span>
+<a name="l-5"></a><span class="tm">18:01:01</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: hare_brain kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:01:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer</span>
+<a name="l-7"></a><span class="tm">18:01:08</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-8"></a><span class="tm">18:01:23</span><span class="nk"> &lt;tonylampada&gt;</span> Hi guys
+<a name="l-9"></a><span class="tm">18:01:30</span><span class="nk"> &lt;kohsuke&gt;</span> hi there
+<a name="l-10"></a><span class="tm">18:01:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-11"></a><span class="tm">18:01:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/browse/MEETING</span>
+<a name="l-12"></a><span class="tm">18:02:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">recap of actions</span>
+<a name="l-13"></a><span class="tm">18:02:30</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">(argh) kohsuke to post about our draft voting process proposal</span>
+<a name="l-14"></a><span class="tm">18:02:48</span><span class="nk"> &lt;kohsuke&gt;</span> wrt MEETING-4, I think I got your draft, tonylampada
+<a name="l-15"></a><span class="tm">18:03:04</span><span class="nk"> &lt;kohsuke&gt;</span> I'll upload it and check with rtyler
+<a name="l-16"></a><span class="tm">18:03:40</span><span class="nk"> &lt;kohsuke&gt;</span> it was MEETING-6, rather
+<a name="l-17"></a><span class="tm">18:03:44</span><span class="nk"> &lt;tonylampada&gt;</span> ok, I think I forgot to add the links on it. I'll update the gist today ok?
+<a name="l-18"></a><span class="tm">18:03:51</span><span class="nk"> &lt;kohsuke&gt;</span> thanks
+<a name="l-19"></a><span class="tm">18:04:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">discussion about future funding plan/source</span>
+<a name="l-20"></a><span class="tm">18:04:36</span><span class="nk"> &lt;tonylampada&gt;</span> I'll post a comment to the jira ticket when it's ok
+<a name="l-21"></a><span class="tm">18:04:48</span><span class="nk"> &lt;tonylampada&gt;</span> also, I have a new version of the freedomsponsors plugin
+<a name="l-22"></a><span class="tm">18:05:01</span><span class="nk"> &lt;tonylampada&gt;</span> that will hide the link for closed/resolved issues
+<a name="l-23"></a><span class="tm">18:05:25</span><span class="nk"> &lt;tonylampada&gt;</span> https://github.com/freedomsponsors/freedomsponsors-jira-plugin/downloads
+<a name="l-24"></a><span class="tm">18:05:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to upload new version of freedomsponsors JIRA plugin</span>
+<a name="l-25"></a><span class="tm">18:06:00</span><span class="nk"> &lt;kohsuke&gt;</span> Back to the future funding plan...
+<a name="l-26"></a><span class="tm">18:06:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://www.spi-inc.org/meetings/minutes/2012/2012-08-09/ says our current cash reserve is $7348</span>
+<a name="l-27"></a><span class="tm">18:07:19</span><span class="nk"> &lt;kohsuke&gt;</span> and we did our last fund-raiser around last year this time
+<a name="l-28"></a><span class="tm">18:07:56</span><span class="nk"> &lt;LisaWells&gt;</span> would JUC be a good place to kick off fund-raising?
+<a name="l-29"></a><span class="tm">18:08:20</span><span class="nk"> &lt;kohsuke&gt;</span> Good idea. I'll mention that in the slides
+<a name="l-30"></a><span class="tm">18:09:19</span><span class="nk"> &lt;kohsuke&gt;</span> Looking at the records, to be more precise, it started around Sep 15th, and when orrc did a Wikipedia mockup of me begging for money on ci.jenkins-ci.org around December it really took off
+<a name="l-31"></a><span class="tm">18:09:45</span><span class="nk"> &lt;kohsuke&gt;</span> And I think we announced the success and thank you around 2012 Jan
+<a name="l-32"></a><span class="tm">18:10:26</span><span class="nk"> &lt;kohsuke&gt;</span> The run rate of the project has been pretty small
+<a name="l-33"></a><span class="tm">18:10:58</span><span class="nk"> &lt;kohsuke&gt;</span> With most server/bandwidth cost handled by free hosting by OSUOSL and our mirrors
+<a name="l-34"></a><span class="tm">18:11:21</span><span class="nk"> &lt;kohsuke&gt;</span> The only thing we really need is occasional certificates, domain registrations, and promotion materials (stickers and T-shirts)
+<a name="l-35"></a><span class="tm">18:12:20</span><span class="nk"> &lt;kohsuke&gt;</span> so if that's how we keep it, we can survive with what already have.
+<a name="l-36"></a><span class="tm">18:12:27</span><span class="nk"> &lt;kohsuke&gt;</span> ... for years
+<a name="l-37"></a><span class="tm">18:12:52 </span><span class="nka">* kohsuke</span> <span class="ac">pokes hare_brain and rtyler</span>
+<a name="l-38"></a><span class="tm">18:13:53</span><span class="nk"> &lt;kohsuke&gt;</span> now, there's some interest in spending money for travel grants, which led to the question of how frequent the fundraising should be for it to be not too annoying
+<a name="l-39"></a><span class="tm">18:14:02</span><span class="nk"> &lt;tonylampada&gt;</span> &gt; "when orrc did a Wikipedia mockup of me begging for money" (can we still see that? - just curious)
+<a name="l-40"></a><span class="tm">18:14:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">tonylampada:</span> I think it's gone :-)
+<a name="l-41"></a><span class="tm">18:14:47</span><span class="nk"> &lt;kohsuke&gt;</span> ... unless it's in the internet archive
+<a name="l-42"></a><span class="tm">18:15:08</span><span class="nk"> &lt;tonylampada&gt;</span> bummer :-)
+<a name="l-43"></a><span class="tm">18:15:09</span><span class="nk"> &lt;nanonyme&gt;</span> kohsuke, how about some feature-for-money project? :) ie instead of just voting that a feature is important, people could say that they're willing to pay N dollars if this gets done :)
+<a name="l-44"></a><span class="tm">18:15:50</span><span class="nk"> &lt;tonylampada&gt;</span> erm...
+<a name="l-45"></a><span class="tm">18:15:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">nanonyme:</span>  tonylampada had just that, except the money goes to the person who fixes it
+<a name="l-46"></a><span class="tm">18:15:52</span><span class="nk"> &lt;imod&gt;</span> isn't this what freedomsponsors is for already?
+<a name="l-47"></a><span class="tm">18:15:54</span><span class="nk"> &lt;tonylampada&gt;</span> :-)
+<a name="l-48"></a><span class="tm">18:15:58</span><span class="nk"> &lt;tonylampada&gt;</span> yup
+<a name="l-49"></a><span class="tm">18:16:22</span><span class="nk"> &lt;nanonyme&gt;</span> oh, neat :)
+<a name="l-50"></a><span class="tm">18:16:23</span><span class="nk"> &lt;kohsuke&gt;</span> We do have this small thank-you gift of a "friend of Jenkins" plugin
+<a name="l-51"></a><span class="tm">18:16:35</span><span class="nk"> &lt;kohsuke&gt;</span> we send it out to those who donated &gt;$25
+<a name="l-52"></a><span class="tm">18:16:41</span><span class="nk"> &lt;tonylampada&gt;</span> <span class="hi">nanonyme:</span> please see http://www.freedomsponsors.org//
+<a name="l-53"></a><span class="tm">18:16:46</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">tombevers:</span> http://i.imgur.com/3voWb.png
+<a name="l-54"></a><span class="tm">18:16:51</span><span class="nk"> &lt;orrc&gt;</span> tonylampada, even: http://i.imgur.com/3voWb.png
+<a name="l-55"></a><span class="tm">18:17:16</span><span class="nk"> &lt;dapak&gt;</span> what's the "friend of Jenkins" plugin do
+<a name="l-56"></a><span class="tm">18:17:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">dapak:</span> it shows an appreciation note on your footer
+<a name="l-57"></a><span class="tm">18:17:48</span><span class="nk"> &lt;dapak&gt;</span> o'rly
+<a name="l-58"></a><span class="tm">18:18:31</span><span class="nk"> &lt;kohsuke&gt;</span> I don't have any strong preference, but I thought it'd be nice if we can make our money last for one more year
+<a name="l-59"></a><span class="tm">18:19:02</span><span class="nk"> &lt;kohsuke&gt;</span> And that's still about $4000/yr budget
+<a name="l-60"></a><span class="tm">18:19:22</span><span class="nk"> &lt;LisaWells&gt;</span> do you think companies might bid to get an 'expert for a day' or a speaker?
+<a name="l-61"></a><span class="tm">18:19:55</span><span class="nk"> &lt;kohsuke&gt;</span> our sticker ran rate is about $1000/year, and T-shirts so far is about $300/yr, so enough to spend $1K-$2K on other things
+<a name="l-62"></a><span class="tm">18:20:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">LisaWells:</span> speaking on which, there's also the possibility of selling ad space on our websites
+<a name="l-63"></a><span class="tm">18:20:40</span><span class="nk"> &lt;orrc&gt;</span> if the SPI could do provide infrastructure recurring monthly/annual subscriptions, that might be nice for people/companies
+<a name="l-64"></a><span class="tm">18:20:58</span><span class="nk"> &lt;LisaWells&gt;</span> ad space would be great
+<a name="l-65"></a><span class="tm">18:21:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> I can ask them but I'm pretty sure they don't have any
+<a name="l-66"></a><span class="tm">18:21:28</span><span class="nk"> &lt;b2jrock&gt;</span> Second the recurring subscriptions.
+<a name="l-67"></a><span class="tm">18:21:41</span><span class="nk"> &lt;orrc&gt;</span> seems like something that would benefit all their projects -- their current donation UI very nice in any case
+<a name="l-68"></a><span class="tm">18:21:54</span><span class="nk"> &lt;lov&gt;</span> <span class="hi">orrc:</span> that is an excellent picture.
+<a name="l-69"></a><span class="tm">18:22:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write a feedback to SPI that it'd be nice to have recurring donation subscription, and European payment handler</span>
+<a name="l-70"></a><span class="tm">18:22:09</span><span class="nk"> &lt;orrc&gt;</span> which reminds me.. I should follow up on the possibility for easier EU subscriptions
+<a name="l-71"></a><span class="tm">18:22:11</span><span class="nk"> &lt;orrc&gt;</span> ah :)
+<a name="l-72"></a><span class="tm">18:22:34</span><span class="nk"> &lt;kohsuke&gt;</span> I forgot the exact nature of the problem but it didn't take payments in euro or something, right?
+<a name="l-73"></a><span class="tm">18:23:09</span><span class="nk"> &lt;kohsuke&gt;</span> And yes, I also got the feedback that some people were nervous that the UI didn't really look authentic
+<a name="l-74"></a><span class="tm">18:23:33</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">kohsuke:</span> yeah. I donated in dollars. but I found an organisation that's partnered with SPI in Europe. I'll email them again to see if we can set up a link
+<a name="l-75"></a><span class="tm">18:23:43</span><span class="nk"> &lt;kohsuke&gt;</span> Thanks
+<a name="l-76"></a><span class="tm">18:24:23</span><span class="nk"> &lt;kohsuke&gt;</span> I should probably move on to the next topic
+<a name="l-77"></a><span class="tm">18:24:37</span><span class="nk"> &lt;kohsuke&gt;</span> Can't really record any agreement without hare_brain and abayer
+<a name="l-78"></a><span class="tm">18:24:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Add more hackers to the SECURITY project</span>
+<a name="l-79"></a><span class="tm">18:24:54</span><span class="nk"> &lt;hare_brain&gt;</span> I'm sorry, I'm sitting in new hire orientation
+<a name="l-80"></a><span class="tm">18:25:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> thanks for ack. I figured something like that is going on
+<a name="l-81"></a><span class="tm">18:25:51</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">there's a separate SECURTY project in JIRA that handles security vulnerabilities</span>
+<a name="l-82"></a><span class="tm">18:26:17</span><span class="nk"> &lt;kohsuke&gt;</span> Issues filed there are protected so that only the submitter can see it
+<a name="l-83"></a><span class="tm">18:26:39</span><span class="nk"> &lt;kohsuke&gt;</span> For the longest time I was the only one who were able to see it, and we recently added jorgenpt and jglick
+<a name="l-84"></a><span class="tm">18:27:14</span><span class="nk"> &lt;kohsuke&gt;</span> I think it's good to have multiple people, so long as it's not open to the public, so to speak.
+<a name="l-85"></a><span class="tm">18:27:30</span><span class="nk"> &lt;jglick&gt;</span> Are all patched vulnerabilities in fact filed there?
+<a name="l-86"></a><span class="tm">18:27:43</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-87"></a><span class="tm">18:28:52</span><span class="nk"> &lt;kohsuke&gt;</span> I'm not sure if we need any process for adding people, so I think we can just start by asking if there are more people willing to work on those inbound security tickets
+<a name="l-88"></a><span class="tm">18:29:06</span><span class="nk"> &lt;kohsuke&gt;</span> I'm not sure if rtyler had any other thoughts
+<a name="l-89"></a><span class="tm">18:29:11</span><span class="nk"> &lt;kohsuke&gt;</span> or jorgenpt for that matter
+<a name="l-90"></a><span class="tm">18:29:21</span><span class="nk"> &lt;kohsuke&gt;</span> but clearly they aren't here today :-(
+<a name="l-91"></a><span class="tm">18:29:46</span><span class="nk"> &lt;kohsuke&gt;</span> anyone else with any thoughts on this?
+<a name="l-92"></a><span class="tm">18:30:07</span><span class="nk"> &lt;imod&gt;</span> I think this makes sense!
+<a name="l-93"></a><span class="tm">18:30:38</span><span class="nk"> &lt;kinow&gt;</span> <span class="hi">kohsuke:</span> few hours ago rtyler mentioned that he wouldn't be able to attend the meeting, but he said something about this topic
+<a name="l-94"></a><span class="tm">18:30:46</span><span class="nk"> &lt;kohsuke&gt;</span> Oh OK
+<a name="l-95"></a><span class="tm">18:31:25</span><span class="nk"> &lt;kohsuke&gt;</span> all right, he did mention a process
+<a name="l-96"></a><span class="tm">18:31:45</span><span class="nk"> &lt;hare_brain&gt;</span> I would say that we MUST have a CLA on file for anyone with access to the security project in JIRA
+<a name="l-97"></a><span class="tm">18:31:47</span><span class="nk"> &lt;kohsuke&gt;</span> "what I wanted to get out of my line item, was a process to pull in more people into the SECURITY project to help triage and solve security issues"
+<a name="l-98"></a><span class="tm">18:32:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> Yeah, that's reasonable
+<a name="l-99"></a><span class="tm">18:32:44</span><span class="nk"> &lt;kohsuke&gt;</span> I think having some bar here is indeed useful
+<a name="l-100"></a><span class="tm">18:32:54</span><span class="nk"> &lt;kohsuke&gt;</span> and CLA comes with their contact info, which helps establish trust
+<a name="l-101"></a><span class="tm">18:33:06</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah, security issues are not something you want to hand off to just anyone.
+<a name="l-102"></a><span class="tm">18:33:40</span><span class="nk"> &lt;kohsuke&gt;</span> I think I'll start with soliciting volunteers with this criteria
+<a name="l-103"></a><span class="tm">18:33:41</span><span class="nk"> &lt;hare_brain&gt;</span> So I guess I don't have suggestions for how to recruit people, but opinions on how to make sure that people who volunteer are qualified to help with these
+<a name="l-104"></a><span class="tm">18:34:05</span><span class="nk"> &lt;hare_brain&gt;</span> Definitely code reviews are important here.
+<a name="l-105"></a><span class="tm">18:34:11</span><span class="nk"> &lt;kohsuke&gt;</span> I suspect there won't to be too many to call for a formal process
+<a name="l-106"></a><span class="tm">18:34:19</span><span class="nk"> &lt;hare_brain&gt;</span> Well, it's GitHub, so a pull request is a code review
+<a name="l-107"></a><span class="tm">18:34:21</span><span class="nk"> &lt;kohsuke&gt;</span> There's a bigger question of how to handle security releases, yes
+<a name="l-108"></a><span class="tm">18:34:47</span><span class="nk"> &lt;jeremy_carroll&gt;</span> Anybody aware of a plugin, or quick method to integrate the GitHub Status API with my Jenkins-CI Project?
+<a name="l-109"></a><span class="tm">18:34:47</span><span class="nk"> &lt;kohsuke&gt;</span> There's really no easy way in OSS to discuss anything behind closed door
+<a name="l-110"></a><span class="tm">18:35:03</span><span class="nk"> &lt;hare_brain&gt;</span> A different IRC channel?
+<a name="l-111"></a><span class="tm">18:35:13</span><span class="nk"> &lt;jglick&gt;</span> Pull requests are probably inappropriate for these—publicize the vulnerability too early.
+<a name="l-112"></a><span class="tm">18:35:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> right
+<a name="l-113"></a><span class="tm">18:35:28</span><span class="nk"> &lt;hare_brain&gt;</span> jglick good point
+<a name="l-114"></a><span class="tm">18:35:44</span><span class="nk"> &lt;kohsuke&gt;</span> I know setting up invite-only mailing list is pretty easy
+<a name="l-115"></a><span class="tm">18:35:47</span><span class="nk"> &lt;hare_brain&gt;</span> Emailed patch requests then
+<a name="l-116"></a><span class="tm">18:35:57</span><span class="nk"> &lt;hare_brain&gt;</span> Not requests
+<a name="l-117"></a><span class="tm">18:36:01</span><span class="nk"> &lt;hare_brain&gt;</span> Just the patches
+<a name="l-118"></a><span class="tm">18:36:03</span><span class="nk"> &lt;kohsuke&gt;</span> I also suspect for rtyler or somebody with enough IRC-fu, setting up a closed IRC channel isn't too hard either
+<a name="l-119"></a><span class="tm">18:36:05</span><span class="nk"> &lt;jglick&gt;</span> git-format-patch I guess.
+<a name="l-120"></a><span class="tm">18:36:11</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="hi">jglick:</span> yeah
+<a name="l-121"></a><span class="tm">18:36:54</span><span class="nk"> &lt;hare_brain&gt;</span> kohsuke, to date, what's been the source of security issues? Do you find them?
+<a name="l-122"></a><span class="tm">18:37:01</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so let's start with mailing list
+<a name="l-123"></a><span class="tm">18:37:07</span><span class="nk"> &lt;kohsuke&gt;</span> I do find some
+<a name="l-124"></a><span class="tm">18:37:17</span><span class="nk"> &lt;kohsuke&gt;</span> But many comes from users
+<a name="l-125"></a><span class="tm">18:37:21</span><span class="nk"> &lt;jglick&gt;</span> IRC might not work if you have only a small number of people and you want to make sure all of them see all relevant traffic despite timezone differences and so on.
+<a name="l-126"></a><span class="tm">18:37:23</span><span class="nk"> &lt;kohsuke&gt;</span> via the SECURITY project
+<a name="l-127"></a><span class="tm">18:37:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> yes
+<a name="l-128"></a><span class="tm">18:37:42</span><span class="nk"> &lt;jglick&gt;</span> Is there a notification alias for the JIRA project?
+<a name="l-129"></a><span class="tm">18:37:55</span><span class="nk"> &lt;kohsuke&gt;</span> I think we need to set a separate one for the SECURITY project
+<a name="l-130"></a><span class="tm">18:38:04</span><span class="nk"> &lt;kohsuke&gt;</span> and a mailing list would be convenient for that purpose too
+<a name="l-131"></a><span class="tm">18:38:09</span><span class="nk"> &lt;jglick&gt;</span> That is what I meant. Notifications on JENKINS are overwhelming.
+<a name="l-132"></a><span class="tm">18:38:49</span><span class="nk"> &lt;jglick&gt;</span> Preferably JIRA could be configured to just mail links, no content, so you would need to log in to see details.
+<a name="l-133"></a><span class="tm">18:38:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to set up a private jenkinsci-security@googlegroups.com</span>
+<a name="l-134"></a><span class="tm">18:39:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">we'll require CLA in place for someone to join this list</span>
+<a name="l-135"></a><span class="tm">18:40:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to call for volunteers for this list to see if how many would be willing or if we need any more process</span>
+<a name="l-136"></a><span class="tm">18:40:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> if you are interested in tinkering with JIRA, you are welcome!
+<a name="l-137"></a><span class="tm">18:40:36</span><span class="nk"> &lt;jglick&gt;</span> BTW there are FreedomSponsors.org links in the SECURITY project which would ideally be suppressed.
+<a name="l-138"></a><span class="tm">18:40:50</span><span class="nk"> &lt;kohsuke&gt;</span> I'll check if I can tweak the content of the e-mail
+<a name="l-139"></a><span class="tm">18:41:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> that'd be tonylampada. I think he has an issue tracker that keeps RFEs for his JIRA plugin
+<a name="l-140"></a><span class="tm">18:41:35</span><span class="nk"> &lt;jglick&gt;</span> Right, fine for JENKINS but hope no one clicks this in SECURITY.
+<a name="l-141"></a><span class="tm">18:41:37</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I think that's good for this topic for now
+<a name="l-142"></a><span class="tm">18:41:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Review survey questions for JUC San Francisco</span>
+<a name="l-143"></a><span class="tm">18:41:56</span><span class="nk"> &lt;kohsuke&gt;</span> Let me find the draft link
+<a name="l-144"></a><span class="tm">18:42:21</span><span class="nk"> &lt;LisaWells&gt;</span> http://wiki.cloudbees.com/bin/view/Jenkins+Enterprise/2012+Jenkins+Survey+Draft
+<a name="l-145"></a><span class="tm">18:42:39</span><span class="nk"> &lt;kohsuke&gt;</span> ah thank you
+<a name="l-146"></a><span class="tm">18:43:04</span><span class="nk"> &lt;kohsuke&gt;</span> I guess the question was if there's anything else we'd want to learn from our users
+<a name="l-147"></a><span class="tm">18:43:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to add getServletConfig().getServletContext().getServerInfo() to the usage statistics</span>
+<a name="l-148"></a><span class="tm">18:43:37</span><span class="nk"> &lt;kohsuke&gt;</span> I wonder our statistician imod has any thoughts on this
+<a name="l-149"></a><span class="tm">18:43:57</span><span class="nk"> &lt;imod&gt;</span> I think this will be a nice new graph :)
+<a name="l-150"></a><span class="tm">18:43:57</span><span class="nk"> &lt;LisaWells&gt;</span> I liked the suggestion to add "How do you like to get Jenkins support?" and also a free text comment field
+<a name="l-151"></a><span class="tm">18:44:24</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, free text comment field
+<a name="l-152"></a><span class="tm">18:44:29</span><span class="nk"> &lt;kohsuke&gt;</span> Oh
+<a name="l-153"></a><span class="tm">18:44:41</span><span class="nk"> &lt;tonylampada&gt;</span> <span class="hi">jglick:</span> there are a few ways to handle this problem. I'll post an issue to (https://github.com/freedomsponsors/freedomsponsors-jira-plugin/issues) describing a few ideas
+<a name="l-154"></a><span class="tm">18:45:02</span><span class="nk"> &lt;kohsuke&gt;</span> On a similar line of thoughts, I wonder if we can ask for people to say something nice that we can quote on our websites?
+<a name="l-155"></a><span class="tm">18:45:09</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">tonylampada:</span> OK. Low priority.
+<a name="l-156"></a><span class="tm">18:45:31</span><span class="nk"> &lt;imod&gt;</span> I wonder If we can get more info about what people are using jenkins for - other then just building stuff
+<a name="l-157"></a><span class="tm">18:45:31</span><span class="nk"> &lt;kohsuke&gt;</span> You know those lines "I trimmed off 15kg thanks to this new diet program!" - Joe Chin, San Jose
+<a name="l-158"></a><span class="tm">18:45:49</span><span class="nk"> &lt;LisaWells&gt;</span> could add a text section "What do you like best about Jenkins? And can we quote you?"
+<a name="l-159"></a><span class="tm">18:45:52</span><span class="nk"> &lt;hare_brain&gt;</span> User testimonials
+<a name="l-160"></a><span class="tm">18:46:06</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, testimonials is the word
+<a name="l-161"></a><span class="tm">18:46:08</span><span class="nk"> &lt;imod&gt;</span> yeah these are nice
+<a name="l-162"></a><span class="tm">18:46:28</span><span class="nk"> &lt;hare_brain&gt;</span> One thing I would suggest is some information about HOW the data from the survey will be used.
+<a name="l-163"></a><span class="tm">18:46:36</span><span class="nk"> &lt;LisaWells&gt;</span> hard to do full testimonial in survey, but could ask "would you be interested in doing a user testimonial?" and then could contact afterwards
+<a name="l-164"></a><span class="tm">18:46:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">LisaWells:</span> that works for me
+<a name="l-165"></a><span class="tm">18:47:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> privacy statement of a sort
+<a name="l-166"></a><span class="tm">18:48:01</span><span class="nk"> &lt;hare_brain&gt;</span> Sort of, but not just that. It's not just about where information about me is going, but what I'm going to get out of the project by giving you this information.
+<a name="l-167"></a><span class="tm">18:48:08</span><span class="nk"> &lt;hare_brain&gt;</span> i.e., prioritization of features
+<a name="l-168"></a><span class="tm">18:48:10</span><span class="nk"> &lt;LisaWells&gt;</span> privacy for the data or users? supplying your details is optional
+<a name="l-169"></a><span class="tm">18:48:15</span><span class="nk"> &lt;hare_brain&gt;</span> Changes to documentation
+<a name="l-170"></a><span class="tm">18:48:28</span><span class="nk"> &lt;LisaWells&gt;</span> right now, anyone who completes the survey gets the results
+<a name="l-171"></a><span class="tm">18:48:40</span><span class="nk"> &lt;hare_brain&gt;</span> I don't even necessarily care about the results.
+<a name="l-172"></a><span class="tm">18:48:53</span><span class="nk"> &lt;hare_brain&gt;</span> It's, what's going to change for the better about the project based on the feedback I supply?
+<a name="l-173"></a><span class="tm">18:49:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> I'm not sure what we can commit to, but it sure makes sense to say "we'd like your feedback to prioritize our efforts"
+<a name="l-174"></a><span class="tm">18:49:30</span><span class="nk"> &lt;hare_brain&gt;</span> If the information is just going to get aggregated and redistributed, but nothing is going to change, I'd want to know that.
+<a name="l-175"></a><span class="tm">18:49:33</span><span class="nk"> &lt;kohsuke&gt;</span> the challenge obviously is that this being OSS, we can't actually say anyone will work on those
+<a name="l-176"></a><span class="tm">18:49:59</span><span class="nk"> &lt;hare_brain&gt;</span> Right. So just be clearer about what the collected data will be used for.
+<a name="l-177"></a><span class="tm">18:50:12</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-178"></a><span class="tm">18:50:23</span><span class="nk"> &lt;hare_brain&gt;</span> Again, if it's just aggregated and re-distributed to people who give their email address, set that expectation.
+<a name="l-179"></a><span class="tm">18:50:42</span><span class="nk"> &lt;hare_brain&gt;</span> If it's really going to get fed back to try to prioritize something, set that expectation.
+<a name="l-180"></a><span class="tm">18:50:58</span><span class="nk"> &lt;LisaWells&gt;</span> it's up to the community what to do with the results
+<a name="l-181"></a><span class="tm">18:51:22</span><span class="nk"> &lt;kohsuke&gt;</span> So something like "We'd like your feedback so that the project can prioritize efforts, even though being  OSS project , we can't really promise you that it'll happen. And you will get the result."
+<a name="l-182"></a><span class="tm">18:51:54</span><span class="nk"> &lt;kohsuke&gt;</span> We can also point out that we did listen to the  last survey result
+<a name="l-183"></a><span class="tm">18:52:03</span><span class="nk"> &lt;kohsuke&gt;</span> People said "UI improvements!" and it did actually happen
+<a name="l-184"></a><span class="tm">18:52:25</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I'll add that in the http://jenkins-ci.org/ post for the survey
+<a name="l-185"></a><span class="tm">18:52:43</span><span class="nk"> &lt;kohsuke&gt;</span> I want to talk about the idea of the project meeting in JUC
+<a name="l-186"></a><span class="tm">18:52:45</span><span class="nk"> &lt;nanonyme&gt;</span> Really? I always thought Jenkins had superior UI compared to other CI systems to begin with
+<a name="l-187"></a><span class="tm">18:52:50</span><span class="nk"> &lt;kohsuke&gt;</span> can we move to that topic?
+<a name="l-188"></a><span class="tm">18:52:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">nanonyme:</span> thanks!
+<a name="l-189"></a><span class="tm">18:53:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">project meeting in JUC</span>
+<a name="l-190"></a><span class="tm">18:53:20</span><span class="nk"> &lt;pedahzur&gt;</span> This page: https://groups.google.com/forum/?fromgroups=#!topic/jenkinsci-users/r3HhqbJO3Es talks about a "slave-setup" page. But I'm not seeing that in the Manage Jenkins page.  What am I missing?
+<a name="l-191"></a><span class="tm">18:53:23</span><span class="nk"> &lt;tonylampada&gt;</span> <span class="hi">nanonyme:</span> I agree :-)
+<a name="l-192"></a><span class="tm">18:53:44</span><span class="nk"> &lt;hare_brain&gt;</span> Sorry, I had one more thing on the last topic. I got pulled into a side conversation
+<a name="l-193"></a><span class="tm">18:53:45</span><span class="nk"> &lt;kohsuke&gt;</span> Alyssa who's handling event organization said she's OK with hijacking the panel discussion with the project meeting
+<a name="l-194"></a><span class="tm">18:53:46</span><span class="nk"> &lt;hare_brain&gt;</span> Also, a question about the role of the respondent in their org (dev, release, qa)
+<a name="l-195"></a><span class="tm">18:54:40</span><span class="nk"> &lt;hare_brain&gt;</span> I mean, add a question about the respondent's role to the survey
+<a name="l-196"></a><span class="tm">18:54:41</span><span class="nk"> &lt;kohsuke&gt;</span> My only real concern is 1) logistics, 2) if we can line up enough things to talk about for an hour
+<a name="l-197"></a><span class="tm">18:54:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> yes, I got it
+<a name="l-198"></a><span class="tm">18:54:57</span><span class="nk"> &lt;kohsuke&gt;</span> Or more importantly, I think LisaWells got it
+<a name="l-199"></a><span class="tm">18:55:02</span><span class="nk"> &lt;hare_brain&gt;</span> Thanks
+<a name="l-200"></a><span class="tm">18:55:04</span><span class="nk"> &lt;LisaWells&gt;</span> <span class="hi">@hare_brain:</span> we had that Q last year and cut it purely to keep the length down. figured it might not change much. shall i add it back in?
+<a name="l-201"></a><span class="tm">18:55:36</span><span class="nk"> &lt;jorgenpt&gt;</span> <span class="hi">kohsuke:</span> We can talk about this after the meeting - sorry I missed most of it - but are there any guidelines on how to handle committing things in the SEC JIRA? If we just tag them with [SEC-XX], won't "malicious" people be able to pick up on that before we ship a new release? How do we inform people of important sec fixes? (cc [reed])
+<a name="l-202"></a><span class="tm">18:55:36</span><span class="nk"> &lt;hare_brain&gt;</span> LisaWells I think understanding the perspective of the answers is important, so yes.
+<a name="l-203"></a><span class="tm">18:55:55</span><span class="nk"> &lt;LisaWells&gt;</span> I'll add it back then. Thanks for the suggestion
+<a name="l-204"></a><span class="tm">18:56:17</span><span class="nk"> &lt;hare_brain&gt;</span> Back to the current topic, if we do project meeting at 6pm PT, what's that translate to in other time zones?
+<a name="l-205"></a><span class="tm">18:56:19</span><span class="nk"> &lt;kohsuke&gt;</span> on logistics side, I think I can set up live UStream broadcast
+<a name="l-206"></a><span class="tm">18:56:37</span><span class="nk"> &lt;hare_brain&gt;</span> Or, we can have someone transcribe into the IRC channel
+<a name="l-207"></a><span class="tm">18:57:07</span><span class="nk"> &lt;hare_brain&gt;</span> We probably want to have a log of the actions and agreements recorded. Might we well use existing techniques for that
+<a name="l-208"></a><span class="tm">18:57:50</span><span class="nk"> &lt;kohsuke&gt;</span> If we want to have a cross over between real world and virtual world, I wonder if transcribing to IRC can keep it up
+<a name="l-209"></a><span class="tm">18:58:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">time zone around the world for 6pm PDT: http://www.timeanddate.com/worldclock/fixedtime.html?msg=Jenkins+Governance+Meeting&amp;iso=20120918T18&amp;p1=224&amp;ah=1&amp;sort=1</span>
+<a name="l-210"></a><span class="tm">18:58:48</span><span class="nk"> &lt;kohsuke&gt;</span> Europe is out
+<a name="l-211"></a><span class="tm">18:59:03</span><span class="nk"> &lt;kohsuke&gt;</span> Asia is better: Tokyo 11am
+<a name="l-212"></a><span class="tm">18:59:49</span><span class="nk"> &lt;kohsuke&gt;</span> if we are to do this from JUC (that's Sunday 6pm PDT), anyone here would be willing to attend virtually?
+<a name="l-213"></a><span class="tm">19:00:01</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah, that was my next question. :)
+<a name="l-214"></a><span class="tm">19:00:44</span><span class="nk"> &lt;hare_brain&gt;</span> The silence is deafening
+<a name="l-215"></a><span class="tm">19:00:46</span><span class="nk"> &lt;kohsuke&gt;</span> I can project the IRC screen on the room and then broadcast the room
+<a name="l-216"></a><span class="tm">19:00:55</span><span class="nk"> &lt;tonylampada&gt;</span> anyone knows what time would that be in Brazil?
+<a name="l-217"></a><span class="tm">19:01:03</span><span class="nk"> &lt;kohsuke&gt;</span> see the link above
+<a name="l-218"></a><span class="tm">19:01:05</span><span class="nk"> &lt;kinow&gt;</span> <span class="hi">tonylampada:</span> I'm looking at that now
+<a name="l-219"></a><span class="tm">19:01:09</span><span class="nk"> &lt;hare_brain&gt;</span> 11pm
+<a name="l-220"></a><span class="tm">19:01:47</span><span class="nk"> &lt;tonylampada&gt;</span> I might, can't make any promess though :-)
+<a name="l-221"></a><span class="tm">19:02:01</span><span class="nk"> &lt;kohsuke&gt;</span> If we tweaks the topics so that it's oriented more for users, I think we might be able to attract some US attendees
+<a name="l-222"></a><span class="tm">19:02:12</span><span class="nk"> &lt;kinow&gt;</span> I will try to attend it too :-)
+<a name="l-223"></a><span class="tm">19:02:14</span><span class="nk"> &lt;kohsuke&gt;</span> We probably need that anyway for it to make sense in JUC
+<a name="l-224"></a><span class="tm">19:02:18</span><span class="nk"> &lt;hare_brain&gt;</span> Agreed
+<a name="l-225"></a><span class="tm">19:02:54</span><span class="nk"> &lt;hare_brain&gt;</span> We could probably form an agenda around some of the questions in the survey and talk about them live?
+<a name="l-226"></a><span class="tm">19:03:07</span><span class="nk"> &lt;hare_brain&gt;</span> i.e., pain points, priorities
+<a name="l-227"></a><span class="tm">19:03:14</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, if that's OK with LisaWells, I'd love to steal some agenda from there
+<a name="l-228"></a><span class="tm">19:03:17</span><span class="nk"> &lt;LisaWells&gt;</span> broadcasting the room might bring in additional attendees
+<a name="l-229"></a><span class="tm">19:03:32</span><span class="nk"> &lt;LisaWells&gt;</span> nice to put faces with names and see the actual community
+<a name="l-230"></a><span class="tm">19:03:50</span><span class="nk"> &lt;LisaWells&gt;</span> and yes, by all means, steal survey Qs/agenda items
+<a name="l-231"></a><span class="tm">19:04:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to make a post to call for agenda item for the JUC live project meeting with ideas stolen from the survey</span>
+<a name="l-232"></a><span class="tm">19:04:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> you'll be there, right?
+<a name="l-233"></a><span class="tm">19:04:44</span><span class="nk"> &lt;hare_brain&gt;</span> Yes.
+<a name="l-234"></a><span class="tm">19:04:46</span><span class="nk"> &lt;kohsuke&gt;</span> I know rtyler is
+<a name="l-235"></a><span class="tm">19:04:50</span><span class="nk"> &lt;kohsuke&gt;</span> abayer I need to check
+<a name="l-236"></a><span class="tm">19:05:04</span><span class="nk"> &lt;kohsuke&gt;</span> Good, so we'll have a quorum
+<a name="l-237"></a><span class="tm">19:05:24</span><span class="nk"> &lt;kohsuke&gt;</span> I realize that we are running late. I think that's it for today.
+<a name="l-238"></a><span class="tm">19:05:33</span><span class="nk"> &lt;hare_brain&gt;</span> Project funding would be an interesting topic to talk about live.
+<a name="l-239"></a><span class="tm">19:05:38</span><span class="nk"> &lt;kohsuke&gt;</span> ah yes
+<a name="l-240"></a><span class="tm">19:05:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-241"></a><span class="tm">19:06:01</span><span class="nk"> &lt;hare_brain&gt;</span> Haha I think we just talked about that. :)
+<a name="l-242"></a><span class="tm">19:06:03</span><span class="nk"> &lt;kohsuke&gt;</span> So the next one would be in JUC, Sep 30th 6pm PST
+<a name="l-243"></a><span class="tm">19:06:20</span><span class="nk"> &lt;hare_brain&gt;</span> And then back to the regular schedule online after
+<a name="l-244"></a><span class="tm">19:06:21</span><span class="nk"> &lt;kohsuke&gt;</span> the one after that ... I guess we'll do that in JUC
+<a name="l-245"></a><span class="tm">19:06:28</span><span class="nk"> &lt;kohsuke&gt;</span> yeah
+<a name="l-246"></a><span class="tm">19:06:32</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-247"></a><span class="tm">19:06:48</span><span class="nk"> &lt;kohsuke&gt;</span> all right, in that case unless anyone wants to add anything we are done for the day
+<a name="l-248"></a><span class="tm">19:06:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

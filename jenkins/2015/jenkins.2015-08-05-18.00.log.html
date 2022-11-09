@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app222.us.archive.org';v.server_ms=160;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-08-05-18.00.log.html","20200504055902","https://web.archive.org/","web","/_static/",
+	      "1588571942");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:52</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:05</span><span class="nk"> &lt;danielbeck&gt;</span> cburroughs (meeting now, please wait a bit with followup questions)
+<a name="l-4"></a><span class="tm">18:01:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">rtyler danielbeck kohsuke</span>
+<a name="l-5"></a><span class="tm">18:01:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-6"></a><span class="tm">18:01:56</span><span class="nk"> &lt;kohsuke&gt;</span> I'm going to sneak in one more topic about rebundling plugins
+<a name="l-7"></a><span class="tm">18:02:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-8"></a><span class="tm">18:02:42</span><span class="nk"> &lt;danielbeck&gt;</span> there were none.
+<a name="l-9"></a><span class="tm">18:02:57</span><span class="nk"> &lt;fredg&gt;</span> any news about #jenkins-meeting?
+<a name="l-10"></a><span class="tm">18:03:09</span><span class="nk"> &lt;KostyaSha&gt;</span> fredg, wait for 10years
+<a name="l-11"></a><span class="tm">18:03:11</span><span class="nk"> &lt;danielbeck&gt;</span> fredg Still on my list of things to do
+<a name="l-12"></a><span class="tm">18:03:31</span><span class="nk"> &lt;fredg&gt;</span> ok:)
+<a name="l-13"></a><span class="tm">18:03:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Jenkins certification</span>
+<a name="l-14"></a><span class="tm">18:04:20</span><span class="nk"> &lt;KostyaSha&gt;</span> no recap?
+<a name="l-15"></a><span class="tm">18:04:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> I thought danielbeck said there's none, because the last week we only talked about LTS RC status check
+<a name="l-16"></a><span class="tm">18:04:54</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-07-22-18.01.html action items: (none)
+<a name="l-17"></a><span class="tm">18:05:03</span><span class="nk"> &lt;kohsuke&gt;</span> We'd like to come up with a certification program for Jenkins users and admins
+<a name="l-18"></a><span class="tm">18:05:17</span><span class="nk"> &lt;kohsuke&gt;</span> Something people can put on their resumes to show off
+<a name="l-19"></a><span class="tm">18:05:20</span><span class="nk"> &lt;KostyaSha&gt;</span> for example kohsuke didn't contact bot owner that was planned for backup channel logging
+<a name="l-20"></a><span class="tm">18:05:54</span><span class="nk"> &lt;kohsuke&gt;</span> I'm afraid there's no progress to report on that one
+<a name="l-21"></a><span class="tm">18:06:00</span><span class="nk"> &lt;KostyaSha&gt;</span> either give op to danielbeck so he can confirm it instead of you
+<a name="l-22"></a><span class="tm">18:06:21</span><span class="nk"> &lt;orrc&gt;</span> maybe such actions can be added to MEETING, as people remember them
+<a name="l-23"></a><span class="tm">18:06:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to give channel ops to danielbeck</span>
+<a name="l-24"></a><span class="tm">18:06:39</span><span class="nk"> &lt;kohsuke&gt;</span> (if you know the command that I need to run please let me know)
+<a name="l-25"></a><span class="tm">18:06:45</span><span class="nk"> &lt;KostyaSha&gt;</span> one sec
+<a name="l-26"></a><span class="tm">18:07:01</span><span class="nk"> &lt;danielbeck&gt;</span> I propose we move discussions of past meetings (before the previous one) to the end. Otherwise we'll never get to discuss anything.
+<a name="l-27"></a><span class="tm">18:07:15</span><span class="nk"> &lt;kohsuke&gt;</span> Can I resume the certification stuff?
+<a name="l-28"></a><span class="tm">18:07:28</span><span class="nk"> &lt;danielbeck&gt;</span> please
+<a name="l-29"></a><span class="tm">18:07:53</span><span class="nk"> &lt;kohsuke&gt;</span> Right, and certification is also useful for employeers to filter applicants
+<a name="l-30"></a><span class="tm">18:08:55</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> will this be a source of income for the project?
+<a name="l-31"></a><span class="tm">18:09:09</span><span class="nk"> &lt;ogondza&gt;</span> or why does upstream getting involved?
+<a name="l-32"></a><span class="tm">18:09:10</span><span class="nk"> &lt;kohsuke&gt;</span> I was told that CB is happy to pay the bill to get that certificate test developed, but I want to make it the community's thing
+<a name="l-33"></a><span class="tm">18:09:41</span><span class="nk"> &lt;KostyaSha&gt;</span> and what do you want certify?
+<a name="l-34"></a><span class="tm">18:09:50</span><span class="nk"> &lt;fredg&gt;</span> So the certification should be something like LPIC for Linux?
+<a name="l-35"></a><span class="tm">18:09:53</span><span class="nk"> &lt;KostyaSha&gt;</span> button clicking? workflow?
+<a name="l-36"></a><span class="tm">18:10:05</span><span class="nk"> &lt;kohsuke&gt;</span> I need to check on whether this is supposed to be money-making thing or not, but I don't think it is.
+<a name="l-37"></a><span class="tm">18:10:19</span><span class="nk"> &lt;kohsuke&gt;</span> IOW this will not be a source of income for anyone
+<a name="l-38"></a><span class="tm">18:10:26</span><span class="nk"> &lt;aheritier&gt;</span> <span class="hi">kohsuke:</span> How a customer could know choose between several certifications ? (if one day several company offer it)
+<a name="l-39"></a><span class="tm">18:10:43</span><span class="nk"> &lt;KostyaSha&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/How+to+report+an+issue good point for certification :)
+<a name="l-40"></a><span class="tm">18:11:33</span><span class="nk"> &lt;aheritier&gt;</span> I suppose that anyone could propose some trainings and certifications about Jenkins. How could we control this ? (at list be aware of them?)
+<a name="l-41"></a><span class="tm">18:11:43</span><span class="nk"> &lt;danielbeck&gt;</span> trademark usage?
+<a name="l-42"></a><span class="tm">18:11:57</span><span class="nk"> &lt;aheritier&gt;</span> danielbeck good point
+<a name="l-43"></a><span class="tm">18:12:07</span><span class="nk"> &lt;kohsuke&gt;</span> At this point, there's a small committee being launched to discuss how to do this, and I'm looking for someone from the community in there to provide supervision
+<a name="l-44"></a><span class="tm">18:12:16</span><span class="nk"> &lt;kohsuke&gt;</span> ... plus report it back to the broader community
+<a name="l-45"></a><span class="tm">18:12:18</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, maybe you can try with CB Jenkins Enterprise certification and then share results?
+<a name="l-46"></a><span class="tm">18:12:39</span><span class="nk"> &lt;KostyaSha&gt;</span> i think you already have some docs and trainings for it
+<a name="l-47"></a><span class="tm">18:13:19</span><span class="nk"> &lt;kohsuke&gt;</span> I believe that's also in the works, but if that's the only certification I think it's a weak story
+<a name="l-48"></a><span class="tm">18:13:45</span><span class="nk"> &lt;kohsuke&gt;</span> ... for obviously a lot more people care about being a Certified Jenkins Administrator than being a Certified CloudBees Jenkins Platform Administrator
+<a name="l-49"></a><span class="tm">18:13:57</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, well jenkins "community" has pure documentation
+<a name="l-50"></a><span class="tm">18:14:19</span><span class="nk"> &lt;kohsuke&gt;</span> And I truly believe something like this helps lift the tide for the whole community
+<a name="l-51"></a><span class="tm">18:14:22</span><span class="nk"> &lt;KostyaSha&gt;</span> for passing certificaiton you of course need materials and documentation and only CBJE has good docs
+<a name="l-52"></a><span class="tm">18:14:42</span><span class="nk"> &lt;kohsuke&gt;</span> Not really, training and certification are decoupled.
+<a name="l-53"></a><span class="tm">18:15:16</span><span class="nk"> &lt;kohsuke&gt;</span> IOW, I expect people here will be able to take a certificaion test and get certified without any extra training.
+<a name="l-54"></a><span class="tm">18:15:16</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, my suggestion was to revert steps, CBJE first (as you already has good docs/trainings and resources) and then cut some FOSS part into Jenkins Certification
+<a name="l-55"></a><span class="tm">18:15:36</span><span class="nk"> &lt;fredg&gt;</span> Training and certification could be good motiviation to improve the documentation
+<a name="l-56"></a><span class="tm">18:16:02</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, how i will certify newbies or people that think that they know jenkins? After they fail on the first question they will need docs that still in very bad state (confluence;)
+<a name="l-57"></a><span class="tm">18:17:09</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, and on this talk i'm alone from FOSS side? :)
+<a name="l-58"></a><span class="tm">18:17:29</span><span class="nk"> &lt;kohsuke&gt;</span> We don't need to talk about how we develop materials &amp; tests here --- the whole point of having someone from the community in that committee is so that s/he can participate in that discussion
+<a name="l-59"></a><span class="tm">18:17:57</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> I am opened to have that discussion
+<a name="l-60"></a><span class="tm">18:18:20</span><span class="nk"> &lt;kohsuke&gt;</span> (like I said training &amp; certification are decoupled and the existing training material does not translate to tests)
+<a name="l-61"></a><span class="tm">18:18:30</span><span class="nk"> &lt;ogondza&gt;</span> though, I still wonder what is the motivation for community? why are we doing this?
+<a name="l-62"></a><span class="tm">18:19:01</span><span class="nk"> &lt;KostyaSha&gt;</span> ogondza, like any other certificate - for MANAGERS
+<a name="l-63"></a><span class="tm">18:19:07</span><span class="nk"> &lt;KostyaSha&gt;</span> and $$
+<a name="l-64"></a><span class="tm">18:19:23 </span><span class="nka">* KostyaSha</span> <span class="ac">IMHO</span>
+<a name="l-65"></a><span class="tm">18:19:42</span><span class="nk"> &lt;kohsuke&gt;</span> I think there are multiple reasons, but I agree with KostyaSha that it is ultimately the same reason why everyone else does it.
+<a name="l-66"></a><span class="tm">18:20:06</span><span class="nk"> &lt;kohsuke&gt;</span> It gives a bit more recognition to the people who knows Jenkins
+<a name="l-67"></a><span class="tm">18:20:24</span><span class="nk"> &lt;kohsuke&gt;</span> It makes it more than something you claim --- it adds some degree of objective validation
+<a name="l-68"></a><span class="tm">18:21:15</span><span class="nk"> &lt;KostyaSha&gt;</span> 1 level: jenkins slave, 2 level jenkins master :D
+<a name="l-69"></a><span class="tm">18:21:24</span><span class="nk"> &lt;kohsuke&gt;</span> I'm also hoping that it will help build a network among us
+<a name="l-70"></a><span class="tm">18:22:11</span><span class="nk"> &lt;KostyaSha&gt;</span> imho everything in jenkins ends into bugs&amp;development :( jenkins needs more experienced developers :(
+<a name="l-71"></a><span class="tm">18:22:21</span><span class="nk"> &lt;orrc&gt;</span> the idea seems ok. though I think there's a lot of upkeep required for a certification program: making sure it's hard enough so that it's worth something, making sure the test doesn't get stale over time, administration...
+<a name="l-72"></a><span class="tm">18:22:23</span><span class="nk"> &lt;kohsuke&gt;</span> Or it will allow Joe in Acme Corp to add this to his employee development program for this quarter.
+<a name="l-73"></a><span class="tm">18:22:38</span><span class="nk"> &lt;danielbeck&gt;</span> It's not difficult to imagine how enabling managers to easily hire Jenkins experts can help the community grow.
+<a name="l-74"></a><span class="tm">18:23:09</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, define "jenkins expert" :)
+<a name="l-75"></a><span class="tm">18:23:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> right, we brought the consultants to lead the effort --- they've done something similar for PHP in the past, so they are experienced.
+<a name="l-76"></a><span class="tm">18:23:39</span><span class="nk"> &lt;danielbeck&gt;</span> KostyaSha Using it in large scale projects is difficult enough. Details will need to be hashed out of course.
+<a name="l-77"></a><span class="tm">18:23:45</span><span class="nk"> &lt;kohsuke&gt;</span> they need what they call "subject matter experts" to come up with tests, but they have methodology to statistically narrow them down to the right set of questions, etc.
+<a name="l-78"></a><span class="tm">18:24:03</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, even small installation may have difficulties :(
+<a name="l-79"></a><span class="tm">18:24:56</span><span class="nk"> &lt;orrc&gt;</span> ok. so is the idea is that the community funds the ongoing costs of the certification scheme, but breaks even via licensing / certification fees?
+<a name="l-80"></a><span class="tm">18:25:32</span><span class="nk"> &lt;kohsuke&gt;</span> I need to double-check on the cost &amp; revenue structure. My apologies that I haven't done that homework.
+<a name="l-81"></a><span class="tm">18:25:51</span><span class="nk"> &lt;kohsuke&gt;</span> I don't have a good insight into the level of ongoing maintenance cost of such scheme.
+<a name="l-82"></a><span class="tm">18:26:17</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, if you have large jenkins installation, then you are already jenkins developer :)
+<a name="l-83"></a><span class="tm">18:26:18</span><span class="nk"> &lt;kohsuke&gt;</span> But a part of the reasons I'm looking for somebody on that "certification advisory board" is to find out about those things and report back to us for final Y/N
+<a name="l-84"></a><span class="tm">18:26:56</span><span class="nk"> &lt;KostyaSha&gt;</span> ogondza, ? :)
+<a name="l-85"></a><span class="tm">18:27:06</span><span class="nk"> &lt;kohsuke&gt;</span> In terms of the commitment, ot
+<a name="l-86"></a><span class="tm">18:27:27</span><span class="nk"> &lt;kohsuke&gt;</span> In terms of the commitment, we are looking for 3 or 4 more meetings with 1-2hr each
+<a name="l-87"></a><span class="tm">18:27:59</span><span class="nk"> &lt;ogondza&gt;</span> I see this as an opportunity to make Jenkins look more established and to improve the documentation we have
+<a name="l-88"></a><span class="tm">18:28:13</span><span class="nk"> &lt;kohsuke&gt;</span> And I think we really need this person to be unrelated to CB.
+<a name="l-89"></a><span class="tm">18:28:13</span><span class="nk"> &lt;KostyaSha&gt;</span> and update confluence! /o/
+<a name="l-90"></a><span class="tm">18:28:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span> yeah
+<a name="l-91"></a><span class="tm">18:28:53</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> sign me in
+<a name="l-92"></a><span class="tm">18:29:11</span><span class="nk"> &lt;kohsuke&gt;</span> great
+<a name="l-93"></a><span class="tm">18:29:22</span><span class="nk"> &lt;kohsuke&gt;</span> is the outlook so far good for us as a whole?
+<a name="l-94"></a><span class="tm">18:30:01</span><span class="nk"> &lt;kohsuke&gt;</span> I'd think if it worked for PHP it'll work for us.
+<a name="l-95"></a><span class="tm">18:30:09</span><span class="nk"> &lt;danielbeck&gt;</span> looks like there are some concerns about contents and cost, but no opposition to the idea
+<a name="l-96"></a><span class="tm">18:30:20</span><span class="nk"> &lt;orrc&gt;</span> I wonder about who will administer the training, and the general flow of money. but the idea is fine
+<a name="l-97"></a><span class="tm">18:30:29</span><span class="nk"> &lt;fredg&gt;</span> +1 for the general idea
+<a name="l-98"></a><span class="tm">18:30:30</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">orrc:</span> +1
+<a name="l-99"></a><span class="tm">18:30:43</span><span class="nk"> &lt;kohsuke&gt;</span> Let's make sure we cover those grounds for sure
+<a name="l-100"></a><span class="tm">18:31:08</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">ogondza will be on the certification advisory board</span>
+<a name="l-101"></a><span class="tm">18:31:17</span><span class="nk"> &lt;kohsuke&gt;</span> shall we move on to the next topic?
+<a name="l-102"></a><span class="tm">18:31:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Approval of new Patron program messages</span>
+<a name="l-103"></a><span class="tm">18:31:49</span><span class="nk"> &lt;danielbeck&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/Patron+of+Jenkins+program
+<a name="l-104"></a><span class="tm">18:31:51</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, /msg ChanServ FLAGS #jenkins danielbeck +O
+<a name="l-105"></a><span class="tm">18:32:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> thanks, done
+<a name="l-106"></a><span class="tm">18:32:14</span><span class="nk"> &lt;danielbeck&gt;</span> thanks
+<a name="l-107"></a><span class="tm">18:32:39</span><span class="nk"> &lt;danielbeck&gt;</span> we started this program last year and it went well enough
+<a name="l-108"></a><span class="tm">18:32:49</span><span class="nk"> &lt;danielbeck&gt;</span> so the project got quite a bit of money from it
+<a name="l-109"></a><span class="tm">18:32:54</span><span class="nk"> &lt;danielbeck&gt;</span> ~3k per quarter
+<a name="l-110"></a><span class="tm">18:33:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> what's the new messages to approve? I don't see them in https://github.com/jenkinsci/patron
+<a name="l-111"></a><span class="tm">18:33:32</span><span class="nk"> &lt;danielbeck&gt;</span> unfortunately it wasn't passed on properly due to a change of role, and we're reviving it now
+<a name="l-112"></a><span class="tm">18:34:13</span><span class="nk"> &lt;danielbeck&gt;</span> Turns out we got donations and didn't put up the messages they paid for, including the current quarter
+<a name="l-113"></a><span class="tm">18:34:16</span><span class="nk"> &lt;kohsuke&gt;</span> right, the last one is 2014Q4
+<a name="l-114"></a><span class="tm">18:34:44</span><span class="nk"> &lt;danielbeck&gt;</span> We're currently working this out with the donors so they get extra message time for their back donations
+<a name="l-115"></a><span class="tm">18:34:59</span><span class="nk"> &lt;danielbeck&gt;</span> and I'd like to get approval for the 2015Q3 messages by CloudBees today.
+<a name="l-116"></a><span class="tm">18:35:05</span><span class="nk"> &lt;danielbeck&gt;</span> http://jenkinsci.github.io/patron/tester.html?caption=Ensure+Optimal+Configurability&amp;link=https%3A%2F%2Fpages.cloudbees.com%2FWebsite_7WaysOptimizeJenkins.html&amp;blurb=Is+your+Jenkins+Continuous+Integration+Environment+Optimally+Configured+%3F&amp;logo=http%3A%2F%2Fwww.cloudbees.com%2Fsites%2Fdefault%2Ffiles%2Fcb-logo-clr.r-square78x78.png
+<a name="l-117"></a><span class="tm">18:35:11</span><span class="nk"> &lt;danielbeck&gt;</span> http://jenkinsci.github.io/patron/tester.html?caption=Jenkins+At+Scale+is+Easier+Than+You+Think&amp;link=https%3A%2F%2Fpages.cloudbees.com%2Frs%2Fcloudbees%2Fimages%2FCloudBees-Jenkins-Enterprise-Plugins-Ebook.pdf&amp;blurb=Get+OSS+Jenkins+Plus+Some+Enterprise+Robustness&amp;logo=http%3A%2F%2Fwww.cloudbees.com%2Fsites%2Fdefault%2Ffiles%2Fcb-logo-clr.r-square78x78.png
+<a name="l-118"></a><span class="tm">18:35:54</span><span class="nk"> &lt;danielbeck&gt;</span> One of them links to a PDF and the link is too long, I asked for a different URL and/or a landing page, but otherwise I'd like to get approval for these messages for the current quarter.
+<a name="l-119"></a><span class="tm">18:36:14</span><span class="nk"> &lt;danielbeck&gt;</span> I hope changing the URL afterwards is not a problem with you.
+<a name="l-120"></a><span class="tm">18:36:35</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah I think it's OK
+<a name="l-121"></a><span class="tm">18:36:40</span><span class="nk"> &lt;kohsuke&gt;</span> changing URL, that is
+<a name="l-122"></a><span class="tm">18:37:05</span><span class="nk"> &lt;kohsuke&gt;</span> I'll refrain from commenting on messages, though I think it's in line with the tones of the past messages
+<a name="l-123"></a><span class="tm">18:37:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://github.com/jenkinsci/patron/blob/gh-pages/messages.xml for the past messages</span>
+<a name="l-124"></a><span class="tm">18:38:20</span><span class="nk"> &lt;kohsuke&gt;</span> any +1, -1, etc?
+<a name="l-125"></a><span class="tm">18:38:29</span><span class="nk"> &lt;fredg&gt;</span> looks ok, I guess
+<a name="l-126"></a><span class="tm">18:38:30</span><span class="nk"> &lt;orrc&gt;</span> those are fine. what's the general approval process again? each request comes to this meeting, or to the board members via jenkinsci-patrons, etc?
+<a name="l-127"></a><span class="tm">18:38:48</span><span class="nk"> &lt;ogondza&gt;</span> lgtm
+<a name="l-128"></a><span class="tm">18:38:52</span><span class="nk"> &lt;danielbeck&gt;</span> the project meeting approves the messages
+<a name="l-129"></a><span class="tm">18:39:25</span><span class="nk"> &lt;danielbeck&gt;</span> we broke the process a bit this time because due to a miscommunication CB sent the donation early
+<a name="l-130"></a><span class="tm">18:39:40</span><span class="nk"> &lt;orrc&gt;</span> ok, done, close INFRA-315 ;)
+<a name="l-131"></a><span class="tm">18:39:43</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-315:wiki advertising is showing blank adverts (Open) https://issues.jenkins-ci.org/browse/INFRA-315
+<a name="l-132"></a><span class="tm">18:39:53</span><span class="nk"> &lt;KostyaSha&gt;</span> lgtm if it not for jira/wiki
+<a name="l-133"></a><span class="tm">18:39:57</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">proposed CB messages are OK</span>
+<a name="l-134"></a><span class="tm">18:40:32</span><span class="nk"> &lt;kohsuke&gt;</span> closed
+<a name="l-135"></a><span class="tm">18:40:51</span><span class="nk"> &lt;kohsuke&gt;</span> shall we move on to next topic?
+<a name="l-136"></a><span class="tm">18:41:09</span><span class="nk"> &lt;orrc&gt;</span> yes
+<a name="l-137"></a><span class="tm">18:41:11</span><span class="nk"> &lt;kohsuke&gt;</span> Should we put Xebia's current message for now until they come up with a new one?
+<a name="l-138"></a><span class="tm">18:41:26</span><span class="nk"> &lt;kohsuke&gt;</span> I guess we don't have to re-approve that one
+<a name="l-139"></a><span class="tm">18:41:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">JUC travel grant</span>
+<a name="l-140"></a><span class="tm">18:41:47</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Haven't heard back from them what message they want... wouldn't want to put up a year old message...
+<a name="l-141"></a><span class="tm">18:41:53</span><span class="nk"> &lt;danielbeck&gt;</span> https://groups.google.com/forum/#!topic/jenkinsci-dev/LiqsANj4Lvc
+<a name="l-142"></a><span class="tm">18:41:59</span><span class="nk"> &lt;kohsuke&gt;</span> np
+<a name="l-143"></a><span class="tm">18:42:13</span><span class="nk"> &lt;danielbeck&gt;</span> We had this topic in the past
+<a name="l-144"></a><span class="tm">18:42:19</span><span class="nk"> &lt;danielbeck&gt;</span> but nothing came from it
+<a name="l-145"></a><span class="tm">18:42:32</span><span class="nk"> &lt;danielbeck&gt;</span> supporting community members' travel to Jenkins conferences
+<a name="l-146"></a><span class="tm">18:43:13</span><span class="nk"> &lt;danielbeck&gt;</span> so now I was asked whether we could support Pradeepto Bhattacharya's travel to the US JUC
+<a name="l-147"></a><span class="tm">18:43:34</span><span class="nk"> &lt;danielbeck&gt;</span> since we considered this in the past I brought it up on the dev list
+<a name="l-148"></a><span class="tm">18:43:42</span><span class="nk"> &lt;KostyaSha&gt;</span> be careful, we have experience that some persons sending such requests to leave their country forever
+<a name="l-149"></a><span class="tm">18:44:25</span><span class="nk"> &lt;danielbeck&gt;</span> who's "we"?
+<a name="l-150"></a><span class="tm">18:44:44</span><span class="nk"> &lt;KostyaSha&gt;</span> was in org members in http://lvee.org
+<a name="l-151"></a><span class="tm">18:45:21</span><span class="nk"> &lt;kohsuke&gt;</span> My recollection of earlier conversations is that the general idea of sponsoring a travel for up to a specific budget / year has a good support
+<a name="l-152"></a><span class="tm">18:45:28</span><span class="nk"> &lt;danielbeck&gt;</span> note that he attended JUC London already, and will attend JUC US West -- but it's a major expense for him.
+<a name="l-153"></a><span class="tm">18:45:46</span><span class="nk"> &lt;KostyaSha&gt;</span> for me expensive attending any JUC, but i'm ok ;)
+<a name="l-154"></a><span class="tm">18:46:20</span><span class="nk"> &lt;kohsuke&gt;</span> Where we are unclear is what bar would a proposal needs to pass to be considered benefitial to the community.
+<a name="l-155"></a><span class="tm">18:46:48</span><span class="nk"> &lt;danielbeck&gt;</span> right, we stopped the previous discussion around the topic of community benefit
+<a name="l-156"></a><span class="tm">18:47:17</span><span class="nk"> &lt;danielbeck&gt;</span> in this case, he's a repeat speaker, but not active in the community beyond local meetups.
+<a name="l-157"></a><span class="tm">18:47:35</span><span class="nk"> &lt;danielbeck&gt;</span> Pradeepto's profile is available at e.g. https://www.cloudbees.com/jenkins/juc-2015/abstracts/europe/02-02-1400-bhattacharya
+<a name="l-158"></a><span class="tm">18:47:58</span><span class="nk"> &lt;KostyaSha&gt;</span> Director of Engineering  can't travel?
+<a name="l-159"></a><span class="tm">18:48:19</span><span class="nk"> &lt;kohsuke&gt;</span> And I thought sponsoring a visit to a conference seems to be generally accepted practice
+<a name="l-160"></a><span class="tm">18:48:24</span><span class="nk"> &lt;kohsuke&gt;</span> Here's one for FreeBSD: https://forums.freebsd.org/threads/accepting-travel-grant-applications-for-eurobsdcon-2013.40910/
+<a name="l-161"></a><span class="tm">18:48:57</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, yes, idea is good, but criterias unclear. Maybe do it as random lottery?
+<a name="l-162"></a><span class="tm">18:49:17</span><span class="nk"> &lt;kohsuke&gt;</span> (then there's a related separate issue about JUC being described as a commercial conference, which I want to discuss further)
+<a name="l-163"></a><span class="tm">18:49:39</span><span class="nk"> &lt;KostyaSha&gt;</span> grep contributors from last 3 months | sort | unique | grep -v CB-employees
+<a name="l-164"></a><span class="tm">18:49:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> I don't want loterry
+<a name="l-165"></a><span class="tm">18:50:38</span><span class="nk"> &lt;orrc&gt;</span> like was said last time, it's hard to judge return on investment
+<a name="l-166"></a><span class="tm">18:50:51</span><span class="nk"> &lt;orrc&gt;</span> but I agree with the allocation of a budget per quarter, as hare_brain mentioned
+<a name="l-167"></a><span class="tm">18:51:11</span><span class="nk"> &lt;kohsuke&gt;</span> I think we need to start somewhere and adjust over time
+<a name="l-168"></a><span class="tm">18:52:24</span><span class="nk"> &lt;kohsuke&gt;</span> I liked that Pradeepto is passionate enough about Jenkins that he's paying out of his own pocket to come to these events
+<a name="l-169"></a><span class="tm">18:52:58</span><span class="nk"> &lt;KostyaSha&gt;</span> Is JUC free for speakers?
+<a name="l-170"></a><span class="tm">18:53:12</span><span class="nk"> &lt;kohsuke&gt;</span> wrt budget, IIRC the number floated was to set aside $2K/year and use it to support 2 people for $1K each
+<a name="l-171"></a><span class="tm">18:53:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> I'm pretty sure, yes. And for people in the "ask the experts" community room.
+<a name="l-172"></a><span class="tm">18:53:57 </span><span class="nka">* orrc</span> <span class="ac">checks flight prices from Frankfurt to California in September</span>
+<a name="l-173"></a><span class="tm">18:54:04</span><span class="nk"> &lt;orrc&gt;</span> yeah, JUC speakers get in free
+<a name="l-174"></a><span class="tm">18:54:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> I'd love to have you over, too
+<a name="l-175"></a><span class="tm">18:54:24</span><span class="nk"> &lt;KostyaSha&gt;</span> orrc, do you need visas?
+<a name="l-176"></a><span class="tm">18:55:15</span><span class="nk"> &lt;orrc&gt;</span> I think $2k/year is a good starting point, though maybe with max $500 per visit?
+<a name="l-177"></a><span class="tm">18:55:40</span><span class="nk"> &lt;orrc&gt;</span> that could help cover more shorter distance trips, e.g. people to FOSDEM?
+<a name="l-178"></a><span class="tm">18:55:52</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, freebsd firstly targeted to developers
+<a name="l-179"></a><span class="tm">18:55:57</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so you want to go for more people
+<a name="l-180"></a><span class="tm">18:56:27</span><span class="nk"> &lt;kohsuke&gt;</span> I'm fine with that.
+<a name="l-181"></a><span class="tm">18:56:31</span><span class="nk"> &lt;orrc&gt;</span> for this particular case, I don't really see the benefit as it's a repeat talk, but we need to start somewhere. and I know, from talking to Alyssa in 2013 about sponsoring me to JUC West, she mentioned some budget could come from sponsors
+<a name="l-182"></a><span class="tm">18:56:45</span><span class="nk"> &lt;KostyaSha&gt;</span> such benefit may attract more jenkins devs imho
+<a name="l-183"></a><span class="tm">18:56:50</span><span class="nk"> &lt;orrc&gt;</span> so I think sponsoring this guy could work, just not all from the OSS side perhaps
+<a name="l-184"></a><span class="tm">18:57:01</span><span class="nk"> &lt;fredg&gt;</span> <span class="hi">orrc:</span> +1
+<a name="l-185"></a><span class="tm">18:57:48</span><span class="nk"> &lt;kohsuke&gt;</span> JUC is a big money loser so I don't want people to think that we have other funding sources readily available
+<a name="l-186"></a><span class="tm">18:58:13</span><span class="nk"> &lt;kohsuke&gt;</span> but anyway,  I think we have a consensus
+<a name="l-187"></a><span class="tm">18:58:46</span><span class="nk"> &lt;kohsuke&gt;</span> If this being a repeat talk is a problem, perhaps we can think of this as retroactively sponsoring his JUC Europe visit that has already happened.
+<a name="l-188"></a><span class="tm">18:58:53</span><span class="nk"> &lt;orrc&gt;</span> :)
+<a name="l-189"></a><span class="tm">18:59:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> is this good with you?
+<a name="l-190"></a><span class="tm">18:59:48</span><span class="nk"> &lt;danielbeck&gt;</span> consensus is up to 500 USD per person so we get to sponsor more?
+<a name="l-191"></a><span class="tm">18:59:51</span><span class="nk"> &lt;kohsuke&gt;</span> Let's make sure we'll interview him and post it as a blog. Give visibility to the program and him
+<a name="l-192"></a><span class="tm">18:59:56</span><span class="nk"> &lt;danielbeck&gt;</span> from the total of 2k per year
+<a name="l-193"></a><span class="tm">19:00:00</span><span class="nk"> &lt;kohsuke&gt;</span> Right
+<a name="l-194"></a><span class="tm">19:00:21</span><span class="nk"> &lt;KostyaSha&gt;</span> oleg-nenashev, how much cost you to travel from Russia?
+<a name="l-195"></a><span class="tm">19:00:24</span><span class="nk"> &lt;kohsuke&gt;</span> Let's also aim for bringing someone to FOSDEM
+<a name="l-196"></a><span class="tm">19:00:34</span><span class="nk"> &lt;danielbeck&gt;</span> and we're going to sponsor Pradeepto as an experiment, and milk him for a blog post and travel report?
+<a name="l-197"></a><span class="tm">19:00:36</span><span class="nk"> &lt;kohsuke&gt;</span> And SCALE14x
+<a name="l-198"></a><span class="tm">19:00:47</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> yes
+<a name="l-199"></a><span class="tm">19:00:48</span><span class="nk"> &lt;KostyaSha&gt;</span> danielbeck, and twitter spamming :)
+<a name="l-200"></a><span class="tm">19:00:52</span><span class="nk"> &lt;fredg&gt;</span> +1 for bringing ppl to FOSDEM
+<a name="l-201"></a><span class="tm">19:01:21</span><span class="nk"> &lt;fredg&gt;</span> and encourage them to give a Jenkins related talk ;)
+<a name="l-202"></a><span class="tm">19:01:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">fredg:</span> right
+<a name="l-203"></a><span class="tm">19:01:44</span><span class="nk"> &lt;KostyaSha&gt;</span> maybe better ask him upgrade confluence?
+<a name="l-204"></a><span class="tm">19:01:57</span><span class="nk"> &lt;danielbeck&gt;</span> sounds great. I'll work with Pradeepto on writing about this.
+<a name="l-205"></a><span class="tm">19:02:19</span><span class="nk"> &lt;danielbeck&gt;</span> Should we establish a formal process for applying in the future?
+<a name="l-206"></a><span class="tm">19:02:30</span><span class="nk"> &lt;danielbeck&gt;</span> since it's now a real thing
+<a name="l-207"></a><span class="tm">19:02:33</span><span class="nk"> &lt;fredg&gt;</span> yes, please
+<a name="l-208"></a><span class="tm">19:02:38</span><span class="nk"> &lt;orrc&gt;</span> yes, at least having a wiki page with this stuff would be great
+<a name="l-209"></a><span class="tm">19:02:45</span><span class="nk"> &lt;kohsuke&gt;</span> yeah
+<a name="l-210"></a><span class="tm">19:02:52</span><span class="nk"> &lt;danielbeck&gt;</span> Alright, I'll work out a draft
+<a name="l-211"></a><span class="tm">19:02:58</span><span class="nk"> &lt;KostyaSha&gt;</span> orrc, ro page?)
+<a name="l-212"></a><span class="tm">19:03:12</span><span class="nk"> &lt;kohsuke&gt;</span> I need to go now, I hoped to talk about plugin rebundling but I guess I'm not going to get time
+<a name="l-213"></a><span class="tm">19:03:14</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to work with Pradeepto on blog post and travel report</span>
+<a name="l-214"></a><span class="tm">19:03:27</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to write draft wiki page on new travel grant program</span>
+<a name="l-215"></a><span class="tm">19:03:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-216"></a><span class="tm">19:04:03</span><span class="nk"> &lt;kohsuke&gt;</span> 8/19, same time
+<a name="l-217"></a><span class="tm">19:04:14</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">and please see https://groups.google.com/forum/#!topic/jenkinsci-dev/kRobm-cxFw8</span>
+<a name="l-218"></a><span class="tm">19:04:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 05:59:02 May 04, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:55:23 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 73.431
+  exclusion.robots: 0.151
+  exclusion.robots.policy: 0.137
+  RedisCDXSource: 1.135
+  esindex: 0.014
+  LoadShardBlock: 44.416 (3)
+  PetaboxLoader3.datanode: 44.412 (4)
+  CDXLines.iter: 23.268 (3)
+  load_resource: 69.78
+  PetaboxLoader3.resolve: 43.281
+-->

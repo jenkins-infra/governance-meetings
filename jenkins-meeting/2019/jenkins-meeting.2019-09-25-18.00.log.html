@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app210.us.archive.org';v.server_ms=9296;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-09-25-18.00.log.html","20211027213634","https://web.archive.org/","web","/_static/",
+	      "1635370594");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:54</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:59</span><span class="nk"> &lt;markewaite&gt;</span> o/
+<a name="l-4"></a><span class="tm">18:01:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-September25</span>
+<a name="l-5"></a><span class="tm">18:01:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-6"></a><span class="tm">18:02:17</span><span class="nk"> &lt;tracymiranda&gt;</span> I had some actions...
+<a name="l-7"></a><span class="tm">18:02:28</span><span class="nk"> &lt;tracymiranda&gt;</span> let me find them first :-)
+<a name="l-8"></a><span class="tm">18:02:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-09-11-18.04.html</span>
+<a name="l-9"></a><span class="tm">18:02:36</span><span class="nk"> &lt;tracymiranda&gt;</span> ah thanks!
+<a name="l-10"></a><span class="tm">18:02:56</span><span class="nk"> &lt;tracymiranda&gt;</span> not sure the format here
+<a name="l-11"></a><span class="tm">18:03:04</span><span class="nk"> &lt;tracymiranda&gt;</span> but this one was done (thanks KK) : ACTION: tracymiranda to sync with existing board to get a nomination email sent to dev list on 13 sep
+<a name="l-12"></a><span class="tm">18:03:12</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah
+<a name="l-13"></a><span class="tm">18:03:20 </span><span class="nka">* tracymiranda</span> <span class="ac">tracymiranda to communicate the Governance meeting results in the developer mailing list</span>
+<a name="l-14"></a><span class="tm">18:03:22</span><span class="nk"> &lt;tracymiranda&gt;</span> dobe
+<a name="l-15"></a><span class="tm">18:03:33</span><span class="nk"> &lt;pkthunda&gt;</span> o/ hi all :)
+<a name="l-16"></a><span class="tm">18:03:48 </span><span class="nka">* tracymiranda</span> <span class="ac">oleg-nenashev to add key election dates to the Jenkins event calendar - Oleg did this too (not sure if he is here)</span>
+<a name="l-17"></a><span class="tm">18:04:10 </span><span class="nka">* tracymiranda</span> <span class="ac">tracymiranda to ensure that the https://wiki.jenkins.io/display/JENKINS/Board+Election+Process get updated after the motions</span>
+<a name="l-18"></a><span class="tm">18:04:12 </span><span class="nka">* tracymiranda</span> <span class="ac">tracymiranda to ask Governance board to update https://wiki.jenkins.io/display/JENKINS/Governance+Board : add Infrastructure and Documentation officers there + links to the elections</span>
+<a name="l-19"></a><span class="tm">18:04:15</span><span class="nk"> &lt;kohsuke&gt;</span> He isn't here today
+<a name="l-20"></a><span class="tm">18:04:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Here... kinda
+<a name="l-21"></a><span class="tm">18:04:27</span><span class="nk"> &lt;tracymiranda&gt;</span> Those last two also done with help from @olblak
+<a name="l-22"></a><span class="tm">18:04:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Just a coincidence
+<a name="l-23"></a><span class="tm">18:04:46</span><span class="nk"> &lt;kohsuke&gt;</span> Wow, in that case I think all the actions are cleared
+<a name="l-24"></a><span class="tm">18:04:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also added website jumbotron and https://jenkins.io/blog/2019/09/25/board-elections/
+<a name="l-25"></a><span class="tm">18:05:03</span><span class="nk"> &lt;tracymiranda&gt;</span> great, how good are we :-)
+<a name="l-26"></a><span class="tm">18:05:13</span><span class="nk"> &lt;kohsuke&gt;</span> (group hug)
+<a name="l-27"></a><span class="tm">18:05:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">tracymiranda:</span> could you please RT the blig btw? :)
+<a name="l-28"></a><span class="tm">18:05:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> * blog
+<a name="l-29"></a><span class="tm">18:05:27</span><span class="nk"> &lt;tracymiranda&gt;</span> will do
+<a name="l-30"></a><span class="tm">18:05:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Thanks
+<a name="l-31"></a><span class="tm">18:05:36 </span><span class="nka">* oleg-nenashev</span> <span class="ac">hugs all</span>
+<a name="l-32"></a><span class="tm">18:05:40</span><span class="nk"> &lt;kohsuke&gt;</span> Shall we move on?
+<a name="l-33"></a><span class="tm">18:05:50</span><span class="nk"> &lt;tracymiranda&gt;</span> yes
+<a name="l-34"></a><span class="tm">18:06:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Request for trademark approval to use the name "Jenkins Health Advisor by CloudBees" instead of "CloudBees Jenkins Advisor".</span>
+<a name="l-35"></a><span class="tm">18:06:20</span><span class="nk"> &lt;kohsuke&gt;</span> So there was the dev list thread about this
+<a name="l-36"></a><span class="tm">18:06:31</span><span class="nk"> &lt;kohsuke&gt;</span> Let me check if there are more emails than the last time I checked
+<a name="l-37"></a><span class="tm">18:07:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/d/msgid/jenkinsci-dev/CAFNCU-_2xRYfgBqh1L-HgjHmuqWn_95Sb4%2BUVQmcW%2BCaJp3Wyg%40mail.gmail.com?utm_medium=email&amp;utm_source=footer</span>
+<a name="l-38"></a><span class="tm">18:07:14</span><span class="nk"> &lt;kohsuke&gt;</span> Nope, I think it's basically a few +1s
+<a name="l-39"></a><span class="tm">18:08:10</span><span class="nk"> &lt;kohsuke&gt;</span> Anyone wants to add anything?
+<a name="l-40"></a><span class="tm">18:08:48</span><span class="nk"> &lt;tracymiranda&gt;</span> One additional comment from me is that is almost like a modification to a previously approved mark - is that the case @pkthunda
+<a name="l-41"></a><span class="tm">18:09:02</span><span class="nk"> &lt;tracymiranda&gt;</span> i.e. scope is the same and the previous name will no longer be used
+<a name="l-42"></a><span class="tm">18:09:21</span><span class="nk"> &lt;tracymiranda&gt;</span> main reason I ask is it might just simplify process, especially updating wiki
+<a name="l-43"></a><span class="tm">18:09:33</span><span class="nk"> &lt;pkthunda&gt;</span> Correct!
+<a name="l-44"></a><span class="tm">18:09:46</span><span class="nk"> &lt;kohsuke&gt;</span> IANAL, but I don't think it changes the process
+<a name="l-45"></a><span class="tm">18:10:12</span><span class="nk"> &lt;kohsuke&gt;</span> And I don't think this name gets any easier :-) given that it really fits the well established naming patterns
+<a name="l-46"></a><span class="tm">18:10:33</span><span class="nk"> &lt;kohsuke&gt;</span> But thanks for pointing out that this isn't a new thing. It's just a new name to the same thing we've previously approved
+<a name="l-47"></a><span class="tm">18:10:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> I believe we may have missed a calendar invite
+<a name="l-48"></a><span class="tm">18:10:59</span><span class="nk"> &lt;kohsuke&gt;</span> calendar invite to the governane meeting?
+<a name="l-49"></a><span class="tm">18:11:02</span><span class="nk"> &lt;rtyler&gt;</span> oof
+<a name="l-50"></a><span class="tm">18:11:13</span><span class="nk"> &lt;rtyler&gt;</span> I'm here now :)
+<a name="l-51"></a><span class="tm">18:11:16</span><span class="nk"> &lt;kohsuke&gt;</span> FWIW I see it in my calendar. Created by Daniel.
+<a name="l-52"></a><span class="tm">18:11:32</span><span class="nk"> &lt;rtyler&gt;</span> s/we/I/ mistyped
+<a name="l-53"></a><span class="tm">18:11:41</span><span class="nk"> &lt;kohsuke&gt;</span> ah
+<a name="l-54"></a><span class="tm">18:11:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler</span>
+<a name="l-55"></a><span class="tm">18:11:54</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: kohsuke rtyler
+<a name="l-56"></a><span class="tm">18:12:27</span><span class="nk"> &lt;kohsuke&gt;</span> Now that you are here , do you want to chime in on the name approval?
+<a name="l-57"></a><span class="tm">18:13:03</span><span class="nk"> &lt;rtyler&gt;</span> it's a classically long product name, as long as that "by CloudBees" never gets truncated off the end of it, I don't particularly mind it
+<a name="l-58"></a><span class="tm">18:13:53</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I propose we vote
+<a name="l-59"></a><span class="tm">18:13:55</span><span class="nk"> &lt;rtyler&gt;</span> JHAC
+<a name="l-60"></a><span class="tm">18:13:59</span><span class="nk"> &lt;rtyler&gt;</span> xD
+<a name="l-61"></a><span class="tm">18:14:29</span><span class="nk"> &lt;kohsuke&gt;</span> I'll start. Here's my +1
+<a name="l-62"></a><span class="tm">18:14:32</span><span class="nk"> &lt;rtyler&gt;</span> +1
+<a name="l-63"></a><span class="tm">18:14:35</span><span class="nk"> &lt;tracymiranda&gt;</span> +1
+<a name="l-64"></a><span class="tm">18:14:56</span><span class="nk"> &lt;markewaite&gt;</span> +1
+<a name="l-65"></a><span class="tm">18:15:27</span><span class="nk"> &lt;kohsuke&gt;</span> anyone else? going once ...
+<a name="l-66"></a><span class="tm">18:15:42</span><span class="nk"> &lt;kohsuke&gt;</span> going twice ...
+<a name="l-67"></a><span class="tm">18:16:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">"Jenkins Health Advisor by CloudBees" is approved</span>
+<a name="l-68"></a><span class="tm">18:16:20</span><span class="nk"> &lt;kohsuke&gt;</span> Any other business?
+<a name="l-69"></a><span class="tm">18:16:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-70"></a><span class="tm">18:16:52</span><span class="nk"> &lt;kohsuke&gt;</span> that would be Oct 9th
+<a name="l-71"></a><span class="tm">18:17:06</span><span class="nk"> &lt;kohsuke&gt;</span> I can't believe the year is almost 75% over
+<a name="l-72"></a><span class="tm">18:17:08</span><span class="nk"> &lt;kohsuke&gt;</span> scary
+<a name="l-73"></a><span class="tm">18:17:26</span><span class="nk"> &lt;kohsuke&gt;</span> If nothing else, I'll see you all next time
+<a name="l-74"></a><span class="tm">18:17:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 21:36:34 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:02:59 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 9132.939
+  exclusion.robots: 0.101
+  exclusion.robots.policy: 0.094
+  cdx.remote: 0.064
+  esindex: 0.009
+  LoadShardBlock: 49.606 (3)
+  PetaboxLoader3.datanode: 69.163 (4)
+  CDXLines.iter: 22.717 (3)
+  load_resource: 150.967
+  PetaboxLoader3.resolve: 119.104
+-->

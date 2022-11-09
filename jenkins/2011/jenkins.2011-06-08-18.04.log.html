@@ -1,0 +1,357 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:04:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:04:32</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:04:39</span><span class="nk"> &lt;emanuelez&gt;</span> <span class="hi">kohsuke:</span> I agree
+<a name="l-4"></a><span class="tm">18:04:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">abayer rtyler hare_brain</span>
+<a name="l-5"></a><span class="tm">18:04:41</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:05:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">I apologize for the lack of preparation for this. I didn't even have the agenda page up for this until today.</span>
+<a name="l-7"></a><span class="tm">18:05:24</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-8"></a><span class="tm">18:05:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">foundation update</span>
+<a name="l-9"></a><span class="tm">18:06:14</span><span class="nk"> &lt;kohsuke&gt;</span> I'd like abayer, hare_brain, and myself to follow up with the action, namely to hash out ASF details once and for all.
+<a name="l-10"></a><span class="tm">18:06:28</span><span class="nk"> &lt;rtyler&gt;</span> weren't you all going to have a literal sit-down meeting?
+<a name="l-11"></a><span class="tm">18:06:50</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, haven't done so yet, and we should do it soon, since SPI clock is ticking.
+<a name="l-12"></a><span class="tm">18:06:56</span><span class="nk"> &lt;rtyler&gt;</span> indeed
+<a name="l-13"></a><span class="tm">18:07:12</span><span class="nk"> &lt;abayer&gt;</span> For what it's worth, I tend to agree with the sentiment I read from last meeting - SPI for now, consider ASF in the future when they've got all the infrastructural issues we'd need resolved.
+<a name="l-14"></a><span class="tm">18:07:17</span><span class="nk"> &lt;abayer&gt;</span> Namely, git/github questions.
+<a name="l-15"></a><span class="tm">18:07:24</span><span class="nk"> &lt;kohsuke&gt;</span> A part of it is also about me and abayer writing down the notes from our previous meeting with Doug.
+<a name="l-16"></a><span class="tm">18:07:52</span><span class="nk"> &lt;abayer&gt;</span> And I'm saying this as a strong advocate of ASF as the right long-term home.
+<a name="l-17"></a><span class="tm">18:08:52 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-18"></a><span class="tm">18:08:53</span><span class="nk"> &lt;kohsuke&gt;</span> OK. Hearing that from abayer pretty much decides what we should do, in my mind.
+<a name="l-19"></a><span class="tm">18:08:56</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-20"></a><span class="tm">18:09:39</span><span class="nk"> &lt;kohsuke&gt;</span> And I suppose there's no chance hare_brain can join us tomorrow evening in San Francisco?
+<a name="l-21"></a><span class="tm">18:09:57</span><span class="nk"> &lt;rtyler&gt;</span> I haven't heard from him recently on the subject
+<a name="l-22"></a><span class="tm">18:10:07</span><span class="nk"> &lt;hare_brain&gt;</span> Sorry, not tomorrow.
+<a name="l-23"></a><span class="tm">18:10:22</span><span class="nk"> &lt;abayer&gt;</span> I'm not keen on SFC for some political/philosophical reasons, but SPI seems to do its job nice and apolitically. Getting a legal umbrella is the most important thing for us in re: a foundation, ASF isn't ready for our infra reqs yet, and SPI is right there. And there's no lock-in at SPI so far as I can tell.
+<a name="l-24"></a><span class="tm">18:10:46</span><span class="nk"> &lt;kohsuke&gt;</span> Right.
+<a name="l-25"></a><span class="tm">18:11:19</span><span class="nk"> &lt;kohsuke&gt;</span> OK, in that case, any reason we shouldn't make the binding decision right now right here?
+<a name="l-26"></a><span class="tm">18:11:32</span><span class="nk"> &lt;hare_brain&gt;</span> I think I said this at the last meeting, but we should pick a foundation with the intent of staying there. If we're going into SPI with the intent that it's merely a "placeholder", how is that going to look?
+<a name="l-27"></a><span class="tm">18:11:43</span><span class="nk"> &lt;rtyler&gt;</span> don't all board members need to physically insert their Jenkins Key into the reactor core?
+<a name="l-28"></a><span class="tm">18:12:20</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">hare_brain:</span> I think it looks alright, actually. We need a legal umbrella, we're not 100% sure what our long-term home would be, but we need that umbrella now. SPI's willing to provide that. Why not take it?
+<a name="l-29"></a><span class="tm">18:13:07</span><span class="nk"> &lt;abayer&gt;</span> I just don't think it's in the project's best interest for us to wait another 4-6 months to get a legal home, interim or otherwise.
+<a name="l-30"></a><span class="tm">18:13:30</span><span class="nk"> &lt;abayer&gt;</span> (speaking of - any trademark update, kohsuke?)
+<a name="l-31"></a><span class="tm">18:13:45</span><span class="nk"> &lt;sayresVT&gt;</span> i'm guessing the jdk6u13 issue may have something to do with the fact that there was already a separate install of jdk6u13 on the machine at ProgramFiles?
+<a name="l-32"></a><span class="tm">18:13:46</span><span class="nk"> &lt;kohsuke&gt;</span> No, sorry. I feel bad, but no.
+<a name="l-33"></a><span class="tm">18:13:51</span><span class="nk"> &lt;hare_brain&gt;</span> I agree with that. But how does it help to project if we move to Apache in 4-6 months?
+<a name="l-34"></a><span class="tm">18:14:12</span><span class="nk"> &lt;hare_brain&gt;</span> "help the project"
+<a name="l-35"></a><span class="tm">18:14:38</span><span class="nk"> &lt;hare_brain&gt;</span> In other words, if SPI is good enough, why wouldn't we stay there forever?
+<a name="l-36"></a><span class="tm">18:14:44</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">hare_brain:</span> Well, it's not like we definitely would move. I just want to be sure we don't choose something now based on short-term requirements that blocks us from future moves if we so choose.
+<a name="l-37"></a><span class="tm">18:15:09</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> I think what will happen is that we'll stay at SPI anyways, since we won't feel like moving in the future :P
+<a name="l-38"></a><span class="tm">18:15:27</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> heh.
+<a name="l-39"></a><span class="tm">18:15:28</span><span class="nk"> &lt;kohsuke&gt;</span> I think it is very possible that we'll stay with SPI forever.
+<a name="l-40"></a><span class="tm">18:15:43 </span><span class="nka">* stephenc</span> <span class="ac">wonders has he actually arrived for a board meeting</span>
+<a name="l-41"></a><span class="tm">18:15:52</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">stephenc:</span> you may have!
+<a name="l-42"></a><span class="tm">18:15:59</span><span class="nk"> &lt;kohsuke&gt;</span> I mean, if things really work out well, we might be swamped by other things and urge to move might not cross the threshold.
+<a name="l-43"></a><span class="tm">18:16:00</span><span class="nk"> &lt;stephenc&gt;</span> wooot!
+<a name="l-44"></a><span class="tm">18:16:08</span><span class="nk"> &lt;kohsuke&gt;</span> Think about our move to GitHub.
+<a name="l-45"></a><span class="tm">18:16:31</span><span class="nk"> &lt;abayer&gt;</span> I'm just saying that I don't oppose the SPI option, even though I personally think ASF is a better long-term option, because SPI's the one we actually have available now, and going with SPI now doesn't mean we *can't* go to ASF in the future.
+<a name="l-46"></a><span class="tm">18:16:54</span><span class="nk"> &lt;stephenc&gt;</span> I think ASF right now is not a good fit for our dev model
+<a name="l-47"></a><span class="tm">18:17:11</span><span class="nk"> &lt;kohsuke&gt;</span> And I'm with abayer that we really want some legal umbrella and other normalizations.
+<a name="l-48"></a><span class="tm">18:17:17</span><span class="nk"> &lt;kohsuke&gt;</span> ... sooner than later
+<a name="l-49"></a><span class="tm">18:17:19</span><span class="nk"> &lt;stephenc&gt;</span> +1
+<a name="l-50"></a><span class="tm">18:17:20</span><span class="nk"> &lt;stephenc&gt;</span> +1000
+<a name="l-51"></a><span class="tm">18:17:32</span><span class="nk"> &lt;rtyler&gt;</span> you don't get that many votes!
+<a name="l-52"></a><span class="tm">18:17:39 </span><span class="nka">* rtyler</span> <span class="ac">subtracts 2000 from stephenc's register</span>
+<a name="l-53"></a><span class="tm">18:17:56 </span><span class="nka">* stephenc</span> <span class="ac">claims bonus votes for actually getting to a meeting</span>
+<a name="l-54"></a><span class="tm">18:18:28</span><span class="nk"> &lt;hare_brain&gt;</span> I am +1 for moving to SPI now. I am 0 for waiting until ASF is ready for us. I am -1 for moving to SPI now and then moving again to ASF in the future.
+<a name="l-55"></a><span class="tm">18:19:12</span><span class="nk"> &lt;stephenc&gt;</span> well what is needed for ASF to be ready for us
+<a name="l-56"></a><span class="tm">18:19:24</span><span class="nk"> &lt;stephenc&gt;</span> as I see it most of the block is git
+<a name="l-57"></a><span class="tm">18:19:27</span><span class="nk"> &lt;rtyler&gt;</span> see the last meeting notes
+<a name="l-58"></a><span class="tm">18:19:47</span><span class="nk"> &lt;stephenc&gt;</span> yeah but for me the killer is svn being canonical
+<a name="l-59"></a><span class="tm">18:20:20</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">hare_brain:</span> I'm the most pro-ASF voice here currently, and even I'm not saying SPI is only an interim home - I just don't want to close doors in the future. Inertia on its own will mean that if we go with SPI now, anything else would have to be really worth it to move again.
+<a name="l-60"></a><span class="tm">18:20:39</span><span class="nk"> &lt;hare_brain&gt;</span> OK, that's what I wanted to hear from you. :)
+<a name="l-61"></a><span class="tm">18:21:06</span><span class="nk"> &lt;abayer&gt;</span> =)
+<a name="l-62"></a><span class="tm">18:21:07</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, kind of hard to commit to our future actions when they depend on things unknown to us yet
+<a name="l-63"></a><span class="tm">18:21:28</span><span class="nk"> &lt;rtyler&gt;</span> do we have a unanimous vote to accept the SPI invitation?
+<a name="l-64"></a><span class="tm">18:21:52</span><span class="nk"> &lt;abayer&gt;</span> I'm +1 on accepting.
+<a name="l-65"></a><span class="tm">18:21:54</span><span class="nk"> &lt;kohsuke&gt;</span> +1 from me
+<a name="l-66"></a><span class="tm">18:22:14</span><span class="nk"> &lt;stephenc&gt;</span> +1 from me
+<a name="l-67"></a><span class="tm">18:22:25</span><span class="nk"> &lt;hare_brain&gt;</span> And I'll reiterate my +1
+<a name="l-68"></a><span class="tm">18:22:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">stephenc:</span> I meant from the board ;)
+<a name="l-69"></a><span class="tm">18:22:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">The board has unanimously agreed to accept the invitation to join the SPI</span>
+<a name="l-70"></a><span class="tm">18:22:59</span><span class="nk"> &lt;rtyler&gt;</span> next?
+<a name="l-71"></a><span class="tm">18:23:07</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-72"></a><span class="tm">18:23:13</span><span class="nk"> &lt;kohsuke&gt;</span> I can do some quick updates on LTS release
+<a name="l-73"></a><span class="tm">18:23:16</span><span class="nk"> &lt;abayer&gt;</span> <span class="topic">#topic </span><span class="topicline">Trademark</span>
+<a name="l-74"></a><span class="tm">18:23:22</span><span class="nk"> &lt;rtyler&gt;</span> DERP
+<a name="l-75"></a><span class="tm">18:23:23</span><span class="nk"> &lt;abayer&gt;</span> Just to quickly touch on this again. =)
+<a name="l-76"></a><span class="tm">18:23:33</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think kutzi is here today to talk about test harness.
+<a name="l-77"></a><span class="tm">18:23:35</span><span class="nk"> &lt;abayer&gt;</span> Is there anything we can do to help getting the ball rolling on it?
+<a name="l-78"></a><span class="tm">18:24:03</span><span class="nk"> &lt;kohsuke&gt;</span> I'll really get that going. My apologies. I'll write to Sacha right away.
+<a name="l-79"></a><span class="tm">18:24:27</span><span class="nk"> &lt;abayer&gt;</span> Thanks.
+<a name="l-80"></a><span class="tm">18:24:35</span><span class="nk"> &lt;abayer&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS release update</span>
+<a name="l-81"></a><span class="tm">18:24:35</span><span class="nk"> &lt;kohsuke&gt;</span> And I'll CC you, as an added pressure :-)
+<a name="l-82"></a><span class="tm">18:25:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">As folks might have noticed, vjuranek from RedHat has been really pushing this ball rolling</span>
+<a name="l-83"></a><span class="tm">18:25:30 </span><span class="nka">* rtyler</span> <span class="ac">applauds</span>
+<a name="l-84"></a><span class="tm">18:25:31</span><span class="nk"> &lt;kohsuke&gt;</span> He isn't here but wanted to put the credit where it's due.
+<a name="l-85"></a><span class="tm">18:25:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#save</span><span class="cmdline"></span>
+<a name="l-86"></a><span class="tm">18:25:42</span><span class="nk"> &lt;kohsuke&gt;</span> And a release is now created and bits staged.
+<a name="l-87"></a><span class="tm">18:25:52</span><span class="nk"> &lt;abayer&gt;</span> Hooray!
+<a name="l-88"></a><span class="tm">18:25:55</span><span class="nk"> &lt;hare_brain&gt;</span> It's 1.409.1 right?
+<a name="l-89"></a><span class="tm">18:26:02</span><span class="nk"> &lt;kohsuke&gt;</span> I need to mirror it before I make it visible in the top page.
+<a name="l-90"></a><span class="tm">18:26:04</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, it's 1.409.1
+<a name="l-91"></a><span class="tm">18:26:10</span><span class="nk"> &lt;rtyler&gt;</span> let's not forget our #info tags gentlemen :)
+<a name="l-92"></a><span class="tm">18:26:10</span><span class="nk"> &lt;hare_brain&gt;</span> Excellent
+<a name="l-93"></a><span class="tm">18:26:20</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">LTS is 1.409.1</span>
+<a name="l-94"></a><span class="tm">18:26:31 </span><span class="nka">* rtyler</span> <span class="ac">grins</span>
+<a name="l-95"></a><span class="tm">18:26:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">I'll do the mirroring today and update the top page.</span>
+<a name="l-96"></a><span class="tm">18:27:23</span><span class="nk"> &lt;hare_brain&gt;</span> If people click on the LTS tab on the changelog, will the changelog reflect what went into the LTS release?
+<a name="l-97"></a><span class="tm">18:27:23</span><span class="nk"> &lt;kohsuke&gt;</span> People also wanted to me to remove RCs from the top page, so I need to think about where to put them
+<a name="l-98"></a><span class="tm">18:27:48</span><span class="nk"> &lt;rtyler&gt;</span> well, we can shuffle it maybe
+<a name="l-99"></a><span class="tm">18:28:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">no changelog generation taken care of yet. For the time being I'll compose it manually until we automate that.</span>
+<a name="l-100"></a><span class="tm">18:28:05</span><span class="nk"> &lt;rtyler&gt;</span> keep that box: Release / Long Term Release
+<a name="l-101"></a><span class="tm">18:28:12</span><span class="nk"> &lt;rtyler&gt;</span> then add a new box just for release candidates?
+<a name="l-102"></a><span class="tm">18:28:37</span><span class="nk"> &lt;kohsuke&gt;</span> or "changelog | past releases" to "changelog | past releases | upcoming RC"
+<a name="l-103"></a><span class="tm">18:28:44</span><span class="nk"> &lt;rtyler&gt;</span> that too
+<a name="l-104"></a><span class="tm">18:28:52</span><span class="nk"> &lt;rtyler&gt;</span> is all the update center work in place for LTS?
+<a name="l-105"></a><span class="tm">18:29:23</span><span class="nk"> &lt;kohsuke&gt;</span> That's taken care of already, but wouldn't hurt to test sanity
+<a name="l-106"></a><span class="tm">18:29:40</span><span class="nk"> &lt;kohsuke&gt;</span> The UC feed for LTS only serves bits compatible with 1.409
+<a name="l-107"></a><span class="tm">18:29:51</span><span class="nk"> &lt;rtyler&gt;</span> is there any plans to allow plugin developers to target LTS specifically?
+<a name="l-108"></a><span class="tm">18:30:07</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, they just need to release with parent POM 1.409.1
+<a name="l-109"></a><span class="tm">18:30:07</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> That's the same UC logic you set up for the 1.395 UC, right?
+<a name="l-110"></a><span class="tm">18:30:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">the backend is different from 1.395, actually.</span>
+<a name="l-111"></a><span class="tm">18:30:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that sounds good to me, something to clearly document for folks
+<a name="l-112"></a><span class="tm">18:30:40</span><span class="nk"> &lt;hare_brain&gt;</span> Regarding the Release/RC/LTS box, I think part of the confusion may stem from "Download" being inside the tabbed box. Download should be the div heading, and the tabs for each type of download inside.
+<a name="l-113"></a><span class="tm">18:31:01</span><span class="nk"> &lt;kohsuke&gt;</span> That makes sense.
+<a name="l-114"></a><span class="tm">18:31:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to update the LTS wiki pages with some plugin developer notes</span>
+<a name="l-115"></a><span class="tm">18:32:13</span><span class="nk"> &lt;kohsuke&gt;</span> I think we need to boot the train model going for LTS as well. Ideally I'd have liked to cut the RC for 1.409.2 at the same time I release 1.409.1
+<a name="l-116"></a><span class="tm">18:32:24</span><span class="nk"> &lt;kohsuke&gt;</span> but today there's no backported changes yet
+<a name="l-117"></a><span class="tm">18:32:46</span><span class="nk"> &lt;abayer&gt;</span> (afk a few minutes)
+<a name="l-118"></a><span class="tm">18:32:56</span><span class="nk"> &lt;stephenc&gt;</span> <span class="hi">kohsuke:</span> you should backport the versionnumber changes
+<a name="l-119"></a><span class="tm">18:33:04</span><span class="nk"> &lt;kohsuke&gt;</span> I'll do some this week and create an RC branch.
+<a name="l-120"></a><span class="tm">18:33:21</span><span class="nk"> &lt;hare_brain&gt;</span> Really? That implies that we'd be revving the LTS branch frequently. I thought the intent was major bug fixes only.
+<a name="l-121"></a><span class="tm">18:33:22</span><span class="nk"> &lt;stephenc&gt;</span> that would allow you to start numbering the rc's for lts with version numbers like 1.409.2-rc-1
+<a name="l-122"></a><span class="tm">18:33:38</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">stephenc:</span> it'll have to wait for a week or so minimum. We need more soaking on changes.
+<a name="l-123"></a><span class="tm">18:33:45</span><span class="nk"> &lt;stephenc&gt;</span> oh yeah
+<a name="l-124"></a><span class="tm">18:33:54</span><span class="nk"> &lt;stephenc&gt;</span> i'm just saying it should be on the list
+<a name="l-125"></a><span class="tm">18:33:59</span><span class="nk"> &lt;rtyler&gt;</span> must resist the urge to push LTS often ;)
+<a name="l-126"></a><span class="tm">18:34:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> OK, so let's put the question differently. When should we target 1.409.2?
+<a name="l-127"></a><span class="tm">18:34:23</span><span class="nk"> &lt;stephenc&gt;</span> have we got a bug severity criteria
+<a name="l-128"></a><span class="tm">18:34:26</span><span class="nk"> &lt;hare_brain&gt;</span> When there's a bad bug that needs to be fixed?
+<a name="l-129"></a><span class="tm">18:34:28</span><span class="nk"> &lt;hare_brain&gt;</span> Exactly.
+<a name="l-130"></a><span class="tm">18:34:41</span><span class="nk"> &lt;stephenc&gt;</span> S1 -&gt; jenkins blows up
+<a name="l-131"></a><span class="tm">18:34:57</span><span class="nk"> &lt;hare_brain&gt;</span> More generally, criteria around what bugs to backport.
+<a name="l-132"></a><span class="tm">18:34:59</span><span class="nk"> &lt;stephenc&gt;</span> S2 -&gt; builds fail to build / plugin blows up
+<a name="l-133"></a><span class="tm">18:35:08</span><span class="nk"> &lt;stephenc&gt;</span> S3 -&gt; something less
+<a name="l-134"></a><span class="tm">18:35:12</span><span class="nk"> &lt;stephenc&gt;</span> S4 -&gt; trivial
+<a name="l-135"></a><span class="tm">18:35:26</span><span class="nk"> &lt;stephenc&gt;</span> S1 -&gt; rev LTS asap
+<a name="l-136"></a><span class="tm">18:35:38</span><span class="nk"> &lt;stephenc&gt;</span> S2 -&gt; rev LTS within 1 week of fix
+<a name="l-137"></a><span class="tm">18:35:47</span><span class="nk"> &lt;kohsuke&gt;</span> OK, so we'll wait for some important bugs to show up and then cut the RC at that point?
+<a name="l-138"></a><span class="tm">18:35:49</span><span class="nk"> &lt;stephenc&gt;</span> S3 -&gt; out of scope
+<a name="l-139"></a><span class="tm">18:36:03</span><span class="nk"> &lt;kohsuke&gt;</span> I can sweep through 1.409-1.415 to see if there has been any.
+<a name="l-140"></a><span class="tm">18:36:11</span><span class="nk"> &lt;bap2000&gt;</span> suspect winstone help still says it's hudson, might be wise to get that into LTS before 1st release
+<a name="l-141"></a><span class="tm">18:36:54</span><span class="nk"> &lt;stephenc&gt;</span> that would be S3 though
+<a name="l-142"></a><span class="tm">18:37:02</span><span class="nk"> &lt;stephenc&gt;</span> or even S4
+<a name="l-143"></a><span class="tm">18:37:05</span><span class="nk"> &lt;hare_brain&gt;</span> My assumption was that anything worthy of the major bug style in the changelog would make up the candidate pool for backporting.
+<a name="l-144"></a><span class="tm">18:37:09</span><span class="nk"> &lt;stephenc&gt;</span> as it is cosmetic
+<a name="l-145"></a><span class="tm">18:37:21</span><span class="nk"> &lt;stephenc&gt;</span> yeah but when do we call it major
+<a name="l-146"></a><span class="tm">18:37:24</span><span class="nk"> &lt;bap2000&gt;</span> ... but not yet released
+<a name="l-147"></a><span class="tm">18:37:25</span><span class="nk"> &lt;stephenc&gt;</span> need a criteria
+<a name="l-148"></a><span class="tm">18:37:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> the other temptation is to backport fixes that's low hanging.
+<a name="l-149"></a><span class="tm">18:37:42</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah, agree. I liked your tiers.
+<a name="l-150"></a><span class="tm">18:39:23</span><span class="nk"> &lt;hare_brain&gt;</span> Isn't the point of LTS to cater to people who want to minimize change? So while the idea of fixing bugs is personally appealing, IMO, the spirit of LTS is to not change it until something major crops up.
+<a name="l-151"></a><span class="tm">18:39:25</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> how do you backport fixes into your internal branch? Got any criteria?
+<a name="l-152"></a><span class="tm">18:39:48</span><span class="nk"> &lt;kohsuke&gt;</span> Based on how vocally people complain?
+<a name="l-153"></a><span class="tm">18:40:15</span><span class="nk"> &lt;hare_brain&gt;</span> Pretty much. We generally avoid cherry picking. We've only backported 2 or 3 times in 3 years, that I can remember.
+<a name="l-154"></a><span class="tm">18:41:46</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I think that's a workable model. Sounds like for the time being we wait for 1.409.1 users to start complaining about something then.
+<a name="l-155"></a><span class="tm">18:41:57</span><span class="nk"> &lt;abayer&gt;</span> +1
+<a name="l-156"></a><span class="tm">18:42:06</span><span class="nk"> &lt;hare_brain&gt;</span> Less work for you, too. :)
+<a name="l-157"></a><span class="tm">18:42:09</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe I can get a thread going in the dev list so that we hear from vjuranek.
+<a name="l-158"></a><span class="tm">18:42:11</span><span class="nk"> &lt;kohsuke&gt;</span> Exactly :-)
+<a name="l-159"></a><span class="tm">18:42:33</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else we want to talk about?
+<a name="l-160"></a><span class="tm">18:42:48</span><span class="nk"> &lt;jieryn&gt;</span> any status about eclipse.org ?
+<a name="l-161"></a><span class="tm">18:42:55</span><span class="nk"> &lt;rtyler&gt;</span> lolwut
+<a name="l-162"></a><span class="tm">18:42:59</span><span class="nk"> &lt;hare_brain&gt;</span> LOL
+<a name="l-163"></a><span class="tm">18:43:09</span><span class="nk"> &lt;jieryn&gt;</span> last meeting there was a lot of work that resulted from hudson-&gt;eclipse, and possibility of reunite .. is that fish fully dead now?
+<a name="l-164"></a><span class="tm">18:43:12</span><span class="nk"> &lt;rtyler&gt;</span> shall I give an infra updating?
+<a name="l-165"></a><span class="tm">18:43:23</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jieryn:</span> zed's dead baby
+<a name="l-166"></a><span class="tm">18:43:27</span><span class="nk"> &lt;jieryn&gt;</span> good
+<a name="l-167"></a><span class="tm">18:43:29</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-168"></a><span class="tm">18:43:44</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jieryn:</span> yes, the consensus was that we won't be doing it.
+<a name="l-169"></a><span class="tm">18:43:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">infra update</span>
+<a name="l-170"></a><span class="tm">18:44:01</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">jieryn:</span> I haven't heard anything from anyone on the Hudson side of things on reunion, so I'm willing to guess they're not actually interested either.
+<a name="l-171"></a><span class="tm">18:44:20</span><span class="nk"> &lt;jieryn&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Hudson+Reconciliation+Requirements should be updated?
+<a name="l-172"></a><span class="tm">18:44:22</span><span class="nk"> &lt;rtyler&gt;</span> alright, this will be short and sweet
+<a name="l-173"></a><span class="tm">18:44:30 </span><span class="nka">* rtyler</span> <span class="ac">bangs his gavel</span>
+<a name="l-174"></a><span class="tm">18:44:40</span><span class="nk"> &lt;abayer&gt;</span> <span class="cmd">#action </span><span class="cmdline">abayer to update https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Hudson+Reconciliation+Requirements</span>
+<a name="l-175"></a><span class="tm">18:45:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">both lettuce and cabbage are racked and at least one of them has an OS installed on it</span>
+<a name="l-176"></a><span class="tm">18:45:26</span><span class="nk"> &lt;rtyler&gt;</span> the OSUOSL has either been swamped, or I've not been very effective at whining
+<a name="l-177"></a><span class="tm">18:45:36</span><span class="nk"> &lt;abayer&gt;</span> You might want to mention what lettuce and cabbage are. =)
+<a name="l-178"></a><span class="tm">18:46:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">lettuce and cabbage are a 3U and 2U multi-core machines donated to the project</span>
+<a name="l-179"></a><span class="tm">18:46:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to publish a post thanking Rackspace for their generous donation of a build machine which we've been relying heavily on</span>
+<a name="l-180"></a><span class="tm">18:46:48</span><span class="nk"> &lt;kohsuke&gt;</span> yes, I was going to nag you on that
+<a name="l-181"></a><span class="tm">18:46:56</span><span class="nk"> &lt;kohsuke&gt;</span> thanks for taking the action.
+<a name="l-182"></a><span class="tm">18:46:58</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Backups at Contegix are stalled waiting for a part to arrive</span>
+<a name="l-183"></a><span class="tm">18:47:16</span><span class="nk"> &lt;hare_brain&gt;</span> Put the thank you in the dog-food notifications. ;)
+<a name="l-184"></a><span class="tm">18:47:33</span><span class="nk"> &lt;rtyler&gt;</span> backups are in my queue, but lower priority than some of these other tasks since I have manual backups running
+<a name="l-185"></a><span class="tm">18:47:59</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">minor office hours update</span>
+<a name="l-186"></a><span class="tm">18:48:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the first series of user and dev office hours went exceptionally well</span>
+<a name="l-187"></a><span class="tm">18:48:23</span><span class="nk"> &lt;rtyler&gt;</span> finding time, and speakers it turns out is incredibly difficult
+<a name="l-188"></a><span class="tm">18:48:42</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Need to investigate Fuze instead of WebEx: http://www.fuzemeeting.com/</span>
+<a name="l-189"></a><span class="tm">18:49:02</span><span class="nk"> &lt;rtyler&gt;</span> I think I might try to push for a monthly session, since everybody's schedules are very hectic this summer
+<a name="l-190"></a><span class="tm">18:49:28</span><span class="nk"> &lt;rtyler&gt;</span> any other notes on office hours before I pass the mic?
+<a name="l-191"></a><span class="tm">18:49:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#idea </span><span class="cmdline">I think it's OK to do it without any fixed agenda, at least the dev session. I'm willing to hang around.</span>
+<a name="l-192"></a><span class="tm">18:49:35</span><span class="nk"> &lt;hare_brain&gt;</span> Regarding backups, I was watching the WWDC keynote earlier this week, and my first thought was, Hudson masters should run on OS X Lion.
+<a name="l-193"></a><span class="tm">18:49:50</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-194"></a><span class="tm">18:50:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> if you're cool with doing that, that'd be great
+<a name="l-195"></a><span class="tm">18:50:08</span><span class="nk"> &lt;rtyler&gt;</span> the guy that does minecraft does that sometimes
+<a name="l-196"></a><span class="tm">18:50:16</span><span class="nk"> &lt;rtyler&gt;</span> but more in the "look at me code you voyeurs!"
+<a name="l-197"></a><span class="tm">18:50:18</span><span class="nk"> &lt;abayer&gt;</span> kohsuke, rtyler: I'm up for doing a dev session on the groovy view stuff once I get back from Europe and have written the tutorial/docs stuff on it. =)
+<a name="l-198"></a><span class="tm">18:50:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> it does run. I guess you mean something new that we should be taking advantages of?
+<a name="l-199"></a><span class="tm">18:51:00</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="hi">kohsuke:</span> Yeah. Auto-file versioning. Good way to version configurations.
+<a name="l-200"></a><span class="tm">18:51:01</span><span class="nk"> &lt;kohsuke&gt;</span> Did we have any Cisco folks willing to sponsor WebEx?
+<a name="l-201"></a><span class="tm">18:51:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> we'd still have the recording problem with webex
+<a name="l-202"></a><span class="tm">18:51:23 </span><span class="nka">* kohsuke</span> <span class="ac">mumbles zfs having it for years!</span>
+<a name="l-203"></a><span class="tm">18:51:31</span><span class="nk"> &lt;hare_brain&gt;</span> LOL
+<a name="l-204"></a><span class="tm">18:51:33</span><span class="nk"> &lt;rtyler&gt;</span> unless we always start with windows machine alwasy
+<a name="l-205"></a><span class="tm">18:51:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> it's only innovation when apple does it, not sun ;)
+<a name="l-206"></a><span class="tm">18:52:20</span><span class="nk"> &lt;hare_brain&gt;</span> What do people say? Apple's best product is its marketing team?
+<a name="l-207"></a><span class="tm">18:52:41 </span><span class="nka">* hare_brain</span> <span class="ac">apologizes for the tangent</span>
+<a name="l-208"></a><span class="tm">18:52:44</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-209"></a><span class="tm">18:53:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> if you're willing to host weekly dev sessions, even without agenda, I think that'd be fantastic
+<a name="l-210"></a><span class="tm">18:53:05</span><span class="nk"> &lt;kohsuke&gt;</span> No, generally we try to take advantage of the underlying platform features. We have libraries that enable us to do so.
+<a name="l-211"></a><span class="tm">18:53:16</span><span class="nk"> &lt;rtyler&gt;</span> user sessions I think require some semblence of an agenda to be marketed effectively
+<a name="l-212"></a><span class="tm">18:53:20</span><span class="nk"> &lt;kohsuke&gt;</span> So if there's something in Lion that get people excited, we should do it.
+<a name="l-213"></a><span class="tm">18:53:27</span><span class="nk"> &lt;rtyler&gt;</span> ZOMG TANGENT
+<a name="l-214"></a><span class="tm">18:53:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> yes, I'm willing.
+<a name="l-215"></a><span class="tm">18:53:39</span><span class="nk"> &lt;kohsuke&gt;</span> But let's do biweekly
+<a name="l-216"></a><span class="tm">18:54:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to host a dev session bi-weekly</span>
+<a name="l-217"></a><span class="tm">18:54:26</span><span class="nk"> &lt;kohsuke&gt;</span> sounds good.
+<a name="l-218"></a><span class="tm">18:54:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to get a bloody subscribe-able calendar functioning</span>
+<a name="l-219"></a><span class="tm">18:54:39 </span><span class="nka">* rtyler</span> <span class="ac">sighs</span>
+<a name="l-220"></a><span class="tm">18:55:00</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-221"></a><span class="tm">18:55:03</span><span class="nk"> &lt;rtyler&gt;</span> any other topics other than 'next meeting'
+<a name="l-222"></a><span class="tm">18:55:05</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-223"></a><span class="tm">18:55:07</span><span class="nk"> &lt;rtyler&gt;</span> guess not
+<a name="l-224"></a><span class="tm">18:55:14</span><span class="nk"> &lt;stephenc&gt;</span> i have some issues
+<a name="l-225"></a><span class="tm">18:55:21</span><span class="nk"> &lt;rtyler&gt;</span> abayer is out of the country, so that will be tricky
+<a name="l-226"></a><span class="tm">18:55:23</span><span class="nk"> &lt;jieryn&gt;</span> oh boy
+<a name="l-227"></a><span class="tm">18:55:30</span><span class="nk"> &lt;stephenc&gt;</span> I'd like to start a big refactoring of the build
+<a name="l-228"></a><span class="tm">18:55:41</span><span class="nk"> &lt;stephenc&gt;</span> get things more aligned with the maven way
+<a name="l-229"></a><span class="tm">18:55:55</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">rtyler:</span> meh, I'll be in Paris. I can probably make it.
+<a name="l-230"></a><span class="tm">18:56:05</span><span class="nk"> &lt;stephenc&gt;</span> there are a number of things "done wrong" for use maven heads
+<a name="l-231"></a><span class="tm">18:56:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">stephenc:</span> can we do the "next meeting time" topic then swing around to the builds?
+<a name="l-232"></a><span class="tm">18:56:18</span><span class="nk"> &lt;stephenc&gt;</span> ok
+<a name="l-233"></a><span class="tm">18:56:31</span><span class="nk"> &lt;stephenc&gt;</span> as long as N does not crap all over the later topic
+<a name="l-234"></a><span class="tm">18:56:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">hare_brain:</span> how about you, same time same place, 22nd?
+<a name="l-235"></a><span class="tm">18:56:34</span><span class="nk"> &lt;kohsuke&gt;</span> So in 2 weeks? At the same time?
+<a name="l-236"></a><span class="tm">18:56:38</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-237"></a><span class="tm">18:56:49</span><span class="nk"> &lt;kohsuke&gt;</span> there was some interest from Tokyo folks to try one-off Asian friendly time.
+<a name="l-238"></a><span class="tm">18:56:50</span><span class="nk"> &lt;abayer&gt;</span> +1 for me. That's 8pm Paris time, yes?
+<a name="l-239"></a><span class="tm">18:57:06</span><span class="nk"> &lt;magnayn&gt;</span> minor req: could @jenkinsci send out a reminder ..
+<a name="l-240"></a><span class="tm">18:57:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">magnayn:</span> heh, yeah, I forgot entirely this week
+<a name="l-241"></a><span class="tm">18:57:36</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting in two weeks same time.</span>
+<a name="l-242"></a><span class="tm">18:57:48</span><span class="nk"> &lt;rtyler&gt;</span> added to the wiki page
+<a name="l-243"></a><span class="tm">18:58:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">refactoring the jenkins build?</span>
+<a name="l-244"></a><span class="tm">18:58:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">stephenc:</span> SPEAK NOW
+<a name="l-245"></a><span class="tm">18:58:15</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-246"></a><span class="tm">18:58:20</span><span class="nk"> &lt;hare_brain&gt;</span> Gotta drop.
+<a name="l-247"></a><span class="tm">18:58:29</span><span class="nk"> &lt;jieryn&gt;</span> ciao
+<a name="l-248"></a><span class="tm">18:58:30</span><span class="nk"> &lt;stephenc&gt;</span> ok, so there be a lot of "not the maven way"isms in the current build
+<a name="l-249"></a><span class="tm">18:58:37</span><span class="nk"> &lt;stephenc&gt;</span> I have two choices....
+<a name="l-250"></a><span class="tm">18:58:45</span><span class="nk"> &lt;stephenc&gt;</span> feature branch or incremental
+<a name="l-251"></a><span class="tm">18:59:09</span><span class="nk"> &lt;stephenc&gt;</span> given the s/hudson.model.Hudson/jenkins.model.Jenkins/ going on at the moment
+<a name="l-252"></a><span class="tm">18:59:21</span><span class="nk"> &lt;stephenc&gt;</span> I fear a feature branch too brittle
+<a name="l-253"></a><span class="tm">18:59:38</span><span class="nk"> &lt;stephenc&gt;</span> though i'll be sticking at the pom &amp; plugin level
+<a name="l-254"></a><span class="tm">18:59:55</span><span class="nk"> &lt;jieryn&gt;</span> can you describe some of the changes to be made?
+<a name="l-255"></a><span class="tm">18:59:58</span><span class="nk"> &lt;kohsuke&gt;</span> I don't think there's any more s/Hudson/Jenkins/g change. It's all integrated.
+<a name="l-256"></a><span class="tm">19:00:11</span><span class="nk"> &lt;abayer&gt;</span> Either's fine by me - I just want to see the groovy view stuff make it out in a reasonably stable release before we do any more major changes to core or the build process, so I can go nuts with that. =)
+<a name="l-257"></a><span class="tm">19:00:23</span><span class="nk"> &lt;stephenc&gt;</span> OK, first off I think there is a need to align the hpi plugin with the maven way
+<a name="l-258"></a><span class="tm">19:00:44</span><span class="nk"> &lt;stephenc&gt;</span> that will probably involve me doing a bit of NIH... (pot calling kettle)
+<a name="l-259"></a><span class="tm">19:01:17</span><span class="nk"> &lt;stephenc&gt;</span> then there is stripping out most of the antrun stuff (to be replaced with better mojos in hpi plugin replacement)
+<a name="l-260"></a><span class="tm">19:01:20</span><span class="nk"> &lt;abayer&gt;</span> Make it work and I don't care what you did. =)
+<a name="l-261"></a><span class="tm">19:01:38</span><span class="nk"> &lt;stephenc&gt;</span> It should also have nice dev mode for working on core
+<a name="l-262"></a><span class="tm">19:01:50</span><span class="nk"> &lt;kohsuke&gt;</span> Knowing stephenc, I think a branch is better.
+<a name="l-263"></a><span class="tm">19:01:53</span><span class="nk"> &lt;stephenc&gt;</span> i.e. auto pick-up changes in the core
+<a name="l-264"></a><span class="tm">19:02:11</span><span class="nk"> &lt;stephenc&gt;</span> knowing kk we need reigns to stop you adding features to the build
+<a name="l-265"></a><span class="tm">19:02:22</span><span class="nk"> &lt;kohsuke&gt;</span> As long as other folks know that they shouldn't be messing too much with POMs in the trunk, there shouldn't be any merge conflicts, right?
+<a name="l-266"></a><span class="tm">19:02:26</span><span class="nk"> &lt;jieryn&gt;</span> poms are pretty stable, changewise, i think
+<a name="l-267"></a><span class="tm">19:02:32</span><span class="nk"> &lt;stephenc&gt;</span> i don't want a big goalpost move in the plugins
+<a name="l-268"></a><span class="tm">19:02:54</span><span class="nk"> &lt;stephenc&gt;</span> and I need to sync up with kk as to what that whole jenkins-module packaging type is for
+<a name="l-269"></a><span class="tm">19:03:00</span><span class="nk"> &lt;jieryn&gt;</span> i made a large change to the master pom.xml to try and impose some OCD discipline to versions, e.g.
+<a name="l-270"></a><span class="tm">19:03:16</span><span class="nk"> &lt;abayer&gt;</span> And aheritier did something similar with Maven plugin versions.
+<a name="l-271"></a><span class="tm">19:03:27</span><span class="nk"> &lt;jieryn&gt;</span> then aheritier duplicated almost the entire work in jenkins master :-/
+<a name="l-272"></a><span class="tm">19:03:27</span><span class="nk"> &lt;stephenc&gt;</span> i'll probably run tidy:pom on everything first
+<a name="l-273"></a><span class="tm">19:03:45</span><span class="nk"> &lt;aheritier&gt;</span> I didn't know :(
+<a name="l-274"></a><span class="tm">19:03:45</span><span class="nk"> &lt;stephenc&gt;</span> so that merging changes will be easier
+<a name="l-275"></a><span class="tm">19:03:48</span><span class="nk"> &lt;kohsuke&gt;</span> That way we have freedom to choose when to merge, so if we need a couple more releases to solidify groovy-view,  we can do so without having another potential destabilizer going on.
+<a name="l-276"></a><span class="tm">19:04:00</span><span class="nk"> &lt;stephenc&gt;</span> ok so feature-branch
+<a name="l-277"></a><span class="tm">19:04:17</span><span class="nk"> &lt;stephenc&gt;</span> but alert everyone that they need to ping me if they are making changes in the build/plugin*
+<a name="l-278"></a><span class="tm">19:04:28</span><span class="nk"> &lt;aheritier&gt;</span> you can override my work if necessary. I won't be angry
+<a name="l-279"></a><span class="tm">19:04:31</span><span class="nk"> &lt;jieryn&gt;</span> same
+<a name="l-280"></a><span class="tm">19:04:40</span><span class="nk"> &lt;stephenc&gt;</span> if they are just touching versions in dep/depMgmt fine by me
+<a name="l-281"></a><span class="tm">19:04:45</span><span class="nk"> &lt;stephenc&gt;</span> adding deps, fine
+<a name="l-282"></a><span class="tm">19:04:54</span><span class="nk"> &lt;stephenc&gt;</span> adding plugins or reving plugins, ping me
+<a name="l-283"></a><span class="tm">19:05:02</span><span class="nk"> &lt;stephenc&gt;</span> and give me 24h to respond
+<a name="l-284"></a><span class="tm">19:05:11</span><span class="nk"> &lt;stephenc&gt;</span> no response means I'm +1
+<a name="l-285"></a><span class="tm">19:05:14</span><span class="nk"> &lt;stephenc&gt;</span> unless at weekend
+<a name="l-286"></a><span class="tm">19:05:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">stephenc to send in an announcement requesting people to kindly refrain from big POM changes to simplify the merge later.</span>
+<a name="l-287"></a><span class="tm">19:05:27</span><span class="nk"> &lt;jieryn&gt;</span> i even invoke versions plugin to check for updates, e.g. http://ci.jenkins-ci.org/job/jenkins_pom/lastBuild/console
+<a name="l-288"></a><span class="tm">19:05:56</span><span class="nk"> &lt;kohsuke&gt;</span> I'm sure people will also want to know about the kind of changes you'll be making.
+<a name="l-289"></a><span class="tm">19:05:59</span><span class="nk"> &lt;stephenc&gt;</span> <span class="hi">jieryn:</span> I need to rev versions-m-p once I get its tests stabilised
+<a name="l-290"></a><span class="tm">19:06:13</span><span class="nk"> &lt;stephenc&gt;</span> <span class="hi">kk:</span> I will probably blog about it when I have a feel
+<a name="l-291"></a><span class="tm">19:06:23</span><span class="nk"> &lt;jieryn&gt;</span> cool :)
+<a name="l-292"></a><span class="tm">19:06:25</span><span class="nk"> &lt;kohsuke&gt;</span> thanks
+<a name="l-293"></a><span class="tm">19:06:29</span><span class="nk"> &lt;stephenc&gt;</span> there is a lot of technical debt built up in the build process
+<a name="l-294"></a><span class="tm">19:06:41</span><span class="nk"> &lt;stephenc&gt;</span> I think my changes will make working on jenkins a lot easier
+<a name="l-295"></a><span class="tm">19:06:48</span><span class="nk"> &lt;rtyler&gt;</span> does that count as irony?
+<a name="l-296"></a><span class="tm">19:06:59</span><span class="nk"> &lt;stephenc&gt;</span> wait until you wee
+<a name="l-297"></a><span class="tm">19:07:05</span><span class="nk"> &lt;stephenc&gt;</span> s/wee/see/
+<a name="l-298"></a><span class="tm">19:07:09</span><span class="nk"> &lt;rtyler&gt;</span> O_o
+<a name="l-299"></a><span class="tm">19:07:31</span><span class="nk"> &lt;kohsuke&gt;</span> Every so often I entertain the idea of using Gradle. Is that out of question?
+<a name="l-300"></a><span class="tm">19:07:41</span><span class="nk"> &lt;stephenc&gt;</span> If somebody else wants to
+<a name="l-301"></a><span class="tm">19:07:55</span><span class="nk"> &lt;stephenc&gt;</span> olamy/aheritier/me will want maven
+<a name="l-302"></a><span class="tm">19:08:04</span><span class="nk"> &lt;abayer&gt;</span> Me too.
+<a name="l-303"></a><span class="tm">19:08:12</span><span class="nk"> &lt;abayer&gt;</span> My convention over configuration nerdiness is strong.
+<a name="l-304"></a><span class="tm">19:08:18</span><span class="nk"> &lt;stephenc&gt;</span> yeah and you are not biased in favour of maven
+<a name="l-305"></a><span class="tm">19:08:26</span><span class="nk"> &lt;kohsuke&gt;</span> OK. I'll keep it as my dream then.
+<a name="l-306"></a><span class="tm">19:08:30</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-307"></a><span class="tm">19:08:33</span><span class="nk"> &lt;abayer&gt;</span> Well, I am biased, but not as a result of being a Maven dev. =)
+<a name="l-308"></a><span class="tm">19:08:33</span><span class="nk"> &lt;magnayn&gt;</span> I'd like to see gradle...
+<a name="l-309"></a><span class="tm">19:08:41</span><span class="nk"> &lt;magnayn&gt;</span> ... but not to force it on anyone else
+<a name="l-310"></a><span class="tm">19:08:50</span><span class="nk"> &lt;magnayn&gt;</span> <span class="hi">(IE:</span> academic interest)
+<a name="l-311"></a><span class="tm">19:09:08</span><span class="nk"> &lt;aheritier&gt;</span> do not hesitate to test gradle elsewhere. You'll be happy to come back on maven later :-)
+<a name="l-312"></a><span class="tm">19:09:15</span><span class="nk"> &lt;abayer&gt;</span> <span class="hi">kohsuke:</span> I don't see any reason you couldn't come up with an optional Gradle build for plugins.
+<a name="l-313"></a><span class="tm">19:09:18</span><span class="nk"> &lt;stephenc&gt;</span> two parallel build systems never works
+<a name="l-314"></a><span class="tm">19:09:57</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, like I said, I'll keep it as my dream
+<a name="l-315"></a><span class="tm">19:09:57</span><span class="nk"> &lt;aheritier&gt;</span> it could be possible for plugins to use gradle. The problem is to reuse existing plugins (hpi &amp; co)
+<a name="l-316"></a><span class="tm">19:10:01</span><span class="nk"> &lt;aheritier&gt;</span> the cost is high
+<a name="l-317"></a><span class="tm">19:10:31</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, from practical point of view, it's hard for us.
+<a name="l-318"></a><span class="tm">19:10:51</span><span class="nk"> &lt;stephenc&gt;</span> my feeling is that a build done Maven right will have you happy
+<a name="l-319"></a><span class="tm">19:11:00</span><span class="nk"> &lt;stephenc&gt;</span> gradle is grand for the person writing the build
+<a name="l-320"></a><span class="tm">19:11:15</span><span class="nk"> &lt;stephenc&gt;</span> but if you have to take over maintenance of that build it's like an ANT build
+<a name="l-321"></a><span class="tm">19:11:26</span><span class="nk"> &lt;stephenc&gt;</span> you have to read it to figure out what it is doing
+<a name="l-322"></a><span class="tm">19:11:52</span><span class="nk"> &lt;stephenc&gt;</span> what we have with our maven build is a hybrid
+<a name="l-323"></a><span class="tm">19:12:01</span><span class="nk"> &lt;stephenc&gt;</span> which is the worst of all worlds
+<a name="l-324"></a><span class="tm">19:12:15</span><span class="nk"> &lt;stephenc&gt;</span> getting to pure maven build will make life easier
+<a name="l-325"></a><span class="tm">19:12:27</span><span class="nk"> &lt;stephenc&gt;</span> _and_ make it easier to transition away from maven if you want to
+<a name="l-326"></a><span class="tm">19:12:42 </span><span class="nka">* stephenc</span> <span class="ac">knows that is a paradox... but that is the truth of a good maven build</span>
+<a name="l-327"></a><span class="tm">19:13:01</span><span class="nk"> &lt;kohsuke&gt;</span> Anything else or shall we close the meeting?
+<a name="l-328"></a><span class="tm">19:13:10</span><span class="nk"> &lt;stephenc&gt;</span> i'm good
+<a name="l-329"></a><span class="tm">19:13:13</span><span class="nk"> &lt;rtyler&gt;</span> book'em danno
+<a name="l-330"></a><span class="tm">19:13:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

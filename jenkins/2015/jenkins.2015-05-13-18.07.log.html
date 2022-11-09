@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app209.us.archive.org';v.server_ms=489;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2015/jenkins.2015-05-13-18.07.log.html","20200504160520","https://web.archive.org/","web","/_static/",
+	      "1588608320");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:07:53</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:07:53</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:07:57 </span><span class="nka">* oleg-nenashev</span> <span class="ac">has to drop-off within 5 minutes :(</span>
+<a name="l-4"></a><span class="tm">18:08:03</span><span class="nk"> &lt;orrc&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-5"></a><span class="tm">18:08:22</span><span class="nk"> &lt;orrc&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS RC status check</span>
+<a name="l-6"></a><span class="tm">18:08:35</span><span class="nk"> &lt;jenkins-builds&gt;</span> Yippie, build fixed!
+<a name="l-7"></a><span class="tm">18:08:36</span><span class="nk"> &lt;jenkins-builds&gt;</span> Project jenkins_main_trunk build #4132: FIXED in 59 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/4132/
+<a name="l-8"></a><span class="tm">18:08:36</span><span class="nk"> &lt;jenkins-builds&gt;</span> <span class="hi">devld:</span> [FIXED JENKINS-28227] Switch to Enblish locale in RunTest#getDurationString to test messages.
+<a name="l-9"></a><span class="tm">18:08:39</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-28227:RunTest#getDurationString fails on non-english environments. (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-28227
+<a name="l-10"></a><span class="tm">18:08:39</span><span class="nk"> &lt;orrc&gt;</span> (I wonder if that works)
+<a name="l-11"></a><span class="tm">18:08:47</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">ogondza:</span> LTS RC? :)
+<a name="l-12"></a><span class="tm">18:08:57</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">jglick:</span> I understand JENKINS-26781 in not blocked anymore
+<a name="l-13"></a><span class="tm">18:09:00</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-26781:regression resolving Descriptor using "$class" vs "kind" (Resolved) https://issues.jenkins-ci.org/browse/JENKINS-26781
+<a name="l-14"></a><span class="tm">18:09:35</span><span class="nk"> &lt;ogondza&gt;</span> I have seen that an hour ago and backporting seems not-trivial.
+<a name="l-15"></a><span class="tm">18:10:01</span><span class="nk"> &lt;ogondza&gt;</span> as kohsuke is likely not going to fire the release right away I can give it a try tomorrow
+<a name="l-16"></a><span class="tm">18:10:23</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> would you like help getting a list of commits to backport? Or an aggregate patch?
+<a name="l-17"></a><span class="tm">18:10:54</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> or a PR against the stable-1.609 branch?
+<a name="l-18"></a><span class="tm">18:11:05</span><span class="nk"> &lt;ogondza&gt;</span> it takes about 8 hours to run the test pipeline ...
+<a name="l-19"></a><span class="tm">18:11:46</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">jglick:</span> that would help, there ware some conflicts relying on commits not linked to any issue
+<a name="l-20"></a><span class="tm">18:12:09</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> I will try to prepare it as a PR, I think that is the easiest thing to review
+<a name="l-21"></a><span class="tm">18:12:35</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">jglick:</span> thanks
+<a name="l-22"></a><span class="tm">18:12:36</span><span class="nk"> &lt;jglick&gt;</span> Can work on that today. I also *just* managed to reproduce JENKINS-26582 and if it is a core bug I would propose it as lts-candidate too.
+<a name="l-23"></a><span class="tm">18:12:38</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-26582:ISE from RunMap.put after reloading config (In Progress) https://issues.jenkins-ci.org/browse/JENKINS-26582
+<a name="l-24"></a><span class="tm">18:12:52</span><span class="nk"> &lt;jglick&gt;</span> (Certainly looks like a bug in matrix-project but I have not yet analyzed it.)
+<a name="l-25"></a><span class="tm">18:13:21</span><span class="nk"> &lt;jglick&gt;</span> Also plan to look into JENKINS-26575 and JENKINS-26743 but these could wait.
+<a name="l-26"></a><span class="tm">18:13:23</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-26575:Running the reverse migrator after upgrading to 1.597 throws NoClassDefFoundError: javax/servlet/http/HttpServletRequest (Open) https://issues.jenkins-ci.org/browse/JENKINS-26575
+<a name="l-27"></a><span class="tm">18:13:25</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-26743:Build record migration prints warnings for permalinks (Open) https://issues.jenkins-ci.org/browse/JENKINS-26743
+<a name="l-28"></a><span class="tm">18:13:44</span><span class="nk"> &lt;orrc&gt;</span> out of interest, when's the RC due? they don't seem to be on the calendar any more
+<a name="l-29"></a><span class="tm">18:13:59</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">orrc:</span> ~today
+<a name="l-30"></a><span class="tm">18:14:07</span><span class="nk"> &lt;orrc&gt;</span> ah ha
+<a name="l-31"></a><span class="tm">18:14:16</span><span class="nk"> &lt;ogondza&gt;</span> or tomorrow with that one backport
+<a name="l-32"></a><span class="tm">18:14:34</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">jglick:</span> I presume the rest does not go in .1
+<a name="l-33"></a><span class="tm">18:15:01</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">ogondza:</span> well JENKINS-26582 is serious, so I do not know
+<a name="l-34"></a><span class="tm">18:15:03</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-26582:ISE from RunMap.put after reloading config (In Progress) https://issues.jenkins-ci.org/browse/JENKINS-26582
+<a name="l-35"></a><span class="tm">18:15:17</span><span class="nk"> &lt;jglick&gt;</span> Depends on what the issue turns out to be (core or plugin), and if core then how tricky the fix is.
+<a name="l-36"></a><span class="tm">18:16:10</span><span class="nk"> &lt;jglick&gt;</span> If it is a simple core fix I might propose bending the rules given the circumstances.
+<a name="l-37"></a><span class="tm">18:16:32</span><span class="nk"> &lt;danielbeck&gt;</span> sorry I'm late
+<a name="l-38"></a><span class="tm">18:16:50</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">jglick:</span> I do not object
+<a name="l-39"></a><span class="tm">18:17:06</span><span class="nk"> &lt;jglick&gt;</span> OK, TBD.
+<a name="l-40"></a><span class="tm">18:17:15</span><span class="nk"> &lt;ogondza&gt;</span> we are fine to move on
+<a name="l-41"></a><span class="tm">18:17:25</span><span class="nk"> &lt;orrc&gt;</span> great. let's try...
+<a name="l-42"></a><span class="tm">18:17:28</span><span class="nk"> &lt;orrc&gt;</span> <span class="topic">#topic </span><span class="topicline">#jenkins-meeting</span>
+<a name="l-43"></a><span class="tm">18:17:50</span><span class="nk"> &lt;danielbeck&gt;</span> remove the second # ?
+<a name="l-44"></a><span class="tm">18:18:22</span><span class="nk"> &lt;orrc&gt;</span> no idea. ogondza managed to start the meeting, but aside from that robobutler has remained silent
+<a name="l-45"></a><span class="tm">18:18:31</span><span class="nk"> &lt;ogondza&gt;</span> <span class="topic">#topic </span><span class="topicline">#jenkins-meeting</span>
+<a name="l-46"></a><span class="tm">18:18:41</span><span class="nk"> &lt;danielbeck&gt;</span> you need to be chair to change topic
+<a name="l-47"></a><span class="tm">18:18:51</span><span class="nk"> &lt;ogondza&gt;</span> it seems I have to run the whole thing
+<a name="l-48"></a><span class="tm">18:18:58</span><span class="nk"> &lt;orrc&gt;</span> that's what I thought, but didn't realise ogondza was a chair :)
+<a name="l-49"></a><span class="tm">18:19:08</span><span class="nk"> &lt;danielbeck&gt;</span> well, the proposal is fairly straightforward: Let's establish a channel for meetings only
+<a name="l-50"></a><span class="tm">18:19:14</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">orrc:</span> me neither
+<a name="l-51"></a><span class="tm">18:19:19</span><span class="nk"> &lt;danielbeck&gt;</span> no more "sorry meeting right now" etc.
+<a name="l-52"></a><span class="tm">18:19:21</span><span class="nk"> &lt;ogondza&gt;</span> +1 on new channel
+<a name="l-53"></a><span class="tm">18:19:35</span><span class="nk"> &lt;danielbeck&gt;</span> meetings get robologs anyway, so no need for echelog if it would be difficult
+<a name="l-54"></a><span class="tm">18:19:42</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">ogondza:</span> you can set chairs with #chair
+<a name="l-55"></a><span class="tm">18:20:00</span><span class="nk"> &lt;ogondza&gt;</span> I do not expect anyone to disagree
+<a name="l-56"></a><span class="tm">18:20:04</span><span class="nk"> &lt;orrc&gt;</span> hmm, I'm not sure, as it feels like it would reduce the number of people participating
+<a name="l-57"></a><span class="tm">18:20:19</span><span class="nk"> &lt;orrc&gt;</span> though agreed that "we're in a meeting" or "build started" is annoying
+<a name="l-58"></a><span class="tm">18:20:34</span><span class="nk"> &lt;danielbeck&gt;</span> IIRC credit for this idea goes to KostyaSha who mentioned this to me a while back
+<a name="l-59"></a><span class="tm">18:21:12</span><span class="nk"> &lt;danielbeck&gt;</span> and given the frequent interruptions I thought this is a good idea
+<a name="l-60"></a><span class="tm">18:21:20</span><span class="nk"> &lt;danielbeck&gt;</span> anyone opposed?
+<a name="l-61"></a><span class="tm">18:21:42</span><span class="nk"> &lt;danielbeck&gt;</span> orrc We could try to announce on #jenkins when a meeting starts
+<a name="l-62"></a><span class="tm">18:22:21</span><span class="nk"> &lt;orrc&gt;</span> indeed. ok, so I guess we need INFRA tickets
+<a name="l-63"></a><span class="tm">18:22:26</span><span class="nk"> &lt;ogondza&gt;</span> can someone file an INFRA issue to set that up? connect necessary bots or whatever else needs to be done
+<a name="l-64"></a><span class="tm">18:22:28</span><span class="nk"> &lt;orrc&gt;</span> assuming there are +1s
+<a name="l-65"></a><span class="tm">18:23:18</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza I can file INFRA but don't have the super bot powers to implement unfortunately
+<a name="l-66"></a><span class="tm">18:23:33</span><span class="nk"> &lt;danielbeck&gt;</span> I hope this is just a config change in the robobutler to go to a different channel
+<a name="l-67"></a><span class="tm">18:23:42</span><span class="nk"> &lt;danielbeck&gt;</span> plus some bot from Freenode to be op
+<a name="l-68"></a><span class="tm">18:23:50</span><span class="nk"> &lt;ogondza&gt;</span> thanks
+<a name="l-69"></a><span class="tm">18:23:57</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck file INFRA issue for #jenkins-meeting</span>
+<a name="l-70"></a><span class="tm">18:24:01</span><span class="nk"> &lt;orrc&gt;</span> yeah, we need to register with chanserv most likely. rtyler should be the expert there
+<a name="l-71"></a><span class="tm">18:24:06</span><span class="nk"> &lt;ericmeds&gt;</span> can I have two different jenkins jobs update a single git PR with status? ( like so http://f.devicefreak.com/jenkins.png )
+<a name="l-72"></a><span class="tm">18:24:13</span><span class="nk"> &lt;orrc&gt;</span> hehe
+<a name="l-73"></a><span class="tm">18:24:13</span><span class="nk"> &lt;ogondza&gt;</span> shall we move on?
+<a name="l-74"></a><span class="tm">18:24:23</span><span class="nk"> &lt;danielbeck&gt;</span> ericmeds Sorry meeting right now, please ask later
+<a name="l-75"></a><span class="tm">18:24:29</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">ogondza:</span> do it
+<a name="l-76"></a><span class="tm">18:24:41</span><span class="nk"> &lt;ericmeds&gt;</span> ok
+<a name="l-77"></a><span class="tm">18:24:47</span><span class="nk"> &lt;ogondza&gt;</span> <span class="topic">#topic </span><span class="topicline">Should we only include plugins in the Update Centre if they have a wiki page?</span>
+<a name="l-78"></a><span class="tm">18:25:03</span><span class="nk"> &lt;orrc&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!msg/jenkinsci-dev/oEHEjKo08yA/S_uQ_C_7NMQJ</span>
+<a name="l-79"></a><span class="tm">18:25:14</span><span class="nk"> &lt;batmat&gt;</span> +1 about this.
+<a name="l-80"></a><span class="tm">18:25:28</span><span class="nk"> &lt;danielbeck&gt;</span> Yes. The question is for me only whether to grandfather in releases created before the decision.
+<a name="l-81"></a><span class="tm">18:25:29 </span><span class="nka">* ericmeds</span> <span class="ac">btw just a note - you guys could lock the channel down to just Ops and those who are voiced</span>
+<a name="l-82"></a><span class="tm">18:25:46</span><span class="nk"> &lt;danielbeck&gt;</span> ericmeds Meetings are public, no precondition.
+<a name="l-83"></a><span class="tm">18:25:50</span><span class="nk"> &lt;orrc&gt;</span> so some of the info is there on the meeting page wiki, more details are in that jenkinsci-dev thread, and it seems like a popular idea
+<a name="l-84"></a><span class="tm">18:25:51</span><span class="nk"> &lt;ericmeds&gt;</span> oh ok
+<a name="l-85"></a><span class="tm">18:26:28</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">danielbeck:</span> I think you need to grandfather in releases prior to the decision as they may be honest mistakes.
+<a name="l-86"></a><span class="tm">18:26:53</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">jglick:</span> that's what this is about: https://github.com/jenkinsci/backend-update-center2/pull/14
+<a name="l-87"></a><span class="tm">18:27:25</span><span class="nk"> &lt;danielbeck&gt;</span> jglick For a grace period at least I think
+<a name="l-88"></a><span class="tm">18:27:32</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">jglick:</span> Not sure this is possible in the long term.
+<a name="l-89"></a><span class="tm">18:27:34</span><span class="nk"> &lt;danielbeck&gt;</span> Then review in 3-6 months
+<a name="l-90"></a><span class="tm">18:27:37</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">danielbeck:</span> exactly.
+<a name="l-91"></a><span class="tm">18:27:47</span><span class="nk"> &lt;orrc&gt;</span> agreed
+<a name="l-92"></a><span class="tm">18:28:15</span><span class="nk"> &lt;batmat&gt;</span> because if this can stay as-is indefinitely, it makes absolutely no sense to even discuss this IMO
+<a name="l-93"></a><span class="tm">18:28:38</span><span class="nk"> &lt;batmat&gt;</span> users will still "suffer" from badly defined plugins visible in the list inside Jenkins, and so on.
+<a name="l-94"></a><span class="tm">18:29:30</span><span class="nk"> &lt;orrc&gt;</span> so, I have the update centre code on my laptop, and a list of plugins which are questionable which need a bit more investigation
+<a name="l-95"></a><span class="tm">18:30:01</span><span class="nk"> &lt;orrc&gt;</span> but otherwise, I think we're set.  main issues are making sure ruby-runtime has a wiki page, and that popular plugins get a temporary wiki override
+<a name="l-96"></a><span class="tm">18:30:21</span><span class="nk"> &lt;danielbeck&gt;</span> Pinging KostyaSha as he was opposed on the list?
+<a name="l-97"></a><span class="tm">18:31:25</span><span class="nk"> &lt;danielbeck&gt;</span> FWIW if there's something that legitimately prevents plugins from implementing this, we could add these to a list of exceptions. It's just the default should be to require a link.
+<a name="l-98"></a><span class="tm">18:31:32</span><span class="nk"> &lt;orrc&gt;</span> if he's here, that would be good. but it just seemed to be a misunderstanding about multi-module poms or something
+<a name="l-99"></a><span class="tm">18:31:49</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> yeah, the wiki-override would work fine for that
+<a name="l-100"></a><span class="tm">18:31:54</span><span class="nk"> &lt;danielbeck&gt;</span> (and Jenkins should rewrite hudson-ci.org to jenkins-ci.org in the /pluginManager :-) )
+<a name="l-101"></a><span class="tm">18:32:04</span><span class="nk"> &lt;batmat&gt;</span> IMO, he opposed to things that were actually not required from plugins. We're talking (almost) only here about having 1) a wiki page and 2) a correct &lt;url&gt; inside the pom
+<a name="l-102"></a><span class="tm">18:32:20</span><span class="nk"> &lt;orrc&gt;</span> ah right, yeah. that's a separate discussion :)
+<a name="l-103"></a><span class="tm">18:32:23</span><span class="nk"> &lt;danielbeck&gt;</span> batmat The rest is a separate topic later
+<a name="l-104"></a><span class="tm">18:33:02</span><span class="nk"> &lt;danielbeck&gt;</span> do we have any disagreement here?
+<a name="l-105"></a><span class="tm">18:33:10</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> my UC changes rewrite all URLs to the canonical https://wiki.jenkins-ci.org/display/JENKINS form :)
+<a name="l-106"></a><span class="tm">18:33:17</span><span class="nk"> &lt;danielbeck&gt;</span> orrc Great!
+<a name="l-107"></a><span class="tm">18:33:29</span><span class="nk"> &lt;orrc&gt;</span> plus I fixed a bug where certain other URLs (e.g. ones with IDs in) do not work
+<a name="l-108"></a><span class="tm">18:33:36</span><span class="nk"> &lt;orrc&gt;</span> like the "Anything Goes" Formatter
+<a name="l-109"></a><span class="tm">18:33:38</span><span class="nk"> &lt;orrc&gt;</span> anyway, +1
+<a name="l-110"></a><span class="tm">18:34:32</span><span class="nk"> &lt;ogondza&gt;</span> alright, what are the actions here?
+<a name="l-111"></a><span class="tm">18:34:51</span><span class="nk"> &lt;ogondza&gt;</span> before we move on ...
+<a name="l-112"></a><span class="tm">18:34:58</span><span class="nk"> &lt;danielbeck&gt;</span> I propose we change UC to exclude plugins released from June 1st that have no &lt;url&gt; to a valid Jenkins (/Hudson) Wiki, and to review in the fall whether we can enforce this for all plugins. Technical reasons will get manual exceptions in the UC code.
+<a name="l-113"></a><span class="tm">18:35:16</span><span class="nk"> &lt;orrc&gt;</span> +1 from me
+<a name="l-114"></a><span class="tm">18:35:32</span><span class="nk"> &lt;ogondza&gt;</span> I am afraid users will be confused
+<a name="l-115"></a><span class="tm">18:35:39</span><span class="nk"> &lt;danielbeck&gt;</span> Actions are to modify the UC accordingly, send announcements to the dev list, and maybe email authors of plugins that are affected directly
+<a name="l-116"></a><span class="tm">18:35:47</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">ogondza:</span> by what?
+<a name="l-117"></a><span class="tm">18:36:00</span><span class="nk"> &lt;batmat&gt;</span> +1
+<a name="l-118"></a><span class="tm">18:36:07</span><span class="nk"> &lt;ogondza&gt;</span> there is a lot of questions, 'why is my plugin not listen in UC'?
+<a name="l-119"></a><span class="tm">18:36:08</span><span class="nk"> &lt;danielbeck&gt;</span> + add to the wiki documentation ("Help, my plugin doesn't show up")
+<a name="l-120"></a><span class="tm">18:36:26</span><span class="nk"> &lt;ogondza&gt;</span> if it can be skipped because of missing/broken url it will only get worse
+<a name="l-121"></a><span class="tm">18:36:49</span><span class="nk"> &lt;orrc&gt;</span> if devs can't follow simple instructions, I'm not sure what we can do
+<a name="l-122"></a><span class="tm">18:37:10</span><span class="nk"> &lt;orrc&gt;</span> documenting this stuff on the plugin-related wiki pages will be part of it
+<a name="l-123"></a><span class="tm">18:37:10</span><span class="nk"> &lt;batmat&gt;</span> Yes, and that has always been required: https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins#HostingPlugins-AddingaWikipage just not enforced.
+<a name="l-124"></a><span class="tm">18:37:25</span><span class="nk"> &lt;batmat&gt;</span> this is not new.
+<a name="l-125"></a><span class="tm">18:37:25</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">batmat:</span> fair enough
+<a name="l-126"></a><span class="tm">18:37:50</span><span class="nk"> &lt;danielbeck&gt;</span> would a report generated from the UC that clearly spelled out reasons for exclusion help? They'd have to find that first as well, and we have documentation on UC troubleshooting already...
+<a name="l-127"></a><span class="tm">18:38:20</span><span class="nk"> &lt;orrc&gt;</span> I added a bit more output to the UC, e.g. "Excluding foo-bar as URL http://example.com is not a valid wiki URL"
+<a name="l-128"></a><span class="tm">18:38:29</span><span class="nk"> &lt;orrc&gt;</span> so we could point to the j-o-j job
+<a name="l-129"></a><span class="tm">18:38:40</span><span class="nk"> &lt;danielbeck&gt;</span> orrc Awesome!
+<a name="l-130"></a><span class="tm">18:38:48</span><span class="nk"> &lt;orrc&gt;</span> (like the "Help, my plugin is missing" steps point to just now)
+<a name="l-131"></a><span class="tm">18:38:49</span><span class="nk"> &lt;ogondza&gt;</span> +1 from me
+<a name="l-132"></a><span class="tm">18:38:55</span><span class="nk"> &lt;batmat&gt;</span> Maybe there could even be something inside the Jenkins UI itself in the pluginManager, some notice about this ?
+<a name="l-133"></a><span class="tm">18:39:12</span><span class="nk"> &lt;batmat&gt;</span> Like the temporary things for the 1.600 and the likeS.
+<a name="l-134"></a><span class="tm">18:39:16</span><span class="nk"> &lt;orrc&gt;</span> <span class="cmd">#action </span><span class="cmdline">orrc to publish a pull request to be merged June 1st which excludes bad plugins from the UC</span>
+<a name="l-135"></a><span class="tm">18:39:20</span><span class="nk"> &lt;danielbeck&gt;</span> batmat That would be publishing. But maybe generated a 'rejected-plugins.lst' on updates.jenkins-ci.org?
+<a name="l-136"></a><span class="tm">18:39:35</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">orrc to publish a pull request to be merged June 1st which excludes bad plugins from the UC</span>
+<a name="l-137"></a><span class="tm">18:40:27</span><span class="nk"> &lt;orrc&gt;</span> <span class="cmd">#action </span><span class="cmdline">orrc to try and make plugin-related wiki pages even more clear about requiring a wiki URL</span>
+<a name="l-138"></a><span class="tm">18:40:35</span><span class="nk"> &lt;orrc&gt;</span> I think non-chairs can write actions(?)
+<a name="l-139"></a><span class="tm">18:40:38</span><span class="nk"> &lt;danielbeck&gt;</span> What about announcement on dev list? Or even email to the affected plugin devs?
+<a name="l-140"></a><span class="tm">18:40:49</span><span class="nk"> &lt;orrc&gt;</span> yeah, that's another action
+<a name="l-141"></a><span class="tm">18:41:07</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">danielbeck:</span> not listing the excluded plugins, just a notice that "starting june first, some plugins might have been excluded, ..."
+<a name="l-142"></a><span class="tm">18:41:07</span><span class="nk"> &lt;orrc&gt;</span> I can do that
+<a name="l-143"></a><span class="tm">18:41:24</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> I guess committing the urls where missing is fine
+<a name="l-144"></a><span class="tm">18:41:26</span><span class="nk"> &lt;orrc&gt;</span> i.e. get my UC pull request up and running, then run the code and generate a list of bad plugins
+<a name="l-145"></a><span class="tm">18:42:08</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">ogondza:</span> that seems reasonable; we can mention that in the dev-list mail
+<a name="l-146"></a><span class="tm">18:42:36</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">add/fix wiki links where there is no doubt</span>
+<a name="l-147"></a><span class="tm">18:42:36</span><span class="nk"> &lt;danielbeck&gt;</span> commits are evil, PRs would be better
+<a name="l-148"></a><span class="tm">18:43:16</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> why? I do not feel strongly, though it is more work
+<a name="l-149"></a><span class="tm">18:43:23</span><span class="nk"> &lt;orrc&gt;</span> we can write on the dev list that maintainers should do it ASAP, and give notice that we may do it ourselves after June 1st?
+<a name="l-150"></a><span class="tm">18:43:38</span><span class="nk"> &lt;danielbeck&gt;</span> do we also want to release? A possibly broken plugin state?
+<a name="l-151"></a><span class="tm">18:43:47</span><span class="nk"> &lt;danielbeck&gt;</span> If not, there's no point to committing directly.
+<a name="l-152"></a><span class="tm">18:44:06</span><span class="nk"> &lt;danielbeck&gt;</span> plus, some plugin authors may object to the invasion of their sandbox
+<a name="l-153"></a><span class="tm">18:44:21</span><span class="nk"> &lt;orrc&gt;</span> ok, that's fair
+<a name="l-154"></a><span class="tm">18:44:43</span><span class="nk"> &lt;orrc&gt;</span> maybe I'll take a look at automating the creation of pull requests
+<a name="l-155"></a><span class="tm">18:45:02</span><span class="nk"> &lt;orrc&gt;</span> so I think we're generally in agreement. I need to clean some stuff up and get a list of bad plugins
+<a name="l-156"></a><span class="tm">18:45:14</span><span class="nk"> &lt;orrc&gt;</span> we can see where we are at the next meeting, just before June 1st?
+<a name="l-157"></a><span class="tm">18:45:37</span><span class="nk"> &lt;danielbeck&gt;</span> sounds great. Make sure we have everything set up before pulling the trigger
+<a name="l-158"></a><span class="tm">18:45:39</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">orrc:</span> that would be great, we will send the notice before that anyway
+<a name="l-159"></a><span class="tm">18:46:09</span><span class="nk"> &lt;orrc&gt;</span> ok, I guess we should skip to danielbeck's topic at the end of the agenda, as rtyler isn't around
+<a name="l-160"></a><span class="tm">18:46:20</span><span class="nk"> &lt;ogondza&gt;</span> ok, moving on
+<a name="l-161"></a><span class="tm">18:46:30</span><span class="nk"> &lt;danielbeck&gt;</span> What about the CDN? Also an rtyler topic?
+<a name="l-162"></a><span class="tm">18:46:44</span><span class="nk"> &lt;orrc&gt;</span> yeah, I would like to talk about that
+<a name="l-163"></a><span class="tm">18:46:56</span><span class="nk"> &lt;orrc&gt;</span> but it's kind of in his hands; he's the one who was talking to the CDN
+<a name="l-164"></a><span class="tm">18:46:57</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler didn't update the issue where he wrote he contacted Fastly
+<a name="l-165"></a><span class="tm">18:47:03</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">Using a CDN with HTTPS / removing need for mirrorbrain?</span>
+<a name="l-166"></a><span class="tm">18:47:13</span><span class="nk"> &lt;orrc&gt;</span> btw, mirrorbrain broke down again this morning
+<a name="l-167"></a><span class="tm">18:47:14</span><span class="nk"> &lt;danielbeck&gt;</span> do you mean #topic?
+<a name="l-168"></a><span class="tm">18:47:17</span><span class="nk"> &lt;orrc&gt;</span> hehe
+<a name="l-169"></a><span class="tm">18:47:25</span><span class="nk"> &lt;ogondza&gt;</span> <span class="topic">#topic </span><span class="topicline">Using a CDN with HTTPS / removing need for mirrorbrain?</span>
+<a name="l-170"></a><span class="tm">18:47:25</span><span class="nk"> &lt;rtyler&gt;</span> oh, my bad
+<a name="l-171"></a><span class="tm">18:47:46</span><span class="nk"> &lt;danielbeck&gt;</span> right on time!
+<a name="l-172"></a><span class="tm">18:47:52</span><span class="nk"> &lt;rtyler&gt;</span> I was summonned
+<a name="l-173"></a><span class="tm">18:47:58</span><span class="nk"> &lt;rtyler&gt;</span> let me dig that email up
+<a name="l-174"></a><span class="tm">18:48:00</span><span class="nk"> &lt;orrc&gt;</span> yeah, so rtyler said that Fastly replied and said they would be willing to front all the traffic for Jenkins updates (like they do for Python), AFAIK
+<a name="l-175"></a><span class="tm">18:48:05</span><span class="nk"> &lt;orrc&gt;</span> ah, even better :)
+<a name="l-176"></a><span class="tm">18:48:08</span><span class="nk"> &lt;rtyler&gt;</span> I basically owe them some details about our mirroring requirements
+<a name="l-177"></a><span class="tm">18:48:27</span><span class="nk"> &lt;rtyler&gt;</span> I also need to create some accounts and whatnot through their self-service portal
+<a name="l-178"></a><span class="tm">18:48:53</span><span class="nk"> &lt;orrc&gt;</span> will that become another INFRA #spof? :)
+<a name="l-179"></a><span class="tm">18:49:12</span><span class="nk"> &lt;rtyler&gt;</span> which, the fastly account?
+<a name="l-180"></a><span class="tm">18:49:14</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler orrc danielbeck</span>
+<a name="l-181"></a><span class="tm">18:49:14</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck ogondza orrc rtyler
+<a name="l-182"></a><span class="tm">18:49:35</span><span class="nk"> &lt;orrc&gt;</span> yeah. which I guess relates to the previous infra topic we skipped
+<a name="l-183"></a><span class="tm">18:49:59</span><span class="nk"> &lt;rtyler&gt;</span> there's still a number of accounts died directly to me, but we have the facilities now to put shared passwords into an encrypted spot
+<a name="l-184"></a><span class="tm">18:50:14</span><span class="nk"> &lt;orrc&gt;</span> ah, nice
+<a name="l-185"></a><span class="tm">18:50:22</span><span class="nk"> &lt;rtyler&gt;</span> in some cases though accounts are tied directly to me as a person
+<a name="l-186"></a><span class="tm">18:50:26</span><span class="nk"> &lt;rtyler&gt;</span> like with a credit card
+<a name="l-187"></a><span class="tm">18:50:32</span><span class="nk"> &lt;rtyler&gt;</span> SPI don't give us credit cards :P
+<a name="l-188"></a><span class="tm">18:50:51</span><span class="nk"> &lt;orrc&gt;</span> shame
+<a name="l-189"></a><span class="tm">18:51:05</span><span class="nk"> &lt;rtyler&gt;</span> anyways, I'm finally free this weekend, I'll make it a priority to get the initial prototype of fastly up and running
+<a name="l-190"></a><span class="tm">18:51:33</span><span class="nk"> &lt;orrc&gt;</span> sounds great
+<a name="l-191"></a><span class="tm">18:51:43</span><span class="nk"> &lt;orrc&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to look at an initial fastly prototype</span>
+<a name="l-192"></a><span class="tm">18:52:34</span><span class="nk"> &lt;orrc&gt;</span> should we talk about more general infra when more infra admins are around?
+<a name="l-193"></a><span class="tm">18:53:42</span><span class="nk"> &lt;rtyler&gt;</span> what in particular do you have in mind?
+<a name="l-194"></a><span class="tm">18:54:13</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">rtyler:</span> there was an agenda item to discuss the infra training/expansion that was brought up a while back
+<a name="l-195"></a><span class="tm">18:54:27</span><span class="nk"> &lt;rtyler&gt;</span> yeah, so I'll briefly update that
+<a name="l-196"></a><span class="tm">18:54:55</span><span class="nk"> &lt;rtyler&gt;</span> aheritier asked for and was granted access, there's not a particular limit to contributing to the puppet infra though
+<a name="l-197"></a><span class="tm">18:55:07</span><span class="nk"> &lt;rtyler&gt;</span> the *management* and operation of the infra ia different trust story unfortunately
+<a name="l-198"></a><span class="tm">18:55:18</span><span class="nk"> &lt;rtyler&gt;</span> so I do not have guidelines or any documentation to report on that
+<a name="l-199"></a><span class="tm">18:56:04</span><span class="nk"> &lt;orrc&gt;</span> ok. what would be the requirement for someone who feels they're capable enough and in a well-placed timezone to get access?
+<a name="l-200"></a><span class="tm">18:56:07</span><span class="nk"> &lt;rtyler&gt;</span> aheritier did make a point about incorporating someobyd in the Asia/Pacific region to give us better operational support coverage, but as it stands now I don't have anybody that's come forward on that
+<a name="l-201"></a><span class="tm">18:56:45</span><span class="nk"> &lt;orrc&gt;</span> ok. we have two in EU, right? danielbeck, you have access?
+<a name="l-202"></a><span class="tm">18:57:01</span><span class="nk"> &lt;rtyler&gt;</span> well, demonstration of knowledge whether through activity in INFRA JIRA or by submitting PRs/reviews on jenkins-infra
+<a name="l-203"></a><span class="tm">18:57:13</span><span class="nk"> &lt;danielbeck&gt;</span> orrc I have access to... a lot
+<a name="l-204"></a><span class="tm">18:57:19</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-205"></a><span class="tm">18:57:38</span><span class="nk"> &lt;rtyler&gt;</span> to me earning trust is difficult to quantify
+<a name="l-206"></a><span class="tm">18:57:42</span><span class="nk"> &lt;danielbeck&gt;</span> Some docs would be nice though, I'm just an empty head right now :-)
+<a name="l-207"></a><span class="tm">18:57:51</span><span class="nk"> &lt;orrc&gt;</span> sure
+<a name="l-208"></a><span class="tm">18:58:30</span><span class="nk"> &lt;rtyler&gt;</span> I think an action here would be..
+<a name="l-209"></a><span class="tm">18:58:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to audit the Infra subsection of the wiki for sensitive material so it can be opened up more broadly</span>
+<a name="l-210"></a><span class="tm">18:59:05</span><span class="nk"> &lt;orrc&gt;</span> it's tough as it's not really possible to give granular server access; I'd like to be able to restart apache/confluence/jira in the early European hours
+<a name="l-211"></a><span class="tm">18:59:12</span><span class="nk"> &lt;rtyler&gt;</span> that's feasible
+<a name="l-212"></a><span class="tm">18:59:21</span><span class="nk"> &lt;rtyler&gt;</span> just not as easy as what aheritier got
+<a name="l-213"></a><span class="tm">18:59:51</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">orrc:</span> file a JIRA for "atlassian admins" to be created as  a group and then we can add more people with perms only do admin those on the machines themselves
+<a name="l-214"></a><span class="tm">19:00:21</span><span class="nk"> &lt;rtyler&gt;</span> then I nominate you as the first sucker^Wmember
+<a name="l-215"></a><span class="tm">19:00:35</span><span class="nk"> &lt;orrc&gt;</span> sounds like effort; I'll take sudo access as well ;)
+<a name="l-216"></a><span class="tm">19:00:37</span><span class="nk"> &lt;orrc&gt;</span> sure
+<a name="l-217"></a><span class="tm">19:00:56</span><span class="nk"> &lt;rtyler&gt;</span> we can get better coverage faster with the more granular, so let's do that
+<a name="l-218"></a><span class="tm">19:01:02</span><span class="nk"> &lt;rtyler&gt;</span> and by "let's" I mean "I'll"
+<a name="l-219"></a><span class="tm">19:01:08</span><span class="nk"> &lt;rtyler&gt;</span> unless you want to write some puppet!
+<a name="l-220"></a><span class="tm">19:01:30</span><span class="nk"> &lt;orrc&gt;</span> I did try to get some jenkins-infra up and running a few weeks back, but failed without access to the secrets, I believe
+<a name="l-221"></a><span class="tm">19:02:00</span><span class="nk"> &lt;rtyler&gt;</span> ah, let's discuss that after this meeting
+<a name="l-222"></a><span class="tm">19:02:08</span><span class="nk"> &lt;orrc&gt;</span> like getting a web server role up and running. anyway, I can check again and report back
+<a name="l-223"></a><span class="tm">19:02:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">orrc and rtyler to create "atlassian admins" to help get coverage on jira/wiki</span>
+<a name="l-224"></a><span class="tm">19:02:53</span><span class="nk"> &lt;orrc&gt;</span> wunderbar. danielbeck: you want to move to your topic?
+<a name="l-225"></a><span class="tm">19:03:07</span><span class="nk"> &lt;danielbeck&gt;</span> sure, let's have some real discussion here :-)
+<a name="l-226"></a><span class="tm">19:03:11</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-227"></a><span class="tm">19:03:18 </span><span class="nka">* rtyler</span> <span class="ac">puts on his flame retardant suit</span>
+<a name="l-228"></a><span class="tm">19:03:27</span><span class="nk"> &lt;orrc&gt;</span> <span class="topic">#topic </span><span class="topicline">Further requirements for plugins published in the community update center</span>
+<a name="l-229"></a><span class="tm">19:04:35</span><span class="nk"> &lt;danielbeck&gt;</span> We're publishing anything in the repo right now
+<a name="l-230"></a><span class="tm">19:05:02</span><span class="nk"> &lt;danielbeck&gt;</span> And anyone who has an account can upload a version of every plugin
+<a name="l-231"></a><span class="tm">19:05:20</span><span class="nk"> &lt;danielbeck&gt;</span> (account? commit access to one plugin? Not sure right now, but shouldn't matter)
+<a name="l-232"></a><span class="tm">19:05:55</span><span class="nk"> &lt;danielbeck&gt;</span> So, what prevents anyone from releasing, say, mailer 1.20, a bundled plugin?
+<a name="l-233"></a><span class="tm">19:06:32</span><span class="nk"> &lt;danielbeck&gt;</span> We do have a responsibility to our users who don't expect to get malware when installing a popular plugin, or updating a bundled one
+<a name="l-234"></a><span class="tm">19:06:38</span><span class="nk"> &lt;danielbeck&gt;</span> but right now, this is what they could get
+<a name="l-235"></a><span class="tm">19:06:51</span><span class="nk"> &lt;rtyler&gt;</span> I generally agree
+<a name="l-236"></a><span class="tm">19:07:04</span><span class="nk"> &lt;rtyler&gt;</span> I think some of the proposals you through into the meeting agenda would be good to go through
+<a name="l-237"></a><span class="tm">19:07:07 </span><span class="nka">* rtyler</span> <span class="ac">looks at the time</span>
+<a name="l-238"></a><span class="tm">19:07:24</span><span class="nk"> &lt;danielbeck&gt;</span> just pasting from the Agenda:
+<a name="l-239"></a><span class="tm">19:07:33</span><span class="nk"> &lt;jenkins-builds&gt;</span> Starting build #4133 for job jenkins_main_trunk (previous build: FIXED)
+<a name="l-240"></a><span class="tm">19:07:34</span><span class="nk"> &lt;danielbeck&gt;</span> Require a valid SCM URL for new plugin releases inside @jenkinsci/svn.jenkins-ci.org (that must exist) – needs to handle plugins not bundled with Gradle
+<a name="l-241"></a><span class="tm">19:07:40</span><span class="nk"> &lt;danielbeck&gt;</span> Require that the uploader of the binary is the same user who created the tag (we have the data in LDAP, see jenkins-ci.org/account)
+<a name="l-242"></a><span class="tm">19:07:44</span><span class="nk"> &lt;danielbeck&gt;</span> Remove the commit permissions from 'everyone', it's reckless
+<a name="l-243"></a><span class="tm">19:08:16</span><span class="nk"> &lt;danielbeck&gt;</span> Besides that last one, these should be fairly low impact, at least for plugins that are good "citizens"
+<a name="l-244"></a><span class="tm">19:08:35</span><span class="nk"> &lt;danielbeck&gt;</span> going through them one by one:
+<a name="l-245"></a><span class="tm">19:09:35</span><span class="nk"> &lt;danielbeck&gt;</span> Valid SCM URL... should be obvious. Like the wiki link, show us the source code. No file:/// URLs! Must be in svn.jenkins-ci.org / jenkinsci Github org. Allow exceptions for existing releases.
+<a name="l-246"></a><span class="tm">19:09:52</span><span class="nk"> &lt;ogondza&gt;</span> +1
+<a name="l-247"></a><span class="tm">19:10:12</span><span class="nk"> &lt;danielbeck&gt;</span> Also, requires plugins we distribute to be OSS. I think this is reasonable.
+<a name="l-248"></a><span class="tm">19:11:09</span><span class="nk"> &lt;danielbeck&gt;</span> Matching uploader and tagging committer: Requires a tag in the Jenkins community repo (besides just having a potentially unused/dead fork), also reasonable to allow others to review and inspect what would be installed.
+<a name="l-249"></a><span class="tm">19:11:38</span><span class="nk"> &lt;danielbeck&gt;</span> Users can specify their Github user ID in the jenkins-ci.org/account app, so we have the data, we just need to make use of it.
+<a name="l-250"></a><span class="tm">19:12:03</span><span class="nk"> &lt;StuartWhelan&gt;</span> Any CB support around? On Enterprise and want to have a quick chat about an urgent ticket I think is falling through the cracks.
+<a name="l-251"></a><span class="tm">19:12:37</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">StuartWhelan:</span> wrong time and place, I'm afraid. we're in a meeting (and I think there are no CB support people here)
+<a name="l-252"></a><span class="tm">19:12:53</span><span class="nk"> &lt;danielbeck&gt;</span> And the third one... I'm really troubled by the 'access by default' rule we have. We need to change this, otherwise the other two changes are useless.
+<a name="l-253"></a><span class="tm">19:13:04</span><span class="nk"> &lt;StuartWhelan&gt;</span> <span class="hi">orrc:</span> Rgr, ta
+<a name="l-254"></a><span class="tm">19:13:28</span><span class="nk"> &lt;danielbeck&gt;</span> It doesn't mean we would start removing access from users who have a good reason. It's easy enough to give per-repo access
+<a name="l-255"></a><span class="tm">19:13:38</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> yeah, the recent junk plugins really made that problem clear
+<a name="l-256"></a><span class="tm">19:13:40</span><span class="nk"> &lt;rtyler&gt;</span> I think thie valid SCM thing is a great idea, I think we should definitely require OSS plugins for distrubition
+<a name="l-257"></a><span class="tm">19:14:19</span><span class="nk"> &lt;danielbeck&gt;</span> IMO there's nothing wrong with requiring the vast majority of users to have per-repo group memberships.
+<a name="l-258"></a><span class="tm">19:14:32</span><span class="nk"> &lt;danielbeck&gt;</span> Would have saved us from the repo force push issue a year or two ago as well, FWIW
+<a name="l-259"></a><span class="tm">19:14:56</span><span class="nk"> &lt;rtyler&gt;</span> agreed
+<a name="l-260"></a><span class="tm">19:15:16</span><span class="nk"> &lt;danielbeck&gt;</span> of course the transition period would be busy, plus users wondering wtf is going on, but we can smooth some of that by adding users to the repos they recently contributed to by default
+<a name="l-261"></a><span class="tm">19:15:21</span><span class="nk"> &lt;orrc&gt;</span> yeah, I'd quite like to clean up the GitHub organisation
+<a name="l-262"></a><span class="tm">19:15:50</span><span class="nk"> &lt;orrc&gt;</span> there's also been a couple of times in the past two weeks where people have hit "Create repo" directly from GitHub, which makes a mess
+<a name="l-263"></a><span class="tm">19:16:54</span><span class="nk"> &lt;danielbeck&gt;</span> Maybe I'm being too pessimistic about the problem. I don't know. But I fear that the reputation of the entire Jenkins project is at risk right now if someone exploited our _extremely_ permissive policies.
+<a name="l-264"></a><span class="tm">19:17:42 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-265"></a><span class="tm">19:17:43</span><span class="nk"> &lt;deebo&gt;</span> when using on demand slaves (docker), how can i make the master node realize i'm mounting $JENKINS_HOME/workspace on the slaves?
+<a name="l-266"></a><span class="tm">19:17:54</span><span class="nk"> &lt;danielbeck&gt;</span> deebo Meeting right now, please wait a bit
+<a name="l-267"></a><span class="tm">19:17:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">deebo:</span> give us a bit to wrap up this project meeting
+<a name="l-268"></a><span class="tm">19:17:57</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-269"></a><span class="tm">19:18:05</span><span class="nk"> &lt;deebo&gt;</span> ok
+<a name="l-270"></a><span class="tm">19:18:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> so what are some things we can do right now?
+<a name="l-271"></a><span class="tm">19:18:27</span><span class="nk"> &lt;rtyler&gt;</span> requiring a valid SCM URL, can just be git:// validation, but should the UC also be requiring that we can access it too?
+<a name="l-272"></a><span class="tm">19:18:41</span><span class="nk"> &lt;jmartinstw&gt;</span> hi, I have problems with EC2_Plugin: failed to launch com.amazonaws.AmazonClientException: Security groups must all be VPC security groups to work in a VPC context  at hudson.plugins.ec2.SlaveTemplate.getEc2SecurityGroups(SlaveTemplate.java:757)
+<a name="l-273"></a><span class="tm">19:18:48</span><span class="nk"> &lt;danielbeck&gt;</span> jmartinstw Please wait a bit, meeting right now
+<a name="l-274"></a><span class="tm">19:19:16</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler I think we need the full package of valid SCM with tag for the version.
+<a name="l-275"></a><span class="tm">19:19:39</span><span class="nk"> &lt;danielbeck&gt;</span> Otherwise it's pointless from both traceability and safety POV
+<a name="l-276"></a><span class="tm">19:19:43 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-277"></a><span class="tm">19:19:43</span><span class="nk"> &lt;danielbeck&gt;</span> + user matching
+<a name="l-278"></a><span class="tm">19:19:54</span><span class="nk"> &lt;danielbeck&gt;</span> because anyone can upload an HPI with a bad POM
+<a name="l-279"></a><span class="tm">19:20:05</span><span class="nk"> &lt;rtyler&gt;</span> so let's wrap this meeting up, what are some action items that we can take away from this?
+<a name="l-280"></a><span class="tm">19:20:23</span><span class="nk"> &lt;danielbeck&gt;</span> orrc WDYT? I think from those present you know UC best right now
+<a name="l-281"></a><span class="tm">19:20:40</span><span class="nk"> &lt;danielbeck&gt;</span> How much effort is it to extend UC to do this?
+<a name="l-282"></a><span class="tm">19:21:05</span><span class="nk"> &lt;orrc&gt;</span> the UC already examines the &lt;scm&gt; tag, so that shouldn't be too hard to validate
+<a name="l-283"></a><span class="tm">19:21:20</span><span class="nk"> &lt;danielbeck&gt;</span> orrc Remember the LDAP access to match Github user and jenkins-ci user
+<a name="l-284"></a><span class="tm">19:21:29</span><span class="nk"> &lt;danielbeck&gt;</span> there are two components here, adding requirements to the UC, and making them meaningful by cleaning up the Github org
+<a name="l-285"></a><span class="tm">19:21:57</span><span class="nk"> &lt;orrc&gt;</span> yeah, that's the part I'm not sure about, and would make this harder to develop/test
+<a name="l-286"></a><span class="tm">19:22:15</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler How accessible is the account app info (LDAP I assume)?
+<a name="l-287"></a><span class="tm">19:22:19</span><span class="nk"> &lt;rtyler&gt;</span> could one of you take the org cleanup and the other UC work? or sohuld we try to find additional help?
+<a name="l-288"></a><span class="tm">19:22:29</span><span class="nk"> &lt;rtyler&gt;</span> as accessible as LDAP can be more or less
+<a name="l-289"></a><span class="tm">19:23:17</span><span class="nk"> &lt;orrc&gt;</span> I started working part time, so I've been making Mondays Jenkins monkey work time to some extent. maybe I can take a look at both
+<a name="l-290"></a><span class="tm">19:23:27</span><span class="nk"> &lt;danielbeck&gt;</span> Could we get some opinions first on how much agreement there is?
+<a name="l-291"></a><span class="tm">19:23:42</span><span class="nk"> &lt;rtyler&gt;</span> ogondza said +1, everobyd else is silent :P
+<a name="l-292"></a><span class="tm">19:23:50</span><span class="nk"> &lt;abayer&gt;</span> +sure? =)
+<a name="l-293"></a><span class="tm">19:23:55</span><span class="nk"> &lt;orrc&gt;</span> my main question is how tightly linked the jenkins-ci.org and LDAP accounts are
+<a name="l-294"></a><span class="tm">19:24:07</span><span class="nk"> &lt;rtyler&gt;</span> tightly linked to what?
+<a name="l-295"></a><span class="tm">19:24:07</span><span class="nk"> &lt;danielbeck&gt;</span> everyone is too busy writing mailer 1.20 :-(
+<a name="l-296"></a><span class="tm">19:24:16</span><span class="nk"> &lt;orrc&gt;</span> I asked kohsuke to ban the junk plugin guy from Maven, but it wasn't possible to just cut off Maven access
+<a name="l-297"></a><span class="tm">19:24:25</span><span class="nk"> &lt;orrc&gt;</span> so he just reset his password or something
+<a name="l-298"></a><span class="tm">19:24:37</span><span class="nk"> &lt;orrc&gt;</span> we need (I think?) a jenkins-admin: give maven access to foo
+<a name="l-299"></a><span class="tm">19:25:02</span><span class="nk"> &lt;rtyler&gt;</span> hm, we'll have to look at what group JFrog is binding to for LDAP authentication
+<a name="l-300"></a><span class="tm">19:25:14</span><span class="nk"> &lt;rtyler&gt;</span> and we can just start making more use of the rich wonderful world of pain LDAP supports :)
+<a name="l-301"></a><span class="tm">19:25:30</span><span class="nk"> &lt;orrc&gt;</span> INFRA-287 fwiw
+<a name="l-302"></a><span class="tm">19:25:32</span><span class="nk"> &lt;jenkins-admin&gt;</span> INFRA-287:Remove maven access for user anitha (Resolved) https://issues.jenkins-ci.org/browse/INFRA-287
+<a name="l-303"></a><span class="tm">19:26:11</span><span class="nk"> &lt;danielbeck&gt;</span> orrc If we manage permissions to the plugin repos, and only distribute on the UC what was created by authorized committers, that should be fine IMO
+<a name="l-304"></a><span class="tm">19:27:08</span><span class="nk"> &lt;danielbeck&gt;</span> Artifactory permissions based on paths (e.g. group) are a huge PITA so I don't think we want that
+<a name="l-305"></a><span class="tm">19:27:45</span><span class="nk"> &lt;danielbeck&gt;</span> Maybe add a flag/group membership required for committing so we can remove users generally, but not to do per-plugin upload permissions
+<a name="l-306"></a><span class="tm">19:27:53 </span><span class="nka">* rtyler</span> <span class="ac">looks at the clock</span>
+<a name="l-307"></a><span class="tm">19:27:55</span><span class="nk"> &lt;orrc&gt;</span> sure
+<a name="l-308"></a><span class="tm">19:28:13</span><span class="nk"> &lt;orrc&gt;</span> ok, I'll maybe take a look as well at grabbing the committer ID from Maven for a given release
+<a name="l-309"></a><span class="tm">19:28:30</span><span class="nk"> &lt;danielbeck&gt;</span> orrc Could you take a look at necessary UC changes? I'm busy next week but will be able to assist the week after
+<a name="l-310"></a><span class="tm">19:28:32</span><span class="nk"> &lt;orrc&gt;</span> I've seen it listed in Artifactory, so the info is there
+<a name="l-311"></a><span class="tm">19:28:32</span><span class="nk"> &lt;danielbeck&gt;</span> great
+<a name="l-312"></a><span class="tm">19:28:36</span><span class="nk"> &lt;orrc&gt;</span> yup
+<a name="l-313"></a><span class="tm">19:28:53</span><span class="nk"> &lt;orrc&gt;</span> <span class="cmd">#action </span><span class="cmdline">orrc to look at the UC changes mentioned to validate &lt;scm&gt; and user info</span>
+<a name="l-314"></a><span class="tm">19:29:04</span><span class="nk"> &lt;danielbeck&gt;</span> any Github admins around for taking inventory of needed changes there?
+<a name="l-315"></a><span class="tm">19:29:20</span><span class="nk"> &lt;orrc&gt;</span> heh, I was about to ask for admin access. so I can quit bugging abayer ;)
+<a name="l-316"></a><span class="tm">19:29:22 </span><span class="nka">* rtyler</span> <span class="ac">is not currently a github admin</span>
+<a name="l-317"></a><span class="tm">19:29:35</span><span class="nk"> &lt;danielbeck&gt;</span> drulli?
+<a name="l-318"></a><span class="tm">19:29:55</span><span class="nk"> &lt;orrc&gt;</span> oh yeah
+<a name="l-319"></a><span class="tm">19:30:15</span><span class="nk"> &lt;orrc&gt;</span> uh, this account has admin access? https://github.com/hudsonadmin
+<a name="l-320"></a><span class="tm">19:30:29</span><span class="nk"> &lt;orrc&gt;</span> mysterious, with a bad URL?
+<a name="l-321"></a><span class="tm">19:30:47</span><span class="nk"> &lt;rtyler&gt;</span> that's probably some bot thing that kohsuke set up
+<a name="l-322"></a><span class="tm">19:31:20</span><span class="nk"> &lt;rtyler&gt;</span> time for me to get back to work
+<a name="l-323"></a><span class="tm">19:31:31</span><span class="nk"> &lt;orrc&gt;</span> thanks for the input
+<a name="l-324"></a><span class="tm">19:31:34</span><span class="nk"> &lt;danielbeck&gt;</span> right, so someone needs Github org admin access or assistance by one of the admins. Then we need to get some data what needs to be done. I could try that
+<a name="l-325"></a><span class="tm">19:32:23</span><span class="nk"> &lt;orrc&gt;</span> ndeloof is an admin as well? he's on my bad plugin list of shame! :)
+<a name="l-326"></a><span class="tm">19:32:34</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> you can #action yourself :)
+<a name="l-327"></a><span class="tm">19:32:34</span><span class="nk"> &lt;danielbeck&gt;</span> orrc didn't he fix it?
+<a name="l-328"></a><span class="tm">19:32:50</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">orrc to investigate UC changes so it requires proper SCM, tag, and uploader</span>
+<a name="l-329"></a><span class="tm">19:33:00</span><span class="nk"> &lt;batmat&gt;</span> I think ndeloof answered he tried to create the wiki page, but there was an issue at the time
+<a name="l-330"></a><span class="tm">19:33:08</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">danielbeck:</span> he has a bunch of plugins on the bad wiki list
+<a name="l-331"></a><span class="tm">19:33:14</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to get data on necessary Github permission changes</span>
+<a name="l-332"></a><span class="tm">19:33:33</span><span class="nk"> &lt;orrc&gt;</span> ok, all done
+<a name="l-333"></a><span class="tm">19:33:44</span><span class="nk"> &lt;orrc&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-334"></a><span class="tm">19:33:56</span><span class="nk"> &lt;orrc&gt;</span> Looks like the 27th May at the usual time
+<a name="l-335"></a><span class="tm">19:33:58</span><span class="nk"> &lt;danielbeck&gt;</span> May 27, same time, same place
+<a name="l-336"></a><span class="tm">19:34:08</span><span class="nk"> &lt;orrc&gt;</span> depending on your INFRA task
+<a name="l-337"></a><span class="tm">19:34:10</span><span class="nk"> &lt;danielbeck&gt;</span> (unless we manage #jenkins-meeting) :-)
+<a name="l-338"></a><span class="tm">19:34:20</span><span class="nk"> &lt;orrc&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 16:05:20 May 04, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:54:31 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 426.304
+  exclusion.robots: 0.105
+  exclusion.robots.policy: 0.099
+  cdx.remote: 0.062
+  esindex: 0.009
+  LoadShardBlock: 146.804 (3)
+  PetaboxLoader3.resolve: 131.182 (4)
+  PetaboxLoader3.datanode: 36.46 (4)
+  CDXLines.iter: 23.693 (3)
+  load_resource: 41.334
+-->

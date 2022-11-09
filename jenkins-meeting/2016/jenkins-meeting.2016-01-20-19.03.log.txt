@@ -1,0 +1,193 @@
+19:03:17 <danielbeck> #startmeeting
+19:03:17 <robobutler> Let the Jenkins meeting commence!
+19:03:29 <danielbeck> #chairs rtyler kohsuke hare_brain
+19:03:35 <danielbeck> #chair rtyler kohsuke hare_brain
+19:03:35 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler
+19:04:23 <danielbeck> I forgot the bot commands :(
+19:04:30 <rtyler> heh
+19:04:32 <danielbeck> #topic Recap last meeting's actions
+19:04:48 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-01-06-19.01.html
+19:04:57 <rtyler> #info the code of conduct is persisted under https://jenkins-ci.org/conduct
+19:05:43 <oleg-nenashev> great
+19:05:46 <rtyler> orrc: had time to draft a PR proposal?
+19:05:52 <rtyler> I thought I saw it
+19:06:15 <oleg-nenashev> rtyler: Mailing list
+19:06:22 <rtyler> oleg-nenashev: can you #info a link?
+19:06:40 <rtyler> ogondza: did you also get an LTS branch created?
+19:07:03 <ogondza> rtyler: created, backported and tested
+19:07:08 <rtyler> \o/
+19:07:26 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/fGNh6Ln3YXc
+19:07:35 <rtyler> thanks oleg-nenashev
+19:08:19 <rtyler> moving on
+19:08:22 <rtyler> #topic Approving Jenkins Press page and assigned contacts: https://jenkins-ci.org/press
+19:08:26 <rtyler> this is oleg-nenashev's topic
+19:08:49 <oleg-nenashev> So, it's rather formal since we had no "Press contact" term before
+19:09:18 <rtyler> we had whois on the domain :P
+19:09:45 <oleg-nenashev> orly? :)
+19:10:30 <rtyler> unfortunately
+19:10:47 <danielbeck> so the page looks good. Do we want a format vote here?
+19:10:56 <oleg-nenashev> So, I'm OK with the concept and the assignees. So I'm definitely +1 on introducing such role
+19:11:19 <oleg-nenashev> danielbeck: Yes, I think about formal voting
+19:12:04 <danielbeck> oleg-nenashev We'll be voting on what exactly? Having press contacts? The wording of that page?
+19:12:09 <batmat> Gonna abstain, obviously. (note: I never *requested* to be there, in case anyone wonders)
+19:12:22 <oleg-nenashev> Also I would vote for decoupling "About Jenkins" and "Press contacts" into two separate pages
+19:12:26 <hare_brain> The formatting is a little off in some places. (The formatting for the "Artwork" header doesn't match anything else.)
+19:12:38 <hare_brain> I think there needs to be more clarification on the correct/incorrect usage.
+19:13:05 <hare_brain> Emphasize that this is preferred usage for when you are talking about the project.
+19:13:20 <danielbeck> (or the software)
+19:13:26 <rtyler> hare_brain: "[Improve this Page]" :)
+19:13:28 <danielbeck> which have different correct terms
+19:13:41 <oleg-nenashev> yep
+19:13:42 <hare_brain> danielbeck: Yes, exactly.
+19:14:15 <oleg-nenashev> Is there anybody against "Press contacts" in general?
+19:14:25 <hare_brain> Not against the intent.
+19:14:33 <danielbeck> So are we in agreement that this goes into the correct general direction?
+19:14:40 <oleg-nenashev> +1
+19:14:49 <batmat> +1 for the principle
+19:14:53 <danielbeck> I.e. press contacts, logo usage guidelines, ...
+19:15:44 <oleg-nenashev> Should it be a separate section in the tab bar?
+19:16:13 <danielbeck> not really a relevant detail IMO
+19:16:16 <oleg-nenashev> Which would include CoC, Press contacts and other Aux pages
+19:16:39 <oleg-nenashev> Yeah, "Feel free to create a PR"
+19:16:47 <danielbeck> Design by Committee :)
+19:17:10 <rtyler> Press in the default tab bar is fairly important to me btw, the more obvious that is the better
+19:17:21 <rtyler> but yes, design by committee \p/
+19:17:37 <danielbeck> So I suggest we note that nobody's against the press contacts principle, and Oleg will incorporate feedback until next meeting.
+19:18:04 <oleg-nenashev> #action oleg_nenashev to incorporate the feedback about Press contacts
+19:18:25 <oleg-nenashev> #decision "Press contacts" are approved in general
+19:18:35 <rtyler> next topic?
+19:18:37 <danielbeck> #action oleg_nenashev to incorporate the feedback about Press contacts
+19:18:39 <oleg-nenashev> yep
+19:18:42 <rtyler> alyssat: ping
+19:18:50 <danielbeck> #decision "Press contacts" are approved in general
+19:18:55 <rtyler> #topic Reworking / Shutting down the Jenkins CIA program
+19:19:24 <rtyler> this is oleg-nenashev again
+19:19:35 <oleg-nenashev> So my proposal is to kill the current program. It's outdated
+19:19:59 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/ktTrIZQlNTY
+19:20:04 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CIA+Program
+19:20:18 <batmat> as I've already received my CIA T-shirt, I'm OK
+19:20:27 <rtyler> heh
+19:20:27 <alyssat> i agree to this as i think the JAM program similar to CIA
+19:20:53 <rtyler> the only reservation that I have is that sending stickers and shirts will be discontinued as part of this
+19:20:59 <rtyler> except as part of JAM organization activities
+19:21:12 <oleg-nenashev> "CI" is outdated in any case
+19:21:13 <rtyler> not that we're sending boatloads of them right now
+19:21:24 <alyssat> we would still send t-shirts and stickers
+19:21:40 <rtyler> well, then that will have to be something separate approved if it's going to come out of the project budget IMHO
+19:21:47 <hare_brain> Haha.
+19:21:47 <alyssat> but not sure CIA t-shirt is applicable
+19:22:10 <rtyler> CIA was at the bare minimum a program that we approved to exchange stickers for blog posts :P
+19:22:25 <alyssat> so far the 2 shirts sent to Peru and Batmat came out of CB budget
+19:22:35 <rtyler> w00t
+19:22:51 <alyssat> people hasn't been blogging about CIA but they blog about JAM
+19:23:02 <rtyler> KK and I did email stuff back in the day, but as oleg-nenashev points out, it's terribly out-dated
+19:23:05 <alyssat> IMO it's similar
+19:23:11 <batmat> OK, I'm compared to a whole country name now, I've been promoted
+19:23:26 * batmat ducks
+19:23:33 <rtyler> batmat: most americans can't find you or peru on a map
+19:23:35 <rtyler> xD
+19:23:41 <alyssat> lol! sorry batman..i forgot Eddu's name (peru)
+19:24:11 <batmat> rtyler: most/many americans can't find where is any non-America country? :)
+19:24:15 <rtyler> anyways, I'm in favor of shuttering the program
+19:24:25 <oleg-nenashev> Do we still want to promote the "Jenkins CI" term?
+19:24:35 <rtyler> but I don't want us to spend money on sending stuff if they're not JAM organizers
+19:24:45 <rtyler> of course, if CloudBees wants to send people stuff, I don't really care :P
+19:24:45 <oleg-nenashev> We could rename/rework the program, but maybe better to start from scratch
+19:24:53 <oleg-nenashev> E.g. "Jenkins MVP"
+19:24:58 <batmat> +1, I asked for it because I would sell my family for a good t-shirt and stickers, but I indeed felt this was somehow dup with JAM
+19:25:04 <rtyler> heh
+19:25:34 <danielbeck> Let's just shut it down and if we think something's missing, start a different program from scratch.
+19:25:38 <rtyler> are there any persons *opposed* to killing down CIA?
+19:25:53 <oleg-nenashev> New way of voting :)
+19:26:07 <alyssat> yay! those CIA t-shirts were way expensive
+19:26:34 <oleg-nenashev> alyssat: Could you open-source the image? ^_^
+19:27:04 <alyssat> oleg-nenashev: i think that would be for the community to decide, no?
+19:27:38 <oleg-nenashev> alyssat maybe. Off-topic in any case
+19:27:45 <batmat> oleg-nenashev: isn't it already on the right? https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CIA+Program
+19:27:47 <rtyler> I think that's it for today
+19:27:48 <batmat> anyway
+19:28:00 <batmat> no, we had the twitter account from oleg-nenashev
+19:28:08 <batmat> IIRC
+19:28:21 <rtyler> ah, my page was old
+19:28:23 <rtyler> refreshed :)
+19:28:25 <oleg-nenashev> Uhh, I was the only guy who bothered to fill-in the agenda :(
+19:28:40 <rtyler> TODAY ON THE OLEG SHOW!
+19:28:42 <rtyler> #TOPIC Follow-up to the unofficial Jenkins-related Twitter account
+19:28:47 <danielbeck> rtyler record decision to stop CIA?
+19:28:52 <alyssat> oleg-nenashev: fyi - i don't have the CIA image
+19:29:38 <oleg-nenashev> So I wait till the topic gets updated...
+19:29:47 <rtyler> #topic Reworking / Shutting down the Jenkins CIA program
+19:29:58 <rtyler> #info we're killing the CIA
+19:30:00 <rtyler> #TOPIC Follow-up to the unofficial Jenkins-related Twitter account
+19:30:06 <rtyler> :D
+19:30:07 <oleg-nenashev> #info https://twitter.com/LearningJenkins
+19:30:18 <batmat> wasn't a #decision?
+19:30:22 <batmat> anyway
+19:30:31 <oleg-nenashev> #info It was Jenkins CI School, but it has been renamed after the discussion with the owner
+19:30:46 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/VhEGPZ9_IzA
+19:30:57 <rtyler> batmat: it's actually #agreed
+19:31:06 <rtyler> batmat: there's no decision, see : https://wiki.debian.org/MeetBot
+19:31:18 <batmat> ah yes, so above I think danielbeck used it sorry
+19:31:29 <danielbeck> Yeah, I messed this up copying from oleg
+19:31:34 <rtyler> I don't see any problem with LearningJenkins, they're not using the logo or anything
+19:31:38 <oleg-nenashev> So the question is... Do we want to request the "unofficial resource" mark/label? Do we want to ask the owner to change the name?
+19:32:05 <batmat> oleg-nenashev: +1 for the label, would be clearer I think
+19:32:12 <rtyler> I don't think either is our place to request
+19:32:16 <danielbeck> Is this a Twitter feature?
+19:32:27 <batmat> as for the name, not sure, what would you imagine?
+19:32:34 <oleg-nenashev> And do we want to add the "Please do not draw logos with american candies" to our Press Contacts page? :)
+19:32:59 <oleg-nenashev> rtyler: Name or summary
+19:33:13 <batmat> danielbeck: not than I know of, just that he "unofficial/unrelated account" to the description on the left
+19:33:36 <oleg-nenashev> "Learning Jenkins (unofficial)" is an alternative, but maybe it's an overkill
+19:34:03 <danielbeck> honestly I like the account as it is now
+19:34:04 <batmat> yeah, I wasn't thinking about that in the name. Just in the text below.
+19:34:50 <danielbeck> Do we think this is anything but a Jenkins enthusiast tweeting about Jenkins stuff?
+19:34:55 <batmat> /whois LearningJenkins :-)
+19:35:41 <batmat> danielbeck: seems like. I've crawled the tweets some days ago and didn't find anything else than links to plugins, and so on. Nothing commercially hidden or something
+19:35:55 <oleg-nenashev> danielbeck: Yes, it's an individual
+19:36:25 <oleg-nenashev> "Jenkins CI School" was much worse, because it makes thinking about certifications, etc.
+19:36:28 <danielbeck> I'd rather encourage the guy than tell him he's not allowed to call it Jenkins, or whatever
+19:36:41 <batmat> danielbeck: true
+19:36:47 <oleg-nenashev> sure
+19:36:52 <rtyler> so let's base this in something real please
+19:36:56 <rtyler> we have trademark guidelines
+19:36:58 <rtyler> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document#GovernanceDocument-Trademark
+19:37:39 <oleg-nenashev> rtyler: I've checked it before the meeting. No violation
+19:37:43 <rtyler> right
+19:37:50 <rtyler> so why are we talking about it?
+19:37:56 <danielbeck> Unless we consider a Twitter account to be a service
+19:38:15 <danielbeck> ]:->
+19:38:31 <oleg-nenashev> There is no intention to prohibit the name, of course. The only question was about "do we want the account not to be considered as an official one"
+19:38:49 <rtyler> it isn't
+19:38:51 <rtyler> full stop
+19:38:58 <rtyler> it's not linked or referenced from anywhere official
+19:39:03 <batmat> rtyler: IMO it was still /problematic/ with "CI" in the name according to the press page.
+19:39:08 <danielbeck> It doesn't even use the Jenkins butler head
+19:39:27 <rtyler> batmat: which the author has since updated, which is fine by me
+19:39:41 <danielbeck> I doubt this could be confused with something official
+19:39:44 <batmat> right. Btw, isn't that missing for the TM usage page? Should it be there?
+19:40:06 <batmat> +1 I'm OK with it as it is renamed now.
+19:40:20 <oleg-nenashev> batman: IMO the answer is "no". We try to avoid it even on the official website
+19:40:42 <oleg-nenashev> So "Jenkins" is fine IMO
+19:41:20 <rtyler> so my opnion here is that the author of this account has complied with fair use of our trademark and even recently created press guidelines, so good to discuss and keep an eye on
+19:41:35 <rtyler> if they go commercial then we will need to re-evaluate IMO
+19:42:05 <oleg-nenashev> rtyler: What about a "Unofficial resources" page on the website? Good way to monitor and advertise the site at once
+19:42:15 <oleg-nenashev> *the account
+19:43:03 <danielbeck> requires us to actively monitor it as it's a kind of endorsement.
+19:43:04 <batmat> oleg-nenashev: I was meaning that, as on the press page, on the TM there could (should?) be something along "Jenkins" is fine. "Jenkins CI" is not. But anyway, that's n the subject here.
+19:43:13 <rtyler> what danielbeck said
+19:44:03 <rtyler> IMO there is nothing for the project to gain from publicizing such resources
+19:44:13 <rtyler> only effort to lose in curating and maintaining the list
+19:44:43 <oleg-nenashev> rtyler: It's similar to non-English resources we want to have
+19:44:58 <rtyler> what non-english resources?
+19:46:17 <oleg-nenashev> rtyler: I mean that the trend is to encourage local communities, so there may be resources we cannot monitor easily
+19:46:22 <danielbeck> I think we can continue this discussion in #jenkins, there's nothing for the project meeting here
+19:46:38 <oleg-nenashev> rtyler: JAM accounts, etc.
+19:47:00 <oleg-nenashev> Anyway I agree with danielbeck. It's offtopic
+19:47:25 <danielbeck> #topic next meeting
+19:47:28 <oleg-nenashev> So the decision is to approve that twitter account in the current state?
+19:47:44 <danielbeck> oleg-nenashev I don't think there's anything to approve. It simply exists.
+19:47:50 <oleg-nenashev> OK
+19:48:18 <danielbeck> Next meeting same time on Feb 3
+19:48:33 <batmat> OK
+19:48:38 <danielbeck> #endmeeting

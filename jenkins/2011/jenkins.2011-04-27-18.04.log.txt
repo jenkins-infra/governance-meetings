@@ -1,0 +1,174 @@
+18:04:40 <kohsuke> #startmeeting
+18:04:40 <robobutler> Let the Jenkins meeting commence!
+18:04:51 <kohsuke> #chair abayer hare_brain rtyler
+18:04:51 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:05:13 <kohsuke> #topic fcamblor to report the progress/status on plugin compat tester
+18:05:30 <kohsuke> fcamblor: it's your show
+18:05:34 <fcamblor> :)
+18:05:48 <fcamblor> So.. I spammed here a few
+18:06:16 <fcamblor> #info Current plugin compat tester report is available here : http://ci.jenkins-ci.org/job/plugin-compat-tester/ws/reports/PluginCompatReport.xml
+18:06:27 <fcamblor> It is a real time report
+18:06:59 <fcamblor> (a job is just processing now .... and adding tests results to the report)
+18:07:47 <drulli> the report is password protected...
+18:07:54 <fcamblor> #info plugin compat tester goal is to test latest plugin version (available in update center) against some different core (jenkins + hudson)
+18:08:16 <rpetti> should we be testing against hudson 2.0.0, rather than 1.395?
+18:08:28 * rtyler roffles
+18:08:31 <fcamblor> rpetti: I will add it next
+18:08:33 <kohsuke> I think we'll be publishing the reports somewhere into jenkins-ci.org
+18:08:34 <fcamblor> :)
+18:09:07 <kohsuke> Hmm, should we really be testing Oracle Hudson?
+18:09:20 <rpetti> #info it's probably worth mentioning that Oracle is working on a similar mechanism for testing compatibility with Hudson
+18:09:21 <fcamblor> kohsuke: yup ... There are some jenkins allowing to publish things aren't there ?
+18:10:11 <kohsuke> I'm not sure what you mean by "there are some jenkins allowing to publish things"
+18:10:21 <kohsuke> Oh, you mean, publishing to jenkins-ci.org
+18:10:27 <fcamblor> ups I forgot "plugin"
+18:10:38 <fcamblor> "there are some jenkins plugins allowing to publish things"
+18:11:26 <redsolo> fcamblor: how is the testing done, is it running the plugins unit tests?
+18:11:30 <kohsuke> #info If we are talking about making reports visible somewhere in jenkins-ci.org, yes, it's just a bit of backend work, but quite doable.
+18:12:17 <fcamblor> #info plugin compat tester macro algorithm is available here : https://wiki.jenkins-ci.org/display/JENKINS/Plugin+Compatibility+Tester
+18:12:28 <fcamblor> redsolo: yup
+18:12:37 <alzamabar> #idea You could use the SSH plugin to copy stuff to your website
+18:12:55 <fcamblor> but since <i don't know which version> some tests are automatically injected by the plugin parent pom
+18:13:02 <fcamblor> (InjectedTest)
+18:13:45 <kohsuke> We've been doing that for some time now
+18:13:57 <fcamblor> alzamabar: I was thinking about the Publish Over... plugin
+18:14:30 <fcamblor> but it is some infra I'm not very aware of :-)
+18:14:38 <alzamabar> fcamblor: Don't know what the Publish Over... plugin is...Hope I'm not wasting your time...
+18:14:41 <kohsuke> #info ci.jenkins-ci.org and jenkins-ci.org are the same machine, so the "publishing reports" in that part is easy
+18:14:42 <hare_brain> #idea Add discovery of usage of deprecated APIs to report.
+18:14:47 <fcamblor> all I can say is the golden things are in the report folder :)
+18:15:05 <kohsuke> #idea we should have a bug tracker component for this
+18:15:25 <bap2000> dont know about the infra, but can help with the Publish over SSH ;-)
+18:15:45 <redsolo> fcamblor: i tried last nights link and the report is password protected, any reason for that?
+18:16:00 <bap2000> just use the creds for j-on-j
+18:16:07 <fcamblor> redsolo: no reason apart it is a jenkins job resource
+18:16:18 <fcamblor> I you can't access the job, you can't access the resource
+18:16:25 <rpetti> It looks like there are a lot of errors related to environment problems.
+18:16:28 <hare_brain> #idea The test job should file bugs against the plugins when they fail with new versions of core
+18:16:36 <fcamblor> It will be solved when upload will be made on jenkins-ci.org
+18:16:53 <hare_brain> Or some other way of notifying the maintainers that their plugins will stop working.
+18:16:53 <rpetti> missing maven dependencies, clone failures etc...
+18:17:12 <fcamblor> #info 4 statuses for each cells : internal error, compilation failure, test failure, success
+18:17:36 <kohsuke> rpetti: yeah, I suspect some of those reds are false positives
+18:17:41 <bap2000> maybe file bugs once has stabalized a bit
+18:17:43 <fcamblor> #info First ball deals with compilation, second with tests
+18:17:50 <fcamblor> +1
+18:17:56 <alzamabar> #idea Create a subscription list of maintainers on jenkins-ci.org and have the failing job sent an email to distribution list.
+18:18:00 <fcamblor> I think I have still some work
+18:18:22 <fcamblor> There should be very few red/red balls
+18:18:26 <rpetti> Looks awesome so far though. :)
+18:18:31 <kohsuke> +1
+18:18:49 <fcamblor> but I faced some funny things
+18:18:58 <fcamblor> like checkouting from old java.net svn repository
+18:19:10 <fcamblor> (I had to replace scm urls for example)
+18:19:19 <kohsuke> #action I'll have jenkins-admin create an issue tracker after this meeting, and people who posted ideas can file RFEs.
+18:19:55 <kohsuke> fcamblor: anything else before moving on?
+18:20:00 <kutzi> Meeting already started?
+18:20:06 <kohsuke> kutzi: yes
+18:20:11 <peepsalot> i figured out my svn hook issue, had bad permissions on post-commit hook file.  the hook seems to succeed as far as svn is concerned, but it doesn't cause any of my builds to start in jenkins.  is there more I need to do to?
+18:20:12 <fcamblor> kohsuke: one more info
+18:20:19 <kutzi> #idea announce meeting as 2 PM CEST instead of CET ;)
+18:20:42 <orrc> did someone already link to an example report?
+18:20:58 <kohsuke> #info the current report is http://ci.jenkins-ci.org/job/plugin-compat-tester/ws/reports/PluginCompatReport.xml
+18:20:59 <fcamblor> #info The 3rd icon is there to identify some problems (warning) in the pom .. like bad scm url or user-locked github urls
+18:21:19 <kohsuke> It'd be good to be able to see the whole log
+18:21:50 <orrc> ah, I imagine most people don't have a login for ci.jenkins, so can't see the report :)
+18:22:07 <fcamblor> kohsuke: yup .. olamy suggested to make a div instead of a title
+18:22:10 <kohsuke> orrc: we'll make this accessible under jenkins-ci.org
+18:22:26 <orrc> righto, sounds good
+18:22:59 <kohsuke> Thanks for pushing this effort fcamblor
+18:23:04 <fcamblor> #info If you want to contribute, don't hesitate
+18:23:07 <fcamblor> :)
+18:23:31 <kohsuke> Like rpetti said, it looks very promising
+18:23:48 <kohsuke> With that, can we move to the next topic?
+18:23:51 <rtyler> kohsuke: the workspaces aren't publicly readable on ci.j?
+18:24:02 <kohsuke> rtyler: that's just how it's configured today across the board
+18:24:06 <peepsalot> kohsuke, can you help me with a post-commit hook?  i followed the instructions here https://wiki.jenkins-ci.org/display/JENKINS/Subversion+Plugin    and the hook seems to run ok, but jenkins is not automatically starting any build
+18:24:28 <kohsuke> peepsalot: the IRC meeting is in session, so let's do the usual Q&A stuff after that
+18:24:36 <peepsalot> oh, sorry
+18:24:44 <rtyler> peepsalot: feel free to join in the meeting though :)
+18:25:06 <fcamblor> oh I forgot : there are memory issues on plugin-compat-tester
+18:25:20 <kohsuke> rtyler: I can make this workspace world-readable, but I think it's good to clean up some false positives before letting general audience see this
+18:25:29 <fcamblor> launching consequently several maven embedder process needs lots of permgen
+18:25:29 <rtyler> kohsuke: aye
+18:25:42 <fcamblor> we'll try to see workarounds with olamy
+18:25:43 <kohsuke> I worry that it's got too many red balls that make people nervous
+18:25:43 <bap2000> what about the false negatives!
+18:26:01 <fcamblor> kohsuke: +1
+18:26:30 <fcamblor> maybe we should cleanup a bit before communicating around this
+18:27:04 <kohsuke> #agreed we'll fix some loose ends and check on false positives, then publish this report to a broader audience.
+18:27:39 <kohsuke> Anything else before moving on?
+18:27:50 <fcamblor> for me it's ok
+18:27:51 <redsolo> just that its a great work done by fcamblor!
+18:28:05 <kohsuke> #topic trademark registration status
+18:28:14 <fcamblor> thanks redsolo :-)
+18:28:23 <kohsuke> I don't have much progress to report, I'm afraid.
+18:28:26 <kohsuke> I should get this going
+18:28:46 <kohsuke> #action Kohsuke to actually start talking to lawyers to file the trademark
+18:28:53 <kohsuke> So my apologies for the lack of progress
+18:29:23 <kohsuke> But on a slightly different topic, we've been making more progress with SPI as a unmbrella org
+18:29:32 <kohsuke> Hopefully more to report back in the next meeting
+18:30:01 <kohsuke> And with that, moving on to the infra updates...
+18:30:13 <kohsuke> #topic Infra updates from rtyler
+18:30:59 <rtyler> oh what
+18:31:02 <kohsuke> rtyler: I believe this is about the new machine being brought online
+18:31:05 <rtyler> damnit
+18:31:11 <rtyler> heh
+18:31:13 <rtyler> alright then
+18:31:30 <rtyler> #info The two donated machines have arrived at the OSUOSL in Corvallis
+18:31:41 <kohsuke> Yay
+18:31:42 <rtyler> #info The larger (3U) machine has been racked
+18:32:02 <rtyler> #info The smaller (2U) machine is missing some racking hardware, which I'll be purchasing as soon as the chaps at the OSUOSL tell me what's needed
+18:32:29 <rtyler> it's not clear from my communications with them how much spare time they have to do some OS imaging on the machines
+18:32:59 <rtyler> #action rtyler to work with the OSUOSL to get the new machines initialized
+18:33:39 <rtyler> I'm not sure how much time in the near future I'll have to set them up, but z00x86 had suggested and offering some help with some chef recipes to ease management of the machines
+18:33:56 <kohsuke> Was he the Apache guy?
+18:33:59 <kohsuke> Or was that someone else?
+18:34:02 <rtyler> kohsuke: right now we need a test JIRA set up for aheritier, but other than that?
+18:34:07 <rtyler> he's the guy that donated the boxens :)
+18:34:10 <rtyler> CentOS guy
+18:34:11 <kohsuke> ah
+18:34:37 <kohsuke> Once the new machines come online, we can start setting up the JIRA instance
+18:34:40 <rtyler> did we have other immediate plans for that hardware other than perhaps JIRA and Confluence
+18:34:53 <kohsuke> No, that's it.
+18:35:13 <rtyler> #action rtyler needs to investigate mirrorbrain failures
+18:35:24 <rtyler> we're still not seeing *any* proper geographic mirroring
+18:35:29 <kohsuke> #info and speaking of JIRA/Confluence, the hotspot compilation adjustments in VM greatly improved the stability of those services
+18:35:30 <rtyler> it's really just round robin right now
+18:35:53 <kohsuke> OK
+18:36:12 <rtyler> #info we also have offers on the table for two additional european mirrors
+18:36:28 <kohsuke> Nice
+18:36:39 <rtyler> #info once mirrorbrain is properly geo-redirecting again, we'll bring those online
+18:36:55 <rtyler> I think that's it?
+18:36:57 <rtyler> for me at least
+18:36:59 <kohsuke> OK
+18:37:03 <orrc> I have to say, all the Jenkins sites feel pretty fast and the HTTPS-by-default is awesome. great job
+18:37:22 <kohsuke> I've been meaning to improve Wiki performance. I feel it's slower than it should be.
+18:37:32 <kohsuke> There's some cache tweaking that I can do.
+18:37:47 <kohsuke> #topic next meeting time
+18:37:56 <kutzi> It's still orders of a magnitude better then at java.net time :)
+18:38:00 <orrc> cool. anyway, it's currently a definite improvement over ye olde wiki, and much less broken
+18:38:14 <kohsuke> thanks!
+18:38:28 <kohsuke> I think two weeks from now is 5/11
+18:38:40 <kohsuke> Any problem with that?
+18:39:05 <kohsuke> kutzi: you mentioned about CEST
+18:39:11 <fcamblor> no pb for me
+18:39:14 <kohsuke> Is that the same as CET?
+18:39:25 <kohsuke> IOW, should I just write 8pm CEST?
+18:39:26 <kutzi> yes, the meeting is announced for 8 PM CET, but we have now CEST here
+18:39:31 <kutzi> yes
+18:39:31 <kohsuke> OK
+18:39:53 <kutzi> I thought that would mean 9 PM CEST therefore I missed the beginning
+18:40:01 <kohsuke> #agreed next meeting is 5/11 6pm GMT
+18:40:06 <rtyler> #agreed
+18:40:13 <kohsuke> #action Kohsuke to stop using CET and say CEST
+18:40:28 <kohsuke> And with that, I think we are done
+18:40:29 <kutzi> thanks
+18:40:31 <rtyler> #action kohsuke to bring cookies to the next meeting
+18:40:43 <fcamblor> +1 :D
+18:40:44 <rpetti> Are there any plans to migrate off of Jelly?
+18:40:49 <fcamblor> and stickers too ;)
+18:41:13 <orrc> the next actual meeting is probably in Hamburg, so I'm up for getting cookies ;)
+18:41:22 <kohsuke> rpetti: I've been thinking about bringing in additional frontend
+18:41:35 <kohsuke> I guess I should end the meeting first
+18:41:37 <kohsuke> #endmeeting

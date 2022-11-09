@@ -1,0 +1,165 @@
+18:01:50 <kohsuke> #startmeeting
+18:01:50 <robobutler> Let the Jenkins meeting commence!
+18:01:58 <kohsuke> #chair hare_brain abayer
+18:01:58 <robobutler> Current chairs: abayer hare_brain kohsuke
+18:02:30 <kohsuke> #topic recap of actions
+18:02:48 <kohsuke> rtyler to prod kohsuke and the dev list to guage interest for a JavaOne Jenkins Hackathon
+18:02:53 <kohsuke> I think it's still TODO
+18:03:02 <kohsuke> #action rtyler to prod kohsuke and the dev list to guage interest for a JavaOne Jenkins Hackathon
+18:03:10 <kohsuke> "jieryn to speak up again for spam list action if the problem gets out of hand"
+18:03:21 <kohsuke> I don't think this is meant with any time frame
+18:03:33 <kohsuke> BTW the list is http://meetings.jenkins-ci.org/jenkins/2011/jenkins.2011-08-31-18.00.html
+18:03:45 <kohsuke> #3 and #4 are done
+18:03:49 <kohsuke> #5 is done as well
+18:03:51 <kohsuke> #6
+18:04:02 <kohsuke> #6 "hare_brain to follow up on the dev list with Y!'s findings on using 1.424 as the next LTS base"
+18:04:08 <kohsuke> I guess we can talk about that when we talk about LTS
+18:04:18 <kohsuke> #7 "kohsuke to write a draft for core contributor workflow" that's done
+18:04:28 <kohsuke> #8 "rtyler to update the "bug tracker" link on jenkins-ci.org"
+18:04:41 <kohsuke> Ithat's done too
+18:05:03 <kohsuke> #9 is also not meant for any time frame, I think
+18:05:11 <kohsuke> #10 "kutzi to write down his proposal in the wiki"
+18:05:22 <kohsuke> this is about terms
+18:05:29 <kohsuke> is kutzi here?
+18:05:41 <kohsuke> I guess not
+18:06:02 <kohsuke> #11: kohsuke to ping Rackspace about transferring assets to the SPI and starting to write off their donations as well
+18:06:26 <kohsuke> I still need to do it, although I think this action is bit misplaced
+18:06:40 <kohsuke> because they are just letting us access the machine they own,
+18:07:08 <kohsuke> and I suspect the person we are interacting wouldn't really care if Rackspace saves a few bucks by accounting that expense as charitable donation
+18:07:15 <kohsuke> in fact it'd be more work
+18:07:30 <kohsuke> #12: "rtyler to move mirrorbrain from cucumber to lettuce"
+18:07:37 <kohsuke> I think that's still TODO
+18:07:46 <kohsuke> #action rtyler to move mirrorbrain from cucumber to lettuce
+18:08:11 <kohsuke> #action kutzi to write down his stble/unstable/failed status definition proposal in the wiki
+18:08:25 <kohsuke> OK, I think this part is done
+18:08:37 <kohsuke> #info agenda is https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:08:46 <kohsuke> #topic donation status update
+18:09:02 <kohsuke> #info SPI has set up the donation account for Jenkins now
+18:09:14 <kohsuke> Now if only I remember where the link is...
+18:09:19 <orrc> https://co.clickandpledge.com/advanced/default.aspx?wid=46160
+18:09:25 <kohsuke> thanks
+18:09:54 <kohsuke> I think we want to give this some visibility so that we can start raising some money
+18:10:16 <kohsuke> #idea I guess the link from http://jenkins-ci.org/ would be an obvious choice
+18:10:27 <kohsuke> Would it make sense to put it in the app itself?
+18:10:33 <hare_brain> That would be tacky, IMO
+18:10:50 <hare_brain> In the IRC channel header? (If it's not there already)
+18:11:00 <rpetti> a simple "powered by:" link?
+18:11:04 <kohsuke> top page is tacky or in-the-app is tacky
+18:11:05 <kohsuke> ?
+18:11:11 <orrc> could maybe work on the Manage Jenkins page, just like it has/had the commercial support thing?
+18:11:31 <hare_brain> in-the-app is tacky
+18:11:40 <hare_brain> I'm all for putting it on the web site.
+18:12:37 <kohsuke> +1 on IRC header. I'm not sure how many clients make it visible, but I don't see any downsie
+18:12:57 <orrc> website header, wiki sidebar
+18:13:05 <kohsuke> ah, wiki sidebar
+18:14:08 <kohsuke> I guess we'd create a landing wiki page, then have those links to go there
+18:14:11 <hare_brain> On the github project page?
+18:14:23 <kohsuke> then we'll link from the landing page to the SPI donation shopping cart
+18:14:36 <kohsuke> hare_brain: you mean https://github.com/organizations/jenkinsci ?
+18:14:58 <kohsuke> I don't know if there's anything we can add there
+18:15:07 <orrc> doesn't look like it, but would be nice if possible
+18:15:30 <kohsuke> #action kohsuke to create a donation landing page in Wiki that talks about why we need it
+18:15:32 <hare_brain> I meant https://github.com/jenkinsci
+18:15:49 <kohsuke> #action rtyler to update the IRC channel header to mention donation
+18:16:11 <kohsuke> #action kohsuke to add the link to wiki sidebar and jenkins-ci.org navigation link
+18:16:29 <kohsuke> hare_brain: I don't think that page can be customized much either
+18:16:56 <kohsuke> We can abuse name / location but that won't turn into hyperlink
+18:17:14 <hare_brain> OK, never mind. Just a thought.
+18:17:42 <kohsuke> We'll see how it goes.
+18:18:13 <kohsuke> #info our immediate goal is to raise $5K to cover the bandwidth overcharge bill
+18:18:31 <kohsuke> Let's see if we need to shake down some companies
+18:18:38 <kohsuke> or if we need some incentive
+18:18:54 <kohsuke> OK, next topic, I guess
+18:19:06 <kohsuke> #topic governance document review
+18:19:16 <kohsuke> #info https://groups.google.com/group/jenkinsci-dev/browse_frm/thread/04bbf72c3911ec99
+18:19:19 <jieryn> clap clap clap
+18:19:24 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Document
+18:19:27 <hare_brain> Definitely, well done.
+18:19:50 <kohsuke> I still need to go through lacostej's comment
+18:20:25 <hare_brain> Those were mostly about organization, and not content, though, right?
+18:20:57 <kohsuke> hare_brain: I haven't gone through them yet. If that's the case, that's good
+18:21:23 <kohsuke> #info My goal is to be able to say that we have "formal document about the development process" in JUC
+18:21:53 <hare_brain> Looking at his email again, he did bring up some good points about our use of 3rd party jars.
+18:22:03 <kohsuke> OK
+18:22:50 <hare_brain> Well, he didn't bring up points. He suggested talking about 3rd party jars.
+18:23:22 <hare_brain> I think this might be more of an issue for the core, than for plugins.
+18:23:42 <hare_brain> What types of 3rd party libs are OK to add to the core. When and why we patch them. What happens to those patches.
+18:23:50 <Archfree> Hey, if you're creating a 'choice' parameter for users to select from - how do you pass it to the build script?
+18:24:15 <kohsuke> I can certainly write down our modus operandi for those
+18:24:30 <jieryn> Archfree: we're having our governance meeting right now, it would be best if you would wait about 35 minutes and then ask .. thanks!
+18:24:55 <kohsuke> allowed licenses --- anything OSI-approved that's not incompatible, such as GPL, CPL
+18:25:16 <kohsuke> mostly copy-left license that requires the whole thing to be some other licenses
+18:25:45 <jieryn> haven't you done a lot of manual bridge work to unify all the licenses via some plugin?
+18:26:08 <kohsuke> we fork them when we need fixes soon, but we also do file tickets upstream to make the local patching temporary
+18:26:34 <kohsuke> jieryn: yes, in the core, we now require license info for all dependencies accounted for
+18:26:47 <jieryn> nod
+18:26:49 <kohsuke> either via license info in POM, or via the completion script fro those artifacts that's missing that info
+18:26:54 <kohsuke> yeah, I should write that too
+18:27:16 <Archfree> jieryn: no worries, thanks
+18:27:22 <hare_brain> kohsuke Aren't there some libs that you've essentially forked to make them work with the remoting architecture?
+18:27:47 <hare_brain> SVNKit comes to mind.
+18:27:53 <kohsuke> I think the only one that has diverged substantially is Jelly
+18:28:18 <kohsuke> I thought SVNKit fixes are still mostly reported to upstream, but you could be right
+18:29:03 <hare_brain> Well it's been close to 2 years since I've looked at your SVNKit patches, so I could be wrong. :)
+18:29:25 <kohsuke> The other one is Winston where the upstream development has ceased
+18:29:43 <kohsuke> OK, so I guess it isn't all that simple
+18:30:08 <hare_brain> I imagine Why Winston? would warrant a page for itself.
+18:30:37 <kohsuke> The real reason is that when I first introduced that "java -jar jenkins.war" feature
+18:30:55 <kohsuke> I was working for Sun and our team considered Jetty a competition, so I couldn't use it without taking some heat
+18:31:06 <kohsuke> I don't know if that's the kind of reason people want to hear about...
+18:31:10 <hare_brain> Hahaha
+18:31:47 <jieryn> simple fact is, winstone has options not available anywhere else
+18:32:02 <jieryn> for any embedded j2ee server
+18:32:04 <kohsuke> I mostly currently think Winston is OK enough that we can just keep using it
+18:32:09 <hare_brain> Anyway, I think we're going off on a bit of a tangent.
+18:32:16 <kohsuke> right
+18:32:30 <kohsuke> Another point from lacostej is CLA
+18:32:32 <bnovc> abayer: alright, pull request sent. thanks for input
+18:33:05 <hare_brain> I think all that we had been waiting for was the final home for the project.
+18:33:20 <kohsuke> I almost wonder if we should just start collecting this according to our original plan.
+18:33:25 <hare_brain> It sounded like SPI doesn't have a standard CLA. So we should just proceed with our plan to use the Apache CLA
+18:33:31 <hare_brain> Yes. +1
+18:33:33 <kohsuke> yeah
+18:34:13 <kohsuke> Think we can get that blessed in 9/28?
+18:34:22 <kohsuke> That'd be really awesome news for JUC
+18:34:35 * kohsuke lately is adopting dead-line driven development
+18:34:47 <hare_brain> ddd
+18:35:08 <kohsuke> I'll send an e-mail to the dev list about "let's get CLA blessed in 9/28" and see if we hear push back
+18:35:27 <kohsuke> It has been  a contentious topic
+18:35:37 <hare_brain> I'll start the work on taking the Apache forms and s/Apache/SPI/
+18:35:50 <hare_brain> I assume we'll need individual and corporate forms?
+18:35:50 <kohsuke> but I think we've kind of agreed about the current plan, more or less.
+18:36:07 <kohsuke> IANAL, but if Apache needs it, I think we should just copy what they do
+18:36:41 <hare_brain> #action hare_brain to create CLAs based on Apaches, to be blessed by dev list before 9/28
+18:36:52 <kohsuke> #action kohsuke to publicize that we are shooting for blessing CLA and governance doc in 9/28
+18:37:16 <kohsuke> I think I'm ready to move to the next topic
+18:37:34 <kohsuke> #topic LTS
+18:37:37 <dan__t> Is there a way, using the Hudson API, to query how much memory a job used or took up, how long it took, what the load was etc etc?  I found /overallLoad/api/ but that seems to only be queue load and stuff.
+18:37:50 <kohsuke> So thanks to vjuranek, 1.409.2 is out
+18:37:56 <hare_brain> clap clap clap
+18:38:10 <dan__t> hudson/jenkins api, sorry...
+18:38:27 <jieryn> dan__t: we're having our governance meeting right now, it would be best if you would wait about 22 minutes and then ask .. thanks!
+18:38:28 <kohsuke> dan__t: sorry, we are in the project meeting now. Will get to your question after this
+18:39:01 <dan__t> heh np
+18:39:36 <kohsuke> so the plan was to start thinking about the next LTS base line
+18:39:58 <kohsuke> #info hare_brain said Y! is tentatively looking at 1.424
+18:40:00 <hare_brain> Right, and I had the action from last meeting to report on our findings of 1.424
+18:40:18 <kohsuke> any updates on that?
+18:40:30 <kohsuke> BTW, changelog is http://jenkins-ci.org/changelog
+18:40:53 <hare_brain> We've merged 1.424 into our private fork. It took longer this time than normal because of the refactoring of Hudson.java into Jenkins.java
+18:41:22 <hare_brain> So we've done that, and we're seeing issues with the changes related to the Jelly escaping work
+18:41:34 <hare_brain> We're still looking into those.
+18:42:09 <kohsuke> meaning, your local changes had to be updated to have the XSS prevention processing-instruction on?
+18:42:21 <hare_brain> That's probably not a real issue with that functionality, but more likely because that conflicts with how we manage HTML sanitizng on our stack.
+18:43:02 <kohsuke> I guess we should also check if some of the follow up fix to escaping came in after 1.424
+18:43:46 <hare_brain> At any rate, we're still in our integration phase, so I'll report back with more info at the next meeting.
+18:43:52 <kohsuke> OK, so I guess the bottom line is that we'll need bit more time
+18:44:13 <kohsuke> And I think that's it for today
+18:44:21 <kohsuke> #topic next meeting
+18:44:42 <kohsuke> 9/28 same time?
+18:44:45 <hare_brain> +1
+18:45:01 <kohsuke> going, going, ...
+18:45:07 <kohsuke> gone
+18:45:15 <kohsuke> And I think that's it
+18:45:18 <kohsuke> Thank you!
+18:45:21 <kohsuke> #endmeeting

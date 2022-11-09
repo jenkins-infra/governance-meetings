@@ -1,0 +1,165 @@
+18:00:39 <rtyler> #startmeeting
+18:00:39 <robobutler> Let the Jenkins meeting commence!
+18:00:50 <rtyler> #chair kohsuke rtyler danielbe_ hare_brain
+18:00:50 <robobutler> Current chairs: danielbe_ hare_brain kohsuke rtyler
+18:01:08 <rtyler> #topic Recap last meeting actions
+18:01:18 <rtyler> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-08-17-18.00.html
+18:01:30 <batmat> o/
+18:01:43 <oleg-nenashev> seems all AIs are done
+18:01:46 <rtyler> oleg-nenashev: there's an item here about JENKINS-37315 for the LTS, did that get integrated?
+18:01:48 <oleg-nenashev> \o
+18:01:54 <rtyler> ah okie doke
+18:02:27 <rtyler> oleg-nenashev: do you mind if I throw a brief GSoC recap as the next topic?
+18:02:39 <oleg-nenashev> np
+18:02:46 <oleg-nenashev> ogondza is getting late
+18:02:53 <rtyler> #topic GSoC recap
+18:03:13 <rtyler> the summer is over!
+18:03:15 <rtyler> :(
+18:03:38 <oleg-nenashev> #info GSoC 2016 is over
+18:03:40 <rtyler> I believe we will be seeing alexsomai in a couple weeks at Jenkins WOrld
+18:03:52 <rtyler> and then we have a mentor summit in the fall some time
+18:03:54 <alexsomai> yes I'll be there :)
+18:04:00 * rtyler can't remember dates past Jenkins World right now
+18:04:30 <rtyler> oleg-nenashev: do you think there are any notable updates to share here?
+18:04:30 <oleg-nenashev> #info WWe had two students working on second part of the project. 1 student has passed the final evaluation (alexsomai)
+18:04:45 <oleg-nenashev> #info On Thursday we had presentations by students
+18:05:01 <rtyler> this was our first year accepted into GSoC, so there are lots of learnings that I hope we can apply next year
+18:05:04 <oleg-nenashev> #info Slides and recordings are referenced here: https://www.meetup.com/Jenkins-online-meetup/events/233378586/
+18:05:06 * rtyler crosses fingers
+18:05:31 <ogondza> sorry, got disconnected silently
+18:05:35 <oleg-nenashev> #action oleg_nenashev and batmat to follow-up on the old retrospective and feedback collection AI
+18:06:02 <batmat> yup
+18:06:19 <oleg-nenashev> #info alexsomay will conduct a lightning talk and demo at Jenkins World. You can find him at the Community Booth there ;)
+18:06:44 <rtyler> any questions/thoughts before we move on?
+18:06:53 <oleg-nenashev> #action oleg_nenashev to write a final blogpost and to prepare his lightning talk for JW
+18:07:09 <oleg-nenashev> No other updats from me
+18:07:19 <orrc> Does the "retrospective" Oleg mentioned mean discussing the learnings that Tyler mentioned?
+18:07:29 <oleg-nenashev> #action oleg_nenashev to work on sending swags to students
+18:07:37 <oleg-nenashev> orrc: Yes
+18:07:41 <batmat> orrc: somehow, yes.
+18:07:42 <orrc> Cool
+18:07:57 <batmat> We already started collecting things, but yeah
+18:08:06 <oleg-nenashev> rtyler also has AI to go to the Mentor summit and to bring a bunch of notes from there
+18:08:13 <orrc> Good job, GSoC mentors :)
+18:08:16 <rtyler> such notes
+18:08:26 <orrc> (and mentees, if that's a word)
+18:08:34 <rtyler> #topic LTS status check
+18:08:38 <rtyler> ogondza: you're up buddy
+18:08:50 <ogondza> we are ready for the release
+18:09:00 <rtyler> of 2.7.3 yeah?
+18:09:12 <ogondza> special thanks to Oleg for reporting regression during RC period
+18:09:16 <oleg-nenashev> kohsuke ogondza: So the plan is to spin it today?
+18:09:16 <ogondza> yes, .3
+18:09:36 <oleg-nenashev> We have been actively testing RC on these weeks, no other serious regressions
+18:09:49 <ogondza> good to hear that
+18:10:30 <oleg-nenashev> JENKINS-37759 has been addressed in all OSS plugins
+18:10:44 <oleg-nenashev> So we do not need to fix it in the core
+18:10:58 <oleg-nenashev> I mean urgent fix
+18:11:03 <oleg-nenashev> #info https://issues.jenkins-ci.org/browse/JENKINS-37759
+18:11:49 <ogondza> oleg-nenashev: lets get in into the next one then
+18:11:57 <rtyler> next topic?
+18:12:11 <oleg-nenashev> rtyler: I need the release date from kohsuke
+18:12:33 <ogondza> action kohsuke to release 2.7.3
+18:12:38 <ogondza> is he around?
+18:12:45 <ogondza> #action kohsuke to release 2.7.3
+18:12:50 <oleg-nenashev> Seems no
+18:13:09 <ogondza> ok, lets agree it will happen for today
+18:13:14 <rtyler> heh
+18:13:28 <rtyler> hrmpw: you're closest, make sure he pushes buttons
+18:13:28 <ogondza> can we move on?
+18:13:30 <oleg-nenashev> fingers crossed
+18:13:47 <rtyler> in a related area, ogondza and I discussed some tasks earlier for decreasins the SPoF on the release process
+18:13:57 <rtyler> that's covered under https://issues.jenkins-ci.org/browse/INFRA-910
+18:13:59 <rtyler> FYI
+18:14:04 <oleg-nenashev> nice 2 hear
+18:14:07 <rtyler> #topic Pick new LTS version
+18:14:15 <oleg-nenashev> we are working on the same for remoting
+18:14:33 <ogondza> #info https://jenkins.io/changelog/
+18:14:57 <danielbe_> the default choice would be 2.18 based on age
+18:15:18 <danielbe_> I like 2.19 due to better user feedback, and the diff is also reasonable
+18:15:23 <ogondza> 2.16+ can cause Jenkins not starting - do we want to postpone that (and choose something older)?
+18:15:23 <oleg-nenashev> 2.18 ... 2.20 are more like bugfix releases
+18:15:38 <danielbe_> ogondza ?
+18:15:46 <hrmpw> rtyler: he's presenting right now but he does always have 2 laptops with him
+18:15:52 <hrmpw> should be able to multitask
+18:15:52 <rtyler> heh
+18:15:59 <rtyler> hrmpw: as long as it happens today!
+18:16:04 <rtyler> 2.19 looks pretty good
+18:16:29 <rtyler> the fix for JENKINS-37332 shouhld be backported IMHO if we choose anything under 19
+18:16:32 <oleg-nenashev> +1
+18:16:32 <danielbe_> ogondza Well, at some point we need to base LTS on 2.16+ for the plugin loading
+18:16:42 <danielbe_> ogondza And it's actually improved robustness
+18:16:51 <danielbe_> ogondza Assuming you refer to JENKINS-21486
+18:17:16 <ogondza> yes. I said we are talking about postponing what will happen anyway
+18:17:55 <oleg-nenashev> No strong opinion, but maybe sooner is better than later
+18:17:58 <danielbe_> oleg-nenashev recently mentioned something about a kind of "upgrade guide" listing what to look out for when upgrading to newer LTS, if we did that, we should be able to enable users to do this successfully
+18:18:22 <danielbe_> i.e. not just a bold line in the changelog, but a section in a short manual
+18:18:36 <oleg-nenashev> #action oleg_nenashev to finally create a PR for the upgrade guide
+18:18:47 <ogondza> neat
+18:18:51 <oleg-nenashev> Needs some polishing
+18:19:05 <ogondza> I am fine with 2.19
+18:19:24 <danielbe_> So IMO 2.16+ isn't much of a concern, and we need to get better at telling users about possibly breaking changes anyway
+18:19:27 <oleg-nenashev> We will need to backport the most of 2.20, but I'm fine as well
+18:19:49 <ogondza> danielbe_: agreed
+18:19:59 <oleg-nenashev> 2.20 has some potentially important/breaking changes like JENKINS-37559
+18:20:06 <oleg-nenashev> So I would not vote for it
+18:20:10 <rtyler> oleg-nenashev: there are only a couple fixes in 2.20 that look important, unless i'm missing the severity of some of these
+18:20:34 <danielbe_> oleg-nenashev Solaris is the only one, the rest looks harmless, no?
+18:20:56 <oleg-nenashev> Yes, all other PRs are pretty small
+18:21:17 <oleg-nenashev> Maybe the new permission is the second biggest risk
+18:21:28 <danielbe_> So IMO 2.20 would also work, but I think we would prefer 2.19 + backports of most of it?
+18:21:37 <danielbe_> ugh new permission :<
+18:21:42 <danielbe_> it's a feature :-)
+18:22:04 <oleg-nenashev> right
+18:22:19 <oleg-nenashev> I'm not happy how some plugins handle new permissions
+18:22:30 <oleg-nenashev> But "sooner or later" again
+18:22:30 <ogondza> oleg-nenashev: in what way?
+18:22:57 <danielbe_> let's table this for now
+18:23:24 <ogondza> ok, so do you guys prefer 2.20?
+18:23:54 <danielbe_> content-wise, slight preference, age-wise, no. I'd rather see a 2.19 + most of the stuff backported
+18:23:55 <rtyler> 2.19 or 2.20 both seem reasonable to me
+18:24:04 <rtyler> I can support that danielbe_
+18:24:23 <ogondza> I do not feel strongly and there always ware voices to pick the latest and go ...
+18:24:34 <ogondza> danielbe_: the question is what is the effective difference
+18:24:49 <ogondza> taking it as it is, we know people use that before
+18:25:01 <batmat> Yeah, prolly 2.20 would not be a good signal for an LTS I guess
+18:25:15 <rtyler> three days old release :P
+18:25:17 <danielbe_> 2.20 is a bit too recent for me
+18:25:22 <oleg-nenashev> New permission + Solaris + JSON Signature API, which is restricted anyway
+18:25:26 <batmat> Yeah, right, soaked enough
+18:25:33 <oleg-nenashev> 2.19 is better from my PoV
+18:26:02 <rtyler> so it seems like 2.19 is the consensus
+18:26:03 <danielbe_> also, easier to go 2.19 + not backport something than 2.20 + revert.
+18:26:14 <batmat> Sure
+18:26:16 <ogondza> 2.19 + not backport everything
+18:26:20 <ogondza> ?
+18:26:34 <danielbe_> yes
+18:26:35 <batmat> Well, yes, or it's a 2.20 :) ?
+18:26:40 <danielbe_> some of it, not all of it
+18:26:47 <ogondza> of course
+18:27:03 <danielbe_> (I don't trust the Solaris change without more feedback TBH, we have too few users on that)
+18:27:23 * batmat thinks that guy ^ is right
+18:27:57 <ogondza> alright
+18:28:02 <rtyler> #agreed 2.19 will be the next baseline for the LTS
+18:28:11 <oleg-nenashev> I also do not trust Windows junctions :)
+18:28:27 <batmat> yay
+18:28:33 <rtyler> #topic next meeting
+18:28:44 <danielbe_> interesting for once
+18:28:49 <oleg-nenashev> We have Jenkins World
+18:28:50 <rtyler> the calendar would have us on September 14th, which is the first day of presentations at Jenkins World
+18:29:02 <rtyler> I propose we simply skip a cycle, and resume four weeks from now
+18:29:11 <oleg-nenashev> Impacts RC
+18:29:19 <oleg-nenashev> But we can discuss it offline
+18:29:23 <rtyler> which would be Sept 28
+18:29:25 <ogondza> it is rc check - we can do  that on ML
+18:29:31 <danielbe_> We can probably do a short meeting limited to RC if needed, or ML
+18:29:55 <rtyler> for that, I trust our release officer to coordinate to the extent it is required :)
+18:30:21 <rtyler> would Sept 28th work for everybody?
+18:30:25 <danielbe_> +1
+18:30:32 <batmat> ALL HAIL FOR THE RELEASE OFFICER
+18:30:33 <batmat> +1
+18:30:39 <ogondza> sure, i am not the one who is traveling
+18:31:22 <rtyler> #agreed next meeting will be September 28th
+18:31:30 <rtyler> alright folks, that's a wrap for today
+18:31:30 <oleg-nenashev> yey
+18:31:32 <rtyler> #endmeeting

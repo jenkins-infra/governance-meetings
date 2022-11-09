@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:58</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">rtyler hare_brain</span>
+<a name="l-4"></a><span class="tm">18:01:06</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:01:21</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">JUC status update / travel grant?</span>
+<a name="l-6"></a><span class="tm">18:01:47</span><span class="nk"> &lt;kohsuke&gt;</span> hmm, doesn't look like lisa is here
+<a name="l-7"></a><span class="tm">18:02:08</span><span class="nk"> &lt;kohsuke&gt;</span> so maybe we should start with 1.554.1 RC status
+<a name="l-8"></a><span class="tm">18:02:18</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">1.554.1 RC status</span>
+<a name="l-9"></a><span class="tm">18:02:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> ogondza: ping
+<a name="l-10"></a><span class="tm">18:02:33</span><span class="nk"> &lt;jglick&gt;</span> present
+<a name="l-11"></a><span class="tm">18:02:44</span><span class="nk"> &lt;ogondza&gt;</span> I have just sent status report to dev list
+<a name="l-12"></a><span class="tm">18:02:50</span><span class="nk"> &lt;kohsuke&gt;</span> ah indeed
+<a name="l-13"></a><span class="tm">18:03:03</span><span class="nk"> &lt;kohsuke&gt;</span> I wonder if marcomiller ported stuff he wanted in this LTS
+<a name="l-14"></a><span class="tm">18:03:14</span><span class="nk"> &lt;ogondza&gt;</span> He did.
+<a name="l-15"></a><span class="tm">18:03:18</span><span class="nk"> &lt;kohsuke&gt;</span> yay
+<a name="l-16"></a><span class="tm">18:03:28</span><span class="nk"> &lt;kohsuke&gt;</span> all right, then I'll produce RC today
+<a name="l-17"></a><span class="tm">18:03:43</span><span class="nk"> &lt;marcomiller&gt;</span> did indeed =)
+<a name="l-18"></a><span class="tm">18:04:01</span><span class="nk"> &lt;jglick&gt;</span> JENKINS-19081 was an RFE rather than a bug fix strictly speaking; did we want this backported?
+<a name="l-19"></a><span class="tm">18:04:04</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19081:Download update center from master by default (Resolved) http://jenkins-ci.org/issue/19081
+<a name="l-20"></a><span class="tm">18:04:31</span><span class="nk"> &lt;kohsuke&gt;</span> Hmm, there still is a lot of flakiness in the acceptance test
+<a name="l-21"></a><span class="tm">18:04:54</span><span class="nk"> &lt;ogondza&gt;</span> jglick, You are right though I like that a lot
+<a name="l-22"></a><span class="tm">18:05:29</span><span class="nk"> &lt;jglick&gt;</span> Well so do I obviously, but still.
+<a name="l-23"></a><span class="tm">18:06:11</span><span class="nk"> &lt;jglick&gt;</span> Could be interpreted as a fix only in case we *expect* browser-based downloading to be broken in the near future.
+<a name="l-24"></a><span class="tm">18:06:45</span><span class="nk"> &lt;jglick&gt;</span> Is there a list of lts-candidate issues which are too young for this or which were otherwise rejected?
+<a name="l-25"></a><span class="tm">18:07:03</span><span class="nk"> &lt;ogondza&gt;</span> LTSs https://issues.jenkins-ci.org/secure/IssueNavigator.jspa?mode=hide&amp;requestId=12146
+<a name="l-26"></a><span class="tm">18:08:01</span><span class="nk"> &lt;ogondza&gt;</span> no candidate was rejected. There was one issue that was labeled by mistake (already backported)
+<a name="l-27"></a><span class="tm">18:08:06</span><span class="nk"> &lt;jglick&gt;</span> OK, nothing that looks critical.
+<a name="l-28"></a><span class="tm">18:08:23</span><span class="nk"> &lt;ogondza&gt;</span> a lot was already in 1.554
+<a name="l-29"></a><span class="tm">18:08:37</span><span class="nk"> &lt;jglick&gt;</span> Seems like we are ready for RC.
+<a name="l-30"></a><span class="tm">18:08:41</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah
+<a name="l-31"></a><span class="tm">18:08:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">1.554.1 RC is good to go</span>
+<a name="l-32"></a><span class="tm">18:09:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">ogondza:</span>  Maybe this is bit off topic but have you looked into why some of the acceptance tests appear so flaky?
+<a name="l-33"></a><span class="tm">18:09:42</span><span class="nk"> &lt;kohsuke&gt;</span> I will have to find time digging in myself
+<a name="l-34"></a><span class="tm">18:10:15</span><span class="nk"> &lt;kohsuke&gt;</span> One pattern I see is that it occasionally appears to fail to find tool installer data
+<a name="l-35"></a><span class="tm">18:10:16</span><span class="nk"> &lt;ogondza&gt;</span> not yet
+<a name="l-36"></a><span class="tm">18:10:39</span><span class="nk"> &lt;kohsuke&gt;</span> like https://jenkins.ci.cloudbees.com/job/core/job/acceptance-test-harness/156/testReport/
+<a name="l-37"></a><span class="tm">18:10:45</span><span class="nk"> &lt;ogondza&gt;</span> I am still not happy about its stability
+<a name="l-38"></a><span class="tm">18:10:53</span><span class="nk"> &lt;kohsuke&gt;</span> Looks like this accounts for the majority of the randomness
+<a name="l-39"></a><span class="tm">18:11:23</span><span class="nk"> &lt;kohsuke&gt;</span> I was also going to try to run selenium on Sauce Labs by using our account
+<a name="l-40"></a><span class="tm">18:11:29</span><span class="nk"> &lt;kohsuke&gt;</span> That'll give us screenshots and all.
+<a name="l-41"></a><span class="tm">18:11:32</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway
+<a name="l-42"></a><span class="tm">18:11:44</span><span class="nk"> &lt;jglick&gt;</span> Then maybe JENKINS-19081 should be used in the tests to download more reliably from master. :-) Once the tool metadata is fixed to include signatures, that is.
+<a name="l-43"></a><span class="tm">18:11:46</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-19081:Download update center from master by default (Resolved) http://jenkins-ci.org/issue/19081
+<a name="l-44"></a><span class="tm">18:12:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">JUC status update / travel grant?</span>
+<a name="l-45"></a><span class="tm">18:12:40</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">LisaWells:</span> yay you are here
+<a name="l-46"></a><span class="tm">18:12:52</span><span class="nk"> &lt;LisaWells&gt;</span> yes, here
+<a name="l-47"></a><span class="tm">18:12:55</span><span class="nk"> &lt;LisaWells&gt;</span> Alyssa too
+<a name="l-48"></a><span class="tm">18:12:57</span><span class="nk"> &lt;Alyssa&gt;</span> i can provide the status update
+<a name="l-49"></a><span class="tm">18:13:09</span><span class="nk"> &lt;kohsuke&gt;</span> It's all yours
+<a name="l-50"></a><span class="tm">18:13:40</span><span class="nk"> &lt;Alyssa&gt;</span> Registration for boston &amp; berlins &amp; israel is currently live
+<a name="l-51"></a><span class="tm">18:13:49</span><span class="nk"> &lt;Alyssa&gt;</span> boston= 70 registrants
+<a name="l-52"></a><span class="tm">18:13:50</span><span class="nk"> &lt;kohsuke&gt;</span> I've seen the submissions to JUC Berlin and they were all quite impressive
+<a name="l-53"></a><span class="tm">18:13:59</span><span class="nk"> &lt;Alyssa&gt;</span> berlin = 24 reg
+<a name="l-54"></a><span class="tm">18:14:08</span><span class="nk"> &lt;Alyssa&gt;</span> indeed
+<a name="l-55"></a><span class="tm">18:14:26</span><span class="nk"> &lt;Alyssa&gt;</span> israel = 4 reg
+<a name="l-56"></a><span class="tm">18:14:27</span><span class="nk"> &lt;kohsuke&gt;</span> I wonder if the dates are on Jenkins event calendar
+<a name="l-57"></a><span class="tm">18:14:40</span><span class="nk"> &lt;LisaWells&gt;</span> actually I was going to ask you today if you could put them there :)
+<a name="l-58"></a><span class="tm">18:14:41</span><span class="nk"> &lt;kohsuke&gt;</span> http://jenkins-ci.org/content/event-calendar
+<a name="l-59"></a><span class="tm">18:14:55</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah they are not
+<a name="l-60"></a><span class="tm">18:15:03 </span><span class="nka">* kohsuke</span> <span class="ac">goes off to add them</span>
+<a name="l-61"></a><span class="tm">18:15:38</span><span class="nk"> &lt;kohsuke&gt;</span> I feel like folks in the events list should have write access to this calendar
+<a name="l-62"></a><span class="tm">18:15:44</span><span class="nk"> &lt;kohsuke&gt;</span> like kinow
+<a name="l-63"></a><span class="tm">18:15:45</span><span class="nk"> &lt;Alyssa&gt;</span> we are working on finalizing the agenda. hopefully we'll have agenda for boston/berlin up by early next wk
+<a name="l-64"></a><span class="tm">18:16:17</span><span class="nk"> &lt;Alyssa&gt;</span> agreed KK
+<a name="l-65"></a><span class="tm">18:17:01</span><span class="nk"> &lt;Alyssa&gt;</span> here are links to reg sites http://www.eventbrite.com/e/jenkins-user-conference-boston-ma-june-18-2014-tickets-10558652213
+<a name="l-66"></a><span class="tm">18:17:22</span><span class="nk"> &lt;Alyssa&gt;</span> for berlink   http://www.eventbrite.com/e/jenkins-user-conference-berlin-germany-june-25-2014-tickets-10557974185
+<a name="l-67"></a><span class="tm">18:17:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> fyi, i'm around but I can't actively pay attention here
+<a name="l-68"></a><span class="tm">18:17:42</span><span class="nk"> &lt;rtyler&gt;</span> so please ping me if there's anything for me to chime in on
+<a name="l-69"></a><span class="tm">18:17:51</span><span class="nk"> &lt;Alyssa&gt;</span> israel http://www.eventbrite.com/e/jenkins-user-conference-herzliya-israel-july-16-2014-tickets-10558710387
+<a name="l-70"></a><span class="tm">18:18:01</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span>  no worries
+<a name="l-71"></a><span class="tm">18:18:49</span><span class="nk"> &lt;Alyssa&gt;</span> Early bird pricing will end soon  boston: 4/19  berlin 4/27
+<a name="l-72"></a><span class="tm">18:18:51</span><span class="nk"> &lt;kohsuke&gt;</span> our usual German folks aren't really here: fredg, orrc, drulli
+<a name="l-73"></a><span class="tm">18:19:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">Alyssa:</span> you told me that finding a venue in Berlin turns out to be quite a challenge
+<a name="l-74"></a><span class="tm">18:19:26</span><span class="nk"> &lt;kohsuke&gt;</span> do you want to mention a bit about that?
+<a name="l-75"></a><span class="tm">18:19:40</span><span class="nk"> &lt;Alyssa&gt;</span> well, we're going with kosmos
+<a name="l-76"></a><span class="tm">18:19:56</span><span class="nk"> &lt;Alyssa&gt;</span> we're in contract w/ location so there's no turning back
+<a name="l-77"></a><span class="tm">18:19:59</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://www.kosmos-berlin.de/en/home.html</span>
+<a name="l-78"></a><span class="tm">18:20:13</span><span class="nk"> &lt;kohsuke&gt;</span> calendar added
+<a name="l-79"></a><span class="tm">18:20:58</span><span class="nk"> &lt;Alyssa&gt;</span> perhaps for future JUC Berlin we can get suggestions for venues but we
+<a name="l-80"></a><span class="tm">18:21:10</span><span class="nk"> &lt;Alyssa&gt;</span> are set for this one in june
+<a name="l-81"></a><span class="tm">18:21:22</span><span class="nk"> &lt;kohsuke&gt;</span> right
+<a name="l-82"></a><span class="tm">18:21:25</span><span class="nk"> &lt;orrc&gt;</span> Kosmos is next door to the computer games museum, so it's a good choice :)
+<a name="l-83"></a><span class="tm">18:21:28</span><span class="nk"> &lt;LisaWells&gt;</span> do we have a venue for Bay Area?
+<a name="l-84"></a><span class="tm">18:21:32</span><span class="nk"> &lt;LisaWells&gt;</span> if not, any suggestions?
+<a name="l-85"></a><span class="tm">18:21:57</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">+orrc:</span> thnx that's good to know :o)
+<a name="l-86"></a><span class="tm">18:22:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> so we got some competition for attendance :-)
+<a name="l-87"></a><span class="tm">18:22:34</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">LisaWells:</span> we currently do not have a venue for bay area
+<a name="l-88"></a><span class="tm">18:22:48</span><span class="nk"> &lt;KostyaSha&gt;</span> is there any global proxy in jenkins?
+<a name="l-89"></a><span class="tm">18:23:00</span><span class="nk"> &lt;KostyaSha&gt;</span> is it plugins configuration?
+<a name="l-90"></a><span class="tm">18:23:04</span><span class="nk"> &lt;kohsuke&gt;</span> What about Yahoo folks that they said they are willing?
+<a name="l-91"></a><span class="tm">18:23:27</span><span class="nk"> &lt;kohsuke&gt;</span> I've been to their campus a few times and they got the 2nd floor of the cafeteria entirely for events
+<a name="l-92"></a><span class="tm">18:23:51</span><span class="nk"> &lt;Alyssa&gt;</span> haven't checked with them. who's the contact for that ?
+<a name="l-93"></a><span class="tm">18:24:12</span><span class="nk"> &lt;kohsuke&gt;</span> I have to dig that up, they were in the scalability summit
+<a name="l-94"></a><span class="tm">18:24:21</span><span class="nk"> &lt;kohsuke&gt;</span> Along the same line, netflix?
+<a name="l-95"></a><span class="tm">18:24:23</span><span class="nk"> &lt;Alyssa&gt;</span> can they host 400 -500 people ?
+<a name="l-96"></a><span class="tm">18:24:37</span><span class="nk"> &lt;Alyssa&gt;</span> i've received out to neflix but no response from them
+<a name="l-97"></a><span class="tm">18:25:07</span><span class="nk"> &lt;kohsuke&gt;</span> I don't know about 400 people, but Yahoo sites, it might
+<a name="l-98"></a><span class="tm">18:25:11</span><span class="nk"> &lt;hare_brain&gt;</span> I remember asking around with people still at Yahoo about the cafeteria, and they said they don’t rent that out.
+<a name="l-99"></a><span class="tm">18:25:54</span><span class="nk"> &lt;kohsuke&gt;</span> Now that Google Cloud Platform does Jenkins, maybe they can help?
+<a name="l-100"></a><span class="tm">18:26:44</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">kohsuke:</span> contact plz ?
+<a name="l-101"></a><span class="tm">18:26:57</span><span class="nk"> &lt;kohsuke&gt;</span> The event would have to be more community and less vendors, but then if the venue is free we don't need so many sponsors, so it just might work out...
+<a name="l-102"></a><span class="tm">18:27:15</span><span class="nk"> &lt;Alyssa&gt;</span> agreed
+<a name="l-103"></a><span class="tm">18:27:19</span><span class="nk"> &lt;kohsuke&gt;</span> It could be like how Copenhagen event is run
+<a name="l-104"></a><span class="tm">18:28:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> how does various user groups  get Yahoo venues for their events?
+<a name="l-105"></a><span class="tm">18:28:16</span><span class="nk"> &lt;kohsuke&gt;</span> It works because it's just a few hours in the evening?
+<a name="l-106"></a><span class="tm">18:28:27</span><span class="nk"> &lt;hare_brain&gt;</span> Yes.
+<a name="l-107"></a><span class="tm">18:28:34</span><span class="nk"> &lt;kohsuke&gt;</span> OK, that makes sense
+<a name="l-108"></a><span class="tm">18:29:08</span><span class="nk"> &lt;Alyssa&gt;</span> that's it for me for JUC status update. unless there are questions for me, i'll let lisa take it from here
+<a name="l-109"></a><span class="tm">18:29:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> how do we get the words out in the developers in Berlin or broader Germany?
+<a name="l-110"></a><span class="tm">18:29:43</span><span class="nk"> &lt;LisaWells&gt;</span> so does anyone have good ideas to get the word out?
+<a name="l-111"></a><span class="tm">18:29:51</span><span class="nk"> &lt;LisaWells&gt;</span> KK just said what I was typing...
+<a name="l-112"></a><span class="tm">18:30:20</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe some sites we can post ad?
+<a name="l-113"></a><span class="tm">18:30:29</span><span class="nk"> &lt;LisaWells&gt;</span> Same for Boston - need communities (JUGs, Agile groups, etc) who might help us spread the word
+<a name="l-114"></a><span class="tm">18:30:32</span><span class="nk"> &lt;kohsuke&gt;</span> Perhaps like german version of Hacker News...
+<a name="l-115"></a><span class="tm">18:31:07</span><span class="nk"> &lt;LisaWells&gt;</span> also - would anyone like to volunteer to help promote the JUCs?
+<a name="l-116"></a><span class="tm">18:31:40</span><span class="nk"> &lt;kohsuke&gt;</span> JAX is in May
+<a name="l-117"></a><span class="tm">18:32:00</span><span class="nk"> &lt;LisaWells&gt;</span> I think we are handing out JUC Berlin stickers at JAX?
+<a name="l-118"></a><span class="tm">18:32:01</span><span class="nk"> &lt;Alyssa&gt;</span> We have made JUC stickers to be passed out at JAX
+<a name="l-119"></a><span class="tm">18:32:13</span><span class="nk"> &lt;afex&gt;</span> hi, is it possible to load a private key from the credentials plugin during a shell build step? i'd like to grab the private key contents during some command line operations
+<a name="l-120"></a><span class="tm">18:32:18</span><span class="nk"> &lt;kohsuke&gt;</span> There'll be a lot of developers there, if only we know how to get there
+<a name="l-121"></a><span class="tm">18:32:20</span><span class="nk"> &lt;LisaWells&gt;</span> if anyone else wants a stock of JUC Berlin stickers, we could send them
+<a name="l-122"></a><span class="tm">18:32:44</span><span class="nk"> &lt;LisaWells&gt;</span> Devoxx is this month as well, right?
+<a name="l-123"></a><span class="tm">18:32:57</span><span class="nk"> &lt;baniir&gt;</span> why are users and credentials handled separately? i'm confused by the difference
+<a name="l-124"></a><span class="tm">18:33:17</span><span class="nk"> &lt;afex&gt;</span> unfortunately ruby's net-ssh doesn't seem to be compatible with the ssh-agent plugin, so i'm attempting to workaround it
+<a name="l-125"></a><span class="tm">18:33:19</span><span class="nk"> &lt;kohsuke&gt;</span> I thought that was in France
+<a name="l-126"></a><span class="tm">18:33:31</span><span class="nk"> &lt;Alyssa&gt;</span> Devoxx is in Paris I think. Cyrille mentioned French wont go to Germany for events
+<a name="l-127"></a><span class="tm">18:33:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">afex:</span> baniir: let's postpone the questions until after the project meeting
+<a name="l-128"></a><span class="tm">18:33:39</span><span class="nk"> &lt;LisaWells&gt;</span> yes, it is
+<a name="l-129"></a><span class="tm">18:33:43</span><span class="nk"> &lt;kohsuke&gt;</span> :-) that's what I suspected!
+<a name="l-130"></a><span class="tm">18:33:52</span><span class="nk"> &lt;LisaWells&gt;</span> hoping some might come - worth having the stickers there
+<a name="l-131"></a><span class="tm">18:34:01</span><span class="nk"> &lt;afex&gt;</span> <span class="hi">kohsuke:</span> didnt' realize this was an official meeting, sorry
+<a name="l-132"></a><span class="tm">18:34:08</span><span class="nk"> &lt;kohsuke&gt;</span> np
+<a name="l-133"></a><span class="tm">18:34:12</span><span class="nk"> &lt;LisaWells&gt;</span> people may also travel to Devoxx from Germany, no?
+<a name="l-134"></a><span class="tm">18:34:33</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jglick:</span> did you get the e-mail between I sent to you and two other folks we met at the last Jenkins event in Boston?
+<a name="l-135"></a><span class="tm">18:34:42</span><span class="nk"> &lt;baniir&gt;</span> <span class="hi">kohsuke:</span> sure; also didn't realize a meeting was in progress
+<a name="l-136"></a><span class="tm">18:35:03</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">kohsuke:</span> have it somewhere
+<a name="l-137"></a><span class="tm">18:35:08</span><span class="nk"> &lt;kohsuke&gt;</span> I think having a periodic meetup going is good for multiple reasons
+<a name="l-138"></a><span class="tm">18:35:28</span><span class="nk"> &lt;kohsuke&gt;</span> ... one of which is that we can reach people who would be interested in events like this
+<a name="l-139"></a><span class="tm">18:35:36</span><span class="nk"> &lt;LisaWells&gt;</span> +1
+<a name="l-140"></a><span class="tm">18:36:33</span><span class="nk"> &lt;kohsuke&gt;</span> All right, let's hope that the banner deployment on Wiki and JIRA would spread the words
+<a name="l-141"></a><span class="tm">18:36:44</span><span class="nk"> &lt;orrc&gt;</span> yeah, I don't know what the German equivalent of Hacker News is. fredg or kutzi might have a better idea
+<a name="l-142"></a><span class="tm">18:37:01</span><span class="nk"> &lt;orrc&gt;</span> a lot of people read www.heise.de — they have an event calendar that I can try and add the JUC to
+<a name="l-143"></a><span class="tm">18:37:04</span><span class="nk"> &lt;LisaWells&gt;</span> once the agenda is up, how does everyone feel about spreading the link via their social media networks?
+<a name="l-144"></a><span class="tm">18:37:20</span><span class="nk"> &lt;fredg02&gt;</span> hey, sorry for being late
+<a name="l-145"></a><span class="tm">18:37:27</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> I think that'd be very helpful
+<a name="l-146"></a><span class="tm">18:38:03</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">orrc:</span> how about log JUGs as lisa mentioned?
+<a name="l-147"></a><span class="tm">18:38:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">fredg02:</span> we were just wondering how to spread words to the German developers about JUC
+<a name="l-148"></a><span class="tm">18:38:53</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">orrc:</span> sorry meant local not log
+<a name="l-149"></a><span class="tm">18:39:11</span><span class="nk"> &lt;fredg02&gt;</span> we should definitely spread the word through the local Java user groups.
+<a name="l-150"></a><span class="tm">18:39:19</span><span class="nk"> &lt;kohsuke&gt;</span> This heise online must be somehow related to http://www.h-online.com/
+<a name="l-151"></a><span class="tm">18:39:25</span><span class="nk"> &lt;danielbeck&gt;</span> any idea how to get on http://www.heise.de/ix/veranstaltungen/ ?
+<a name="l-152"></a><span class="tm">18:39:49</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="hi">kohsuke:</span> h online was the English version of heise.de
+<a name="l-153"></a><span class="tm">18:40:20</span><span class="nk"> &lt;kohsuke&gt;</span> I forgot that danielbeck is a German, too
+<a name="l-154"></a><span class="tm">18:40:52</span><span class="nk"> &lt;kohsuke&gt;</span> ah, the wonder of Google Translate
+<a name="l-155"></a><span class="tm">18:41:42</span><span class="nk"> &lt;fredg02&gt;</span> yeah, heise.de shouldn't be a big problem.
+<a name="l-156"></a><span class="tm">18:41:59</span><span class="nk"> &lt;kohsuke&gt;</span> maybe we'd have to ask through http://www.heise.de/ix/kontakt/
+<a name="l-157"></a><span class="tm">18:42:04</span><span class="nk"> &lt;LisaWells&gt;</span> <span class="hi">alyssa:</span> could we offer a bobblehead to people who volunteer to help promote JUC in Boston &amp; Germany (to be picked up at the conference)?
+<a name="l-158"></a><span class="tm">18:42:21</span><span class="nk"> &lt;Alyssa&gt;</span> absolutely
+<a name="l-159"></a><span class="tm">18:42:34</span><span class="nk"> &lt;orrc&gt;</span> abayer will be talking at the JUG here in Cologne this month. I'm sure he can do some promotion
+<a name="l-160"></a><span class="tm">18:42:42</span><span class="nk"> &lt;Alyssa&gt;</span> we have jenkins badge pins this year too
+<a name="l-161"></a><span class="tm">18:43:07</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">orrc:</span> is he living in Germany nowadays or what?
+<a name="l-162"></a><span class="tm">18:43:08</span><span class="nk"> &lt;LisaWells&gt;</span> those are going to be super-cool - can't wait
+<a name="l-163"></a><span class="tm">18:43:19</span><span class="nk"> &lt;orrc&gt;</span> <span class="hi">kohsuke:</span> he's just here on holiday, as far as I know
+<a name="l-164"></a><span class="tm">18:43:36</span><span class="nk"> &lt;Alyssa&gt;</span> <span class="hi">orrc:</span> great idea!! that'll be helpful
+<a name="l-165"></a><span class="tm">18:44:34</span><span class="nk"> &lt;kohsuke&gt;</span> Any more on this topic?
+<a name="l-166"></a><span class="tm">18:44:54</span><span class="nk"> &lt;LisaWells&gt;</span> Do we want to talk about travel grants?
+<a name="l-167"></a><span class="tm">18:45:00</span><span class="nk"> &lt;kohsuke&gt;</span> Ah yes
+<a name="l-168"></a><span class="tm">18:45:21</span><span class="nk"> &lt;kohsuke&gt;</span> So we've launched the patron program and that raised $3000
+<a name="l-169"></a><span class="tm">18:46:07</span><span class="nk"> &lt;kohsuke&gt;</span> So I thought it might let us think about a future travel grant to one of the events
+<a name="l-170"></a><span class="tm">18:46:42</span><span class="nk"> &lt;LisaWells&gt;</span> in previous years, people have requested them but there was no funding source.
+<a name="l-171"></a><span class="tm">18:46:54</span><span class="nk"> &lt;kohsuke&gt;</span> Or if anyone can think of a good way to spend money for the benefit of the project, I'm all ears
+<a name="l-172"></a><span class="tm">18:47:25</span><span class="nk"> &lt;kohsuke&gt;</span> ... like finding some part time sysadmin who can help with up-keeping, perhaps
+<a name="l-173"></a><span class="tm">18:48:27</span><span class="nk"> &lt;kohsuke&gt;</span> All right, I don't really have much to add beyond that. Maybe I should send an e-mail to the list and see if anyone reacts
+<a name="l-174"></a><span class="tm">18:48:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-175"></a><span class="tm">18:49:13</span><span class="nk"> &lt;kohsuke&gt;</span> would be April 30th same time
+<a name="l-176"></a><span class="tm">18:49:27</span><span class="nk"> &lt;kohsuke&gt;</span> all right, that's it, thank you!
+<a name="l-177"></a><span class="tm">18:49:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

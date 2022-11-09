@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins Meeting</title>
+<style type="text/css">
+/* This is for the .html in the HTML2 writer */
+body {
+    font-family: Helvetica, sans-serif;
+    font-size:14px;
+}
+h1 {
+    text-align: center;
+}
+a {
+    color:navy;
+    text-decoration: none;
+    border-bottom:1px dotted navy;
+}
+a:hover {
+    text-decoration:none;
+    border-bottom: 0;
+    color:#0000B9;
+}
+hr {
+    border: 1px solid #ccc;
+}
+/* The (nick, time) item pairs, and other body text things. */
+.details {
+    font-size: 12px;
+    font-weight:bold;
+}
+/* The 'AGREED:', 'IDEA', etc, prefix to lines. */
+.itemtype {
+    font-style: normal;    /* un-italics it */
+    font-weight: bold;
+}
+/* Example: change single item types.  Capitalized command name.
+/* .TOPIC  {  color:navy;  } */
+/* .AGREED {  color:lime;  } */
+
+</style>
+</head>
+
+<body>
+<h1>#jenkins Meeting</h1>
+<span class="details">
+Meeting started by kohsuke at 18:04:32 UTC
+(<a href="jenkins.2011-06-08-18.04.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Meeting summary</h3>
+<ol>
+<li>
+<ol type="a">
+  <li><span class="INFO">I apologize for the lack of preparation for
+    this. I didn't even have the agenda page up for this until
+    today.</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-6'>kohsuke</a>,
+    18:05:13)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">foundation update</b> <span class="details">(<a href='jenkins.2011-06-08-18.04.log.html#l-8'>kohsuke</a>, 18:05:31)</span>
+<ol type="a">
+  <li><span class="INFO">The board has unanimously agreed to accept the
+    invitation to join the SPI</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-69'>rtyler</a>,
+    18:22:56)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">Trademark</b> <span class="details">(<a href='jenkins.2011-06-08-18.04.log.html#l-73'>abayer</a>, 18:23:16)</span>
+<br></li>
+<li><b class="TOPIC">LTS release update</b> <span class="details">(<a href='jenkins.2011-06-08-18.04.log.html#l-80'>abayer</a>, 18:24:35)</span>
+<ol type="a">
+  <li><span class="INFO">As folks might have noticed, vjuranek from
+    RedHat has been really pushing this ball rolling</span> <span
+    class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-82'>kohsuke</a>,
+    18:25:21)</span></li>
+  <li><span class="INFO">LTS is 1.409.1</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-93'>hare_brain</a>,
+    18:26:20)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">I'll do the
+    mirroring today and update the top page.</span> <span
+    class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-95'>kohsuke</a>,
+    18:26:52)</span></li>
+  <li><span class="INFO">no changelog generation taken care of yet. For
+    the time being I'll compose it manually until we automate
+    that.</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-99'>kohsuke</a>,
+    18:28:00)</span></li>
+  <li><span class="INFO">the backend is different from 1.395,
+    actually.</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-110'>kohsuke</a>,
+    18:30:27)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    update the LTS wiki pages with some plugin developer notes</span>
+    <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-114'>rtyler</a>,
+    18:31:06)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">infra update</b> <span class="details">(<a href='jenkins.2011-06-08-18.04.log.html#l-169'>kohsuke</a>, 18:43:58)</span>
+<ol type="a">
+  <li><a
+    href="https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Hudson+Reconciliation+Requirements">https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Hudson+Reconciliation+Requirements</a>
+    should be updated? <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-171'>jieryn</a>,
+    18:44:20)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">abayer to
+    update
+    https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Hudson+Reconciliation+Requirements</span>
+    <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-174'>abayer</a>,
+    18:44:40)</span></li>
+  <li><span class="INFO">both lettuce and cabbage are racked and at
+    least one of them has an OS installed on it</span> <span
+    class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-175'>rtyler</a>,
+    18:45:13)</span></li>
+  <li><span class="INFO">lettuce and cabbage are a 3U and 2U multi-core
+    machines donated to the project</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-178'>rtyler</a>,
+    18:46:02)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to
+    publish a post thanking Rackspace for their generous donation of a
+    build machine which we've been relying heavily on</span> <span
+    class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-179'>rtyler</a>,
+    18:46:39)</span></li>
+  <li><span class="INFO">Backups at Contegix are stalled waiting for a
+    part to arrive</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-182'>rtyler</a>,
+    18:46:58)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">minor office hours update</b> <span class="details">(<a href='jenkins.2011-06-08-18.04.log.html#l-185'>rtyler</a>, 18:47:59)</span>
+<ol type="a">
+  <li><span class="INFO">the first series of user and dev office hours
+    went exceptionally well</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-186'>rtyler</a>,
+    18:48:13)</span></li>
+  <li><span class="INFO">Need to investigate Fuze instead of WebEx:
+    http://www.fuzemeeting.com/</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-188'>rtyler</a>,
+    18:48:42)</span></li>
+  <li><i class="itemtype">IDEA</i>: <span class="IDEA">I think it's OK
+    to do it without any fixed agenda, at least the dev session. I'm
+    willing to hang around.</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-191'>kohsuke</a>,
+    18:49:31)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">kohsuke to
+    host a dev session bi-weekly</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-216'>rtyler</a>,
+    18:54:18)</span></li>
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">rtyler to get
+    a bloody subscribe-able calendar functioning</span> <span
+    class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-218'>rtyler</a>,
+    18:54:30)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">next meeting time</b> <span class="details">(<a href='jenkins.2011-06-08-18.04.log.html#l-220'>kohsuke</a>, 18:55:00)</span>
+<ol type="a">
+  <li><i class="itemtype">AGREED</i>: <span class="AGREED">next meeting
+    in two weeks same time.</span> <span class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-241'>kohsuke</a>,
+    18:57:36)</span></li>
+</ol>
+<br></li>
+<li><b class="TOPIC">refactoring the jenkins build?</b> <span class="details">(<a href='jenkins.2011-06-08-18.04.log.html#l-243'>rtyler</a>, 18:58:08)</span>
+<ol type="a">
+  <li><i class="itemtype">ACTION</i>: <span class="ACTION">stephenc to
+    send in an announcement requesting people to kindly refrain from big
+    POM changes to simplify the merge later.</span> <span
+    class="details">(<a
+    href='jenkins.2011-06-08-18.04.log.html#l-286'>kohsuke</a>,
+    19:05:15)</span></li>
+</ol>
+</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">
+Meeting ended at 19:13:26 UTC
+(<a href="jenkins.2011-06-08-18.04.log.html">full logs</a>).</span>
+
+<br><br>
+
+
+
+<h3>Action items</h3>
+<ol>
+  <li>I'll do the mirroring today and update the top page.</li>
+  <li>rtyler to update the LTS wiki pages with some plugin developer notes</li>
+  <li>abayer to update https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Hudson+Reconciliation+Requirements</li>
+  <li>rtyler to publish a post thanking Rackspace for their generous donation of a build machine which we've been relying heavily on</li>
+  <li>kohsuke to host a dev session bi-weekly</li>
+  <li>rtyler to get a bloody subscribe-able calendar functioning</li>
+  <li>stephenc to send in an announcement requesting people to kindly refrain from big POM changes to simplify the merge later.</li>
+</ol>
+<br><br>
+
+
+
+<h3>Action items, by person</h3>
+<ol>
+  <li> abayer <ol>
+    <li>abayer to update https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Hudson+Reconciliation+Requirements</li>
+  </ol></li>
+  <li> kohsuke <ol>
+    <li>kohsuke to host a dev session bi-weekly</li>
+  </ol></li>
+  <li> rtyler <ol>
+    <li>rtyler to update the LTS wiki pages with some plugin developer notes</li>
+    <li>rtyler to publish a post thanking Rackspace for their generous donation of a build machine which we've been relying heavily on</li>
+    <li>rtyler to get a bloody subscribe-able calendar functioning</li>
+  </ol></li>
+  <li> stephenc <ol>
+    <li>stephenc to send in an announcement requesting people to kindly refrain from big POM changes to simplify the merge later.</li>
+  </ol></li>
+</ol>
+<br><br>
+
+
+
+<h3>People present (lines said)</h3>
+<ol>
+  <li>kohsuke (81)</li>
+  <li>rtyler (78)</li>
+  <li>stephenc (77)</li>
+  <li>abayer (35)</li>
+  <li>hare_brain (31)</li>
+  <li>jieryn (13)</li>
+  <li>aheritier (5)</li>
+  <li>magnayn (4)</li>
+  <li>robobutler (2)</li>
+  <li>bap2000 (2)</li>
+  <li>sayresVT (1)</li>
+  <li>emanuelez (1)</li>
+</ol>
+<br><br>
+
+
+
+<span class="details">Generated by <a href="http://www.jenkins-ci.org/meetings/">MeetBot</a> 0.1.4.</span>
+</body></html>

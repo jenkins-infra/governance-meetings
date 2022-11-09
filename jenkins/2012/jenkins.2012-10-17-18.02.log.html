@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:02:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:02:17</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:02:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain abayer rtyler</span>
+<a name="l-4"></a><span class="tm">18:02:32</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:02:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-October17thMeeting</span>
+<a name="l-6"></a><span class="tm">18:02:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">recap of actions</span>
+<a name="l-7"></a><span class="tm">18:03:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://issues.jenkins-ci.org/browse/MEETING</span>
+<a name="l-8"></a><span class="tm">18:03:16</span><span class="nk"> &lt;faulkner&gt;</span> Sorry if this isn't the right place to be asking this, but is there any way of applying a filter to the job log?  We have tons of branches at the moment and it would be nice if the first page or two of every build wasn't just a bunch of "Seen branch in repository ..." lines.  Is this currently possible?
+<a name="l-9"></a><span class="tm">18:03:55</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">faulkner:</span> meeting in session --- let's do that later
+<a name="l-10"></a><span class="tm">18:04:23</span><span class="nk"> &lt;kohsuke&gt;</span> I guess I need to deliver FreedomSponsor guest post
+<a name="l-11"></a><span class="tm">18:04:29</span><span class="nk"> &lt;kohsuke&gt;</span> I'll do that
+<a name="l-12"></a><span class="tm">18:04:32</span><span class="nk"> &lt;kohsuke&gt;</span> and before I forget
+<a name="l-13"></a><span class="tm">18:04:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to finish up the jenkinsci-cert@googlegroups.com setup and initial additions</span>
+<a name="l-14"></a><span class="tm">18:05:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Picking next LTS</span>
+<a name="l-15"></a><span class="tm">18:05:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://jenkins-ci.org/changelog</span>
+<a name="l-16"></a><span class="tm">18:05:45</span><span class="nk"> &lt;vjuranek&gt;</span> any suggestions?
+<a name="l-17"></a><span class="tm">18:05:48</span><span class="nk"> &lt;kohsuke&gt;</span> the context for those who are new: it's about time we decide the next base release for LTS
+<a name="l-18"></a><span class="tm">18:06:07</span><span class="nk"> &lt;kohsuke&gt;</span> let's see here
+<a name="l-19"></a><span class="tm">18:06:18</span><span class="nk"> &lt;hare_brain&gt;</span> Last week, someone came here into the channel was was campaigning for a version that has the lazy loading feature.
+<a name="l-20"></a><span class="tm">18:06:21</span><span class="nk"> &lt;hare_brain&gt;</span> I forget who that was.
+<a name="l-21"></a><span class="tm">18:06:34</span><span class="nk"> &lt;kohsuke&gt;</span> It's still probably too new
+<a name="l-22"></a><span class="tm">18:06:42</span><span class="nk"> &lt;hare_brain&gt;</span> I would agree.
+<a name="l-23"></a><span class="tm">18:06:51</span><span class="nk"> &lt;oldelvet&gt;</span> +1
+<a name="l-24"></a><span class="tm">18:06:52</span><span class="nk"> &lt;kohsuke&gt;</span> I know 1.485 was pretty bad, while 1.486 is good, that's the very latest
+<a name="l-25"></a><span class="tm">18:06:57</span><span class="nk"> &lt;vjuranek&gt;</span> hm, I would prefere not to incelude lazy loading (howver it's greate feature)
+<a name="l-26"></a><span class="tm">18:07:18</span><span class="nk"> &lt;kohsuke&gt;</span> then there's aheritier's pet peeve Maven bug that we probably need to avoid
+<a name="l-27"></a><span class="tm">18:07:19</span><span class="nk"> &lt;oldelvet&gt;</span> I think 1.486 still has a few lazy loading related issues in it.
+<a name="l-28"></a><span class="tm">18:07:32</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">oldelvet:</span> OK. I should do a sweep
+<a name="l-29"></a><span class="tm">18:07:39</span><span class="nk"> &lt;hare_brain&gt;</span> We've been using 1.475 here with no problems
+<a name="l-30"></a><span class="tm">18:07:56</span><span class="nk"> &lt;hare_brain&gt;</span> 1.471 also looks like it's got very good community ratings
+<a name="l-31"></a><span class="tm">18:08:00</span><span class="nk"> &lt;kohsuke&gt;</span> aheritier's pet peeve problem crept in in 1.481
+<a name="l-32"></a><span class="tm">18:08:50</span><span class="nk"> &lt;kohsuke&gt;</span> 1.466 to 1.471 isn't much of a jump
+<a name="l-33"></a><span class="tm">18:08:58</span><span class="nk"> &lt;vjuranek&gt;</span> isn't 1.471 too close to 1.466 (current LTS)?
+<a name="l-34"></a><span class="tm">18:08:58</span><span class="nk"> &lt;nanonyme&gt;</span> 1.486 seemed to have some fairly weird build cause messages as well (builds that didn't relate to current were shown in addition to actual cause)
+<a name="l-35"></a><span class="tm">18:09:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">nanonyme:</span> if you can file a ticket about that, that'd be good
+<a name="l-36"></a><span class="tm">18:09:20</span><span class="nk"> &lt;hare_brain&gt;</span> We can find a more recent release. I was just giving data points.
+<a name="l-37"></a><span class="tm">18:09:22</span><span class="nk"> &lt;jenkins-builds&gt;</span> Project jenkins_main_trunk build #2012: SUCCESS in 47 min: http://ci.jenkins-ci.org/job/jenkins_main_trunk/2012/
+<a name="l-38"></a><span class="tm">18:09:22</span><span class="nk"> &lt;jenkins-builds&gt;</span> * Jesse Glick: [FIXED JENKINS-15426] Run animal-sniffer:check by default (-DskipTests suppresses).
+<a name="l-39"></a><span class="tm">18:09:23</span><span class="nk"> &lt;jenkins-builds&gt;</span> * Jesse Glick: Miscellaneous POM warnings.
+<a name="l-40"></a><span class="tm">18:09:25</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-15426:Run animal-sniffer:check as part of build (Resolved) http://jenkins-ci.org/issue/15426
+<a name="l-41"></a><span class="tm">18:09:46</span><span class="nk"> &lt;vjuranek&gt;</span> what about 1.480?
+<a name="l-42"></a><span class="tm">18:10:37</span><span class="nk"> &lt;kohsuke&gt;</span> interestingly 1.479 has a better rating but I agree that 1.480 should be more stable than 1.479
+<a name="l-43"></a><span class="tm">18:10:51</span><span class="nk"> &lt;hare_brain&gt;</span> Yeah I was going to say the same thing.
+<a name="l-44"></a><span class="tm">18:11:00</span><span class="nk"> &lt;hare_brain&gt;</span> Either 1.479 or 1.480 seem OK to me.
+<a name="l-45"></a><span class="tm">18:11:21</span><span class="nk"> &lt;hare_brain&gt;</span> (Said without any experience with either version.)
+<a name="l-46"></a><span class="tm">18:11:32</span><span class="nk"> &lt;kohsuke&gt;</span> Let's do 1.480
+<a name="l-47"></a><span class="tm">18:11:38</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-48"></a><span class="tm">18:11:43</span><span class="nk"> &lt;kohsuke&gt;</span> the behaviour.js fix is kind of important
+<a name="l-49"></a><span class="tm">18:12:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">vjuranek:</span> what's the time frame for a release?
+<a name="l-50"></a><span class="tm">18:12:55</span><span class="nk"> &lt;vjuranek&gt;</span> <span class="hi">kohsuke:</span> let's say 3 weeks? (I'm quite bussy past few months:-()
+<a name="l-51"></a><span class="tm">18:12:55</span><span class="nk"> &lt;kohsuke&gt;</span> RC by the next Wed and two more weeks to release?
+<a name="l-52"></a><span class="tm">18:13:02</span><span class="nk"> &lt;vjuranek&gt;</span> yes
+<a name="l-53"></a><span class="tm">18:13:04</span><span class="nk"> &lt;kohsuke&gt;</span> I guess we agreed
+<a name="l-54"></a><span class="tm">18:13:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next LTS will be based on 1.480</span>
+<a name="l-55"></a><span class="tm">18:13:34 </span><span class="nka">* vjuranek</span> <span class="ac">needs to implement more selenium tests to speed up testin :-(</span>
+<a name="l-56"></a><span class="tm">18:13:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the goal is to get to RC by next Wed and 2 more weeks for a release</span>
+<a name="l-57"></a><span class="tm">18:14:10</span><span class="nk"> &lt;kohsuke&gt;</span> Yes, let's push that ball rolling a bit more
+<a name="l-58"></a><span class="tm">18:14:45</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">there's http://github.com/jenkinsci/selenium-tests that we are trying to improve as the blackbox integration test. soliciting more volunteers</span>
+<a name="l-59"></a><span class="tm">18:15:01</span><span class="nk"> &lt;kohsuke&gt;</span> the quality came high on the survey's intermediate result, too
+<a name="l-60"></a><span class="tm">18:15:14</span><span class="nk"> &lt;kohsuke&gt;</span> moving on...
+<a name="l-61"></a><span class="tm">18:15:29</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Advertising survey on http://jenkins-ci.org/</span>
+<a name="l-62"></a><span class="tm">18:15:50</span><span class="nk"> &lt;kohsuke&gt;</span> lisa wanted me to advertise the Jenkins survey a bit more, which runs until the end of October, I believe
+<a name="l-63"></a><span class="tm">18:16:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">jenkins-ci.org/survey</span>
+<a name="l-64"></a><span class="tm">18:16:52</span><span class="nk"> &lt;kohsuke&gt;</span> I'm very happy to put the banner in but because I didn't want to do it unilaterally
+<a name="l-65"></a><span class="tm">18:17:17</span><span class="nk"> &lt;kohsuke&gt;</span> I'd like to get the sense of how people feel about it
+<a name="l-66"></a><span class="tm">18:17:48</span><span class="nk"> &lt;vjuranek&gt;</span> as the results will be sgared with community, I don't see any problem here... btw: was is announced on mailing lists? (if yes, I completely missed it)
+<a name="l-67"></a><span class="tm">18:18:10</span><span class="nk"> &lt;kohsuke&gt;</span> yes, the result will be shared like the last year
+<a name="l-68"></a><span class="tm">18:18:22</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to send in the survey announcement in e-mail</span>
+<a name="l-69"></a><span class="tm">18:18:41</span><span class="nk"> &lt;KostyaSha&gt;</span> kohsuke, vjuranek hi, did you ever think about isolations during builds in jenkins?
+<a name="l-70"></a><span class="tm">18:19:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> abayer: any thought?
+<a name="l-71"></a><span class="tm">18:19:17</span><span class="nk"> &lt;hare_brain&gt;</span> kohsuke were you thinking about a banner on the jenkins-ci.org home page?
+<a name="l-72"></a><span class="tm">18:19:26</span><span class="nk"> &lt;kohsuke&gt;</span> yes, just like JUC banner
+<a name="l-73"></a><span class="tm">18:19:35</span><span class="nk"> &lt;cheezey&gt;</span> <span class="hi">question:</span> i have a junit running in jenkins but the stdout for a particular test seems to encompass the entire test suite. any idea why this is the case (expected?).
+<a name="l-74"></a><span class="tm">18:19:37</span><span class="nk"> &lt;abayer&gt;</span> Sorry, distracted - fine by me.
+<a name="l-75"></a><span class="tm">18:19:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">KostyaSha:</span> cheezey: meeting in session, please postpone those Qs until after the meeting
+<a name="l-76"></a><span class="tm">18:20:03</span><span class="nk"> &lt;hare_brain&gt;</span> Fine by me. I was just thinking about what's the most effective place to show the banner.
+<a name="l-77"></a><span class="tm">18:20:06</span><span class="nk"> &lt;KostyaSha&gt;</span> oh, sorry
+<a name="l-78"></a><span class="tm">18:20:18</span><span class="nk"> &lt;kohsuke&gt;</span> OK, I think I'll add it then
+<a name="l-79"></a><span class="tm">18:20:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">people see no problem adding a banner to the http://jenkins-ci.org/ page,</span>
+<a name="l-80"></a><span class="tm">18:20:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to add it until the end of October</span>
+<a name="l-81"></a><span class="tm">18:21:01</span><span class="nk"> &lt;hare_brain&gt;</span> I've already forgotten what the JUC banner looked like. Did that show up on wiki and jira as well, or just on jenkins-ci.org home?
+<a name="l-82"></a><span class="tm">18:21:20</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">hare_brain:</span> it was on all 3 places
+<a name="l-83"></a><span class="tm">18:21:36</span><span class="nk"> &lt;hare_brain&gt;</span> OK. So you'll put it on all three for this as well?
+<a name="l-84"></a><span class="tm">18:21:54</span><span class="nk"> &lt;kohsuke&gt;</span> If I may, sure!
+<a name="l-85"></a><span class="tm">18:22:03</span><span class="nk"> &lt;kohsuke&gt;</span> I think I'll add a smaller one this time that's not too tall
+<a name="l-86"></a><span class="tm">18:22:45</span><span class="nk"> &lt;hare_brain&gt;</span> If the goal is to maximize the chances of getting responses, I think wiki and jira probably get more visitors than the home page.
+<a name="l-87"></a><span class="tm">18:22:56</span><span class="nk"> &lt;hare_brain&gt;</span> change log, too.
+<a name="l-88"></a><span class="tm">18:23:12</span><span class="nk"> &lt;kohsuke&gt;</span> yes, and people using Jenkins for a while (whom we want to hear from) would most likely go there
+<a name="l-89"></a><span class="tm">18:23:31</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to add a banner to http://jenkins-ci.org/, wiki, and issues</span>
+<a name="l-90"></a><span class="tm">18:23:43</span><span class="nk"> &lt;nanonyme&gt;</span> hehe, yeah. harly a day goes by that I wouldn't study the changelogs ;)
+<a name="l-91"></a><span class="tm">18:24:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-92"></a><span class="tm">18:24:27</span><span class="nk"> &lt;hare_brain&gt;</span> Halloween!
+<a name="l-93"></a><span class="tm">18:24:40</span><span class="nk"> &lt;kohsuke&gt;</span> Is it a holiday in  the US?
+<a name="l-94"></a><span class="tm">18:24:41</span><span class="nk"> &lt;abayer&gt;</span> fyi, I'll be on an airplane for the next meeting, but given how distracted I was this time, that's probably ok. =)
+<a name="l-95"></a><span class="tm">18:24:50</span><span class="nk"> &lt;hare_brain&gt;</span> Well, it's not a day off.
+<a name="l-96"></a><span class="tm">18:25:23</span><span class="nk"> &lt;kohsuke&gt;</span> OK, then I think we can still do one in 2 weeks
+<a name="l-97"></a><span class="tm">18:25:24</span><span class="nk"> &lt;hare_brain&gt;</span> I'm sure kids would want to be able to collect (and eat) candy all day.
+<a name="l-98"></a><span class="tm">18:25:30</span><span class="nk"> &lt;hare_brain&gt;</span> +1
+<a name="l-99"></a><span class="tm">18:25:48</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting will be in 2 weeks, the same time</span>
+<a name="l-100"></a><span class="tm">18:25:53</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> where are you heading to?
+<a name="l-101"></a><span class="tm">18:26:05</span><span class="nk"> &lt;KostyaSha&gt;</span> JenkinsSurvey has difficult questions...
+<a name="l-102"></a><span class="tm">18:26:23</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> maybe you need a CIA post + T-shirt + stickers?
+<a name="l-103"></a><span class="tm">18:26:35</span><span class="nk"> &lt;kohsuke&gt;</span> in any case, I think that's it for today
+<a name="l-104"></a><span class="tm">18:26:44</span><span class="nk"> &lt;abayer&gt;</span> I'll be on my way back from the trip I leave on this Saturday - Berlin for a few days, then Bulgaria for Java2Days (and my Jenkins Power Tools talk, which will also go up on youtube) and then back to Berlin for a couple more days, and then home.
+<a name="l-105"></a><span class="tm">18:26:45</span><span class="nk"> &lt;kohsuke&gt;</span> unless anyone else wants to bring up anything
+<a name="l-106"></a><span class="tm">18:26:49</span><span class="nk"> &lt;hare_brain&gt;</span> Wow, I think that's a record for quickest meeting.
+<a name="l-107"></a><span class="tm">18:26:53</span><span class="nk"> &lt;abayer&gt;</span> heh
+<a name="l-108"></a><span class="tm">18:27:06</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

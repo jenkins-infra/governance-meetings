@@ -1,0 +1,179 @@
+18:01:21 <oleg-nenashev> #startmeeting
+18:01:21 <robobutler> Let the Jenkins meeting commence!
+18:01:32 <oleg-nenashev> oh yes, here we go
+18:02:07 <oleg-nenashev> #info https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+18:02:35 <oleg-nenashev> If you want to add something, please do it within 15 minutes
+18:02:37 <oleg-nenashev> #topic Recap last meeting actions
+18:02:59 <oleg-nenashev> "oleg_nenashev to explore options to get Platform SIG access to trusted ci"
+18:03:28 <oleg-nenashev> I have started the discussion with olblak about that, and there were other discussions in the channel
+18:04:46 <oleg-nenashev> #info Regular Platform SIG meetings are scheduled to 2PM UTC on Thursdays. If you need feedback about infra in advance, please reach out to the Platform SIG leader(s). They will channel it to olblak
+18:04:58 <oleg-nenashev> "oleg_nenashev to restart the discussion of the Outreach / Community Development SIG" DONE
+18:05:22 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/84vjWz_Ho1k
+18:05:42 <oleg-nenashev> That's what with noted action items
+18:05:48 <oleg-nenashev> Are we missing anything?
+18:05:56 <bitwiseman> I'm responding to Oleg's last email on that thread now.
+18:06:31 <oleg-nenashev> yey, thanks!
+18:06:39 <oleg-nenashev> so, let's move on
+18:06:53 <oleg-nenashev> #topic LTS Status Check
+18:07:10 <oleg-nenashev> ogondza: The floor is yours ^
+18:07:20 <ogondza> right, the floor
+18:07:39 <ogondza> .1 is already released
+18:08:09 <ogondza> due to security updates
+18:08:24 <ogondza> we are starting .2 backporting tomorrow
+18:08:49 <ogondza> note the window will be 4 week long, holiday including
+18:09:08 <ogondza> the RC for .2 is expected to be out on January 2nd
+18:09:24 <oleg-nenashev> #info: Holiday break for LTS releases: https://groups.google.com/forum/#!topic/jenkinsci-dev/xn3xUE8Y-j8
+18:09:24 <ogondza> and that is it, folks
+18:09:34 <oleg-nenashev> How is .1 going so far?
+18:09:46 <ogondza> released
+18:09:53 <oleg-nenashev> It does not look there are regressions from Jenkins JIRA
+18:10:12 <ogondza> the thing is in case the LTS is a security release, it gets out before this meeting
+18:10:14 <oleg-nenashev> #info https://jenkins.io/security/advisory/2018-12-05/
+18:10:47 <oleg-nenashev> #action all to upgrade their public-facing instances ASAP, there is a critical regression. https://jenkins.io/security/advisory/2018-12-05/
+18:10:49 <ogondza> right, this time, we are mostly careful about the security patches so we all have to watch the reports extra careful this time
+18:11:17 <oleg-nenashev> Kudos to danielbeck wadeck jglick  and all other involved contributors
+18:11:40 <oleg-nenashev> Any questions so far?
+18:12:09 <ogondza> going once
+18:12:16 <oleg-nenashev> tracymiranda: Are you ready to the next topic?
+18:12:51 <ogondza> going twice
+18:13:34 <oleg-nenashev> No tracy, so probably we will hop to Java 11 for now
+18:13:49 <oleg-nenashev> #topic Java 11 preview availability - status update
+18:13:58 <oleg-nenashev> okay, that's me typing a lot
+18:14:32 <oleg-nenashev> #info https://github.com/jenkinsci/jep/tree/master/jep/211
+18:14:53 <bitwiseman> oleg-nenashev:  I think I can lead the discussion of Jenkins X support if tracy doesn't make it.
+18:15:15 <oleg-nenashev> bitwiseman: Feel free to do it. Let's give her a chance for now
+18:15:29 <bitwiseman> So continuing to JEP-211.
+18:16:01 <bitwiseman> (whose name brings a smile to my face every time I see it. :) )
+18:16:08 <oleg-nenashev> #info There were 3 major  blockers for the Preview Availability release: Pipeline: Support Patches, Docker Packaging, and test tools/automation
+18:16:20 <oleg-nenashev> I will try to paste my email draft here
+18:16:32 <oleg-nenashev> https://www.irccloud.com/pastebin/VnEvKnAo/
+18:17:16 <oleg-nenashev> To be sent once I finalize the email and add acknowledgments to all the contributors
+18:17:52 <oleg-nenashev> What I want to say... We are almost there, and we are ready to schedule the **preview** availability announcement to the next week
+18:18:24 <oleg-nenashev> We will have a final status check at the Platform SIG meeting, but I believe all major concerns are addressed
+18:18:32 <tracymiranda> Hello
+18:19:08 <tracymiranda> Sorry having trouble connecting, here now
+18:19:09 <oleg-nenashev> My plan is to accept JEP-211 tomorrow and then to get the announcements out by Dec 17
+18:19:22 <oleg-nenashev> tracymiranda: we will return back to the topic
+18:20:06 <tracymiranda> Thanks
+18:20:07 <oleg-nenashev> I wanted to ask whether anybody has questions about the process and the preview availability
+18:21:40 <oleg-nenashev> Technically it is possible to run Jenkins with Java 11 starting from Jenkins 2.144, so the announcement is just a matter of the visibility and getting the community feedback
+18:22:34 <oleg-nenashev> Any opinions? Esp. batmat ogondza markewaite who were heavily involved in the recent discussion and testing phases
+18:22:40 <bitwiseman> oleg-nenashev: Could you make sure that there is mail to the dev list saying that you are reviewing it for acceptance and if folk have any feedback they should get their PR opened now.
+18:23:16 <oleg-nenashev> bitwiseman: There was an email for that this summer, but I will make sure to poke folks
+18:23:34 <oleg-nenashev> + reviews at SIG meetings
+18:23:55 <oleg-nenashev> My pastebin above is actually a part of that email
+18:23:57 <ogondza> are we going to encourage plugin devs to use CI with java 11?
+18:24:09 <oleg-nenashev> ogondza: Yes, developer guidelines
+18:24:14 <ogondza> cool
+18:24:22 <oleg-nenashev> It will be also a part of the announcement, I believe
+18:24:46 <oleg-nenashev> For preview we will be targeting Jenkins plugin maintainers and early adopters
+18:25:21 <ogondza> silly question, why do we need java11 specific plugin update center?
+18:25:23 <oleg-nenashev> #info: FTR Wiki page with known compatibility issues: https://wiki.jenkins.io/display/JENKINS/Known+Java+11+Compatibility+issues
+18:25:30 <oleg-nenashev> thanks batmat ^
+18:26:10 <oleg-nenashev> ogondza: No, we will not have a production update center for Java 11. We will have a *temporary* experimental update center for Java 11 patches
+18:26:37 <ogondza> oh, ok
+18:26:51 <oleg-nenashev> #action oleg_nenashev to clarify the Java 11 experimental update center in the JEP-211
+18:26:55 <oleg-nenashev> thanks for the question!
+18:27:15 <ogondza> it all looks good to me
+18:27:40 <ogondza> Oleg, deserves this present to be delivered in time
+18:27:46 <oleg-nenashev> So far we requiring all plugins to be compatible with Java 8
+18:28:02 <bitwiseman> oleg-nenashev: To be clear, the goal of JEP-211 is Java 11 support for Jenkins.  That is to say the just preview is not the goal.  Right?
+18:28:30 <oleg-nenashev> To enforce that, we are deploying some ecosystem in Plugin POMs for new releases, see https://github.com/jenkinsci/maven-hpi-plugin#30-2018-12-05 and JENKINS-20679
+18:29:06 <oleg-nenashev> bitwiseman: Preview is the first milestone as documented in the rollout plan
+18:29:16 <oleg-nenashev> #info: JEP-211 rollout plan: https://github.com/jenkinsci/jep/tree/master/jep/211#rollout-plan
+18:29:19 <bitwiseman> Preview: at one point we were targeting Java 10 with this JEP and Java 11 would be preview.
+18:29:34 <bitwiseman> Now the target is J11.
+18:29:35 <oleg-nenashev> It was modified since that time
+18:29:38 <bitwiseman> Right.
+18:29:48 <oleg-nenashev> Java 10 was removed from JEP-211
+18:30:13 <oleg-nenashev> Because it is no longer supported according to the new OpenJDK process
+18:30:21 <oleg-nenashev> Java 11 is LTS, and it will stay for years
+18:30:27 <oleg-nenashev> So we target only it
+18:30:50 <bitwiseman> There's some left over bullet points that are a little unclear, I'll PR.
+18:31:02 <oleg-nenashev> bitwiseman:  thanks!
+18:31:35 <oleg-nenashev> I will probably give people more time to comment, e.g. till Monday
+18:31:57 <oleg-nenashev> I would like the JEP to get accepted before the preview announcements, but that's it
+18:32:16 <oleg-nenashev> any other questions?
+18:32:27 <oleg-nenashev> 5
+18:32:30 <oleg-nenashev> 4
+18:32:35 <oleg-nenashev> 3
+18:32:39 <oleg-nenashev> 2
+18:32:56 <oleg-nenashev> 1. Thanks ogondza bitwiseman  for the feedback
+18:33:26 <oleg-nenashev> #topic Trademark sublicensing request "CloudBees Jenkins X Support"
+18:33:39 <tracymiranda> Apologies for being late
+18:33:40 <oleg-nenashev> tracymiranda ^
+18:33:44 <oleg-nenashev> no worries
+18:33:47 <tracymiranda> https://groups.google.com/d/msg/jenkinsci-dev/d1rrCcY-VyM/Pu4RdH2LBwAJ is request
+18:33:55 <oleg-nenashev> #info https://groups.google.com/d/msg/jenkinsci-dev/d1rrCcY-VyM/Pu4RdH2LBwAJ
+18:34:14 <oleg-nenashev> not that one
+18:34:18 <tracymiranda> Same as previously approved sublicense but for Jenkins X
+18:34:41 <oleg-nenashev> #info https://groups.google.com/forum/#!topic/jenkinsci-dev/5uFXdnr6-k0 - correct link
+18:34:43 <tracymiranda> Comments/questions welcome
+18:34:50 <tracymiranda> Thx
+18:35:38 <oleg-nenashev> Just to provide some context, before the meeting I reached out to Jenkins X project leaders and got their response in the thread (James Strachan and James Rawlings). They +1d
+18:36:19 <oleg-nenashev> #info the request is approved by Jenkins X Project leaders
+18:37:12 <oleg-nenashev> #info There is a similar "CloudBees Jenkins Support" trademark request which has been approved on 06.06.2018: https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage
+18:37:37 <bitwiseman> Any opposition?
+18:38:14 <oleg-nenashev> I voted +1 due to that precedent though I abstained in the original request
+18:38:31 <oleg-nenashev> "original" == CloudBees Jenkins Support
+18:39:13 <oleg-nenashev> ogondza orrc schristou  mcirioli_  _ari_  : ^ WDYT?
+18:40:14 <oleg-nenashev> There is also a +1 vote by jtnord in the thread
+18:40:26 <oleg-nenashev> so, 4 +1s and no -1s/abstains so far
+18:40:42 <oleg-nenashev> bitwiseman: what is your vote btw?
+18:41:38 <oleg-nenashev> let's give it 1 more minute and then go on
+18:41:56 <bitwiseman> +1
+18:42:28 <oleg-nenashev> Full disclaimer: only board members can edit the Wiki page
+18:42:48 <mcirioli_> looking @oleg-nenashev
+18:42:52 <oleg-nenashev> I am not sure when kohsuke and rtyler will be able to apply changes. They are out today
+18:43:12 <oleg-nenashev> ok, then let's wait a bit
+18:43:39 <tracymiranda> +1 from me also
+18:45:10 <mcirioli_> +1 from me too, assuming i am not too late to this party
+18:45:22 <oleg-nenashev> OK, thanks mcirioli_  !
+18:45:32 <alyssat_> +1 for me as well
+18:45:38 <mcirioli_> happy to have someone to talk to on irc again :)
+18:45:53 <oleg-nenashev> #agreed: "CloudBees Jenkins X Support" trademark usage approval request by tracymiranda is approved
+18:46:06 <tracymiranda> Thanks all
+18:46:20 <oleg-nenashev> #action kohsuke or rtyler to update https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage
+18:46:32 <oleg-nenashev> any questions about this topic?
+18:47:12 <oleg-nenashev> I assume no
+18:47:21 <oleg-nenashev> #topic GSoC status Update
+18:47:32 <oleg-nenashev> That's me again
+18:48:22 <oleg-nenashev> #info We have accumulated 10 published project ideas, several other ideas are in review. https://jenkins.io/projects/gsoc/2019/project-ideas/
+18:49:03 <oleg-nenashev> #info We are changing the layout of GSoC pages and the application process
+18:50:05 <oleg-nenashev> #info The new application process is to be published soon.  https://docs.google.com/document/d/14N6kCShmxy4SumT0khuEFxXYZE4v1_bimK66PJuBHzM/edit#heading=h.l6tvycd1jfcp lists the new process
+18:50:25 <oleg-nenashev> TL;DR: Submit us a Google Doc via Gitter or Mailing list
+18:51:07 <oleg-nenashev> #info we plan to start Developer ML announcements next week
+18:51:28 <oleg-nenashev> So, is anybody interested to know more?
+18:52:09 <mcirioli> looks like some interesting ideas for GSoC
+18:52:36 <oleg-nenashev> And we are looking for more! :)
+18:52:48 <mcirioli> @oleg-nenashev do you have a link to developer ML handy?
+18:53:06 <oleg-nenashev> https://groups.google.com/forum/#!topic/jenkinsci-dev/ ?
+18:53:21 <tracymiranda> This is good stuff!
+18:53:35 <oleg-nenashev> #info: GSoC public mailing list: https://groups.google.com/forum/#!forum/jenkinsci-gsoc-all-public
+18:54:10 <oleg-nenashev> One of the curious proposals which has nit been published yet... We are about running a "Promoted Builds for Jenkins Pipeline" project
+18:54:43 <oleg-nenashev> https://docs.google.com/document/d/1UYi0jIYsKHE5IGS84B5W0XBoeMyF4yY_exu-21O99U8/edit?usp=sharing
+18:55:00 <oleg-nenashev> https://issues.jenkins-ci.org/browse/JENKINS-36089 has 120 votes in Jenkins JIRA
+18:55:25 <oleg-nenashev> So yeah, please feel free to propose something
+18:56:00 <bitwiseman> :)
+18:56:09 <oleg-nenashev> My plan is to also talk about project ideas in the Outrach/Advocacy SIG(s) once they get published. I have some ideas, but I need mentors bitwiseman tracymiranda  ;)
+18:56:45 <oleg-nenashev> But it's a bit premature, stay tuned for various threads!
+18:56:51 <oleg-nenashev> Any questions?
+18:57:03 <bitwiseman> Sure.
+18:57:52 <oleg-nenashev> seems no
+18:58:12 <oleg-nenashev> #topic Next meeting
+18:58:31 <oleg-nenashev> It would be Dec 19 according to the current schedule
+18:58:36 <oleg-nenashev> Any objections?
+18:59:20 <oleg-nenashev> 5
+18:59:21 <oleg-nenashev> 4
+18:59:22 <oleg-nenashev> 3
+18:59:29 <oleg-nenashev> 2
+18:59:32 <oleg-nenashev> 1
+18:59:40 <oleg-nenashev> I'd guess that's it
+18:59:40 <mcirioli> works for me
+18:59:47 <oleg-nenashev> I will likely miss it
+18:59:54 <oleg-nenashev> but it's the separate story
+19:00:10 <oleg-nenashev> #agreed: Next meeting: Dec 19, 2018
+19:00:21 <oleg-nenashev> Thanks everyone!
+19:00:29 <oleg-nenashev> And sorry if it was too long
+19:00:31 <mcirioli> thanks @oleg-nenashev!
+19:00:41 <oleg-nenashev> #endmeeting

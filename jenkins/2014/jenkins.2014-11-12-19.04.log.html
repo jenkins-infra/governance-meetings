@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app228.us.archive.org';v.server_ms=352;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-11-12-19.04.log.html","20200505163245","https://web.archive.org/","web","/_static/",
+	      "1588696365");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">19:04:59</span><span class="nk"> &lt;kohsuke__&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">19:04:59</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">19:05:10</span><span class="nk"> &lt;kohsuke__&gt;</span> I think my network is unstable
+<a name="l-4"></a><span class="tm">19:05:15</span><span class="nk"> &lt;kohsuke__&gt;</span> (I'm in a conference)
+<a name="l-5"></a><span class="tm">19:05:24</span><span class="nk"> &lt;autojack&gt;</span> aha
+<a name="l-6"></a><span class="tm">19:05:33</span><span class="nk"> &lt;kohsuke__&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-7"></a><span class="tm">19:05:48</span><span class="nk"> &lt;kohsuke__&gt;</span> <span class="topic">#topic </span><span class="topicline">Decision on further component renames in Jira</span>
+<a name="l-8"></a><span class="tm">19:06:00</span><span class="nk"> &lt;autojack&gt;</span> I would like to talk about https://issues.jenkins-ci.org/browse/JENKINS-23431
+<a name="l-9"></a><span class="tm">19:06:02</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-23431:Google is phasing out OpenID endpoint. Need to move on to G+ sign-in (Open) https://issues.jenkins-ci.org/browse/JENKINS-23431
+<a name="l-10"></a><span class="tm">19:06:17</span><span class="nk"> &lt;kohsuke__&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/T_V9Z71rbPk</span>
+<a name="l-11"></a><span class="tm">19:06:23</span><span class="nk"> &lt;kohsuke__&gt;</span> <span class="hi">autojack:</span> OK, let's add to the end
+<a name="l-12"></a><span class="tm">19:06:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Don't forget to push F5  next time ;)
+<a name="l-13"></a><span class="tm">19:06:27</span><span class="nk"> &lt;autojack&gt;</span> np
+<a name="l-14"></a><span class="tm">19:06:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I reordered topics to keep INFRA together. BTW, no difference
+<a name="l-15"></a><span class="tm">19:08:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbe_:</span> Are you online?
+<a name="l-16"></a><span class="tm">19:08:16</span><span class="nk"> &lt;kohsuke__&gt;</span> FWIW, the list looks good to me
+<a name="l-17"></a><span class="tm">19:08:45</span><span class="nk"> &lt;kohsuke__&gt;</span> I thought we did have jmeter plugin but maybe that got renamed
+<a name="l-18"></a><span class="tm">19:08:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It's performance-plugin nopw
+<a name="l-19"></a><span class="tm">19:09:06</span><span class="nk"> &lt;kohsuke__&gt;</span> https://wiki.jenkins-ci.org/display/JENKINS/JMeter+Plugin
+<a name="l-20"></a><span class="tm">19:09:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> No need to keep the component IMO
+<a name="l-21"></a><span class="tm">19:09:44</span><span class="nk"> &lt;kohsuke__&gt;</span> I agree
+<a name="l-22"></a><span class="tm">19:11:02</span><span class="nk"> &lt;kohsuke__&gt;</span> jenkins-reviewbot is the actual artifactId of the plugin, huh
+<a name="l-23"></a><span class="tm">19:11:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There're plenty of other changes proposed, but they LGTM. We can revise/revert particular changes at any moment
+<a name="l-24"></a><span class="tm">19:11:45</span><span class="nk"> &lt;kohsuke__&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">the list he has looks good to us. Fire away</span>
+<a name="l-25"></a><span class="tm">19:12:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would also propose to slightly update plugin-info macro to explicitly show jiraComponent
+<a name="l-26"></a><span class="tm">19:12:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> In such case we would avoid possible confusions
+<a name="l-27"></a><span class="tm">19:12:51</span><span class="nk"> &lt;kohsuke__&gt;</span> OK, why is that?
+<a name="l-28"></a><span class="tm">19:13:44</span><span class="nk"> &lt;kohsuke__&gt;</span> Since danielbe_ isn't here, let's talk about other stuff
+<a name="l-29"></a><span class="tm">19:13:49</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Currently, there's only a hyperlink to open issues. BTW, a user won't notice if the jraComponent is invalid
+<a name="l-30"></a><span class="tm">19:14:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> JIRA just returns an empty list
+<a name="l-31"></a><span class="tm">19:14:23</span><span class="nk"> &lt;kohsuke__&gt;</span> Ah
+<a name="l-32"></a><span class="tm">19:14:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> An additional info row with an embedded validadion would be great
+<a name="l-33"></a><span class="tm">19:14:38</span><span class="nk"> &lt;kohsuke__&gt;</span> so you want to have it jump to the component page, like https://issues.jenkins-ci.org/browse/JENKINS/component/15803
+<a name="l-34"></a><span class="tm">19:14:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes, it makes sense as well
+<a name="l-35"></a><span class="tm">19:15:13</span><span class="nk"> &lt;kohsuke__&gt;</span> OK, I think I understand now
+<a name="l-36"></a><span class="tm">19:15:17</span><span class="nk"> &lt;kohsuke__&gt;</span> sounds like another INFRA issue
+<a name="l-37"></a><span class="tm">19:15:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep
+<a name="l-38"></a><span class="tm">19:15:31</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I haven't submitted it yet
+<a name="l-39"></a><span class="tm">19:16:00</span><span class="nk"> &lt;kohsuke__&gt;</span> <span class="cmd">#idea </span><span class="cmdline">Plugin masthead in Wiki should land to the component page like https://issues.jenkins-ci.org/browse/JENKINS/component/15803#selectedTab=com.atlassian.jira.plugin.system.project%3Acomponent-issues-panel</span>
+<a name="l-40"></a><span class="tm">19:16:04</span><span class="nk"> &lt;kohsuke__&gt;</span> oops
+<a name="l-41"></a><span class="tm">19:16:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I can easily implement it, but a test environment would be useful. A support from INFRA owners is required to update the plugin as well
+<a name="l-42"></a><span class="tm">19:16:53</span><span class="nk"> &lt;kohsuke__&gt;</span> I thinke the challenge in linking to the component page is to figure out the component ID from the component name
+<a name="l-43"></a><span class="tm">19:16:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> How long did it take to update the plugin?
+<a name="l-44"></a><span class="tm">19:17:36</span><span class="nk"> &lt;kohsuke__&gt;</span> Something has to run elsewhere asynchronously to generate such mapping as redirector
+<a name="l-45"></a><span class="tm">19:17:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> AFAIK JIRA REST API has such command
+<a name="l-46"></a><span class="tm">19:17:56</span><span class="nk"> &lt;kohsuke__&gt;</span> Deploying the Confluence plugin itself is very quick. Cache regeneration will then take some more time
+<a name="l-47"></a><span class="tm">19:18:34</span><span class="nk"> &lt;kohsuke__&gt;</span> But all in all, deploying a new version is an easy process
+<a name="l-48"></a><span class="tm">19:18:42</span><span class="nk"> &lt;kohsuke__&gt;</span> Can we move on to the next topic?
+<a name="l-49"></a><span class="tm">19:18:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes. This one seems to be 1x1
+<a name="l-50"></a><span class="tm">19:19:21</span><span class="nk"> &lt;kohsuke__&gt;</span> <span class="topic">#topic </span><span class="topicline">Mark usage request from CloudBees</span>
+<a name="l-51"></a><span class="tm">19:19:33</span><span class="nk"> &lt;kohsuke__&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!searchin/jenkinsci-dev/mark$20usage/jenkinsci-dev/rzNetnrhPRI/7rRfyshG9bEJ</span>
+<a name="l-52"></a><span class="tm">19:20:07</span><span class="nk"> &lt;kohsuke__&gt;</span> The conversation didn't go further beyond the initial round, so I am hoping to hear from more of you
+<a name="l-53"></a><span class="tm">19:20:17</span><span class="nk"> &lt;kohsuke__&gt;</span> <span class="hi">hare_brain:</span> abayer: I hope you guys are here
+<a name="l-54"></a><span class="tm">19:20:23</span><span class="nk"> &lt;hare_brain&gt;</span> I’m here
+<a name="l-55"></a><span class="tm">19:21:10</span><span class="nk"> &lt;kohsuke__&gt;</span> Or is this something not too many people just don't care about?
+<a name="l-56"></a><span class="tm">19:21:33</span><span class="nk"> &lt;kohsuke__&gt;</span> I meant "most people just don't care about"
+<a name="l-57"></a><span class="tm">19:22:09</span><span class="nk"> &lt;kohsuke__&gt;</span> I'm sort of between a rock and a hard place.
+<a name="l-58"></a><span class="tm">19:22:10</span><span class="nk"> &lt;hare_brain&gt;</span> I hope *some* people care about it. Because we could really use other opinions.
+<a name="l-59"></a><span class="tm">19:22:24</span><span class="nk"> &lt;kohsuke__&gt;</span> Exactly
+<a name="l-60"></a><span class="tm">19:23:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke__:</span> I have not a strong opinion on the naming pattern. But it definitely makes sense to define a common standard [post-factum?]
+<a name="l-61"></a><span class="tm">19:25:08</span><span class="nk"> &lt;kohsuke_&gt;</span> Yes, I tried to phrase it as much about approving a pattern as these specific names
+<a name="l-62"></a><span class="tm">19:25:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It also makes sense to agree on names for non-commercial solutions. There're plenty of "MyMegaJenkins" names on presentations. It's not bad, but it seems to be a grey zone as well
+<a name="l-63"></a><span class="tm">19:27:05</span><span class="nk"> &lt;kohsuke_&gt;</span> Technically, I don't think the commercial / non-commercial nature of the mark usage affects the policy --- for example Apache rules about their trademarks do not distinguish commercial/non-commercial
+<a name="l-64"></a><span class="tm">19:27:24</span><span class="nk"> &lt;hare_brain&gt;</span> I would say that it’s actually *less* about the pattern and *more* about protecting the trademark, and ensuring that it continues to be associated with the project first.
+<a name="l-65"></a><span class="tm">19:28:51</span><span class="nk"> &lt;kohsuke_&gt;</span> OK. I thought you are for guidelines that help deciding on these things more smoothly as opposed to look at individual cases individually.
+<a name="l-66"></a><span class="tm">19:30:12</span><span class="nk"> &lt;hare_brain&gt;</span> Well, guidelines may help decide, but the criteria, IMO, should always be, what effect does a request have on the trademark?
+<a name="l-67"></a><span class="tm">19:30:54</span><span class="nk"> &lt;kohsuke_&gt;</span> Did my response to you about which way the confusion goes score any points?
+<a name="l-68"></a><span class="tm">19:31:18</span><span class="nk"> &lt;autojack&gt;</span> hi
+<a name="l-69"></a><span class="tm">19:31:20</span><span class="nk"> &lt;autojack&gt;</span> I am reading.
+<a name="l-70"></a><span class="tm">19:31:39</span><span class="nk"> &lt;hare_brain&gt;</span> No, not really. :) I had considered and acknowledged the reverse meritocracy point before. It *is* unfair to CloudBees.
+<a name="l-71"></a><span class="tm">19:32:06</span><span class="nk"> &lt;kohsuke_&gt;</span> ... that the question at hand is whether proposed "AcmeCorp Jenkins Enterprise" confuses people whether it is from AcmeCorp or Jenkins
+<a name="l-72"></a><span class="tm">19:32:08</span><span class="nk"> &lt;hare_brain&gt;</span> And to be clear, my position has always been one of concern, not objection.
+<a name="l-73"></a><span class="tm">19:32:32</span><span class="nk"> &lt;hare_brain&gt;</span> If no one else is worried about it, then I wouldn’t object to the specific request from CloudBees.
+<a name="l-74"></a><span class="tm">19:32:50</span><span class="nk"> &lt;kohsuke_&gt;</span> It is not about whether people get confused about where Jenkins effort is from, which I sense is your main concern.
+<a name="l-75"></a><span class="tm">19:33:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I'd say "CloudBees Jenkins ..." is the only one real confusion now. I know many people, who have been confused by it
+<a name="l-76"></a><span class="tm">19:34:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> BTW, in case of CB it's fair to leave things as is
+<a name="l-77"></a><span class="tm">19:34:35</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">oleg-nenashev:</span> you know many people who have been confused what with what?
+<a name="l-78"></a><span class="tm">19:35:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke_:</span> Many my previous colleagues and contacts thought that Jenkins is a product from Cloudbees
+<a name="l-79"></a><span class="tm">19:35:30</span><span class="nk"> &lt;kohsuke_&gt;</span> Do I get it right that you feel the same as hare_brain , that "AcmeCorp Jenkins FooBarZot" is OK for general AcmeCorp but not for CloudBees?
+<a name="l-80"></a><span class="tm">19:35:39</span><span class="nk"> &lt;kohsuke_&gt;</span> OK
+<a name="l-81"></a><span class="tm">19:35:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke_:</span> No
+<a name="l-82"></a><span class="tm">19:36:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> In my opinion, there's no problem with Cloudbees. I'm OK with current names
+<a name="l-83"></a><span class="tm">19:36:26</span><span class="nk"> &lt;kohsuke_&gt;</span> Just to make sure, current names are "Jenkins Enterprise by CloudBees"
+<a name="l-84"></a><span class="tm">19:36:37</span><span class="nk"> &lt;kohsuke_&gt;</span> The new name being requested is "CloudBees Jenkins Enterprise"
+<a name="l-85"></a><span class="tm">19:36:51</span><span class="nk"> &lt;kohsuke_&gt;</span> (there are a few more requests here but they all follow the same pattern)
+<a name="l-86"></a><span class="tm">19:37:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> People will invert words in any case :(
+<a name="l-87"></a><span class="tm">19:38:01</span><span class="nk"> &lt;kohsuke_&gt;</span> Sorry for being slow, but I'm just trying to understand what you are OK with
+<a name="l-88"></a><span class="tm">19:38:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> No problem, it's probably caused by my English
+<a name="l-89"></a><span class="tm">19:38:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I'm OK with both namings
+<a name="l-90"></a><span class="tm">19:39:10</span><span class="nk"> &lt;hare_brain&gt;</span> “…that "AcmeCorp Jenkins FooBarZot" is OK for general AcmeCorp but not for CloudBees?”
+<a name="l-91"></a><span class="tm">19:39:11</span><span class="nk"> &lt;autojack&gt;</span> my two cents: purely from the perspective of readability, limiting confusion, and so on, I think I prefer the 'Jenkins Foo by SomeCompany' convention over 'SomeCompany Jenkins Foo.'
+<a name="l-92"></a><span class="tm">19:39:15</span><span class="nk"> &lt;hare_brain&gt;</span> Oops
+<a name="l-93"></a><span class="tm">19:39:41</span><span class="nk"> &lt;autojack&gt;</span> I like that it makes it clear that this is a Jenkins improvement brought to you by SomeCompany.
+<a name="l-94"></a><span class="tm">19:39:51</span><span class="nk"> &lt;hare_brain&gt;</span> What I mean to continue with, is that “AcmeCorp Jenkins FooBarZot” is more likely to dilute the mark than the currently approved pattern.
+<a name="l-95"></a><span class="tm">19:39:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yes! I found it: http://docs.pivotal.io/cloudbees/Jenkins.html
+<a name="l-96"></a><span class="tm">19:40:25</span><span class="nk"> &lt;kohsuke_&gt;</span> All right, is it fair if I send another email to that thread saying the board will approve the request in 2 weeks unless we hear from people?
+<a name="l-97"></a><span class="tm">19:40:39</span><span class="nk"> &lt;hare_brain&gt;</span> When it’s CloudBees instead the place of AcmeCorp, the likelihood of trademark dilution is higher.
+<a name="l-98"></a><span class="tm">19:41:01</span><span class="nk"> &lt;kohsuke_&gt;</span> I take it back. I didn't notice there are more messages to scroll
+<a name="l-99"></a><span class="tm">19:41:52</span><span class="nk"> &lt;kohsuke_&gt;</span> grr, I'll ask Pivotal doc to be updated
+<a name="l-100"></a><span class="tm">19:42:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Example #2: https://opensourcearchitect.co/education/cloudbees/jenkins-2-day
+<a name="l-101"></a><span class="tm">19:42:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I'd say the logo could be updated as well :)
+<a name="l-102"></a><span class="tm">19:43:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> BTW, it is not very related to the discussion
+<a name="l-103"></a><span class="tm">19:43:44</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">autojack:</span> it's kind of ironic that a part of the motivation for the new name request, as I believe, is to put more emphasis on CloudBees
+<a name="l-104"></a><span class="tm">19:44:10</span><span class="nk"> &lt;hare_brain&gt;</span> Which is a valid motivation for CloudBees.:)
+<a name="l-105"></a><span class="tm">19:44:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Definitely
+<a name="l-106"></a><span class="tm">19:44:23</span><span class="nk"> &lt;autojack&gt;</span> yeah. well I think that's what hare_brain is hesitant about.
+<a name="l-107"></a><span class="tm">19:44:53</span><span class="nk"> &lt;autojack&gt;</span> the open question I guess is whether we think that impacts the Jenkins brand and mark negatively or positively.
+<a name="l-108"></a><span class="tm">19:45:17</span><span class="nk"> &lt;hare_brain&gt;</span> The *independence* of the brand and mark.
+<a name="l-109"></a><span class="tm">19:45:37</span><span class="nk"> &lt;autojack&gt;</span> I don't have a burning desk-pounding opinion about it, but I'm glad we're being sensitive to it.
+<a name="l-110"></a><span class="tm">19:45:56</span><span class="nk"> &lt;hare_brain&gt;</span> Where is rtyler?
+<a name="l-111"></a><span class="tm">19:46:02</span><span class="nk"> &lt;autojack&gt;</span> (I would also hesitate to put much weight in my opinion because I'm not some heroic longtime contributor :)
+<a name="l-112"></a><span class="tm">19:46:25</span><span class="nk"> &lt;hare_brain&gt;</span> autojack, I think that’s why opinions like yours matter actually
+<a name="l-113"></a><span class="tm">19:46:33</span><span class="nk"> &lt;autojack&gt;</span> heh
+<a name="l-114"></a><span class="tm">19:47:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Does CloudBess consider convenient solutions?
+<a name="l-115"></a><span class="tm">19:47:25</span><span class="nk"> &lt;autojack&gt;</span> asking myself: what's the difference I perceive between 'Jenkins Enterprise by CloudBees' and 'CloudBees Jenkins Enterprise?'
+<a name="l-116"></a><span class="tm">19:48:17</span><span class="nk"> &lt;autojack&gt;</span> my gut says the first is CloudBees improvements to an OSS project, the second is CB contributing the lion's share of the improvements.
+<a name="l-117"></a><span class="tm">19:48:26</span><span class="nk"> &lt;autojack&gt;</span> just based on reading it.
+<a name="l-118"></a><span class="tm">19:48:46</span><span class="nk"> &lt;autojack&gt;</span> to me it's a question of what these names communicate to the community at large.
+<a name="l-119"></a><span class="tm">19:49:12</span><span class="nk"> &lt;autojack&gt;</span> would people start wondering, is CloudBees Jenkins a fork like Jenkins/Hudson?
+<a name="l-120"></a><span class="tm">19:50:19</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">autojack:</span> So I think you are saying that you actually like Jenkins is the front &amp; center of the focus in the name
+<a name="l-121"></a><span class="tm">19:50:39</span><span class="nk"> &lt;autojack&gt;</span> yes.
+<a name="l-122"></a><span class="tm">19:50:59</span><span class="nk"> &lt;kohsuke_&gt;</span> In that line of rasoning, if CloudBees decided to drop the reference of Jenkins altogether and just call it something else completely, like just "FooBarZot", then you wouldn't like it either
+<a name="l-123"></a><span class="tm">19:51:00</span><span class="nk"> &lt;roac&gt;</span> Hi. I manually put in a locally compiled version of junit plugin. Everything works fine. But in the Job's home page I see that there are 2 links to "Latest Test Result" with 2 corresponding graphs.
+<a name="l-124"></a><span class="tm">19:51:06</span><span class="nk"> &lt;roac&gt;</span> Did i miss something.
+<a name="l-125"></a><span class="tm">19:51:13</span><span class="nk"> &lt;autojack&gt;</span> but I can imagine CB saying, hey, we have contributed a LOT to make Enterprise different, we should get first billing.
+<a name="l-126"></a><span class="tm">19:51:29</span><span class="nk"> &lt;kohsuke_&gt;</span> As in, the question of "is FooBarZot a fork like Jenkins/Hudson?" would be still valid, no?
+<a name="l-127"></a><span class="tm">19:51:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Jenkins can be at the end
+<a name="l-128"></a><span class="tm">19:51:30</span><span class="nk"> &lt;autojack&gt;</span> <span class="hi">roac:</span> community meeting in progress, can you wait a few minutes?
+<a name="l-129"></a><span class="tm">19:51:44</span><span class="nk"> &lt;roac&gt;</span> Sorry. Sure.
+<a name="l-130"></a><span class="tm">19:51:48</span><span class="nk"> &lt;autojack&gt;</span> <span class="hi">roac:</span> thanks :)
+<a name="l-131"></a><span class="tm">19:52:00</span><span class="nk"> &lt;danielbe_&gt;</span> oleg-nenashev kohsuke_  My apologies for missing the meeting
+<a name="l-132"></a><span class="tm">19:52:08</span><span class="nk"> &lt;kohsuke_&gt;</span> no problem
+<a name="l-133"></a><span class="tm">19:52:17</span><span class="nk"> &lt;kohsuke_&gt;</span> Do you have any thoughts on this name topic?
+<a name="l-134"></a><span class="tm">19:52:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The mixing is a real topic. "Cloudbees CI Enterprise. Powered by Jenkins" would be ok
+<a name="l-135"></a><span class="tm">19:53:06</span><span class="nk"> &lt;danielbe_&gt;</span> sorry need to catch up the last 30 minutes
+<a name="l-136"></a><span class="tm">19:53:11</span><span class="nk"> &lt;autojack&gt;</span> <span class="hi">kohsuke_:</span> well, if they dropped the reference to Jenkins I might wonder, is this even a Jenkins plugin/product or some stand-alone thing?
+<a name="l-137"></a><span class="tm">19:55:15</span><span class="nk"> &lt;kohsuke_&gt;</span> I do want to have "Jenkins" in the name because JEbC *is* Jenkins.
+<a name="l-138"></a><span class="tm">19:55:32</span><span class="nk"> &lt;autojack&gt;</span> right
+<a name="l-139"></a><span class="tm">19:55:47</span><span class="nk"> &lt;autojack&gt;</span> I guess if we take your Linux example, we have Red Hat Linux, Ubuntu Linux, Debian GNU/Linux...
+<a name="l-140"></a><span class="tm">19:56:26</span><span class="nk"> &lt;hare_brain&gt;</span> Which one do you think of first, when someone says just “Linux”?
+<a name="l-141"></a><span class="tm">19:56:40</span><span class="nk"> &lt;kohsuke_&gt;</span> And I do appreciate the concern that there might be a growing confusion out there that Jenkins is a CloudBees effort instead of the community effort, to me that's an independent problem, because I honestly don't see how CJE would be any more confusing than JEbC
+<a name="l-142"></a><span class="tm">19:56:44</span><span class="nk"> &lt;autojack&gt;</span> duh, TurboLinux of course...
+<a name="l-143"></a><span class="tm">19:56:45</span><span class="nk"> &lt;autojack&gt;</span> ;)
+<a name="l-144"></a><span class="tm">19:56:59</span><span class="nk"> &lt;autojack&gt;</span> <span class="hi">kohsuke_:</span> yeah your point is valid.
+<a name="l-145"></a><span class="tm">19:58:00</span><span class="nk"> &lt;kohsuke_&gt;</span> In Linux example, if none of those vendors are allowed to use the mark Linux to refer to their Linux distros, I think it would have had a negative impact over all.
+<a name="l-146"></a><span class="tm">19:58:10</span><span class="nk"> &lt;autojack&gt;</span> <span class="hi">hare_brain:</span> I tend to make the distinction between Linux, the kernel, and e.g. Red Hat Linux the distro.
+<a name="l-147"></a><span class="tm">19:58:17</span><span class="nk"> &lt;autojack&gt;</span> agreed.
+<a name="l-148"></a><span class="tm">19:58:22</span><span class="nk"> &lt;danielbe_&gt;</span> kohsuke_ It's easier to interpet CJE as CJ...E, as in, there's also a "CloudBees Jenkins (regular)"
+<a name="l-149"></a><span class="tm">19:58:32</span><span class="nk"> &lt;autojack&gt;</span> ALTHOUGH THEY SHOULD ALL BE CALLING IT GNU/LINUX &lt;/rms&gt;
+<a name="l-150"></a><span class="tm">19:59:45</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">danielbe_:</span> I see, I didn't think of that way, but I get that
+<a name="l-151"></a><span class="tm">20:00:33</span><span class="nk"> &lt;autojack&gt;</span> maybe we should just poll everyone here now that we've kicked this back and forth.
+<a name="l-152"></a><span class="tm">20:00:50</span><span class="nk"> &lt;hare_brain&gt;</span> That’s sort of what we were hoping for!
+<a name="l-153"></a><span class="tm">20:01:08</span><span class="nk"> &lt;hare_brain&gt;</span> And I encourage people to speak up.
+<a name="l-154"></a><span class="tm">20:01:18</span><span class="nk"> &lt;autojack&gt;</span> the proposal is to generally allow uses that fit the pattern 'SomeCo Jenkins Product' in addition to 'Jenkins Product by SomeCo.'
+<a name="l-155"></a><span class="tm">20:01:29</span><span class="nk"> &lt;autojack&gt;</span> (still subject to vote, right?)
+<a name="l-156"></a><span class="tm">20:01:49</span><span class="nk"> &lt;kohsuke_&gt;</span> Yes, each usage needs to be requested and approved
+<a name="l-157"></a><span class="tm">20:01:52</span><span class="nk"> &lt;autojack&gt;</span> (so I can't release Jenkins Sucks by Oracle [SECRETLY INSTALLS HUDSON])
+<a name="l-158"></a><span class="tm">20:02:01</span><span class="nk"> &lt;hare_brain&gt;</span> We could always say that we’re giving CloudBees special dispensation for that format, and not approve the pattern for general usage.
+<a name="l-159"></a><span class="tm">20:02:10</span><span class="nk"> &lt;autojack&gt;</span> I think that's a slippery slope.
+<a name="l-160"></a><span class="tm">20:02:10</span><span class="nk"> &lt;kohsuke_&gt;</span> ha!
+<a name="l-161"></a><span class="tm">20:02:31</span><span class="nk"> &lt;autojack&gt;</span> my instinct is that the same policy should apply to any user.
+<a name="l-162"></a><span class="tm">20:03:06</span><span class="nk"> &lt;hare_brain&gt;</span> I put that on the table to acknowledge the overweight contributions that CloudBees is now making to the community
+<a name="l-163"></a><span class="tm">20:03:11</span><span class="nk"> &lt;autojack&gt;</span> right now I still feel like I prefer not to approve the new proposal. but I still don't have a strong fiery opinion.
+<a name="l-164"></a><span class="tm">20:03:49</span><span class="nk"> &lt;autojack&gt;</span> yeah, I would just worry about having to approve further special exceptions for other big contributors down the line or something. I dunno.
+<a name="l-165"></a><span class="tm">20:05:50</span><span class="nk"> &lt;kohsuke_&gt;</span> Hmm
+<a name="l-166"></a><span class="tm">20:05:51</span><span class="nk"> &lt;hare_brain&gt;</span> I think this would actually be an easier decision if there *were* other big contributors.
+<a name="l-167"></a><span class="tm">20:06:03</span><span class="nk"> &lt;autojack&gt;</span> I was just thinking that.
+<a name="l-168"></a><span class="tm">20:06:48</span><span class="nk"> &lt;danielbe_&gt;</span> are these product names reserved for contributors to the community?
+<a name="l-169"></a><span class="tm">20:07:13</span><span class="nk"> &lt;hare_brain&gt;</span> danielbe_ that’s an interesting question!
+<a name="l-170"></a><span class="tm">20:07:51</span><span class="nk"> &lt;kohsuke_&gt;</span> It's dificult to imagine how anyone serious enough to put a product name like that out there can do it without being a contribuor
+<a name="l-171"></a><span class="tm">20:08:13</span><span class="nk"> &lt;danielbe_&gt;</span> kohsuke_ Just don't push fixes upstream. It's MIT.
+<a name="l-172"></a><span class="tm">20:08:28</span><span class="nk"> &lt;hare_brain&gt;</span> Yep
+<a name="l-173"></a><span class="tm">20:08:55</span><span class="nk"> &lt;kohsuke_&gt;</span> That's called forking and those people will not want to use the same name
+<a name="l-174"></a><span class="tm">20:08:56</span><span class="nk"> &lt;hare_brain&gt;</span> The fact that the community owns the trademark gives us a lot of leverage about that.
+<a name="l-175"></a><span class="tm">20:09:59</span><span class="nk"> &lt;kohsuke_&gt;</span> Right
+<a name="l-176"></a><span class="tm">20:10:23</span><span class="nk"> &lt;kohsuke_&gt;</span> If we feel that someone is using the name Jenkins to refer to something not quite Jenkins in ways that create confusion, we can stop that
+<a name="l-177"></a><span class="tm">20:10:43</span><span class="nk"> &lt;hare_brain&gt;</span> I guess in all likelihood, if some organization tried to create a product based on Jenkins and there were no contributions, we would not grant them the right to use the trademark.
+<a name="l-178"></a><span class="tm">20:11:04</span><span class="nk"> &lt;kohsuke_&gt;</span> That's the canonical use case for marks, IIUC.
+<a name="l-179"></a><span class="tm">20:11:24</span><span class="nk"> &lt;hare_brain&gt;</span> Perhaps. I just hadn’t considered that angle before.
+<a name="l-180"></a><span class="tm">20:12:07</span><span class="nk"> &lt;hare_brain&gt;</span> I just assumed that the requests would all come from someone who participates in the community.
+<a name="l-181"></a><span class="tm">20:12:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Does Jenkins have a registered trademark BTW?
+<a name="l-182"></a><span class="tm">20:13:05</span><span class="nk"> &lt;kohsuke_&gt;</span> I need to look at the exact status with SPI, but the application is being processed
+<a name="l-183"></a><span class="tm">20:13:19</span><span class="nk"> &lt;kohsuke_&gt;</span> I've seen some email back and forth that has been going on for years now
+<a name="l-184"></a><span class="tm">20:15:02</span><span class="nk"> &lt;hare_brain&gt;</span> It’s 12:15 (PST). Poll?
+<a name="l-185"></a><span class="tm">20:15:19</span><span class="nk"> &lt;kohsuke_&gt;</span> Yes, let's try to bring this to some kind of conclusion
+<a name="l-186"></a><span class="tm">20:15:24</span><span class="nk"> &lt;danielbe_&gt;</span> what specifically? CloudBees' use of the specific CJE name?
+<a name="l-187"></a><span class="tm">20:15:28</span><span class="nk"> &lt;hare_brain&gt;</span> I am sure that kosuke_ wants resolution. It’s dragged on for long enough.
+<a name="l-188"></a><span class="tm">20:15:50</span><span class="nk"> &lt;autojack&gt;</span> agreed. my instinct still says to stick with the existing scheme only, not the proposed.
+<a name="l-189"></a><span class="tm">20:16:21</span><span class="nk"> &lt;autojack&gt;</span> so that's my vote.
+<a name="l-190"></a><span class="tm">20:16:38</span><span class="nk"> &lt;kohsuke_&gt;</span> The question for poll is, should the project approve "CloudBees Jenkins Enterprise" (and 2 other variants)
+<a name="l-191"></a><span class="tm">20:16:39</span><span class="nk"> &lt;autojack&gt;</span> do I get a vote? heh.
+<a name="l-192"></a><span class="tm">20:17:09</span><span class="nk"> &lt;kohsuke_&gt;</span> CloudBees Jenkins Operations Center and CloudBees Jenkins Analytics, to be exact
+<a name="l-193"></a><span class="tm">20:17:59</span><span class="nk"> &lt;hare_brain&gt;</span> autojack is -1
+<a name="l-194"></a><span class="tm">20:18:10</span><span class="nk"> &lt;abayer&gt;</span> …I've been AFK, but I'm +1, fwiw.
+<a name="l-195"></a><span class="tm">20:18:44</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">danielbe_:</span> oleg-nenashev ?
+<a name="l-196"></a><span class="tm">20:18:53</span><span class="nk"> &lt;oleg-nenashev&gt;</span> -0.5
+<a name="l-197"></a><span class="tm">20:19:02</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">autojack -1 for CloudBees Jenkins Enterprise, et al</span>
+<a name="l-198"></a><span class="tm">20:19:05</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">abayer +1 for same</span>
+<a name="l-199"></a><span class="tm">20:19:15</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">oleg-nenashev -0.5 for same</span>
+<a name="l-200"></a><span class="tm">20:19:52</span><span class="nk"> &lt;danielbe_&gt;</span> +1
+<a name="l-201"></a><span class="tm">20:20:04</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">danielbe +1 for same</span>
+<a name="l-202"></a><span class="tm">20:20:24</span><span class="nk"> &lt;hare_brain&gt;</span> <span class="cmd">#info </span><span class="cmdline">hare_brain is -0.5 for same</span>
+<a name="l-203"></a><span class="tm">20:20:36</span><span class="nk"> &lt;hare_brain&gt;</span> kohsuke you have to abstain. :)
+<a name="l-204"></a><span class="tm">20:20:51</span><span class="nk"> &lt;kohsuke_&gt;</span> Can my daughter vote? :-)
+<a name="l-205"></a><span class="tm">20:20:59</span><span class="nk"> &lt;hare_brain&gt;</span> What has she contributed? :)
+<a name="l-206"></a><span class="tm">20:21:01</span><span class="nk"> &lt;autojack&gt;</span> I didn't know I could be down half :)
+<a name="l-207"></a><span class="tm">20:21:11</span><span class="nk"> &lt;kohsuke_&gt;</span> She has helped the Jenkins booth at SCALE!
+<a name="l-208"></a><span class="tm">20:21:37</span><span class="nk"> &lt;kohsuke_&gt;</span> But on more serious note, what now?
+<a name="l-209"></a><span class="tm">20:21:45</span><span class="nk"> &lt;hare_brain&gt;</span> I wish we had more votes
+<a name="l-210"></a><span class="tm">20:21:53</span><span class="nk"> &lt;autojack&gt;</span> me too.
+<a name="l-211"></a><span class="tm">20:21:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke_:</span> Not enough paticipants IMO
+<a name="l-212"></a><span class="tm">20:22:03</span><span class="nk"> &lt;danielbe_&gt;</span> yes. Even without hare_brain it would be too close to 0 IMO
+<a name="l-213"></a><span class="tm">20:22:11</span><span class="nk"> &lt;autojack&gt;</span> it feels like we need to defer for 2 weeks, rally some more people, etc.
+<a name="l-214"></a><span class="tm">20:22:30</span><span class="nk"> &lt;kohsuke_&gt;</span> OK
+<a name="l-215"></a><span class="tm">20:22:32</span><span class="nk"> &lt;autojack&gt;</span> I can think about it a little more and write up my thoughts on the mailing list too.
+<a name="l-216"></a><span class="tm">20:22:53</span><span class="nk"> &lt;hare_brain&gt;</span> 😞 that’s unfortunate. I don’t want to slow down CloudBee’s business efforts around this.
+<a name="l-217"></a><span class="tm">20:22:59</span><span class="nk"> &lt;kohsuke_&gt;</span> I'll send another email to the thread to udate this conversation today and that we need more inputs &amp; votes from people
+<a name="l-218"></a><span class="tm">20:23:25</span><span class="nk"> &lt;hare_brain&gt;</span> Maybe to -users instead of just -dev?
+<a name="l-219"></a><span class="tm">20:23:42</span><span class="nk"> &lt;autojack&gt;</span> I wouldn't do that.
+<a name="l-220"></a><span class="tm">20:23:49</span><span class="nk"> &lt;autojack&gt;</span> I don't think.
+<a name="l-221"></a><span class="tm">20:23:58</span><span class="nk"> &lt;autojack&gt;</span> seems like you would get a lot of noise.
+<a name="l-222"></a><span class="tm">20:24:13</span><span class="nk"> &lt;hare_brain&gt;</span> That’s the population that we are talking about whether they would be confused or not...
+<a name="l-223"></a><span class="tm">20:24:28</span><span class="nk"> &lt;autojack&gt;</span> mm, good point.
+<a name="l-224"></a><span class="tm">20:24:37</span><span class="nk"> &lt;danielbe_&gt;</span> input yes, votes no?
+<a name="l-225"></a><span class="tm">20:24:52</span><span class="nk"> &lt;kohsuke_&gt;</span> Let's see if a passionate plea for more votes &amp; inputs would result in more people chiming in
+<a name="l-226"></a><span class="tm">20:25:01</span><span class="nk"> &lt;hare_brain&gt;</span> What did we do for other votes? Had to be on the -users mailing list for a certain period of time to be granted the right to vote? (I don’t recall)
+<a name="l-227"></a><span class="tm">20:25:11</span><span class="nk"> &lt;hare_brain&gt;</span> Or was it -dev?
+<a name="l-228"></a><span class="tm">20:25:28</span><span class="nk"> &lt;kohsuke_&gt;</span> The only open vote we ever had was for renaming, and users were a very much a part of it
+<a name="l-229"></a><span class="tm">20:25:55</span><span class="nk"> &lt;hare_brain&gt;</span> I guess we still haven’t gotten around to votes for more board members. :/
+<a name="l-230"></a><span class="tm">20:26:03</span><span class="nk"> &lt;abayer&gt;</span> heh
+<a name="l-231"></a><span class="tm">20:26:17</span><span class="nk"> &lt;danielbe_&gt;</span> would be nice if the board members were listed anywhere
+<a name="l-232"></a><span class="tm">20:26:31</span><span class="nk"> &lt;kohsuke_&gt;</span> Let's keep the conversation in that thread, and we can post a note to the users list saying there's this discussion going on and we could use more inputs
+<a name="l-233"></a><span class="tm">20:26:40</span><span class="nk"> &lt;kohsuke_&gt;</span> ... in that dev thread, I mean.
+<a name="l-234"></a><span class="tm">20:26:55</span><span class="nk"> &lt;hare_brain&gt;</span> OK
+<a name="l-235"></a><span class="tm">20:26:58</span><span class="nk"> &lt;kohsuke_&gt;</span> cross-list conversation is messy and neither list accepts non-members to post
+<a name="l-236"></a><span class="tm">20:27:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> anyone can join dev list if he wants
+<a name="l-237"></a><span class="tm">20:27:54</span><span class="nk"> &lt;danielbe_&gt;</span> oleg-nenashev Like we need more user topics on the dev list
+<a name="l-238"></a><span class="tm">20:28:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> If you write a blog post, active users will be able to provide their input... just fot he sake of meritocracy
+<a name="l-239"></a><span class="tm">20:28:56</span><span class="nk"> &lt;kohsuke_&gt;</span> All right, I think this has to be good enough for the day
+<a name="l-240"></a><span class="tm">20:29:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbe_:</span> We need less plugin requests and more plugin maintainers
+<a name="l-241"></a><span class="tm">20:29:12</span><span class="nk"> &lt;kohsuke_&gt;</span> I really appreciate all the thoughts and opinions about this.
+<a name="l-242"></a><span class="tm">20:29:14</span><span class="nk"> &lt;autojack&gt;</span> rats, I did want to talk about https://issues.jenkins-ci.org/browse/JENKINS-23431 :)
+<a name="l-243"></a><span class="tm">20:29:16</span><span class="nk"> &lt;jenkins-admin&gt;</span> JENKINS-23431:Google is phasing out OpenID endpoint. Need to move on to G+ sign-in (Open) https://issues.jenkins-ci.org/browse/JENKINS-23431
+<a name="l-244"></a><span class="tm">20:29:41</span><span class="nk"> &lt;hare_brain&gt;</span> Yes, I appreciate the discussion too! I’m just sorry to CloudBees that we haven’t reached consensus yet.
+<a name="l-245"></a><span class="tm">20:30:11</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">autojack:</span> can we talk about that in the next time?
+<a name="l-246"></a><span class="tm">20:30:17</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-247"></a><span class="tm">20:30:17</span><span class="nk"> &lt;autojack&gt;</span> sounds good
+<a name="l-248"></a><span class="tm">20:30:34</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting will be 2 weeks from now</span>
+<a name="l-249"></a><span class="tm">20:30:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke_:</span> I've collected a list of messy names on CloudBees sites. If you want, I can send it to you
+<a name="l-250"></a><span class="tm">20:30:55</span><span class="nk"> &lt;kohsuke_&gt;</span> The day before Thanksviging
+<a name="l-251"></a><span class="tm">20:30:56</span><span class="nk"> &lt;hare_brain&gt;</span> koshuke_ do you want to do a one-time extra meeting next week so we don’t have to wait 2 weeks to talk about this again?
+<a name="l-252"></a><span class="tm">20:31:04</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">oleg-nenashev:</span> yes please
+<a name="l-253"></a><span class="tm">20:31:10</span><span class="nk"> &lt;danielbe_&gt;</span> component renames were approved? Or is there further need for discussion? jglick had concerns
+<a name="l-254"></a><span class="tm">20:31:25</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="hi">hare_brain:</span> I need to check if I can make it
+<a name="l-255"></a><span class="tm">20:31:29</span><span class="nk"> &lt;kohsuke_&gt;</span> I'll be traveling on that day
+<a name="l-256"></a><span class="tm">20:31:46</span><span class="nk"> &lt;hare_brain&gt;</span> I hope we have quorum for the 26ht.
+<a name="l-257"></a><span class="tm">20:31:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbe_:</span> Yes. jglick has not participated in the discussion
+<a name="l-258"></a><span class="tm">20:32:02</span><span class="nk"> &lt;hare_brain&gt;</span> (Yes, that’s a U.S. centric view)
+<a name="l-259"></a><span class="tm">20:32:06</span><span class="nk"> &lt;autojack&gt;</span> I can do 26th.
+<a name="l-260"></a><span class="tm">20:32:18</span><span class="nk"> &lt;kohsuke_&gt;</span> All right, talk to you on 26th
+<a name="l-261"></a><span class="tm">20:32:37</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span>
+<a name="l-262"></a><span class="tm">20:32:52</span><span class="nk"> &lt;kohsuke_&gt;</span> robobutler?
+<a name="l-263"></a><span class="tm">20:32:52</span><span class="nk"> &lt;autojack&gt;</span> <span class="hi">hare_brain:</span> are you still at Yahoo?
+<a name="l-264"></a><span class="tm">20:33:07</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#charis</span><span class="cmdline"></span>
+<a name="l-265"></a><span class="tm">20:33:08</span><span class="nk"> &lt;hare_brain&gt;</span> No, haven’t been there for over two years. Shutterfly.
+<a name="l-266"></a><span class="tm">20:33:10</span><span class="nk"> &lt;kohsuke_&gt;</span> <span class="cmd">#chairs</span><span class="cmdline"></span>
+<a name="l-267"></a><span class="tm">20:33:25</span><span class="nk"> &lt;autojack&gt;</span> ah OK. well, they just acquired my company :)
+<a name="l-268"></a><span class="tm">20:33:31</span><span class="nk"> &lt;autojack&gt;</span> rats, I almost got to work with you.
+<a name="l-269"></a><span class="tm">20:33:45</span><span class="nk"> &lt;hare_brain&gt;</span> You know, I was wondering where I heard BrightRoll before that announcement!
+<a name="l-270"></a><span class="tm">20:33:50</span><span class="nk"> &lt;autojack&gt;</span> haha
+<a name="l-271"></a><span class="tm">20:33:58</span><span class="nk"> &lt;hare_brain&gt;</span> I’m hiring. You could still work with me. ;)
+<a name="l-272"></a><span class="tm">20:34:02</span><span class="nk"> &lt;autojack&gt;</span> heh
+<a name="l-273"></a><span class="tm">20:34:07</span><span class="nk"> &lt;autojack&gt;</span> do you have an office in Melbourne, Australia?
+<a name="l-274"></a><span class="tm">20:34:10</span><span class="nk"> &lt;kohsuke__&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 16:32:45 May 05, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 16:01:44 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 214.856
+  exclusion.robots: 0.088
+  exclusion.robots.policy: 0.079
+  RedisCDXSource: 15.951
+  esindex: 0.025
+  LoadShardBlock: 179.482 (3)
+  PetaboxLoader3.datanode: 204.34 (4)
+  CDXLines.iter: 16.391 (3)
+  load_resource: 122.425
+  PetaboxLoader3.resolve: 55.394
+-->

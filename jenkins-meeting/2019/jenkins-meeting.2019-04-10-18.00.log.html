@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app209.us.archive.org';v.server_ms=499;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-04-10-18.00.log.html","20211027223905","https://web.archive.org/","web","/_static/",
+	      "1635374345");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:27</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:27</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:31</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-4"></a><span class="tm">18:00:32</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck kohsuke</span>
+<a name="l-5"></a><span class="tm">18:00:32</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-6"></a><span class="tm">18:01:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-7"></a><span class="tm">18:01:10</span><span class="nk"> &lt;danielbeck&gt;</span> https://wiki.jenkins.io/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-8"></a><span class="tm">18:01:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-03-27-18.24.html</span>
+<a name="l-9"></a><span class="tm">18:01:32</span><span class="nk"> &lt;rtyler&gt;</span> Last meeting was pretty bare bones, I think the only thing we discussed of note was around Google Season of Docs
+<a name="l-10"></a><span class="tm">18:01:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> If I remember correctly, there are a couple people helping with that effort now?
+<a name="l-11"></a><span class="tm">18:02:12</span><span class="nk"> &lt;markewaite&gt;</span> I'm willing to be a Google Season of Docs org admin
+<a name="l-12"></a><span class="tm">18:02:39</span><span class="nk"> &lt;tracymiranda&gt;</span> woo!
+<a name="l-13"></a><span class="tm">18:03:00</span><span class="nk"> &lt;danielbeck&gt;</span> doesn't look like oleg-nenashev is around, so let's move on?
+<a name="l-14"></a><span class="tm">18:03:09</span><span class="nk"> &lt;rtyler&gt;</span> oki
+<a name="l-15"></a><span class="tm">18:03:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-16"></a><span class="tm">18:03:27</span><span class="nk"> &lt;rtyler&gt;</span> now for the ogondza and danielbeck show :D
+<a name="l-17"></a><span class="tm">18:03:33</span><span class="nk"> &lt;rtyler&gt;</span> **polite applause**
+<a name="l-18"></a><span class="tm">18:03:40</span><span class="nk"> &lt;danielbeck&gt;</span> ¯\_(ツ)_/¯ it's out. update today.
+<a name="l-19"></a><span class="tm">18:03:49</span><span class="nk"> &lt;danielbeck&gt;</span> https://jenkins.io/security/advisory/2019-04-10/
+<a name="l-20"></a><span class="tm">18:04:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Security update went out today with an LTS release (plz upgrade)</span>
+<a name="l-21"></a><span class="tm">18:04:06</span><span class="nk"> &lt;danielbeck&gt;</span> (or not, there's a solid chance you're not affected, like ci.j.io)
+<a name="l-22"></a><span class="tm">18:04:35</span><span class="nk"> &lt;tracymiranda&gt;</span> good stuff
+<a name="l-23"></a><span class="tm">18:05:30</span><span class="nk"> &lt;rtyler&gt;</span> anything we need to discuss for the next LTS?
+<a name="l-24"></a><span class="tm">18:05:53</span><span class="nk"> &lt;danielbeck&gt;</span> no, this was only .2
+<a name="l-25"></a><span class="tm">18:05:55</span><span class="nk"> &lt;danielbeck&gt;</span> .2 updates are the boringest
+<a name="l-26"></a><span class="tm">18:06:21</span><span class="nk"> &lt;danielbeck&gt;</span> barely any new stuff, no new baseline to choose
+<a name="l-27"></a><span class="tm">18:06:27</span><span class="nk"> &lt;rtyler&gt;</span> aw
+<a name="l-28"></a><span class="tm">18:06:46</span><span class="nk"> &lt;rtyler&gt;</span> so nothing else really to discuss here?
+<a name="l-29"></a><span class="tm">18:07:01</span><span class="nk"> &lt;danielbeck&gt;</span> perhaps ogondza knows something I don't?
+<a name="l-30"></a><span class="tm">18:07:14</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">markewaite:</span> (off current topic) btw, I trust you've already coordinated with Rick and Oleg about Google Summer of Docs
+<a name="l-31"></a><span class="tm">18:07:39</span><span class="nk"> &lt;markewaite&gt;</span> I've talked with Oleg but have not yet engaged with Rick.  Coming soon
+<a name="l-32"></a><span class="tm">18:08:00</span><span class="nk"> &lt;rtyler&gt;</span> oki
+<a name="l-33"></a><span class="tm">18:08:01</span><span class="nk"> &lt;tracymiranda&gt;</span> mark let's also sync as I'm talking to some other docs folks about mentoring/getting involved
+<a name="l-34"></a><span class="tm">18:08:43</span><span class="nk"> &lt;rtyler&gt;</span> nothing else on the LTS topic it looks like
+<a name="l-35"></a><span class="tm">18:08:44</span><span class="nk"> &lt;markewaite&gt;</span> <span class="hi">tracymiranda:</span> that's a good idea. My decision to be an org admin was directly tied to your discussions with other doc folks.
+<a name="l-36"></a><span class="tm">18:09:05</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Google Season of Docs</span>
+<a name="l-37"></a><span class="tm">18:09:20</span><span class="nk"> &lt;rtyler&gt;</span> so what are the action items on this topic for posterity tracymiranda?
+<a name="l-38"></a><span class="tm">18:09:57</span><span class="nk"> &lt;tracymiranda&gt;</span> I will sync with mark and we will help co-ordinate mentors
+<a name="l-39"></a><span class="tm">18:11:24</span><span class="nk"> &lt;rtyler&gt;</span> anything else?
+<a name="l-40"></a><span class="tm">18:12:14</span><span class="nk"> &lt;tracymiranda&gt;</span> not from me
+<a name="l-41"></a><span class="tm">18:12:30</span><span class="nk"> &lt;rtyler&gt;</span> okie, I suppose we can move on
+<a name="l-42"></a><span class="tm">18:12:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Outreachy Update</span>
+<a name="l-43"></a><span class="tm">18:13:05</span><span class="nk"> &lt;tracymiranda&gt;</span> OK that's me
+<a name="l-44"></a><span class="tm">18:13:36</span><span class="nk"> &lt;tracymiranda&gt;</span> First of all the last round of Outreachy all concluded successfully, Matt Sicker wrote a post wrapping it all up https://jenkins.io/blog/2019/03/28/outreachy-review/
+<a name="l-45"></a><span class="tm">18:14:05</span><span class="nk"> &lt;tracymiranda&gt;</span> Except for one thing, we have not yet paid the invoice to Outreachy for that round yet
+<a name="l-46"></a><span class="tm">18:15:20</span><span class="nk"> &lt;tracymiranda&gt;</span> I'm not sure where things are stuck so would like some help with this
+<a name="l-47"></a><span class="tm">18:15:26</span><span class="nk"> &lt;rtyler&gt;</span> right , I saw that mail traffic. Were you able to reach out to the SPI treasurer?
+<a name="l-48"></a><span class="tm">18:16:04</span><span class="nk"> &lt;tracymiranda&gt;</span> the outreachy folks offered to reach out directly, which is good since I don't have contact deets for SPI treasurer
+<a name="l-49"></a><span class="tm">18:16:10</span><span class="nk"> &lt;tracymiranda&gt;</span> Is that who we need to chase?
+<a name="l-50"></a><span class="tm">18:16:30</span><span class="nk"> &lt;rtyler&gt;</span> treasurer@spi-inc.org fwiw
+<a name="l-51"></a><span class="tm">18:16:47</span><span class="nk"> &lt;tracymiranda&gt;</span> thanks, I'll help nudge things along
+<a name="l-52"></a><span class="tm">18:16:48</span><span class="nk"> &lt;rtyler&gt;</span> I suggest emailing them and CC the Jenkins board alias, and I'll chime in immediately and say "plz sign the checks"
+<a name="l-53"></a><span class="tm">18:16:59</span><span class="nk"> &lt;tracymiranda&gt;</span> Awesome, sounds like a plan!
+<a name="l-54"></a><span class="tm">18:17:27</span><span class="nk"> &lt;tracymiranda&gt;</span> OK then onto this round of Outreachy then
+<a name="l-55"></a><span class="tm">18:18:08</span><span class="nk"> &lt;tracymiranda&gt;</span> The application process has closed and I am pleased to share that we have had 2 applicants for the Audit Log plugin project we submitted.
+<a name="l-56"></a><span class="tm">18:19:15</span><span class="nk"> &lt;tracymiranda&gt;</span> Matt Sicker &amp; other mentors will be rating the applicants to make our selection, which will be announced May 6th
+<a name="l-57"></a><span class="tm">18:19:30</span><span class="nk"> &lt;rtyler&gt;</span> nice
+<a name="l-58"></a><span class="tm">18:19:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Hmm... somebody pinged me. Reading
+<a name="l-59"></a><span class="tm">18:19:50</span><span class="nk"> &lt;tracymiranda&gt;</span> I'd like to thank all the community members who supported all the applicants in making their contributions.
+<a name="l-60"></a><span class="tm">18:20:52</span><span class="nk"> &lt;tracymiranda&gt;</span> Once again we will choose the best candidate and if both are high quality we will pursue options to have both in the project provided the mentors are ok with this.
+<a name="l-61"></a><span class="tm">18:21:20 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-62"></a><span class="tm">18:21:46</span><span class="nk"> &lt;tracymiranda&gt;</span> That's the end of my update. Let me know if any questions/comments.
+<a name="l-63"></a><span class="tm">18:22:11</span><span class="nk"> &lt;rtyler&gt;</span> the next batch, what's the timeframe for that internship?
+<a name="l-64"></a><span class="tm">18:22:48</span><span class="nk"> &lt;tracymiranda&gt;</span> Internships start in May and end in August.
+<a name="l-65"></a><span class="tm">18:23:39</span><span class="nk"> &lt;rtyler&gt;</span> gotcha, anybody else have any other questions about our involvement in Outreachy
+<a name="l-66"></a><span class="tm">18:24:25</span><span class="nk"> &lt;rtyler&gt;</span> going once
+<a name="l-67"></a><span class="tm">18:24:50</span><span class="nk"> &lt;rtyler&gt;</span> going twice..
+<a name="l-68"></a><span class="tm">18:24:59 </span><span class="nka">* rtyler</span> <span class="ac">slams gavel</span>
+<a name="l-69"></a><span class="tm">18:25:08</span><span class="nk"> &lt;rtyler&gt;</span> anything else we need to discuss today, or are we wrapped up?
+<a name="l-70"></a><span class="tm">18:25:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Can do a quick GSoC update if anyonwe is interested
+<a name="l-71"></a><span class="tm">18:25:49</span><span class="nk"> &lt;rtyler&gt;</span> let's do it
+<a name="l-72"></a><span class="tm">18:25:51</span><span class="nk"> &lt;markewaite&gt;</span> +1 for GSoC update
+<a name="l-73"></a><span class="tm">18:25:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Google Summer of Code update</span>
+<a name="l-74"></a><span class="tm">18:26:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> GSoD was covered above IIUC
+<a name="l-75"></a><span class="tm">18:26:04</span><span class="nk"> &lt;rtyler&gt;</span> correct
+<a name="l-76"></a><span class="tm">18:26:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">GSoC student application deadline has passed. We got many applications from students</span>
+<a name="l-77"></a><span class="tm">18:27:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I cannot say the exact number, but I am optikistic about having 5+ projects this year
+<a name="l-78"></a><span class="tm">18:27:26 </span><span class="nka">* tracymiranda</span> <span class="ac">applauds</span>
+<a name="l-79"></a><span class="tm">18:27:29</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-80"></a><span class="tm">18:27:37</span><span class="nk"> &lt;danielbeck&gt;</span> \o/
+<a name="l-81"></a><span class="tm">18:27:41</span><span class="nk"> &lt;rtyler&gt;</span> that's as much as we had the first year IIRC
+<a name="l-82"></a><span class="tm">18:27:46</span><span class="nk"> &lt;rtyler&gt;</span> which was a great learning experience :)
+<a name="l-83"></a><span class="tm">18:27:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">projects will be announced on May 06</span>
+<a name="l-84"></a><span class="tm">18:28:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 5 projects in 2019 are quite different :) we learned our lessons
+<a name="l-85"></a><span class="tm">18:28:36</span><span class="nk"> &lt;rtyler&gt;</span> definitely!
+<a name="l-86"></a><span class="tm">18:29:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But yeah, let's see what would be the final results
+<a name="l-87"></a><span class="tm">18:29:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Meanwhile, we have already got around 40 PRs from students
+<a name="l-88"></a><span class="tm">18:30:05</span><span class="nk"> &lt;rtyler&gt;</span> O_o
+<a name="l-89"></a><span class="tm">18:30:08</span><span class="nk"> &lt;rtyler&gt;</span> wow
+<a name="l-90"></a><span class="tm">18:30:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, having newbie-friendly tickets is good :)
+<a name="l-91"></a><span class="tm">18:31:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> That's it from me
+<a name="l-92"></a><span class="tm">18:32:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">markewaite:</span> any GSoC questions, or do you feel suitably updated? :)
+<a name="l-93"></a><span class="tm">18:32:29</span><span class="nk"> &lt;rtyler&gt;</span> same for anybody else
+<a name="l-94"></a><span class="tm">18:32:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Currently I can disclose much details about the projects, but everyone is welcome to read the public GSoC mailing list if you want to see some proposals
+<a name="l-95"></a><span class="tm">18:32:46</span><span class="nk"> &lt;rtyler&gt;</span> can not* you mean?
+<a name="l-96"></a><span class="tm">18:32:48</span><span class="nk"> &lt;markewaite&gt;</span> <span class="hi">rtyler:</span> I am suitably updated
+<a name="l-97"></a><span class="tm">18:32:52</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-98"></a><span class="tm">18:33:14 </span><span class="nka">* tracymiranda</span> <span class="ac">has no questions but needs to learn to use the info tag as modelled so well</span>
+<a name="l-99"></a><span class="tm">18:33:49</span><span class="nk"> &lt;rtyler&gt;</span> going once.
+<a name="l-100"></a><span class="tm">18:34:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/m/#!forum/jenkinsci-gsoc-all-public</span>
+<a name="l-101"></a><span class="tm">18:34:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yup, cannot
+<a name="l-102"></a><span class="tm">18:35:11</span><span class="nk"> &lt;rtyler&gt;</span> going twice..
+<a name="l-103"></a><span class="tm">18:35:27</span><span class="nk"> &lt;rtyler&gt;</span> going thrice..
+<a name="l-104"></a><span class="tm">18:35:30</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-105"></a><span class="tm">18:35:53</span><span class="nk"> &lt;rtyler&gt;</span> April 24th looks next up
+<a name="l-106"></a><span class="tm">18:36:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:39:05 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:01:57 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 356.687
+  exclusion.robots: 0.195
+  exclusion.robots.policy: 0.181
+  cdx.remote: 0.122
+  esindex: 0.017
+  LoadShardBlock: 192.743 (3)
+  PetaboxLoader3.datanode: 70.516 (4)
+  CDXLines.iter: 19.486 (3)
+  PetaboxLoader3.resolve: 241.644 (2)
+  load_resource: 131.533
+-->

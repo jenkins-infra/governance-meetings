@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:01:09</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:01:09</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:01:17</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda</span>
+<a name="l-4"></a><span class="tm">18:01:28</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">hare_brain abayer rtyler</span>
+<a name="l-5"></a><span class="tm">18:01:32</span><span class="nk"> &lt;rtyler&gt;</span> ruh roh
+<a name="l-6"></a><span class="tm">18:01:41</span><span class="nk"> &lt;kohsuke&gt;</span> or was it #chair?
+<a name="l-7"></a><span class="tm">18:01:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain abayer rtyler</span>
+<a name="l-8"></a><span class="tm">18:01:46</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: abayer hare_brain kohsuke rtyler
+<a name="l-9"></a><span class="tm">18:02:02</span><span class="nk"> &lt;kohsuke&gt;</span> it replies "chairs" to the chair command!
+<a name="l-10"></a><span class="tm">18:02:19</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">quick recap of actions</span>
+<a name="l-11"></a><span class="tm">18:02:35</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">abayer:</span> did stickers get to rtyler?
+<a name="l-12"></a><span class="tm">18:02:38</span><span class="nk"> &lt;rtyler&gt;</span> yes
+<a name="l-13"></a><span class="tm">18:02:46</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> did we hear back from SPI about your reimbursement?
+<a name="l-14"></a><span class="tm">18:02:49</span><span class="nk"> &lt;rtyler&gt;</span> I actually am mailing some out today for the IBM Innovate giuyguy
+<a name="l-15"></a><span class="tm">18:02:52</span><span class="nk"> &lt;rtyler&gt;</span> no
+<a name="l-16"></a><span class="tm">18:03:05</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to ping SPI again</span>
+<a name="l-17"></a><span class="tm">18:03:09</span><span class="nk"> &lt;rtyler&gt;</span> my plan of "get reimbursed before blowing lots of
+<a name="l-18"></a><span class="tm">18:03:13</span><span class="nk"> &lt;rtyler&gt;</span> moeny on JUC Tokyo"
+<a name="l-19"></a><span class="tm">18:03:16</span><span class="nk"> &lt;rtyler&gt;</span> not working out so well
+<a name="l-20"></a><span class="tm">18:03:43</span><span class="nk"> &lt;kohsuke&gt;</span> I'll think about other ways of nagging, too
+<a name="l-21"></a><span class="tm">18:03:49</span><span class="nk"> &lt;rtyler&gt;</span> sky writing?
+<a name="l-22"></a><span class="tm">18:03:51</span><span class="nk"> &lt;kohsuke&gt;</span> maybe IRC or e-mail to individuals
+<a name="l-23"></a><span class="tm">18:04:09</span><span class="nk"> &lt;kohsuke&gt;</span> I'll save sky writing for escalation
+<a name="l-24"></a><span class="tm">18:04:41</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">moving Subversion repository to GitHub</span>
+<a name="l-25"></a><span class="tm">18:04:46</span><span class="nk"> &lt;whimboo&gt;</span> <span class="hi">kohsuke:</span> would you mind to have a look at https://bugzilla.mozilla.org/show_bug.cgi?id=751557? looks like jenkins is leaking a lot after a while
+<a name="l-26"></a><span class="tm">18:05:02</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">whimboo:</span> let's wait until the meeting is over
+<a name="l-27"></a><span class="tm">18:05:11</span><span class="nk"> &lt;whimboo&gt;</span> <span class="hi">kohsuke:</span> sure. just ping me
+<a name="l-28"></a><span class="tm">18:05:18</span><span class="nk"> &lt;kohsuke&gt;</span> so the motion is to move the Subversion plugin from its current hosting location in svn.jenkins-ci.org to GitHub
+<a name="l-29"></a><span class="tm">18:05:50</span><span class="nk"> &lt;kohsuke&gt;</span> The last time I tried it, which was more than a year ago, it was rejected
+<a name="l-30"></a><span class="tm">18:06:04</span><span class="nk"> &lt;kohsuke&gt;</span> but since then it felt like the feeling has changed a bit
+<a name="l-31"></a><span class="tm">18:06:38</span><span class="nk"> &lt;hare_brain&gt;</span> I was one of the people who -1'd it last time, but I've flip-flopped.
+<a name="l-32"></a><span class="tm">18:06:43</span><span class="nk"> &lt;hare_brain&gt;</span> I'm +1 to moving it this year.
+<a name="l-33"></a><span class="tm">18:07:02</span><span class="nk"> &lt;kohsuke&gt;</span> and there are some pull requests already in there
+<a name="l-34"></a><span class="tm">18:07:12</span><span class="nk"> &lt;jieryn&gt;</span> is this for all plugins?
+<a name="l-35"></a><span class="tm">18:07:17</span><span class="nk"> &lt;jieryn&gt;</span> i'm not sure what the motion is
+<a name="l-36"></a><span class="tm">18:07:29</span><span class="nk"> &lt;kohsuke&gt;</span> the motion is to move the Subversion plugin from its current hosting location in svn.jenkins-ci.org to GitHub
+<a name="l-37"></a><span class="tm">18:07:33</span><span class="nk"> &lt;jieryn&gt;</span> oh
+<a name="l-38"></a><span class="tm">18:07:45</span><span class="nk"> &lt;jieryn&gt;</span> +1 just for the irony
+<a name="l-39"></a><span class="tm">18:08:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Subversion plugin will move to GitHub</span>
+<a name="l-40"></a><span class="tm">18:08:10</span><span class="nk"> &lt;kohsuke&gt;</span> I'll write to kutzi and ssogabe
+<a name="l-41"></a><span class="tm">18:08:17</span><span class="nk"> &lt;kohsuke&gt;</span> as they've made some changes in the recent past
+<a name="l-42"></a><span class="tm">18:08:29</span><span class="nk"> &lt;jieryn&gt;</span> is there a broader thing here, like.. let's commit to move everything over from svn -&gt; git ?
+<a name="l-43"></a><span class="tm">18:08:31</span><span class="nk"> &lt;kohsuke&gt;</span> I was hoping kutzi is here today, but looks like he isn't
+<a name="l-44"></a><span class="tm">18:08:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jieryn:</span> yeah, maybe
+<a name="l-45"></a><span class="tm">18:08:48</span><span class="nk"> &lt;kohsuke&gt;</span> let's see if anyone is actively committing to Subversion
+<a name="l-46"></a><span class="tm">18:09:52</span><span class="nk"> &lt;kohsuke&gt;</span> hmm, it is actually actively used
+<a name="l-47"></a><span class="tm">18:10:07</span><span class="nk"> &lt;kohsuke&gt;</span> Just yesterday there was like 6 commits
+<a name="l-48"></a><span class="tm">18:10:12</span><span class="nk"> &lt;rtyler&gt;</span> O_O
+<a name="l-49"></a><span class="tm">18:10:17</span><span class="nk"> &lt;kohsuke&gt;</span> on average about half a dozen commit per day
+<a name="l-50"></a><span class="tm">18:10:50</span><span class="nk"> &lt;rtyler&gt;</span> that's nuts, how is that plugin still seeing that much development
+<a name="l-51"></a><span class="tm">18:11:08</span><span class="nk"> &lt;kohsuke&gt;</span> No, this isn't just Subversion plugin
+<a name="l-52"></a><span class="tm">18:11:17</span><span class="nk"> &lt;kohsuke&gt;</span> I'm talking about all commits to our Subversion repository
+<a name="l-53"></a><span class="tm">18:11:24</span><span class="nk"> &lt;rtyler&gt;</span> oh
+<a name="l-54"></a><span class="tm">18:11:29</span><span class="nk"> &lt;rtyler&gt;</span> got it :)
+<a name="l-55"></a><span class="tm">18:12:05</span><span class="nk"> &lt;kohsuke&gt;</span> I see the same name over and over
+<a name="l-56"></a><span class="tm">18:12:18</span><span class="nk"> &lt;kohsuke&gt;</span> might be worth writing to them if they'd be interested in moving things to GitHub
+<a name="l-57"></a><span class="tm">18:12:43</span><span class="nk"> &lt;kohsuke&gt;</span> just in case they don't know that it's already synced and it's easy to jump
+<a name="l-58"></a><span class="tm">18:13:04</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write to active users of svn.jenkins-ci.org that they can move to GitHub very easily if they want</span>
+<a name="l-59"></a><span class="tm">18:13:24</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">Improving JonJ and IRC bot stability</span>
+<a name="l-60"></a><span class="tm">18:13:37</span><span class="nk"> &lt;kohsuke&gt;</span> the latter is very easy.
+<a name="l-61"></a><span class="tm">18:13:48</span><span class="nk"> &lt;rtyler&gt;</span> how's that?
+<a name="l-62"></a><span class="tm">18:13:49</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to move IRC bot to cucumber</span>
+<a name="l-63"></a><span class="tm">18:14:04</span><span class="nk"> &lt;rtyler&gt;</span> aw yeah
+<a name="l-64"></a><span class="tm">18:14:15</span><span class="nk"> &lt;kohsuke&gt;</span> I haven't really digged deeper into why it gets disconnected and fail to reconnect
+<a name="l-65"></a><span class="tm">18:14:21</span><span class="nk"> &lt;rtyler&gt;</span> why not lettuce or cabbage?
+<a name="l-66"></a><span class="tm">18:14:23</span><span class="nk"> &lt;jieryn&gt;</span> under a general user inside screen/dtatch or something?
+<a name="l-67"></a><span class="tm">18:14:39</span><span class="nk"> &lt;kohsuke&gt;</span> so for a while it needs to be restarted manually if it's dead
+<a name="l-68"></a><span class="tm">18:14:41</span><span class="nk"> &lt;rtyler&gt;</span> can I take that task from you?
+<a name="l-69"></a><span class="tm">18:14:44</span><span class="nk"> &lt;rtyler&gt;</span> and put it unto you know, supervisor
+<a name="l-70"></a><span class="tm">18:14:45</span><span class="nk"> &lt;rtyler&gt;</span> like a real service &lt;_&lt;
+<a name="l-71"></a><span class="tm">18:15:02</span><span class="nk"> &lt;kohsuke&gt;</span> most of the time it's not that the program is dead
+<a name="l-72"></a><span class="tm">18:15:17</span><span class="nk"> &lt;kohsuke&gt;</span> it's in a weird state that either stops trying to connect or fail to reconnect
+<a name="l-73"></a><span class="tm">18:15:34</span><span class="nk"> &lt;kohsuke&gt;</span> so I suspect auto restart by itself won't fix it
+<a name="l-74"></a><span class="tm">18:15:41</span><span class="nk"> &lt;rtyler&gt;</span> developer error! ;)
+<a name="l-75"></a><span class="tm">18:15:50</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyle:</span> but sure, you are very welcome to put it on your TODO
+<a name="l-76"></a><span class="tm">18:16:02</span><span class="nk"> &lt;jieryn&gt;</span> while 1 ; do sleep 10s ; run-bot ; done
+<a name="l-77"></a><span class="tm">18:16:07</span><span class="nk"> &lt;jieryn&gt;</span> <span class="hi">jenkins-admin:</span> terminate self
+<a name="l-78"></a><span class="tm">18:16:07</span><span class="nk"> &lt;jenkins-admin&gt;</span> I didn't understand the command
+<a name="l-79"></a><span class="tm">18:16:20</span><span class="nk"> &lt;rtyler&gt;</span> are there any special credentials or configurations you have locally?
+<a name="l-80"></a><span class="tm">18:16:21</span><span class="nk"> &lt;jieryn&gt;</span> and then let it go from there
+<a name="l-81"></a><span class="tm">18:16:22</span><span class="nk"> &lt;jenkins-builds&gt;</span> Starting build #1730 for job jenkins_main_trunk (previous build: STILL FAILING -- last SUCCESS #1725 8 days 5 hr ago)
+<a name="l-82"></a><span class="tm">18:16:23</span><span class="nk"> &lt;kohsuke&gt;</span> the program is already at https://github.com/jenkinsci/backend-ircbot
+<a name="l-83"></a><span class="tm">18:16:34</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">rtyler:</span> yeah, there's one credential file that needs to be in /home/ircbot
+<a name="l-84"></a><span class="tm">18:16:36 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-85"></a><span class="tm">18:16:49</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> please gpg it to me :)
+<a name="l-86"></a><span class="tm">18:17:03</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to puppet-ize ircbot</span>
+<a name="l-87"></a><span class="tm">18:17:12</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to send the credential file to rtyler</span>
+<a name="l-88"></a><span class="tm">18:17:16</span><span class="nk"> &lt;jenkins-builds&gt;</span> Project jenkins_main_trunk build #1730: STILL FAILING in 1 min 38 sec: http://ci.jenkins-ci.org/job/jenkins_main_trunk/1730/
+<a name="l-89"></a><span class="tm">18:17:17</span><span class="nk"> &lt;jenkins-builds&gt;</span> * Kohsuke Kawaguchi: Making it easy to activate the animal-sniffer Java5 check.
+<a name="l-90"></a><span class="tm">18:17:17</span><span class="nk"> &lt;jenkins-builds&gt;</span> * Kohsuke Kawaguchi: Splitting off LDAP and PAM auth plugin.
+<a name="l-91"></a><span class="tm">18:17:18</span><span class="nk"> &lt;jenkins-builds&gt;</span> * Kohsuke Kawaguchi: LDAP is now a bundled plugin
+<a name="l-92"></a><span class="tm">18:17:18</span><span class="nk"> &lt;jenkins-builds&gt;</span> * Kohsuke Kawaguchi: PAM authentication is now a bundled plugin
+<a name="l-93"></a><span class="tm">18:17:19</span><span class="nk"> &lt;jenkins-builds&gt;</span> * Kohsuke Kawaguchi: Core need not bundle libpam4j
+<a name="l-94"></a><span class="tm">18:17:45</span><span class="nk"> &lt;jieryn&gt;</span> well, the other half of that topic is jonj itself, and right now we have a stalled build
+<a name="l-95"></a><span class="tm">18:17:58 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-96"></a><span class="tm">18:17:59</span><span class="nk"> &lt;kohsuke&gt;</span> it's something I really need to look into
+<a name="l-97"></a><span class="tm">18:18:10</span><span class="nk"> &lt;kohsuke&gt;</span> that's like the whole point of eating our own dogfood
+<a name="l-98"></a><span class="tm">18:18:16</span><span class="nk"> &lt;rtyler&gt;</span> heh, indeed
+<a name="l-99"></a><span class="tm">18:18:49</span><span class="nk"> &lt;kohsuke&gt;</span> I decided that this week is my quality time with Jenkins
+<a name="l-100"></a><span class="tm">18:18:55</span><span class="nk"> &lt;kohsuke&gt;</span> so let me take that as well
+<a name="l-101"></a><span class="tm">18:19:11</span><span class="nk"> &lt;jieryn&gt;</span> ok, so if you can diag this recent cluster of stallings .. i think this will be addressing the topic
+<a name="l-102"></a><span class="tm">18:19:12</span><span class="nk"> &lt;Creeture&gt;</span> Help me fix my Gerrit trigger. Jenkins is building whenever something is pushed to refs/for/master in Gerrit, not when the change has been Submitted into refs/master
+<a name="l-103"></a><span class="tm">18:19:15</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to investigate J-on-J / remote-slave-6 stability issue</span>
+<a name="l-104"></a><span class="tm">18:19:21</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">Creeture:</span> not right now, we're in a project meeting
+<a name="l-105"></a><span class="tm">18:19:33</span><span class="nk"> &lt;kohsuke&gt;</span> and we could use a few more slaves, too
+<a name="l-106"></a><span class="tm">18:19:38</span><span class="nk"> &lt;Creeture&gt;</span> <span class="hi">rtyler:</span> Always with the meeting with you. :)
+<a name="l-107"></a><span class="tm">18:19:56</span><span class="nk"> &lt;rtyler&gt;</span> I wonder if lettuce or cabbage might work as KVM hosts
+<a name="l-108"></a><span class="tm">18:20:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">jieryn:</span> you're big on the kvm's right?
+<a name="l-109"></a><span class="tm">18:20:13</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">jieryn:</span> any reason why remote-slave-8 from RedHat is disconnected?
+<a name="l-110"></a><span class="tm">18:20:17</span><span class="nk"> &lt;jieryn&gt;</span> http://ci.jenkins-ci.org/computer/remote-slave-6/load-statistics
+<a name="l-111"></a><span class="tm">18:20:46</span><span class="nk"> &lt;jieryn&gt;</span> wow, not sure why that is stuck offline with me owning it
+<a name="l-112"></a><span class="tm">18:20:51</span><span class="nk"> &lt;jieryn&gt;</span> it was failing every build
+<a name="l-113"></a><span class="tm">18:20:51</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-114"></a><span class="tm">18:21:07</span><span class="nk"> &lt;jieryn&gt;</span> dependency resolution woe, lets enable it and see if it still applies
+<a name="l-115"></a><span class="tm">18:21:14</span><span class="nk"> &lt;kohsuke&gt;</span> OK
+<a name="l-116"></a><span class="tm">18:21:17</span><span class="nk"> &lt;jieryn&gt;</span> done
+<a name="l-117"></a><span class="tm">18:21:25</span><span class="nk"> &lt;jieryn&gt;</span> <span class="hi">rtyler:</span> yes, i like it :)
+<a name="l-118"></a><span class="tm">18:21:36</span><span class="nk"> &lt;jieryn&gt;</span> we could provide a custom .kvm image to work as a slave?
+<a name="l-119"></a><span class="tm">18:21:44</span><span class="nk"> &lt;jieryn&gt;</span> people that want to dedicate resources, is that your idea?
+<a name="l-120"></a><span class="tm">18:22:02</span><span class="nk"> &lt;rtyler&gt;</span> not quite, just thjinking about it as an isolation mechanism to use lettuce and cabbage more effectively
+<a name="l-121"></a><span class="tm">18:22:11</span><span class="nk"> &lt;jieryn&gt;</span> ah
+<a name="l-122"></a><span class="tm">18:22:15</span><span class="nk"> &lt;jieryn&gt;</span> let's talk about it after?
+<a name="l-123"></a><span class="tm">18:22:17</span><span class="nk"> &lt;rtyler&gt;</span> we can talk about it later
+<a name="l-124"></a><span class="tm">18:22:18 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-125"></a><span class="tm">18:22:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler and jieryn to KVM up some more slaves somehow</span>
+<a name="l-126"></a><span class="tm">18:22:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">we brought back remote-slave-8 from redhat but we'll monitor if this is functioning correctly</span>
+<a name="l-127"></a><span class="tm">18:23:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> that machine (kale) is in Nagios
+<a name="l-128"></a><span class="tm">18:23:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> only with SSH checks though
+<a name="l-129"></a><span class="tm">18:23:38</span><span class="nk"> &lt;kohsuke&gt;</span> I won't be surprised if some build tools etc aren't properly available or something
+<a name="l-130"></a><span class="tm">18:23:58</span><span class="nk"> &lt;kohsuke&gt;</span> this is RHEL, not Ubuntu, so our puppet manifest might be having a trouble, too
+<a name="l-131"></a><span class="tm">18:24:37</span><span class="nk"> &lt;kohsuke&gt;</span> I think we can move on to the next topic?
+<a name="l-132"></a><span class="tm">18:24:42 </span><span class="nka">* jieryn</span> <span class="ac">nods</span>
+<a name="l-133"></a><span class="tm">18:24:43 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-134"></a><span class="tm">18:24:54</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">plugin JonJ on DEV@cloud of BuildHive</span>
+<a name="l-135"></a><span class="tm">18:25:09</span><span class="nk"> &lt;jieryn&gt;</span> so we moved the plugins_* jobs out of ci.jenkins-ci.org deployment
+<a name="l-136"></a><span class="tm">18:25:20</span><span class="nk"> &lt;jieryn&gt;</span> i did a full backup with all job history, and also a config backup
+<a name="l-137"></a><span class="tm">18:25:28</span><span class="nk"> &lt;jieryn&gt;</span> i have a backup of the configs, and i believe rtyler does also
+<a name="l-138"></a><span class="tm">18:25:34</span><span class="nk"> &lt;rtyler&gt;</span> not yet
+<a name="l-139"></a><span class="tm">18:25:35</span><span class="nk"> &lt;rtyler&gt;</span> &lt;_&lt;
+<a name="l-140"></a><span class="tm">18:25:36</span><span class="nk"> &lt;rtyler&gt;</span> &gt;_&gt;
+<a name="l-141"></a><span class="tm">18:25:37</span><span class="nk"> &lt;jieryn&gt;</span> ok :)
+<a name="l-142"></a><span class="tm">18:25:39</span><span class="nk"> &lt;kohsuke&gt;</span> yay, thanks for doing it!
+<a name="l-143"></a><span class="tm">18:25:59</span><span class="nk"> &lt;jieryn&gt;</span> so we currently have two separate jenkins building all the plugins
+<a name="l-144"></a><span class="tm">18:26:00</span><span class="nk"> &lt;kohsuke&gt;</span> My understanding is that we want DEV@cloud for this, and I have an action to install relevant plugins there
+<a name="l-145"></a><span class="tm">18:26:26</span><span class="nk"> &lt;jieryn&gt;</span> yes, it would be great if it could be monitoring the pull requests
+<a name="l-146"></a><span class="tm">18:26:31</span><span class="nk"> &lt;jieryn&gt;</span> as well as updating jira
+<a name="l-147"></a><span class="tm">18:27:17</span><span class="nk"> &lt;kohsuke&gt;</span> I think we can make it all work unless recampbell feel otherwise
+<a name="l-148"></a><span class="tm">18:27:17</span><span class="nk"> &lt;jieryn&gt;</span> creating new jobs is fairly painless given the template system ndeloof put in place
+<a name="l-149"></a><span class="tm">18:27:35</span><span class="nk"> &lt;kohsuke&gt;</span> and it's something we should put into ircbot
+<a name="l-150"></a><span class="tm">18:27:43</span><span class="nk"> &lt;jieryn&gt;</span> i think we may just want to investigate how do we add more people with the ability to create jobs and/or teach jenkins-admin how to do it
+<a name="l-151"></a><span class="tm">18:27:49</span><span class="nk"> &lt;kohsuke&gt;</span> or I guess better yet, auto-generate them for all plugins?
+<a name="l-152"></a><span class="tm">18:28:19</span><span class="nk"> &lt;jieryn&gt;</span> nightly scan the github organization and create missing ones
+<a name="l-153"></a><span class="tm">18:28:25</span><span class="nk"> &lt;kohsuke&gt;</span> yeah, something like that
+<a name="l-154"></a><span class="tm">18:28:33</span><span class="nk"> &lt;jieryn&gt;</span> safe to assume anything with -plugin in the repo name
+<a name="l-155"></a><span class="tm">18:28:46</span><span class="nk"> &lt;kohsuke&gt;</span> yes
+<a name="l-156"></a><span class="tm">18:28:48</span><span class="nk"> &lt;jieryn&gt;</span> dunno if we want everything? i suppose it wouldn't hurt
+<a name="l-157"></a><span class="tm">18:29:09</span><span class="nk"> &lt;kohsuke&gt;</span> we can disable it if it's unwanted
+<a name="l-158"></a><span class="tm">18:29:42</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to write a scanner that auto-adds Jenkins jobs for plugins</span>
+<a name="l-159"></a><span class="tm">18:30:15</span><span class="nk"> &lt;jieryn&gt;</span> can we action recampbell to install jira plugin? :)
+<a name="l-160"></a><span class="tm">18:30:37</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to split buildhive code into smaller pieces and install them to jenkins.ci.cloudbees.com</span>
+<a name="l-161"></a><span class="tm">18:30:40</span><span class="nk"> &lt;recampbell&gt;</span> sure, on which instance? are we talking about buildhive or jenkins.ci?
+<a name="l-162"></a><span class="tm">18:30:49</span><span class="nk"> &lt;kohsuke&gt;</span> jenkins.ci.cloudbees.com
+<a name="l-163"></a><span class="tm">18:31:00</span><span class="nk"> &lt;recampbell&gt;</span> kohsuke, lots of people have asked for that action
+<a name="l-164"></a><span class="tm">18:31:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#action </span><span class="cmdline">recampbell to install JIRA plugin on jenkins.ci.cloudbees.com</span>
+<a name="l-165"></a><span class="tm">18:31:24</span><span class="nk"> &lt;jieryn&gt;</span> is the pull request monitor thing available?
+<a name="l-166"></a><span class="tm">18:31:40</span><span class="nk"> &lt;kohsuke&gt;</span> not yet, but it can be made independent
+<a name="l-167"></a><span class="tm">18:31:47</span><span class="nk"> &lt;jieryn&gt;</span> ok no worries
+<a name="l-168"></a><span class="tm">18:32:04</span><span class="nk"> &lt;kohsuke&gt;</span> I consider that to be a part of "split buildhive code into smaller pieces" action
+<a name="l-169"></a><span class="tm">18:32:22</span><span class="nk"> &lt;kohsuke&gt;</span> I think we are done with this part of the agenda
+<a name="l-170"></a><span class="tm">18:32:26</span><span class="nk"> &lt;jieryn&gt;</span> ok
+<a name="l-171"></a><span class="tm">18:32:35</span><span class="nk"> &lt;kohsuke&gt;</span> ... unless you feel otherwise, that is
+<a name="l-172"></a><span class="tm">18:32:53</span><span class="nk"> &lt;jieryn&gt;</span> think this is very good
+<a name="l-173"></a><span class="tm">18:32:58</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting time</span>
+<a name="l-174"></a><span class="tm">18:33:13</span><span class="nk"> &lt;kohsuke&gt;</span> So the main question is if we should meet in 2 weeks or in 4 weeks
+<a name="l-175"></a><span class="tm">18:33:53</span><span class="nk"> &lt;kohsuke&gt;</span> Looks like 4 weeks is OK
+<a name="l-176"></a><span class="tm">18:34:03</span><span class="nk"> &lt;jieryn&gt;</span> 4 is fine, but need more reminders
+<a name="l-177"></a><span class="tm">18:34:07</span><span class="nk"> &lt;jieryn&gt;</span> missing it will be doubly bad
+<a name="l-178"></a><span class="tm">18:34:23</span><span class="nk"> &lt;kohsuke&gt;</span> That's true. So maybe having a shorter one 2 weeks is actually better to solicit attendance
+<a name="l-179"></a><span class="tm">18:34:28</span><span class="nk"> &lt;kohsuke&gt;</span> I'm fine either way
+<a name="l-180"></a><span class="tm">18:34:54</span><span class="nk"> &lt;kohsuke&gt;</span> Yeah, sticking to biweekly might be better to prevent people from forgetting
+<a name="l-181"></a><span class="tm">18:35:16</span><span class="nk"> &lt;recampbell&gt;</span> JIRA plugin will be installed after jenkins.ci.cloudbees.com restarts. "JIRA issue updater plugin" was already installed.
+<a name="l-182"></a><span class="tm">18:35:24</span><span class="nk"> &lt;kohsuke&gt;</span> I'm inclined to go back to bi-weekly
+<a name="l-183"></a><span class="tm">18:35:26</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">recampbell:</span> thanks!
+<a name="l-184"></a><span class="tm">18:35:33</span><span class="nk"> &lt;recampbell&gt;</span> np
+<a name="l-185"></a><span class="tm">18:35:52</span><span class="nk"> &lt;kohsuke&gt;</span> The same time in 6/13 OK?
+<a name="l-186"></a><span class="tm">18:35:57</span><span class="nk"> &lt;hare_brain&gt;</span> I prefer bi-weekly as well. Other potential with monthly is a backlog of agenda items that would need more time to get through
+<a name="l-187"></a><span class="tm">18:36:33</span><span class="nk"> &lt;hare_brain&gt;</span> I'll be on vacation, but have the meeting on 6/13 anyway.
+<a name="l-188"></a><span class="tm">18:36:39</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">next meeting time is 6/13, same time (11am pacific time)</span>
+<a name="l-189"></a><span class="tm">18:36:47</span><span class="nk"> &lt;abayer&gt;</span> Oh, crap, meeting. Sorry, guys.
+<a name="l-190"></a><span class="tm">18:36:52</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>

@@ -1,0 +1,81 @@
+18:01:05 <oleg-nenashev> #startmeeting
+18:01:05 <robobutler> Let the Jenkins meeting commence!
+18:01:14 <oleg-nenashev> Gonna be a quick one
+18:01:27 <oleg-nenashev> #info Agenda: https://docs.google.com/document/d/11Nr8QpqYgBiZjORplL_3Zkwys2qK1vEvK-NYyYa4rzg/edit#heading=h.vylsknw2s91m
+18:01:40 <oleg-nenashev> #topic Jenkins 2.204.3..2.204.5 regressions. Retrospective and Feedback
+18:01:59 <oleg-nenashev> #info Dev list thread: https://groups.google.com/forum/#!topic/jenkinsci-dev/d9lgjbruRno
+18:02:19 <oleg-nenashev> #info Google Doc with retro: https://docs.google.com/document/d/1NzR1XtkCfk6MDSD1jRq5H-iPSjqKvP-pfUO0b9lVZ9k/edit?usp=sharing
+18:02:45 <oleg-nenashev> First of all, apologies to everyone who got affected by regressions
+18:03:00 <rtyler> wooo
+18:03:09 <oleg-nenashev> We will be running a public retro to see how we could improve the processes
+18:03:16 <oleg-nenashev> TL;DR: boom
+18:03:37 <Slide-O-Mix> I like it being a publi retrospective for sure
+18:03:43 <oleg-nenashev> We had 3 LTS releases and 4 weeklies over 10 days. Was kinda :fun"
+18:03:54 <Slide-O-Mix> for some value of fun
+18:03:58 <markewaite> :)
+18:04:15 <oleg-nenashev> https://www.urbandictionary.com/define.php?term=losing%20is%20fun
+18:04:30 <oleg-nenashev> But yes, we are doing a retro
+18:04:45 <oleg-nenashev> Thanks to all contributors who helped to stabilize the releases
+18:05:08 <oleg-nenashev> And special thanks to KK for shipping them
+18:05:25 <Slide-O-Mix> yet another example of a time it would be nice to have that code signing cert
+18:05:33 <oleg-nenashev> you bet
+18:05:59 <oleg-nenashev> #info Code signing certificate status: https://groups.google.com/forum/#!msg/jenkinsci-dev/33TQbrN-kj8/6XLZ3l3bBwAJ
+18:06:11 <oleg-nenashev> TL;DR: legal blackhole, no ETA
+18:06:41 <Slide-O-Mix> There is google dock with retro info, correct?
+18:06:44 <Slide-O-Mix> s/dock/doc
+18:06:52 <oleg-nenashev> Kudos to olblak for patiently driving this story with CDF
+18:07:03 <oleg-nenashev> Slide-O-Mix: https://docs.google.com/document/d/1NzR1XtkCfk6MDSD1jRq5H-iPSjqKvP-pfUO0b9lVZ9k/edit?usp=sharing
+18:07:17 <Slide-O-Mix> Looks good
+18:07:22 <oleg-nenashev> There is a number of actions discussed there
+18:07:49 <oleg-nenashev> #info 2.225 and 2.204.5 Look to be stable
+18:08:03 <Slide-O-Mix> I am using 2.204.5 and it looks good, I am even using a wildcard cert
+18:09:06 <oleg-nenashev> One of head-ups I did not mention is that I will be taking a break in Jenkins Core PR reviews&etc. Needs some time to recover and to get GSoC over the line
+18:09:41 <Slide-O-Mix> Sounds like a good idea, I think we've added some additional members to the review team, so hopefully they can shoulder some of the weight of the reviews
+18:10:03 <oleg-nenashev> I will send an official message to the dev list. I will be still available for urgent reviews, and I will be helping with backporting reviews. Also, I will setup a channel for KTs to other Core maintainers
+18:10:42 <oleg-nenashev> Yes,
+18:10:58 <oleg-nenashev> I am not a bottleneck in the Core PRs now
+18:11:23 <oleg-nenashev> Special thanks to timja and res0nance for a great job with reviewing almost every new pull request
+18:11:31 <Slide-O-Mix> +1 on that
+18:12:19 <oleg-nenashev> Anything else w.r.t the regressions?
+18:12:40 <Slide-O-Mix> Are there any tests we can add?
+18:12:50 <Slide-O-Mix> oh, it looks like that is covered in the doc
+18:13:00 <oleg-nenashev> Yes. We need a lot of them
+18:13:13 <oleg-nenashev> HTTPs mode in Jetty had no test coverage at all
+18:13:37 <oleg-nenashev> Actually, I am not sure we even support it now
+18:13:54 <oleg-nenashev> Might be a topic for Platform SIG to discuss, CC markewaite
+18:14:23 <Slide-O-Mix> I use HTTPs mode with no container
+18:14:30 <oleg-nenashev> But yeah, any test contributions are as appreciated as code ones
+18:14:33 <Slide-O-Mix> It works
+18:14:48 <oleg-nenashev> So, maybe we should make it official
+18:15:02 <oleg-nenashev> Or even discuss dropping HTTP support in Jenkns, yeye
+18:15:21 <Slide-O-Mix> I don't know if we can go that far, there are a lot of people who can't get certs and would have issues :)
+18:15:33 <oleg-nenashev> Our users will *love* that, idea for a first April blog
+18:15:38 <Slide-O-Mix> hehehe
+18:16:40 <oleg-nenashev> #action oleg-nenashev Slide-O-Mix markewaite To discuss HTTPs support in the platform SIG
+18:16:46 <oleg-nenashev> Same for HTTP/2 , maybe
+18:17:05 <Slide-O-Mix> +1
+18:17:23 <oleg-nenashev> #action oleg-nenashev Slide-O-Mix markewaite To discuss HTTP/2 support in the platform SIG
+18:18:08 <oleg-nenashev> OK. Any other feedback from the retrospective? markewaite rtyler did you get affected?
+18:18:43 <oleg-nenashev> going 5
+18:18:48 <rtyler> I didn't
+18:18:48 <markewaite> Was not affected other than trying to help with delivery of the new releases. I use nginx and Let's Encrypt for the https interface to my Jenkins server
+18:19:00 <oleg-nenashev> thanks!
+18:19:21 <oleg-nenashev> I'd guess that's it
+18:19:35 <oleg-nenashev> #topic next meeting
+18:19:48 <oleg-nenashev> Mar 25 is fine with me
+18:19:55 <Slide-O-Mix> +1
+18:20:17 <oleg-nenashev> I have no travel plans... Same for others, I'd guess
+18:20:24 <markewaite> +1
+18:20:32 <oleg-nenashev> #info Next meeting - Mar 25
+18:20:41 <oleg-nenashev> I will have at least 2 topics for voting
+18:21:00 <oleg-nenashev> Any other topics for today?
+18:21:04 <Slide-O-Mix> None from me
+18:21:27 <oleg-nenashev> 5
+18:21:32 <oleg-nenashev> 4
+18:21:37 <oleg-nenashev> 3
+18:21:39 <oleg-nenashev> 2
+18:21:45 <oleg-nenashev> 1
+18:21:46 <rtyler> <_<
+18:21:56 <oleg-nenashev> We need a bot for that :)
+18:21:59 <oleg-nenashev> Thanks all!
+18:22:06 <oleg-nenashev> #endmeeting

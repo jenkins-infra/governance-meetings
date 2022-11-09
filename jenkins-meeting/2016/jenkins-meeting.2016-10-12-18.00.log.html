@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app222.us.archive.org';v.server_ms=189;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-10-12-18.00.log.html","20211020073714","https://web.archive.org/","web","/_static/",
+	      "1634715434");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:13</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:13</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:29</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">kohsuke rtyler</span>
+<a name="l-4"></a><span class="tm">18:00:29</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:42</span><span class="nk"> &lt;danielbeck&gt;</span> a packed agenda today: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+<a name="l-6"></a><span class="tm">18:00:51</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Recap last meeting's actions</span>
+<a name="l-7"></a><span class="tm">18:00:56</span><span class="nk"> &lt;danielbeck&gt;</span> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-09-28-18.00.html
+<a name="l-8"></a><span class="tm">18:01:25</span><span class="nk"> &lt;danielbeck&gt;</span> I did record the trademark usage at https://wiki.jenkins-ci.org/display/JENKINS/Approved+Trademark+Usage
+<a name="l-9"></a><span class="tm">18:01:35</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev batmat kohsuke how about you?
+<a name="l-10"></a><span class="tm">18:02:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Still at the meeting
+<a name="l-11"></a><span class="tm">18:02:22</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">danielbeck:</span> done, the reminder to mentors... Ahem
+<a name="l-12"></a><span class="tm">18:02:29</span><span class="nk"> &lt;batmat&gt;</span> 45 sec ago
+<a name="l-13"></a><span class="tm">18:02:36</span><span class="nk"> &lt;danielbeck&gt;</span> :-)
+<a name="l-14"></a><span class="tm">18:02:41</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke did release 2.19.1
+<a name="l-15"></a><span class="tm">18:02:51</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev want me to skip your items today?
+<a name="l-16"></a><span class="tm">18:03:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nope, I'll be available within a couple of meetings
+<a name="l-17"></a><span class="tm">18:03:32</span><span class="nk"> &lt;ogondza&gt;</span> I hate those days
+<a name="l-18"></a><span class="tm">18:03:40</span><span class="nk"> &lt;danielbeck&gt;</span> let's skip oleg-nenashev's recap from last time, and move on to…
+<a name="l-19"></a><span class="tm">18:03:47</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-20"></a><span class="tm">18:03:50</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza \o/
+<a name="l-21"></a><span class="tm">18:03:55</span><span class="nk"> &lt;kohsuke&gt;</span> I'm here
+<a name="l-22"></a><span class="tm">18:04:01</span><span class="nk"> &lt;kohsuke&gt;</span> Sorry it took a bit
+<a name="l-23"></a><span class="tm">18:04:10</span><span class="nk"> &lt;ogondza&gt;</span> I am ready for rc
+<a name="l-24"></a><span class="tm">18:04:26</span><span class="nk"> &lt;ogondza&gt;</span> unless someone feels strongly for lts candidates added in last minute
+<a name="l-25"></a><span class="tm">18:04:36</span><span class="nk"> &lt;ogondza&gt;</span> https://issues.jenkins-ci.org/issues/?filter=12146
+<a name="l-26"></a><span class="tm">18:04:40</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza I actually have one :(
+<a name="l-27"></a><span class="tm">18:04:59</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza https://issues.jenkins-ci.org/browse/JENKINS-18114
+<a name="l-28"></a><span class="tm">18:05:11</span><span class="nk"> &lt;ogondza&gt;</span> that seems important enough
+<a name="l-29"></a><span class="tm">18:05:12</span><span class="nk"> &lt;danielbeck&gt;</span> it's only in 2.24, but you included executable-war as well
+<a name="l-30"></a><span class="tm">18:05:31</span><span class="nk"> &lt;danielbeck&gt;</span> they really work best in combination
+<a name="l-31"></a><span class="tm">18:05:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> makes sense to port it
+<a name="l-32"></a><span class="tm">18:06:19</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbeck:</span> wdym by rarely work?
+<a name="l-33"></a><span class="tm">18:06:59</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza _really_
+<a name="l-34"></a><span class="tm">18:07:17</span><span class="nk"> &lt;danielbeck&gt;</span> ogondza you backported fixes related to CLI by updating executable-war, but without this one, it will still not work out of the bo
+<a name="l-35"></a><span class="tm">18:07:18</span><span class="nk"> &lt;danielbeck&gt;</span> x
+<a name="l-36"></a><span class="tm">18:07:18</span><span class="nk"> &lt;ogondza&gt;</span> oh, that makes lot more sense :)
+<a name="l-37"></a><span class="tm">18:07:21</span><span class="nk"> &lt;danielbeck&gt;</span> I think
+<a name="l-38"></a><span class="tm">18:07:55</span><span class="nk"> &lt;danielbeck&gt;</span> also, it's a pretty safe change
+<a name="l-39"></a><span class="tm">18:07:56</span><span class="nk"> &lt;ogondza&gt;</span> ok, i will add JENKINS-18114 and push rc tomorrow morning
+<a name="l-40"></a><span class="tm">18:08:28</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to include JENKINS-18114 and push RC</span>
+<a name="l-41"></a><span class="tm">18:08:42</span><span class="nk"> &lt;danielbeck&gt;</span> anything else for RC?
+<a name="l-42"></a><span class="tm">18:08:51</span><span class="nk"> &lt;ogondza&gt;</span> none from me
+<a name="l-43"></a><span class="tm">18:08:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> no from me
+<a name="l-44"></a><span class="tm">18:08:55</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Bumping Jenkins core to Remoting 3</span>
+<a name="l-45"></a><span class="tm">18:08:59</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev your turn
+<a name="l-46"></a><span class="tm">18:09:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Remoting 3 offers a new JNLP4 protocol (Adds Java NIO compared to JNLP3 + stability fixes)</span>
+<a name="l-47"></a><span class="tm">18:09:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Remoting 3 is formally incompatible: Java 6 support drop from slaves, also JnlpServerHandshake rework: https://github.com/jenkinsci/jenkins/pull/2492</span>
+<a name="l-48"></a><span class="tm">18:09:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">stephenc checked known OSS and closed-source implementations, no real compatibility issues</span>
+<a name="l-49"></a><span class="tm">18:09:50</span><span class="nk"> &lt;kohsuke&gt;</span> We don't normally discuss technical changes in this forum, is this one different?
+<a name="l-50"></a><span class="tm">18:09:52</span><span class="nk"> &lt;danielbeck&gt;</span> TBH I really don't understand why this is a project meeting topic without (?) thread on the dev list…
+<a name="l-51"></a><span class="tm">18:10:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So I would like to discuss if we could merge it into one of incoming Jenkins 2.x  releases
+<a name="l-52"></a><span class="tm">18:10:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> kohsuke danielbeck: Well, we DO discuss technical changes. Got a request for such discussion in jenkinsci-ru chat
+<a name="l-53"></a><span class="tm">18:11:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Unfortunately that guy have not joined this meeting (not KostyaSha)
+<a name="l-54"></a><span class="tm">18:11:18</span><span class="nk"> &lt;kohsuke&gt;</span> What was his/her concern?
+<a name="l-55"></a><span class="tm">18:11:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 1) Java 7 bump
+<a name="l-56"></a><span class="tm">18:11:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2) Compatibility loss
+<a name="l-57"></a><span class="tm">18:12:04</span><span class="nk"> &lt;kohsuke&gt;</span> But we already rqeuires Java7
+<a name="l-58"></a><span class="tm">18:12:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I think Concern #2 is actually addressed by the research by stephenc
+<a name="l-59"></a><span class="tm">18:12:27</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Not for agents AFAIK
+<a name="l-60"></a><span class="tm">18:12:38</span><span class="nk"> &lt;jglick&gt;</span> Sure we do.
+<a name="l-61"></a><span class="tm">18:12:44</span><span class="nk"> &lt;jglick&gt;</span> Agents load the same classes as master does.
+<a name="l-62"></a><span class="tm">18:12:45</span><span class="nk"> &lt;danielbeck&gt;</span> as soon as they get sent a class they break
+<a name="l-63"></a><span class="tm">18:12:52</span><span class="nk"> &lt;jglick&gt;</span> And core &amp; plugins define classes with `-target 7`.
+<a name="l-64"></a><span class="tm">18:13:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> @info https://jenkins.io/blog/2015/04/06/good-bye-java6/
+<a name="l-65"></a><span class="tm">18:13:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/blog/2015/04/06/good-bye-java6/</span>
+<a name="l-66"></a><span class="tm">18:13:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Well, it's not explicit
+<a name="l-67"></a><span class="tm">18:13:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> One can make the slaves work on Java 6
+<a name="l-68"></a><span class="tm">18:13:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But I agree that generally we drop the support
+<a name="l-69"></a><span class="tm">18:13:42</span><span class="nk"> &lt;danielbeck&gt;</span> Could we move this topic to the dev list and move on? Or what do you expect to get from this discussion?
+<a name="l-70"></a><span class="tm">18:13:42</span><span class="nk"> &lt;kohsuke&gt;</span> Anyway, my suggestion is that we agree here that this change can proceed like any other changes
+<a name="l-71"></a><span class="tm">18:13:59</span><span class="nk"> &lt;jglick&gt;</span> During the provisional period you could. But not now.
+<a name="l-72"></a><span class="tm">18:14:06</span><span class="nk"> &lt;kohsuke&gt;</span> PR reviews and if a dev list thread is warranted, have that as well.
+<a name="l-73"></a><span class="tm">18:14:26 </span><span class="nka">* jglick</span> <span class="ac">agrees</span>
+<a name="l-74"></a><span class="tm">18:14:37</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev opposed to moving this to the dev list?
+<a name="l-75"></a><span class="tm">18:14:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> I expect us to agree if we can proceed in general (no SLA blockers).
+<a name="l-76"></a><span class="tm">18:15:05</span><span class="nk"> &lt;kohsuke&gt;</span> I appreciate the extra due diligence about the compatibility implication - I think that work makes this change the same level as other "regular" changes
+<a name="l-77"></a><span class="tm">18:15:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> Nope, I agree with it since nobody sees blockers here
+<a name="l-78"></a><span class="tm">18:15:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action: </span><span class="cmdline">oleg-nenashev to follow-up in the ML</span>
+<a name="l-79"></a><span class="tm">18:15:29</span><span class="nk"> &lt;batmat&gt;</span> +1 for that, and even more. We should at some point just enforce the agent uses the same JVM version at the master it's connected to.
+<a name="l-80"></a><span class="tm">18:15:43</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">remoting3 integration can proceed like any other technical changes, no further blessing from this meeting needed</span>
+<a name="l-81"></a><span class="tm">18:15:50</span><span class="nk"> &lt;danielbeck&gt;</span> +1
+<a name="l-82"></a><span class="tm">18:15:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-83"></a><span class="tm">18:16:08</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Out-of-order Jenkins Weekly release in order to get better soak testing for 2.19.3</span>
+<a name="l-84"></a><span class="tm">18:16:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Thanks, we cone move on IMHO
+<a name="l-85"></a><span class="tm">18:16:40</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev this one is also yours
+<a name="l-86"></a><span class="tm">18:17:15</span><span class="nk"> &lt;kohsuke&gt;</span> Producing more weekly releases is easy but we've only done it in the past for emergency bug fixes
+<a name="l-87"></a><span class="tm">18:17:19</span><span class="nk"> &lt;kohsuke&gt;</span> What's the motivation here?
+<a name="l-88"></a><span class="tm">18:17:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have some changes, which may require extra soaking before backporing into .3
+<a name="l-89"></a><span class="tm">18:17:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> No emergency fix in general
+<a name="l-90"></a><span class="tm">18:18:13</span><span class="nk"> &lt;danielbeck&gt;</span> wouldn't that add at most 4 days to soaking, half of which is weekend?
+<a name="l-91"></a><span class="tm">18:18:20</span><span class="nk"> &lt;jglick&gt;</span> So, you are trying to get some more guinea pigs before putting something in an LTS? Should that not tell you that it is not a suitable LTS candidate to begin with?
+<a name="l-92"></a><span class="tm">18:18:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">jglick:</span> Isn't what we use Weekly's for? :)
+<a name="l-93"></a><span class="tm">18:19:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> Yes, maybe it's not that relevant
+<a name="l-94"></a><span class="tm">18:19:13</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain</span>
+<a name="l-95"></a><span class="tm">18:19:13</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-96"></a><span class="tm">18:19:44</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev do you have a specific change and release date for an extra weekly in mind?
+<a name="l-97"></a><span class="tm">18:19:51</span><span class="nk"> &lt;danielbeck&gt;</span> It's still unclear to me what this is about
+<a name="l-98"></a><span class="tm">18:20:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> remoting .2 patch, fixes for JS loading, JENKINS-38814
+<a name="l-99"></a><span class="tm">18:20:37</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But yeah, 4 days is actually not that relevant
+<a name="l-100"></a><span class="tm">18:20:43</span><span class="nk"> &lt;kohsuke&gt;</span> Maybe another way to ask this question is how important is it for you to get those changes in
+<a name="l-101"></a><span class="tm">18:21:02</span><span class="nk"> &lt;kohsuke&gt;</span> IIRC we have in the past pushed some changes into LTS that doesn't technically speaking meet the bar
+<a name="l-102"></a><span class="tm">18:21:22</span><span class="nk"> &lt;danielbeck&gt;</span> the next LTS backporting window closes in 4 weeks, which is more than necessary to soak (for 3.5 weeks once in 2.26)
+<a name="l-103"></a><span class="tm">18:21:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> By now we can meet the bar
+<a name="l-104"></a><span class="tm">18:21:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So I think I should not created this discussion item
+<a name="l-105"></a><span class="tm">18:22:13</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev to clarify, you're dropping this topic?
+<a name="l-106"></a><span class="tm">18:22:19</span><span class="nk"> &lt;kohsuke&gt;</span> spinning more release is not a problem, the sense that we are trying to expedite some issues is
+<a name="l-107"></a><span class="tm">18:22:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep, expedite by several days
+<a name="l-108"></a><span class="tm">18:22:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So likely no sense
+<a name="l-109"></a><span class="tm">18:23:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#decision: </span><span class="cmdline">No out-of-order release</span>
+<a name="l-110"></a><span class="tm">18:23:10</span><span class="nk"> &lt;danielbeck&gt;</span> okay, let's move on…
+<a name="l-111"></a><span class="tm">18:23:11</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="hi">danielbeck:</span> moving on
+<a name="l-112"></a><span class="tm">18:23:14</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">IntelliJ license handling</span>
+<a name="l-113"></a><span class="tm">18:23:38</span><span class="nk"> &lt;danielbeck&gt;</span> This was last discussed earlier this year, and batmat said he'd look into managing the licenses for the project
+<a name="l-114"></a><span class="tm">18:24:03</span><span class="nk"> &lt;danielbeck&gt;</span> unfortunately, since then he's no longer eligible to do this due to restrictions on commercial applications
+<a name="l-115"></a><span class="tm">18:24:41</span><span class="nk"> &lt;danielbeck&gt;</span> so if anyone else wants to take over, let us know
+<a name="l-116"></a><span class="tm">18:24:54 </span><span class="nka">* oleg-nenashev</span> <span class="ac">is fine with NetBeans</span>
+<a name="l-117"></a><span class="tm">18:24:56</span><span class="nk"> &lt;kohsuke&gt;</span> FWIW community version works just fine
+<a name="l-118"></a><span class="tm">18:25:00</span><span class="nk"> &lt;danielbeck&gt;</span> otherwise, there will be no IntelliJ IDEA licenses for the project in the foreseeable future
+<a name="l-119"></a><span class="tm">18:25:39</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://www.jetbrains.com/buy/opensource/?product=idea</span>
+<a name="l-120"></a><span class="tm">18:26:03</span><span class="nk"> &lt;danielbeck&gt;</span> that's it from me unless someone wants to step forward :)
+<a name="l-121"></a><span class="tm">18:26:16</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">if anyone wants to lead the application to the OSS license of IntelliJ, s/he needs to step up</span>
+<a name="l-122"></a><span class="tm">18:26:20</span><span class="nk"> &lt;kohsuke&gt;</span> let's move on
+<a name="l-123"></a><span class="tm">18:26:23</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Moving Governance Meetings to UTC</span>
+<a name="l-124"></a><span class="tm">18:26:27</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev this is yours
+<a name="l-125"></a><span class="tm">18:26:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">Reason:</span> Incoming TZ changes in US and European countries
+<a name="l-126"></a><span class="tm">18:26:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It usually causes a mess in meetings
+<a name="l-127"></a><span class="tm">18:27:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Since the Jenkins community is distributed, I propose to switch to UTC
+<a name="l-128"></a><span class="tm">18:27:28</span><span class="nk"> &lt;danielbeck&gt;</span> yeah, having to remember when the US changes DST (in addition to my own country) is really annoying
+<a name="l-129"></a><span class="tm">18:27:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Then everybody will have to deal with his own TZ only
+<a name="l-130"></a><span class="tm">18:27:56</span><span class="nk"> &lt;kohsuke&gt;</span> On more practical matter, how do you create a recurring meeting on a calendar that's locked to a specific time zone?
+<a name="l-131"></a><span class="tm">18:28:02 </span><span class="nka">* batmat</span> <span class="ac">basically don't care since he's subscribed to the agenda and this is adjusted automatically</span>
+<a name="l-132"></a><span class="tm">18:28:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> Jenkins account just needs to have a UTC timezone (AFAIK it is)
+<a name="l-133"></a><span class="tm">18:29:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Well, you will still have to handle all overlaps with company meetings
+<a name="l-134"></a><span class="tm">18:29:17</span><span class="nk"> &lt;danielbeck&gt;</span> kohsuke Does the 'time zone' link in Google calendar when editing the event not work?
+<a name="l-135"></a><span class="tm">18:29:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">batmat:</span> ^
+<a name="l-136"></a><span class="tm">18:29:41</span><span class="nk"> &lt;kohsuke&gt;</span> oh I guess I didn't know that
+<a name="l-137"></a><span class="tm">18:30:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So should we just vote them? IIRC danielbeck was proposing to move it to ML as well
+<a name="l-138"></a><span class="tm">18:30:41</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev well, would be good to not exclude those who usually attend but not today
+<a name="l-139"></a><span class="tm">18:31:11</span><span class="nk"> &lt;danielbeck&gt;</span> but we can vote and if this passes inform the dev list, if there are complaints we can always reconsider
+<a name="l-140"></a><span class="tm">18:31:20</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">oleg-nenashev:</span> well, what's for sure is that I'm always notified at the right time on my phone agenda. So either someone updates it manually, or it's automatically localized
+<a name="l-141"></a><span class="tm">18:31:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 for voting
+<a name="l-142"></a><span class="tm">18:31:57</span><span class="nk"> &lt;batmat&gt;</span> But I'm all +1 if this can make it simpler for anyone else
+<a name="l-143"></a><span class="tm">18:32:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1 as a topicstarter
+<a name="l-144"></a><span class="tm">18:32:19</span><span class="nk"> &lt;alyssat&gt;</span> +1
+<a name="l-145"></a><span class="tm">18:32:32</span><span class="nk"> &lt;kohsuke&gt;</span> I'm -0. Aside from a few weeks in a year where it moves around to European, this does keep the meeting at the same time for most people in US &amp; Europe
+<a name="l-146"></a><span class="tm">18:33:36</span><span class="nk"> &lt;kohsuke&gt;</span> IIUC, the majority of attendees  live in areas that have DST.
+<a name="l-147"></a><span class="tm">18:33:39</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Well, there are countries without TZ whitches OR with TZ switches on other date
+<a name="l-148"></a><span class="tm">18:33:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The latter case is especially fun
+<a name="l-149"></a><span class="tm">18:34:01</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev that's the few weeks KK mentioned
+<a name="l-150"></a><span class="tm">18:34:20</span><span class="nk"> &lt;danielbeck&gt;</span> between US DST and EU DST it changes time, then returns to normal
+<a name="l-151"></a><span class="tm">18:35:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> So are you -1?
+<a name="l-152"></a><span class="tm">18:35:17</span><span class="nk"> &lt;danielbeck&gt;</span> no, I'm +1 at least as experiment
+<a name="l-153"></a><span class="tm">18:35:19</span><span class="nk"> &lt;kohsuke&gt;</span> We also have iCal feed for those of us who use some calendar
+<a name="l-154"></a><span class="tm">18:35:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So I think we have an agreement
+<a name="l-155"></a><span class="tm">18:35:36</span><span class="nk"> &lt;batmat&gt;</span> For me, I think there's one, or two meetings max that are shifted. Then it realigns
+<a name="l-156"></a><span class="tm">18:36:03</span><span class="nk"> &lt;kohsuke&gt;</span> So what's the new time?
+<a name="l-157"></a><span class="tm">18:36:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Same as now, but UTC?
+<a name="l-158"></a><span class="tm">18:36:27</span><span class="nk"> &lt;batmat&gt;</span> 18:00 UTC is the typical time
+<a name="l-159"></a><span class="tm">18:36:42</span><span class="nk"> &lt;danielbeck&gt;</span> +1
+<a name="l-160"></a><span class="tm">18:37:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">Governance meetings will be held in UTC from now (6 PM UTC)</span>
+<a name="l-161"></a><span class="tm">18:37:26</span><span class="nk"> &lt;batmat&gt;</span> OMG, please not AM/PM
+<a name="l-162"></a><span class="tm">18:37:31</span><span class="nk"> &lt;batmat&gt;</span> this is wasting efforts :)
+<a name="l-163"></a><span class="tm">18:38:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">batmat:</span> What's wrong with 12:00AM ? :D
+<a name="l-164"></a><span class="tm">18:38:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Move on?
+<a name="l-165"></a><span class="tm">18:38:49</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Plugin site deployment to Jenkins project infra</span>
+<a name="l-166"></a><span class="tm">18:38:51</span><span class="nk"> &lt;batmat&gt;</span> Yeah, especially that one Oleg :)
+<a name="l-167"></a><span class="tm">18:39:06</span><span class="nk"> &lt;batmat&gt;</span> or 12:30 as some dare
+<a name="l-168"></a><span class="tm">18:39:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> What is the context?
+<a name="l-169"></a><span class="tm">18:39:32</span><span class="nk"> &lt;danielbeck&gt;</span> A few weeks back I asked for feedback to the plugin site
+<a name="l-170"></a><span class="tm">18:39:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Is it a Javadoc site or something else?
+<a name="l-171"></a><span class="tm">18:39:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Oh, plugin site
+<a name="l-172"></a><span class="tm">18:39:50</span><span class="nk"> &lt;batmat&gt;</span> Or do you mean the effort of Gus &amp; Michael
+<a name="l-173"></a><span class="tm">18:39:55</span><span class="nk"> &lt;danielbeck&gt;</span> yes, that one
+<a name="l-174"></a><span class="tm">18:40:02 </span><span class="nka">* batmat</span> <span class="ac">nods</span>
+<a name="l-175"></a><span class="tm">18:40:14</span><span class="nk"> &lt;danielbeck&gt;</span> the the replacement for https://wiki.jenkins-ci.org/display/JENKINS/Plugins
+<a name="l-176"></a><span class="tm">18:40:20</span><span class="nk"> &lt;batmat&gt;</span> \o/
+<a name="l-177"></a><span class="tm">18:40:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">https://groups.google.com/forum/#!searchin/jenkinsci-dev/Plugin$20site%7Csort:date/jenkinsci-dev/CCaGirnMSt8/BhwU5TehAQAJ</span>
+<a name="l-178"></a><span class="tm">18:40:26</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev thanks
+<a name="l-179"></a><span class="tm">18:40:38</span><span class="nk"> &lt;danielbeck&gt;</span> The effort has been nearing completion
+<a name="l-180"></a><span class="tm">18:40:41</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">Prototype: http://cloudbees-plugin-site-staging.s3-website-us-east-1.amazonaws.com/</span>
+<a name="l-181"></a><span class="tm">18:40:50</span><span class="nk"> &lt;danielbeck&gt;</span> Gus and Michael have incorporated much of the feedback we got
+<a name="l-182"></a><span class="tm">18:41:19</span><span class="nk"> &lt;danielbeck&gt;</span> a few comments were basically proposing a complete overhaul, so those didn't make it in
+<a name="l-183"></a><span class="tm">18:41:32</span><span class="nk"> &lt;danielbeck&gt;</span> and the site is now in a state that we can consider finished
+<a name="l-184"></a><span class="tm">18:41:46</span><span class="nk"> &lt;kohsuke&gt;</span> I think we gave enough heads up to the community, including Jenkins World keynote!
+<a name="l-185"></a><span class="tm">18:42:13</span><span class="nk"> &lt;kohsuke&gt;</span> How is the infra team sign-off?
+<a name="l-186"></a><span class="tm">18:42:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I'm still not happy about missing fixed search links (e.g. "all plugins mentioning Pipeline in the name"). But it's rather an improvement
+<a name="l-187"></a><span class="tm">18:42:41</span><span class="nk"> &lt;danielbeck&gt;</span> … and this is FYI that this is going to happen pretty soon, basically the next time rtyler has time to puppetize things
+<a name="l-188"></a><span class="tm">18:42:49</span><span class="nk"> &lt;batmat&gt;</span> I don't remember what's the take on that of robobutler
+<a name="l-189"></a><span class="tm">18:42:52</span><span class="nk"> &lt;batmat&gt;</span> oops
+<a name="l-190"></a><span class="tm">18:42:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> aha
+<a name="l-191"></a><span class="tm">18:42:57</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">rtyler:</span> I mean ^^^ :)
+<a name="l-192"></a><span class="tm">18:43:09 </span><span class="nka">* batmat</span> <span class="ac">haz otocomplession</span>
+<a name="l-193"></a><span class="tm">18:43:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So I'm +1 regarding deploying it
+<a name="l-194"></a><span class="tm">18:43:50</span><span class="nk"> &lt;kohsuke&gt;</span> +1, same here
+<a name="l-195"></a><span class="tm">18:44:28</span><span class="nk"> &lt;danielbeck&gt;</span> If all goes well, we'll have a plugin site on jenkins.io by the weekend \o/
+<a name="l-196"></a><span class="tm">18:44:50</span><span class="nk"> &lt;danielbeck&gt;</span> that's it from me on this topic, just a heads up
+<a name="l-197"></a><span class="tm">18:45:10</span><span class="nk"> &lt;kohsuke&gt;</span> <span class="cmd">#info </span><span class="cmdline">If all goes well, we'll have a plugin site on jenkins.io by the weekend \o/</span>
+<a name="l-198"></a><span class="tm">18:45:17</span><span class="nk"> &lt;danielbeck&gt;</span> :D
+<a name="l-199"></a><span class="tm">18:45:23</span><span class="nk"> &lt;batmat&gt;</span> +1.
+<a name="l-200"></a><span class="tm">18:45:28</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">Allowing interface implementations as Extension points in Jenkins</span>
+<a name="l-201"></a><span class="tm">18:45:34</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev another one of yours
+<a name="l-202"></a><span class="tm">18:46:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info: </span><span class="cmdline">https://github.com/jenkinsci/jenkins/pull/2566</span>
+<a name="l-203"></a><span class="tm">18:46:28</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Kinda "on behalf of ndeloof"
+<a name="l-204"></a><span class="tm">18:46:44</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev it appears the discussion has progressed since you proposed this topic, changing everything
+<a name="l-205"></a><span class="tm">18:46:52</span><span class="nk"> &lt;danielbeck&gt;</span> so we can probably just skip this topic
+<a name="l-206"></a><span class="tm">18:46:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> agreed
+<a name="l-207"></a><span class="tm">18:47:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#agreed: </span><span class="cmdline">Skip this topic for now</span>
+<a name="l-208"></a><span class="tm">18:47:28</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="topic">#topic </span><span class="topicline">next meeting</span>
+<a name="l-209"></a><span class="tm">18:47:38</span><span class="nk"> &lt;danielbeck&gt;</span> Oct 26
+<a name="l-210"></a><span class="tm">18:47:41</span><span class="nk"> &lt;danielbeck&gt;</span> 18:00 UTC
+<a name="l-211"></a><span class="tm">18:47:43</span><span class="nk"> &lt;danielbeck&gt;</span> !!!
+<a name="l-212"></a><span class="tm">18:48:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yey
+<a name="l-213"></a><span class="tm">18:48:13</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke or danielbeck to fix the event's time zone to match</span>
+<a name="l-214"></a><span class="tm">18:48:29</span><span class="nk"> &lt;danielbeck&gt;</span> so that batmat shows up on time :)
+<a name="l-215"></a><span class="tm">18:48:48</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 07:37:14 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:42:28 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 109.342
+  exclusion.robots: 0.137
+  exclusion.robots.policy: 0.125
+  RedisCDXSource: 20.033
+  esindex: 0.012
+  LoadShardBlock: 61.706 (3)
+  PetaboxLoader3.datanode: 51.914 (4)
+  CDXLines.iter: 23.011 (3)
+  load_resource: 62.389
+  PetaboxLoader3.resolve: 38.18
+-->

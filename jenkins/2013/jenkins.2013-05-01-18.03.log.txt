@@ -1,0 +1,44 @@
+18:03:37 <kohsuke> #startmeeting
+18:03:37 <robobutler> Let the Jenkins meeting commence!
+18:03:48 <kohsuke> #chair rtyler abayer hare_brain
+18:03:48 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+18:03:57 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:04:18 <kohsuke> #topic mirroring artifacts to Central
+18:04:28 <kohsuke> oh, jglick isn't here
+18:05:20 <hare_brain> I have a stupid question related to this topic though. What's the difference between oss.sonatype.org and repository.sonatype.org?
+18:05:41 <kohsuke> The main idea was that stephenc wanted us to start syncing more bits to central
+18:06:00 <abayer> I'm +1 on syncing to central. It'd be good form.
+18:06:01 <kohsuke> hare_brain: I think repository.sonatype.org is for them to release their own OSS bits
+18:06:23 <kohsuke> whereas oss.s.o is their service to the community to let people in the wild sync their bits to central
+18:06:49 <kohsuke> abayer: great
+18:07:08 <kohsuke> So what I'm going to do is to start syncing core to central as the first step, I think
+18:07:23 <kohsuke> I believe JFrog people told me that they can now do this
+18:07:32 <kohsuke> (presumably provided that bits are signed and all)
+18:08:04 <kohsuke> And we've volunteered stephenc to write a new plugin parent POM and start pushing that to central in a similar fashion
+18:08:19 <kohsuke> ... and at that point plugins can start building without <repository> entry in it, which is good
+18:08:36 <kohsuke> I think he has a grander plan, but we'll first see if we get to that point
+18:08:41 <abayer> heh
+18:09:06 <kohsuke> Getting to that point doesn't involve any changes in the plugin dev's life
+18:09:45 <kohsuke> OK, so that's that. Let's move on to the next topic...
+18:10:00 <kohsuke> #topic 1.509.1 status update
+18:10:12 <vjuranek> https://wiki.jenkins-ci.org/display/JENKINS/LTS+1.509.x+RC+Testing
+18:10:33 <vjuranek> testing is done (+ selenium test are passing), so IMHO we can release it
+18:10:45 <vjuranek> (and be prepare to release 1.509.2 soon :-)
+18:10:58 <kohsuke> There's two WARNs I see.
+18:11:03 <kohsuke> Is that a cause of concern?
+18:11:40 <kohsuke> I think we fixed JENKINS-17677. So that must be it
+18:11:44 <jenkins-admin> JENKINS-17677:Digest mismatch in update center for LTS 1.480.3 (Resolved) http://jenkins-ci.org/issue/17677
+18:12:10 <vjuranek> these are from mwaite spot on windows, and as I don't test on windows, I cannot provide more details than that
+18:12:27 <kohsuke> I think he put that text below the table
+18:12:41 <kohsuke> I think we are OK there
+18:12:50 <kohsuke> We fixed that on the server side in UC generator
+18:12:56 <kohsuke> in any case, I mainly just wanted to make sure vjuranek is happy
+18:13:07 <vjuranek> yes, I;m :-)
+18:13:15 <kohsuke> I'll spend the rest of today doing releases then
+18:14:08 <kohsuke> All right, that's it for today
+18:14:24 <kohsuke> #topic next meeting time
+18:14:36 <kohsuke> ... will be May 15th same time
+18:14:44 <hare_brain> ok
+18:14:52 <vjuranek> +1
+18:15:04 <kohsuke> ok, thanks everyone
+18:15:06 <kohsuke> #endmeeting

@@ -1,0 +1,137 @@
+18:01:40 <danielbeck> #startmeeting
+18:01:40 <robobutler> Let the Jenkins meeting commence!
+18:01:48 <danielbeck> #chair rtyler_ kohsuke hare_brain
+18:01:48 <robobutler> Current chairs: danielbeck hare_brain kohsuke rtyler_
+18:02:08 <danielbeck> agenda: https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda#GovernanceMeetingAgenda-Jan18meeting
+18:02:08 <kohsuke> Hi
+18:02:25 <danielbeck> #topic Recap last meeting's actions
+18:02:32 <danielbeck> #info http://meetings.jenkins-ci.org/jenkins-meeting/2017/jenkins-meeting.2017-01-04-18.00.html
+18:02:37 <danielbeck> no actions
+18:02:39 <danielbeck> that was quick
+18:02:47 <danielbeck> #topic LTS status check
+18:02:54 <danielbeck> ogondza you have the floor
+18:03:10 <ogondza> backporting is done
+18:03:22 <ogondza> I will push the RC tomorrow morning
+18:03:36 <danielbeck> great
+18:03:43 <ogondza> danielbeck: did you wanted the spelling fixes backported?
+18:04:03 <danielbeck> ogondza no, that was just whether a large scale PR like that would make backports difficult
+18:04:04 <ogondza> we can do changelog at any time
+18:04:22 <ogondza> I do not expect that
+18:04:41 <ogondza> that is it from me
+18:04:42 <danielbeck> (for context: I requested ogondza 's review on https://github.com/jenkinsci/jenkins/pull/2718 )
+18:04:47 <danielbeck> thanks!
+18:04:55 <danielbeck> #topic Review GSoC project application status'
+18:05:07 <danielbeck> no user name
+18:05:11 <danielbeck> so not sure who put this
+18:05:22 <danielbeck> rtyler_ did
+18:05:32 <danielbeck> but he's not around I think
+18:05:39 <danielbeck> anyone else know what needs to be done here?
+18:06:02 <danielbeck> apparently not
+18:06:13 <danielbeck> moving on…
+18:06:14 <kohsuke> I think it's tyler topic
+18:06:24 <danielbeck> right, but no details and no rtyler_
+18:06:55 <danielbeck> #topic Bug Triage Team Idea
+18:07:01 <danielbeck> Slide-O-Mix this is yours
+18:07:16 <Slide-O-Mix> Yup, so I have been looking at the issue tracker, there are ~6000 issues with no assignee
+18:07:29 <Slide-O-Mix> which means they probably will never get any traction, even a "not a bug" type look
+18:07:50 <Slide-O-Mix> My proposal would be to recruit a team of people to triage all the unassigned issues and assign them based on component
+18:08:14 <danielbeck> I can batch assign issues based on component but that doesn't help anyone
+18:08:20 <Slide-O-Mix> Second level triage would be to try and replicate the issue, if feasible and update
+18:08:38 <Slide-O-Mix> Agreed, I think eyes on the issues is key here
+18:08:39 <danielbeck> FWIW I review incoming core(ish) issues but that's all I have time for
+18:08:53 <Slide-O-Mix> which is why I would like to recruit people :)
+18:09:03 <danielbeck> I'd be happy to participate in something like that but it needs to be more limited in scope
+18:09:12 <Slide-O-Mix> What do you have in mind?
+18:10:08 <danielbeck> start with core + selected plugins (5000+ installs perhaps). Work by component. Close old issues. Close requests for help. Close unclear issues. Try to investigate the rest. Something like that.
+18:10:09 <jglick> FWIW I was trying to triage https://issues.jenkins-ci.org/issues/?jql=resolution%20%3D%20Unresolved%20and%20component%20%3D%20pipeline%20order%20by%20issuekey%20ASC for a while and I just ran out of time to do it regularly.
+18:10:25 <Slide-O-Mix> danielbeck: I agree with that
+18:10:34 <danielbeck> jglick shouldn't have written a plugin that's popular then ;-)
+18:10:43 <jglick> BTW issues with an assignee have not necessarily been triaged.
+18:10:44 <Slide-O-Mix> I'll write up a full proposal and post to the developers list
+18:10:55 <Slide-O-Mix> jglick: it's true, but the ones without are more low hanging
+18:10:55 <jglick> May just be a default assignee for the component.
+18:11:06 <danielbeck> Slide-O-Mix or perhaps just plugins that we recommend in the wizard. So people with the "default experience" are covered
+18:11:21 <Slide-O-Mix> danielbeck: yeah, I was about to say the same thing
+18:11:24 <kohsuke> +1 for more emphasis on default plugins
+18:11:27 <jglick> Some JIRA workflows let you have a `New` status distinct from `Open`.
+18:11:35 <danielbeck> Slide-O-Mix I'm +1 for doing something here, but unclear whether it's a "team" team, or just a group of volunteers
+18:12:00 <danielbeck> jglick that's something we could add as well
+18:12:13 <Slide-O-Mix> danielbeck: well, the case where it may be something for a team would be giving these people more "power" to close out issues without the component lead's go ahead
+18:12:36 <danielbeck> clearly you haven't looked at what I've been doing :-)
+18:12:48 <Slide-O-Mix> No, I haven't
+18:12:59 <danielbeck> It's reversible so closing issues isn't a big deal
+18:13:02 <kohsuke> Right, I think a bit of formality will help empower people
+18:13:07 <danielbeck> most users realize this and just reopen
+18:13:14 <kohsuke> danielbeck won't need it because of his credibility
+18:13:27 <Slide-O-Mix> Some component leads may not like it
+18:13:32 <Slide-O-Mix> exactly
+18:13:33 <kohsuke> But others can benefit from that
+18:13:42 <danielbeck> makes sense
+18:13:58 <Slide-O-Mix> I guess it depends on who volunteers, if its people who have the credibility, maybe we don't need any special "team"
+18:14:21 <kohsuke> If we have such eager plugin maintainers that we'd be fighting over who will touch tickets first, that sounds like a great problem to have :-)
+18:14:40 <Slide-O-Mix> Indeed!
+18:15:00 <kohsuke> But more seriously, if indeed such a situation arises I'm sure pretty quickly the team will learn to handle it accordingly
+18:15:06 <Slide-O-Mix> We would want to determine where to start as well...do we want to start with JENKINS-22 (which is still open) or start with more recent stuff
+18:15:20 <Slide-O-Mix> hmmm
+18:15:27 <danielbeck> Slide-O-Mix I'm looking forward to your thread
+18:15:27 <Slide-O-Mix> whoops, wrong window on the hmm
+18:15:36 <danielbeck> I've done a lot of this in the past several years
+18:15:38 <Slide-O-Mix> ok, I'll submit a proposal, I just wanted to determine if people were interested
+18:15:40 <danielbeck> so I have some experience
+18:15:43 <Slide-O-Mix> +1
+18:15:58 <danielbeck> Slide-O-Mix We won't know without asking
+18:16:25 <Slide-O-Mix> ok, that's it from me
+18:16:26 <danielbeck> Slide-O-Mix so, you're going to send your email to the dev list and we'll continue there?
+18:16:30 <Slide-O-Mix> yes
+18:16:43 <danielbeck> #action Slide-O-Mix to send email on bug triage team to the dev list
+18:16:52 <danielbeck> #topic JDK8 baseline upgrade news
+18:16:56 <danielbeck> batmat
+18:17:33 <danielbeck> seems he isn't around
+18:17:56 <danielbeck> #info Jenkins core now builds on Windows and is green \o/ (err, blue): https://github.com/jenkinsci/jenkins/pull/2698
+18:18:05 <danielbeck> #info PR for the public announcement is up for review: https://github.com/jenkins-infra/jenkins.io/pull/545
+18:18:14 <Slide-O-Mix> someone responded that there are failures that aren't causing the build to go to unstable
+18:18:24 <jglick> IIUC it is only blue by accident, actually failing.
+18:18:27 <danielbeck> Slide-O-Mix right, a JUnit bug possibly
+18:18:39 <danielbeck> but isn't that "just" Windows?
+18:18:42 <danielbeck> Unrelated to JDK 8?
+18:18:52 <Slide-O-Mix> No, there were some failures on Linux too I believe
+18:19:03 <Slide-O-Mix> It's only the build on ci.jenkins.io I believe
+18:19:14 <Slide-O-Mix> which uses the Jenkinsfile
+18:19:19 <teilo> yup that was me...  the windows build has lots of test failures but the pipeline/junit ignores them
+18:19:23 <Slide-O-Mix> I can reproduce it locally
+18:19:52 <danielbeck> ugh
+18:20:12 <danielbeck> okay, so there's some work here left to address before we can go with -target 8
+18:20:14 <jglick> Well let us take it out of the meeting. Slide-O-Mix if you can reproduce, please add comments to a JIRA issue which I will give you a link to in a moment.
+18:20:21 <danielbeck> +1
+18:20:22 <Slide-O-Mix> Ok, will do
+18:20:25 <jglick> Anyway I think none of this has anything to do with Java 8.
+18:20:36 <danielbeck> can we move on?
+18:20:40 <teilo> there's an issue raised - JENKINS-41134
+18:21:02 <teilo> jglick it does.. windows builds with tests passing was a blocker for jdk8
+18:21:26 <jglick> I assume the failures are unrelated.
+18:21:34 <jglick> Anyway I think we can move on…
+18:21:36 <teilo> yes - but...
+18:21:40 <teilo> (move on)
+18:21:46 <danielbeck> #topic FOSDEM planning update
+18:21:50 <danielbeck> alyssat this is yours
+18:21:53 <alyssat> #info https://wiki.jenkins-ci.org/display/JENKINS/FOSDEM+2017
+18:22:06 <alyssat> Planning for FOSDEM has been documented and updated on the wiki page. What's new this years is Declarative Pipeline which abayer has a speaking session and will be showcasing it at the stand. For those working the stand pls see abayer at the stand for a quick briefing.
+18:22:30 <alyssat> Also, those who can help lend a hand - Oliver Vernin will be doing the setup for the stand. Pls see the specifics on the wiki page under HELP for where/when to meet .
+18:23:38 <alyssat> Additionally, the pre and post FOSDEM events has also been updated on the meetup pages (see wiki page for links).  All details has been nailed down (on the meetup pages). I will be adding a hackathon agenda as soon.
+18:24:28 <alyssat> Just wanted to give that quick update. Does anyone have questions?
+18:24:36 <danielbeck> did we really want to announce the hackathon on meetup?
+18:25:05 <danielbeck> won't we have problems with random people showing up?
+18:25:13 <alyssat> we did a similar announcement last year for the contributor summit which worked out fine
+18:25:25 <danielbeck> ah okay
+18:25:43 <alyssat> i think the word "Contributor" scares people away
+18:25:50 <alyssat> 😀
+18:26:06 <danielbeck> Also "Audience: 20-30 serious Jenkins users who are willing to roll up their sleeves" :-)
+18:26:38 <alyssat> yup..to get some work done
+18:26:58 <danielbeck> looks good
+18:27:15 <danielbeck> Other questions for alyssat ?
+18:27:37 <kohsuke> Looking forward to seeing you all!
+18:27:59 <danielbeck> Looks like we're done for today
+18:28:05 <danielbeck> #topic next meeting
+18:28:19 <danielbeck> Feb 1st, just before FOSDEM
+18:28:27 <danielbeck> same time, same channel
+18:28:42 <danielbeck> #endmeeting

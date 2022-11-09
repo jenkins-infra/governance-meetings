@@ -1,0 +1,196 @@
+18:00:10 <rtyler> #startmeeting
+18:00:10 <robobutler> Let the Jenkins meeting commence!
+18:00:19 <rtyler> #chair kohsuke danielbeck ogondza
+18:00:19 <robobutler> Current chairs: danielbeck kohsuke ogondza rtyler
+18:00:24 <rtyler> #topic Last meeting's actions
+18:00:39 <rtyler> based on what I can see, there weren't any
+18:00:39 <rtyler> heh
+18:01:19 * rtyler waits for people to show up
+18:01:49 <rtyler> ogondza: you awake and ready for the next topic?
+18:02:00 <ogondza> rtyler: sure I am
+18:02:31 <ogondza> I have done the backporting and will push RC as son as ATH reports completion
+18:02:32 <rtyler> #topic LTS status check
+18:02:56 <rtyler> this is for 2.32.x still right?
+18:03:05 <ogondza> rtyler: 2.32.3
+18:03:20 * rtyler nods
+18:03:46 <ogondza> rtyler: fyi, I intent to get this automates so that any backport pushed will produce rc for people to test
+18:03:57 <ogondza> *atomated
+18:04:09 <rtyler> the ATH testing?
+18:04:13 <ogondza> so noone has to wait for me pushing the RC
+18:04:20 <ogondza> that would be part of it
+18:04:28 <rtyler> https://issues.jenkins-ci.org/browse/INFRA-960 is relevant to your interests then
+18:04:35 <rtyler> we should have plenty of capacity for ATH on ci.j.io
+18:04:39 <danielbeck> ogondza that seems questionable to me, as nobody could be sure it's really the last one, but should be discussed elsewhere
+18:04:47 <ogondza> I am thing about pipeline backport > jenkins-test-harness > ATH > RC push
+18:05:11 <ogondza> danielbeck: ok
+18:05:57 <danielbeck> ogondza so, what's .3 RC status? :)
+18:06:19 <ogondza> #action ogondza will push 2.32.3 RC tomorrow morning
+18:06:27 <danielbeck> \o/
+18:06:45 <ogondza> the snapshot version number did not make it
+18:06:58 <danielbeck> #info in two weeks we'll select the next LTS baseline
+18:07:05 <danielbeck> as a reminder
+18:07:20 * ogondza putting that on agenda
+18:07:34 <danielbeck> I think we can move on? rtyler ?
+18:07:44 <ogondza> yes, we can
+18:07:56 <rtyler> #topic GSoC Update
+18:08:01 <rtyler> oleg-nenashev: are you going to drive this topic?
+18:08:58 * rtyler counts down
+18:08:59 <danielbeck> doesn't seem to be around
+18:09:20 <rtyler> alright, I'll fill in
+18:09:28 <rtyler> #info the GSoC 2017 application has been submitted
+18:09:36 <rtyler> https://jenkins.io/projects/gsoc for more details
+18:09:55 <rtyler> not really much more for us to do here
+18:09:56 <rtyler> IMO
+18:10:03 <danielbeck> looking for projects and mentors?
+18:10:08 <danielbeck> or too late anyway?
+18:10:24 <rtyler> students can always suggest projects in their own applications
+18:10:26 <schristouu88> I might be switching to a mentor, I got a student asking about the support core plugin improvements
+18:10:35 <rtyler> as far as our application with suggested projects, that's kind of done
+18:10:41 <danielbeck> okay
+18:11:22 <danielbeck> so now we'd probably monitor the dev list and be responsive there when students post questions?
+18:11:25 * rtyler nods
+18:11:43 <rtyler> any other gsoc related questions?
+18:12:20 <ageer> when is mentor deadline?
+18:12:50 <rtyler> uhhhhhh, I'm not sure, I believe we can pair mentors up with students right up to the beginning of the program
+18:13:08 <rtyler> there's still plenty of time to volunteer as a mentor :)
+18:13:18 <danielbeck> makes sense if students propose projects -- otherwise there'd be mismatches
+18:13:38 * rtyler nods
+18:14:14 <danielbeck> also, probably afterwards too, if we need to improvise
+18:14:20 * rtyler nods
+18:14:48 <rtyler> onwards?
+18:15:07 <danielbeck> sure
+18:15:14 <rtyler> #topic Infrastructure update
+18:15:17 <danielbeck> oh boy
+18:15:20 <rtyler> \o/
+18:15:40 <rtyler> #info Every monday we're having an infra hangout on https://jenkins.io/hangout at 20:00 UTC
+18:15:52 <rtyler> mostly just to review what's in the INFRA project and make sure that the right stuff is getting solved for
+18:16:18 <rtyler> olblak is making progress on provisioning kubernetes (k8s) in Azure to migrate applications over to, starting with plugins.jenkins.io
+18:16:41 <rtyler> we have a JIRA upgrade which we need to schedule a maintenance window for
+18:16:52 <rtyler> we also have the SCM API 2 upgrades on ci.jenkins.io which we need to schedule a maintenance window for
+18:17:13 <rtyler> unfortunately time has been sparse lately, and some of this won't get resolved until closer to the end of february :(
+18:17:43 <rtyler> because of the lack of time, we're still seeing github rate limit errors daily on ci.j.io :(
+18:18:07 <danielbeck> how is that related to your lack of time?
+18:18:28 <rtyler> SCM API 2 is supposed to help reduce the github api calls
+18:18:29 <ogondza> perhaps it is github's lack of time
+18:18:39 <danielbeck> rtyler makes sense
+18:18:51 <rtyler> there's also the "crazy caching proxy" idea which would make this problem go away entirely :)
+18:19:11 <rtyler> but requires time to prototype and determine whether it's a "crazy stupid idea" or "crazy smart idea"
+18:19:34 <autojack> crazy like a fox.
+18:19:43 <rtyler> another issue which has been causing trouble more and more is the increased prevelance of interdependent plugin releases
+18:19:57 <rtyler> and a known "race condition" between mirrors serving update-center.json and the plugin HPIs themselves
+18:20:04 <rtyler> this is more or less tracked in INFRA-160
+18:20:37 <rtyler> and, as we discussed in our sync meeting on Monday, we basically need to expedite serving the update center from Azure storage instead of relying on our slow mirror network
+18:20:46 <rtyler> which is not a good fit for the frequent changes to update-center.json
+18:20:51 <danielbeck> this will result in https everywhere, right?
+18:21:06 <rtyler> s/everywhere/moreplaces/
+18:21:18 <danielbeck> well, all the update center stuff at least
+18:21:21 <danielbeck> or no?
+18:21:29 <rtyler> .war and installers are still through the mirror network right now
+18:21:32 <rtyler> yes, for the update center
+18:21:49 <danielbeck> okay
+18:22:02 <rtyler> at my nearest opportunity I will be campaigning for revamping the way the update center works in Jenkins  regardless of this effort
+18:22:24 <rtyler> as each instance fetching a 1MB JSON file every day is unnecessary and incurs real cost across 150k instances
+18:22:54 <rtyler> #info rtyler will be pushing for better collaboration between core development changes and infrastructure changes where they are dependent
+18:23:36 <rtyler> i386 has also done some prototyping on new update center dependency resolution stuff, but I haven't reviewed his prototype yet, so I don't know whether it's addressing some of our present infra/cost issues
+18:24:16 <danielbeck> I think that's more about transitive dependencies, to ensure everything can actually be installed
+18:24:39 <rtyler> either way, I know there's some interest in fixing update center, so we have to make sure we address the infra impact as well
+18:24:57 <danielbeck> right now, plugin A can depend on plugin B, and be published, but B may not be on the update site, breaking A installation
+18:25:12 <danielbeck> AFAIU
+18:25:27 <rtyler> #info as per usual, interested parties are recommended to join #jenkins-infra and infra@lists.jenkins-ci.org
+18:25:38 <rtyler> if there are questions, pipe up, otherwise we can move on
+18:25:40 <danielbeck> rtyler anything on the state of the wiki?
+18:26:25 <rtyler> oh right
+18:26:30 <rtyler> #info the wiki is perpetually on fire
+18:26:31 <rtyler> heh
+18:26:34 <danielbeck> lol
+18:27:12 <ageer> why is it on fire and what exactly does that mean (forgive my unfamiliarity with this issue)
+18:27:15 <rtyler> #info danielbeck and rtyler have started doing some initial research into what systems depend on the wiki so we can reduce the wiki load and get it upgraded sooner rather than later
+18:27:27 <rtyler> ageer: on fire means it's constantly at capacity nowadays
+18:27:34 <ageer> thank you
+18:27:40 <rtyler> occasionally resulting in no service for developers trying to edit pages
+18:27:56 <rtyler> we have a number of layers of caching in between a request and the confluence app itself, but those can only do so much
+18:27:59 <danielbeck> [Monitor Alert] Triggered: Confluence is choking <<< THis arrived in my inbox a minute ago, timing SO perfect I suspect rtyler triggered it
+18:28:05 <rtyler> heh
+18:28:27 <rtyler> the issues are: old confluence, underpowered VM, exhorbinant load from malicious and benign actors
+18:28:38 <rtyler> the wiki is a prime target for spammers
+18:28:58 <rtyler> so there's no updates on that really other than, it's on fire
+18:29:18 <rtyler> it's known, but there's so much dependent on the wiki that it's hard to fix without severe risk to downstream systems
+18:29:25 <ageer> are analytics available on traffic to determine the significance of spam impact?
+18:30:03 <rtyler> "available' in that I see it in the access logs
+18:30:10 <rtyler> not available in that we don't publish logs anywhere
+18:30:28 <rtyler> we have automated systems which clean up spam
+18:30:44 <danielbeck> (which add to the load again)
+18:30:53 <rtyler> so that means we have spammers (sweatshop spammers from india, etc) and our own tooling competing to see who can DDoS wiki.jenkins-ci.org faster :P
+18:32:05 <rtyler> anything else before moving on?
+18:32:32 <danielbeck> FWIW I've recently moved some of the more static wiki content over to jenkins.io, help is always welcome
+18:33:06 <rtyler> batmat: awake? :)
+18:33:54 <rtyler> #topic Should we host plugins with closed-source dependencies?
+18:33:58 <rtyler> orrc: how about you
+18:35:10 <danielbeck> doesn't look like it?
+18:35:17 * rtyler facepalms
+18:35:27 <orrc> sort of awake
+18:35:34 <orrc> but yeah, this was something that batmat brought up
+18:35:36 <rtyler> the gist of this issue is that we have had a hosting request for a plugin which relies on closed source dependencies
+18:35:39 <rtyler> https://issues.jenkins-ci.org/browse/HOSTING-271
+18:36:31 <orrc> ah, it's been hosted
+18:36:37 <rtyler> https://jenkins.io/project/governance/#license
+18:36:46 <orrc> so we do explicitly say that closed source plugins aren't allowed
+18:36:49 <rtyler> #info "But no such plugins will be hosted by the Jenkins project."
+18:37:11 <danielbeck> rtyler right, but the question now is closed source dependencies
+18:37:14 <orrc> but what about closed source dependencies, and by extension, I guess that would extend to their transitive dependencies
+18:38:00 <rtyler> I wish Slide hadn't hosted this :/
+18:38:06 <rtyler> somebody should have blocked this request pending this discussion
+18:38:24 <orrc> I'm not sure if there's precedence here, but I could imagine we have some plugins that are open source but depend on some closed source SDK or so
+18:38:44 <danielbeck> we probably need an inventory of existing plugins to even begin considering this
+18:38:48 <ageer> is access to the closed source sdk freely available or proprietary?
+18:39:03 <rtyler> the update-center.json just includes a reference to an .hpi
+18:39:15 <rtyler> so in essence doesn't this mean that the plugin as built is not open source?
+18:40:08 <danielbeck> rtyler FWIW that plugin is not yet published, and no upload permissions granted, so we can block that while we determine how to proceed here
+18:40:15 * rtyler nods
+18:40:34 <orrc> we're only hosting new plugins from jenkinsci, so we should know where the source is. and in artifactory the sources.jar for each release *should* be there
+18:41:01 <danielbeck> orrc Just pull the Artifactory listing and take a look -- you have no idea.
+18:41:04 <rtyler> as far as I understand this situation, the .hpi would contain proprietary software which we do not have a license for distribution
+18:41:24 <orrc> danielbeck: yeah, I know it's wild out there in reality :)
+18:41:42 <rtyler> if that's correct, then I actually think this issue is relatively straight-forward within our existing guidelines
+18:41:46 <orrc> rtyler: right
+18:41:59 <danielbeck> Welllll
+18:42:09 <rtyler> from a legal standpoint, we have no license to distribute this code
+18:42:33 <danielbeck> depends on the license of the dependency
+18:42:49 <rtyler> if it's not open source, then i'm not sure it matters
+18:43:09 <rtyler> this plugin depends on some closed source stuff beign published to an s3 bucket
+18:43:23 <rtyler> which is, bizarre to begin with :P
+18:43:38 <danielbeck> well, a plugin can be open source but not have an OSI license, and what then?
+18:43:49 <rtyler> that's not open source as far as I am concerned
+18:44:15 <danielbeck> that should be clarified in the governance document then, that we mean Open Source, not just open source.
+18:44:16 <ageer> this doesnt sound open source if you have a blackbox your pulling in as part of the plugin functionality
+18:44:41 <danielbeck> mvn
+18:44:42 <danielbeck> "plugins are free to choose their own licenses, so long as it’s an OSI-approved open-source license."
+18:44:59 <danielbeck> so, rtyler is right
+18:45:02 <rtyler> YAY
+18:45:11 <rtyler> I've been waiting my whole week for that danielbeck :P
+18:45:19 <danielbeck> rtyler try harder then ;-)
+18:45:22 <rtyler> haha
+18:45:41 <rtyler> so a clarification point I think we can make to this plugin author in particular
+18:45:59 <danielbeck> now to find out whether a thing can be OSI licensed without being open source all the way down -- I doubt it, but we should make sure
+18:46:01 <rtyler> if the plugin, once installed, prompts the user to download proprietary dependencies or something like that, I think that's suitable
+18:46:16 <rtyler> since that's more or less how many toolchain-based plugins operate
+18:46:25 <danielbeck> right -- we've had that model a few times, like Black Duck and CloudBees "installers"
+18:46:30 * rtyler nods
+18:46:39 <rtyler> danielbeck: I would hope Artifactory has some integration we can enable here
+18:46:42 <ageer> that seems appropriate
+18:47:07 <rtyler> #action rtyler and danielbeck to investigate whether we can ensure OSI-licensed code is being distributed "all the way down" for plugins to comply with governance document guidelines around proprietary code in plugins
+18:47:51 <danielbeck> I think this is all we can discuss on this topic for the moment?
+18:47:52 <rtyler> I think from a practical standpoint, we should be gentle with plugin authors like this and explain why this is important and still welcome them into the community
+18:48:13 <rtyler> chances are this developer isn't the one who made the decision to not kopen source something
+18:48:26 <rtyler> orrc: what do you think, have we resolved this topic for today?
+18:48:41 <orrc> sure
+18:49:03 <rtyler> #info to summarize, bits being packaged into an .hpi should be OSI-licensed (Open Source) to be published through the official Jenkins Update Center
+18:49:17 <danielbeck> s/should/need to
+18:49:40 <rtyler> go full RFC "MUST"
+18:49:41 <rtyler> :D
+18:49:43 <rtyler> anywhoo
+18:49:48 <rtyler> #topic Next meeting
+18:50:04 <rtyler> I see that ogondza has already added some items for Feb 29, which doesn't exist this year :P
+18:50:26 <rtyler> #info Next meeting March 1st, 2017
+18:50:29 <rtyler> :)
+18:50:31 <rtyler> #endmeeting

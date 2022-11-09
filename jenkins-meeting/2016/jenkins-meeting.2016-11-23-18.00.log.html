@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app222.us.archive.org';v.server_ms=167;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-11-23-18.00.log.html","20211020055615","https://web.archive.org/","web","/_static/",
+	      "1634709375");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:12</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:12</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck kohsuke hare_brain rtyler</span>
+<a name="l-4"></a><span class="tm">18:00:22</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck hare_brain kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:00:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> o/
+<a name="l-6"></a><span class="tm">18:00:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-7"></a><span class="tm">18:00:56</span><span class="nk"> &lt;rtyler&gt;</span> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-11-09-18.01.html
+<a name="l-8"></a><span class="tm">18:01:05</span><span class="nk"> &lt;rtyler&gt;</span> the only thing from that meeting was for danielbeck to send another UTC reminder to the dev list
+<a name="l-9"></a><span class="tm">18:01:15</span><span class="nk"> &lt;rtyler&gt;</span> not sure if he did that but it doesn't raelly matter to discuss right now IMO
+<a name="l-10"></a><span class="tm">18:01:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbeck:</span> you around either way?
+<a name="l-11"></a><span class="tm">18:01:41</span><span class="nk"> &lt;danielbeck&gt;</span> I don't think I did
+<a name="l-12"></a><span class="tm">18:01:45</span><span class="nk"> &lt;danielbeck&gt;</span> I was kind of distracted
+<a name="l-13"></a><span class="tm">18:01:55</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-14"></a><span class="tm">18:01:58</span><span class="nk"> &lt;rtyler&gt;</span> by what? xD
+<a name="l-15"></a><span class="tm">18:02:02</span><span class="nk"> &lt;rtyler&gt;</span> anyways, moving on
+<a name="l-16"></a><span class="tm">18:02:08</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Revival of the Klocwork plugin</span>
+<a name="l-17"></a><span class="tm">18:02:13</span><span class="nk"> &lt;ogondza&gt;</span> ehm
+<a name="l-18"></a><span class="tm">18:02:15</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> want to share the context for this topic?
+<a name="l-19"></a><span class="tm">18:02:17</span><span class="nk"> &lt;rtyler&gt;</span> oh right
+<a name="l-20"></a><span class="tm">18:02:20</span><span class="nk"> &lt;rtyler&gt;</span> missed a thing
+<a name="l-21"></a><span class="tm">18:02:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ehm?
+<a name="l-22"></a><span class="tm">18:02:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS base line selection</span>
+<a name="l-23"></a><span class="tm">18:02:39</span><span class="nk"> &lt;rtyler&gt;</span> my bad ogondza, I'm used to the first item in the list being last meeting actions :p
+<a name="l-24"></a><span class="tm">18:02:41</span><span class="nk"> &lt;ogondza&gt;</span> before we get there, 2.19.4 is ready for release
+<a name="l-25"></a><span class="tm">18:02:43</span><span class="nk"> &lt;rtyler&gt;</span> but this time it was LTS
+<a name="l-26"></a><span class="tm">18:02:55</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">kohsuke to cut 2.19.4 release</span>
+<a name="l-27"></a><span class="tm">18:03:06</span><span class="nk"> &lt;kohsuke&gt;</span> yay
+<a name="l-28"></a><span class="tm">18:03:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, the new one...
+<a name="l-29"></a><span class="tm">18:03:12</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://jenkins.io/changelog/</span>
+<a name="l-30"></a><span class="tm">18:03:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.26..2.30 were broken
+<a name="l-31"></a><span class="tm">18:03:48</span><span class="nk"> &lt;rtyler&gt;</span> 2.32?
+<a name="l-32"></a><span class="tm">18:03:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would propose 2.31 or 2.32
+<a name="l-33"></a><span class="tm">18:03:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2.32 is 2.31 + security
+<a name="l-34"></a><span class="tm">18:04:05</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">oleg-nenashev:</span> remoting 3.1?
+<a name="l-35"></a><span class="tm">18:04:13</span><span class="nk"> &lt;rtyler&gt;</span> I know that vivekpandey had some changes the blue ocean folks were wishing would make it into the next LTS
+<a name="l-36"></a><span class="tm">18:04:18</span><span class="nk"> &lt;rtyler&gt;</span> which weekly did those go into?
+<a name="l-37"></a><span class="tm">18:04:34</span><span class="nk"> &lt;danielbeck&gt;</span> rtyler the broken ones, they're the reason they were broken
+<a name="l-38"></a><span class="tm">18:04:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> 2.30 was the final fix IIRC
+<a name="l-39"></a><span class="tm">18:04:51</span><span class="nk"> &lt;rtyler&gt;</span> haha
+<a name="l-40"></a><span class="tm">18:05:01</span><span class="nk"> &lt;danielbeck&gt;</span> 2.33 has the localization fix
+<a name="l-41"></a><span class="tm">18:05:06</span><span class="nk"> &lt;danielbeck&gt;</span> but seems too recent
+<a name="l-42"></a><span class="tm">18:05:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">ogondza:</span> remoting 3.1 is in 2.31. It includes JENKINS- 39617 and diagnostic improvements
+<a name="l-43"></a><span class="tm">18:05:27</span><span class="nk"> &lt;danielbeck&gt;</span> taking 2.31 seems ridiculous as 2.32 is security fixes that are on LTS anyway
+<a name="l-44"></a><span class="tm">18:05:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So remoting 3.1 should be more or less safe
+<a name="l-45"></a><span class="tm">18:05:57</span><span class="nk"> &lt;ogondza&gt;</span> I lean towards .32 as well
+<a name="l-46"></a><span class="tm">18:05:58</span><span class="nk"> &lt;danielbeck&gt;</span> So 2.32 seems reasonable unless we want to dive into later 2.2x releases and discuss backporting the brokenness fixes
+<a name="l-47"></a><span class="tm">18:06:02 </span><span class="nka">* rtyler</span> <span class="ac">suggest .32</span>
+<a name="l-48"></a><span class="tm">18:06:24</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-49"></a><span class="tm">18:06:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">ogondza:</span> WDYT?
+<a name="l-50"></a><span class="tm">18:06:47</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev what's the current state of ruby-runtime? All fixed from core POV?
+<a name="l-51"></a><span class="tm">18:06:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> Yes
+<a name="l-52"></a><span class="tm">18:07:00</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza to prepare next stable branch based on 2.32</span>
+<a name="l-53"></a><span class="tm">18:07:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I restored Stapler binary compatibility in 2.30
+<a name="l-54"></a><span class="tm">18:07:17</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-55"></a><span class="tm">18:07:20</span><span class="nk"> &lt;oleg-nenashev&gt;</span> At least I hope so
+<a name="l-56"></a><span class="tm">18:07:56</span><span class="nk"> &lt;rtyler&gt;</span> does that cover this topic?
+<a name="l-57"></a><span class="tm">18:08:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> imho yes
+<a name="l-58"></a><span class="tm">18:08:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> ?
+<a name="l-59"></a><span class="tm">18:08:47</span><span class="nk"> &lt;ogondza&gt;</span> yes we are good
+<a name="l-60"></a><span class="tm">18:08:54</span><span class="nk"> &lt;danielbeck&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">2.32 is the next LTS baseline</span>
+<a name="l-61"></a><span class="tm">18:09:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Revival of the Klocwork plugin (for real this time)</span>
+<a name="l-62"></a><span class="tm">18:09:13</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!search/klocwork/jenkinsci-dev/U7SFVsjsHHQ/cA8SlsTgBQAJ</span>
+<a name="l-63"></a><span class="tm">18:09:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So my question is "Does anybody disagree with the proposed plan?"
+<a name="l-64"></a><span class="tm">18:10:00</span><span class="nk"> &lt;danielbeck&gt;</span> This is one of gbois's plugins… has anyone tried contacting him via gmail?
+<a name="l-65"></a><span class="tm">18:10:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yes
+<a name="l-66"></a><span class="tm">18:10:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> No success
+<a name="l-67"></a><span class="tm">18:10:17</span><span class="nk"> &lt;rtyler&gt;</span> based on the thread, it seems like multiple tried to contact multiple people :P
+<a name="l-68"></a><span class="tm">18:10:36</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 2 week timeout has passed as well
+<a name="l-69"></a><span class="tm">18:10:58</span><span class="nk"> &lt;danielbeck&gt;</span> Anyone opposed to me trying again? In the past (this year) I've had some success in poking him
+<a name="l-70"></a><span class="tm">18:11:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> The only problem is that the "main" fork is within the external GitHub org
+<a name="l-71"></a><span class="tm">18:11:29</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> Yep, we can wait for a while
+<a name="l-72"></a><span class="tm">18:11:40</span><span class="nk"> &lt;rtyler&gt;</span> I don't seem any problem with poking him again danielbeck, but I find it unfortunate that Jacob has had to sit on his hands for so long here
+<a name="l-73"></a><span class="tm">18:11:45</span><span class="nk"> &lt;danielbeck&gt;</span> right
+<a name="l-74"></a><span class="tm">18:11:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Especially if we agree to grant the requester permissions to Jenkins org
+<a name="l-75"></a><span class="tm">18:11:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Without release permissions
+<a name="l-76"></a><span class="tm">18:12:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> what if we recommended jacob get the repo up to date in jenkinsci organization, and then hold off on a release for a week or two while danielbeck makes one last ditch effort to get gboissnot's response?
+<a name="l-77"></a><span class="tm">18:12:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> It is well aligned with my proposal
+<a name="l-78"></a><span class="tm">18:12:46</span><span class="nk"> &lt;danielbeck&gt;</span> Right, basically concurrent with Oleg's "item 3" on the list
+<a name="l-79"></a><span class="tm">18:12:47</span><span class="nk"> &lt;rtyler&gt;</span> then once the timer is up, jacob can release, but still do work in the meantime
+<a name="l-80"></a><span class="tm">18:12:52 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-81"></a><span class="tm">18:12:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> ANy -1s?
+<a name="l-82"></a><span class="tm">18:13:15</span><span class="nk"> &lt;danielbeck&gt;</span> which open item 4 would we do? New plugin, or take over?
+<a name="l-83"></a><span class="tm">18:13:32</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I would prefer 4.2
+<a name="l-84"></a><span class="tm">18:13:42</span><span class="nk"> &lt;rtyler&gt;</span> ditto
+<a name="l-85"></a><span class="tm">18:13:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Much more convenient for users and contributors
+<a name="l-86"></a><span class="tm">18:13:47</span><span class="nk"> &lt;danielbeck&gt;</span> agree
+<a name="l-87"></a><span class="tm">18:14:10</span><span class="nk"> &lt;danielbeck&gt;</span> also, external plugin hosting is on thin ice with the project anyway, then abandoning? you're out.
+<a name="l-88"></a><span class="tm">18:14:25</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, do we agree with the plan?
+<a name="l-89"></a><span class="tm">18:14:30</span><span class="nk"> &lt;rtyler&gt;</span> looks to me like there's a good consensus on oleg's proposal with danielbeck concurrently reaching out again
+<a name="l-90"></a><span class="tm">18:14:39</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> think that would work for jacob?
+<a name="l-91"></a><span class="tm">18:14:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yep
+<a name="l-92"></a><span class="tm">18:15:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, +1s?
+<a name="l-93"></a><span class="tm">18:15:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 5
+<a name="l-94"></a><span class="tm">18:15:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 4
+<a name="l-95"></a><span class="tm">18:15:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 3
+<a name="l-96"></a><span class="tm">18:15:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#agreed </span><span class="cmdline">oleg-nenashev's proposal for reviving Klocwork plugin under the jenkinsci organization</span>
+<a name="l-97"></a><span class="tm">18:15:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbeck to reach out to gboissinot one more time</span>
+<a name="l-98"></a><span class="tm">18:15:57</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg-nenashev to help jacob get jenkinsci/klocwork-plugin revived and in releasable shape</span>
+<a name="l-99"></a><span class="tm">18:16:03</span><span class="nk"> &lt;rtyler&gt;</span> when should we consider the timeout?
+<a name="l-100"></a><span class="tm">18:16:04</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to grant write permissions to Jacob</span>
+<a name="l-101"></a><span class="tm">18:16:22</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">rtyler:</span> 2 weeks IMHo - depends on Thales
+<a name="l-102"></a><span class="tm">18:16:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action: </span><span class="cmdline">oleg_nenashev to write to Thales</span>
+<a name="l-103"></a><span class="tm">18:16:54</span><span class="nk"> &lt;rtyler&gt;</span> alrighty, I think we can move forward then
+<a name="l-104"></a><span class="tm">18:16:59</span><span class="nk"> &lt;oleg-nenashev&gt;</span> +1
+<a name="l-105"></a><span class="tm">18:17:02</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC2017 sync-up</span>
+<a name="l-106"></a><span class="tm">18:17:10</span><span class="nk"> &lt;rtyler&gt;</span> another segment on the Oleg Show!
+<a name="l-107"></a><span class="tm">18:17:11</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-108"></a><span class="tm">18:17:25</span><span class="nk"> &lt;kohsuke&gt;</span> I thought we are just done with '16!
+<a name="l-109"></a><span class="tm">18:17:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, I just wonder if anybody wants to participate as a mentor or org admin
+<a name="l-110"></a><span class="tm">18:17:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">kohsuke:</span> We should start earlier on this year
+<a name="l-111"></a><span class="tm">18:17:47</span><span class="nk"> &lt;kohsuke&gt;</span> Yes
+<a name="l-112"></a><span class="tm">18:17:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">kohsuke:</span> it's always summer somewhere
+<a name="l-113"></a><span class="tm">18:18:06</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> of course I'm fine being both org admin and mentor again
+<a name="l-114"></a><span class="tm">18:18:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yep. I'm not sure I'm fine
+<a name="l-115"></a><span class="tm">18:18:38</span><span class="nk"> &lt;danielbeck&gt;</span> isn't it time for our 2016 retrospective? i.e. "two hours of oleg yelling at us nonstop"?
+<a name="l-116"></a><span class="tm">18:19:10</span><span class="nk"> &lt;rtyler&gt;</span> I think the biggest take-aways here are:
+<a name="l-117"></a><span class="tm">18:19:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> This year soaked too much time from me. Student herding, mentor herding, sometimes org admin herding :(
+<a name="l-118"></a><span class="tm">18:19:20</span><span class="nk"> &lt;rtyler&gt;</span> 1. We want to do GSoC again (duh)
+<a name="l-119"></a><span class="tm">18:19:35</span><span class="nk"> &lt;rtyler&gt;</span> 2. We cannot rely on taking so much time from Oleg, so somebody needs to be Oleg for 2017
+<a name="l-120"></a><span class="tm">18:19:50</span><span class="nk"> &lt;oleg-nenashev&gt;</span> At least a part of Oleg
+<a name="l-121"></a><span class="tm">18:20:15</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-122"></a><span class="tm">18:20:45</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> honestly, I'm not sure we can resolve #2 in this meeting, but making sure everybody is aware of it is an important first step
+<a name="l-123"></a><span class="tm">18:21:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I can be an org admin  or a mentor. Being both requires better effort sharing and better student project process
+<a name="l-124"></a><span class="tm">18:21:30</span><span class="nk"> &lt;rtyler&gt;</span> what we need is an 'owner' for the effort
+<a name="l-125"></a><span class="tm">18:21:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="hi">danielbeck:</span> I do not want to yell on anybody. It was a spare-tme effort at the end of the day. But yeah we need to learn some lessons
+<a name="l-126"></a><span class="tm">18:22:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">oleg-nenashev:</span> I can take an action to start finding an 'owner' and org admin for GSoC 2017, so you're not that person again
+<a name="l-127"></a><span class="tm">18:22:52</span><span class="nk"> &lt;rtyler&gt;</span> (even if that person ends up being me)
+<a name="l-128"></a><span class="tm">18:22:53</span><span class="nk"> &lt;danielbeck&gt;</span> oleg-nenashev yes I wasn't quite serious. But mentoring problems resulted in a lot of extra work for you. Hence the importance of all the participants getting together and discuss what was good and bad
+<a name="l-129"></a><span class="tm">18:23:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I can be the GSoC officer again, but it will require a guaranteed time dedication from mentors
+<a name="l-130"></a><span class="tm">18:23:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So yes, we need a formal retrospective
+<a name="l-131"></a><span class="tm">18:24:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe early December? (in 3 weeks)
+<a name="l-132"></a><span class="tm">18:24:37</span><span class="nk"> &lt;rtyler&gt;</span> not sure, my december schedule is already messy :'(
+<a name="l-133"></a><span class="tm">18:24:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> same shit
+<a name="l-134"></a><span class="tm">18:24:48</span><span class="nk"> &lt;rtyler&gt;</span> but I can help drive that to alleviate the pressure on you oleg-nenashev
+<a name="l-135"></a><span class="tm">18:25:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> would be nice
+<a name="l-136"></a><span class="tm">18:25:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to set up a December GSoC2016 retrospective discussion with mentors and org admins</span>
+<a name="l-137"></a><span class="tm">18:25:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">rtyler to help find new gsoc org admins for 2017</span>
+<a name="l-138"></a><span class="tm">18:25:52</span><span class="nk"> &lt;rtyler&gt;</span> does that cover this topic at least for now oleg-nenashev?
+<a name="l-139"></a><span class="tm">18:25:57</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yep
+<a name="l-140"></a><span class="tm">18:26:06</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-141"></a><span class="tm">18:26:11</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Azure migration / Infrastructure update</span>
+<a name="l-142"></a><span class="tm">18:26:24</span><span class="nk"> &lt;kohsuke&gt;</span> Now it's Tyler show
+<a name="l-143"></a><span class="tm">18:26:27</span><span class="nk"> &lt;rtyler&gt;</span> I wanted to give a bit of a broader update
+<a name="l-144"></a><span class="tm">18:26:41</span><span class="nk"> &lt;rtyler&gt;</span> The Azure migration is slowly but surely starting
+<a name="l-145"></a><span class="tm">18:27:04</span><span class="nk"> &lt;rtyler&gt;</span> most of the efforts I have put in over the past weeks have been more around infrastructure design; attempting to be less stupid and naive than current infrastructure :)
+<a name="l-146"></a><span class="tm">18:27:27</span><span class="nk"> &lt;rtyler&gt;</span> the way that I have been structuring this is with a basic format for design documents, persisted in Git here: https://github.com/jenkins-infra/iep
+<a name="l-147"></a><span class="tm">18:27:53</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">ci.jenkins.io is already using Azure-based build/test infrastructure</span>
+<a name="l-148"></a><span class="tm">18:28:31</span><span class="nk"> &lt;rtyler&gt;</span> the current biggest risk is around access management unfortunately
+<a name="l-149"></a><span class="tm">18:28:39 </span><span class="nka">* oleg-nenashev</span> <span class="ac">wishes he could help. But no new OSS commitments till January at least</span>
+<a name="l-150"></a><span class="tm">18:28:52</span><span class="nk"> &lt;rtyler&gt;</span> Azure provides "Azure Active Directory" which governs all resources, similar to AWS' IAM
+<a name="l-151"></a><span class="tm">18:28:55</span><span class="nk"> &lt;rtyler&gt;</span> and Jenkins has LDAP
+<a name="l-152"></a><span class="tm">18:29:05</span><span class="nk"> &lt;rtyler&gt;</span> still waiting on feedback from our friends at Microsoft on how to bridge the gap
+<a name="l-153"></a><span class="tm">18:29:28</span><span class="nk"> &lt;rtyler&gt;</span> if that's unpossible, then we'll have redundant access control between things like JIRA/Confluence/etc and "cloud things"
+<a name="l-154"></a><span class="tm">18:29:57</span><span class="nk"> &lt;rtyler&gt;</span> without access management figured out, I cannot for example grant batmat access to some cloud resources for prototyping or fixing things
+<a name="l-155"></a><span class="tm">18:30:17</span><span class="nk"> &lt;rtyler&gt;</span> so that's the only "risk" in the project I see right now, and there is of course work-arounds
+<a name="l-156"></a><span class="tm">18:30:36</span><span class="nk"> &lt;rtyler&gt;</span> everything else is really just "work" insofar that code needs to be written, resources need to be provisioned, etc
+<a name="l-157"></a><span class="tm">18:30:53</span><span class="nk"> &lt;rtyler&gt;</span> are there any concerns/questions about where we are/where we're going/etc?
+<a name="l-158"></a><span class="tm">18:32:04</span><span class="nk"> &lt;danielbeck&gt;</span> any time table?
+<a name="l-159"></a><span class="tm">18:32:19</span><span class="nk"> &lt;rtyler&gt;</span> for everything to be CLOUDIFIED?
+<a name="l-160"></a><span class="tm">18:32:26</span><span class="nk"> &lt;danielbeck&gt;</span> CLOUD ALL THE THINGS
+<a name="l-161"></a><span class="tm">18:32:28</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-162"></a><span class="tm">18:32:30</span><span class="nk"> &lt;danielbeck&gt;</span> yes
+<a name="l-163"></a><span class="tm">18:32:34</span><span class="nk"> &lt;danielbeck&gt;</span> or any milestones planned
+<a name="l-164"></a><span class="tm">18:33:03</span><span class="nk"> &lt;danielbeck&gt;</span> or is it just a matter of looking through open INFRA issues?
+<a name="l-165"></a><span class="tm">18:33:12</span><span class="nk"> &lt;rtyler&gt;</span> we should be migrated by April, my goal is to have fundamental infrastructure in place, distribution, and jenkins.io all hosted on Azure by our birthday
+<a name="l-166"></a><span class="tm">18:33:15</span><span class="nk"> &lt;rtyler&gt;</span> (Feb 5)
+<a name="l-167"></a><span class="tm">18:33:21</span><span class="nk"> &lt;rtyler&gt;</span> oh right
+<a name="l-168"></a><span class="tm">18:33:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">currently, HTTPs debian/redhat/opensuse repositories serve their files via TLS-end-to-end from Azure blob storage</span>
+<a name="l-169"></a><span class="tm">18:34:04</span><span class="nk"> &lt;rtyler&gt;</span> there's a bug in there caused by some packaging rsync deleting htaccess files, but that for the most part is working well
+<a name="l-170"></a><span class="tm">18:34:56</span><span class="nk"> &lt;rtyler&gt;</span> really once the fundamental infra (ldap, puppet, etc) is in Azure, everything else can move rather quickly
+<a name="l-171"></a><span class="tm">18:35:21</span><span class="nk"> &lt;rtyler&gt;</span> any other questions?
+<a name="l-172"></a><span class="tm">18:35:43</span><span class="nk"> &lt;kohsuke&gt;</span> nope
+<a name="l-173"></a><span class="tm">18:36:04</span><span class="nk"> &lt;rtyler&gt;</span> alrighty then
+<a name="l-174"></a><span class="tm">18:36:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">more questions can be asked, and maybe even answered, in #jenkins-infra during normal working PST hours :)</span>
+<a name="l-175"></a><span class="tm">18:36:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting time</span>
+<a name="l-176"></a><span class="tm">18:36:43</span><span class="nk"> &lt;rtyler&gt;</span> Dec 7th is what I see on the calendar
+<a name="l-177"></a><span class="tm">18:37:09</span><span class="nk"> &lt;rtyler&gt;</span> doesn't look like there are any special holidays; I might be pre-occupied at that tiem so danielbeck or kohsuke will have to run
+<a name="l-178"></a><span class="tm">18:37:19</span><span class="nk"> &lt;rtyler&gt;</span> (meeting with MS to get all my stupid azure questions answered that day)
+<a name="l-179"></a><span class="tm">18:37:20</span><span class="nk"> &lt;kohsuke&gt;</span> I'll be in Europe on that day
+<a name="l-180"></a><span class="tm">18:37:27</span><span class="nk"> &lt;rtyler&gt;</span> ruh roh
+<a name="l-181"></a><span class="tm">18:37:37</span><span class="nk"> &lt;rtyler&gt;</span> I think they have internet in europe though
+<a name="l-182"></a><span class="tm">18:37:56</span><span class="nk"> &lt;kohsuke&gt;</span> I'll check
+<a name="l-183"></a><span class="tm">18:38:06</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-184"></a><span class="tm">18:38:22</span><span class="nk"> &lt;kohsuke&gt;</span> see you all in Dec!
+<a name="l-185"></a><span class="tm">18:38:34</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">next meeting dec 7th, same time</span>
+<a name="l-186"></a><span class="tm">18:38:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 05:56:15 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:42:59 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 81.368
+  exclusion.robots: 0.096
+  exclusion.robots.policy: 0.086
+  RedisCDXSource: 0.615
+  esindex: 0.01
+  LoadShardBlock: 61.353 (3)
+  PetaboxLoader3.datanode: 96.266 (4)
+  CDXLines.iter: 16.404 (3)
+  load_resource: 73.262
+  PetaboxLoader3.resolve: 23.386
+-->

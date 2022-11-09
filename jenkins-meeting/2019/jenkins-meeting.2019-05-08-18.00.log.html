@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app200.us.archive.org';v.server_ms=1756;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2019/jenkins-meeting.2019-05-08-18.00.log.html","20211027223511","https://web.archive.org/","web","/_static/",
+	      "1635374111");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:00:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:00:41</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:00:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chairs </span><span class="cmdline">danielbeck</span>
+<a name="l-4"></a><span class="tm">18:01:00</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">danielbeck</span>
+<a name="l-5"></a><span class="tm">18:01:00</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbeck rtyler
+<a name="l-6"></a><span class="tm">18:01:17</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-7"></a><span class="tm">18:01:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> o/
+<a name="l-8"></a><span class="tm">18:01:54</span><span class="nk"> &lt;rtyler&gt;</span> I saw that markewaite proposed the docs sig
+<a name="l-9"></a><span class="tm">18:02:05</span><span class="nk"> &lt;markewaite&gt;</span> Yes I did...
+<a name="l-10"></a><span class="tm">18:02:20</span><span class="nk"> &lt;rtyler&gt;</span> did I miss a blog post on GSoD?
+<a name="l-11"></a><span class="tm">18:02:30</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we were not accepted
+<a name="l-12"></a><span class="tm">18:02:34</span><span class="nk"> &lt;rtyler&gt;</span> ah
+<a name="l-13"></a><span class="tm">18:02:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> There is a scheduled retrospective meeting for tomorrow
+<a name="l-14"></a><span class="tm">18:03:08</span><span class="nk"> &lt;markewaite&gt;</span> Still have the action item to submit the pull request to create the docs SIG structure.  First meeting of Docs SIG is Friday at 13:00 UTC (and retrospective).  See Gitter and docs mailing list for details
+<a name="l-15"></a><span class="tm">18:03:17</span><span class="nk"> &lt;rtyler&gt;</span> okie doke
+<a name="l-16"></a><span class="tm">18:03:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://groups.google.com/forum/#!topic/jenkinsci-dev/c7DaQeZIrQE</span>
+<a name="l-17"></a><span class="tm">18:03:24</span><span class="nk"> &lt;rtyler&gt;</span> I think that covers the last meeting actions
+<a name="l-18"></a><span class="tm">18:03:41</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-19"></a><span class="tm">18:05:15</span><span class="nk"> &lt;rtyler&gt;</span> um, I'm not sure there's anything we need to cover here from danielbeck's or ogondza__'s standpoint?
+<a name="l-20"></a><span class="tm">18:06:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> hmm
+<a name="l-21"></a><span class="tm">18:06:58</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Today is the next baseline selection
+<a name="l-22"></a><span class="tm">18:07:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So I assume we have something to cover
+<a name="l-23"></a><span class="tm">18:07:19</span><span class="nk"> &lt;rtyler&gt;</span> yeah, next topic
+<a name="l-24"></a><span class="tm">18:07:31</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS baseline selection</span>
+<a name="l-25"></a><span class="tm">18:08:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> No thread in the dev list about it
+<a name="l-26"></a><span class="tm">18:08:13</span><span class="nk"> &lt;rtyler&gt;</span> 09:33 (@danielbec ) will not be able to make it to today's meeting, but as to baseline choice, recent weeklies look reasonable except for JENKINS-57244 which is only a problem in 2.175. Would go with 2.176 and the usual "we might change our minds until RC" disclaimer
+<a name="l-27"></a><span class="tm">18:08:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> only https://groups.google.com/forum/#!topic/jenkinsci-dev/NKf22rIafiE for backporting
+<a name="l-28"></a><span class="tm">18:08:17</span><span class="nk"> &lt;rtyler&gt;</span> 09:33 ( jenkins-a ) JENKINS-57244:java.io.NotSerializableException: The calling thread Thread has no
+<a name="l-29"></a><span class="tm">18:08:45</span><span class="nk"> &lt;markewaite&gt;</span> I agree with 2.176 especially because of JENKINS-57244
+<a name="l-30"></a><span class="tm">18:08:52</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It is 2.174 or 2.176 for me
+<a name="l-31"></a><span class="tm">18:09:14</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I see no reason to NOT take 2.176
+<a name="l-32"></a><span class="tm">18:09:22</span><span class="nk"> &lt;rtyler&gt;</span> agreed
+<a name="l-33"></a><span class="tm">18:09:33</span><span class="nk"> &lt;markewaite&gt;</span> I'd like to not miss the Debian/Ubuntu launcher in 2.175, thus 2.176 for me
+<a name="l-34"></a><span class="tm">18:09:38</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Rick will need to backport one Chinese localization patch tho
+<a name="l-35"></a><span class="tm">18:10:03</span><span class="nk"> &lt;markewaite&gt;</span> I don't understand the backport comment.  Isn't that already in 2.176?
+<a name="l-36"></a><span class="tm">18:10:27</span><span class="nk"> &lt;rtyler&gt;</span> hrm, without ogondza around, I'm not sure what we can do other than strongly suggest 2.176 as the next baseline then?
+<a name="l-37"></a><span class="tm">18:10:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> no reported regressions, no negative community ratings
+<a name="l-38"></a><span class="tm">18:11:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So i am +1 w.r.t 2.176
+<a name="l-39"></a><span class="tm">18:11:23</span><span class="nk"> &lt;markewaite&gt;</span> +1 for me on 2.176 as well, though it is only 3 days old...
+<a name="l-40"></a><span class="tm">18:11:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Well, we have 2 weeks for testing and backporting issues
+<a name="l-41"></a><span class="tm">18:12:21 </span><span class="nka">* rtyler</span> <span class="ac">nods</span>
+<a name="l-42"></a><span class="tm">18:12:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Jenkins core test coverage got improved since last years, so it should be acceptable
+<a name="l-43"></a><span class="tm">18:12:26 </span><span class="nka">* markewaite</span> <span class="ac">nods</span>
+<a name="l-44"></a><span class="tm">18:12:34 </span><span class="nka">* oleg-nenashev</span> <span class="ac">nods as well</span>
+<a name="l-45"></a><span class="tm">18:12:48</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">recommend for release officer to take 2.176 as the next baseline</span>
+<a name="l-46"></a><span class="tm">18:12:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">tracymiranda:</span> are you awake too? :)
+<a name="l-47"></a><span class="tm">18:13:53</span><span class="nk"> &lt;tracymiranda&gt;</span> yep
+<a name="l-48"></a><span class="tm">18:14:01</span><span class="nk"> &lt;tracymiranda&gt;</span> i think :)
+<a name="l-49"></a><span class="tm">18:14:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">GSoC Update</span>
+<a name="l-50"></a><span class="tm">18:15:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Okay
+<a name="l-51"></a><span class="tm">18:15:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">GSoC projects have been announced. There will be 7 projects in Jenkins this year: https://summerofcode.withgoogle.com/organizations/5489320354381824/</span>
+<a name="l-52"></a><span class="tm">18:16:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Artifact Promotion plugin for Jenkins Pipeline
+<a name="l-53"></a><span class="tm">18:16:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Cloud Features for External Workspace Manager Plugin
+<a name="l-54"></a><span class="tm">18:16:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Multi-branch Pipeline support for Gitlab
+<a name="l-55"></a><span class="tm">18:16:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Plugins Installation Manager CLI Tool/Library
+<a name="l-56"></a><span class="tm">18:16:10</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Remoting over Apache Kafka with Kubernetes features
+<a name="l-57"></a><span class="tm">18:16:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Role Strategy Plugin Performance Improvement
+<a name="l-58"></a><span class="tm">18:16:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Working Hours Plugin - UI Improvements
+<a name="l-59"></a><span class="tm">18:16:30</span><span class="nk"> &lt;rtyler&gt;</span> *dance*
+<a name="l-60"></a><span class="tm">18:16:33</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, we target a number of important changes
+<a name="l-61"></a><span class="tm">18:16:43</span><span class="nk"> &lt;rtyler&gt;</span> who are our mentors this time around?
+<a name="l-62"></a><span class="tm">18:17:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We have around 18 active mentors in the projects
+<a name="l-63"></a><span class="tm">18:17:21 </span><span class="nka">* tracymiranda</span> <span class="ac">claps</span>
+<a name="l-64"></a><span class="tm">18:17:26</span><span class="nk"> &lt;rtyler&gt;</span> dang
+<a name="l-65"></a><span class="tm">18:17:43</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We will have a blog post with all links and mentions, it is in progress
+<a name="l-66"></a><span class="tm">18:18:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Also, there are Jenkins-related projects in other organizations (Eclipse, FOSSi, CivicCRM): https://summerofcode.withgoogle.com/projects/?sp-search=Jenkins#!
+<a name="l-67"></a><span class="tm">18:18:09</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So thanks to everybody involved!
+<a name="l-68"></a><span class="tm">18:18:34</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Ok... back to the governance side
+<a name="l-69"></a><span class="tm">18:19:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We will be distributing some swag to mentors. I would proceed according to JEP-8 if this process is still OK after CDF. rtyler tracymiranda  WDYT?
+<a name="l-70"></a><span class="tm">18:19:21</span><span class="nk"> &lt;rtyler&gt;</span> neat
+<a name="l-71"></a><span class="tm">18:19:37</span><span class="nk"> &lt;rtyler&gt;</span> I think that should be totally fine
+<a name="l-72"></a><span class="tm">18:19:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> To mentors and students who were not accepted this year
+<a name="l-73"></a><span class="tm">18:20:27</span><span class="nk"> &lt;tracymiranda&gt;</span> not familiar with JEP-8, so looking up - but if done in the past should be good
+<a name="l-74"></a><span class="tm">18:20:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> We had 32 mentors, and we also have few dozens of students who deserve some recognition after their hard work during GSoC application
+<a name="l-75"></a><span class="tm">18:20:53</span><span class="nk"> &lt;tracymiranda&gt;</span> Is this highest participation ever?
+<a name="l-76"></a><span class="tm">18:21:04</span><span class="nk"> &lt;rtyler&gt;</span> definitely
+<a name="l-77"></a><span class="tm">18:21:06</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Speaking of that... tomorrow I plan to bring up a Community Bridge topic at the Advocacy and Outreach SIG
+<a name="l-78"></a><span class="tm">18:21:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Even with 7 slots, it is less than we requested. And we may want to run some extra projects if there is an opportunity
+<a name="l-79"></a><span class="tm">18:21:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Same for GSoD, we have at least one lead there
+<a name="l-80"></a><span class="tm">18:22:19</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#info </span><span class="cmdline">https://communitybridge.org/</span>
+<a name="l-81"></a><span class="tm">18:22:35</span><span class="nk"> &lt;tracymiranda&gt;</span> let's add to the agenda for tomorrow https://docs.google.com/document/d/1K5dTSqe56chFhDSGNfg_MCy-LmseUs_S3ys_tg60sTs/edit#heading=h.9jh09t587y90
+<a name="l-82"></a><span class="tm">18:22:48</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Yeah, that's my plan
+<a name="l-83"></a><span class="tm">18:23:11</span><span class="nk"> &lt;oleg-nenashev&gt;</span> But yeah, this is definitely the biggest GSoC ever, looking forward to see how many projects suceed
+<a name="l-84"></a><span class="tm">18:23:33</span><span class="nk"> &lt;rtyler&gt;</span> does anybody have any questions for oleg-nenashev about GSoC while we're on the topic?
+<a name="l-85"></a><span class="tm">18:24:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> In addition to 7 students, we also bring in 5 new mentors who were not active Jenkins contributors before though they were active users
+<a name="l-86"></a><span class="tm">18:24:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> basically, that's it from me
+<a name="l-87"></a><span class="tm">18:24:41</span><span class="nk"> &lt;tracymiranda&gt;</span> sounds amazing, no questions from me
+<a name="l-88"></a><span class="tm">18:24:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Stay tuned for the website updates and for the blogpost
+<a name="l-89"></a><span class="tm">18:25:23</span><span class="nk"> &lt;rtyler&gt;</span> agreed, this is wunderbar
+<a name="l-90"></a><span class="tm">18:25:25</span><span class="nk"> &lt;rtyler&gt;</span> great work oleg-nenashev
+<a name="l-91"></a><span class="tm">18:25:45</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yeah, happy to do so
+<a name="l-92"></a><span class="tm">18:25:47</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Google Season of Docs Update</span>
+<a name="l-93"></a><span class="tm">18:25:56</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">markewaite:</span> any items for the record? :)
+<a name="l-94"></a><span class="tm">18:26:42</span><span class="nk"> &lt;markewaite&gt;</span> I think they were already covered in the earlier comments I made.  Sorry I stepped out of turn.  Meeting Friday, includes retro on our "miss" for GSoD and what we're doing even without GSoD
+<a name="l-95"></a><span class="tm">18:27:06</span><span class="nk"> &lt;rtyler&gt;</span> great, that's good for now I think
+<a name="l-96"></a><span class="tm">18:27:11</span><span class="nk"> &lt;markewaite&gt;</span> Gathering mentors, identifying and encouraging contributors, and trying to learn from mistakes
+<a name="l-97"></a><span class="tm">18:27:13</span><span class="nk"> &lt;rtyler&gt;</span> where/when is the retro
+<a name="l-98"></a><span class="tm">18:27:40</span><span class="nk"> &lt;markewaite&gt;</span> Friday during docs SIG meeting
+<a name="l-99"></a><span class="tm">18:27:42</span><span class="nk"> &lt;tracymiranda&gt;</span> I also received a belated email letting us know we didn't make it. They said they had almost 200 applications for the 50 organization slots
+<a name="l-100"></a><span class="tm">18:27:53</span><span class="nk"> &lt;rtyler&gt;</span> wow
+<a name="l-101"></a><span class="tm">18:27:56</span><span class="nk"> &lt;oleg-nenashev&gt;</span> 1pm utc on friday
+<a name="l-102"></a><span class="tm">18:28:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to add Docs SIG meeting to the Jenkins calendar</span>
+<a name="l-103"></a><span class="tm">18:28:53</span><span class="nk"> &lt;markewaite&gt;</span> <span class="cmd">#action </span><span class="cmdline">markewaite get agreement on a regularly scheduled time for Docs SIG meeting</span>
+<a name="l-104"></a><span class="tm">18:29:19</span><span class="nk"> &lt;markewaite&gt;</span> that's all I have to report on Docs SIG
+<a name="l-105"></a><span class="tm">18:29:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Outreachy Update</span>
+<a name="l-106"></a><span class="tm">18:30:14</span><span class="nk"> &lt;tracymiranda&gt;</span> <span class="cmd">#info </span><span class="cmdline">we have 2 outreachy interns for this round</span>
+<a name="l-107"></a><span class="tm">18:30:23</span><span class="nk"> &lt;tracymiranda&gt;</span> https://www.outreachy.org/alums/
+<a name="l-108"></a><span class="tm">18:30:40</span><span class="nk"> &lt;tracymiranda&gt;</span> We did not received Outreachy funding for the 2nd
+<a name="l-109"></a><span class="tm">18:30:52</span><span class="nk"> &lt;tracymiranda&gt;</span> <span class="cmd">#info </span><span class="cmdline">Both candidates will be funded by the Jenkins community</span>
+<a name="l-110"></a><span class="tm">18:31:20</span><span class="nk"> &lt;tracymiranda&gt;</span> Matt Sicker will be lead mentor for both interns
+<a name="l-111"></a><span class="tm">18:31:59</span><span class="nk"> &lt;tracymiranda&gt;</span> With support from other community members
+<a name="l-112"></a><span class="tm">18:32:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Has the funding been approved at the Governance meeting?
+<a name="l-113"></a><span class="tm">18:32:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I mean the second student
+<a name="l-114"></a><span class="tm">18:32:25</span><span class="nk"> &lt;tracymiranda&gt;</span> yes, at last meeting
+<a name="l-115"></a><span class="tm">18:33:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> thanks!
+<a name="l-116"></a><span class="tm">18:33:17</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I am looking forward to finally see a release of this plugin
+<a name="l-117"></a><span class="tm">18:33:33</span><span class="nk"> &lt;tracymiranda&gt;</span> So all-in-all add to GSoC and we have lots of new energy &amp; activity in the community
+<a name="l-118"></a><span class="tm">18:34:24</span><span class="nk"> &lt;rtyler&gt;</span> any other questions about outreachy?
+<a name="l-119"></a><span class="tm">18:34:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> nope
+<a name="l-120"></a><span class="tm">18:34:51</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Maybe an ask to have more content on jenkins.io about it
+<a name="l-121"></a><span class="tm">18:35:46</span><span class="nk"> &lt;tracymiranda&gt;</span> maybe we can have the interns reshare their outreachy posts on jenkins.io
+<a name="l-122"></a><span class="tm">18:36:40</span><span class="nk"> &lt;oleg-nenashev&gt;</span> also, it would be nice to have a page for it, maybe under Advocacy &amp; Outreach
+<a name="l-123"></a><span class="tm">18:38:10</span><span class="nk"> &lt;rtyler&gt;</span> I think this covers it
+<a name="l-124"></a><span class="tm">18:38:13</span><span class="nk"> &lt;rtyler&gt;</span> anything else tracymiranda ?
+<a name="l-125"></a><span class="tm">18:38:38</span><span class="nk"> &lt;tracymiranda&gt;</span> I can do some CDF updates or take questions on CDF...
+<a name="l-126"></a><span class="tm">18:38:53</span><span class="nk"> &lt;tracymiranda&gt;</span> or if you meant on outreachy, nothing else
+<a name="l-127"></a><span class="tm">18:38:55</span><span class="nk"> &lt;rtyler&gt;</span> that's the next topic
+<a name="l-128"></a><span class="tm">18:38:56</span><span class="nk"> &lt;rtyler&gt;</span> :)
+<a name="l-129"></a><span class="tm">18:39:01</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">CDF Update</span>
+<a name="l-130"></a><span class="tm">18:39:37</span><span class="nk"> &lt;tracymiranda&gt;</span> So some random CDF updates building on email to dev list
+<a name="l-131"></a><span class="tm">18:40:03</span><span class="nk"> &lt;tracymiranda&gt;</span> <span class="cmd">#info </span><span class="cmdline">Jenkins project is still in transition to CDF, still expected to take a few weeks as legal &amp; other issues are worked through</span>
+<a name="l-132"></a><span class="tm">18:40:22</span><span class="nk"> &lt;rtyler&gt;</span> we're basically waiting for their lawyers to talk to our lawyers, yadda yadda yadda :)
+<a name="l-133"></a><span class="tm">18:40:33</span><span class="nk"> &lt;tracymiranda&gt;</span> yep, lawyers in the loop now
+<a name="l-134"></a><span class="tm">18:41:10</span><span class="nk"> &lt;tracymiranda&gt;</span> in meantime, lots of ongoing discussions have kicked off, including tomorrow's outreach &amp; advocacy SIG
+<a name="l-135"></a><span class="tm">18:41:22</span><span class="nk"> &lt;tracymiranda&gt;</span> we will discuss evolving SIGs &amp; JAMs in context of CDF
+<a name="l-136"></a><span class="tm">18:41:35</span><span class="nk"> &lt;oleg-nenashev&gt;</span> do we have "our layers"? :D
+<a name="l-137"></a><span class="tm">18:41:44</span><span class="nk"> &lt;rtyler&gt;</span> technically SPI's
+<a name="l-138"></a><span class="tm">18:41:46</span><span class="nk"> &lt;oleg-nenashev&gt;</span> * lawyers
+<a name="l-139"></a><span class="tm">18:42:14</span><span class="nk"> &lt;tracymiranda&gt;</span> <span class="cmd">#info </span><span class="cmdline">2 new Technical Oversight Committee seats have been filled: Kris Nova &amp; Tara Hernandez</span>
+<a name="l-140"></a><span class="tm">18:42:33</span><span class="nk"> &lt;tracymiranda&gt;</span> It was a well contested election with 12 different candidates put forward by governing board members
+<a name="l-141"></a><span class="tm">18:43:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Is there any timeline for the Outreach committee? Many of Jenkins activities would benefit if there were established channels for Outreach/Marketing activities in CDF
+<a name="l-142"></a><span class="tm">18:44:01</span><span class="nk"> &lt;tracymiranda&gt;</span> the outreach committee has had a kickoff meeting
+<a name="l-143"></a><span class="tm">18:44:16</span><span class="nk"> &lt;tracymiranda&gt;</span> it will start regular monthly meetings from June
+<a name="l-144"></a><span class="tm">18:44:37</span><span class="nk"> &lt;tracymiranda&gt;</span> the formal committee &amp; mailing list is open to reps from member companies
+<a name="l-145"></a><span class="tm">18:45:07</span><span class="nk"> &lt;tracymiranda&gt;</span> what I recommend is that we use the Jenkins Advocacy &amp; Outreach SIG to come up with what we would like to do
+<a name="l-146"></a><span class="tm">18:45:08</span><span class="nk"> &lt;oleg-nenashev&gt;</span> So, no community mailing list?
+<a name="l-147"></a><span class="tm">18:45:23</span><span class="nk"> &lt;tracymiranda&gt;</span> then communicate that through Alyssa to outreach committee
+<a name="l-148"></a><span class="tm">18:45:23</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Even for readonly?
+<a name="l-149"></a><span class="tm">18:45:26</span><span class="nk"> &lt;tracymiranda&gt;</span> no
+<a name="l-150"></a><span class="tm">18:45:31</span><span class="nk"> &lt;tracymiranda&gt;</span> not that i am aware of
+<a name="l-151"></a><span class="tm">18:45:43</span><span class="nk"> &lt;tracymiranda&gt;</span> we are trying to get key notices posted to toc list
+<a name="l-152"></a><span class="tm">18:46:08</span><span class="nk"> &lt;tracymiranda&gt;</span> plus through website, social media channels
+<a name="l-153"></a><span class="tm">18:46:41</span><span class="nk"> &lt;tracymiranda&gt;</span> One thing I can share is that any newsworthy items can be sent to pr@cd.foundation for request to publicize
+<a name="l-154"></a><span class="tm">18:47:03</span><span class="nk"> &lt;oleg-nenashev&gt;</span> It requires alyssat_ to be consistently present in the Jenkins community
+<a name="l-155"></a><span class="tm">18:47:23</span><span class="nk"> &lt;tracymiranda&gt;</span> but generally CDF are monitoring jenkins accounts and blogs to promote them
+<a name="l-156"></a><span class="tm">18:47:42</span><span class="nk"> &lt;oleg-nenashev&gt;</span> I mean, Advocacy &amp; Outreach, SIGs and mailing lists, Governance meetings, chats
+<a name="l-157"></a><span class="tm">18:48:25</span><span class="nk"> &lt;tracymiranda&gt;</span> I will help with that as well, plus Alyssa will attend the US timezone sig meetings
+<a name="l-158"></a><span class="tm">18:48:26</span><span class="nk"> &lt;alyssat_&gt;</span> <span class="hi">oleg-nenashev:</span> noted.
+<a name="l-159"></a><span class="tm">18:48:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">tracymiranda:</span> I think what might be a good action for you or alyssa might be to document the expected relationship between the CDF outreach committee and existing project-specific efforts
+<a name="l-160"></a><span class="tm">18:48:51</span><span class="nk"> &lt;alyssat_&gt;</span> i'll try to be better at this
+<a name="l-161"></a><span class="tm">18:49:02</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And TBH it is still not what I have expected from the migration to CDF
+<a name="l-162"></a><span class="tm">18:49:10</span><span class="nk"> &lt;rtyler&gt;</span> I don't have a strong opinion in any direction at the moment, but it would be helpful to know where the seams ight overlap
+<a name="l-163"></a><span class="tm">18:50:04</span><span class="nk"> &lt;tracymiranda&gt;</span> I think we should say what we need at the SIG meeting then myself &amp; others can figure out how to get what we need from CDF
+<a name="l-164"></a><span class="tm">18:51:21</span><span class="nk"> &lt;oleg-nenashev&gt;</span> yup
+<a name="l-165"></a><span class="tm">18:51:26</span><span class="nk"> &lt;oleg-nenashev&gt;</span> we can definitely try that
+<a name="l-166"></a><span class="tm">18:52:22</span><span class="nk"> &lt;rtyler&gt;</span> any other updates tracymiranda ?
+<a name="l-167"></a><span class="tm">18:52:29</span><span class="nk"> &lt;tracymiranda&gt;</span> <span class="cmd">#info </span><span class="cmdline">An nomination process and election will shortly be run for a seat on the Governing Board to be filled by a project contributor</span>
+<a name="l-168"></a><span class="tm">18:52:44</span><span class="nk"> &lt;tracymiranda&gt;</span> I believe KK will soon send out details to mailing list
+<a name="l-169"></a><span class="tm">18:52:54</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Did we get a response about the new trademark process  in CDF?
+<a name="l-170"></a><span class="tm">18:53:35</span><span class="nk"> &lt;tracymiranda&gt;</span> yes, CDF is setting up a legal committee and that will approve a new trademark process (plus other licensing stuff)
+<a name="l-171"></a><span class="tm">18:54:01</span><span class="nk"> &lt;tracymiranda&gt;</span> Are there any pending requests that make this more urgent?
+<a name="l-172"></a><span class="tm">18:54:01</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Just to be specific, I would like to make Jenkins RU official to avoid any collision risks
+<a name="l-173"></a><span class="tm">18:54:18</span><span class="nk"> &lt;oleg-nenashev&gt;</span> And there was a request from Rick several weeks ago IIRC
+<a name="l-174"></a><span class="tm">18:54:19</span><span class="nk"> &lt;tracymiranda&gt;</span> Jenkins RU?
+<a name="l-175"></a><span class="tm">18:54:32</span><span class="nk"> &lt;tracymiranda&gt;</span> do you have link to Rick's request?
+<a name="l-176"></a><span class="tm">18:54:44</span><span class="nk"> &lt;oleg-nenashev&gt;</span> Will try to find it
+<a name="l-177"></a><span class="tm">18:55:00</span><span class="nk"> &lt;oleg-nenashev&gt;</span> IIRC it was at Advocacy and Oureach SIG meeting
+<a name="l-178"></a><span class="tm">18:55:12</span><span class="nk"> &lt;oleg-nenashev&gt;</span> darn, we need a TLA for this SIG name
+<a name="l-179"></a><span class="tm">18:55:38</span><span class="nk"> &lt;tracymiranda&gt;</span> I saw a request about SIGs in CDF but not for trademark request... but please let me know
+<a name="l-180"></a><span class="tm">18:56:07</span><span class="nk"> &lt;oleg-nenashev&gt;</span> my request is not urgent, but I am ready to be a guinea pig for the new process
+<a name="l-181"></a><span class="tm">18:56:20</span><span class="nk"> &lt;tracymiranda&gt;</span> that's great, thanks!
+<a name="l-182"></a><span class="tm">18:57:05</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">oleg_nenashev to find the trademark question from Rick</span>
+<a name="l-183"></a><span class="tm">18:57:42</span><span class="nk"> &lt;tracymiranda&gt;</span> <span class="cmd">#action </span><span class="cmdline">tracymiranda to follow up on project contributor seat on GB</span>
+<a name="l-184"></a><span class="tm">18:57:55</span><span class="nk"> &lt;oleg-nenashev&gt;</span> <span class="cmd">#action </span><span class="cmdline">alyssat_  to join https://groups.google.com/forum/#!forum/jenkins-advocacy-and-outreach-sig</span>
+<a name="l-185"></a><span class="tm">18:58:47</span><span class="nk"> &lt;rtyler&gt;</span> the clock says we have one minute
+<a name="l-186"></a><span class="tm">18:58:47</span><span class="nk"> &lt;oleg-nenashev&gt;</span> and https://gitter.im/jenkinsci/advocacy-and-outreach-sig , I'd guess
+<a name="l-187"></a><span class="tm">18:58:50</span><span class="nk"> &lt;rtyler&gt;</span> any last words? :D
+<a name="l-188"></a><span class="tm">18:59:15</span><span class="nk"> &lt;oleg-nenashev&gt;</span> next meeting as usual?
+<a name="l-189"></a><span class="tm">18:59:22</span><span class="nk"> &lt;tracymiranda&gt;</span> nothing more from me
+<a name="l-190"></a><span class="tm">18:59:25</span><span class="nk"> &lt;alyssat_&gt;</span> done! i've joined https://groups.google.com/forum/#!forum/jenkins-advocacy-and-outreach-sig
+<a name="l-191"></a><span class="tm">18:59:36</span><span class="nk"> &lt;tracymiranda&gt;</span> hehe
+<a name="l-192"></a><span class="tm">18:59:42</span><span class="nk"> &lt;alyssat_&gt;</span> :)
+<a name="l-193"></a><span class="tm">18:59:44</span><span class="nk"> &lt;rtyler&gt;</span> honk
+<a name="l-194"></a><span class="tm">18:59:50</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-195"></a><span class="tm">19:00:13</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">our next meeting should be at the same time, same place, on May 22nd</span>
+<a name="l-196"></a><span class="tm">19:00:16</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 22:35:11 Oct 27, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:02:21 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 1657.111
+  exclusion.robots: 0.089
+  exclusion.robots.policy: 0.081
+  cdx.remote: 0.08
+  esindex: 0.013
+  LoadShardBlock: 654.746 (3)
+  PetaboxLoader3.datanode: 660.278 (4)
+  CDXLines.iter: 19.724 (3)
+  load_resource: 76.265
+  PetaboxLoader3.resolve: 44.768
+-->

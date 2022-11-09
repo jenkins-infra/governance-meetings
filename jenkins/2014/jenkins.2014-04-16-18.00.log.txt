@@ -1,0 +1,177 @@
+18:00:58 <kohsuke> #startmeeting
+18:00:58 <robobutler> Let the Jenkins meeting commence!
+18:01:05 <kohsuke> #chair rtyler hare_brain
+18:01:06 <robobutler> Current chairs: hare_brain kohsuke rtyler
+18:01:21 <kohsuke> #topic JUC status update / travel grant?
+18:01:47 <kohsuke> hmm, doesn't look like lisa is here
+18:02:08 <kohsuke> so maybe we should start with 1.554.1 RC status
+18:02:18 <kohsuke> #topic 1.554.1 RC status
+18:02:26 <kohsuke> jglick: ogondza: ping
+18:02:33 <jglick> present
+18:02:44 <ogondza> I have just sent status report to dev list
+18:02:50 <kohsuke> ah indeed
+18:03:03 <kohsuke> I wonder if marcomiller ported stuff he wanted in this LTS
+18:03:14 <ogondza> He did.
+18:03:18 <kohsuke> yay
+18:03:28 <kohsuke> all right, then I'll produce RC today
+18:03:43 <marcomiller> did indeed =)
+18:04:01 <jglick> JENKINS-19081 was an RFE rather than a bug fix strictly speaking; did we want this backported?
+18:04:04 <jenkins-admin> JENKINS-19081:Download update center from master by default (Resolved) http://jenkins-ci.org/issue/19081
+18:04:31 <kohsuke> Hmm, there still is a lot of flakiness in the acceptance test
+18:04:54 <ogondza> jglick, You are right though I like that a lot
+18:05:29 <jglick> Well so do I obviously, but still.
+18:06:11 <jglick> Could be interpreted as a fix only in case we *expect* browser-based downloading to be broken in the near future.
+18:06:45 <jglick> Is there a list of lts-candidate issues which are too young for this or which were otherwise rejected?
+18:07:03 <ogondza> LTSs https://issues.jenkins-ci.org/secure/IssueNavigator.jspa?mode=hide&requestId=12146
+18:08:01 <ogondza> no candidate was rejected. There was one issue that was labeled by mistake (already backported)
+18:08:06 <jglick> OK, nothing that looks critical.
+18:08:23 <ogondza> a lot was already in 1.554
+18:08:37 <jglick> Seems like we are ready for RC.
+18:08:41 <kohsuke> Yeah
+18:08:48 <kohsuke> #agreed 1.554.1 RC is good to go
+18:09:35 <kohsuke> ogondza:  Maybe this is bit off topic but have you looked into why some of the acceptance tests appear so flaky?
+18:09:42 <kohsuke> I will have to find time digging in myself
+18:10:15 <kohsuke> One pattern I see is that it occasionally appears to fail to find tool installer data
+18:10:16 <ogondza> not yet
+18:10:39 <kohsuke> like https://jenkins.ci.cloudbees.com/job/core/job/acceptance-test-harness/156/testReport/
+18:10:45 <ogondza> I am still not happy about its stability
+18:10:53 <kohsuke> Looks like this accounts for the majority of the randomness
+18:11:23 <kohsuke> I was also going to try to run selenium on Sauce Labs by using our account
+18:11:29 <kohsuke> That'll give us screenshots and all.
+18:11:32 <kohsuke> Anyway
+18:11:44 <jglick> Then maybe JENKINS-19081 should be used in the tests to download more reliably from master. :-) Once the tool metadata is fixed to include signatures, that is.
+18:11:46 <jenkins-admin> JENKINS-19081:Download update center from master by default (Resolved) http://jenkins-ci.org/issue/19081
+18:12:31 <kohsuke> #topic JUC status update / travel grant?
+18:12:40 <kohsuke> LisaWells: yay you are here
+18:12:52 <LisaWells> yes, here
+18:12:55 <LisaWells> Alyssa too
+18:12:57 <Alyssa> i can provide the status update
+18:13:09 <kohsuke> It's all yours
+18:13:40 <Alyssa> Registration for boston & berlins & israel is currently live
+18:13:49 <Alyssa> boston= 70 registrants
+18:13:50 <kohsuke> I've seen the submissions to JUC Berlin and they were all quite impressive
+18:13:59 <Alyssa> berlin = 24 reg
+18:14:08 <Alyssa> indeed
+18:14:26 <Alyssa> israel = 4 reg
+18:14:27 <kohsuke> I wonder if the dates are on Jenkins event calendar
+18:14:40 <LisaWells> actually I was going to ask you today if you could put them there :)
+18:14:41 <kohsuke> http://jenkins-ci.org/content/event-calendar
+18:14:55 <kohsuke> Yeah they are not
+18:15:03 * kohsuke goes off to add them
+18:15:38 <kohsuke> I feel like folks in the events list should have write access to this calendar
+18:15:44 <kohsuke> like kinow
+18:15:45 <Alyssa> we are working on finalizing the agenda. hopefully we'll have agenda for boston/berlin up by early next wk
+18:16:17 <Alyssa> agreed KK
+18:17:01 <Alyssa> here are links to reg sites http://www.eventbrite.com/e/jenkins-user-conference-boston-ma-june-18-2014-tickets-10558652213
+18:17:22 <Alyssa> for berlink   http://www.eventbrite.com/e/jenkins-user-conference-berlin-germany-june-25-2014-tickets-10557974185
+18:17:35 <rtyler> kohsuke: fyi, i'm around but I can't actively pay attention here
+18:17:42 <rtyler> so please ping me if there's anything for me to chime in on
+18:17:51 <Alyssa> israel http://www.eventbrite.com/e/jenkins-user-conference-herzliya-israel-july-16-2014-tickets-10558710387
+18:18:01 <kohsuke> rtyler:  no worries
+18:18:49 <Alyssa> Early bird pricing will end soon  boston: 4/19  berlin 4/27
+18:18:51 <kohsuke> our usual German folks aren't really here: fredg, orrc, drulli
+18:19:17 <kohsuke> Alyssa: you told me that finding a venue in Berlin turns out to be quite a challenge
+18:19:26 <kohsuke> do you want to mention a bit about that?
+18:19:40 <Alyssa> well, we're going with kosmos
+18:19:56 <Alyssa> we're in contract w/ location so there's no turning back
+18:19:59 <kohsuke> #info http://www.kosmos-berlin.de/en/home.html
+18:20:13 <kohsuke> calendar added
+18:20:58 <Alyssa> perhaps for future JUC Berlin we can get suggestions for venues but we
+18:21:10 <Alyssa> are set for this one in june
+18:21:22 <kohsuke> right
+18:21:25 <orrc> Kosmos is next door to the computer games museum, so it's a good choice :)
+18:21:28 <LisaWells> do we have a venue for Bay Area?
+18:21:32 <LisaWells> if not, any suggestions?
+18:21:57 <Alyssa> +orrc: thnx that's good to know :o)
+18:22:04 <kohsuke> orrc: so we got some competition for attendance :-)
+18:22:34 <Alyssa> LisaWells: we currently do not have a venue for bay area
+18:22:48 <KostyaSha> is there any global proxy in jenkins?
+18:23:00 <KostyaSha> is it plugins configuration?
+18:23:04 <kohsuke> What about Yahoo folks that they said they are willing?
+18:23:27 <kohsuke> I've been to their campus a few times and they got the 2nd floor of the cafeteria entirely for events
+18:23:51 <Alyssa> haven't checked with them. who's the contact for that ?
+18:24:12 <kohsuke> I have to dig that up, they were in the scalability summit
+18:24:21 <kohsuke> Along the same line, netflix?
+18:24:23 <Alyssa> can they host 400 -500 people ?
+18:24:37 <Alyssa> i've received out to neflix but no response from them
+18:25:07 <kohsuke> I don't know about 400 people, but Yahoo sites, it might
+18:25:11 <hare_brain> I remember asking around with people still at Yahoo about the cafeteria, and they said they don’t rent that out.
+18:25:54 <kohsuke> Now that Google Cloud Platform does Jenkins, maybe they can help?
+18:26:44 <Alyssa> kohsuke: contact plz ?
+18:26:57 <kohsuke> The event would have to be more community and less vendors, but then if the venue is free we don't need so many sponsors, so it just might work out...
+18:27:15 <Alyssa> agreed
+18:27:19 <kohsuke> It could be like how Copenhagen event is run
+18:28:03 <kohsuke> hare_brain: how does various user groups  get Yahoo venues for their events?
+18:28:16 <kohsuke> It works because it's just a few hours in the evening?
+18:28:27 <hare_brain> Yes.
+18:28:34 <kohsuke> OK, that makes sense
+18:29:08 <Alyssa> that's it for me for JUC status update. unless there are questions for me, i'll let lisa take it from here
+18:29:37 <kohsuke> orrc: how do we get the words out in the developers in Berlin or broader Germany?
+18:29:43 <LisaWells> so does anyone have good ideas to get the word out?
+18:29:51 <LisaWells> KK just said what I was typing...
+18:30:20 <kohsuke> Maybe some sites we can post ad?
+18:30:29 <LisaWells> Same for Boston - need communities (JUGs, Agile groups, etc) who might help us spread the word
+18:30:32 <kohsuke> Perhaps like german version of Hacker News...
+18:31:07 <LisaWells> also - would anyone like to volunteer to help promote the JUCs?
+18:31:40 <kohsuke> JAX is in May
+18:32:00 <LisaWells> I think we are handing out JUC Berlin stickers at JAX?
+18:32:01 <Alyssa> We have made JUC stickers to be passed out at JAX
+18:32:13 <afex> hi, is it possible to load a private key from the credentials plugin during a shell build step? i'd like to grab the private key contents during some command line operations
+18:32:18 <kohsuke> There'll be a lot of developers there, if only we know how to get there
+18:32:20 <LisaWells> if anyone else wants a stock of JUC Berlin stickers, we could send them
+18:32:44 <LisaWells> Devoxx is this month as well, right?
+18:32:57 <baniir> why are users and credentials handled separately? i'm confused by the difference
+18:33:17 <afex> unfortunately ruby's net-ssh doesn't seem to be compatible with the ssh-agent plugin, so i'm attempting to workaround it
+18:33:19 <kohsuke> I thought that was in France
+18:33:31 <Alyssa> Devoxx is in Paris I think. Cyrille mentioned French wont go to Germany for events
+18:33:32 <kohsuke> afex: baniir: let's postpone the questions until after the project meeting
+18:33:39 <LisaWells> yes, it is
+18:33:43 <kohsuke> :-) that's what I suspected!
+18:33:52 <LisaWells> hoping some might come - worth having the stickers there
+18:34:01 <afex> kohsuke: didnt' realize this was an official meeting, sorry
+18:34:08 <kohsuke> np
+18:34:12 <LisaWells> people may also travel to Devoxx from Germany, no?
+18:34:33 <kohsuke> jglick: did you get the e-mail between I sent to you and two other folks we met at the last Jenkins event in Boston?
+18:34:42 <baniir> kohsuke: sure; also didn't realize a meeting was in progress
+18:35:03 <jglick> kohsuke: have it somewhere
+18:35:08 <kohsuke> I think having a periodic meetup going is good for multiple reasons
+18:35:28 <kohsuke> ... one of which is that we can reach people who would be interested in events like this
+18:35:36 <LisaWells> +1
+18:36:33 <kohsuke> All right, let's hope that the banner deployment on Wiki and JIRA would spread the words
+18:36:44 <orrc> yeah, I don't know what the German equivalent of Hacker News is. fredg or kutzi might have a better idea
+18:37:01 <orrc> a lot of people read www.heise.de — they have an event calendar that I can try and add the JUC to
+18:37:04 <LisaWells> once the agenda is up, how does everyone feel about spreading the link via their social media networks?
+18:37:20 <fredg02> hey, sorry for being late
+18:37:27 <kohsuke> orrc: I think that'd be very helpful
+18:38:03 <Alyssa> orrc: how about log JUGs as lisa mentioned?
+18:38:12 <kohsuke> fredg02: we were just wondering how to spread words to the German developers about JUC
+18:38:53 <Alyssa> orrc: sorry meant local not log
+18:39:11 <fredg02> we should definitely spread the word through the local Java user groups.
+18:39:19 <kohsuke> This heise online must be somehow related to http://www.h-online.com/
+18:39:25 <danielbeck> any idea how to get on http://www.heise.de/ix/veranstaltungen/ ?
+18:39:49 <danielbeck> kohsuke: h online was the English version of heise.de
+18:40:20 <kohsuke> I forgot that danielbeck is a German, too
+18:40:52 <kohsuke> ah, the wonder of Google Translate
+18:41:42 <fredg02> yeah, heise.de shouldn't be a big problem.
+18:41:59 <kohsuke> maybe we'd have to ask through http://www.heise.de/ix/kontakt/
+18:42:04 <LisaWells> alyssa: could we offer a bobblehead to people who volunteer to help promote JUC in Boston & Germany (to be picked up at the conference)?
+18:42:21 <Alyssa> absolutely
+18:42:34 <orrc> abayer will be talking at the JUG here in Cologne this month. I'm sure he can do some promotion
+18:42:42 <Alyssa> we have jenkins badge pins this year too
+18:43:07 <kohsuke> orrc: is he living in Germany nowadays or what?
+18:43:08 <LisaWells> those are going to be super-cool - can't wait
+18:43:19 <orrc> kohsuke: he's just here on holiday, as far as I know
+18:43:36 <Alyssa> orrc: great idea!! that'll be helpful
+18:44:34 <kohsuke> Any more on this topic?
+18:44:54 <LisaWells> Do we want to talk about travel grants?
+18:45:00 <kohsuke> Ah yes
+18:45:21 <kohsuke> So we've launched the patron program and that raised $3000
+18:46:07 <kohsuke> So I thought it might let us think about a future travel grant to one of the events
+18:46:42 <LisaWells> in previous years, people have requested them but there was no funding source.
+18:46:54 <kohsuke> Or if anyone can think of a good way to spend money for the benefit of the project, I'm all ears
+18:47:25 <kohsuke> ... like finding some part time sysadmin who can help with up-keeping, perhaps
+18:48:27 <kohsuke> All right, I don't really have much to add beyond that. Maybe I should send an e-mail to the list and see if anyone reacts
+18:48:46 <kohsuke> #topic next meeting
+18:49:13 <kohsuke> would be April 30th same time
+18:49:27 <kohsuke> all right, that's it, thank you!
+18:49:29 <kohsuke> #endmeeting

@@ -1,0 +1,219 @@
+04:02:03 <kohsuke> #startmeeting
+04:02:03 <robobutler> Let the Jenkins meeting commence!
+04:02:18 <kohsuke> #chair hare_brain abayer rtyler
+04:02:18 <robobutler> Current chairs: abayer hare_brain kohsuke rtyler
+04:02:27 <rtyler> \o/
+04:02:39 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+04:02:53 <kohsuke> and http://build-shokunin.org/juc2012
+04:03:05 <kohsuke> #topic recap of actions
+04:03:19 <kohsuke> #info http://meetings.jenkins-ci.org/jenkins/2012/jenkins.2012-04-04-18.01.html
+04:03:23 <rtyler> nicolas isn't awake unfortunately :(
+04:03:45 <kohsuke> abayer: I still need your PGP public key
+04:03:53 <kohsuke> and thanks hare_brain for sending me one
+04:03:59 <abayer> Argh. One sec.
+04:04:17 <kohsuke> #action kohsuke to send the board private key to hare_brain and abayer
+04:04:42 <kohsuke> I think I'll also use it to archive the receipts for reimbursement
+04:04:58 <kohsuke> #action kohsuke to write a Confluence macro to have link to JProfiler
+04:05:03 <kohsuke> #action ndeloof to ask for JProfiler licenses http://www.ej-technologies.com/buy/jprofiler/openSource
+04:05:08 <kohsuke> (neither of those are done)
+04:05:22 <kohsuke> and I need to send stickers
+04:05:28 <kohsuke> oy
+04:05:37 <rtyler> heh
+04:05:43 <hare_brain> Heh. I think you were doing something a little more interesting this week.
+04:05:49 <rtyler> agreed
+04:05:56 <rtyler> I'll take hives over stickers for now ;)
+04:06:05 <rtyler> that said, would it help if we filed JIRAs?
+04:06:21 <kohsuke> actually constant nagging works better for things like this
+04:06:32 <kohsuke> I got 13400 tickets on my back
+04:06:40 <kohsuke> or we, collectively
+04:06:43 <kohsuke> anyway
+04:06:44 <abayer> heheh
+04:06:51 <rtyler> so pull requests are out
+04:06:53 <rtyler> jiras are out
+04:06:53 <kohsuke> #action kohsuke to mail sticker batches to abayer and rtyler
+04:07:04 <kohsuke> and that means you guys need to send me your address
+04:07:20 <abayer> Sending you that now.
+04:07:33 <kohsuke> rtyler: it must be on your reimbursement form
+04:07:38 <kohsuke> I guess I can send it there?
+04:07:53 <rtyler> if it's a san francisco address, yes
+04:08:08 <rtyler> if not, we're moving real soon now, so by the time you mail them my current mailing address will be invalid ;)
+04:08:14 <rtyler> sending you an email anyways
+04:08:33 <kohsuke> Thanks
+04:08:39 <kohsuke> So that's it for actions
+04:09:04 <rtyler> let's talk JUC Tokyo!
+04:09:13 <kohsuke> #info Oh, I'm very happy to report that rtyler had finally done his long standing action to file a reimbursement for the $5K overage that got the fund-raising started
+04:09:19 <rtyler> haha
+04:09:33 <kohsuke> So he'll be whole real soon now
+04:09:33 <rtyler> tax season has a way of reminding me to do things :)
+04:09:53 <kohsuke> #topic JUC Tokyo
+04:10:11 <kohsuke> So let me check whose here from that side of the Pacific ocean
+04:10:33 <kohsuke> We've been talking about ohtake san before a bit
+04:10:45 <kohsuke> ssogabe said he'd be here but hmm
+04:11:15 <rtyler> maybe everybody is eating lunch :)
+04:11:38 <kohsuke> then there's lino_s who wrote the Japanese Jenkins book
+04:12:13 <kohsuke> let me poke them on twitter quickly
+04:12:17 <kohsuke> it appears that my attempt at encouraging participation wasn't very successful :-(
+04:12:38 <rtyler> ohtake is here
+04:12:39 <rtyler> :D
+04:13:25 <hare_brain> I'd like to hear what kind of things our friends on the other side of the Pacific do with Jenkins. I see checkins from ssogabe and ohtake, but that's about it.
+04:14:06 <kohsuke> I'm actually curious what ohtake san is doing for his day job
+04:14:31 <kohsuke> I haven't met him in person yet, and I suspect Jenkins is related to his day job but not sure
+04:14:39 <rtyler> kohsuke: is there a jenkins japanese language channel?
+04:14:51 <rtyler> would any level of translation in here help maybe?
+04:15:15 <kohsuke> There was a conversation to have a chat channel, but it wasn't on IRC
+04:15:20 <rtyler> ah
+04:15:29 <kohsuke> From what I've heard, most companies block IRC
+04:15:54 * rtyler nods
+04:15:56 <kohsuke> "most" might be too strong, but I guess culturally they aren't really on IRC
+04:16:23 <kohsuke> Twitter seems to be used more
+04:16:31 <kohsuke> I don't know if there's any translation bot
+04:16:40 * rtyler wonders if he can enter in utf-8 properly
+04:16:40 <kohsuke> that might be fun to set up and see what it does
+04:17:04 <kohsuke> But back to JUC Tokyo
+04:17:25 * rtyler nods
+04:17:26 <kohsuke> ikikko san is the lead organizer
+04:17:36 <kohsuke> ... who said he couldn't come today
+04:17:40 <rtyler|2> 日本人の友達こんにちは、あなたは起きている？
+04:18:09 <rtyler> is ohtake the only JUC Tokyo point man?
+04:18:26 <kohsuke> and me, it looks like
+04:18:59 <rtyler|2> その後の会議について話ましょう
+04:19:07 <kohsuke> ohtake san isn't really involved in the event organizing work, AFAIK
+04:19:12 <kohsuke> ... although I believe he'll be presenting
+04:19:18 <rtyler> hokay
+04:19:32 <rtyler> well this is unfortunate as far as the bridging of gaps :(
+04:19:41 <kohsuke> Yeah
+04:19:43 <rtyler> the venue is locked down though?
+04:19:50 <ikikko> hi, i'm here. but i have plans in a few minutes. sorry.
+04:19:51 <kohsuke> Anyway, ikikko added one more track to the show, so we have now 4x3+1=13 talk slots
+04:20:08 <kohsuke> thank you for coming
+04:20:11 <rtyler> is there a wiki page or other site where this is being coordinated?
+04:20:46 <rtyler|2> ikikkoこんにちは
+04:21:04 <ikikko> hello rtyler
+04:21:06 <rtyler> :)
+04:21:15 <kohsuke> Yes, there's this invite-only project management system that ikikko develops in his day job and we use that for tracking
+04:21:36 <rtyler> ah, I was thinking more public, will you let me know when there's a public site out?
+04:22:08 <kohsuke> there's http://build-shokunin.org/juc2012/
+04:22:19 <kohsuke> ... which is the current place holder
+04:22:28 * rtyler nods
+04:22:35 <kohsuke> and a series of pages are staged that's supposed to go live "soon"
+04:22:49 <rtyler> can you #info some dates?
+04:22:58 <kohsuke> ikikko: am I right that we are just waiting for the registration page to be set up by cactusman?
+04:23:19 <ikikko> yes
+04:24:00 <kohsuke> ikikko: would you like to speak about dates, etc? or do you want me to do it?
+04:24:13 <kohsuke> You can post it in Japanese and I can also translate that if you'd like
+04:24:51 <kohsuke> 7/29 Sunday is the conference day
+04:24:52 <ikikko> kohsuke: 日本語で話しますので、翻訳お願いします
+04:24:54 <kohsuke> sure
+04:25:08 <rtyler> #info July 29th is the date of JUC Tokyo
+04:25:20 <ikikko> 日本時間の7/29に、東京でJUCを開こうとかんが得てます
+04:25:49 <kohsuke> "We are thinking about having JUC in Tokyo on 7/29 Japan time"
+04:26:12 <ikikko> スピーカーは3*4=12 or 3*5=15で
+04:26:35 <ikikko> 参加者は300人程度を想定しています
+04:26:38 <kohsuke> "The sessions are 3 rooms * 4 slots=12 or 3*5=15"
+04:26:47 <kohsuke> "We estimate the attendees to be around 300"
+04:27:33 <ikikko> 他にどんな情報が必要ですか？
+04:27:45 <kohsuke> "What else would be useful for me to share?"
+04:27:45 <rtyler|ja> ikikko: どのくらいの交渉はあるのだろうか？
+04:27:51 <rtyler> "how long will talks be?"
+04:28:03 * rtyler has google translate open :)
+04:28:52 <ikikko> what does 'どのくらいの交渉はあるのだろうか？' mean?
+04:28:57 <rtyler|ja> hehe
+04:29:03 <rtyler> it means Google Translate is bad :)
+04:29:11 <hare_brain> HAHAHA
+04:29:11 <rtyler> ikikko: how long will the talks/sessions be?
+04:29:12 <kohsuke> セッションの時間の話ですね
+04:29:24 <ikikko> 了解
+04:29:29 <kohsuke> "Got it"
+04:29:36 <ikikko> 1セッションあたり1時間を考えてます
+04:29:46 <rtyler|ja> okay
+04:29:48 <rtyler> er, okay
+04:29:50 <kohsuke> ikikko:  あとスポンサーの話もしたらいいと思います / I think you should share about sponsors
+04:30:09 <kohsuke> "1 session is 1 hour"
+04:30:19 <abayer> I'll have my abstract to you tomorrow, kohsuke. =)
+04:30:25 <kohsuke> abayer: yes, please
+04:30:29 <kohsuke> and you, rtyler
+04:30:33 * rtyler hides
+04:31:32 <ikikko> スポンサーは、現在約8つの企業が協力してくれるという返事をもらってます
+04:32:18 <kohsuke> "We currently got 8 sponsor companies to help the event"
+04:32:57 <kohsuke> My understanding is that we have sufficient money to run the show
+04:33:11 <kohsuke> It's certainly more than I originally thought, for sure
+04:33:44 <abayer> Great!
+04:33:44 <kohsuke> And that's one of the things I wanted to resole today
+04:34:07 <rtyler> #info estimating ~300 attendees
+04:34:08 <kohsuke> So as I mentioned in 2 meetings back, there's this issue of organizing the social after the conference
+04:34:13 <rtyler> #info ~8 sponsors
+04:34:45 <kohsuke> and even with RSVP, there's this inherent uncertainty about how many people would actually show up
+04:35:36 * rtyler nods
+04:35:40 <kohsuke> and even though we factor in some no-show and last minute cancellation, we might end up paying out of the own pocket
+04:36:02 <kohsuke> ikikko: is that still a fair statement?
+04:36:24 <kohsuke> A part of me felt that with the current sign-up of sponsors, the chance of that happening seems to be even lower than we initially thought
+04:37:30 <ikikko> please translate 'is that still a fair statement?' into Japanese, sorry.
+04:38:10 <kohsuke> ikikko: 懇親会の赤字が出たら補填してもらうという話を今日ぜひまとめたいと思っています。
+04:38:21 <ikikko> ok
+04:38:44 <kohsuke> ikikko: それともスポンサーの数から言ってそれほど心配するべき事ではなくなったりしてます？
+04:39:00 <ikikko> 一応お願いしておきたいです
+04:39:10 <ikikko> 赤字が出たら補填してもらって、黒字が出たらそれをそのまま寄付します
+04:40:23 <kohsuke> ikikko: 一応、前回のミーティングでは$1000という上限を設定するのでどう？という話は合意がとれています / in the last meeting, there was a reasonably wide consensus that the project can pay up the loss provided that we set the upper bound cap of $1K
+04:40:42 * kohsuke busily switches two languages in his brain
+04:40:48 <rtyler> abayer: do you speak japanese well enough yet to help kohsuke out :)
+04:40:49 <ikikko> はい、それで構わないです
+04:40:56 <abayer> rtyler: Not by a long shot. =)
+04:41:19 <kohsuke> ikikko says "We'd still like to ask for the project to cover the loss in case if it happens"
+04:41:37 <kohsuke> "but if there's any left over we'll send them into SPI in return"
+04:41:50 <rtyler> I still think it's okay, with the cap, if we blow through the cap, I can help out ;)
+04:41:57 <kohsuke> "and we are grateful with a cap like $1K"
+04:42:05 <rtyler> I have some surplus funds coming my way now :P
+04:42:39 <abayer> $1k sounds fine to me.
+04:42:43 * rtyler nods
+04:43:29 <kohsuke> ikikko: 上限$1000ってのはいいですよ、という風に言ってくれています / folks are re-affirming that $1K cap is fine by them
+04:43:46 <ikikko> ok, thanks
+04:43:50 * rtyler taps his watch
+04:43:57 <ikikko> sorry, time is over. i have to go out from now..
+04:44:00 <kohsuke> If I can record that as an agreement, I feel like this event was useful
+04:44:06 <kohsuke> ikikko: thanks
+04:44:13 <abayer> Thanks ikikko!
+04:44:28 <rtyler|ja> あなたikikkoを参照してください。
+04:44:31 <hare_brain> I actually thought we had the agreement last time...
+04:44:35 <rtyler> ditto
+04:44:42 <ikikko> bye!
+04:44:52 <kohsuke> Well then
+04:45:46 <kohsuke> #agreed the project will pay up to $1000 if the social after JUC Tokyo runs out of money. Otherwise, the surplus will be donated to SPI
+04:45:59 <kohsuke> And ssogabe san arrived
+04:46:11 <kohsuke> thanks for coming
+04:47:40 <kohsuke> Otherwise I wanted to spend a bit of time taking advantages of the presence of folks to talk about what we can do to bridge the gap, but ...
+04:47:51 <kohsuke> we are running out of time
+04:47:58 <rtyler> it's friday night too
+04:48:02 <kohsuke> yeah
+04:48:05 <rtyler> and I'm intolerably sober :)
+04:48:24 <kohsuke> I have 99 problems but that's not my problem
+04:48:30 <rtyler> I think we have a lot more to do to bridge the gap
+04:48:37 <rtyler> I'd really like to focus on the mailing lists more than anything
+04:49:22 <kohsuke> The feedback on Twitter during this hour is that real time chat in English is very hard
+04:49:37 <rtyler> right, I figured as much
+04:49:39 <abayer> Understandably.
+04:49:54 <rtyler> abayer has hard enough time with real-time chat in english as is, and he's an American!
+04:49:57 * rtyler ducks
+04:50:01 <abayer> So true.
+04:50:05 <kohsuke> rtyler: what do you mean mailing lists?
+04:50:05 <abayer> Wait, what?
+04:50:28 <rtyler> kohsuke: I mean I'd be happy to see more japanese users on the mailing lists than IRC
+04:50:36 <kohsuke> right, ok
+04:51:15 <kohsuke> interestingly the Japanese Jenkins mailing list is low traffic
+04:51:32 <kohsuke> It makes me wonder where people are communiating
+04:51:37 <hare_brain> Twitter?
+04:51:39 <kohsuke> ssogabe: ohtake: any thoughts?
+04:51:56 <rtyler> can we will the meeting and just continue with regular chat then? this isn't on the agenda
+04:52:04 <rtyler> will? I meant kill
+04:52:06 <kohsuke> yeah
+04:52:07 <rtyler> pew pew
+04:52:09 <kohsuke> let's wrap up
+04:52:16 <kohsuke> #topic next meeting time
+04:52:26 <kohsuke> so, going back to the regular schedule...
+04:52:34 <rtyler> April 25th?
+04:52:43 <kohsuke> Aye
+04:52:55 <rtyler> 11am as per previous habit?
+04:53:04 <kohsuke> +1
+04:53:14 <abayer> +1
+04:53:19 <hare_brain> I will be joining a little bit late on the 25th, but start without me
+04:53:36 <rtyler> #agreed next meeting time will be 2012.04.25 at 11am PST
+04:53:40 <rtyler> #endmeeting

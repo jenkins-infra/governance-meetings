@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app212.us.archive.org';v.server_ms=442;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="/_static/js/bundle-playback.js?v=MzYkZ0TU" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=UHAOicsW" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("https://web.archive.org/web");
+  __wm.wombat("http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-12-07-18.03.log.html","20211020070514","https://web.archive.org/","web","/_static/",
+	      "1634713514");
+</script>
+<link rel="stylesheet" type="text/css" href="/_static/css/banner-styles.css?v=S1zqJCYt" />
+<link rel="stylesheet" type="text/css" href="/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>#jenkins-meeting log</title>
+<style type="text/css">
+/* For the .log.html */
+pre { /*line-height: 125%;*/
+      white-space: pre-wrap; }
+body { background: #f0f0f0; }
+
+body .tm  { color: #007020 }                      /* time */
+body .nk  { color: #062873; font-weight: bold }   /* nick, regular */
+body .nka { color: #007020; font-weight: bold }  /* action nick */
+body .ac  { color: #00A000 }                      /* action line */
+body .hi  { color: #4070a0 }                 /* hilights */
+/* Things to make particular MeetBot commands stick out */
+body .topic     { color: #007020; font-weight: bold }
+body .topicline { color: #000080; font-weight: bold }
+body .cmd       { color: #007020; font-weight: bold }
+body .cmdline  { font-weight: bold }
+
+</style>
+</head>
+
+<body>
+<pre><a name="l-1"></a><span class="tm">18:03:28</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#startmeeting</span><span class="cmdline"></span>
+<a name="l-2"></a><span class="tm">18:03:28</span><span class="nk"> &lt;robobutler&gt;</span> Let the Jenkins meeting commence!
+<a name="l-3"></a><span class="tm">18:03:33</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#chair </span><span class="cmdline">hare_brain_ kohsuke danielbe_</span>
+<a name="l-4"></a><span class="tm">18:03:33</span><span class="nk"> &lt;robobutler&gt;</span> Current chairs: danielbe_ hare_brain_ kohsuke rtyler
+<a name="l-5"></a><span class="tm">18:03:38</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Last meeting actions</span>
+<a name="l-6"></a><span class="tm">18:03:52</span><span class="nk"> &lt;rtyler&gt;</span> http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-11-23-18.00.html
+<a name="l-7"></a><span class="tm">18:04:10</span><span class="nk"> &lt;rtyler&gt;</span> I believe, because I'm running it, that kohsuke released 2.19.4 :)
+<a name="l-8"></a><span class="tm">18:04:26</span><span class="nk"> &lt;rtyler&gt;</span> I have not yet set up the December GSoC retrospective discussion
+<a name="l-9"></a><span class="tm">18:04:47</span><span class="nk"> &lt;jglick&gt;</span> Yes 2.19.4 seems to exist.
+<a name="l-10"></a><span class="tm">18:04:48</span><span class="nk"> &lt;rtyler&gt;</span> I know that oleg-nenashev and Jacob got the klocwork plugin all sorted and Jacob is moving forward with releases
+<a name="l-11"></a><span class="tm">18:05:02</span><span class="nk"> &lt;rtyler&gt;</span> did ogondza have a chance to prep the next 2.32-based branch?
+<a name="l-12"></a><span class="tm">18:05:17</span><span class="nk"> &lt;jglick&gt;</span> does not seem to be present
+<a name="l-13"></a><span class="tm">18:05:53</span><span class="nk"> &lt;rtyler&gt;</span> hrmph
+<a name="l-14"></a><span class="tm">18:06:02</span><span class="nk"> &lt;jglick&gt;</span> ogondza I mean
+<a name="l-15"></a><span class="tm">18:06:18</span><span class="nk"> &lt;jglick&gt;</span> the branch is there: https://github.com/jenkinsci/jenkins/compare/master...stable-2.32
+<a name="l-16"></a><span class="tm">18:06:19</span><span class="nk"> &lt;rtyler&gt;</span> indeed, but has the next lts been branched?
+<a name="l-17"></a><span class="tm">18:06:20</span><span class="nk"> &lt;rtyler&gt;</span> \o/
+<a name="l-18"></a><span class="tm">18:06:41</span><span class="nk"> &lt;rtyler&gt;</span> I don't think there are any other actions to really cover
+<a name="l-19"></a><span class="tm">18:06:41</span><span class="nk"> &lt;jglick&gt;</span> with two backports already
+<a name="l-20"></a><span class="tm">18:07:26</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-21"></a><span class="tm">18:07:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">the branch has been created</span>
+<a name="l-22"></a><span class="tm">18:07:43</span><span class="nk"> &lt;rtyler&gt;</span> https://github.com/jenkinsci/jenkins/compare/master...stable-2.32
+<a name="l-23"></a><span class="tm">18:08:00</span><span class="nk"> &lt;rtyler&gt;</span> without ogondza here, not sure there's much we can do on this topic
+<a name="l-24"></a><span class="tm">18:08:03</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbe_:</span> any thoughts?
+<a name="l-25"></a><span class="tm">18:08:11</span><span class="nk"> &lt;danielbe_&gt;</span> oops
+<a name="l-26"></a><span class="tm">18:08:14</span><span class="nk"> &lt;danielbe_&gt;</span> missed the start
+<a name="l-27"></a><span class="tm">18:08:44</span><span class="nk"> &lt;danielbe_&gt;</span> right, needs ogondza to tell us status
+<a name="l-28"></a><span class="tm">18:09:07</span><span class="nk"> &lt;rtyler&gt;</span> alrighty, moving on then
+<a name="l-29"></a><span class="tm">18:09:19</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">batmat:</span> you awake? :)
+<a name="l-30"></a><span class="tm">18:09:21</span><span class="nk"> &lt;jglick&gt;</span> nothing on jenkinsci-dev about it AFAICT
+<a name="l-31"></a><span class="tm">18:09:32</span><span class="nk"> &lt;danielbe_&gt;</span> rtyler what about my LTS related item?
+<a name="l-32"></a><span class="tm">18:09:47</span><span class="nk"> &lt;rtyler&gt;</span> your proposal around xmas?
+<a name="l-33"></a><span class="tm">18:10:03</span><span class="nk"> &lt;danielbe_&gt;</span> yes
+<a name="l-34"></a><span class="tm">18:10:10</span><span class="nk"> &lt;rtyler&gt;</span> looks like batmat will not be here for the meeting, so I am going to punt that item anyways
+<a name="l-35"></a><span class="tm">18:10:24</span><span class="nk"> &lt;rtyler&gt;</span> "
+<a name="l-36"></a><span class="tm">18:10:24</span><span class="nk"> &lt;rtyler&gt;</span> Should we just skip two weeks around Christmas like we did last year, postpone .2 RC from Jan 4 to Jan 18? "
+<a name="l-37"></a><span class="tm">18:11:21</span><span class="nk"> &lt;danielbe_&gt;</span> not a lot is going on during holidays
+<a name="l-38"></a><span class="tm">18:11:22</span><span class="nk"> &lt;danielbe_&gt;</span> and the baseline is pretty recent
+<a name="l-39"></a><span class="tm">18:11:43</span><span class="nk"> &lt;danielbe_&gt;</span> while this won't help .1, we'll have a better chance to make .2/.3 good
+<a name="l-40"></a><span class="tm">18:11:54</span><span class="nk"> &lt;rtyler&gt;</span> this makes sense to me, but without some buy-in from ogondza not sure we can close that item out
+<a name="l-41"></a><span class="tm">18:11:54</span><span class="nk"> &lt;rtyler&gt;</span> agreed on that
+<a name="l-42"></a><span class="tm">18:11:57</span><span class="nk"> &lt;danielbe_&gt;</span> based on user feedback, if we have the time
+<a name="l-43"></a><span class="tm">18:12:04</span><span class="nk"> &lt;rtyler&gt;</span> perhaps send an email to the devlist CC'ing ogondza with the proposal, I think if he's okay with it, it's legit for him as Mr. Release officer to just make it happen
+<a name="l-44"></a><span class="tm">18:12:10</span><span class="nk"> &lt;rtyler&gt;</span> since he's not around to discuss
+<a name="l-45"></a><span class="tm">18:12:29</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbe_ to email dev list cc ogondza re 2 week delay for .2 due to holidays</span>
+<a name="l-46"></a><span class="tm">18:13:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">JDK8 as baseline, with the timeline proposed by Oliver</span>
+<a name="l-47"></a><span class="tm">18:13:14</span><span class="nk"> &lt;rtyler&gt;</span> https://groups.google.com/d/msg/jenkinsci-dev/fo5nKLhZK5U/IRJdMeS6CgAJ
+<a name="l-48"></a><span class="tm">18:13:27</span><span class="nk"> &lt;rtyler&gt;</span> without batmat I don't think we can discuss this much here
+<a name="l-49"></a><span class="tm">18:13:33</span><span class="nk"> &lt;danielbe_&gt;</span> teilo brought up a new issue here (Windows development)
+<a name="l-50"></a><span class="tm">18:13:39</span><span class="nk"> &lt;danielbe_&gt;</span> so it seems the discussion is still ongoing
+<a name="l-51"></a><span class="tm">18:14:04</span><span class="nk"> &lt;rtyler&gt;</span> right, for moving this topic in the future I think we need to be clear about the separation between communicating a plan, which is important to do as early as possible
+<a name="l-52"></a><span class="tm">18:14:08</span><span class="nk"> &lt;rtyler&gt;</span> and executing a plan
+<a name="l-53"></a><span class="tm">18:14:10</span><span class="nk"> &lt;jglick&gt;</span> So would that mean that 2.32.x is the last to support 7? Or what?
+<a name="l-54"></a><span class="tm">18:14:44</span><span class="nk"> &lt;jglick&gt;</span> Or the next line TBA also supports 7?
+<a name="l-55"></a><span class="tm">18:14:46</span><span class="nk"> &lt;rtyler&gt;</span> not likely, I think it would likely mean that two LTSes from 2.32 would be the last to support 7
+<a name="l-56"></a><span class="tm">18:14:58</span><span class="nk"> &lt;jglick&gt;</span> ?!
+<a name="l-57"></a><span class="tm">18:15:02</span><span class="nk"> &lt;rtyler&gt;</span> 2 from now
+<a name="l-58"></a><span class="tm">18:15:37</span><span class="nk"> &lt;rtyler&gt;</span> so basically in March, based on his proposal, we would stop shipping weeklies with 7 support
+<a name="l-59"></a><span class="tm">18:15:38</span><span class="nk"> &lt;jglick&gt;</span> If “month 0” is now, then “month 3” is dev run-up to 2.32+LTS+LTS
+<a name="l-60"></a><span class="tm">18:15:40</span><span class="nk"> &lt;danielbe_&gt;</span> well, Baptiste says we should switch early 2017 which means 2.32.x is the last line with Java 7 support
+<a name="l-61"></a><span class="tm">18:15:42</span><span class="nk"> &lt;rtyler&gt;</span> if I'm reading this
+<a name="l-62"></a><span class="tm">18:15:44</span><span class="nk"> &lt;rtyler&gt;</span> properly
+<a name="l-63"></a><span class="tm">18:16:10</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbe_:</span> batmat was proposing we follow oliver's plan, which isn't switching early 2017 for LTS
+<a name="l-64"></a><span class="tm">18:16:27</span><span class="nk"> &lt;danielbe_&gt;</span> three months later means ~2.45 will be the last LTS for Java 7
+<a name="l-65"></a><span class="tm">18:16:46</span><span class="nk"> &lt;jglick&gt;</span> Right, that is my understanding.
+<a name="l-66"></a><span class="tm">18:17:00</span><span class="nk"> &lt;jglick&gt;</span> Then ~2.58 would be 8 only.
+<a name="l-67"></a><span class="tm">18:17:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">danielbe_:</span> IMO I think we might need to plan to hold that LTS line open for a little longer than usual
+<a name="l-68"></a><span class="tm">18:17:12</span><span class="nk"> &lt;rtyler&gt;</span> for security fixens, etc
+<a name="l-69"></a><span class="tm">18:17:25</span><span class="nk"> &lt;danielbe_&gt;</span> isn't Java 7 EOL?
+<a name="l-70"></a><span class="tm">18:17:28</span><span class="nk"> &lt;rtyler&gt;</span> ish
+<a name="l-71"></a><span class="tm">18:17:29</span><span class="nk"> &lt;rtyler&gt;</span> :P
+<a name="l-72"></a><span class="tm">18:17:33</span><span class="nk"> &lt;jglick&gt;</span> Oh yes, for some time now.
+<a name="l-73"></a><span class="tm">18:18:02</span><span class="nk"> &lt;danielbe_&gt;</span> 1.5 years AFAICT
+<a name="l-74"></a><span class="tm">18:18:09</span><span class="nk"> &lt;rtyler&gt;</span> if we're saying LOUD that in six months from now, you will no longer receive Jeknins updates/security fixes for JRE7 based installations
+<a name="l-75"></a><span class="tm">18:18:12</span><span class="nk"> &lt;rtyler&gt;</span> that's fine for me
+<a name="l-76"></a><span class="tm">18:18:29</span><span class="nk"> &lt;danielbe_&gt;</span> right
+<a name="l-77"></a><span class="tm">18:18:36</span><span class="nk"> &lt;danielbe_&gt;</span> remember the line lives for ~3 months
+<a name="l-78"></a><span class="tm">18:18:36</span><span class="nk"> &lt;rtyler&gt;</span> but if we're not communicating this to users this month, the Month 0 of oliver's plan has to move out
+<a name="l-79"></a><span class="tm">18:19:01</span><span class="nk"> &lt;rtyler&gt;</span> basically my point is that the counter has to start after announcement to users
+<a name="l-80"></a><span class="tm">18:19:01</span><span class="nk"> &lt;danielbe_&gt;</span> right
+<a name="l-81"></a><span class="tm">18:19:17</span><span class="nk"> &lt;rtyler&gt;</span> other than that criteria, the plan ogondza proposes is fine for me
+<a name="l-82"></a><span class="tm">18:19:27 </span><span class="nka">* rtyler</span> <span class="ac">is just a lowly user</span>
+<a name="l-83"></a><span class="tm">18:19:52</span><span class="nk"> &lt;danielbe_&gt;</span> So teilo needs to explain what exactly would be blocking him so we can address that
+<a name="l-84"></a><span class="tm">18:20:10</span><span class="nk"> &lt;rtyler&gt;</span> oh there's ogondza :)
+<a name="l-85"></a><span class="tm">18:20:24</span><span class="nk"> &lt;rtyler&gt;</span> indeed
+<a name="l-86"></a><span class="tm">18:20:29</span><span class="nk"> &lt;danielbe_&gt;</span> it's going to be a meeting after all \o/
+<a name="l-87"></a><span class="tm">18:20:46</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">teilo to help clarify what blocks windows development of Jenkins on JDK8</span>
+<a name="l-88"></a><span class="tm">18:21:18</span><span class="nk"> &lt;danielbe_&gt;</span> back to LTS status check?
+<a name="l-89"></a><span class="tm">18:21:21</span><span class="nk"> &lt;jglick&gt;</span> (AFAIK nothing fundamental, probably a sideshow)
+<a name="l-90"></a><span class="tm">18:21:28</span><span class="nk"> &lt;ogondza&gt;</span> damn!
+<a name="l-91"></a><span class="tm">18:21:43</span><span class="nk"> &lt;rtyler&gt;</span> well, danielbe_ in lieu of batmat, what do you think next steps are on this topic?
+<a name="l-92"></a><span class="tm">18:22:36</span><span class="nk"> &lt;danielbe_&gt;</span> find out what teilo's concerns are exactly, then decide whether they block (likely not), possibly address, then get consensus, then communicate
+<a name="l-93"></a><span class="tm">18:22:44</span><span class="nk"> &lt;rtyler&gt;</span> okay
+<a name="l-94"></a><span class="tm">18:23:18</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#action </span><span class="cmdline">batmat to figure out whether teilo's concerns block moving forward with a gaining consensus on ogondza's JRE8 plan and moving forward</span>
+<a name="l-95"></a><span class="tm">18:23:22</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status chcek</span>
+<a name="l-96"></a><span class="tm">18:23:25</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">LTS status check</span>
+<a name="l-97"></a><span class="tm">18:23:29</span><span class="nk"> &lt;rtyler&gt;</span> <span class="hi">ogondza:</span> the floor is yours
+<a name="l-98"></a><span class="tm">18:23:38</span><span class="nk"> &lt;ogondza&gt;</span> sorry everyone
+<a name="l-99"></a><span class="tm">18:23:52</span><span class="nk"> &lt;ogondza&gt;</span> I have checked the candidates yesterday and the queue was empty
+<a name="l-100"></a><span class="tm">18:24:02</span><span class="nk"> &lt;ogondza&gt;</span> there are 2 minor fixes to go to .1
+<a name="l-101"></a><span class="tm">18:24:18</span><span class="nk"> &lt;ogondza&gt;</span> I will recheck the queue and push the RC tomorrow
+<a name="l-102"></a><span class="tm">18:24:59</span><span class="nk"> &lt;danielbe_&gt;</span> \o/
+<a name="l-103"></a><span class="tm">18:25:18</span><span class="nk"> &lt;danielbe_&gt;</span> what about the release scheduled for Dec 21? Have you heard from KK? What's the concern here anyway?
+<a name="l-104"></a><span class="tm">18:25:36</span><span class="nk"> &lt;ogondza&gt;</span> I have not tried to reach him
+<a name="l-105"></a><span class="tm">18:25:44</span><span class="nk"> &lt;danielbe_&gt;</span> kohsuke around?
+<a name="l-106"></a><span class="tm">18:25:50</span><span class="nk"> &lt;rtyler&gt;</span> welp
+<a name="l-107"></a><span class="tm">18:25:55</span><span class="nk"> &lt;ogondza&gt;</span> IIRC batmat was unsure if he will be available
+<a name="l-108"></a><span class="tm">18:26:38</span><span class="nk"> &lt;ogondza&gt;</span> I put that on agenda hoping KK will join the meeting
+<a name="l-109"></a><span class="tm">18:26:57</span><span class="nk"> &lt;rtyler&gt;</span> maybe ogondza fell asleep
+<a name="l-110"></a><span class="tm">18:26:59</span><span class="nk"> &lt;kohsuke&gt;</span> Limited bandwidth
+<a name="l-111"></a><span class="tm">18:27:05</span><span class="nk"> &lt;jglick&gt;</span> I just sent him a private ping just in case that gets through.
+<a name="l-112"></a><span class="tm">18:27:44</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">kohsuke:</span> ok to release on Dec 21th?
+<a name="l-113"></a><span class="tm">18:27:50</span><span class="nk"> &lt;ogondza&gt;</span> or should we postpone ...
+<a name="l-114"></a><span class="tm">18:28:01</span><span class="nk"> &lt;jglick&gt;</span> (2.32.1 IIUC)
+<a name="l-115"></a><span class="tm">18:28:08</span><span class="nk"> &lt;kohsuke&gt;</span> I can do that. Np
+<a name="l-116"></a><span class="tm">18:28:40</span><span class="nk"> &lt;danielbe_&gt;</span> okay so that's cleared up
+<a name="l-117"></a><span class="tm">18:28:57</span><span class="nk"> &lt;ogondza&gt;</span> cool. so the schedule is as usual
+<a name="l-118"></a><span class="tm">18:29:05</span><span class="nk"> &lt;danielbe_&gt;</span> ogondza FWIW I put on the agenda the question what to do about holidays this year
+<a name="l-119"></a><span class="tm">18:29:19</span><span class="nk"> &lt;danielbe_&gt;</span> last year we had a two week break in the schedule
+<a name="l-120"></a><span class="tm">18:29:33</span><span class="nk"> &lt;danielbe_&gt;</span> right now, .1 is Dec 21, then .2 RC on Jan 4, then .2 on Jan 18.
+<a name="l-121"></a><span class="tm">18:29:47</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbe_:</span> we should have RC in early January - that sound OK to me
+<a name="l-122"></a><span class="tm">18:29:47</span><span class="nk"> &lt;danielbe_&gt;</span> My proposal was to postpone .2 RC to Jan 18
+<a name="l-123"></a><span class="tm">18:30:08</span><span class="nk"> &lt;ogondza&gt;</span> IIRC we did that so people are not expected to test shortly before holidays
+<a name="l-124"></a><span class="tm">18:30:10</span><span class="nk"> &lt;danielbe_&gt;</span> this would give us more time to see what feedback is like
+<a name="l-125"></a><span class="tm">18:30:58</span><span class="nk"> &lt;ogondza&gt;</span> though, I do not object to postpone
+<a name="l-126"></a><span class="tm">18:31:21</span><span class="nk"> &lt;danielbe_&gt;</span> I mean our schedule means we have 4 weeks of slack per year we're not using
+<a name="l-127"></a><span class="tm">18:31:48</span><span class="nk"> &lt;danielbe_&gt;</span> slowing down when everything else is slowing down anyway seems reasonable in case something comes up
+<a name="l-128"></a><span class="tm">18:31:48</span><span class="nk"> &lt;ogondza&gt;</span> this is for the first time someone complains I keep up with the schedule :P
+<a name="l-129"></a><span class="tm">18:31:53</span><span class="nk"> &lt;danielbe_&gt;</span> heh
+<a name="l-130"></a><span class="tm">18:31:57</span><span class="nk"> &lt;danielbe_&gt;</span> not complaining
+<a name="l-131"></a><span class="tm">18:32:14</span><span class="nk"> &lt;danielbe_&gt;</span> in fact I'm very happy that we're keeping to the schedule so well
+<a name="l-132"></a><span class="tm">18:32:39</span><span class="nk"> &lt;ogondza&gt;</span> ok, danielbe_ can you update the calendar?
+<a name="l-133"></a><span class="tm">18:32:47</span><span class="nk"> &lt;ogondza&gt;</span> I see you have put the dates in ...
+<a name="l-134"></a><span class="tm">18:32:53</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#action </span><span class="cmdline">danielbe_ to update LTS calendar for 2 week delay</span>
+<a name="l-135"></a><span class="tm">18:32:56</span><span class="nk"> &lt;ogondza&gt;</span> or are those the "correct" dates?
+<a name="l-136"></a><span class="tm">18:32:57</span><span class="nk"> &lt;jglick&gt;</span> <span class="hi">danielbe_:</span> so you are saying that you want a longer period of feedback about .1 before we even try to make .2 RC
+<a name="l-137"></a><span class="tm">18:33:25</span><span class="nk"> &lt;danielbe_&gt;</span> jglick Basically. I mean we can also release .1 on Jan 4 so people actually get to upgrade in time
+<a name="l-138"></a><span class="tm">18:33:31</span><span class="nk"> &lt;danielbe_&gt;</span> that would probably be even better
+<a name="l-139"></a><span class="tm">18:33:56</span><span class="nk"> &lt;ogondza&gt;</span> in what way?
+<a name="l-140"></a><span class="tm">18:34:34</span><span class="nk"> &lt;danielbe_&gt;</span> How many people do you expect will upgrade between Dec 21 and new years?
+<a name="l-141"></a><span class="tm">18:34:46</span><span class="nk"> &lt;danielbe_&gt;</span> I expect LTS feedback will be delayed by that
+<a name="l-142"></a><span class="tm">18:34:46</span><span class="nk"> &lt;recena&gt;</span> .1 is a full release and can be used. RCs are not deployed.
+<a name="l-143"></a><span class="tm">18:35:18</span><span class="nk"> &lt;danielbe_&gt;</span> right, but if something's wrong with .1 we learn from its users and can fix .2
+<a name="l-144"></a><span class="tm">18:36:02</span><span class="nk"> &lt;ogondza&gt;</span> <span class="hi">danielbe_:</span> if we want feedback sooner - so we should release .1 sooner
+<a name="l-145"></a><span class="tm">18:36:13</span><span class="nk"> &lt;danielbe_&gt;</span> good point
+<a name="l-146"></a><span class="tm">18:36:14</span><span class="nk"> &lt;recena&gt;</span> +1
+<a name="l-147"></a><span class="tm">18:36:46</span><span class="nk"> &lt;danielbe_&gt;</span> So keep .1 release schedule, but move back .2 RC to allow for a longer feedback period?
+<a name="l-148"></a><span class="tm">18:36:58</span><span class="nk"> &lt;ogondza&gt;</span> ack
+<a name="l-149"></a><span class="tm">18:36:59</span><span class="nk"> &lt;danielbe_&gt;</span> to clarify, all future dates would shift accordingly
+<a name="l-150"></a><span class="tm">18:37:59</span><span class="nk"> &lt;ogondza&gt;</span> action me!
+<a name="l-151"></a><span class="tm">18:37:59</span><span class="nk"> &lt;danielbe_&gt;</span> decide now or write to the dev list and wait for feedback? WDYT ogondza ?
+<a name="l-152"></a><span class="tm">18:38:46</span><span class="nk"> &lt;ogondza&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza postpone .2 RC by 2 weeks</span>
+<a name="l-153"></a><span class="tm">18:39:14</span><span class="nk"> &lt;danielbe_&gt;</span> <span class="cmd">#action </span><span class="cmdline">ogondza postpone .2 RC by 2 weeks (all future dates postposed accordingly)</span>
+<a name="l-154"></a><span class="tm">18:40:13</span><span class="nk"> &lt;rtyler&gt;</span> heh
+<a name="l-155"></a><span class="tm">18:40:15</span><span class="nk"> &lt;danielbe_&gt;</span> batmat awake by now?
+<a name="l-156"></a><span class="tm">18:41:18</span><span class="nk"> &lt;danielbe_&gt;</span> doesn't look like it
+<a name="l-157"></a><span class="tm">18:41:20</span><span class="nk"> &lt;danielbe_&gt;</span> next topic?
+<a name="l-158"></a><span class="tm">18:41:37</span><span class="nk"> &lt;ogondza&gt;</span> sure
+<a name="l-159"></a><span class="tm">18:41:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">New Security Officer Announcement</span>
+<a name="l-160"></a><span class="tm">18:42:03</span><span class="nk"> &lt;rtyler&gt;</span> I haven't sent the email out, but wanted to take the opportunity to welcome Daniel Beck back for his second term as the Jenkins Security Officer
+<a name="l-161"></a><span class="tm">18:42:29</span><span class="nk"> &lt;danielbe_&gt;</span> I really need to make this look more fun ;-)
+<a name="l-162"></a><span class="tm">18:42:29</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">danielbe_:</span> here
+<a name="l-163"></a><span class="tm">18:42:42</span><span class="nk"> &lt;rtyler&gt;</span> omg we're totally not doing the JDK8 topic again
+<a name="l-164"></a><span class="tm">18:42:49</span><span class="nk"> &lt;danielbe_&gt;</span> lol
+<a name="l-165"></a><span class="tm">18:42:56</span><span class="nk"> &lt;danielbe_&gt;</span> batmat read the log we have a path forward for JDK8
+<a name="l-166"></a><span class="tm">18:43:07</span><span class="nk"> &lt;rtyler&gt;</span> <span class="topic">#topic </span><span class="topicline">Next meeting</span>
+<a name="l-167"></a><span class="tm">18:43:10</span><span class="nk"> &lt;batmat&gt;</span> <span class="hi">danielbe_:</span> NO WE GO BACK!
+<a name="l-168"></a><span class="tm">18:43:11</span><span class="nk"> &lt;batmat&gt;</span> :)
+<a name="l-169"></a><span class="tm">18:43:18</span><span class="nk"> &lt;batmat&gt;</span> sure, I was not going to ask for it
+<a name="l-170"></a><span class="tm">18:43:25</span><span class="nk"> &lt;recena&gt;</span> GREAT!
+<a name="l-171"></a><span class="tm">18:43:50</span><span class="nk"> &lt;rtyler&gt;</span> so next meeting should be Dec 21st, but I'm not sure if people will all be on vacations that week
+<a name="l-172"></a><span class="tm">18:45:17</span><span class="nk"> &lt;danielbe_&gt;</span> let's just schedule and see what happens
+<a name="l-173"></a><span class="tm">18:45:28 </span><span class="nka">* rtyler</span> <span class="ac">shrugs</span>
+<a name="l-174"></a><span class="tm">18:45:29</span><span class="nk"> &lt;rtyler&gt;</span> fine with me
+<a name="l-175"></a><span class="tm">18:45:35</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#info </span><span class="cmdline">Next meeting Dec 21st</span>
+<a name="l-176"></a><span class="tm">18:45:37</span><span class="nk"> &lt;rtyler&gt;</span> <span class="cmd">#endmeeting</span><span class="cmdline"></span></pre>
+</body></html>
+<!--
+     FILE ARCHIVED ON 07:05:14 Oct 20, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 15:43:08 Nov 09, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 223.032
+  exclusion.robots: 0.09
+  exclusion.robots.policy: 0.083
+  cdx.remote: 0.06
+  esindex: 0.009
+  LoadShardBlock: 100.933 (3)
+  PetaboxLoader3.datanode: 50.515 (4)
+  CDXLines.iter: 15.941 (3)
+  PetaboxLoader3.resolve: 156.628 (2)
+  load_resource: 208.542
+-->
