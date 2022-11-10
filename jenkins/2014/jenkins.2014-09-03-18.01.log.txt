@@ -1,110 +1,282 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Wayback Machine</title>
-    <script>
-    /*
-    @licstart  The following is the entire license notice for the JavaScript code in this page.
-
-    Copyright (C) 2020 Internet Archive
-
-    The JavaScript code in this page is free software: you can
-    redistribute it and/or modify it under the terms of the GNU Affero
-    General Public License as published by the Free Software
-    Foundation, either version 3 of the License, or (at your option)
-    any later version.  The code is distributed WITHOUT ANY WARRANTY;
-    without even the implied warranty of MERCHANTABILITY or FITNESS
-    FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-    As additional permission under GNU AGPL version 3 section 7, you
-    may distribute non-source (e.g., minimized or compacted) forms of
-    that code without the copy of the GNU AGPL normally required by
-    section 4, provided you include this license notice and a URL
-    through which recipients can access the Corresponding Source.
-
-    @licend  The above is the entire license notice for the JavaScript code in this page.
-    */
-    </script>
-    <script type="text/javascript">
-      window.webComponentLoaderConfig = {
-      baseUrl: 'https://archive.org',
-      version: '29e56e87'
-      }
-    </script>
-    <script src="//archive.org/includes/jquery-1.10.2.min.js?v1.10.2" type="text/javascript"></script>
-    <script src="//archive.org/includes/analytics.js?v=04a93dbb" type="text/javascript"></script>
-    <link href="//archive.org/includes/build/css/archive.min.css?v=04a93dbb" rel="stylesheet" type="text/css">
-    <script type="text/javascript">if('archive_analytics' in window){var v=archive_analytics.values;v.path='/web';v.service='wb';v.server_name='wwwb-app227.us.archive.org';v.server_ms=5361;archive_analytics.send_pageview_on_load()}</script>
-    <link href="/_static/images/archive.ico" rel="shortcut icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="/_static/css/styles.css?v=X-Ndhul9" />
-    <script type="text/javascript" src="/_static/js/ui.js?v=NTAW0JFh" charset="utf-8"></script>
-    <base target="_top">
-<link rel="stylesheet" type="text/css" href="/_static/css/web.css">
-<script type="text/javascript">
-if (window!=window.top) {
-  $(document).ready(function(){ document.body.classList.add('wb_embedded') });
-}
-</script>
-  </head>
-  <body class="navia">
-    <!-- failed to fetch: <urlopen error timed out> -->
-    <script>update_aoheader();</script>
-      <div class="container">
-    <div class="row" style="margin-top: 30px">
-      <div class="col-md-4 col-sm-4 col-xs-4 text-right">
-	<div id="donation-link" class="web_message">
-  <a href="http://archive.org/donate/?origin=wbwww-CalndrDonateButton" data-event-click-tracking="Wayback|DonateButton" class="beta_button">DONATE</a>
-</div>
-
-      </div>
-      <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-	<div class="search-toolbar-logo-container">
-	  <a href="/"><div class="search-toolbar-logo" alt="logo: Internet Archive's Wayback Machine"></div></a>
-	</div>
-      </div>
-    </div>
-    <div id="errorBorder">
-      <div id="positionHome">
-	<div id="searchHome">
-	  <form name="form1" method="get" action="/web/submit">
-	    <input class="form-control" type="text" name="url" value="http://meetings.jenkins-ci.org/jenkins/2014/jenkins.2014-09-03-18.01.log.txt" size="40" onfocus="javascript:this.focus();this.select();" >
-	    <button class="btn btn-default" type="submit" name="type" value="replay">Latest</button>
-	    <button class="btn btn-default" type="submit" name="type" value="urlquery">Show All</button>
-	  </form>
-	</div>
-<div id="error">
-<h2>Hrm.</h2>
-<p>The Wayback Machine has not archived that URL.</p>
-    <p>Click here to search for all archived pages under
-      <a href="https://web.archive.org/web/*/http://meetings.jenkins-ci.org/jenkins/2014/*">http://meetings.jenkins-ci.org/jenkins/2014/</a>.
-    </p>
-</div>
-      </div>
-    </div>
-  </div>
-    <noscript>
-      <div class="no-script-message">
-        The Wayback Machine requires your browser to support JavaScript, please email <a href="mailto:info@archive.org">info@archive.org</a><br/>if you have any questions about this.
-      </div>
-    </noscript>
-    <footer>
-      <div id="footerHome">
-        <p>
-          The Wayback Machine is an initiative of the
-          <a href="//archive.org/">Internet Archive</a>,
-          a 501(c)(3) non-profit, building a digital library of
-          Internet sites and other cultural artifacts in digital form.
-          <br/>Other <a href="//archive.org/projects/">projects</a> include
-          <a href="https://openlibrary.org/">Open Library</a> &amp;
-          <a href="https://archive-it.org">archive-it.org</a>.
-        </p>
-        <p>
-          Your use of the Wayback Machine is subject to the Internet Archive's
-          <a href="//archive.org/about/terms.php">Terms of Use</a>.
-        </p>
-      </div>
-    </footer>
-  </body>
-</html>
+18:01:25 <kohsuke> #startmeeting
+18:01:25 <robobutler> Let the Jenkins meeting commence!
+18:01:32 <kohsuke> It's been a while for me
+18:01:41 <QuinnyPig> ilhami3: Couple of ways to do it. Have cron check git for new checkins on a schedule, or (more fancily) use a post-update hook to fire off Jenkins.
+18:01:53 <kohsuke> #info https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda
+18:01:56 <kohsuke> #topic LTS status check
+18:02:09 * kohsuke checks email
+18:02:10 <ilhami3> well I cannot even build anything as it is now on Jenkins. It just pends and the job disappears or what it is called.
+18:02:23 <ogondza> no problems discovered
+18:02:26 <QuinnyPig> ilhami3: Shh. They're doing a Jenkins meeting. :-)
+18:02:33 <ilhami3> lol.
+18:02:33 <kohsuke> ogondza: great, thanks
+18:03:07 <kohsuke> #agreed 1.565.2 release will happen today as planned
+18:03:11 <ilhami3> I hope they will solve my problem after. At least I could get Jenkins to work on localhost. It doesn't work with Openshift.
+18:03:40 <kohsuke> ogondza: I'm planning to add security fixes to the next 1.565.3 release
+18:03:47 <kohsuke> I'll write to you offline about details
+18:03:56 <ogondza> kohsuke: ok
+18:04:04 <kohsuke> #topic How do we run the "Ask the Experts" section in JUC?
+18:04:37 <kohsuke> Alyssa told me that she set aside a room for us in JUC bay area and a bunch of us have signed up for it
+18:04:49 <kohsuke> I wanted to get some clarity of how we intend to run it
+18:04:59 <Alyssa> let me look to see how many has signed up for this
+18:05:26 <kohsuke> abayer: hare_brain: autojack: I believe you guys are on it, too
+18:05:31 <hare_brain> Yes
+18:05:53 <Alyssa> we have about 7 people signed up for this
+18:05:59 <kohsuke> Do we want to create some time slots and put people's names next to it?
+18:06:22 <kohsuke> Or is the promise more like "someone will be there all the time but you don't know who you get?"
+18:06:53 <kohsuke> Alyssa: what if those folks who signed up can get T-shirt in different color...
+18:07:29 <Alyssa> I was thinking should we also indicate who specialize in what and have at least a couple of people specializing in diff areas to fill up each hour or so?
+18:07:57 <Alyssa> Kohsuke: sure..diff color tshirt is OK
+18:08:26 <kohsuke> Alyssa: where do you keep track of the "ask the experts" detail?
+18:09:04 <kohsuke> Not in http://www.cloudbees.com/event/juc/2014/san-francisco
+18:09:10 <Alyssa> Kohuske: no where yet. it's been on email. i can create a gdoc
+18:09:18 <kohsuke> Or wiki page
+18:09:39 <Alyssa> Kohsuke: ok..wiki page
+18:09:39 <kohsuke> BTW that page has the key note starting 6:25am which I assume is an error
+18:09:55 <Alyssa> yeah..heidi is working on fixing it.
+18:10:05 <Alyssa> we also have the agenda posted on the wiki page..
+18:10:17 <Alyssa> it's buried tho
+18:10:24 <kohsuke> Aha, https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+User+Conference+US+West+%28San+Francisco%29+Agenda
+18:10:40 <kohsuke> No this is great
+18:10:59 <jglick> Who are the experts BTW?
+18:11:21 <Alyssa> you (jesse) http://jenkins-ci.org/content/juc-sf-2014-here
+18:11:31 <Alyssa> + ryan campbell
+18:11:42 <jglick> Ought to be linked to from the agenda no?
+18:11:46 <Alyssa> he just volunteered this morning :o)
+18:12:02 <Alyssa> yes. thnx. we'll get it linked
+18:12:09 <kohsuke> jglick: Alyssa signed up for AI to create another Wiki page for that
+18:12:25 <kohsuke> #action Alyssa to create a wiki page for "ask the experts" coordination
+18:13:10 <kohsuke> #info I'm also trying to create a feedback form: https://docs.google.com/forms/d/1tRerFOUu4tOFG1KjmYENVZuXdLAc6r79Wl-qh36K5Bc/viewform?usp=send_form
+18:13:34 <kohsuke> if anyone thinks of any other questions to ask to attendees please let me know
+18:13:37 <Alyssa> i'm not clear on how we'd like to run the 'ask the experts'?
+18:13:57 <hare_brain> I didn’t think it was a session that needed to be “run"
+18:14:10 <hare_brain> The email thread, we were talking about just having a lab area.
+18:14:27 <kohsuke> I do want to make sure at least someone is there all the time
+18:14:29 <hare_brain> There would be experts available to help people with questions about Jenkins
+18:14:41 <hare_brain> I was planning on spending most of the day there, personally.
+18:14:47 <hare_brain> I’ve got someone else to go to the sessions. :)
+18:14:50 <jglick> Oh, so not like a panel.
+18:14:55 <Alyssa> no panel
+18:15:13 <QuinnyPig> Breakfast starts at 5AM. I want to go, but that's... a smidgen early.
+18:15:40 <kohsuke> QuinnyPig: exactly! see the Wiki page for correct time https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+User+Conference+US+West+%28San+Francisco%29+Agenda
+18:15:51 <Alyssa> QuinnyPig: we are experiencing website issues...our team is working on fixing it now
+18:16:18 <kohsuke> OK, so maybe we'll just set up like 30 mins slots and ask people to put names next to it to ensure coverage
+18:16:25 <hare_brain> Genius Bar. LOL.
+18:16:40 <kohsuke> And we'll write up text along the line of what hare_brain to set the expectation
+18:16:52 <kohsuke> I suggest someone brings a warm local Maven proxy
+18:17:17 <kohsuke> or else people with dev questions will end up spending most of time waiting for Maven
+18:17:22 <Alyssa> Kohsuke: ok got it. i'll set it up on wiki page and fill up w/ experts names & their time for duty
+18:17:48 <ilhami3> when is this meeting done ? :(
+18:17:57 <QuinnyPig> Pardon the Quinnterruption, but is it too late to sponsor the JUC?
+18:18:08 <kohsuke> ilhami3: maybe in another 30 mins or so, but definitely by the top of the hour
+18:18:23 <sujatha> when i try to run nodejs command in jekins, getting below exception
+18:18:24 <sujatha> FATAL: command execution failed java.io.IOException: Cannot run program "C:\Windows\TEMP\hudson1852121606380592964.js" (in directory "C:\Users\<username>\.jenkins\jobs\TestNightWatch\workspace"):
+18:18:24 <ilhami3> ok. :) I hope you can help me with my problem after kohsuke.
+18:18:26 <Alyssa> QuinnyPig: pls contact lwells@cloudbees.com for sponsorship
+18:18:37 <QuinnyPig> Alyssa: Will do. Let me make some calls.
+18:18:37 <danielbeck> sujatha: Meeting right now, please ask afterwards
+18:19:05 * kohsuke wonders if people working in the genius bar calls themselves genuises?
+18:19:15 <nanonyme> Pardon my ignorance but what's JUC?
+18:19:27 <kohsuke> nanonyme: Jenkins User Conference
+18:19:30 <sujatha> danielbeck: ok
+18:19:34 <nanonyme> Ah, okay
+18:19:44 <Alyssa> do we want to have several experts at one time so that there's expertise in more than one areas?
+18:20:17 <hare_brain> Yes, I think that’s a good idea.
+18:20:21 <kohsuke> Alyssa: yes, I think so. Let's divide up the time to 30min/1hr slots and we should be able to have more than one person around for every slot
+18:20:42 <kohsuke> That way, if no one shows up at least we can shoot breeze
+18:20:50 <hare_brain> Or work. ;)
+18:20:52 <Alyssa> ok. thnx
+18:21:26 <kohsuke> #info 3D Mr.Jenkins figure will be on display in that room
+18:21:26 <Alyssa> ok. i think i have what i need for this
+18:21:34 <kohsuke> great, let's move on
+18:21:41 <kohsuke> #topic Decision on implementing Browser Compatibility Matrix
+18:21:46 <danielbeck> https://wiki.jenkins-ci.org/display/JENKINS/Browser+Compatibility+Matrix
+18:22:05 <danielbeck> Looks good to me, no recent changes, so I suggest we implement this.
+18:22:17 <danielbeck> Discussion was here: https://groups.google.com/forum/#!topic/jenkinsci-dev/XxPqJDCrf6M
+18:23:05 <kohsuke> tfennelly: so the implication is that we'll require IE9 ?
+18:24:00 <tfennelly> kohsuke: we'll aaccept patches for ie9 and 10 is what we were suggesting
+18:24:15 <danielbeck> Safe enough patches for IE8 are also fine.
+18:24:20 <fmartins> hello guys, i'm trying to install jenkins on a opensuse server. jenkins is installed but when start i receive this message "/var/log/jenkins # /etc/init.d/jenkins start Starting Jenkins                                                                                        failed"
+18:24:30 <tfennelly> kohsuke: i.e. we don't guarantee it works all the time
+18:24:30 <danielbeck> fmartins: Meeting right now, please wait a few minutes
+18:25:01 <oleg-nenashev> IE8/9 have very different behaviors in Common and Compat modes. Do we need both of them?
+18:25:03 <tfennelly> kohsuke: whereas IE11 we treat issues there as being critical bugs that we need to fix asap
+18:25:06 <kohsuke> I see, so the minimum requirement is actually more like IE11 with this proposal
+18:25:16 <tfennelly> kohsuke: +1
+18:25:21 <fmartins> danielbeck: ok
+18:25:35 <danielbeck> oleg-nenashev: IE8 is out, IE9 is "should mostly work"
+18:26:13 <oleg-nenashev> koshuke: Off-topic: What about Jenkins Enterprise? The most of "enterprise" companies still sit on IE8..10
+18:26:26 <kohsuke> What technologies does this enable us to use?
+18:27:06 <integer`> bloody enterprises...
+18:27:21 <kohsuke> On one hand if this is what it takes to get tfennelly rolling out more UX changes, I'm all for it
+18:27:42 <kohsuke> But OTOH I have this uninformed impression that IE11 requirement is a high bar
+18:27:42 <nanonyme> I'd kinda suspect most of the employees in those companies in reality have some other browser installed than IE
+18:28:07 <nanonyme> (ie with IE8 or whatnot)
+18:28:16 <jglick> In some cases there is an official requirement to run IE, even 8.
+18:28:17 <QuinnyPig> nanonyme: I'd think so. By the time you're allowed to run something like Jenkins, you're usually allowed to install a non-IE browser.
+18:28:50 <tfennelly> kohsuke: at the end of the day... I think we will always be doing some browser specific stuff but in general I think it should mean we can do more CSS3 and HTML5 type stuff
+18:28:52 <integer`> QuinnyPig, jenkins is as infra and not related to WS requirements
+18:29:09 <oleg-nenashev> nanonyme: Company policies are very painful thing. E.g. we have not such freedom at my company
+18:29:11 <nanonyme> jglick, AP for JE to query from customers what they actually need support for? :)
+18:29:51 <tfennelly> kohsuke: and for L2/L3 browsers that do not support these things (i.e. IE) ... we "do our best" to provide an alternate
+18:29:57 <jglick> nanonyme: well support-core-plugin does capture the browser. We do not aggregate statistics across incoming bundles, though this might be useful.
+18:30:13 <danielbeck> So things will still work in IE9+10, just not as shiny
+18:30:19 <kohsuke> We can also probably get some approximation by looking at access log in jenkins-ci.org website
+18:30:59 <kohsuke> All right, I think people working on this seems to be in unanimous agreement for this, so I guess that means we'll have to bless this
+18:31:11 <jglick> I would only be concerned if there were *no way* to perform some operation (configure a job, say) in an old browser.
+18:31:49 <tfennelly> jglick: I think we should alays try and provide a way of doing something
+18:32:03 <jglick> Right, even if not pretty, less dynamic, whatever.
+18:32:07 <danielbeck> Given how conservative orgs will likely be LTS users, it'll take a while for any changes to reach them.
+18:32:19 <tfennelly> jglick: right
+18:32:34 <kohsuke> Would it make sense to add to L2 that "critical functionalities" be available? to capture that?
+18:32:45 <tfennelly> jglick: they don't get the "L1" ux but get something less
+18:32:54 <kohsuke> or maybe not much point in doing that without defining what "critical functionalities" are
+18:33:04 <jglick> already says “at least one way to do any action”
+18:33:14 <kohsuke> ok
+18:33:27 <kohsuke> I think we need to write a blog post about this and send announcement to the users list
+18:33:45 <tfennelly> I can do that
+18:34:04 <danielbeck> tfennelly: Any concrete plans to drop IE8 in an upcoming change? Or is this more to be safe?
+18:34:10 <oleg-nenashev> It makes sense to decouple "administration", "public-readonly" and "public-configure" interfaces
+18:34:32 <kohsuke> #action tfennelly to write a blog post announcing this new compatibility matrix
+18:34:33 <tfennelly> danielbeck: no such plan
+18:34:40 <oleg-nenashev> danielbeck: IE8 is almost dead due to huge JavaScripts
+18:34:49 <kohsuke> Actually, anyone else who wants to -1 this?
+18:34:59 <danielbeck> oleg-nenashev: and now it will be official
+18:35:27 <kohsuke> #agreed https://wiki.jenkins-ci.org/display/JENKINS/Browser+Compatibility+Matrix is adopted
+18:35:29 <oleg-nenashev> danielbeck: Great :) IE8 can be freely discontinued (thanks to MS)
+18:35:50 <danielbeck> I'm so resolving a few issues as Won't Fix today
+18:35:57 <kohsuke> :-)
+18:35:58 <ilhami3> When are you guys finished? :D
+18:36:01 <tfennelly> danielbeck: rofl
+18:36:07 <kohsuke> ilhami3: just one more topic
+18:36:14 <ilhami3> sure.
+18:36:14 <kohsuke> #topic 2014 JIRA Components Refactoring
+18:36:18 <danielbeck> https://wiki.jenkins-ci.org/display/JENKINS/2014+JIRA+Components+Refactoring
+18:36:34 <oleg-nenashev> https://groups.google.com/forum/#!msg/jenkinsci-dev/luOqm4Qj4sc/aGK4JDvJRmQJ
+18:36:47 <oleg-nenashev> We also have several action items from the previous meeting
+18:36:52 <danielbeck> I put this on the agenda to get a decision to implement at least the basic component naming changes
+18:37:10 <kohsuke> thanks for putting this together
+18:37:26 <danielbeck> i.e. add -plugin to every component name if it's a plugin, and the cleanup of some components like maven2/maven-project listed on the wiki page
+18:37:39 <jglick> +1 to both
+18:37:58 <oleg-nenashev> We were going to make names equal to GitHub repos
+18:38:07 <danielbeck> if there's further agreement, other parts of the proposal could also be decided on. But e.g. wrt to workflow changes, it seems there might still be need to discuss
+18:38:11 <kohsuke> Yes, I recall there was a broad consensus to that
+18:38:31 <oleg-nenashev> Are we going to rename them as well? It seems to be quite secure now
+18:38:34 <nanonyme> FWIW what's the names vs labels distinction in your Jira usage?
+18:38:46 <danielbeck> nanonyme: Please ask afterwards, thanks
+18:39:06 <kohsuke> danielbeck:  I thought nanonyme's question is actually about this topic
+18:39:12 <jglick> Yes I think so.
+18:39:18 <danielbeck> right, sorry
+18:39:25 <nanonyme> Yeap. I just noticed a lot of the names were changed to core
+18:39:27 <jglick> I understand labels as being used to help subclassify a bit, but they are more freeform.
+18:39:59 <danielbeck> the problem with separating core into a bunch of components means issues may get lost rather easily
+18:40:00 <kohsuke> I've personally never paid attention to labels
+18:40:08 <danielbeck> plus it's not always clear what component something is
+18:40:12 <nanonyme> Okay
+18:40:19 <nanonyme> Fair enough then
+18:40:34 <jglick> I tried to do a modest label cleanup recently.
+18:40:43 <danielbeck> with plugins vs. core there's a good reason to distinguish, entirely different devs etc., but within core, things aren't that clear cut
+18:40:50 <jglick> At least killed all the ones ending in a comma b/c someone did not know how to separate labels with spaces.
+18:41:26 <jglick> The worst are ‘plugin’ or ‘jenkins’ which are so common as to be meaningless.
+18:41:39 <jglick> Sorry, rambling.
+18:41:45 <kohsuke> So component renaming is agreed upon, right?
+18:41:49 <kohsuke> Who has what AI?
+18:42:10 <kohsuke> Do we need to add anyone to the JIRA admins?
+18:42:24 <oleg-nenashev> kohsuke: We can teach Jenkins Bot
+18:42:28 <oleg-nenashev> INFRA-100
+18:42:32 <kohsuke> In INFRA-100 I think oleg-nenashev is volunteering
+18:42:33 <jenkins-admin> INFRA-100:Add "delete component" and "rename component" IRC Bot Commands (In Progress) https://issues.jenkins-ci.org/browse/INFRA-100
+18:42:39 <danielbeck> I have a script for -plugin, but it needs the REST API
+18:42:41 <kohsuke> Oh you already even have pull requests
+18:42:42 <tfennelly> jglick: lol... your ramblings are very entertaining
+18:42:49 <nanonyme> Yeah, I think that naming should make it easier for out-of-project people to file bugs properly
+18:42:57 <nanonyme> So sounds sensible
+18:43:38 <kohsuke> oleg-nenashev: so basically the blocking AI is for me to merge & deploy ircbot changes
+18:43:54 <kohsuke> then you guys would keep this channel busy for a while to issue these changes?
+18:43:59 <oleg-nenashev> kohsuke: I suppose it will be the most convenient way
+18:44:06 <kohsuke> OK, got it
+18:44:11 <ilhami3> can you highlight me when you are done? :D
+18:44:21 <oleg-nenashev> We may need such functionality in the future
+18:44:25 <kohsuke> #action kohsuke to integrate INFRA-100 and ping oleg-nenashev
+18:44:29 <jenkins-admin> INFRA-100:Add "delete component" and "rename component" IRC Bot Commands (In Progress) https://issues.jenkins-ci.org/browse/INFRA-100
+18:44:34 <kohsuke> I'm bit worried about keeping "delete component" in the bot
+18:44:35 <tfennelly> is it possible to config the help text in JIRA i.e. put something on the component selection field to indicate how component name and label are to be used?
+18:45:08 <tfennelly> how they are suppose to work with each other
+18:45:12 <kohsuke> tfennelly: I can't think of any way to do this except monkey patching
+18:45:30 <tfennelly> ok
+18:45:40 <danielbeck> some actions will require Jira admin I think, like fixing component descriptions
+18:45:52 <tfennelly> I think there's always potential for confusion re how to use them
+18:45:58 <oleg-nenashev> kohsuke: "delete component" requires a destination component, hence issues won't be lost
+18:46:06 <nanonyme> How are you going to handle that where multiple components get the same name? Is there some merge functionality?
+18:46:10 <nanonyme> Or is that the delete?
+18:46:18 <kohsuke> nanonyme: sounds like that is deletion
+18:46:21 <danielbeck> nanonyme: Delete specifies the component to move issues
+18:46:23 <nanonyme> Okay
+18:46:46 <kohsuke> tfennelly: actually, maybe we can do that by greasemonkey-like client-side DOM manipulation by injecting JavaScript
+18:46:56 <kohsuke> we can indeed inject JavaScript to every page
+18:47:25 <tfennelly> kohsuke: I thought you were joking for a min but I think you are serious now
+18:47:31 <tfennelly> :)
+18:47:40 <kohsuke> #action tfennelly to file a ticket to INFRA about "is it possible to config the help text in JIRA i.e. put something on the component selection field to indicate how component name and label are to be used?"
+18:47:46 <tfennelly> kohsuke: sounds easy if you can get JS in there
+18:48:05 <kohsuke> #action tfennelly to not just file a ticket but write such JavaScript
+18:48:19 <danielbeck> BTW I'm currently rewriting the Issue Tracking wiki page to actually be a helpful reference how people should use our JIRA
+18:48:32 <tfennelly> £action tfennelly keep your mouth closed lol
+18:48:37 <kohsuke> :-)
+18:48:41 <jglick> Thank you danielbeck, should be very useful.
+18:49:01 <kohsuke> danielbeck: and if we are going to mess around JIRA UI from JavaScript it can insert a link to that, too
+18:49:16 <danielbeck> kohsuke: Right
+18:49:19 <kohsuke> Now, about adding more states to the issue transition workflow...
+18:49:41 <danielbeck> So we're doing this once you have the bot ready?
+18:49:42 <jglick> # action tfennelly to move to a country where a pound sign is not a pound sign and is actually recognized by meetingbot
+18:50:02 <kohsuke> as jglick notes we do use "Untriaged" state in SECURITY and I find it useful
+18:50:13 <tfennelly> jglick: rofl
+18:50:14 <oleg-nenashev> +1
+18:50:23 <danielbeck> FWIW I've suggested that as well and find I don't need it
+18:50:35 <jglick> “New” is the term used in some trackers.
+18:51:21 <kohsuke> "Waiting on requester" state I've never used in the context of JIRA
+18:51:25 <nanonyme> I've also seen unscheduled/uninvestigated and various others :)
+18:51:43 <jglick> NEEDINFO in some Bugzillas.
+18:52:01 <oleg-nenashev> Yes. It work well in the case of lazy requesters
+18:52:04 <danielbeck> 'waiting' should be Resolved as Incomplete or just a post-it note to check later IMO.
+18:52:08 <kohsuke> jglick: isn't one of the  substates of "Closed" "Need more info"?
+18:52:21 <jglick> Sure you can just resolve that way.
+18:52:23 <oleg-nenashev> We can also create a cleanup bot to make danielbeck happy ^_^
+18:52:31 <danielbeck> oleg-nenashev: I AM the cleanup bot.
+18:53:05 <kohsuke> TIL that danielbeck is a robot, which I suspected long time any way...
+18:53:46 <kohsuke> danielbeck: so you said you actually felt we do not need New/Untriaged/Uninvestigated etc
+18:53:50 <hare_brain> 7 minutes left…
+18:54:22 <danielbeck> kohsuke: Tentatively, yes. Asking on dev ML would be useful though, as different from component rename that's actually a workflow change for everyone
+18:54:55 <danielbeck> I wouldn't need these new statuses, but everyone's workflow is different
+18:55:04 <kohsuke> I don't think it affects people who are filing tickets, though. This mostly affects people who work on issues, and this channel has most of them I think
+18:55:19 <danielbeck> all plugin devs?
+18:55:36 <Gnosis> danielbeck: I saw it continue after a failed command, so presumably something was changed in my Jenkins install. But thank you, I'll figure it out :)
+18:55:37 <kohsuke> All right, "most" was an overstatement
+18:55:59 <nanonyme> kohsuke, well, it affects people who monitor the bugs they filed. Status should be informative on whether a bug is being worked on
+18:56:21 <danielbeck> nanonyme: Accepting it as valid and working on it are very different
+18:56:25 <nanonyme> (well, status+assignedness)
+18:56:33 <kohsuke> danielbeck: also, I don't know if you've tried, but in the SECURITY project, an untriaged issue can be resolved directly without going through "Open"
+18:56:49 <danielbeck> I have no permissions in SECURITY
+18:57:03 <danielbeck> but that would be essential to adopt
+18:57:08 <oleg-nenashev> "Confirmed" and "Unconfirmed" statuses/fields would be useful for the initial analysis.
+18:57:10 <nanonyme> danielbeck, yeah, I'm not suggesting every possible situation should have its own status. If anything, that would make monitoring status harder :)
+18:57:26 <danielbeck> what's weird is that Untriaged specifically mentions security issues, so a new status with different description would be best
+18:58:13 <danielbeck> https://issues.jenkins-ci.org/secure/ShowConstantsHelp.jspa?decorator=popup#StatusTypes
+18:58:19 <danielbeck> New issue sits in this state until a developer agrees that this is a security issue
+18:58:55 <kohsuke> I can update that description and/or display name if we decide to use it
+18:59:05 <danielbeck> Great
+18:59:22 <oleg-nenashev> I also vote for a new status. BTW, an sign-off in the mailing list seems to be a valid proposal in any case
+19:00:15 <kohsuke> danielbeck: if you are OK with this, I'd like to propose that we try out this change and bless it here today
+19:00:22 <kohsuke> I can rename it to "New", update description accordingly
+19:00:35 <kohsuke> And if we discover we don't like that in few weeks, we can revert the workflow scheme
+19:00:37 <danielbeck> Alright, we can always revert if it doesn't work.
+19:00:51 <kohsuke> we lost jglick but he's a proponent of this, too
+19:00:53 <danielbeck> This is about Untriaged/New only for now?
+19:01:03 <danielbeck> Or both?
+19:01:14 <kohsuke> Just for untriaged/new for now
+19:01:30 <kohsuke> to add the other state I need to create another workflow and do more work
+19:01:58 <danielbeck> let's do this then.
+19:01:59 <kohsuke> When we announce this state change I'll ask people's thoughts on adding this new state there too
+19:02:24 <kohsuke> All right, I think that wraps this topic for today
+19:02:27 <kohsuke> #topic next meeting
+19:02:48 <kohsuke> #info Next meeting will be Sep 17th same time
+19:03:04 <kohsuke> #endmeeting
