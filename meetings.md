@@ -1,0 +1,5686 @@
+# Jenkins Governance Meeting Agenda
+
+## Jul 10, 2023
+
+Participants: Mark Waite, Alexander Brandes, Ullrich Hafner, Basil Crow, Bruno Verachten, Oleg Nenashev
+
+Agenda:
+
+* News
+    * Releases
+        * Jenkins 2.401.2 released Wednesday June 28, 2023
+        * Next LTS baseline to be selected by Wednesday July 12, 2023
+        * Jenkins 2.401.3 releases Wednesday July 26, 2023 - Kris Stern release lead
+    * Infrastructure
+        * Upgrade from Jira 8 to Jira 9 is complete
+    * [CDF Technical Oversight Committee](https://cd.foundation/about/toc/) now includes Mark Waite
+* Action Items
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+        * Roadmap update pull requests
+        * More pull requests needed
+    * Retire the Chinese Jenkins site
+        * Chinese site link removed from [www.jenkins.io](http://www.jenkins.io) header
+        * Kevin Martens (Docs Officer) tracking [help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3379) to replace the Chinese pages with redirects to the English pages
+            * Need a redirect from https://www.jenkins.io/zh/ to [https://www.jenkins.io/](https://www.jenkins.io/zh/)
+    * Mark Waite archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Gavin has prepared the archive, need a destination repository
+        * See the [infra help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3271) tracking the discussion
+        * Will use jenkins-infra as the location
+            * Accept that we’ll place them in jenkins-infra as recommended in the help desk ticket
+    * Mark Waite [retrospective on signing certificate renewal process](https://docs.google.com/document/d/1BB2TueNTLhK3TcJ5senSSSMdzy9D95DxPXuWNzL3k2s/edit#) and its improvements
+        * Code signing certificate update for MSI and WAR files
+        * PGP signing key update for RPM and DEB files
+            * Debian key packaging improvements (some other projects use that technique now)
+        * Notification and process improvements
+            * Reimbursement improvements
+        * Details being gathered in the [retrospective document](https://docs.google.com/document/d/1BB2TueNTLhK3TcJ5senSSSMdzy9D95DxPXuWNzL3k2s/edit#)
+* Community activity
+    * Artifactory bandwidth reduction project [https://repo.jenkins-ci.org](https://repo.jenkins-ci.org)
+        * JFrog has asked that we switch our mirrored repositories (repo-1, jgit, etc.) from public to private so that they are not misused as caches by others
+        * Changes to be evaluated to test the switch
+            * Adjust parent poms to declare multiple repositories
+    * Jenkins security team reviewing core pull requests to JavaScript and Jelly for next 2 months
+        * Details in the [June 21, 2023 UX SIG meeting](https://community.jenkins.io/t/user-experience-sig-jun-21-2023/8116)
+        * Alex Brandes requested 3 reviews and they were reviewed within a few hours of the request
+    * [Prototype.js removal blog post](https://www.jenkins.io/blog/2023/05/12/removing-prototype-from-jenkins/) guides new contributors
+        * [Prototype.js removal epic](https://issues.jenkins.io/browse/JENKINS-70906) making progress
+        * Plugin progress visible in the [tracking sheet](https://docs.google.com/spreadsheets/d/1dpaKALZaK0_HIGy6ony3wnegr1frTg3u1lngG4KdoC8/edit?usp=sharing)
+        * Pull requests submitted for most popular plugins
+        * Feature flag available to disable prototype in Jenkins core 2.406 and later
+    * HTMLUnit 3 upgrades proceeding through [250+ plugin pull requests](https://github.com/search?q=org%3Ajenkinsci+Upgrade+HtmlUnit+from+2.x+to+3.x&type=pullrequests)
+        * Completed for [test harness](https://github.com/jenkinsci/jenkins-test-harness/pull/589), [core 2.409](https://github.com/jenkinsci/jenkins/pull/8050), tools, [plugin pom 4.66](https://github.com/jenkinsci/jenkins-test-harness/pull/589), and [plugin bom 2163](https://github.com/jenkinsci/bom/releases/tag/2163.v2d916d90c305)
+        * See the [tracking sheet](https://docs.google.com/spreadsheets/d/1ih_gVd9uhxLw4BZ6IeJGrYsvu-DvIF0xovu4wZbaXy8/edit#gid=0) for latest status
+        * Thanks to Tim Jacomb and Basil Crow, see Tim’s [replacement script](https://github.com/timja/htmlunit-2.x-to-3.x/blob/main/replace.sh)
+    * [4 Google Summer of Code projects](https://www.jenkins.io/blog/2023/05/04/gsoc2023-projects-announcement/) approved and running
+        * Thanks to Jean-Marc Meessen, Kris Stern, Alyssa Tong, and Bruno Verachten
+        * Mid-term presentations July 6, 2023
+    * [Early end of life for CentOS 7](https://groups.google.com/g/jenkinsci-dev/c/vyI0uQvxmm4/m/rpuQ9v_7AAAJ) in the Jenkins project - Nov 2023
+        * No negative comments or other dissent from the plan
+
+## Jun 26, 2023
+
+Participants: Mark Waite, Alexander Brandes, Ullrich Hafner, Basil Crow, Bruno Verachten, Oleg Nenashev
+
+Agenda:
+
+* News
+    * Jenkins 2.401.2 releases Wednesday June 28, 2023
+    * CDF Technical Oversight Committee election is in progress
+        * Mark Waite nominated from the Jenkins project
+        * 4 seats on the committee, 6 candidates
+        * Please cast your ballot (email invitations sent to those eligible to vote (from opavote.com))
+        * Deadline for voting is today
+* Action Items
+    * EasyCLA to be documented by Oleg
+        * Kris Stern submitted an individual CLA with a signed PDF and through the Linux Foundation
+            * Kris wants to join the Security team
+            * ICLA not strictly required for current work
+        * NEW:  finished documenting EasyCLA in [https://github.com/jenkinsci/infra-cla/pull/104](https://github.com/jenkinsci/infra-cla/pull/104)
+            * No more GPG armor, no more printing of PDF files
+            * Links to documentation from Linux Foundation with their screenshots
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+        * Roadmap update pull requests
+        * More pull requests needed
+    * Retire the Chinese Jenkins site
+        * Chinese site link removed from [www.jenkins.io](http://www.jenkins.io) header
+        * Kevin Martens (Docs Officer) tracking [help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3379) to replace the Chinese pages with redirects to the English pages
+            * Need a redirect from https://www.jenkins.io/zh/ to [https://www.jenkins.io/](https://www.jenkins.io/zh/)
+    * Mark Waite archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Gavin has prepared the archive, need a destination repository
+        * See the [infra help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3271) tracking the discussion
+        * Will use jenkins-infra as the location
+            * Accept that we’ll place them in jenkins-infra as recommended in the help desk ticket
+    * Mark Waite [retrospective on signing certificate renewal process](https://docs.google.com/document/d/1BB2TueNTLhK3TcJ5senSSSMdzy9D95DxPXuWNzL3k2s/edit#) and its improvements
+        * Not yet collected the details of the retrospective, still to be done
+        * Code signing certificate for MSI and WAR files
+        * PGP signing key for RPM and DEB files
+            * Debian key packaging improvements (some other projects use that technique now)
+        * Notification and process improvements
+            * Reimbursement improvements
+* Upgrade from Jira 8 to Jira 9 - Mark Waite
+    * [IT-25544](https://jira.linuxfoundation.org/plugins/servlet/desk/portal/2/IT-25544) submitted to the Linux Foundation - end of life in October
+    * Step 1 planned for July 6, 2023, up to 2 hour outage for database upgrade
+        * Pacific time - afternoon (2:00 PM Pacific)
+        * Database upgrade in step 1
+* GitHub sponsors as a fund raising source for the Jenkins project - Mark Waite
+    * [Newstack article](https://thenewstack.io/github-sees-open-source-organizational-donations-spike/) on a new GitHub program for larger scale funding of open source
+    * Oleg notes that it is not easy to have GitHub sponsors deposit funds into LFX Crowdfunding
+        * Would need GitHub Sponsors to transfer to a Stripe account, then to LFX account
+        * LF Charities is a non-profit
+    * GitHub supports concept of fiscal hosts and CNCF and Linux Foundation use OpenCollective that might be possible to use
+        * GitHub transfers to OpenCollective account of Linux Foundation as fiscal host
+    * No observed demand that we should enable GitHub Sponsors
+        * No further plans for now, can reconsider in the future
+* Budget and expenses - Mark Waite
+    * All expenses correctly shown on the [Linux Foundation crowdfunding site](https://crowdfunding.lfx.linuxfoundation.org/projects/jenkins/financial)
+* LFX Tooling - Alex Brandes
+    * Jenkins project piloted into LFX Security, Alex was exploring it a few weeks ago
+        * Why not onboarded the main Jenkins project into LFX Security
+        * Pilot project was paused while we waited for the Linux foundation
+            * LFX Security could not handle exceptions and false positive handling
+                * Snyk allowed it, but subset allowed for LFX Security did not allow it
+            * Talked to LFX Security team and finally suspended effort
+        * Still no global configuration
+            * It would have high rate of false positives with no easy way to exclude
+            * Java packaging of Jenkins plugins needs special handling that is not available
+        * Could enable it for Jenkins core but not workable for Jenkins plugins
+            * Dependencies on other plugins are assumed to be a bundled dependency
+                * False positive when plugin A declares a dependency on older version of plugin B
+            * Can be done with Snyk and some custom work, but not with LFX Security
+    * LFX tooling working group inside the CDF that has started their meetings
+        * Tracy Ragan leading, Mark has attended past meetings, invite Alex Brandes to the meetings
+        * Expanded scope of LFX Security might be worth more investigation
+* Community activity
+    * Artifactory bandwidth reduction project [https://repo.jenkins-ci.org](https://repo.jenkins-ci.org)
+        * JFrog has asked that we switch our mirrored repositories (repo-1, jgit, etc.) from public to private so that they are not misused as caches by others
+        * Changes to be evaluated to test the switch
+            * Adjust parent poms to declare multiple repositories
+    * Jenkins security team reviewing core pull requests to JavaScript and Jelly for next 2 months
+        * Details in the [June 21, 2023 UX SIG meeting](https://community.jenkins.io/t/user-experience-sig-jun-21-2023/8116)
+        * Alex Brandes requested 3 reviews and they were reviewed within a few hours of the request
+    * [Prototype.js removal blog post](https://www.jenkins.io/blog/2023/05/12/removing-prototype-from-jenkins/) guides new contributors
+        * [Prototype.js removal epic](https://issues.jenkins.io/browse/JENKINS-70906) making progress
+        * Plugin progress visible in the [tracking sheet](https://docs.google.com/spreadsheets/d/1dpaKALZaK0_HIGy6ony3wnegr1frTg3u1lngG4KdoC8/edit?usp=sharing)
+        * Pull requests submitted for most popular plugins
+        * Feature flag available to disable prototype in Jenkins core 2.406 and later
+    * HTMLUnit 3 upgrades proceeding through [250+ plugin pull requests](https://github.com/search?q=org%3Ajenkinsci+Upgrade+HtmlUnit+from+2.x+to+3.x&type=pullrequests)
+        * Completed for [test harness](https://github.com/jenkinsci/jenkins-test-harness/pull/589), [core 2.409](https://github.com/jenkinsci/jenkins/pull/8050), tools, [plugin pom 4.66](https://github.com/jenkinsci/jenkins-test-harness/pull/589), and [plugin bom 2163](https://github.com/jenkinsci/bom/releases/tag/2163.v2d916d90c305)
+        * See the [tracking sheet](https://docs.google.com/spreadsheets/d/1ih_gVd9uhxLw4BZ6IeJGrYsvu-DvIF0xovu4wZbaXy8/edit#gid=0) for latest status
+        * Thanks to Tim Jacomb and Basil Crow, see Tim’s [replacement script](https://github.com/timja/htmlunit-2.x-to-3.x/blob/main/replace.sh)
+    * [4 Google Summer of Code projects](https://www.jenkins.io/blog/2023/05/04/gsoc2023-projects-announcement/) approved and running
+        * Thanks to Jean-Marc Meessen, Kris Stern, Alyssa Tong, and Bruno Verachten
+        * Mid-term presentations July 6, 2023
+    * [Early end of life for CentOS 7](https://groups.google.com/g/jenkinsci-dev/c/vyI0uQvxmm4/m/rpuQ9v_7AAAJ) in the Jenkins project - Nov 2023
+        * No negative comments or other dissent from the plan
+
+## Jun 12, 2023
+
+Participants: Mark Waite, Alexander Brandes, Ullrich Hafner, Basil Crow, Bruno Verachten, Kevin Martens
+
+Agenda:
+
+* News
+    * Jenkins 2.401.2 release candidate this Wednesday
+        * Changes include:
+            * Operating system end of life administrative monitor (see the [blog post](https://www.jenkins.io/blog/2023/05/30/operating-system-end-of-life/) and [community forum topic](https://community.jenkins.io/t/end-of-life-operating-systems/7644/2))
+            * [Guice upgrade](https://github.com/jenkinsci/jenkins/pull/8121) from 5.1.0 to 6.0.0
+            * Others under discussion in developer mailing list
+    * Debian 12 “bookworm” released June 10, 2023, does not offer Java 11 as a Debian package
+        * Documentation update in progress to document Java 17 install by default instead of Java 11
+        * Container images unaffected - we deliver Eclipse Temurin 11
+    * CDF Technical Oversight Committee election is in progress
+        * Mark Waite nominated from the Jenkins project
+        * 4 seats on the committee, 6 candidates
+        * Please cast your ballot (email invitations sent to those eligible to vote)
+* Action Items
+    * EasyCLA to be documented by Oleg
+        * No progress, no requests pending, pick it up if there are CLA submissions
+        * Kris Stern submitted an individual CLA with a signed PDF and through the Linux Foundation
+            * Kris wants to join the Security team
+            * ICLA not strictly for current work
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+        * Roadmap update pull requests
+        * More pull requests needed
+    * Retire the Chinese Jenkins site
+        * Chinese site link removed from [www.jenkins.io](http://www.jenkins.io) header
+        * Kevin Martens (Docs Officer) tracking [help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3379) to replace the Chinese pages with redirects to the English pages
+            * Need a redirect from https://www.jenkins.io/zh/ to [https://www.jenkins.io/](https://www.jenkins.io/zh/)
+    * Mark Waite archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Gavin has prepared the archive, need a destination repository
+        * See the [infra help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3271) tracking the discussion
+        * Will use jenkins-infra as the location
+            * Accept that we’ll place them in jenkins-infra as recommended in the help desk ticket
+    * Mark Waite [retrospective on signing certificate renewal process](https://docs.google.com/document/d/1BB2TueNTLhK3TcJ5senSSSMdzy9D95DxPXuWNzL3k2s/edit#) and its improvements
+        * Not yet collected the details of the retrospective, still to be done
+        * Code signing certificate for MSI and WAR files
+        * PGP signing key for RPM and DEB files
+            * Debian key packaging improvements (some other projects use that technique now)
+        * Notification and process improvements
+            * Reimbursement improvements
+    * Mark Waite complete the reimbursement process for code signing certificate ($1536.00 USD)
+        * Done, funds received by Mark Waite
+* Mark Waite submit Linux Foundation ticket to upgrade from Jira 8 to Jira 9
+    * Done - [IT-25544](https://jira.linuxfoundation.org/plugins/servlet/desk/portal/2/IT-25544) submitted to the Linux Foundation - end of life in October
+        * Johnson Nguyen asked 30 May 2023 if we had a specific timeline in mind
+            * Mark replied we need to be running on Jira 9 before the end of support for Jira 8, flexible other than that
+* Budget and expenses
+    * Wadeck Follonier approved for $52.99 expense last year
+        * Reimbursement is complete, received June 9
+    * Both expenses correctly shown on the [Linux Foundation crowdfunding site](https://crowdfunding.lfx.linuxfoundation.org/projects/jenkins/financial)
+* Community activity
+    * Artifactory bandwidth reduction project [https://repo.jenkins-ci.org](https://repo.jenkins-ci.org)
+        * Artifactory used 20 TB less bandwidth in April than in previous months
+        * [Artifact caching proxy](https://github.com/jenkins-infra/helpdesk/issues?q=is%3Aissue+is%3Aopen+artifact+label%3Aartifact-caching-proxy) has reduced Jenkins project artifact bandwidth use
+        * Brownout summary due from Mark Waite
+    * [Prototype.js removal blog post](https://www.jenkins.io/blog/2023/05/12/removing-prototype-from-jenkins/) guides new contributors
+        * [Prototype.js removal epic](https://issues.jenkins.io/browse/JENKINS-70906) making progress
+        * Plugin progress visible in the [tracking sheet](https://docs.google.com/spreadsheets/d/1dpaKALZaK0_HIGy6ony3wnegr1frTg3u1lngG4KdoC8/edit?usp=sharing)
+        * Pull requests submitted for most popular plugins
+        * Feature flag available to disable prototype in Jenkins core 2.406 and later
+    * HTMLUnit 3 upgrades proceeding through [test harness](https://github.com/jenkinsci/jenkins-test-harness/pull/589), [core 2.409](https://github.com/jenkinsci/jenkins/pull/8050), tools, [plugin pom 4.66](https://github.com/jenkinsci/jenkins-test-harness/pull/589), [plugin bom 2163](https://github.com/jenkinsci/bom/releases/tag/2163.v2d916d90c305), and [150+ plugin pull requests](https://github.com/search?q=org%3Ajenkinsci+Upgrade+HtmlUnit+from+2.x+to+3.x&type=pullrequests)
+        * Many open PRs have build failures in the [tracking sheet](https://docs.google.com/spreadsheets/d/1ih_gVd9uhxLw4BZ6IeJGrYsvu-DvIF0xovu4wZbaXy8/edit#gid=0)
+        * Thanks to Tim Jacomb and Basil Crow, see Tim’s [replacement script](https://github.com/timja/htmlunit-2.x-to-3.x/blob/main/replace.sh)
+    * Guava 32.0 upgrade surprise and success story
+        * Upgrade to 32.0 in Jenkins 2.406 surprised with compatibility break for Windows users of Artifactory and Checkmarx plugins ([JENKINS-71375](https://issues.jenkins.io/browse/JENKINS-71375))
+        * Fixed in Guava 32.0.1 for Jenkins 2.410 (tomorrow), thanks to Basil Crow and the Guava development team
+    * [4 Google Summer of Code projects](https://www.jenkins.io/blog/2023/05/04/gsoc2023-projects-announcement/) approved and started
+        * Thanks to Jean-Marc Meessen, Kris Stern, Alyssa Tong, and Bruno Verachten
+    * [Early end of life for CentOS 7](https://groups.google.com/g/jenkinsci-dev/c/vyI0uQvxmm4/m/rpuQ9v_7AAAJ) in the Jenkins project - Nov 2023
+        * CentOS 7 end of life June 30, 2024 by CentOS project
+        * CentOS 7 container images unmaintained since Nov 2020
+        * Jenkins RPM installer does not support CentOS 7
+        * Outdated tools on CentOS 7 make ongoing support painful
+    * GitHub enterprise features now available for Jenkins developers (thanks Alexander Brandes)
+        * [Blog post](https://www.jenkins.io/blog/2023/05/25/github-sponsors-jenkinsci-org/) describes the addition, added with help from Tim Jacomb
+            * Using autolink references to link to Jira tickets
+    * GitHub beta features
+        * Task lists (beta) now implemented for Jenkins [core](https://github.com/jenkinsci/jenkins/pull/8116) and [plugin](https://github.com/jenkinsci/.github/pull/125) pull requests
+    * Launchable experiments running in Jenkins
+        * Using it in Jenkins core on Windows CI builds to run a subset of Windows tests
+            * Save time in Jenkins builds
+            * Pull requests run a subset, then full set runs on merge to master branch
+        * Data collection has been running for more than a month
+        * Next steps
+            * Enable for Windows tests in Jenkins core (reduce 4 hour runtime)
+            * Add Launchable subset to acceptance test harness (ATH)
+            * Launchable in BOM will wait for core and ATH
+        * Benefits to developers
+            * Reduce cost of BOM builds
+            * Reduce number of Windows tests in Jenkins core (done)
+            * Run ATH subsets as part of core builds (coming soon)
+                * Reduce ATH costs by running a subset of tests
+        * Launchable support is providing feedback as well
+
+## May 29, 2023
+
+Meeting canceled due to public holidays
+
+## May 15, 2023
+
+Participants: Mark Waite, Alexander Brandes, Basil Crow
+
+Agenda:
+
+* News
+    * Jenkins 2.401.1 release candidate scheduled for May 17, 2023
+        * Alexander Brandes is release lead
+    * [Prototype.js removal blog post](https://www.jenkins.io/blog/2023/05/12/removing-prototype-from-jenkins/) guides new contributors
+        * [Prototype.js removal epic](https://issues.jenkins.io/browse/JENKINS-70906) making excellent progress
+        * Thanks Tim Jacomb and Basil Crow
+    * [4 Google Summer of Code projects](https://www.jenkins.io/blog/2023/05/04/gsoc2023-projects-announcement/) approved and started
+    * [Jenkins awards](https://cd.foundation/blog/2023/05/10/congratulations-to-the-2023-cdf-community-award-winners/) announced at cdCon May 8-9, 2023
+        * Jan Faracik - Most Valuable Contributor
+        * Daniel Beck - Jenkins Security MVP
+        * Mark Waite - Most Valuable Advocate
+    * [Plugin security advisory tomorrow](https://groups.google.com/g/jenkinsci-advisories/c/_mJEHe9lXTU/m/IGJw-fxWBQAJ), May 16, 2023
+    * Plugin health scores shown on [plugins.jenkins.io](https://plugins.jenkins.io/ui/search/?labels=adopt-this-plugin)
+* Action Items
+    * EasyCLA to be documented by Oleg
+        * No progress, no requests pending, pick it up if there are CLA submissions
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+        * Started with PR’s to retire inactive SIGs
+            * [Cloud native](https://github.com/jenkins-infra/jenkins.io/pull/6296)
+            * [Chinese localization](https://github.com/jenkins-infra/jenkins.io/pull/6297)
+            * [Hardware and EDA](https://github.com/jenkins-infra/jenkins.io/pull/6298)
+            * [Pipeline authoring](https://github.com/jenkins-infra/jenkins.io/pull/6299)
+        * Roadmap update pull requests
+    * Retire the Chinese Jenkins site
+        * Chinese site link removed from [www.jenkins.io](http://www.jenkins.io) header
+        * Rick recommends that we redirect the chinese pages to English equivalents
+        * Kevin Martens (Docs Officer) tracking [help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3379) to replace the Chinese pages with redirects to the English pages
+            * Need a redirect from https://www.jenkins.io/zh/ to [https://www.jenkins.io/](https://www.jenkins.io/zh/)
+    * Mark Waite archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Gavin has prepared the archive, need a destination repository
+        * See the [infra help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3271) tracking the discussion
+        * Infra team raised about the repository location as a question
+        * Oleg prefers jenkinsci rather than jenkins-infra for a governance repository (this is not about the archive repository!)
+            * Mark check the infra team preference, discuss if not jenkinsci
+            * Accept that we’ll place them in jenkins-infra as recommended in the help desk ticket
+    * Mark Waite [retrospective on signing certificate renewal process](https://docs.google.com/document/d/1BB2TueNTLhK3TcJ5senSSSMdzy9D95DxPXuWNzL3k2s/edit#) and its improvements
+        * Code signing certificate for MSI and WAR files
+        * PGP signing key for RPM and DEB files
+            * Debian key packaging improvements (some other projects use that technique now)
+            * Reimbursement improvements
+    * Mark Waite complete the reimbursement process for code signing certificate
+        * Mark working with CDF and Linux Foundation to complete the reimbursement process
+    * Mark Waite submit Linux Foundation ticket to upgrade from Jira 8 to Jira 9
+        * Done - [IT-25544](https://jira.linuxfoundation.org/plugins/servlet/desk/portal/2/IT-25544) submitted to the Linux Foundation
+* Budget and expenses
+    * Mark Waite spent $1536.00 USD for the Digicert code signing certificate
+        * New expense report submitted today for approval (thanks to Michelle Martineau)
+        * Assign the “project” (Jenkins) and not the “category” in the expense report
+        * Report must be assigned to the “Department” → “LFX”
+        * Approval request sent to Oleg Nenashev
+    * Wadeck Follonier approved for $52.99 expense last year
+        * Reimbursement in progress, sent to Netsuite for disbursement
+        * Mark check with Wadeck tomorrow to see if he’s been paid
+* Kevin Martens (Documentation officer) unavailable until May 12 - June 12
+    * Other community members assist with documentation during Kevin’s absence
+        * Switch install docs from Java 11 to Java 17 - accept delay, welcome contributors
+        * Documentation pull request reviews - Docs office hours participants
+        * Weekly changelog revision and preparation - Mark Waite
+        * LTS changelog and upgrade guide - Mark Waite
+* Application submitted to Ampere requesting ARM64 hardware donation
+    * Plan to host it at Mark Waite’s home if approved
+    * [Application](https://groups.google.com/g/jenkinsci-board/c/MHhZ5H3DqWs/m/le2LTi1-AgAJ) is in the Jenkins board mailing list (intentionally not publicly visible)
+* Propose to cancel or reschedule May 29, 2023 governance meeting
+    * U.S. holiday, European holiday
+    * +1 from all three attendees
+* Community activity
+    * Artifactory bandwidth reduction project [https://repo.jenkins-ci.org](https://repo.jenkins-ci.org)
+        * Artifactory banned one IP address (39.107.36.205) hosted at Alibaba
+            * See [public abuse report](https://www.abuseipdb.com/check/39.107.36.205) for more details
+        * [Artifact caching proxy](https://github.com/jenkins-infra/helpdesk/issues?q=is%3Aissue+is%3Aopen+artifact+label%3Aartifact-caching-proxy) has reduced Jenkins project artifact bandwidth use
+        * Mark Waite to schedule review session with JFrog to summarize current results and identify next steps
+    * [Prototype.js removal blog post](https://www.jenkins.io/blog/2023/05/12/removing-prototype-from-jenkins/) guides new contributors
+        * [Prototype.js removal epic](https://issues.jenkins.io/browse/JENKINS-70906) making excellent progress
+        * Dozen or more pull requests submitted for most popular plugins
+        * Feature flag available to disable prototype in Jenkins core
+        * Spreadsheet or other tracking system to coordinate efforts to fix plugins
+            * Popularity sorting, status indicated by color
+        * See the developer mailing list thread for plugins that still need work
+    * [4 Google Summer of Code projects](https://www.jenkins.io/blog/2023/05/04/gsoc2023-projects-announcement/) approved and started
+        * Thanks to Jean-Marc Meessen, Kris Stern, Alyssa Tong, and Bruno Verachten
+    * Infrastructure cost reduction projects
+        * See the [infrastructure billing-report help desk tickets](https://github.com/jenkins-infra/helpdesk/issues?q=is%3Aissue+label%3Abilling-report+is%3Aopen) for more details
+    * Proposal for [early end of life for CentOS 7](https://groups.google.com/g/jenkinsci-dev/c/vyI0uQvxmm4/m/rpuQ9v_7AAAJ) in the Jenkins project
+        * CentOS 7 end of life June 30, 2024 by CentOS project
+        * CentOS 7 container images unmaintained since Nov 2020
+        * Jenkins RPM installer does not support CentOS 7
+        * Outdated tools on CentOS 7 make ongoing support painful
+    * Launchable experiments running in Jenkins
+        * Data collection has been running for multiple weeks
+        * Next steps
+            * Enable for Windows tests in Jenkins core (reduce 4 hour runtime)
+            * Add Launchable subset to acceptance test harness (ATH)
+            * Launchable in BOM will wait for core and ATH
+        * Benefits to developers
+            * Reduce cost of BOM builds
+            * Reduce number of Windows tests in Jenkins core
+            * Run ATH subsets as part of core builds
+                * Reduce ATH costs by running a subset of tests
+        * Launchable support is providing feedback as well
+* Alex enrolled Jenkins organization into the GitHub “Activity”
+    * Includes an “Activity” entry on the right hand side of the page
+* Jira 8 is reported as end of life and end of support within next 5 months
+    * Need to upgrade from current LTS to the next LTS before end of life
+    * Jira 9 is the current LTS version, want to up
+    * Action: Mark Waite open the Linux Foundation ticket to upgrade our Jira instance
+        * Done: [IT-25544 submitted](https://jira.linuxfoundation.org/plugins/servlet/desk/portal/2/IT-25544)
+
+## May 01, 2023
+
+Bank holiday in Germany, the meeting has been skipped.
+
+## April 17, 2023
+
+Participants: Mark Waite, Ullrich Hafner, Daniel Beck
+
+Agenda:
+
+* News
+    * Jenkins 2.387.2 released
+    * [Prototype.js removal](https://issues.jenkins.io/browse/JENKINS-70906) has started
+    * More than 50 Google Summer of Code proposals received - 3x more than last year
+    * cdCon happening May 8-9, 2023 in Vancouver, Canada
+        * Jenkins Awards will be announced there
+* Action Items
+    * EasyCLA to be documented by Oleg
+        * No progress, no requests pending, pick it up if there are CLA submissions
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+        * Started with PR’s to retire inactive SIGs
+            * [Cloud native](https://github.com/jenkins-infra/jenkins.io/pull/6296)
+            * [Chinese localization](https://github.com/jenkins-infra/jenkins.io/pull/6297)
+            * [Hardware and EDA](https://github.com/jenkins-infra/jenkins.io/pull/6298)
+            * [Pipeline authoring](https://github.com/jenkins-infra/jenkins.io/pull/6299)
+        * Roadmap update pull requests
+    * Retire the Chinese Jenkins site
+        * Chinese site link removed from [www.jenkins.io](http://www.jenkins.io) header
+        * Rick recommends that we redirect the chinese pages to English equivalents
+        * Kevin Martens (Docs Officer) tracking [help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3379) to replace the Chinese pages with redirects to the English pages
+            * Need a redirect from https://www.jenkins.io/zh/ to [https://www.jenkins.io/](https://www.jenkins.io/zh/)
+    * Mark Waite archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Gavin has prepared the archive, need a destination repository
+        * See the [infra help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3271) tracking the discussion
+        * Infra team raised about the repository location as a question
+        * Oleg prefers jenkinsci rather than jenkins-infra for a governance repository (this is not about the archive repository!)
+            * Mark check the infra team preference, discuss if not jenkinsci
+            * Accept that we’ll place them in jenkins-infra as recommended in the help desk ticket
+    * Mark Waite schedule retrospective on signing certificate renewal process and its improvements
+        * Code signing certificate for MSI and WAR files
+        * PGP signing key for RPM and DEB files
+    * Mark Waite complete the reimbursement process for code signing certificate
+* Budget and expenses
+    * Mark Waite spent $1536.00 USD for the Digicert code signing certificate and wants to be reimbursed
+        * Receipt is in the [board mailing list](https://groups.google.com/g/jenkinsci-board/c/v7koGRlJOXY/m/zIDTTLEeBAAJ) along with a request for board approval of the reimbursement
+        * [Current account balance](https://crowdfunding.lfx.linuxfoundation.org/projects/jenkins) is $10337, enough funds to cover the $1536 expense
+            * Ulli approves the expense (also in the mailing list)
+        * How to request reimbursement?
+        * Mark sent request to Fatih Digermenci of CDF and accounts payable at Linux Foundation for more guidance
+    * Wadeck Follonier has been approved for $52.99 expense but not yet reimbursed
+* CDF topics
+    * LFX insights working group met earlier today to discuss LFX metrics used by the Jenkins project
+        * Discussions in the [CDF working group repository](https://github.com/cdfoundation/wg-lfx-requirements/discussions)
+            * Detailed list of reports used by Mark Waite are in the [DevStats thread](https://github.com/cdfoundation/wg-lfx-requirements/discussions/10)
+
+## April 3, 2023
+
+Participants: Mark Waite, Basil Crow, Alexander Brandes, Ullrich Hafner, Bruno Verachten, OIeg Nenashev, Daniel Beck
+
+Agenda:
+
+* Claim from BMC to GitHub Trust and Safety ([update center PR 692](https://github.com/jenkins-infra/update-center2/pull/692))
+    * Claim rescinded, licenses corrected, distribution of plugins restored, special thanks to Daniel Beck
+* News
+    * Jenkins 2.387.2 and 2.398
+    * PGP repository signing key expired March 30, 2023 for deb and rpm packages, new key for 2.397 and 2.387.2
+        * Announced in
+* [Jenkins blog](https://www.jenkins.io/node/) including its [RSS feed](https://feeds.feedburner.com/ContinuousBlog/)
+* [Jenkins LinkedIn account](https://www.linkedin.com/company/jenkins-project/)
+* [Jenkins twitter account](https://twitter.com/jenkinsci)
+* [Jenkins weekly changelog](https://www.jenkins.io/changelog/) and its [RSS feed](https://www.jenkins.io/changelog/rss.xml)
+* [Top level Jenkins page](https://www.jenkins.io/) has a rotating announcement that links to the blog post
+* [Gitter chat channel](https://app.gitter.im/#/room/#jenkinsci_jenkins:gitter.im)
+        * Yes, we’ll have a retrospective afterwards to better handle signing key updates
+            * See suggestions in the help desk ticket
+    * Oleg's change of affiliation. Now WireMock Inc.
+        * No impact on availability, it is defined by other things like war in Ukraine and the separation process
+* Action Items
+    * EasyCLA to be documented by Oleg
+        * No progress, no requests pending, pick it up if there are CLA submissions
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+        * No progress, Mark to complete
+        * Roadmap update pull requests, make it current for April 12 CDF TOC presentation
+    * Retire the Chinese Jenkins site
+        * Chinese site link removed from [www.jenkins.io](http://www.jenkins.io) header
+        * Rick recommends that we redirect the chinese pages to English equivalents
+        * Kevin Martens (Docs Officer) tracking [help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3379) to replace the Chinese pages with redirects to the English pages
+            * Need a redirect from https://www.jenkins.io/zh/ to [https://www.jenkins.io/](https://www.jenkins.io/zh/)
+    * Mark Waite archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Gavin has prepared the archive, need a destination repository
+        * See the [infra help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3271) tracking the discussion
+        *  has something in mind on how to structure things.
+        * Infra team raised about the repository location as a question
+        * Oleg prefers jenkinsci rather than jenkins-infra for a governance repository (this is not about the archive repository!)
+            * Mark check the infra team preference, discuss if not jenkinsci
+    * Build monitor status plugin update - Basil Crow
+        * Jan Molek’s request to maintain the link to his blog inside the plugin
+        * Repository is now in the GitHub organization
+        * Release process is using the standard CD process (JEP-229)
+        * Front end contributors improved the plugin website so that the older versions would be at the bottom of the list, new versions at the top
+        * Looks and feels like a full member of the Jenkins project
+* CDF topics
+    * Digicert code signing certificate renewal in progress
+        * Proposed to stop building Jenkins MSI installer until new code signing certificate is available and configured
+            * Mark Waite sent note to Jenkins officers today with the proposal, approved by release officer, security officer, and infra officer
+            * [PR-356](https://github.com/jenkins-infra/release/pull/356) in the release repository, backport to stable-2.387 will be needed
+            * [PR-384](https://github.com/jenkinsci/packaging/pull/384) in the packaging repository, backport to stable-2.387 may not be needed in PR-356 in release repo works as hoped in weekly
+    * PGP key expired on the Debian repository
+        * Debian allows re-signing of old releases with a new key
+        * Debian allows signing of packages with multiple keys
+        * Very painful to the users that we did not handle the transition well
+        * Better to acknowledge that it could be done differently and that there are ways to improve in the future
+        * Prefer clarity on our weaknesses, openly state the mistakes made
+    * Jenkins project presentation to the CDF Technical Oversight Committee April 11, 2023
+        * Mark Waite prepare and present Jenkins status report
+            * Mark create presentation, share it with this group, invite comments, corrections
+            * Last TOC confirmed that they are OK with a project review that looks at participation in addition to technical topics
+    * LFX Tools working group starting based on last CDF TOC meeting
+        * Noted that [devstats.cd.foundation](https://jenkins.devstats.cd.foundation/d/7/companies-contributing-in-repository-groups?orgId=1) will eventually be replaced by LFX Insights
+        * [Mailing list](https://lists.cd.foundation/g/wg-lfx-requirements) for discussions
+        * [GitHub repository](https://github.com/cdfoundation/wg-lfx-requirements) for meeting notes and more
+    * Jenkins awards voting is complete, results provided to CDF
+        * Announcement not yet made, may happen at cdCon
+* Community activity
+    * Artifactory bandwidth reduction project [https://repo.jenkins-ci.org](https://repo.jenkins-ci.org)
+        * Artifactory banned one IP address (39.107.36.205) hosted at Alibaba
+            * See [public abuse report](https://www.abuseipdb.com/check/39.107.36.205) for more details
+        * [Artifact caching proxy](https://github.com/jenkins-infra/helpdesk/issues?q=is%3Aissue+is%3Aopen+artifact+label%3Aartifact-caching-proxy) has reduced Jenkins project artifact bandwidth use
+    * Google Summer of Code 2023
+        * 38 proposals submitted to Google Summer of Code
+        * April 4, 2023 is submission deadline for contributor proposals
+    * Launchable experiments running in Jenkins BOM and elsewhere
+        * Defining test suites
+        * Defining builds
+        * Benefits to developers
+            * Reduce cost of BOM builds
+            * Reduce number of Windows tests in Jenkins core
+            * Run ATH subsets as part of core builds
+                * Reduce ATH costs by running a subset of tests
+        * Launchable support is providing feedback as well
+
+## March 20, 2023
+
+Participants: Mark Waite, Basil Crow, Alexander Brandes, Bruno Verachten, Oleg Nenashev, Daniel Beck
+
+Agenda:
+
+* Claim from BMC to GitHub Trust and Safety ([update center PR 692](https://github.com/jenkins-infra/update-center2/pull/692))
+    * Late last week GitHub owners received a report of claim of publication of private information, copyrighted material, or password without consent
+        * Tim asked the committers what is happening
+        * Daniel filed a pull request to stop distribution of BMC Compuware plugins
+        * Maintainer replied by fixing it to rewrite the repository history (as recommended by GitHub)
+        * Immediate notification was addressed but organization claimed its own published sources as private information was inconsistent
+        * Nov 2022 several BMC plugins were relicensed to proprietary license (no longer OSI approved)
+        * What next?
+            * Suspend everything from BMC
+            * Decide how to proceed next
+            * Do they want to remain hosted?
+            * Why was a claim filed?
+            * Do we need to delete or remove artifacts?
+            * Copyright claim was in tests, but if in source files, then should we remove it from artifact repository
+        * Mail arrived last Friday or last Saturday
+        * If GitHub gives us only 3 days to respond, then we are almost out of time to respond
+        * Plugin is published by BMC with a copyright claim by BMC
+            * Delete it out of principle, let their customers complain
+            * Suspend distribution immediately (easy to do, 1 pull request)
+            * Can block further plugin releases until issue is resolved
+            * Could move the artifacts into a private repository so that they are not available from repo.jenkins-ci.org (similar to how we stage security releases)
+            * Removing old versions with an OSI complaint license seems too much
+        * Complaint is filed against the repository
+            * Make the repository private or transfer it to a different organization temporarily
+            * Do not want to risk the rest of the jenkinsci organization
+            * Before publication, need a resolution to the license issue
+            * Make the repository private first, then …
+            * Transfer the repository to an organization defined by the plugin maintainers, then they submit a hosting request to ask for Jenkins hosting
+            * If they do not repair the licensing, the transfer remains permanent and the plugin remains no longer published
+        * GitHub trust and safety needs immediate action
+            * Don’t risk that we’re locked out of GitHub by bogus claims to GitHub Trust and Safety
+            * When a repository is made private, it detaches the fork network
+                * Consider search for other risky strings, make those repos private as well
+            * Suspend the plugins
+            * Daniel PR suggests suspending all Compuware and BMC plugins
+                * That may be more than we need, since license and GitHub Trust and Safety are limited to a few plugins, specifically previously owned by Compuware
+            * What do the maintainers need to do to restore distribution?
+                * Active confirmation that other BMC repositories are approved
+        * Proposals for discussion
+            * Make Compuware / BMC repositories private, pending confirmation that GitHub Trust & Safety claims have been rescinded and no future claims will be made
+                * Alternative 0 - Do not do anything
+                * Alternative 1- Only common-configuration
+                * **Alternative 1.5 - Only common-configuration until the second complaint, then everything (Basil, DB, Oleg, Alex, Mark)**
+                * Alternative 2 - All (preferred by Basil)
+                * Alternative 3 - Any plugins that would match the complaint
+                * Alternative 4 - Alternative 1 **and **Transfer repository to one or more maintainers
+                * Alternative 5 - Alternative 2 **and **Transfer repository to one or more maintainers (Bruno)
+                * Alternative 6 - Alternative 3 **and **Transfer repository to one or more maintainers
+            * Block future releases of non-OSI Compuware / BMC plugins, pending restoration of OSI compatible license
+                * Alternative 0 - Do not do anything
+                * **Alternative 1 - (preferred by Basil, DB, Oleg, Alex, Mark, Bruno)**
+            * Suspend distribution of Compuware / BMC plugins
+                * Alternative 0 - Do not do anything
+                * **Alternative 1 - suspend all, pending confirmation that GitHub Trust & Safety claims have been rescinded and no future claims will be made, and restoration of OSI compatible license (preferred by Basil, DB, Alex, Mark)**
+                * Alternative 2 - remove non-compliant licensed plugin releases, pending restoration of OSI compatible license (Oleg, Bruno)
+            * Remove Compuware / BMC plugins from artifact repository
+                * Alternative 0 - Do not do anything
+                * Alternative 1 - remove all, pending confirmation that GitHub Trust & Safety claims have been rescinded and no future claims will be made, and restoration of OSI compatible license (easier for DB, Alex, Mark, Basil)
+                * **Alternative 2 - remove non-compliant licensed plugin releases**, pending restoration of OSI compatible license (preferred by Basil, Oleg, Alex, Bruno)
+    * Action items:
+        * Mark to notify maintainers of the ~10 plugins in the [update center pull request](https://github.com/jenkins-infra/update-center2/pull/692) what actions we’ve taken and will take and steps they need to take to restore distribution based on email addresses in accounts.jenkins.io \
+DONE: [https://groups.google.com/g/jenkinsci-board/c/vHbqCK7ywuw](https://groups.google.com/g/jenkinsci-board/c/vHbqCK7ywuw)
+        * Daniel to make repo private -  \
+DONE: [https://github.com/jenkinsci/compuware-common-configuration-plugin](https://github.com/jenkinsci/compuware-common-configuration-plugin)
+        * Daniel to file PR against RPU blocking releases of non-OSI plugins -  \
+DONE: [https://github.com/jenkins-infra/repository-permissions-updater/pull/3201](https://github.com/jenkins-infra/repository-permissions-updater/pull/3201)
+        * Daniel to merge his PR in update-center2 -  \
+DONE: [https://github.com/jenkins-infra/update-center2/pull/692#event-8798478865](https://github.com/jenkins-infra/update-center2/pull/692#event-8798478865)
+        * Daniel to clean up Artifactory (specific non-compliant releases preferred) 😭- DONE: compuware-ispw-operations 1.0.12, 2.0.0, 2.1.0 and compuware-scm-downloader 2.0.15 and 2.0.16 (the other two plugins are unreleased)
+* News
+    * Jenkins 2.387.1, 2.375.4, and 2.394 released March 8, 2023
+    * [Plugin security advisory](https://groups.google.com/g/jenkinsci-advisories/c/oADJ7nuLF48/m/eHcQwSZ7FAAJ) announced for tomorrow, March 21, 2023
+* Action Items
+    * EasyCLA to be documented by Oleg
+        * No progress, no requests pending, pick it up if there are CLA submissions
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+        * No progress, Mark to complete
+        * Roadmap update pull requests, make it current for April 12 CDF TOC presentation
+    * Retire the Chinese Jenkins site
+        * Chinese site link removed from [www.jenkins.io](www.jenkins.io) header
+        * Rick recommends that we redirect the chinese pages to English equivalents
+        * Kevin Martens (Docs Officer) tracking [help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3379) to replace the Chinese pages with redirects to the English pages
+            * Need a redirect from [https://www.jenkins.io/zh/](https://www.jenkins.io/zh/) to [https://www.jenkins.io/](https://www.jenkins.io/zh/)
+    * Mark Waite and  archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Gavin has prepared the archive, need a destination repository
+        *  has something in mind on how to structure things.
+        * Infra team raised about the repository location as a question
+        * Oleg prefers jenkinsci rather than jenkins-infra for a governance repository (this is not about the archive repository!)
+            * Mark check the infra team preference, discuss if not jenkinsci
+    * Build Monitor View plugin repository transfer to jenkinsci org @Basil
+        * Done - [https://github.com/jenkinsci/build-monitor-plugin](https://github.com/jenkinsci/build-monitor-plugin)
+* Jira license changes complete for Jenkins project
+    * Transition is complete, announced in [blog post](https://www.jenkins.io/blog/2023/03/09/jira-donation/)
+    * Thanks to Atlassian for the donation and thanks to Linux Foundation for Jira hosting
+* CDF topics
+    * Jenkins project presentation to the CDF Technical Oversight Committee April 12, 2023
+        * Mark Waite prepare and present Jenkins status report
+            * Mark create presentation, share it with this group, invite comments, corrections
+            * Last TOC confirmed that they are OK with a project review that looks at participation in addition to technical topics
+    * LFX Tools working group starting based on last CDF TOC meeting
+        * Noted that [devstats.cd.foundation](https://jenkins.devstats.cd.foundation/d/7/companies-contributing-in-repository-groups?orgId=1) will eventually be replaced by LFX Insights
+        * [Mailing list](https://lists.cd.foundation/g/wg-lfx-requirements) for discussions
+        * [GitHub repository](https://github.com/cdfoundation/wg-lfx-requirements) for meeting notes and more
+* Community activity
+    * Artifactory bandwidth reduction project [https://repo.jenkins-ci.org](https://repo.jenkins-ci.org)
+        * Artifactory seeking to ban one IP address (39.107.36.205) hosted at Alibaba
+            * See [public abuse report](https://www.abuseipdb.com/check/39.107.36.205) for more details
+        * [Artifact caching proxy](https://github.com/jenkins-infra/helpdesk/issues?q=is%3Aissue+is%3Aopen+artifact+label%3Aartifact-caching-proxy) has reduced Jenkins project artifact bandwidth use
+    * Google Summer of Code 2023
+        * 22 draft proposals submitted for review by potential mentors
+* Adjusting meeting time for European change to Daylight Saving Time?
+    * In past years, we’ve adjusted meeting start time so that it remains at the same hour of the day for our European board members, whether they are in summer time or not
+
+## March 6, 2023
+
+Participants: Mark Waite, Basil Crow, Kevin Martens, Alexander Brandes, Ullrich Hafner, Bruno Verachten, Oleg Nenashev
+
+Agenda:
+
+* News
+    * Jenkins is a Google Summer of Code 2023 mentoring organization
+        * Twice a week sessions introducing the project ideas
+        * Very active conversations in the gitter channels
+        * Project count will be limited by the number of lead mentors available
+        * Why so many applicants this year? (5x more than last year)
+    * Jenkins 2.387.1, 2.375.4, and 2.394 release March 8, 2023
+        * Security release [announcement](https://groups.google.com/g/jenkinsci-advisories/c/RmkqB1wAY14)
+    * February newsletter being prepared - submit your text
+* Action items
+    * Rework [press contact](https://groups.google.com/g/jenkinsci-dev/c/ULvis9mKrN0) page on jenkins.io -
+        * [https://github.com/jenkins-infra/jenkins.io/pull/6115](https://github.com/jenkins-infra/jenkins.io/pull/6115)
+        * Gavin Mogan proposed to remove himself from press contacts
+            * Implemented, noted that press contacts receive nothing but spam
+            * Proposed to rework the press page to use a constant contact
+            * Use the press category on the forums
+                * Replace with the press category on Discourse
+        * Votes +1 from all in the meeting
+    * EasyCLA to be documented by Oleg
+        * No progress, no requests pending, pick it up if there are CLA submissions
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+        * No progress, Mark to complete
+        * Roadmap update pull requests, needs to be update
+    * Retire the Chinese Jenkins site
+        * Rick recommends  that we redirect the chinese pages to English equivalents
+        * Kevin Martens (Docs Officer) tracking [help desk ticket](https://github.com/jenkins-infra/helpdesk/issues/3379) to replace the Chinese pages with redirects to the English pages
+            * Need a redirect from [https://www.jenkins.io/zh/](https://www.jenkins.io/zh/) to [https://www.jenkins.io/](https://www.jenkins.io/zh/)
+    * Mark Waite and  archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Gavin has prepared the archive, need a destination repository
+        *  has something in mind on how to structure things.
+        * Infra team raised about the repository location as a question
+        * Oleg prefers jenkinsci rather than jenkins-infra for a governance repository (this is not about the archive repository!)
+            * Mark check the infra team preference, discuss if not jenkinsci
+    * Build Monitor View plugin repository transfer to jenkinsci org @Basil
+        * Jan Molak published an issue stating he agreed to incorporate his plugin in the jenkinsci org: [https://github.com/jan-molak/jenkins-build-monitor-plugin/issues/656](https://github.com/jan-molak/jenkins-build-monitor-plugin/issues/656)
+        * What’s the current status?
+        * Submitted help desk ticket to migrate the repository
+* Reminder of board member role in the [Jenkins code of conduct](https://www.jenkins.io/project/conduct/#enforcement-responsibilities)
+    * board members are: \
+“responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.”
+    * Happy to have recommendations for improvements based on recent gitter chat messages
+        * User expressing comments with offensive words and harsh phrasing, responded positively to code of conduct mention
+* Jira license changes affect the Jenkins project on or before Feb 2024
+    * Atlassian has approved our continued use of [https://issues.jenkins.io](https://issues.jenkins.io)
+    * Linux Foundation will continue to host us
+    * Further discussions in progress to assure all are aligned
+    * Mark’s proposed blog post draft has started but not finished
+        * Mark to gather more data to make the blog post more interesting
+        * Write the blog post once with final details from Linux Foundation
+* CDF topics
+    * Jenkins project presentation to the CDF Technical Oversight Committee
+        * Mark Waite plans to present Jenkins status report at a future session
+            * Mark create presentation, share it with this group, invite comments, corrections
+    * LFX Tools working group starting based on last CDF TOC meeting
+        * Noted that [devstats.cd.foundation](https://jenkins.devstats.cd.foundation/d/7/companies-contributing-in-repository-groups?orgId=1) will eventually be replaced by LFX Insights
+        * [Mailing list](https://lists.cd.foundation/g/wg-lfx-requirements) for discussions
+        * [GitHub repository](https://github.com/cdfoundation/wg-lfx-requirements) for meeting notes and more
+* Community activity
+    * Artifactory bandwidth reduction project [https://repo.jenkins-ci.org](https://repo.jenkins-ci.org)
+        * Artifact caching proxy has nicely reduced bandwidth use by Jenkins CI servers
+        * Largest user is an IP address in China that repeatedly downloads war file of all Jenkins releases
+            * Abuse reports have been ignored by the ISP
+            * Attempts to locate the owner have failed
+            * Abuse reports to other locations are in progress
+            * Working with JFrog to see if there is a way to block that IP address
+        * Log files provided weekly by JFrog
+            * [Log file analysis tool](https://github.com/basil/artifactory-sql) from Basil Crow places log records in SQLite database
+            * More analysis needed to understand current top consumers
+            * No final answer on blocking specific IP addresses
+        * More changes are likely, continue making progress
+    * Jenkins project at SCaLE 20x March 10-12
+        * Booth staffed by Mark Waite and Alyssa Tong
+    * CDF Jenkins Awards nominations
+        * [Most valuable Jenkins advocate](https://github.com/jenkins-infra/jenkins.io/issues/6035)
+        * [Security MVP](https://github.com/jenkins-infra/jenkins.io/issues/6034)
+        * [Most valuable Jenkins contributor](https://github.com/jenkins-infra/jenkins.io/issues/6033)
+
+## February 6, 2023
+
+Participants: Mark Waite, Basil Crow, Alexander Brandes, Ullrich Hafner
+
+Agenda:
+
+* News
+    * Jenkins 2.375.3 arriving Feb 8, 2023 - Alex Brandes is release lead
+    * Next LTS baseline will be 2.387.1, arriving March 8 - release lead not yet determined
+    * [January 2023 newsletter](https://docs.google.com/document/d/1GD6qlKSjfq-wUG0rAEsMt_qnpndmLJWnHSLfzIcW0UE/edit#heading=h.12omb397mimq) preparation starting
+* Action items
+    * Create and distribute election badges for 2022 elections -
+        * No progress, do the research
+        * Open badge hosted by the Linux Foundation (Oleg can guide Mark)
+    * EasyCLA to be documented by Oleg
+        * No progress, no requests pending
+    * Mark Waite create an empty agenda entry for the next meeting after each meeting
+        * Working well, continue doing it
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+        * No progress, Mark to complete before next meeting
+        * Roadmap update pull requests, needs to be update
+    * Oleg Nenashev send proposal to Rick to retire the Chinese Jenkins site
+        * Sent proposal, no response received, send another reminder
+        * New year this week
+        * No activity in Jenkins from Rick in over 2 years
+        * Mark asked the same question to Rick
+            * Rick replied with the recommendation that we redirect the chinese pages to their English equivalents
+        * Based new bug reports arriving for outdated Chinese documentation, propose to shutdown the site
+            * Kevin Martens (Docs Officer) to raise a help desk ticket to replace the Chinese pages with redirects to the English pages
+    * Mark Waite and  archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Gavin has prepared the archive, need a destination repository
+        * Infra team raised about the repository location as a question
+        * Oleg prefers jenkinsci rather than jenkins-infra for a governance repository
+            * Mark check the infra team preference, discuss if not jenkinsci
+* Jira license changes affect the Jenkins project on or before Feb 2024
+    * Discussion in [developer mailing list](https://groups.google.com/g/jenkinsci-dev/c/GUFCfBM1j_4/m/LY_HRUwXBgAJ)
+    * Security team and others prefer to remain with Jira
+    * Mark Waite is in discussions with Chrissy from the Billing and Licensing team of Atlassian
+        * Likely need a donated Jira DataCenter license from Atlassian
+        * Other alternatives being discussed in the developer mailing list thread
+* Google Summer of Code 2023
+    * Application due tomorrow
+    * Mark Waite intentionally not bringing Jenkins to She Code Africa Contributhon 2023
+        * Focus on GSoC 2023
+* Community activity
+    * Jenkins project at FOSDEM
+        * Bruno Verachten, Herve LeMeur, Damien Duportal, Jean-Marc Meessen, Alexander Brandes, Oleg Nenashev, Olivier Vernin, Stéphane Merle, Stefan Spieker, several other friends, Carlos Sanchez, others?
+        * Booth was very active, busy with lots of interest in Jenkins
+            * Wide range of interests, including
+                * Long term users
+                * New users
+                * GSoC candidates
+        * Alex attended other talks, enjoyed the community dinner Saturday evening
+    * Artifactory bandwidth reduction project in progress
+        * Identified several unnecessary contributors to bandwidth use, one consumer responded that issue is resolved, still seeking a contact on the machine in China that is repeatedly requesting the same WAR files (all the war files ever released) from repo.jenkins-ci.org
+        * [Artifact caching proxy](https://groups.google.com/g/jenkinsci-dev/c/hhqiI6ApY3k/m/AvuC2rXPAwAJ) enabled last week on ci.jenkins.io to further reduce bandwidth use
+            * Plugin builds now, but other projects like bom will be in future
+        * Permission changes recommended by JFrog are under development
+            * Goal: first “brownout” test drive of the new permissions in mid Feb
+            * Behind schedule on that brownout test drive
+            * Announced in the future
+        * Mark contact Basil when new logs are available for analysis
+
+## January 23, 2023
+
+Participants: Mark Waite, Basil Crow, Alexander Brandes, Ullrich Hafner, Oleg Nenashev
+
+Agenda:
+
+* News
+    * Jenkins 2.375.2 released January 11, 2023
+    * [December 2022 Newsletter](https://www.jenkins.io/blog/2023/01/12/jenkins-newsletter/) published, impressive results in 12 months
+    * Plugin security advisory [announced](https://groups.google.com/g/jenkinsci-advisories/c/UnPFYaMN0-w/m/ahedCbUxAQAJ) for tomorrow, January 24, 2023
+    * Jenkins 2.375.3 scheduled for February 8, 2023
+    * Next LTS baseline scheduled to be chosen by this Wednesday January 25, 2023
+        * [Ratings](https://www.jenkins.io/changelog/) for last 7 weekly releases consistently positive
+    * [January 2023 newsletter](https://docs.google.com/document/d/1GD6qlKSjfq-wUG0rAEsMt_qnpndmLJWnHSLfzIcW0UE/edit#heading=h.12omb397mimq) preparation starting
+    * FOSDEM 2023 Feb 4-5 in Brussels with a [Jenkins booth](https://community.jenkins.io/t/event-fosdem23-planning-doc-is-here/5230) coordinated by Alyssa Tong
+* Action items
+    * Require active community/SIG/Office/board/etc. Members as manager or owner for all project, SIG and community mailing lists -
+        * Ongoing follow-up, public GSoC has been archived in favor of forums
+        * Docs list has been archived in favor of forums
+        * Hardware and EDA group removed from docs
+        * Done
+    * Create and distribute election badges for 2022 elections -
+        * No progress, do the research
+        * Open badge hosted by the Linux Foundation (Oleg can guide Mark)
+    * Kevin Martens use community.jenkins.io for the Jenkins Docs SIG mailing list - **done**
+        * [Mailing list](https://groups.google.com/g/jenkinsci-docs) is archived, read only except for administrators
+    * EasyCLA to be documented by Oleg
+        * No progress, no requests pending
+    * Mark Waite create an empty agenda entry for the next meeting after each meeting
+        * Working well, continue doing it
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+        * No progress, Mark to complete before next meeting
+        * Roadmap update pull requests, needs to be update
+    * Oleg Nenashev send proposal to Rick to retire the Chinese Jenkins site
+        * Sent proposal, no response received, send another reminder
+        * New year this week
+        * No activity in Jenkins from Rick in over 2 years
+    * Mark Waite and  archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Gavin has prepared the archive, need a destination repository
+        * Infra team raised about the repository location as a question
+        * Oleg prefers jenkinsci rather than jenkins-infra for a governance repository
+            * Mark check the infra team preference, discuss if not jenkinsci
+* [Build Monitor View](https://plugins.jenkins.io/build-monitor-plugin/) plugin - @Basil
+    * Currently nonstandard: hosted in `jan-molak` GitHub organization, uses GitHub Actions for CI, and uses custom CD which creates releases on every commit (even dependency updates) with no release notes
+        * Users have complained about the lack of release notes, as there is no visibility into the content of releases
+    * Basil has offered to help normalize the plugin by moving to the `jenkinsci` GitHub organization, Jenkins for CI/CD, and Release Drafter
+    * Approved in last board meeting
+    * Basil has been in contact with Jan Molak
+        * Wants to get the test suite working before the transfer to jenkinsci
+        * Waiting for a reply on that request, then move forward with the migration
+* Community activity
+    * Google Summer of Code interest is growing
+        * Seeking more mentors and more [project ideas](https://www.jenkins.io/projects/gsoc/2023/project-ideas/)
+        * Application due to Google by Feb 7 18:00 UTC
+            * Jean-Marc Meessen, Kris Stern, and Alyssa Tong are org admins
+    * Next Jenkins LTS baseline to be selected
+    * Project update at the CDF TOC meeting
+        * All projects periodically present a summary of their results
+            * Mark Waite to prepare and present
+            * Oleg Nenashev propose agenda item to TOC
+        * Use the 2022 summary as a presentation
+
+## January 9, 2023
+
+Participants: Mark Waite, Basil Crow, Alexander Brandes, Kevin Martens, Ullrich Hafner, Bruno Verachten
+
+Agenda:
+
+* News
+    * Jenkins 2.375.2 will be released January 11, 2023
+    * December 2022 Newsletter being prepared
+    * December 20, 2022 Jenkins in GSoC webinar presented by Jean-Marc Meessen
+    * FOSDEM 2023 Feb 4-5 in Brussels with a [Jenkins booth](https://community.jenkins.io/t/event-fosdem23-planning-doc-is-here/5230) coordinated by Alyssa Tong
+* Action items
+    * Require active community/SIG/Office/board/etc. Members as manager or owner for all project, SIG and community mailing lists -
+        * Discussed with Kohsuke, he delivered several local language lists - archived with public access but no new postings using the group settings to disallow posts by anyone except list owner
+            * Brazilian
+            * Korean
+            * Japanese
+        * Sent mail to Oleg Nenashev and Olivier Vernin for other lists
+    * Create and distribute election badges for 2022 elections -
+        * No progress, do the research, send them before next meeting
+    * Kevin Martens use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Mark and Kevin work with Gavin to make the transition
+    * EasyCLA to be documented by Oleg
+        * No progress, no requests pending
+    * Mark Waite create an empty agenda entry for the next meeting after each meeting
+        * Working well, continue doing it
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+        * No progress, Mark to complete before next meeting
+        * Roadmap update pull requests, needs to be update
+    * Oleg Nenashev send proposal to Rick to retire the Chinese Jenkins site
+        * No progress as far as Mark knows
+    * Mark Waite and  archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Gavin has prepared the archive, need a destination repository
+        * Infra team raised about the repository location as a question
+* Elections
+    * Mark Waite opened Jenkins developer discussion of proposed rule changes for next year
+        * [Allow up to 2 elected board members from a single company](https://groups.google.com/g/jenkinsci-dev/c/dNA21Hhxslo/m/32H1qFaFBwAJ)
+        * GitHub [pull request](https://github.com/jenkins-infra/jenkins.io/pull/5689)
+    * Conclude the discussion and vote on proposal in this meeting
+        * Voting on the proposal
+            * Mark Waite - +1
+            * Ulli Hafner - 0
+            * Alex Brandes - +1
+            * Basil Crow - +1
+            * Kevin Martens - +1
+            * Bruno Verachten - +1
+        * Yes, accept the change
+* [Build Monitor View](https://plugins.jenkins.io/build-monitor-plugin/) plugin - @Basil
+    * Currently nonstandard: hosted in `jan-molak` GitHub organization, uses GitHub Actions for CI, and uses custom CD which creates releases on every commit (even dependency updates) with no release notes
+        * Users have complained about the lack of release notes, as there is no visibility into the content of releases
+    * Basil has offered to help normalize the plugin by moving to the `jenkinsci` GitHub organization, Jenkins for CI/CD, and Release Drafter
+        * Would resolve the user complaint by providing release notes and avoiding releases for dependency updates
+    * Jan wants to retain a note about the original author in the README and [the current non-invasive footer linking to his website](https://github.com/jan-molak/jenkins-build-monitor-plugin/blob/cf334c2e6d5704d62a6b2834fff70e26f17f48c4/build-monitor-plugin/src/main/resources/com/smartcodeltd/jenkinsci/plugins/buildmonitor/BuildMonitorView/index.jelly#L119-L130)
+        * Note that the footer link has been present for as long as this plugin has been distributed on the Jenkins Update Center (JUC)
+    * If board confirms these conditions are acceptable, can proceed with normalizing this plugin's hosting and release process
+        * Alex agrees with Basil that the plugin should be moved to jenkinsci
+            * Alex OK with the conditions requested by the author
+        * Ulli agrees with Basil that it should be moved to jenkinsci
+            * If someone objects to the links in the plugin, they could fork
+        * Basil notes that it is good to normalize and assure consistency
+            * Test suite execution was also a condition, but suite is broken, needs discussion to move it without running tests or if Jan is willing to make the tests work
+            * Tests use a non-standard test harness
+    * Votes to approve - Ulli +1, Alex +1, Basil +1, Kevin +1, Bruno +1, Mark +1
+* Governance board meeting time and date
+    * [Doodle poll](https://doodle.com/meeting/participate/id/aQnyomYb) confirmed 5 of 5 responses can meet at 7:00 PM Mondays
+* Lost donations from ffis.de ([https://issues.jenkins.io/browse/WEBSITE-703](https://issues.jenkins.io/browse/WEBSITE-703)) -
+    * Linux Foundation is our donation
+* CDF Outreach Reboot
+    * Dec 14, 2022 10:30 AM EST meeting to restart the outreach committee
+* Community activity
+    * Google Summer of Code interest is growing
+        * Welcome message needs a template response
+        * Many active discussions in gitter chat channels
+        * Seeking more mentors and more [project ideas](https://www.jenkins.io/projects/gsoc/2023/project-ideas/)
+    * Key areas with questions and discussions include
+        * Configuration as code specific details
+        * Kubernetes configuration and diagnosis
+        * Pipelines and Pipeline shared libraries
+    * December newsletter - 12 months of Jenkins
+        * Pull request submitted
+        * Mark Waite has more items to be added ([Docs office hours notes](https://docs.google.com/document/d/1ygRZnVtoIvuEKpwNeF_oVRVCV5NKcZD1_HMtWlUZguo/edit#heading=h.x05jko17uv3e))
+        *  Impressive progress in 12 months
+            * User experience improvements (tables, forms, buttons, menus, and more)
+            * Platform modernization (Java 11, Java 17, library updates)
+            * Outreach programs (GSoC, Hacktoberfest, She Code Africa)
+            * Web site improvements (GSoC and more)
+            * Security advisories and reviews (most productive year in history)
+            * New sponsors and continued support from existing sponsors
+            * Infrastructure (automation, acceleration, and expansion)
+        * Plan to publish this week
+
+## December 12, 2022
+
+Recording:
+
+Participants: Mark Waite, Basil Crow, Alexander Brandes, Kevin Martens, Ullrich Hafner, Oleg Nenashev
+
+Agenda:
+
+* News
+    * Jenkins 2.375.1 released Wednesday, Nov 30, 2022
+        * Some active discussion about breadcrumb
+    * Jenkins 2.375 scheduled for Jan 11, 2023
+* Action items
+    * Require active community/SIG/Office/board/etc. Members as manager or owner for all project, SIG and community mailing lists -
+        * Collecting the information, found the hardware and EDA SIG mailing list
+            * Malicious content and unmoderated, needs to be removed
+        * Content in many of the mailing lists are not useful
+            * Public mailing lists that receive no maintenance, Google bans the list
+            * Unhealthy to have banned lists associated with Jenkins project
+        * Assure that lists are either correctly moderated or disabled or deleted
+            * Chinese language list is owned by Rick, not involved with Jenkins now
+            * Ask owners to include officers or active maintainers to list owners
+            * Adjust the posting rules to require moderation on first post
+        * Prefer to systematically replace the mailing lists with community forums
+            * Archive them and use community.jenkins.io instead of the mailing lists
+            * Alex to ask list owners to grant access, remove harmful content, off-topic content, require approval on first post, then archive them and use community.jenkins.io
+    * Create and hand out election badge for 2022 elections -
+        * No badges have been handed out for 2021 elections - Didn’t we want to do that?
+            * Gavin helped with it last year, can add badges to profiles
+            * Create a badge that shows the user was a voter
+            * Create a badge that shows the elected people are officers / board members
+        *  has no permissions to create new badges
+            * Mark thinks he has permissions to create badges, needs to check
+        * Proposed by Basil and Ulli to assign badges to officers and board members
+            * Mark Waite create the badge or request permission from Gavin for the badge
+            * Mark Waite to check that all board members are correctly noted on community.jenkins.io as members of the board
+    * Mark Waite create an empty agenda entry for the next meeting after each meeting
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+    * Oleg Nenashev send proposal to Rick to retire the Chinese Jenkins site
+    * Mark Waite and  archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes
+        * Agenda is published after the meeting in community.jenkins.io
+            * Historical copies are not on community.jenkins.io (don’t lose them)
+            * Proposed using the agenda, once published to community.jenkins.io, remove from Doc
+        * Open question from infra team - where do we want that repository?
+            * Mark to include board members in the discussion
+            * Discussion includes arguments in favor of one location or the other
+            * More general discussion about what belongs in jenkins-infra organization
+                * Split to a separate topic
+    * Kevin Martens use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Mark and Kevin work with Gavin to make the transition
+    * EasyCLA to be documented by Oleg
+    * Mark Waite to propose a pull request documenting the [web application server policy](https://www.jenkins.io/doc/administration/requirements/servlet-containers/)
+        * Done by Basil Crow (Thanks Basil!)
+        * If someone wants to add to level 2, add documentation and one or more tests in the packaging
+            * Tests confirm that Jenkins starts to the login screen (basic startup)
+* Elections
+    * Mark Waite opened Jenkins developer discussion of proposed rule changes for next year
+        * [Allow up to 2 elected board members from a single company](https://groups.google.com/g/jenkinsci-dev/c/dNA21Hhxslo/m/32H1qFaFBwAJ)
+        * GitHub [pull request](https://github.com/jenkins-infra/jenkins.io/pull/5689)
+    * Ulli’s comments in the mailing list thread
+    * All participants in the discussion attended the governance board discussion last meeting
+        * Arguments presented in the meeting
+        * Shall we hold for more discussion?
+    * Conclude the discussion and vote on proposal at Jan 2023 meeting
+* Governance board meeting time and date
+    *  Mark Waite send a [Doodle poll](https://doodle.com/meeting/participate/id/aQnyomYb) to board members and others that attend board meeting
+    * Propose to cancel governance meeting scheduled Dec 26, 2022
+* CDF Outreach Reboot
+    * Dec 14, 2022 10:30 AM EST meeting to restart the outreach committee
+* CDF Topics - Oleg Nenashev
+    * Oleg has stepped down as TOC chair, remains on the TOC
+    * Mark also part of the TOC, participation
+* Community forum
+    * Jenkins repository (repo.jenkins-ci.org) down for up to 6 hours Sunday, Dec 18, 2022 for upgrade
+        * Jenkins CI servers will be “prepared for shutdown” during the outage, since they can’t build without the artifact repository
+        * See [Google groups announcement](https://groups.google.com/g/jenkinsci-dev/c/oNjz5afwwdA/m/02lUNvDvGwAJ)
+        * See [status.jenkins.io announcement page](https://status.jenkins.io/issues/2022-12-09-artifactory-maintenance/)
+        * [Blog post sharing this as well](https://www.jenkins.io/blog/2022/12/09/jfrog-maintenance/)
+    * FOSDEM participation next year (Feb 4-5, 2023)
+        * Jenkins project has a stand at the conference
+        * Advocacy and outreach is tracking that stand
+        * Alyssa Tong is coordinating the staffing
+        * CI/CD Dev Room at FOSDEM - half day (CFP has closed)
+    * SCaLE 20x (March) - Los Angeles
+        * Alyssa and Mark at SCaLE
+
+## November 28, 2022
+
+Recording: https://youtu.be/7cm9X3pxyJA
+
+Participants: Mark Waite, Bruno Verachten, Basil Crow, Gavin Mogan, Ullrich Hafner, Alexander Brandes
+
+Agenda:
+
+* News
+    * Jenkins 2.375.1 releases Wednesday, Nov 30, 2022
+        * Thanks to Alexander Brandes for serving as release lead
+        * Testing has been running for almost a month, RC for 2+ weeks
+* Action items
+    * Mark Waite create an empty agenda entry for the next meeting after each meeting
+    * Mark Waite submit jenkins.io pull request to combine subprojects and SIGs into a single concept - “working groups”
+    * Oleg Nenashev send proposal to Rick to retire the Chinese Jenkins site
+    * Mark Waite and  archive the governance meeting notes to a GitHub repository, use the Google doc as the working document, then publish final notes to GitHub
+        * Agenda is published after the meeting in community.jenkins.io
+            * Historical copies are not on community.jenkins.io (don’t lose them)
+            * Proposed using the agenda, once published to community.jenkins.io, remove from Doc
+    * Kevin Martens  to use community.jenkins.io for the Jenkins Docs SIG mailing list
+    * EasyCLA needs to be documented by Oleg
+    * Mark Waite to propose a pull request documenting the web application server support policy (similar to browser support, Windows support, and Linux support)
+        * Many people are saying that “should work” but we don’t test them
+            * JENKINS_HOME is different in newer Tomcat
+            * No support for multiple Jenkins in a single Tomcat
+            * No Java EE 9 support
+            * All web containers moved to tier 2 except bundled web container
+                * Can declare “known broken” conditions (Java EE vs. Jakarta EE)
+                * Pull requests considered so long as they don’t harm tier 1
+            * Status quo is 3 tiers
+                * Tier 1 - Winstone / Jetty
+                * Tier 2 - Tomcat / WildFly (disclaimers, accept patches)
+                * Tier 3 - Unsupported (other containers, wrong Java EE version, etc.)
+        * Needs more discussion on next steps
+            * Mark to state the current situation (what is tested and what is not tested)
+                * Status quo is 3 tiers
+                    * Tier 1 - Winstone / Jetty
+                    * Tier 2 - Tomcat / WildFly (disclaimers, accept patches)
+                    * Tier 3 - Unsupported (other containers, wrong Java EE version, etc.)
+            * Separate task to decide the future of web application server support
+                * Might collapse tiers 2 (will accept patches) and 3 (unsupported - won’t accept patches) from the status quo
+        * Can we identify which application servers are being used?
+            * Would need some metric
+* Elections
+    * Mark Waite opened Jenkins developer discussion of proposed rule changes for next year
+        * [Allow up to 2 elected board members from a single company](https://groups.google.com/g/jenkinsci-dev/c/dNA21Hhxslo/m/32H1qFaFBwAJ) - Jenkins developers
+        * GitHub [pull request](https://github.com/jenkins-infra/jenkins.io/pull/5689)
+    * Elections are complete.  Thanks to Gavin Mogan and Ewelina for their 2 years of service.  Welcome Ullrich Hafner and Alexander Brandes to the board
+    * Permissions changes and membership changes for new board members?
+        * Send email to Gavin to become a member of the board mailing list
+            * Alex has been added - Gavin
+        * Other permissions
+            * GitHub teams (jenkins-infra and jenkinsci for governance board)
+                * Done - Gavin
+            * Contributor License Agreement (wait for OpenCLA implementation)
+                * Anyone on the board can approve a CLA request
+            * LFX Crowdfunding access (only supports one person)
+            * Zoom account password (optional) - Mark
+            * 1Password
+            * Community.jenkins.io moderator access
+                * +1 from Ulli and from Alex
+                * Done - Gavin
+            * Gitter
+                * Write access to jenkinsci/jenkins gives admin access (OK)
+            * Gavin continues project to get a matrix namespace for the project
+* Governance board meeting time and date
+    * Find a time and date that works well for all board members
+    * Propose to cancel the governance board meeting the week of Dec 26, 2022
+        * +1 Ulli, +1 Alex, +1 Mark, +1 Gavin, +1 Basil, +1 Bruno
+    * Review calendar for next year’s election and installation of new officers
+        * Have more than 1 meeting before end of year break
+    * Mark to send a poll to board members and regular attendees (doodle)
+* CDF Outreach Reboot
+    * Dec 14, 2022 10:30 AM EST meeting to restart the outreach committee
+        * Contact Lori Lorusso for more information
+        * Alyssa Tong and Mark Waite will attend the meeting
+* CDF Topics - Oleg Nenashev
+* Community forum - Gavin Mogan
+    * [Beginner Friendly](https://community.jenkins.io/t/regarding-beginner-friendly-issue/4677/14)
+        * Gavin’s responses, Mark and Dheeraj offering plugins
+        * Basil experimenting with plugin adoption and modernization improvements
+            * Specialized task that can be difficult, more domain specific knowledge
+            * Understanding why a build fails is specialized knowledge
+            * Looking for ways to make that process easier
+            * Considering a monorepo with top plugins that always builds against HEAD
+                * Use as a reference for others to perform the steps
+            * Future automation
+            * Future further use OpenRewrite to help with the effort
+        * Bug triage is a good place to contribute
+            * Read an open bug report, duplicate it, describe the steps you took
+            * Suggest to new arrivals
+            * Many UI tickets with the “ux-untriaged” label to review
+                * Triage process teaches git bisect and Jenkins core skills
+    * [UI Sig discussion](https://community.jenkins.io/t/new-ui-form-spacing-and-poor-usability/3885/9)
+        * Layout
+    * Newsletter
+        * [November Draft](https://community.jenkins.io/t/jenkins-november-newsletter-draft-sig-officers-to-update/4665)
+        * [Past](https://www.jenkins.io/node/tags/newsletter/)
+
+## November 14, 2022
+
+Recording:
+
+Participants: Mark Waite, Bruno Verachten, Basil Crow, Gavin Mogan, Oleg Nenashev, Suresh
+
+Agenda:
+
+* News
+    * 2.361.4 released today with a fix for an issue that was blocking some large scale use of Jenkins at high visibility
+    * 2.375.1 is the next LTS baseline, scheduled to release Nov 30, 2022
+* Ideas:
+    * Setup empty agenda for next meeting at end of previous meeting
+        * Allows for people to add stuff whenever ready
+        * Mark Waite action item to create an empty agenda entry
+    * Review Jenkins.io subprojects - [https://www.jenkins.io/projects/](https://www.jenkins.io/projects/) (and dropdown)
+        * Do subprojects ever become deprecated?
+        * Move jenkins-x to cdf menu?
+        * Remove blueocean?
+            * Remove it from the subprojects list, archive
+        * Remove jenkins operator?
+            * Remove it from the subprojects list, archive
+            * Notify maintainers, issues raised on jenkins.io
+            * Virtus Labs has not been responding recently
+            * Had two operators at one point, Red Hat and Virtus Labs
+                * Trademark approval to Virtus Labs with open governance
+                * If open governance is not being applied
+                * Needs a group of 3, Board member, Red Hat, Virtus Labs
+            * Virtus Labs may have moved the operator community elsewhere?
+                * Last commit to the repository was 5 months ago
+                * Suresh is a user of Jenkins operator, hoping for Dec release
+                * Gavin thinks he may have seen mention of an upcoming release
+            * Oleg’s proposal to explicitly ask to have the maintainer list extended
+                * Encourage adoption of the project, if not adopted, then archive it
+                * Future board meeting topic
+            * Remoting and configuration as code subproject content is outdated
+                * Should they remain on the subproject list?
+                * Should we redirect those pages to the associated GitHub README?
+                * Remoting project was a location to list the remoting consumers
+                    * Put that listing in the remoting README?
+                    * Drop the remoting gitter chat channel
+                * Remove meetings that no longer occur, mailing lists that are unused
+            * Consider combining subprojects and sigs into “working groups”
+                * Single concept for subteams, create and archive as needed
+                * Action item - propose a transition to working groups and restructure of Jenkins.io site to implement it
+                    * Unify subproject & SIG concepts to “working group”
+                    * If modifying the navigation bar, tag Gavin for web components
+        * GSOC projects?
+            * Remove outdated
+        * Infrastructure and gsoc are both sigs and sub projects?
+        * Subprojects page is generated manually
+            * Menu is generated automatically
+            * Should remove Blue Ocean from the subprojects page
+                * Create an archived projects list to retain links and keep content
+        * Separate difference between subprojects and SIGs
+            * Should we create a single list - yes working groups
+        * Archive inactive SIGs
+            * Cloud native, pipeline authoring, chinese localization, …
+            * Retain the content, but note that the SIG is not active
+    * Other site improvements
+        * Retire the Chinese site because it is so badly outdated?
+            * Oleg to send proposal to Rick
+            * Remove the redirect from [www.jenkins.io](www.jenkins.io)
+            * Should we continue hosting the Chinese site content?
+    * Gavin is exploring options to make it clear which chat rooms are active
+        * Will propose it as an infra project
+        * Wants a way to centralize online chat access (considering Matrix hosted namespace)
+    * Should Meeting agenda be truncated. It takes a while to load.
+        * Mark Waite has archived older notes in a copy and created a link in the working document to the archive
+            * See [Archive 01](https://docs.google.com/document/d/1QgFnCFbQU7RX5Q89ha3m2M-jk77ErDSlPDPqgslGNhQ/edit?usp=sharing) for the proposed technique
+            * Propose to remove the content of [Archive 01](https://docs.google.com/document/d/1QgFnCFbQU7RX5Q89ha3m2M-jk77ErDSlPDPqgslGNhQ/edit?usp=sharing) from this document
+            * Export to markdown and place it on a new meetings archive repository
+                * Create a governance repository in jenkinsci
+                * Mark discuss with Damien as part of meeting archive recovery
+                * Gavin is willing to help with the export into desired format
+                    * Consider a repository per working group
+    * How aggressive should I get contacting algolia - Gavin
+        * Mark and Gavin do not have access to the Algolia dashboard currently
+        * Gavin will look for help from others to get access to our Algolia search dashboard for [www.jenkins.io](www.jenkins.io)
+            * Need the new Algolia implementation for the web components
+            * Need to update based on their current
+* Action items
+    * Mark Waite to use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Consider asking Kevin Martens to take the lead on this one
+    * EasyCLA needs to be documented by Oleg
+    * Mark Waite to propose a pull request documenting the web application server support policy (similar to browser support, Windows support, and Linux support)
+        * Many people are saying that “should work” but we don’t test them
+            * JENKINS_HOME is different in newer Tomcat
+            * No support for multiple Jenkins in a single Tomcat
+            * No Java EE 9 support
+            * All web containers moved to tier 2 except bundled web container
+                * Can declare “known broken” conditions (Java EE vs. Jakarta EE)
+                * Pull requests considered so long as they don’t harm tier 1
+* Elections
+    * Timeline reminder
+        * Nominations have closed for elections
+        * Nominee list sent to board
+    * Mark Waite’s proposed change of election phrasing
+        * See [pull request 5689](https://github.com/jenkins-infra/jenkins.io/pull/5689) with the proposal to allow up to 2 elected members of the board from a single company
+    * Board member nominees
+        * Have nominees, need confirmation before Nov 17, when voting starts
+            * Mark seek confirmation from board nominees
+    * Officer nominees
+        * Release officer
+            * Tim Jacomb
+        * Security officer
+            * Wadeck Follonier
+        * Infrastructure officer
+            * Damien Duportal
+        * Documentation officer
+            * Kevin Martens
+        * Events officer
+            * Alyssa Tong
+    * Board vets the nominees in the board mailing list
+        * Complete before voting starts Nov 17, 2022
+* CDF topics - Oleg
+    *
+* Forums and community topics - Gavin
+    * Insert [newsletter link](https://www.jenkins.io/blog/2022/11/04/jenkins-newsletter/)
+
+## October 31, 2022
+
+Recording:
+
+Participants: Basil Crow, Bruno Verachten, Gavin Mogan, Mark Waite, Oleg Nenashev
+
+Agenda:
+
+* News
+    * LTS 2.361.3 will release November 2, 2022
+    * LTS baseline selection for the next LTS is not yet complete
+        * Discussion ongoing in the developer mailing list
+    * Twitter RSS for releases is live again
+        * Fixed by the infra team, found a tool that we can run that takes an RSS feed and creates Twitter posts - title of post and link to post
+        * May want to use that on the blog as well
+    * Jenkins newsletter
+        * Assembled by Alyssa Tong, goal to publish first week of each month
+            * Mark is behind schedule
+            * Provide content from each
+            * Blog post to jenkins.io
+                * Draft in a [google doc](https://docs.google.com/document/d/1GD6qlKSjfq-wUG0rAEsMt_qnpndmLJWnHSLfzIcW0UE/edit#heading=h.12omb397mimq)
+                * Pull request to jenkins.io for the blog post
+                * Final as [https://www.jenkins.io/blog/2022/10/13/jenkins-newsletter/](https://www.jenkins.io/blog/2022/10/13/jenkins-newsletter/)
+            * All future newsletters will be @ [https://www.jenkins.io/node/tags/newsletter/](https://www.jenkins.io/node/tags/newsletter/)
+    * Kubecon included a CDF Summit
+        * Major press release
+            * Tekton graduation
+            * CDEvents 0.1 release
+                * May be reasonable to update the CloudEvents plugin
+            * Pyrsia now a project of the CDF and adoption is starting
+                * Expect an update to the JFrog plugin
+* Action items
+    * Mark Waite to use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Announce the change and make the existing list read-only
+        * Gavin investigated importing a mailing list, export is easy, import requires that we ask for help from the Discourse, complicated set of steps
+            * Not worth the effort
+    * EasyCLA needs to be documented by Oleg
+        * No new news this week
+        * Needs to discuss more with linux foundation before writing up docs
+    * Application server support matrix/chart (like browser support)?
+        * No core developers are using tomcat, while it should work, isn’t well tested, and we don’t really have the experience to help out with tickets/forum posts
+            * Web container behaviors are highly dependent on the Java version
+            * Performed some testing with WildFly and Tomcat in Java 11 support project
+            * No test automation in the existing pipelines for it
+        * Lots of chatter about Tomcat and WildFly on the forums in the last month or two
+            * If chatter is the indicator, then there are enough people to raise questions but no indications of anyone willing to support
+            * We test with Winstone and nothing else
+            * We don’t actively block the use of other web containers, but don’t test them
+        * Mark Waite to propose a pull request documenting the current state
+            * Update the system requirements page to state that we only test Jetty
+            * Vendors are welcome to support other web containers
+                * submit pull requests to support
+        * Tomcat system previously supported multiple Jenkins containers previously and no longer supports multiple containers in a single Tomcat instance
+            * Configuring JENKINS_HOME in one way is no longer supported, use a Java argument instead
+            * Many of the web container errors are user error (wrong container version)
+                * No suggestion that guides users to contribute docs
+                    * Choose correct version of servlet container
+                    * Configure the home correctly
+    * Gavin or Damien talk to a Mastodon host to find a sponsored install for Jenkins
+        * Have a newsletter, releases, etc. without worrying about claiming namespaces early
+    * Gavin or Damien talk to a Matrix host to find a sponsored install for Jenkins
+* Elections
+    * Timeline (per [blog post](https://www.jenkins.io/blog/2022/10/20/jenkins-election-announcement/))
+        * Nomination of candidates (October 20 - November 10)
+        * Voter registration (October 20 - November 17)
+        * Voting (November 17 - December 2)
+        * Results announcement (December 7)
+    * Gavin and Ewelina up for re-election to board
+    * All officers up for re-election
+    * Discussions
+        * Preparing for transition of board members and officers
+            * Access to mailing lists, expensify
+            * Officer access to specific GitHub groups
+                * Infra officer
+                * Security officer
+            * Access to 1Password
+* CDF topics - Oleg
+    * Governing board meeting in November (moved to not conflict with Kubecon)
+    * CDF use Bevy vs. Zoom continues, no decision likely until early 2023
+    * Is CDF considering running Mastodon for any of their projects?
+        * Distributed servers with a central registry
+    * Gavin sees that someone has already claimed [jenkins@matrix.io](mailto:jenkins@matrix.io)
+        * Would be nice to have [jenkins@cdfoundation.org](mailto:jenkins@cdfoundation.org)  or [jenkins@linuxfoundation.org](mailto:jenkins@linuxfoundation.org)
+* ANTLR 2 to ANTLR 4 progress report - Basil
+    * Alex Earl and Basil Crow co-authored the transition from ANTLR 2 to ANTLR 4
+    * Merged towards weekly 2.376, scheduled to release Nov 1, 2022
+    * Can close the ticket and declare success
+    * Budget request is no longer needed, transition is complete
+* Forums and community topics - Gavin
+    * Hacktoberfest finishes today
+        * Almost 10% increase in [count of contributing developers in October](https://jenkins.devstats.cd.foundation/d/7/companies-contributing-in-repository-groups?orgId=1)
+            * 642 developers counted 30 Sep 2022
+            * 705 developers counted 30 Oct 2022
+        * Jean-Marc Meessen stats are very helpful
+            * Visible in one of the channels
+            * Many new contributors, first submissions to open source
+            * Last week - 535 eligible pull requests by 111 contributors
+                * 35 qualified for swag just with Jenkins contributions (4+ pull PR’s)
+    * Over [1100 installations](https://plugins.jenkins.io/pipeline-graph-view/) of pipeline graph view plugin
+        * Gavin considering a PR for notifications (notify me when the build is done)
+    * Should we get a Mastodon account for Jenkins? Crosspost is easy.
+        * Twitter competitor with easy crosspost
+        * Action item: Someone from board or infra talk to a Mastodon host to find a sponsored install for Jenkins
+    * New members of the hosting team are doing great
+        * Alex Earl and Alexander Brandes are improving things very nicely
+    * Accounts.jenkins.io has been tidied and looks better now
+        * Facelift will be in the newsletter
+        * Future improvements may be coming for email notifications
+        * Similar improvements made to wiki.jenkins.io deprecated pages
+    * Thanks to all that are helping on community.jenkins.io
+        * Standard templates for responses have recently been improved
+        * Makes it easier for idea submission
+    * Demo of the Templates category and using for canned responses
+
+## October 17, 2022
+
+Recording: https://youtu.be/S6cGe2n0Gq0
+
+Participants: Gavin Mogan, Ewelina Wilkosz, Oleg Nenashev, Kevin Martens
+
+Agenda:
+
+* News
+    * LTS 2.361.3 will release November 2, 2022
+    * Alex Earl (slide) and Alexander Brandes (NotMyFault) are now involved with RPU (repository-permissions-updater) and hosting requests in general. Alexander Brandes has already done a lot of cleanups, which should help any stale requests.
+* Action items
+    * Mark Waite to use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Announce the change and make the existing list read-only
+        * Gavin investigated importing a mailing list, export is easy, import requires that we ask for help from the Discourse, complicated set of steps
+            * Not worth the effort
+    * EasyCLA needs to be documented by Oleg
+        * No new news this week
+        * Needs to discuss more with linux foundation before writing up docs
+* Upcoming elections
+    * [Current proposal](https://docs.google.com/document/d/1PjP3AZ6kAZ09gWEUtd45h4UjbkUHAb754kF0_KC35yY/edit#heading=h.47f1jpyjiesz) for Elections by Damien, want to confirm timeline/key dates & open positions
+    * December for completion
+    * Gavin and Ewelina up for re-election
+* CDF topics - Oleg
+    * CDF Outreach Committee representative from Jenkins
+        * Proposed Alyssa
+        * Events, Marketing, Ambassador program
+        * No deadline, but ongoing and sooner is better than later
+    * Tekton graduation this week
+        * 🎉🎉🎉🎉
+        * General consensus for graduation
+        * 🎉🎉🎉🎉
+* Forums and community topics - Gavin
+    * Alexander Brandes for core maintainer
+        * Community is generally positive and consensus to go forward
+    * Hacktoberfest is continuing
+        * JMM has been keeping stats
+            * As of Friday, 245 Hacktoberfest Jenkins Pull Requests were submitted by 71 contributors (with 19 getting the t-shirt with just Jenkins PRs)
+    * Tomcat issues keep getting brought up
+        * Proposed adding a compatibility matrix about what we support and what is tested etc
+
+## October 3, 2022
+
+Recording:
+
+Participants: Basil Crow, Mark Waite, Gavin Mogan, Kevin Martens
+
+Agenda:
+
+* News
+    * LTS 2.361.2 will release October 5, 2022
+    * Hacktoberfest has started
+    * DevOps World postponed by Hurricane Ian
+    * Jenkins contributor summit postponed
+    * Mark unavailable for Oct 17 meeting, need a volunteer to lead the meeting
+        * Gavin Mogan will lead the meeting
+* Action items
+    * Mark Waite to use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Announce the change and make the existing list read-only
+        * Gavin investigated importing a mailing list, export is easy, import requires that we ask for help from the Discourse, complicated set of steps
+            * Not worth the effort
+    * EasyCLA needs to be documented by Oleg
+        * Enabled on the CLA repository
+        * Currently signing both
+        * Central repository guidelines need more description
+        * Should we enable CLA on other repositories?
+            * Future discussion topic, see the developer list
+            * Intentionally keep the contribution barriers low
+* [[JENKINS-68652](https://issues.jenkins.io/browse/JENKINS-68652)] Migrate from ANTLR2 to ANTLR4 - Basil
+    * Jenkins has two ANTLR grammars: one to parse (a variation of) crontab entries and one to parse label expressions for build agents
+    * As described in [JENKINS-68652](https://issues.jenkins.io/browse/JENKINS-68652), compiling Jenkins on Java 18 or newer currently fails in ANTLR Maven Plugin
+        * Our versions of ANTLR and ANTLR Maven Plugin, dating back 15 years, use terminally deprecated Java features
+        * The repository for the latter does not appear to have survived the MojoHaus migration from Subversion to Git
+        * The status quo does not seem sustainable
+    * Given the lack of volunteer interest in JENKINS-68652 or alternatives (e.g., writing a new parser without ANTLR), Basil Crow has reached out to Federico Tomassetti at Strumenta, a consulting firm with experience performing migrations from ANTLR2 to ANTLR4
+    * Strumenta is interested in the project and has scoped the work required to migrate from ANTLR2 to ANTLR4
+        * Technical consensus has been reached on the [developer mailing list](https://groups.google.com/g/jenkinsci-dev/c/bGmc9bc0mp4/m/i1BhSIp-AAAJ)
+        * **[Proposal from Strumenta](https://app.pandadoc.com/document/55d611d49988df16a2c043c5669b679a282d04dc)**
+    * Basil is requesting funding of 1,900 Euro, possibly with additional Value-Added Tax (VAT), and approval from the governance board to engage Strumenta to begin the project
+        * If approved, Basil plans to be the primary point of contact with the Strumenta as they prepare the pull request to migrate from ANTLR2 to ANTLR4
+        * The code is covered by automated testing, and Basil plans to complete additional manual smoke testing beyond that
+        * Basil also plans to review and approve the pull request
+        * As thanks for their discount, we will publish a blog post with technical content describing their work and our results of their work.  Basil will coordinate the blog post with Strumenta
+    * Votes on the proposal
+        * Mark - +1
+        * Gavin - +1
+        * Oleg - +1
+        * Ewelina -
+        * Kohsuke -
+        * Basil - +1
+        * Kevin - +1
+        * Mark to connect with Linux Foundation to understand if VAT is required and to confirm we can make the payment through Expensify
+            * Need to check that board members have approver permission on Expensify
+            * Oleg Nenashev has permission, approved a previous request
+            * Would need to add Strumenta as a beneficiary on Expensify, then they submit the expense and Oleg approves
+* Upcoming elections - Mark
+    * Disrupted by Hurricane Ian (Mark and Damien need to work together)
+    * December for completion
+    * Gavin and Ewelina up for re-election
+    * Damien Duportal has agreed to run the elections
+        * Will discuss with Olivier Vernin to understand the process
+        * Announcements, vetting candidates, etc. is a governing board responsibility
+            * Entire board vets candidates
+            * Any board member could send the announcements
+            * Can reuse email templates and content from previous years
+        * Discuss further in infra meeting
+    * Timeline
+        * October announce and gather candidates and their statements, finalize candidates
+        * November voting
+        * New board members and officers effective early December
+    * Use the same process as last year
+        * Register to vote at community.jenkins.io
+            * Organize list of candidates
+            * Add Damien to the community.jenkins.io groups (done)
+        * Voting through the Condorcet system at Cornell University
+            * If hosting is needed outside the University, Gavin has access to resources
+* CDF topics
+    * JFrog working with Jenkins infra team to reduce data transfer for our repository server
+        * Prepare for a move of the repo from one cloud provider to another
+        * Damien Duportal leading effort to reduce data transfer - [JEP draft](https://github.com/jenkinsci/jep/pull/393) proposed
+        * Multi-step process expected, will be discussed in developer mailing list
+    * Yearly Project previews at the CDF TOC Meetings
+        * Planning a Jenkins presentation (November)
+        * Prepare the presentation and present
+        * Currently preparing to graduate the Tekton project
+            * Some questions for security review, proceeding
+* Forums and community topics - Gavin
+    * Hacktoberfest has started
+        * Good discussions in [Hacktoberfest gitter chat](https://gitter.im/jenkinsci/hacktoberfest)
+            * Thanks to Ulli Hafner and Gavin Mogan for weekend help
+        * Many pull requests to jenkins.io to fix issues identified in Docs Office Hours
+        * New [Jenkins is the Way story](https://stories.jenkins.io/user-story/jenkins-is-the-way-for-networkupstools) from Jim Klimov
+            * Network UPS Tools and multi-platform builds with Jenkins
+    * Content removal request to the board mailing list
+        * Educate on general processing technique
+        * Ignore it since it is appears to be an automated request asking to not mention a hostname
+            * Invite them to edit it themselves to remove it
+            * A security team bot that asks not to mention a hostname
+            * Politely decline the bot request unless they reply to our declining it
+
+## September 19, 2022
+
+Recording:
+
+Participants: Basil Crow, Bruno Verachten, Mark Waite, Gavin Mogan, Oleg Nenashev, Ewelina Wilkosz, Daniel Beck, Kevin Martens
+
+Agenda:
+
+* News
+    * LTS 2.361.2 release October 5, 2022
+        * Kris Stern is the release lead, [release checklist](https://github.com/jenkins-infra/release/issues/287) is open, backporting pull request, changelog pull request submitted
+    * Hacktoberfest is coming, welcome to Preptember
+    * UX SIG highlights of UI concepts
+    * DevOps World next week
+    * CDF mini-summit at Open Source Summit in Dublin
+        * Presentation by Fidelity
+        * Pipeline libraries and other Jenkins at scale
+        * Recording should be available
+* Action items
+    * Mark Waite to use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Announce the change and make the existing list read-only
+        * Gavin investigated importing a mailing list, export is easy, import requires that we ask for help from the Discourse, complicated set of steps
+            * Not worth the effort
+    * Mark Waite request full access to the CDF Zoom account for Jenkins
+        * Gavin suggested including a private google group in the CDF mailing list
+            * make the group
+                * https://groups.google.com/g/jenkins-zoom-users
+            * Mark ask Michelle to add that group to the mailing list
+                * Mark do it
+        * 2fa token updates to that list
+        * Alternately add each person to the CDF mailing list
+            * Michelle Martineau (CDF) is the one to decide
+    * EasyCLA needs to be documented by Oleg
+        * Enabled on the CLA repository
+        * Currently signing both
+        * Central repository guidelines need more description
+* Upcoming elections
+    * December for completion
+    * Gavin and Ewelina up for re-election
+    * Damien Duportal has agreed to run the elections
+        * Will discuss with Olivier Vernin to understand the process
+        * Announcements, vetting candidates, etc. is a governing board responsibility
+            * Entire board vets candidates
+            * Any board member could send the announcements
+            * Can reuse email templates and content from previous years
+        * Discuss further in infra meeting
+    * Timeline
+        * September announce and gather candidates and their statements
+            * Only 10 days left in September
+        * October finalize candidates
+        * November voting
+        * New board members and officers effective early December
+    * Use the same process as last year
+        * Register to vote at community.jenkins.io
+            * Organize list of candidates
+            * Add Damien to the community.jenkins.io groups
+        * Voting through the Condorcet system at Cornell University
+            * If hosting is needed outside the University, Gavin has access to resources
+* CDF topics
+    * CDF blog post published for [Jenkins 18th birthday and 2.361.1](https://cd.foundation/blog/2022/09/07/jenkins-18th-birthday-%F0%9F%8E%82-and-retrospective/), written by Kevin Martens
+        * Require Java 11, next Java 17
+        * 6000 users on Java 17 in August, hope for 10k users in September
+    * JFrog working with Jenkins infra team to reduce data transfer for our repository server
+        * Prepare for a move of the repo from one cloud provider to another
+        * Damien Duportal leading effort to reduce data transfer
+        * Multi-step process expected, will be discussed in developer mailing list
+    * Yearly Project previews at the CDF TOC Meetings
+        * Two presentations at TOC
+        * We need Jenkins to present
+        * Should Jenkins present at TOC?
+            * Yes
+            * Interesting topics - third party security review
+            * Goal: Show the direction of the project related to CDF status
+                * Security reviews
+                * Supply chain security
+                    * Signing of charts, container images, plugin builds, etc.
+            * Should this be a summary of the contributor summit?
+                * Not so much
+            * Review OpenSSF best practices (SBOM, signing, etc.)
+        * Next meeting is next week, every two weeks
+            * November would be fine for a presentation
+            * Agenda assembled 1-2 meetings ahead
+* Forums and community topics
+    * Contributor Summit is coming Sep 27 in Orlando, FL, USA
+        * [https://groups.google.com/g/jenkinsci-dev/c/3rfME7iSrwg](https://groups.google.com/g/jenkinsci-dev/c/3rfME7iSrwg)
+    * GitHub project actions from Google Summer of Code
+        * Needs more discussion, just arrived a few hours ago
+        * [https://groups.google.com/g/jenkinsci-dev/c/KQ46z_q1l4U](https://groups.google.com/g/jenkinsci-dev/c/KQ46z_q1l4U)
+        * Need to sign an additional agreement
+            * Not expecting any legal concerns in this case
+            * Published content on GitHub Marketplace
+            * Prefer to have Damien Duportal involved as a GitHub Admin
+            * Prefer to have security team involved, option to audit
+                * Handling of security issue reports (may be as simple as a new component in security Jira, needs assigned owner(s))
+    * Gavin has found a way to merge gitter, matrix, and IRC into a single room
+        * Have a Jenkins infra matrix channel that is linked to three locations
+        * Releases IRC, gitter, and matrix are all in a single room
+            * All releases channels in a single matrix room
+                * Matrix at the center, bridges to other locations
+                * [https://gitter.im/jenkinsci/release](https://gitter.im/jenkinsci/release)
+                * #jenkins-release
+                * [https://matrix.to/#/#jenkins-release:matrix.org](https://matrix.to/#/#jenkins-release:matrix.org)
+            * All infra channels in a single matrix room
+                * Matrix at the center, bridges to other locations
+                * https://gitter.im/jenkinsci/jenkins-infra
+                * #jenkins-infra
+                * https://matrix.to/#/#jenkins-infra:matrix.org
+        * Had a thread months ago proposing a merge of chat channels
+        * Alex proposing merge of the releases IRC next
+        * Update the chat page on jenkins.io to note those areas where we’re bridging
+            * Kevin Martens to explore it and see if he can describe it
+    * Show the pipeline graph viewer in a “Showing Off” section
+        * Mark and Darin Pope will show it in a live stream tomorrow
+
+## September 5, 2022
+
+Recording:
+
+Participants: Basil Crow, Bruno Verachten, Mark Waite, Gavin Mogan
+
+Agenda:
+
+* News
+    * LTS 2.361.1 release September 7, 2022
+        * Requires Java 11 or Java 17, no more Java 8 support
+        * Kris Stern is the release lead, [release checklist](https://github.com/jenkins-infra/release/issues/275) is open
+        * CDF blog post requested by Fatih, Mark coordinate with Kevin Martens and others
+* Action items
+    * Mark Waite to find and finish Linux Foundation transfers from GSoC 2021
+        * Kara de la Marck and Alyssa Tong have made progress on the transfers
+            * Additional funds now visible on [CrowdFunding site](https://crowdfunding.lfx.linuxfoundation.org/projects/jenkins)
+    * Mark Waite to use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Announce the change and make the existing list read-only
+        * Gavin investigated importing a mailing list, export is easy, import requires that we ask for help from the Discourse, complicated set of steps
+            * Not worth the effort
+    * Mark Waite to create blog post summary of the Contributor Summit at cdCon
+        * Sep Contributor Summit at DevOps World
+        * Drop the action item
+    * Mark Waite request full access to the CDF Zoom account for Jenkins
+        * Gavin suggested including a private google group in the CDF mailing list
+            * make the group
+            * Mark ask Michelle to add that group to the mailing list
+        * 2fa token updates to that list
+        * Alternately add each person to the CDF mailing list
+            * Michelle Martineau (CDF) is the one to decide
+* Plugin adoption process clarifications - Gavin Mogan
+    * Board should review changes to plugin adoption process - [PR-5417](https://github.com/jenkins-infra/jenkins.io/pull/5417) - merged
+    * Allow for 0 maintainers of a plugin to be considered adoptable - [PR-5416](https://github.com/jenkins-infra/jenkins.io/pull/5416) - merged
+    * Still needs GitHub access codified
+        * See old thread - [https://community.jenkins.io/t/codify-github-access/799](https://community.jenkins.io/t/codify-github-access/799)
+        * Plugin adoption still requires bot commands to keep the GitHub access correct
+        * Still not enough automation on the process
+        * Removals from RPU do not also remove GitHub access
+            * Retain GitHub write access without publishing plugin releases
+            * Long term sync GitHub permissions from RPU (discussion needed)
+                * Need mapping from jenkins.io users to GitHub users
+                * Proposal and discussion to continue
+                * Healthy to eventually remove write access with script (later step)
+* Upcoming elections
+    * December for completion
+    * Gavin and Ewelina up for re-election
+    * Who is going to run them?
+        * Usually rely on the infrastructure officer to run the election
+            * Damien Duportal (voting, etc. from Discourse as before)
+        * Announcements, vetting candidates, etc. is a governing board responsibility
+            * Entire board vets candidates
+            * Any board member could send the announcements
+            * Can reuse email templates and content from previous years
+    * Timeline
+        * September announce and gather candidates and their statements
+        * October finalize candidates
+        * November voting
+        * New board members and officers effective early December
+    * to bring the topic to Jenkins infra officer for discussion and plan
+        * Tomorrow’s infra meeting
+    * Prefer to use the same process as last year
+        * Register to vote at community.jenkins.io
+            * Organize list of candidates
+        * Voting through the Condorcet system at Cornell University
+            * If hosting is needed outside the University, Gavin has access to resources
+* CDF topics
+    * CDF blog post coming on Wednesday for Jenkins 2.361.1, written by Kevin Martens
+    * JFrog working with Jenkins infra team to reduce data transfer for our repository server
+        * Plugin installs are not part of the artifact repository
+    * Thanks to the Linux Foundation for the Jira server hosting
+        * Only 3 outages in 8+ months, thanks very much
+* Jenkins.io website improvements
+    * Pipeline steps reference improvements from Google Summer of Code
+    * Look and feel improvements from Jan Faracik
+        * Needs more review, but looks good
+    * Encourage more reviews by placing a post on the developer list and the user list
+        * Mark invite reviews from others
+        * Contributors looking to help with layout reviews - welcome them to this one
+* Forums and community topics
+    * Contributor Summit is coming Sep 27 in Orlando, FL, USA
+        * https://groups.google.com/g/jenkinsci-dev/c/3rfME7iSrwg
+    * GitHub project actions from Google Summer of Code
+        * Needs more discussion, just arrived a few hours ago
+        * https://groups.google.com/g/jenkinsci-dev/c/KQ46z_q1l4U
+    * Forum questions continue to ebb and flow
+    * Slack blogpost on their Jenkins deployment and how they accelerated with it
+        * See Advocacy and Outreach SIG
+        * https://twitter.com/jenkinsci/status/1565720956097658880
+    * Merging and retiring old plugins that have replacements
+        * Continue discussions on the mailing list - https://groups.google.com/g/jenkinsci-dev/c/TJNMhjn2Bfg
+        * Contributor was interested in pursuing it further, few months in the future
+            * Need to propose possible solutions and discuss them
+        * Many examples of things that are near end of life but need work to reach end of life
+            * Blue Ocean docker images
+            * Docker images on low-usage base images (arch linux, …)
+    * Gavin has found a way to merge gitter, matrix, and IRC into a single room
+        * Have a Jenkins infra matrix channel that is linked to all three locations
+        * Had a thread months ago proposing a merge of chat channels
+        * Alex proposing merge of the releases IRC next
+
+## August 22, 2022
+
+Recording:
+
+Participants: Basil Crow, Bruno Verachten, Mark Waite, Gavin Mogan, Kevin Martens, Oleg Nenashev, Daniel Beck
+
+Agenda:
+
+* News
+    * LTS 2.361.1 release September 7, 2022
+        * Requires Java 11 or Java 17, no more Java 8 support
+        * Kris Stern is the release lead, [release checklist](https://github.com/jenkins-infra/release/issues/275) is open
+        * CDF blog post requested by Fatih, Mark coordinate with Kevin Martens and others
+* Action items
+    * Mark Waite to find and finish Linux Foundation transfers from GSoC 2021
+        * Kara de la Marck and Alyssa Tong have made progress on the transfers
+            * Additional funds not yet visible on [CrowdFunding site](https://crowdfunding.lfx.linuxfoundation.org/projects/jenkins)
+    * Mark Waite to use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Announce the change and make the existing list read-only
+        * Gavin investigated importing a mailing list, export is easy, import requires that we ask for help from the Discourse, complicated set of steps
+            * Not worth the effort
+    * Mark Waite to create blog post summary of the Contributor Summit at cdCon
+    * Mark Waite request full access to the CDF Zoom account for Jenkins
+        * Gavin suggested including a private google group in the CDF mailing list
+        * 2fa token updates to that list
+        * Alternately add each person to the CDF mailing list
+            * Michelle Martineau (CDF) is the one to decide
+* Upcoming elections
+    * December-ish again?
+    * Gavin and Ewelina up for re-election
+    * Who is going to run them?
+        * Usually rely on the infrastructure officer to run the election
+            * Damien Duportal (voting, etc. from Discourse as before)
+        * Announcements, vetting candidates, etc. is a governing board responsibility
+            * Entire board vets candidates
+            * Any board member could send the announcements
+            * Can reuse email templates and content from previous years
+    * Timeline
+        * September announce and gather candidates and their statements
+        * October finalize candidates
+        * November voting
+        * New board members and officers effective early December
+    * Mark to bring the topic to Jenkins infra officer for discussion and plan
+    * Prefer to use the same process as last year
+        * Register to vote at community.jenkins.io
+            * Organize list of candidates
+        * Voting through the Condorcet system at Cornell University
+            * If hosting is needed outside the University, Gavin has access to resources
+* CDF topics
+    * Summary update on CDF TOC updates in the CDF Slack channel
+        * Few items of possible interest
+        * Oleg will be TOC chair for another year
+            * Last term as TOC chair, will need another chair in Aug 2023
+            * Oleg represents Jenkins in governing board
+                * Continues to push
+            * Next meeting is on Thursday
+                * Mark checking with other board reps
+        * Project Pyrsia accepted as a distributed package delivery network project
+            * No obvious impact on Jenkins
+            * Separate plugin likely for the Pyrsia project
+                * May also need pluggable artifact storage update
+        * CDF reference architecture update is in progress
+            * Link to slide deck is available: [https://docs.google.com/presentation/d/1SSSHPLSXEUgg0vu644zrZPvCW9sUYSBwzSCDO_fZtF8/edit?usp=sharing](https://docs.google.com/presentation/d/1SSSHPLSXEUgg0vu644zrZPvCW9sUYSBwzSCDO_fZtF8/edit?usp=sharing)
+            * Attempt to provide a reference architecture for application delivery
+                * Including CI and CD
+            * Trying to find balance between projects in CDF environment
+            * Want to see Jenkins listed there
+                * If interested in white papers and high level architecture, join this
+        * Direktiv likely to apply for CDF membership
+            * Cloud native Pipeline based on Cloud Native Events
+            * More Pipeline engines at CDF
+            * Jenkins pluggable pipeline not actively being developed
+        * Treasurer has been appointed (David Lai)
+            * May be able to help with GSoC funding transfer
+* Blue ocean admonition current status
+    * Complete in [Pipeline: Blue Ocean Editor](https://www.jenkins.io/doc/book/pipeline/development/#blue-ocean-editor), [Blue Ocean intro](https://www.jenkins.io/doc/book/blueocean/), [Blue Ocean Pipeline Editor](https://www.jenkins.io/doc/book/blueocean/pipeline-editor/), …
+    * Consider including the admonition in the plugin documentation
+        * Basil add the admonition to the plugin documentation (Done)
+        * Add the admonition to the Dockerhub entry for blueocean container as well
+            * Needs a link to the official docs and embed the admonition
+            * Still to be done
+            * Issue in that specific image where people are installing plugins and assuming it will be used on the next restart
+                * Further motivation to get people off the Blue Ocean container
+                * May need further changes in the official Jenkins container as well
+                    * Needs a ticket to describe the condition (docker repo)
+            * Deprecate the blueocean container (was only for documentation)
+        * Topic for Platform SIG
+* Jenkins.io web site revert
+    * Look and feel improvements from a new contributor
+    * Need to split into smaller improvements for review and incremental delivery
+        * Original pull request is still available
+    * Was there a recent change on the RSS feed?
+        * Six notifications recently on new blog posts
+        * Daniel Beck fixed a bug in the RSS feed that had an incorrect URL
+            * If the reader uses the canonical URL, might change (was pointing to an obsolete URL)
+* Review criteria for some parts of the project
+    * Reviewers would approve a contribution or approve the exact opposite
+        * Do we look at the merit of the change critically enough to reject the exact opposite
+            * Font was recently changed to default system font, noted that change not wanted in the pull request, but was then merged anyway
+            * If a pull request arrived to round corners “too much”
+            * Basil asks for justification for the change (core), not just “is this helpful?”
+                * No “needs-justification” label on the jenkins.io site
+        * Color scheme changed from grey-ish to orange
+            * Would we accept the change back to the other color scheme in a year?
+        * Case of isolation where the contributor focuses on their specific needs
+            * Don’t understand the larger picture
+            * Consider a better path for new contributors - help others first to learn how they use
+            * Engage with the community as a whole rather than a small subset
+        * CSS issues in the jenkins.io page that was not known to many contributors
+            * No comments on the rationale for specific CSS entries
+        * We have jenkins.io test deployments that make it very convenient to compare the live site and the test site in a side by side view
+            * May miss changes that impact a small subset of pages
+            * Similar pattern to the UI changes in core pull requests
+            * Consider self-review in GitHub to give more explanation on subtle changes
+        * Could do a “side-by-side” comparison screenshot to show the “before” and “after” to show the changes in the page(s)
+* Forums and community topics
+    * [Comments on RCE post](https://community.jenkins.io/t/spring-framework-rce-cve-2022-22965/1981/2)
+        * Spring Boot comments on Discourse closed (asking for info on newer issues)
+            * [Canned response](https://www.jenkins.io/security/)
+                * Do not contact the Jenkins security team asking us for compliance documents, certifications, or to fill out a questionnaire. We will not respond to such queries. If we consider it necessary to provide a statement in response to incidents such as log4shell or SpringShell, you will find a response in our blog.
+            * Two requests that arrived on the wrong topic
+        * Dependency vulnerabilities sometimes reported in Jenkins Jira or security list
+            * Commonly respond that we are not affected
+    * Higher than normal jenkinsapi (python) questions
+        * Not clear what has changed, surprising that there are many together
+        * The Jenkins API python package is published through the Python packaging system, source code is not in the Jenkins GitHub organization
+    * Needs Answers:
+        * [[Stapler Framework Support for IntelliJ] To be renamed to Jenkins Development Support?](https://groups.google.com/g/jenkinsci-dev/c/B8Z23mKc7fo)
+            * Licensing and naming
+        * [Prettier for formatting supported languages in Jenkins core](https://groups.google.com/g/jenkinsci-dev/c/poYc0ptrfuw)
+            * Discussions ongoing in Jenkins core pull request
+            * Tim requested review from Jenkins core last week, approved by Basil
+                * Needs a second approval
+                * Requested review today from core PR reviewers
+        * [Forked repositories in GitHub](https://groups.google.com/g/jenkinsci-dev/c/SkKoCccPrOc)
+            * Some concerns that we may need to do it again in the future
+            * Agreed to do it for the legacy plugins (no dissent from others)
+            * Bulk action on a large number of repositories, be sure that we check the bulk action is sensible.  Check the list of repository targets
+
+## August 8, 2022
+
+Recording:
+
+Participants: Mark Waite, Basil Crow, Kevin Martens, Gavin Mogan, Oleg Nenashev, Bruno Verachten
+
+Agenda:
+
+* News
+    * LTS 2.346.3 release August 10, 2022
+        * Alexander Brandes is the release lead, [backporting pull request](https://github.com/jenkinsci/jenkins/pull/6910) is open
+    * LTS 2.361.1 release September 7, 2022
+        * Requires Java 11 or Java 17, no more Java 8 support
+        * Kris Stern is the release lead, [release checklist](https://github.com/jenkins-infra/release/issues/275) is open
+    * [Southern California Linux Expo](https://www.socallinuxexpo.org/scale/19x) July 29-31, 2022 (SCaLE 19x)
+        * Mark received 40+ email addresses of people that may want to help Jenkins
+            * Mark send a welcome email to each person, invite them to a conversation
+    * Jakarta mail migration - Basil Crow
+        * [https://issues.jenkins.io/browse/JENKINS-69083](https://issues.jenkins.io/browse/JENKINS-69083)
+    * Blue ocean admonition added to those pages
+* Action items
+    * Mark Waite to create blog post of She Code Africa Contributhon results
+        * Done
+    * Mark Waite to find and finish Linux Foundation transfers from GSoC 2021
+        * No progress, change in LF staffing, new contact to be provided by Fatih
+        * Money is believed to be still in the account
+        * Funds also at SPI - Oleg investigating the disposition of those funds
+    * Mark Waite to use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Announce the change and make the existing list read-only
+        * Gavin investigated importing a mailing list, export is easy, import requires that we ask for help from the Discourse, complicated set of steps
+            * Not worth the effort
+    * Mark Waite to create blog post summary of the Contributor Summit at cdCon
+    * Mark Waite request full access to the CDF Zoom account for Jenkins
+        * Assure that we can add new users to the Zoom account
+    * Mark or Gavin update the Algolia search configuration for [www.jenkins.io](www.jenkins.io)
+        * Tracked as a help desk ticket
+        * We’re using their “Docs Search” facility
+* Blue ocean admonition for user handbook and tutorials - Mark Waite
+    * Complete in [Pipeline: Blue Ocean Editor](https://www.jenkins.io/doc/book/pipeline/development/#blue-ocean-editor), [Blue Ocean intro](https://www.jenkins.io/doc/book/blueocean/), [Blue Ocean Pipeline Editor](https://www.jenkins.io/doc/book/blueocean/pipeline-editor/), …
+    * Consider including the admonition in the plugin documentation
+        * Basil add the admonition to the plugin documentation
+        * Add the admonition to the Dockerhub entry for blueocean as well
+            * Needs a link to the official docs and embed the admonition
+* CDF topics
+    * Request for a highlights blog post on the 2.361.1
+        * Docs SIG will provide a highlights blog post for CDF
+        * End of August and early September will be busy for Roxanne Joncas
+    * CDF TOC & TOC Chair Elections
+        * Officially extended terms of project representatives to 2 years
+        * Oleg will remain Jenkins representative for another year
+        * TOC chair election - Oleg remains for another year
+        * Represents Jenkins on the governance board
+        * Mark to connect with the CloudBees representative to make the change
+        * CDF Mini-Summit on September 12th in Dublin
+            * Call for papers may still be open? Yers, until August 8th
+            * [https://twitter.com/CDeliveryFdn/status/1554420983250960384](https://twitter.com/CDeliveryFdn/status/1554420983250960384)
+    * Project Pyrsia is now an incubating project
+        * Distributed package repository (JFrog, DeployHub, Canonical, Docker, …)
+    * Status of Bevy
+        * Pause the Bevy migration action item, second thoughts on adoption
+            * Low tier payment plan that blocks many of the functions that we need
+            * Does not make sense to transition
+* Status of EasyCLA
+    * Still need corporate submission from CloudBees for EasyCLA (other companies)
+        * Mark has the action item to complete the CloudBees process
+    * Do we just approve any PR that comes into [https://github.com/jenkinsci/infra-cla](https://github.com/jenkinsci/infra-cla) or do we validate somehow?
+        * Accept the pull request and merge it
+    * Oleg will attempt to complete the documentation of the new process
+* Jenkins.io web site - Gavin Mogan
+    * Some debate in the community over the new look
+        * Gavin has some preference to revert
+        * Mark has some preferences to revert, though not super strong preference
+        * If the issues were fixed in a day or two, would have preferred to push forward
+        * Better to rollback, then apply step-wise improvements?
+    * Mark will revert and we’ll attempt a series of small changes
+* Google Summer of Code
+    * In progress, all 4 projects are progressing, mid-term presentation
+* Forums and community topics - Gavin Mogan
+    * [Java 11 transition issues for core](https://community.jenkins.io/t/moving-to-java-11-isnt-working-can-anyone-help/3248)
+        * Also used a 32 bit Java 11 agent
+    * [JENKINS-69149](https://issues.jenkins.io/browse/JENKINS-69149) - Git client plugin host key verification security fix broke CentOS 7 users
+    * [JENKINS-69229](https://issues.jenkins.io/browse/JENKINS-69229) - Trilead api plugin Java 11 class files caused issues for Java 8 users
+    * [ [JENKINS-69164] Suspend distribution of katalon plugin (PR #626)](https://github.com/jenkins-infra/update-center2/pull/626)
+    * [Vendors.jenkins.io portal development](https://community.jenkins.io/t/idea-commercial-support-vendors/2924/37)
+        * Prototype being explored
+    * [Complete Jenkins tutorial ](https://community.jenkins.io/t/the-complete-jenkins-tutorial/390/9)(moved to “Showing off” category)
+    * [How are plugins verified?](https://community.jenkins.io/t/how-does-jenkins-verify-plugins-before-publishing-for-consumption/3225)
+        * Could document more clearly
+            * As in something simple to point users to
+    * [Communication channels discussion](https://community.jenkins.io/t/cleanup-proposal-of-communication-channels/3154)
+        * Gavin focused on the chat consolidation (IRC, Matrix, and Gitter in single room)
+        * Forum consolidation later
+    * [Plugin development questions on the forums](https://community.jenkins.io/t/plugin-development-how-to-run-a-method-in-the-node-thats-running-the-build/3099/4)
+        * Should we have email automatically to the Jenkins developer list?
+            * Discourse to docs goes to SIG Docs
+        * Mark prefers (for now) to not automatically post from community to Jenkins developers
+            * Gavin post manually initially, automate if it works well
+        * Example of one I manually emailed. Good discussions so far - https://community.jenkins.io/t/indicating-breaking-changes-in-plugins-with-automated-releases/3285/6
+        * Thanks for stepping in a lot
+    * Press contacts email receives lots of spam
+        * Press contacts not active in the project (kk, tyler, …)
+        * Postman came as an advocacy / partnership discussion
+        * Should redirect those inquiries to the board?
+
+## July 25, 2022
+
+Recording:
+
+Participants: Mark Waite, Basil Crow, Ewelina Wilkosz, Daniel Beck, Kevin Martens, Bruno Verachten
+
+Agenda:
+
+* News
+    * LTS 2.346.3 release candidate July 27, 2022, release August 10, 2022
+        * Alexander Brandes is the release lead, [backporting pull request](https://github.com/jenkinsci/jenkins/pull/6910) is open
+    * [Southern California Linux Expo](https://www.socallinuxexpo.org/scale/19x) July 29-31, 2022 (SCaLE 19x)
+        * Kohsuke Kawaguchi speaking
+        * Mark Waite and Alyssa Tong speaking
+    * Jakarta mail migration - Basil Crow
+        * [https://issues.jenkins.io/browse/JENKINS-69083](https://issues.jenkins.io/browse/JENKINS-69083)
+* Action items
+    * Mark Waite to find and finish Linux Foundation transfers from GSoC 2021
+        * No progress, change in LF staffing, new contact to be provided by Fatih
+        * Money is believed to be still in the account
+        * Funds also at SPI - Oleg investigating the disposition of those funds
+    * Mark Waite to use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Announce the change and make the existing list read-only
+        * Gavin investigated importing a mailing list, export is easy, import requires that we ask for help from the Discourse, complicated set of steps
+            * Not worth the effort
+    * Mark Waite to create blog post summary of the Contributor Summit at cdCon
+    * Mark Waite to create blog post of She Code Africa Contributhon results
+    * Mark Waite request full access to the CDF Zoom account for Jenkins
+        * Assure that we can add new users to the Zoom account
+        * Moving to Bevy enterprise account in CDF
+            * https://www.bevy.com/ , [https://community.cd.foundation/](https://community.cd.foundation/)
+            * Can host meetings like Zoom on Bevy
+            * Can not host Webinars like Zoom on Bevy
+            * Can create multiple chapters (similar to meetup groups)
+                * Each working group has their own chapter on Bevy
+            * Needs further discussion with Fatih and with Michelle Martineau
+            * Join the community groups channel on CDF slack to ask there
+    * Gavin Mogan create a proposal to hire a writer to reduce and remove Blue Ocean
+* Blue ocean admonition for user handbook and tutorials - Mark Waite
+    * Examples in
+        * [Blue ocean top level page](https://deploy-preview-5288--jenkins-io-site-pr.netlify.app/doc/book/blueocean/)
+        * [Getting started with Blue Ocean](https://deploy-preview-5288--jenkins-io-site-pr.netlify.app/doc/book/blueocean/getting-started/)
+        * [Creating a Pipeline](https://deploy-preview-5288--jenkins-io-site-pr.netlify.app/doc/book/blueocean/creating-pipelines/)
+        * [Dashboard](https://deploy-preview-5288--jenkins-io-site-pr.netlify.app/doc/book/blueocean/dashboard/)
+        * [Activity view](https://deploy-preview-5288--jenkins-io-site-pr.netlify.app/doc/book/blueocean/activity/)
+    * Docs office hours (Asia) suggested more specific content for those pages
+        * Discussion continues in the [pull request](https://github.com/jenkins-infra/jenkins.io/pull/5288)
+* Embeddable build status plugin bundles proprietary font - Mark Waite
+    * Release has been delivered that removes the proprietary font
+    * Release is done, plugin is still on ci.jenkins.io, better maintained than before
+* Forums and community topics - Mark Waite
+    * [Vendors site development discussion](https://community.jenkins.io/t/idea-commercial-support-vendors/2924/26) on community.jenkins.io
+    * [Content security policy progress](https://www.youtube.com/watch?v=t1BSLRPNeQ4&t=3120s) for Jenkins core
+        * Will be a Hacktoberfest topic also
+        * Guards against cross site scripting
+    * GitHub comment ops to label pull requests, request reviewers, and more
+        * Demonstrated by Tim Jacomb in [UX SIG meeting](https://www.youtube.com/watch?v=t1BSLRPNeQ4&t=2060s)
+        * Discussion in [Jenkins Developers group](https://groups.google.com/g/jenkinsci-dev/c/sE7mH7hUZSY/m/K3LHTb8dAgAJ)
+    *
+
+## July 11, 2022
+
+Recording:
+
+Participants: Mark Waite, Basil Crow, Oleg Nenashev, Ewelina Wilkosz, Gavin Mogan, Daniel Beck
+
+Agenda:
+
+* News
+    * LTS 2.346.2 releases on Wednesday
+        * Removes install-plugins.sh
+    * Jenkinsfile Runner is dropping Java 8 support as part of the next release, will require Java 11 soon
+        * No Java 17 support yet
+    * Java 17 support is looking very good in Jenkins
+* Action items
+    * Mark Waite to find and finish Linux Foundation transfers from GSoC 2021
+        * No progress, change in LF staffing, new contact to be provided by Fatih
+        * Money is believed to be still in the account
+        * Funds also at SPI - Oleg investigating the disposition of those funds
+    * Mark Waite to use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Announce the change and make the existing list read-only
+        * Gavin investigated importing a mailing list, export is easy, import requires that we ask for help from the Discourse, complicated set of steps
+            * Not worth the effort
+    * Mark Waite to create blog post summary of the Contributor Summit at cdCon
+    * Mark Waite to create blog post of She Code Africa Contributhon results
+    * Mark Waite get full access to the CDF Zoom account for Jenkins
+        * Assure that we can add new users to the Zoom account
+        * Moving to Bevy enterprise account in CDF
+            * https://www.bevy.com/ , [https://community.cd.foundation/](https://community.cd.foundation/)
+            * Can host meetings like Zoom on Bevy
+            * Can not host Webinars like Zoom on Bevy
+            * Can create multiple chapters (similar to meetup groups)
+                * Each working group has their own chapter on Bevy
+            * Needs further discussion with Fatih and with Michelle Martineau
+            * Join the community groups channel on CDF slack to ask there
+    * Gavin Mogan create a proposal to hire a writer to reduce and remove Blue Ocean references to improve the user experience through documentation
+        * Outreachy as a possible target
+* [Trademark usage request](https://groups.google.com/g/jenkinsci-board/c/93O27K9MxRw/m/nguT-NF5AgAJ) from Luminous Productions Co., Ltd
+    * Per Oleg: We no longer do approvals, we delegated to LF in [https://www.jenkins.io/project/trademark/approved-usage/](https://www.jenkins.io/project/trademark/approved-usage/)
+    * Mark reply to request that no approval is needed, encouraged to [attribute per guidelines](https://www.jenkins.io/project/trademark/#trademark-attribution)
+* Guidance on responding to requests to the Jenkins board
+    * [Google group](https://groups.google.com/g/jenkinsci-board/) is intentionally not public, anonymous users can’t read it
+        * Are replies to the group also sent to the submitter?
+        * Replies to only those who are listed in the “To:” item (reply through gmail client)
+        * Adjust the “To:” address from email client
+        * If a sender has configured SPF, may have an issue with non-gmail client
+    * How to handle requests like the [NetApp compliance survey](https://groups.google.com/g/jenkinsci-board/c/QXprZo43CK4/m/u0g67V_hAQAJ)?
+        * Reply in a way so that board members can see the reply
+        * Jenkins Security team position: [https://www.jenkins.io/security/#reporting-vulnerabilities](https://www.jenkins.io/security/#reporting-vulnerabilities)
+    * How to handle trademark usage requests?
+        * Using Linux Foundation guidelines, should not need to process those requests
+            * In case of doubt, contact the Jenkins board
+    * How to handle code of conduct violation reports?
+        * Handled on the board mailing list
+        * In case an escalation happens regarding another board member, then private channels
+* Embeddable build status plugin bundles proprietary font
+    * Suggested solution provided to maintainer in [JENKINS-68764 (comment)](https://issues.jenkins.io/browse/JENKINS-68764?focusedCommentId=426664&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-426664) on June 15, 2022
+    * Plugin either needs to be corrected and a new version released or suspended
+    * Prefer a fix, find a maintainer (highly preferred), make the fix, and release it
+        * Currently installed on ci.jenkins.io
+    * Give ourselves 2 weeks, Mark announce that we will suspend in 2 weeks unless adopted
+        * [Message](https://groups.google.com/g/jenkinsci-dev/c/-BYPQYV8DIQ/m/zpn1AULEBAAJ) sent 11 July 2022 by Mark Waite
+* Updates from the CDF - Oleg Nenashev
+    * Elections have established the CDF governing board
+    * Foundation is recovering, becoming stronger
+    * Moving in the right direction
+    * Pyrsia has applied for CDF membership
+        * Decentralized package repository sponsored by JFrog, Red Hat, and others
+    * Other projects considering CDF membership as well
+    * CDEvents specification moving towards 0.1 release
+        * TOC budget planned to support the effort, write documentation, create tooling
+        * Presentation at CDcon with Shruti
+        * Several contributors connected on the mailing lists
+        * Interest from Ger McMahon of Fidelity expressed in spec, wants to be involved
+    * Lori Lorusso of JFrog chairing the CDF Outreach committee
+        * Ambassador program update
+        * Bevy transition
+    * Project infrastructure committee in the CDF
+        * No entity that handles project infrastructure
+        * Some group lead by an LF program manager that resolves public cloud access
+            * Asked for public cloud transfer
+            * No ETA
+* Move meeting time one hour earlier?
+    * No proposal to change at this time, continue meeting at this time next week
+    * Most Mondays work earlier or later for Oleg and for Ewelina
+* Forums and community topics
+    * [Errors on FIPS mode OS in Jenkins](https://community.jenkins.io/t/possible-that-latest-jenkins-version-for-rhel-is-broken-fips-mode-enabled/2714): [JENKINS-68662](https://issues.jenkins.io/browse/JENKINS-68662) was released and fix was verified
+    * DevOps World talks CFP has closed
+    * Blue Ocean Docker image had some issues
+        * Not actively maintaining the blue ocean Docker container image
+        * Needs a deprecation notice on the jenkinsci/blueocean image
+    * GitHub vs. Jira topic is being discussed in a JEP
+    * New vendors.jenkins.io page so that companies can highlight their commercial offerings
+    * GitHub package dependencies that require authentication
+        * The repo.jenkins-ci.org content does not require authentication
+        * If we allow GitHub package dependencies, then builds must authenticate
+
+## June 29, 2022 - canceled
+
+Meeting was canceled because Mark Waite proposed a new meeting time but then failed to apply the new meeting time promptly
+
+## June 15, 2022
+
+Recording:
+
+Participants: Basil, Mark
+
+Agenda:
+
+* News
+    * DigitalOcean donates additional $2760 to the Jenkins project
+        * Thanks to Phoebe Quincy and Oliver Mensah of DigitalOcean
+        * Thanks to Damien Duportal and Herve’ Le Meur of Jenkins infra project
+    * 2.346.1 LTS June 22, 2022 (including security fixes)
+        * 2.332.4 LTS June 22, 2022 as well  (including security fixes)
+        * 2.356 weekly June 22, 2022 as well (2.355 + security fixes)
+    * Require Java 11
+        * 2.357 weekly June 28, 2022 will require Java 11 or newer
+        * September LTS will require Java 11 or newer
+    * cdCon results
+        * Awards presented
+            * CDF Continuous Enthusiast - [Darin Pope](https://github.com/cdfoundation/foundation/issues/364#issuecomment-1082593771)
+            * CDF Top Documentor - [Oleg Nenashev](https://github.com/cdfoundation/foundation/issues/365#issuecomment-1092016111)
+            * Most Valuable Jenkins Contributor - [Basil Crow](https://github.com/cdfoundation/foundation/issues/366#issuecomment-1081360137)
+            * Most Valuable Jenkins Advocate - [Gavin Mogan](https://github.com/cdfoundation/foundation/issues/368#issuecomment-1081370986)
+            * Jenkins Security MVP - [Wadeck Follonier](https://github.com/cdfoundation/foundation/issues/367#issuecomment-1080782744)
+                * Most Valuable Player
+        * Contributor Summit
+            * Open Telemetry presentation and discussion by Manuel de Pena, Ivan Fernandez, and Victor Martinez
+            * User experience improvements presentation by Tim Jacomb
+            * Permissions discussion lead by Olivier Vernin
+                * Many core maintainers that are long inactive
+                * Proposed an “alumni” group similar to the jenkins-infra [alumni group](https://github.com/orgs/jenkins-infra/teams/alumni)
+                    * Retains accounts in the jenkinsci organization
+                    * Reduces granted permissions
+                * Needs further discussion in the developer mailing list
+            * Mark owes a blog post summarizing the results
+        * Future of Jenkins presentation by Oleg Nenashev
+* Action items
+    * Mark Waite check with Tracy Miranda on FOSDEM 2020 funds transfer
+        * Done - $1254 transferred to [Jenkins account](https://crowdfunding.lfx.linuxfoundation.org/projects/bce45251-1ff4-4131-9699-0a0017b31495) at Linux Foundation
+    * Mark Waite find and finish Linux Foundation transfers from GSoC 2021
+    * Mark Waite use community.jenkins.io for the Jenkins Docs SIG mailing list
+        * Announce the change and make the existing list read-only
+    * Mark Waite create blog post summary of the Contributor Summit at cdCon
+    * Mark Waite create blog post of She Code Africa Contributhon results
+* Embeddable build status plugin bundles proprietary font
+    * [Issue](https://issues.jenkins.io/browse/JENKINS-68764) raised to maintainer June 15, 2022
+    *  Allow up to 2 weeks for the maintainer to correct the issue?
+        * If not corrected, then we need to suspend distribution or adopt it and remove the offending component
+    * Discussed on the board mailing list
+    * Matches our behavior with proprietary plugins (though Mark needs research)
+        * Could replace proprietary font with open source font
+        * Could remove the proprietary font
+* Forums and community topics
+    * [Upgrade to systemd](https://community.jenkins.io/t/changes-in-etc-sysconfig-not-being-applied/2717)
+    * [Errors on FIPS mode OS in Jenkins](https://community.jenkins.io/t/possible-that-latest-jenkins-version-for-rhel-is-broken-fips-mode-enabled/2714)
+        * Ongoing work to better support FIPS mode (detaching instance identity into a plugin and modifying it for better support of FIPS mode)
+        * Would be good to add to the test matrix
+        * SELinux has a set of problems (git plugin)
+
+## June 1, 2022
+
+Recording:
+
+Participants: Basil, Gavin
+
+Agenda:
+
+* News
+    * 2.346.1 LTS
+        * Release of 2.346.1 has been delayed by a few weeks to offer more time to address regressions and other issues ([developer list](https://groups.google.com/g/jenkinsci-dev/c/McW23TyQFzc/m/stenjcSXAAAJ))
+        * Several more LTS candidates are available for backport, Jira query: `resolution = Fixed AND labels = lts-candidate and labels not in (2.346.1-fixed)`
+            * Alexander Brandes using the additional time to start a secondary backporting process to integrate the new LTS candidates
+        * [Changelog and upgrade guide](https://github.com/jenkins-infra/jenkins.io/pull/5151) being updated to describe SVG icon migration
+            * Many thanks to Kevin Martens for leading this effort
+    * Weekly
+        * Improvements to Docker images, need changelog entries
+            * Removing unused packages
+            * Adding additional Debian and Alpine based Docker images
+            * Code cleanups
+        * Multiple UI regression fixes in flight
+            * Thanks to all contributors who have developed, reviewed, or tested regression fixes
+        * Ant class loader disabled by default
+            * Finishes a months-long effort begun in 2021 to pay down technical debt
+        * Guice update stalled (non-trivial test failures)
+            * Needs volunteer to investigate and get us over this flag day
+                * Figuring out the context from the really code without a lot of help
+                * Running PR builds (either locally or PR tester)
+            * Do not want to fall behind as we did with Guava
+    * Infra had a couple outages last week
+        * Status.jenkins.io needs more visibility.
+            * Don’t know how, but we should
+        * Updates.jenkins.io had issues with certs and stuff
+        * pkg.jenkins.io/mirrors.jenkins.io got moved to new server
+* Projects
+    * [[JENKINS-67688] Java 11 Phase 5: Require Java 11 or newer](https://issues.jenkins.io/browse/JENKINS-67688)
+        * On track for delivery in **June 21, 2022** weekly (September LTS)
+        * Plan to take Java 17 out of preview mode in the same release
+        * Blocker [JENKINS-63766](https://issues.jenkins.io/browse/JENKINS-63766) worked around in [Pipeline: Groovy](https://github.com/jenkinsci/workflow-cps-plugin/pull/543) and [Script Security](https://github.com/jenkinsci/script-security-plugin/pull/420)
+        * Needs [additional core change](https://github.com/jenkinsci/jenkins/pull/6597) (LTS candidate)
+        * [Upstream](https://github.com/openjdk/jdk11u-dev/pull/1106) [fixes](https://github.com/openjdk/jdk11u-dev/pull/1103) accepted in [OpenJDK 11 Updates](https://wiki.openjdk.java.net/display/JDKUpdates/JDK11u) project
+        * Reminder to end users, if using package managers, upgrade package managers not .war files directly
+    * [[JENKINS-68446] Java 11/JAXB compatibility: Long tail](https://issues.jenkins.io/browse/JENKINS-68446)
+        * Notification plugin needs release ([JENKINS-55955](https://issues.jenkins.io/browse/JENKINS-55955) / [jenkinsci/notification-plugin#46](https://github.com/jenkinsci/notification-plugin/pull/46))
+        * SLOCCount plugin needs adoption, merge, and release ([jenkins-infra/repository-permissions-updater#2553](https://github.com/jenkins-infra/repository-permissions-updater/pull/2553) / [JENKINS-68514](https://issues.jenkins.io/browse/JENKINS-68514) / [jenkinsci/sloccount-plugin#62](https://github.com/jenkinsci/sloccount-plugin/pull/62))
+        * Maintainers working on HPE ALI plugin fixes toward version 7.4, which will be in the end of June ([JENKINS-68498](https://issues.jenkins.io/browse/JENKINS-68498))
+        * All other unresolved issues affect plugins with &lt; 500 installations; planned for deprecation
+* She Code Africa Contributhon
+    * Completed, see reports on [community.jenkins.io](https://community.jenkins.io/tag/she-code-africa)
+        * Gavin to add links for
+    * Needs a blog post by Mark Waite
+* Google Summer of Code
+    * [Projects selected](https://www.jenkins.io/blog/2022/05/20/gsoc2022-projects-announcement/)
+        * Plugin Health Scoring System (Dheeraj Singh Jodha)
+        * Jenkinsfile Runner Action for GitHub Actions (Yiming Gong)
+        * Automatic git cache maintenance on the controller (Hrushikesh Rao)
+        * Pipeline Step Documentation Generator Improvements (Vihaan Thora)
+* Forums and community topics
+    * Callout for youtube videos, blog posts, etc for general learnings - https://community.jenkins.io/t/help-me-to-find-good-learning-path-for-beginner/2585/2
+
+## May 18, 2022
+
+Recording:
+
+Participants: Mark Waite, Gavin Mogan, Bruno Verachten, Mike Cirioli, Basil Crow
+
+Agenda:
+
+* News
+    * [Plugins security advisory](https://www.jenkins.io/security/advisory/2022-05-17/) published yesterday
+        * Git, Pipeline, Script Security, Blue Ocean, Mercurial, and more
+    * June LTS is coming June 15, 2022
+        * [Jenkins 2.346.1-rc](https://groups.google.com/g/jenkinsci-dev/c/TQsZFHYLWhk/m/mpg4KnD5BgAJ) ready for testing
+        * [Changelog and upgrade guide pull request](https://github.com/jenkins-infra/jenkins.io/pull/5151) ready for review
+            * Kevin Martens leading that effort
+        * [Release lead](https://github.com/jenkins-infra/release/issues/231) is Alexander Brandes (@NotMyFault)
+    * Require Java 11 is coming
+        * June 21, 2022 weekly will require Java 11 (no more Java 8)
+        * September LTS will require Java 11
+        * [JEP-236](https://github.com/jenkinsci/jep/blob/master/jep/236/README.adoc) updated with plans
+        * Jira epics tracking the work
+            * [Java 11 phase 5 - Require Java 11](https://issues.jenkins.io/browse/JENKINS-67688)
+            * [JAXB for Java 11 / long tail](https://issues.jenkins.io/browse/JENKINS-68446)
+                * Thanks to plugin maintainers for being responsive!
+* Action items
+    * Mark Waite check with Tracy Miranda on FOSDEM funds transfer
+    * Mark Waite find and finish Linux Foundation transfers from GSoC 2021
+        * Alyssa Tong has provided some helpful pointers
+    * Mark Waite ask CDF for survey participation count
+        * Asked 18 May 2022, 18 registered for the survey, not sent
+        * Not likely to send until after cdCon
+        * Need to send another invitation to participate and motivation why the contributors
+            * Mark to request that info from Michelle, send it to the group
+        * Consider including the services already provided by CDF
+            * Remind the services already provided
+            * Share any services they are considering offering in the future
+    * New meeting time
+        * Current time not working well for Oleg and Ewelina to join us
+        * Proposed to move 3 hours later for European team outside working hours
+            * Approved, Mark to move the calendar item 3 hours later
+* She Code Africa Contributhon
+    * Final reporting phase has started, concluding blog post coming soon
+    * See [community.jenkins.io posts](https://community.jenkins.io/tag/she-code-africa) from the contributors
+        * Much easier to post than to write a blog post
+* Google Summer of Code
+    * Google will announce the selected projects this Friday May 20, 2022
+    * Optimistic that Jenkins will be chosen
+* Forums and community topics
+    * Crowdin donation for Jenkins localization
+        * See [https://crowdin.jenkins.io](https://crowdin.jenkins.io) for the 8 plugins currently using it
+        * Much easier translation experience for new contributors
+        * See [online meetup recording](https://youtu.be/40H0bqGRiL4) for details
+        * Internationalizing a plugin is not as straightforward as it should be
+            * Needs more documentation on the topic
+            * Bruno willing to help
+        * Translation tools discussions in various locations
+    * Contributor Summit at cdCon (face to face) - June 9
+        * Register independent of cdCon
+            * Web site not yet able to do so
+        * Mark Waite, Tim Jacomb, Alyssa Tong, Bruno Verachten, others
+    * Java 11 is coming
+    * Some forms issues, several cases of not reading the upgrade guide
+        * Jira regressions dashboard, we encourage people to report issues
+        * Encourage them to report any issue detected
+        * Gavin preparing a standard answer for diagnosis of environment issues
+            * How to see your environment
+            * How to create a better bug report
+            * Please use operating system package manager to upgrade
+            * Please use Docker containers to upgrade
+    * Bridging IRC and Gitter is being considered
+        * Needs Gitter admin to grant permissions to allow the bridge
+* More active promotion of communication on community.jenkins.io
+    * Docs mailing list could freeze and switch to community.jenkins.io
+        * Create a tombstone post on the list, make the list read-only, include a URL for the community.jenkins.io list
+    * Infra mailing list unused
+    * UX mailing list unused
+* Unifying issue trackers a likely future topic
+
+## May 4, 2022
+
+Recording: [https://youtu.be/8JP98svUeoM](https://youtu.be/8JP98svUeoM)
+
+Participants: Mark Waite, Gavin Mogan, Bruno Verachten
+
+Agenda:
+
+* News
+    * Jenkins 2.332.3 LTS in progress
+        * Build has been run and is tagged
+        * Release checklist is in progress
+        * Thanks to Alexander Brandes as release lead (@NotMyFault)
+* Action items
+    * Mark Waite check with Tracy Miranda on FOSDEM funds transfer
+    * Mark Waite find and finish Linux Foundation transfers from GSoC 2021
+* CDF request to survey active maintainers of CDF projects
+    * Survey invitation sent to Jenkins developer mailing list
+    * Mark to ask for status report on the number of registered survey participants
+        * Unclear to the readers that they don’t know how they or the project will benefit from the survey
+    * Should include the motivation for the survey in the survey invitation email
+* Forums and topics
+    * [“I developed a jenkins dashboard app for desktop”](https://community.jenkins.io/t/i-developed-a-jenkins-dashboard-app-for-desktop/2301)
+    * Delaying selection of next LTS baseline 2-4 weeks for stabilization
+        * 2.346 released on Tuesday fixes a few more issues
+        * Still a few remaining that make 2.347 (next Tuesday)
+    * Java 11.0.15, Java 8u332, and Java 17.0.3 in progress
+        * Java 17 is in “preview”, lower priority for the project
+    * Require Java 11 JEP is looking good for Sept LTS
+        * No Java 8 support in the Sept LTS, Java 11
+        * More details in the communication plan
+        * Specific change dates in weekly
+            * Weeklies will require Java 11 sooner than
+            * Commonly done immediately after the preceding LTS baseline
+                * Would be within the next few weeks
+            * Plugin won’t require Java 11 until they require a Jenkins version that requires Java 11
+                * Most plugin maintainers choose an LTS release
+                * Don’t see any requirement yet that forces plugin baseline version to be updated
+            * Using Sept instead of June is a  “quieter” LTS re: UI changes
+                * June UI changes are significant
+            * Need a canned response for the forums
+                * Look at responses to tables to divs to find the right balance
+                * Keep the responses simple and point to deep docs
+                    * What information do we need for a bug report
+                    * Include “What do we need in a bug?”
+                * Consider a triage bot for a future project
+                    * You mentioned “bootstrap” and “class loader”, see this for more information
+    * Contributor Summit at cdCon (face to face) - June 9
+        * Register independent of cdCon
+            * Web site not yet able to do so
+        * Mark Waite, Tim Jacomb, Alyssa Tong
+
+## Apr 20, 2022
+
+Recording:
+
+Participants: Mark Waite, Gavin Mogan, Ewelina Wilkosz
+
+Agenda:
+
+* News
+    * Jenkins 2.332.3 LTS prep in progress
+        * 2.332.3 release candidate is [available for testing](https://groups.google.com/g/jenkinsci-dev/c/tSY-OtnkXr0/m/n2L65anvAAAJ)
+        * Thanks to Alexander Brandes as release lead (@NotMyFault)
+    * Recent security items
+        * Java 11.0.15, Java 8u322, and Java 17.0.3 in progress
+        * Git 2.35.3 and Git LFS 3.1.4
+* Action items
+    * Mark Waite check with Tracy Miranda on FOSDEM funds transfer
+    * Mark Waite find and finish Linux Foundation transfers from GSoC 2021
+* Ukraine invasion by Russia and how it relates to the Jenkins project
+    * Status report of voting on alternatives
+    * Based on the votes that were expressed, we’ll approve the butler rather than the Cossack
+        * Mark and Gavin watch the forums in case of trolls or other disrupters
+* Linux Foundation request to survey active maintainers of CDF projects
+    * Request sent to Mark Waite, forwarded to board mailing list
+        * They want to send the survey April 22 and close the survey May 13
+    * Could we use community.jenkins.io for the survey instead?
+    * Send the email link to active maintainers, they choose to answer the survey without us disclosing their email address
+        * Approved to use the alternative, send it
+        * Place the survey link on forums and on dev mailing list and that is done
+* Forums and topics
+    * Java 11.0.15, Java 8u322, and Java 17.0.3 in progress
+        * Thread today asking about Docker container updates
+        * Some architectures are missing
+            * Fully qualified name is publishing all architectures
+            * Still cases where the short forms are missing arm64, s390x
+            * Being investigated by the infra team
+    * Approved for more open source docker use
+        * Infra team is handling that
+    * Delaying selection of next LTS baseline 2-4 weeks for stabilization
+        * 2.344 released on Monday fixes many of the open issues
+        * Release baseline for June not yet selected
+        * Very grateful Jan Faracik, Tim Jacomb, Basil Crow, Alexander Brandes, others for the fixes
+        * Very promising set of fixes in 2.344
+    * Require Java 11 JEP is looking good for Sept LTS
+        * No Java 8 support in the Sept LTS, Java 11
+    * Plugin site
+        * issues tab is working again
+        * releases tab is presenting content more similar to GitHub
+
+## Apr 6, 2022
+
+Recording: [https://youtu.be/ECZzmZJ4_js](https://youtu.be/ECZzmZJ4_js)
+
+Participants: Mark Waite, Gavin Mogan, Oleg Nenashev, Ewelina Wilkosz
+
+Agenda:
+
+* News
+    * Jenkins 2.332.2 LTS released
+        * Includes a few fixes, one change to the Windows Installer
+* Action items
+    * Mark Waite check with Tracy Miranda on FOSDEM funds transfer
+    * Mark Waite find and finish Linux Foundation transfers from GSoC 2021
+* Does meeting time need to adjust again because of daylight saving time?
+    * Ewelina recommends three or 3.6 or two hours earlier as better, one hour earlier is ok
+    * Oleg prefers one hour earlier, two hours earlier may be out of reach
+        * Could do European working hours
+        * Two hours earlier is bed time, could do three or four hours
+    * Gavin, could try for 4.5 hours or 3.5 hours or 3 hours, or 2 hours, or 10 hours later
+    * Decision - 4 hours earlier
+    * Action - Mark Waite adjust the calendar, jenkins.io, etc.
+* Expense approvals for security team
+    * Approved and done
+    * Oleg the approver on the board, sent request to Linux Foundation
+        * No reply yet
+* Ukraine invasion by Russia and how it relates to the Jenkins project
+    * Mark sent the [request for additional votes](https://groups.google.com/g/jenkinsci-users/c/chMe-RwXdN8/m/IoY3g5nXAQAJ) today, April 6, 2022
+    * Cossack image with flag - [PR 5027](https://github.com/jenkins-infra/jenkins.io/pull/5027)
+    * Jenkins image with flag - [PR 5030](https://github.com/jenkins-infra/jenkins.io/pull/5030)
+    * Mark should have used community.jenkins.io to host the voting
+    *
+* cdCon 2022 and Jenkins Contributor Summit - Austin, TX, USA June 7-8, 2022
+    * Open question on the specific date of the summit
+    * Alyssa Tong continues to ask them
+    * On-site summit
+    * If desired, consider a separate online summit some time after
+* Google Summer of Code progress report - Mark Waite
+    * Submissions are being accepted to the program
+    * Reviews and comments of drafts proposals are due by end of this from the potential mentors
+        * Final PDF’s submitted to Google by April 19 (see timeline)
+    * Many good sessions discussing, refining, improving
+* She Code Africa Contributhon has started
+    * 7 contributors for 6 weeks, started April 5
+        * Reduced to 6 contributors, 1 had personal situation arise
+* Forums and topics
+    * [SpringShell not affecting Jenkins](https://community.jenkins.io/t/spring-framework-rce-cve-2022-22965/1981)
+        * Stopped the custom distribution service out of an abundance of caution
+    * [Weekly ci has design library available](https://community.jenkins.io/t/jenkins-design-library/2036)
+        * See the new UI and how to create those UI’s
+    * [DSTY (shared library) was updated](https://community.jenkins.io/c/using-jenkins/showing-off/9)
+    * [Jenkins tooling for Java 17 is running and in progress](https://groups.google.com/g/jenkinsci-dev/c/ZHO3i7oaAfU)
+        * Mark found another git plugin mistake
+    * [PoC of SQLite by Basil Crow for Jenkins core](https://groups.google.com/g/jenkinsci-dev/c/Oz8PRAhyjTw)
+        * Storing JSON versions of the XStream objects
+    * Crowdin Enterprise experiment is running with Alexander Brandes (@NotMyFault)
+        * Makes translating Jenkins messages much more pleasant
+        * Web user interface
+        * More experimenting in tomorrow’s Docs office hours
+
+## Mar 23, 2022
+
+Recording:
+
+Participants: Mark Waite, Gavin Mogan, Oleg Nenashev
+
+Agenda:
+
+* News
+    * Jenkins 2.332.2-rc build is ready to test
+        * Release lead is Ildefonso Montero
+* Action items
+    * Mark - Remove the Google Meet link from this meeting on Jenkins calendar
+* Expense approvals for security team
+    * Wadeck Follonier asked for an Expensify request
+    * Oleg and Wadeck got him into the system (odd account configuration)
+    * Oleg needs to approve the expense (small amount)
+    * Approved security bounty budget last year
+    * Gavin does not have permission to approve Expensify reimbursements
+        * Ulli and Marky joined when they were board members
+        * Gavin has an account but does not have elevated permissions
+        * Can submit a request to add more admins
+    * Some other issues with funds
+        * Tracy has not submitted funds from FOSDEM to Jenkins
+        * Linux Foundation has not transferred funds from GSoC 2021
+            * Mark find and finish those transfers
+        * Google Season of Docs 2020 funds transfer from LF to Jenkins
+            * Confirmed completed
+        * Reminder that we should use those funds
+            * Approximately $10k available funds after adding all amounts
+            * Would allow a LFX Mentorship project
+            * Could contribute towards bug bounties or similar effort
+* Does meeting time need to adjust again because of daylight saving time?
+    * Keep the current time, check with Ewelina at next meeting
+* Ukraine invasion by Russia and the Jenkins project
+    * Proposal to temporarily change Jenkins logo to support Ukraine
+        * [Community forum conversation](https://community.jenkins.io/t/jenkins-support-for-ukraine-artwork/1862)
+    * Message
+        * Good message as stated by CD Foundation
+            * Pull request [https://github.com/jenkins-infra/jenkins.io/pull/5031](https://github.com/jenkins-infra/jenkins.io/pull/5031)
+        * Oleg abstaining from the logo question
+            * Cossacks were only a portion of the Ukraine
+            * Cossacks were mercenaries in Ukraine
+            * Would view the logo with mixed opinion
+        * Keptn changed its logo based on community consensus
+            * Reached consensus and changed to colors of the Ukrainian flag
+            *
+
+<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+![alt_text](images/image1.png "image_tooltip")
+
+        * Consider using a color change
+        * Separate the votes
+            * Place the CD Foundation message on jenkins.io
+                * +1 from Mark, Gavin, Oleg, approved by CDF Governance
+                * Mark to propose the pull request for that change
+            * Logo modification - discuss in the community
+                * Further conversation on community.jenkins.io
+                * Encourage and invite insights from Ukrainian nationals
+                * Add the flag to social media
+                * Consider background changes behind the logo
+* CDF Community Awards nominations are now open, close March 29, 2022
+    * See [https://cd.foundation/cdf-community-awards/](https://cd.foundation/cdf-community-awards/)
+    * [Blog post](https://www.jenkins.io/blog/2022/03/22/jenkins-contributor-awards/) created
+    * Needs placement on Jenkins Jumbotron
+        * Mark Waite to do that
+* Jenkins is the Way replacement site - Gavin Mogan
+    * Will be [https://stories.jenkins.io](https://stories.jenkins.io)
+        * Running in Gatsby as a standalone site
+        * Configured with CI and Netlify CMS that does GitHub PRs
+        * Caching by fastly
+        * DNS refactoring in progress
+        * Hope to be live by end of March
+    * Need to remove Jenkins is the Way from Jenkins Jumbotron
+        * Mark Waite to do that
+* cdCon 2022 and Jenkins Contributor Summit - Austin, TX, USA June 7-8, 2022
+    * Now has a remote presentation component
+        * The future of Jenkins talk by Oleg
+            * Not ready to commit until further details
+        * Willing to have Mark present on-site if remote not available
+    * Promoted on Jenkins Jumbotron
+    * Date and time of Contributor Summit not yet finalized
+        * Alyssa Tong is leading
+    * Some companies and individuals are embargoing travel to Texas
+        * Mark proposes to proceed with the summit on-site
+* Google Summer of Code progress report - Mark Waite
+    * Frequent interactions in [Jenkins gitter GSoC channel](https://gitter.im/jenkinsci/gsoc-sig)
+    * Mentor discussions on [community.jenkins.io](https://community.jenkins.io/c/contributing/gsoc-mentors/25)
+* Forums and topics
+    * Publish-over-* (ssh) is now migrated to github instead of jira for issue tracking
+        * New release that has restored distribution of the plugin
+        * Infra migration script used and working
+    * Translations discussions
+        * Ongoing topic for external translation systems
+            * Alexander Brandes showed CrowdIn Enterprise to Docs SIG
+            * Tooling demo worked quite well
+    * Bug bounties
+        * Discussion on the mailing list
+        * Enabling a bug bounty system for Jenkins core would require GitHub issues enabled for Jenkins core
+            * Plugins that have migrated to GitHub issues could opt-in to bounty
+        * Had bounty systems before but not good results from them
+            * Would want it working and successful with multiple plugins before enabling for core
+        * Old system is available in [GitHub](https://github.com/freedomsponsors/www.freedomsponsors.org) at freedomsponsors GitHub repository
+        * Other systems are available
+
+## Mar 9, 2022
+
+Recording: [https://youtu.be/1UzCMCYyzGc](https://youtu.be/1UzCMCYyzGc)
+
+Participants: Mark Waite, Gavin Mogan, Oleg Nenashev, Shanmukha
+
+Agenda:
+
+* News
+    * Jenkins 2.338 released with several icon and image fixes
+    * Jenkins LTS 2.332.1 released March 9, 2022
+    * GSoC 2022 application accepted, office hours weekly, webinar was today
+        * 5 prior GSoC students as mentors
+        * 5 additional mentors
+        * More mentors volunteering
+        * Seeking more mentors and more project ideas
+* Press contact email alias - Gavin Mogan
+    * Investigation and notes are complete
+        * No progress since last time
+    * Discourse trials in email routing as a community.jenkins.io service
+    * Next steps
+        * Email the dev list to seek volunteers as press contacts
+            * Very low volume email (4 in 12 months)
+        * Experiments ongoing, discuss in infra meeting and in mail
+* Ukraine invasion by Russia and the Jenkins project
+    * CDF has placed a statement on their site
+        * We stand with the people of Ukraine. Please assist humanitarian efforts for the Ukrainian people and those affected by the military invasion of Ukraine by supporting international aid organizations, including the International Committee of the Red Cross.
+        * Discussed in the governing board of CDF
+        * We can do the same in the Jenkins developer mailing list
+        * Support contributors
+        * Could consider a modified logo to show solidarity with Ukraine
+            * Idea or example posted in Advocacy & Outreach
+        * Public discussion important in this context
+            * Alignment would only be to prepare for public discussion
+            * Let’s just make the message in public
+        * Loss of freedom in Belarus and Russia is also part of the message
+            * Oleg willing to attempt a message later this week
+    * Oleg considering that it should move to the developer mailing list
+        * Must be explicit that we expect all conversations to comply with the code of conduct
+    * Discussion started because we received a request to ban Russians and Russian IP addresses from the Jenkins project
+        * Governance board members +1 to NOT ban Russians or Russian IP addresses (Mark Waite, Oleg Nenashev, Gavin Mogan, Kohsuke K)
+* CDF Community Awards nominations are now open
+    * See [https://cd.foundation/cdf-community-awards/](https://cd.foundation/cdf-community-awards/)
+    * Needs a blog post (Mark Waite) and placement on Jenkins Jumbotron
+        * OK to promote as we did last year
+        * Public nominations allows people to highlight contributions
+* cdCon 2022 and Jenkins Contributor Summit - Austin, TX, USA June 7-8, 2022
+    * Needs placement on Jenkins Jumbotron
+        * Place cdCon on the Jumbotron (immediate) (+1 from all)
+            * Make a single entry for both cdCon and Contributor Summit
+        * Don’t forget that carousel effectiveness decreases entry count increases
+    * On-site event
+    * Oleg won’t be at cdCon (visa unlikely)
+        * Pending application for a Jenkins 2022 and beyond at cdCon by Oleg
+            * Discussed with CDF team, but would want a backup speaker
+                * Consider Mark Waite or Mark and Alyssa
+* Jenkins is the Way replacement site
+    * Infra team agrees with Netlify for jenkinsistheway.jenkins.io
+    * Scaffolding is ready
+        * Using Gatsby just like the plugins site
+        * Interested to try MDX (Markdown with components)
+    * Next steps?
+        * Gavin continue his progress
+* Forums and topics
+    * New font and logotype from Basil Crow
+        * See the conversation in the mailing list
+    * DigitalOcean k8s cluster is running
+    * Versions follow-up (later meeting)
+
+## Feb 23, 2022
+
+Recording:
+
+Participants: Mark Waite, Gavin Mogan, Ewelina Wilkosz
+
+Agenda:
+
+* News
+    * Jenkins 2.336 released with several icon and image fixes (2.335 issues)
+    * Jenkins LTS 2.332.1-rc ready to test
+    * Jenkins LTS 2.332.1 scheduled to release March 9, 2022
+    * GSoC 2022 application submitted, office hours weekly, webinar was today
+        * 5 prior GSoC students as mentors
+        * 5 additional mentors
+        * Seeking more mentors and more project ideas
+* Press contact email alias - Gavin Mogan
+    * Discourse trials in email routing as a community.jenkins.io service
+    * Google groups email regularly going to spam in gmail
+    * Support for posting by email and can use custom email addresses
+        * [press@jenkins.io](mailto:press@jenkins.io) -> routes to a community.jenkins.io category, group, or otherwise
+            * Can move things to categories, but can’t add people to thread
+            * Using a discourse group, not as easy to work with, but
+                * Convert reply to topic
+                * Most flexibility
+            * Discussed with infra team, will need some time to implement
+                * MX record needs to be pointed to a better destination
+                * Linux Foundation service may already be available to forward mail
+        * Screenshots and demos later
+        * Next steps
+            * Email the dev list to seek volunteers as press contacts
+                * Very low volume email (4 in 12 months)
+            * Experiments ongoing, discuss in infra meeting and in mail
+* Version number to yearly?
+    * Starting in with 23.01 being the first week of the year 2023
+        * LTS would be 23.02.1
+    * Would make people assume semver less
+        * Switch version numbers to assure we’re not using semver
+            * Ubuntu 22.04, 22.10
+            * Windows 1809, 2004, 2109
+    * Harder to skip/reissue/etc a release
+    * Consider as part of more regular announcements
+    * Next step - a JEP to propose the change
+        * Evaluate feasibility
+* Version number to 3.x when we require Java 11 or newer? - Mark Waite
+    * Sep 2022 or Jun 2022 LTS releases, a weekly 6-8 weeks before
+    * Could roll to version 3 and still do the yearly version number
+    * Gavin agrees that Require Java 11 or newer is a major change
+    * If we can retain number.number.number format, not a huge change for users
+    * JEP-229 plugin version numbers caused concern
+        * Need to assure we communicate the version number change
+    * JEP-236 has been merged, Require Java 11 or newer
+* Highlights from the mailing lists and [community forum](https://community.jenkins.io/)
+    * Much love to Mark for meeting minutes (UX SIG)
+        * Love the results on navigation
+    * Security Scanner - Daniel Beck provides CodeQL scanning of plugins
+        * Plugin authors opt-in and get reports on primary branch and pull requests
+        * Discussions ongoing, very well received
+    * Markdown Plugin
+        * Yes, we can use markdown again inside Jenkins!
+
+## Feb 9, 2022
+
+Recording:
+
+Participants: Mark Waite, Gavin Mogan, Ewelina Wilkosz, Oleg Nenashev
+
+Agenda:
+
+* News
+    * 2.319.3 LTS release status report - done, includes security fix
+    * 2.334 release status report - done, includes security fix
+    * 2.332 is the [next LTS release baseline](https://groups.google.com/g/jenkinsci-dev/c/Y54Ue_f8LDs/m/2nhkrDtiAwAJ)
+        * Need a volunteer as [release lead](https://groups.google.com/g/jenkinsci-dev/c/qdoxWjfNhdc/m/lSKCUE5iAwAJ)
+    * Jenkins is the Way stories arriving on [www.jenkins.io](www.jenkins.io)
+        * See the pull request
+    * Spelling checks for [www.jenkins.io](www.jenkins.io)
+        * crate-ci/typos being used as a code aware spell checker
+            * Adapts to adoc, formatting, etc.
+* Press contact email alias - Gavin Mogan
+    * Gavin is one of the press contacts (and only active contributor)
+    * Would love to have more press contacts
+    * Consider switching from individuals to a google group that receives the email
+        * Gavin considering that the community site could also do it
+        * Press email should not be open by default (in case of sensitive topics)
+    * Need a more sustainable solution than individual email
+        * What’s the best location for the discussion to involve the right people?
+    * Request today will be handled by Gavin Mogan
+        * Four email messages in a year since his time as the Press Contact
+* [Require Java 11 or newer JEP](https://github.com/jenkinsci/jep/pull/382) - Mark Waite
+    * Review comments are arriving
+    * Much work to be done to review open issues related to Java 11
+    * See the [Jira epic](https://issues.jenkins.io/browse/JENKINS-67688)
+* Highlights from the mailing lists and [community forum](https://community.jenkins.io/)
+    * New post on the forum and a tweet from TestMo
+        * In the show-off group to highlight how to show test results
+    * IE 11 end of support was approved, implemented in weekly
+    * Many questions on the community site
+    * Google Summer of Code plans, office hours, etc. are in progress
+        * Application deadline is Feb 21
+        * Oleg has some project ideas to consider, may not be available
+        * Oleg unable to attend the GSoC office hours neither Asia nor Europe
+        * Oleg concerned that 4-5 project ideas are not enough to be accepted for Google Summer of Code
+            * Needs more mentors (most critical need currently)
+            * Needs more project ideas
+    * cdCon call for papers is open
+        * Proposal for an on-site contributor summit at cdCon
+            * Alyssa or others will lead the onsite contributor summit
+        * Oleg not certain he can get a visa to attend
+        * Mark plans to be on-site in Austin, TX for the conference
+    * Kubecon event possible, Oleg willing to help organize a co-located event
+* EasyCLA status report - Oleg Nenashev
+    * Ongoing
+
+## Jan 26, 2022
+
+Recording: [https://youtu.be/9zXQPMXSvNc](https://youtu.be/9zXQPMXSvNc)
+
+Participants: Mark Waite, Gavin Mogan, Ewelina Wilkosz, Oleg Nenashev
+
+Agenda:
+
+* News
+    * Jenkins Online Meetup with Ulli Hafner presented today
+        * Recording at [https://youtu.be/u3eCEw6l8t0](https://youtu.be/u3eCEw6l8t0)
+        * Over 50 attended
+    * Jenkins UI improvements - UX SIG
+        * Recording at [https://www.youtu.be/fnigHDZSIqQ](https://www.youtube.com/watch?v=fnigHDZSIqQ)
+    * Removed JRuby and Jython based plugins from update center Jan 22
+        * JEP-7 implemented
+* Linux platform support policy - Mark Waite
+    * See [mailing list discussion](https://groups.google.com/g/jenkinsci-dev/c/cYi4GyG7Il8/m/oQ2m0C3UAgAJ) and [draft pull request](https://github.com/jenkins-infra/jenkins.io/pull/4823)
+    * Would be great to have something documented
+        * Linux is more complicated because there are many
+            * Installers - deb, rpm, war
+            * Architectures - amd64, aarch64, ppc64le
+        * Gavin concerned that the word “support” may be misunderstood
+        * Windows support page is explicit
+            * No SLA
+        * Copy one of the disclaimers
+            * Keep the phrasing consistent
+* Dropping support for Internet Explorer 11 - Mark Waite
+    * See [mailing list discussion](https://groups.google.com/g/jenkinsci-dev/c/piANoeohdik) and [pull request](https://github.com/jenkins-infra/jenkins.io/pull/4827)
+    * Latest version of Jenkins not conducive to IE 11 users
+    * Be clear what we test or how to see what we test
+    * Core support is not a mandate for plugins
+    * Can be more aggressive, but not a practical change of behavior
+        * Drop it, announce the drop
+    * In the changelog but no blog post needed
+        * Entry in the upgrade guide for that LTS release
+* EasyCLA status report - Oleg Nenashev
+    * Met with LFX team to review rollout approach for Jenkins
+    * Concerned that we aren’t ready to rollout to 3000 repositories all at once
+    * We have EasyCLA deployed to the infra-cla repository
+        * Needs a documentation update
+    * Need an update to jenkins-infra
+        * Made the request to the .github repository, granted
+        * A “test drive” in that repository
+    * CLA not enforced on repositories and branches today
+        * Previous behavior continues
+    * If we want to enable EasyCLA, enable as a GitHub App
+        * Single CLA that can be individually enabled for specific repos
+    * EasyCLA covers the entire CDF organization
+    * We have it installed on jenkinsci and jenkins-infra organizations
+    * As desired, we enable it on one repo at a time
+    * Not importing the old CLA’s
+    * Individuals would need to submit a CLA or
+        * company could submit a company CLA
+* LFX Insights currently disabled for Jenkins project
+    * Submit a ticket to Linux Foundation if we want to enable it
+    * GitHub contributions, social media, etc. aggregated to show project health
+    * Metrics and analytics
+    * Oleg is enabling it for Keptn, willing to help enable it for Jenkins if desired
+* Highlights from the mailing lists and [community forum](https://community.jenkins.io/)
+    * LTS baseline [selected - 2.332](https://groups.google.com/g/jenkinsci-dev/c/Y54Ue_f8LDs/m/_vywNdCBAwAJ)
+    * 2.319.3 [release candidate](https://groups.google.com/g/jenkinsci-dev/c/YFynBK9_4zA/m/3VRiCZ6iAAAJ) ready to test
+    * Meeting minutes are well received on community site
+    * Contributor summit discussion started a week ago about cdCon
+        * Should we do it?
+        * Oleg would prefer to have two separate events rather than a hybrid event
+        * Oleg not sure if he’ll be able to attend cdCon
+        * Mark plans to attend cdCon in Austin
+    * Kubecon in Valencia
+        * There is a bar named “Jenkin’s”, could meet there if people attending
+
+## Jan 12, 2022
+
+Recording:
+
+Participants: Mark Waite, Gavin Mogan, Ewelina Wilkosz, Oleg Nenashev, Wadeck Follonier, Daniel Beck
+
+Agenda:
+
+* News
+    * [Jenkins 2.319.2 LTS](https://www.jenkins.io/changelog-stable/#v2.319.2) security released today
+        * Multiple challenges but completed the release as planned
+        * Unexpected weekly release, unexpected plugin releases
+        * Wadeck’s new role as security officer is functioning
+        * Thanks to Infra team and Damien Duportal for complications
+        * One core changes, not wide impact
+        * Many plugins reporting issues (10+ plugins)
+            * High vulnerabilities corrected
+        * Several plugins with issues not resolved
+        * Daniel the crucial mentor during the whole security release
+    * [Jenkins 2.330 weekly](https://www.jenkins.io/changelog/#v2.330) security released today
+    * Preview sites now available [www.jenkins.io](www.jenkins.io) pull requests
+        * Also for plugins.jenkins.io site changes
+    * Infra has had some ongoing issues with kubernetes plugin which thanks to tireless work from Infra team, has stabilized
+        * Same issues affected plugins site generation
+        * Same issues affected jenkins.io site generation
+        *
+* End of year blog post draft
+    * [Working copy](https://github.com/MarkEWaite/jenkins.io/commits/2022-happy-new-year) under development by Mark Waite
+    * Comments and suggestions welcomed on [mailing list](https://groups.google.com/g/jenkinsci-dev/c/9f0gmke1Z6o/m/QmklZeMVDQAJ)
+    * Outline and comments in Docs Office Hours notes
+* Administrative access - Oleg Nenashev
+    * Oleg is still listed as a manager for the CloudBees CLA at Linux Foundation
+        * Mark check with Linux Foundation on how to update CLA manager (not done yet)
+* Google Summer of Code
+    * Alyssa Tong and Jean-Marc Meessen leading the effort
+    * Advocacy and Outreach SIG discussing it
+* She Code Africa Contributhon
+    * Planning has started
+        * Discussions in Docs Office Hours
+        * Future discussions on community.jenkins.io
+    * Planned for April / May this year rather than March/April
+    * Typical hours of working
+        * Europe and eastern America
+* Jan 22, 2022 - removal of JRuby and Jython based plugins from update center
+    * Announced end of Dec 2021
+    * First implementation to deprecate in late December
+        * Deprecations happened in artifact ignores
+        * Warned but still distributing
+    * Pull request to update center, not merged until Jan 22, 2022 to remove them
+        * Will move to suspended on Jan 22, 2022
+* Inclusive naming initiative
+    * CDF not yet accepted to the initiative
+* Twitter account guidance discussed in the board mailing list
+    * Considering Twitter as code for better governance, better audit
+* Highlights from the mailing lists and community forum
+    * Java 8 end of life JEP needed - Mark Waite plans to write it
+        * June 2022 LTS or September 2022 LTS as possible releases
+            * [Oracle site](https://www.oracle.com/java/technologies/java-se-support-roadmap.html) says
+                * Oracle Premier Support until March 2022
+                * Oracle Extended Support until December 2030
+            * [Red Hat site](https://access.redhat.com/articles/1299013) says
+                * Support until May 2026
+        * Useful to decide if we want to adjust our usual process
+            * Should we continue supporting a Java 8 LTS line for more than the typical 3 months so that Java 8 users have more time to upgrade Java version?
+                * Daniel is not advocating for this, but it could be done
+                * Gavin also not in favor of the extended life case
+                    * Rare to update regularly
+            * JVM version number count statistics now show ~30% adoption
+    * UI modernization continues (thanks Jan Faracik and Tim Jacomb and Daniel!)
+        * Jenkins 2.330 includes many changes
+        * More to come, see the pull requests for the changes that are happening
+        * A regression fix is ready for the narrow configuration forms
+            * Feedback in the changelog have caused some users to choose to downgrade rather than use
+            * Arriving in 2.331
+        * Good to see announcements in community.jenkins.io
+            * More encouragement for people to review
+            * Post or two on the community site showing screenshots
+            * Allow those outside meetings to see the results of UI work
+    * Migrations to github
+        * Infra issue tracking is on [https://github.com/jenkins-infra/helpdesk/](https://github.com/jenkins-infra/helpdesk/)
+            * Issues migrated from the Jira issues
+            * GitHub issue forms with fields and drop-down
+            * Forms are being considered for other uses as well
+                * Thanks to Tim Jacomb and to Hervé La Meur
+            * Security issues cannot be tracked in GitHub
+                * No per issue tracking in GitHub, continue
+        * Hosting to [https://github.com/jenkins-infra/repository-permissions-updater](https://github.com/jenkins-infra/repository-permissions-updater)
+            * Users can retrigger the checks without requiring permission
+            * Easier to integrate, deploy, and use
+            * Have a few hosting requests to conclude from the old process
+
+## Dec 15, 2021
+
+Recording:
+
+Participants: Mark Waite, Gavin Mogan, Ewelina Wilkosz, Oleg Nenashev, Daniel Beck
+
+Agenda:
+
+* News
+    * Jenkins and Apache Log4j 2 zero day ([blog post](https://www.jenkins.io/blog/2021/12/10/log4j2-rce-CVE-2021-44228/) and [Jira epic](https://issues.jenkins.io/browse/JENKINS-67353))
+        * Audit log is likely used by enterprises, the only one that worries Oleg
+        * 6000 views of the CVE related posts on community.jenkins.io
+            * Encourage people to register for advisory email messages
+        * CVE Blog post as of Governance meeting has 71k views this week (8-14)
+            * Comparison :
+                * / has 77k
+                * /downloads has 30k
+                * /doc/book/pipeline/syntax/ has 26.5k
+                * /security/advisories/ has 25k
+    * Jenkins 2.325 released with new plugin manager UI
+    * Jenkins 2.326 will update from Groovy 2.4.12 to Groovy 2.4.21 ([PR](https://github.com/jenkinsci/jenkins/pull/5939))
+    * Jenkins 2.319.2 will be released on Jan 12, 2021 (seeking a [release lead](https://groups.google.com/g/jenkinsci-dev/c/h2D_Cz6RNU8/m/0xNxhJyKAAAJ))
+    * FOSDEM 2022 call for papers open for CI/CD DevRoom
+* Administrative access - Oleg Nenashev
+    * Herve’ asked for infra access to jenkins-infra org and security tracker
+        * Needs a signed CLA, following the existing process
+        * Oleg will enable EasyCLA for the repository
+    * Contributor license agreement expectations
+    * Oleg is still listed as a manager for the CloudBees CLA at Linux Foundation
+        * Mark check with Linux Foundation on how to update CLA manager
+    * Any role that requires special permissions should have a signed CLA
+        * Jenkins.io copy editor has special permissions
+* CD Events
+    * Accepted to the Continuous Delivery Foundation
+    * Cloud Events plugin may need updates to support the specification
+* Google Summer of Code
+    * Alyssa Tong and Jean-Marc Meessen want to lead the effort
+        * Oleg unavailable for Outreach and Advocacy Meeting
+        * Need to agree on time when we restore GSoC office hours
+            * Need multiple people helping with office hours
+    * Jenkins plans to operate independent of CDF
+        * Current consensus to operate as part of CDF
+        * Discussion and planning in the mailing list
+        * OK to use the community forum for discussions and planning
+    * Gavin noted a contributor in the Gitter channel that wants to mentor
+* Propose to cancel governance meeting Dec 29, 2021
+    * +1 from all 4 attendees
+    * Mark remove from the calendar
+* Application requests on GitHub to the jenkinsci organization
+    * Many requests for Codacy, GitHub Apps
+    * Damien Duportal reviewing infra requests
+    * Only the organization admins can handle those requests
+        * Mark check if he’s an organization administrator
+            * Mark is a member but not an org admin
+            * Mark is a collaborator on 1 repository in jenkinsci, 1 in jenkins-infra
+            * Mark is owner of [jenkins-docs GitHub organization](https://github.com/jenkins-docs)
+        * Handle the requests
+* Highlights from the mailing lists and community forum
+    * Meeting minutes and video on [community.jenkins.io](https://community.jenkins.io/t/governance-meeting-dec-01-2021/920)
+        * Also used for [infrastructure](https://community.jenkins.io/t/infrastructure-team-meeting-dec-14-2021/1021) and [Docs office hours](https://community.jenkins.io/t/documentation-office-hours-dec-13-2021/1018)
+    * Partial notifications to gitter channels
+        * Some rules configured to notify channels
+        * Questions appear in gitter jenkins/jenkins
+        * Advocacy questions appear in advocacy and outreach
+
+## Dec 1, 2021
+
+Recording: [https://youtu.be/WsJxok-4LJM](https://youtu.be/WsJxok-4LJM)
+
+Participants: Mark Waite, Gavin Mogan, Ullrich Hafner, Ewelina Wilkosz, Oleg Nenashev, Olivier Vernin
+
+Agenda:
+
+* News
+    * 2.319.1 LTS released ([changelog](https://www.jenkins.io/changelog-stable/#v2.319.1), [upgrade guide](https://www.jenkins.io/doc/upgrade-guide/2.319/#upgrading-to-jenkins-lts-2-319-1))
+        * Inclusive naming
+        * UI improvements in “Manage Jenkins”, build history, icons, and more
+        * Removed woodstox implementation and unsafe Ant classes
+    * 2.323 weekly released ([changelog](https://www.jenkins.io/changelog/#v2.323))
+        * Log recorders configured as code now
+        * Path to HTML elements use stable selectors (UI testing improvement)
+        * JEP-324 Customizable Jenkins header implemented
+* Election status report - Olivier Vernin
+    * Election has closed
+    * Results are now visible publicly through the same election link
+        * Board members - Mark Waite & Oleg Nenashev
+            * 81 registered voters
+            * 50+ voted
+        * Documentation officer - Mark Waite
+        * Security - Wadeck Follonier
+        * Infrastructure - Damien Duportal
+        * Events - Alyssa Tong
+        * Release - Tim Jacomb
+    * Organize a retrospective for improvements next election
+    * Discourse groups
+        * Election committee
+            * Gavin, Ewelina, Olivier
+            * Used for coordination and discussion
+        * Election voters
+            * Registration to vote
+        * If we use the same process next year, decide how to handle those groups
+            * Gavin supports a more formalized procedure
+            * Better to nominate someone to run the election earlier
+            * Continue with open process and open group
+        * Consider adding more people to the elections committee
+            * Two board members not up for election
+            * Would be nice to have others involved in the election
+            * Ewelina liked how the groups worked in Discourse very much
+                * Simple communication, easy delivery, limited visibility
+        * Oleg - most pressing question is how to enlist more voters in the election
+            * Broader representation from the community
+            * Recommendations for promotion methods, promotion locations
+        * Olivier was surprised at the types of contribution we would accept
+            * Many still asked if their contribution was sufficient
+            * Not relying on email was very nice
+            * Discourse much easier for communication
+            * Disappointments
+                * Could not directly invite people during the election
+                    * Had to validate their own email address on CIVS
+                * Invitations that did not arrive left it unclear which email they should use
+                    * People were wondering if they were registered
+        * Gavin recommends a retrospective as well
+            * May help us with LinkedIn login as another registration method
+            * Risk that voters may be able to register twice (GitHub, LinkedIn, etc.)
+        * Ewelina asked if there are big events where Jenkins will be present?
+            * FOSDEM
+            * DevOps World
+            * cdCon
+            * SCALE 19x
+            * Consider a QR code to link to voter registration - poster at
+            * Keep the voter group open, allow registration throughout the year
+            * Continue promoting more community use of Discourse
+            * Thanks to Olivier for leading the election committee
+        * Announce the results on Friday
+            * Blog post - who writes the post
+            * Gavin willing to write the blog post
+            * Some way of thanking the Condorcet maintainers?
+                * Professor Andrew Myers of Cornell
+                * Mark to connect to send him Jenkins swag
+* Highlights from the mailing lists and community forum
+    * User interface improvements continue from Jan Faracik, Tim Jacomb, Ulli Hafner, and others
+        * Lots of traffic on Jenkins core pull requests
+        * Mark to put UX SIG recording on community site
+    * Started linking Governance meeting notes to community site
+        * Continuing to do that
+        * “This month in Jenkins” that includes links to meeting notes, highlights, …
+            * SIG leaders contribute content to the location
+            * Highlight events
+        * Several SIGs that are inactive
+            * Cloud Native SIG
+            * Pipeline Authoring SIG
+    * Discourse color scheme improved for easier reading
+    * Java 8 end of life ideas under discussion
+        * Recently raised to the Platform SIG
+        * Ideas and alternatives under discussion
+        * Discuss what we want it to be more than what is currently running
+* CD Events - Oleg Nenashev
+    * CD Events accepted as an incubating project in CDF
+        * Specification for CI / CD event communication (based on Cloud Events)
+        * An eventing specification for build success, failure, etc.
+    * GSoC project in Jenkins GSoC 2021
+    * Student implementation of initial specification
+    * CD Events specification has changed since the initial implementation
+        * Will need to update the plugin to conform to current specification
+        * Can be very interesting to Keptn (Oleg’s open source project at work)
+    * Other entities that have declared their intent to adopt CD Events
+        * Companies are welcome to join
+    * Contact the CD Events SIG at CDF to assist
+        * Governance is implementing project governance
+        * Join the SIG meeting and their work streams
+* Google Summer of Code - Oleg Nenashev
+    * Expected to happen
+    * Application deadline in early Feb 2022
+    * Should Jenkins participate, who will lead it
+    * Not clear if Oleg is available to be an org admin with CDF projects
+    * Mark would like to apply and has someone in mind that may be able to lead
+    * GSoC money routing from CDF to the Jenkins Linux Foundation
+        * Mark to submit request to transfer funds from CDF to the Jenkins LFX Crowdfunding account
+* CI/CD DevRoom has been accepted at FOSDEM 2022 (online)
+    * Good to have talks at that session
+    * DevRooms not yet officially announced
+    * Deadline for CFP is coming soon
+    * End of December was the deadline for last year
+        * Not much time to announce and promote
+    * Jenkins stand at the conference?
+        * Low attendance at the stand last year
+        * Virtual booth not as interesting
+        * Default answer - no
+    * Consider a contributor summit at roughly the same time
+
+## Nov 17, 2021
+
+Recording: [https://youtu.be/Xay-0hat6Qcv](https://youtu.be/Xay-0hat6Qcv)
+
+Participants: Mark Waite, Gavin Mogan, Ewelina Wilkosz, Oleg Nenashev
+
+Agenda:
+
+* News
+    * [Jenkins 2.321](https://www.jenkins.io/changelog/#v2.321) has released
+        * User experience improvements
+            * Table layout
+            * Plugin manager layout
+        * Regression fixes
+    * Jenkins 2.319.1 release candidate has arrived
+        * More than usual [backports](https://github.com/jenkinsci/jenkins/pull/5920) - needs deep testing
+            * Inclusive naming changes (“master” -> “built-in”)
+            * Some user experience improvements
+                * Build history widget and more
+        * Cathy Chan is release lead
+            * See the [release checklist](https://github.com/jenkins-infra/release/issues/191) for details
+    * Jenkins infrastructure costs reducing, likely within budget
+        * See details in [infra team meeting notes](https://hackmd.io/hkFsi5UOTw6LgwIF9qWWWQ?view)
+* Election status report - Gavin
+    * Ongoing
+    * 81 registered voters
+    * Roughly 50% of voters have cast their votes
+        * Two weeks remaining in voting
+        * Need to remind people to vote, email activation needs steps
+        * Worth discussion with Olivier to encourage voting
+    * 2 Board positions up for vote
+    * Documentation officer up for vote
+* Repository ownership and Linux Foundation administration GitHub account
+    * owner of project repositories and organizations?
+    * Abstract request from Linux Foundation with goal to preserve access even if current maintainers became unavailable
+        * Good safeguard for significant projects
+        * Needs review with security team and infrastructure team
+        * How many users have access to the Linux Foundation account
+    * Question raised to Tracy Miranda
+        * Needs further discussion and implementation details
+    * Once we have the guidelines, conversation required
+* Highlights from the mailing lists and community forum
+    * EasyCLA status and [docs triage team membership additions](https://groups.google.com/g/jenkinsci-dev/c/pLpIi7e9pMU/m/Yil_qJxfAAAJ)
+        * Mark plans to add the proposed people to triage team
+        * EasyCLA will be enabled for one repository
+    * [End of life plan for Java 8](https://groups.google.com/g/jenkinsci-dev/c/YghQ0YP4m78/m/LO9AFa_GAgAJ) in Jenkins
+        * Jetty 9.4.x will be end of life in the next 1-2 years
+        * Jetty 10 and Jetty 11 do not support Java 8
+        * Questions
+            * Explicitly deprecate Java 8 with some grace period?
+            * Allow plugin maintainers to deliver plugins that require Java 11?
+        * Alternatives under discussion in the mailing list
+        * Roadmap addition would be managed through the governance board
+    * [Managing GitHub access](https://community.jenkins.io/t/codify-github-access/799) through repository permissions updater
+        * Prototyping is in progress
+        * Can read all teams and members in less than 60 seconds
+            * Manages teams without managing individual contributors
+            * No intent to delete members, add members
+        * Need to define a format
+            * RPU was designed for one purpose
+            * This is using it for a different, related purpose
+        * Need to detect new users
+        * Research is progressing
+    * FOSDEM is virtual in 2022, dates set, CI/CD DevRoom planned
+
+## Nov 3, 2021
+
+Recording:
+
+Participants: Mark Waite, Gavin Mogan, Ullrich Hafner, Ewelina Wilkosz, Oleg Nenashev
+
+Agenda:
+
+* News
+    * Security release tomorrow - 2.319 and 2.303.3
+    * Next LTS baseline selected - 2.319
+    * Guava update has merged, will be in 2.320
+    * [Hacktoberfest summary blog](https://www.jenkins.io/blog/2021/10/31/hacktoberfest-results-2021/) posted
+    * Static HTML wiki.jenkins.io is online
+        * Docker image with redirects through nginx
+        * Content can be edited from GitHub repo
+* Elections status report
+    * 74 [registered voters](https://community.jenkins.io/g/election-voter)
+    * Nominations have closed
+    * Registration ends Nov 7, 2021
+    * Candidates have been contacted
+        * Messages to the elections committee
+        * Olivier reports we have
+            * 3 candidates for the 2 board positions
+                * Additional 1 not yet replied
+            * One officer position up for vote
+            * Statements from most candidates have been received
+        * Email send is prepared, email addresses gathered from Discourse
+    * Next step from Olivier
+        * Prepare email message to send on Monday, Nov 8, 2021
+        * Ballots sent early next week from Condorcet Internet Voting Service
+* Mailing list topics that don’t need Board involvement
+    * 1Password proposal from Oleg
+    * Plugin adoptions increasing as new contributors assist
+    * Proposed docs triage team members - will add them
+    * Jenkins ATH is green, passing!
+    * Company team assignments of plugin ownership
+    * Job board under discussion
+    * Web site conversion to Gatsby ongoing
+        * Data repairs continue in order to make the site work in Gatsby
+    * Full search available on web site - Thanks to Algolia
+    * Forums highlights as well, helps the board know the pulse of the community
+* CDF has applied to Inclusive Naming Initiative
+    * Waiting for the request to be approved at Linux Foundation, Jenkins will be listed
+    * CDF TOC member is also on the CDF Governing Board - our voice on budget
+    * Anders Wahlgren the CloudBees representative to the CDF Governing Board
+
+## October 20, 2021
+
+Recording: [https://youtu.be/iwA7e0RpFe4](https://youtu.be/iwA7e0RpFe4)
+
+Participants: Mark Waite, Gavin Mogan, Ulli Hafner, Marky Jackson, Oleg Nenashev, Olivier Vernin
+
+* Jenkins 2.303.3-rc ready for testing
+* Elections status report - Olivier Vernin
+    * 53 voters registered (compared to 92 voters registered last year)
+        * Need to promote more widely
+        * More mailing, more tweets, more announcements
+        * Clarify the eligibility requirements - trust any submitter this year
+    * Announcement email sent to Jenkins plugin maintainers yesterday
+    * Social media postings to start soon
+    * Mark Waite to propose a blog post based on email sent to maintainers
+    * Other election announcements
+        * LinkedIn
+        * Reddit
+        * Ask CDF to assist with marketing
+    * Also seeking additional board member and officer nominations
+        * Deadline Oct 31, several candidates for most positions
+        * Encourage more to be nominated
+        * Candidates submitted to Jenkins board Oct 31
+    * Board members should sign-off on candidates for officers and board
+    * Olivier will contact the nominees to confirm willingness
+        * Ewelina confident she can sign-off within 24 hours of final
+        * Board approval of candidates is sufficient (just say “yes”)
+        * If a candidate is completely unacceptable, can reject their candidacy
+        * Never rejected a candidate in the past
+        * No risk seen in the current list of candidates for any of the roles
+        * https://community.jenkins.io/t/notes-from-today/487/2
+    * Candidate list is available from Gavin Mogan, he’ll share it with those allowed
+    * Security officer candidates really need experience in Jenkins security team
+    * Events officer, if no nominations, then try to promote more widely for nominees
+    * Next date
+        * Oct 31: Nomination Deadline
+        * Nov 07: Candidates announced, Registration deadline, voting start
+        * Nov 30: Voting deadline
+* Jenkins user mailing list moderation question - Mark Waite
+    * Announcement of Jenkins based products on the mailing list?
+    * General consensus - proposed commercial post does not violate any rules. If there is abuse in the future, Jenkins community can consider additional rules
+        * +1 Gavin, +1 Ewelina, +1 Ulli, +1 Oleg
+        * Non-binding - +1 Mark, +1 Marky, +1 Olivier
+* Hacktoberfest progress report - Mark
+    * 9 of 40 plugins for docs migration to GitHub in progress or done
+    * French localization pull requests to Jenkins core
+    * Needs more data gathered
+    * Needs more promotion
+    * 1 new plugin maintainers
+* INI membership update (Oleg)
+    * CDF TOC approved application to Inclusive Naming Initiative
+    * Submitted the application, approvals from community leaders
+    * Official membership request through enrollment LFX tool is next
+        * Hit an issue that only Tracy Miranda was allowed
+        * Form strongly requires a company email address (non gmail, etc.)
+        * Some delay once the request is submitted, Jenkins one of the projects
+* CDF TOC updates (Oleg)
+    * Roadmap draft: [https://github.com/cdfoundation/toc/projects/7](https://github.com/cdfoundation/toc/projects/7)
+    * CD Events will proceed as a member project. CloudEvents plugin will need some alignment
+        * New project joining CDF, an extension of CloudEvents
+        * Standard for events submitted by CI/CD systems
+        * Keptn, Ericsson, IBM, others involved
+        * CloudEvents plugin will likely need adjustments to align with standard
+* Google Workspace for Jenkins? (Oleg)
+    * Google Drive, email and so on
+    * Google Gsuite available for contributors
+    * Issues with the current state
+        * Many google docs scattered across many different accounts
+        * No community control of the documents, relies on personal accounts
+    * Are we interested in exploring a sponsored Google Workspace?
+        * Gavin observes that it works, but hesitates to add another initiative
+        * Would be nice to have a “[press@jenkins.io](mailto:press@jenkins.io)” account
+            * Could also host those addresses at CDF or Linux Foundation
+        * Appealing attributes of an account
+    * Seek alternatives within the Linux Foundation?
+    * In favor of something, reluctant to launch the initiative now
+* Open Source Design engagement - revisited
+    * [https://opensourcedesign.net/](https://opensourcedesign.net/)
+    * Oleg joined an open source design usability webinar, discussed UX SIG, etc.
+    * Topic may be brought to the UX SIG in coming weeks
+* Next meeting Nov 3, 2021 at one hour earlier than current time (9:00 PM UTC)
+    * Mark adjusted calendar entry
+
+## October 6, 2021
+
+Recording: [https://youtu.be/leRqzno9d2s](https://youtu.be/leRqzno9d2s)
+
+Participants: Mark Waite, Gavin Mogan, Ulli Hafner, Oleg Nenashev
+
+* Jenkins release 2.303.2: in progress, likewise for 2.315
+    * Security release
+    * Installed on ci.jenkins.io, visible in Docker images, installable from deb repository, war file is available for download
+* Elections: Announcements sent
+    * Already received some nominations
+    * Olivier discussed sending an email announcement to last year’s voters
+        * Mailing list post to users, developers, and voters from last year
+        * Promote more actively
+        * May share names of nominees earlier to generate interest
+    * Election committee needs to confirm we have officer nominees for all officer roles
+        * If we have an officer role that has no nominee, recruit someone for role
+        * Refer to last year’s email template to confirm current officers are running again
+            * Gavin will review nominations tomorrow, committee to contact
+            * Oleg will share access to templates with Ewelina and Gavin
+                * [https://docs.google.com/document/d/1xdsfW4GTSfIl6hyLKGql2nGfau3dz0cVyuMa27Xb44k/edit?usp=sharing](https://docs.google.com/document/d/1xdsfW4GTSfIl6hyLKGql2nGfau3dz0cVyuMa27Xb44k/edit?usp=sharing)
+    * 24 people signed up to vote so far
+        * Only half of the board is signed up to vote
+* Jenkins contributor summit on Oct 09
+    * [https://www.meetup.com/Jenkins-online-meetup/events/281089570/](https://www.meetup.com/Jenkins-online-meetup/events/281089570/)
+    * Confirmed that it will happen
+    * Fewer proposals for unconference sessions
+        * Oleg will attend, leading the sessions
+        * Mark will attend, proposed unconference session for docs
+    * Project updates
+        * Keep these intentionally brief
+        * Mark present Docs and Platform
+    * Focus on end user panel presentations
+    * Roadmap updates needed on [www.jenkins.io](www.jenkins.io) roadmap page
+        * Special interest groups preferred to be the ones that update roadmap
+* Proposal to move meeting one hour later: \
+[https://community.jenkins.io/t/change-time-of-jenkins-governance-meeting-to-8-utc/437](https://community.jenkins.io/t/change-time-of-jenkins-governance-meeting-to-8-utc/437?u=uhafner)
+    * 8 PM UTC until the change of clocks in Europe for standard time
+    * 9 PM UTC after the change of clocks in Europe for standard time
+        * Hold time constant in local time for participants
+* Proposed by Tim Jacomb - Mark Waite as a JEP editor
+    * Mailing list discussion has started
+        * Specific topics - Docker, Guava upgrade, Ruby runtime deprecation
+            * Ongoing discussions might be easier to track in dev mailing list
+        * Consider adding all officers and board members as JEP editors
+            * Should we wait until Dec 3 to add newly elected officers & board?
+    * JEP process change (JEP-1) proposed - Oleg check status, next meeting
+        * Reviewed in May or June
+    * Does that need governance board approval?
+        * No, once mailing list discussion is finished, may proceed
+* CDF TOC update - Oleg N
+    * Pending topics on the roadmap for Jenkins
+    * Inclusive naming initiative joining agreed
+        * Asked that Jenkins be affiliated
+        * Considering marketing participation in October / November
+        * Asked for an interview, Alex Earl willing
+    * Jenkins Kubernetes Operator proposed as CDF project
+        * TOC reviewed, did not see benefit to separate project under CDF instead of remaining under the Jenkins project
+        * Not immediately clear of separation between proposed project & Jenkins
+    * Tekton preparing for graduated status
+        * Scheduling an external security audit
+        * Jenkins skipped the external security audit in our graduated status
+            * Discuss external security audit after election
+    * Infrastructure discussions in progress
+        * CDF governing board wants to reduce infra costs for CDF projects
+            * Seek additional sponsors
+        * Jenkins AWS account transfer not yet started
+* Hacktoberfest going well
+    * Channel very active on gitter
+    * Lots of docs work in progress
+    * DigitalOcean discord channel available for more help
+    * Further promotion of Hacktoberfest needed, highlight events
+* Day of Jenkins Japan in December
+    * Opportunities for Japanese speakers to present
+
+## September 22, 2021
+
+Recording: not recorded, since we had no topics on the agenda
+
+Participants: Gavin Mogan, Ewelina Wilkosz, Ulli Hafner
+
+* Jenkins release 2.303.2: in progress
+* Elections: Announcements sent
+    * Already received some nominations
+    * 17 people signed up to vote so far
+* Proposal to move meeting one hour later: \
+[https://community.jenkins.io/t/change-time-of-jenkins-governance-meeting-to-8-utc/437](https://community.jenkins.io/t/change-time-of-jenkins-governance-meeting-to-8-utc/437?u=uhafner)
+
+## September 8, 2021
+
+Zoom link: [https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09](https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09)
+
+Mailing list announcement: [here](https://groups.google.com/g/jenkinsci-dev/c/def0hzTa-z4/m/EbDA946pAgAJ)
+
+Recording: [https://youtu.be/JgWQZVKP6f8](https://youtu.be/JgWQZVKP6f8)
+
+Participants: Gavin Mogan, Ewelina Wilkosz, Olivier Vernin, Mark Waite
+
+* News
+    * [Jenkins project Confluence instance attacked](https://www.jenkins.io/blog/2021/09/04/wiki-attacked/) - Sep 4, 2021
+        * Releases were blocked Sep 4-7, 2021 for investigation
+        * All user passwords on [www.jenkins.io](www.jenkins.io) reset
+            * Users recover passwords with “Forgot my password”
+        * Investigation continues but releases are now allowed
+            * Continuous delivery releases (JEP-229) not yet working
+        * Confluence will never come back
+            * Olivier investigating options to retain the information without running a Confluence server
+                * Backup of the pages is available
+            * Some migration experiments have started
+                * Tried exporting to HTML files, have them on a machine
+                * Rendering is not as nice as Confluence
+                * URL’s are not the same as wiki.jenkins.io (include number)
+                * Evaluate Confluence cloud, no link to Jenkins LDAP
+            * Gavin proposed to start on an isolated VM, have it processed by the wiki-exporter, then save it as an ADOC site in GitHub
+                * Gavin is interested in the migration, willing to experiment
+                * Action: Olivier and Gavin experiment, propose solution(s)
+    * [Jenkins 2.303.2 delayed two weeks](https://groups.google.com/g/jenkinsci-dev/c/kdLE4x-HBSw/m/obp30TQ0CgAJ)
+        * Agreed with release officer, security officer, and other contributors
+        * 2.303.2 will include security fixes
+    * Jenkins 2.310 (current weekly) skipped due to Confluence instance issue
+        * Jenkins 2.311 next week, may be this week depending on Olivier
+        * Still have the 2.310 container, may be able to finish the release
+            * Olivier has done manual releases previously
+        * Gavin and Ewelina not concerned if we burn 2.310, approved from both
+* Hosting Status - Gavin Mogan
+    * Gavin leading hosting efforts
+        * Would benefit to have more help to spread the load
+        * Tim assisting with the repository-permissions-updater reviews
+        * Hosting request for one plugin that wants to reject
+            * Wants a Java applet and a new TCP port to the Jenkins controller
+            * Feel unsafe and/or insecure
+        * Tooling for security scans is available
+        * Would like to eventually move hosting and GitHub access as pull requests
+            * Jira ticket starts the request
+            * Currently r-p-u is the only repo tracking (partial) hosting requests
+            * Better to have a repository that has pull requests to implement
+    * Status report, concerns, issues
+* Elections - Olivier Vernin
+    * [Proposal](https://community.jenkins.io/t/jenkins-election-2021-proposal/377) posted last week including timeline
+    * Key attributes of the proposal
+        * Register to vote by joining [election-voter group](https://community.jenkins.io/g/election-voter) on community.jenkins.io
+        * Elections committee may remove an unqualified voter from the group
+        * Nominations sent to [election-committee group](https://community.jenkins.io/g/election-committee) on community.jenkins.io
+        * Nominations in September, open for one month
+        * Voter registration in September, open for one month
+        * Ballots sent through Condorcet in Oct / Nov
+    * Needs a blog post announcement, may need a 1 week delay to the timeline
+        * Now easier to enable commenting from jenkins.io blog
+            * Discourse: true enables community.jenkins.io comments
+    * Approvals
+        * +1 from Gavin
+        * +1 from Mark
+        * +1 from Ewelina
+        * +1 from Olivier
+* Commercial Support Lists - Gavin Mogan
+    * Wants a way to easily connect users to commercial companies
+        * Page on jenkins.io managed by pull request
+        * Community pages
+        * Are there companies that want to be listed (ask existing wiki list)
+            * Define rules or processes to remove entries
+* Postpone - Proposal to move meeting one hour later - Oleg Nenashev
+
+## August 25, 2021
+
+Zoom link: [https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09](https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09)
+
+Mailing list announcement:
+
+Recording: [https://youtu.be/nJha0fJUcwsb](https://youtu.be/nJha0fJUcwsb)
+
+Participants: Gavin Mogan, Ewelina Wilkosz, Olivier Vernin
+
+* News
+    * Jenkins 2.308 released
+        * [https://www.jenkins.io/changelog/#v2.308](https://www.jenkins.io/changelog/#v2.308)
+* Hosting Lead
+    * Gavin to take over? Unless anyone else volunteers before the end of the week Gavin will take over.
+* Ewelina - Election
+    * Olivier has started collected information from the last elections
+    * Will share information - [https://hackmd.io/7iiQNIIQTVCyvsjJRZGHRg](https://hackmd.io/7iiQNIIQTVCyvsjJRZGHRg)
+* Postpone - Commercial Support Lists
+
+## August 11, 2021
+
+Zoom link: [https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09](https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09)
+
+Mailing list announcement:
+
+Recording: [https://youtu.be/zw0ZKuhrnuQ](https://youtu.be/zw0ZKuhrnuQ)
+
+Participants: Mark Waite, Gavin Mogan, Ullrich Hafner, Randall Becker
+
+* News
+    * Jenkins 2.306 released
+        * Noteworthy change - rpm packaging now requires daemonize package from epel repository (more consistent)
+    * Jenkins 2.302.1 the next LTS (Aug 25, 2021)
+        * Elections coming in December
+        * All officers up for election
+        * Two board members up for election (Oleg & Ulli)
+    * Contributor Summit (June)
+        * Summaries and action items will be on [https://community.jenkins.io](https://community.jenkins.io)
+            * Mark post Contributor Summit summaries, roadmap updates, & action items
+* DevOps World on the [www.jenkins.io](www.jenkins.io) Jumbotron - [PR-4489](https://github.com/jenkins-infra/jenkins.io/pull/4468)
+    * Request for approval - no negative votes, two positive votes - approved
+* Discourse has been added as a sponsor
+    * Need to add other new sponsors - Mark to add and submit PR
+        * Digital Ocean
+        * Oracle
+        * Scaleway
+* Gavin drafting more discourse changes, updates to FAQ, draft email to continue discourse
+    * Is there interest in continuing to use community.jenkins.io?
+* JFrog is investigating some of the copy artifact performance, planning an upgrade of our repository instance
+    * Waiting for Olivier Vernin to return before upgrade
+* Links to status.jenkins.io from [www.jenkins.io](www.jenkins.io)
+    * User impacting announcements location
+    * We’ve used blog posts to announce outages
+    * Use the scheduled outage capability in status.jenkins.io
+* Do we need a different time slot for this meeting?
+    * Not for now, reconsider the question in September
+
+## July 28, 2021
+
+Zoom link: [https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09](https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09)
+
+Mailing list announcement:
+
+Recording: [https://youtu.be/sD_oyglsxt0](https://youtu.be/sD_oyglsxt0)
+
+Participants: Mark Waite, Ullrich Hafner, Gavin Mogan, Ewelina Wilkosz, Randall Becker
+
+* News
+    * Jenkins 2.289.3 released - July 28, 2021
+        * Docker images delayed
+    * Jenkins 2.302.1 the next LTS (Aug 25, 2021)
+    * Google Summer of Code
+        * All projects successfully completed phase 1, shared results in a webinar
+    * Elections coming in December
+        * All officers up for election
+        * Two board members (Oleg & Ulli)
+        * Need someone to run the election (would prefer someone that is not being elected)
+            * Need to learn more about what it means to run the election
+            * Olivier Vernin has details of the election process and past years
+            * Checklist exists in the retrospective notes
+    * Contributor Summit (June)
+        * Summaries and action items will be on [https://community.jenkins.io](https://community.jenkins.io)
+            * Mark post Contributor Summit summaries, roadmap updates, & action items
+* Press contacts update - Gavin
+    * [PR-4471 merged](https://github.com/jenkins-infra/jenkins.io/pull/4471), open questions remain for press contacts in CIS, China, EU
+    * Gavin is listed as North America press contact to replace Tyler Croy
+    * Trademark section updated
+    * Question do we actually want / need a press contact page
+    * All quiet so far
+* Discourse evaluation status - all
+    * Progressing well
+    * Users that have adopted it are finding it helpful
+    * Discussions are helpful but we need more traffic to make it more helpful
+    * Used in more blog posts (see most recent GSoC blog posts)
+    * FAQ
+        * How to create descriptions
+        * Where to post
+        * Etc.
+* LFX security v2 adoption project - Mark Waite
+    * Olivier Vernin working with Jenkins infra project ([mailing list](https://groups.google.com/g/jenkins-infra/c/6n6bEctoyBQ/m/SgkigOpCAAAJ))
+    * Oleg Nenashev leading the plugins and core source code
+* Ratings for releases - Gavin Mogan
+    * See discussion in [community.jenkins.io](https://community.jenkins.io/t/community-reported-issues/179/6)
+    * Discussion continues but no solution has been implemented
+* Digital Ocean sponsorship - Gavin Mogan
+    * Olivier announced $2500+ donation from Digital Ocean to Jenkins
+    * Considering using some ci.jenkins.io agents
+    * Considering using as a mirror source (unclear if budget will survive)
+    * Digital Ocean may have mirrors infra (like we use at xmission.com)
+
+## July 14, 2021
+
+Zoom link: [https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09](https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09)
+
+Mailing list announcement: [here](https://groups.google.com/g/jenkinsci-dev/c/GxBxCe6i-Zg/m/MvP1Mj40AQAJ)
+
+Recording:
+
+Participants: Mark Waite, Ullrich Hafner, Gavin Mogan
+
+* News
+    * Jenkins 2.289.3 coming in two weeks - July 28, 2021
+        * release lead ([imonteroperez](https://github.com/imonteroperez))
+        * [release checklist](https://github.com/jenkins-infra/release/issues/171) in progress
+    * Jenkins next LTS baseline selection
+        * Needs discussion in the mailing list today
+        * [2.300](https://www.jenkins.io/changelog/#v2.300), [2.301](https://www.jenkins.io/changelog/#v2.301), and [2.302](https://www.jenkins.io/changelog/#v2.302) are candidates as LTS release baseline
+            * The 2.300 release is still in the unexpected location
+    * Google Summer of Code
+        * Phase 1 mentor and student evaluations due July 16
+        * CDF webinar week of July 19 presenting phase 1 results
+            * Kara de la Marck coordinating
+            * 5 Jenkins projects in GSoC plus 1 project from Spinnaker
+    * Contributor Summit
+        * Summaries and action items will be on [https://community.jenkins.io](https://community.jenkins.io)
+            * Mark post Contributor Summit summaries, roadmap updates, & action items
+* Spokesperson for the Jenkins board - Gavin
+    * For press releases, interviews, chat, other public interactions
+    * Asked by Alyssa Tong \
+In the past, KK and then Tyler Croy and then Tracy Miranda were the Jenkins spokesperson for press releases/interviews. In the event we have a press oppty may I ask who could fill this role as Jenkins spokesperson?
+        * Board members have not yet replied
+        * Could have Gavin do it if needed, but not strong desire
+            * Willing to do it if needed
+            * Low frequency event, not much more than twice a year
+            * **Gavin willing to act as spokesperson**
+                * +1 - Mark, Ulli, Gavin
+            * Release team members are welcome to join as well
+        * Most of the questions are related to Jenkins core development
+            * Worth asking the developer list for suggestions?
+        * Gavin has lots of experience with supporting many different users
+    * Opportunity to be interviewed by DevOps Radio may be available
+        * Gavin willing
+        * Mark willing
+        * Ulli willing but is mostly focused on plugins and experience improvement
+* Discourse evaluation status - all
+    * Olivier Vernin inputs and insights desired
+    * Gavin drafting another email to the mailing list seeking additional content
+        * May have too many of some categories, not enough of others
+        * Still in the creation and negotiation phase of categories
+            * Considering an “off-topic” category to encourage topics
+        * Continue promoting and discussing
+            * Nice to have thread of discussion in a single location
+    * Ulli would like more notification of new posts
+        * Requires explicit visits to the site to detect new content from desktop \
+
+<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+![alt_text](images/image2.png "image_tooltip")
+
+    * Spam detected this week and suppressed automatically
+    * [https://community.jenkins.io/](https://community.jenkins.io/)
+* LFX security v2 adoption project - Mark Waite
+    * Olivier Vernin working with Jenkins infra project ([mailing list](https://groups.google.com/g/jenkins-infra/c/6n6bEctoyBQ/m/SgkigOpCAAAJ))
+        * Provided several sample repositories to be scanned
+        * Intentionally selected different technology stacks
+    * Discussions continuing with Snyk and Linux Foundation for their v2 work to better support
+        * Understand the dependencies inside a plugin hpi/jpi file
+* Ratings for releases - Gavin Mogan
+    * See discussion in [community.jenkins.io](https://community.jenkins.io/t/community-reported-issues/179/6)
+    * Design or implementation might be a good first project for a contributor
+        * Not a good first project to do both design and implementation
+    * Could be an addition to the roadmap if someone wants to implement it
+* Oleg notes that he will be out longer, at least through end of July
+* Few people in the meeting today
+    * Summer schedule
+    * Meeting time
+        * This time works well for Gavin, Ulli, and Mark
+        * Not much earlier than an hour before current time
+
+## June 30, 2021
+
+Zoom link: [https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09](https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09)
+
+Mailing list announcement: [https://groups.google.com/g/jenkinsci-dev/c/sjRKM8k1kU0/m/kEk_9VVyAgAJ](https://groups.google.com/g/jenkinsci-dev/c/sjRKM8k1kU0/m/kEk_9VVyAgAJ)
+
+Recording: [https://youtu.be/3f7TzcmTQHg](https://youtu.be/3f7TzcmTQHg)
+
+Participants: Mark Waite, Ullrich Hafner, Daniel Beck
+
+* News
+    * Jenkins 2.289.2 and Jenkins 2.300 security releases delivered today
+        * See [https://www.jenkins.io/security/advisory/2021-06-30/](https://www.jenkins.io/security/advisory/2021-06-30/)
+        * See developer list for [details of temporary repository workaround](https://groups.google.com/g/jenkinsci-dev/c/4sgBC1crUJw/m/jrRxMKhKAAAJ)
+    * Contributor summit
+        * Recordings posted to playlist [https://www.youtube.com/playlist?list=PLN7ajX_VdyaOFDu12AczeS7u-2wWThEtg](https://www.youtube.com/playlist?list=PLN7ajX_VdyaOFDu12AczeS7u-2wWThEtg)
+        * Summaries and action items will be on [https://community.jenkins.io](https://community.jenkins.io)
+            * Mark post Contributor Summit summaries, & action items
+    * Google Summer of Code
+        * CDF Webinar proposed week of July 19
+        * Highlight phase 1 results
+    * Oleg takes a break in the Jenkins community
+        * CDF TOC Representation and GSoC org mentorship will continue
+* Jenkins funding updates - status report
+    * [https://groups.google.com/g/jenkinsci-dev/c/iLutO2X0bdg](https://groups.google.com/g/jenkinsci-dev/c/iLutO2X0bdg)
+    * Moving out of the SPI may be delayed
+* Plugin End-of-Life Policy
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/9M2B6ZTKjI0](https://groups.google.com/u/1/g/jenkinsci-dev/c/9M2B6ZTKjI0)
+    * Contributor Track session  \
+[https://docs.google.com/document/d/1l6i_Owo4L4lfctlYUWij1-Gebtd4mvMZ_jDmuum8TE4/edit#heading=h.2db2435rp3w](https://docs.google.com/document/d/1l6i_Owo4L4lfctlYUWij1-Gebtd4mvMZ_jDmuum8TE4/edit#heading=h.2db2435rp3w)
+    * Discussions continue in developer mailing list
+* Discourse evaluation status
+    * [https://community.jenkins.io/](https://community.jenkins.io/)
+
+## June 16, 2021
+
+Zoom link: [https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09](https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09)
+
+Mailing list announcement: [https://groups.google.com/g/jenkinsci-dev/c/7jFbuReTH8o/m/7i_uKo8lAwAJ](https://groups.google.com/g/jenkinsci-dev/c/7jFbuReTH8o/m/7i_uKo8lAwAJ)
+
+Recording: https://youtu.be/e3xlexIVUEg
+
+Participants: Mark Waite, Gavin Mogan, Ullrich Hafner, Olivier Vernin
+
+* News
+    * Contributor Summit June 25, 2021 - 9:00 AM Eastern (US) time
+        * Olivier Vernin leading agenda topics and coordination
+    * Jenkins 2.289.2 planned for June 30, 2021
+        * See the [backporting PR](https://github.com/jenkinsci/jenkins/pull/5573), [release checklist](https://github.com/jenkins-infra/release/issues/166), and [RC build](https://github.com/jenkinsci/jenkins/releases/tag/jenkins-2.289.2-rc)
+    * Communications updates
+        * Libera chat adoption
+            * [https://groups.google.com/g/jenkinsci-dev/c/pEcun5ZSfgo](https://groups.google.com/g/jenkinsci-dev/c/pEcun5ZSfgo)
+            * Jenkins.io docs updated, have not yet announced by blog
+                * Mark Waite [blog the change](https://www.jenkins.io/blog/2021/06/17/libera-chat/), note that we also have gitter and Discourse
+                * Announced on Twitter already, OK to announce LinkedIn
+        * Discourse PoC: community.jenkins.io
+            * [https://community.jenkins.io/](https://community.jenkins.io/)
+    * Increased availability of Mark Waite
+* Contributor Summit - Olivier Vernin
+    * +1 for schedule as proposed
+    * Proposed topics for contributor track
+        * Plugin end of life policy
+        * Guava update
+        * Outreach programs
+        * Java 8, Java 11, Java 17
+    * See the [Invitation email draft](https://docs.google.com/document/d/1XkJ0n528laSubFLcK-mNcfm_RK9OVzVDkT6XJZ_1bps/edit#heading=h.hyl7u6w0mxus)
+    * Open question on how to handle swag for participants
+* Deprecating ruby-runtime - next steps
+    * [https://groups.google.com/g/jenkinsci-dev/c/Ve0fqAud3Mk/m/l6qseLthAQAJ](https://groups.google.com/g/jenkinsci-dev/c/Ve0fqAud3Mk/m/l6qseLthAQAJ)
+    * Daniel to review
+* Jenkins funding updates - status report
+    * [https://groups.google.com/g/jenkinsci-dev/c/iLutO2X0bdg](https://groups.google.com/g/jenkinsci-dev/c/iLutO2X0bdg)
+    * Moving out of the SPI - ASAP
+    * Gavin and Ewelina got access to the system
+* Plugin End-of-Life Policy
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/9M2B6ZTKjI0](https://groups.google.com/u/1/g/jenkinsci-dev/c/9M2B6ZTKjI0)
+    * Not ready to discuss/vote
+    * Gavin +1
+    * Concern about overcomplicating the policy
+        * Let’s do policy first, then think about automation
+* Discourse evaluation status
+    * Working well, registration works
+    * The “Showing off” section is working very well
+    * [https://groups.google.com/g/jenkinsci-dev/c/5-zkWdvGTt0](https://groups.google.com/g/jenkinsci-dev/c/5-zkWdvGTt0)
+    * [https://community.jenkins.io/](https://community.jenkins.io/)
+    * Strong preference to allow multiple social accounts
+        * Advocacy, UX, and Docs SIG being invited to move to Discourse
+        *
+    * Sponsor status
+
+## June 02, 2021
+
+Zoom link: [https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09](https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09)
+
+Mailing list announcement: [https://groups.google.com/g/jenkinsci-dev/c/SUaX7Ky9DoQ](https://groups.google.com/g/jenkinsci-dev/c/SUaX7Ky9DoQ)
+
+Recording: TODO
+
+Participants: TODO
+
+Meeting notes: TODO
+
+* News
+    * Jenkins 2.289.1 release
+        * SHIPPED!
+        * [https://www.jenkins.io/changelog-stable/](https://www.jenkins.io/changelog-stable/)
+    * Libera Chat Adoption
+        * [https://groups.google.com/g/jenkinsci-dev/c/pEcun5ZSfgo](https://groups.google.com/g/jenkinsci-dev/c/pEcun5ZSfgo)
+    * Discourse PoC: community.jenkins.io
+        * [https://community.jenkins.io/](https://community.jenkins.io/)
+        * GitHub Auth
+    * Reduced availability of Mark Waite
+        * [https://groups.google.com/g/jenkinsci-dev/c/K0wqZpL5a88](https://groups.google.com/g/jenkinsci-dev/c/K0wqZpL5a88)
+    * Oleg Nenashev will join the CDF TOC as Jenkins project representative
+        * [https://groups.google.com/g/jenkinsci-dev/c/RpWsWDEQneM](https://groups.google.com/g/jenkinsci-dev/c/RpWsWDEQneM)
+    * Jenkins Contributor Summit
+        * [https://www.jenkins.io/events/contributor-summit/](https://www.jenkins.io/events/contributor-summit/)
+    * Jenkins Community Awards 2021 at cdCon. Voting has started!
+        * List of voters, check your inbox! [https://github.com/cdfoundation/toc/blob/master/elections/2021/voters.md](https://github.com/cdfoundation/toc/blob/master/elections/2021/voters.md)
+    * DevOps World CFP is closed
+        * Processing CFP...
+* Roadmap Updates Review
+    * [https://github.com/jenkins-infra/jenkins.io/labels/roadmap](https://github.com/jenkins-infra/jenkins.io/labels/roadmap)
+* Deprecating ruby-runtime - next steps
+    * [https://groups.google.com/g/jenkinsci-dev/c/Ve0fqAud3Mk/m/l6qseLthAQAJ](https://groups.google.com/g/jenkinsci-dev/c/Ve0fqAud3Mk/m/l6qseLthAQAJ)
+    * Daniel to review
+* JEP process updates
+    * [https://github.com/jenkinsci/jep/pull/359](https://github.com/jenkinsci/jep/pull/359)
+* GitHub Issues for open governance projects/backlog
+    * [https://groups.google.com/g/jenkinsci-dev/c/j6Tjb8wiLKE](https://groups.google.com/g/jenkinsci-dev/c/j6Tjb8wiLKE)
+    * Vote: Approving the governance repo as a trial
+        * GitHub Issues: Gavin, Oleg
+        * GitHub Issues but issues are locked: Daniel
+    * DONE - Agreement:All +1s
+        * GitHub Issues for backlog, not for discussion.
+            * Default behavior: No discussions, link to a discussion in the template
+            * Fine to lock issues when discussion starts there
+    * License? Creative Commons?
+        * // Do not discuss chats/archives for now
+    * Gavin to prototype the repository
+* Jenkins funding updates
+    * [https://groups.google.com/g/jenkinsci-dev/c/iLutO2X0bdg](https://groups.google.com/g/jenkinsci-dev/c/iLutO2X0bdg)
+    * Moving out of the SPI - ASAP
+    * Gavin and Ewelina got access to the system
+    * AI:
+        * Oleg to initiate transfer
+    * TBD - Treasurer role, permission limitations in Expensify
+        * YAGNI for now?
+    * TBD - Enabling GitHub Sponsors?
+* Friend of Jenkins plugin/program revamp
+    * [https://groups.google.com/g/jenkinsci-dev/c/bIgDEM2E7hY](https://groups.google.com/g/jenkinsci-dev/c/bIgDEM2E7hY)
+    * Vote: Open Sourcing the Friend of Jenkins plugin?
+    * Benefits:
+        * jenkins.io/donate link
+        * Updating users
+    * Agreed to open sourcing it: +1s
+        * Oleg to go through the hosting process
+* Elastic Sponsorship for OpenTelemetry usage for community Jenkins instances
+    * [https://groups.google.com/g/jenkinsci-dev/c/DeAJPUjQEzM](https://groups.google.com/g/jenkinsci-dev/c/DeAJPUjQEzM)
+    * VOTE: Approving sponsorship
+        * Only ci.jenkins.io: +1s x 5
+        * Infra team is clear to proceed
+* Plugin End-of-Life Policy
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/9M2B6ZTKjI0](https://groups.google.com/u/1/g/jenkinsci-dev/c/9M2B6ZTKjI0)
+    * Not ready to discuss/vote
+    * Gavin +1
+    * Concern about overcomplicating the policy
+        * Let’s do policy first, then think about automation
+* Mark’s roles in the community
+    * [https://groups.google.com/g/jenkinsci-dev/c/K0wqZpL5a88](https://groups.google.com/g/jenkinsci-dev/c/K0wqZpL5a88)
+    * [https://groups.google.com/g/jenkinsci-docs/c/X2bfOd4vSfM](https://groups.google.com/g/jenkinsci-docs/c/X2bfOd4vSfM)
+    * Handover/backup Status check:
+        * TODO: Add roles
+    * Many volunteers!
+    * No volunteers:
+        * Platform SIG - (?) Oleg - might take it over
+            * Java 17
+            * Arm support
+            * Docker images
+        * Jenkins Changelog
+            * New changelog contributor
+            * Release lead should ensure it is done, not to implement it
+        * Jenkins.io copy editors and social media
+            * Discourse channel
+            * [https://github.com/jenkinsci/memkins](https://github.com/jenkinsci/memkins)
+*
+* --------------
+* TBD: Confirming budget for a LFX Mentorship documentation project
+    * TBA
+* TBD: Second meeting in APAC?
+* TBD - Announcements about Jenkins support on Oracle Cloud with Arm
+    * [https://blogs.oracle.com/cloud-infrastructure/announcing-jenkins-support-for-the-arm-compute-platform-on-oracle-cloud-infrastructure](https://blogs.oracle.com/cloud-infrastructure/announcing-jenkins-support-for-the-arm-compute-platform-on-oracle-cloud-infrastructure)
+* Discourse evaluation status:
+    * [https://groups.google.com/g/jenkinsci-dev/c/5-zkWdvGTt0](https://groups.google.com/g/jenkinsci-dev/c/5-zkWdvGTt0)
+    * [https://community.jenkins.io/](https://community.jenkins.io/)
+    * Sponsor status
+    *
+
+## May 19, 2021
+
+Zoom link: [https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09](https://zoom.us/j/91564716663?pwd=R3A2RDFGcU1wTVdoVTErYm1jNzVWdz09)
+
+Recording: [https://youtu.be/sfYqiF1OjtU](https://youtu.be/sfYqiF1OjtU)
+
+Participants: Mark Waite, Daniel Beck, Olivier Vernin, Ulli Hafner, Oleg Nenashev, Gavin Mogan, Jesse Glick, Baptiste Mathus
+
+Meeting notes: Ulli
+
+* News
+    * GSoC 2021 announcements! Accepted GSoC projects
+        * [https://groups.google.com/g/jenkinsci-dev/c/ukwjAmI7eWk](https://groups.google.com/g/jenkinsci-dev/c/ukwjAmI7eWk)
+        * [https://www.jenkins.io/projects/gsoc/](https://www.jenkins.io/projects/gsoc/)
+        * Announcement: TODO
+        * 5 Projects this year (see [https://www.jenkins.io/projects/gsoc/](https://www.jenkins.io/projects/gsoc/))
+        * Today was the Kickoff meeting
+        * Several projects are not selected this year
+    * We will have to move out of SPI
+        * Transition is in progress
+        * Oleg to send the budget report
+    * CDF TOC Nomination updates
+        * Oleg has been nominated, statement has been submitted
+        * 2 general member seats are open as well for nomination
+        * [https://cd.foundation/blog/2021/05/07/technical-oversight-committee-toc-elections-2021/](https://cd.foundation/blog/2021/05/07/technical-oversight-committee-toc-elections-2021/)
+    * 2.289.1 Release Candidate
+        * Ready for testing: [https://groups.google.com/g/jenkinsci-dev/c/RZwGKBky7Yo](https://groups.google.com/g/jenkinsci-dev/c/RZwGKBky7Yo)
+        * [https://github.com/jenkinsci/jenkins/pull/5470](https://github.com/jenkinsci/jenkins/pull/5470)
+        * [https://github.com/jenkinsci/jenkins/pull/5206](https://github.com/jenkinsci/jenkins/pull/5206) seems to cause regressions
+        * See: [https://issues.jenkins.io/browse/JENKINS-65273](https://issues.jenkins.io/browse/JENKINS-65273)
+        * Please take the opportunity and test this release and report bugs back in Jira
+        * No breaking changes in this release
+    * Heads-up: New Jenkins infrastructure account on AWS
+        * AWS: agreement about new sponsorship
+        * After migration the infra team can access the new account (currently only Cloudbees employees)
+        * Oleg to speak about it with the CDF
+    * Potential trouble with Freenode IRC network
+        * [https://gist.github.com/shadowcat-mst/998cea12794768bdb3da2daeff31baad](https://gist.github.com/shadowcat-mst/998cea12794768bdb3da2daeff31baad)
+        * [https://news.ycombinator.com/item?id=27207440](https://news.ycombinator.com/item?id=27207440)
+        * IRC channels were down today
+        * Difficult to say what is happening
+        * Low risk for Jenkins: we are using some private channels on IRC
+        * TODO: look for alternatives (Discourse, Gitter, Matrix, etc.)
+* Roadmap Updates Review
+    * [https://github.com/jenkins-infra/jenkins.io/labels/roadmap](https://github.com/jenkins-infra/jenkins.io/labels/roadmap)
+        * Cloud Events Support ([https://github.com/jenkins-infra/jenkins.io/pull/4299](https://github.com/jenkins-infra/jenkins.io/pull/4299)), terminology about Tekton needs to be improved (duplicate entries?)
+        * Docs and Platform Updates ([https://github.com/jenkins-infra/jenkins.io/pull/4330](https://github.com/jenkins-infra/jenkins.io/pull/4330))
+        * CODEOWNERS need to be updated
+* Jenkins JEP Process updates
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/hepntz6WZak](https://groups.google.com/u/1/g/jenkinsci-dev/c/hepntz6WZak)
+    * [https://github.com/jenkinsci/jep/pull/359](https://github.com/jenkinsci/jep/pull/359) changes:
+        * Terminology updates
+        * Role changes
+        * Review Process
+        * PR will be merged in the next 7 days
+* Terminology updates
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/x5vdlJDvntw](https://groups.google.com/u/1/g/jenkinsci-dev/c/x5vdlJDvntw)
+    * Cleaning up historical changelogs? Should we do that?
+        * Discussion should be done in the mailing list thread
+    * Approving the remaining terms… or some
+        * [https://docs.google.com/document/d/1-8myIWOZZktR0HNtbFIiNA0RfDCvkfKKuNI0C3wcvbo/edit#heading=h.tznacb7eadfy](https://docs.google.com/document/d/1-8myIWOZZktR0HNtbFIiNA0RfDCvkfKKuNI0C3wcvbo/edit#heading=h.tznacb7eadfy)
+    * Pending cleanup and hackergarten
+        * [https://groups.google.com/u/0/g/jenkinsci-dev/c/QjznosKFlws](https://groups.google.com/u/0/g/jenkinsci-dev/c/QjznosKFlws)
+    * Request from the Inclusive Naming Initiative / CNCF to participate in inclusive naming marketing promotion
+        * [https://groups.google.com/g/jenkinsci-board/c/EcBJ6nkk0Zc](https://groups.google.com/g/jenkinsci-board/c/EcBJ6nkk0Zc)
+        * Oshrat Nir: _“I am part of the marketing workstream of the INI workgroup and we are looking to spread the word about inclusive language initiatives in the cloud native space. My goal is to create a series of blog posts about inclusive naming and I would love to work on one with you. Either the D&I initiative itself, or the discussion you are having about tools.”_
+        * We are looking for a Jenkins representative for this initiative
+        * We should create a public call (in the mailing list) to find someone
+    * Officially joining the Inclusive Naming Initiative as a project/community
+        * Terminology cleanup in Jenkins as related project: [https://inclusivenaming.org/related-projects/](https://inclusivenaming.org/related-projects/)
+        * CDF as participating org: [https://inclusivenaming.org/participate/](https://inclusivenaming.org/participate/) . Oleg added it to the May 25 CDF TOC agenda
+* Adopting Stapler as a Jenkins Sub-project
+    * [https://groups.google.com/g/jenkinsci-dev/c/1T3yDHl1nEQ/m/_XdmdWNJAgAJ](https://groups.google.com/g/jenkinsci-dev/c/1T3yDHl1nEQ/m/_XdmdWNJAgAJ)
+    * Moving the IntellJ IDEA plugin to the jenkinsci org as a part of refresh
+        * [https://groups.google.com/g/jenkinsci-dev/c/SZNh_cy3eu4](https://groups.google.com/g/jenkinsci-dev/c/SZNh_cy3eu4)
+    * Voting:
+        * +1 Gavin, Mark, Oleg, Ulli, Daniel
+        * Need KK (?)
+* ----- Next meeting (and continued discussing in the mailing list) -----
+
+## May 05, 2021
+
+Recording: [https://youtu.be/hxn2LHWhaFQ](https://youtu.be/hxn2LHWhaFQ)
+
+Participants: Ulli Hafner, Gavin Mogan, Ewelina Wilkosz, Daniel Beck, Baptiste Mathus, Mark Waite, Oleg Nenashev
+
+Meeting notes: Gavin Mogan
+
+* News
+    * 5 years since Jenkins 2.0 (2016/04/20)
+        * [https://www.jenkins.io/changelog-old/#v2.0](https://www.jenkins.io/changelog-old/#v2.0)
+    * 2.277.4 Release
+        * [https://groups.google.com/u/1/g/jenkinsci-dev/c/p7jh8SZUnR4](https://groups.google.com/u/1/g/jenkinsci-dev/c/p7jh8SZUnR4)
+        * Mark will be discussing with Darin Pope later this week
+        * Ci.jenkins will be updated soon
+    * SheCodeAfrica summary
+        * Jenkins and 2 other projects were involved in the event
+        * Worked on pipeline help and documentation
+        * Retrospective is likely on friday
+            * Blog post
+            * Maybe a talk at devops world
+            * Online meetup?
+            * Able to highlight onboarding, good and bad, will show how easy it is for people to get started even without prior java experience.
+            * Retrospective:
+                * [https://docs.google.com/document/d/1xhmEtwYIlGuuKtwn6Ek8DWyBEkPFA5q8CfWRRL7xZ9U/edit#heading=h.jc1sy5a7e8nj](https://docs.google.com/document/d/1xhmEtwYIlGuuKtwn6Ek8DWyBEkPFA5q8CfWRRL7xZ9U/edit#heading=h.jc1sy5a7e8nj)
+    * DevOps World CFP:
+        * Announced [https://groups.google.com/u/1/g/jenkinsci-dev/c/jVCmR7nq7IQ](https://groups.google.com/u/1/g/jenkinsci-dev/c/jVCmR7nq7IQ)
+        * Online meetups for Community Agenda overview and Q&A
+            * May 04 [https://www.meetup.com/Jenkins-online-meetup/events/277841353/](https://www.meetup.com/Jenkins-online-meetup/events/277841353/)
+                * Slides from the presentation are available on the meetup page
+            * APAC: Another event will happen APAC timezone next week - TBA
+    * Nominations for MVP contributors
+        * [https://www.jenkins.io/blog/2021/04/23/jenkins-contributor-awards/](https://www.jenkins.io/blog/2021/04/23/jenkins-contributor-awards/) !
+        * Only 3 jenkins specific items, but lots of other items that can include jenkins contributors
+        * Brand new categories about top users (Looking for companies or other proud users)
+    * GSoC - we got slots.
+        * Announcement on may 17th including how many and which projects are selected
+        * Dark mode, no comments or other public commenting until the announcement on the 17th.
+* Confirming the CDF TOC project representative nomination for Jenkins
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/N0stgWNmPhg](https://groups.google.com/u/1/g/jenkinsci-dev/c/N0stgWNmPhg)
+    * 4 Representatives among 6 projects. Each project should make a nomination before may 14th.
+    * Between board and dev list, only Oleg is nominated so far.
+    * Governance meeting: All +1s
+    * Confirmed, Oleg will be submitted to CDF TOC Project
+* Removing Commons Digester from the core (Baptiste)
+    * Context and discussion: [https://groups.google.com/g/jenkinsci-dev/c/m2fEX5ALvbg](https://groups.google.com/g/jenkinsci-dev/c/m2fEX5ALvbg)
+    * Library for parsing XML.
+    * Current state is not able to set secure defaults
+    * New package is a big rewrite and changes imports, library names, etc
+    * Used usage-in-plugins tool to find any plugin, not just source code, but byte code to find any plugins that are currently using the AP
+        * [https://github.com/jenkinsci/jenkins/pull/5320](https://github.com/jenkinsci/jenkins/pull/5320)
+    * Really would like as much feedback as to which plugins and which are not
+    * PR is filed for every plugin that is using it to remove it
+        * Many stale plugins, no hope of having new maintainers in all plugins
+    * Q: Release stale plugins?
+    * Next steps
+        * Create a JEP, justify the decision in Reasoning
+        * Reach out to users mailing list about feedback on old plugins
+        * Investigate plugin uses per jenkins version to see if really old plugins are being used on new jenkins - ex http://stats.jenkins.io/pluginversions/emma.html
+        * ? Telemetry for plugin usage
+            * Can be backported to LTS
+* Terminology updates - finalizing the terms
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/x5vdlJDvntw](https://groups.google.com/u/1/g/jenkinsci-dev/c/x5vdlJDvntw)
+    * [https://docs.google.com/document/d/1-8myIWOZZktR0HNtbFIiNA0RfDCvkfKKuNI0C3wcvbo/edit#heading=h.tznacb7eadfy](https://docs.google.com/document/d/1-8myIWOZZktR0HNtbFIiNA0RfDCvkfKKuNI0C3wcvbo/edit#heading=h.tznacb7eadfy)
+    * Vote:
+        * Master node => "Built-in Node"
+        * "master" label => "built-in" // We will need to keep master for compatibility
+            * Ewelina: Looks weird without hyphen
+        * reasons, but it can be deprecated and maybe even hidden from UI
+        * “Master branch” in documentation and help => "default branch"
+        * Agent-to-Master security => " Agent-to-Controller security "
+        * "Jenkins master container " => "Jenkins controller container"
+        * "Serialization whitelist" for JEP-200 => "serialization allowlist"
+    * Voting:
+        * +1 - Gavin, Mark, Ulli, Ewelina
+        * Daniel: Concerns for “builtin” among non-native speakers
+        * Agreed to “built-in” unless we discover a technical issue. Then we fallback to “builtin”
+        * We will need an upgrade guide
+            * UI admin monitor is provided to handle the majority of upgraded cases.
+            * JCasC environments will need documenting
+* Jenkins SDLC security - confirming the pilot project with LFX Security and Snyk
+    * [https://groups.google.com/g/jenkinsci-dev/c/lIeGyefi1Y4](https://groups.google.com/g/jenkinsci-dev/c/lIeGyefi1Y4)
+    * LFX Security 2.0 is being worked on
+    * Requesting access to the preview/pilot
+        * Direct support from Synk and LFX Security
+        * Able to ignore CVEs that don’t directly affect us
+        * Useful dependency scanner
+    * Looking for plugin maintainers that would be interested in participating in the preview (Comment on mailing list link above)
+    * Votes
+        * +1 - Daniel, Gavin, Mark, Ullrich
+        * => APPROVED
+* Update on the Hosting team
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/ljwhniI-T3U](https://groups.google.com/u/1/g/jenkinsci-dev/c/ljwhniI-T3U)
+    * Meeting on May 05 => No meeting, but we created slides!
+    *
+
+## Apr 21, 2021, 7PM UTC
+
+Recording: [https://youtu.be/WkyqCoUJkN0](https://youtu.be/WkyqCoUJkN0)
+
+Participants: Gavin Mogan, Ulli Hafner, Ewelina Wilkosz, Oleg Nenashev, Mark Waite, Alyssa Tong, Olivier Vernin, Denis Nenashev, :)
+
+Meeting notes: Gavin Mogan
+
+* News
+    * Jenkins 2.277.3 release
+        1. [https://www.jenkins.io/changelog-stable/#v2.277.3](https://www.jenkins.io/changelog-stable/#v2.277.3)
+        2. Out of band security release
+    * New LTS baseline selection updates
+        3. [https://groups.google.com/g/jenkinsci-dev/c/qV8ADVRubPA](https://groups.google.com/g/jenkinsci-dev/c/qV8ADVRubPA)
+    * Deprecating Ruby and Python plugin runtimes
+        4. [https://groups.google.com/g/jenkinsci-dev/c/Ve0fqAud3Mk](https://groups.google.com/g/jenkinsci-dev/c/Ve0fqAud3Mk)
+        5. Blog post should go out soon
+        6. Shouldn’t really affect users, just got to remove old plugins from installs
+    * Outreach program updates
+    * Google Summer of Code updates => Applications are over, project reviews are in process
+            * More than 20 proposals, all really strong proposals
+            * May 13th announcement of accepted projects
+            * Afterwards will have callout for mentors and other helpers
+            * 4 CDF projects have submitted to GSOC
+        7. Google Season of Docs updates => We are not accepted.
+            * 😭😭😭😭😭😭😭
+            * Only 30 projects were accepted, less than previous years
+            * Could run our own project since we have some budget
+            * Retrospective: [https://docs.google.com/document/d/1WaOB2_ekdDzUOGIqi60USCbaV7oNpBtQZtByB7LZwC8/edit?usp=sharing](https://docs.google.com/document/d/1WaOB2_ekdDzUOGIqi60USCbaV7oNpBtQZtByB7LZwC8/edit?usp=sharing)
+        8. SheCodeAfrica Contributhon
+            * 5 participants and mentors
+            * Runs until the end of april
+            * Hopefully some blog posts upon completion
+* Terminology updates, continued
+    * Choosing terms for controller sub-entities
+    * Aggregating localization recommendations
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/x5vdlJDvntw](https://groups.google.com/u/1/g/jenkinsci-dev/c/x5vdlJDvntw)
+    * [https://docs.google.com/document/d/1-8myIWOZZktR0HNtbFIiNA0RfDCvkfKKuNI0C3wcvbo/edit#heading=h.tznacb7eadfy](https://docs.google.com/document/d/1-8myIWOZZktR0HNtbFIiNA0RfDCvkfKKuNI0C3wcvbo/edit#heading=h.tznacb7eadfy)
+* Jenkins contributor summit updates (Oleg)
+    * Confirmed for June 25th
+    * We have over 150 registrations so far
+    * Advocacy and Outreach channel on gitter to discuss ideas
+    *  [https://groups.google.com/u/0/g/jenkinsci-dev/c/Tg3_pmHd5dE](https://groups.google.com/u/0/g/jenkinsci-dev/c/Tg3_pmHd5dE)
+    * Need to finalize the agenda - [https://docs.google.com/document/d/1JVbWudREipEF5UJn-bBRU5QIjKf8mzFP9iFdwWbgFB0/edit?usp=sharing](https://docs.google.com/document/d/1JVbWudREipEF5UJn-bBRU5QIjKf8mzFP9iFdwWbgFB0/edit?usp=sharing)
+        9. Jenkins 3.0
+        10. Collaboration with Jenkins X and Tekton
+        11. Java 17 support
+        12. Would like presentations from contributors
+            * Need to define format - Any ideas are welcome. How long sessions, what types of topics, etc
+            * How they use jenkins
+            * Cool things they’ve done with it
+            * Challenges they’ve had and how and if they were solved
+            * Problems they are still working on and would love improvements aka struggling with
+            * 15-20 min(?)
+    * Happens at CD Con
+        13. Jenkins Award is still open for nominations
+            * Comment on github issue ( Submissions accepted [HERE](https://cd.foundation/blog/2021/04/20/nominations-are-open-for-the-first-annual-cdf-community-awards/))
+        14. More than 6 jenkins related talks
+        15. Probably have a “booth”
+        16. Can have items during keynote for major announcements
+* LFX tool adoption updates
+    * LFX Security - pending collaboration with Snyk
+        17. Can currently not ignore any CVEs
+        18. Have something like 200k false positives
+        19. Meeting next week with Snyk and LFX Security team
+        20. Olivier and Mark are interested in participating
+    * LFX EasyCLA - consider using a joint CDF account, waiting for the CDF response.
+        21. LF suggests using the modified Apache Foundation ICLA/CCLA. “these are intended to be identical in license scope, obligations, etc. as the Apache Software Foundation CLAs, but have some streamlined administrative changes. Those are primarily by removing the appendices at the end of the standard ASF CCLA, and making clear in Sections 4 and 8 how the CLA Manager and CLA Tool concepts work. One note, we will be updating these to replace the point of contact at the very beginning for where to email signed CLAs if someone signs them outside of EasyCLA.”
+        22. Oleg: some companies may want to restrict the scope, e.g. prohibit employees from contributing to another non-Jenkins
+        23. Voting:
+            * Independent account: Gavin, Mark, Olivier
+            * Go with CDF: Ulli
+            * Abstain: Oleg, Ewelina, Alyssa
+        24. Existing signed CLAs would need to be resigned as terms are very very slightly different to support EasyCLA
+    * LFX Crowdfunding - open action items for Expensify
+        25. Oleg will add other board members to crowdfunding
+        26. Oleg will reach out to SPI to find out expectations of old account
+    * LFX Mentorship - Sladyn was added to Graduated mentee. We can use the service at any moment.
+        27. A few mentor applications have come in
+        28. Is currently abstract “Contribute to jenkins” and we will figure out details later
+        29. LFX Mentorships can be crowdfunded
+        30. Have budget to fund mentees (Cannot pay salaries, but stipends and swag and stuff)
+* Promoting the Jenkins X 3.x release
+    * [https://groups.google.com/g/jenkins-advocacy-and-outreach-sig/c/bPROb3pncI8](https://groups.google.com/g/jenkins-advocacy-and-outreach-sig/c/bPROb3pncI8)
+    * Now supports Jenkins again
+    * Discussion about promoting it from jenkins channels
+    * Open to more quotes, or more tweet ideas
+    * Approved, no objections
+* Approving the budget for swag
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/WXJEKfM4Oug](https://groups.google.com/u/1/g/jenkinsci-dev/c/WXJEKfM4Oug)
+    * Ideas for more groups that should get sent swag
+    * Would need to use money to handle delivery and shipping costs
+    * Would need to use money to produce stickers other than the default generic jenkins logo in stock
+        31. Approved: Olivier, Gavin, Ewelina, Mark, Alyssa, Ulli
+        32. Abstaining: Oleg
+        33. No Objections
+* [DevOps World 2021](https://www.devopsworld.com), Sept 28-29.
+    * CFP is open  (Deadline May 20th)
+        34. Demos are great
+        35. Technical talks
+        36. How you do things
+        37. How you solve problems
+        38. Case Studies
+        39. “Cool things”
+        40. “Obvious” topics that are clear to some, but new to people
+    * Jenkins Online meetup about how to submit CFPs
+    * Cloudbees is offering a a first come first serve presentation on how to give presentations
+    * Jenkins Contributor Summit
+    * Jenkins Workshops
+    * Virtual Booth - Looking for volunteers for “Ask the experts”
+
+    !
+
+## Apr 07, 2021, 8PM UTC
+
+Recording: [https://youtu.be/ExvH4wu7nKQ](https://youtu.be/ExvH4wu7nKQ)
+
+Agenda:
+
+* News
+    * Jenkins 2.277.2 LTS Release
+        * [https://www.jenkins.io/changelog-stable/](https://www.jenkins.io/changelog-stable/)
+    * SheCodesAfrica updates
+        * Blog posts available, mentoring has started
+        * [https://www.jenkins.io/blog/2021/04/07/contributhon-participants/](https://www.jenkins.io/blog/2021/04/07/contributhon-participants/)
+        * Pipeline docs
+        * Channels:
+            * Docs SIG
+            * CDF Slack
+    * GSoC updates
+        * Deadline on April 13th
+        * Sending announcements about GSoC deadline
+        * [https://docs.google.com/document/d/1L929y5VnfhUEdQit8xddUyEqjplcxIWiPdP17OiWmTU/edit?usp=sharing](https://docs.google.com/document/d/1L929y5VnfhUEdQit8xddUyEqjplcxIWiPdP17OiWmTU/edit?usp=sharing)
+    * Events officer call for participation
+        * WiP
+* What’s next for the Hosting team? Onboarding more contributors (Oleg)
+    * [https://groups.google.com/g/jenkinsci-dev/c/H4pGKrFUH9w](https://groups.google.com/g/jenkinsci-dev/c/H4pGKrFUH9w)
+    * [https://www.jenkins.io/project/teams/hosting/](https://www.jenkins.io/project/teams/hosting/) - feel free to extend
+    * Gavin to write a call in social media
+* CLA Process updates (Oleg)
+    * [https://groups.google.com/u/0/g/jenkinsci-dev/c/MMCTtaJZ7z0](https://groups.google.com/u/0/g/jenkinsci-dev/c/MMCTtaJZ7z0)
+* Jenkins contributor summit updates (Oleg)
+    *  [https://groups.google.com/u/0/g/jenkinsci-dev/c/Tg3_pmHd5dE](https://groups.google.com/u/0/g/jenkinsci-dev/c/Tg3_pmHd5dE)
+    * [https://docs.google.com/document/d/1JVbWudREipEF5UJn-bBRU5QIjKf8mzFP9iFdwWbgFB0/edit?usp=sharing](https://docs.google.com/document/d/1JVbWudREipEF5UJn-bBRU5QIjKf8mzFP9iFdwWbgFB0/edit?usp=sharing)
+* Maybe: What do we do with the Jenkins treasury? Keep some money on SPI until we spend them?
+    * No urgency to move
+    * Oleg to publish the budget report
+* Maybe: Celebrating 10 years after Hudson renaming to Jenkins?
+    * Yes we want to promote
+    * Blogpost?
+    * Stickers/swag for contributors.
+    * Planting trees
+* Moving the Governance Meeting
+    * Agreed: move meetings one hour earlier - DONE
+
+## Mar 24, 2021
+
+Recording: [https://youtu.be/lIVWi3PSGoI](https://youtu.be/lIVWi3PSGoI)
+
+Participants:
+
+* Oleg Nenashev
+* Mark Waite
+* Gavin Mogan
+* Ewelina Wilkosz
+* Daniel Beck
+* Ulli Hafner
+
+Agenda:
+
+* News
+    * Welcome Ewelina Wilkosz - new Jenkins Governance Board member
+        * [https://www.jenkins.io/blog/2021/03/22/governance-updates/](https://www.jenkins.io/blog/2021/03/22/governance-updates/)
+    * Upcoming events:
+        * Google Summer of Code - [https://www.jenkins.io/projects/gsoc/#gsoc-2021](https://www.jenkins.io/projects/gsoc/#gsoc-2021)
+        * SheCodeAfrica - Jenkins is a mentoring org: [https://www.jenkins.io/blog/2021/03/19/SheCodeAfrica-announcement/](https://www.jenkins.io/blog/2021/03/19/SheCodeAfrica-announcement/)
+            * Documentation SIG channel
+            * Meetings twice a week
+            * [https://scholarshiptrack.org/spring-of-code-21/](https://scholarshiptrack.org/spring-of-code-21/)
+        * Spring of Code. See the presentation on Mar 24th
+            * [https://www.youtube.com/watch?v=ivMBMuZXdBA](https://www.youtube.com/watch?v=ivMBMuZXdBA)
+        * Google Season of Docs - [https://www.jenkins.io/sigs/docs/gsod/](https://www.jenkins.io/sigs/docs/gsod/)
+    * LTS Status
+        * [https://www.jenkins.io/doc/upgrade-guide/2.277/#upgrading-to-jenkins-lts-2-277-1](https://www.jenkins.io/doc/upgrade-guide/2.277/#upgrading-to-jenkins-lts-2-277-1)
+        * Some regressions
+* Trademark transition updates (Oleg)
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/Rkom6E59Lrc](https://groups.google.com/u/1/g/jenkinsci-dev/c/Rkom6E59Lrc)
+    * Trademark topic is concluded
+    * Proposal from CDF about COMPANY_NAME Jenkins Platform certification
+* CLA process updates - discussion (Oleg)
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/MMCTtaJZ7z0](https://groups.google.com/u/1/g/jenkinsci-dev/c/MMCTtaJZ7z0)
+    * CLA - rather yes, to be evaluated before enforcing it in the core repositories
+    * Security Contributor Agreement
+        * Something interesting, to be evaluated
+        * Oleg to connect Daniel to the LF clegal/security contacts
+    * Plugins - separate story, can be adopted by the maintainers
+        * Q: What do we do with plugins requiring other CLA?
+            * Propose updates to the Plugin Hosting requirements (should be no external CLA)
+            * Existing plugins - :shrug:
+* Jenkins events - Oleg’s plans as the acting event officer
+    * Onboarding new event organizers, finding a shadow events officer
+        * Could we promote non-code contributions? Especially among event managers.
+        * Gavin to draft a post draft
+    * Jenkins contributor summit, June 25th
+* GSoD 2021 application - budget request review
+    * [https://www.jenkins.io/sigs/docs/gsod/2021/organization-proposal/](https://www.jenkins.io/sigs/docs/gsod/2021/organization-proposal/)
+    * Budget to be requested from Google
+    * Payments to be handled by the Jenkins project via LFX
+    * AGREED: we request 6k from Google, we may use additional Jenkins funds later
+    * Oleg to add other board members to LFX Expensify
+* POSTPONED - Jenkins 3 - revisiting the discussion
+* Next meeting
+
+## Mar 10, 2021
+
+Recording: [https://youtu.be/VqQcWmZnPfs](https://youtu.be/VqQcWmZnPfs)
+
+* News
+    * 2.277.1 LTS release
+        * 220 already registered for Webinar March 17, 2021 at 3:00 PM UTC
+        * [https://www.jenkins.io/changelog-stable/](https://www.jenkins.io/changelog-stable/)
+        * [https://www.meetup.com/Jenkins-online-meetup/events/276824561/](https://www.meetup.com/Jenkins-online-meetup/events/276824561/)
+    * Jenkins Trademark Updates
+        * [https://groups.google.com/g/jenkinsci-dev/c/Rkom6E59Lrc](https://groups.google.com/g/jenkinsci-dev/c/Rkom6E59Lrc)
+        * [https://github.com/jenkins-infra/jenkins.io/pull/4030](https://github.com/jenkins-infra/jenkins.io/pull/4030)
+        * PR-4030 and future uses need to use correct attribution
+    * Jenkins Contributor Summit recap
+        * 3-day contributor summit
+        * 25 participants
+        * [https://groups.google.com/u/1/g/jenkinsci-dev/c/ZBrpJY7EAwc](https://groups.google.com/u/1/g/jenkinsci-dev/c/ZBrpJY7EAwc)
+    * CDF Contributor Satisfaction survey
+        * [https://docs.google.com/forms/d/e/1FAIpQLSe1WX5CI0-TJlx24_Xty58G_zS0RJUewiSLXx8eKrH6_NY-CQ/viewform](https://docs.google.com/forms/d/e/1FAIpQLSe1WX5CI0-TJlx24_Xty58G_zS0RJUewiSLXx8eKrH6_NY-CQ/viewform)
+* Proposal: Jenkins Kubernetes Operator sub-project
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/oDsdFWvMv0E/m/tUAx5HNrAAAJ](https://groups.google.com/u/1/g/jenkinsci-dev/c/oDsdFWvMv0E/m/tUAx5HNrAAAJ)
+    * No formalized process for sub-projects
+    * Vote: Accepting Jenkins Kubernetes Operator as a sub-project
+        * All +1s
+    * Action items
+        * Bartek - Update the website
+        * Bartek - Update the Jenkins roadmap
+* Next contributor summit (see [retrospective summary email](https://groups.google.com/g/jenkinsci-dev/c/ZBrpJY7EAwc/m/kOqNv7z9AQAJ))
+    * Suggested topics - Securing the pipeline, cloud native, docs, outreach
+    * Well-liked to allow tracks to meet at times that work for participants
+    * cdCon timeframe (?)
+        * Option: Full-fledged zero-day event. It includes additional cost (~20k for platform cost, staffing, support, etc.).
+            * Find a sponsor?
+            * Scheduled 0-day events: Spinnaker contributor day, DevOps day
+        * Friday after cdCon, own platform
+        * User advisory board
+* Jenkins Governance Board and Officer updates (Oleg)
+    * Marky Jackson steps down from the elected roles: [https://groups.google.com/g/jenkinsci-dev/c/A6sTbC7VwTM](https://groups.google.com/g/jenkinsci-dev/c/A6sTbC7VwTM)
+    * Vote: Confirming Ewelina Wilkosz as an interim board member
+        * All +1s (Gavin. Mark, Alyssa, Ulli, Oleg, Bartek)
+        * Term - until Dec 2022
+    * Vote: Confirming an interim Jenkins Events Officer
+        * [https://www.jenkins.io/project/team-leads/#events](https://www.jenkins.io/project/team-leads/#events)
+        * Agreed: Oleg will be an interim events officer, plan to have a Shadow Events Officer ASAP
+    * Plugin maintenance - needs follow-up
+* Discussion: Taking over the github.com/jenkins account (Oleg)
+    * [https://issues.jenkins.io/browse/JENKINS-64903](https://issues.jenkins.io/browse/JENKINS-64903)
+    * Does not worth the effort?
+        * Gavin, Oleg - +1
+    * Setting up redirect?
+    * Agreed: No action needed
+* Next meeting
+    * Mar 24, time in UTC
+
+## Feb 24, 2021 - Contributor Summit (part of the agenda)
+
+Recording: [https://youtu.be/CaYmHOI7bfI](https://youtu.be/CaYmHOI7bfI)
+
+Agenda:
+
+* News!
+    * Jenkins Contributor Summit
+        * [https://www.jenkins.io/blog/2021/02/16/contributor-summit-online/](https://www.jenkins.io/blog/2021/02/16/contributor-summit-online/)
+        * Retrospective to be held next week
+    * Jenkins security advisory on Feb 24
+        * [https://www.jenkins.io/security/advisory/2021-02-24/](https://www.jenkins.io/security/advisory/2021-02-24/)
+    * 2.277.1 LTS Release Candidate. We need testers!
+        * [https://www.jenkins.io/blog/2020/11/10/major-changes-in-weekly-releases/](https://www.jenkins.io/blog/2020/11/10/major-changes-in-weekly-releases/)
+* Trademark updates (Oleg)
+    * [https://groups.google.com/g/jenkinsci-dev/c/Rkom6E59Lrc](https://groups.google.com/g/jenkinsci-dev/c/Rkom6E59Lrc)
+    * Oleg to check why the owner org is LF Charities instead of the Linux Foundation
+    * Funding detour…
+        * Make sure we use donations!
+* Promoting Governance Meeting summaries? (Gavin)
+    * Blogpost with summary and links?
+* WIP - Plugin Site search
+    * See the demo [here](https://youtu.be/V3dqV3rmUPM&t=3227)
+* Update Center certificate updates
+    * Blogpost is coming soon
+    * Versions older than April 2018 won’t be able to access the update center. Now they can access it and get the latest plugin versions.
+* LFX Tools Updates (Oleg)
+    * Events
+    * Security
+    * EasyCLA
+* Roadmap review
+    * [https://www.jenkins.io/project/roadmap/](https://www.jenkins.io/project/roadmap/)
+    * Postponed until the Feb 25 contributor summit session
+
+## Feb 10, 2021
+
+Recording: [https://youtu.be/r3I8FRXqnCE](https://youtu.be/r3I8FRXqnCE)
+
+* Oleg Nenashev
+* Gavin Mogan
+* Mark Waite
+* Ulli Hafner
+* Alyssa Tong
+
+Agenda:
+
+* News
+    * Jenkins 2.263.4 and Jenkins 2.279 release
+        * [Docker image updated](https://www.jenkins.io/blog/2021/02/08/docker-base-os-upgrade/) to Debian 10, JDK 8u282
+        * New LTS with some [minor backports](https://www.jenkins.io/changelog-stable/#v2.263.4)  [https://www.jenkins.io/changelog-stable/](https://www.jenkins.io/changelog-stable/)
+    * Jenkins 2.277.1 release preparation started
+        * Tables to divs - still know of many regressions in plugins that need fixes
+            * 20 or more plugins still affected and need fixes
+                * Major plugins - authorize-project, check the list for others
+                * Four weeks to reduce the risk of the new release
+                * [https://issues.jenkins.io/issues/?jql=(labels%20%3D%20tables-to-divs-regression%20OR%20%22Epic%20Link%22%20%3D%20JENKINS-62437)%20and%20status%20not%20in%20(%20resolved%2C%20Closed%2C%20Done)](https://issues.jenkins.io/issues/?jql=(labels%20%3D%20tables-to-divs-regression%20OR%20%22Epic%20Link%22%20%3D%20JENKINS-62437)%20and%20status%20not%20in%20(%20resolved%2C%20Closed%2C%20Done))
+            * Failure to update plugins can cause issues (two stage upgrade)
+                * Upgrade core then upgrade plugins
+        * XStream
+        * Acegi to Spring Security
+        * JQuery
+    * Option to release 2.263.5 if necessary
+    * FOSDEM conference
+        * CI/CD DevRoom
+        * Jenkins stand
+            * Low traffic during Mark’s time at the stand
+                * Mark’s presentation was to himself as well
+            * Sunday visits were also low, some visited briefly then left
+                * Need presentations or other to attract visitors?
+                * Scheduled presentations to draw people to the stand
+            * Interaction not as clear at the stand
+            * Could have posted the presentations as Jenkins Online Meetup
+                * Use the meetup.com platform to drive attendance
+                * Joining the Jitsi meeting placed you into video chat directly
+        * Some confusion with the widgets, conference vs. Jitsi session
+        * Started the [retrospective doc](https://docs.google.com/document/d/1cVpLVvYB-4iTK8kgqiznpDeq6tZS-92IJbgM2xRrFJY/edit?usp=sharing)
+    * cdCON
+        * June conference
+    * Kubecon stand for the Jenkins project
+        * Alyssa investigate as part of the CDF stand
+    * DevOps World - Alyssa
+        * Sep 29-30, 2021 - workshop on Sep 28
+            * Online event - Building the Future of Software Delivery Together
+        * Community track with ~24 sessions in the track
+            * Which topics?
+                * Culture
+                * Creative use
+                * Growing the community
+                * Open source stories
+                * More
+        * CDF have its own track
+        * Alyssa starting a CFP committee to evaluate proposed talks for the community track
+            * Seeking volunteers to review and grade submissions
+        * Replaces / renames Jenkins World (was that new name in 2020)
+        * Contributor Summit near DevOps World time?
+            * Yes, can be considered - just before or just after
+* [Contributor Summit](https://docs.google.com/document/d/1GnVhxc0Wd-JN115IDhQPrvLASnOnE_h_bFu8dQwEjQM/edit?usp=sharing) - Mark Waite (see [email](https://groups.google.com/g/jenkinsci-dev/c/0J_hlkSXnA0/m/tm6bCsI-DAAJ))
+    * Feb 23-25 online series of sessions
+        * Google Form for registration, name, areas of interest
+    * Needs more details, including registration, meeting process, etc.
+    * Initial to 120 minutes, 90 minutes presentation plus 30 minutes breakout
+        * Persuading your company to do more open source (good topic)
+            * How to contribute - presentations
+            * How to ask your manager for permission for specific activities
+* Improved search is coming to the plugins site - Gavin
+    * Considering how we can add search to the [www.jenkins.io](www.jenkins.io) site
+
+## Jan 27, 2021
+
+Recording: [https://youtu.be/drdSuNQiMLk](https://youtu.be/drdSuNQiMLk)
+
+Agenda:
+
+* News
+    * Jenkins 2.263.3 & Jenkins 2.276 released
+        * Resolve regressions from security release
+    * LTS baseline selection
+        * Expectation: 2.277
+    * FOSDEM
+        * [https://fosdem.org/2021/](https://fosdem.org/2021/)
+        * Stand
+            * 2 slots:
+                * Sat: 3-6PM UTC
+                    * Mark may be able to cover it
+                * Sun: 3-5PM UTC
+                    * Ulli might be able to help
+        * CI/CD Room
+        * Content
+            * Agenda is needed
+                * [https://docs.google.com/document/d/1cVpLVvYB-4iTK8kgqiznpDeq6tZS-92IJbgM2xRrFJY/edit?usp=sharing](https://docs.google.com/document/d/1cVpLVvYB-4iTK8kgqiznpDeq6tZS-92IJbgM2xRrFJY/edit?usp=sharing)
+            * Website: [https://stands.fosdem.org/stands/jenkins/](https://stands.fosdem.org/stands/jenkins/)
+    * CDCon:
+        * [https://events.linuxfoundation.org/cdcon/](https://events.linuxfoundation.org/cdcon/)
+        * CFP ultil Mar 05
+        * Want to facilitate the Jenkins agenda
+            * Jan 28 Advocacy&Outreach meeting
+            * Contributor summit is possible
+* [Contributor Summit](https://docs.google.com/document/d/1GnVhxc0Wd-JN115IDhQPrvLASnOnE_h_bFu8dQwEjQM/edit?usp=sharing) - Mark Waite (see [email](https://groups.google.com/g/jenkinsci-dev/c/0J_hlkSXnA0/m/tm6bCsI-DAAJ))
+    * Feb 23-25
+    * Welcome, specific tracks, closing
+    * Tracks determined by interest of participants
+* 2021 planning - continued (Oleg)
+    * Topics to be discussed at the contributor summit
+    * Facilitating communications with CDF
+        * CDF plans to do a survey among participants
+            * What programs are useful?
+            * What would we like to see?
+* Plans for meetups?
+    * Active meetups can keep using meetup.com
+    * Dormant meetups will be put for adoption
+    * New meetups - bevy(?)
+        * [https://www.bevy.com/](https://www.bevy.com/)
+* LFX [https://lfx.linuxfoundation.org/](https://lfx.linuxfoundation.org/) - adopting tools
+    * [https://lfx.linuxfoundation.org/tools/security](https://lfx.linuxfoundation.org/tools/security) -
+* Finding a way to release unmaintained plugins
+    * GHRPB Plugin, …. [https://groups.google.com/g/jenkinsci-dev/c/RdlX893xI2I](https://groups.google.com/g/jenkinsci-dev/c/RdlX893xI2I)
+    * See [https://groups.google.com/g/jenkinsci-dev](https://groups.google.com/g/jenkinsci-dev)
+    * We need a formal policy
+* Videos
+* Next meeting:
+    * Switching to 8PM UTC
+
+## Jan 13, 2020
+
+Recording: [https://youtu.be/mRM4NblgGZ4](https://youtu.be/mRM4NblgGZ4)
+
+Agenda:
+
+* News!
+    * Jenkins 2.263.2 and Jenkins 2.275 security releases delivered today
+        * [https://www.jenkins.io/security/advisory/2021-01-13/](https://www.jenkins.io/security/advisory/2021-01-13/)
+    * FOSDEM 2021 (virtual) [https://fosdem.org/2021/](https://fosdem.org/2021/)
+        * Jenkins Dev stand
+        * Talk by Victor Martinez at CI/CD
+        * Contact Advocacy&Outreach
+        * Budgeting proposals for events: [https://groups.google.com/g/jenkins-advocacy-and-outreach-si](https://groups.google.com/g/jenkins-advocacy-and-outreach-si)
+    * SCALE?
+* 2021 planning. Key priorities and topics
+    * Contributor onboarding
+        * Stable number of individual contributors
+            * [https://jenkins.devstats.cd.foundation/d/7/companies-contributing-in-repository-groups?orgId=1](https://jenkins.devstats.cd.foundation/d/7/companies-contributing-in-repository-groups?orgId=1)
+        * Company contributors
+            * [Company affiliations](https://github.com/cncf/devstats/blob/master/github_users.json)
+        * Events and Outreach programs
+        * Ideas:
+            * Stewardship for contributions
+            * Outreach programs?
+            * Defining areas:
+            * Promoting user stories and blogposts. More automation.
+            * Mark: contributor summit around the FOSDEM timeframe?
+                * Yes, contributor summit. We have CDF Zoom etc.
+    * Jenkins Security: how do we develop and deliver Jenkins components
+        * Recent events...
+        * 2020 stats:
+            * 19 advisories
+            * 198 fixed vulnerabilities + 72 disclosed
+            * More tools: Dependabot, GitHub CodeQL, Find-Sec-Bugs
+        * Grow security awareness among contributors
+        * Get more contributors involved in the security team.
+        * Expand developer tooling where possible
+        * More tooling needed?
+        * Getting the message out?
+    * SIGs: Platforms, Documentation, Infra, … It is essential to keep these groups actual.
+        * Facilitate public and regular updates from SIGs
+    * Consolidate communication channels?
+        * TooManyChannelsException
+        * Moving to Discourse?
+        * Developers are not available in IRC
+        * Short blogpost: How to communicate with the community?
+    * Terminology cleanup
+    * Other priorities?
+* We need to find another time
+* // Add your topics here!
+
+Elections feedback. Expectations from the board
+
+* Continue to lead and guide the Jenkins project
+* Work closely with CDF to let us know what the community needs and how we're doing
+* Transparency and empathy
+* Drive and facilitate the Jenkins roadmap, make Jenkins the bet place to contribute!
+* Solid stewardship, relaxing closed source restrictions
+* Continue to provide guidance on best practices, and to organize events such as hacktoberfest and GSOC.
+* Not expecting any big change, keep up the good work! AFAICT Jenkins is really healthy as an opensource community, very mature but yet still lively and welcoming. I guess good governance made that possible, and I can only hope it will continue.
+* I am pretty new in the organization so I don't have a real based opinion. Will decide based on what each candidate says.
+* "The major change I would like to see is the way we triage issues. We keep unrelevant issues opened (not reproductible, rotten etc...), the same for issues that will never be worked (out of scope, too specific, no interest etc...)...
+* This pollute the tracker, makes the life of the maintainers harder and (to my opinion) gives an impression of lack of maintenance from the outside."
+* I think we need a concerted push towards modernizing Jenkins at all levels. My principal interest in the OSS community is the UI, but Jenkins requires modernization at all levels.
+* Further roadmap modernization
+* To keep the positive evolution from previous years
+* Keep up with the roadmap and initiatives that have been done.
+* Keep with the election process since it adds diversity.
+* Avoid any kind of bottlenecks when depending on individuals.
+* Keep up the good work! Maintaining the balance between compatibility and evolution is difficult, and looking for ways to incorporate fresh external ideas while keeping that balance would be great.
+* Continue developing and growing the Jenkins community
+* Keep the community healthy
+* make easier to contribute to the community
+* The elected people continue doing the great work is doing the latest years
+* Foster community, set roadmap, smoothen processes
+* Continue being open and looking out for ways to involve more motivated contributors
+* Orchestrate the rejuvenation of Jenkins
+* Maintain a good direction for the Jenkins project, solve issues that cannot be solved by developers on Gitter/IRC/JIRA/etc
+* Leading the community so that Jenkins gets higher stability and more sophisticated UX.
+* Help the contributor community focus on important stuff, build relations with commercial partners and advertise Jenkins through events.
+* Focus on diversifying the Jenkins project beyond CI/CD (where competition is intensifying). Continue  support for free style projects and improve/modernize Jenkins UI . Champion other disciplines (such as life/data science) where Jenkins has a proven record of capability, but poor adoption.
+* Driving Jenkins toward a more modern and cloud-native architecture.
+* Keep pushing for Jenkins to be the pioneer it was
+* Serving the community by helping organize various efforts, sheep herding, that sort of thing.
+* I expect that board will keep Jenkins the 1st CI/CD tool chain. To stay 1st, Jenkins should continue to innovate and should stay simple.
+
+## Dec 16, 2020
+
+Recording: [https://www.youtube.com/watch?v=VLmv8Wb4agE](https://www.youtube.com/watch?v=VLmv8Wb4agE)
+
+Agenda:
+
+* News!
+    * [https://groups.google.com/g/jenkinsci-dev/c/50-p0_Pqr-c](https://groups.google.com/g/jenkinsci-dev/c/50-p0_Pqr-c) - call for GSoC project ideas and mentors
+    * ...
+* Trademark usage request: VirtusLab Jenkins Operator Service
+    * [https://groups.google.com/g/jenkinsci-dev/c/JlQlL4G7jME](https://groups.google.com/g/jenkinsci-dev/c/JlQlL4G7jME)
+    * Mark: +1
+    * Alyssa: -1, Daniel: -1, Ulli: -1
+    * Oleg: 0, Gavin: 0
+    * No consensus to approve that, waiting for final response in the ML
+    * Oleg to communicate it back
+* New year / year in review blogpost - year recap (Oleg / Marky)
+    * 2019/2020: [https://www.jenkins.io/blog/2020/01/07/happy-new-year/](https://www.jenkins.io/blog/2020/01/07/happy-new-year/)
+        * Starting a new draft by Monday, everyone is welcome to contribute
+        * Daniel: What is the intended date?
+            * Optimistic: next week
+            * Oleg to create a draft
+    * CDF Newsletter
+        * Oleg to create doc
+* Roadmap review
+    * [https://www.jenkins.io/project/roadmap/](https://www.jenkins.io/project/roadmap/)
+    * “What is latest and greatest in Jenkins?”
+        * Alyssa: Quarterly update?
+* [Jenkins e-book](https://groups.google.com/g/jenkinsci-dev/c/33s3GfpsOSQ/m/54WxHvooAAAJ): Obtain approval from the governance board to proceed with governance board members as signers of the e-book letter  [Alyssa]
+* Next meeting
+    * **AGREED**: Skipping Dec 30
+
+## Dec 02, 2020
+
+Recording: [https://youtu.be/V43Du58GH58](https://youtu.be/V43Du58GH58)
+
+Participants:
+
+* Oleg Nenashev
+* Mark Waite
+* Marky Jackson
+* Gavin
+* Ullrich Hafner
+* Alyssa Tong
+* Tracy Miranda
+* // Add your name to the list if you plan to attend!
+
+Agenda and notes:
+
+* News!
+    * Get.jenkins.io outage on Nov 12-14
+        * Users were unable to download Jenkins artifacts, in. releases, plugins and packages
+        * Applied a workaround
+        * Still running the workaround…
+        * WiP - status page: [https://status.jenkins.io/](https://status.jenkins.io/)
+        * Retrospective: [https://groups.google.com/g/jenkins-infra/c/1uE6BeAn7hA](https://groups.google.com/g/jenkins-infra/c/1uE6BeAn7hA)
+    * 2.263.1 LTS RC testing status & Jenkins 2.263.1 LTS release
+        * [https://groups.google.com/g/jenkinsci-dev/c/vY2Nj3P6NMg/m/J6EaZyxcAQAJ](https://groups.google.com/g/jenkinsci-dev/c/vY2Nj3P6NMg/m/J6EaZyxcAQAJ)
+        * [https://www.jenkins.io/changelog-stable/](https://www.jenkins.io/changelog-stable/)
+    * LTS schedule - winter break
+        * [https://groups.google.com/g/jenkinsci-dev/c/2n0tDJkh994/m/L1B5eOg-AwAJ](https://groups.google.com/g/jenkinsci-dev/c/2n0tDJkh994/m/L1B5eOg-AwAJ)
+        * Target release date - Jan 13, 2020
+    * Google Summer of Code 2021 (Oleg)
+        * [https://www.jenkins.io/projects/gsoc/](https://www.jenkins.io/projects/gsoc/)
+* Jenkins elections status update (Oleg)
+    * Elections are over!
+    * Results:
+        * Governance Board: [https://civs.cs.cornell.edu/cgi-bin/results.pl?id=E_f622a8a94f337478](https://civs.cs.cornell.edu/cgi-bin/results.pl?id=E_f622a8a94f337478)
+        * Release Officer: [https://civs.cs.cornell.edu/cgi-bin/results.pl?id=E_287cb63d82ce7972](https://civs.cs.cornell.edu/cgi-bin/results.pl?id=E_287cb63d82ce7972)
+        * &lt;TODO: Add results>
+    * Retrospective document: [https://docs.google.com/document/d/1VUpcn-ISyhN1ueSHa7rDOLxYrTABC5vKPXPiqBe87DI/edit?usp=sharing](https://docs.google.com/document/d/1VUpcn-ISyhN1ueSHa7rDOLxYrTABC5vKPXPiqBe87DI/edit?usp=sharing)
+    * Next steps:
+        * Announcements on Dec 03
+* TBD - Jenkins 3.x discussion
+    * [https://groups.google.com/g/jenkinsci-dev/c/MfcCozfXi0I](https://groups.google.com/g/jenkinsci-dev/c/MfcCozfXi0I)
+* Jenkins K8s Operator updates (Oleg)
+    * Original thread - [https://groups.google.com/g/jenkinsci-dev/c/OA5nb_SAgh0](https://groups.google.com/g/jenkinsci-dev/c/OA5nb_SAgh0)
+    * New Operator hosting request -  [https://groups.google.com/g/jenkinsci-dev/c/oAWCXDbgcG4](https://groups.google.com/g/jenkinsci-dev/c/oAWCXDbgcG4)
+    * Trademark Sublicense request by VirtusLab: [https://groups.google.com/u/0/g/jenkinsci-dev/c/JlQlL4G7jME](https://groups.google.com/u/0/g/jenkinsci-dev/c/JlQlL4G7jME)
+        * Voting? No. Waiting for feedback from VirtusLab
+* Selecting New Jenkins Governance Meeting slots
+    * Oleg to start a new Doodle
+    * Gavin: I like this slot
+    * Marky: can adjust
+    * // ..
+* CDF Annual Report ([here](https://docs.google.com/document/d/1t0u1AmX1sAqYNL1SbPuK-mdjC_Wdu7mrSsfqc2nksiY/edit))
+    * Deadline - Jan 13
+    * Format - similar to 2019
+    * Do our blogpost in December?
+        * Marky to drive the effort
+* Hacktoberfest results?
+    * CDF report: [https://cd.foundation/blog/2020/12/02/hacktoberfest-wrap-up/](https://cd.foundation/blog/2020/12/02/hacktoberfest-wrap-up/)
+    * Jenkins report: TODO
+
+## Nov 18, 2020
+
+Skipped
+
+## Nov 4, 2020
+
+Recording: [https://youtu.be/SXActpToiYU](https://youtu.be/SXActpToiYU)
+
+Participants: Oleg Nenashev, Mark Waite, Ulli Hafner, Akram Ben Aissi, Vibhav Bobade
+
+* News!
+    * 2020 Elections
+        * Candidates are published: [https://www.jenkins.io/blog/2020/10/28/election-candidates/](https://www.jenkins.io/blog/2020/10/28/election-candidates/)
+    * Jenkins 2.249.3 LTS released
+        * [https://www.jenkins.io/changelog-stable/#v2.249.3](https://www.jenkins.io/changelog-stable/#v2.249.3)
+    * Jenkins 2.264 released with tables to divs
+        * [https://www.jenkins.io/changelog/](https://www.jenkins.io/changelog/)
+    * Security release
+        * [https://www.jenkins.io/security/advisory/2020-11-04/](https://www.jenkins.io/security/advisory/2020-11-04/)
+        * We won’t be providing security fixes for deprecated plugins
+    * Other upcoming changes in weekly
+        * Acegi to Spring Boot security
+        * XStream unfork
+        * JQuery upgrade
+* Jenkins elections status update (Oleg)
+    * [https://www.jenkins.io/blog/2020/10/28/election-candidates/](https://www.jenkins.io/blog/2020/10/28/election-candidates/)
+    * Register here: [https://forms.gle/Tm4Qz8i3vhPuSkoj7](https://forms.gle/Tm4Qz8i3vhPuSkoj7)
+    * Ongoing outreach
+* Epipheo Video (Mark)
+    * Mark to complete action item approved from prior meeting
+        * Post video to jenkins.io root page below Jumbotron
+* Trademark page updates (Oleg)
+    * Still on my list…
+* Search for jenkins.io (Oleg)
+    * Oleg did experiments with a 3rd-party search engine, but no good progress with sponsorship
+    * Search that collects user data?
+        * Mark: fine, as long as adds are not added (non-Jenkins products)
+        * Oleg: fine
+        * Ulli: fine
+    * Oleg to do a PoC
+* Jenkins Operator Roadmap and Future
+    * [https://groups.google.com/u/1/g/jenkinsci-dev/c/OA5nb_SAgh0/m/q8SSKE1UAwAJ](https://groups.google.com/u/1/g/jenkinsci-dev/c/OA5nb_SAgh0/m/q8SSKE1UAwAJ)
+    * Contributors cannot contribute
+    * Users are upset
+    * Red Hat maintains its own fork, ongoing massive refactoring
+    * The Governance Board will make the last attempt to contact Virtus Lab. If it does not work, we discuss other options on Nov 18
+* Next meeting
+    * Nov 18, 6PM UTC
+
+## Oct 21, 2020
+
+Recording: [https://youtu.be/zBOwRubg7FE](https://youtu.be/zBOwRubg7FE)
+
+Participants: Ulli Hafner, Alex Earl, Oleg Nenashev, Mark Waite, Alyssa Tong, Marky Jackson
+
+* News!
+    * Hacktoberfest! 10 days left
+        * [https://www.jenkins.io/events/hacktoberfest/](https://www.jenkins.io/events/hacktoberfest/)
+    * Weekly release outage
+        * [https://groups.google.com/g/jenkinsci-dev/c/OsCus5unS4I](https://groups.google.com/g/jenkinsci-dev/c/OsCus5unS4I)
+    * LTS baseline selection
+        * [https://groups.google.com/g/jenkinsci-dev/c/AWOPeU4k0DI](https://groups.google.com/g/jenkinsci-dev/c/AWOPeU4k0DI)
+    * Oliver is stepping down as Release Officer in late 2020
+        * [https://groups.google.com/g/jenkinsci-dev/c/YNqmh64kpAo](https://groups.google.com/g/jenkinsci-dev/c/YNqmh64kpAo)
+* Elections status update (Oleg)
+    * [https://www.jenkins.io/blog/2020/09/24/board-elections/](https://www.jenkins.io/blog/2020/09/24/board-elections/)
+* Updating the officer role definitions (Oleg)
+    * [https://groups.google.com/g/jenkinsci-dev/c/8hk3kdWpGsc](https://groups.google.com/g/jenkinsci-dev/c/8hk3kdWpGsc)
+    * [https://github.com/jenkins-infra/jenkins.io/pull/2943](https://github.com/jenkins-infra/jenkins.io/pull/2943)
+    * Merge after approval by officers and the board members
+    * We are not introducing a “shadow officer” requirement for now
+* // add your agenda items here
+* Epipheo Video (Mark)
+    * Discussed in [July 30 governance](https://youtu.be/lGQGaJyFe0I?t=1781) and in  [advocacy and outreach thread](https://groups.google.com/g/jenkins-advocacy-and-outreach-sig/c/EQUWRgdwrO8/m/xNbSuSpVCQAJ)
+    * [Ready for publishing](https://drive.google.com/file/d/1waARU1Zd9gecktL6skYBHu5dKnEJHXqj/view)
+    * Request sent to [Jenkins developers mailing list](https://groups.google.com/g/jenkinsci-dev/c/CJrdCsERzi0/m/1z-oKY-PAwAJ) in case more discussion needed
+    * VOTE: Permission to place it on jenkins.io root page below Jumbotron?
+        * +1 - Oleg, Mark, Alyssa, Ulli, Marky
+        * => APPROVED
+    * [PR 4021](https://github.com/jenkins-infra/jenkins.io/pull/4021)
+* Jenkins comic strip #3 - taking suggestions for topic (Alyssa)
+    * We need ideas for the new topics
+    * Current plan “working from home”
+        * +1s
+    * Ideas:
+        * FOSDEM@home for 2020
+        * Doing talks from home
+        * Jenkins Elections
+            * [https://www.jenkins.io/blog/2020/09/24/board-elections/](https://www.jenkins.io/blog/2020/09/24/board-elections/)
+            * Not good for nov
+* Trademark page updates
+    * [https://www.jenkins.io/project/trademark](https://www.jenkins.io/project/trademark)
+* Next meeting:
+    * Nov 4, 2020. 6PM UTC
+
+## Oct 14, 2020
+
+Recording: [https://youtu.be/XvV58bjUBsk](https://youtu.be/XvV58bjUBsk)  \
+Participants: Alex Earl, Ulli Hafner, Mark Waite, Oleg Nenashev
+
+* News!
+    * Hacktoberfest
+        * [https://www.jenkins.io/events/hacktoberfest/](https://www.jenkins.io/events/hacktoberfest/)
+    * cdCon!
+        * [https://events.linuxfoundation.org/cdcon/](https://events.linuxfoundation.org/cdcon/)
+    * 2020 elections. Nominations and voter registration are open
+        * [https://www.jenkins.io/blog/2020/09/24/board-elections/](https://www.jenkins.io/blog/2020/09/24/board-elections/)
+    * Jenkins 2.249.2 release
+        * [https://www.jenkins.io/changelog-stable/](https://www.jenkins.io/changelog-stable/)
+    * Jenkins next LTS version selected Oct 21
+* Trademark usage requests (TechMatrix, Websoft9)
+    * Adopting Linux Foundation pre-approved patterns? [https://www.linuxfoundation.org/trademark-usage/](https://www.linuxfoundation.org/trademark-usage/)
+        * Agreed: Adopt Linux Foundation pre-approved trademark patterns and usage guidelines
+            * +1 from all
+        * Not applying requirements retrospectively, everything remains approved
+        * Until the transition is over, we may make exceptions in the naming policy. Example: precedent in already approved trademarks
+    * [https://groups.google.com/g/jenkinsci-dev/c/Ti1KZcNBTCg](https://groups.google.com/g/jenkinsci-dev/c/Ti1KZcNBTCg)
+        * Does not match the Linux Foundation pattern, no precedent
+        * AWS Marketplace has a LOT of violations, same for other marketplaces: [https://aws.amazon.com/marketplace/search/results?searchTerms=jenkins](https://aws.amazon.com/marketplace/search/results?searchTerms=jenkins)
+        * Alex: “Jenkins on Ubuntu by Websoft9” might work for me, but not “Jenkins on Ubuntu”
+            * Alex: 0 for the current proposal
+            * Oleg: Okay with that
+            * Mark: OK for that, but not as a general pattern
+        * Suggestion: requiring the requester to use the Linux Foundation naming pattern. We can come up with a few proposals.
+        * Commonly we are OKay with historical distributions having clear distinctions in the name (“E.g. Jenkins by FooBar”).
+    * [https://groups.google.com/g/jenkinsci-dev/c/giXAiwndDd8](https://groups.google.com/g/jenkinsci-dev/c/giXAiwndDd8)
+        * We explicitly recommend using the LF pattern as a preferred product naming.
+        * “TechMatrix Jenkins Support” is approved, based on the precedent.
+    * Mark to submit the Trademark page PR
+* Elections status update (Oleg)
+    * [https://www.jenkins.io/blog/2020/09/24/board-elections/](https://www.jenkins.io/blog/2020/09/24/board-elections/)
+    * Got officer and board nominations
+    * Low on voter registration
+        * Oleg: Sending notifications to maintainers?
+            * Mark to check with the Infra team
+        * ? Ask Alyssa about community marketing
+    * Oleg to introduce a low-traffic announcements mailing list
+* Updating the officer role definitions (Oleg)
+    * [https://groups.google.com/g/jenkinsci-dev/c/8hk3kdWpGsc](https://groups.google.com/g/jenkinsci-dev/c/8hk3kdWpGsc)
+    * [https://github.com/jenkins-infra/jenkins.io/pull/2943](https://github.com/jenkins-infra/jenkins.io/pull/2943)
+    * Needs reviews!
+    * Target approving it on Oct 21st
+* Next meeting
+    * Oct 21st - selection
+    * Changing the time of board meetings?
+        * Not until after the elections
+
+## Sep 30, 2020
+
+Recording: [https://youtu.be/qAp1rE4wlFA](https://youtu.be/qAp1rE4wlFA)
+
+Participants: Mark Waite, Alyssa Tong, Marky Jackson, Alex Earl, Ben Rich, Oleg Nenashev, Tracy Miranda, Ulli Hafner
+
+* News!
+    * Jenkins Governance and Board officer elections
+        * [https://www.jenkins.io/blog/2020/09/24/board-elections/](https://www.jenkins.io/blog/2020/09/24/board-elections/)
+        * Voter registration is OPEN
+        * Nominations are OPEN
+    * Hacktoberfest
+        * [https://www.jenkins.io/events/hacktoberfest/](https://www.jenkins.io/events/hacktoberfest/)
+    * Alex Earl is stepping down from the Board on Dec 03
+        * [https://groups.google.com/g/jenkinsci-dev/c/i42q3hhcx3I](https://groups.google.com/g/jenkinsci-dev/c/i42q3hhcx3I)
+    * cdCon Next week (Oct 7-8)
+        * [https://events.linuxfoundation.org/cdcon/](https://events.linuxfoundation.org/cdcon/)
+        * [https://events.linuxfoundation.org/cdcon/program/schedule/](https://events.linuxfoundation.org/cdcon/program/schedule/) , 4 Jenkins talks + community Birds of Feather
+            * Get BoF on the Calendar?
+            * Promote in the SIG
+    * CDF Updates
+        * GSoD Payments will happen through CDF/LF
+        * New training on Jenkins Essentials by Linux Foundation, to be launched on Oct 06.
+        * JAMs topics to be revised
+    * // Other news
+* Jenkins Board and Officer elections update (Oleg)
+    * [https://www.jenkins.io/project/board-election-process/](https://www.jenkins.io/project/board-election-process/)
+* Updating the officer role definitions (Oleg)
+    * [https://github.com/jenkins-infra/jenkins.io/pull/2943](https://github.com/jenkins-infra/jenkins.io/pull/2943)
+    * No Email thread at the moment, to be created
+* JFrog Artifactory cost reduction progress - Mark Waite
+    * Daniel Beck and Mark Waite met with Baruch Sadogursky today
+        * Baruch reinforced JFrog’s intent to support the Jenkins project
+            * Intentionally no specific cost reduction target
+            * Intend to prevent use unrelated to Jenkins
+        * Baruch identified techniques to reduce non-Jenkins use and continue to support Jenkins use
+        * Daniel Beck will experiment further with Baruch’s suggestions
+        * Baruch will enlist log analysis help from inside JFrog
+    * Summary will be sent on the [email thread](https://groups.google.com/g/jenkins-infra/c/4B_jykZ2wi0/m/wrcszWE0BQAJ)
+* FFIS Donations Flow -  [https://issues.jenkins-ci.org/browse/WEBSITE-703](https://issues.jenkins-ci.org/browse/WEBSITE-703)
+    * Ulli drives communications with FFIS
+    * Est 2-3k EUR on the account
+    * What to do next?
+        * Oleg: If it is “just” 2-3k, move on if there is no way to progress?
+            * Mark + 1
+        * Ulli considers writing to a journal to see whether it may help
+    * Community Bridge donations
+* Epipheo Video
+    * [https://drive.google.com/file/d/1waARU1Zd9gecktL6skYBHu5dKnEJHXqj/view](https://drive.google.com/file/d/1waARU1Zd9gecktL6skYBHu5dKnEJHXqj/view) - ready for publishing?
+    * Could we get it on the landing?
+* Terminology change issues
+    * Marky to create an EPIC for master/whitelist/blacklist cleanup
+        * Needs to be linked from roadmap and Hacktoberfest pages
+    * Mark to create GitHub issues for jenkins.io
+        * #[3835](https://github.com/jenkins-infra/jenkins.io/issues/3835), [#3836](https://github.com/jenkins-infra/jenkins.io/issues/3836) ,[#3837](https://github.com/jenkins-infra/jenkins.io/issues/3837), [#3838](https://github.com/jenkins-infra/jenkins.io/issues/3838), [#3839](https://github.com/jenkins-infra/jenkins.io/issues/3839), [#3840](https://github.com/jenkins-infra/jenkins.io/issues/3840)
+    * CDF plans to send communications tomorrow
+* Next meeting
+    * Oct 7th?
+        * Mark/Ulli to drive it, Oleg might skip
+    * Oct 21 - back to the schedule
+
+## Sep 16, 2020
+
+Recording: [https://www.youtube.com/watch?v=HniuAlCt4to](https://www.youtube.com/watch?v=HniuAlCt4to)
+
+Participants: Alex Earl, Oleg Nenashev, Mark Waite, Alyssa Tong, Daniel Beck
+
+* News!
+    * 2.249.1 LTS release
+        * [https://www.jenkins.io/changelog-stable/#v2.249.1](https://www.jenkins.io/changelog-stable/#v2.249.1)
+        * Blogpost for testing on Jenkins: [https://github.com/jenkins-infra/jenkins.io/pull/3688/files](https://github.com/jenkins-infra/jenkins.io/pull/3688/files)
+    * Security release for plugins
+        * [https://www.jenkins.io/security/advisory/2020-09-16/](https://www.jenkins.io/security/advisory/2020-09-16/)
+    * GSoC is over!
+        * [https://www.jenkins.io/projects/gsoc/](https://www.jenkins.io/projects/gsoc/)
+    * Google Season of Docs has started: Jenkins on K8s by Zainab Abubakar
+        * [https://www.jenkins.io/sigs/docs/gsod/2020/projects/document-jenkins-on-kubernetes/](https://www.jenkins.io/sigs/docs/gsod/2020/projects/document-jenkins-on-kubernetes/)
+    * DevOps World Next week - Sep 22-24
+        * Community/OSS track
+        * CDF track + CDF keynote, including Marky’s presentation
+        * 50 community-related breakout sessions in total
+        * Close to 20k regs
+        * CDF Booth, includes member project
+            * Contact Alyssa if you want to participate
+        * Announcement blog for jenkins.io is coming soon
+        * Request: Jumbotron for DevOps World, then for CDCon
+            * +1s - Alex, Mark, Oleg, Daniel
+    * CDCon - Oct 08-09
+        * [https	://www.jenkins.io/blog/2020/09/10/jenkins-continuous-evolution-cdcon/](https://www.jenkins.io/blog/2020/09/10/jenkins-continuous-evolution-cdcon/)
+        * More community content may come soon
+* 2020 Board and Officer Elections process
+    * Mailing list: [https://groups.google.com/forum/#!topic/jenkinsci-dev/NQg-_xhrT-0](https://groups.google.com/forum/#!topic/jenkinsci-dev/NQg-_xhrT-0)
+    * [https://docs.google.com/document/d/1-ZKip5ziTOvHzU1IHA-Sv6cLg80l49Vy2OMlP3-cUJQ/edit?usp=sharing](https://docs.google.com/document/d/1-ZKip5ziTOvHzU1IHA-Sv6cLg80l49Vy2OMlP3-cUJQ/edit?usp=sharing)
+    * Moving forward with the change?
+        * Mark - +1
+        * Alex - +1
+        * Oleg +1
+    * Oleg to submit a pull request to [https://www.jenkins.io/project/board-election-process/](https://www.jenkins.io/project/board-election-process/)
+    * AGREED: Governance Board to sign-off the process, no new Governance Meeting voting is required. Consensus in the dev list is enough.
+    * One board member to be elected if KK does not step down
+    * Alex to draft a election sign-up form
+* Roadmap review
+    * [https://jenkins.io/project/roadmap](https://jenkins.io/project/roadmap)
+    * See the recording for status changes
+    * Oleg to submit a pull request with a bulk update
+* Infra
+    * Jira migration - Mark to meet with LF
+    * JFrog Artifactory - Mark and Daniel to meet with JFrog
+    * DockerHub - Discussed at the infra meetings
+* Next meeting
+    * Sep 30 - between CDCon and DevOps World
+
+## Aug 26, 2020
+
+Recording: [https://youtu.be/fw5z-d4uZTI](https://youtu.be/fw5z-d4uZTI)
+
+Participants: Alex Earl, Ullrich Hafner, Oleg Nenashev, Mark Waite, Daniel Beck, Siamak Sadeghianfar
+
+* News!
+    * We are serving Jenkins core and Plugin downloads via HTTPs (mirrorbits!)
+        * [https://issues.jenkins-ci.org/browse/INFRA-2516](https://issues.jenkins-ci.org/browse/INFRA-2516) on the roadmap (2 older issues, to be linked)
+        * We can proceed with expanding the mirrors list… AGAIN!
+    * 2.235.4 and .5 security releases: [https://www.jenkins.io/security/advisory/2020-08-12/](https://www.jenkins.io/security/advisory/2020-08-12/), [https://www.jenkins.io/security/advisory/2020-08-17/](https://www.jenkins.io/security/advisory/2020-08-17/)
+    * 2.249.1 RC is coming soon
+        * [https://groups.google.com/forum/#!topic/jenkinsci-dev/mFW4UduujWg](https://groups.google.com/forum/#!topic/jenkinsci-dev/mFW4UduujWg)
+* GitHub Fork relationship - Daniel Beck
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/SkKoCccPrOc](https://groups.google.com/forum/#!topic/jenkinsci-dev/SkKoCccPrOc)
+    * Voting: AGREED to proceed
+        * +1s in the mailing list
+        * Alex: +1
+            * Needs changes in the hosting process. There are alternative options: creating a new repo and moving branches manually; repository transfer requests
+            * Alex to review APIs to check feasibility
+        * Siamak: +1
+            * Other communities define similar fork relationship requirements. Simplifies attribution, esp. For smaller repositories
+* Jira upgrade [plan in progress](https://docs.google.com/document/d/1W_zJZvQonLe0wDLnrx1FOd4_Em0kD1FZuEuUAtaFe0s/edit?usp=sharing) - Mark Waite
+    * Jenkins [infra meeting](https://docs.google.com/document/d/1uNneXKcIYrpBtfkkfWvtSWYgZ-6rgf4YvCqxJqBU1yg/edit) regular topic
+    * No change in identity management, LF agreed
+* 2020 Board and Officer Elections
+    * Mailing list: [https://groups.google.com/forum/#!topic/jenkinsci-dev/NQg-_xhrT-0](https://groups.google.com/forum/#!topic/jenkinsci-dev/NQg-_xhrT-0)
+    * [https://docs.google.com/document/d/1-ZKip5ziTOvHzU1IHA-Sv6cLg80l49Vy2OMlP3-cUJQ/edit?usp=sharing](https://docs.google.com/document/d/1-ZKip5ziTOvHzU1IHA-Sv6cLg80l49Vy2OMlP3-cUJQ/edit?usp=sharing)
+    * Questions: what is the sign-up time?
+        * Sign up time - 4 weeks
+        * Verification time - 1 week (can be parallelized)
+        * Voting time - 2 weeks
+    * Keep talking / reviewing. Sync-up and final decisions at the next board meeting
+* Incoming Community events / programs - Oleg Nenashev
+    * Google Season of Docs: [https://www.jenkins.io/sigs/docs/gsod/](https://www.jenkins.io/sigs/docs/gsod/)
+    * Community Bridge for Docs?
+    * Hacktoberfest: [https://www.jenkins.io/events/hacktoberfest/](https://www.jenkins.io/events/hacktoberfest/)
+        * Open questions:
+            * Online Meetups
+            * Featured projects
+            * Organizers (Mark, Oleg, Alex, more?)
+        * Mark to contact the dev list - [done](https://groups.google.com/g/jenkinsci-dev/c/pz3kqPnC2wA/m/OCdsPCKBAAAJ)
+    * DevOps World
+        * Alyssa is looking for volunteers: [https://groups.google.com/forum/#!topic/jenkinsci-dev/UPYrHAkPe4U](https://groups.google.com/forum/#!topic/jenkinsci-dev/UPYrHAkPe4U)
+        * Sep 22-24
+    * CDCon
+        * Same: Advocacy&Outreach
+        * Oct 08-09
+* TBD - Kubernetes Operator governance discussion - Siamak Sadeghianfar
+    * // No public track at the moment, not ready for discussion
+    * [https://github.com/jenkinsci/kubernetes-operator](https://github.com/jenkinsci/kubernetes-operator)
+    * Virtus Lab started the project
+    * Red Hat contributes to the operator
+    * Problem with getting changes reviewed/integrated and committer permissions. Currently the operator is a single-vendor-maintained project
+    * Virtus Lab downscaled the involvement in the operator, priority changes
+    * Virtus Lab wants to keep ownership, internal private fork
+    * Tried to negotiate, did not work
+    * Red Hat does not want to have a single vendor, but a healthy upstream.
+    * Q: How to convert the operator to a community-driven project with multiple parties?
+    * Proposal:
+        * Alex Earl to lead the discussion
+        * Red Hat team to send a proposal to the dev list
+            * [https://groups.google.com/forum/#!forum/jenkinsci-dev](https://groups.google.com/forum/#!forum/jenkinsci-dev)
+        * Oleg to sync-up with Alex and the Board
+    * Status sync-up at the next governance meeting. We will try to get other parties on the call
+* Next governance meeting
+    * Sep 9, then Sep 16, Skipping DevOps World, and then Oct ?, then back to common schedule
+    * Oleg is not available: [https://groups.google.com/forum/#!topic/jenkinsci-dev/Zk4VR0Q-cHQ](https://groups.google.com/forum/#!topic/jenkinsci-dev/Zk4VR0Q-cHQ)
+* Roadmap review - Sep 16th
+    * [https://www.jenkins.io/project/roadmap/](https://www.jenkins.io/project/roadmap/)
+
+## Aug 12, 2020
+
+Recording: [https://youtu.be/cvi_PGcLH8w](https://youtu.be/cvi_PGcLH8w)
+
+* News!
+    * Jenkins is now an officially graduated project!
+        * [https://groups.google.com/forum/#!topic/jenkinsci-dev/I3sUP2SB2JI](https://groups.google.com/forum/#!topic/jenkinsci-dev/I3sUP2SB2JI)
+        * Announcement on [jenkins.io](http://jenkins.io/):
+            * [https://www.jenkins.io/blog/2020/08/04/cdf-graduation/](https://www.jenkins.io/blog/2020/08/04/cdf-graduation/)
+        * CDF Announcement:
+            * [https://cd.foundation/announcement/2020/08/04/cd-foundation-announces-jenkins-graduation/](https://cd.foundation/announcement/2020/08/04/cd-foundation-announces-jenkins-graduation/)
+        * CDF Newsletter with 6 more blogposts about Jenkins and some surprise content. make sure to check it out!
+            * [https://cd.foundation/stay-connected/newsletter-archive/cdf-newsletter-august2020/](https://cd.foundation/stay-connected/newsletter-archive/cdf-newsletter-august2020/)
+            * [Docs progress](https://cd.foundation/blog/2020/08/11/jenkins-docs-progress/)
+        * Official press release by CDF:
+            * [https://www.prnewswire.com/news-releases/cd-foundation-announces-jenkins-graduation-301105709.html](https://www.prnewswire.com/news-releases/cd-foundation-announces-jenkins-graduation-301105709.html)
+        * Announcements in Social media from Jenkins and CDF accounts
+        * Celebration party?
+            * Oleg to send a Doodle
+    * 2.235.4 LTS release
+        * [https://www.jenkins.io/changelog-stable/](https://www.jenkins.io/changelog-stable/)
+    * Next LTS baseline
+        * 2.249.x is selected
+        * Testing will be appreciated!
+        * RC is scheduled to Aug 26th
+        * GA is on Sep 8th?
+        * Online Meetup with new features overview. Mark to organize the event
+            * UX improvements
+            * New installer for Windows / New Windows services and .NET 2.0 deprecation
+            * Dark Theme
+            * Plugin Installation Manager in Docker images (as preview)
+            * External fingerprint storage API
+            * Not included:
+                * System Read Permission GA - will happen in Dec release
+                * Tables to Divs
+* Selecting a new term for “Jenkins Master” as a definition of a Jenkins app
+    * [https://groups.google.com/forum/#!msg/jenkinsci-dev/CLR55wMZwZ8/3eSdsUIGDwAJ](https://groups.google.com/forum/#!msg/jenkinsci-dev/CLR55wMZwZ8/3eSdsUIGDwAJ)
+    * 130 Community votes! See the results below
+    * Gender
+        * Recommendation to use a single gender to avoid complicating the documentation
+        * Mixed feedback on Genders
+    * Agreed: “Controller” / ”Jenkins controller” is selected as a term for the English localization
+        * 95 vs. 35 among Jenkins community members (vote in user and developer mailing lists + SIGs)
+        * Governance Board votes: 3 +1s for Controller, 2 abstained
+        * +1 from Mark as Documentation officer
+    * Gender recommendation for localizations selection:
+        * Alex: Take a feminine language
+        * Oleg: Russian historically uses masculine term for a gender-neutral definition is needed (or two gender mentions)
+        * Mark: Leave it to localization communities?
+            * Q: How do other projects handle that?
+            * Kick-off the discussion when there is a Jenkins core or jenkins.io pull request. Stall the pull request (“on-hold” label) and kick-off the discussion in the developer mailing list OR in a Chinese Localization SIG mailing list. Native speakers are expected to reach a consensus.
+            * Introduce a page with term recommendations, update it as we go
+                * Add localization recommendations to  [https://www.jenkins.io/doc/book/glossary/](https://www.jenkins.io/doc/book/glossary/) incrementally
+    *
+
+<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+![alt_text](images/image3.png "image_tooltip")
+
+    *
+
+<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image4.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+![alt_text](images/image4.png "image_tooltip")
+
+* Governance Board and Officer elections, 2020 edition
+    * [https://www.jenkins.io/project/board-election-process/](https://www.jenkins.io/project/board-election-process/)
+    * The current board member and officers were announced on Dec 03
+    * Roles to elect:
+        * 1 board member (Tyler)
+        * 5 officers
+    * Retrospective feedback:
+        * Redefine eligibility to avoid mass distribution of 100,000k+ emails
+        * We cannot just remove it…
+        * Jenkins account criteria is not fully inclusive as well (e.g. GitHub-only contributors)
+    * We need to work on the process…
+        * Public sign-up + verification by LDAP database/GitHub/other communication channel
+    * DONE - Oleg to create an initial proposal
+        * [https://docs.google.com/document/d/1-ZKip5ziTOvHzU1IHA-Sv6cLg80l49Vy2OMlP3-cUJQ/edit?usp=sharing](https://docs.google.com/document/d/1-ZKip5ziTOvHzU1IHA-Sv6cLg80l49Vy2OMlP3-cUJQ/edit?usp=sharing)
+* Next meeting:
+    * Aug 26
+
+## July 29, 2020
+
+Time: 6PM UTC
+
+Recording: [https://youtu.be/lGQGaJyFe0I](https://youtu.be/lGQGaJyFe0I)
+
+Participants: Alex Earl, Mark Waite, Daniel Beck, Alyssa Tong, Oleg Nenashev
+
+* News!
+    * Core release automation: LTS and Security releases are shipped from the infra
+        * Weekly releases since May 2020
+        * LTS and Security releases in July
+        * 2.235.4 will use the new release automation
+        * Online meetup on Aug 06, 2020 - TBA
+    * Ongoing LTS baseline selection: [https://groups.google.com/forum/#!topic/jenkinsci-dev/vtjcrJtZCnk](https://groups.google.com/forum/#!topic/jenkinsci-dev/vtjcrJtZCnk)
+    * 2.235.4 RC is expected today??? Nope
+        * No backporting PR
+        * Unlikely to happen today
+        * Considering minor agent terminology updates for backporting
+    * Jenkins roadmap!
+        * [https://www.jenkins.io/project/roadmap/](https://www.jenkins.io/project/roadmap/)
+        * Next roadmap meeting - late Aug / Sep. TBA
+* Terminology updates: Selecting the new name for the “Jenkins master” (Alex?Mark)
+    * Dev list: [https://groups.google.com/forum/#!topic/jenkinsci-dev/CLR55wMZwZ8](https://groups.google.com/forum/#!topic/jenkinsci-dev/CLR55wMZwZ8)
+    * Poll has closed: July 29, 14:00 PM UTC.
+    * Results: [https://civs.cs.cornell.edu/cgi-bin/results.pl?id=E_1bd92a17371a1ca5](https://civs.cs.cornell.edu/cgi-bin/results.pl?id=E_1bd92a17371a1ca5)
+    *
+
+<p id="gdcalert5" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image5.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+![alt_text](images/image5.png "image_tooltip")
+
+    * Next steps:
+        * Run terms through Google Translate to validate localization options and to ensure there is no negative connotation
+        * Next governance meeting - final decision
+        * Daniel - one term vs. multiple terms?
+            * Alex:_ “we plan to replace the “master” term which is currently used to describe the Jenkins application with its web user interface and distribution of work to agents.”_
+            * We replace the “Jenkins application” term
+            * Sub-components may have different names (e.g. “agent coordinator”, “Jenkins web interface”, ...)
+        * Communicating the changes:
+            * All communications after the final decision. Announcements in the dev list
+            * Blog / Social media
+                * Alex is writing a blog for CDF. We need to ensure it gets published after the decision
+                * (?) Promoting article on terminology with Alex
+        * Reconsider roadmap items to be more focused on the use-case
+        * Other:
+
+                Docs and so on
+
+            * How do we change the source code (API/code)? E.g. DumbSlave class
+    * Other updates
+        * Blacklist/Whitelist cleanup
+            * We agreed to use allowlist/denylist in the Jenkins core (or other term which makes sense in a context)
+            * Changelog is updated by Oleg
+            * Daniel updated advisories && Co
+                * New User-approved and pre-approved terms for Script Security, improves UX
+            * A lot of work to do
+* Core Infrastructure Initiative updates (Oleg)
+    * [https://groups.google.com/forum/#!msg/jenkinsci-dev/n1qH1K5_td0/a3SoeMGzBQAJ](https://groups.google.com/forum/#!msg/jenkinsci-dev/n1qH1K5_td0/a3SoeMGzBQAJ)
+    * [https://bestpractices.coreinfrastructure.org/en/projects/3538](https://bestpractices.coreinfrastructure.org/en/projects/3538)
+    * Highlight: reached the passing criteria. Current score is 133%
+* Jenkins CDF graduation status report (Oleg)
+    * CDF TOC voting in the mailing list: [https://lists.cd.foundation/g/cdf-toc/topic/vote_jenkins_graduation/75705780?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,0,75705780](https://lists.cd.foundation/g/cdf-toc/topic/vote_jenkins_graduation/75705780?p=,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,0,75705780)
+    * Waiting for the final decision, no action items
+* I would like to request approval to use Jenkins Epipheo video on jenkins.io (Alyssa)
+    * [https://groups.google.com/g/jenkins-advocacy-and-outreach-sig/c/EQUWRgdwrO8](https://groups.google.com/g/jenkins-advocacy-and-outreach-sig/c/EQUWRgdwrO8)
+    * Looking for approval to have it on jenkins.io landing
+    * Technical implementation:
+        * Not a Jumbotron replacement
+        * Where to host the video?
+            * Jenkins YouTube channel?
+    * Process?
+        * Mark - fine to just approve it at the meeting
+        * Alex to watch the video
+        * Daniel - no opinion
+            * What about the weapons? Not sure it is appropriate
+        * Oleg - abstain
+    * Timeline?
+        * Getting it into the graduation announcement?
+* Switching Governance meetings to Zoom by default (Oleg)
+    * How do we communicate meeting notes?
+    * Communicating notes/decisions/highlights to the mailing lists
+
+## July 15, 2020
+
+Recording: [https://www.youtube.com/watch?v=g9V1by2oN7k](https://www.youtube.com/watch?v=g9V1by2oN7k)
+
+Participants: Alex Earl, Ulli Hafner, Oleg Nenashev
+
+* News!
+    * New Code of Conduct is published: [https://www.jenkins.io/project/conduct/](https://www.jenkins.io/project/conduct/)
+    * 2.235.2 security release: [https://www.jenkins.io/security/advisory/2020-07-15/](https://www.jenkins.io/security/advisory/2020-07-15/)
+    * // Other news?
+* Terminology updates (Alex)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/CLR55wMZwZ8](https://groups.google.com/forum/#!topic/jenkinsci-dev/CLR55wMZwZ8)
+    * Vote: Selecting 10 options for voting
+        * Alex: we do not really need 10, just a decent number
+        * Somebody sent an interview request to Tyler, Alex did the interview
+        * Options for voting are defined here: [https://docs.google.com/document/d/1-8myIWOZZktR0HNtbFIiNA0RfDCvkfKKuNI0C3wcvbo/edit#heading=h.nuysq0m8yl6n](https://docs.google.com/document/d/1-8myIWOZZktR0HNtbFIiNA0RfDCvkfKKuNI0C3wcvbo/edit#heading=h.nuysq0m8yl6n)
+        * AGREED: The following list is selected
+            * Controller
+            * Manager
+            * Leader
+            * Coordinator
+            * Director
+            * Main
+            * Executive
+            * Primary
+            * Manager
+        * Alex to send a list to Mark
+        * We will do promotion in mailing lists (user, developer, SIG(?)). No blog and not social media promo
+* Jenkins CDF graduation status report (Oleg)
+    * [https://groups.google.com/forum/#!msg/jenkinsci-dev/I3sUP2SB2JI/LDS99sOtBQAJ](https://groups.google.com/forum/#!msg/jenkinsci-dev/I3sUP2SB2JI/LDS99sOtBQAJ)
+    * Multiple updates in user and maintainer documentation: Weekly release documentation, list of adopters, GitHub Landing, etc.
+    * Official request was submitted to CDF TOC, added to the TOC meeting agenda on Jul 21
+    * Open questions:
+        * Updating [https://www.jenkins.io/project/governance/](https://www.jenkins.io/project/governance/)
+            * AGREED: Just put a pull request
+    * Advocacy && Outreach - coordination of marketing/announcements for the event. Meeting on Jul 16 with details
+* Core Infrastructure Initiative updates (Oleg)
+    * [https://groups.google.com/forum/#!msg/jenkinsci-dev/n1qH1K5_td0/a3SoeMGzBQAJ](https://groups.google.com/forum/#!msg/jenkinsci-dev/n1qH1K5_td0/a3SoeMGzBQAJ)
+    * Triage team is in progress
+        * [https://github.com/jenkinsci/jenkins/blob/master/docs/MAINTAINERS.adoc#issue-triage](https://github.com/jenkinsci/jenkins/blob/master/docs/MAINTAINERS.adoc#issue-triage)
+    * Security Checklist is in review, waiting for approval
+* Downloads Page rework (Oleg)
+    * Approving the page update: [https://github.com/jenkins-infra/jenkins.io/pull/3517](https://github.com/jenkins-infra/jenkins.io/pull/3517)
+    * Oleg to wait for approvals in the PR, then merge
+* Roadmap review
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/Ez7nZxlxSWk](https://groups.google.com/forum/#!topic/jenkinsci-dev/Ez7nZxlxSWk)
+    * [https://www.jenkins.io/project/roadmap/](https://www.jenkins.io/project/roadmap/)
+    * Contributor meetup on Jul 10
+        * Video recording: [https://www.youtube.com/watch?v=ldWBY5BdQ5I](https://www.youtube.com/watch?v=ldWBY5BdQ5I)
+        * Slides: [https://bit.ly/jenkins-meetup-roadmap](https://bit.ly/jenkins-meetup-roadmap)
+    * Pending/Recent updates
+        * [https://github.com/jenkinsci/jep/pull/293](https://github.com/jenkinsci/jep/pull/293)
+        * [https://github.com/jenkins-infra/jenkins.io/pulls?q=is%3Apr+is%3Aopen+label%3Aroadmap](https://github.com/jenkins-infra/jenkins.io/pulls?q=is%3Apr+is%3Aopen+label%3Aroadmap)
+    * VOTE: Ready to publish?
+        * Alex, Ulli, Oleg: +1
+    * Roadmap review meeting:
+        * September? Or after Aug 15th?
+
+## July 1, 2020
+
+Recording:  [https://youtu.be/QGJJXxFUyiw](https://youtu.be/QGJJXxFUyiw)
+
+Participants: Ulli Hafner, Mark Waite, Marky Jackson, Oleg Nenashev
+
+* News!
+    * // Other news?
+* Updating the Jenkins Code of Conduct (Contributor Covenant 2.0)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/u0T56f9MSZY](https://groups.google.com/forum/#!topic/jenkinsci-dev/u0T56f9MSZY)
+    * Q: Private/Public communications
+        * [https://github.com/jenkins-infra/jenkins.io/pull/3477/files#r445029224](https://github.com/jenkins-infra/jenkins.io/pull/3477/files#r445029224)
+    * Vote: Approving new Code of Conduct in  [https://github.com/jenkins-infra/jenkins.io/pull/3477](https://github.com/jenkins-infra/jenkins.io/pull/3477)
+        * Votes: +1s Marky, Mark, Oleg + (Jeff Thompson, Alex Earl in the PR)
+        * Ulli to review it. If approved, we will proceed with the merge
+* Jenkins CDF graduation status report
+    * [https://groups.google.com/forum/#!msg/jenkinsci-dev/I3sUP2SB2JI/LDS99sOtBQAJ](https://groups.google.com/forum/#!msg/jenkinsci-dev/I3sUP2SB2JI/LDS99sOtBQAJ)
+    * CII evaluation
+* Terminology updates
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/CLR55wMZwZ8](https://groups.google.com/forum/#!topic/jenkinsci-dev/CLR55wMZwZ8)
+    * Status report
+    * Selecting Top-10 items
+        * Alex/Marky - To be completed by Jul 15: 10 items + email draft
+        * Promoting the voting
+            * Mailing lists
+            * Marky: &lt;No social media>
+    * Action items:
+        * Starting a Working group? Oleg to create a page skeleton
+        * Terminology proposal time has expired
+            * Ready to create the survey and call for votes?
+* // Roadmap review
+
+## June 17,2020
+
+Recording:  [https://youtu.be/3g0GKvVHfgI](https://youtu.be/3g0GKvVHfgI)
+
+Participants: Alex Earl, Ulli Hafner, Oleg Nenashev, Marky Jackson, mark Waite, Devin Nusbaum, Jeff Thompson. Donald
+
+Recording:
+
+* News!
+    * LDAP Database history loss, Plugin uploads blockage, and follow-ups
+        * [https://groups.google.com/forum/#!topic/jenkinsci-dev/3UvrCTflXGk](https://groups.google.com/forum/#!topic/jenkinsci-dev/3UvrCTflXGk)
+    * AWS Sponsorship is confirmed
+        * [https://www.jenkins.io/blog/2020/06/17/infra-and-aws-donation/](https://www.jenkins.io/blog/2020/06/17/infra-and-aws-donation/)
+        * [https://aws.amazon.com/blogs/opensource/why-jenkins-still-continuously-serves-developers/](https://aws.amazon.com/blogs/opensource/why-jenkins-still-continuously-serves-developers/)
+    * // Other news?
+* Updating the Jenkins Code of Conduct (Contributor Covenant 1.3 -> 1.4 or 2.0)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/u0T56f9MSZY](https://groups.google.com/forum/#!topic/jenkinsci-dev/u0T56f9MSZY)
+    * Vote: Update from Contributor Covenant 1.3 to 1.4
+    * Vote: Update from Contributor Covenant 1.3 to 2.0
+        * +1s - Oleg, Mark, Marky, Ulli, Alex, Jeff
+        * AGREED:
+            * We target Contributor Covenant 2.0
+            * Oleg - to propose a pull request to the Code of Conduct: Contributor Covenant Update, CDF as a second level of escalation, aligning enforcement rules, etc.
+            * Formally approving at the next governance meeting (July 1st)
+* JEP-15 - Approving the Community Bridge Funding rollout
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/iLutO2X0bdg](https://groups.google.com/forum/#!topic/jenkinsci-dev/iLutO2X0bdg)
+    * [https://github.com/jenkinsci/jep/tree/master/jep/15](https://github.com/jenkinsci/jep/tree/master/jep/15)
+    * [https://github.com/jenkins-infra/jenkins.io/pull/3458](https://github.com/jenkins-infra/jenkins.io/pull/3458)
+    * Example: [https://github.com/jenkinsci/jenkinsfile-runner](https://github.com/jenkinsci/jenkinsfile-runner)
+    * Vote: approve/reject
+        * Approve: Mark, Ulli, Alex, Marky
+        * Reject:
+        * Abstain: Oleg, Jeff, Devin, Donald
+    * Decision: APPROVED
+* Hosting plugins with proprietary libraries. Do we want to allow it?
+    * [https://groups.google.com/forum/?nomobile=true#!topic/jenkinsci-dev/dRz1QP_ndPo](https://groups.google.com/forum/?nomobile=true#!topic/jenkinsci-dev/dRz1QP_ndPo)
+    * [https://issues.jenkins-ci.org/browse/INFRA-2622](https://issues.jenkins-ci.org/browse/INFRA-2622)
+    * Currently it is not allowed
+    * Vote: Do we want to revise it?
+        * No: Alex, Marky, Mark, Ulli, Oleg
+        * Yes:
+    * AGREED: private-source dependencies may not be bundled in Jenkins plugins hosted on Jenkins UC, use alternative solutions like on-demand download
+    * Backlog: Scanning tools?
+        * Marky: postpone, GitHub is doing something
+* ~~DISMISSED:  Proposal: Jenkins CDF Graduation July 28th~~ (withdrawn)
+    * ~~[https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/jenkinsci-dev/I3sUP2SB2JI/dM3xAfOnAgAJ](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/jenkinsci-dev/I3sUP2SB2JI/dM3xAfOnAgAJ)~~
+    * ~~Vote: approve/reject~~
+* Terminology updates
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/CLR55wMZwZ8](https://groups.google.com/forum/#!topic/jenkinsci-dev/CLR55wMZwZ8)
+    * ~~Vote: Replacing the whitelist/blacklist terminology~~ (withdrawn)
+        * ~~Allowlist/Denylist~~
+        * ~~Allowlist/Blocklist~~
+    * Discussion: Replacing master terminology
+    * No consensus for a vote. How do we do it?
+        * Set deadline for suggestions
+        * The board to select top 10 options from suggestions
+        * Civs - public vote, advisory voice. Governance board makes a final decision
+            * FYI from https://civs.cs.cornell.edu/: "Public polls may be created that do not require voters to have e-mail addresses; in this case, one vote is allowed per IP address."
+        * Do we add “do not change?” on the ballot
+            * Against: Alex, Mark, Marky, Jeff, Ulli, Oleg
+        * AGREED: We will change the term
+        * AGREED:
+            * Alex to lead the terms shortlist selection and discussion
+            * Mark technical implementation of the voting system
+            * Marky to prepare the Call for Action outreach (message/post templates) - Google Docs
+                * Twitter/LinkedIn
+                * Dev list
+                * User mailing list
+                * Gitter channel
+                * Jumbotron
+    * “Master” scope - Single term vs. multiple ones
+        * Recommend “Jenkins Web Interface”: [https://docs.google.com/document/d/1-8myIWOZZktR0HNtbFIiNA0RfDCvkfKKuNI0C3wcvbo/edit#heading=h.pjrd2d5qm09j](https://docs.google.com/document/d/1-8myIWOZZktR0HNtbFIiNA0RfDCvkfKKuNI0C3wcvbo/edit#heading=h.pjrd2d5qm09j)
+        * We still need a single term, hence vote
+        * Keep working on use-cases and updating the glossary and term recommendations. [https://www.jenkins.io/doc/book/glossary/](https://www.jenkins.io/doc/book/glossary/)
+    * blacklist/whitelist replacement
+        * Attack plan:
+            * Deprecate and discourage blacklist/whitelist
+            * Provide recommendations, not enforce a specific term
+        * Priorities
+            * User-facing items (Docs, UI)
+            * Internal code and comments cleanup when there is no compatibility impact
+            * APIs
+                * Public API
+                * @whitelist annotation is Script Security
+    * Starting a Working group?
+        * +1: Marky, Alex, Oleg
+        * Oleg to create a page skeleton
+* // Roadmap review
+* Next week
+    * July 1st
+        * Alex or Ulli to run the meeting
+        * Oleg to share credentials
+
+## June 03, 2020
+
+Recording: [https://www.youtube.com/watch?v=R80Rv6G-Oww](https://www.youtube.com/watch?v=R80Rv6G-Oww)
+
+Participants:
+
+* Oleg Nenashev
+* Vlad Silverman
+* Tracy Miranda
+* Alex Earl
+* Mark Waite
+* Marky Jackson
+* Dan Lorenc
+
+Agenda:
+
+* News!
+    * UI/UX hackfest updates (Oleg)
+        * [https://www.jenkins.io/events/online-hackfest/2020-uiux/](https://www.jenkins.io/events/online-hackfest/2020-uiux/)
+        * Results slidedeck: [https://docs.google.com/presentation/d/1tq8gdgu_7unC5ftza10GkTKcikm18I9V_pmUU-TUbIA/edit?usp=sharing](https://docs.google.com/presentation/d/1tq8gdgu_7unC5ftza10GkTKcikm18I9V_pmUU-TUbIA/edit?usp=sharing)
+    * Read-only Jenkins Configuration preview
+        * [https://www.jenkins.io/blog/2020/05/25/read-only-jenkins-announcement/](https://www.jenkins.io/blog/2020/05/25/read-only-jenkins-announcement/)
+    * Dark theme preview
+        * [https://github.com/jenkinsci/dark-theme](https://github.com/jenkinsci/dark-theme)
+    * Infra outage on June 02 (jenkins.io & Co)
+        * [https://groups.google.com/forum/#!topic/jenkins-infra/zRqdiyarLDE](https://groups.google.com/forum/#!topic/jenkins-infra/zRqdiyarLDE)
+    * GSoC updates
+        * [https://www.jenkins.io/projects/gsoc/](https://www.jenkins.io/projects/gsoc/)
+    * GSoD
+        * [https://www.jenkins.io/sigs/docs/gsod/](https://www.jenkins.io/sigs/docs/gsod/)
+    * Jenkins LTS RC - backporting
+        * [https://github.com/jenkinsci/jenkins/pull/4768](https://github.com/jenkinsci/jenkins/pull/4768)
+    * Weekly release is delayed
+        * In progress at the moment (2.239)
+* Windows support policy, final approval
+    * [https://github.com/jenkins-infra/jenkins.io/pull/3295](https://github.com/jenkins-infra/jenkins.io/pull/3295)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/oK8pBCzPPpo](https://groups.google.com/forum/#!topic/jenkinsci-dev/oK8pBCzPPpo)
+    * Diff: Support tiers (Windows 10: Tier 1 => Tier 2)
+        * Alex has an agent for testing, image version in Packer
+        * We could add Windows 10 as an agent
+        * Label: win10
+        * Level 1 support criteria:
+            * Unit / Functional tests
+            * ATH - TBD?
+    * Decisions:
+        * Run LTS tests on Windows 10 (and weekly?), but not the CI for pull requests
+        * Support policy:
+            * Agreed to keep Windows 10 as Tier 2 for now
+            * We can move to Tier 1 later
+    * AGREED: Tier 2 and ship [https://github.com/jenkins-infra/jenkins.io/pull/3295](https://github.com/jenkins-infra/jenkins.io/pull/3295)
+        * +1s - Mark, Marky, Alex, Oleg
+        * Nobody is against
+* Promoting AWS sponsorship post as a Jubmotron (Oleg)
+    * [https://aws.amazon.com/blogs/opensource/why-jenkins-still-continuously-serves-developers/](https://aws.amazon.com/blogs/opensource/why-jenkins-still-continuously-serves-developers/)
+    * Agreed: Publish as Jumbotron: “The Jenkins project now runs on AWS”
+        * +1s - 5x, no -1s
+        * Oleg to submit a pull request for review
+    * Vlad: Should Jenkins contributors, interested in AWS hosting, apply for AWS credits? \
+[https://pages.awscloud.com/AWS-Credits-for-Open-Source-Projects](https://pages.awscloud.com/AWS-Credits-for-Open-Source-Projects)
+        * Jenkins already has credits
+        * Feel free to apply as an individual or as a sub-projects
+        * For GSoC/GSoD - contact org admins
+* CDF Graduated Projects criteria. Next steps towards full compliance
+    * Overview by Dan Lorenc - CDF ToC Chair
+    * [https://github.com/cdfoundation/toc/blob/master/PROJECT_LIFECYCLE.md#graduated-stage](https://github.com/cdfoundation/toc/blob/master/PROJECT_LIFECYCLE.md#graduated-stage)
+    * CII badge compliance certification
+        * [https://groups.google.com/forum/#!msg/jenkinsci-dev/n1qH1K5_td0/pA_nUN_6BgAJ](https://groups.google.com/forum/#!msg/jenkinsci-dev/n1qH1K5_td0/pA_nUN_6BgAJ)
+        * Dan - 80% is fine
+    * Tracy - Target dates? End of July?
+    * Marky - Security audit?
+        * Recommended, but not required
+        * Oleg: Could be facilitated through CII
+    * Jenkins CoC?
+        * Is review needed?
+            * [https://www.jenkins.io/project/conduct/](https://www.jenkins.io/project/conduct/) - Contributor Covenant 1.3 - 2015
+            * CDF 1.4
+            * Oleg’s IMHO: Jenkins CoC update is needed? Covenant 1.4 or 2.0?
+        * CoC Committee?
+            * Oleg: YAGNI? Developer list + Governance meeting
+            * Marky: Fine as long as public
+            * All discussions will be in public
+                * Oleg to start a discussion about the CoC update
+        * Escalation process?
+            * 2 stage level
+    * Tracy to start a discussion about CDF Graduation process in the dev list
+* TBD: Approving the Community Bridge funding as preview (Oleg)
+    * [https://groups.google.com/forum/#!searchin/jenkinsci-dev/community$20bridge$20funding%7Csort:date/jenkinsci-dev/iLutO2X0bdg/qcEpxS1iBgAJ](https://groups.google.com/forum/#!searchin/jenkinsci-dev/community$20bridge$20funding%7Csort:date/jenkinsci-dev/iLutO2X0bdg/qcEpxS1iBgAJ)
+    * [https://github.com/jenkinsci/jep/pull/286](https://github.com/jenkinsci/jep/pull/286)
+    * Demo: [https://github.com/oleg-nenashev/demo-jenkins-config-as-code](https://github.com/oleg-nenashev/demo-jenkins-config-as-code)
+    * Final implementation: JEP + a [http://jenkins.io/redirect/finding-policy](http://jenkins.io/redirect/finding-policy) redirect
+    * Rollout
+        * No enforcement in jenkinsci
+        * Enabled by default in jenkins-infra
+
+## May 20, 2020
+
+Agenda:
+
+* News!
+    * Roadmap updates ([https://www.jenkins.io/project/roadmap/](https://www.jenkins.io/project/roadmap/))
+        * Official Docker images renaming ([announcement](https://www.jenkins.io/blog/2020/05/06/docker-agent-image-renaming/))
+        * Official Windows images for Agents are in GA ([announcement](https://www.jenkins.io/blog/2020/05/11/docker-windows-agents/))
+        * GitHub App authentication is in GA ([announcement](https://www.jenkins.io/blog/2020/04/16/github-app-authentication/))
+        * Coming soon: System Read permission major update
+            * [https://github.com/jenkinsci/jenkins/pull/4531](https://github.com/jenkinsci/jenkins/pull/4531) needs to be released
+            * Oleg to follow-up in the dev list
+    * Google Season of Docs application results
+        * [https://www.jenkins.io/sigs/docs/gsod/](https://www.jenkins.io/sigs/docs/gsod/)
+    * Cloud Native SIG update
+        * [https://groups.google.com/forum/#!topic/jenkinsci-dev/nuOedyIwfyw](https://groups.google.com/forum/#!topic/jenkinsci-dev/nuOedyIwfyw)
+    * Jenkins UI/UX Hackfest updates
+        * [https://www.jenkins.io/events/online-hackfest/2020-uiux/](https://www.jenkins.io/events/online-hackfest/2020-uiux/)
+* Approving hosting the repository for UI/UX Hackfest in jenkinsci (Oleg)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/zyDqjWhwzd4](https://groups.google.com/forum/#!topic/jenkinsci-dev/zyDqjWhwzd4)
+    * [https://github.com/oleg-nenashev/jenkins-uiux-hackfest-2020](https://github.com/oleg-nenashev/jenkins-uiux-hackfest-2020)
+    * Agreed: Move it => Done
+* Approving the UI Themes Support policy (Oleg)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/NouXPVtrd0c](https://groups.google.com/forum/#!topic/jenkinsci-dev/NouXPVtrd0c)
+    * [https://github.com/jenkins-infra/jenkins.io/pull/3292](https://github.com/jenkins-infra/jenkins.io/pull/3292)
+    * Voting: Approving the suggested policy
+    * APPROVED
+* Approving the Windows Support policy proposal (Oleg)
+    * [https://groups.google.com/forum/#!msg/jenkinsci-dev/oK8pBCzPPpo/1Ue1DI4TAQAJ](https://groups.google.com/forum/#!msg/jenkinsci-dev/oK8pBCzPPpo/1Ue1DI4TAQAJ)
+    * [https://github.com/jenkins-infra/jenkins.io/pull/3295](https://github.com/jenkins-infra/jenkins.io/pull/3295)
+    * Merging as of [https://github.com/jenkins-infra/jenkins.io/blob/42516aac320846dd28fc6d8ff1a1a6f411aebe31/content/doc/administration/requirements/windows.adoc](https://github.com/jenkins-infra/jenkins.io/blob/42516aac320846dd28fc6d8ff1a1a6f411aebe31/content/doc/administration/requirements/windows.adoc) (+ typo fixes)
+        * +1 - Marky, Mark, Ulli
+* // Add your topics here
+* Next meeting
+    * As usual, June 3?
+
+## May 06, 2020
+
+Recording: [https://www.youtube.com/watch?v=Bq-qzNzSZWo](https://www.youtube.com/watch?v=Bq-qzNzSZWo)
+
+Participants:
+
+* Oleg Nenashev
+* Mark Waite
+* Ullrich Hafner
+* Oliver Gondza
+* Alyssa Tong
+* Vlad Silverman
+
+Agenda:
+
+* News!
+    * LTS baseline selection and 2.222.4 backporting
+        * [https://github.com/jenkinsci/jenkins/pull/4710](https://github.com/jenkinsci/jenkins/pull/4710) - tests are failing, ready to go once fixed
+        * LTS baseline? [https://www.jenkins.io/download/lts/](https://www.jenkins.io/download/lts/)
+            * [https://groups.google.com/forum/#!topic/jenkinsci-dev/yiFsJSAKGso](https://groups.google.com/forum/#!topic/jenkinsci-dev/yiFsJSAKGso)
+            * [https://www.jenkins.io/changelog/#v2.235](https://www.jenkins.io/changelog/#v2.235)
+            * DECISION: 2.235
+            * Thanks to all contributors!
+    * GSoC updates (Oleg)
+        * [https://www.jenkins.io/projects/gsoc/](https://www.jenkins.io/projects/gsoc/)
+        * 6 Jenkins projects + 1 Jenkins X
+        * Video will be published soon
+    * Roadmap updates (Oleg)
+        * [https://www.jenkins.io/project/roadmap/](https://www.jenkins.io/project/roadmap/)
+* Jenkins is the Way initiative (Mark Waite & Alyssa Tong)
+    * Launched on Wed, April 29
+    * 20 new story submissions, we consider moving stories to case studies.
+    * Approving the Jenkins is the Way on the [Jumbotron](https://github.com/jenkins-infra/jenkins.io/pull/3132) (Mark Waite)
+        * [https://groups.google.com/forum/#!topic/jenkinsci-dev/xnloE4x_tgg](https://groups.google.com/forum/#!topic/jenkinsci-dev/xnloE4x_tgg)
+        * Votes:
+            * +1s: Ulli, Vlad, Mark + mailing list
+            * Agreed: The change is approved, Mark to follow-up in the pull request. [https://github.com/jenkins-infra/jenkins.io/pull/3132](https://github.com/jenkins-infra/jenkins.io/pull/3132)
+    * Approve changing the Jenkins 2.0 Twitter avatar to Jenkins is the Way avatar (Alyssa)
+        * [https://groups.google.com/forum/#!topic/jenkins-advocacy-and-outreach-sig/pdyjglcetr0](https://groups.google.com/forum/#!topic/jenkins-advocacy-and-outreach-sig/pdyjglcetr0)
+        * Suggested image: [https://www.jenkins.io/images/logos/jenkins-is-the-way/256.png](https://www.jenkins.io/images/logos/jenkins-is-the-way/256.png)
+        * Timeframe: 1 month JenkinsIsTheWay, regular Jenkins logo afterwards
+        * Votes:
+            * +1s: Alyssa, Mark, Oliver (Marky in ML)
+            * Okay: Ulli, Vlad
+            * Abstained: Oleg
+        * Approved:
+            * We switch to JenkinsIsTheWay for 1 month, then to classic
+        * Action: Alyssa to reach out to Tyler
+* Jenkins Governance Roadmap and documentation items approvals:
+    * Roadmap items: [https://github.com/jenkins-infra/jenkins.io/pull/3164](https://github.com/jenkins-infra/jenkins.io/pull/3164)
+        * +1s
+    * Board elections page edits: [https://github.com/jenkins-infra/jenkins.io/pull/3165](https://github.com/jenkins-infra/jenkins.io/pull/3165)
+    * WiP - Code of Conduct edits: [https://github.com/jenkins-infra/jenkins.io/pull/3136](https://github.com/jenkins-infra/jenkins.io/pull/3136)
+* Moving the remainder of protected Governance Wiki pages to jenkins.io
+    * Trademark approvals, Commercial support
+        * [https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage](https://wiki.jenkins.io/display/JENKINS/Approved+Trademark+Usage)
+        * [https://wiki.jenkins.io/display/JENKINS/Commercial+Support](https://wiki.jenkins.io/display/JENKINS/Commercial+Support)
+    * Are maintainer guidelines enough to say they are protected enough?
+        * [https://github.com/jenkins-infra/jenkins.io/blob/master/CONTRIBUTING.adoc#maintainer-guide](https://github.com/jenkins-infra/jenkins.io/blob/master/CONTRIBUTING.adoc#maintainer-guide)
+    * Proposal: move docs to jenkins.io
+        * +1s: Alyssa, Mark, Ulli
+    * Oleg to submit a pull request and to get more reviews
+* Next meeting
+
+## April 22, 2020
+
+The meeting will happen in Zoom. Recording: [https://www.youtube.com/watch?v=4GMLyoLeHXQ&feature=youtu.be](https://www.youtube.com/watch?v=4GMLyoLeHXQ&feature=youtu.be)
+
+Participants:
+
+* Alex Earl
+* Sladyn Nunes
+* Mark Waite
+* Olivier Vernin
+* Oleg Nenashev
+* Marky Jackson
+* Vlad Silverman
+
+Agenda:
+
+* Jenkins Roadmap Review/Discussion. Submit your proposals in mailing lists!
+    * [https://jenkins.io/project/roadmap/](https://jenkins.io/project/roadmap/)
+    * [https://github.com/jenkinsci/jep/tree/master/jep/14](https://github.com/jenkinsci/jep/tree/master/jep/14)
+    * Feedback needed:
+        * Categorization.
+            * Are the current categories fine?
+            * Should we switch to MxN (multiple categories for initiative)
+                * MW in favor of multi categories
+                * MJ, OV keep it simple
+        * Coloring of roadmap items. How could we use this third dimension?
+        * Referencing communication channels
+* GSoD application. Go/no go?
+    * [https://developers.google.com/season-of-docs](https://developers.google.com/season-of-docs)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-docs/JrcGssk8DSo](https://groups.google.com/forum/#!topic/jenkinsci-docs/JrcGssk8DSo)
+    * Is someone interested?
+        * Vlad - interested to participate as mentee
+        * Oleg - part-time org admin, ready to get the website prepared
+        * Sladyn - as mentor? TBD
+        * Mark - part-time mentor, but not org admin
+        * Marky - part-time org-admin
+        * DECISION: we will try to apply
+            * 1 mentee max
+            * Avoid creating new channels and money transfer channels if possible
+* Annual report to SPI:
+    * [https://groups.google.com/forum/#!topic/jenkins-advocacy-and-outreach-sig/TYaqHN0QrTM](https://groups.google.com/forum/#!topic/jenkins-advocacy-and-outreach-sig/TYaqHN0QrTM)
+    * [https://docs.google.com/document/d/1D7gjIngwUMK1W-CuhJriM_aiyyRLjcUdFjLqO6CQuew/edit?usp=sharing](https://docs.google.com/document/d/1D7gjIngwUMK1W-CuhJriM_aiyyRLjcUdFjLqO6CQuew/edit?usp=sharing)
+    * +1s
+    * AGREED:
+        * 2PM UTC - deadline for feedback
+* Chris Orr - image usage request
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/a_QgJwQfUJg](https://groups.google.com/forum/#!topic/jenkinsci-dev/a_QgJwQfUJg)
+    * AGREED: Approved (all +1s, no votes against)
+* Kudos to the release team!
+    * First release on the release env!
+* Other topics
+* How do we do the next meeting?
+    * Depends on agenda, we will agree it several days before the next meeting
+    *
+
+## Apr 08, 2020
+
+[Meeting minutes](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-04-08-18.03.html), [Full log](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-04-08-18.03.log.html)
+
+Agenda:
+
+* Jenkins Roadmap updates (Oleg Nenashev)
+    * Draft roadmap is published:  [https://jenkins.io/project/roadmap/](https://jenkins.io/project/roadmap/)
+    * JEP is published as a draft: [https://github.com/jenkinsci/jep/tree/master/jep/14](https://github.com/jenkinsci/jep/tree/master/jep/14)
+    * Ongoing discussions
+    * Agreed:
+        * We will use a part of the next meeting as a Roadmap meeting
+        * The meeting will be conducted as a recorded video call
+        * Alex Earl is ready to be a BDFL delegate for JEP-14, Oleg to follow-up
+* Event updates (Oleg Nenashev)
+    * Series of online meetups about Kubernetes. One announced, several are coming soon. Looking for more speakers!
+    * Jenkins Online Meetup platform documentation - coming soon
+* Next meeting
+
+## Mar 25, 2020
+
+[Meeting minutes](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-03-25-18.00.html), [log](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-03-25-18.00.log.html)
+
+Agenda:
+
+* Approval request: Posting the WIP roadmap on jenkins.io (Oleg Nenashev)
+    * [https://groups.google.com/forum/#!msg/jenkinsci-dev/Ez7nZxlxSWk/TQp_LwNmAwAJ](https://groups.google.com/forum/#!msg/jenkinsci-dev/Ez7nZxlxSWk/TQp_LwNmAwAJ)
+    * APPROVED
+* Approval request: Administrative access to the Jenkins LinkedIn account for Oleg Nenashev
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/s7PDjEXzGjE](https://groups.google.com/forum/#!topic/jenkinsci-dev/s7PDjEXzGjE)
+    * APPROVED
+* Trademark usage request: Jenkins RU and Дженкинс РУ (Oleg Nenashev)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/yq_FrEf9d28](https://groups.google.com/forum/#!topic/jenkinsci-dev/yq_FrEf9d28)
+    * APPROVED
+
+## March 11, 2020
+
+[Meeting Minutes](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-03-11-18.01.html), [Conversation Log](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-03-11-18.01.log.html)
+
+Agenda:
+
+* Jenkins 2.204.3..2.204.5 regressions. Retrospective and Feedback (Oleg)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/d9lgjbruRno](https://groups.google.com/forum/#!topic/jenkinsci-dev/d9lgjbruRno)
+* Next meeting
+
+## Feb 26, 2020
+
+Minutes:       [here](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-02-26-18.00.html)
+
+Log:           [here](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-02-26-18.00.log.html)
+
+Agenda:
+
+* LTS Baseline selection updates
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/VRxRCP_IKhQ](https://groups.google.com/forum/#!topic/jenkinsci-dev/VRxRCP_IKhQ)
+* [Terms of service document](https://drive.google.com/open?id=1HCfyQMeWWmwEffl_uLDdzjwEpVcjkFof) for IBM Z (s390x) use as ci.jenkins.io agents - needs a signature from a representative of the Jenkins project
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/xPschQIrEts](https://groups.google.com/forum/#!topic/jenkinsci-dev/xPschQIrEts)
+    * DECISION: olblak can sign the agreement as an Infra officer
+* Depublishing the Jenkins Design Language 2 resources
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/bEriiXYZ0lw](https://groups.google.com/forum/#!topic/jenkinsci-dev/bEriiXYZ0lw)
+    * VOTE: Signing off the services shutdown => APPROVED
+
+## Feb 12, 2020
+
+* Skipped - no topics
+
+## Jan 29, 2020
+
+[Meeting minutes](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-01-29-18.03.html), [Conversation log](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-01-29-18.03.log.html)
+
+* Recap of previous action items
+* Approving new Jenkins Core maintainers (Oleg)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/1ioTdU4784M](https://groups.google.com/forum/#!topic/jenkinsci-dev/1ioTdU4784M)
+    * APPROVED
+* // Suggest your topics here!
+
+## Jan 15, 2020
+
+MINUTES [summary](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-01-15-18.01.html) and [raw conversation log](http://meetings.jenkins-ci.org/jenkins-meeting/2020/jenkins-meeting.2020-01-15-18.01.log.html)
+
+Agenda:
+
+* New meeting time
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/RuWQ124gUsw](https://groups.google.com/forum/#!topic/jenkinsci-dev/RuWQ124gUsw)
+    * DECISION: Keep the current time for now
+    * Voting in [https://doodle.com/poll/pq2g45anu92yz2b8](https://doodle.com/poll/pq2g45anu92yz2b8) is still open
+* Updates in the Governance Meeting tooling (Oleg Nenashev)
+    * [https://issues.jenkins-ci.org/browse/WEBSITE-700](https://issues.jenkins-ci.org/browse/WEBSITE-700)
+* Approval request: CommunityBridge funding page (Oleg Nenashev)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/iLutO2X0bdg](https://groups.google.com/forum/#!topic/jenkinsci-dev/iLutO2X0bdg)
+    * VOTE: Approve beta testing of the CommunityBridge as a reference implementation - Approved
+* TBD: Jenkins Evergreen Infra status. Do we shut down the Evergreen infra? (Olivier Vernin, Oleg Nenashev)
+    * [https://groups.google.com/forum/#!msg/jenkinsci-dev/OlG1IEFmSiQ/8RHA_urCBQAJ](https://groups.google.com/forum/#!msg/jenkinsci-dev/OlG1IEFmSiQ/8RHA_urCBQAJ)
+    * VOTE: Deprecate the Jenkins Evergreen project && sunset the infrastructure on Jan 31st - Approved
+* Jenkins Area Meetup removal follow-up (Alyssa Tong, Oleg Nenashev)
+    * [https://groups.google.com/forum/#!topic/jenkinsci-dev/cviU5XUX8vQ](https://groups.google.com/forum/#!topic/jenkinsci-dev/cviU5XUX8vQ)
+    * VOTE: Approve the suggested process in general && delegate the final process decision to the event officer and Advocacy and Outreach SIG (immediate/short-term step down for meetups which never happened, grace period for stale ones) - Approved
+    * VOTE: Approve archiving of jenkinsci-jam and events mailing lists mailing lists in favor of Advocacy & Outreach channels - Approved
+* FOSDEM updates (Oleg Nenashev)
+* Next meeting
+
+## Jan 01, 2020 - Cancelled
+
+## Dec 18, 2019
+
+* Recap of previous action items
+* Jenkins Board Elections retrospective (Tracy Miranda, ?Oleg Nenashev)
+    * [https://docs.google.com/document/d/1Htgjq2Gnojz6a-FE62kgjIq6AVR8ctPcARbd-m2KctQ/edit?usp=sharing](https://docs.google.com/document/d/1Htgjq2Gnojz6a-FE62kgjIq6AVR8ctPcARbd-m2KctQ/edit?usp=sharing) - put your feedback there
+    * [https://jenkins.io/blog/2019/12/16/board-election-results/#feedback](https://jenkins.io/blog/2019/12/16/board-election-results/#feedback) for other channels
+    * Also join the Advocacy and Outreach SIG tomorrow
+* Approve new Twitter Contributors (Tracy Miranda)
+    * [https://groups.google.com/d/msg/jenkinsci-dev/WBwlshm4o7g/ooyjYkTvAQAJ](https://groups.google.com/d/msg/jenkinsci-dev/WBwlshm4o7g/ooyjYkTvAQAJ)
+
+Maybe:
+
+*
+
+## Previous meetings in 2019
+
+See [https://jenkins.io/project/governance-meeting/archives/2019](https://jenkins.io/project/governance-meeting/archives/2019)
